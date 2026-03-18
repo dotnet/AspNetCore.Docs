@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to restrict ASP.NET Core MVC controller and action access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/17/2026
+ms.date: 03/18/2026
 uid: mvc/security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core MVC
@@ -243,9 +243,46 @@ services.AddAuthorizationBuilder()
 
 :::moniker-end
 
+## Windows Authentication security groups as app roles
+
+After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](<xref:blazor/security/blazor-web-app-with-windows-authentication>)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+
+The `User.Identity` is typically a <xref:System.Security.Principal.WindowsIdentity> when using Windows Authentication, and you can retrieve the SID group claims or check if a user is in a role with the following code, where the `{DOMAIN}` placeholder is the domain and the `{SID GROUP NAME}` is the SID group name:
+
+```csharp
+if (User.Identity is WindowsIdentity windowsIdentity)
+{
+    var groups = windowsIdentity.Groups;
+
+    // If needed, obtain a list of the SID groups
+    var securityGroups = 
+        groups.Select(g => g.Translate(typeof(NTAccount)).ToString()).ToList();
+
+    // If needed, obtain the user's Windows identity name
+    var windowsIdentityName = windowsIdentity.Name;
+
+    // Check if the user is in a specific SID group
+    if (User.IsInRole(@"{DOMAIN}\{SID GROUP NAME}"))
+    {
+        // User is in the specified group
+    }
+    else
+    {
+        // User isn't in the specified group
+    }
+}
+else
+{
+    // The user isn't authenticated with Windows Authentication
+}
+```
+
+For a demonstration of related code that translates SID group claims into human-readable values, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-with-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user authenticates to the app.
+
 ## Additional resources
 
 * <xref:security/authorization/roles>
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>
 * <xref:razor-pages/security/authorization/roles>
+* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation)

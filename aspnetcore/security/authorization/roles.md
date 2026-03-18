@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/17/2026
+ms.date: 03/18/2026
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -26,7 +26,7 @@ For Razor Pages and MVC guidance, which applies to all release versions of ASP.N
 
 :::moniker range="< aspnetcore-6.0"
 
-Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor was released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is similar and shown in the companion [Razor Pages roles-based article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based article](xref:mvc/security/authorization/roles). See those resources after reading this article and set the article version selector to the version of .NET that your app targets.
+Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor was released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
 
 :::moniker-end
 
@@ -205,9 +205,46 @@ builder.Services.AddAuthorizationBuilder()
         });
 ```
 
+## Windows Authentication security groups as app roles
+
+After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](<xref:blazor/security/blazor-web-app-with-windows-authentication>)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+
+The `User.Identity` is typically a <xref:System.Security.Principal.WindowsIdentity> when using Windows Authentication, and you can retrieve the SID group claims or check if a user is in a role with the following code, where the `{DOMAIN}` placeholder is the domain and the `{SID GROUP NAME}` is the SID group name:
+
+```csharp
+if (User.Identity is WindowsIdentity windowsIdentity)
+{
+    var groups = windowsIdentity.Groups;
+
+    // If needed, obtain a list of the SID groups
+    var securityGroups = 
+        groups.Select(g => g.Translate(typeof(NTAccount)).ToString()).ToList();
+
+    // If needed, obtain the user's Windows identity name
+    var windowsIdentityName = windowsIdentity.Name;
+
+    // Check if the user is in a specific SID group
+    if (User.IsInRole(@"{DOMAIN}\{SID GROUP NAME}"))
+    {
+        // User is in the specified group
+    }
+    else
+    {
+        // User isn't in the specified group
+    }
+}
+else
+{
+    // The user isn't authenticated with Windows Authentication
+}
+```
+
+For a demonstration of related code that translates SID group claims into human-readable values, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-with-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user authenticates to the app.
+
 ## Additional resources
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>
 * <xref:razor-pages/security/authorization/roles>
 * <xref:mvc/security/authorization/roles>
+* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation)
