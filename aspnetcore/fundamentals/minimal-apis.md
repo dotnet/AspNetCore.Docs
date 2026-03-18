@@ -5,7 +5,7 @@ description: Provides an overview of Minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 12/05/2025
+ms.date: 03/17/2026
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -25,10 +25,7 @@ Editorial note: This file is a quick reference summary:
 
 :::moniker range=">= aspnetcore-10.0"
 
-This document:
-
-* Provides a quick reference for Minimal APIs.
-* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
+This document provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
 
 The Minimal APIs consist of:
 
@@ -50,7 +47,7 @@ The following table lists some of the middleware frequently used with Minimal AP
 | [Forwarded Headers](xref:fundamentals/middleware/index#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
 | [HTTPS Redirection](xref:security/enforcing-ssl) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
 | [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
-| [Request Logging](xref:fundamentals/logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
+| [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
 | [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | `UseRequestTimeouts` |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> |
