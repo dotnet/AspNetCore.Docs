@@ -14,7 +14,7 @@ When a user's identity is created after authentication, the user may belong to o
 
 While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
-This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios for ASP.NET Core 8.0 or later. For additional Blazor guidance, see the following resources:
+This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the following resources:
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>
@@ -249,7 +249,7 @@ builder.Services.AddAuthorization(options =>
 
 :::moniker-end
 
-:::moniker range="<= aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.AddAuthorization(options =>
@@ -321,7 +321,7 @@ builder.Services.AddAuthorization(options =>
 
 :::moniker-end
 
-:::moniker range="<= aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 services.AddAuthorization(options =>
@@ -353,7 +353,17 @@ services.AddAuthorization(options =>
 
 ## Windows Authentication security groups as app roles
 
+:::moniker range=">= aspnetcore-9.0"
+
 After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](xref:blazor/security/blazor-web-app-windows-authentication)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+
+:::moniker-end
 
 The `User.Identity` is typically a <xref:System.Security.Principal.WindowsIdentity> when using Windows Authentication, and you can retrieve the SID group claims or check if a user is in a role with the following code, where the `{DOMAIN}` placeholder is the domain and the `{SID GROUP NAME}` is the SID group name:
 
@@ -385,7 +395,17 @@ else
 }
 ```
 
-For a demonstration of related code that translates SID group claims into human-readable values, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user authenticates to the app.
+:::moniker range=">= aspnetcore-9.0"
+
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+An approach similar to the preceding example for retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+
+:::moniker-end
 
 ## Additional resources
 
