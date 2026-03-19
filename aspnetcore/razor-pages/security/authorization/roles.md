@@ -107,42 +107,47 @@ public class ControlPanelModel : PageModel
 }
 ```
 
-<!--
-Access to an action can be limited by applying additional role authorization attributes at the action level:
+Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), can only be applied to the entire `PageModel` class and can't be applied to specific page handler methods. If you need to implement different authorization rules for different page handlers, adopt either of the following approaches.
 
-```csharp
-[Authorize(Roles = "Administrator, PowerUser")]
-public class ControlPanelController : Controller
-{
-    public IActionResult SetTime() { ... }
+* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](xref:mvc/views/partial) for shared content.
 
-    [Authorize(Roles = "Administrator")]
-    public IActionResult ShutDown() { ... }
-}
-```
+* Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>). The following example demonstrates the approach:
 
-In the preceding controller:
+  * The page's `OnGet` handler requires the `User` role.
+  * The page's `OnPostAsync` handler requires the `Administrator` role.
 
-* Members of the `Administrator` role or the `PowerUser` role can access the controller and the `SetTime` action.
-* Only members of the `Administrator` role can access the `ShutDown` action.
+  ```csharp
+  public class AuthPageHandlersExampleModel(IAuthorizationService authorizationService) : PageModel
+  {
+      public async Task<IActionResult> OnGet()
+      {
+          var authResult = await authorizationService.AuthorizeAsync(User, "User");
 
-A controller can be secured but still allow anonymous, unauthenticated access to individual actions with the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute):
+          if (!authResult.Succeeded)
+          {
+              return Forbid();
+          }
 
-```csharp
-[Authorize]
-public class Control3PanelController : Controller
-{
-    public IActionResult SetTime() { ... }
+          // Authorized logic
 
-    [AllowAnonymous]
-    public IActionResult Login() { ... }
-}
-```
+          return Page();
+      }
 
--->
+      public async Task<IActionResult> OnPostAsync()
+      {
+          var authResult = await authorizationService.AuthorizeAsync(User, "Administrator");
 
-> [!IMPORTANT]
-> Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), can only be applied to the entire `PageModel` class and can't be applied to specific page handler methods.
+          if (!authResult.Succeeded)
+          {
+              return Forbid();
+          }
+
+          // Authorized logic
+
+          return Page();
+      }
+  }
+  ```
 
 ## Policy-based authorization checks
 
