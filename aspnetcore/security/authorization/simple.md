@@ -5,7 +5,7 @@ author: tdykstra
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 03/18/2026
+ms.date: 03/19/2026
 uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
