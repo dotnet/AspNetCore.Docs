@@ -95,15 +95,15 @@ public class SalaryModel : PageModel
 }
 ```
 
-When multiple attributes are applied, the user must be a member of *all* of the roles specified. The following example requires *both* `PowerUser` *and* `ControlPanelUser` roles to call the `SetTime` and `Shutdown` handlers:
+When multiple attributes are applied, the user must be a member of *all* of the roles specified. The following example requires *both* `PowerUser` *and* `ControlPanelUser` roles to call the `OnPostSetTime` and `OnPostShutdown` handlers:
 
 ```csharp
 [Authorize(Roles = "PowerUser")]
 [Authorize(Roles = "ControlPanelUser")]
 public class ControlPanelModel : PageModel
 {
-    public IActionResult SetTime() { ... }
-    public IActionResult ShutDown() { ... }
+    public IActionResult OnPostSetTime() { ... }
+    public IActionResult OnPostShutDown() { ... }
 }
 ```
 
@@ -113,15 +113,17 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
 
 * Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>). The following example demonstrates the approach:
 
-  * The page's `OnGet` handler requires the `User` role.
-  * The page's `OnPostAsync` handler requires the `Administrator` role.
+  * The page's `OnGet` handler requires the `User` role via the `IsInUserRolePolicy` policy.
+  * The page's `OnPostAsync` handler requires the `Admin` role via the `IsInAdminRolePolicy` policy.
 
   ```csharp
-  public class AuthPageHandlersExampleModel(IAuthorizationService authorizationService) : PageModel
+  public class AuthPageHandlersExampleModel(
+      IAuthorizationService authorizationService) : PageModel
   {
       public async Task<IActionResult> OnGet()
       {
-          var authResult = await authorizationService.AuthorizeAsync(User, "User");
+          var authResult = 
+              await authorizationService.AuthorizeAsync(User, "IsInUserRolePolicy");
 
           if (!authResult.Succeeded)
           {
@@ -135,7 +137,8 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
 
       public async Task<IActionResult> OnPostAsync()
       {
-          var authResult = await authorizationService.AuthorizeAsync(User, "Administrator");
+          var authResult = 
+              await authorizationService.AuthorizeAsync(User, "IsInAdminRolePolicy");
 
           if (!authResult.Succeeded)
           {
@@ -146,6 +149,24 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
 
           return Page();
       }
+  }
+  ```
+
+  For more information, see the [Policy-based authorization checks](#policy-based-authorization-checks) section.
+
+  Alternatively, page handler methods can check roles directly by calling <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A>:
+
+  ```csharp
+  public async Task<IActionResult> OnPostAsync()
+  {
+      if (!User.IsInRole("Admin"))
+      {
+          return Forbid();
+      }
+
+      // Authorized logic
+
+      return Page();
   }
   ```
 

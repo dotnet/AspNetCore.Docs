@@ -12,7 +12,7 @@ uid: security/authorization/simple
 
 Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a Razor component, controller, action, or Razor Page, limits access to that component to authenticated users.
 
-This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios for ASP.NET Core 8.0 or later. For Razor Pages and MVC guidance, which applies to all release versions of ASP.NET Core, see the following resources after reading this article:
+This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For Razor Pages and MVC guidance, which applies to all release versions of ASP.NET Core, see the following resources after reading this article:
 
 * <xref:razor-pages/security/authorization/simple>
 * <xref:mvc/security/authorization/simple>
