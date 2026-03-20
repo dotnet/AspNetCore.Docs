@@ -72,7 +72,12 @@ All include files go in:
 * **Correct**: `<xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>`
 * **Wrong**: `` `BadHttpRequestException` ``
 * **Correct**: `<xref:Microsoft.AspNetCore.Http.BadHttpRequestException>`
-* When referencing an API type or method, always use `<xref:fully.qualified.name>`
+* When referencing an API type or method, use `<xref:fully.qualified.name>`
+  format. The xref ID must be verified from official dotnet-api-docs, not guessed.
+* If the API is brand new in this preview and no xref exists yet, link to the
+  source code on GitHub instead and add an HTML comment
+  `<!-- TODO: Update to <xref:> once API docs are published -->` so it can be
+  updated later.
   format. The xref ID must be verified from official dotnet-api-docs, not guessed.
 * When referring to a dictionary/API concept (not a file), do NOT include file
   extensions. For example, write `PasskeyAuthenticators` dictionary, not
