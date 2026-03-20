@@ -85,7 +85,7 @@ public class AdministrationModel : PageModel
 }
 ```
 
-Multiple roles can be specified as a comma separated list. In the following example, access is limited to users who are members of the `HRManager` role *or* the `Finance` role:
+Multiple roles can be specified as a comma-separated list. In the following example, access is limited to users who are members of the `HRManager` role *or* the `Finance` role:
 
 ```csharp
 [Authorize(Roles = "HRManager, Finance")]
