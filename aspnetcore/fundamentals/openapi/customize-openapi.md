@@ -150,7 +150,7 @@ internal sealed class AuthOperationTransformer : IOpenApiOperationTransformer
 }
 ```
 
-This approach is preferred over document transformers when conditional logic based on endpoint metadata is required.
+Use this approach instead of document transformers when conditional logic based on endpoint metadata is required. This transformer adds security *requirements* per operation and assumes the security *scheme* is already registered at the document level. For an example of registering the Bearer security scheme, see the `BearerSecuritySchemeTransformer` in the [Use document transformers](#use-document-transformers) section.
 
 ## Use schema transformers
 
