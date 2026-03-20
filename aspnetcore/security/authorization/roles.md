@@ -93,7 +93,7 @@ For role-based authorization for content in Razor components, use the <xref:Micr
 </AuthorizeView>
 ```
 
-To require a user to have both `Admin` and `Superuser` role claims, nest <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components:
+To require both `Admin` and `Superuser` role claims, nest <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components:
 
 ```razor
 <AuthorizeView Roles="Admin">

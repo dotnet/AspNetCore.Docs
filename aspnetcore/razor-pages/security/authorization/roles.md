@@ -103,7 +103,7 @@ When multiple attributes are applied, the user must be a member of *all* of the 
 public class ControlPanelModel : PageModel
 {
     public IActionResult OnPostSetTime() { ... }
-    public IActionResult OnPostShutDown() { ... }
+    public IActionResult OnPostShutdown() { ... }
 }
 ```
 
