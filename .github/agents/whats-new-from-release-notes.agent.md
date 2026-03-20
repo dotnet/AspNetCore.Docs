@@ -100,7 +100,7 @@ the correct version of the file.
 Read the current What's New article in `dotnet/AspNetCore.Docs`:
 `aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}.md`
 
-### 0d: List existing What's Newinclude files
+### 0d: List existing What's New include files
 
 List all existing include files in:
 `aspnetcore/release-notes/aspnetcore-{MAJOR_VERSION}/includes/`
