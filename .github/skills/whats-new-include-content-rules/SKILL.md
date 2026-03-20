@@ -171,12 +171,12 @@ Thank you [@baywet](https://github.com/baywet) for this contribution!
 
 ### What this example demonstrates
 
-* `###` heading (H3), not `##`
-* Breaking Change designation preserved in heading
-* "For more information, see" phrasing (not em-dash style)
-* `<xref:>` used for API method reference
-* Present tense ("take advantage" not "will take advantage")
-* Community contributor thank-you preserved
-* No preview number mentioned in the body text
-* No YAML front matter
-* Relative link would be used for any Microsoft Learn references
+* `###` heading (H3), not `##`.
+* Breaking Change designation preserved in heading.
+* "For more information, see" phrasing (not em-dash style).
+* `<xref:>` used for API method reference.
+* Present tense ("take advantage" not "will take advantage").
+* Community contributor thank-you preserved.
+* No preview number mentioned in the body text.
+* No YAML front matter.
+* Relative link would be used for any Microsoft Learn references.
