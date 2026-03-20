@@ -149,6 +149,7 @@ internal sealed class AuthOperationTransformer : IOpenApiOperationTransformer
         return Task.CompletedTask;
     }
 }
+```
 
 This approach is preferred over document transformers when conditional logic based on endpoint metadata is required.
 
