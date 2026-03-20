@@ -22,7 +22,7 @@ ms.date: 03/11/2026
 ## Goal
 
 Transform ASP.NET Core preview release notes from the `dotnet/core` repository
-into include files for the cumulative "What's New in ASP.NET Core in .NET {VERSION}"
+into include files for the cumulative "What's New in ASP.NET Core in .NET {MAJOR_VERSION}"
 article in `dotnet/AspNetCore.Docs`. This agent handles both initial creation of
 include files for a new preview and incremental updates when release notes are
 revised after initial processing.
