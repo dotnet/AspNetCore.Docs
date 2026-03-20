@@ -106,6 +106,52 @@ Operation transformers can also be added to specific endpoint with the <xref:Mic
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
 
+### Conditionally applying security requirements
+
+In some scenarios, developers may want to apply security requirements to all endpoints except those explicitly marked with the `AllowAnonymous` attribute.
+
+This can be achieved using an operation transformer, which has access to endpoint metadata through the associated <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>.
+
+The following example demonstrates how to skip adding a security requirement for endpoints that have the `AllowAnonymousAttribute` applied:
+
+```csharp
+internal sealed class AuthOperationTransformer : IOpenApiOperationTransformer
+{
+    public Task TransformAsync(
+        OpenApiOperation operation,
+        OpenApiOperationTransformerContext context,
+        CancellationToken cancellationToken)
+    {
+        var hasAllowAnonymous = context.Description.ActionDescriptor.EndpointMetadata
+            .OfType<AllowAnonymousAttribute>()
+            .Any();
+
+        if (hasAllowAnonymous)
+        {
+            // Skip adding security requirements for anonymous endpoints
+            return Task.CompletedTask;
+        }
+
+        operation.Security ??= new List<OpenApiSecurityRequirement>();
+
+        operation.Security.Add(new OpenApiSecurityRequirement
+        {
+            [new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            }] = Array.Empty<string>()
+        });
+
+        return Task.CompletedTask;
+    }
+}
+
+This approach is preferred over document transformers when conditional logic based on endpoint metadata is required.
+
 ## Use schema transformers
 
 Schemas are the data models that are used in request and response bodies in an OpenAPI document. Schema transformers are useful when a modification:
