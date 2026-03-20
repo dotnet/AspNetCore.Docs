@@ -47,7 +47,7 @@ All include files go in:
   * Do **NOT** create any new include files for Blazor content.
   * Do indicate in the PR description report which Blazor features are present in the release notes but not represented in the What's New article or includes.
 
-* **Do not create include files for the Bug fixes section**: Only document new features and improvements.
+* **Do not create include files for bug fixes**: The What's New article only covers new features and improvements, not bug fixes.
 * **Community contributors list**:
   * Do not create a standalone include file for the contributors list.
   * DO preserve inline contributor thank-yous within feature sections (see below).
