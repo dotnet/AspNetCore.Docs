@@ -5,7 +5,7 @@ description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 10/29/2025
+ms.date: 03/20/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -105,6 +105,52 @@ For example, the following operation transformer adds `500` as a response status
 Operation transformers can also be added to specific endpoint with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.AddOpenApiOperationTransformer%2A> API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
+
+### Conditionally applying security requirements
+
+In some scenarios, developers may want to apply security requirements to all endpoints except those explicitly marked with the `AllowAnonymous` attribute.
+
+Use an operation transformer, which has access to endpoint metadata through the associated <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>.
+
+The following example demonstrates how to skip adding a security requirement for endpoints that have the `AllowAnonymousAttribute` applied:
+
+```csharp
+internal sealed class AuthOperationTransformer : IOpenApiOperationTransformer
+{
+    public Task TransformAsync(
+        OpenApiOperation operation,
+        OpenApiOperationTransformerContext context,
+        CancellationToken cancellationToken)
+    {
+        var hasAllowAnonymous = context.Description.ActionDescriptor.EndpointMetadata
+            .OfType<AllowAnonymousAttribute>()
+            .Any();
+
+        if (hasAllowAnonymous)
+        {
+            return Task.CompletedTask;
+        }
+
+        operation.Security ??= new List<OpenApiSecurityRequirement>();
+
+        operation.Security.Add(new OpenApiSecurityRequirement
+        {
+            [new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            }] = Array.Empty<string>()
+        });
+
+        return Task.CompletedTask;
+    }
+}
+```
+
+Use this approach instead of document transformers when conditional logic based on endpoint metadata is required. This transformer adds security *requirements* per operation and assumes the security *scheme* is already registered at the document level. For an example of registering the Bearer security scheme, see the `BearerSecuritySchemeTransformer` in the [Use document transformers](#use-document-transformers) section.
 
 ## Use schema transformers
 
