@@ -110,7 +110,7 @@ Operation transformers can also be added to specific endpoint with the <xref:Mic
 
 In some scenarios, developers may want to apply security requirements to all endpoints except those explicitly marked with the `AllowAnonymous` attribute.
 
-This can be achieved using an operation transformer, which has access to endpoint metadata through the associated <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>.
+Use an operation transformer, which has access to endpoint metadata through the associated <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>.
 
 The following example demonstrates how to skip adding a security requirement for endpoints that have the `AllowAnonymousAttribute` applied:
 
