@@ -128,7 +128,6 @@ internal sealed class AuthOperationTransformer : IOpenApiOperationTransformer
 
         if (hasAllowAnonymous)
         {
-            // Skip adding security requirements for anonymous endpoints
             return Task.CompletedTask;
         }
 
