@@ -160,7 +160,7 @@ The `SendMessage` method can be called by a connected client to send a message t
 
 The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
-[!code-csharp[Startup](~/tutorials/signalr/samples/10.x/SignalRChat/Program.cs?highlight=1,7,27)]
+[!code-csharp[Startup](~/tutorials/signalr/samples/10.x/SignalRChat/Program.cs?highlight=1,7,26)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
