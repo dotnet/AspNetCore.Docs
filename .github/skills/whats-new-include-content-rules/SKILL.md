@@ -24,7 +24,7 @@ All include files go in:
 ### File naming convention
 
 * Lowercase, hyphenated, descriptive names.
-* Append the preview suffix to each filename: `-preview{N}` (e.g., `-preview2`).
+* Append the preview number suffix to each filename: `-preview{N}` (where `{N}` is the preview number, e.g., `-preview2`).
   **CRITICAL**: Every new file MUST include the preview suffix. This was a mistake
   in the initial automation — a file was created without the suffix and had to be
   corrected.
