@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/19/2026
+ms.date: 03/23/2026
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -29,6 +29,13 @@ For Razor Pages and MVC guidance, which applies to all release versions of ASP.N
 Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor Web Apps were released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
 
 :::moniker-end
+
+## Sample app
+
+The Blazor Web App sample for this article is the [`BlazorWebAppRolesWithIdentity` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppRolesWithIdentity) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured roles to demonstrate most of the examples in this article. For more information, see the sample's README file (`README.md`).
+
+> [!CAUTION]
+> This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
 
 ## Add Role services to Identity
 
@@ -85,59 +92,82 @@ Role-based authorization checks:
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component supports *role-based* authorization. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
 
-For role-based authorization for content in Razor components, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles?displayProperty=nameWithType> parameter. In the following example, the user must have a role claim for either the `Admin` or `Superuser` roles:
+For role-based authorization of content in Razor components, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles?displayProperty=nameWithType> parameter.
+
+In the following example:
+
+* The user must have a role claim for either the `Admin` or `SuperUser` roles to see the content of the first <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component.
+* To require both `Admin` and `SuperUser` role claims, the second example nests <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
+
+`Pages/RoleChecksWithAuthorizeView.razor`:
 
 ```razor
-<AuthorizeView Roles="Admin, Superuser">
-    <p>You have an 'Admin' or 'Superuser' role claim.</p>
+@page "/role-checks-with-authorizeview"
+
+<h3>Role Checks with AuthorizeView</h3>
+
+<AuthorizeView Roles="Admin, SuperUser">
+    <p>User: @context.User.Identity?.Name</p>
+    <p>You have an 'Admin' or 'SuperUser' role claim.</p>
 </AuthorizeView>
-```
 
-To require both `Admin` and `Superuser` role claims, nest <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components:
-
-```razor
 <AuthorizeView Roles="Admin">
-    <p>User: @context.User</p>
+    <p>User: @context.User.Identity?.Name</p>
     <p>You have the 'Admin' role claim.</p>
-    <AuthorizeView Roles="Superuser" Context="innerContext">
-        <p>User: @innerContext.User</p>
-        <p>You have both 'Admin' and 'Superuser' role claims.</p>
+    <AuthorizeView Roles="SuperUser" Context="innerContext">
+        <p>User: @innerContext.User.Identity?.Name</p>
+        <p>You have both 'Admin' and 'SuperUser' role claims.</p>
     </AuthorizeView>
 </AuthorizeView>
 ```
 
 The preceding code establishes a `Context` for the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component to prevent an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> context collision. The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> context is accessed in the outer <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> with the standard approach for accessing the context (`@context.User`). The context is accessed in the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> with the named `innerContext` context (`@innerContext.User`).
 
-The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) supports role-based authorization for entire Razor components. Use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles?displayProperty=nameWithType> parameter. The following code limits component access to users who are a member of the `Administrator` role:
+The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) supports role-based authorization for entire Razor components. Use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles?displayProperty=nameWithType> parameter. The following code limits component access to users who are a member of the `Admin` role.
+
+`Pages/RequireAdminRoleWithAuthorizeAttribute.razor`:
 
 ```razor
-@page "/"
-@attribute [Authorize(Roles = "Administrator")]
+@page "/require-admin-role-with-authorize-attribute"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
 
-<p>You can only see this if you're in the 'Administrator' role.</p>
+<h1>Require 'Admin' role with [Authorize] attribute</h1>
+
+<p>You can only see this if you're in the 'Admin' role.</p>
 ```
 
-Multiple roles can be specified as a comma separated list. In the following example, access is limited to users who are members of the `HRManager` role *or* the `Finance` role:
+Multiple roles can be specified as a comma separated list. In the following example, access is limited to users who are members of the `Admin` role *or* the `SuperUser` role.
+
+`Pages/RequireAdminOrSuperUserRoleWithAuthorizeAttribute.razor`:
 
 ```razor
-@page "/"
-@attribute [Authorize(Roles = "HRManager, Finance")]
+@page "/require-admin-or-superuser-role-with-authorize-attribute"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin, SuperUser")]
+
+<h1>Require 'Admin' or 'SuperUser' role with [Authorize] attribute</h1>
 
 <p>
-    You can only see this if you're in the 'HRManager' role or the 'Finance' role.
+    You can only see this if you're in the 'Admin' role or the 'SuperUser' role.
 </p>
 ```
 
-When multiple attributes are applied, the user must be a member of *all* of the roles specified. The following example requires *both* `PowerUser` *and* `ControlPanelUser` roles:
+When multiple attributes are applied, the user must be a member of *all* of the roles specified. The following example requires *both* `Admin` *and* `SuperUser` roles.
+
+`Pages/RequireAdminAndSuperUserRolesWithAuthorizeAttributes.razor`:
 
 ```razor
-@page "/"
-@attribute [Authorize(Roles = "PowerUser")]
-@attribute [Authorize(Roles = "ControlPanelUser")]
+@page "/require-admin-and-superuser-roles-with-authorize-attributes"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@attribute [Authorize(Roles = "SuperUser")]
+
+<h1>Require 'Admin' and 'SuperUser' roles with [Authorize] attributes</h1>
 
 <p>
-    You can only see this if you're in both the 'PowerUser' role 
-    and the 'ControlPanelUser' role.
+    You can only see this if you're in both the 'Admin' role 
+    and the 'SuperUser' role.
 </p>
 ```
 
@@ -145,14 +175,14 @@ Role matching is typically case-sensitive because role names are stored and comp
 
 ## Policy-based authorization checks
 
-Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdministratorRole` policy specifies that all users must be in the `Administrator` role:
+Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdminRole` policy specifies that all users must be in the `Admin` role:
 
 :::moniker range=">= aspnetcore-7.0"
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("RequireAdministratorRole",
-         policy => policy.RequireRole("Administrator"));
+    .AddPolicy("RequireAdminRole",
+         policy => policy.RequireRole("Admin"));
 ```
 
 :::moniker-end
@@ -162,8 +192,8 @@ builder.Services.AddAuthorizationBuilder()
 ```csharp
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("RequireAdministratorRole",
-        policy => policy.RequireRole("Administrator"));
+    options.AddPolicy("RequireAdminRole",
+        policy => policy.RequireRole("Admin"));
 });
 ```
 
@@ -174,18 +204,24 @@ builder.Services.AddAuthorization(options =>
 ```csharp
 services.AddAuthorization(options =>
 {
-    options.AddPolicy("RequireAdministratorRole",
-        policy => policy.RequireRole("Administrator"));
+    options.AddPolicy("RequireAdminRole",
+        policy => policy.RequireRole("Admin"));
 });
 ```
 
 :::moniker-end
 
-For policy-based authorization using an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy?displayProperty=nameWithType> parameter with a single policy name:
+For policy-based authorization using an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy?displayProperty=nameWithType> parameter with a single policy name.
+
+`Pages/PassRequireAdminRolePolicy.razor`:
 
 ```razor
-<AuthorizeView Policy="RequireAdministratorRole">
-    <p>You satisfy the 'RequireAdministratorRole' policy.</p>
+@page "/pass-requireadminrole-policy-with-authorizeview"
+
+<h1>Pass 'RequireAdminRole' policy with AuthorizeView</h1>
+
+<AuthorizeView Policy="RequireAdminRole">
+    <p>You satisfy the 'RequireAdminRole' policy.</p>
 </AuthorizeView>
 ```
 
@@ -194,14 +230,23 @@ To handle the case where the user should satisfy one of several policies, create
 To handle the case where the user must satisfy several policies simultaneously, take *either* of the following approaches:
 
 * Create a policy for <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> that confirms that the user satisfies several other policies.
-* Nest the policies in multiple <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components:
+
+* Nest the policies in multiple <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
+
+  `Pages/PassRequireAdminRoleAndRequireSuperUserRolePoliciesWithAuthorizeViews.razor`:
 
   ```razor
-  <AuthorizeView Policy="RequireAdministratorRole">
-      <AuthorizeView Policy="RequireAccountingRole">
+  @page "/pass-requireadminrole-and-requiresuperuserrole-policies-with-authorizeviews"
+
+  <h1>
+      Pass 'RequireAdminRole' and `RequireSuperUserRole' policies with AuthorizeViews
+  </h1>
+
+  <AuthorizeView Policy="RequireAdminRole">
+      <AuthorizeView Policy="RequireSuperUserRole" Context="innerContext">
           <p>
-              You satisfy the 'RequireAdministratorRole' and 
-              'RequireAccountingRole' policies.
+              You satisfy the 'RequireAdminRole' and 
+              'RequireSuperUserRole' policies.
           </p>
       </AuthorizeView>
   </AuthorizeView>
@@ -214,25 +259,30 @@ If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Rol
 * Authenticated (signed-in) users are authorized.
 * Unauthenticated (signed-out) users are unauthorized.
 
-In contrast to role matching, which is typically case-sensitive, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
+In contrast to role matching, which is typically case-sensitive, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdminRole` and `requireadminrole` refer to the same policy.
 
-Policies are applied to an entire Razor component using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
+Policies are applied to an entire Razor component using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
+
+`Pages/PassRequireAdminRolePolicyWithAuthorizeAttribute.razor`:
 
 ```razor
-@page "/"
-@attribute [Authorize(Policy = "RequireAdministratorRole")]
+@page "/pass-requireadminrole-policy-with-authorize-attribute"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "RequireAdminRole")]
 
-<p>You can only see this if the 'RequireAdministratorRole' policy is satisfied.</p>
+<h1>Pass RequireAdminRole policy with [Authorize] attribute</h1>
+
+<p>You can only see this if the 'RequireAdminRole' policy is satisfied.</p>
 ```
 
-To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method. In the following example, users are authorized if they belong to the `Administrator`, `PowerUser`, *or* `BackupAdministrator` roles:
+To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method. In the following example, users are authorized if they belong to the `Admin` *or* `SuperUser` roles:
 
 :::moniker range=">= aspnetcore-7.0"
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ElevatedRights", policy =>
-        policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+        policy.RequireRole("Admin", "SuperUser"));
 ```
 
 :::moniker-end
@@ -243,7 +293,7 @@ builder.Services.AddAuthorizationBuilder()
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ElevatedRights", policy =>
-        policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+        policy.RequireRole("Admin", "SuperUser"));
 });
 ```
 
@@ -255,7 +305,7 @@ builder.Services.AddAuthorization(options =>
 services.AddAuthorization(options =>
 {
     options.AddPolicy("ElevatedRights", policy =>
-        policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+        policy.RequireRole("Admin", "SuperUser"));
 });
 ```
 
@@ -271,9 +321,8 @@ Chained to the policy builder:
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ElevatedRights", policy => 
         policy
-            .RequireRole("Administrator")
-            .RequireRole("PowerUser")
-            .RequireRole("BackupAdministrator"));
+            .RequireRole("Admin")
+            .RequireRole("SuperUser"));
 ```
 
 Alternatively, use a statement lambda:
@@ -283,9 +332,8 @@ builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ElevatedRights",
         policy =>
         {
-            policy.RequireRole("Administrator");
-            policy.RequireRole("PowerUser");
-            policy.RequireRole("BackupAdministrator");
+            policy.RequireRole("Admin");
+            policy.RequireRole("SuperUser");
         });
 ```
 
@@ -298,9 +346,8 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ElevatedRights", policy => 
         policy
-            .RequireRole("Administrator")
-            .RequireRole("PowerUser")
-            .RequireRole("BackupAdministrator"));
+            .RequireRole("Admin")
+            .RequireRole("SuperUser"));
 });
 ```
 
@@ -312,9 +359,8 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("ElevatedRights",
         policy =>
         {
-            policy.RequireRole("Administrator");
-            policy.RequireRole("PowerUser");
-            policy.RequireRole("BackupAdministrator");
+            policy.RequireRole("Admin");
+            policy.RequireRole("SuperUser");
         });
 });
 ```
@@ -328,9 +374,8 @@ services.AddAuthorization(options =>
 {
     options.AddPolicy("ElevatedRights", policy => 
         policy
-            .RequireRole("Administrator")
-            .RequireRole("PowerUser")
-            .RequireRole("BackupAdministrator"));
+            .RequireRole("Admin")
+            .RequireRole("SuperUser"));
 });
 ```
 
@@ -342,9 +387,8 @@ services.AddAuthorization(options =>
     options.AddPolicy("ElevatedRights",
         policy =>
         {
-            policy.RequireRole("Administrator");
-            policy.RequireRole("PowerUser");
-            policy.RequireRole("BackupAdministrator");
+            policy.RequireRole("Admin");
+            policy.RequireRole("SuperUser");
         });
 });
 ```
