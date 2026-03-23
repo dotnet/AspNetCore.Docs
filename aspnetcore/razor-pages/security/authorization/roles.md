@@ -170,6 +170,8 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
   }
   ```
 
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>.
+
 ## Policy-based authorization checks
 
 :::moniker range=">= aspnetcore-7.0"
@@ -191,6 +193,8 @@ public class AdministrationModel : PageModel
     ...
 }
 ```
+
+In contrast to role matching, which is typically case-sensitive, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
 
 To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method. In the following example, users are authorized if they belong to the `Administrator`, `PowerUser`, *or* `BackupAdministrator` roles:
 
