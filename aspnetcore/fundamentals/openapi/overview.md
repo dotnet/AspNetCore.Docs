@@ -15,7 +15,7 @@ uid: fundamentals/openapi/overview
 
 :::moniker range=">= aspnetcore-10.0"
 
-ASP.NET Core supports the generation of OpenAPI documents in controller-based and Minimal APIs apps.
+ASP.NET Core supports the generation of OpenAPI documents in controller-based and Minimal API apps.
 The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. ASP.NET Core apps support this standard through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
 
 * Generating information about the endpoints in the app.
@@ -40,7 +40,7 @@ In the preceding highlighted code:
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package provides the following features:
 
 * Support for generating OpenAPI documents at runtime and accessing them through an endpoint on the application.
-* Support for "transformer" APIs that allow you to modify the generated document.
+* Support for "transformer" APIs that modify the generated document.
 
 To use the `Microsoft.AspNetCore.OpenApi` package, add it as a PackageReference to a project file:
 
