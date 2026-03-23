@@ -102,8 +102,6 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AttrOneLine)]
 
-In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
-
 ## Apply migrations
 
 Some validation attributes affect the database schema. For example, `[Required]` makes a column `NOT NULL` and `[StringLength(60)]` limits the column type to `nvarchar(60)`. Run a migration to keep the database schema consistent with the model.
@@ -136,6 +134,8 @@ dotnet ef database update
 For more information, see [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations).
 
 ---
+
+In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
 ## Additional resources
 
