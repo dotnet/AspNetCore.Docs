@@ -499,7 +499,7 @@ The following table demonstrates example route constraints and their expected be
 | `range(min,max)`    | `{age:range(18,120)}`                       | `91`                                   | Integer value must be at least 18 but no more than 120                                    |
 | `alpha`             | `{name:alpha}`                              | `Rick`                                 | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive. |
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789`                          | String must match the regular expression. See tips about defining a regular expression.   |
-| `required`          | `{name:required}`                           | `Rick`                                 | Used to enforce that a non-parameter value is present during URL generation               |
+| `required`          | `{name:required}`                           | `Rick`                                 | Enforces that an explicit value (not an ambient value) is present during URL generation.  |
 
 [!INCLUDE[](~/includes/regex.md)]
 
