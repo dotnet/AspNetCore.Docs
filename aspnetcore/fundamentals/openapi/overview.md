@@ -22,7 +22,7 @@ The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a prog
 * Gathering the information into a format that matches the OpenAPI schema.
 * Exposing the generated OpenAPI document through a visual UI or a serialized file.
 
-ASP.NET Core apps provide built-in support for generating information about endpoints in an app via the `Microsoft.AspNetCore.OpenApi` package.
+ASP.NET Core provides first-party support for generating information about endpoints in an app through the `Microsoft.AspNetCore.OpenApi` package.
 
 The ASP.NET Core minimal web API template generates the following code that uses OpenAPI:
 
