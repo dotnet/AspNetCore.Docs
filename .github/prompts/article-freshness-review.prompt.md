@@ -42,6 +42,10 @@ Evaluate it against ALL of the following criteria:
 
 **B. Frontmatter & Metadata**
 * Is ms.date in MM/DD/YYYY format?
+* If ms.date is older than 6 months, flag it as a Minor metadata-only update.
+  An old ms.date does NOT by itself indicate the article content is stale — the
+  content may still be accurate and current. Classify a stale ms.date as Minor
+  severity. It must never contribute to a "Needs Updating" verdict on its own.
 * Is the title field listed first, with remaining fields in alphabetical order?
 * Are all required metadata fields present? (Check only for presence, not for 
   cross-field value consistency. For example: The `author` and `ms.author` fields are 
