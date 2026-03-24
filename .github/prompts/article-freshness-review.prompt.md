@@ -1,5 +1,5 @@
 ---
-author: wpickett
+author: tdykstra
 description: >
   Generates a freshness review report for an ASP.NET Core doc article.
   Usage: Open a GitHub issue, open Copilot Chat, and paste:
