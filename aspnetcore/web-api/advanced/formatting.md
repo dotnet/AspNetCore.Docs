@@ -6,7 +6,7 @@ description: Learn how to format response data in ASP.NET Core Web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: H1Hack27Feb2017
-ms.date: 01/07/2026
+ms.date: 03/22/2026
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
