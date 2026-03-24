@@ -105,6 +105,24 @@ Same sub-structure as Critical.}
 
 ---
 
+## Copilot Feasibility Assessment
+
+**Can Copilot handle this freshness update?** {Yes | Likely | Partial | No}
+
+**Justification:**
+{Explain why Copilot can or cannot be expected to handle the full update
+correctly with minimal PR review corrections. Consider:
+* Are the changes primarily mechanical (metadata, formatting, link fixes)?
+* Do any changes require deep domain knowledge of ASP.NET Core APIs or architecture?
+* Are there judgment calls about content restructuring or technical accuracy?
+* Would the update require testing code samples against a running application?}
+
+**Recommendation:**
+{One of:
+* "Assign to Copilot" — Changes are mechanical and well-defined
+* "Assign to Copilot with human review of [specific areas]" — Mostly mechanical but some areas need expert judgment
+* "Assign to a human author" — Changes require domain expertise, significant rewriting, or code verification that Copilot cannot reliably perform}
+
 ## Summary of Recommended Changes
 
 {A numbered checklist of ALL changes, in order of priority, that can be
