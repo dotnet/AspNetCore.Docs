@@ -43,7 +43,9 @@ Evaluate it against ALL of the following criteria:
 **B. Frontmatter & Metadata**
 * Is ms.date in MM/DD/YYYY format?
 * Is the title field listed first, with remaining fields in alphabetical order?
-* Are all required metadata fields present?
+* Are all required metadata fields present? (Check only for presence, not for 
+  cross-field value consistency. For example: The `author` and `ms.author` fields are 
+  independent and are not required to match.)
 
 **C. Content Accuracy**
 * Are code samples correct for the targeted framework version(s)?
