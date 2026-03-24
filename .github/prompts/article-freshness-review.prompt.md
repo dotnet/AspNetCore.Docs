@@ -1,5 +1,10 @@
 ---
-description: "Generates a freshness review report for an ASP.NET Core documentation article. Attach this prompt in Copilot Chat, then provide the article URL. The report is for posting in issue discussions — it does NOT create a PR."
+description: >
+  Generates a freshness review report for an ASP.NET Core doc article.
+  Usage: Open a GitHub issue, open Copilot Chat, and paste:
+  "Read and follow all instructions in .github/prompts/article-freshness-review.prompt.md.
+  Use this issue as context. Generate the freshness review report."
+  Then copy the report into the issue discussion. Does NOT create a PR.
 ---
 
 # ASP.NET Core Article Freshness Review
