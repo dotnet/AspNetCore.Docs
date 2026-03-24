@@ -5,12 +5,12 @@ author: wadepickett
 description: Learn how to restrict ASP.NET Core Razor Pages page access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/23/2026
+ms.date: 03/24/2026
 uid: razor-pages/security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core Razor Pages
 
-When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the <xref:System.Security.Principal.GenericPrincipal.IsInRole%2A> method on the <xref:System.Security.Claims.ClaimsPrincipal> class. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> must be called to add Role services when setting up the app's identity system.
+When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType>. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> must be called to add Role services when setting up the app's identity system.
 
 While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
@@ -111,10 +111,17 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
 
 * Use separate Razor Pages for operations requiring different authorization levels, using [partial views](xref:mvc/views/partial) for shared content.
 
-* Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>). The following example demonstrates the approach:
+* Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>).
 
-  * The page's `OnGet` handler requires the `User` role via the `IsInUserRolePolicy` policy.
-  * The page's `OnPostAsync` handler requires the `Admin` role via the `IsInAdminRolePolicy` policy.
+  The following example demonstrates the approach:
+
+  * The page's `OnGet` handler requires the `User` role via the `RequireUserRole` policy.
+  * The page's `OnPostAsync` handler requires the `Admin` role via the `RequireAdministratorRole` policy.
+
+  > [!NOTE]
+  > For guidance on registering the following policies at app startup, see the [Policy-based authorization checks](#policy-based-authorization-checks) section later in this article.
+  >
+  > Constructor injection of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> in the following example is supported with [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) in C# 12 (.NET 8) or later.
 
   ```csharp
   public class AuthPageHandlersExampleModel(
@@ -123,7 +130,7 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       public async Task<IActionResult> OnGet()
       {
           var authResult = 
-              await authorizationService.AuthorizeAsync(User, "IsInUserRolePolicy");
+              await authorizationService.AuthorizeAsync(User, "RequireUserRole");
 
           if (!authResult.Succeeded)
           {
@@ -137,8 +144,8 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
 
       public async Task<IActionResult> OnPostAsync()
       {
-          var authResult = 
-              await authorizationService.AuthorizeAsync(User, "IsInAdminRolePolicy");
+          var authResult = await authorizationService.AuthorizeAsync(
+              User, "RequireAdministratorRole");
 
           if (!authResult.Succeeded)
           {
@@ -152,11 +159,22 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
   }
   ```
 
-  For more information, see the [Policy-based authorization checks](#policy-based-authorization-checks) section.
-
   Alternatively, page handler methods can check roles directly by calling <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A>:
 
   ```csharp
+  public async Task<IActionResult> OnGet()
+  {
+      if (!User.IsInRole("User"))
+      {
+          return Forbid();
+      }
+
+      // Authorized logic
+      // await ...
+
+      return Page();
+  }
+
   public async Task<IActionResult> OnPostAsync()
   {
       if (!User.IsInRole("Admin"))
@@ -165,6 +183,7 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       }
 
       // Authorized logic
+      // await ...
 
       return Page();
   }

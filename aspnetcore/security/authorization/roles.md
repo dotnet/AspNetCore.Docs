@@ -5,12 +5,12 @@ author: wadepickett
 description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/23/2026
+ms.date: 03/24/2026
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
 
-When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the <xref:System.Security.Principal.GenericPrincipal.IsInRole%2A> method on the <xref:System.Security.Claims.ClaimsPrincipal> class. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> must be called to add Role services when setting up the app's identity system.
+When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType>. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> must be called to add Role services when setting up the app's identity system.
 
 While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
@@ -175,14 +175,21 @@ Role matching is typically case-sensitive because role names are stored and comp
 
 ## Policy-based authorization checks
 
-Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration. In the following example, the `RequireAdminRole` policy specifies that all users must be in the `Admin` role:
+Role requirements can be expressed using policy syntax, where the app registers a policy at startup as part of the Authorization service configuration.
+
+In the following example:
+
+* The `RequireAdminRole` policy specifies that users must be in the `Admin` role.
+* The `RequireSuperUserRole` policy specifies that users must be in the `SuperUser` role.
 
 :::moniker range=">= aspnetcore-7.0"
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("RequireAdminRole",
-         policy => policy.RequireRole("Admin"));
+         policy => policy.RequireRole("Admin"))
+    .AddPolicy("RequireSuperUserRole",
+         policy => policy.RequireRole("SuperUser"));
 ```
 
 :::moniker-end
@@ -194,6 +201,8 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdminRole",
         policy => policy.RequireRole("Admin"));
+    options.AddPolicy("RequireSuperUserRole",
+        policy => policy.RequireRole("SuperUser"));
 });
 ```
 
@@ -206,6 +215,8 @@ services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdminRole",
         policy => policy.RequireRole("Admin"));
+    options.AddPolicy("RequireSuperUserRole",
+        policy => policy.RequireRole("SuperUser"));
 });
 ```
 
@@ -239,7 +250,7 @@ To handle the case where the user must satisfy several policies simultaneously, 
   @page "/pass-requireadminrole-and-requiresuperuserrole-policies-with-authorizeviews"
 
   <h1>
-      Pass 'RequireAdminRole' and `RequireSuperUserRole' policies with AuthorizeViews
+      Pass 'RequireAdminRole' and 'RequireSuperUserRole' policies with AuthorizeViews
   </h1>
 
   <AuthorizeView Policy="RequireAdminRole">
