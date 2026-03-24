@@ -588,7 +588,7 @@ app.MapGet("/files/{fileName}", IResult (string fileName) =>
 .RequireAuthorization("AuthenticatedUsers");
 ```
 
-The following route endpoint example uploads files for authenticated users in the administrator role ("`admin`").
+The following route endpoint example uploads files for authenticated users in the administrator role (`admin`).
 
 In the `Program` file:
 
@@ -655,7 +655,7 @@ app.MapGet("/files/{fileName}", IResult (string fileName) =>
 .RequireAuthorization("AuthenticatedUsers");
 ```
 
-The following code uploads files for authenticated users in the administrator role ("`admin`").
+The following code uploads files for authenticated users in the administrator role (`admin`).
 
 In `Startup.ConfigureServices`:
 
