@@ -1,10 +1,13 @@
 ---
+author: wpickett
 description: >
   Generates a freshness review report for an ASP.NET Core doc article.
   Usage: Open a GitHub issue, open Copilot Chat, and paste:
   "Read and follow all instructions in .github/prompts/article-freshness-review.prompt.md.
   Use this issue as context. Generate the freshness review report."
   Then copy the report into the issue discussion. Does NOT create a PR.
+ms.author: wpickett
+ms.date: 03/24/2026
 ---
 
 # ASP.NET Core Article Freshness Review
