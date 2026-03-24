@@ -228,9 +228,12 @@ public signOut() {
 
 ## SignOut everywhere
 
-Apps need to react to events involving security sensitive actions like changed password, or other security sensitive events.  This is achieved using the [security stamp](/dotnet/api/microsoft.aspnetcore.identity.identityuser-1.securitystamp) feature of Identity.
+Apps need to react to events involving security-sensitive actions such as password changes, or other security-sensitive events.  This is achieved using the [security stamp](/dotnet/api/microsoft.aspnetcore.identity.identityuser-1.securitystamp) feature of Identity.
 
-How often the security stamp is validated is configured using [SecurityStampValidatorOptions.ValidationInterval](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidatoroptions.validationinterval) for cookie-based authentication, or [BearerTokenOptions.BearerTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) for token-based authentication.
+Apps need to react to security-sensitive actions such as password changes. Identity achieves this using the [security stamp](/dotnet/api/microsoft.aspnetcore.identity.identityuser-1.securitystamp) feature:
+
+* For cookie-based authentication, the security stamp is periodically revalidated based on [SecurityStampValidatorOptions.ValidationInterval](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidatoroptions.validationinterval).
+* For token-based authentication, the access token lifetime set by [BearerTokenOptions.BearerTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) limits how long a session remains active after a security-sensitive change.
 
 The validation interval is a balance between immediate session invalidation and database performance. A shorter interval requires more frequent database hits, while a longer one leaves a small window where an old, potentially compromised session might remain active. 
 
@@ -317,7 +320,7 @@ If `useCookies` is `false` or omitted, token-based authentication is enabled. Th
 
 For more information about these properties, see <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse>.
 
-Use the [BearerTokenOptions.BearerTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) property to set how long the access token will remain valid for.
+Use the [BearerTokenOptions.BearerTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.bearertokenexpiration) property to set how long the access token remains valid.
 
 Put the access token in a header to make authenticated requests, as shown in the following example
 
@@ -350,7 +353,7 @@ If the call is successful, the response body is a new <xref:Microsoft.AspNetCore
 }
 ```
 
-Use the [BearerTokenOptions.RefreshTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.refreshtokenexpiration) property to set how long the refresh token will remain valid for.
+Use the [BearerTokenOptions.RefreshTokenExpiration](/dotnet/api/microsoft.aspnetcore.authentication.bearertoken.bearertokenoptions.refreshtokenexpiration) property to set how long the refresh token remains valid.
 
 ## Use the `GET /confirmEmail` endpoint
 
