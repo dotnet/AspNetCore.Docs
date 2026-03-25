@@ -30,7 +30,7 @@ If authorization rule enforcement and the security of data and code must be guar
 
 :::moniker-end
 
-[Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
+[Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 :::moniker range="< aspnetcore-8.0"
 

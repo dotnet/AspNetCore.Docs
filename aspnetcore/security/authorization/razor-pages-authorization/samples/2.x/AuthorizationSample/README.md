@@ -1,6 +1,6 @@
 # ASP.NET Core Authorization Sample
 
-This sample illustrates use of Razor Pages authorization by conventions. This sample demonstrates the features described in the [Razor Pages authorization conventions](https://learn.microsoft.com/aspnet/core/security/authorization/razor-pages-authorization) topic.
+This sample illustrates use of Razor Pages authorization by conventions. This sample demonstrates the features described in the [Razor Pages authorization conventions](https://learn.microsoft.com/aspnet/core/razor-pages/security/authorization/conventions) topic.
 
 User authorization in this sample uses the cookie authentication features described in the [Use cookie authentication without ASP.NET Core Identity](https://learn.microsoft.com/aspnet/core/security/authentication/cookie) topic. The concepts and examples shown in this topic apply equally to apps that use ASP.NET Core Identity. For information on using ASP.NET Core Identity, see [Introduction to Identity on ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/authentication/identity).
 
