@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core SignalR connection troubleshooting
+ai-usage: ai-assisted
 author: wadepickett
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/08/2020
+ms.date: 03/25/2026
 uid: signalr/troubleshoot
 ---
 # Troubleshoot connection errors
@@ -14,17 +15,25 @@ This section provides help with errors that can occur when trying to establish a
 
 ### Response code 404
 
-When using WebSockets and `skipNegotiation = true`
 ```log
 WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 404
 ```
 
+**General causes (all configurations):**
+
+* Verify the client is connecting to the correct endpoint. For example, the server is hosted at `http://127.0.0.1:5000/hub/myHub` and the client is trying to connect to `http://127.0.0.1:5000/myHub`.
+
+**When using the default negotiation flow (`skipNegotiation = false`):**
+
 * When using multiple servers without sticky sessions, the connection can start on one server and then switch to another server. The other server is not aware of the previous connection.
-* Verify the client is connecting to the correct endpoint. For example, the server is hosted at `http://127.0.0.1:5000/hub/myHub` and client is trying to connect to `http://127.0.0.1:5000/myHub`.
 * If the connection uses the ID and takes too long to send a request to the server after the negotiate, the server:
 
   * Deletes the ID.
   * Returns a 404.
+
+**When using WebSockets with `skipNegotiation = true`:**
+
+* Since negotiation is skipped and no connection ID is obtained from `/negotiate`, the sticky-session and connection-ID-timeout scenarios don't apply. A 404 in this case typically means the WebSocket endpoint URL is incorrect or the hub isn't mapped on the server.
 
 ### Response code 400 or 503
 
