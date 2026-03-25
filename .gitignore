@@ -230,3 +230,4 @@ Thumbs.db
 
 # Rider
 .idea/
+.nuget/
