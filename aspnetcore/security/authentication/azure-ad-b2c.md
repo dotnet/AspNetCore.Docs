@@ -50,6 +50,5 @@ After completing identity provider setup using the Entra or Azure AD B2C documen
 * [Azure AD B2C documentation](/azure/active-directory-b2c/)
 * [Customize the Azure AD B2C user interface](/azure/active-directory-b2c/customize-ui)
 * [Configure password complexity in Azure AD B2C](/azure/active-directory-b2c/password-complexity)
-* [Enable multi-factor authentication in Azure AD B2C](/azure/active-directory-b2c/multi-factor-authentication)
 * [Microsoft Graph API with Azure AD B2C](/azure/active-directory-b2c/microsoft-graph-operations)
 * <xref:security/authentication/index>
