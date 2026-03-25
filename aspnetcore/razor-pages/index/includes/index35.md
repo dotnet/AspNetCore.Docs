@@ -571,7 +571,7 @@ To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInje
 
 [!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 
-Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).
+Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions).
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation).
 
@@ -596,7 +596,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/security/authorization/conventions>
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>

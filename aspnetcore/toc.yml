@@ -571,6 +571,8 @@ items:
                 items:
                   - name: Simple authorization
                     uid: razor-pages/security/authorization/simple
+                  - name: Authorization conventions
+                    uid: razor-pages/security/authorization/conventions
       - name: MVC
         items:
           - name: Overview
@@ -2074,8 +2076,6 @@ items:
             uid: security/authorization/introduction
           - name: Create a web app with authorization
             uid: security/authorization/secure-data
-          - name: Razor Pages authorization conventions
-            uid: security/authorization/razor-pages-authorization
           - name: Simple authorization
             uid: security/authorization/simple
           - name: Custom authorization with IAuthorizationRequirementData
