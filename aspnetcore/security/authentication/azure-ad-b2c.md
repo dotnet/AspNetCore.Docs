@@ -1,7 +1,7 @@
 ---
 title: Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
+author: wadepickett
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
