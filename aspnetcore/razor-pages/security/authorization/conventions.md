@@ -40,7 +40,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 The specified path is the View Engine path, which is the Razor Pages root relative path without an extension and containing only forward slashes.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizePage` overload`](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A):
+To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizePage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A):
 
 ```csharp
 options.Conventions.AuthorizePage("/Contact", "AtLeast21");
@@ -71,7 +71,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 :::moniker-end
 
-The specified path is the View Engine path, which is the Razor Pages root relative path.
+The specified path is the View Engine path, which is the Razor Pages root relative path containing only forward slashes.
 
 To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder%2A):
 
