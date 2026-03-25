@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 03/24/2026
 uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
@@ -37,7 +37,7 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 The sample app is a starter solution that contains a native, cross-platform MAUI Blazor Hybrid app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
 1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample).
-1. Make sure you have [.NET 9 and the MAUI workload installed (.NET MAUI documentation)](/dotnet/maui/get-started/installation).
+1. Make sure you have [the latest .NET installed with the MAUI workload](/dotnet/maui/get-started/installation).
 1. Open the solution in Visual Studio (2022 or later) or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
 1. Start the `MauiBlazorWeb.Web` project without debugging. In Visual Studio, right-click on the project and select **Debug** > **Start without Debugging**.
@@ -45,14 +45,14 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 1. Navigate to `https://localhost:7157/account/register` to register a user in the Blazor Web App. Immediately after the user is registered, use the **Click here to confirm your account** link in the UI to confirm the user's email address because a real email sender isn't registered for account confirmation.
 1. Start (`F5`) the `MauiBlazorWeb` MAUI project. You can set the debug target to either **Windows** or an Android emulator.
 1. Notice you can only see the `Home` and `Login` pages.
-1. Log in with the user that you registered.
+1. Log in with the user that you registered or an existing Windows account.
 1. Notice you can now see the shared `Counter` and `Weather` pages.
 1. Log out and notice you can only see the `Home` and `Login` pages again.
 1. Navigate to `https://localhost:7157/` in a browser and the web app behaves the same.
 
 ## Shared UI
 
-The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter and Weather pages). The `Counter` component and `Weather` component are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
+The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter and Weather pages). The `Counter` and `Weather` components are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
 
 In the [Razor directives](xref:blazor/components/index#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
 
