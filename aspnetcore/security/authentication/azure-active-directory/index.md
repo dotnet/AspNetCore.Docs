@@ -10,7 +10,7 @@ uid: security/authentication/azure-active-directory/index
 ---
 # Microsoft Entra ID with ASP.NET Core
 
-These tutorials and samples demonstrate authentication in ASP.NET Core using Microsoft identity platform and Microsoft Entra ID. For additional tutorials and samples using ASP.NET Core with Azure AD, see [Microsoft identity platform](/azure/active-directory/develop/).
+These tutorials and samples demonstrate authentication in ASP.NET Core using Microsoft identity platform and Microsoft Entra ID. For additional tutorials and samples using ASP.NET Core with Microsoft Entra ID, see [Microsoft identity platform](/azure/active-directory/develop/).
 
 ## Application Scenarios
 
