@@ -108,7 +108,7 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
-Policies can be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+Policies can be applied to Razor Pages by using an [authorization convention](xref:razor-pages/security/authorization/conventions).
 
 <a name="requirements"></a>
 

@@ -30,3 +30,4 @@ Consult the documentation on [simple authorization](xref:security/authorization/
 
 * <xref:fundamentals/minimal-apis/security>
 * <xref:blazor/security/index>
+* <xref:razor-pages/security/authorization/conventions>
