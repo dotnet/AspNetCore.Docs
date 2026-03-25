@@ -14,7 +14,7 @@ uid: security/authentication/azure-ad-b2c
 
 ## Recommended path for new projects
 
-[Microsoft Entra External ID for customers](/entra/external-id/customers/overview-customers-ciam) is the recommended customer identity and access management (CIAM) solution for new ASP.NET Core applications. Entra External ID replaces Azure AD B2C and provides the latest identity platform features.
+[Microsoft Entra External ID for customers](/entra/external-id/customers/overview-customers-ciam) is the recommended customer identity and access management (CIAM) solution for new ASP.NET Core applications, replacing Azure AD B2C with the latest identity platform features.
 
 To get started with a new project, see [Sign in users in a sample ASP.NET Core web app](/entra/external-id/customers/sample-web-app-dotnet-sign-in).
 
