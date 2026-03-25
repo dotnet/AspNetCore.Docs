@@ -31,7 +31,7 @@ Azure AD B2C remains supported for existing applications. Authoritative setup an
 
 ## ASP.NET Core integration checklist
 
-After completing the identity provider setup in the Entra or Azure AD B2C documentation, return here for the ASP.NET Core-specific wiring:
+After completing identity provider setup using the Entra or Azure AD B2C documentation, complete the following ASP.NET Core-specific steps:
 
 1. **Install NuGet packages** &mdash; Add the [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI) packages:
 
