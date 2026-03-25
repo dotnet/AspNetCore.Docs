@@ -18,6 +18,12 @@ uid: security/authentication/azure-ad-b2c
 
 To get started with a new project, see [Sign in users in a sample ASP.NET Core web app](/entra/external-id/customers/sample-web-app-dotnet-sign-in).
 
+## Migrate from Azure AD B2C to Entra External ID
+
+To migrate an existing Azure AD B2C application to the newer platform, see [Plan and execute a migration to Microsoft Entra External ID](/entra/external-id/customers/migrate-to-external-id).
+
+For detailed guidance on moving user accounts, including password migration strategies, see [Migrating users to Microsoft Entra External ID](/entra/external-id/customers/how-to-migrate-users).
+
 ## Guidance for existing Azure AD B2C projects
 
 Azure AD B2C remains supported for existing applications. Authoritative setup and configuration guidance is maintained in the Azure AD B2C documentation. The following articles cover the topics that ASP.NET Core developers typically need:
