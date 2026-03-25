@@ -1,10 +1,11 @@
 ---
 title: Microsoft identity platform and Microsoft Entra ID with ASP.NET Core
+ai-usage: ai-assisted
 author: wpickett
 description: Discover topics related to authentication with Microsoft identity platform Microsoft Entra ID for web apps and APIs in ASP.NET Core.
 ms.author: wpickett
-ms.date: 01/22/2026
 ms.custom: mvc
+ms.date: 03/25/2026
 uid: security/authentication/azure-active-directory/index
 ---
 # Microsoft Entra ID with ASP.NET Core
@@ -22,3 +23,4 @@ These tutorials and samples demonstrate authentication in ASP.NET Core using Mic
 ## Samples
 
 * [Enable your ASP.NET Core app to sign-in users and call web APIs using Microsoft identity platform for developers](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/)
+* [Microsoft identity platform code samples](/entra/identity-platform/sample-v2-code): Microsoft Entra documentation's full code samples page, which covers common scenarios, including web apps and web APIs.
