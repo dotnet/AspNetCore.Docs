@@ -33,7 +33,7 @@ WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket hands
 
 **When using WebSockets with `skipNegotiation = true`:**
 
-* Since negotiation is skipped and no connection ID is obtained from `/negotiate`, the sticky-session and connection-ID-timeout scenarios don't apply. A 404 in this case typically means the WebSocket endpoint URL is incorrect or the hub isn't mapped on the server.
+* Since negotiation is skipped and no connection ID is obtained from `/negotiate`, the sticky session and connection ID timeout scenarios don't apply. A 404 in this case typically means the WebSocket endpoint URL is incorrect or the hub isn't mapped on the server.
 
 ### Response code 400 or 503
 
