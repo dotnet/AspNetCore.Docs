@@ -138,6 +138,7 @@ In the next part of the series, we review the app and make some improvements to 
 
 ## Additional resources
 
+* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
