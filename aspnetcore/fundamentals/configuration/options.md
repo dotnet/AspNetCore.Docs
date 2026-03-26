@@ -6,7 +6,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/04/2026
+ms.date: 03/18/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -473,7 +473,7 @@ For the preceding code, changes to the JSON configuration in the app settings fi
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
-* Covered later in this article in the [Use `IOptionsMonitor` to read updated data](#use-ioptionssnapshot-to-read-updated-data) section.
+* Covered later in this article in the [Use `IOptionsMonitor` to read updated data](#use-ioptionsmonitor-to-read-updated-data) section.
 * Is used to retrieve options and manage options notifications for `TOptions` instances.
 * Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 * Supports:
@@ -1396,7 +1396,7 @@ services.AddSingleton<IValidateOptions<KeyOptions2>, KeyOptionsValidation>();
 
 :::moniker-end
 
-:::moniker-range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
 

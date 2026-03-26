@@ -108,7 +108,7 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
-Policies can be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+Policies can be applied to Razor Pages by using an [authorization convention](xref:razor-pages/security/authorization/conventions).
 
 <a name="requirements"></a>
 
@@ -240,6 +240,6 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 ## Globally require all users to be authenticated
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 :::moniker-end

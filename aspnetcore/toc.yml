@@ -508,6 +508,8 @@ items:
             uid: fundamentals/logging/index
           - name: HTTP logging
             uid: fundamentals/http-logging/index
+          - name: Enrich HTTP request logs in ASP.NET Core
+            uid: fundamentals/http-logging/http-log-enricher
           - name: W3C logger
             uid: fundamentals/w3c-logger/index
           - name: Health checks
@@ -563,6 +565,14 @@ items:
             uid: razor-pages/filter
           - name: Route and app conventions
             uid: razor-pages/razor-pages-conventions
+          - name: Security and Identity
+            items:
+              - name: Authorization
+                items:
+                  - name: Simple authorization
+                    uid: razor-pages/security/authorization/simple
+                  - name: Authorization conventions
+                    uid: razor-pages/security/authorization/conventions
       - name: MVC
         items:
           - name: Overview
@@ -603,6 +613,14 @@ items:
             uid: mvc/views/dependency-injection
           - name: Unit test
             uid: mvc/controllers/testing
+          - name: Security and Identity
+            items:
+              - name: Authorization
+                items:
+                  - name: Simple authorization
+                    uid: mvc/security/authorization/simple
+                  - name: Custom authorization with IAuthorizationRequirementData
+                    uid: mvc/security/authorization/iard
       - name: Blazor
         items:
           - name: Overview
@@ -1652,8 +1670,10 @@ items:
       - name: Azure and IIS errors reference
         uid: host-and-deploy/azure-iis-errors-reference
   - name: Code analysis
-    uid: diagnostics/code-analysis
     items:
+      - name: Overview
+        displayName: code analysis
+        uid: diagnostics/code-analysis
       - name: ASP0000
         uid: diagnostics/asp0000
       - name: ASP0001
@@ -1740,8 +1760,10 @@ items:
         uid: diagnostics/mvc1005
       - name: MVC1006
         uid: diagnostics/mvc1006
-      - name: RDG diagnostics
-        displayName: aot, RDG diagnostics
+  - name: RDG diagnostics
+    items:
+      - name: Overview
+        displayName: aot, rdg diagnostics
         uid: fundamentals/aot/request-delegate-generator/rdg-ids
       - name: RDG002
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
@@ -1765,6 +1787,13 @@ items:
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
       - name: RDG013
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
+  - name: ASPDEPR diagnostics
+    items:
+      - name: Overview
+        displayName: aspdepr diagnostics
+        uid: diagnostics/aspdepr-ids
+      - name: ASPDEPR002
+        uid: diagnostics/aspdepr002
   - name: Data access
     items:
       - name: Tutorials
@@ -2047,8 +2076,6 @@ items:
             uid: security/authorization/introduction
           - name: Create a web app with authorization
             uid: security/authorization/secure-data
-          - name: Razor Pages authorization conventions
-            uid: security/authorization/razor-pages-authorization
           - name: Simple authorization
             uid: security/authorization/simple
           - name: Custom authorization with IAuthorizationRequirementData

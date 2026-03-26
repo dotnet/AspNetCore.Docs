@@ -7,7 +7,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 01/27/2026
+ms.date: 03/20/2026
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -160,7 +160,7 @@ The `SendMessage` method can be called by a connected client to send a message t
 
 The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
-[!code-csharp[Startup](~/tutorials/signalr/samples/10.x/SignalRChat/Program.cs?highlight=1,7,27)]
+[!code-csharp[Startup](~/tutorials/signalr/samples/10.x/SignalRChat/Program.cs?highlight=1,7,26)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 

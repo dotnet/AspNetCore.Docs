@@ -54,7 +54,7 @@ JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> s
 To enable JSON Patch support with <xref:System.Text.Json>, install the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package.
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson --prerelease
+dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson
 ```
 
 This package provides a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> class to represent a JSON Patch document for objects of type `T` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> class is <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `T`.
