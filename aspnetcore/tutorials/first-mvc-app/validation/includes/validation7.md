@@ -102,10 +102,43 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=snippet_AttrOneLine)]
 
+## Apply migrations
+
+Some validation attributes affect the database schema. For example, `[Required]` makes a column `NOT NULL` and `[StringLength(60)]` limits the column type to `nvarchar(60)`. Run a migration to keep the database schema consistent with the model.
+
+# [Visual Studio](#tab/visual-studio)
+
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+
+In the PMC, enter the following commands:
+
+```powershell
+Add-Migration New_DataAnnotations
+Update-Database
+```
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+
+Delete the Migrations folder and the database file, and then run the following .NET CLI commands:
+
+```dotnetcli
+dotnet ef migrations add InitialCreate
+```
+
+```dotnetcli
+dotnet ef database update
+```
+
+For more information, see [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations).
+---
+
 In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
 ## Additional resources
 
+* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
