@@ -5,7 +5,7 @@ author: wadepickett
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/23/2026
+ms.date: 03/26/2026
 uid: tutorials/first-mvc-app/validation
 ---
 
@@ -171,6 +171,7 @@ For more information, see [Resetting all migrations](/ef/core/managing-schemas/m
 
 ## Additional resources
 
+* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
