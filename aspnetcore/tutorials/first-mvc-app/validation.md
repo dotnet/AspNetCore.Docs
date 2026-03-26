@@ -1,10 +1,11 @@
 ---
 title: Part 9, add validation to an ASP.NET Core MVC app
+ai-usage: ai-assisted
 author: wadepickett
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 01/22/2026
+ms.date: 03/26/2026
 uid: tutorials/first-mvc-app/validation
 ---
 
@@ -135,8 +136,42 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 * The `DataType` attribute can enable MVC to choose the right field template to render the data (the `DisplayFormat` if used by itself uses the string template).
 
 
+## Apply migrations
+
+Some validation attributes affect the database schema. For example, `[Required]` makes a column `NOT NULL` and `[StringLength(60)]` limits the column type to `nvarchar(60)`. Run a migration to keep the database schema consistent with the model.
+
+# [Visual Studio](#tab/visual-studio)
+
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+
+In the PMC, enter the following commands:
+
+```powershell
+Add-Migration New_DataAnnotations
+Update-Database
+```
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+
+Delete the Migrations folder and the database file, and then run the following .NET CLI commands:
+
+```dotnetcli
+dotnet ef migrations add InitialCreate
+```
+
+```dotnetcli
+dotnet ef database update
+```
+
+For more information, see [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations).
+
+---
+
 ## Additional resources
 
+* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
