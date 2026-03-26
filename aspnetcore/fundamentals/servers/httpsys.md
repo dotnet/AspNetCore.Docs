@@ -90,7 +90,10 @@ app.Use((context, next) =>
 
 Place the preceding code early in the request pipeline.
 
-Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880). This requires netsh sslcert bindings that use host names rather than IP addresses.
+Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880).
+
+> [!NOTE]
+> This requires netsh sslcert bindings that use host names rather than IP addresses. Replace `ipport` with `hostnameport` in the `netsh http add sslcert` commands below, as well as changing the IP to the HostName, e.g. www.example.com. There is also a bug where using `hostnameport` fails unless the `certstorename` parameter is used. By default use `certstorename=MY`.
 
 ## Kernel mode authentication with Kerberos
 
