@@ -39,7 +39,7 @@ Azure AD B2C remains supported for existing applications. Authoritative setup an
 
 After completing identity provider setup using the Entra or Azure AD B2C documentation, complete the following ASP.NET Core-specific steps:
 
-1. **Install NuGet packages** &mdash; Add the [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI) packages:
+1. **Install NuGet packages:** Add the [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI) packages:
 
    ```dotnetcli
    dotnet add package Microsoft.Identity.Web
@@ -48,7 +48,7 @@ After completing identity provider setup using the Entra or Azure AD B2C documen
 
 1. **Configure services in `Program.cs`:** Call `AddMicrosoftIdentityWebApp` to configure OpenID Connect authentication for the Microsoft identity platform, and call `AddMicrosoftIdentityUI` to add the required sign-in/sign-out UI components. For the full API reference, see the [Microsoft Identity Web documentation](https://github.com/AzureAD/microsoft-identity-web/wiki).
 
-1. **Add configuration** &mdash; Add the `AzureADB2C` section in `appsettings.json` with values that match your tenant and app registration. See [Configure authentication in a sample ASP.NET Core web app](/azure/active-directory-b2c/configure-authentication-sample-web-app) for the complete schema and sample.
+1. **Add configuration:** Add the `AzureADB2C` section in `appsettings.json` with values that match your tenant and app registration. See [Configure authentication in a sample ASP.NET Core web app](/azure/active-directory-b2c/configure-authentication-sample-web-app) for the complete schema and sample.
 
 ## Additional resources
 
