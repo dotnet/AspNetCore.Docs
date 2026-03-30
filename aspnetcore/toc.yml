@@ -573,6 +573,8 @@ items:
                     uid: razor-pages/security/authorization/simple
                   - name: Authorization conventions
                     uid: razor-pages/security/authorization/conventions
+                  - name: Role-based authorization
+                    uid: razor-pages/security/authorization/roles
       - name: MVC
         items:
           - name: Overview
@@ -621,6 +623,8 @@ items:
                     uid: mvc/security/authorization/simple
                   - name: Custom authorization with IAuthorizationRequirementData
                     uid: mvc/security/authorization/iard
+                  - name: Role-based authorization
+                    uid: mvc/security/authorization/roles
       - name: Blazor
         items:
           - name: Overview
