@@ -25,6 +25,31 @@ For example, the following highlighted CORS policy allows a SignalR browser clie
 
 In the previous example, the CORS policy is customized to allow specific origins, methods, and credentials. For more information on customizing CORS policies and middleware in ASP.NET Core, see [CORS middleware: CORS with named policy and middleware](xref:security/cors#cors-with-named-policy-and-middleware).
 
+### Apply a CORS policy to SignalR hub endpoints
+
+Instead of applying a CORS policy globally with the `UseCors` middleware, CORS can be applied specifically to SignalR hub endpoints. This approach allows different CORS policies for different parts of the app.
+
+There are two ways to apply a CORS policy to SignalR hubs without enabling it globally. Both approaches require a named CORS policy to be registered in the service configuration, as shown in the preceding [example](#cross-origin-resource-sharing).
+
+**Apply the CORS policy on the hub endpoint mapping** by chaining <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> on the `MapHub` call:
+
+```csharp
+app.MapHub<ChatHub>("/chatHub")
+    .RequireCors("SignalRPolicy");
+```
+
+**Apply the CORS policy on the Hub class** by adding the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute:
+
+```csharp
+[EnableCors("SignalRPolicy")]
+public class ChatHub : Hub
+{
+    // ...
+}
+```
+
+For more information on enabling CORS with endpoint routing, see [Enable CORS with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing).
+
 ## WebSocket Origin Restriction
 
 The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
