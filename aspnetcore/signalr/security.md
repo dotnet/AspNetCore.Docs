@@ -45,7 +45,7 @@ In the previous example, the CORS policy is customized to allow specific origins
 
 Instead of applying a CORS policy globally with the `UseCors` middleware, you can apply CORS specifically to SignalR hub endpoints. This approach allows different CORS policies for different parts of the app.
 
-Both approaches require a named CORS policy to be registered in the service configuration. The following example defines a policy named `"SignalRPolicy"`:
+There are two ways to apply a CORS policy to SignalR hubs: chaining `RequireCors` on the endpoint mapping, or adding the `[EnableCors]` attribute to the Hub class. Both approaches require a named CORS policy to be registered in the service configuration. The following example defines a policy named `"SignalRPolicy"`:
 
 ```csharp
 builder.Services.AddCors(options =>
