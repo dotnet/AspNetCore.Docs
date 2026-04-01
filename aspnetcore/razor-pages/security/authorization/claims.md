@@ -5,10 +5,10 @@ description: Learn how to add claims checks for authorization in an ASP.NET Core
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/01/2026
-uid: security/authorization/claims
+uid: razor-pages/security/authorization/claims
 ai-usage: ai-assisted
 ---
-# Claim-based authorization in ASP.NET Core
+# Claim-based authorization in ASP.NET Core Razor Pages
 
 When an identity is created for an app user upon signing into an app, the identity provider may assign one or more [claims](xref:System.Security.Claims.Claim#remarks) to the user's identity. A claim is a name value pair that represents what the subject (a user, an app or service, or a device/computer) is, not what the subject can do. A claim can be evaluated by the app to determine access rights to data and other secured resources during the process of authorization and can also be used to make or express authentication decisions about a subject. An identity can contain multiple claims with multiple values and can contain multiple claims of the same type. This article explains how to add claims checks for authorization in an ASP.NET Core app.
 
