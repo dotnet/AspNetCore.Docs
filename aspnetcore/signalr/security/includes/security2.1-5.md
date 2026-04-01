@@ -59,58 +59,6 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
-
-### Apply a CORS policy to SignalR hub endpoints
-
-Instead of applying a CORS policy globally with the `UseCors` middleware, you can apply CORS specifically to SignalR hub endpoints. This approach allows different CORS policies for different parts of the app.
-
-There are two ways to apply a CORS policy to SignalR hubs: chaining `RequireCors` on the endpoint mapping, or adding the `[EnableCors]` attribute to the Hub class. Both approaches require a named CORS policy to be registered in the service configuration. The following example defines a policy named `"SignalRPolicy"`:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddCors(options =>
-    {
-        options.AddPolicy("SignalRPolicy", policy =>
-        {
-            policy.WithOrigins("https://example.com")
-                .AllowAnyHeader()
-                .WithMethods("GET", "POST")
-                .AllowCredentials();
-        });
-    });
-
-    services.AddSignalR();
-}
-```
-
-**Apply the CORS policy on the hub endpoint mapping** by chaining <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> on the `MapHub` call:
-
-```csharp
-app.UseRouting();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<ChatHub>("/chatHub")
-        .RequireCors("SignalRPolicy");
-});
-```
-
-**Apply the CORS policy on the Hub class** by adding the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute:
-
-```csharp
-[EnableCors("SignalRPolicy")]
-public class ChatHub : Hub
-{
-    // ...
-}
-```
-
-For more information on enabling CORS with endpoint routing, see [Enable CORS with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing).
-
-:::moniker-end
-
 :::moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/Startup.cs?name=snippet1)]
