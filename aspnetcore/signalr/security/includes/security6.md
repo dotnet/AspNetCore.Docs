@@ -27,7 +27,7 @@ In the previous example, the CORS policy is customized to allow specific origins
 
 ### Apply a CORS policy to SignalR hub endpoints
 
-Instead of applying a CORS policy globally with the `UseCors` middleware, CORS can be applied specifically to SignalR hub endpoints. This approach allows different CORS policies for different parts of the app.
+Instead of applying a CORS policy globally with the `UseCors` middleware, you can apply CORS specifically to SignalR hub endpoints. This approach allows different CORS policies for different parts of the app.
 
 Both approaches require a named CORS policy to be registered in the service configuration. The following example defines a policy named `"SignalRPolicy"`:
 
