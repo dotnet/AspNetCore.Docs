@@ -1,12 +1,12 @@
 ---
 title: Claim-based authorization in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/01/2026
 uid: security/authorization/claims
-ai-usage: ai-assisted
 ---
 # Claim-based authorization in ASP.NET Core
 
@@ -66,8 +66,11 @@ app.UseAuthorization();
 Registering the policy takes place as part of the Authorization service configuration in `Startup.ConfigureServices` (`Startup.cs`):
 
 ```csharp
-builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("EmployeeOnly", policy =>
+        policy.RequireClaim("EmployeeNumber"));
+});
 ```
 
 In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> `Startup.Configure` (place the call after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>):
@@ -132,7 +135,7 @@ You can specify a list of allowed values when creating a policy. The following p
 ```csharp
 services.AddAuthorization(options =>
 {
-    options.AddPolicy("Founders", policy =>
+    options.AddPolicy("Founder", policy =>
         policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
 });
 ```
@@ -162,7 +165,7 @@ If the claim value isn't a single value or a transformation is required, use <xr
 
 ## Multiple Policy Evaluation
 
-Multiple policies are applied via multiple <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components. The inner component requires the user to pass it's policy and every policy of parent <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
+Multiple policies are applied via multiple <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components. The inner component requires the user to pass its policy and every policy of parent <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
 
 
 The following example:
@@ -187,7 +190,7 @@ builder.Services.AddAuthorizationBuilder()
 In the app's `Program` file:
 
 ```csharp
-services.AddAuthorizationBuilder()
+builder.Services.AddAuthorizationBuilder()
     .AddPolicy("HumanResourcesMember", policy =>
         policy.RequireClaim("Department", "Human Resources"));
 ```

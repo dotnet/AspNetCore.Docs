@@ -1,12 +1,12 @@
 ---
 title: Claim-based authorization in ASP.NET Core MVC
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core MVC app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/01/2026
 uid: mvc/security/authorization/claims
-ai-usage: ai-assisted
 ---
 # Claim-based authorization in ASP.NET Core MVC
 
@@ -77,7 +77,7 @@ The `[Authorize]` attribute can be applied to an entire controller, in which cas
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/7.x/WebAll/Controllers/VacationController.cs" id="snippet" highlight="1":::
 
-If you have a controller that's protected by the `[Authorize]` attribute but want to allow anonymous access to a particular action, apply the [`[AllowAnonymous]` attribute](xref:System.Web.Mvc.AllowAnonymousAttribute):
+If you have a controller that's protected by the `[Authorize]` attribute but want to allow anonymous access to a particular action, apply the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute):
 
 <!-- DOC AUTHOR NOTE: The following code snippet from the 7.x sample app covers all ASP.NET Core releases. -->
 

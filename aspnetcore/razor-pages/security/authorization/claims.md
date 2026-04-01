@@ -1,12 +1,12 @@
 ---
 title: Claim-based authorization in ASP.NET Core Razor Pages
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core Razor Pages app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/01/2026
 uid: razor-pages/security/authorization/claims
-ai-usage: ai-assisted
 ---
 # Claim-based authorization in ASP.NET Core Razor Pages
 
@@ -130,7 +130,7 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
   Alternatively, page handler methods can check claims directly by calling <xref:System.Security.Claims.ClaimsIdentity.HasClaim%2A>:
 
   ```csharp
-  public async Task<IActionResult> OnGet()
+  public IActionResult OnGet()
   {
       if (!User.HasClaim(c => c.Type == ClaimTypes.Sid))
       {
@@ -138,12 +138,11 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       }
 
       // Authorized logic
-      // await ...
 
       return Page();
   }
 
-  public async Task<IActionResult> OnPostAsync()
+  public IActionResult OnPostAsync()
   {
       if (!User.HasClaim(c => c.Type == ClaimTypes.Email))
       {
@@ -151,7 +150,6 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       }
 
       // Authorized logic
-      // await ...
 
       return Page();
   }
