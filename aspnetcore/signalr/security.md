@@ -9,6 +9,7 @@ ms.custom: mvc
 ms.date: 03/31/2026
 uid: signalr/security
 ---
+
 # Security considerations in ASP.NET Core SignalR
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
