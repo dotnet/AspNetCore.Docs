@@ -221,6 +221,9 @@ If you encounter issues:
 
 [!INCLUDE [](~/includes/9.0-SDK.md)]
 
+> [!NOTE]
+> The code samples and instructions for .NET 9 reference the 10.x sample folder. The code is identical between .NET 9 and .NET 10 for this scenario. Only the target framework and package versions differ in the project file.
+
 ## Quick start: Add two custom properties
 
 For the common case of adding two custom properties such as `FirstName` and `LastName`:
@@ -326,7 +329,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
 
 * Create a migration and update the database.
-* Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/9.x/SampleApp/Program.cs#L24)
+* Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/10.x/SampleApp/Program.cs#L24)
 * Add `<partial name="_LoginPartial" />` to the layout file.
 * Test the app:
   * Register a user
@@ -339,7 +342,7 @@ Follow the instructions in [Migrations, UseAuthentication, and layout](xref:secu
 
 Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
 
-[!code-csharp[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
+[!code-csharp[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
@@ -350,21 +353,21 @@ Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDa
 
 Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs` with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
+[!code-csharp[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
 
 Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
+[!code-cshtml[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
 
 ### Update the `Account/Register.cshtml` page
 
 Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
+[!code-csharp[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
 
 Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 Build the project.
 
@@ -418,7 +421,7 @@ If you encounter issues:
 [!INCLUDE [](~/includes/8.0-SDK.md)]
 
 > [!NOTE]
-> The code samples and instructions for .NET 8 reference the 9.x sample folder. The code is identical between .NET 8 and .NET 9 for this scenario. Only the target framework differs in the project file.
+> The code samples and instructions for .NET 8 reference the 10.x sample folder. The code is identical between .NET 8 and .NET 10 for this scenario. Only the target framework and package versions differ in the project file.
 
 ## Quick start: Add two custom properties
 
@@ -525,7 +528,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
 
 * Create a migration and update the database.
-* Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/9.x/SampleApp/Program.cs#L24)
+* Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/10.x/SampleApp/Program.cs#L24)
 * Add `<partial name="_LoginPartial" />` to the layout file.
 * Test the app:
   * Register a user
@@ -538,7 +541,7 @@ Follow the instructions in [Migrations, UseAuthentication, and layout](xref:secu
 
 Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
 
-[!code-csharp[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
+[!code-csharp[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
@@ -549,21 +552,21 @@ Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDa
 
 Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs` with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
+[!code-csharp[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
 
 Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
+[!code-cshtml[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
 
 ### Update the `Account/Register.cshtml` page
 
 Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
+[!code-csharp[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
 
 Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/9.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 Build the project.
 
