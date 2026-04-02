@@ -52,7 +52,7 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 
 ## Shared UI
 
-The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter and Weather pages). The `Counter` and `Weather` components are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
+The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter, and Weather pages). The `Counter` and `Weather` components are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
 
 In the [Razor directives](xref:blazor/components/index#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
 
@@ -147,54 +147,7 @@ private async Task LoginUser()
 
 ### MAUI Authentication State Provider (`MauiAuthenticationStateProvider`)
 
-The `MauiAuthenticationStateProvider` class is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
-
-In `MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`:
-
-```csharp
- private async Task<ClaimsPrincipal> LoginWithProviderAsync(LoginRequest loginModel)
- {
-    var authenticatedUser = _defaultUser;
-    LoginStatus = LoginStatus.None;
-
-    try
-    {
-        // Call the Login endpoint and pass the email and password
-        var httpClient = HttpClientHelper.GetHttpClient();
-        var loginData = new { loginModel.Email, loginModel.Password };
-        using var response = await httpClient.PostAsJsonAsync(HttpClientHelper.LoginUrl, 
-            loginData);
-
-        LoginStatus = 
-            response.IsSuccessStatusCode ? LoginStatus.Success : LoginStatus.Failed;
-
-        if (LoginStatus == LoginStatus.Success)
-        {
-            // Save token to secure storage so the user doesn't have to login 
-            // every time
-            var token = await response.Content.ReadAsStringAsync();
-            _accessToken = await TokenStorage.SaveTokenToSecureStorageAsync(token, 
-                loginModel.Email);
-
-            authenticatedUser = CreateAuthenticatedUser(loginModel.Email);
-            LoginStatus = LoginStatus.Success;
-        }
-        else
-        {
-            LoginFailureMessage = "Invalid Email or Password. Please try again.";
-            LoginStatus = LoginStatus.Failed;
-        }
-    }
-    catch (Exception ex)
-    {
-        Debug.WriteLine($"Error logging in: {ex}");
-        LoginFailureMessage = "Server error.";
-        LoginStatus = LoginStatus.Failed;
-    }
-
-    return authenticatedUser;
-}
-```
+The `MauiAuthenticationStateProvider` class (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
 
 The `MauiAuthenticationStateProvider` class uses the `HttpClientHelper` (`MauiBlazorWeb/Services/HttpClientHelper.cs`) to handle calling localhost via the emulators and simulators for testing. For more information on calling local services from emulators and simulators, see [Connect to local web services from Android emulators and iOS simulators (.NET MAUI documentation)](/dotnet/maui/data-cloud/local-web-services).
 
