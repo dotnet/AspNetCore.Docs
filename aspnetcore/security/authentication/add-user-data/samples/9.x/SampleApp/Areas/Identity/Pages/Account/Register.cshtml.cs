@@ -22,7 +22,7 @@ using WebApp1.Areas.Identity.Data;
 
 namespace WebApp1.Areas.Identity.Pages.Account
 {
-    #region snippet
+    // <snippet>
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<WebApp1User> _signInManager;
@@ -170,4 +170,4 @@ namespace WebApp1.Areas.Identity.Pages.Account
         }
     }
 }
-#endregion
+// </snippet>
