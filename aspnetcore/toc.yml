@@ -414,9 +414,6 @@ items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
             href: /training/modules/create-razor-pages-aspnet-core/
-          - name: Web APIs >>
-            displayName: tutorial
-            href: /training/modules/build-web-api-aspnet-core/
           - name: Cloud-native microservices
             items:
               - name: Create and deploy >>
