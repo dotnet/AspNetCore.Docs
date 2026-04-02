@@ -82,13 +82,21 @@ services.AddIdentityCore<IdentityUser>()
 
 In Blazor Web Apps (.NET 8 or later), calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file isn't required.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file:
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
 
 ```csharp
+app.UseAuthentication(); // Only present if not called internally
+app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+
+```csharp
+app.UseAuthentication(); // Only present if not called internally
 app.UseAuthorization();
 ```
 
@@ -96,10 +104,21 @@ app.UseAuthorization();
 
 :::moniker range="< aspnetcore-6.0"
 
-In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` (`Startup.cs`):
+In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` (`Startup.cs`) after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
 
 ```csharp
+app.UseAuthentication(); // Only present if not called internally
 app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
+
+Blazor WebAssembly apps call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A> in the `Program` file to add authorization services:
+
+```csharp
+builder.Services.AddAuthorizationCore();
 ```
 
 :::moniker-end

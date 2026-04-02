@@ -97,6 +97,16 @@ app.UseAuthorization();
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-5.0"
+
+Blazor WebAssembly apps call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A> in the `Program` file to add authorization services:
+
+```csharp
+builder.Services.AddAuthorizationCore();
+```
+
+:::moniker-end
+
 Apply the policy using the `Policy` property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to specify the policy name. In the following example, the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity:
 
 For policy-based authorization using an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy?displayProperty=nameWithType> parameter with a single policy name.
