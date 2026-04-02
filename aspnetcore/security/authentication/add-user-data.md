@@ -10,8 +10,6 @@ uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 This article shows how to:
 
 * Add custom user data to an ASP.NET Core web app.
