@@ -102,7 +102,7 @@ You can specify a list of allowed values when creating a policy. The following p
 ```csharp
 services.AddAuthorization(options =>
 {
-    options.AddPolicy("Founders", policy =>
+    options.AddPolicy("Founder", policy =>
         policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
 });
 ```
