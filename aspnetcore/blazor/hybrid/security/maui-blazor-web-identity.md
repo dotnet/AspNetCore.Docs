@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/24/2026
+ms.date: 04/02/2026
 uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
@@ -45,7 +45,7 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 1. Navigate to `https://localhost:7157/account/register` to register a user in the Blazor Web App. Immediately after the user is registered, use the **Click here to confirm your account** link in the UI to confirm the user's email address because a real email sender isn't registered for account confirmation.
 1. Start (`F5`) the `MauiBlazorWeb` MAUI project. You can set the debug target to either **Windows** or an Android emulator.
 1. Notice you can only see the `Home` and `Login` pages.
-1. Log in with the user that you registered or an existing Windows account.
+1. Log in with the user that you registered.
 1. Notice you can now see the shared `Counter` and `Weather` pages.
 1. Log out and notice you can only see the `Home` and `Login` pages again.
 1. Navigate to `https://localhost:7157/` in a browser and the web app behaves the same.
