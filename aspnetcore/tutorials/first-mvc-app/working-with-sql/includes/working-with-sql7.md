@@ -122,6 +122,8 @@ The app shows the seeded data.
 
 ![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/m80.png)
 
+[!INCLUDE[](~/includes/localization/currency.md)]
+
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
