@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 04/02/2026
 uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
@@ -37,7 +37,7 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 The sample app is a starter solution that contains a native, cross-platform MAUI Blazor Hybrid app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
 1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample).
-1. Make sure you have [.NET 9 and the MAUI workload installed (.NET MAUI documentation)](/dotnet/maui/get-started/installation).
+1. Make sure you have [the latest .NET installed with the MAUI workload](/dotnet/maui/get-started/installation).
 1. Open the solution in Visual Studio (2022 or later) or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
 1. Start the `MauiBlazorWeb.Web` project without debugging. In Visual Studio, right-click on the project and select **Debug** > **Start without Debugging**.
@@ -52,7 +52,7 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 
 ## Shared UI
 
-The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter and Weather pages). The `Counter` component and `Weather` component are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
+The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter, and Weather pages). The `Counter` and `Weather` components are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
 
 In the [Razor directives](xref:blazor/components/index#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
 
@@ -147,54 +147,7 @@ private async Task LoginUser()
 
 ### MAUI Authentication State Provider (`MauiAuthenticationStateProvider`)
 
-The `MauiAuthenticationStateProvider` class is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
-
-In `MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`:
-
-```csharp
- private async Task<ClaimsPrincipal> LoginWithProviderAsync(LoginRequest loginModel)
- {
-    var authenticatedUser = _defaultUser;
-    LoginStatus = LoginStatus.None;
-
-    try
-    {
-        // Call the Login endpoint and pass the email and password
-        var httpClient = HttpClientHelper.GetHttpClient();
-        var loginData = new { loginModel.Email, loginModel.Password };
-        using var response = await httpClient.PostAsJsonAsync(HttpClientHelper.LoginUrl, 
-            loginData);
-
-        LoginStatus = 
-            response.IsSuccessStatusCode ? LoginStatus.Success : LoginStatus.Failed;
-
-        if (LoginStatus == LoginStatus.Success)
-        {
-            // Save token to secure storage so the user doesn't have to login 
-            // every time
-            var token = await response.Content.ReadAsStringAsync();
-            _accessToken = await TokenStorage.SaveTokenToSecureStorageAsync(token, 
-                loginModel.Email);
-
-            authenticatedUser = CreateAuthenticatedUser(loginModel.Email);
-            LoginStatus = LoginStatus.Success;
-        }
-        else
-        {
-            LoginFailureMessage = "Invalid Email or Password. Please try again.";
-            LoginStatus = LoginStatus.Failed;
-        }
-    }
-    catch (Exception ex)
-    {
-        Debug.WriteLine($"Error logging in: {ex}");
-        LoginFailureMessage = "Server error.";
-        LoginStatus = LoginStatus.Failed;
-    }
-
-    return authenticatedUser;
-}
-```
+The `MauiAuthenticationStateProvider` class (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
 
 The `MauiAuthenticationStateProvider` class uses the `HttpClientHelper` (`MauiBlazorWeb/Services/HttpClientHelper.cs`) to handle calling localhost via the emulators and simulators for testing. For more information on calling local services from emulators and simulators, see [Connect to local web services from Android emulators and iOS simulators (.NET MAUI documentation)](/dotnet/maui/data-cloud/local-web-services).
 
