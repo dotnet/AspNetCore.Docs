@@ -6,7 +6,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/29/2026
+ms.date: 03/26/2026
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -90,7 +90,10 @@ app.Use((context, next) =>
 
 Place the preceding code early in the request pipeline.
 
-Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880). This requires netsh sslcert bindings that use host names rather than IP addresses.
+Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880).
+
+> [!NOTE]
+> This requires netsh sslcert bindings that use host names rather than IP addresses. Replace `ipport` with `hostnameport` in the `netsh http add sslcert` commands below, and replace the IP address with the hostname, for example, `www.example.com`. There's also a known issue where using `hostnameport` fails unless the `certstorename` parameter is specified. By default, use `certstorename=MY`.
 
 ## Kernel mode authentication with Kerberos
 
