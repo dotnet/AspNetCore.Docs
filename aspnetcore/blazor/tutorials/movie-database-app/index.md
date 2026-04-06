@@ -48,7 +48,7 @@ If you don't intend to create the demonstration app while reading the article, y
 To run the sample locally, apply the pending migrations, which include a migration to create the database. From a command shell opened to the app's root folder or using the Developer PowerShell command shell in Visual Studio, execute the following command:
 
 ```dotnetcli
-dotnet ef migrations update
+dotnet ef database update
 ```
 
 After executing the preceding command, run the sample using any of the following approaches:
