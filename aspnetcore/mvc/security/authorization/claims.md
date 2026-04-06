@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core MVC app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/01/2026
+ms.date: 04/06/2026
 uid: mvc/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core MVC
@@ -21,7 +21,7 @@ This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razo
 
 The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](xref:index#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
-## Adding claims checks
+## Add claim checks
 
 Claim-based authorization checks are declarative and applied to controllers or actions within a controller.
 
@@ -113,7 +113,7 @@ services.AddAuthorization(options =>
 
 If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
 
-## Multiple Policy Evaluation
+## Evaluate multiple policies
 
 If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
 

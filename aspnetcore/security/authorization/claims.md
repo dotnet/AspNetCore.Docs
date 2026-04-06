@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/01/2026
+ms.date: 04/06/2026
 uid: security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core
@@ -24,7 +24,7 @@ The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` s
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
 
-## Adding claims checks
+## Add claim checks
 
 Claim-based authorization checks:
 
@@ -189,14 +189,13 @@ services.AddAuthorization(options =>
 
 If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
 
-## Multiple Policy Evaluation
+## Evaluate multiple policies
 
 Multiple policies are applied via multiple <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components. The inner component requires the user to pass its policy and every policy of parent <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
 
-
 The following example:
 
-* Requires the `Founder` policy, as demonstrated in the preceding [Adding claims checks](#adding-claims-checks) section.
+* Requires a `CustomerServiceMember` policy, which indicates that the user is in the organization's human resources department because they have a `Department` claim with a value of `Customer Service`.
 * Also requires a `HumanResourcesMember` policy, which indicates that the user is in the organization's human resources department because they have a `Department` claim with a value of `Human Resources`.
 
 :::moniker range=">= aspnetcore-7.0"
@@ -205,6 +204,8 @@ In the app's `Program` file:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("CustomerServiceMember", policy =>
+        policy.RequireClaim("Department", "Customer Service"))
     .AddPolicy("HumanResourcesMember", policy =>
         policy.RequireClaim("Department", "Human Resources"));
 ```
@@ -216,9 +217,13 @@ builder.Services.AddAuthorizationBuilder()
 In the app's `Program` file:
 
 ```csharp
-builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("HumanResourcesMember", policy =>
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CustomerServiceMember", policy =>
+        policy.RequireClaim("Department", "Customer Service"));
+    options.AddPolicy("HumanResourcesMember", policy =>
         policy.RequireClaim("Department", "Human Resources"));
+});
 ```
 
 :::moniker-end
@@ -230,6 +235,8 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 ```csharp
 services.AddAuthorization(options =>
 {
+    options.AddPolicy("CustomerServiceMember", policy =>
+        policy.RequireClaim("Department", "Customer Service"));
     options.AddPolicy("HumanResourcesMember", policy =>
         policy.RequireClaim("Department", "Human Resources"));
 });
@@ -239,25 +246,25 @@ services.AddAuthorization(options =>
 
 The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
 
-`Pages/PassFounderAndHumanResourcesMemberPoliciesWithAuthorizeViews.razor`:
+`Pages/PassCustomerServiceMemberAndHumanResourcesMemberPoliciesWithAuthorizeViews.razor`:
 
 ```razor
-@page "/pass-founder-and-humanresourcesmember-policies-with-authorizeviews"
+@page "/pass-customerservicemember-and-humanresourcesmember-policies-with-authorizeviews"
 
-<h1>Pass 'Founder' and 'HumanResourcesMember' policies with AuthorizeViews</h1>
+<h1>Pass 'CustomerServiceMember' and 'HumanResourcesMember' policies with AuthorizeViews</h1>
 
-<AuthorizeView Policy="Founder">
+<AuthorizeView Policy="CustomerServiceMember">
     <Authorized>
         <p>User: @context.User.Identity?.Name</p>
         <AuthorizeView Policy="HumanResourcesMember" Context="innerContext">
             <Authorized>
                 <p>
-                    You satisfy the 'Founder' and 'HumanResourcesMember' policies.
+                    You satisfy the 'CustomerServiceMember' and 'HumanResourcesMember' policies.
                 </p>
             </Authorized>
             <NotAuthorized>
                 <p>
-                    You satisfy the 'Founder' policy, but you <b>don't</b> satisfy 
+                    You satisfy the 'CustomerServiceMember' policy, but you <b>don't</b> satisfy 
                     the 'HumanResourcesMember' policy.
                 </p>
             </NotAuthorized>
@@ -265,7 +272,7 @@ The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.A
     </Authorized>
     <NotAuthorized>
         <p>
-            You <b>don't</b> satisfy the 'Founder' policy.
+            You <b>don't</b> satisfy the 'CustomerServiceMember' policy.
         </p>
     </NotAuthorized>
 </AuthorizeView>
@@ -273,24 +280,24 @@ The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.A
 
 The following example uses [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
 
-`Pages/PassFounderAndHumanResourcesMemberPoliciesWithAuthorizeAttributes.razor`:
+`Pages/PassCustomerServiceMemberAndHumanResourcesMemberPoliciesWithAuthorizeAttributes.razor`:
 
 ```razor
-@page "/pass-founder-and-humanresourcesmember-policies-with-authorize-attributes"
+@page "/pass-customerservicemember-and-humanresourcesmember-policies-with-authorize-attributes"
 @using Microsoft.AspNetCore.Authorization
-@attribute [Authorize(Policy = "Founder")]
+@attribute [Authorize(Policy = "CustomerServiceMember")]
 @attribute [Authorize(Policy = "HumanResourcesMember")]
 
 <h1>
-    Pass 'Founder' and 'HumanResourcesMember' policies with [Authorize] attributes
+    Pass 'CustomerServiceMember' and 'HumanResourcesMember' policies with [Authorize] attributes
 </h1>
 
 <p>
-    You satisfy the 'Founder' and 'HumanResourcesMember' policies.
+    You satisfy the 'CustomerServiceMember' and 'HumanResourcesMember' policies.
 </p>
 ```
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+For more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
 
 ## Claim case sensitivity
 
