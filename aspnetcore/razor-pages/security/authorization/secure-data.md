@@ -6,9 +6,11 @@ ms.author: tdykstra
 ms.custom: mvc, sfi-image-nochange
 ms.date: 12/5/2021
 ms.sfi.ropc: t
-uid: security/authorization/secure-data
+uid: razor-pages/security/authorization/secure-data
 ---
 # Create an ASP.NET Core web app with user data protected by authorization
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -62,20 +64,21 @@ This tutorial is advanced. You should be familiar with:
 
 ## The starter and completed app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
+[Download](xref:fundamentals/index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
 > [!TIP]
-> Use [`git sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) to only download the sample subfolder. For example:
-> ```
-> git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.git --sparse
-> cd AspNetCore.Docs
-> git sparse-checkout init --cone
-> git sparse-checkout set aspnetcore/security/authorization/secure-data/samples
-> ```
+> Use [`git sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) to only download the sample subfolder.
+For example:
+```
+git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.git --sparse
+cd AspNetCore.Docs
+git sparse-checkout init --cone
+git sparse-checkout set aspnetcore/razor-pages/security/authorization/secure-data/samples
+```
 
 ### The starter app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
+[Download](xref:fundamentals/index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/security/authorization/secure-data/samples/) app.
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact. To create the starter app, see [Create the starter app](#create-the-starter-app).
 
@@ -372,7 +375,7 @@ dotnet ef database update
 ### Seed the database
 
 <!-- must be sync Task for finished program -->
-Add the [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/starter6/Data/SeedData.cs) class to the *Data* folder:
+Add the [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/security/authorization/secure-data/samples/starter6/Data/SeedData.cs) class to the *Data* folder:
 
 [!code-csharp[](secure-data/samples/starter6/Data/SeedData.cs)]
 
@@ -438,11 +441,11 @@ This tutorial is advanced. You should be familiar with:
 
 ## The starter and completed app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
+[Download](xref:fundamentals/index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
 ### The starter app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
+[Download](xref:fundamentals/index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/security/authorization/secure-data/samples/) app.
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact. To create the starter app, see [Create the starter app](#create-the-starter-app).
 
@@ -734,7 +737,7 @@ If you experience a bug with the `dotnet aspnet-codegenerator razorpage` command
 
 ### Seed the database
 
-Add the [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs) class to the *Data* folder:
+Add the [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/razor-pages/samples/starter3/Data/SeedData.cs) class to the *Data* folder:
 
 [!code-csharp[](secure-data/samples/starter3/Data/SeedData.cs)]
 
