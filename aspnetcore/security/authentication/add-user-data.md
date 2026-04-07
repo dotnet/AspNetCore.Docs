@@ -64,7 +64,7 @@ dotnet new webapp -au Individual -o WebApp1
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**. 
+* From the Visual Studio **File** menu, select **New** > **Project/Solution...**. 
 * Select **ASP.NET Core Web App (Model-View-Controller)** > **Next**
 * Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code. Select **Next**.
 * Select **Authentication type** > **Individual Accounts** > **Create**
