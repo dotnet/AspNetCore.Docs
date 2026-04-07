@@ -6,7 +6,7 @@ These model classes are used with [Entity Framework Core](/ef/core) (EF Core) to
 
 The model classes created are known as ***POCO*** classes, from **P**lain **O**ld **C**LR **O**bjects. POCO classes don't have any dependency on EF Core. They only define the properties of the data to be stored in the database.
 
-In this tutorial,  model classes are created first, and EF Core creates the database.
+In this tutorial, model classes are created first, and EF Core creates the database.
 
 ## Add a data model class
 
@@ -66,7 +66,7 @@ In **Solution Explorer**, right-click the *Controllers* folder and select **Add 
 In the **Add New Scaffolded Item** dialog:
 
 * In the left pane, select **Installed** > **Common** > **MVC**.
-* Select  **MVC Controller with views, using Entity Framework**.
+* Select **MVC Controller with views, using Entity Framework**.
 * Select **Add**.
 
 ![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/8/add_scaffold-VS22-17.8.0.png)
@@ -147,7 +147,7 @@ Scaffolding creates the following:
 
 Scaffolding updates the following:
 
-* Registers the database context in the `Program.cs` file
+* Registers the database context in the `Program.cs` file.
 * Adds a database connection string to the `appsettings.json` file.
 
 The automatic creation of these files and file updates is known as *scaffolding*.
