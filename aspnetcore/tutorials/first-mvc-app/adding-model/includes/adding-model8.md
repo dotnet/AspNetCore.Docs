@@ -115,6 +115,14 @@ Build the app to verify that there are no errors.
 
 Open a command window in the project directory. The project directory is the directory that contains the `Program.cs` and `.csproj` files.
 
+<a name="sqlite-dev-vsc"></a>
+
+### Use SQLite for development, SQL Server for production
+
+The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
+
 On macOS and Linux, export the scaffold tool path:
 
 ```console
@@ -147,14 +155,6 @@ The automatic creation of these files and file updates is known as *scaffolding*
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
 Build the app to verify that there are no errors.
-
-<a name="sqlite-dev-vsc"></a>
-
-### Use SQLite for development, SQL Server for production
-
-The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
 
 ---
 
