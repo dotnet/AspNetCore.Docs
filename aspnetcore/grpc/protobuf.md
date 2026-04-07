@@ -107,12 +107,12 @@ The generated properties in the C# class aren't the .NET date and time types. Th
 // Create Timestamp and Duration from .NET DateTimeOffset and TimeSpan.
 var meeting = new Meeting
 {
-    Time = Timestamp.FromDateTimeOffset(meetingTime), // also FromDateTime()
+    Start = Timestamp.FromDateTimeOffset(meetingTime), // also FromDateTime()
     Duration = Duration.FromTimeSpan(meetingLength)
 };
 
 // Convert Timestamp and Duration to .NET DateTimeOffset and TimeSpan.
-var time = meeting.Time.ToDateTimeOffset();
+var time = meeting.Start.ToDateTimeOffset();
 var duration = meeting.Duration?.ToTimeSpan();
 ```
 
