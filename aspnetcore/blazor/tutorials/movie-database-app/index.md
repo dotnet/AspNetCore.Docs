@@ -47,13 +47,13 @@ If you don't intend to create the demonstration app while reading the article, y
 
 To run the sample locally, apply the pending migrations, which include a migration to create the database. Use the following instructions:
 
-If the `dotnet-ef` tool isn't installed, install the tool with the following command from either a command shell or the Developer PowerShell command shell in Visual Studio:
+If the [`dotnet-ef` tool](/ef/core/miscellaneous/cli/dotnet) isn't installed, install the tool with the following command from either a command shell, the Developer PowerShell command shell in Visual Studio, or the **Terminal** PowerShell command shell in VS Code:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef
 ```
 
-From a command shell opened to the app's root folder or using the Developer PowerShell command shell in Visual Studio, execute the following command:
+From a command shell opened to the app's root folder, execute the following command:
 
 ```dotnetcli
 dotnet ef database update
