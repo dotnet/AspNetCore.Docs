@@ -6,7 +6,7 @@ description: Part 5 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 01/22/2026
+ms.date: 04/03/2026
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 
@@ -137,6 +137,8 @@ The app shows the seeded data.
 And a refresh of the `Movie` table shows the same data.
 
 :::image type="content" source="~/tutorials/first-mvc-app/working-with-sql/media/seeded-movie-data.png" alt-text="Movie table has seeded data.":::
+
+[!INCLUDE[](~/includes/localization/currency.md)]
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
