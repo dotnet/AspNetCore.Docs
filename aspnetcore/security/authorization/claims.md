@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/06/2026
+ms.date: 04/07/2026
 uid: security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core
@@ -39,14 +39,14 @@ The simplest type of claim policy looks for the presence of a claim and doesn't 
 
 Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file.
 
-In Blazor Web Apps (.NET 8 or later), calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> isn't required because it's called internally:
+In Blazor Web Apps and Blazor Server apps that target .NET 8 or later, calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> isn't required because it's called internally:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
 ```
 
-In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+In Blazor Server apps prior to .NET 8, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
@@ -57,6 +57,11 @@ builder.Services.AddAuthorizationBuilder()
 app.UseAuthentication(); // Only present if not called internally
 app.UseAuthorization();
 ```
+
+> [!NOTE]
+> `WebApplicationBuilder.ConfigureApplication` ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/DefaultBuilder/src/WebApplicationBuilder.cs)) automatically adds a call for <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> when <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandlerProvider> is registered, which has been the behavior for ASP.NET Core since the release of .NET 8. Therefore, calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> explicitly for server-side Blazor apps in .NET 8 or later is technically redundant, but the call isn't harmful. Calling it in developer code after it has already been called by the framework merely no-ops.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
@@ -187,37 +192,50 @@ services.AddAuthorization(options =>
 
 ### Add a generic claim check
 
-### Add a generic claim check
+If the claim value isn't a single value or you need more flexible claim evaluation logic, such as pattern matching, checking the claim issuer, or parsing complex claim values, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim%2A>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
 
-If the claim value isn't a single value or you need more flexible claim evaluation logic — such as pattern matching, checking the claim issuer, or parsing complex claim values — use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim%2A>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
+:::moniker range=">= aspnetcore-7.0"
 
-> :::moniker range=">= aspnetcore-7.0"
-> 
-> ` ` `csharp
-> builder.Services.AddAuthorizationBuilder()
->     .AddPolicy("ContosoOnly", policy =>
->         policy.RequireAssertion(context =>
->             context.User.HasClaim(c =>
->                 c.Type == "email" &&
->                 c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
-> ` ` `
-> 
-> :::moniker-end
-> 
-> :::moniker range="< aspnetcore-7.0"
-> 
-> ` ` `csharp
-> builder.Services.AddAuthorization(options =>
-> {
->     options.AddPolicy("ContosoOnly", policy =>
->         policy.RequireAssertion(context =>
->             context.User.HasClaim(c =>
->                 c.Type == "email" &&
->                 c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
-> });
-> ` ` `
-> 
-> :::moniker-end
+```csharp
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+});
+```
+
+:::moniker-end
 
 For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
 

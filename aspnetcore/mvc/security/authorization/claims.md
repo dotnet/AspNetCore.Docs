@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core MVC app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/06/2026
+ms.date: 04/07/2026
 uid: mvc/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core MVC
@@ -111,7 +111,52 @@ services.AddAuthorization(options =>
 
 ### Add a generic claim check
 
-If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+If the claim value isn't a single value or you need more flexible claim evaluation logic, such as pattern matching, checking the claim issuer, or parsing complex claim values, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim%2A>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
+
+:::moniker range=">= aspnetcore-7.0"
+
+```csharp
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+});
+```
+
+:::moniker-end
+
+For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
 
 ## Evaluate multiple policies
 
