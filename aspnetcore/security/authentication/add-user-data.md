@@ -31,7 +31,7 @@ For the common case of adding two custom properties such as `FirstName` and `Las
 
 1. Create a new ASP.NET Core project with Individual Accounts authentication
 1. Scaffold Identity to override the Register and Manage/Index pages
-1. Add your custom properties to the user class (e.g., `FirstName`, `LastName`) with the `[PersonalData]` attribute
+1. Add custom properties such as `FirstName` and `LastName` to the user class, with the `[PersonalData]` attribute.
 1. Update the Register and Manage/Index pages to include input fields for your properties
 1. Create and apply a migration
 1. Test registration and profile management
@@ -230,7 +230,7 @@ For the common case of adding two custom properties such as `FirstName` and `Las
 
 1. Create a new ASP.NET Core project with Individual Accounts authentication
 1. Scaffold Identity to override the Register and Manage/Index pages
-1. Add your custom properties to the user class (e.g., `FirstName`, `LastName`) with the `[PersonalData]` attribute
+1. Add custom properties such as `FirstName` and `LastName` to the user class, with the `[PersonalData]` attribute.
 1. Update the Register and Manage/Index pages to include input fields for your properties
 1. Create and apply a migration
 1. Test registration and profile management
@@ -425,7 +425,7 @@ If you encounter issues:
 
 ## Quick start: Add two custom properties
 
-For a simple scenario where you want to add just a couple of custom properties (like `FirstName` and `LastName`) to your Identity user:
+For a simple scenario where you want to add just a couple of custom properties, such as `FirstName` and `LastName` to your Identity user:
 
 1. Create a new ASP.NET Core project with Individual Accounts authentication
 1. Scaffold Identity to override the Register and Manage/Index pages
@@ -643,7 +643,7 @@ dotnet new webapp -o WebApp1
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
 * In the **Add Identity** dialog, the following options:
-  * Select the existing layout file  `~/Pages/Shared/_Layout.cshtml`
+  * Select the existing layout file `~/Pages/Shared/_Layout.cshtml`
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**

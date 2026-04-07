@@ -54,7 +54,7 @@ namespace WebApp1.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
-        // Remaining API warnings ommited.
+        // Remaining API warnings omited.
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }

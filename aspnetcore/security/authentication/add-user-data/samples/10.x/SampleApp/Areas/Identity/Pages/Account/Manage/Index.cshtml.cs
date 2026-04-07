@@ -33,7 +33,7 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public string Username { get; set; }
 
-        // Remaining API warnings ommited.
+        // Remaining API warnings omited.
 
         [TempData]
         public string StatusMessage { get; set; }
