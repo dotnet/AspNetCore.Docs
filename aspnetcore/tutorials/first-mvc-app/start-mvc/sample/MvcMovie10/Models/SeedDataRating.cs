@@ -1,5 +1,4 @@
-﻿#define SeedRating 
-#if SeedRating
+﻿#if SeedRating
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
