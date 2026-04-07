@@ -46,8 +46,9 @@ You can create either a Razor Pages or MVC web app. Both use the same Identity R
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code.
-* Select **ASP.NET Core Web App** > **Next**
+* From the Visual Studio **File** menu, select **New** > **Project/Solution...**. 
+* Select **ASP.NET Core Web App (Razor Pages)** > **Next**
+* Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code. Select **Next**.
 * Select **Authentication type** > **Individual Accounts** > **Create**
 * Build and run the project.
 
@@ -63,8 +64,9 @@ dotnet new webapp -au Individual -o WebApp1
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code.
+* From the Visual Studio **File** menu, select **New** > **Project**. 
 * Select **ASP.NET Core Web App (Model-View-Controller)** > **Next**
+* Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code. Select **Next**.
 * Select **Authentication type** > **Individual Accounts** > **Create**
 * Build and run the project.
 
