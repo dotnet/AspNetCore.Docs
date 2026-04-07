@@ -187,7 +187,39 @@ services.AddAuthorization(options =>
 
 ### Add a generic claim check
 
-If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+### Add a generic claim check
+
+If the claim value isn't a single value or you need more flexible claim evaluation logic — such as pattern matching, checking the claim issuer, or parsing complex claim values — use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim%2A>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
+
+> :::moniker range=">= aspnetcore-7.0"
+> 
+> ` ` `csharp
+> builder.Services.AddAuthorizationBuilder()
+>     .AddPolicy("ContosoOnly", policy =>
+>         policy.RequireAssertion(context =>
+>             context.User.HasClaim(c =>
+>                 c.Type == "email" &&
+>                 c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+> ` ` `
+> 
+> :::moniker-end
+> 
+> :::moniker range="< aspnetcore-7.0"
+> 
+> ` ` `csharp
+> builder.Services.AddAuthorization(options =>
+> {
+>     options.AddPolicy("ContosoOnly", policy =>
+>         policy.RequireAssertion(context =>
+>             context.User.HasClaim(c =>
+>                 c.Type == "email" &&
+>                 c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+> });
+> ` ` `
+> 
+> :::moniker-end
+
+For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
 
 ## Evaluate multiple policies
 
@@ -195,7 +227,7 @@ Multiple policies are applied via multiple <xref:Microsoft.AspNetCore.Components
 
 The following example:
 
-* Requires a `CustomerServiceMember` policy, which indicates that the user is in the organization's human resources department because they have a `Department` claim with a value of `Customer Service`.
+* Requires a `CustomerServiceMember` policy, which indicates that the user is in the organization's customer service department because they have a `Department` claim with a value of `Customer Service`.
 * Also requires a `HumanResourcesMember` policy, which indicates that the user is in the organization's human resources department because they have a `Department` claim with a value of `Human Resources`.
 
 :::moniker range=">= aspnetcore-7.0"
@@ -297,7 +329,7 @@ The following example uses [`[Authorize]` attributes](xref:Microsoft.AspNetCore.
 </p>
 ```
 
-For more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+For more complicated policies, such as taking a date of birth claim, calculating an age from it, then checking that the age is 21 or older, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> or write [custom policy handlers](xref:security/authorization/policies). Custom policy handlers are useful when you need access to dependency-injected services or want a reusable, testable authorization component.
 
 ## Claim case sensitivity
 
