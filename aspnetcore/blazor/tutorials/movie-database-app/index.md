@@ -45,7 +45,15 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 
 If you don't intend to create the demonstration app while reading the article, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.
 
-To run the sample locally, apply the pending migrations, which include a migration to create the database. From a command shell opened to the app's root folder or using the Developer PowerShell command shell in Visual Studio, execute the following command:
+To run the sample locally, apply the pending migrations, which include a migration to create the database. Use the following instructions:
+
+If the `dotnet-ef` tool isn't installed, install the tool with the following command from either a command shell or the Developer PowerShell command shell in Visual Studio:
+
+```dotnetcli
+dotnet tool install --global dotnet-ef
+```
+
+From a command shell opened to the app's root folder or using the Developer PowerShell command shell in Visual Studio, execute the following command:
 
 ```dotnetcli
 dotnet ef database update
