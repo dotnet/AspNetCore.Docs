@@ -158,7 +158,7 @@ Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs`
 
 Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
+[!code-cshtml[](add-user-data/samples/10.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
 
 ### Update the `Account/Register.cshtml` page
 
