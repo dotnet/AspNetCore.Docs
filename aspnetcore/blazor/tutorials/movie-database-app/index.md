@@ -53,7 +53,7 @@ If the [`dotnet-ef` tool](/ef/core/miscellaneous/cli/dotnet) isn't installed, in
 dotnet tool install --global dotnet-ef
 ```
 
-From a command shell opened to the app's root folder, execute the following command:
+From a command shell opened to the project's root folder (the project directory containing the `BlazorWebAppMovies.csproj` file), execute the following command:
 
 ```dotnetcli
 dotnet ef database update
