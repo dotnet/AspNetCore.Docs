@@ -572,6 +572,8 @@ items:
                     uid: razor-pages/security/authorization/conventions
                   - name: Role-based authorization
                     uid: razor-pages/security/authorization/roles
+                  - name: Claim-based authorization
+                    uid: razor-pages/security/authorization/claims
       - name: MVC
         items:
           - name: Overview
@@ -622,6 +624,8 @@ items:
                     uid: mvc/security/authorization/iard
                   - name: Role-based authorization
                     uid: mvc/security/authorization/roles
+                  - name: Claim-based authorization
+                    uid: mvc/security/authorization/claims
       - name: Blazor
         items:
           - name: Overview
@@ -2083,7 +2087,7 @@ items:
             uid: security/authorization/iard
           - name: Role-based authorization
             uid: security/authorization/roles
-          - name: Claims-based authorization
+          - name: Claim-based authorization
             uid: security/authorization/claims
           - name: Policy-based authorization
             uid: security/authorization/policies

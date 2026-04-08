@@ -162,7 +162,7 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
   Alternatively, page handler methods can check roles directly by calling <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A>:
 
   ```csharp
-  public async Task<IActionResult> OnGet()
+  public IActionResult OnGet()
   {
       if (!User.IsInRole("User"))
       {
@@ -170,12 +170,11 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       }
 
       // Authorized logic
-      // await ...
 
       return Page();
   }
 
-  public async Task<IActionResult> OnPostAsync()
+  public IActionResult OnPost()
   {
       if (!User.IsInRole("Admin"))
       {
@@ -183,7 +182,6 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       }
 
       // Authorized logic
-      // await ...
 
       return Page();
   }

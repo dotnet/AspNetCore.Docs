@@ -1,417 +1,341 @@
 ---
-title: Claims-based authorization in ASP.NET Core
+title: Claim-based authorization in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
-ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 01/22/2026
+ms.author: wpickett
+ms.date: 04/07/2026
 uid: security/authorization/claims
-ai-usage: ai-assisted
 ---
-# Claims-based authorization in ASP.NET Core
+# Claim-based authorization in ASP.NET Core
 
-<a name="security-authorization-claims-based"></a>
+When an identity is created for an app user upon signing into an app, the identity provider may assign one or more [claims](xref:System.Security.Claims.Claim#remarks) to the user's identity. A claim is a name value pair that represents what the subject (a user, an app or service, or a device/computer) is, not what the subject can do. A claim can be evaluated by the app to determine access rights to data and other secured resources during the process of authorization and can also be used to make or express authentication decisions about a subject. An identity can contain multiple claims with multiple values and can contain multiple claims of the same type. This article explains how to add claims checks for authorization in an ASP.NET Core app.
+
+This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Additional resources](#additional-resources) section. For Razor Pages and MVC guidance, see the following resources:
+
+* <xref:razor-pages/security/authorization/claims>
+* <xref:mvc/security/authorization/claims>
+
+## Sample app
+
+The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured claims to demonstrate most of the examples in this article. For more information, see the sample's README file (`README.md`).
+
+> [!CAUTION]
+> This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
+
+## Add claim checks
+
+Claim-based authorization checks:
+
+* Are declarative and specify claims via policies that the current user must present to access the requested resource.
+* Are applied to Razor components (examples in this article), [Razor Pages](xref:razor-pages/security/authorization/claims), or [MVC controllers or actions within a controller](xref:mvc/security/authorization/claims).
+
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](xref:blazor/security/index#authorizeview-component)) supports *policy-based* authorization, where the policy requires one or more claims. Alternatively, a claims-based authorization via one or more policy checks can be set up using [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in Razor components. The developer must build and register a policy expressing the claims requirements. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
+
+The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file:
+
+```csharp
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+```
+
+> [!NOTE]
+> `WebApplicationBuilder.ConfigureApplication` ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/DefaultBuilder/src/WebApplicationBuilder.cs)) automatically adds a call for <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> when <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandlerProvider> is registered, which has been the behavior for ASP.NET Core since the release of .NET 8. Therefore, calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> explicitly for server-side Blazor apps in .NET 8 or later is technically redundant, but the call isn't harmful. Calling it in developer code after it has already been called by the framework merely no-ops.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file:
+
+```csharp
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+```
+
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+
+```csharp
+app.UseAuthentication(); // Only present if not called internally
+app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Registering the policy takes place as part of the Authorization service configuration in `Startup.ConfigureServices` (`Startup.cs`):
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("EmployeeOnly", policy =>
+        policy.RequireClaim("EmployeeNumber"));
+});
+```
+
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+
+```csharp
+app.UseAuthentication(); // Only present if not called internally
+app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
+
+Blazor WebAssembly apps call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A> in the `Program` file to add authorization services:
+
+```csharp
+builder.Services.AddAuthorizationCore();
+```
+
+:::moniker-end
+
+Apply the policy using the `Policy` property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to specify the policy name. In the following example, the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity:
+
+For policy-based authorization using an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy?displayProperty=nameWithType> parameter with a single policy name.
+
+`Pages/PassEmployeeOnlyPolicyWithAuthorizeView.razor`:
+
+```razor
+@page "/pass-employeeonly-policy-with-authorizeview"
+
+<h1>Pass 'EmployeeOnly' policy with AuthorizeView</h1>
+
+<AuthorizeView Policy="EmployeeOnly">
+    <Authorized>
+        <p>You satisfy the 'EmployeeOnly' policy.</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>You <b>don't</b> satisfy the 'EmployeeOnly' policy.</p>
+    </NotAuthorized>
+</AuthorizeView>
+```
+
+Alternatively, apply the policy using the `Policy` property on the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to specify the policy name. In the following example, the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity:
+
+`Pages/PassEmployeeOnlyPolicyWithAuthorizeAttribute.razor`:
+
+```razor
+@page "/pass-employeeonly-policy-with-authorize-attribute"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "EmployeeOnly")]
+
+<h1>Pass 'EmployeeOnly' policy with [Authorize] attribute</h1>
+
+<p>You satisfy the 'EmployeeOnly' policy.</p>
+```
+
+You can specify a list of allowed values when creating a policy. The following policy only passes for employees whose employee number is 1, 2, 3, 4, or 5:
 
 :::moniker range=">= aspnetcore-7.0"
 
-When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is a name value pair that represents what the subject is, not what the subject can do. For example, you may have a driver's license, issued by a local driving license authority. Your driver's license has your date of birth on it. In this case the claim name would be `DateOfBirth`, the claim value would be your date of birth, for example `8th June 1970` and the issuer would be the driving license authority. Claims-based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:
-
-The door security officer would evaluate the value of your date of birth claim and whether they trust the issuer (the driving license authority) before granting you access.
-
-An identity can contain multiple claims with multiple values and can contain multiple claims of the same type.
-
-## Adding claims checks
-
-Claim-based authorization checks:
-
-* Are declarative.
-* Are applied to Razor Pages, controllers, or actions within a controller.
-* Can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
-
-Claims in code specify claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based; the developer must build and register a policy expressing the claims requirements.
-
-The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
-
-Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Registering the policy takes place as part of the Authorization service configuration, typically in the `Program.cs` file:
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Program.cs?name=snippet&highlight=6-7,21)]
-
-In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
-
-Apply the policy using the `Policy` property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to specify the policy name.
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
-
-The `[Authorize]` attribute can be applied to an entire controller or Razor Page, in which case only identities matching the policy are allowed access to any Action on the controller.
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=1)]
-
-The following code applies the `[Authorize]` attribute to a Razor Page:
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
-
-Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
-
-If you have a controller that's protected by the `[Authorize]` attribute but want to allow anonymous access to particular actions, you apply the `AllowAnonymousAttribute` attribute.
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=14)]
-
-Because policies can ***not*** be applied at the Razor Page handler level, we recommend using a controller when policies must be applied at the page handler level. The rest of the app that doesn't require policies at the Razor Page handler level can use Razor Pages.
-
-Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4, or 5.
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Program.cs?name=snippet2&highlight=6-8)]
-
-### Add a generic claim check
-
-If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see [Use a func to fulfill a policy](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
-
-## Multiple Policy Evaluation
-
-If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Controllers/SalaryController.cs?name=snippet&highlight=1,14)]
-
-In the preceding example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However, in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
-
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it, and then checking that the age is 21 or older, then you need to write [custom policy handlers](xref:security/authorization/policies).
-
-In the following sample, both page handler methods must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy:
-
-[!code-csharp[](~/security/authorization/claims/samples/7.x/WebAll/Pages/X/Salary.cshtml.cs?name=snippet&highlight=1,2)]
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/7.x/WebAll/Program.cs" id="snippet2" highlight="6-8":::
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is a name value pair that represents what the subject is, not what the subject can do. For example, you may have a driver's license, issued by a local driving license authority. Your driver's license has your date of birth on it. In this case the claim name would be `DateOfBirth`, the claim value would be your date of birth, for example `8th June 1970` and the issuer would be the driving license authority. Claims-based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:
-
-The door security officer would evaluate the value of your date of birth claim and whether they trust the issuer (the driving license authority) before granting you access.
-
-An identity can contain multiple claims with multiple values and can contain multiple claims of the same type.
-
-## Adding claims checks
-
-Claim-based authorization checks:
-
-* Are declarative.
-* Are applied to Razor Pages, controllers, or actions within a controller.
-* Can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
-
-Claims in code specify claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based; the developer must build and register a policy expressing the claims requirements.
-
-The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
-
-Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Registering the policy takes place as part of the Authorization service configuration, typically in the `Program.cs` file:
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet&highlight=6-9,23)]
-
-In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
-
-Apply the policy using the `Policy` property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to specify the policy name.
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
-
-The `[Authorize]` attribute can be applied to an entire controller or Razor Page, in which case only identities matching the policy are allowed access to any Action on the controller.
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=1)]
-
-The following code applies the `[Authorize]` attribute to a Razor Page:
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
-
-Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
-
-If you have a controller that's protected by the `[Authorize]` attribute but want to allow anonymous access to particular actions, you apply the `AllowAnonymousAttribute` attribute.
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=14)]
-
-Because policies can ***not*** be applied at the Razor Page handler level, we recommend using a controller when policies must be applied at the page handler level. The rest of the app that doesn't require policies at the Razor Page handler level can use Razor Pages.
-
-Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4, or 5.
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet2&highlight=6-10)]
-
-### Add a generic claim check
-
-If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see [Use a func to fulfill a policy](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
-
-## Multiple Policy Evaluation
-
-If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/SalaryController.cs?name=snippet&highlight=1,14)]
-
-In the preceding example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However, in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
-
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it, and then checking that the age is 21 or older, then you need to write [custom policy handlers](xref:security/authorization/policies).
-
-In the following sample, both page handler methods must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy:
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Pages/X/Salary.cshtml.cs?name=snippet&highlight=1,2)]
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/6.x/WebAll/Program.cs" id="snippet2" highlight="6-10":::
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-5.0"
-
-When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is a name value pair that represents what the subject is, not what the subject can do. For example, you may have a driver's license, issued by a local driving license authority. Your driver's license has your date of birth on it. In this case the claim name would be `DateOfBirth`, the claim value would be your date of birth, for example `8th June 1970` and the issuer would be the driving license authority. Claims-based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:
-
-The door security officer would evaluate the value of your date of birth claim and whether they trust the issuer (the driving license authority) before granting you access.
-
-An identity can contain multiple claims with multiple values and can contain multiple claims of the same type.
-
-## Adding claims checks
-
-Claim-based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
-
-The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
-
-Build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your `Startup.cs` file.
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+services.AddAuthorization(options =>
 {
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-    });
-}
+    options.AddPolicy("Founder", policy =>
+        policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
+});
 ```
 
-Call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Configure`. The following code is generated by the ASP.NET Core web app templates:
+:::moniker-end
 
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-        app.UseMigrationsEndPoint();
-    }
-    else
-    {
-        app.UseExceptionHandler("/Error");
-        app.UseHsts();
-    }
+`Pages/PassFounderPolicyWithAuthorizeView.razor`:
 
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
+```razor
+@page "/pass-founder-policy-with-authorizeview"
 
-    app.UseRouting();
+<h1>Pass 'Founder' policy with AuthorizeView</h1>
 
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapRazorPages();
-    });
-}
-```
-
-In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
-
-You then apply the policy using the `Policy` property on the `[Authorize]` attribute to specify the policy name;
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public IActionResult VacationBalance()
-{
-    return View();
-}
-```
-
-The `[Authorize]` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class VacationController : Controller
-{
-    public ActionResult VacationBalance()
-    {
-    }
-}
-```
-
-If you have a controller that's protected by the `[Authorize]` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class VacationController : Controller
-{
-    public ActionResult VacationBalance()
-    {
-    }
-
-    [AllowAnonymous]
-    public ActionResult VacationPolicy()
-    {
-    }
-}
-```
-
-Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("Founders", policy =>
-                          policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
-    });
-}
+<AuthorizeView Policy="Founder">
+    <Authorized>
+        <p>You satisfy the 'Founder' policy.</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>You <b>don't</b> satisfy the 'Founder' policy.</p>
+    </NotAuthorized>
+</AuthorizeView>
 ```
 
 ### Add a generic claim check
 
-If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see [Use a func to fulfill a policy](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
+If the claim value isn't a single value or you need more flexible claim evaluation logic, such as pattern matching, checking the claim issuer, or parsing complex claim values, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim%2A>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
 
-## Multiple Policy Evaluation
-
-If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
+:::moniker range=">= aspnetcore-7.0"
 
 ```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class SalaryController : Controller
-{
-    public ActionResult Payslip()
-    {
-    }
-
-    [Authorize(Policy = "HumanResources")]
-    public ActionResult UpdateSalary()
-    {
-    }
-}
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
 ```
-
-In the above example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
-
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-3.1"
-
-When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is a name value pair that represents what the subject is, not what the subject can do. For example, you may have a driver's license, issued by a local driving license authority. Your driver's license has your date of birth on it. In this case the claim name would be `DateOfBirth`, the claim value would be your date of birth, for example `8th June 1970` and the issuer would be the driving license authority. Claims-based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:
-
-The door security officer would evaluate the value of your date of birth claim and whether they trust the issuer (the driving license authority) before granting you access.
-
-An identity can contain multiple claims with multiple values and can contain multiple claims of the same type.
-
-## Adding claims checks
-
-Claim-based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
-
-The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
-
-Build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your `Startup.cs` file.
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+builder.Services.AddAuthorization(options =>
 {
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-    });
-}
+    options.AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+});
 ```
-
-In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
-
-You then apply the policy using the `Policy` property on the `[Authorize]` attribute to specify the policy name;
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public IActionResult VacationBalance()
-{
-    return View();
-}
-```
-
-The `[Authorize]` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class VacationController : Controller
-{
-    public ActionResult VacationBalance()
-    {
-    }
-}
-```
-
-If you have a controller that's protected by the `[Authorize]` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class VacationController : Controller
-{
-    public ActionResult VacationBalance()
-    {
-    }
-
-    [AllowAnonymous]
-    public ActionResult VacationPolicy()
-    {
-    }
-}
-```
-
-Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("Founders", policy =>
-                          policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
-    });
-}
-```
-
-### Add a generic claim check
-
-If the claim value isn't a single value or a transformation is required, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>. For more information, see [Use a func to fulfill a policy](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
-
-## Multiple Policy Evaluation
-
-If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
-
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class SalaryController : Controller
-{
-    public ActionResult Payslip()
-    {
-    }
-
-    [Authorize(Policy = "HumanResources")]
-    public ActionResult UpdateSalary()
-    {
-    }
-}
-```
-
-In the above example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
-
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("ContosoOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c =>
+                c.Type == "email" &&
+                c.Value.EndsWith("@contoso.com", StringComparison.OrdinalIgnoreCase))));
+});
+```
+
+:::moniker-end
+
+For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+
+## Evaluate multiple policies
+
+Multiple policies are applied via multiple <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components. The inner component requires the user to pass its policy and every policy of parent <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
+
+The following example:
+
+* Requires a `CustomerServiceMember` policy, which indicates that the user is in the organization's customer service department because they have a `Department` claim with a value of `Customer Service`.
+* Also requires a `HumanResourcesMember` policy, which indicates that the user is in the organization's human resources department because they have a `Department` claim with a value of `Human Resources`.
+
+:::moniker range=">= aspnetcore-7.0"
+
+In the app's `Program` file:
+
+```csharp
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("CustomerServiceMember", policy =>
+        policy.RequireClaim("Department", "Customer Service"))
+    .AddPolicy("HumanResourcesMember", policy =>
+        policy.RequireClaim("Department", "Human Resources"));
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+In the app's `Program` file:
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CustomerServiceMember", policy =>
+        policy.RequireClaim("Department", "Customer Service"));
+    options.AddPolicy("HumanResourcesMember", policy =>
+        policy.RequireClaim("Department", "Human Resources"));
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In `Startup.ConfigureServices` (`Startup.cs`):
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("CustomerServiceMember", policy =>
+        policy.RequireClaim("Department", "Customer Service"));
+    options.AddPolicy("HumanResourcesMember", policy =>
+        policy.RequireClaim("Department", "Human Resources"));
+});
+```
+
+:::moniker-end
+
+The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> components.
+
+`Pages/PassCustomerServiceMemberAndHumanResourcesMemberPoliciesWithAuthorizeViews.razor`:
+
+```razor
+@page "/pass-customerservicemember-and-humanresourcesmember-policies-with-authorizeviews"
+
+<h1>Pass 'CustomerServiceMember' and 'HumanResourcesMember' policies with AuthorizeViews</h1>
+
+<AuthorizeView Policy="CustomerServiceMember">
+    <Authorized>
+        <p>User: @context.User.Identity?.Name</p>
+        <AuthorizeView Policy="HumanResourcesMember" Context="innerContext">
+            <Authorized>
+                <p>
+                    You satisfy the 'CustomerServiceMember' and 'HumanResourcesMember' policies.
+                </p>
+            </Authorized>
+            <NotAuthorized>
+                <p>
+                    You satisfy the 'CustomerServiceMember' policy, but you <b>don't</b> satisfy 
+                    the 'HumanResourcesMember' policy.
+                </p>
+            </NotAuthorized>
+        </AuthorizeView>
+    </Authorized>
+    <NotAuthorized>
+        <p>
+            You <b>don't</b> satisfy the 'CustomerServiceMember' policy.
+        </p>
+    </NotAuthorized>
+</AuthorizeView>
+```
+
+The following example uses [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
+
+`Pages/PassCustomerServiceMemberAndHumanResourcesMemberPoliciesWithAuthorizeAttributes.razor`:
+
+```razor
+@page "/pass-customerservicemember-and-humanresourcesmember-policies-with-authorize-attributes"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "CustomerServiceMember")]
+@attribute [Authorize(Policy = "HumanResourcesMember")]
+
+<h1>
+    Pass 'CustomerServiceMember' and 'HumanResourcesMember' policies with [Authorize] attributes
+</h1>
+
+<p>
+    You satisfy the 'CustomerServiceMember' and 'HumanResourcesMember' policies.
+</p>
+```
+
+For more complicated policies, such as taking a date of birth claim, calculating an age from it, then checking that the age is 21 or older, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> or write [custom policy handlers](xref:security/authorization/policies). Custom policy handlers are useful when you need access to dependency-injected services or want a reusable, testable authorization component.
 
 ## Claim case sensitivity
 
@@ -422,3 +346,14 @@ Separately, the claim *type* comparison (used to locate role claims by their cla
 The default <xref:System.Security.Claims.ClaimsIdentity> provided by the .NET runtime (used in most cases, including all cookie-based flows) still uses case-insensitive claim type matching.
 
 In practice, this distinction rarely matters for role authorization because the role claim type is set once during identity creation and matched consistently. Always use consistent casing for role names and claim types to avoid subtle issues.
+
+## Additional resources
+
+* <xref:blazor/security/index>
+* <xref:blazor/security/authentication-state>
+* <xref:blazor/security/webassembly/additional-scenarios>
+* <xref:blazor/security/webassembly/graph-api#customize-user-claims-using-the-graph-sdk>
+* <xref:blazor/security/webassembly/index#establish-claims-for-users>
+* <xref:razor-pages/security/authorization/claims>
+* <xref:mvc/security/authorization/claims>
+* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation)

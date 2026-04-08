@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 03/24/2026
+ms.date: 04/07/2026
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -14,12 +14,7 @@ When a user's identity is created after authentication, the user may belong to o
 
 While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
-This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the following resources:
-
-* <xref:blazor/security/index>
-* <xref:blazor/security/webassembly/meid-groups-roles>
-
-For Razor Pages and MVC guidance, which applies to all release versions of ASP.NET Core, see the following resources:
+This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Additional resources](#additional-resources) section. For Razor Pages and MVC guidance, see the following resources:
 
 * <xref:razor-pages/security/authorization/roles>
 * <xref:mvc/security/authorization/roles>
@@ -32,7 +27,7 @@ Identity configuration changed with the release of .NET 6. Examples in this arti
 
 ## Sample app
 
-The Blazor Web App sample for this article is the [`BlazorWebAppRolesWithIdentity` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppRolesWithIdentity) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured roles to demonstrate most of the examples in this article. For more information, see the sample's README file (`README.md`).
+The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured roles to demonstrate most of the examples in this article. For more information, see the sample's README file (`README.md`).
 
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
@@ -83,14 +78,59 @@ services.AddIdentityCore<IdentityUser>()
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+In Blazor Web Apps (.NET 8 or later), calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file isn't required.
+
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+
+```csharp
+app.UseAuthentication(); // Only present if not called internally
+app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+
+```csharp
+app.UseAuthentication(); // Only present if not called internally
+app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` (`Startup.cs`) after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+
+```csharp
+app.UseAuthentication(); // Only present if not called internally
+app.UseAuthorization();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
+
+Blazor WebAssembly apps call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A> in the `Program` file to add authorization services:
+
+```csharp
+builder.Services.AddAuthorizationCore();
+```
+
+:::moniker-end
+
 ## Role-based authorization checks
 
 Role-based authorization checks:
 
-* Are declarative and specify roles which the current user must be a member of to access the requested resource.
+* Are declarative and specify roles that the current user must be a member of to access the requested resource.
 * Are applied to Razor components (examples in this article), [Razor Pages](xref:razor-pages/security/authorization/roles), or [MVC controllers or actions within a controller](xref:mvc/security/authorization/roles).
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component supports *role-based* authorization. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](xref:blazor/security/index#authorizeview-component)) supports *role-based* authorization. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
 
 For role-based authorization of content in Razor components, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles?displayProperty=nameWithType> parameter.
 
