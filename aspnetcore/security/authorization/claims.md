@@ -37,25 +37,11 @@ The simplest type of claim policy looks for the presence of a claim and doesn't 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file.
-
-In Blazor Web Apps and Blazor Server apps that target .NET 8 or later, calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> isn't required because it's called internally:
+Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-```
-
-In Blazor Server apps prior to .NET 8, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
-
-```csharp
-builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-
-...
-
-app.UseAuthentication(); // Only present if not called internally
-app.UseAuthorization();
 ```
 
 > [!NOTE]
@@ -67,14 +53,16 @@ app.UseAuthorization();
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file. In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+Registering the policy takes place as part of the Authorization service configuration in the app's `Program` file:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+```
 
-...
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
 
+```csharp
 app.UseAuthentication(); // Only present if not called internally
 app.UseAuthorization();
 ```
@@ -93,7 +81,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
 
 ```csharp
 app.UseAuthentication(); // Only present if not called internally
