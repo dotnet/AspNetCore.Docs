@@ -174,7 +174,7 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
       return Page();
   }
 
-  public IActionResult OnPostAsync()
+  public IActionResult OnPost()
   {
       if (!User.IsInRole("Admin"))
       {
