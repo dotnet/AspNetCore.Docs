@@ -256,7 +256,7 @@ For a quick test, copy the worker output into the React app's static files manua
 
 :::moniker range=">= aspnetcore-11.0"
 
-Use the generated JavaScript client to host the .NET WebAssembly runtime in a Web Worker. For example, copy:
+Use the generated JavaScript client to host the .NET WebAssembly runtime in a Web Worker. For example:
 
 * Copy `WebWorkersOnReact/bin/Debug/net11.0/wwwroot/_framework` to `react-app/public/_framework`.
 * Copy `WebWorkersOnReact/wwwroot/dotnet-web-worker.js` to `react-app/public/_content/WebWorkersOnReact/dotnet-web-worker.js`.
