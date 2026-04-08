@@ -1103,20 +1103,24 @@ Build the project.
 
 ### Add a migration for the custom user data
 
+The custom properties added to the `WebApp1User` Identity user class need to be reflected in the database. A migration is needed now to generate the SQL required to add the new columns, and then the database needs to be updated to apply those changes.
+
+The Identity scaffolder created a new `DbContext` (`WebApp1Context`) alongside the original `ApplicationDbContext` from the project template. You must specify the new `WebApp1Context` Identity `DbContext` to use when running migration commands.
+
 # [Visual Studio](#tab/visual-studio)
 
 In the Visual Studio **Package Manager Console**:
 
 ```powershell
-Add-Migration CustomUserData
-Update-Database
+Add-Migration CustomUserData -Context WebApp1Context
+Update-Database -Context WebApp1Context
 ```
 
 # [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
-dotnet ef migrations add CustomUserData
-dotnet ef database update
+dotnet ef migrations add CustomUserData --context WebApp1Context
+dotnet ef database update --context WebApp1Context
 ```
 
 ---
