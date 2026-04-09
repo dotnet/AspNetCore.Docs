@@ -1,10 +1,11 @@
 ---
 title: Add, download, and delete user data to Identity in an ASP.NET Core project
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: wpickett
-ms.date: 03/15/2022
 ms.custom: mvc
+ms.date: 04/09/2026
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -32,13 +33,20 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 * From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
+* In the **Authentication type** dropdown, select **Individual Accounts**.
 * Select **Web Application** > **OK**
 * Build and run the project.
 
 # [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
-dotnet new webapp -o WebApp1
+dotnet new webapp --auth Individual -o WebApp1
+```
+
+For an MVC project, use the following command:
+
+```dotnetcli
+dotnet new mvc --auth Individual -o WebApp1
 ```
 
 ---
@@ -179,13 +187,20 @@ Test the app:
 
 * From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
+* In the **Authentication** section, select **Individual User Accounts**.
 * Select **Web Application** > **OK**
 * Build and run the project.
 
 # [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
-dotnet new webapp -o WebApp1
+dotnet new webapp --auth Individual -o WebApp1
+```
+
+For an MVC project, use the following command:
+
+```dotnetcli
+dotnet new mvc --auth Individual -o WebApp1
 ```
 
 ---
@@ -401,13 +416,20 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 * From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 2.2** in the dropdown
+* In the **Authentication** section, select **Individual User Accounts**.
 * Select **Web Application** > **OK**
 * Build and run the project.
 
 # [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
-dotnet new webapp -o WebApp1
+dotnet new webapp --auth Individual -o WebApp1
+```
+
+For an MVC project, use the following command:
+
+```dotnetcli
+dotnet new mvc --auth Individual -o WebApp1
 ```
 
 ---
