@@ -4,7 +4,7 @@ author: wadepickett
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/26/2025
+ms.date: 04/09/2026
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -46,7 +46,7 @@ Create the client credentials for the app by opening the **Clients** sidebar men
 * Save the **Client ID** and **Client secret**, which are used later in the ASP.NET app configuration.
 
 > [!NOTE]
-> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> class.
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property.
 
 When deploying the app, either:
 
@@ -71,13 +71,13 @@ Manage API credentials and usage in the [API Console](https://console.developers
 
 ## Configure Google authentication
 
-Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) nuget package:
+:::moniker range=">= aspnetcore-6.0"
+
+Add the [`Google.Apis.Auth.AspNetCore3` NuGet package](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) to the app:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.Authentication.Google
+dotnet add package Google.Apis.Auth.AspNetCore3
 ```
-
-:::moniker range=">= aspnetcore-6.0"
 
 Add the authentication service to the `Program` file:
 
@@ -86,6 +86,12 @@ Add the authentication service to the `Program` file:
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
+
+Add the [`Microsoft.AspNetCore.Authentication.Google` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) to the app:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.Authentication.Google
+```
 
 Add the authentication service to `Startup.ConfigureServices`:
 
