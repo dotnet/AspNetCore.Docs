@@ -10,6 +10,224 @@ uid: security/authorization/secure-data
 ---
 # Create an ASP.NET Core web app with user data protected by authorization
 
+Scaffold Identity into the app and create the database with existing movie data migrations
+
+Install NuGet package: `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
+
+Add an application user (`ApplicationUser`) that implements `IdentityUser`.
+
+`Data/ApplicationUser.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Identity;
+
+namespace BlazorWebAppMovies.Data;
+
+public class ApplicationUser : IdentityUser
+{
+    // Add custom user properties here
+}
+```
+
+Change `BlazorWebAppMoviesContext` to inherit from `IdentityDbContext<ApplicationUser>`:
+
+```diff
+- public class BlazorWebAppMoviesContext : DbContext
++ public class BlazorWebAppMoviesContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
+ 
+```
+
+In **Solution Explorer**, right-click the project and select **Add** > **New Scaffolded Item**.
+
+In the **Add New Scaffolded Item** dialog, select **Identity** > **Blazor Identity**. Select the **Add** button.
+
+In the **Add Blazor Identity** dialog, select `BlazorWebAppMoviesContext` for the **DbContext class**. Select the **Add** button to accept the suggested database context, which is the existing context for the existing database. Select the **Add** button to scaffold Identity into the app. Wait until the scaffolding process is complete.
+
+Due to a temporary [problem with Identity scaffolding (`dotnet/Scaffolding` #3716)](https://github.com/dotnet/Scaffolding/issues/3716), use the following instructions to move the generated Identity assets:
+
+* Move the contents of the `BlazorWebAppMovies` > `BlazorWebAppMovies` > `Components` > `Account` > `Pages` folder to the app's `BlazorWebAppMovies` > `Components` > `Account` folder.
+* Move the component files in the `BlazorWebAppMovies` > `BlazorWebAppMovies` > `Components` > `Account` > `Shared` folder to the app's `BlazorWebAppMovies` > `Components` > `Account` > `Shared` folder.
+* Move the C# files from the `BlazorWebAppMovies` > `BlazorWebAppMovies` > `Components` > `Account` folder to the app's `BlazorWebAppMovies` > `Components` > `Account` folder.
+* Delete the `BlazorWebAppMovies` > `BlazorWebAppMovies` folder.
+
+Next, update the seed data for the app to include seeded user accounts, which include role claims for test users.
+
+Locate the `SeedData` class (`Data/SeedData.cs`). Add the following class at the bottom of the file just inside the closing brace for the namespace. The `SeedUser` represents a seeded test user for the app and includes properties to hold the user's roles and claims:
+
+```csharp
+private class SeedUser : ApplicationUser
+{
+    public string[]? Roles { get; set; }
+    public List<KeyValuePair<string, string>>? Claims { get; set; }
+}
+```
+
+At the top of the `SeedData` class, add the following `seedUsers` field. This field holds the test users to seed into the database:
+
+```csharp
+private static readonly IEnumerable<SeedUser> seedUsers =
+[
+    new SeedUser()
+    {
+        Email = "leela@contoso.com",
+        NormalizedEmail = "LEELA@CONTOSO.COM",
+        NormalizedUserName = "LEELA@CONTOSO.COM",
+        Roles = [ "Administrator" ],
+        Claims = [],
+        UserName = "leela@contoso.com"
+    },
+    new SeedUser()
+    {
+        Email = "harry@contoso.com",
+        NormalizedEmail = "HARRY@CONTOSO.COM",
+        NormalizedUserName = "HARRY@CONTOSO.COM",
+        Roles = [ "Manager" ],
+        Claims = [],
+        UserName = "harry@contoso.com"
+    },
+];
+```
+
+Change the method signature of the `Initialize` method because calls added to the method in the next step are asynchronous:
+
+```diff
+- public static void Initialize(IServiceProvider serviceProvider)
++ public static async Task Initialize(IServiceProvider serviceProvider)
+```
+
+Immediately above the line `context.SaveChanges();` in the `Initialize` method, add the following C# code. The code adds roles to the database using the `RoleManager` service, adds the test users in the `seedUsers` field to the Identity store using the `UserManager` service, and assigns any roles and claims to the users with a common test user password of `Passw0rd!`:
+
+```csharp
+var userStore = new UserStore<SeedUser>(context);
+var password = new PasswordHasher<SeedUser>();
+
+using var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+string[] roles = ["Administrator", "Manager"];
+
+foreach (var role in roles)
+{
+    if (!await roleManager.RoleExistsAsync(role))
+    {
+        await roleManager.CreateAsync(new IdentityRole(role));
+    }
+}
+
+using var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+foreach (var user in seedUsers)
+{
+    var hashed = password.HashPassword(user, "Passw0rd!");
+    user.PasswordHash = hashed;
+    await userStore.CreateAsync(user);
+
+    if (user.Email is not null)
+    {
+        var appUser = await userManager.FindByEmailAsync(user.Email);
+
+        if (appUser is not null)
+        {
+            if (user.Roles is not null)
+            {
+                await userManager.AddToRolesAsync(appUser, user.Roles);
+            }
+
+            if (user.Claims is not null)
+            {
+                foreach (var claim in user.Claims)
+                {
+                    await userManager.AddClaimAsync(appUser, new Claim(claim.Key, claim.Value));
+                }
+            }
+        }
+    }
+}
+```
+
+In the app's `Program` file, add role-related services for the app's users by calling `AddRoles` with the `ApplicationUser` type:
+
+```diff
+builder.Services.AddIdentityCore<ApplicationUser>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = true;
+        options.Stores.SchemaVersion = IdentitySchemaVersions.Version3;
+    })
++   .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BlazorWebAppMoviesContext>()
+    .AddSignInManager()
+    .AddDefaultTokenProviders();
+```
+
+Change the line that seeds movies and users to await the call:
+
+```diff
+- SeedData.Initialize(services);
++ await SeedData.Initialize(services);
+```
+
+In the app's main layout component (`Components/Layout/MainLayout.razor`), replace the link to the `About` page with the user's name from Identity inside an [`AuthorizeView` component]() that only displays its contents for an authenticated user:
+
+```diff
+- <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
++ <AuthorizeView>
++     @context.User.Identity?.Name
++ </AuthorizeView>
+```
+
+To inspect the claims of authenticated users, add the following `UserClaims` component to the app's `Pages` folder:
+
+`Components/Pages/UserClaims.razor`:
+
+```razor
+@page "/user-claims"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<PageTitle>User Claims</PageTitle>
+
+<h1>User Claims</h1>
+
+@if (claims.Any())
+{
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li><b>@claim.Type:</b> @claim.Value</li>
+        }
+    </ul>
+}
+
+@code {
+    private IEnumerable<Claim> claims = [];
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? AuthState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthState == null)
+        {
+            return;
+        }
+
+        var authState = await AuthState;
+        claims = authState.User.Claims;
+    }
+}
+```
+
+Open the `NavMenu` component (`Components/Layout/NavMenu.razor`). Locate the `<Authorized>` tag inside the `<AuthorizeView>` markup. Add an entry to the `<Authorized>` block to show a link (`NavLink`) for the `UserClaims` component. The link only appears for authenticated users:
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="user-claims">
+        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> User claims
+    </NavLink>
+</div>
+```
+
+
 :::moniker range=">= aspnetcore-6.0"
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
