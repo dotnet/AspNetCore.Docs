@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/07/2026
+ms.date: 04/09/2026
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -41,6 +41,12 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 ```dotnetcli
 dotnet new webapp --auth Individual -o WebApp1
+```
+
+For an MVC project, use the following command:
+
+```dotnetcli
+dotnet new mvc --auth Individual -o WebApp1
 ```
 
 ---
@@ -189,6 +195,12 @@ Test the app:
 
 ```dotnetcli
 dotnet new webapp --auth Individual -o WebApp1
+```
+
+For an MVC project, use the following command:
+
+```dotnetcli
+dotnet new mvc --auth Individual -o WebApp1
 ```
 
 ---
@@ -412,6 +424,12 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 
 ```dotnetcli
 dotnet new webapp --auth Individual -o WebApp1
+```
+
+For an MVC project, use the following command:
+
+```dotnetcli
+dotnet new mvc --auth Individual -o WebApp1
 ```
 
 ---
