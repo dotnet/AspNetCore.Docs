@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 #region snippet_AddGoogle2
-builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+builder.Services.AddAuthentication().AddGoogleOpenIdConnect(googleOptions =>
 {
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
@@ -18,17 +18,20 @@ builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 
     googleOptions.SaveTokens = true;
 
-    googleOptions.Events.OnCreatingTicket = ctx =>
+    googleOptions.Events.OnTicketReceived = ctx =>
     {
-        List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
+        List<AuthenticationToken>? tokens = ctx.Properties?.GetTokens().ToList();
 
-        tokens.Add(new AuthenticationToken()
+        tokens?.Add(new AuthenticationToken()
         {
             Name = "TicketCreated",
             Value = DateTime.UtcNow.ToString()
         });
 
-        ctx.Properties.StoreTokens(tokens);
+        if (tokens is not null)
+        {
+            ctx.Properties?.StoreTokens(tokens);
+        }
 
         return Task.CompletedTask;
     };
