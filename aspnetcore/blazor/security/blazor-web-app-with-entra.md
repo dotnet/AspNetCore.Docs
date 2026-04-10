@@ -138,11 +138,21 @@ jwtOptions.Authority = "{AUTHORITY}";
 
 The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
-If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
+If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider.
+
+V1 STS token format:
 
 ```csharp
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
 ```
+
+V2 STS token format:
+
+```csharp
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
+```
+
+For more information on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 If the app is registered in a Microsoft Entra External ID tenant:
 
@@ -434,11 +444,21 @@ jwtOptions.Authority = "{AUTHORITY}";
 
 The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
-If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
+If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider.
+
+V1 STS token format:
 
 ```csharp
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
 ```
+
+V2 STS token format:
+
+```csharp
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
+```
+
+For more information on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 If the app is registered in a Microsoft Entra External ID tenant:
 
@@ -849,6 +869,8 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 },
 ```
 
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see the [STS token version](#sts-token-version) section.
+
 Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
 
 * `{TENANT ID (WEB API)}`: The Tenant Id of the web API.
@@ -859,6 +881,8 @@ Authority formats adopt the following patterns:
 * ME-ID tenant type: `https://sts.windows.net/{TENANT ID}`
 * Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
@@ -1156,6 +1180,32 @@ For more information on how this app secures its weather data, see [Secure data 
 Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
 
 We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
+
+## STS token version
+
+There are two types of token formats, named Version 1 (V1) and Version 2 (V2). In Azure's security token services (STS), the V1 format uses the `sts.windows.net` domain as the issuer, while the V2 format uses the `login.microsoftonline.com` domain as issuer. V2 supports additional features, such as authenticating personal accounts and OpenID protocols.
+
+This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 tokens, make the following changes:
+
+* The STS version must be changed in the apps' registrations in the Azure portal. Set the value of `requestedAccessTokenVersion` to `2` in the apps' manifests, both in the app's registration and the web API's (`MinimalApiJwt`) registration.
+* Use the V2 authority URL format (example: `https://login.microsoftonline.com/{TENANT ID}/v2.0`, where the `{TENANT ID}` placeholder is the tenant ID).
+* In the web API (`MinimalApiJwt`), explicitly validate the issuer:
+
+  ```csharp
+  jwtOptions.TokenValidationParameters = new TokenValidationParameters
+  {
+      ValidateIssuer = true,
+      // Ensure the issuer ends with /v2.0 if using the V2 endpoint
+      ValidIssuer = "https://login.microsoftonline.com/{TENANT ID}/v2.0",
+      ValidateAudience = true,
+      ValidAudience = "{WEB API CLIENT ID}",
+      ValidateLifetime = true
+  };
+  ```
+
+  The `{WEB API CLIENT ID}` placeholder in the preceding example is only the client ID, not the full value passed to the `Audience` property.
+
+For more information, see [Access tokens in the Microsoft identity platform: Token formats](/entra/identity-platform/access-tokens#token-formats).
 
 ## Troubleshoot
 
