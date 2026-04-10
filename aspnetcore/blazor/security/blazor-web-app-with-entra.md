@@ -138,7 +138,7 @@ jwtOptions.Authority = "{AUTHORITY}";
 
 The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
-If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider.
+If the app is registered in an ME-ID tenant, the authority should match the issuer (`iss`) of the JWT returned by the identity provider.
 
 V1 STS token format:
 
@@ -444,7 +444,7 @@ jwtOptions.Authority = "{AUTHORITY}";
 
 The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
-If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider.
+If the app is registered in an ME-ID tenant, the authority should match the issuer (`iss`) of the JWT returned by the identity provider.
 
 V1 STS token format:
 
