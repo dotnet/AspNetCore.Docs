@@ -882,7 +882,7 @@ Authority formats adopt the following patterns:
 * Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
 
-The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see the [STS token version](#sts-token-version) section.
+The preceding example for the ME-ID tenant type uses the V1 STS token URL format. For guidance on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
