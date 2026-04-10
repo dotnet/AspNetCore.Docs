@@ -22,7 +22,6 @@ Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601>
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
-* The rendered items are the same size.
 
 When the user scrolls to an arbitrary point in the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component's list of items, the component calculates the visible items to show. Unseen items aren't rendered.
 
