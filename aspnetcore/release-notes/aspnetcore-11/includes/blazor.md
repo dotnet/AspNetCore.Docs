@@ -120,6 +120,6 @@ Blazor WebAssembly apps can perform heavy computing on the client, but doing so 
 
 ### `Virtualize` adapts to variable-height items at runtime
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was three in .NET 10 or earlier and now changes to 15 in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These changes include a new default value for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was three in .NET 10 or earlier and now changes to 15 in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
 For more information, see the *Item size* and *Overscan count* sections of <xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size>.
