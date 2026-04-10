@@ -222,7 +222,7 @@ protected override void OnInitialized() =>
 
 :::moniker range=">= aspnetcore-11.0"
 
-The height of each item in pixels can be set initially with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example changes the default height of each item from the default of 50 pixels to 25 pixels:
+The height of each item in pixels can be set initially with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example sets the initial height of each item from 50 pixels to 25 pixels:
 
 ```razor
 <Virtualize Context="employee" Items="employees" ItemSize="25">
