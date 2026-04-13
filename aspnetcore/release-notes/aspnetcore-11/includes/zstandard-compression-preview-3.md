@@ -1,6 +1,6 @@
 ### Zstandard response compression and request decompression
 
-ASP.NET Core now supports [Zstandard (zstd)](https://facebook.github.io/zstd/) for both response compression and request decompression. This adds zstd support to the existing response-compression and request-decompression middleware and enables it by default.
+ASP.NET Core now supports [Zstandard (zstd)](https://facebook.github.io/zstd/) for both response compression and request decompression. This adds zstd support to the existing response-compression and request-decompression middleware and enables zstd by default.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
