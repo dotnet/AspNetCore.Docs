@@ -62,9 +62,9 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-preview2.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/zstandard-compression-preview3.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/zstandard-compression-preview-3.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/http3-early-request-processing-preview3.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/http3-early-request-processing-preview-3.md)]
 
 ## Breaking changes
 
