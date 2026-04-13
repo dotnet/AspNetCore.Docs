@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/13/2026
+ms.date: 04/13/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -61,6 +61,10 @@ This section describes miscellaneous new features in .NET 11.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/native-otel-tracing-preview2.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/performance-improvements-preview2.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/zstandard-compression-preview3.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/http3-early-request-processing-preview3.md)]
 
 ## Breaking changes
 
