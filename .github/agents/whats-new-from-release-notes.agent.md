@@ -7,10 +7,6 @@ description: >
   Use this agent when processing new .NET preview release notes into the
   What's New article, or when checking for incremental updates to
   already-processed release notes.
-tools:
-  - githubread
-  - lexical-code-search
-  - semantic-code-search
 ai-usage: ai-assisted
 author: tdykstra
 ms.author: wpickett
