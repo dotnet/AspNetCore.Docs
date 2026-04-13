@@ -160,17 +160,17 @@ Pausing a circuit stores details about the circuit in client-side browser storag
 
 From a JavaScript event handler:
 
-* Call `Blazor.pause` to pause a circuit.
-* Call `Blazor.resume` to resume a circuit.
+* Call `Blazor.pauseCircuit` to pause a circuit.
+* Call `Blazor.resumeCircuit` to resume a circuit.
 
 The following example assumes that a circuit isn't required for an app that isn't visible:
 
 ```javascript
 window.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
-    Blazor.pause();
+    Blazor.pauseCircuit();
   } else if (document.visibilityState === 'visible') {
-    Blazor.resume();
+    Blazor.resumeCircuit();
   }
 });
 ```
