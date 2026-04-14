@@ -117,3 +117,9 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 ### New Blazor Web Worker template (`blazorwebworker`)
 
 Blazor WebAssembly apps can perform heavy computing on the client, but doing so on the UI thread interferes with UI rendering and negatively affects the user experience. In .NET 10, we added an article with a sample app to make offloading heavy work from the UI thread to a Web Worker easier. For .NET 11, we've added the Blazor Web Worker project template (`blazorwebworker`), which provides infrastructure for running .NET code in a Web Worker in Blazor WebAssembly apps. For more information, see <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>.
+
+### `Virtualize` adapts to variable-height items at runtime
+
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+
+For more information, see the *Item size* and *Overscan count* sections of <xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size>.

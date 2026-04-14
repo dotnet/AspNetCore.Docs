@@ -22,7 +22,6 @@ Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601>
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
-* The rendered items are the same size.
 
 When the user scrolls to an arbitrary point in the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component's list of items, the component calculates the visible items to show. Unseen items aren't rendered.
 
@@ -221,6 +220,22 @@ protected override void OnInitialized() =>
 
 ## Item size
 
+:::moniker range=">= aspnetcore-11.0"
+
+The height of each item in pixels can be set initially with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example sets the initial height of each item from 50 pixels to 25 pixels:
+
+```razor
+<Virtualize Context="employee" Items="employees" ItemSize="25">
+    ...
+</Virtualize>
+```
+
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures actual item heights as they enter the viewport and maintains a running average of measured heights. All items use this running average for positioning (or the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> parameter before any measurements exist).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:
 
 ```razor
@@ -231,7 +246,23 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 
 The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
+:::moniker-end
+
 ## Overscan count
+
+:::moniker range=">= aspnetcore-11.0"
+
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 15). The following example changes the overscan count from the default of 15 items to 17 items:
+
+```razor
+<Virtualize Context="employee" Items="employees" OverscanCount="17">
+    ...
+</Virtualize>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3). The following example changes the overscan count from the default of three items to four items:
 
@@ -240,6 +271,8 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
     ...
 </Virtualize>
 ```
+
+:::moniker-end
 
 ## State changes
 
