@@ -47,7 +47,7 @@ The key differences from `HTTP/2` to `HTTP/3` are:
 
 ## Early request processing
 
-Starting with .NET 11, Kestrel starts processing HTTP/3 requests without waiting for the control stream and SETTINGS frame first. This optimization reduces first-request latency on new HTTP/3 connections.
+Starting with .NET 11, Kestrel starts processing HTTP/3 requests without first waiting for the control stream and SETTINGS frame first. This optimization reduces first-request latency on new HTTP/3 connections.
 
 In previous versions, Kestrel waited to receive the QUIC control stream and its initial SETTINGS frame before processing any request streams. This requirement is no longer necessary, which means the first request on a new connection completes faster.
 
