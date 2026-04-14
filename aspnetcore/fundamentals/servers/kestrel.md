@@ -1,11 +1,12 @@
 ---
 title: Kestrel web server in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/04/2025
+ms.date: 04/14/2026
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server in ASP.NET Core
@@ -25,7 +26,7 @@ Kestrel's features include:
 * **Lightweight:** Optimized for running in resource-constrained environments, such as containers and edge devices.
 * **Security hardened:** Kestrel supports HTTPS and is hardened against web server vulnerabilities.
 * **Wide protocol support:** Kestrel supports common web protocols, including:
-  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3)
+  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3) (with early request processing for reduced latency in .NET 11+)
   * [WebSockets](xref:fundamentals/websockets)
 * **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
 * **Flexible workloads**: Kestrel supports many workloads:
@@ -42,6 +43,20 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
 For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Early request processing
+
+Starting with .NET 11, Kestrel starts processing HTTP/3 requests without waiting for the control stream and SETTINGS frame first. This optimization reduces first-request latency on new HTTP/3 connections.
+
+In previous versions, Kestrel waited to receive the QUIC control stream and its initial SETTINGS frame before processing any request streams. This is no longer required, which means the first request on a new connection completes faster.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ## Additional resources
 
