@@ -2,10 +2,9 @@
 title: Use HTTP/3 with the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
 author: wtgodbe
-description: Learn about using HTTP/3 with Kestrel, the cross-platform web server for ASP.NET Core.
+description: "HTTP/3 support in Kestrel: Discover how to configure ASP.NET Core for HTTP/3, improve performance, and optimize your web server setup."
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wigodbe
-ms.custom: mvc, linux-related-content
+ms.author: wpickett
 ms.date: 04/14/2026
 uid: fundamentals/servers/kestrel/http3
 ---
@@ -50,30 +49,30 @@ The key differences from `HTTP/2` to `HTTP/3` are:
 
 Starting with .NET 11, Kestrel starts processing HTTP/3 requests without waiting for the control stream and SETTINGS frame first. This optimization reduces first-request latency on new HTTP/3 connections.
 
-In previous versions, Kestrel waited to receive the QUIC control stream and its initial SETTINGS frame before processing any request streams. This is no longer required, which means the first request on a new connection completes faster.
+In previous versions, Kestrel waited to receive the QUIC control stream and its initial SETTINGS frame before processing any request streams. This requirement is no longer necessary, which means the first request on a new connection completes faster.
 
 ## HTTP/3 requirements
 
-HTTP/3 uses QUIC as its transport protocol. The ASP.NET Core implementation of HTTP/3 depends on [MsQuic](https://github.com/microsoft/msquic) to provide QUIC functionality. As a result, ASP.NET Core support of HTTP/3 depends on MsQuic platform requirements. For more information on how to install **MsQuic**, see [QUIC Platform dependencies](/dotnet/fundamentals/networking/quic/quic-overview#platform-dependencies). If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3, then it's disabled, and Kestrel will fall back to other HTTP protocols.
+HTTP/3 uses QUIC as its transport protocol. The ASP.NET Core implementation of HTTP/3 depends on [MsQuic](https://github.com/microsoft/msquic) to provide QUIC functionality. As a result, ASP.NET Core support of HTTP/3 depends on MsQuic platform requirements. For more information on how to install **MsQuic**, see [QUIC Platform dependencies](/dotnet/fundamentals/networking/quic/quic-overview#platform-dependencies). If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3, Kestrel disables HTTP/3 and falls back to other HTTP protocols.
 
 ## Getting started
 
-HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
+HTTP/3 isn't enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
 
 The preceding code configures port 5001 to:
 
 * Use HTTP/3 alongside HTTP/1.1 and HTTP/2 by specifying `HttpProtocols.Http1AndHttp2AndHttp3`.
-* Enable HTTPS with `UseHttps`. HTTP/3 requires HTTPS.
+* Enable HTTPS by using `UseHttps`. HTTP/3 requires HTTPS.
 
-Because not all routers, firewalls, and proxies properly support HTTP/3, HTTP/3 should be configured together with HTTP/1.1 and HTTP/2. This can be done by specifying [`HttpProtocols.Http1AndHttp2AndHttp3`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2AndHttp3) as an endpoint's supported protocols.
+Because not all routers, firewalls, and proxies properly support HTTP/3, configure HTTP/3 together with HTTP/1.1 and HTTP/2. Specify [`HttpProtocols.Http1AndHttp2AndHttp3`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2AndHttp3) as an endpoint's supported protocols.
 
 For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 ## Configure QuicTransportOptions
 
-QUIC transport options can be configured by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A> extension method on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
+Configure QUIC transport options by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A> extension method on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="3-8":::
 
@@ -96,13 +95,13 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the [`alt-svc`](h
 
 ## Localhost testing
 
-* Browsers don't allow self-signed certificates on HTTP/3, such as the Kestrel development certificate.
-* `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configuration is required when using `HttpClient` to make an HTTP/3 request:
+* Browsers don't support self-signed certificates on HTTP/3, such as the Kestrel development certificate.
+* Use `HttpClient` for localhost or loopback testing in .NET 6 or later. When you use `HttpClient` to make an HTTP/3 request, you need extra configuration:
 
   * Set [`HttpRequestMessage.Version`](xref:System.Net.Http.HttpRequestMessage.Version) to 3.0, or
   * Set [`HttpRequestMessage.VersionPolicy`](xref:System.Net.Http.HttpRequestMessage.VersionPolicy) to [`HttpVersionPolicy.RequestVersionOrHigher`](xref:System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher).
 
-For more information on how to use HTTP/3 with `HttpClient`, see [HTTP/3 with .NET](/dotnet/core/extensions/httpclient-http3).
+For more information about how to use HTTP/3 with `HttpClient`, see [HTTP/3 with .NET](/dotnet/core/extensions/httpclient-http3).
 
 :::moniker-end
 
