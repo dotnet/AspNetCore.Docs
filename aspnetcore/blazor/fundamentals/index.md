@@ -218,7 +218,7 @@ Samples apps in the repository:
 
 :::moniker range="< aspnetcore-8.0"
 
-The sample repo contains two types of samples:
+The sample repository contains two types of samples:
 
 * Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
