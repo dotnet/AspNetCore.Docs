@@ -119,7 +119,11 @@ Annotate component public properties with the [`[PersistentState]` attribute](xr
 }
 ```
 
-To persist state for a scoped service, annotate the public service property with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+To persist state for a scoped service:
+
+* Annotate the public service property with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute).
+* Add the service to the service collection.
+* Call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
 
 ```csharp
 public class CustomUserService
