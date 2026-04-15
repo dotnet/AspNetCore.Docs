@@ -35,7 +35,7 @@ The following deployment strategies are supported:
 
 :::moniker-end
 
-## Serve a Blazor WebAssermbly app locally for testing
+## Serve a Blazor WebAssembly app locally for testing
 
 Many open source and commercial HTTP servers can serve a published Blazor WebAssembly app locally. For a simple command-line HTTP server, consider the [`natemcmaster
 dotnet-serve` .NET tool](https://github.com/natemcmaster/dotnet-serve).
