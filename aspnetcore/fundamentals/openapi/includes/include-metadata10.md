@@ -473,7 +473,7 @@ public IActionResult PrivateEndpoint() {
 
 C# classes or records used in request or response bodies are represented as schemas
 in the generated OpenAPI document.
-By default, only public properties are represented in the schema, but there are
+By default, only `public` properties are represented in the schema, but there are
 <xref:System.Text.Json.JsonSerializerOptions> to also create schema properties for fields.
 
 When the <xref:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy> is set to camel-case (this is the default

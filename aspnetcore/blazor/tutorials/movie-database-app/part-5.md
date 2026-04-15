@@ -19,7 +19,7 @@ This part of the tutorial series explains how metadata of the `Movie` model is u
 
 ## Validation using data annotations
 
-Validation rules are specified on a model class using *data annotations*. The following list shows some of the <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties in a form's model:
+Validation rules are specified on a model class using *data annotations*. The following list shows some of the <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of `public` properties in a form's model:
 
 * [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Require that the user provide a value.
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Specifies the minimum and maximum length of characters. Note that a `MinimumLength` passed to the attribute doesn't make the string required (apply the [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)).
