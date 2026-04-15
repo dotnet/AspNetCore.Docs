@@ -46,7 +46,7 @@ By default, properties are serialized using the <xref:System.Text.Json?displayPr
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
-* The [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) is applied to the public, nullable `int` type (`CurrentCount`).
+* The [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) is applied to the public nullable `CurrentCount` property of type `int?`.
 * The counter's state is assigned when `null` in `OnInitialized` and restored automatically when the component renders interactively.
 
 `PrerenderedCounter2.razor`:
