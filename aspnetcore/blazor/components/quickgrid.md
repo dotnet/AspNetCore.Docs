@@ -16,7 +16,7 @@ The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a
 
 ## Package
 
-Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package.
+Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

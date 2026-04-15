@@ -91,15 +91,15 @@ This section describes the parts of an app generated from the Blazor WebAssembly
 
 When an app is created to use Work or School Accounts (`SingleOrg`), the app automatically receives a package reference for the [Microsoft Authentication Library](/entra/identity-platform/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
-If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
+If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
+The [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) to the app.
 
 ### Authentication service support
 
-Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). This method sets up the services required for the app to interact with the Identity Provider (IP).
 
 In the `Program` file:
 

@@ -254,7 +254,7 @@ After ***either*** of the preceding filters is added to the app, the console out
 
 The example in this section demonstrates a custom logger provider for further customization.
 
-Add a package reference to the app for the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package.
+Add a package reference to the app for the [`Microsoft.Extensions.Logging.Configuration` package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

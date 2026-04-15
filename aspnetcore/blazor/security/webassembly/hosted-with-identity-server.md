@@ -250,9 +250,9 @@ The `{ASSEMBLY NAME}` placeholder is the **:::no-loc text="Client":::** app's as
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-When an app is created to use Individual Accounts (`Individual`), the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual Accounts (`Individual`), the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
-If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
+If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -280,7 +280,7 @@ The `{PROJECT NAME}` placeholder is the project name at solution creation. For e
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-The support for authenticating users is plugged into the service container by the extension method provided inside the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. This method sets up the services required by the app to interact with the existing authorization system.
+The support for authenticating users is plugged into the service container by the extension method provided inside the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication). This method sets up the services required by the app to interact with the existing authorization system.
 
 ```csharp
 builder.Services.AddApiAuthorization();
