@@ -441,6 +441,12 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 [!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
+## Remote authentication paths
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
+[!INCLUDE[](~/blazor/security/includes/remote-authentication-paths.md)]
+
 ## Use of an Azure Active Directory B2C tenant
 
 If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID.

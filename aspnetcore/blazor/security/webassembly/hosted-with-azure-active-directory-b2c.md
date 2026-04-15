@@ -435,6 +435,12 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 [!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
+## Remote authentication paths
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
+[!INCLUDE[](~/blazor/security/includes/remote-authentication-paths.md)]
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]

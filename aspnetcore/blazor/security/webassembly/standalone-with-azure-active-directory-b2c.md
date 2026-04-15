@@ -224,6 +224,10 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 [!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-custom-policies.md)]
 
+## Remote authentication paths
+
+[!INCLUDE[](~/blazor/security/includes/remote-authentication-paths.md)]
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]

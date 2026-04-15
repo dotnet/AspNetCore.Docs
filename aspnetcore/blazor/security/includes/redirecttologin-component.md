@@ -7,7 +7,7 @@ The `RedirectToLogin` component (`RedirectToLogin.razor`):
 
 Inspect the `RedirectToLogin` component in [reference source](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp). The location of the component changed over time, so use GitHub search tools to locate the component.
 
-The login path can be customized by the app (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationApplicationPathsOptions.LogInPath%2A?displayProperty=nameWithType>, [framework defaults (`dotnet/aspnetcore` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly.Authentication/src/RemoteAuthenticationDefaults.cs)). The project template's `RedirectToLogin` component uses the default login path of `authentication/login`. 
+The login path can be customized by the app (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationApplicationPathsOptions.LogInPath%2A?displayProperty=nameWithType> on the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions%601.AuthenticationPaths%2A?displayProperty=nameWithType> property in the app's `Program` file, [framework defaults (`dotnet/aspnetcore` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly.Authentication/src/RemoteAuthenticationDefaults.cs)). The project template's `RedirectToLogin` component uses the default login path of `authentication/login`. 
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
