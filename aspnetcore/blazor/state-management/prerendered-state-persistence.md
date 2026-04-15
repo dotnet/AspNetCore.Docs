@@ -38,7 +38,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 :::moniker range=">= aspnetcore-10.0"
 
-To preserve prerendered state, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to persist state in public properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+To persist prerendered state using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service, apply the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to `public` properties. The state is retrieved when the component renders interactively or the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is instantiated.
 
 Use `public` properties because reflection is used by the framework for tasks such as [trimming unused code](xref:blazor/performance/app-download-size#intermediate-language-il-trimming) and [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
