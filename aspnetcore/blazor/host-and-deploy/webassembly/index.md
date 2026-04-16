@@ -40,7 +40,7 @@ The following deployment strategies are supported:
 Many open-source and commercial HTTP servers can serve a published Blazor WebAssembly app locally. For a simple command-line HTTP server, consider the [`natemcmaster/dotnet-serve` .NET tool](https://github.com/natemcmaster/dotnet-serve).
 
 > [!WARNING]
-> The [`natemcmaster/dotnet-serve` .NET tool](https://github.com/natemcmaster/dotnet-serve) isn't owned or maintained by Microsoft and isn't covered by any Microsoft Support Agreement or license. Use caution when using a third-party tool, especially for testing security scenarios. Confirm that the tool follows official specifications and adopts security best practices. Keep the tool's version current to obtain the latest bug fixes.
+> The [`natemcmaster/dotnet-serve` .NET tool](https://github.com/natemcmaster/dotnet-serve) isn't owned or maintained by Microsoft and isn't covered by any Microsoft support agreement or license. Use caution when using a third-party tool, especially for testing security scenarios. Confirm that the tool follows official specifications and adopts security best practices. Keep the tool's version current to obtain the latest bug fixes.
 
 ## Subdomain and IIS sub-application hosting
 
