@@ -38,13 +38,15 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 :::moniker range=">= aspnetcore-10.0"
 
-To preserve prerendered state, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to persist state in properties. Properties with this attribute are automatically persisted using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service during prerendering. The state is retrieved when the component renders interactively or the service is instantiated.
+To persist prerendered state using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service, apply the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to `public` properties. The state is retrieved when the component renders interactively or the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is instantiated.
+
+Use `public` properties because reflection is used by the framework for tasks such as [trimming unused code](xref:blazor/performance/app-download-size#intermediate-language-il-trimming) and [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
 By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings and persisted in the prerendered HTML. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
-* The [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) is applied to the nullable `int` type (`CurrentCount`).
+* The [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) is applied to the public nullable `CurrentCount` property of type `int?`.
 * The counter's state is assigned when `null` in `OnInitialized` and restored automatically when the component renders interactively.
 
 `PrerenderedCounter2.razor`:
@@ -94,7 +96,7 @@ When the component executes, `CurrentCount` is only set once during prerendering
 
 In the following example that serializes state for multiple components of the same type:
 
-* Properties annotated with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) are serialized during prerendering.
+* Public properties annotated with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) are serialized during prerendering.
 * The [`@key` directive attribute](xref:blazor/components/key#use-of-the-key-directive-attribute) is used to ensure that the state is correctly associated with the component instance.
 * The `Element` property is initialized in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to avoid null reference exceptions, similarly to how null references are avoided for query parameters and form data.
 
@@ -159,7 +161,7 @@ Serialized properties are identified from the actual service instance:
 * Supports shared code in different assemblies.
 * Results in each instance exposing the same properties.
 
-The following counter service, `CounterTracker`, marks its current count property, `CurrentCount` with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). The property is serialized during prerendering and deserialized when the app becomes interactive wherever the service is injected.
+The following counter service, `CounterTracker`, marks its current count property, `CurrentCount` with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). The public property is serialized during prerendering and deserialized when the app becomes interactive wherever the service is injected.
 
 `CounterTracker.cs`:
 

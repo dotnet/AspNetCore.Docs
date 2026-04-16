@@ -21,13 +21,13 @@ Authentication in Blazor Hybrid apps is handled by native platform libraries, as
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
-* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package, such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
+* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization), such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
 * React to changes in the authentication context.
 * Access credentials provisioned by the app from the identity provider, such as access tokens to perform authorized API calls.
 
 After authentication is added to a .NET MAUI, WPF, or Windows Forms app and users are able to log in and log out successfully, integrate authentication with Blazor to make the authenticated user available to Razor components and services. Perform the following steps:
 
-* Reference the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package.
+* Reference the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -563,13 +563,13 @@ Authentication in Blazor Hybrid apps is handled by native platform libraries, as
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
-* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package, such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
+* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization), such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
 * React to changes in the authentication context.
 * Access credentials provisioned by the app from the identity provider, such as access tokens to perform authorized API calls.
 
 After authentication is added to a .NET MAUI, WPF, or Windows Forms app and users are able to log in and log out successfully, integrate authentication with Blazor to make the authenticated user available to Razor components and services. Perform the following steps:
 
-* Reference the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package.
+* Reference the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
 
   [!INCLUDE[](~/includes/package-reference.md)]
 

@@ -469,7 +469,7 @@ A typed client accepts an `HttpClient` parameter in its constructor:
 In the preceding code:
 
 * The configuration is moved into the typed client.
-* The `HttpClient` object is exposed as a public property.
+* The `HttpClient` object is exposed as a `public` property.
 
 <!-- 
 The preceding code can be written as: 
@@ -894,7 +894,7 @@ A typed client accepts an `HttpClient` parameter in its constructor:
 In the preceding code:
 
 * The configuration is moved into the typed client.
-* The `HttpClient` object is exposed as a public property.
+* The `HttpClient` object is exposed as a `public` property.
 
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
 
@@ -1299,7 +1299,7 @@ A typed client accepts an `HttpClient` parameter in its constructor:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/GitHub/GitHubService.cs" id="snippet1" highlight="5":::
 
-In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a public property. It's possible to define API-specific methods that expose `HttpClient` functionality. The `GetAspNetDocsIssues` method encapsulates the code needed to query for and parse out the latest open issues from a GitHub repository.
+In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a `public` property. It's possible to define API-specific methods that expose `HttpClient` functionality. The `GetAspNetDocsIssues` method encapsulates the code needed to query for and parse out the latest open issues from a GitHub repository.
 
 To register a typed client, the generic <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> extension method can be used within `Startup.ConfigureServices`, specifying the typed client class:
 

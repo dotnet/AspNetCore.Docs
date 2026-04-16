@@ -100,7 +100,7 @@ Persisting component state across circuits is built on top of the existing <xref
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
 
-Annotate component properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+Annotate component `public` properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
 
 ```razor
 @foreach (var item in Items)
@@ -119,7 +119,11 @@ Annotate component properties with the [`[PersistentState]` attribute](xref:Micr
 }
 ```
 
-To persist state for scoped services, annotate service properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), add the service to the service collection, and call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service:
+To persist state for a scoped service:
+
+* Annotate the `public` service property with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute).
+* Add the service to the service collection.
+* Call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service.
 
 ```csharp
 public class CustomUserService

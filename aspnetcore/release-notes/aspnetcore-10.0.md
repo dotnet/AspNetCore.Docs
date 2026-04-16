@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/29/2026
+ms.date: 04/15/2026
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10

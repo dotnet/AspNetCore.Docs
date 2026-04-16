@@ -264,7 +264,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 *This section applies to apps that configure logging via an app settings file in the `wwwroot` folder.*
 
-Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
+Add the [`Microsoft.Extensions.Logging.Configuration` package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

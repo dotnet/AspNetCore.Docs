@@ -338,7 +338,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 :::moniker-end
 
-The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) package), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API. If the request URI is a relative URI, as it is in the following example (`ExampleAPIMethod`), it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress> when the client app makes the request:
+The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http` package](https://www.nuget.org/packages/Microsoft.Extensions.Http)), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API. If the request URI is a relative URI, as it is in the following example (`ExampleAPIMethod`), it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress> when the client app makes the request:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -542,7 +542,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 The preceding registration is in addition to the existing secure default <xref:System.Net.Http.HttpClient> registration.
 
-A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) package) to make unauthenticated or unauthorized requests:
+A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> ([`Microsoft.Extensions.Http` package](https://www.nuget.org/packages/Microsoft.Extensions.Http)) to make unauthenticated or unauthorized requests:
 
 ```razor
 @inject IHttpClientFactory ClientFactory

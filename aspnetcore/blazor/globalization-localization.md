@@ -244,7 +244,7 @@ Optionally, add a menu item to the navigation in the `NavMenu` component (`NavMe
 
 ## Dynamically set the culture from the `Accept-Language` header
 
-Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
+Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
 The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Costa Rican Spanish with a preference for United States English or English:
 
@@ -498,7 +498,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
 
-Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
+Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -713,7 +713,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 :::moniker-end
 
-Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
+Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1023,7 +1023,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 ### Updates to the `.Client` project
 
-Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the `.Client` project.
+Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the `.Client` project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1301,7 +1301,7 @@ Add the `CultureClient`, `CultureServer`, and `CultureExample1` components to th
 
 ### Server project updates
 
-Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the server project.
+Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the server project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1431,7 +1431,7 @@ The guidance in this section also works for components in apps that adopt per-pa
 
 ## Localization
 
-If the app doesn't already support dynamic culture selection, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
+If the app doesn't already support dynamic culture selection, add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1756,7 +1756,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 To create localization shared resources, adopt the following approach.
 
-* Confirm that the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package is referenced by the project.
+* Confirm that the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) is referenced by the project.
 
   [!INCLUDE[](~/includes/package-reference.md)]
 

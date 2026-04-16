@@ -389,7 +389,7 @@ The following example is based on:
 * The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
-Place the `Starship` model (`Starship.cs`) into a shared class library project so that both the client and server projects can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, confirm that the shared class library uses the shared framework or add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the shared project.
+Place the `Starship` model (`Starship.cs`) into a shared class library project so that both the client and server projects can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, confirm that the shared class library uses the shared framework or add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the shared project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -403,7 +403,7 @@ In the main project of the Blazor Web App, add a controller to process starship 
 * The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
-Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
+Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the **`Shared`** project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
