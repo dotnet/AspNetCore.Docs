@@ -153,7 +153,7 @@ In the following example, the `Details` component receives the page index from t
 @page "/details"
 
 <ul>
-    <li>Character Id for this detail record: @Id</li>
+    <li>Character ID for this detail record: @Id</li>
     <li>QuickGrid page index: @Page</li>
 </ul>
 <div>
@@ -171,7 +171,7 @@ In the following example, the `Details` component receives the page index from t
 
 The `Characters` component:
 
-* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization when `Page` has a non-zero value.
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page`.
 * Opens the preceding `Details` component with the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string.
 
 `Characters.razor`:
@@ -185,7 +185,7 @@ The `Characters` component:
     <PropertyColumn Property="@(c => c.Id)" />
     <PropertyColumn Property="@(c => c.Name)" />
     <TemplateColumn Context="c">
-        <a href="@($"details?id={c.Id}&page={pagination.CurrentPageIndex}")">
+        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex}")">
             Details
         </a>
     </TemplateColumn>
