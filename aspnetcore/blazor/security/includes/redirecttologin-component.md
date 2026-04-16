@@ -1,7 +1,7 @@
 The `RedirectToLogin` component (`RedirectToLogin.razor`):
 
 * Manages redirecting unauthorized users to the login page.
-* The current URL that the user is attempting to access is maintained by so that they can be returned to that page if authentication is successful using:
+* The current URL that the user is attempting to access is maintained so that they can be returned to that page if authentication is successful using:
   * [Navigation history state](xref:blazor/fundamentals/navigation#navigation-history-state) in ASP.NET Core in .NET 7 or later.
   * A query string in ASP.NET Core in .NET 6 or earlier.
 
