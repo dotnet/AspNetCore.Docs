@@ -6,7 +6,7 @@ If an app [customizes a remote authentication path](xref:blazor/security/webasse
 
 * Match the path in hard-coded strings around the app.
 
-* Inject <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions> to obtain the configured value around the app. The following example demonstrates the approach for the `RedirectToLogin` component](#redirecttologin-component).
+* Inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions%601?displayProperty=nameWithType> to obtain the configured value around the app. The following example demonstrates the approach for the [`RedirectToLogin` component](#redirecttologin-component).
 
   Add the following Razor directives to the top of the component's Razor file:
 
