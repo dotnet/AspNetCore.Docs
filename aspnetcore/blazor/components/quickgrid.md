@@ -140,6 +140,90 @@ In the running app, page through the items using a rendered `Paginator` componen
 
 QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages.
 
+To save the page index and return the user to the same page of items from a details page, use the following API:
+
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A?displayProperty=nameWithType>: Gets the current zero-based page index.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType>: Sets the current page index and notifies any associated `QuickGrid` components to fetch and render updated data.
+
+In the following example, the `Details` component receives the page index from the query string in the `Page` property and uses it to form a link back to the `QuickGrid` component's page at `/characters`.
+
+`Details.razor`:
+
+```razor
+@page "/details"
+
+<ul>
+    <li>Character Id for this detail record: @Id</li>
+    <li>QuickGrid page index: @Page</li>
+</ul>
+<div>
+    <a href="@($"/characters?page={Page}")">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromQuery]
+    private int Page { get; set; }
+}
+```
+
+The `Characters` component:
+
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization when `Page` has a non-zero value.
+* Opens the preceding `Details` component with the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string.
+
+`Characters.razor`:
+
+```razor
+@page "/characters"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid Items="character" Pagination="pagination">
+    <PropertyColumn Property="@(c => c.Id)" />
+    <PropertyColumn Property="@(c => c.Name)" />
+    <TemplateColumn Context="c">
+        <a href="@($"details?id={c.Id}&page={pagination.CurrentPageIndex}")">
+            Details
+        </a>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    PaginationState pagination = new PaginationState { ItemsPerPage = 3 };
+
+    private record Character(int Id, string Name);
+
+    private IQueryable<Character> character = new[]
+    {
+        new Character(0, "Ellen Ripley"),
+        new Character(1, "Darth Vader"),
+        new Character(2, "Rick Deckard"),
+        new Character(3, "Sarah Connor"),
+        new Character(4, "Malcolm Reynolds"),
+        new Character(5, "Kara Thrace"),
+        new Character(6, "James Kirk"),
+        new Character(7, "Flash Gordon"),
+        new Character(8, "Max Rockatansky"),
+        new Character(9, "Katniss Everdeen"),
+        new Character(10, "Ellie Sattler"),
+        new Character(11, "Leela")
+    }.AsQueryable();
+
+    [SupplyParameterFromQuery]
+    private int Page { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await pagination.SetCurrentPageIndexAsync(Page);
+    }
+}
+```
+
 ## Apply row styles
 
 Apply styles to rows using [CSS isolation](xref:blazor/components/css-isolation), which can include styling empty rows for `QuickGrid` components that [page data with a `Paginator` component](#page-items-with-a-paginator-component).
