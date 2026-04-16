@@ -288,7 +288,7 @@ You can disable tracking of entity objects in memory by calling the `AsNoTrackin
 
 * You want to attach an entity to make updates, but earlier you retrieved the same entity for a different purpose. Because the database context already tracks the entity, you can't attach the entity you want to change. One way to handle this situation is to call the `AsNoTracking` method on the earlier query.
 
-For more information, see [Tracking vs. No-Tracking queries](/ef/core/querying/tracking).
+For more information, see [Tracking versus no-tracking queries](/ef/core/querying/tracking).
 
 ## Get the code
 
