@@ -244,4 +244,4 @@ Run the app and delete a student to test the **Delete** page.
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Tutorial 3: Razor Pages with EF Core in ASP.NET Code - Sort, Filter, Paging](sort-filter-page.md)
+> [Tutorial 3: Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging](sort-filter-page.md)

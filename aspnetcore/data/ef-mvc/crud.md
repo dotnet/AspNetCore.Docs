@@ -210,7 +210,7 @@ An entity can be in one of the following states:
 
 In a desktop application, state changes are typically set automatically. You read an entity and make changes to some of its property values. This behavior causes its entity state to automatically change to `Modified`. When you call the `SaveChanges` method, the Entity Framework generates a SQL `UPDATE` statement that updates only the actual properties that you changed.
 
-In a web app, the `DbContext` method that initially reads an entity and displays its data to be edited is disposed after a page is rendered. When the HttpPost `Edit` action method is called, a new web request is made and you have a new instance of the `DbContext` method. If you re-read the entity in that new context, you simulate desktop processing.
+In a web app, the `DbContext` object that initially reads an entity and displays its data to be edited is disposed after a page is rendered. When the HttpPost `Edit` action method is called, a new web request is made and you have a new instance of the `DbContext` class. If you re-read the entity in that new context, you simulate desktop processing.
 
 If you don't want to do the extra read operation, you have to use the entity object created by the model binder. The easiest approach is to set the entity state to `Modified` as is done in the alternative HttpPost `Edit` code shown earlier. When you call the `SaveChanges` method, the Entity Framework updates all columns of the database row because the context has no way to know which properties you changed.
 

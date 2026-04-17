@@ -86,12 +86,13 @@ In the _StudentsController.cs_ file, replace the `Index` method with the followi
 
 You added a `searchString` parameter to the `Index` method. The search string value is received from a text box that you add to the Index view. You also added a `where` clause to the `LINQ` statement that selects only students whose first name or last name match the search string. The statement that adds the `where` clause is executed only if there's a searchable value.
 
-> [!NOTE]
-> In this scenario, you call the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, you might call the `Where` method as an extension method on an in-memory collection. Suppose you change the reference to `_context.Students`. Instead of calling the Entity Framework `DbSet` method, it references a repository method that returns an `IEnumerable` collection. The result is normally the same, but some cases might be different.
->
-> For example, the .NET Framework implementation of the `Contains` method performs a case-sensitive comparison by default. In SQL Server, the determination occurs by the collation setting of the SQL Server instance. The setting defaults to case-insensitive. You might call the `ToUpper` method to make the test explicitly case-insensitive: `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`. This option ensures the results stay the same if you change the code later to use a repository that returns an `IEnumerable` collection rather than an `IQueryable` object. (When you call the `Contains` method on an `IEnumerable` collection, you get the .NET Framework implementation. When you call it on an `IQueryable` object, you get the database provider implementation.)
-> 
-> However, there's a performance penalty for this solution. The `ToUpper` code puts a function in the `WHERE` clause of the `TSQL SELECT` statement. This behavior prevents the optimizer from using an index. Given that SQL is mostly installed as case-insensitive, it's best to avoid the `ToUpper` code until you migrate to a case-insensitive data store.
+#### Determine how to use the Where method
+
+In this scenario, you call the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, you might call the `Where` method as an extension method on an in-memory collection. Suppose you change the reference to `_context.Students`. Instead of calling the Entity Framework `DbSet` method, it references a repository method that returns an `IEnumerable` collection. The result is normally the same, but some cases might be different.
+
+For example, the .NET Framework implementation of the `Contains` method performs a case-sensitive comparison by default. In SQL Server, the determination occurs by the collation setting of the SQL Server instance. The setting defaults to case-insensitive. You might call the `ToUpper` method to make the test explicitly case-insensitive: `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`. This option ensures the results stay the same if you change the code later to use a repository that returns an `IEnumerable` collection rather than an `IQueryable` object. (When you call the `Contains` method on an `IEnumerable` collection, you get the .NET Framework implementation. When you call it on an `IQueryable` object, you get the database provider implementation.)
+
+However, there's a performance penalty for this solution. The `ToUpper` code puts a function in the `WHERE` clause of the `TSQL SELECT` statement. This behavior prevents the optimizer from using an index. Given that SQL is mostly installed as case-insensitive, it's best to avoid the `ToUpper` code until you migrate to a case-insensitive data store.
 
 ### Add a Search Box to the Student Index view
 
