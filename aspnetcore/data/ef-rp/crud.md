@@ -26,6 +26,8 @@ In this tutorial, you:
 > [!div class="checklist"]
 > * Customize pages: **Details**, **Create**, **Edit**, and **Delete**
 > * Explore how to protect against overposting
+> * Review different methods to read a single entity
+> * Explore the View model
 
 ## Prerequisites
 
@@ -52,7 +54,7 @@ Replace the `OnGetAsync` method with the following code that reads enrollment da
 The [EntityFrameworkQueryableExtensions.Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include) and [ThenInclude](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude#microsoft-entityframeworkcore-entityframeworkqueryableextensions-theninclude-3(microsoft-entityframeworkcore-query-iincludablequeryable((-0-1))-system-linq-expressions-expression((system-func((-1-2))))))
 methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment, the `Enrollment.Course` navigation property. These methods are examined in detail in [Read related data (Tutorial 6 of 8)](read-related-data.md).
 
-The [EntityFrameworkQueryableExtensions.AsNoTracking<TEntity>](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) method improves performance in scenarios where the entities returned aren't updated in the current context. The `AsNoTracking` setting is discussed later in this tutorial.
+The [EntityFrameworkQueryableExtensions.AsNoTracking\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) method improves performance in scenarios where the entities returned aren't updated in the current context. The `AsNoTracking` setting is discussed later in this tutorial.
 
 ### Display enrollments
 
