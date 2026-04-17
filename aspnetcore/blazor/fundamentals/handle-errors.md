@@ -964,7 +964,7 @@ Infinite loops during rendering:
 * Causes the rendering process to continue forever.
 * Is equivalent to creating an unterminated loop.
 
-In these scenarios, the Blazor fails and usually attempts to:
+In these scenarios, Blazor fails and usually attempts to:
 
 * Consume as much CPU time as permitted by the operating system, indefinitely.
 * Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
