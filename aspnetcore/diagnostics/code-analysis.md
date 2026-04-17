@@ -10,7 +10,7 @@ uid: diagnostics/code-analysis
 # customer intent: As an ASP.NET developer, I want to get details for specific diagnostic codes in ASP.NET Core, so I can understand the diagnostic messages in my apps.
 ---
 
-# Code analysis in ASP.NET Core apps
+# Diagnostic code analysis in ASP.NET Core apps
 
 .NET compiler platform analyzers inspect application code for code quality and style issues.
 
@@ -25,7 +25,7 @@ The following table lists the diagnostics available for ASP.NET Core application
 
 | Diagnostic ID | Message |
 | --- | --- |
-| **[ASP0000](asp0000.md)** | *Do not call `IServiceCollection.BuildServiceProvider` in `ConfigureServices`* |
+| **[ASP0000](asp0000.md)** | Do not call `IServiceCollection.BuildServiceProvider` in `ConfigureServices` |
 | **[ASP0001](asp0001.md)** | Authorization middleware is incorrectly configured |
 | **[ASP0003](asp0003.md)** | Do not use model binding attributes with route handlers |
 | **[ASP0004](asp0004.md)** | Do not use action results with route handlers |
