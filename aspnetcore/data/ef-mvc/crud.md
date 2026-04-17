@@ -21,15 +21,15 @@ In the previous tutorial, you created an MVC application that stores and display
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Customize pages: Details, Create, Edit, and Delete
+> * Customize pages: **Details**, **Create**, **Edit**, and **Delete**
 > * Explore how to protect against overposting
-> * Use different approaches for HttpPost Edit code and Delete
+> * Use different approaches for HttpPost `Edit` code and `Delete`
 > * Work with no-tracking queries
 > * Close database connections
 
 ## Prerequisites
 
-* [Get started with EF Core and ASP.NET Core MVC](intro.md)
+* Complete the previous tutorial, [Get started with EF Core in an ASP.NET MVC web app](intro.md).
 
 ## Customize the Details page
 
@@ -89,7 +89,7 @@ For more information about tag helpers, see [Tag Helpers in ASP.NET Core](../../
 
 ### Add enrollments to the Details view
 
-Open the `Views/Students/Details.cshtml` file. Each field is displayed by using the `DisplayNameFor` and `DisplayFor` helpers, as shown in the following example.
+Open the _Views/Students/Details.cshtml_ file. Each field is displayed by using the `DisplayNameFor` and `DisplayFor` helpers, as shown in the following example.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
@@ -107,7 +107,7 @@ Run the app, select the **Students** tab, and select the **Details** link for a 
 
 ## Update the Create page
 
-In the `StudentsController.cs` file, modify the HttpPost `Create` method by adding a `try-catch` block and removing the `ID` property from the `Bind` attribute.
+In the _StudentsController.cs_ file, modify the HttpPost `Create` method by adding a `try-catch` block and removing the `ID` property from the `Bind` attribute.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=4,6-7,14-21)]
 
@@ -150,7 +150,7 @@ An alternate way to prevent overposting preferred by many developers is to use v
 
 ### Test the Create page
 
-The code in the `Views/Students/Create.cshtml` file uses the `label`, `input`, and `span` (for validation messages) tag helpers for each field.
+The code in the _Views/Students/Create.cshtml_ file uses the `label`, `input`, and `span` (for validation messages) tag helpers for each field.
 
 Run the app, select the **Students** tab, and then select **Create New**.
 
@@ -166,7 +166,7 @@ Change the date to a valid value, and select **Create** to see the new student a
 
 ## Update the Edit page
 
-In the `StudentController.cs` file, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `FirstOrDefaultAsync` method to retrieve the selected `Student` entity, as you reviewed earlier in the `Details` method. You don't need to change this method.
+In the _StudentController.cs_ file, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `FirstOrDefaultAsync` method to retrieve the selected `Student` entity, as you reviewed earlier in the `Details` method. You don't need to change this method.
 
 ### Use recommended HttpPost Edit code: Read and update
 
@@ -198,23 +198,23 @@ The database context keeps track of whether entities in memory are in sync with 
 
 An entity can be in one of the following states:
 
-* `Added`: The entity doesn't yet exist in the database. The `SaveChanges` method issues an INSERT statement.
+* `Added`: The entity doesn't yet exist in the database. The `SaveChanges` method issues an `INSERT` statement.
 
 * `Unchanged`: Nothing needs to be done with this entity by the `SaveChanges` method. When you read an entity from the database, the entity starts out with this status.
 
-* `Modified`: Some or all of the entity's property values are modified. The `SaveChanges` method issues an UPDATE statement.
+* `Modified`: Some or all of the entity's property values are modified. The `SaveChanges` method issues an `UPDATE` statement.
 
-* `Deleted`: The entity is marked for deletion. The `SaveChanges` method issues a DELETE statement.
+* `Deleted`: The entity is marked for deletion. The `SaveChanges` method issues a `DELETE` statement.
 
 * `Detached`: The database context doesn't track the entity.
 
-In a desktop application, state changes are typically set automatically. You read an entity and make changes to some of its property values. This behavior causes its entity state to automatically change to `Modified`. When you call the `SaveChanges` method, the Entity Framework generates a SQL UPDATE statement that updates only the actual properties that you changed.
+In a desktop application, state changes are typically set automatically. You read an entity and make changes to some of its property values. This behavior causes its entity state to automatically change to `Modified`. When you call the `SaveChanges` method, the Entity Framework generates a SQL `UPDATE` statement that updates only the actual properties that you changed.
 
 In a web app, the `DbContext` method that initially reads an entity and displays its data to be edited is disposed after a page is rendered. When the HttpPost `Edit` action method is called, a new web request is made and you have a new instance of the `DbContext` method. If you re-read the entity in that new context, you simulate desktop processing.
 
 If you don't want to do the extra read operation, you have to use the entity object created by the model binder. The easiest approach is to set the entity state to `Modified` as is done in the alternative HttpPost `Edit` code shown earlier. When you call the `SaveChanges` method, the Entity Framework updates all columns of the database row because the context has no way to know which properties you changed.
 
-If you want to avoid the _read-first_ approach, but you also want the SQL UPDATE statement to update only the fields the user changes, the code is more complex. You have to save the original values in some way, such as by using hidden fields. The values must be available when the HttpPost `Edit` method is called. You can create a `Student` entity by using the original values, call the `Attach` method with the original version of the entity, update the entity's values to the new values, and then call the `SaveChanges` method.
+If you want to avoid the _read-first_ approach, but you also want the SQL `UPDATE` statement to update only the fields the user changes, the code is more complex. You have to save the original values in some way, such as by using hidden fields. The values must be available when the HttpPost `Edit` method is called. You can create a `Student` entity by using the original values, call the `Attach` method with the original version of the entity, update the entity's values to the new values, and then call the `SaveChanges` method.
 
 ### Test the Edit page
 
@@ -226,7 +226,7 @@ Change some of the data and select **Save**. The **Index** page opens and you se
 
 ## Update the Delete page
 
-In the `StudentController.cs` file, the template code for the HttpGet `Delete` method uses the `FirstOrDefaultAsync` method to retrieve the selected `Student` entity, as you saw in the `Details` and `Edit` methods. However, to implement a custom error message when the call to the `SaveChanges` method fails, you need to add some functionality to this method and its corresponding view.
+In the _StudentController.cs_ file, the template code for the HttpGet `Delete` method uses the `FirstOrDefaultAsync` method to retrieve the selected `Student` entity, as you saw in the `Details` and `Edit` methods. However, to implement a custom error message when the call to the `SaveChanges` method fails, you need to add some functionality to this method and its corresponding view.
 
 As you saw for the update and create operations, delete operations require two action methods. The method called in response to a GET request displays a view that gives the user a chance to approve or cancel the delete operation. If the user approves, a POST request is created. The HttpPost `Delete` method is then called and this method actually performs the delete operation.
 
@@ -256,7 +256,7 @@ If the entity also contains related data to delete, make sure that cascade delet
 
 ### Update the Delete view
 
-In the `Views/Student/Delete.cshtml` file, add an error message between the h2 heading and the h3 heading, as shown in the following example:
+In the _Views/Student/Delete.cshtml_ file, add an error message between the h2 heading and the h3 heading, as shown in the following example:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
@@ -270,7 +270,7 @@ Select **Delete**. The **Index** page displays without the deleted student. (You
 
 To free up the resources that a database connection holds, the context instance must be disposed as soon as possible when you're finished. The ASP.NET Core built-in [dependency injection](../../fundamentals/dependency-injection.md) takes care of the clean-up task.
 
-In the `Startup.cs` file, you call the [AddDbContext extension method](https://github.com/dotnet/efcore/blob/03bcb5122e3f577a84498545fcf130ba79a3d987/src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs) to create the `DbContext` class in the ASP.NET Core DI container. The method sets the service lifetime to `Scoped` by default. `Scoped` means the context object lifetime coincides with the web request life time, and the `Dispose` method is called automatically at the end of the web request.
+In the _Startup.cs_ file, you call the [AddDbContext extension method](https://github.com/dotnet/efcore/blob/03bcb5122e3f577a84498545fcf130ba79a3d987/src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs) to create the `DbContext` class in the ASP.NET Core DI container. The method sets the service lifetime to `Scoped` by default. `Scoped` means the context object lifetime coincides with the web request life time, and the `Dispose` method is called automatically at the end of the web request.
 
 ## Handle transactions
 
@@ -297,4 +297,4 @@ For more information, see [Tracking versus no-tracking queries](/ef/core/queryin
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Sorting, filtering, and paging](sort-filter-page.md)
+> [Tutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core](sort-filter-page.md)
