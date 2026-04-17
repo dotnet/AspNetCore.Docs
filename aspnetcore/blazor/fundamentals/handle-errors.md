@@ -964,7 +964,7 @@ Infinite loops during rendering:
 * Causes the rendering process to continue forever.
 * Is equivalent to creating an unterminated loop.
 
-In these scenarios, the Blazor fails and usually attempts to:
+In these scenarios, Blazor fails and usually attempts to:
 
 * Consume as much CPU time as permitted by the operating system, indefinitely.
 * Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
@@ -989,7 +989,18 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 ## Additional resources
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
+
+* [Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/components/sync-context#handle-caught-exceptions-outside-of-a-razor-components-lifecycle)
+* [Not Found responses](xref:blazor/fundamentals/navigation#not-found-responses)
+* <xref:blazor/fundamentals/logging>
+* <xref:fundamentals/error-handling>&dagger;
+* <xref:web-api/index>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 * [Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/components/sync-context#handle-caught-exceptions-outside-of-a-razor-components-lifecycle)
 * <xref:blazor/fundamentals/logging>
