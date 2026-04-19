@@ -1,17 +1,6 @@
----
-title: Overview of ASP.NET Core SignalR
-ai-usage: ai-assisted
-author: wadepickett
-description: Learn how the ASP.NET Core SignalR library simplifies adding real-time functionality to apps.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
-ms.custom: mvc
-ms.date: 04/19/2026
-uid: signalr/introduction
----
-# Overview of ASP.NET Core SignalR
+:::moniker range=">= aspnetcore-2.1 <= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-10.0"
+# Overview of ASP.NET Core SignalR
 
 ## What is SignalR?
 
@@ -31,10 +20,7 @@ Here are some features of SignalR for ASP.NET Core:
 * Handles connection management automatically.
 * Sends messages to all connected clients simultaneously. For example, a chat room.
 * Sends messages to specific clients or groups of clients.
-* Scales to handle increasing traffic with options such as the [Azure SignalR Service](xref:signalr/scale) and [Redis backplane](xref:signalr/redis-backplane).
-* Supports trimming and native ahead-of-time (AOT) compilation for supported scenarios.
-* Supports polymorphic type handling in hub methods.
-* Supports distributed tracing with `ActivitySource` for SignalR hub server and .NET client.
+* Scales to handle increasing traffic.
 * [SignalR Hub Protocol](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)
 
 The source is hosted in a [SignalR repository on GitHub](https://github.com/dotnet/AspNetCore/tree/main/src/SignalR).
@@ -47,28 +33,26 @@ SignalR supports the following techniques for handling real-time communication (
 * Server-Sent Events
 * Long Polling
 
-SignalR automatically chooses the best transport method that is within the capabilities of the server and client. WebSockets is the preferred transport because it generally provides the best performance.
+SignalR automatically chooses the best transport method that is within the capabilities of the server and client.
 
 ## Hubs
 
 SignalR uses *hubs* to communicate between clients and servers.
 
-A hub is a high-level pipeline that allows a client and server to call methods on each other. SignalR handles the dispatching across machine boundaries automatically, allowing clients to call methods on the server and vice versa. You can pass strongly-typed parameters to methods, which enables model binding. SignalR supports two built-in hub protocols: a text protocol based on JSON (default) and a binary protocol based on MessagePack. MessagePack generally creates smaller messages compared to JSON. For more information, see <xref:signalr/messagepackhubprotocol>.
+A hub is a high-level pipeline that allows a client and server to call methods on each other. SignalR handles the dispatching across machine boundaries automatically, allowing clients to call methods on the server and vice versa. You can pass strongly-typed parameters to methods, which enables model binding. SignalR provides two built-in hub protocols: a text protocol based on JSON and a binary protocol based on [MessagePack](https://msgpack.org/).  MessagePack generally creates smaller messages compared to JSON. Older browsers must support [XHR level 2](https://caniuse.com/#feat=xhr2) to provide MessagePack protocol support.
 
 Hubs call client-side code by sending messages that contain the name and parameters of the client-side method. Objects sent as method parameters are deserialized using the configured protocol. The client tries to match the name to a method in the client-side code. When the client finds a match, it calls the method and passes to it the deserialized parameter data.
 
+[!INCLUDE[](~/includes/SignalR/es6.md)]
+
 ## Additional resources
 
+* [Introduction to ASP.NET Core SignalR](/training/modules/aspnet-core-signalr)
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Supported Platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)
-* [Logging and diagnostics in ASP.NET Core SignalR](xref:signalr/diagnostics)
-* [Hosting and scaling ASP.NET Core SignalR](xref:signalr/scale)
 * [JavaScript client](xref:signalr/javascript-client)
+* [Browsers that don't support ECMAScript 6 (ES6)](xref:signalr/supported-platforms#es6)
 * <xref:blazor/fundamentals/signalr>
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/introduction/includes/introduction9.md)]
-
-[!INCLUDE[](~/signalr/introduction/includes/introduction2.1-8.md)]

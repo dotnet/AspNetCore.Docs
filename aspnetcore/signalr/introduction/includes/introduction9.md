@@ -1,17 +1,6 @@
----
-title: Overview of ASP.NET Core SignalR
-ai-usage: ai-assisted
-author: wadepickett
-description: Learn how the ASP.NET Core SignalR library simplifies adding real-time functionality to apps.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
-ms.custom: mvc
-ms.date: 04/19/2026
-uid: signalr/introduction
----
-# Overview of ASP.NET Core SignalR
+:::moniker range="= aspnetcore-9.0"
 
-:::moniker range=">= aspnetcore-10.0"
+# Overview of ASP.NET Core SignalR
 
 ## What is SignalR?
 
@@ -68,7 +57,3 @@ Hubs call client-side code by sending messages that contain the name and paramet
 * <xref:blazor/fundamentals/signalr>
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/introduction/includes/introduction9.md)]
-
-[!INCLUDE[](~/signalr/introduction/includes/introduction2.1-8.md)]
