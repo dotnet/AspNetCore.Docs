@@ -10,7 +10,6 @@ ms.date: 04/19/2026
 uid: signalr/introduction
 ---
 # Overview of ASP.NET Core SignalR
-
 :::moniker range=">= aspnetcore-10.0"
 
 ## What is SignalR?
