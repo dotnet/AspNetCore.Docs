@@ -33,7 +33,7 @@ SignalR supports the following techniques for handling real-time communication (
 * Server-Sent Events
 * Long Polling
 
-SignalR automatically chooses the best transport method that is within the capabilities of the server and client.
+SignalR automatically chooses the best transport method that is within the capabilities of the server and client. WebSockets is the preferred transport because it generally provides the best performance.
 
 ## Hubs
 
