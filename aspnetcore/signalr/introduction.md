@@ -29,7 +29,7 @@ Here are some features of SignalR for ASP.NET Core:
 * Handles connection management automatically.
 * Sends messages to all connected clients simultaneously. For example, a chat room.
 * Sends messages to specific clients or groups of clients.
-* Scales to handle increasing traffic with options such as [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) and [Redis backplane](xref:signalr/scale#redis-backplane).
+* Scales to handle increasing traffic with options such as the [Azure SignalR Service](xref:signalr/scale) and [Redis backplane](xref:signalr/redis-backplane).
 * Supports trimming and native ahead-of-time (AOT) compilation for supported scenarios (in .NET 9 and later).
 * Supports polymorphic type handling in hub methods (in .NET 9 and later).
 * Supports distributed tracing with `ActivitySource` for SignalR hub server and .NET client (in .NET 9 and later).
