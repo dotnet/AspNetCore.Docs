@@ -161,7 +161,7 @@ The following `UserClaims` component can be used directly in apps or serve as th
 
 ### Inspect the access token
 
-Obtaining the access token during development is often helpful when troubleshooting app and Azure configuration problems. In the following example for a weather forecast endpoint, the bearer token and token details are logged when in the DEBUG configuration. You can decode the token using an online JWT token decoder, such as the [Microsoft JWT token decoder](https://jwt.ms/), or log details from the token in C#, as the following example demonstrates.
+Obtaining the access token during development is often helpful when troubleshooting app and Azure configuration problems. In the following example for a weather forecast endpoint, the bearer token and token details are logged only when the app is compiled with the `DEBUG` symbol, which is typically a Debug build. You can decode the token using an online JWT token decoder, such as the [Microsoft JWT token decoder](https://jwt.ms/), or log details from the token in C#, as the following example demonstrates.
 
 > [!CAUTION]
 > In production, avoid logging the token or its contents.
@@ -190,7 +190,7 @@ app.MapGet("/weather-forecast", (HttpContext context, ILogger<Program> logger) =
         }
         catch (Exception ex)
         {
-            logger.LogError("Failed to decode token: {Message}", ex.Message);
+            logger.LogError(ex, "Failed to decode token.");
         }
     }
 #endif
