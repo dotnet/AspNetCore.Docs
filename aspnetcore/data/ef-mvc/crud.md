@@ -85,7 +85,7 @@ This change generates the following HTML when the `item.ID` value is 6:
 <a href="/Students/Edit?studentID=6">Edit</a>
 ```
 
-For more information about tag helpers, see [Tag Helpers in ASP.NET Core](../../mvc/views/tag-helpers/intro.md).
+For more information about tag helpers, see [Tag Helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
 
 ### Add enrollments to the Details view
 
@@ -119,7 +119,9 @@ You removed the `ID` property from the `Bind` attribute because the ID is the pr
 
 Other than the `Bind` attribute, the `try-catch` block is the only change made to the scaffolded code. If an exception that derives from `DbUpdateException` is caught while the changes are being saved, a generic error message is displayed. The cause for a `DbUpdateException` exception can be external to the application rather than a programming error, so the user is advised to try again. A production quality application logs such exception, but that functionality isn't implemented in this sample. For more information, see [Logging in .NET and ASP.NET Core](../../fundamentals/logging/index.md).
 
-The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forgery (CSRF) attacks. The [Form Tag Helper](../../mvc/views/working-with-forms.md#the-form-tag-helper) method automatically injects the token into the view. The token is also included when the user submits the form. The `ValidateAntiForgeryToken` attribute checks the token. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md) and [FormTagHelper Class](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.formtaghelper) reference.
+The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forgery (CSRF) attacks. The [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper) method automatically injects the token into the view. The token is also included when the user submits the form. The `ValidateAntiForgeryToken` attribute checks the token. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](xref:security/anti-request-forgery) and [FormTagHelper Class](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.formtaghelper) reference.
+
+xref:security/anti-request-forgery
 
 <a id="overpost"></a>
 
@@ -176,7 +178,7 @@ Replace the HttpPost `Edit` method with the following code.
 
 These changes implement a security best practice to prevent overposting. The scaffolder generated a `Bind` attribute and added the entity created by the model binder to the entity set with a `Modified` flag. That code isn't recommended for many scenarios because the `Bind` attribute clears out any preexisting data in fields not listed in the `Include` parameter.
 
-The new code reads the existing entity and calls the `TryUpdateModel` method to update fields in the retrieved entity based on user input in the posted form data. (For more information, see [Model Binding in ASP.NET Core](../../mvc/models/model-binding.md).) The Entity Framework's automatic change tracking sets the `Modified` flag on fields that the form input updates. When the `SaveChanges` method is called, the Entity Framework creates SQL statements to update the database row. Concurrency conflicts are ignored, and only the table columns updated by the user are also updated in the database. (A later tutorial shows how to handle concurrency conflicts.)
+The new code reads the existing entity and calls the `TryUpdateModel` method to update fields in the retrieved entity based on user input in the posted form data. (For more information, see [Model Binding in ASP.NET Core](xref:mvc/models/model-binding).) The Entity Framework's automatic change tracking sets the `Modified` flag on fields that the form input updates. When the `SaveChanges` method is called, the Entity Framework creates SQL statements to update the database row. Concurrency conflicts are ignored, and only the table columns updated by the user are also updated in the database. (A later tutorial shows how to handle concurrency conflicts.)
 
 As a best practice to prevent overposting, the fields that you want to be updateable by the **Edit** page are declared in the `TryUpdateModel` parameters. (The empty string preceding the list of fields in the parameter list is for a prefix to use with the form fields names.) Currently, there are no extra fields that you're protecting. If you list the fields you want the model binder to bind, you can prevent overposting for fields added in the future. The fields in the list are automatically protected until you explicitly add them.
 
@@ -275,7 +277,7 @@ In the _Startup.cs_ file, you call the [AddDbContext extension method](https://g
 ## Handle transactions
 
 By default, the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call the `SaveChanges` method, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are finished first and then an error occurs, the completed changes are automatically rolled back. In scenarios where you need more control, see [Transactions](/ef/core/saving/transactions). The examples cover how to include operations completed outside of Entity Framework in a transaction.
-
+[](#disable-tracking-of-entity-objects-no-tracking-queries)
 ## Disable tracking of entity objects (no-tracking queries)
 
 When a database context retrieves table rows and creates entity objects that represent them, it tracks whether the entities in memory are in sync with the database, by default. The data in memory acts as a cache and is used when you update an entity. This caching is often unnecessary in a web application because context instances are typically short-lived (a new one is created and disposed for each request). The context that reads an entity is typically disposed before that entity is used again.
