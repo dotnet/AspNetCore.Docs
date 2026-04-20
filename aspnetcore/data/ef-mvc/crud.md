@@ -121,8 +121,6 @@ Other than the `Bind` attribute, the `try-catch` block is the only change made t
 
 The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forgery (CSRF) attacks. The [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper) method automatically injects the token into the view. The token is also included when the user submits the form. The `ValidateAntiForgeryToken` attribute checks the token. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](xref:security/anti-request-forgery) and [FormTagHelper Class](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.formtaghelper) reference.
 
-xref:security/anti-request-forgery
-
 <a id="overpost"></a>
 
 ### Protect against overposting
