@@ -275,7 +275,7 @@ In the _Startup.cs_ file, you call the [AddDbContext extension method](https://g
 ## Handle transactions
 
 By default, the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call the `SaveChanges` method, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are finished first and then an error occurs, the completed changes are automatically rolled back. In scenarios where you need more control, see [Transactions](/ef/core/saving/transactions). The examples cover how to include operations completed outside of Entity Framework in a transaction.
-[](#disable-tracking-of-entity-objects-no-tracking-queries)
+
 ## Disable tracking of entity objects (no-tracking queries)
 
 When a database context retrieves table rows and creates entity objects that represent them, it tracks whether the entities in memory are in sync with the database, by default. The data in memory acts as a cache and is used when you update an entity. This caching is often unnecessary in a web application because context instances are typically short-lived (a new one is created and disposed for each request). The context that reads an entity is typically disposed before that entity is used again.
