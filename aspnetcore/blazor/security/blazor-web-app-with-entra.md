@@ -140,13 +140,13 @@ The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`
 
 If the app is registered in an ME-ID tenant, the authority should match the issuer (`iss`) of the JWT returned by the identity provider.
 
-V1 STS token format:
+V1 STS token endpoint:
 
 ```csharp
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
 
-V2 STS token format:
+V2 STS token endpoint:
 
 ```csharp
 jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
@@ -446,13 +446,13 @@ The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee`
 
 If the app is registered in an ME-ID tenant, the authority should match the issuer (`iss`) of the JWT returned by the identity provider.
 
-V1 STS token format:
+V1 STS token endpoint:
 
 ```csharp
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
 
-V2 STS token format:
+V2 STS token endpoint:
 
 ```csharp
 jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
@@ -1183,12 +1183,12 @@ We also recommend using a shared [Data Protection](xref:security/data-protection
 
 ## STS token version
 
-There are two types of token formats, named Version 1 (V1) and Version 2 (V2). In Azure's security token services (STS), the V1 format uses the `sts.windows.net` domain as the issuer, while the V2 format uses the `login.microsoftonline.com` domain as issuer. V2 supports additional features, such as authenticating personal accounts and OpenID protocols.
+There are two types of token URIs, named Version 1 (V1) and Version 2 (V2). In Azure's security token services (STS), the V1 endpoint uses the `sts.windows.net` domain as the issuer, while the V2 endpoint uses the `login.microsoftonline.com` domain as the issuer. V2 supports additional features, such as authenticating personal accounts and OpenID Connect (OIDC) protocols.
 
 This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 tokens, make the following changes:
 
 * The STS version must be changed in the apps' registrations in the Azure portal. Set the value of `requestedAccessTokenVersion` to `2` in the apps' manifests, both in the app's registration and the web API's (`MinimalApiJwt`) registration.
-* Use the V2 authority URL format (example: `https://login.microsoftonline.com/{TENANT ID}/v2.0`, where the `{TENANT ID}` placeholder is the tenant ID).
+* Use the V2 authority URL endpoint (example: `https://login.microsoftonline.com/{TENANT ID}/v2.0`, where the `{TENANT ID}` placeholder is the tenant ID).
 * In the web API (`MinimalApiJwt`), explicitly validate the issuer:
 
   ```csharp
