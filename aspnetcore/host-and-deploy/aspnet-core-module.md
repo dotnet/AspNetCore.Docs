@@ -5,7 +5,8 @@ description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/04/2022
+ms.date: 04/20/2026
+ms.topic: concept-article
 uid: host-and-deploy/aspnet-core-module
 ---
 
@@ -15,7 +16,7 @@ uid: host-and-deploy/aspnet-core-module
 
 :::moniker range=">= aspnetcore-5.0"
 
-The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either: 
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either:
 
 * Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](xref:host-and-deploy/iis/in-process-hosting).
 * Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](xref:host-and-deploy/iis/out-of-process-hosting).
@@ -192,7 +193,7 @@ The following *web.config* is published for a [self-contained deployment](/dotne
 
 The <xref:System.Configuration.SectionInformation.InheritInChildApplications*> property is set to `false` to indicate that the settings specified within the [`<location>`](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the app.
 
-When an app is deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the `LogFiles` folder, which is a location automatically created by the service.
+When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the `LogFiles` folder, which is a location automatically created by the service.
 
 For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
 
@@ -609,7 +610,7 @@ The following *web.config* is published for a [self-contained deployment](/dotne
 
 The <xref:System.Configuration.SectionInformation.InheritInChildApplications*> property is set to `false` to indicate that the settings specified within the [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the app.
 
-When an app is deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
+When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
 
 For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
 
@@ -657,7 +658,7 @@ The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` c
 >   <EnvironmentName>Development</EnvironmentName>
 > </PropertyGroup>
 > ```
-
+>
 > [!WARNING]
 > Only set the `ASPNETCORE_ENVIRONMENT` environment variable to `Development` on staging and testing servers that aren't accessible to untrusted networks, such as the Internet.
 
@@ -916,7 +917,7 @@ The following *web.config* is published for a [self-contained deployment](/dotne
 </configuration>
 ```
 
-When an app is deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
+When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
 
 For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
 
