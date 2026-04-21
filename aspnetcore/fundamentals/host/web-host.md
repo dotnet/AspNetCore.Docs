@@ -35,7 +35,7 @@ public class Program
 }
 ```
 
-The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBuilder`, which separates it from the code in `Main` that calls the `Run` method on the builder object. The separation is required if you use [Entity Framework Core tools](/ef/core/cli/). The tools expect to find a `CreateWebHostBuilder` method that they can call at design time to configure the host without running the app. An alternative is to create an instance of <xref:Microsoft.EntityFrameworkcore.Design.IDesignTimeDBContextFactory>. For more information, see [Design-time DbContext Creation](/ef/core/cli/dbcontext-creation).
+The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBuilder`, which separates it from the code in `Main` that calls the `Run` method on the builder object. The separation is required if you use [Entity Framework Core tools](/ef/core/cli/). The tools expect to find a `CreateWebHostBuilder` method that they can call at design time to configure the host without running the app. An alternative is to create an instance of `IDesignTimeDBContextfactory`. For more information, see [Design-time DbContext Creation](/ef/core/cli/dbcontext-creation).
 
 The `CreateDefaultBuilder` method performs the following tasks:
 
