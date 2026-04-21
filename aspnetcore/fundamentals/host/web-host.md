@@ -123,10 +123,10 @@ The host uses whichever option sets a value last. For more information, see [Ove
 
 Defines the name of the assembly that contains the application entry point.
 
-**Key**: applicationName
-**Type**: *string*
-**Default**: The name of the assembly containing the app's entry point.
-**Set using**: `UseSetting`
+**Key**: applicationName  
+**Type**: *string*  
+**Default**: The name of the assembly containing the app's entry point.  
+**Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_APPLICATIONNAME`
 
 The `IWebHostEnvironment.ApplicationName` property is automatically set when the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A> or <xref:Microsoft.AspNetCore.Hosting.IStartup.Configure%2A> method is called during host construction. To set the value explicitly, use the <xref:Microsoft.AspNetCore.Hosting.WebHostDefaults.ApplicationKey> field.
@@ -140,10 +140,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Controls the capture of startup errors.
 
-**Key**: captureStartupErrors
-**Type**: *bool* (`true` or `1`)
-**Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.
-**Set using**: `CaptureStartupErrors`
+**Key**: captureStartupErrors  
+**Type**: *bool* (`true` or `1`)  
+**Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.  
+**Set using**: `CaptureStartupErrors`  
 **Environment variable**: `ASPNETCORE_CAPTURESTARTUPERRORS`
 
 When set to `false`, errors during startup result in the host exiting. When set to `true`, the host captures exceptions during startup and attempts to start the server.
@@ -157,10 +157,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Determines where ASP.NET Core begins searching for content files.
 
-**Key**: contentRoot
-**Type**: *string*
-**Default**: Defaults to the folder where the app assembly resides.
-**Set using**: `UseContentRoot`
+**Key**: contentRoot  
+**Type**: *string*  
+**Default**: Defaults to the folder where the app assembly resides.  
+**Set using**: `UseContentRoot`  
 **Environment variable**: `ASPNETCORE_CONTENTROOT`
 
 The content root is also used as the base path for the [web root](xref:fundamentals/index#web-root). If the content root path doesn't exist, the host fails to start.
@@ -179,10 +179,10 @@ For more information, see:
 
 Determines whether to capture detailed errors.
 
-**Key**: detailedErrors
-**Type**: *bool* (`true` or `1`)
-**Default**: `false`
-**Set using**: `UseSetting`
+**Key**: detailedErrors  
+**Type**: *bool* (`true` or `1`)  
+**Default**: `false`  
+**Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_DETAILEDERRORS`
 
 When enabled (or when the <a href="#environment">Environment</a> value is set to `Development`), the app captures detailed exceptions.
@@ -196,10 +196,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Sets the app's environment.
 
-**Key**: environment
-**Type**: *string*
-**Default**: Production
-**Set using**: `UseEnvironment`
+**Key**: environment  
+**Type**: *string*  
+**Default**: Production  
+**Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
@@ -215,10 +215,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Provides a semicolon-delimited string of hosting startup assemblies to load on startup.
 
-**Key**: hostingStartupAssemblies
-**Type**: *string*
-**Default**: Empty string
-**Set using**: `UseSetting`
+**Key**: hostingStartupAssemblies  
+**Type**: *string*  
+**Default**: Empty string  
+**Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
 
 Although the configuration value defaults to an empty string, the hosting startup assemblies always include the app's assembly. When hosting startup assemblies are provided, they're added to the app's assembly for loading when the app builds its common services during startup.
@@ -232,10 +232,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Set the HTTPS port for redirection if you get a non-HTTPS connection.
 
-**Key**: https_port
-**Type**: *string*
-**Default**: A default value isn't set.
-**Set using**: `UseSetting`
+**Key**: https_port  
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_HTTPS_PORT`
 
 This setting is used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
@@ -249,10 +249,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Provides a semicolon-delimited string of hosting startup assemblies to exclude on startup.
 
-**Key**: hostingStartupExcludeAssemblies
-**Type**: *string*
-**Default**: Empty string
-**Set using**: `UseSetting`
+**Key**: hostingStartupExcludeAssemblies  
+**Type**: *string*  
+**Default**: Empty string  
+**Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
 ```csharp
@@ -264,10 +264,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Indicates whether the host should listen on the URLs configured with the `WebHostBuilder` instead of the URLs configured with the `IServer` implementation.
 
-**Key**: preferHostingUrls
-**Type**: *bool* (`true` or `1`)
-**Default**: `false`
-**Set using**: `PreferHostingUrls`
+**Key**: preferHostingUrls  
+**Type**: *bool* (`true` or `1`)  
+**Default**: `false`  
+**Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
@@ -279,10 +279,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
-**Key**: preventHostingStartup
-**Type**: *bool* (`true` or `1`)
-**Default**: `false`
-**Set using**: `UseSetting`
+**Key**: preventHostingStartup  
+**Type**: *bool* (`true` or `1`)  
+**Default**: `false`  
+**Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_PREVENTHOSTINGSTARTUP`
 
 ```csharp
@@ -313,10 +313,10 @@ Kestrel has its own endpoint configuration API. For more information, see <xref:
 
 Specifies the amount of time to wait for Web Host to shut down.
 
-**Key**: shutdownTimeoutSeconds
-**Type**: *int*
-**Default**: 5
-**Set using**: `UseShutdownTimeout`
+**Key**: shutdownTimeoutSeconds  
+**Type**: *int*  
+**Default**: 5  
+**Set using**: `UseShutdownTimeout`  
 **Environment variable**: `ASPNETCORE_SHUTDOWNTIMEOUTSECONDS`
 
 Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseShutdownTimeout%2A> extension method takes a <xref:System.TimeSpan> parameter.
@@ -337,10 +337,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Determines the assembly to search for the `Startup` class.
 
-**Key**: startupAssembly
-**Type**: *string*
-**Default**: The application assembly
-**Set using**: `UseStartup`
+**Key**: startupAssembly  
+**Type**: *string*  
+**Default**: The application assembly  
+**Set using**: `UseStartup`  
 **Environment variable**: `ASPNETCORE_STARTUPASSEMBLY`
 
 The assembly by name (`string`) or type (`TStartup`) can be referenced. If multiple `UseStartup` methods are called, the last call takes precedence.
@@ -359,10 +359,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Sets the relative path to the app's static assets.
 
-**Key**: webroot
-**Type**: *string*
-**Default**: The default is `wwwroot`. The path to `{content root}/wwwroot` must exist. If the path doesn't exist, a no-op file provider is used.
-**Set using**: `UseWebRoot`
+**Key**: webroot  
+**Type**: *string*  
+**Default**: The default is `wwwroot`. The path to `{content root}/wwwroot` must exist. If the path doesn't exist, a no-op file provider is used.  
+**Set using**: `UseWebRoot`  
 **Environment variable**: `ASPNETCORE_WEBROOT`
 
 ```csharp
