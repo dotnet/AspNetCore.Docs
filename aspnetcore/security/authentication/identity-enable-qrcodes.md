@@ -17,9 +17,6 @@ ASP.NET Core includes support for authenticator applications for individual auth
 > [!WARNING]
 > Keep an ASP.NET Core TOTP code secret because it can be used to authenticate successfully multiple times before it expires.
 
-> [!NOTE]
-> This article covers QR code generation for Razor Pages and MVC apps. For Blazor apps, see <xref:blazor/security/qrcodes-for-authenticator-apps> (Blazor Web App) or <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps> (Blazor WebAssembly with Identity).
-
 :::moniker range=">= aspnetcore-8.0"
 
 The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article provides guidance for Razor Pages and MVC apps on how to add [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page. For guidance that applies to Blazor Web Apps, see <xref:blazor/security/qrcodes-for-authenticator-apps>. For guidance that applies to Blazor WebAssembly apps, see <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps>.
@@ -29,6 +26,9 @@ The ASP.NET Core web app templates support authenticators but don't provide supp
 :::moniker range="< aspnetcore-8.0"
 
 The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article guides you through adding [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
+
+> [!NOTE]
+> For ASP.NET Core 8.0 or later, Blazor-specific guidance for QR code generation is available for <xref:blazor/security/qrcodes-for-authenticator-apps> (Blazor Web App) and <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps> (Blazor WebAssembly with Identity).
 
 :::moniker-end
 
