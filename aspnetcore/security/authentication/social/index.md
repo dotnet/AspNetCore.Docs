@@ -1,5 +1,6 @@
 ---
 title: Using external login providers with Identity in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, X (formerly Twitter), Google, and Microsoft.
 ms.author: wpickett
