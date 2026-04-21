@@ -1,10 +1,11 @@
 ---
 title: Enable QR code generation for TOTP authenticator apps in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Discover how to enable QR code generation for TOTP authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 08/14/2018
+ms.date: 04/21/2026
 uid: security/authentication/identity-enable-qrcodes
 ---
 
@@ -14,6 +15,9 @@ ASP.NET Core ships with support for authenticator applications for individual au
 
 > [!WARNING]
 > An ASP.NET Core TOTP code should be kept secret because it can be used to authenticate successfully multiple times before it expires.
+
+> [!NOTE]
+> This article covers QR code generation for Razor Pages and MVC apps. For Blazor apps, see <xref:blazor/security/qrcodes-for-authenticator-apps> (Blazor Web App) or <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps> (Blazor WebAssembly with Identity).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -39,7 +43,7 @@ These instructions use `qrcode.js` from the https://davidshimjs.github.io/qrcode
 
 ```cshtml
 @section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <partial name="_ValidationScriptsPartial" />
 }
 ```
 * Create a new JavaScript file called `qr.js` in `wwwroot/js` and add the following code to generate the QR Code:
@@ -61,7 +65,7 @@ window.addEventListener("load", () => {
 
 ```cshtml
 @section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <partial name="_ValidationScriptsPartial" />
 
     <script type="text/javascript" src="~/lib/qrcode.js"></script>
     <script type="text/javascript" src="~/js/qr.js"></script>
@@ -70,7 +74,7 @@ window.addEventListener("load", () => {
 
 * Delete the paragraph which links you to these instructions.
 
-Run your app and ensure that you can scan the QR code and validate the code the authenticator proves.
+Run your app and ensure that you can scan the QR code and validate the code the authenticator provides.
 
 ## Change the site name in the QR code
 
