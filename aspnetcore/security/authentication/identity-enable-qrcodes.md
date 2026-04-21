@@ -12,7 +12,12 @@ uid: security/authentication/identity-enable-qrcodes
 
 # Enable QR code generation for TOTP authenticator apps in ASP.NET Core
 
-ASP.NET Core includes support for authenticator applications for individual authentication. Two-factor authentication (2FA) authenticator apps that use a Time-based One-time Password Algorithm (TOTP) are the industry-recommended approach for 2FA. 2FA that uses TOTP is preferred over SMS 2FA. An authenticator app provides a 6 to 8 digit code that users enter after confirming their username and password. Typically, users install an authenticator app on a smartphone.
+ASP.NET Core includes support for authenticator applications for individual authentication:
+
+- Two-factor authentication (2FA) authenticator apps use a Time-based One-time Password Algorithm (TOTP), the industry-recommended approach for 2FA.
+- TOTP-based 2FA is preferred over SMS 2FA.
+- An authenticator app provides a 6 to 8 digit code that users enter after confirming their username and password.
+- Typically, users install an authenticator app on a smartphone.
 
 > [!WARNING]
 > Keep an ASP.NET Core TOTP code secret because it can be used to authenticate successfully multiple times before it expires.
