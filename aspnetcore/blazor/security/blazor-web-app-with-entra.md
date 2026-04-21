@@ -1198,12 +1198,25 @@ This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 t
       // Ensure the issuer ends with /v2.0 if using the V2 endpoint
       ValidIssuer = "https://login.microsoftonline.com/{TENANT ID}/v2.0",
       ValidateAudience = true,
-      ValidAudience = "{WEB API CLIENT ID}",
+      ValidAudiences = new[] { "{WEB API CLIENT ID 1}", "{WEB API CLIENT ID 2}", ... },
       ValidateLifetime = true
   };
   ```
 
-  The `{WEB API CLIENT ID}` placeholder in the preceding example is only the client ID, not the full value passed to the `Audience` property.
+  Instead of setting the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudiences%2A> property, you can specify a single valid audience with <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudience%2A>:
+  
+  ```csharp
+  ValidAudience = "{WEB API CLIENT ID}",
+  ```
+
+  The `{WEB API CLIENT ID}` placeholders in the preceding examples are ***only the client IDs***, not the full values passed to the `Audience` property.
+
+  To supply a collection of valid audiences in an app that [configures Identity from app settings](#supply-configuration-with-the-json-configuration-provider-app-settings), you can use the following code to obtain the valid audiences configuration:
+
+  ```csharp
+  ValidAudiences = builder.Configuration.GetSection(
+      "Authentication:Schemes:Bearer:ValidAudiences").Get<string[]>(),
+  ```
 
 For more information, see [Access tokens in the Microsoft identity platform: Token formats](/entra/identity-platform/access-tokens#token-formats).
 
