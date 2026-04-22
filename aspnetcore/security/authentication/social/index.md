@@ -112,12 +112,7 @@ When you register with an external login provider, you don't have a password reg
 To create a password and sign in using your email that you set during the sign-in process with external providers:
 
 * Select the **Hello &lt;email alias&gt;** link at the top-right corner to navigate to the **Manage** view:
-
-![Web application Manage view](index/_static/pass1a.png)
-
 * Select **Create**:
-
-![Set your password page](index/_static/pass2a.png)
 
 * Set a valid password, and you can use this credential to sign in with your email address.
 
