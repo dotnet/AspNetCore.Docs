@@ -6,7 +6,7 @@ For new feature coverage, see <xref:aspnetcore-10>.
 
 *This section only applies to standalone Blazor WebAssembly apps.*
 
-The `Properties/launchSettings.json` file is no longer used to control the environment in standalone Blazor WebAssembly apps.
+The `Blazor-Environment` header and `Properties/launchSettings.json` file (`ASPNETCORE_ENVIRONMENT` environment variable) are no longer used to control the environment in standalone Blazor WebAssembly apps.
 
 Set the environment with the `<WasmApplicationEnvironmentName>` property in the app's project file (`.csproj`).
 
