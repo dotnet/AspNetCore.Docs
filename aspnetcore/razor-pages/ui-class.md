@@ -21,7 +21,7 @@ For information on how to integrate npm and webpack into the build process for a
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create new a new project**.
+* From Visual Studio select **Create a new project**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need the library to contain pages and/or views. By default, only Razor components are supported. Select **Create**.
