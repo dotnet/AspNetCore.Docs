@@ -4,7 +4,7 @@ author: tdykstra
 description: Review the list of diagnostic codes for ASP.NET Core and get details for specific diagnostic identifiers (IDs), such as ASP0007, BL0001, MVC1006, and so on.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 04/21/2026
+ms.date: 04/22/2026
 uid: diagnostics/code-analysis
 
 # customer intent: As an ASP.NET developer, I want to get details for specific diagnostic codes in ASP.NET Core, so I can understand the diagnostic messages in my apps.
@@ -25,22 +25,22 @@ The following table lists the diagnostics available for ASP.NET Core application
 
 | Diagnostic ID | Message |
 | --- | --- |
-| **[ASP0000](xref:diagnostics/asp0000)** | Do not call `IServiceCollection.BuildServiceProvider` in `ConfigureServices` |
+| **[ASP0000](xref:diagnostics/asp0000)** | Don't call `IServiceCollection.BuildServiceProvider` in `ConfigureServices` |
 | **[ASP0001](xref:diagnostics/asp0001)** | Authorization middleware is incorrectly configured |
-| **[ASP0003](xref:diagnostics/asp0003)** | Do not use model binding attributes with route handlers |
-| **[ASP0004](xref:diagnostics/asp0004)** | Do not use action results with route handlers |
-| **[ASP0005](xref:diagnostics/asp0005)** | Do not place attribute on method called by route handler lambda |
-| **[ASP0006](xref:diagnostics/asp0006)** | Do not use non-literal sequence numbers |
+| **[ASP0003](xref:diagnostics/asp0003)** | Don't use model binding attributes with route handlers |
+| **[ASP0004](xref:diagnostics/asp0004)** | Don't use action results with route handlers |
+| **[ASP0005](xref:diagnostics/asp0005)** | Don't place attribute on method called by route handler lambda |
+| **[ASP0006](xref:diagnostics/asp0006)** | Don't use nonliteral sequence numbers |
 | **[ASP0007](xref:diagnostics/asp0007)** | Route parameter and argument optionality is mismatched |
-| **[ASP0008](xref:diagnostics/asp0008)** | Do not use `ConfigureWebHost` with `WebApplicationBuilder.Host` |
-| **[ASP0009](xref:diagnostics/asp0009)** | Do not use `Configure` with `WebApplicationBuilder.WebHost` |
-| **[ASP0010](xref:diagnostics/asp0010)** | Do not use `UseStartup` with `WebApplicationBuilder.WebHost` |
+| **[ASP0008](xref:diagnostics/asp0008)** | Don't use `ConfigureWebHost` with `WebApplicationBuilder.Host` |
+| **[ASP0009](xref:diagnostics/asp0009)** | Don't use `Configure` with `WebApplicationBuilder.WebHost` |
+| **[ASP0010](xref:diagnostics/asp0010)** | Don't use `UseStartup` with `WebApplicationBuilder.WebHost` |
 | **[ASP0011](xref:diagnostics/asp0011)** | Suggest using `builder.Logging` over `Host.ConfigureLogging` or `WebHost.ConfigureLogging` |
 | **[ASP0012](xref:diagnostics/asp0012)** | Suggest using `builder.Services` over `Host.ConfigureServices` or `WebHost.ConfigureServices` |
 | **[ASP0013](xref:diagnostics/asp0013)** | Suggest switching from using `Configure` methods to `WebApplicationBuilder.Configuration` |
 | **[ASP0014](xref:diagnostics/asp0014)** | Suggest using top level route registrations |
 | **[ASP0015](xref:diagnostics/asp0015)** | Suggest using `IHeaderDictionary` properties |
-| **[ASP0016](xref:diagnostics/asp0016)** | Do not return a value from `RequestDelegate` |
+| **[ASP0016](xref:diagnostics/asp0016)** | Don't return a value from `RequestDelegate` |
 | **[ASP0017](xref:diagnostics/asp0017)** | Invalid route pattern |
 | **[ASP0018](xref:diagnostics/asp0018)** | Unused route parameter |
 | **[ASP0019](xref:diagnostics/asp0019)** | Suggest using `IHeaderDictionary.Append` or the indexer |
@@ -57,16 +57,16 @@ The following table lists the diagnostics available for ASP.NET Core application
 | **[BL0002](xref:diagnostics/bl0002)**   | Component has multiple `CaptureUnmatchedValues` parameters |
 | **[BL0003](xref:diagnostics/bl0003)**   | Component parameter with `CaptureUnmatchedValues` has the wrong type |
 | **[BL0004](xref:diagnostics/bl0004)**   | Component parameter should be public |
-| **[BL0005](xref:diagnostics/bl0005)**   | Component parameter should not be set outside of its component |
-| **[BL0006](xref:diagnostics/bl0006)**   | Do not use RenderTree types |
+| **[BL0005](xref:diagnostics/bl0005)**   | Component parameter shouldn't be set outside of its component |
+| **[BL0006](xref:diagnostics/bl0006)**   | Don't use RenderTree types |
 | **[BL0007](xref:diagnostics/bl0007)**   | Component parameter `{0}` should be auto property |
 | **[BL0008](xref:diagnostics/bl0008)**   | Component parameters should be auto properties |
 | **[MVC1000](xref:diagnostics/mvc1000)** | Use of `IHtmlHelper.Partial` should be avoided |
-| **[MVC1001](xref:diagnostics/mvc1001)** | Filters cannot be applied to page handler methods |
-| **[MVC1002](xref:diagnostics/mvc1002)** | Route attribute cannot be applied to page handler methods |
-| **[MVC1003](xref:diagnostics/mvc1003)** | Route attributes cannot be applied to page models |
+| **[MVC1001](xref:diagnostics/mvc1001)** | Filters can't be applied to page handler methods |
+| **[MVC1002](xref:diagnostics/mvc1002)** | Route attribute can't be applied to page handler methods |
+| **[MVC1003](xref:diagnostics/mvc1003)** | Route attributes can't be applied to page models |
 | **[MVC1004](xref:diagnostics/mvc1004)** | Rename model bound parameter |
-| **[MVC1005](xref:diagnostics/mvc1005)** | Cannot use `UseMvc` with Endpoint Routing |
+| **[MVC1005](xref:diagnostics/mvc1005)** | Can't use `UseMvc` with Endpoint Routing |
 | **[MVC1006](xref:diagnostics/mvc1006)** | Methods containing Tag Helpers (`TagHelpers`) must be async and return `Task` |
 
 ## Related content
