@@ -317,7 +317,7 @@ Specifies the amount of time to wait for the Web Host to shut down.
 
 **Key**: `shutdownTimeoutSeconds`  
 **Type**: *int*  
-**Default**: 5 seconds 
+**Default**: 5 seconds  
 **Set using**: `UseShutdownTimeout`  
 **Environment variable**: `ASPNETCORE_SHUTDOWNTIMEOUTSECONDS`
 

@@ -160,7 +160,7 @@ The Entity Framework automatically registers the following services:
 
 * [IHostApplicationLifetime](#ihostapplicationlifetime)
 * [IHostLifetime](#ihostlifetime)
-* [IHostEnvironment / IWebHostEnvironment](#ihostenvironment)
+* [IHostEnvironment / IWebHostEnvironment](#ihostenvironment-iwebhostenvironment)
 
 For more information on framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
 
@@ -172,7 +172,7 @@ When performing a graceful shutdown, the host:
 
 * Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping%2A> event handlers, which allows the app to run logic before the shutdown process begins.
 
-* Stops the server, which disables new connections. The server waits for requests on existing connections to complete, for as long as the [shutdown timeout](#shutdowntimeout) allows. The server sends the connection close header for further requests on existing connections.
+* Stops the server, which disables new connections. The server waits for requests on existing connections to complete, for as long as the [shutdown timeout](#shutdown-timeout) allows. The server sends the connection close header for further requests on existing connections.
 
 * Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers, which allows the app to run logic after the application has shutdown.
 
@@ -234,7 +234,7 @@ The following example creates host configuration:
 
 :::moniker-end
 
-## App configuration
+## Create the app configuration
 
 App configuration is created by calling the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A> method on the `IHostBuilder` instance. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last on a given key. 
 
@@ -328,7 +328,7 @@ Host.CreateDefaultBuilder(args)
 Specifies the amount of time to wait for the host to shut down.
 
 **Key**: `shutdownTimeoutSeconds`  
-**Type**: *int* 
+**Type**: *int*  
 **Default**: 30 seconds (In .NET 5.0 and earlier, the default is 5 seconds.)  
 **Set using**: Environment variable or `HostOptions`  
 **Environment variable**: `{PREFIX_}SHUTDOWNTIMEOUTSECONDS`
@@ -367,7 +367,7 @@ Reloads the  _appsettings.json_ and _appsettings.{Environment}.json_ files when 
 **Set using**: Command-line argument `hostBuilder:reloadConfigOnChange`  
 **Environment variable**: `{PREFIX_}hostBuilder:reloadConfigOnChange`
 
-You can disable the reload behavior in .NET 5 and later by setting the `hostBuilder:reloadConfigOnChange` argument to `false`.
+In .NET 5 and later, you can disable the reload behavior by setting the `hostBuilder:reloadConfigOnChange` argument to `false`.
 
 > [!WARNING]
 > The colon (`:`) separator doesn't work with environment variable hierarchical keys on all platforms. For more information, see [Environment variables](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
@@ -406,7 +406,7 @@ Controls the capture of startup errors.
 **Key**: `captureStartupErrors`  
 **Type**: *bool* (`true`/`1` or `false`/`0`)  
 **Default**: `false`. If the app runs with Kestrel behind IIS, the default is `true`.  
-**Set using**: Configuration or `CaptureStartupErrors`
+**Set using**: Configuration or `CaptureStartupErrors`  
 **Environment variable**: `{PREFIX_}CAPTURESTARTUPERRORS`
 
 When `false`, errors during startup result in the host exiting. When `true`, the host captures exceptions during startup and attempts to start the server.
