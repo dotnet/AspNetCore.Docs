@@ -113,7 +113,6 @@ To create a password and sign in using your email that you set during the sign-i
 
 * Select the **Hello &lt;email alias&gt;** link at the top-right corner to navigate to the **Manage** view:
 * Select **Create**:
-
 * Set a valid password, and you can use this credential to sign in with your email address.
 
 ## Additional information
