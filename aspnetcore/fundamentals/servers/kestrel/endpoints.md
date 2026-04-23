@@ -183,7 +183,7 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 #### Configure endpoint defaults
 
-[ConfigureEndpointDefaults(Action<ListenOptions>)](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions})) specifies configuration that runs for each specified endpoint. Multiple calls to `ConfigureEndpointDefaults` replace the previous configuration.
+[ConfigureEndpointDefaults(Action\<ListenOptions>)](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions})) specifies configuration that runs for each specified endpoint. Multiple calls to `ConfigureEndpointDefaults` replace the previous configuration.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
 
@@ -528,7 +528,7 @@ When you use the HTTP/2 protocol for the connection, the following TLS restricti
   * Finite field Diffie-Hellman (DHE) (see TLS12 in [[RFC 5246](https://www.rfc-editor.org/rfc/rfc5246)]): 2,048 bits minimum
 * The Cipher suite isn't prohibited. 
 
-The `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` format (see TLS-ECDHE in [[RFC 8422](https://www.rfc-editor.org/rfc/rfc8422)] with the P-256 elliptic curve (see [[FIPS186](https://csrc.nist.gov/pubs/fips/186-5/final)]) is supported by default.
+The `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` format (see TLS-ECDHE in [[RFC 8422](https://www.rfc-editor.org/rfc/rfc8422)]) with the P-256 elliptic curve (see [[FIPS186](https://csrc.nist.gov/pubs/fips/186-5/final)]) is supported by default.
 
 ### Configure HTTP protocols in appsettings.json
 
