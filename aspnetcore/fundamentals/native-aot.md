@@ -25,15 +25,15 @@ Publishing and deploying Native ahead-of-time (AOT) applications in ASP.NET Core
   * Smaller container images, for example in containerized deployment scenarios.
   * Reduced deployment time from smaller images.
 
-- **Reduced startup time**. Native AOT apps can have reduced startup times that enable:
+- **Reduced startup time**. Native AOT apps can require less startup time, which enables:
   * The app to service requests quicker.
   * Improved deployment, where the container orchestrators manage the transition from one app version to another.
 
-- **Reduced memory demand**. Native AOT apps can have reduced memory demands, depending on the work done by the app. Reduced memory consumption can lead to greater deployment density and improved scalability.
+- **Reduced memory demand**. Native AOT apps can require less memory, depending on the work done by the app. Reduced memory consumption can lead to greater deployment density and improved scalability.
 
 The following chart shows the results of a benchmarking test on the various template apps. The benchmark compares performance for an AOT published app (orange bar), a trimmed runtime app (green bar), and an untrimmed runtime app (yellow bar). The test revealed that the Native AOT app demonstrates lower app size, memory usage, and startup time.
 
-:::image type="content" source="~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png" border="false" alt-text="Chart showing a comparison of app size, memory use, and startup time metrics for a published Native AOT app, a trimmed runtime app, and an untrimmed runtime app."
+:::image type="content" source="~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png" border="false" alt-text="Chart showing a comparison of app size, memory use, and startup time metrics. The chart compares a published Native AOT app, a trimmed runtime app, and an untrimmed runtime app."
 
 This article describes support for Native AOT apps in ASP.NET Core, including an overview of publishing and deployment.
 
@@ -101,7 +101,7 @@ An AOT app has the following differences from a JIT-compiled app:
 
 Native AOT analysis includes all of the application code and the libraries the app depends on. Review Native AOT warnings and take corrective steps. It's a good idea to publish apps frequently to discover issues early in the development lifecycle.
 
-In .NET 8 and later, Native AOT is supported by the following ASP.NET Core app types:
+In .NET 8 and later, the following ASP.NET Core app types support Native AOT:
 
 * **Minimal APIs** - For more information, see [Review the Web API (Native AOT) template](#review-the-web-api-native-aot-template) later in this article.
 * **gRPC** - For more information, see [gRPC and Native AOT](xref:grpc/native-aot).
@@ -246,7 +246,7 @@ The `CreateSlimBuilder` method **doesn't** provide the following features, which
     * [IIS integration](xref:host-and-deploy/iis/index)
 * Kestrel configuration:
     * [HTTPS endpoints](xref:fundamentals/servers/kestrel/endpoints#configure-https)
-    * [Quic (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
+    * [QUIC (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
 * [Regex and alpha constraints used in routing (GitHub /dotnet/aspnetcore/issues #46142)](https://github.com/dotnet/aspnetcore/issues/46142)
 
 For more detailed information, see [Comparing WebApplication.CreateBuilder to CreateSlimBuilder](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
@@ -281,7 +281,7 @@ The Minimal API framework is optimized for receiving and returning JSON payloads
 * The namespace imposes compatibility requirements for JSON and Native AOT.
 * It requires the use of the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation).
 
-All types transmitted as part of the HTTP body or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> instance registered with ASP.NET Core dependency injection:
+All types transmitted as part of the HTTP body or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> instance. The instance must be registered with ASP.NET Core dependency injection:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-99":::
 
