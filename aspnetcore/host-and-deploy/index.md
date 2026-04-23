@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 04/22/2026
-ms.topic: how-to
 uid: host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core

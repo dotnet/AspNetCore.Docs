@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
 ms.custom: mvc, sfi-ropc-nochange
 ms.date: 04/22/2026
-ms.topic: how-to
 uid: host-and-deploy/iis/web-config
 ---
 # `web.config` file

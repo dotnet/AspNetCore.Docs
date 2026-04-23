@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
 ms.custom: mvc, sfi-image-nochange
 ms.date: 04/21/2026
-ms.topic: concept-article
 uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS

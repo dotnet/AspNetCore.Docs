@@ -5,7 +5,6 @@ description: Provides troubleshooting advice for the most common errors when hos
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.date: 04/21/2026
-ms.topic: concept-article
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 

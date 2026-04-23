@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc, sfi-ropc-nochange
 ms.date: 04/23/2026
-ms.topic: how-to
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS

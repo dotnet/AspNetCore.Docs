@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc, linux-related-content
 ms.date: 04/23/2026
-ms.topic: concept-article
 uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers

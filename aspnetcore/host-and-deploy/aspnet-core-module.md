@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 04/20/2026
-ms.topic: concept-article
 uid: host-and-deploy/aspnet-core-module
 ---
 
