@@ -54,7 +54,7 @@ The following table summarizes ASP.NET Core feature compatibility with Native AO
 | HttpLogging          | ✔️ |  |  |
 | JWT Authentication   | ✔️ |  |  |
 | Localization         | ✔️ |  |  |
-| Minimal APIs         |  | :::image type="icon" source="./media/partial-support.png"::: |  |
+| Minimal APIs         |  | ✔️ |  |
 | MVC                  |  |  | ❌ |
 | Other Authentication |  |  | ❌ |
 | OutputCaching        | ✔️ |  |  |
@@ -64,7 +64,7 @@ The following table summarizes ASP.NET Core feature compatibility with Native AO
 | ResponseCompression  | ✔️ |  |  |
 | Rewrite              | ✔️ |  |  |
 | Session              |  |  | ❌ |
-| SignalR              |  | :::image type="icon" source="./media/partial-support.png"::: |  |
+| SignalR              |  | ✔️ |  |
 | Spa                  |  |  | ❌ |
 | StaticFiles          | ✔️ |  |  |
 | WebSockets           | ✔️ |  |  |
@@ -229,29 +229,24 @@ Both methods provide the necessary features for an efficient development experie
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
-If you prefer to use a builder that omits all features, see the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateEmptyBuilder>.
+If you prefer to use a builder that omits all features, see the [WebApplication.CreateEmptyBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createemptybuilder) method.
 
 ### Unavailable features in CreateSlimBuilder
 
 The `CreateSlimBuilder` method **doesn't** provide the following features, which are available in `CreateBuilder`:
 
 * [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
-
 * [UseStartup](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A) method
-
 * Logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
     * [Debug](/aspnet/core/fundamentals/logging#debug)
     * [EventSource](/aspnet/core/fundamentals/logging#eventsource)
-
 * Web hosting features:
     * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A) method
     * [IIS integration](xref:host-and-deploy/iis/index)
-
 * Kestrel configuration:
     * [HTTPS endpoints](xref:fundamentals/servers/kestrel/endpoints#configure-https)
     * [Quic (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
-
 * [Regex and alpha constraints used in routing (GitHub /dotnet/aspnetcore/issues #46142)](https://github.com/dotnet/aspnetcore/issues/46142)
 
 For more detailed information, see [Comparing WebApplication.CreateBuilder to CreateSlimBuilder](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
@@ -302,7 +297,7 @@ A parameter on the delegate that isn't bound to the body and **doesn't** need to
 
 To report or review issues with Native AOT support in ASP.NET Core, see [GitHub /dotnet/core/issues #8288)](https://github.com/dotnet/core/issues/8288).
 
-## Related content (REDUCE)
+## Related content
 
 * [Publish an ASP.NET Core app with Native AOT](xref:fundamentals/native-aot-tutorial)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)

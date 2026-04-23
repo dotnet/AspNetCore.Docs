@@ -81,7 +81,7 @@ public class HomeController : Controller
 
 ## Access HttpContext from Minimal APIs
 
-To use `HttpContext` from [Minimal APIs](xref:/fundamentals/minimal-apis), add an `HttpContext` parameter:
+To use `HttpContext` from [Minimal APIs](minimal-apis.md):
 
 ```csharp
 app.MapGet("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));

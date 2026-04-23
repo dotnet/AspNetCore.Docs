@@ -26,7 +26,7 @@ You can register the <xref:System.Net.Http.IHttpClientFactory> and use it to con
 
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 
-* Adds a configurable logging experience (via the <xref:Microsoft.Extensions.Logging.iLogger%2A>) for all requests sent through clients created by the factory.
+* Adds a configurable logging experience (via the `ILogger`) for all requests sent through clients created by the factory.
 
 This article describes how to make HTTP requests by using `IHttpClientFactory` in ASP.NET Core applications. The sample code version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the browser **Version** selector to select a 2.x version of this article.
 
@@ -314,7 +314,7 @@ The alternate approaches solve the resource management problems that `IHttpClien
 * The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
 * The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
-## Logging
+## Log messages and response status
 
 Clients created via `IHttpClientFactory` record log messages for all requests. Enable the appropriate information level in the logging configuration so you can see the default log messages. Other logging, such as the logging of request headers, is only included at trace level.
 
@@ -334,7 +334,7 @@ An `IHttpClientBuilder` is returned when adding named or typed clients. The <xre
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientConfigureHttpMessageHandler":::
 
-## Cookies
+## Work with cookies
 
 The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code.
 
