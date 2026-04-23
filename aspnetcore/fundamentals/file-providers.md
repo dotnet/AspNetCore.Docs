@@ -59,6 +59,9 @@ The following table lists implementations of `IFileProvider`.
 
 The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
+> [!WARNING]
+> `PhysicalFileProvider` scopes access to its root directory and child paths, but this doesn't guarantee a security sandbox. Symbolic links under the root can still expose files outside the root directory.
+
 When instantiating this provider directly, an absolute directory path is required and serves as the base path for all requests made using the provider. Glob patterns aren't supported in the directory path.
 
 The following code shows how to use `PhysicalFileProvider` to obtain directory contents and file information:
