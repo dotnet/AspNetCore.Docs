@@ -9,7 +9,7 @@ For information on how to integrate npm and webpack into the build process for a
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create new a new project**.
+* From Visual Studio's **Start Window**, select **Create a new project**. Alternatively, select **File** > **New** > **Project/Solution**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
@@ -175,7 +175,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create a new project**.
+* From Visual Studio's **Start Window**, select **Create a new project**. Alternatively, select the **File** > **New** > **Project/Solution**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create** > **Next**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select the **Target Framework**. Check **☑ Support pages and views** to support views. By default, only Razor components are supported. Select **Create**.
@@ -564,7 +564,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create new a new project**.
+* From Visual Studio's **Start Window**, select **Create a new project**. Alternatively, select the **File** > **New** > **Project/Solution**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
