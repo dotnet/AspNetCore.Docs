@@ -121,7 +121,7 @@ The host uses whichever option sets a value last. For more information, see [Ove
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
-### Application name (or key)
+### Application name
 
 Defines the name of the assembly that contains the entry point for the application.
 
@@ -480,7 +480,7 @@ The app can initialize and start a new host with the preconfigured defaults of t
 
 ### Start(RequestDelegate app)
 
-Run the host by starting with a `RequestDelegate`: parameter
+Run the host with a `RequestDelegate`:
 
 ```csharp
 using (var host = WebHost.Start(app => app.Response.WriteAsync("Hello, World!")))
@@ -494,7 +494,7 @@ Make a request in the browser to the `http://localhost:5000` URL to receive the 
 
 ### Start(string url, RequestDelegate app)
 
-Run the host by starting with a URL and the `RequestDelegate` parameter:
+Run the host with a URL and a `RequestDelegate`:
 
 ```csharp
 using (var host = WebHost.Start("http://localhost:8080", app => app.Response.WriteAsync("Hello, World!")))

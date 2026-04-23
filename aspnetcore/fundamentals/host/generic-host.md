@@ -100,7 +100,7 @@ public class Program
 }
 ```
 
-For an HTTP workload, the ASP.NET Core templates generate code the same `Main` method, but the `CreateHostBuilder` method calls the `ConfigureWebHostDefaults` method:
+For an HTTP workload, the ASP.NET Core templates generate the same `Main` method, but the `CreateHostBuilder` method calls the `ConfigureWebHostDefaults` method:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -154,9 +154,9 @@ The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWeb
 
 For information on how to override default builder settings, see [Configure settings for all app types](#configure-settings-for-all-app-types) and [Configure settings for web apps](#configure-settings-for-web-apps) later in this article.
 
-## Explore services provided by Entity Framework
+## Framework-provided services
 
-The Entity Framework automatically registers the following services:
+The .NET Generic Host automatically registers the following services:
 
 * [IHostApplicationLifetime](#ihostapplicationlifetime)
 * [IHostLifetime](#ihostlifetime)
