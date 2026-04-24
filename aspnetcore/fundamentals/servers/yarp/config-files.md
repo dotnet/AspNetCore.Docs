@@ -1,22 +1,26 @@
 ---
 uid: fundamentals/servers/yarp/config-files
 title: YARP Configuration Files
-description: YARP Configuration Files
+description: Explore how to work with YARP configuration files, examine the file structure and properties, define routes, clusters, and sources, and load proxy configuration. 
 author: wadepickett
 ms.author: wpickett
-ms.date: 2/6/2025
+ms.date: 04/24/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
----
 
+# customer intent: As an ASP.NET developer, I want to get started with the YARP library, so I can learn how customize the modules.
+---
 # YARP Configuration Files
 
-## Introduction
-The reverse proxy can load configuration for routes and clusters from files using the IConfiguration abstraction from Microsoft.Extensions. The examples given here use JSON, but any IConfiguration source should work. The configuration will also be updated without restarting the proxy if the source file changes.
+The reverse proxy can load configuration for routes and clusters from files by using the [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) abstraction from Microsoft.Extensions.
 
-## Loading Configuration
-To load the proxy configuration from IConfiguration add the following code in Program.cs:
+This article provides example proxy configuration for YARP. Although the configuration example uses JSON, any `IConfiguration` source should work. Also, the configuration updates without restarting the proxy when the source file changes.
+
+## Load the proxy configuration
+
+To load the proxy configuration from the `IConfiguration` instance, add the following code in the _Program.cs_ file:
+
 ```csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,19 +39,26 @@ app.MapReverseProxy();
 
 app.Run();
 ```
-**Note**: For details about middleware ordering see [here](/aspnet/core/fundamentals/middleware/#middleware-order).
 
-Configuration can be modified during the load sequence using [Configuration Filters](xref:fundamentals/servers/yarp/config-filters).
+> [!NOTE]
+> For details about middleware ordering, see [ASP.NET Core Middleware > Middleware order](/aspnet/core/fundamentals/middleware/#middleware-order).
 
-## Multiple Configuration Sources
-As of 1.1, YARP supports loading the proxy configuration from multiple sources. LoadFromConfig may be called multiple times referencing different IConfiguration sections or may be combine with a different config source like InMemory. Routes can reference clusters from other sources. Note merging partial config from different sources for a given route or cluster is not supported.
+Configuration can be modified during the load sequence by using [YARP configuration filters](xref:fundamentals/servers/yarp/config-filters).
+
+## Load from multiple configuration sources
+
+Starting in version 1.1, YARP supports loading the proxy configuration from multiple sources. You can call the `LoadFromConfig` method multiple times and reference different `IConfiguration` sections. You can also combine the call with a different config source, such as InMemory. Routes can reference clusters from other sources.
+
+> [!NOTE]
+> Merging partial config from different sources for a given route or cluster isn't supported.
 
 ```csharp
 services.AddReverseProxy()
     .LoadFromConfig(Configuration.GetSection("ReverseProxy1"))
     .LoadFromConfig(Configuration.GetSection("ReverseProxy2"));
 ```
-or
+Another example:
+
 ```csharp
 
 services.AddReverseProxy()
@@ -55,13 +66,14 @@ services.AddReverseProxy()
     .LoadFromConfig(Configuration.GetSection("ReverseProxy"));
 ```
 
-## Configuration contract
-File-based configuration is dynamically mapped to the types in [Yarp.ReverseProxy.Configuration](xref:Yarp.ReverseProxy.Configuration) namespace by an [IProxyConfigProvider](xref:Yarp.ReverseProxy.Configuration.IProxyConfigProvider) implementation converts at application start and each time the configuration changes.
+## Review the configuration contract
 
-## Configuration Structure
-The configuration consists of a named section that you specified above via `Configuration.GetSection("ReverseProxy")`, and contains subsections for routes and clusters.
+File-based configuration is dynamically mapped to the types in the [Yarp.ReverseProxy.Configuration](xref:Yarp.ReverseProxy.Configuration) namespace by an [IProxyConfigProvider](xref:Yarp.ReverseProxy.Configuration.IProxyConfigProvider) implementation. The contract converts at application start and each time the configuration changes.
 
-Example:
+## Examine the configuration structure
+
+The configuration consists of a named section and subsections for routes and clusters. In the previous example, the named section is `Configuration.GetSection("ReverseProxy")`.
+
 ```json
 {
   "ReverseProxy": {
@@ -87,29 +99,35 @@ Example:
 }
 ```
 
-### Routes
+### Define configuration routes
 
-The routes section is an unordered collection of route matches and their associated configuration. A route requires at least the following fields:
+The `Routes` section is an unordered collection of route matches and their associated configuration.
 
-* RouteId - a unique name
-* ClusterId - refers to the name of an entry in the clusters section.
-* Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](/aspnet/core/fundamentals/routing#route-templates).
+Each route requires at least the following fields:
 
-Route matching is based on the most specific routes having highest precedence as described [here](/aspnet/core/fundamentals/routing#url-matching). Explicit ordering can be achieved using the `order` field, with lower values taking higher priority.
+* `RouteId`: A unique name for the route.
+* `ClusterId`: The name of an entry in the `Clusters` section.
+* `Match`: Either a `Hosts` array or a `Path` pattern string. You can define the path by using [Routing in ASP.NET Core > Route templates](/aspnet/core/fundamentals/routing#route-templates).
 
-[Headers](xref:fundamentals/servers/yarp/header-routing), [Authorization](xref:fundamentals/servers/yarp/authn-authz), [CORS](xref:fundamentals/servers/yarp/cors), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
+Route matching is based on the most specific routes having highest precedence, as described in [URL matching](/aspnet/core/fundamentals/routing#url-matching). Explicit ordering can be achieved by using the `order` field, where lower values take higher priority.
 
-The proxy will apply the given matching criteria and policies, and then pass off the request to the specified cluster.
+[YARP headers](xref:fundamentals/servers/yarp/header-routing), [authentication and authorization](xref:fundamentals/servers/yarp/authn-authz), [cross-origin requests (CORS)](xref:fundamentals/servers/yarp/cors), and other route-based policies can be configured on each route entry. For other fields, see the [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) reference.
 
-### Clusters
-The clusters section is an unordered collection of named clusters. A cluster primarily contains a collection of named destinations and their addresses, any of which is considered capable of handling requests for a given route. The proxy will process the request according to the route and cluster configuration in order to select a destination.
+The proxy applies the given matching criteria and policies, and passes off the request to the specified cluster.
 
-For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.ClusterConfig).
+### Define configuration clusters
 
-## All config properties
+The `Clusters` section is an unordered collection of named clusters. A cluster primarily contains a collection of named destinations and their addresses, any of which is considered capable of handling requests for a given route. The proxy processes the request according to the route and cluster configuration to select a destination.
+
+For other fields, see the [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.ClusterConfig) reference.
+
+## Review all config properties
+
+The following JSON example shows all properties available for the YARP proxy configuration.
+
 ```json
 {
-  // Base URLs the server listens on, must be configured independently of the routes below
+  // Base URLs the server listens on, must be configured independently of the routes defined below
   "Urls": "http://localhost:5000;https://localhost:5001",
   "Logging": {
     "LogLevel": {
@@ -121,39 +139,39 @@ For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.C
     }
   },
   "ReverseProxy": {
-    // Routes tell the proxy which requests to forward
+    // Routes inform the proxy which requests to forward
     "Routes": {
       "minimumroute" : {
-        // Matches anything and routes it to www.example.com
+        // Matches anything and routes to www.example.com
         "ClusterId": "minimumcluster",
         "Match": {
           "Path": "{**catch-all}"
         }
       },
       "allrouteprops" : {
-        // matches /something/* and routes to "allclusterprops"
-        "ClusterId": "allclusterprops", // Name of one of the clusters
+        // Matches /something/* and routes to "allclusterprops"
+        "ClusterId": "allclusterprops", // Name of a cluster
         "Order" : 100, // Lower numbers have higher precedence
         "MaxRequestBodySize" : 1000000, // In bytes. An optional override of the server's limit (30MB default). Set to -1 to disable.
         "AuthorizationPolicy" : "Anonymous", // Name of the policy or "Default", "Anonymous"
         "CorsPolicy" : "Default", // Name of the CorsPolicy to apply to this route or "Default", "Disable"
         "Match": {
-          "Path": "/something/{**remainder}", // The path to match using ASP.NET syntax.
-          "Hosts" : [ "www.aaaaa.com", "www.bbbbb.com"], // The host names to match, unspecified is any
-          "Methods" : [ "GET", "PUT" ], // The HTTP methods that match, uspecified is all
-          "Headers": [ // The headers to match, unspecified is any
+          "Path": "/something/{**remainder}", // Path to match by using ASP.NET syntax
+          "Hosts" : [ "www.aaaaa.com", "www.bbbbb.com"], // Host names to match, unspecified is any
+          "Methods" : [ "GET", "PUT" ], // HTTP methods that match, unspecified is all
+          "Headers": [ // Headers to match, unspecified is any
             {
               "Name": "MyCustomHeader", // Name of the header
-              "Values": [ "value1", "value2", "another value" ], // Matches are against any of these values
-              "Mode": "ExactHeader", // or "HeaderPrefix", "Exists" , "Contains", "NotContains", "NotExists"
+              "Values": [ "value1", "value2", "another value" ], // Match any of these values
+              "Mode": "ExactHeader", // Or, match "HeaderPrefix", "Exists" , "Contains", "NotContains", "NotExists"
               "IsCaseSensitive": true
             }
           ],
-          "QueryParameters": [ // The query parameters to match, unspecified is any
+          "QueryParameters": [ // Query parameters to match, unspecified is any
             {
               "Name": "MyQueryParameter", // Name of the query parameter
-              "Values": [ "value1", "value2", "another value" ], // Matches are against any of these values
-              "Mode": "Exact", // or "Prefix", "Exists" , "Contains", "NotContains"
+              "Values": [ "value1", "value2", "another value" ], // Match any of these values
+              "Mode": "Exact", // Or, match "Prefix", "Exists" , "Contains", "NotContains"
               "IsCaseSensitive": true
             }
           ]
@@ -185,20 +203,20 @@ For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.C
           },
           "another_destination": {
             "Address": "https://10.20.30.40",
-            "Health" : "https://10.20.30.40:12345/test" // override for active health checks
+            "Health" : "https://10.20.30.40:12345/test" // Override for active health checks
           }
         },
         "LoadBalancingPolicy" : "PowerOfTwoChoices", // Alternatively "FirstAlphabetical", "Random", "RoundRobin", "LeastRequests"
         "SessionAffinity": {
-          "Enabled": true, // Defaults to 'false'
+          "Enabled": true, // Default is 'false'
           "Policy": "Cookie", // Default, alternatively "CustomHeader"
-          "FailurePolicy": "Redistribute", // default, Alternatively "Return503Error"
+          "FailurePolicy": "Redistribute", // Default, alternatively "Return503Error"
           "Settings" : {
-              "CustomHeaderName": "MySessionHeaderName" // Defaults to 'X-Yarp-Proxy-Affinity`
+              "CustomHeaderName": "MySessionHeaderName" // Default is 'X-Yarp-Proxy-Affinity`
           }
         },
         "HealthCheck": {
-          "Active": { // Makes API calls to validate the health.
+          "Active": { // Makes API calls to validate the health
             "Enabled": "true",
             "Interval": "00:00:10",
             "Timeout": "00:00:10",
@@ -207,7 +225,7 @@ For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.C
             "Query": "?foo=bar"
           },
           "Passive": { // Disables destinations based on HTTP response codes
-            "Enabled": true, // Defaults to false
+            "Enabled": true, // Default is false
             "Policy" : "TransportFailureRateHealthPolicy", // Required
             "ReactivationPeriod" : "00:00:10" // 10s
           }
@@ -236,4 +254,7 @@ For additional fields see [ClusterConfig](xref:Yarp.ReverseProxy.Configuration.C
 }
 ```
 
-For more information see [logging configuration](diagnosing-yarp-issues.md#logging) and [HTTP client configuration](xref:fundamentals/servers/yarp/http-client-config).
+## Related content
+
+- [Logging configuration](diagnosing-yarp-issues.md#logging)
+- [HTTP client configuration](xref:fundamentals/servers/yarp/http-client-config)
