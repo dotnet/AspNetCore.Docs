@@ -26,7 +26,7 @@ gRPC uses a contract-first approach to API development. Protocol buffers (protob
 
 For more information on the syntax of protobuf files, see [Create Protobuf messages for .NET apps](xref:grpc/protobuf).
 
-Consider the _greet.proto_ file used in the tutorial, [Create a gRPC client and server in ASP.NET Core](xref:tutorials/grpc/grpc-start)s:
+Consider the _greet.proto_ file used in the tutorial, [Create a gRPC client and server in ASP.NET Core](xref:tutorials/grpc/grpc-start):
 
 * The file defines a `Greeter` service.
 * The `Greeter` service defines a `SayHello` call.
@@ -89,6 +89,7 @@ Similarly, the attribute is set to `Client` in client projects.
 
 * [Overview for gRPC on .NET](xref:grpc/index)
 * [Create a .NET gRPC client and server in ASP.NET Core](xref:tutorials/grpc/grpc-start)
+* [gRPC services with ASP.NET Core](xref:grpc/aspnetcore)
 * [Call gRPC services with the .NET client](xref:grpc/client)
 
 :::moniker-end

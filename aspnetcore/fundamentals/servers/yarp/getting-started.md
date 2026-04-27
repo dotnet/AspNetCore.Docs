@@ -1,6 +1,6 @@
 ---
 uid: fundamentals/servers/yarp/getting-started
-title: Get Started with YARP
+title: Get started with YARP
 description: Get started with the YARP library that provides core proxy functionality, customize library modules, and create a project that uses the YARP package.
 author: wadepickett
 ms.author: wpickett

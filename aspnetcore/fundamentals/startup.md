@@ -1,5 +1,5 @@
 ---
-title: App Startup in ASP.NET Core
+title: App startup in ASP.NET Core
 author: wadepickett
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
@@ -24,7 +24,7 @@ For Blazor startup guidance, which adds to or supersedes the guidance in this ar
 
 The following app startup code supports several app types:
 
-* [Blazor web apps](xref:blazor/index#build-a-full-stack-web-app-with-blazor)
+* [Blazor Web Apps](xref:blazor/index#build-a-full-stack-web-app-with-blazor)
 * [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
 * [Web API with controllers](xref:tutorials/first-web-api)
@@ -44,7 +44,7 @@ Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
 
 * To create a pipeline of `Configure` methods. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A) can set a middleware to run before or after middleware added by libraries.
 
-An `IStartupFilter` instance implements the <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A>method, which receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
+An `IStartupFilter` implementation provides a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method that receives and returns an Action<IApplicationBuilder>. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
 Each `IStartupFilter` implementation can add one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
 
