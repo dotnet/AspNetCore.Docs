@@ -44,7 +44,7 @@ Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
 
 * To create a pipeline of `Configure` methods. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A) can set a middleware to run before or after middleware added by libraries.
 
-An `IStartupFilter` implementation provides a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method that receives and returns an Action<IApplicationBuilder>. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
+An `IStartupFilter` implementation provides a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method that receives and returns an Action\<IApplicationBuilder>. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
 Each `IStartupFilter` implementation can add one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
 
