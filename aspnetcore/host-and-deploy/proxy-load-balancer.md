@@ -81,7 +81,7 @@ Alternatively, call `UseForwardedHeaders` before diagnostics:
 
 ## Nginx configuration
 
-To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host-and-deploy/linux-nginx#configure-nginx>. For more information, see [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/).
+To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host-and-deploy/linux-nginx#configure-nginx>. 
 
 ## Apache configuration
 
