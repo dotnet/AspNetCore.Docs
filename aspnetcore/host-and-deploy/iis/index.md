@@ -249,7 +249,7 @@ To prevent the Web SDK from transforming the `web.config` file, use the `<IsTran
 </PropertyGroup>
 ```
 
-When disabling the Web SDK from transforming the file, the developer should mannually set the `processPath` and `arguments`. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+When disabling the Web SDK from transforming the file, the developer should manually set the `processPath` and `arguments`. For more information, see <xref:host-and-deploy/aspnet-core-module>.
 
 ### `web.config` file location
 
