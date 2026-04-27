@@ -101,9 +101,9 @@ Follow the guidance in this section to use and distribute a fixed version of the
 
 Download the **Fixed Version** installer packages from [Microsoft Edge WebView2: Download the WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2).
 
-The following steps place the packages into `Runtimex86`, `Runtimex64`, and `RuntimeARM64` folders in the app's solution folder, maintaining the files outside of the project to keep the **Solution Explorer** view of the project focused on the app's developer assets.
+The following steps place the packages into `Runtimex86`, `Runtimex64`, and `RuntimeARM64` folders in the parent folder of the app's solution folder, maintaining the files outside of the project to keep the **Solution Explorer** view of the project focused on the app's developer assets.
 
-After downloading a runtime, use the [`expand` command](/windows-server/administration/windows-commands/expand) in a command shell to expand the `.cab` file from the system's `C:\Users\{USERNAME}\Downloads` folder into the solution's root folder:
+After downloading a runtime, use the [`expand` command](/windows-server/administration/windows-commands/expand) in a command shell to expand the `.cab` file from the system's `C:\Users\{USER}\Downloads` folder into the solution's root folder:
 
 ```cli
 expand {PATH TO THE PACKAGE} -F:* {PATH TO THE DESTINATION FOLDER}
@@ -117,17 +117,17 @@ Placeholders:
 The following example uses:
 
 * The x86 runtime package `.cab` file (`Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x86.cab`).
-* A package path of `C:\Users\{USERNAME}\Downloads\`, where the `{USERNAME}` placeholder is the Windows user profile name.
+* A package path of `C:\Users\{USER}\Downloads\`, where the `{USER}` placeholder is the Windows user profile name.
 * A solution folder path of `C:\src\MySolution\`.
 
 ```cli
-expand "C:\Users\{USERNAME}\Downloads\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x86.cab" -F:* C:\src\MySolution\
+expand "C:\Users\{USER}\Downloads\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x86.cab" -F:* C:\src\MySolution\
 ```
 
 Rename the folder to `Runtimex86` with the [`Rename-Item` PowerShell cmdlet](/powershell/module/microsoft.powershell.management/rename-item):
 
 ```powershell
-rename-item "C:\src\MySolution\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x64" "C:\src\MySolution\Runtimex86"
+rename-item "C:\src\MySolution\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x86" "C:\src\MySolution\Runtimex86"
 ```
 
 Repeat the preceding steps for the x64 and ARM64 runtimes.
