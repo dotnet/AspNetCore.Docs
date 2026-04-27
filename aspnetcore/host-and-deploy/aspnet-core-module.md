@@ -382,7 +382,7 @@ When the path to the shared configuration isn't on the same machine as the IIS i
 1. Export the updated `applicationHost.config` file to the share.
 1. Re-enable the IIS Shared Configuration.
 
-## version and Hosting Bundle installer logs
+## Module version and Hosting Bundle installer logs
 
 To determine the version of the installed ASP.NET Core Module:
 
