@@ -1,11 +1,11 @@
 ---
-title: Configure Endpoints for Kestrel Web Server
+title: Configure endpoints for Kestrel web server
 author: tdykstra
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 uid: fundamentals/servers/kestrel/endpoints
 
 #customer intent: As an ASP.MEt developer, I want to configure endpoints with Kestrel, so I can use a Kestrel web server with my ASP.NET Core app.
@@ -14,6 +14,8 @@ uid: fundamentals/servers/kestrel/endpoints
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+:::moniker range=">= aspnetcore-8.0"
 
 Kestrel endpoints provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware. The combination of an address and a protocol defines an endpoint.
 
@@ -137,7 +139,7 @@ Clients connecting to a modified endpoint might be disconnected or refused while
 
 #### ConfigurationLoader
 
-The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader>. The loader's <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method can be used to supplement a configured endpoint's settings:
+The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader>. The loader's <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method can be used to supplement a configured endpoint's settings:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
@@ -569,6 +571,8 @@ The following example configures an endpoint for HTTP/1.1, HTTP/2, and HTTP/3 co
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelProtocols":::
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-9.0"
 
 ## Customize Kestrel named pipe endpoints
@@ -581,9 +585,13 @@ This approach is useful in a Kestrel app that requires two pipe endpoints with d
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
 ## Related content
 
 * [Kestrel web server in ASP.NET Core](xref:fundamentals/servers/kestrel)
 * [Configure options for the ASP.NET Core Kestrel web server](xref:fundamentals/servers/kestrel/options)
+
+:::moniker-end
 
 [!INCLUDE [endpoints5-7](~/fundamentals/servers/kestrel/endpoints/includes/endpoints5-7.md)]
