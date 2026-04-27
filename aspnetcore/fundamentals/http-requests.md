@@ -1,11 +1,11 @@
 ---
-title: HTTP Requests with IHttpClientFactory - ASP.NET Core
+title: HTTP requests with IHttpClientFactory - ASP.NET Core
 author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 uid: fundamentals/http-requests
 
 # customer intent: As an ASP.NET developer, I want to use the IHttpClientFactory interface in ASP.NET Core, so I can manage logical HttpClient instances.
@@ -220,7 +220,7 @@ The following delegating handler consumes and uses `IOperationScoped` to set the
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="5-6,11":::
 
-In the [HttpRequestsSample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.x/HttpRequestsSample), go to the _/Operation_ folder and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
+In the [HttpRequestsSample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.x/HttpRequestsSample), run the app and browse to the /Operation page, then refresh. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
 Handlers can depend upon services of any scope. Services that handlers depend upon are disposed when the handler is disposed.
 
