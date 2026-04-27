@@ -24,7 +24,7 @@ The default route match precedence order is
 4. headers
 5. query parameters
 
- That means a route which specifies methods and no headers will match before a route which specifies headers and no methods. This can be overridden by setting the `Order` property on a route (see example in [config properties](config-files.md#all-config-properties)).
+ That means a route which specifies methods and no headers will match before a route which specifies headers and no methods. This can be overridden by setting the `Order` property on a route (see example in [config properties](config-files.md#review-all-config-properties)).
 
 ## Configuration
 

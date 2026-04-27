@@ -1,39 +1,42 @@
 ---
 uid: fundamentals/servers/yarp/getting-started
-title: YARP Getting Started with YARP
-description: YARP Getting Started with YARP
+title: Get started with YARP
+description: Get started with the YARP library that provides core proxy functionality, customize library modules, and create a project that uses the YARP package.
 author: wadepickett
 ms.author: wpickett
-ms.date: 3/6/2025
+ms.date: 04/24/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
+
+# customer intent: As an ASP.NET developer, I want to get started with the YARP library, so I can learn how to customize the modules for my project.
 ---
-# Getting started with YARP
+# Get started with YARP
 
-YARP is designed as a library that provides the core proxy functionality, which you can customize by adding or replacing modules. YARP is currently provided as a NuGet package and code samples. We plan on providing a project template and prebuilt executable (`.exe`) in the future.
+YARP is designed as a .NET library that provides core proxy functionality. You can customize the library by adding or replacing modules. YARP is currently provided as a NuGet package and code samples, but a project template and prebuilt executable (`.exe`) are planned for the future.
 
-YARP is implemented on top of .NET infrastructure and is usable on Windows, Linux or MacOS. Develop apps with the SDK and your favorite editor, [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
+YARP is implemented on top of .NET infrastructure and is usable on Windows, Linux, or macOS. You can develop apps with the .NET SDK and your favorite editor: [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/).
 
-YARP 2.3.0 supports .NET 8 or later.
+YARP 2.3.0 supports .NET 8 or later. You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
 
-You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
+This article describes how to create a basic ASP.NET Core app that uses the YARP library.
 
 ## Create a new project
 
-A complete version of the project built using the steps below can be found at [Basic YARP Sample](https://github.com/microsoft/reverse-proxy/tree/release/latest/samples/BasicYarpSample).
-
-Start by creating an empty ASP.NET Core application using the command line:
+Start by creating an empty ASP.NET Core app from the command line:
 
 ```dotnetcli
 dotnet new web -n MyProxy
 ```
 
-Alternatively, create a new ASP.NET Core web application in Visual Studio 2022, choosing "Empty" for the project template.
+Or, build a new ASP.NET Core web app in Visual Studio 2022 by selecting **Empty** for the project template.
 
-## Add the package reference
+> [!NOTE]
+> For the complete version of the project implemented in this article, download the [Basic YARP Sample](https://github.com/dotnet/yarp/tree/release/latest/samples/BasicYarpSample) on GitHub.
 
-Add a package reference for [`Yarp.ReverseProxy`](https://www.nuget.org/packages/Yarp.ReverseProxy), version 2.3.0 or later.
+## Add the YARP package reference
+
+Add a package reference for [Yarp.ReverseProxy](https://www.nuget.org/packages/Yarp.ReverseProxy) version 2.3.0 or later.
 
 ```dotnetcli
 dotnet add package Yarp.ReverseProxy
@@ -41,9 +44,9 @@ dotnet add package Yarp.ReverseProxy
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-## Add the YARP Middleware
+## Add the YARP middleware
 
-Update the `Program` file to use the YARP Middleware:
+Update the _Program.cs_ file to use the YARP middleware:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -54,15 +57,15 @@ app.MapReverseProxy();
 app.Run();
 ```
 
-## Configuration 
+## Customize the YARP configuration 
 
-The configuration for YARP is defined in the `appsettings.json` file. For more information, see <xref:fundamentals/servers/yarp/config-files>.
+The configuration for YARP is defined in the _appsettings.json_ file. For more information, see [YARP configuration files](xref:fundamentals/servers/yarp/config-files).
 
-The configuration can also be provided programmatically. For more information, see <xref:fundamentals/servers/yarp/config-providers>.
+You can also specify the configuration programmatically. For more information, see [YARP extensibility: Configuration providers](xref:fundamentals/servers/yarp/config-providers).
 
-Learn more about the available configuration options by looking at <xref:Yarp.ReverseProxy.Configuration.RouteConfig> and <xref:Yarp.ReverseProxy.Configuration.ClusterConfig>.
+To learn more about the available configuration options, see the <xref:Yarp.ReverseProxy.Configuration.RouteConfig> and <xref:Yarp.ReverseProxy.Configuration.ClusterConfig> reference articles.
  
- ```json
+```json
  {
   "Logging": {
     "LogLevel": {
@@ -94,8 +97,16 @@ Learn more about the available configuration options by looking at <xref:Yarp.Re
 }
 ```
 
-## Run the project
+## Run your YARP project application
 
-When using the .NET CLI, use `dotnet run` within the sample's directory or `dotnet run --project <path to .csproj file>`.
+To run your new YARP project:
 
-In Visual Studio, start the app by clicking the **Run** button.
+- **.NET CLI**: Run the `dotnet run` command within the sample's directory, or use the `dotnet run --project <path to .csproj file>` command.
+
+- **Visual Studio**: Start the app by selecting **Run** on the main menubar.
+
+## Related content
+
+- [Basic YARP sample on GitHub](https://github.com/dotnet/yarp/tree/release/latest/samples/BasicYarpSample)
+- [YARP Configuration Files](xref:fundamentals/servers/yarp/config-files)
+- [YARP extensibility: Configuration providers](xref:fundamentals/servers/yarp/config-providers)

@@ -32,7 +32,7 @@ Kestrel supports intercepting incoming connections before the TLS handshake. YAR
 
 ## Configuring outgoing connections
 
-To enable TLS encryption when communicating with a destination specify the destination address as `https` like `"https://destinationHost"`. See the [configuration docs](config-files.md#configuration-structure) for examples.
+To enable TLS encryption when communicating with a destination specify the destination address as `https` like `"https://destinationHost"`. See the [configuration docs](config-files.md#examine-the-configuration-structure) for examples.
 
 The host name specified in the destination address will be used for the TLS handshake by default, including SNI and server certificate validation. If proxying the [original host header](xref:fundamentals/servers/yarp/transforms#requestheaderoriginalhost) is enabled, that value will be used for the TLS handshake instead. If a custom host value needs to be used then use the [RequestHeader](xref:fundamentals/servers/yarp/transforms#requestheader) transform to set the host header.
 
