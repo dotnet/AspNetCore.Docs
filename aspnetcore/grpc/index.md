@@ -22,7 +22,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 The main benefits of gRPC are:
 
 * Modern, high-performance, lightweight RPC framework.
-* Contract-first API development that uses Protocol Buffers by default that allows for language agnostic implementations.
+* Contract-first API development that uses Protocol Buffers by default, allowing for language agnostic implementations.
 * Tooling available for many languages to generate strongly typed servers and clients.
 * Supports client, server, and bi-directional streaming calls.
 * Reduced network usage with Protobuf binary serialization.
