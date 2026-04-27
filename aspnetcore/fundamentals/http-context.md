@@ -5,7 +5,7 @@ description: Learn about using HttpContext in ASP.NET Core apps. HttpContext isn
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 uid: fundamentals/httpcontext
 
 # customer intent: As an ASP.NET developer, I want to understand how to access HttpContext in my ASP.NET Core apps, so I can address related exceptions and thread issues.
@@ -105,8 +105,6 @@ public class MyCustomMiddleware
 }
 ```
 
-:::moniker range=">= aspnetcore-6.0"
-
 ## Access HttpContext from SignalR
 
 To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> on the <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A>:
@@ -126,8 +124,6 @@ public class MyHub : Hub
 ## Access HttpContext from gRPC methods
 
 To use `HttpContext` from [gRPC](xref:grpc/aspnetcore) methods, see [Resolve HttpContext in gRPC methods](xref:grpc/aspnetcore#resolve-httpcontext-in-grpc-methods).
-
-:::moniker-end
 
 ## Access HttpContext from custom components
 
