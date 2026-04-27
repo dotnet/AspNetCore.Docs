@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/19/2022
+ms.date: 04/27/2026
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -51,7 +51,7 @@ The following `Program.cs` calls [`AddHostedService`](/dotnet/api/microsoft.exte
 
 :::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Program.cs" highlight="8":::
 
-The following sample apps accompany this topic:
+The following sample apps accompany this article:
 
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
@@ -102,7 +102,7 @@ A Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) is included in th
 To publish for multiple RIDs:
 
 * Provide the RIDs in a semicolon-delimited list.
-* Use the property name [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
+* Use the property name [\<RuntimeIdentifiers>](/dotnet/core/project-sdk/msbuild-props#runtimeidentifiers) (plural).
 
 For more information, see [.NET RID Catalog](/dotnet/core/rid-catalog).
 
@@ -122,13 +122,13 @@ On Windows OS earlier than the Windows 10 October 2018 Update (version 1809/buil
 powershell -Command "New-LocalUser -Name {SERVICE NAME}"
 ```
 
-Provide a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements) when prompted.
+Provide a [strong password](/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements) when prompted.
 
 Unless the `-AccountExpires` parameter is supplied to the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet with an expiration <xref:System.DateTime>, the account doesn't expire.
 
-For more information, see [Microsoft.PowerShell.LocalAccounts](/powershell/module/microsoft.powershell.localaccounts/) and [Service User Accounts](/windows/desktop/services/service-user-accounts).
+For more information, see [Microsoft.PowerShell.LocalAccounts](/powershell/module/microsoft.powershell.localaccounts/) and [Service User Accounts](/windows/win32/services/service-user-accounts).
 
-An alternative approach to managing users when using Active Directory is to use Managed Service Accounts. For more information, see [Group Managed Service Accounts Overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
+An alternative approach to managing users when using Active Directory is to use Managed Service Accounts. For more information, see [Group Managed Service Accounts Overview](/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview).
 
 ## Log on as a service rights
 
@@ -280,7 +280,7 @@ Many startup errors don't produce useful information in the event logs. You can 
 
 ### Clear package caches
 
-A functioning app may fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app might fail immediately after upgrading either the .NET SDK on the development machine or changing package versions within the app. In some cases, incoherent packages might break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
 1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.
@@ -296,7 +296,7 @@ A *crash dump* is a snapshot of the system's memory and can help determine the c
 
 #### App crashes or encounters an exception
 
-Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/wer/windows-error-reporting):
+Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/win32/wer/windows-error-reporting):
 
 1. Create a folder to hold crash dump files at `c:\dumps`.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1) with the application executable name:
