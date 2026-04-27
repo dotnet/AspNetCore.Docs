@@ -1,12 +1,11 @@
 ---
-title: ASP.NET Core Support for Native AOT
+title: ASP.NET Core support for Native AOT
 author: tdykstra
 ms.author: tdykstra
 description: Review ASP.NET Core support for Native ahead-of-time (AOT) applications, including publishing and deployment.
-monikerRange: '>= aspnetcore-9.0'
 content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 uid: fundamentals/native-aot
 ai-usage: ai-assisted
 
@@ -17,7 +16,12 @@ ai-usage: ai-assisted
 
 By [Mitch Denny](https://github.com/mitchdenny)
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
+:::moniker range=">= aspnetcore-9.0"
 
 Publishing and deploying Native ahead-of-time (AOT) applications in ASP.NET Core offers several benefits:
 
@@ -289,7 +293,7 @@ All types transmitted as part of the HTTP body or returned from request delegate
 
 * The custom `JsonSerializerContext` is annotated with the [JsonSerializable](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute, which enables source generated JSON serializer code for the `ToDo` type.
 
-A parameter on the delegate that isn't bound to the body and **doesn't** need to be serializable. For example, a query string parameter that's a rich object type and implements `IParsable<T>`.
+A parameter on the delegate that isn't bound to the body **doesn't** need to be serializable. For example, a query string parameter can be a rich object type that implements `IParsable<T>`.
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Todo.cs" id="snippet_1":::
 
@@ -302,5 +306,7 @@ To report or review issues with Native AOT support in ASP.NET Core, see [GitHub 
 * [Publish an ASP.NET Core app with Native AOT](xref:fundamentals/native-aot-tutorial)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
 * [Optimize AOT deployments](/dotnet/core/deploying/native-aot/optimizing)
+
+:::moniker-end
 
 [!INCLUDE[](~/fundamentals/native-aot/includes/native-aot8.md)]
