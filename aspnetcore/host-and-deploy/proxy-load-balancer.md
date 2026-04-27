@@ -310,7 +310,7 @@ Alternatively, call `UseForwardedHeaders` before diagnostics:
 
 ## Nginx configuration
 
-To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host-and-deploy/linux-nginx#configure-nginx>. For more information, see [NGINX: Using the Forwarded header](https://docs.nginx.com/nginx-gateway-fabric/traffic-management/request-response-headers/).
+To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host-and-deploy/linux-nginx#configure-nginx>. 
 
 ## Apache configuration
 
