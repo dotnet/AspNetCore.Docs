@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor Hybrid security considerations
+ai-usage: ai-assisted
 author: guardrex
 description: Learn about security considerations when developing apps in Blazor Hybrid.
 monikerRange: '>= aspnetcore-6.0'
@@ -71,7 +72,7 @@ The <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control us
 Use one of the following approaches to keep the Web View current in deployed apps:
 
 * **On all platforms**: Check the Web View version and prompt the user to take any necessary steps to update it.
-* **Only on Windows**: Package a fixed-version Web View within the app, using it in place of the system's shared Web View. For more information, see the [Use and distribute a fixed version of the Windows `Webview2` Runtime](#use-and-distribute-a-fixed-version-of-the-windows-webview2-runtime) section.
+* **Only on Windows**: Package a fixed-version Web View within the app, using it in place of the system's shared Web View. For more information, see the [Use and distribute a fixed version of the Windows `WebView2` Runtime](#use-and-distribute-a-fixed-version-of-the-windows-webview2-runtime) section.
 
 ### Android
 
@@ -90,7 +91,7 @@ iOS and :::no-loc text="Mac Catalyst"::: both use [`WKWebView`](https://develope
 
 On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor Web Apps.
 
-The newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::* (see the [Use and distribute a fixed version of the Windows `Webview2` Runtime](#use-and-distribute-a-fixed-version-of-the-windows-webview2-runtime) section).
+The newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::* (see the [Use and distribute a fixed version of the Windows `WebView2` Runtime](#use-and-distribute-a-fixed-version-of-the-windows-webview2-runtime) section).
 
 For more information on checking the currently-installed `WebView2` version and the distribution modes, see the [`WebView2` distribution documentation](/microsoft-edge/webview2/concepts/distribution).
 
@@ -102,7 +103,7 @@ Download the **Fixed Version** installer packages from [Microsoft Edge WebView2:
 
 The following steps place the packages into `Runtimex86`, `Runtimex64`, and `RuntimeARM64` folders in the app's solution folder, maintaining the files outside of the project to keep the **Solution Explorer** view of the project focused on the app's developer assets.
 
-After downloading the runtime, use the [`expand` command](/windows-server/administration/windows-commands/expand) in a command shell to expand the `.cab` file from the system's `C:\Downloads` folder into the solution's root folder:
+After downloading a runtime, use the [`expand` command](/windows-server/administration/windows-commands/expand) in a command shell to expand the `.cab` file from the system's `C:\Users\{USERNAME}\Downloads` folder into the solution's root folder:
 
 ```cli
 expand {PATH TO THE PACKAGE} -F:* {PATH TO THE DESTINATION FOLDER}
@@ -113,10 +114,14 @@ Placeholders:
 * `{PATH TO THE PACKAGE}`: The path to the package.
 * `{PATH TO THE DESTINATION FOLDER}`: The path to the destination folder, which is the project's solution folder.
 
-Example using a solution folder path of `C:\src\MySolution\`:
+The following example uses:
+
+* The x86 runtime package `.cab` file (`Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x86.cab`).
+* A package path of `C:\Users\{USERNAME}\Downloads\`, where the `{USERNAME}` placeholder is the Windows user profile name.
+* A solution folder path of `C:\src\MySolution\`.
 
 ```cli
-expand "C:\Downloads\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x64.cab" -F:* C:\src\MySolution\
+expand "C:\Users\{USERNAME}\Downloads\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x86.cab" -F:* C:\src\MySolution\
 ```
 
 Rename the folder to `Runtimex86` with the [`Rename-Item` PowerShell cmdlet](/powershell/module/microsoft.powershell.management/rename-item):
@@ -125,13 +130,13 @@ Rename the folder to `Runtimex86` with the [`Rename-Item` PowerShell cmdlet](/po
 rename-item "C:\src\MySolution\Microsoft.WebView2.FixedVersionRuntime.114.0.1823.79.x64" "C:\src\MySolution\Runtimex86"
 ```
 
-Copy the contents of the `Runtimex86` folder to the `Runtimex64` and `RuntimeARM64` folders.
+Repeat the preceding steps for the x64 and ARM64 runtimes.
 
 Add the following code to `CreateMauiApp` method in `MauiProgram.cs`:
 
 ```csharp
 #if WINDOWS
-    string relativePath = @"\Runtime";
+    string relativePath = @"Runtime";
     string basePath = AppContext.BaseDirectory;
     string wvrPath = Path.Combine(basePath, relativePath);
     Environment.SetEnvironmentVariable("WEBVIEW2_BROWSER_EXECUTABLE_FOLDER", wvrPath);
