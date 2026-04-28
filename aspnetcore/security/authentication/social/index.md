@@ -1,19 +1,20 @@
 ---
 title: Using external login providers with Identity in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
-description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, Twitter, Google, and Microsoft.
+description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, X (formerly Twitter), Google, and Microsoft.
 ms.author: wpickett
 ms.custom: mvc, sfi-image-nochange
-ms.date: 07/09/2025
+ms.date: 04/21/2026
 uid: security/authentication/social/index
 ---
 # External provider authentication in ASP.NET Core Identity
 
-By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://x.com/RickAndMSFT)
 
 This article explains how to build an ASP.NET Core app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 
-[Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections and use the starter project created in this article. Other providers are available in third-party packages such as [OpenIddict](https://documentation.openiddict.com/integrations/web-providers), [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
+[Facebook](xref:security/authentication/facebook-logins), [X (formerly Twitter)](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections and use the starter project created in this article. Other providers are available in third-party packages such as [OpenIddict](https://documentation.openiddict.com/integrations/web-providers), [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party.
 
@@ -21,8 +22,9 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select the **ASP.NET Core Web App** template. Select **OK**.
-* In the **Authentication type** input,  select  **Individual Accounts**.
+* Select the **ASP.NET Core Web App** template and select **Next**.
+* Name the project and select **Next**.
+* In the **Authentication type** dropdown, select **Individual Accounts** and select **Create**.
 
 # [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
 
@@ -44,7 +46,7 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
   * The `dotnet new` command uses the `-o|--output` option to create a new Razor Pages project in the `WebApp1` folder.
   * `-au Individual` creates the code for Individual authentication.
-  * `-uld` uses LocalDB, a lightweight version of SQL Server Express for Windows. Omit `-uld` to use SQLite.
+  * `-uld` uses LocalDB, a lightweight version of SQL Server Express for Windows. Omit `-uld` to use SQLite, which is the default across all platforms.
 
   For more information, see [`dotnet new <TEMPLATE>`](/dotnet/core/tools/dotnet-new).
 
@@ -72,7 +74,7 @@ For guidance on storing the tokens assigned by each login provider, see <xref:se
 Use the following articles to configure login providers and the app:
 
 * [Facebook](xref:security/authentication/facebook-logins) instructions
-* [Twitter](xref:security/authentication/twitter-logins) instructions
+* [X (formerly Twitter)](xref:security/authentication/twitter-logins) instructions
 * [Google](xref:security/authentication/google-logins) instructions
 * [Microsoft](xref:security/authentication/microsoft-logins) instructions
 * [Other provider](xref:security/authentication/otherlogins) instructions
@@ -97,7 +99,7 @@ builder.Services.AddAuthentication()
     })
     .AddTwitter(options =>
     {
-        // Twitter configuration options
+        // X (formerly Twitter) configuration options
     });
 ```
 
@@ -110,13 +112,7 @@ When you register with an external login provider, you don't have a password reg
 To create a password and sign in using your email that you set during the sign-in process with external providers:
 
 * Select the **Hello &lt;email alias&gt;** link at the top-right corner to navigate to the **Manage** view:
-
-![Web application Manage view](index/_static/pass1a.png)
-
 * Select **Create**:
-
-![Set your password page](index/_static/pass2a.png)
-
 * Set a valid password, and you can use this credential to sign in with your email address.
 
 ## Additional information
@@ -124,3 +120,4 @@ To create a password and sign in using your email that you set during the sign-i
 * [Sign in with Apple Example Integration](https://github.com/martincostello/SignInWithAppleSample)
 * [How to customize the login buttons (`dotnet/AspNetCore.Docs` #10563)](https://github.com/dotnet/AspNetCore.Docs/issues/10563)
 * [Persist additional data about the user and their access and refresh tokens](xref:security/authentication/social/additional-claims)
+* [Passkeys (FIDO2/WebAuthn) in ASP.NET Core Identity](xref:security/authentication/passkeys/index): A passwordless alternative to social logins introduced in .NET 10.
