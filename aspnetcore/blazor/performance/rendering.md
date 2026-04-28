@@ -333,13 +333,13 @@ In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Compo
 
 :::moniker range=">= aspnetcore-8.0"
 
-As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, this can yield a small rendering improvement, typically under ~10% even at 10,000+ component instances when targeting .NET 10. The rendering performance benefit is a reduction in the improvement seen with earlier .NET releases before the optimization of setting reflection-based parameters. Only consider this approach in the extreme scenarios listed earlier in this section and benchmark first&mdash;the savings are usually dwarfed by other costs, for example, the SignalR [diff (DOM edits)](xref:blazor/components/lifecycle#lifecycle-events) transport for Interactive Server.
+As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can yield a small rendering improvement, typically under ~10% even at 10,000+ component instances when targeting .NET 10. The rendering performance benefit is a reduction in the improvement seen with earlier .NET releases before the optimization of setting reflection-based parameters. Only consider this approach in the extreme scenarios listed earlier in this section and benchmark first&mdash;the savings are usually dwarfed by other costs, for example, the SignalR [diff (DOM edits)](xref:blazor/components/lifecycle#lifecycle-events) transport for Interactive Server.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, it can improve rendering performance by 20-25%, but you should only consider this approach in the extreme scenarios listed earlier in this section.
+As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can improve rendering performance by 20-25%, but you should only consider this approach in the extreme scenarios listed earlier in this section.
 
 :::moniker-end
 
