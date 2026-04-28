@@ -333,7 +333,7 @@ In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Compo
 
 :::moniker range=">= aspnetcore-8.0"
 
-As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can yield a small rendering improvement, typically under ~10% even at 10,000+ component instances when targeting .NET 10. The potential gains are smaller in .NET 10 or later because reflection-based parameter assignment is optimized in later releases. Only consider this approach in the extreme scenarios listed earlier in this section and benchmark first&mdash;the savings are usually dwarfed by other costs, for example, the SignalR [diff (DOM edits)](xref:blazor/components/lifecycle#lifecycle-events) transport for Interactive Server.
+As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can yield a small rendering improvement, typically under ~10% even at 10,000+ component instances when targeting .NET 10. The potential gains are smaller in later releases because reflection-based parameter assignment is optimized. Only consider this approach in the extreme scenarios listed earlier in this section and benchmark first&mdash;the savings are usually dwarfed by other costs, for example, the SignalR [diff (DOM edits)](xref:blazor/components/lifecycle#lifecycle-events) transport for Interactive Server.
 
 :::moniker-end
 
