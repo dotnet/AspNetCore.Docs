@@ -13,7 +13,7 @@ uid: security/authentication/certauth
 
 :::moniker range=">= aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal` value. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal` value. 
 
 You **must** [configure your server](#configure-your-server-to-require-certificates) for certificate authentication with IIS, Kestrel, Azure Web Apps, or your preferred solution.
 
@@ -63,7 +63,7 @@ Default value: [X509ChainTrustMode.System](xref:System.Security.Cryptography.X50
 
 The certificate presented by the client must chain to a trusted root certificate. This check controls which trust store contains these root certificates.
 
-By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate which doesn't appear in the system trust store, this option can be set to [X509ChainTrustMode.CustomRootTrust](xref:System.Security.Cryptography.X509Certificates.X509ChainTrustMode.CustomRootTrust) to make the handler use the `CustomTrustStore` property.
+By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate that doesn't appear in the system trust store, you can set the option to [X509ChainTrustMode.CustomRootTrust](xref:System.Security.Cryptography.X509Certificates.X509ChainTrustMode.CustomRootTrust) so the handler uses the `CustomTrustStore` property.
 
 ### CustomTrustStore
 
@@ -71,7 +71,7 @@ Default value: Empty <xref:System.Security.Cryptography.X509Certificates.X509Cer
 
 If the handler's <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions.ChainTrustValidationMode> property is set to `X509ChainTrustMode.CustomRootTrust`, this <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection> object contains every certificate used to validate the client certificate up to a trusted root, including the trusted root.
 
-When the client presents a certificate which is part of a multi-level certificate chain, `CustomTrustStore` must contain every issuing certificate in the chain.
+When the client presents a certificate that's part of a multi-level certificate chain, the `CustomTrustStore` property must contain every issuing certificate in the chain.
 
 ### ValidateCertificateUse
 
@@ -83,7 +83,7 @@ This check validates that the certificate presented by the client has the Client
 
 Default value: `true`
 
-This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented hasn't expired during its current session.
+This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented isn't expired during its current session.
 
 ### RevocationFlag
 
@@ -157,7 +157,7 @@ For more information on how to configure the certificate forwarding middleware, 
 
 ### Certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. Forwarding configuration is set up by the Certificate Forwarding Middleware.
+No forwarding configuration is required for Azure. The Certificate Forwarding Middleware sets up the configuration.
 
 > [!NOTE]
 > Certificate Forwarding Middleware is required for this scenario.
@@ -175,7 +175,7 @@ In custom web proxies, the certificate is passed as a custom request header, for
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwarding":::
 
-If the app is reverse proxied by NGINX with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert`, or the app is deployed on Kubernetes by using NGINX Ingress, the client certificate is passed to the app in [URL-encoded form](https://developer.mozilla.org/docs/Glossary/percent-encoding). To use the certificate, decode it as follows:
+If NGINX is used with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` to reverse proxy the app, or the app is deployed on Kubernetes by using NGINX Ingress, the client certificate is passed to the app in [URL-encoded form](https://developer.mozilla.org/docs/Glossary/percent-encoding). To use the certificate, decode it as follows:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwardingUrlEncoded":::
 
@@ -378,7 +378,7 @@ The implementation and configuration of this feature varies by server and framew
 
 IIS manages the client certificate negotiation on your behalf. A subsection of the application can enable the `SslRequireCert` option to negotiate the client certificate for those requests. For more information, see [Configuration in the IIS documentation](/iis/configuration/system.webserver/security/access#configuration).
 
-IIS automatically buffers any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48KB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime#attributes) property.
+IIS automatically buffers any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48 KB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime#attributes) property.
 
 #### HttpSys
 
@@ -410,7 +410,7 @@ overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestre
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, which occurs long before it ever gets to ASP.NET Core. More accurately, this authentication handler validates the certificate and gives you an event where you can resolve the certificate to a `ClaimsPrincipal` value. 
 
 [Configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
