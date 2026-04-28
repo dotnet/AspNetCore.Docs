@@ -28,6 +28,8 @@ Filters are helpful in many scenarios:
 * Log information about the request and response
 * Validate a request targets a supported API version
 
+This article describes how to use filters in your Minimal API apps, such as for validating request data sent to your app and logging the response.
+
 ## Work with filters
 
 Filters are registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [EndpointFilterInvocationContext](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/EndpointFilterInvocationContext.cs) and returns a [EndpointFilterDelegate](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/EndpointFilterDelegate.cs). The `EndpointFilterInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list. The list specifies the arguments passed to the handler in the order in which they appear in the declaration of the handler.

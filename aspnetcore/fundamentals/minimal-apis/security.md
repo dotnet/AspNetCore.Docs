@@ -55,7 +55,7 @@ By default, the [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapp
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
 
-In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in Minimal API apps](./middleware.mde).
+In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in Minimal API apps](./middleware.md).
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
 

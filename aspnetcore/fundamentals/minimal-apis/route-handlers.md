@@ -20,6 +20,8 @@ A configured `WebApplication` supports `Map{Verb}` and the <xref:Microsoft.AspNe
 
 The <xref:System.Delegate> arguments passed to these methods are called _route handlers_.
 
+This article describes how to use route handlers, including examples, parameters, route groups, and route constraints.
+
 ## Work with route handlers
 
 [!INCLUDE [route handling](includes/route-handlers.md)]

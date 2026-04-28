@@ -14,6 +14,10 @@ uid: fundamentals/minimal-apis/middleware
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article describes how to use middleware in Minimal API applications. Take advantage of automatic middleware in your Minimal API apps, or define user-configured middleware and terminal middleware.
+
+## Available middleware
+
 [!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/middleware7.md)]
 [!INCLUDE [webapplication8](~/fundamentals/minimal-apis/includes/middleware8.md)]
 
