@@ -17,6 +17,8 @@ uid: security/authentication/certauth
 
 You **must** [configure your server](#configure-your-server-to-require-certificates) for certificate authentication with IIS, Kestrel, Azure Web Apps, or your preferred solution.
 
+This article describes how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys, and provides examples for calling various methods and working with properties.
+
 ## Review proxy and load balancer scenarios
 
 Certificate authentication is a stateful scenario primarily used where a proxy or load balancer doesn't handle traffic between clients and servers. If a proxy or load balancer is used, certificate authentication only works if the proxy or load balancer:
@@ -136,7 +138,7 @@ In the _Program.cs_ file, configure Kestrel as follows:
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
 
 > [!NOTE]
-> Endpoints created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> don't have the defaults applied.
+> When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> method, the endpoint doesn't have the defaults applied.
 
 ### IIS
 
@@ -187,7 +189,7 @@ A separate class can be used to implement validation logic. Because the same sel
 
 #### Implement an HttpClient with a certificate and IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>. This scenario is configured in the _Program.cs_ file:
+In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This scenario is configured in the _Program.cs_ file:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
@@ -343,7 +345,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 
    - [Kestrel web server](xref:fundamentals/servers/kestrel)
       - [Configure HTTPS in code (listenOptions.UseHttps)](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
-      - <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+      - <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property
 
    - IIS
       - [Create the IIS site](../../tutorials/publish-to-iis.md#create-the-iis-site)
@@ -382,12 +384,12 @@ IIS automatically buffers any request body data up to a configured size limit be
 
 HttpSys has two settings that control the client certificate negotiation and both should be set. The first is in the _netsh.exe_ file under `http add sslcert clientcertnegotiation=enable/disable`. This flag indicates whether to negotiate the client certificate at the start of a connection. Set the value to `disable` for optional client certificates. For more information, see the `http add sslcert` parameter usage in the [netsh docs](/windows-server/administration/windows-commands/netsh-http#parameters).
 
-The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
+The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod> method. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
 
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, the request might become unresponsive.
 
-An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The behavior of the `ClientCertificate` property changed in .NET 6. For more information, see [GitHub issue #466](https://github.com/aspnet/Announcements/issues/466).
@@ -396,13 +398,13 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property.
 
-.NET 6 and later provides the `DelayCertificate` field for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode>. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+.NET 6 and later provides the `DelayCertificate` field for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> method to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, `GetClientCertificateAsync` might throw the exception, _InvalidOperationException: Client stream needs to be drained before renegotiation_.
 
 If you programmatically configure the TLS settings per SNI host name, call the [UseHttps](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
-overload (.NET 6 or later) that takes the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions>. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A?displayProperty=nameWithType>. For more information, see [ListenOptionsHttpsExtensions.UseHttps method](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps).
+overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
 
 :::moniker-end
 
