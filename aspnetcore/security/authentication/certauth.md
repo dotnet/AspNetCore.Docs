@@ -105,7 +105,7 @@ Revocation checks are performed only when the certificate is chained to a root c
 
 This option isn't possible. The certificate exchange is completed at the start of the HTTPS conversation. The operation is done by the server before the first request is received on that connection, so it isn't possible to scope based on any request fields.
 
-## Use handler events
+## Process handler events
 
 The handler has two events:
 
@@ -352,7 +352,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
    - HTTP.sys
       - [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
-.NET 5 and later offers more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+   .NET 5 and later offers more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 - For requests to the web app that require a client certificate and don't have one, redirect to the same page by using the client certificate protected subdomain.
 
