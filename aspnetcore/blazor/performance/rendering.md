@@ -6,7 +6,7 @@ description: Tips for improving the rendering performance of ASP.NET Core Blazor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 04/28/2026
 uid: blazor/performance/rendering
 ---
 # ASP.NET Core Blazor rendering performance best practices
