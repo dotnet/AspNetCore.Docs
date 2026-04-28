@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/28/2025
+ms.date: 04/28/2026
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -153,7 +153,10 @@ To implement remote validation:
 
    :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Models/User.cs" id="snippet_Email":::
 
-[Server side validation](#custom-validation) also needs to be implemented for clients that have disabled JavaScript.
+Remote validation:
+
+* Doesn't perform server-side validation after the form is submitted.
+* Doesn't perform client-side checks if the client has disabled JavaScript. If the client-side validation check is required for form processing on the server, always implement separate server-side validation.
 
 ### Additional fields
 
@@ -429,6 +432,7 @@ The preceding approach won't prevent client-side validation of ASP.NET Core Iden
 
 * <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName>
 * [Model Binding](xref:mvc/models/model-binding)
+* <xref:blazor/forms/index>
 
 :::moniker-end
 
