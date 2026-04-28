@@ -55,7 +55,7 @@ The `CertificateAuthenticationOptions` handler has some built-in validations tha
 
 Default value: `CertificateTypes.Chained`
 
-This check validates that only the appropriate certificate type is allowed. If the app self-signed the certificates, this option needs to be set to `CertificateTypes.All` or `CertificateTypes.SelfSigned`.
+This check validates that only the appropriate certificate type is allowed. If the app is using self-signed certificates, this option needs to be set to `CertificateTypes.All` or `CertificateTypes.SelfSigned`.
 
 ### ChainTrustValidationMode
 
@@ -83,7 +83,7 @@ This check validates that the certificate presented by the client has the Client
 
 Default value: `true`
 
-This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented isn't expired during its current session.
+This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented hasn't expired during its current session.
 
 ### RevocationFlag
 
@@ -105,7 +105,7 @@ Revocation checks are performed only when the certificate is chained to a root c
 
 ### FAQ: Can I configure my app to require a certificate only on certain paths?
 
-This option isn't possible. The certificate exchange is completed at the start of the HTTPS conversation. The operation is done by the server before the first request is received on that connection, so it isn't possible to scope based on any request fields.
+This approach isn't possible. The certificate exchange is completed at the start of the HTTPS conversation. The operation is done by the server before the first request is received on that connection, so it isn't possible to scope based on any request fields.
 
 ## Process handler events
 
