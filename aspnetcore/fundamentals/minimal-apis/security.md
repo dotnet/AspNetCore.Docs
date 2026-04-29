@@ -20,7 +20,7 @@ Minimal APIs support all authentication and authorization options available in A
 
 This article describes the support for authentication and authorization in Minimal API applications, and how to configure and test the functionality.
 
-## Authentication and authorization concepts
+## Review authentication and authorization concepts
 
 Authentication is the process of determining a user's identity while authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core.
 
@@ -43,7 +43,7 @@ In ASP.NET Core, both strategies are captured into an authorization requirement.
 
 ## Enable authentication in minimal apps
 
-To enable authentication, call [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) to register the required authentication services on the app's service provider.
+To enable authentication, call the [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) method to register the required authentication services on the app's service provider.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
 
@@ -112,7 +112,7 @@ Configuration of the authorization requirements on a resource is a two-step proc
 1. Define the authorization requirements in a policy globally.
 1. Apply individual policies to resources.
 
-In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked, which:
+In the following code, the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> method is invoked, which:
 
 * Adds authorization-related services to the DI container.
 * Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> object that can be used to directly register authorization policies.
