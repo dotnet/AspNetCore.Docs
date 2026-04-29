@@ -7,7 +7,7 @@ ms.date: 04/28/2026
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters
 
-# customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and reponse data for my apps.
+# customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
 ---
 
 # Filters in Minimal API apps

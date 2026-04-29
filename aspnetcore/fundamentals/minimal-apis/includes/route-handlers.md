@@ -44,7 +44,7 @@ The preceding code displays the message _`The link to the hello route is /hello`
 
 Endpoint names must satisfy the following criteria:
 
-- Endpoint names are case sensitive.
+* Endpoint names are case sensitive.
 * Endpoint names must be globally unique.
 * Endpoint names are used as the OpenAPI operation identifier (ID) when OpenAPI support is enabled. For more information, see [Generate OpenAPI documents](xref:fundamentals/openapi/aspnetcore-openapi).
 
@@ -58,7 +58,7 @@ The preceding code returns the message _The user id is 3 and book id is 7_ from 
 
 The route handler can declare the parameters to capture. When a request is made to a route with parameters declared to capture, the parameters are parsed and passed to the handler. This approach makes it easy to capture the values in a type-safe way. In the preceding code, the `userId` and `bookId` parameters are both type `int`.
 
-In the preceding code, if either route value can't be converted to an `int`, the command throws an exception. The GET request `/users/hello/books/3` throws the following exception:
+In the preceding code, if either route value can't be converted to an `int`, an exception is thrown. The GET request `/users/hello/books/3` throws the following exception:
 
 ```output
 BadHttpRequestException: Failed to bind parameter "int userId" from "hello".

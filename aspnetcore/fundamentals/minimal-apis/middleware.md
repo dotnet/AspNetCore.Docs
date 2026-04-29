@@ -7,7 +7,7 @@ ms.date: 04/28/2026
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/middleware
 
-# customer intent: As an ASP.NET developer, I want to use middleware in ASP.NET Code, so I can use the functionality to handle requests and responses in my Minimal API apps.
+# customer intent: As an ASP.NET developer, I want to use middleware in ASP.NET Core, so I can use the functionality to handle requests and responses in my Minimal API apps.
 ---
 
 # Middleware in Minimal API apps

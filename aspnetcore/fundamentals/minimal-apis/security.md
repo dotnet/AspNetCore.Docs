@@ -20,7 +20,7 @@ Minimal APIs support all authentication and authorization options available in A
 
 This article describes the support for authentication and authorization in Minimal API applications, and how to configure and test the functionality.
 
-## Compare authentication and authorization 
+## Authentication and authorization concepts
 
 Authentication is the process of determining a user's identity while authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core.
 
@@ -39,11 +39,11 @@ In the authorization layer, there are two strategies for determining user access
 
 - **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information on claim-based authorization, see [claim-based authorization documentation](../../security/authorization/claims.md).
 
-In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service exercises authorization handlers to determine whether or not a particular user meets the authorization requirements to a resource. 
+In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service uses authorization handlers to determine whether or not a particular user meets the authorization requirements for a resource. 
 
 ## Enable authentication in minimal apps
 
-To enable authentication, call the [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) to register the required authentication services on the app's service provider.
+To enable authentication, call [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) to register the required authentication services on the app's service provider.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
 
@@ -64,7 +64,7 @@ In some cases, such as controlling middleware order, it's necessary to explicitl
 Authentication strategies typically support various configurations that are loaded via options. Minimal apps support loading options from configuration for the following authentication strategies:
 
 * [JWT bearer-based authentication](https://jwt.io/introduction#what-is-json-web-token)
-* [OpenID Connect, connection-based authentication](https://openid.net/developers/how-connect-works/)
+* [OpenID Connect-based authentication](https://openid.net/developers/how-connect-works/)
 
 The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in the [configuration](../configuration/index.md). In the following sample, two different schemes, `Bearer` and `LocalAuthIssuer`, are defined with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy.
 
@@ -112,7 +112,7 @@ Configuration of the authorization requirements on a resource is a two-step proc
 1. Define the authorization requirements in a policy globally.
 1. Apply individual policies to resources.
 
-In the following code, the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked which:
+In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked, which:
 
 * Adds authorization-related services to the DI container.
 * Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> object that can be used to directly register authorization policies.
