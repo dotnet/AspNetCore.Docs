@@ -5,6 +5,7 @@ description: Learn how to create server logs in the W3C standard format.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.date: 08/15/2022
+ms.reviewer: wigodbe
 uid: fundamentals/w3c-logger/index
 ---
 
