@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Blazor: Changes to routing logic in Blazor apps"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled Blazor: Changes to routing logic in Blazor apps"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 12/14/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/445
 ---

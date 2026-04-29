@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Middleware: Exception Handler Middleware throws original exception if handler not found"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled Middleware: Exception Handler Middleware throws original exception if handler not found"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/434
 ---

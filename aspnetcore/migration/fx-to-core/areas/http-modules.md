@@ -2,7 +2,7 @@
 title: Migrate HTTP modules to ASP.NET Core middleware
 description: Migrate HTTP modules to ASP.NET Core middleware
 author: twsouthwick
-ms.author: tasou
+ms.author: wpickett
 ms.date: 07/17/2025
 uid: migration/fx-to-core/areas/http-modules
 ---
