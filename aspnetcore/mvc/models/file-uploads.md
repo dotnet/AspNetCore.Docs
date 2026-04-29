@@ -523,7 +523,7 @@ if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
 
 ### File signature validation
 
-The first few bytes at the start of a file determines a file's signature. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
+The first few bytes at the start of a file determine a file's signature. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
 
 ```csharp
 private static readonly Dictionary<string, List<byte[]>> _fileSignature = 
