@@ -13,7 +13,7 @@ uid: security/authentication/certauth
 
 :::moniker range=">= aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal` value. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
 
 You **must** [configure your server](#configure-your-server-to-require-certificates) for certificate authentication with IIS, Kestrel, Azure Web Apps, or your preferred solution.
 
@@ -384,7 +384,7 @@ IIS automatically buffers any request body data up to a configured size limit be
 
 HttpSys has two settings that control the client certificate negotiation and both should be set. The first is in the _netsh.exe_ file under `http add sslcert clientcertnegotiation=enable/disable`. This flag indicates whether to negotiate the client certificate at the start of a connection. Set the value to `disable` for optional client certificates. For more information, see the `http add sslcert` parameter usage in the [netsh docs](/windows-server/administration/windows-commands/netsh-http#parameters).
 
-The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod> method. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
+The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod> property. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
 
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, the request might become unresponsive.
@@ -398,7 +398,7 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property.
 
-.NET 6 and later provides the `DelayCertificate` field for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> method to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+.NET 6 and later provides the `DelayCertificate` option for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, `GetClientCertificateAsync` might throw the exception, _InvalidOperationException: Client stream needs to be drained before renegotiation_.
@@ -1727,7 +1727,7 @@ For .NET 5 or earlier Kestrel does not support renegotiating after the start of 
 
 :::moniker-end
 
-Leave questions, comments, and other feedback on optional client certificates in the discussion thread for [GitHub issue #18720](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
+Leave questions, comments, and other feedback on optional client certificates in the discussion thread for [GitHub issue #18720](https://github.com/dotnet/AspNetCore.Docs/issues/18720).
 
 ## Related content
 
