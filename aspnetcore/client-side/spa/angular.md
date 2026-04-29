@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 07/09/2025
+ms.reviewer: stevesa
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core

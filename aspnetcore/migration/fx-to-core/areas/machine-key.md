@@ -6,6 +6,7 @@ description: Migrate ASP.NET machineKey-based cryptography to ASP.NET Core data 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.date: 12/10/2025
+ms.reviewer: tasou
 ms.topic: concept-article
 uid: migration/fx-to-core/areas/machine-key
 ---

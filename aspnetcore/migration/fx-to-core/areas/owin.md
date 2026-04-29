@@ -4,6 +4,7 @@ description: How to use OWIN middleware in ASP.NET Core applications during migr
 ai-usage: ai-assisted
 author: twsouthwick
 ms.author: wpickett
+ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/10/2025
 ms.topic: concept-article

@@ -4,6 +4,7 @@ description: Migrate HTTP handlers to ASP.NET Core middleware
 author: twsouthwick
 ms.author: wpickett
 ms.date: 07/17/2025
+ms.reviewer: tasou
 uid: migration/fx-to-core/areas/http-handlers
 ---
 # Migrate HTTP handlers to ASP.NET Core middleware
