@@ -88,7 +88,6 @@ Both API projects refer to the following class:
 * Model binding extensibility (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>)
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
 * [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
-* [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/) support
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
 Most of these features can be implemented in Minimal APIs with custom solutions, but controllers provide them out of the box.
@@ -151,7 +150,6 @@ Both API projects refer to the following class:
 * Form binding support, including <xref:Microsoft.AspNetCore.Http.IFormFile>
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
 * [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
-* [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/) support
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
 ## See also
