@@ -1,9 +1,10 @@
 ---
 title: JsonPatch in ASP.NET Core web API
 author: wadepickett
-description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
+description: "JSON Patch in ASP.NET Core web API: Learn how to handle JSON Patch requests, apply partial updates, and improve API efficiency with System.Text.Json."
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
+ms.reviewer: wpickett
 ms.custom: mvc
 ms.date: 04/30/2026
 uid: web-api/jsonpatch
@@ -67,9 +68,17 @@ In an API controller, an action method for JSON Patch:
 * Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
 * Calls <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
-### Example Controller Action method:
+## Minimal API PATCH endpoint applying JSON Patch
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/Controllers/CustomerController.cs" id="snippet_PatchAction" highlight="1,2,14-19":::
+In a Minimal API, a PATCH endpoint for JSON Patch:
+
+* Uses `MapPatch` to define the route.
+* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> parameter.
+* Calls <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
+
+### Example Minimal API PATCH endpoint:
+
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/CustomerApi.cs":::
 
 This code from the sample app works with the following `Customer` and `Order` models:
 
@@ -77,29 +86,33 @@ This code from the sample app works with the following `Customer` and `Order` mo
 
 :::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/Models/Order.cs":::
 
-The sample action method's key steps:
+The sample PATCH endpoint's key steps:
 
 * **Retrieve the Customer**:
-  * The method retrieves a `Customer` object from the database `AppDb` using the provided id.
-  * If no `Customer` object is found, it returns a `404 Not Found` response.
+  * The endpoint retrieves a `Customer` object from the database `AppDb` using the provided `id`.
+  * If no `Customer` object is found, it returns a `404 Not Found` response via `TypedResults.NotFound()`.
 * **Apply JSON Patch**:
-  * The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method applies the JSON Patch operations from the patchDoc to the retrieved `Customer` object.
-  * If errors occur during the patch application, such as invalid operations or conflicts, they are captured by an error handling delegate. This delegate adds error messages to the `ModelState` using the type name of the affected object and the error message.
-* **Validate ModelState**:
-  * After applying the patch, the method checks the `ModelState` for errors.
-  * If the `ModelState` is invalid, such as due to patch errors, it returns a `400 Bad Request` response with the validation errors.
-* **Return the Updated Customer**:
-  * If the patch is successfully applied and the `ModelState` is valid, the method returns the updated `Customer` object in the response.
+  * The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method applies the JSON Patch operations from the `patchDoc` to the retrieved `Customer` object.
+  * If errors occur during the patch application, such as invalid operations or conflicts, they are captured by an error handling delegate. This delegate collects error messages into a dictionary keyed by the type name of the affected object.
+* **Return validation errors**:
+  * If any errors were captured during the patch application, the endpoint returns a `ValidationProblem` response containing the error details via `TypedResults.ValidationProblem(errors)`.
+* **Save and return the Updated Customer**:
+  * If the patch is successfully applied with no errors, the changes are saved to the database and the endpoint returns the updated `Customer` object via `TypedResults.Ok(customer)`.
 
 ### Example error response:
 
-The following example shows the body of a `400 Bad Request` response for a JSON Patch operation when the specified path is invalid:
+The following example shows the body of a validation problem response for a JSON Patch operation when the specified path is invalid:
 
 ```json
 {
-  "Customer": [
-    "The target location specified by path segment 'foobar' was not found."
-  ]
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "Customer": [
+      "The target location specified by path segment 'foobar' was not found."
+    ]
+  }
 }
 ```
 
