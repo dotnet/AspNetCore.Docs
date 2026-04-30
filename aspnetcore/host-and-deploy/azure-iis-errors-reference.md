@@ -4,7 +4,7 @@ author: tdykstra
 description: Provides troubleshooting advice for the most common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 7/23/2024
+ms.date: 04/21/2026
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 
@@ -14,25 +14,25 @@ uid: host-and-deploy/azure-iis-errors-reference
 
 :::moniker range=">= aspnetcore-6.0"
 
-This topic describes the most common errors and provides troubleshooting advice when hosting ASP.NET Core apps on Azure Apps Service and IIS.
+This article describes the most common errors and provides troubleshooting advice when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 
 See <xref:test/troubleshoot-azure-iis> information on common app startup errors and instructions on how to diagnose errors.
 
 Collect the following information:
 
 * Browser behavior such as status code and error message.
-* Application Event Log entries
+* Application Event Log entries.
   * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. Select **Start** on the **Windows** menu, type *Event Viewer*, and press **Enter**.
     1. After the **Event Viewer** opens, expand **Windows Logs** > **Application** in the sidebar.
-* ASP.NET Core Module stdout and debug log entries
+* ASP.NET Core Module stdout and debug log entries.
   * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
-  * IIS: Follow the instructions in the [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) and [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) sections of the ASP.NET Core Module topic.
+  * IIS: Follow the instructions in the [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) and [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) sections of the ASP.NET Core Module article.
 
 Compare error information to the following common errors. If a match is found, follow the troubleshooting advice.
 
-The list of errors in this topic isn't exhaustive. If you encounter an error not listed here, open a new issue using the **Content feedback** button at the bottom of this topic with detailed instructions on how to reproduce the error.
+The list of errors in this article isn't exhaustive. If you encounter an error not listed here, open a new issue using the **Content feedback** button at the bottom of this article with detailed instructions on how to reproduce the error.
 
 [!INCLUDE[Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
@@ -293,7 +293,7 @@ Troubleshooting:
 
 The process failed to start, most likely due to an app configuration or programming issue.
 
-For more information, see the following topics:
+For more information, see the following articles:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>
