@@ -5,7 +5,7 @@ description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/03/2025
+ms.date: 04/30/2026
 uid: web-api/jsonpatch
 ---
 # JSON Patch support in ASP.NET Core web API
