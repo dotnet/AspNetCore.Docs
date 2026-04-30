@@ -682,24 +682,24 @@ Connection string prefix | Provider
 `SQLAZURECONNSTR_` | [Azure SQL Database](https://azure.microsoft.com/services/sql-database/)
 `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/)
 
-When an environment variable is discovered and loaded into configuration with any of the prefixes shown in the preceding table:
+When an environment variable is discovered and loaded into configuration with any of the recognized prefixes:
 
 * The configuration key is created by removing the environment variable prefix and adding a configuration key section (`ConnectionStrings`).
-* A new configuration key-value pair is created that represents the database connection provider, when a provider name is associated with the prefix.
+* A new configuration key-value pair is created that represents the database connection provider when a provider name is associated with the prefix.
 
 Environment variable key | Converted configuration key | Provider configuration entry
  --- | --- | ---
-`CUSTOMCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
-`MYSQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient`
-`SQLAZURECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
-`SQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
-`POSTGRESQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `Npgsql`
 `APIHUBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`CUSTOMCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
 `DOCDBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
 `EVENTHUBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`MYSQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient`
 `NOTIFICATIONHUBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`POSTGRESQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `Npgsql`
 `REDISCACHECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
 `SERVICEBUSCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`SQLAZURECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
+`SQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
 
 :::moniker-end
 
