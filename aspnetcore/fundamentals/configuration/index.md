@@ -6,7 +6,7 @@ description: Learn how to use the Configuration API to configure app settings in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/11/2026
+ms.date: 04/28/2026
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -641,7 +641,9 @@ For [Azure App Service](https://azure.microsoft.com/services/app-service/) app s
 
 ### Connection string prefixes
 
-The Configuration API has special processing rules for four connection string environment variables. These connection strings are involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the following table are loaded into the app with the [default configuration](#default-app-configuration-sources) or when no prefix is supplied to <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A>.
+The Configuration API has special processing rules for connection string environment variables. These connection strings are involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the following table are loaded into the app with the [default configuration](#default-app-configuration-sources) or when no prefix is supplied to <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A>.
+
+:::moniker range="< aspnetcore-10.0"
 
 Connection string prefix | Provider
 --- | ---
@@ -661,6 +663,45 @@ Environment variable key | Converted configuration key | Provider configuration 
 `MYSQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient`
 `SQLAZURECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
 `SQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+Connection string prefix | Provider
+--- | ---
+`APIHUBCONNSTR_` | Azure API hubs
+`CUSTOMCONNSTR_` | Custom provider
+`DOCDBCONNSTR_` | [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)
+`EVENTHUBCONNSTR_` | [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/)
+`MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/)
+`NOTIFICATIONHUBCONNSTR_` | [Azure Notification Hubs](https://azure.microsoft.com/services/notification-hubs/)
+`POSTGRESQLCONNSTR_` | [PostgreSQL](https://www.postgresql.org/)
+`REDISCACHECONNSTR_` | [Azure Cache for Redis](https://azure.microsoft.com/services/cache/)
+`SERVICEBUSCONNSTR_` | [Azure Service Bus](https://azure.microsoft.com/services/service-bus/)
+`SQLAZURECONNSTR_` | [Azure SQL Database](https://azure.microsoft.com/services/sql-database/)
+`SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/)
+
+When an environment variable is discovered and loaded into configuration with any of the recognized prefixes:
+
+* The configuration key is created by removing the environment variable prefix and adding a configuration key section (`ConnectionStrings`).
+* A new configuration key-value pair is created that represents the database connection provider when a provider name is associated with the prefix.
+
+Environment variable key | Converted configuration key | Provider configuration entry
+ --- | --- | ---
+`APIHUBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`CUSTOMCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`DOCDBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`EVENTHUBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`MYSQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient`
+`NOTIFICATIONHUBCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`POSTGRESQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `Npgsql`
+`REDISCACHECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`SERVICEBUSCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created.
+`SQLAZURECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
+`SQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`
+
+:::moniker-end
 
 ## Command-line
 
