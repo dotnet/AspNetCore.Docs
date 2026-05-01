@@ -184,7 +184,7 @@ An alternative way to assign tags for endpoints with routes that begin with `blo
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="3-5":::
 
-Another alternative for Minimal API apps is to call the [MapGroup(/dotnet/api/microsoft.aspnetcore.builder.endpointroutebuilderextensions.mapgroup) method:
+Another alternative for Minimal API apps is to call the [MapGroup](/dotnet/api/microsoft.aspnetcore.builder.endpointroutebuilderextensions.mapgroup) method:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="taggroup":::
 

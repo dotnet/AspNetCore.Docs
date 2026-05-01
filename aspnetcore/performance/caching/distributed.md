@@ -59,7 +59,7 @@ The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface 
 Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in the _Program.cs_ file. The following framework-provided implementations are described in this article:
 
 * [Distributed Redis cache](#distributed-redis-cache)
-* [Distributed memory Cache](#distributed-memory-cache)
+* [Distributed memory cache](#distributed-memory-cache)
 * [Distributed SQL Server cache](#distributed-sql-server-cache)
 * [Distributed Postgres cache](#distributed-postgres-cache)
 * [Distributed NCache cache](#distributed-ncache-cache)

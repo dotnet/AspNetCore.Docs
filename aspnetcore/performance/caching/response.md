@@ -44,7 +44,7 @@ Other cache headers that play a role in caching are shown in the following table
 | Header                                                          | Function |
 | --------------------------------------------------------------- | -------- |
 | [Age](https://www.rfc-editor.org/rfc/rfc9111#field.age)         | Provides an estimate of the amount of time in seconds since the response was generated or successfully validated at the origin server. |
-| [Expires](https://www.rfc-editor.org/rfc/rfc9111#field.expires) | Specified the time after which the response is considered stale. |
+| [Expires](https://www.rfc-editor.org/rfc/rfc9111#field.expires) | Specifies the time after which the response is considered stale. |
 | [Pragma](https://www.rfc-editor.org/rfc/rfc9111#field.pragma)   | Exists for backwards compatibility with HTTP 1.0 caches for setting `no-cache` behavior. If the `Cache-Control` header is present, the `Pragma` header is ignored. |
 | [Vary](https://www.rfc-editor.org/rfc/rfc9110#field.vary)       | Specifies that a cached response must not be sent unless all of the `Vary` header fields match in both the cached response's original request and the new request. |
 
@@ -144,7 +144,7 @@ The `Location.Any` (`Cache-Control` set to `public`) property setting indicates 
 
 The `Location.Client` (`Cache-Control` set to `private`) property setting indicates that *only the client* can cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
 
-Cache control headers provide guidance to clients and intermediary proxies about when and how to cache responses. There's no guarantee that clients and proxies the honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification. [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers provide guidance to clients and intermediary proxies about when and how to cache responses. There's no guarantee that clients and proxies honor the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification. [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
 The following example shows the headers produced by setting the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> property and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property value:
 
