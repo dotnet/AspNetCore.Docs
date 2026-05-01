@@ -26,13 +26,12 @@ The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCo
 
 ## Add the middleware to the app
 
-Add the output caching middleware to the service collection by calling the <xref:Microsoft.Extensions.DependencyInjection.OutputCacheServiceCollectionExtensions.AddOutputCache%2A> method.
-
-Add the middleware to the request processing pipeline by calling the <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A> method.
-
-For example:
+Add the output caching middleware to the service collection by calling the <xref:Microsoft.Extensions.DependencyInjection.OutputCacheServiceCollectionExtensions.AddOutputCache%2A> method. For example:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies4" highlight="1":::
+
+Add the middleware to the request processing pipeline by calling the <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A> method. For example:
+
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_use" highlight="5":::
 
 Calling the `AddOutputCache`and `UseOutputCache` methods doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as described in the following sections.

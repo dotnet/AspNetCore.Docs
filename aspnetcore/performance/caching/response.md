@@ -152,7 +152,7 @@ The following example shows the headers produced by setting the <xref:Microsoft.
 
 The preceding code includes the following headers in the response:
 
-```
+```text
 Cache-Control: public,max-age=10
 ```
 
@@ -170,7 +170,7 @@ The following code references the `Default30` cache profile:
 
 The resulting header response by the `Default30` cache profile includes:
 
-```
+```text
 Cache-Control: public,max-age=30
 ```
 

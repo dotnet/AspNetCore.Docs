@@ -77,7 +77,7 @@ The current time and the cached time are displayed:
 
 :::code language="cshtml" source="memory/samples/6.x/CachingMemorySample/Pages/Index.cshtml" id="snippet_CacheCurrentDateTime":::
 
-The following code uses the `Set` extension method to cache data for a relative time without <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions%2A>:
+The following code uses the `Set` extension method to cache data for a relative time without <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions>:
 
 :::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheRelative":::
 
@@ -107,7 +107,7 @@ The preceding code guarantees the data isn't cached longer than the absolute tim
 
 ## Create MemoryCacheEntryOptions for an entry
 
-The following example demonstrates how to create <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions%2A> for an entry. The code completes the following tasks:
+The following example demonstrates how to create <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions> for an entry. The code completes the following tasks:
 
 * Sets the cache priority to <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove?displayProperty=nameWithType>.
 
