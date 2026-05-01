@@ -1,0 +1,185 @@
+---
+title: Resource-based authorization in ASP.NET Core Razor Pages
+ai-usage: ai-assisted
+author: wadepickett
+description: Learn how to implement resource-based authorization in an ASP.NET Core Razor Pages app when an [Authorize] attribute doesn't suffice.
+ms.author: wpickett
+ms.custom: mvc
+ms.date: 04/29/2026
+uid: razor-pages/security/authorization/resource-based
+---
+# Resource-based authorization in ASP.NET Core Razor Pages
+
+This article describes how to authorize users for access to app resources.
+
+In an app, a *resource* is typically represented by a C# class that includes data stored in a collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a resource ID, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, cloud storage objects, in-memory objects, and data stored in databases.
+
+Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of the page handler that loads a resource. For these reasons, declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app invokes a custom authorization method&mdash;an approach known as *imperative authorization*.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/resource-based) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+
+<xref:security/authorization/secure-data> contains a sample app that uses resource-based authorization.
+
+Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors). Sample apps that accompany the article that target versions of .NET earlier than .NET 8 use constructor injection.
+
+## Use imperative authorization
+
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to page handlers. The following example also injects a document repository, which the developer creates and registers in the service container to manage document operations:
+
+```csharp
+public class DocumentModel(IAuthorizationService authorizationService,
+                           IDocumentRepository documentRepository) : PageModel
+```
+
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> method overloads. One of the overloads accepts a resource and policy name:
+
+```csharp
+Task<AuthorizationResult> AuthorizeAsync(
+    ClaimsPrincipal user, 
+    object resource, 
+    string policyName);
+```
+
+The other overload accepts a resource and list of requirements to evaluate:
+
+```csharp
+Task<AuthorizationResult> AuthorizeAsync(
+    ClaimsPrincipal user, 
+    object resource,
+    IEnumerable<IAuthorizationRequirement> requirements);
+```
+
+In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed to edit the provided document. A custom "`EditPolicy`" authorization policy is factored into the decision. For more information on creating authorization policies, see <xref:security/authorization/policies>.
+
+> [!NOTE]
+> The following example assumes successful authentication with the `User` property set.
+
+```csharp
+public async Task<IActionResult> OnGetAsync(Guid documentId)
+{
+    Document = documentRepository.Find(documentId);
+
+    if (Document == null)
+    {
+        return new NotFoundResult();
+    }
+
+    var authorizationResult = await authorizationService
+        .AuthorizeAsync(User, Document, "EditPolicy");
+
+    if (authorizationResult.Succeeded)
+    {
+        return Page();
+    }
+    else if (User.Identity.IsAuthenticated)
+    {
+        return new ForbidResult();
+    }
+    else
+    {
+        return new ChallengeResult();
+    }
+}
+```
+
+<!-- HOLD FOR DISCUSSION
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Pages/Document/Edit.cshtml.cs" id="snippet_DocumentEditHandler":::
+
+AT ...
+
+https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Pages/Document/Edit.cshtml.cs
+
+-->
+
+## Create a resource-based handler
+
+Creating a resource-based authorization handler isn't much different than [creating a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see the [Policy-based authorization: Requirements](xref:security/authorization/policies#requirements).
+
+The handler class specifies the requirement and resource type. The following example demonstrates a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs" id="snippet_HandlerAndRequirement":::
+
+<!---
+
+AT ...
+
+https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs
+
+-->
+
+In the preceding example, imagine that `SameAuthorRequirement` is a special case of a more generic `SpecificAuthorRequirement` class. The `SpecificAuthorRequirement` class (not shown) contains a `Name` property representing the name of the author. The `Name` property could be set to the current user.
+
+:::moniker range=">= aspnetcore-6.0"
+
+Register the requirement and handler in `Program.cs`:
+
+```csharp
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("EditPolicy", policy =>
+        policy.Requirements.Add(new SameAuthorRequirement()));
+
+builder.Services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Register the requirement and handler in `Startup.ConfigureServices`:
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("EditPolicy", policy =>
+        policy.Requirements.Add(new SameAuthorRequirement()));
+});
+
+services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
+```
+
+:::moniker-end
+
+### Operational requirements
+
+To make decisions based on the outcomes of CRUD (Create, Read, Update, Delete) operations, use the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement> helper class. This class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs" id="snippet_OperationsClass":::
+
+<!--
+
+AT ...
+
+https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs
+
+-->
+
+The handler is implemented as follows, using an <xref:Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement> requirement and a `Document` resource:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs" id="snippet_Handler":::
+
+<!--
+
+AT ...
+
+https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs
+
+-->
+
+The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
+
+## Challenge and forbid with an operational resource handler
+
+This section shows how the challenge and forbid results are processed and how challenge and forbid differ.
+
+To call an operational resource handler, specify the operation when invoking <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> in the page handler. The following example determines whether the authenticated user is permitted to view the provided document.
+
+> [!NOTE]
+> The following example assumes successful authentication with the `User` property set.
+
+```csharp
+var authorizationResult = await authorizationService
+    .AuthorizeAsync(User, Document, Operations.Read);
+```
+
+If authorization succeeds, the page for viewing the document is returned. If authorization fails but the user is authenticated, returning <xref:Microsoft.AspNetCore.Mvc.ForbidResult> informs authentication middleware that authorization failed. A <xref:Microsoft.AspNetCore.Mvc.ChallengeResult> is returned when authentication is required. For interactive browser clients, it may be appropriate to redirect the user to a login page.

@@ -574,6 +574,8 @@ items:
                     uid: razor-pages/security/authorization/roles
                   - name: Claim-based authorization
                     uid: razor-pages/security/authorization/claims
+                  - name: Resource-based authorization
+                    uid: razor-pages/security/authorization/resource-based
       - name: MVC
         items:
           - name: Overview
@@ -626,6 +628,8 @@ items:
                     uid: mvc/security/authorization/roles
                   - name: Claim-based authorization
                     uid: mvc/security/authorization/claims
+                  - name: Resource-based authorization
+                    uid: mvc/security/authorization/resource-based
       - name: Blazor
         items:
           - name: Overview
@@ -2098,7 +2102,7 @@ items:
           - name: Dependency injection in requirement handlers
             uid: security/authorization/dependencyinjection
           - name: Resource-based authorization
-            uid: security/authorization/resourcebased
+            uid: security/authorization/resource-based
           - name: View-based authorization
             uid: security/authorization/views
           - name: Limit identity by scheme
