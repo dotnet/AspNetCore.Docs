@@ -40,7 +40,7 @@ Controllers are the components that handle user interaction, work with the model
 > [!NOTE]
 > Controllers shouldn't be overly complicated by too many responsibilities. To keep controller logic from becoming overly complex, push business logic out of the controller and into the domain model.
 >
->[!TIP]
+> [!TIP]
 > If you find that your controller actions frequently perform the same kinds of actions, move these common actions into [filters](#filters).
 
 ## ASP.NET Core MVC
