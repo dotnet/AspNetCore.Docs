@@ -5,14 +5,14 @@ author: wadepickett
 description: Learn how to implement resource-based authorization in an ASP.NET Core Razor Pages app when an [Authorize] attribute doesn't suffice.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/29/2026
+ms.date: 05/04/2026
 uid: razor-pages/security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core Razor Pages
 
 This article describes how to authorize users for access to app resources.
 
-In an app, a *resource* is typically represented by a C# class that includes data stored in a collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a resource ID, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, cloud storage objects, in-memory objects, and data stored in databases.
+In an app, a *resource* is typically represented by a C# class that includes data stored in a collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a resource ID, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, cloud storage objects, in-memory objects, or data stored in databases.
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of the page handler that loads a resource. For these reasons, declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app invokes a custom authorization method&mdash;an approach known as *imperative authorization*.
 
