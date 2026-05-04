@@ -380,7 +380,7 @@ This feature offers flexibility but doesn't offer compilation protection or Inte
 
 ## More view features
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and editors that can't process them ignore them. This allows you to edit and render view markup in a variety of tools.
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and are ignored by editors that can't process them. This allows you to edit and render view markup in a variety of tools.
 
 Generating custom HTML markup can be achieved with many built-in HTML Helpers. [View Components](xref:mvc/views/view-components) can handle more complex user interface logic. View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
 
