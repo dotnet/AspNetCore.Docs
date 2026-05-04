@@ -3,16 +3,16 @@ title: Razor syntax reference for ASP.NET Core
 author: tdykstra
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: tdykstra
-ms.date: 02/12/2020
+ms.date: 04/30/2026
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor is a markup syntax for embedding .NET based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Razor component](xref:blazor/components/index) files (`.razor`). Razor syntax is similar to the templating engines of various JavaScript single-page application (SPA) frameworks, such as Angular, React, VueJs, and Svelte. For more information see, <xref:client-side/spa-services>.
+Razor is a markup syntax for embedding .NET based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Razor component](xref:blazor/components/index) files (`.razor`). Razor syntax is similar to the templating engines of various JavaScript single-page application (SPA) frameworks, such as Angular, React, VueJs, and Svelte. For more information, see <xref:client-side/spa-services>.
 
-[Introduction to ASP.NET Web Programming Using the Razor Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) provides many samples of programming with Razor syntax. Although the topic was written for ASP.NET rather than ASP.NET Core, most of the samples apply to ASP.NET Core.
+[Introduction to ASP.NET Web Programming Using the Razor Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) provides many samples of programming with Razor syntax. Although the article was written for ASP.NET rather than ASP.NET Core, most of the samples apply to ASP.NET Core.
 
 ## Rendering HTML
 
@@ -46,7 +46,7 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 
 ### Scalable Vector Graphics (SVG)
 
-[SVG](https://developer.mozilla.org/docs/Web/SVG) [foreignObject](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) elements are supported:
+[SVG](https://developer.mozilla.org/docs/Web/SVG) [foreignObject](https://developer.mozilla.org/docs/Web/SVG/Reference/Element/foreignObject) elements are supported:
 
 ```html
 @{
@@ -73,7 +73,7 @@ Implicit Razor expressions start with `@` followed by C# code:
 <p>@DateTime.IsLeapYear(2016)</p>
 ```
 
-With the exception of the C# `await` keyword, implicit expressions must not contain spaces. If the C# statement has a clear ending, spaces can be intermingled:
+Except for the C# `await` keyword, implicit expressions must not contain spaces. If the C# statement has a clear ending, spaces can be intermingled:
 
 ```razor
 <p>@await DoSomething("hello", "world")</p>
@@ -898,7 +898,7 @@ Razor templates allow you to define a UI snippet with the following format:
 @<tag>...</tag>
 ```
 
-The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func%602>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/keywords/object) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List%601> of `Pet` that has a `Name` property.
+The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func%602>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/builtin-types/reference-types) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List%601> of `Pet` that has a `Name` property.
 
 ```csharp
 public class Pet
@@ -1100,7 +1100,7 @@ To view the generated class for `Pages/Index.cshtml`, open `obj/Debug/netcoreapp
 
 ## View lookups and case sensitivity
 
-The Razor view engine performs case-sensitive lookups for views. However, the actual lookup is determined by the underlying file system:
+The Razor view engine performs case-sensitive lookups for views. However, the underlying file system determines the actual lookup:
 
 * File based source:
   * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for `/Views/Home/Test.cshtml`, `/Views/home/test.cshtml`, and any other casing variant.

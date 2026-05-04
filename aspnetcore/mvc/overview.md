@@ -3,7 +3,7 @@ title: Overview of ASP.NET Core MVC
 author: ardalis
 description: Learn how ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 ms.author: tdykstra
-ms.date: 02/12/2020
+ms.date: 04/29/2026
 uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
@@ -14,7 +14,7 @@ ASP.NET Core MVC is a rich framework for building web apps and APIs using the Mo
 
 ## MVC pattern
 
-The Model-View-Controller (MVC) architectural pattern separates an application into three main groups of components: Models, Views, and Controllers. This pattern helps to achieve [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns). Using this pattern, user requests are routed to a Controller which is responsible for working with the Model to perform user actions and/or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
+The Model-View-Controller (MVC) architectural pattern separates an application into three main groups of components: Models, Views, and Controllers. This pattern helps to achieve [separation of concerns](/dotnet/architecture/modern-web-apps-azure/architectural-principles#separation-of-concerns). Using this pattern, user requests are routed to a Controller, which is responsible for working with the Model to perform user actions and/or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
 
 The following diagram shows the three main components and which ones reference the others:
 
@@ -23,7 +23,7 @@ The following diagram shows the three main components and which ones reference t
 This delineation of responsibilities helps you scale the application in terms of complexity because it's easier to code, debug, and test something (model, view, or controller) that has a single job. It's more difficult to update, test, and debug code that has dependencies spread across two or more of these three areas. For example, user interface logic tends to change more frequently than business logic. If presentation code and business logic are combined in a single object, an object containing business logic must be modified every time the user interface is changed. This often introduces errors and requires the retesting of business logic after every minimal user interface change.
 
 > [!NOTE]
-> Both the view and the controller depend on the model. However, the model depends on neither the view nor the controller. This is one of the key benefits of the separation. This separation allows the model to be built and tested independent of the visual presentation.
+> Both the view and the controller depend on the model. However, the model doesn't depend on the view or the controller. This is one of the key benefits of the separation. This separation allows the model to be built and tested independent of the visual presentation.
 
 ### Model Responsibilities
 
@@ -39,8 +39,8 @@ Controllers are the components that handle user interaction, work with the model
 
 > [!NOTE]
 > Controllers shouldn't be overly complicated by too many responsibilities. To keep controller logic from becoming overly complex, push business logic out of the controller and into the domain model.
-
->[!TIP]
+>
+> [!TIP]
 > If you find that your controller actions frequently perform the same kinds of actions, move these common actions into [filters](#filters).
 
 ## ASP.NET Core MVC
@@ -116,11 +116,11 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 }
 ```
 
-The framework handles validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with [jQuery Validation](https://jqueryvalidation.org/).
+The framework handles validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with [jQuery Validation](https://github.com/jquery-validation/jquery-validation).
 
 ## Dependency injection
 
-ASP.NET Core has built-in support for [dependency injection (DI)](../fundamentals/dependency-injection.md). In ASP.NET Core MVC, [controllers](controllers/dependency-injection.md) can request needed services through their constructors, allowing them to follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
+ASP.NET Core has built-in support for [dependency injection (DI)](../fundamentals/dependency-injection.md). In ASP.NET Core MVC, [controllers](controllers/dependency-injection.md) can request needed services through their constructors, allowing them to follow the [Explicit Dependencies Principle](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
 
 Your app can also use [dependency injection in view files](views/dependency-injection.md), using the `@inject` directive:
 
@@ -149,7 +149,7 @@ public class AccountController : Controller
 
 ## Areas
 
-[Areas](controllers/areas.md) provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models.
+[Areas](controllers/areas.md) provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it might be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models.
 
 ## Web APIs
 
@@ -157,7 +157,7 @@ In addition to being a great platform for building web sites, ASP.NET Core MVC h
 
 The framework includes support for HTTP content-negotiation with built-in support to [format data](xref:web-api/advanced/formatting) as JSON or XML. Write [custom formatters](xref:web-api/advanced/custom-formatters) to add support for your own formats.
 
-Use link generation to enable support for hypermedia. Easily enable support for [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) so that your Web APIs can be shared across multiple Web applications.
+Use link generation to enable support for hypermedia. Easily enable support for [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/#http-cors-protocol) so that your Web APIs can be shared across multiple Web applications.
 
 ## Testability
 
@@ -165,7 +165,7 @@ The framework's use of interfaces and dependency injection make it well-suited t
 
 ## Razor view engine
 
-[ASP.NET Core MVC views](views/overview.md) use the [Razor view engine](views/razor.md) to render views. Razor is a compact, expressive and fluid template markup language for defining views using embedded C# code. Razor is used to dynamically generate web content on the server. You can cleanly mix server code with client side content and code.
+[ASP.NET Core MVC views](views/overview.md) use the [Razor view engine](views/razor.md) to render views. Razor is a compact, expressive, and fluid template markup language for defining views using embedded C# code. Razor is used to dynamically generate web content on the server. You can cleanly mix server code with client side content and code.
 
 ```cshtml
 <ul>
