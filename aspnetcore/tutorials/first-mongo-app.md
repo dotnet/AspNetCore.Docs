@@ -530,7 +530,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/10.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
-* [Create a web API with ASP.NET Core](/training/modules/interact-api/)
+* [Create a minimal web API with ASP.NET Core](/training/modules/interact-api/)
 
 :::moniker-end
 
