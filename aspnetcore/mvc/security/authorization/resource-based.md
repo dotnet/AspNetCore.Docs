@@ -12,7 +12,7 @@ uid: mvc/security/authorization/resource-based
 
 This article describes how to authorize users for access to app resources.
 
-In an app, a *resource* is typically represented by a C# class that includes data stored in collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a unique resource identifier, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, a cloud storage object, an in-memory object, or data from a database.
+In an app, a *resource* is typically represented by a C# class that includes data stored in a collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining to the resource, such as a unique resource identifier, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, a cloud storage object, an in-memory object, or data from a database.
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of an action that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
@@ -49,7 +49,7 @@ Task<AuthorizationResult> AuthorizeAsync(
     IEnumerable<IAuthorizationRequirement> requirements);
 ```
 
-In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed to edit to the document via a custom "`EditPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded%2A) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name%2A>).
+In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed to edit the document via a custom "`EditPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded%2A) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name%2A>).
 
 > [!NOTE]
 > The following example assumes successful authentication with the `User` property set.
@@ -69,7 +69,7 @@ public async Task<IActionResult> Edit(Guid documentId)
     }
     else
     {
-        return new ChallengeResult();
+        return new ForbidResult();
     }
 }
 ```
@@ -176,6 +176,10 @@ if ((await authorizationService
     .AuthorizeAsync(User, document, Operations.Read)).Succeeded)
 {
     return View(document);
+}
+else if (User.Identity?.IsAuthenticated ?? false)
+{
+    return new ForbidResult();
 }
 else
 {
