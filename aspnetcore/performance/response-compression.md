@@ -185,7 +185,7 @@ Use a tool like [Firefox Browser - Developer edition](https://www.firefox.com/ch
 * The request must use the insecure hypertext protocol (http), unless the secure hypertext protocol (https) is configured in the Response Compression Middleware options.
 
    > [!CAUTION]
-   > Review the risks associated with enabling secure content compression, as described in [Compression with HTTPS](#compression-with-https) earlier in this article.
+   > Review the risks associated with enabling secure content compression, as described in [Compression with HTTPS](#explore-compression-with-https) earlier in this article.
 
 ## Review the Azure deployed sample
 
