@@ -4,18 +4,23 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/03/2023
+ms.date: 04/28/2026
+ms.reviewer: shalter
 uid: security/authentication/certauth
+
+# customer intent: As an ASP.NET developer, I want to use certificate authentication in ASP.NET Core for IIS and HTTP.sys, so I can control access to my apps by using certificates.
 ---
 # Configure certificate authentication in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
 
-You ***must*** [configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
+You **must** [configure your server](#configure-your-server-to-require-certificates) for certificate authentication with IIS, Kestrel, Azure Web Apps, or your preferred solution.
 
-## Proxy and load balancer scenarios
+This article describes how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys, and provides examples for calling various methods and working with properties.
+
+## Review proxy and load balancer scenarios
 
 Certificate authentication is a stateful scenario primarily used where a proxy or load balancer doesn't handle traffic between clients and servers. If a proxy or load balancer is used, certificate authentication only works if the proxy or load balancer:
 
@@ -30,21 +35,22 @@ Acquire an HTTPS certificate, apply it, and [configure your server](#configure-y
 
 In the web app:
 
-* Add a reference to the [Microsoft.AspNetCore.Authentication.Certificate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Certificate) NuGet package.
-* In `Program.cs`, call
-`builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);`. Provide a delegate for `OnCertificateValidated` to do any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal` and set it on the `context.Principal` property.
+- Add a reference to the [Microsoft.AspNetCore.Authentication.Certificate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Certificate) NuGet package.
 
-If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
+- In the _Program.cs_ file, call the 
+`builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` method. Provide a delegate for the `OnCertificateValidated` event handler to complete any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal` value and set it on the `context.Principal` property.
 
-`UseAuthentication` is required to set `HttpContext.User` to a `ClaimsPrincipal` created from the certificate. For example:
+If authentication fails, this handler returns a `403 (Forbidden)` response rather than a `401 (Unauthorized)`, as you might expect. The handler returns a different response because it expects authentication to occur during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
+
+The `UseAuthentication` method is required to set `HttpContext.User` to a `ClaimsPrincipal` value created from the certificate. For example:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateUseAuthentication" highlight="3-5,9":::
 
-The preceding example demonstrates the default way to add certificate authentication. The handler constructs a user principal using the common certificate properties.
+The preceding example demonstrates the default way to add certificate authentication. The handler constructs a user principal by using the common certificate properties.
 
 ## Configure certificate validation
 
-The `CertificateAuthenticationOptions` handler has some built-in validations that are the minimum validations you should perform on a certificate. Each of these settings is enabled by default.
+The `CertificateAuthenticationOptions` handler has some built-in validations that are the minimum validations you should perform on a certificate. Each of these settings is enabled by default. The following sections describe how to work with the settings.
 
 ### AllowedCertificateTypes = Chained, SelfSigned, or All (Chained | SelfSigned)
 
@@ -58,15 +64,15 @@ Default value: [X509ChainTrustMode.System](xref:System.Security.Cryptography.X50
 
 The certificate presented by the client must chain to a trusted root certificate. This check controls which trust store contains these root certificates.
 
-By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate which doesn't appear in the system trust store, this option can be set to [X509ChainTrustMode.CustomRootTrust](xref:System.Security.Cryptography.X509Certificates.X509ChainTrustMode.CustomRootTrust) to make the handler use the `CustomTrustStore`.
+By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate that doesn't appear in the system trust store, you can set the option to [X509ChainTrustMode.CustomRootTrust](xref:System.Security.Cryptography.X509Certificates.X509ChainTrustMode.CustomRootTrust) so the handler uses the `CustomTrustStore` property.
 
 ### CustomTrustStore
 
 Default value: Empty <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection>
 
-If the handler's <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions.ChainTrustValidationMode> property is set to `X509ChainTrustMode.CustomRootTrust`, this <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection> contains every certificate which will be used to validate the client certificate up to a trusted root, including the trusted root.
+If the handler's <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions.ChainTrustValidationMode> property is set to `X509ChainTrustMode.CustomRootTrust`, this <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection> object contains every certificate used to validate the client certificate up to a trusted root, including the trusted root.
 
-When the client presents a certificate which is part of a multi-level certificate chain, `CustomTrustStore` must contain every issuing certificate in the chain.
+When the client presents a certificate that's part of a multi-level certificate chain, the `CustomTrustStore` property must contain every issuing certificate in the chain.
 
 ### ValidateCertificateUse
 
@@ -96,105 +102,111 @@ A flag that specifies how revocation checks are performed.
 
 Specifying an online check can result in a long delay while the certificate authority is contacted.
 
-Revocation checks are only performed when the certificate is chained to a root certificate.
+Revocation checks are performed only when the certificate is chained to a root certificate.
 
-### Can I configure my app to require a certificate only on certain paths?
+### FAQ: Can I configure my app to require a certificate only on certain paths?
 
-This isn't possible. Remember the certificate exchange is done at the start of the HTTPS conversation, it's done by the server before the first request is received on that connection so it's not possible to scope based on any request fields.
+This approach isn't possible. The certificate exchange is completed at the start of the HTTPS conversation. The operation is done by the server before the first request is received on that connection, so it isn't possible to scope based on any request fields.
 
-## Handler events
+## Process handler events
 
 The handler has two events:
 
 * `OnAuthenticationFailed`: Called if an exception happens during authentication and allows you to react.
-* `OnCertificateValidated`: Called after the certificate has been validated, passed validation and a default principal has been created. This event allows you to perform your own validation and augment or replace the principal. For examples include:
+
+* `OnCertificateValidated`: Called after the certificate is validated, passed validation, and a default principal is created. This event allows you to perform your own validation and augment or replace the principal. Examples include:
   * Determining if the certificate is known to your services.
-  * Constructing your own principal. Consider the following example:
+  * Constructing your own principal, such as in the following example:
 
     :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateOnCertificateValidated":::
 
-If you find the inbound certificate doesn't meet your extra validation, call `context.Fail("failure reason")` with a failure reason.
+If the inbound certificate doesn't satisfy your extra validation, call `context.Fail("failure reason")` with a failure reason.
 
 For better functionality, call a service registered in dependency injection that connects to a database or other type of user store. Access the service by using the context passed into the delegate. Consider the following example:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateOnCertificateValidatedService" highlight="9-10,12":::
 
-Conceptually, the validation of the certificate is an authorization concern. Adding a check on, for example, an issuer or thumbprint in an authorization policy, rather than inside `OnCertificateValidated`, is perfectly acceptable.
+Conceptually, the validation of the certificate is an authorization concern. For example, you can add a check on an issuer or thumbprint in an authorization policy rather than inside the `OnCertificateValidated` handler.
 
 ## Configure your server to require certificates
 
+The following sections describe how to configure your server to require certificates for a specific solution, including Kestrel, IIS, Azure, custom web proxies, and Azure Web Apps.
+
 ### Kestrel
 
-In `Program.cs`, configure Kestrel as follows:
+In the _Program.cs_ file, configure Kestrel as follows:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
 
 > [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
+> When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> method, the endpoint doesn't have the defaults applied.
 
 ### IIS
 
 Complete the following steps in IIS Manager:
 
-1. Select your site from the **Connections** tab.
-1. Double-click the **SSL Settings** option in the **Features View** window.
-1. Check the **Require SSL** checkbox, and select the **Require** radio button in the **Client certificates** section.
+1. In the **Connections** tab, select your site.
+1. In the **Features View** window, double-click **SSL Settings**.
+1. Select the **Require SSL** checkbox.
+1. For the **Client certificates** option, select **Require**. 
 
-:::image source="certauth/_static/README-IISConfig.png" alt-text="Client certificate settings in IIS":::
+:::image source="certauth/_static/README-IISConfig.png" alt-text="Screenshot that shows how to configure the client certificate settings in IIS.":::
 
 ### Azure and custom web proxies
 
-See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
+For more information on how to configure the certificate forwarding middleware, see the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding).
 
-### Use certificate authentication in Azure Web Apps
+### Certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. Forwarding configuration is set up by the Certificate Forwarding Middleware.
+No forwarding configuration is required for Azure. The Certificate Forwarding Middleware sets up the configuration.
 
 > [!NOTE]
 > Certificate Forwarding Middleware is required for this scenario.
 
-For more information, see [Use a TLS/SSL certificate in your code in Azure App Service (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
+For more information, see [Use TLS/SSL certificates in your app code (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
 
-### Use certificate authentication in custom web proxies
+### Certificate authentication in custom web proxies
 
 The `AddCertificateForwarding` method is used to specify:
 
 * The client header name.
-* How the certificate is to be loaded (using the `HeaderConverter` property).
+* How to load the certificate (via the `HeaderConverter` property).
 
-In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use it, configure certificate forwarding in `Program.cs`:
+In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use the certificate, configure certificate forwarding in the _Program.cs_ file:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwarding":::
 
-If the app is reverse proxied by NGINX with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` or deployed on Kubernetes using NGINX Ingress, the client certificate is passed to the app in [URL-encoded form](https://developer.mozilla.org/docs/Glossary/percent-encoding). To use the certificate, decode it as follows:
+If NGINX is used with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` to reverse proxy the app, or the app is deployed on Kubernetes by using NGINX Ingress, the client certificate is passed to the app in [URL-encoded form](https://developer.mozilla.org/docs/Glossary/percent-encoding). To use the certificate, decode it as follows:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwardingUrlEncoded":::
 
-Add the middleware in `Program.cs`. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
+Add the middleware in the _Program.cs_ file. The `UseCertificateForwarding` method is called before the calls to the `UseAuthentication` and `UseAuthorization` methods:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_UseCertificateForwarding" highlight="3":::
 
-A separate class can be used to implement validation logic. Because the same self-signed certificate is used in this example, ensure that only your certificate can be used. Validate that the thumbprints of both the client certificate and the server certificate match, otherwise any certificate can be used and will be enough to authenticate. This would be used inside the `AddCertificate` method. You could also validate the subject or the issuer here if you're using intermediate or child certificates.
+A separate class can be used to implement validation logic. Because the same self-signed certificate is used in this example, ensure that only your certificate can be used. Validate that the thumbprints of both the client certificate and the server certificate match. Otherwise, any certificate can be used and be sufficient for authentication. The certificate is then used inside the `AddCertificate` method. You can also validate the subject or the issuer here if you use intermediate or child certificates.
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleCertificateValidationService.cs":::
 
-#### Implement an HttpClient using a certificate and IHttpClientFactory
+#### Implement an HttpClient with a certificate and IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Program.cs`:
+In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This scenario is configured in the _Program.cs_ file:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
-The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in `Program.cs` is used to get the instance. The HTTP request can be sent using the client as required:
+The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in the _Program.cs_ file is used to get the instance. The HTTP request can be sent by using the client as required:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleHttpService.cs" id="snippet_Class":::
 
-If the correct certificate is sent to the server, the data is returned. If no certificate or the wrong certificate is sent, an HTTP 403 status code is returned.
+If the correct certificate is sent to the server, the data is returned. If no certificate or the wrong certificate is sent, the server returns an HTTP 403 status code.
 
-### Create certificates in PowerShell
+### Certificates in PowerShell
 
-Creating the certificates is the hardest part in setting up this flow. A root certificate can be created using the `New-SelfSignedCertificate` PowerShell cmdlet. When creating the certificate, use a strong password. It's important to add the `KeyUsageProperty` parameter and the `KeyUsage` parameter as shown.
+Creating the certificates is the hardest part in setting up this flow. You can create a root certificate by using the `New-SelfSignedCertificate` PowerShell cmdlet. When you create the certificate, use a strong password. It's important to add the `KeyUsageProperty` parameter and the `KeyUsage` parameter as shown in the examples.
 
-#### Create root CA
+#### Create root certificate authority
+
+The following code shows how to create a certificate authority (CA) at the root:
 
 ```powershell
 New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
@@ -211,11 +223,11 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 #### Install in the trusted root
 
-The root certificate must be trusted on your host system. Only root certificates created by a certificate authority are trusted by default. For information on how to trust the root certificate on Windows, see [the Windows documentation](/windows-hardware/drivers/install/trusted-root-certification-authorities-certificate-store) or the [`Import-Certificate`](/powershell/module/pki/import-certificate) PowerShell cmdlet.
+The root certificate must be trusted on your host system. Only root certificates created by a certificate authority are trusted by default. For information on how to trust the root certificate on Windows, see [the Windows documentation](/windows-hardware/drivers/install/trusted-root-certification-authorities-certificate-store) or the [Import-Certificate](/powershell/module/pki/import-certificate) PowerShell cmdlet.
 
-#### Intermediate certificate
+#### Use an intermediate certificate
 
-An intermediate certificate can now be created from the root certificate. This isn't required for all use cases, but you might need to create many certificates or need to activate or disable groups of certificates. The `TextExtension` parameter is required to set the path length in the basic constraints of the certificate.
+An intermediate certificate can now be created from the root certificate. This approach isn't required for all use cases, but you might need to create many certificates or need to activate or disable groups of certificates. The `TextExtension` parameter is required to set the path length in the basic constraints of the certificate.
 
 The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
@@ -233,7 +245,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath int
 
 #### Create child certificate from intermediate certificate
 
-A child certificate can be created from the intermediate certificate. This is the end entity and doesn't need to create more child certificates.
+A child certificate can be created from the intermediate certificate. This child certificate is the end entity. You don't need to create more child certificates.
 
 ```powershell
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
@@ -263,7 +275,9 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath child_a_dev_damienbod.crt
 ```
 
-#### Example root - intermediate certificate - certificate
+#### Example: root - intermediate certificate - certificate
+
+The following example shows configuration of the root CA, the intermediate certificate, and the child certificate:
 
 ```powershell
 $mypwdroot = ConvertTo-SecureString -String "1234" -Force -AsPlainText
@@ -292,101 +306,112 @@ Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F2
 Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A -FilePath child_b_from_a_dev_damienbod.crt
 ```
 
-When using the root, intermediate, or child certificates, the certificates can be validated using the Thumbprint or PublicKey as required:
+When you use the root, intermediate, or child certificates, the certificates can be validated by using the Thumbprint or PublicKey as required:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleCertificateThumbprintsValidationService.cs":::
 
 <a name="occ"></a>
 
-## Certificate validation caching
+## Cache certificate validation results
 
-.NET 5 or later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
+.NET 5 and later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication because validation is an expensive operation.
 
-By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in `Program.cs`:
+By default, certificate authentication disables caching. To enable caching, call the `AddCertificateCache` method in the _Program.cs_ file:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
 The default caching implementation stores results in memory. You can provide your own cache by implementing `ICertificateValidationCache` and registering it with dependency injection. For example, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
-## Optional client certificates
+## Use optional client certificates
 
-This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
+This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This scenario presents some challenges:
   
-* Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
+* Client certificates are a TLS feature, not an HTTP feature.
+* Client certificates are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
 
-There are two approaches to implementing optional client certificates:
-1. Using separate host names (SNI) and redirecting. While more work to configure, this is recommended because it works in most environments and protocols.
-2. Renegotiation during an HTTP request. This has several limitations and is not recommended.
+There are two approaches for implementing optional client certificates:
 
-### Separate Hosts (SNI)
+- Option 1: Use separate host names (SNI) and redirection. While this option involves more work to configure, the approach is recommended because it works in most environments and protocols.
+- Option 2: Renegotiation during an HTTP request. This approach has several limitations and isn't recommended.
 
-At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. Client certificates can be configured per host name so that one host requires them and another does not.
+### Separate hosts (SNI)
 
-* Set up binding for the domain and subdomain:
-  * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
-  * For more information, see:
-    * <xref:fundamentals/servers/kestrel>:
-      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
-      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
-    * IIS
-      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
-      * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
-    * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. Client certificates can be configured per host name so one host requires the certificates and another doesn't.
 
-.NET 5 or later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+- Set up binding for the domain and subdomain.
 
-* For requests to the web app that require a client certificate and don't have one:
-  * Redirect to the same page using the client certificate protected subdomain.
-  * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
-  * For more information, see <xref:security/authorization/introduction>.
+   For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
 
-&dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
+   For more information, see the following resources:
 
-### Renegotiation
+   - [Kestrel web server](xref:fundamentals/servers/kestrel)
+      - [Configure HTTPS in code (listenOptions.UseHttps)](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
+      - <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property
 
-TLS renegotiation is a process by which the client and server can re-assess the encryption requirements for an individual connection, including requesting a client certificate if not previously provided. TLS renegotiation is a security risk and isn't recommended because:
+   - IIS
+      - [Create the IIS site](../../tutorials/publish-to-iis.md#create-the-iis-site)
+      - [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
 
-* In HTTP/1.1 the server must first buffer or consume any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can stop responding or fail.
-* HTTP/2 and HTTP/3 [explicitly prohibit](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
+   - HTTP.sys
+      - [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+
+   .NET 5 and later offers more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+
+- For requests to the web app that require a client certificate and don't have one, redirect to the same page by using the client certificate protected subdomain.
+
+   For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
+
+   For more information, see <xref:security/authorization/introduction>.
+
+&dagger; Server Name Indication (SNI) is a TLS extension that's used to include a virtual domain as a part of SSL negotiation. This approach effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
+
+### TLS renegotiation
+
+TLS renegotiation is a process by which the client and server can reassess the encryption requirements for an individual connection, including requesting a client certificate if not previously provided. TLS renegotiation is a security risk and isn't recommended because:
+
+* In HTTP/1.1, the server must first buffer or consume any in-flight HTTP data such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise, the renegotiation can stop responding or fail.
+* HTTP/2 and HTTP/3 [explicitly prohibit](https://datatracker.ietf.org/doc/html/rfc7540#section-9.2.1) renegotiation.
 * There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior constraints of buffering and HTTP protocol versions.
 
-The implementation and configuration of this feature varies by server and framework version.
+The implementation and configuration of this feature varies by server and framework version, as described in the following sections.
 
 #### IIS
 
-IIS manages the client certificate negotiation on your behalf. A subsection of the application can enable the `SslRequireCert` option to negotiate the client certificate for those requests. See [Configuration in the IIS documentation](/iis/configuration/system.webserver/security/access#configuration) for details.
+IIS manages the client certificate negotiation on your behalf. A subsection of the application can enable the `SslRequireCert` option to negotiate the client certificate for those requests. For more information, see [Configuration in the IIS documentation](/iis/configuration/system.webserver/security/access#configuration).
 
-IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48KB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime).
+IIS automatically buffers any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48 KB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime#attributes) property.
 
 #### HttpSys
 
-HttpSys has two settings which control the client certificate negotiation and both should be set. The first is in netsh.exe under `http add sslcert clientcertnegotiation=enable/disable`. This flag indicates if the client certificate should be negotiated at the start of a connection and it should be set to `disable` for optional client certificates. See the [netsh docs](/windows-server/networking/technologies/netsh/netsh-http#add-sslcert) for details.
+HttpSys has two settings that control the client certificate negotiation and both should be set. The first is in the _netsh.exe_ file under `http add sslcert clientcertnegotiation=enable/disable`. This flag indicates whether to negotiate the client certificate at the start of a connection. Set the value to `disable` for optional client certificates. For more information, see the `http add sslcert` parameter usage in the [netsh docs](/windows-server/administration/windows-commands/netsh-http#parameters).
 
-The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
+The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod> property. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
 
-*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
+> [!NOTE]
+> The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, the request might become unresponsive.
 
-An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> to negotiate one. Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
-*NOTE* The behavior of the `ClientCertificate` property changed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466).
+> [!NOTE]
+> The behavior of the `ClientCertificate` property changed in .NET 6. For more information, see [GitHub issue #466](https://github.com/aspnet/Announcements/issues/466).
 
 #### Kestrel
 
-Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
+Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property.
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate?displayProperty=nameWithType> is new option available in .NET 6 or later. When set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> to negotiate one. Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+.NET 6 and later provides the `DelayCertificate` option for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
-*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise `GetClientCertificateAsync` may throw `InvalidOperationException: Client stream needs to be drained before renegotiation.`.
+> [!NOTE]
+> The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, `GetClientCertificateAsync` might throw the exception, _InvalidOperationException: Client stream needs to be drained before renegotiation_.
 
-If you're programmatically configuring the TLS settings per SNI host name, call the [`UseHttps`](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps) overload (.NET 6 or later) that takes <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> and controls client certificate renegotiation via <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A?displayProperty=nameWithType>.
+If you programmatically configure the TLS settings per SNI host name, call the [UseHttps](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
+overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
 
-    
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, which occurs long before it ever gets to ASP.NET Core. More accurately, this authentication handler validates the certificate and gives you an event where you can resolve the certificate to a `ClaimsPrincipal` value. 
 
 [Configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
@@ -1703,4 +1728,11 @@ For .NET 5 or earlier Kestrel does not support renegotiating after the start of 
 
 :::moniker-end
 
-Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
+Leave questions, comments, and other feedback on optional client certificates in the discussion thread for [GitHub issue #18720](https://github.com/dotnet/AspNetCore.Docs/issues/18720).
+
+## Related content
+
+- [Overview of ASP.NET Core authentication](xref:security/authentication/index)
+- [Introduction to authorization in ASP.NET Core](xref:security/authorization/introduction)
+- [Use TLS/SSL certificates in your app code (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code)
+- [Important changes to App Service managed certificates (Blog, November 2025)](https://techcommunity.microsoft.com/blog/appsonazureblog/follow-up-to-%E2%80%98important-changes-to-app-service-managed-certificates%E2%80%99-november-20/4466120)
