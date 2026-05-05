@@ -5,16 +5,16 @@ author: wadepickett
 description: Learn how to implement resource-based authorization in an ASP.NET Core MVC app when an [Authorize] attribute doesn't suffice.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/04/2026
+ms.date: 05/05/2026
 uid: mvc/security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core MVC
 
 This article describes how to authorize users for access to app resources.
 
-In an app, a *resource* is typically represented by a C# class that includes data stored in a collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a resource ID, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, cloud storage objects, in-memory objects, or data stored in databases.
+In an app, a *resource* is typically represented by a C# class that includes data stored in collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a unique resource identifier, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, a cloud storage object, an in-memory object, or data from a database.
 
-Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of the action that loads a resource. For these reasons, declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app invokes a custom authorization method&mdash;an approach known as *imperative authorization*.
+Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of an action that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/resource-based) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
@@ -24,11 +24,11 @@ Examples in this article use *primary constructors*, available in C# 12 (.NET 8)
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to actions. The following example also injects a document repository, which the developer creates and registers in the service container to manage document operations:
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](xref:fundamentals/dependency-injection). The following example also injects a document repository, which the developer creates and registers in the service container to manage document operations:
 
 ```csharp
 public class DocumentController(IAuthorizationService authorizationService,
-                                IDocumentRepository documentRepository) : Controller
+    IDocumentRepository documentRepository) : Controller
 ```
 
 <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> method overloads. One of the overloads accepts a resource and policy name:
@@ -40,7 +40,7 @@ Task<AuthorizationResult> AuthorizeAsync(
     string policyName);
 ```
 
-The other overload accepts a resource and list of requirements to evaluate:
+The other overload accepts a resource and collection of requirements (<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>) to evaluate:
 
 ```csharp
 Task<AuthorizationResult> AuthorizeAsync(
@@ -49,24 +49,21 @@ Task<AuthorizationResult> AuthorizeAsync(
     IEnumerable<IAuthorizationRequirement> requirements);
 ```
 
-In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed to edit the provided document. A custom "`EditPolicy`" authorization policy is factored into the decision. For more information on creating authorization policies, see <xref:security/authorization/policies>.
+In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed to edit to the document via a custom "`EditPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded%2A) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name%2A>).
 
 > [!NOTE]
 > The following example assumes successful authentication with the `User` property set.
 
 ```csharp
 [HttpGet]
-public async Task<IActionResult> View(Guid documentId)
+public async Task<IActionResult> Edit(Guid documentId)
 {
-    Document document = documentRepository.Find(documentId);
+    Document document = _documentRepository.Find(documentId);
 
-    if (document == null)
-    {
-        return new NotFoundResult();
-    }
+    ...
 
-    if ((await authorizationService
-        .AuthorizeAsync(User, document, Operations.Read)).Succeeded)
+    if ((await _authorizationService
+        .AuthorizeAsync(User, document, "EditPolicy")).Succeeded)
     {
         return View(document);
     }
@@ -89,7 +86,7 @@ https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorizati
 
 ## Create a resource-based handler
 
-Creating a resource-based authorization handler isn't much different than [creating a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see the [Policy-based authorization: Requirements](xref:security/authorization/policies#requirements).
+Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see the [Policy-based authorization: Requirements](xref:security/authorization/policies#requirements).
 
 The handler class specifies the requirement and resource type. The following example demonstrates a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource:
 
@@ -134,6 +131,8 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 ```
 
 :::moniker-end
+
+For more information on creating authorization policies, see <xref:security/authorization/policies>.
 
 ### Operational requirements
 
