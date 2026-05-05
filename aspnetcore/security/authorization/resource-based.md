@@ -16,7 +16,7 @@ In an app, a *resource* is typically represented by a C# class that includes dat
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of any method that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
-This article uses Razor component examples and focuses on Blazor authorization scenarios. For Razor Pages and MVC guidance, see the following resources:
+This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
 
 * <xref:razor-pages/security/authorization/resource-based>
 * <xref:mvc/security/authorization/resource-based>
