@@ -12,7 +12,7 @@ uid: security/authorization/resource-based
 
 This article describes how to authorize users for access to app resources.
 
-In an app, a *resource* is typically represented by a C# class that includes data stored in collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining the resource, such as a unique resource identifier, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, a cloud storage object, an in-memory object, or data from a database.
+In an app, a *resource* is typically represented by a C# class that includes data stored in a collection, such as a [`byte[]` array](xref:System.Byte). The class usually contains additional metadata pertaining to the resource, such as a unique resource identifier, dates, authors, source information, and a friendly name for display in a UI. The collection that holds resource data is usually loaded from physical file content, a cloud storage object, an in-memory object, or data from a database.
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of any method that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
@@ -154,7 +154,7 @@ services.AddAuthorization(options =>
         policy.Requirements.Add(new SameAuthorRequirement()));
 });
 
-builder.Services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
+services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 ```
 
 :::moniker-end
