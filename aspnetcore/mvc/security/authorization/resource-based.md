@@ -62,27 +62,12 @@ public async Task<IActionResult> Edit(Guid documentId)
 
     ...
 
-    if ((await _authorizationService
-        .AuthorizeAsync(User, document, "EditPolicy")).Succeeded)
-    {
-        return View(document);
-    }
-    else
-    {
-        return new ForbidResult();
-    }
+    var authorizationResult = await _authorizationService
+        .AuthorizeAsync(User, document, "EditPolicy");
+
+    ...
 }
 ```
-
-<!-- HOLD FOR DISCUSSION
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Controllers/DocumentController.cs" id="snippet_DocumentViewAction":::
-
-AT ...
-
-https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Controllers/DocumentController.cs
-
--->
 
 ## Create a resource-based handler
 
@@ -166,7 +151,7 @@ The preceding handler validates the operation using the resource, the user's ide
 
 This section shows how the challenge and forbid action results are processed and how challenge and forbid differ.
 
-To call an operational resource handler, specify the operation when invoking <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> in the action. The following example determines whether the authenticated user is permitted to view the provided document.
+When authorization fails but the user is authenticated, the app can return a <xref:Microsoft.AspNetCore.Mvc.ForbidResult>, which informs authentication middleware that authorization failed. Return a <xref:Microsoft.AspNetCore.Mvc.ChallengeResult> for unauthenticated users. For interactive browser clients, it may be appropriate to redirect the user to a login page.
 
 > [!NOTE]
 > The following example assumes successful authentication with the `User` property set.
@@ -186,5 +171,3 @@ else
     return new ChallengeResult();
 }
 ```
-
-If authorization succeeds, the page for viewing the document is returned. If authorization fails but the user is authenticated, returning <xref:Microsoft.AspNetCore.Mvc.ForbidResult> informs authentication middleware that authorization failed. A <xref:Microsoft.AspNetCore.Mvc.ChallengeResult> is returned when authentication is required. For interactive browser clients, it may be appropriate to redirect the user to a login page.
