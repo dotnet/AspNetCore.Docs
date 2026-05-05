@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.reviewer: wpickett
 ms.custom: mvc
-ms.date: 04/30/2026
+ms.date: 05/05/2026
 uid: web-api/jsonpatch
 ---
 # JSON Patch support in ASP.NET Core web API
