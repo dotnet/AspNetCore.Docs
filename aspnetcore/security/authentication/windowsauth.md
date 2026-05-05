@@ -1,11 +1,12 @@
 ---
 title: Configure Windows Authentication in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to configure Windows Authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/17/2025
+ms.date: 04/30/2026
 uid: security/authentication/windowsauth
 ms.ai: assisted
 ---
@@ -261,6 +262,9 @@ The following code adds authentication and configures the app's web host to use 
 
 > [!NOTE]
 > HTTP.sys delegates to [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication with the Kerberos authentication protocol. [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
+
+> [!TIP]
+> To further protect Windows authentication over HTTPS, consider enabling channel binding token (CBT) hardening. For details, see [Enable channel binding token (CBT) hardening](xref:fundamentals/servers/httpsys#enable-channel-binding-token-cbt-hardening).
 
 <!-- DOC AUTHOR NOTE
 

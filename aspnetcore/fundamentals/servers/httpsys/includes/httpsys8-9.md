@@ -79,6 +79,29 @@ Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a r
 
 HTTP.sys delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
 
+### Enable channel binding token (CBT) hardening
+
+Channel binding tokens (CBT) tie Windows authentication to the underlying TLS channel, which helps mitigate NTLM relay and man-in-the-middle attacks. For HTTPS endpoints that use Windows authentication with HTTP.sys, you can opt in to CBT hardening by setting the `Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening` AppContext switch to `true`.
+
+Enable the switch in your project's `runtimeconfig.template.json` file:
+
+```json
+{
+  "configProperties": {
+    "Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening": true
+  }
+}
+```
+
+Or set the switch programmatically before building the host in `Program.cs`:
+
+```csharp
+AppContext.SetSwitch("Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening", true);
+```
+
+> [!WARNING]
+> CBT hardening is off by default. Enabling it can cause Windows authentication to fail for clients or proxies that don't support channel binding. Test thoroughly in your environment before enabling in production.
+
 ### Support for kernel-mode response buffering
 
 In some scenarios, high volumes of small writes with high latency can cause significant performance impact to `HTTP.sys`. This impact is due to the lack of a <xref:System.IO.Pipelines.Pipe> buffer in the `HTTP.sys` implementation. To improve performance in these scenarios, support for response buffering is included in `HTTP.sys`. Enable buffering by setting [HttpSysOptions.EnableKernelResponseBuffering](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/HttpSys/src/HttpSysOptions.cs#L120) to `true`.
