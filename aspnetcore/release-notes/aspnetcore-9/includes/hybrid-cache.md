@@ -1,7 +1,7 @@
 ---
 ms.topic: include
 author: mgravell
-ms.author: marcgravell
+ms.author: wpickett
 ms.date: 05/21/2024
 ---
 ### New `HybridCache` library

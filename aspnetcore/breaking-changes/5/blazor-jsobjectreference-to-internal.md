@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Blazor: JSObjectReference and JSInProcessObjectReference types changed to internal"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled Blazor: JSObjectReference and JSInProcessObjectReference types changed to internal"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/435
 ---

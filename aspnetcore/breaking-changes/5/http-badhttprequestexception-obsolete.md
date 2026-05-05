@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: HTTP: Kestrel and IIS BadHttpRequestException types marked obsolete and replaced"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled HTTP: Kestrel and IIS BadHttpRequestException types marked obsolete and replaced"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/414
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Obsoleted and removed APIs"
 description: "Learn about the breaking change in ASP.NET Core 6.0 titled Obsoleted and removed APIs"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 02/16/2021
 ms.custom: https://github.com/aspnet/Announcements/issues/450
 ---

@@ -3,8 +3,9 @@ title: APIs overview
 author: JeremyLikness
 description: Learn how to build fast HTTP APIs with ASP.NET Core using Minimal APIs, the recommended approach for new projects.
 ai-usage: ai-assisted
-ms.author: jeliknes
-ms.date: 04/30/2026
+ms.author: wpickett
+ms.date: 05/04/2026
+ms.reviewer: jeliknes
 monikerRange: '>= aspnetcore-6.0'
 uid: fundamentals/apis
 ---

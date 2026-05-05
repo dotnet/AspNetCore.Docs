@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Blazor: Insignificant whitespace trimmed from components at compile time"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled Blazor: Insignificant whitespace trimmed from components at compile time"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/426
 ---
