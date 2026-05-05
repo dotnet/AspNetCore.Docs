@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 05/01/2026
+ms.date: 05/05/2026
 uid: performance/caching/response
 
 # customer intent: As an ASP.NET developer, I want to use response caching in ASP.NET Core, so I can reduce bandwidth requirements and increase performance of my apps.
@@ -52,7 +52,7 @@ Other cache headers that play a role in caching are shown in the following table
 
 The [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control) specification requires a cache to honor a valid `Cache-Control` header sent by the client. A client can make requests with a `no-cache` header value and force the server to generate a new response for every request.
 
-Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. The approach isn't necessarily a way to control the load on an origin server.
+Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
 There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. .NET 7 and later includes support for *output caching* to better control server load. For more information, see [Output caching](xref:performance/caching/overview#output-caching).
 

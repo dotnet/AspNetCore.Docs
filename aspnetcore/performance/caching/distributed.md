@@ -5,7 +5,7 @@ description: Learn how to use an ASP.NET Core distributed cache to improve app p
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/01/2026
+ms.date: 05/05/2026
 uid: performance/caching/distributed
 ms.sfi.ropc: t
 
@@ -71,9 +71,9 @@ The distributed Redis cache delivers the best performance and is recommended for
 
 An app configures the cache implementation with a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance by calling the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache%2A> method. For [output caching](xref:performance/caching/output#cache-storage), use the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisOutputCacheServiceCollectionExtensions.AddStackExchangeRedisOutputCache%2A> method.
 
-1. Create an Azure Cache for Redis.
+1. Create an instance of Azure Cache for Redis.
 
-1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
+1. Copy the primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
 
    - **For local development**: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
 
@@ -83,7 +83,7 @@ The following code enables the Azure Cache for Redis:
 
 [!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddStackExchangeRedisCache)]
 
-The preceding code assumes the Primary connection string (StackExchange.Redis) is saved in configuration with the key name `MyRedisConStr`.
+The preceding code assumes the primary connection string (StackExchange.Redis) is saved in configuration with the key name `MyRedisConStr`.
 
 For more information, see [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
@@ -291,11 +291,15 @@ If SQL Server is the distributed cache backing store, and the cache and app data
 
 ## Related content
 
-* [Cache in-memory in ASP.NET Core](xref:performance/caching/memory)
-* [Detect changes with change tokens in ASP.NET Core](xref:fundamentals/change-tokens)
-* [Response caching in ASP.NET Core](xref:performance/caching/response)
-* [Response caching middleware in ASP.NET Core](xref:performance/caching/middleware)
-* [Host ASP.NET Core in a web farm](xref:host-and-deploy/web-farm)
+* [Redis Cache on Azure](/azure/azure-cache-for-redis/)
+* [SQL Database on Azure](/azure/sql-database/)
+* [Azure Database for PostgreSQL](/azure/postgresql/)
+* [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
+* [Repository README file for Microsoft.Extensions.Caching.Cosmos](https://github.com/Azure/Microsoft.Extensions.Caching.Cosmos/blob/master/README.md)
+* <xref:fundamentals/change-tokens>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* <xref:host-and-deploy/web-farm>
 
 :::moniker-end
 

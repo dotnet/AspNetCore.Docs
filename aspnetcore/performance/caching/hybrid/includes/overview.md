@@ -17,7 +17,7 @@ simple API for adding new caching code. If the app has an `IDistributedCache` im
 
   Serialization is configured as part of registering the service, with support for type-specific and generalized serializers via the `WithSerializer` and `WithSerializerFactory` methods, chained from the `AddHybridCache` call. By default, the service handles `string` and `byte[]` types internally, and uses the `System.Text.Json` namespace for everything else. `HybridCache` can be configured for other types of serializers, such as protobuf or XML.
 
-To see the relative simplicity of the `HybridCache` API, compare code that uses it to code that uses the `IDistributedCache` interface. Here's an example of a configuration with the `IDistributedCache` interface:
+To see the relative simplicity of the `HybridCache` API, compare code that uses it to code that uses `IDistributedCache`. Here's an example of what using `IDistributedCache` looks like:
 
 ```csharp
 public class SomeService(IDistributedCache cache)
@@ -81,6 +81,6 @@ The `HybridCache` library supports older .NET runtimes, including .NET Framework
 
 For more information, see the following resources:
 
-* [HybridCache library in ASP.NET Core](xref:performance/caching/hybrid)
+* <xref:performance/caching/hybrid>
 * [Hybrid Cache API proposal (GitHub dotnet/aspnetcore issue #54647)](https://github.com/dotnet/aspnetcore/issues/54647)
 * [HybridCache source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs,8c0fe94693d1ac8d) <!--keep-->
