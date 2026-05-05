@@ -3,9 +3,10 @@ title: "Tutorial: Publish an ASP.NET Core app using Native AOT"
 author: mitchdenny
 description: Learn about how to publish an ASP.NET Core app using Native AOT.
 monikerRange: '>= aspnetcore-8.0'
+ms.reviewer: midenn
 ms.topic: tutorial
 content_well_notification: AI-contribution
-ms.author: midenn
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 05/13/2025
 uid: fundamentals/native-aot-tutorial

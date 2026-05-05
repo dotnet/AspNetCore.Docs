@@ -3,9 +3,10 @@ title: Use Angular with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for Angular and the Angular CLI.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: stevesa
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 07/09/2025
+ms.reviewer: stevesa
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core

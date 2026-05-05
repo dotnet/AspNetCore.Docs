@@ -4,8 +4,9 @@ ai-usage: ai-assisted
 author: twsouthwick
 description: ASP.NET Framework to Core Authentication Migration
 monikerRange: '>= aspnetcore-6.0'
-ms.author: tasou
+ms.author: wpickett
 ms.date: 12/10/2025
+ms.reviewer: tasou
 ms.topic: concept-article
 uid: migration/fx-to-core/areas/authentication
 zone_pivot_groups: migration-remote-app-setup

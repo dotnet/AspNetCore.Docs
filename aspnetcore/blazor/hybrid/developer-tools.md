@@ -137,3 +137,4 @@ To use Safari developer tools with a macOS app:
 * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
 * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 * [Safari Developer Help](https://support.apple.com/guide/safari-developer/welcome/mac)
+* [Inspect a `BlazorWebView` on Mac Catalyst (Mac Catalyst prior to 13.1 and iOS prior to 16.4)](/dotnet/maui/user-interface/controls/webview?pivots=devices-maccatalyst#inspect-a-webview-on-mac-catalyst)

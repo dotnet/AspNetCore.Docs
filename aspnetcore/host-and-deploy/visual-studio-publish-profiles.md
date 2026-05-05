@@ -5,7 +5,7 @@ description: Learn how to create publish profiles in Visual Studio and use them 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/28/2020
+ms.date: 04/27/2026
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment
@@ -60,7 +60,7 @@ The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages
 
 To explicitly add a file to the publish list, add the file directly in the `.csproj` file as shown in the [Include Files](#include-files) section.
 
-When selecting the **Publish** button in Visual Studio or when publishing from the command line:
+When selecting the **Publish** button in Visual Studio, or when publishing from the command line:
 
 * The properties/items are computed (the files that are needed to build).
 * **Visual Studio only**: NuGet packages are restored. (Restore needs to be explicit by the user on the CLI.)
@@ -135,7 +135,7 @@ The **Publish** tab of the app capabilities page is displayed. Several publish t
 * IIS, FTP, Web Deploy (for any web server)
 * Import Profile
 
-To determine the most appropriate publish target, see [What publishing options are right for me](/visualstudio/ide/not-in-toc/web-publish-options).
+To determine the most appropriate publish target, see [What publishing options are right for me](/visualstudio/deployment/deploying-applications-services-and-components-resources#what-publishing-options-are-right-for-me).
 
 When the **Folder** publish target is selected, specify a folder path to store the published assets. The default folder path is *bin\\{PROJECT CONFIGURATION}\\{TARGET FRAMEWORK MONIKER}\publish\\*. For example, *bin\Release\netcoreapp2.2\publish\\*. Select the **Create Profile** button to finish.
 
@@ -149,7 +149,7 @@ Visual Studio's publish tool produces a `Properties/PublishProfiles/{PROFILE NAM
 When publishing to an Azure target, the *.pubxml* file:
 
 * Contains the Azure subscription identifier.
-* Should not be checked into source control because the subscription identifier is sensitive information.
+* Shouldn't be checked into source control because the subscription identifier is sensitive information.
 
 Sensitive information, for example, the publish password, is encrypted on a per user/machine level. The `Properties/PublishProfiles/{PROFILE NAME}.pubxml.user` file contains the information needed by MSBuild to retrieve the user name and password.
 

@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 12/05/2019
+ms.date: 04/29/2026
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
@@ -19,7 +19,7 @@ In ASP.NET Core MVC, views are `.cshtml` files that use the [C# programming lang
 
 ![Views folder in Solution Explorer of Visual Studio is open with the Home folder open to show About.cshtml, Contact.cshtml, and Index.cshtml files](overview/_static/views_solution_explorer.png)
 
-The `Home` controller is represented by a `Home` folder inside the `Views` folder. The `Home` folder contains the views for the `About`, `Contact`, and `Index` (homepage) webpages. When a user requests one of these three webpages, controller actions in the `Home` controller determine which of the three views is used to build and return a webpage to the user.
+A `Home` folder inside the `Views` folder represents the `Home` controller. The `Home` folder contains the views for the `About`, `Contact`, and `Index` (homepage) webpages. When a user requests one of these three webpages, controller actions in the `Home` controller determine which of the three views is used to build and return a webpage to the user.
 
 Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and reduce code repetition. Layouts often contain the header, navigation and menu elements, and the footer. The header and footer usually contain boilerplate markup for many metadata elements and links to script and style assets. Layouts help you avoid this boilerplate markup in your views.
 
@@ -29,7 +29,7 @@ Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and 
 
 ## Benefits of using views
 
-Views help to establish [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
+Views help to establish [separation of concerns](/dotnet/architecture/modern-web-apps-azure/architectural-principles#separation-of-concerns) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
 
 * The app is easier to maintain because it's better organized. Views are generally grouped by app feature. This makes it easier to find related views when working on a feature.
 * The parts of the app are loosely coupled. You can build and update the app's views separately from the business logic and data access components. You can modify the views of the app without necessarily having to update other parts of the app.
@@ -42,9 +42,9 @@ Views that are specific to a controller are created in the `Views/[ControllerNam
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
-[Razor markup](xref:mvc/views/razor) starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown above. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements above.
+[Razor markup](xref:mvc/views/razor) starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown previously. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements previously.
 
-The view content shown above is only part of the entire webpage that's rendered to the user. The rest of the page's layout and other common aspects of the view are specified in other view files. To learn more, see the [Layout topic](xref:mvc/views/layout).
+The view content shown previously is only part of the entire webpage that's rendered to the user. The rest of the page's layout and other common aspects of the view are specified in other view files. To learn more, see the [Layout topic](xref:mvc/views/layout).
 
 ## How controllers specify views
 
@@ -80,7 +80,7 @@ The `View` helper method has several overloads. You can optionally specify:
 
 ### View discovery
 
-When an action returns a view, a process called *view discovery* takes place. This process determines which view file is used based on the view name. 
+When an action returns a view, a process called *view discovery* takes place. This process determines which view file is used based on the view name.
 
 The default behavior of the `View` method (`return View();`) is to return a view with the same name as the action method from which it's called. For example, the `About` `ActionResult` method name of the controller is used to search for a view file named `About.cshtml`. First, the runtime looks in the `Views/[ControllerName]` folder for the view. If it doesn't find a matching view there, it searches the `Shared` folder for the view.
 
@@ -165,7 +165,7 @@ public IActionResult Contact()
 }
 ```
 
-There are no restrictions on the model types that you can provide to a view. We recommend using Plain Old CLR Object (POCO) viewmodels with little or no behavior (methods) defined. Usually, viewmodel classes are either stored in the `Models` folder or a separate `ViewModels` folder at the root of the app. The `Address` viewmodel used in the example above is a POCO viewmodel stored in a file named `Address.cs`:
+There are no restrictions on the model types that you can provide to a view. We recommend using Plain Old CLR Object (POCO) viewmodels with little or no behavior (methods) defined. Usually, viewmodel classes are either stored in the `Models` folder or a separate `ViewModels` folder at the root of the app. The `Address` viewmodel used in the previous example is a POCO viewmodel stored in a file named `Address.cs`:
 
 ```csharp
 namespace WebApplication1.ViewModels
@@ -279,7 +279,7 @@ In the layout, the title is read from the ViewData dictionary:
 
 `ViewBag` *isn't available by default for use in Razor Pages* `PageModel` *classes.*
 
-`ViewBag` is a `Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.DynamicViewData` object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
+`ViewBag` is a `Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.DynamicViewData` object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` previously:
 
 ```csharp
 public IActionResult SomeAction()
@@ -382,7 +382,7 @@ This feature offers flexibility but doesn't offer compilation protection or Inte
 
 [Tag Helpers](xref:mvc/views/tag-helpers/intro) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and are ignored by editors that can't process them. This allows you to edit and render view markup in a variety of tools.
 
-Generating custom HTML markup can be achieved with many built-in HTML Helpers. More complex user interface logic can be handled by [View Components](xref:mvc/views/view-components). View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
+Generating custom HTML markup can be achieved with many built-in HTML Helpers. [View Components](xref:mvc/views/view-components) can handle more complex user interface logic. View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
 
 Like many other aspects of ASP.NET Core, views support [dependency injection](xref:fundamentals/dependency-injection), allowing services to be [injected into views](xref:mvc/views/dependency-injection).
 

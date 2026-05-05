@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Extensions: Package reference changes affecting some NuGet packages"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled Extensions: Package reference changes affecting some NuGet packages"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/411
 ---

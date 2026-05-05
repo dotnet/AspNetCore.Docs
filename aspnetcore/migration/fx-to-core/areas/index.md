@@ -3,8 +3,9 @@ title: Complex migration scenarios - Deep dive areas
 ai-usage: ai-assisted
 description: Detailed guidance for complex ASP.NET Framework to ASP.NET Core migration scenarios
 author: twsouthwick
-ms.author: tasou
+ms.author: wpickett
 ms.date: 12/10/2025
+ms.reviewer: tasou
 uid: migration/fx-to-core/areas
 ---
 # Technology specific guidance

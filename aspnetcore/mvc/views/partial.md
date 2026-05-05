@@ -4,7 +4,7 @@ author: tdykstra
 description: Discover how to use partial views to break up large markup files and reduce the duplication of common markup across web pages in ASP.NET Core apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/12/2019
+ms.date: 04/30/2026
 uid: mvc/views/partial
 ---
 # Partial views in ASP.NET Core
@@ -15,7 +15,7 @@ A partial view is a [Razor](xref:mvc/views/razor) markup file (`.cshtml`) withou
 
 :::moniker range=">= aspnetcore-2.1"
 
-The term *partial view* is used when developing either an MVC app, where markup files are called *views*, or a Razor Pages app, where markup files are called *pages*. This topic generically refers to MVC views and Razor Pages pages as *markup files*.
+The term *partial view* is used when developing either an MVC app, where markup files are called *views*, or a Razor Pages app, where markup files are called *pages*. This article generically refers to MVC views and Razor Pages pages as *markup files*.
 
 :::moniker-end
 

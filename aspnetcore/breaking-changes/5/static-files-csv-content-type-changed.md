@@ -1,7 +1,7 @@
 ---
 title: "Breaking change: Static files: CSV content type changed to standards-compliant"
 description: "Learn about the breaking change in ASP.NET Core 5.0 titled Static files: CSV content type changed to standards-compliant"
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/395
 ---
