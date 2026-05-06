@@ -523,7 +523,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 ## Add authentication support to a web API
 
-[!INCLUDE[](~/includes/DuendeIdentityServer-10.x.md)]
+[!INCLUDE[](~/includes/DuendeIdentityServer-10.md)]
 
 ## Additional resources
 
@@ -534,7 +534,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app9.md)]
+[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app-9.md)]
 
 [!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app8.md)]
 
