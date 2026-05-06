@@ -669,6 +669,8 @@ Note that the form requires authorization, so the user must be signed into the a
 > [!NOTE]
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
+::: moniker-end
+
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 *This section is focused on Blazor Web App scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
