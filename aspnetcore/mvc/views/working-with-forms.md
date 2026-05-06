@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [N. Taylor Mullen](https://
 
 This document demonstrates working with Forms and the HTML elements commonly used on a Form. The HTML [Form](https://www.w3.org/TR/html401/interact/forms.html) element provides the primary mechanism web apps use to post back data to the server. Most of this document describes [Tag Helpers](tag-helpers/intro.md) and how they can help you productively create robust HTML forms. We recommend you read [Introduction to Tag Helpers](tag-helpers/intro.md) before you read this document.
 
-In many cases, HTML Helpers provide an alternative approach to a specific Tag Helper, but it's important to recognize that Tag Helpers don't replace HTML Helpers and there's not a Tag Helper for each HTML Helper. When an HTML Helper alternative exists, it's mentioned.
+In many cases, HTML Helpers provide an alternative approach to a specific Tag Helper. However, it's important to recognize that Tag Helpers don't replace HTML Helpers, and there's not a Tag Helper for each HTML Helper. When an HTML Helper alternative exists, it's mentioned.
 
 <a name="my-asp-route-param-ref-label"></a>
 
@@ -21,13 +21,13 @@ In many cases, HTML Helpers provide an alternative approach to a specific Tag He
 
 The [Form Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper):
 
-* Generates the HTML [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` attribute value for a MVC controller action or named route
+* Generates the HTML [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` attribute value for a MVC controller action or named route.
 
-* Generates a hidden [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method)
+* Generates a hidden [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method).
 
 * Provides the `asp-route-<Parameter Name>` attribute, where `<Parameter Name>` is added to the route values. The  `routeValues` parameters to `Html.BeginForm` and `Html.BeginRouteForm` provide similar functionality.
 
-* Has an HTML Helper alternative `Html.BeginForm` and `Html.BeginRouteForm`
+* Has an HTML Helper alternative `Html.BeginForm` and `Html.BeginRouteForm`.
 
 Sample:
 
@@ -42,7 +42,7 @@ The previous Form Tag Helper generates the following HTML:
 </form>
 ```
 
-The MVC runtime generates the `action` attribute value from the Form Tag Helper attributes `asp-controller` and `asp-action`. The Form Tag Helper also generates a hidden [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method). Protecting a pure HTML Form from cross-site request forgery is difficult, the Form Tag Helper provides this service for you.
+The MVC runtime generates the `action` attribute value from the Form Tag Helper attributes `asp-controller` and `asp-action`. The Form Tag Helper also generates a hidden [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method). Protecting a pure HTML Form from cross-site request forgery is difficult, but the Form Tag Helper provides this service for you.
 
 ### Using a named route
 
@@ -167,11 +167,11 @@ The Input Tag Helper:
 
 * Generates the `id` and `name` HTML attributes for the expression name specified in the `asp-for` attribute. `asp-for="Property1.Property2"` is equivalent to `m => m.Property1.Property2`. The name of the expression is what is used for the `asp-for` attribute value. For more information, see the [Expression names](#expression-names) section.
 
-* Sets the HTML `type` attribute value based on the model type and  [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to the model property
+* Sets the HTML `type` attribute value based on the model type and  [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to the model property.
 
-* Won't overwrite the HTML `type` attribute value when one is specified
+* Won't overwrite the HTML `type` attribute value when one is specified.
 
-* Generates [HTML5](https://developer.mozilla.org/docs/Glossary/HTML5)  validation attributes from [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to model properties
+* Generates [HTML5](https://developer.mozilla.org/docs/Glossary/HTML5)  validation attributes from [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to model properties.
 
 * Has an HTML Helper feature overlap with `Html.TextBoxFor` and `Html.EditorFor`. See the [HTML Helper alternatives to Input Tag Helper](#html-helper-alternatives-to-input-tag-helper) section for details.
 
@@ -235,7 +235,7 @@ The preceding code generates the following HTML:
 </form>
 ```
 
-The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) If an error message is provided in the attribute, it's displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
+The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.). If an error message is provided in the attribute, it's displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
 
 When binding multiple `input` controls to the same property, the generated controls share the same `id`, which makes the generated mark-up invalid. To prevent duplicates, specify the `id` attribute for each control explicitly.
 
@@ -387,7 +387,7 @@ The `Textarea Tag Helper` tag helper is  similar to the Input Tag Helper.
 
 * Provides strong typing.
 
-* HTML Helper alternative: `Html.TextAreaFor`
+* HTML Helper alternative: `Html.TextAreaFor`.
 
 Sample:
 
@@ -413,7 +413,7 @@ The following HTML is generated:
 
 ## The Label Tag Helper
 
-* Generates the label caption and `for` attribute on a [\<label>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/label) element for an expression name
+* Generates the label caption and `for` attribute on a [\<label>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/label) element for an expression name.
 
 * HTML Helper alternative: `Html.LabelFor`.
 
@@ -421,7 +421,7 @@ The `Label Tag Helper`  provides the following benefits over a pure HTML label e
 
 * You automatically get the descriptive label value from the `Display` attribute. The intended display name might change over time, and the combination of `Display` attribute and Label Tag Helper will apply the `Display` everywhere it's used.
 
-* Less markup in source code
+* Less markup in source code.
 
 * Strong typing with the model property.
 
@@ -449,7 +449,7 @@ There are two Validation Tag Helpers. The `Validation Message Tag Helper` (which
 
 * Validation also takes place on the server. Clients might have JavaScript disabled and some validation can only be done on the server side.
 
-* HTML Helper alternative: `Html.ValidationMessageFor`
+* HTML Helper alternative: `Html.ValidationMessageFor`.
 
 The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on an HTML [span](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/span) element.
 
@@ -481,9 +481,9 @@ When a server side validation error occurs (for example when you have custom ser
 
 ### The Validation Summary Tag Helper
 
-* Targets `<div>` elements with the `asp-validation-summary` attribute
+* Targets `<div>` elements with the `asp-validation-summary` attribute.
 
-* HTML Helper alternative: `@Html.ValidationSummary`
+* HTML Helper alternative: `@Html.ValidationSummary`.
 
 The `Validation Summary Tag Helper`  is used to display a summary of validation messages. The `asp-validation-summary` attribute value can be any of the following:
 
@@ -524,7 +524,7 @@ The generated HTML (when the model is valid):
 
 * Generates [select](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/select) and associated [option](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/option) elements for properties of your model.
 
-* Has an HTML Helper alternative `Html.DropDownListFor` and `Html.ListBoxFor`
+* Has an HTML Helper alternative `Html.DropDownListFor` and `Html.ListBoxFor`.
 
 The `Select Tag Helper` `asp-for` specifies the model property  name for the [select](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/select) element  and `asp-items` specifies the [option](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/option) elements. For example:
 
