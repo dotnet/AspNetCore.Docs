@@ -85,7 +85,7 @@ The following code enables the Azure Cache for Redis:
 
 The preceding code assumes the primary connection string (StackExchange.Redis) is saved in configuration with the key name `MyRedisConStr`.
 
-For more information, see [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
+For more information, see [Azure Managed Redis](/azure/redis/overview).
 
 For a discussion on alternative approaches to a local Redis cache, see [GitHub /dotnet/aspnetcore issue #19542](https://github.com/dotnet/AspNetCore.Docs/issues/19542).
 
