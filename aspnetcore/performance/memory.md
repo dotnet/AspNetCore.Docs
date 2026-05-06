@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 05/06/2026
 uid: performance/memory
 
-# customer intent: As an ASP.NET developer, I want to memory management and garbage collection in ASP.NET Core, so I manage memory in my apps.
+# customer intent: As an ASP.NET developer, I want to understand memory management and garbage collection in ASP.NET Core, so I can manage memory in my apps.
 ---
 # Memory management and garbage collection in ASP.NET Core
 
@@ -54,7 +54,7 @@ Use the following tools to analyze memory usage:
 
 Task Manager can be used to get an idea of how much memory an ASP.NET app is using. The Task Manager memory value:
 
-* Represents the amount of memory  used by the ASP.NET process.
+* Represents the amount of memory used by the ASP.NET process.
 * Includes the app's living objects and other memory consumers such as native memory usage.
 
 If the Task Manager memory value increases indefinitely and never flattens out, the app has a memory leak. The following sections demonstrate and explain several memory usage patterns.
@@ -109,7 +109,7 @@ The chart illustrates the following details:
 
 * 22 K RPS
 * Gen 0 GC collections occur several times per second
-* Gen 1 collections trigger because the app allocates more memory per second
+* Gen 1 collections trigger because the app allocates significantly more memory per second
 * Constant Working Set, approximately 500 MB
 * CPU is 33%
 * Stable memory consumption and release (through GC)
@@ -201,13 +201,13 @@ public void GetFileProvider()
 }
 ```
 
-<xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> is a managed class, so any instance are collected at the end of the request.
+<xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> is a managed class, so any instance is collected at the end of the request.
 
 The following image shows the memory profile while invoking the `fileprovider` API continuously.
 
 :::image source="memory/_static/fileprovider.png" alt-text="Chart showing a native memory leak":::
 
-The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This result is a known problem racked in [GitHub dotnet/aspnetcore issue #844](https://github.com/dotnet/aspnetcore/issues/844).
+The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This result is a known problem tracked in [GitHub dotnet/aspnetcore issue #844](https://github.com/dotnet/aspnetcore/issues/844).
 
 The same leak occurs in user code in the following scenarios:
 
@@ -222,7 +222,7 @@ Frequent memory allocation/free cycles result in fragmented memory, especially w
 * Not compacted
 * Processed during Gen 2 collection
 
-When the LOH is full, the GC triggers a GC 2 collection.
+When the LOH is full, the GC triggers a Gen 2 collection.
 
 * Gen 2 collections are inherently slow.
 * They can incur the cost of triggering a collection on all other generations.
@@ -263,7 +263,7 @@ Comparing the two preceding charts:
 
 * Working Set is similar for both scenarios, about 450 MB
 * Under LOH requests (84,975 bytes) show mostly Gen 0 collections
-* Over LOH requests generate constant Gen 2 collections, which are expensive, more CPU is required, throughput drops ~50%
+* Over LOH requests generate constant Gen 2 collections, which are expensive. More CPU is required and throughput drops ~50%.
 
 Temporary large objects are problematic because they cause Gen 2 collections.
 
