@@ -523,7 +523,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 ## Add authentication support to a web API
 
-[!INCLUDE[](~/includes/DuendeIdentityServer-10.md)]
+[!INCLUDE[](~/includes/duende-identity-server-10.md)]
 
 ## Additional resources
 
