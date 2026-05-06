@@ -40,7 +40,7 @@ Find out how to use the Visual Studio Container Tools extension to deploy an ASP
 [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)  
 Additional configuration might be required for apps hosted behind proxy servers and load balancers. Passing requests through a proxy often obscures information about the original request, such as the scheme and client IP. It might be necessary to forward some information about the request manually to the app.
 
-[GC using Docker and small containers](xref:performance/memory#sc)
+[GC using Docker and small containers](xref:performance/memory#gc-using-docker-and-small-containers)
 Discusses GC selection with small containers.
 
 [!INCLUDE[](~/includes/128.md)]
