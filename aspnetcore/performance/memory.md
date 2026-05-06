@@ -32,7 +32,7 @@ The preceding memory allocations are done for performance reasons. The performan
 
 ### Review caveats when using GC.Collect 
 
-In general, ASP.NET Core apps in production should **not** use [GC.Collect](xref:System.GC.Collect%2A) explicitly. Inducing garbage collections at suboptimal times can decrease performance significantly.
+In general, ASP.NET Core apps in production should **not** use the [GC.Collect](xref:System.GC.Collect%2A) method explicitly. Inducing garbage collections at suboptimal times can decrease performance significantly.
 
 `GC.Collect` is useful when investigating memory leaks. Calling `GC.Collect()` triggers a blocking garbage collection cycle that tries to reclaim all objects inaccessible from managed code. It's a useful way to understand the size of the reachable live objects in the heap, and track growth of memory size over time.
 
@@ -46,9 +46,9 @@ Dedicated tools can help analyze memory usage, including:
 
 Use the following tools to analyze memory usage:
 
-* [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) (can use on production machines)
+* [dotnet-trace utility](/dotnet/core/diagnostics/dotnet-trace) (can use on production machines)
 * [Analyze memory usage without the Visual Studio debugger](/visualstudio/profiling/memory-usage-without-debugging2)
-* [Profile memory usage in Visual Studio](/visualstudio/profiling/memory-usage)
+* [Measure memory usage in Visual Studio](/visualstudio/profiling/memory-usage)
 
 ### Detect memory issues
 
@@ -70,12 +70,12 @@ The [MemoryLeak sample app](https://github.com/sebastienros/memoryleak) is avail
 
 Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory increases because the tool allocates custom object to capture data. The following image illustrates the MemoryLeak Index page when a Gen 0 GC occurs. The chart shows 0 RPS (Requests per second) because no API endpoints from the API controller are called.
 
-:::image source="memory/_static/0RPS.png" alt-text="Chart illustration showing 0 Requests Per Second (RPS) after running MemoryLeak and Gen 0 GC occurs.":::
+:::image source="memory/_static/0RPS.png" alt-text="Chart showing 0 Requests Per Second (RPS) after running MemoryLeak and Gen 0 GC occurs.":::
 
 The chart displays two values for the memory usage:
 
 * **Allocated**: The amount of memory occupied by managed objects.
-* **Working Set**: The set of pages in the virtual address space of the process that are currently resident in physical memory. The working set shown is the same value Task Manager displays. For more information, see [Working set](/windows/win32/memory/working-set).
+* **Working Set**: The set of pages in the virtual address space of the process that are currently resident in physical memory. The working set shown is the same value Task Manager displays. For more information, see [Working Set](/windows/win32/memory/working-set).
 
 ### Transient objects
 
@@ -91,7 +91,7 @@ public ActionResult<string> GetBigString()
 
 The following chart is generated with a relatively small load that shows how GC affects memory allocations.
 
-:::image source="memory/_static/bigstring.png" alt-text="Chart illustration showing memory allocations for a relatively small load.":::
+:::image source="memory/_static/bigstring.png" alt-text="Chart showing memory allocations for a relatively small load.":::
 
 The chart illustrates the following details:
 
@@ -103,7 +103,7 @@ The chart illustrates the following details:
 
 The following chart is taken at the max throughput that the machine can handle.
 
-:::image source="memory/_static/bigstring2.png" alt-text="Chart illustration showing max throughput.":::
+:::image source="memory/_static/bigstring2.png" alt-text="Chart showing max throughput.":::
 
 The chart illustrates the following details:
 
@@ -132,8 +132,8 @@ The GC mode can be set explicitly in the project file or in the _runtimeconfig.j
 
 Changing `ServerGarbageCollection` in the project file requires the app to be rebuilt.
 
-> [!Note]
-> Server garbage collection is **not** available on machines with a single core. For more information, see <xref:System.Runtime.GCSettings.IsServerGC>.
+> [!NOTE]
+> Server garbage collection is **not** available on machines with a single core. For more information, see the <xref:System.Runtime.GCSettings.IsServerGC> property.
 
 The following image shows the memory profile under a 5K RPS using the Workstation GC.
 
@@ -149,7 +149,7 @@ On a typical web server environment, CPU usage is more important than memory, th
 
 ### GC using Docker and small containers
 
-When multiple containerized apps run on the same machine, Workstation GC might be more performant than Server GC. For more information, see [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) and [Running with Server GC in a Small Container Scenario Part 1 – Hard Limit for the GC Heap](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/).
+When multiple containerized apps run on the same machine, Workstation GC might be more performant than Server GC. For more information, see [Running with Server GC in a Small Container (blog)](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) and [Running with Server GC in a Small Container Scenario Part 1 – Hard Limit for the GC Heap (blog)](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/).
 
 ### Persistent object references
 
@@ -174,7 +174,7 @@ The preceding code:
 * Demonstrates a typical memory leak.
 * With frequent calls, causes app memory to increase until the process crashes with an `OutOfMemory` exception.
 
-:::image source="memory/_static/eternal.png" alt-text="Chart showing a memory leak.":::
+:::image source="memory/_static/eternal.png" alt-text="Chart showing a memory leak resulting from persistent unused references.":::
 
 The chart illustrates the following details:
 
@@ -182,13 +182,13 @@ The chart illustrates the following details:
 * GC tries to free memory as memory pressure grows by calling a Gen 2 collection
 * GC can't free the leaked memory; Allocated and Working Set increase with time
 
-Some scenarios, such as caching, require object references to be held until memory pressure forces them to be released. The <xref:System.WeakReference> class can be used for this type of caching code. A `WeakReference` object is collected under memory pressures. The default implementation of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> uses `WeakReference`.
+Some scenarios, such as caching, require object references to be held until memory pressure forces them to be released. The <xref:System.WeakReference> class can be used for this type of caching code. A `WeakReference` object is collected under memory pressures. The default implementation of the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> interface uses `WeakReference`.
 
 ### Native memory
 
 Some .NET objects rely on native memory, but native memory **isn't collectable** by the GC. The .NET object that uses native memory must free it by using native code.
 
-.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose%2A> isn't called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
+.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if the <xref:System.IDisposable.Dispose%2A> method isn't called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/finalizers) runs.
 
 Consider the following code:
 
@@ -207,7 +207,7 @@ The following image shows the memory profile while invoking the `fileprovider` A
 
 :::image source="memory/_static/fileprovider.png" alt-text="Chart showing a native memory leak":::
 
-The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This result is a known problem racked in [GitHub dotnet/aspnetcore issue #3110](https://github.com/dotnet/aspnetcore/issues/3110).
+The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This result is a known problem racked in [GitHub dotnet/aspnetcore issue #844](https://github.com/dotnet/aspnetcore/issues/844).
 
 The same leak occurs in user code in the following scenarios:
 
@@ -234,7 +234,7 @@ GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.Compa
 GC.Collect();
 ```
 
-For information on compacting the LOH, see <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode>.
+For information on compacting the LOH, see the <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> property.
 
 In containers that use .NET Core 3.0 or later, the LOH is automatically compacted.
 
@@ -256,7 +256,7 @@ The following chart shows the memory profile of calling the `/api/loh/84976` end
 
 :::image source="memory/_static/loh2.png" alt-text="Chart showing memory profile of allocating one more byte":::
 
-> [!Note]
+> [!NOTE]
 > The `byte[]` structure has overhead bytes, which is why 84,976 bytes triggers the 85,000 limit.
 
 Comparing the two preceding charts:
@@ -267,7 +267,7 @@ Comparing the two preceding charts:
 
 Temporary large objects are problematic because they cause Gen 2 collections.
 
-For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [Response Caching](xref:performance/caching/response) middleware in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
+For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [Response Caching Middleware](xref:performance/caching/response) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
 
@@ -281,14 +281,14 @@ For more information, see:
 
 ### HttpClient
 
-Incorrectly using <xref:System.Net.Http.HttpClient> can result in a resource leak.
+Incorrectly using the <xref:System.Net.Http.HttpClient> class can result in a resource leak.
 
 System resources (such as database connections, sockets, file handles, and so on) present two issues:
 
 * They're more scarce than memory.
 * They're more problematic when leaked than memory.
 
-Experienced .NET developers know to call <xref:System.IDisposable.Dispose%2A> on objects that implement <xref:System.IDisposable>. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
+Experienced .NET developers know to call the <xref:System.IDisposable.Dispose%2A> method on objects that implement the <xref:System.IDisposable> interface. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
 
 `HttpClient` implements `IDisposable`, but should **not** be disposed on every invocation. Rather, `HttpClient` should be reused.
 
@@ -308,7 +308,7 @@ public async Task<int> GetHttpClient1(string url)
 
 Under load, the following error messages are logged:
 
-```output
+```text
 fail: Microsoft.AspNetCore.Server.Kestrel[13]
       Connection id "0HLG70PBE1CR1", Request id "0HLG70PBE1CR1:00000031":
       An unhandled exception was thrown by the application.
@@ -340,7 +340,7 @@ The `HttpClient` instance is released when the app stops. This example shows tha
 The following articles describe a better way to handle the lifetime of an `HttpClient` instance:
 
 * [HttpClient and lifetime management](../fundamentals/http-requests.md#httpclient-and-lifetime-management)
-* [HTTPClient factory blog](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
+* [HTTPClient factory (blog)](https://devblogs.microsoft.com/dotnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
 ### Object pooling
 
@@ -371,11 +371,11 @@ The following API endpoint instantiates a `byte` buffer that is filled with rand
 
 The following chart displays calling the preceding API with moderate load:
 
-:::image source="memory/_static/array.png" alt-text="Chart illustration showing calls to API with moderate load.":::
+:::image source="memory/_static/array.png" alt-text="Chart showing calls to API with moderate load.":::
 
 The chart reveals that Gen 0 collections happen about once per second.
 
-The code can be optimized by pooling the `byte` buffer by using [ArrayPool\<T>](xref:System.Buffers.ArrayPool%601). A static instance is reused across requests.
+The code can be optimized by pooling the `byte` buffer by using the [ArrayPool\<T>](xref:System.Buffers.ArrayPool%601) class. A static instance is reused across requests.
 
 What's different with this approach is that a pooled object is returned from the API:
 
@@ -385,7 +385,7 @@ What's different with this approach is that a pooled object is returned from the
 To set up disposal of the object:
 
 * Encapsulate the pooled array in a disposable object.
-* Register the pooled object with [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose%2A).
+* Register the pooled object by using the [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose%2A) method.
 
 `RegisterForDispose` takes care of calling `Dispose` on the target object, so the object is released only after the HTTP request completes.
 
@@ -433,4 +433,4 @@ The main difference is allocated bytes, and as a consequence, fewer Gen 0 collec
 * [Garbage collection](/dotnet/standard/garbage-collection/)
 * [Understanding different GC modes with Concurrency Visualizer (blog)](https://devblogs.microsoft.com/premier-developer/understanding-different-gc-modes-with-concurrency-visualizer/)
 * [Large Object Heap Uncovered (blog)](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
-* [Large object heap (Windows)](/dotnet/standard/garbage-collection/large-object-heap)
+* [Large object heap on Windows systems](/dotnet/standard/garbage-collection/large-object-heap)

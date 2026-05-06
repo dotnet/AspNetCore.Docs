@@ -47,8 +47,8 @@ The following table shows the content encoding designations for the `Accept-Enco
 
 | Designation    | Middleware    | Format | Details | 
 | -------------- | :-----------: | ------ | ------- |
-| `br`           | Yes (default) | Brotli Compressed Data Format | [RFC 7932](https://tools.ietf.org/html/rfc7932) |
-| `deflate`      | No            | DEFLATE Compressed Data Format | [RFC 1951](https://tools.ietf.org/html/rfc1951) |
+| `br`           | Yes (default) | Brotli Compressed Data Format | [RFC 7932](https://datatracker.ietf.org/doc/html/rfc7932) |
+| `deflate`      | No            | DEFLATE Compressed Data Format | [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951) |
 | `exi`          | No            | Efficient XML Interchange (EXI) | [W3C Recommendation](https://www.w3.org/TR/exi/) |
 | `gzip`         | Yes           | Gzip file format | [RFC 1952](https://www.ietf.org/rfc/rfc1952.txt) |
 | `identity`     | Yes           | "No encoding" - the response must not be encoded | [Troubleshoot response compression](#troubleshoot-response-compression) |
@@ -71,7 +71,7 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 | `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload. | [Content-Encoding header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Encoding) |
 | `Content-Length`   | When compression occurs, the `Content-Length` header is removed because the body content changes when the response is compressed. | [Content-Length header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Length) |
 | `Content-MD5`      | When compression occurs, the `Content-MD5` header is removed because the body content is changed and the hash is no longer valid. | [RFC 1864: The Content-MD5 Header Field](https://datatracker.ietf.org/doc/html/rfc1864) |
-| `Content-Type`     | Specifies the [MIME type](https://developer.mozilla.org/docs/Web/HTTP/Guides/MIME_types) of the content. Every response should specify its `Content-Type` value. The response compression middleware checks this value to determine if the response should be compressed. The response compression middleware specifies a set of [default MIME types](#mime-types) that it can encode, and they can be replaced or added. | [Content-Type header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) |
+| `Content-Type`     | Specifies the [MIME type](https://developer.mozilla.org/docs/Glossary/MIME_type) of the content. Every response should specify its `Content-Type` value. The response compression middleware checks this value to determine if the response should be compressed. The response compression middleware specifies a set of [default MIME types](#review-the-mime-types) that it can encode, and they can be replaced or added. | [Content-Type header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) |
 | `Vary`             | When sent by the server with a value of `Accept-Encoding` to clients and proxies, the `Vary` header indicates to the client or proxy that it should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses are cached separately. | [Vary header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Vary) |
 
 Explore the features of the Response Compression Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples). The sample illustrates:
@@ -91,7 +91,7 @@ The following code shows how to enable the Response Compression Middleware for d
 When you work with Response Compression Middleware, keep in mind the following points:
 
 * Setting the `EnableForHttps` property to `true` is a security risk. For more information, see the [Compression with HTTPS](#explore-compression-with-https) section earlier in this article.
-* The [app.UseResponseCompression](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A) method must be called ***before*** any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
+* The [app.UseResponseCompression](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A) method must be called ***before*** any middleware that compresses responses. For more information, see [ASP.NET Core Middleware > Middleware order](xref:fundamentals/middleware/index#middleware-order).
 * Use a tool such as [Firefox Browser - Developer edition](https://www.firefox.com/channel/desktop/developer/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
@@ -99,7 +99,7 @@ Submit a request to the sample app without the `Accept-Encoding` header and obse
 For example, in Firefox Developer:
 
 1. Select the network tab.
-1. Right-click the request in the [Network request list](https://developer.mozilla.org/docs/Tools/Network_Monitor/request_list) and select **Edit and resend**.
+1. Right-click the request in the [Network request list](https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/request_list/index.html) and select **Edit and resend**.
 1. Change the `Accept-Encoding:` value from  `gzip, deflate, br` to `none`.
 1. Select **Send**.
 
@@ -111,9 +111,9 @@ This section provides details about compression providers, including Brotli, Gzi
 
 ### Brotli and Gzip compression providers
 
-Use the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> class to compress responses with the [RFC 7932: Brotli Compressed Data Format](https://tools.ietf.org/html/rfc7932).
+Use the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> class to compress responses with the [RFC 7932: Brotli Compressed Data Format](https://datatracker.ietf.org/doc/html/rfc7932).
 
-If [no compression providers are explicitly added](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionProvider.cs#L44) to the <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
+If [no compression providers are explicitly added](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionProvider.cs#L44) to the <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection> class:
 
 * By default, the Brotli and Gzip compression providers are added to the array of compression providers.
 * When the client supports the Brotli compressed data format, compression defaults to Brotli compression.
@@ -130,7 +130,7 @@ The following code:
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=6-11)]
 
-Set the compression level with the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>class and <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. The Brotli and Gzip compression providers default to the fastest compression level as determined by the [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) enum. However, this approach might not produce the most efficient compression. If the most efficient compression is desired, configure the response compression middleware for optimal compression.
+Set the compression level with the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> class and <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> class. The Brotli and Gzip compression providers default to the fastest compression level as determined by the [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) enum. However, this approach might not produce the most efficient compression. If the most efficient compression is desired, configure the response compression middleware for optimal compression.
 
 For values that indicate whether a compression operation emphasizes speed or compression size, see the [CompressionLevel Enum](/dotnet/api/system.io.compression.compressionlevel).
 
@@ -178,13 +178,13 @@ Use a tool like [Firefox Browser - Developer edition](https://www.firefox.com/ch
 
 * The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*` (asterisk), or custom encoding that matches a custom compression provider. The value must not be `identity` (no encoding) or have a quality value (qvalue, `q`) setting of 0 (zero).
 
-* The MIME type (`Content-Type`) must be set and must match a MIME type configured on the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions> object.
+* The MIME type (`Content-Type`) must be set and must match a MIME type configured on the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions> class.
 
 * The request must not include the [Content-Range header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Range).
 
 * The request must use the insecure hypertext protocol (http), unless the secure hypertext protocol (https) is configured in the Response Compression Middleware options.
 
-   > [!CAUTION]
+   > [!IMPORTANT]
    > Review the risks associated with enabling secure content compression, as described in [Compression with HTTPS](#explore-compression-with-https) earlier in this article.
 
 ## Review the Azure deployed sample
@@ -255,7 +255,7 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 | `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload. |
 | `Content-Length`   | When compression occurs, the `Content-Length` header is removed, since the body content changes when the response is compressed. |
 | `Content-MD5`      | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid. |
-| `Content-Type`     | Specifies the MIME type of the content. Every response should specify its `Content-Type`. The middleware checks this value to determine if the response should be compressed. The middleware specifies a set of [default MIME types](#mime-types) that it can encode, but you can replace or add MIME types. |
+| `Content-Type`     | Specifies the MIME type of the content. Every response should specify its `Content-Type`. The middleware checks this value to determine if the response should be compressed. The middleware specifies a set of [default MIME types](#review-the-mime-types) that it can encode, but you can replace or add MIME types. |
 | `Vary`             | When sent by the server with a value of `Accept-Encoding` to clients and proxies, the `Vary` header indicates to the client or proxy that it should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses are cached separately. |
 
 Explore the features of the Response Compression Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples). The sample illustrates:
