@@ -164,7 +164,7 @@ When responses are compressed based on the [Accept-Encoding request header](http
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-## Understand middleware issues - Behind an Nginx reverse proxy
+## Issues  with Nginx reverse proxy
 
 When Nginx proxies the request, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents the response compression middleware from compressing the response. For more information, see [Nginx: Compression and decompression](https://docs.nginx.com/nginx/admin-guide/web-server/compression/). This issue is tracked in [GitHub dotnet/aspnetcore issue #5989](https://github.com/dotnet/aspnetcore/issues/5989) - _Figure out pass-through compression for Nginx_.
 
@@ -174,7 +174,7 @@ To disable IIS Dynamic Compression Module configured at the server level, see [D
 
 ## Troubleshoot response compression
 
-Use a tool like [Firefox Browser - Developer edition](https://www.firefox.com/channel/desktop/developer/) that lets you set the `Accept-Encoding` request header, and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
+Use a tool like [Firefox Browser - Developer edition](https://www.firefox.com/channel/desktop/developer/) that lets you set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
 
 * The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*` (asterisk), or custom encoding that matches a custom compression provider. The value must not be `identity` (no encoding) or have a quality value (qvalue, `q`) setting of 0 (zero).
 

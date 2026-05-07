@@ -17,11 +17,11 @@ Memory management is complex, even in a managed framework like .NET. Analyzing a
 
 This article demonstrates common memory use patterns that can be problematic, and suggests alternate approaches.
 
-## Explore garbage collection in .NET
+## Explore garbage collection (GC) in .NET
 
-The GC process allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of three generations (Gen): 0, 1, or 2. The generation determines the frequency the GC attempts to release memory on managed objects which the app no longer references. More frequent collections address the lower numbered generations.
+The GC process allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of three generations: 0, 1, or 2. The generation determines the frequency of the GC attempts to release memory on managed objects that the app no longer references.  The GC addresses the lower-numbered generations more frequently.
 
-Objects are moved from one generation to another based on their lifetime. As objects live longer, they're moved into a higher generation. As mentioned previously, GC runs less often on higher generations. Short-term lived objects always remain in Gen 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](xref:fundamentals/dependency-injection#service-lifetimes) generally migrate to Gen 2.
+Objects are moved from one generation to another based on their lifetime. As objects live longer, they're moved into a higher generation. As mentioned previously, GC runs less often on higher generations. Short-lived objects always remain in Gen 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](xref:fundamentals/dependency-injection#service-lifetimes) generally migrate to Gen 2.
 
 When an ASP.NET Core app starts, the GC process:
 
@@ -68,7 +68,7 @@ The [MemoryLeak sample app](https://github.com/sebastienros/memoryleak) is avail
 * Contains an API controller that provides various memory load patterns.
 * Can be used to display memory usage patterns of ASP.NET Core apps, but it isn't a supported tool.
 
-Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory increases because the tool allocates custom object to capture data. The following image illustrates the MemoryLeak Index page when a Gen 0 GC occurs. The chart shows 0 RPS (Requests per second) because no API endpoints from the API controller are called.
+Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory increases because the tool allocates a custom object to capture data. The following image shows the MemoryLeak Index page when a Gen 0 GC occurs. The chart shows 0 RPS (Requests per second) because no API endpoints from the API controller have been called.
 
 :::image source="memory/_static/0RPS.png" alt-text="Chart showing 0 Requests Per Second (RPS) after running MemoryLeak and Gen 0 GC occurs.":::
 
@@ -153,7 +153,7 @@ When multiple containerized apps run on the same machine, Workstation GC might b
 
 ### Persistent object references
 
-The GC can't free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they aren't needed, memory usage increases over time.
+The GC can't free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage increases over time.
 
 The following API creates a 20-KB String instance and returns it to the client. The difference with the previous example is that a static member references this instance, which means the instance is never available for collection.
 
