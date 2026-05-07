@@ -164,7 +164,7 @@ When responses are compressed based on the [Accept-Encoding request header](http
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-## Issues  with Nginx reverse proxy
+## Issues with Nginx reverse proxy
 
 When Nginx proxies the request, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents the response compression middleware from compressing the response. For more information, see [Nginx: Compression and decompression](https://docs.nginx.com/nginx/admin-guide/web-server/compression/). This issue is tracked in [GitHub dotnet/aspnetcore issue #5989](https://github.com/dotnet/aspnetcore/issues/5989) - _Figure out pass-through compression for Nginx_.
 
