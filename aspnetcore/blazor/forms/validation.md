@@ -361,41 +361,78 @@ When validation messages are set in the component, they're added to the validato
 
 :::moniker range=">= aspnetcore-10.0"
 
-*This section is focused on Blazor Web App scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach. The approach in this section is based on a [Blazor Web App (Interactive Auto render mode) app hosted in Entra with Microsoft Azure packages](xref:blazor/security/blazor-web-app-entra).*
+*This section demonstrates server validation using a [Blazor Web App (Interactive Auto render mode) hosted in Entra with `Microsoft.Identity.Web` packages](xref:blazor/security/blazor-web-app-entra), but the same general approach is recommended for any Blazor app.*
 
 Server validation is supported in addition to client validation:
 
 * Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
-* Process model validation on the server.
-* The server API includes custom validation logic supplied by the developer.
-* Either disable the form on success or display the errors.
+* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server web API for server-side validation.
+* Process model validation on the server with custom validation logic. If the model is valid, process the form on the server.
+* Send validation errors, if any, back to the client.
+* Either disable the form on success or display the errors, allowing the user to correct any problems with the form's field values.
 
-Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
+Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a *validator component* is recommended where an independent model class is used across several components. The approach demonstrated by the following guidance uses a validator component.
 
 The following example is based on:
 
-* A Blazor Web App with Interactive WebAssembly components created from the [Blazor Web App project template](xref:blazor/project-structure).
-* The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
+* A Blazor Web App with global Interactive Auto components created from the [Blazor Web App project template](xref:blazor/project-structure).
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
+* A [Minimal API](xref:fundamentals/minimal-apis) project validates that a ship description field (`Description`) has a value if the user selects the `Defense` ship classification (`Classification`).
 
-In the main project of the Blazor Web App, a Minimal API is added to validate that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
-
-The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
+The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data is never sent to the client for client validation.
 
 > [!NOTE]
-> The Minimal API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`.
+> For more information on security pertaining to the following example, see the following resources:
 >
-> For more information on security, see:
->
+> * <xref:blazor/security/blazor-web-app-entra>
 > * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
 > * [Microsoft identity platform documentation](/entra/identity-platform/)
 
-Place the `Starship` model (`Starship.cs`) into a `Starship` folder in the `.Client` project. Since the model requires data annotations, confirm that the shared class library uses the shared framework or add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the shared project.
+> [!NOTE]
+> Long code lines in the following examples are broken into shorter lines to reduce the appearance of horizontal scrollbars on mobile devices. Where appropriate, you're welcome to combine lines to shorten the length of the code.
 
-[!INCLUDE[](~/includes/package-reference.md)]
+Create a `Starship` folder in the `.Client` project of the Blazor Web App.
 
-Add an interface for a form validation service to the `.Client` project.
+Place the following `StarshipModel` model (`StarshipModel.cs`) into the `Starship` folder ***and*** into the Minimal API project of the solution.
+
+> [!NOTE]
+> If you choose to place one copy of the `StarshipModel` into a shared class library project for use by both the Blazor Web App and the Minimal API project, confirm that the shared class library uses the shared framework or add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the shared project. This ensures that the model has access to data annotations.
+>
+> [!INCLUDE[](~/includes/package-reference.md)]
+
+In the two `StarshipModel` classes, set the namespace (`{NAMESPACE}`) appropriately for each project (for example, `BlazorSample.Starship` in the Blazor Web App and `MinimalApiJwt.Models` in the Minimal API project). Some developers prefer to use a different folder scheme. If you position the classes in the projects in different locations than what is demonstrated here, set the namespaces appropriately.
+
+`Starship/StarshipModel.cs` (Blazor Web App) or `Models/StarshipModel.cs` (Minimal API project):
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+namespace {NAMESPACE};
+
+public class StarshipModel
+{
+    [Required]
+    [StringLength(16, ErrorMessage = "Identifier too long (16 character limit).")]
+    public string? Id { get; set; }
+
+    public string? Description { get; set; }
+
+    [Required]
+    public string? Classification { get; set; }
+
+    [Range(1, 100000, ErrorMessage = "Accommodation invalid (1-100000).")]
+    public int MaximumAccommodation { get; set; }
+
+    [Required]
+    [Range(typeof(bool), "true", "true", ErrorMessage = "Approval required.")]
+    public bool IsValidatedDesign { get; set; }
+
+    [Required]
+    public DateTime ProductionDate { get; set; }
+}
+```
+
+Add an interface for a form validation service to the `.Client` project in the `Starship` folder. The interface is used to register a service for server validation on the server or client validation on the client.
 
 `Starship/IFormValidator.cs`:
 
@@ -404,43 +441,12 @@ namespace BlazorSample.Client.Starship;
 
 public interface IFormValidator
 {
-    Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(StarshipModel starship);
+    Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(
+        StarshipModel starship);
 }
 ```
 
-Create a server form validator that implements the preceding interface in the Blazor Web App.
-
-`Starship/ServerFormValidator.cs`:
-
-```csharp
-using BlazorSample.Client.Starship;
-using Microsoft.Identity.Abstractions;
-
-namespace BlazorSample.Server.Starship;
-
-internal sealed class ServerFormValidator(IDownstreamApi downstreamApi) : IFormValidator
-{
-    public async Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(StarshipModel starship)
-    {
-        var validationErrors = await downstreamApi.CallApiForUserAsync<StarshipModel, Dictionary<string, List<string>>>(
-            "DownstreamApi", starship, 
-            options =>
-            {
-                options.HttpMethod = HttpMethod.Post.Method;
-                options.RelativePath = "/starship-validation";
-            });
-
-        return validationErrors ?? new Dictionary<string, List<string>>
-        {
-            { "Validation", [ "An error occurred during validation." ] }
-        };
-    }
-}
-```
-
-Confirm or update the namespace of the preceding class (`BlazorSample.Server.Starship`) to match the app's namespace.
-
-Add a client form validator class to the `.Client` project.
+Add a client form validator class to the `.Client` project's `Starship` folder. The client form validator is used when the app is running on the client. The validator class posts the form's model to the backend Minimal API for processing.
 
 `Starship/ClientFormValidator.cs`:
 
@@ -451,13 +457,17 @@ namespace BlazorSample.Client.Starship;
 
 internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidator
 {
-    public async Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(StarshipModel starship)
+    public async Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(
+        StarshipModel starship)
     {
-        using var response = await httpClient.PostAsJsonAsync("/starship-validation", starship);
+        using var response = await httpClient.PostAsJsonAsync(
+            "/starship-validation", starship);
 
         if (response.IsSuccessStatusCode)
         {
-            var validationResult = await response.Content.ReadFromJsonAsync<Dictionary<string, List<string>>>();
+            var validationResult = 
+                await response.Content.ReadFromJsonAsync<Dictionary<string, 
+                    List<string>>>();
 
             if (validationResult is not null)
             {
@@ -473,20 +483,64 @@ internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidato
 }
 ```
 
+Confirm or update the namespace of the preceding class.
+
+Create a `Starship` folder in the server project of the Blazor Web App.
+
+Create a server form validator that implements the preceding interface in the Blazor Web App. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
+
+`Starship/ServerFormValidator.cs`:
+
+```csharp
+using BlazorSample.Client.Starship;
+using Microsoft.Identity.Abstractions;
+
+namespace BlazorSample.Server.Starship;
+
+internal sealed class ServerFormValidator(IDownstreamApi downstreamApi) 
+    : IFormValidator
+{
+    public async Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(
+        StarshipModel starship)
+    {
+        var validationErrors = 
+            await downstreamApi.CallApiForUserAsync<StarshipModel, 
+                    Dictionary<string, List<string>>>(
+                "DownstreamApi", starship, 
+                options =>
+                {
+                    options.HttpMethod = HttpMethod.Post.Method;
+                    options.RelativePath = "/starship-validation";
+                });
+
+        return validationErrors ?? new Dictionary<string, List<string>>
+        {
+            { "Validation", [ "An error occurred during validation." ] }
+        };
+    }
+}
+```
+
+Confirm or update the namespace of the preceding class.
+
 In the `Program` file of the Blazor Web App:
+
+* Register the server form validator (`ServerFormValidator`) for the `IFormValidator` interface in the DI container.
+* The server form validator is used on the server to call `ValidateStarshipFormAsync` for form validation.
 
 ```csharp
 builder.Services.AddScoped<IFormValidator, ServerFormValidator>();
 
 ...
 
-app.MapPost("/starship-validation", ([FromServices] IFormValidator formValidator, StarshipModel model) =>
+app.MapPost("/starship-validation", ([FromServices] IFormValidator formValidator, 
+    StarshipModel model) =>
 {
     return formValidator.ValidateStarshipFormAsync(model);
 }).RequireAuthorization();
 ```
 
-The `.Client` project of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API. Confirm or add the following to the `.Client` project's `Program` file:
+The `.Client` project of a Blazor Web App must register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to the Minimal API. Add the following to the `.Client` project's `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient<IFormValidator, ClientFormValidator>(httpClient =>
@@ -497,7 +551,9 @@ builder.Services.AddHttpClient<IFormValidator, ClientFormValidator>(httpClient =
 
 The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
-In the `Program` file of the `MinimalApiJwt` app:
+In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a dictionary of validation errors returns a dictionary entry with the failed field and a description of the error. If validation passes, an empty dictionary is returned. In a typical production app, any number of form model checks are made, and the validation errors dictionary can include multiple failures (`List<string>` value) for each model property (`validationErrors[nameof({PROPERTY})]`).
+
+In the `Program` file of the Minimal API project:
 
 ```csharp
 app.MapPost("/starship-validation", (StarshipModel model, ILogger<Program> logger) =>
@@ -523,7 +579,8 @@ app.MapPost("/starship-validation", (StarshipModel model, ILogger<Program> logge
 #if DEBUG
         foreach (var kv in validationErrors)
         {
-            logger.LogInformation("Field: {Field}, Errors: {Errors}", kv.Key, string.Join(", ", kv.Value));
+            logger.LogInformation("Field: {Field}, Errors: {Errors}", kv.Key, 
+                string.Join(", ", kv.Value));
         }
 #endif
 
@@ -531,29 +588,30 @@ app.MapPost("/starship-validation", (StarshipModel model, ILogger<Program> logge
     catch (Exception ex)
     {
         logger.LogError("Validation Error: {Message}", ex.Message);
-        validationErrors.Add("Validation", [ "An error occurred during validation." ]);
+        validationErrors.Add(
+            "Validation", [ "An error occurred during validation." ]);
     }
 
     return validationErrors;
 }).RequireAuthorization();
 ```
 
-In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
+In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Confirm or update the namespace.
 
-In the `.Client` project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
+In the `.Client` project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary. Confirm or update the namespace for `BlazorSample.Client.Starship`.
 
 Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
-`Starship10.razor`:
-
 > [!NOTE]
 > Forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm> automatically enable [antiforgery support](xref:blazor/forms/index#antiforgery-support).
+
+`Pages/Starship10.razor` in the `.Client` project:
 
 ```razor
 @page "/starship-10"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using BlazorWebAppEntra.Client.Starship
+@using BlazorSample.Client.Starship
 @attribute [Authorize]
 @inject IFormValidator FormValidation
 @inject ILogger<Starship10> Logger
@@ -668,6 +726,16 @@ Note that the form requires authorization, so the user must be signed into the a
 
 > [!NOTE]
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
+
+To reach the form easily, add the following entry to the `NavMenu` component (`Layout/NavMenu.razor`) in the `.Client` project:
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="starship-10">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Starship
+    </NavLink>
+</div>
+```
 
 ::: moniker-end
 
