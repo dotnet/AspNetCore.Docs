@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor forms validation
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
@@ -376,7 +377,7 @@ Basic validation is useful in cases where the form's model is defined within the
 The following example is based on:
 
 * A Blazor Web App with global Interactive Auto components created from the [Blazor Web App project template](xref:blazor/project-structure).
-* The `CustomValidation` component shown in the [Validator components](#validator-components) section.
+* A `CustomValidation` component to handle adding model errors to the form's validation message store for display in the UI.
 * A [Minimal API](xref:fundamentals/minimal-apis) project validates that a ship description field (`Description`) has a value if the user selects the `Defense` ship classification (`Classification`).
 
 The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data is never sent to the client for client validation.
@@ -400,7 +401,7 @@ Place the following `StarshipModel` model (`StarshipModel.cs`) into the `Starshi
 >
 > [!INCLUDE[](~/includes/package-reference.md)]
 
-In the two `StarshipModel` classes, set the namespace (`{NAMESPACE}`) appropriately for each project (for example, `BlazorSample.Starship` in the Blazor Web App and `MinimalApiJwt.Models` in the Minimal API project). Some developers prefer to use a different folder scheme. If you position the classes in the projects in different locations than what is demonstrated here, set the namespaces appropriately.
+In the two `StarshipModel` classes, set the namespace (`{NAMESPACE}`) appropriately for each project (for example, `BlazorSample.Client.Starship` in the Blazor Web App and `MinimalApiJwt.Models` in the Minimal API project). Some developers prefer to use a different folder scheme. If you position the classes in the projects in different locations than what is demonstrated here, set the namespaces appropriately.
 
 `Starship/StarshipModel.cs` (Blazor Web App) or `Models/StarshipModel.cs` (Minimal API project):
 
@@ -437,12 +438,13 @@ Add an interface for a form validation service to the `.Client` project in the `
 `Starship/IFormValidator.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Mvc;
+
 namespace BlazorSample.Client.Starship;
 
 public interface IFormValidator
 {
-    Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(
-        StarshipModel starship);
+    Task<ValidationProblemDetails> ValidateStarshipFormAsync(StarshipModel starship);
 }
 ```
 
@@ -451,34 +453,43 @@ Add a client form validator class to the `.Client` project's `Starship` folder. 
 `Starship/ClientFormValidator.cs`:
 
 ```csharp
+using System.Net;
 using System.Net.Http.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorSample.Client.Starship;
 
 internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidator
 {
-    public async Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(
-        StarshipModel starship)
+    public async Task<ValidationProblemDetails> ValidateStarshipFormAsync(StarshipModel starship)
     {
-        using var response = await httpClient.PostAsJsonAsync(
-            "/starship-validation", starship);
+        ValidationProblemDetails problemDetails = new()
+        {
+            Title = "Validation Error",
+            Detail = "Form validation failed.",
+            Instance = "BlazorSample.Client.ClientFormValidator",
+            Status = StatusCodes.Status500InternalServerError
+        };
+
+        using var response = await httpClient.PostAsJsonAsync("/starship-validation", starship);
 
         if (response.IsSuccessStatusCode)
         {
-            var validationResult = 
-                await response.Content.ReadFromJsonAsync<Dictionary<string, 
-                    List<string>>>();
-
-            if (validationResult is not null)
+            return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? new ValidationProblemDetails
             {
-                return validationResult;
-            }
+                Title = "Validation succeeded",
+                Detail = "The starship form is valid.",
+                Instance = "BlazorSample.Client.ClientFormValidator",
+                Status = StatusCodes.Status500InternalServerError
+            };
+        }
+        else if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? problemDetails;
         }
 
-        return new Dictionary<string, List<string>>
-        {
-            { "Validation", [ "An error occurred during validation." ] }
-        };
+        return problemDetails;
     }
 }
 ```
@@ -492,31 +503,67 @@ Create a server form validator that implements the preceding interface in the Bl
 `Starship/ServerFormValidator.cs`:
 
 ```csharp
-using BlazorSample.Client.Starship;
+using System.Net;
+using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Abstractions;
+using BlazorSample.Client.Starship;
 
-namespace BlazorSample.Server.Starship;
+namespace BlazorSample.Starship;
 
 internal sealed class ServerFormValidator(IDownstreamApi downstreamApi) 
     : IFormValidator
 {
-    public async Task<Dictionary<string, List<string>>> ValidateStarshipFormAsync(
+    private readonly static JsonSerializerOptions jsonSerializerOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
+    public async Task<ValidationProblemDetails> ValidateStarshipFormAsync(
         StarshipModel starship)
     {
-        var validationErrors = 
-            await downstreamApi.CallApiForUserAsync<StarshipModel, 
-                    Dictionary<string, List<string>>>(
-                "DownstreamApi", starship, 
+        ValidationProblemDetails problemDetails = new()
+        {
+            Title = "Validation Error",
+            Detail = "Form validation failed.",
+            Instance = "BlazorSample.Server.ServerFormValidator",
+            Status = StatusCodes.Status500InternalServerError
+        };
+
+        try
+        {
+            var response = await downstreamApi.CallApiForUserAsync<StarshipModel, 
+                ValidationProblemDetails>(
+                "DownstreamApi",
+                starship,
                 options =>
                 {
                     options.HttpMethod = HttpMethod.Post.Method;
                     options.RelativePath = "/starship-validation";
                 });
 
-        return validationErrors ?? new Dictionary<string, List<string>>
+            return response ?? problemDetails;
+        }
+        catch (HttpRequestException ex) when 
+            (ex.StatusCode == HttpStatusCode.BadRequest)
         {
-            { "Validation", [ "An error occurred during validation." ] }
-        };
+            int index = ex.Message.IndexOf('{');
+
+            if (index != -1)
+            {
+                var problemDetailsJson = ex.Message[index..];
+
+                if (problemDetailsJson is not null)
+                {
+                    var deserializedProblemDetails = JsonSerializer.Deserialize
+                        <ValidationProblemDetails>(problemDetailsJson, jsonSerializerOptions);
+
+                    return deserializedProblemDetails ?? problemDetails;
+                }
+            }
+        }
+
+        return problemDetails;
     }
 }
 ```
@@ -533,7 +580,7 @@ builder.Services.AddScoped<IFormValidator, ServerFormValidator>();
 
 ...
 
-app.MapPost("/starship-validation", ([FromServices] IFormValidator formValidator, 
+app.MapPost("/starship-validation", ([IFormValidator formValidator, 
     StarshipModel model) =>
 {
     return formValidator.ValidateStarshipFormAsync(model);
@@ -558,45 +605,97 @@ In the `Program` file of the Minimal API project:
 ```csharp
 app.MapPost("/starship-validation", (StarshipModel model, ILogger<Program> logger) =>
 {
-    Dictionary<string, List<string>> validationErrors = [];
+    Dictionary<string, string[]> errors = [];
 
-    try
+    if (model.Classification == "Defense" && string.IsNullOrEmpty(model.Description))
     {
-        if (model.Classification == "Defense" &&
-            string.IsNullOrEmpty(model.Description))
-        {
-            if (!validationErrors.TryGetValue(nameof(model.Description), 
-                out List<string>? value))
-            {
-                value = [];
-                validationErrors[nameof(model.Description)] = value;
-            }
-
-            value.Add("For a 'Defense' ship " +
-                "classification, 'Description' is required.");
-        }
-
-#if DEBUG
-        foreach (var kv in validationErrors)
-        {
-            logger.LogInformation("Field: {Field}, Errors: {Errors}", kv.Key, 
-                string.Join(", ", kv.Value));
-        }
-#endif
-
-    }
-    catch (Exception ex)
-    {
-        logger.LogError("Validation Error: {Message}", ex.Message);
-        validationErrors.Add(
-            "Validation", [ "An error occurred during validation." ]);
+        errors.Add(nameof(model.Description), ["For a 'Defense' ship, 'Description' is required."]);
     }
 
-    return validationErrors;
+    if (errors.Count > 0)
+    {
+        return Results.ValidationProblem(
+            errors: errors, 
+            detail: "One or more validation errors occurred.", 
+            instance: "MinimalApiJwt",
+            statusCode: 400, 
+            title: "Validation Errors", 
+            type: "https://tools.ietf.org/html/rfc9110#section-15.5.1");
+    }
+
+    return Results.NoContent();
+
 }).RequireAuthorization();
 ```
 
-In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Confirm or update the namespace.
+Also in the `Program` file of the Minimal API, register [built-in validation services](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis):
+
+```csharp
+builder.Services.AddValidation();
+```
+
+Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint code for `/starship-validation`.
+
+In the `.Client` project, add the following `CustomValidation` component. Confirm or update the namespace.
+
+`CustomValidation.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
+
+namespace BlazorSample.Client;
+
+public class CustomValidation : ComponentBase
+{
+    private ValidationMessageStore? messageStore;
+
+    [CascadingParameter]
+    private EditContext? CurrentEditContext { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (CurrentEditContext is null)
+        {
+            throw new InvalidOperationException(
+                $"{nameof(CustomValidation)} requires a cascading " +
+                $"parameter of type {nameof(EditContext)}. " +
+                $"For example, you can use {nameof(CustomValidation)} " +
+                $"inside an {nameof(EditForm)}.");
+        }
+
+        messageStore = new(CurrentEditContext);
+
+        CurrentEditContext.OnValidationRequested += (s, e) =>
+            messageStore?.Clear();
+        CurrentEditContext.OnFieldChanged += (s, e) =>
+            messageStore?.Clear(e.FieldIdentifier);
+    }
+
+    public void DisplayErrors(ValidationProblemDetails problemDetails)
+    {
+        if (CurrentEditContext is not null)
+        {
+            foreach (var err in problemDetails.Errors)
+            {
+                foreach (var value in err.Value)
+                {
+                    messageStore?.Add(CurrentEditContext.Field(err.Key), value);
+                }
+            }
+
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
+    }
+
+    public void ClearErrors()
+    {
+        messageStore?.Clear();
+        CurrentEditContext?.NotifyValidationStateChanged();
+    }
+}
+```
 
 In the `.Client` project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary. Confirm or update the namespace for `BlazorSample.Client.Starship`.
 
@@ -611,6 +710,7 @@ Note that the form requires authorization, so the user must be signed into the a
 @page "/starship-10"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Http
 @using BlazorSample.Client.Starship
 @attribute [Authorize]
 @inject IFormValidator FormValidation
@@ -694,13 +794,13 @@ Note that the form requires authorization, so the user must be signed into the a
 
         try
         {
-            var validationErrors = 
+            var validationProblemDetails = 
                 await FormValidation.ValidateStarshipFormAsync(
                     (StarshipModel)editContext.Model);
 
-            if (validationErrors.Any())
+            if (validationProblemDetails.Status != StatusCodes.Status204NoContent)
             {
-                customValidation?.DisplayErrors(validationErrors);
+                customValidation?.DisplayErrors(validationProblemDetails);
             }
             else
             {
@@ -715,7 +815,7 @@ Note that the form requires authorization, so the user must be signed into the a
         }
         catch (Exception ex)
         {
-            Logger.LogError("Form processing error: {Message}", ex.Message);
+            Logger.LogError(ex, "Form processing error.");
             disabled = true;
             messageStyles = "color:red";
             message = "There was an error processing the form.";
@@ -737,7 +837,40 @@ To reach the form easily, add the following entry to the `NavMenu` component (`L
 </div>
 ```
 
-::: moniker-end
+When automatic model binding validation error occurs on the server, the framework returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
+
+```json
+{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "Id": [ "The Id field is required." ],
+    "Classification": [ "The Classification field is required." ],
+    "IsValidatedDesign": [ "This form disallows unapproved ships." ],
+    "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
+  }
+}
+```
+
+If automatic type validation passes but the custom validation fails, the following JSON response is received from the Minimal API:
+
+```json
+{
+    "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+    "title": "One or more validation errors occurred.",
+    "instance": "MinimalApiJwt",
+    "status": 400,
+    "errors": {
+      "Description": [ "For a 'Defense' ship 'Description' is required." ]
+    }
+}
+```
+
+> [!NOTE]
+> To demonstrate the preceding JSON responses, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/).
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
