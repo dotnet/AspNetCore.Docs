@@ -5,7 +5,7 @@ description: Use .NET Hot Reload to apply code changes to a running app without 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/10/2022
+ms.date: 05/05/2026
 uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
