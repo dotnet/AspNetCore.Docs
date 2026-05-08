@@ -228,13 +228,13 @@ var app = builder.Build();
 
 app.Map("/level1", level1App => {
     level1App.Map("/level2a", level2AApp => {
-        app.Run(async context =>
+        level2AApp.Run(async context =>
         {
             await context.Response.WriteAsync("Processing '/level1/level2a'");
         });
     });
     level1App.Map("/level2b", level2BApp => {
-        app.Run(async context =>
+        level2BApp.Run(async context =>
         {
             await context.Response.WriteAsync("Processing '/level1/level2b'");
         });
