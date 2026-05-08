@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/20/2022
+ms.date: 05/04/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: mvc/views/view-components
 ---
@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## View components
 
-View components are similar to partial views, but they're much more powerful. View components don't use model binding, they depend on the data passed when calling the view component. This article was written using controllers and views, but view components work with [Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components).
+View components are similar to partial views, but they're much more powerful. View components don't use model binding. They depend on the data passed when calling the view component. This article was written using controllers and views, but view components work with [Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components).
 
 A view component:
 
@@ -27,17 +27,17 @@ A view component:
 
 View components are intended anywhere reusable rendering logic that's too complex for a partial view, such as:
 
-* Dynamic navigation menus
-* Tag cloud, where it queries the database
-* Sign in panel
-* Shopping cart
-* Recently published articles
-* Sidebar content on a blog
-* A sign in panel that would be rendered on every page and show either the links to sign out or sign in, depending on the sign in state of the user
+* Dynamic navigation menus.
+* Tag cloud, where it queries the database.
+* Sign in panel.
+* Shopping cart.
+* Recently published articles.
+* Sidebar content on a blog.
+* A sign in panel that would be rendered on every page and show either the links to sign out or sign in, depending on the sign in state of the user.
 
 A view component consists of two parts:
 
-* The class, typically derived from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>
+* The class, typically derived from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>.
 * The result it returns, typically a view.
 
 Like controllers, a view component can be a POCO, but most developers take advantage of the methods and properties available by deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>.
@@ -50,18 +50,18 @@ This section contains the high-level requirements to create a view component. La
 
 ### The view component class
 
-A view component class can be created by any of the following:
+Any of the following can create a view component class:
 
-* Deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>
-* Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute
-* Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents)
+* Deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>.
+* Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute.
+* Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents).
 
 Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name%2A> property.
 
 A view component class:
 
-* Supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
-* Doesn't take part in the controller lifecycle, therefore [filters](../controllers/filters.md) can't be used in a view component
+* Supports constructor [dependency injection](../../fundamentals/dependency-injection.md).
+* Doesn't take part in the controller lifecycle, therefore [filters](../controllers/filters.md) can't be used in a view component.
 
 To prevent a class that has a case-insensitive `ViewComponent` suffix from being treated as a view component, decorate the class with the [`[NonViewComponent]`](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
 
@@ -124,7 +124,7 @@ A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/int
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
-Pascal-cased class and method parameters for Tag Helpers are translated into their [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
+Pascal-cased class and method parameters for Tag Helpers are translated into their [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-hyphen-separated-case/12273101#12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
 ```cshtml
 <vc:[view-component-name]
@@ -157,7 +157,7 @@ In the following example, the view component is called directly from the control
 
 ## Create a basic view component
 
-[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample6.x), build and test the starter code. It's a basic project with a `ToDo` controller that displays a list of *ToDo* items.
+[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample6.x), build, and test the starter code. It's a basic project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 
@@ -185,8 +185,8 @@ Notes on the code:
      ```
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
-  * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The name `PriorityList` when looking for the views associated with the component.
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method that can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
