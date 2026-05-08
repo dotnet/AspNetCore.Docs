@@ -472,21 +472,28 @@ internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidato
             Status = StatusCodes.Status500InternalServerError
         };
 
-        using var response = await httpClient.PostAsJsonAsync("/starship-validation", starship);
+        try
+        {
+            using var response = await httpClient.PostAsJsonAsync("/starship-validation", starship);
 
-        if (response.IsSuccessStatusCode)
-        {
-            return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? new ValidationProblemDetails
+            if (response.IsSuccessStatusCode)
             {
-                Title = "Validation succeeded",
-                Detail = "The starship form is valid.",
-                Instance = "BlazorSample.Client.ClientFormValidator",
-                Status = StatusCodes.Status500InternalServerError
-            };
+                return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? new ValidationProblemDetails
+                {
+                    Title = "Validation succeeded",
+                    Detail = "The starship form is valid.",
+                    Instance = "BlazorSample.Client.ClientFormValidator",
+                    Status = StatusCodes.Status500InternalServerError
+                };
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? problemDetails;
+            }
         }
-        else if (response.StatusCode == HttpStatusCode.BadRequest)
+        catch (Exception ex)
         {
-            return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? problemDetails;
+            //Log the exception or handle it as needed
         }
 
         return problemDetails;
@@ -547,6 +554,8 @@ internal sealed class ServerFormValidator(IDownstreamApi downstreamApi)
         catch (HttpRequestException ex) when 
             (ex.StatusCode == HttpStatusCode.BadRequest)
         {
+            // The response content is only available via
+            // the Message property of the exception
             int index = ex.Message.IndexOf('{');
 
             if (index != -1)
@@ -598,7 +607,7 @@ builder.Services.AddHttpClient<IFormValidator, ClientFormValidator>(httpClient =
 
 The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
-In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a dictionary of validation errors returns a dictionary entry with the failed field and a description of the error. If validation passes, an empty dictionary is returned. In a typical production app, any number of form model checks are made, and the validation errors dictionary can include multiple failures (`List<string>` value) for each model property (`validationErrors[nameof({PROPERTY})]`).
+In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a `ValidationProblem` returns a dictionary with the failed field and a description of the error. If validation passes, a *204 - No Content* response is issued. In a typical production app, any number of custom form model checks are made, and the validation errors dictionary can include multiple failures (`string[]` value) for each model property.
 
 In the `Program` file of the Minimal API project:
 
