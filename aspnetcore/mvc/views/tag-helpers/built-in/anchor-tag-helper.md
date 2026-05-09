@@ -72,7 +72,7 @@ Consider the following controller action:
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?name=snippet_SpeakerDetailAction)]
 
 
-With a default route template defined in the app's routing configuration (for .NET 6 and later, see *Program.cs*):
+With a default route template defined in `Program.cs`:
 
 ```csharp
 app.MapControllerRoute(
