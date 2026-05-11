@@ -457,3 +457,9 @@ Enabling account confirmation on a site with users locks out all the existing us
 * Confirm existing users. For example, batch-send emails with confirmation links.
 
 :::moniker-end
+
+## Related content
+
+* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
+* [Authentication](xref:security/authentication/identity)
+* [Entity Framework Core](xref:data/ef-mvc/intro)
