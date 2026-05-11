@@ -33,8 +33,6 @@ When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-archit
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server or Kestrel. For more information, see <xref:host-and-deploy/aspnet-core-module>.
 
-<a name="korh"></a>
-
 ## Kestrel vs. HTTP.sys
 
 Kestrel has the following advantages over HTTP.sys:
@@ -67,7 +65,7 @@ Several hosting models are available:
 
 For more information, see the following:
 
-* [Kestrel vs. HTTP.sys](#korh)
+* [Kestrel vs. HTTP.sys](#kestrel-vs-httpsys)
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/aspnet-core-module>
 
