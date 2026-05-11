@@ -68,7 +68,9 @@ The `Click here to confirm your account` link displays because the [IEmailSender
 
 ### Configure an email provider
 
-In this tutorial, Twilio [SendGrid](https://www.twilio.com/sendgrid) is used to send email. A SendGrid account and key are required to send email. We recommend using SendGrid or another email service to send email rather than SMTP. SMTP is difficult to secure and set up correctly.
+<!-- Locale identifier (en-us) required in next link -->
+
+In this tutorial, Twilio [SendGrid](https://www.twilio.com/en-us/sendgrid) is used to send email. A SendGrid account and key are required to send email. We recommend using SendGrid or another email service to send email rather than SMTP. SMTP is difficult to secure and set up correctly.
 
 The SendGrid account might require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
