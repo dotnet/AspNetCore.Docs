@@ -68,7 +68,7 @@ The data protection system provides APIs that target three main audiences:
 
    *I need to tell the data protection system that my environment requires nondefault paths or settings.*
 
-- The [extensibility APIs](xref:/security/data-protection/extensibility/index) target developers in charge of implementing custom policy. Usage of these APIs is limited to rare situations and developers with security experience.
+- The [extensibility APIs](xref:/security/data-protection/extensibility/) target developers in charge of implementing custom policy. Usage of these APIs is limited to rare situations and developers with security experience.
 
    *I need to replace an entire component within the system because I have truly unique behavioral requirements. I'm willing to learn uncommonly used parts of the API surface so I can build a plugin that fulfills my requirements.*
 
