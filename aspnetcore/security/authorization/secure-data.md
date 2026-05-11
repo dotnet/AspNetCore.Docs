@@ -286,6 +286,8 @@ Updating a user's role assignments lets you control the privileges available to 
 
 For more information, see [GitHub dotnet/aspnetcore issue #8502](https://github.com/dotnet/AspNetCore.Docs/issues/8502) - _Mute or remove privileges from a user. Admin changes_.
 
+<a name="challenge"></a>
+
 ## Differences between Challenge and Forbid
 
 This app sets the default policy to [require authenticated users](#require-authenticated-users). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge versus Forbid.
