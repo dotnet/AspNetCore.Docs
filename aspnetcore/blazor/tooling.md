@@ -494,9 +494,25 @@ For more information, see the following resources:
 
 ## Blazor project templates and template options
 
+:::moniker range=">= aspnetcore-11.0"
+
+* Blazor Web App project template: `blazor`
+* Standalone Blazor WebAssembly app project template: `blazorwasm`
+* [Service defaults library for Blazor WebAssembly apps](#service-defaults-library-for-blazor-webassembly-apps): `blazor-wasm-servicedefaults`
+
+> [!NOTE]
+> The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
+>
+> * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
+> * <xref:aspnetcore-8#new-blazor-web-app-template>
+> * <xref:blazor/project-structure#blazor-web-app>
+> * <xref:migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app>
+
+:::moniker-end
+
 The Blazor framework provides project templates for creating new apps. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 * Blazor Web App project template: `blazor`
 * Standalone Blazor WebAssembly app project template: `blazorwasm`
@@ -601,6 +617,32 @@ For more information on template options, see the following resources:
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
   * `dotnet new blazorserver -h`
   * `dotnet new blazorwasm -h`
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Service defaults library for Blazor WebAssembly apps
+
+The `blazor-wasm-servicedefaults` project template creates a service default library for Blazor WebAssembly apps with .NET Aspire integration.
+
+The template features:
+
+* [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) support: Logging, metrics, and tracing with standard OTLP exporter.
+* Service discovery integration via the [`Microsoft.Extensions.ServiceDiscovery` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.ServiceDiscovery).
+* HTTP resilience using the standard resilience handler via the [`Microsoft.Extensions.Http.Resilience` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Http.Resilience).
+
+Example template usage with an output name of `BlazorSample.ServiceDefaults`:
+
+```dotnetcli
+dotnet new blazor-wasm-servicedefaults -o BlazorSample.ServiceDefaults
+```
+
+Reference the library from the Blazor WebAssembly client and make the following call in the app's `Program` file:
+
+```csharp
+builder.AddBlazorClientServiceDefaults();
+```
 
 :::moniker-end
 

@@ -213,7 +213,7 @@ To persist temporary data between HTTP requests during static server-side render
 `TempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
-* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
 * Supports primitives, <xref:System.DateTime>, <xref:System.Guid>, enums, and collections (arrays, <xref:System.Collections.Generic.List%601>, <xref:System.Collections.Generic.Dictionary%602>).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
@@ -222,6 +222,16 @@ To persist temporary data between HTTP requests during static server-side render
 ```csharp
 [CascadingParameter]
 public ITempData? TempData { get; set; }
+```
+
+When supplied to a parameter for simple read/write of a single value, use the `[SupplyParameterFromTempData]` attribute without or with a key (string):
+
+```csharp
+[SupplyParameterFromTempData]
+public string? Message { get; set; }
+
+[SupplyParameterFromTempData(Name = "flash_message")]
+public string? FlashMessage { get; set; }
 ```
 
 The `ITempData` interface provides the following methods for controlling value lifecycle:
@@ -286,15 +296,16 @@ Browsers enforce a 4 KB cookie size limit. `TempData` automatically uses <xref:M
 
 In the following example, a form displays a message that's retained in `TempData` after the form is submitted (a new request).
 
-`Pages/TempDataExample.razor`:
+`Pages/TempDataExample1.razor`:
 
 ```razor
-@page "/tempdata-example"
+@page "/tempdata-example-1"
 @inject NavigationManager NavigationManager
 
 <p>@message</p>
 
-<form @onsubmit="HandleSubmit">
+<form method="post" @formname="SetMessage" @onsubmit="Submit">
+    <AntiforgeryToken />
     <button type="submit">Submit</button>
 </form>
 
@@ -310,7 +321,7 @@ In the following example, a form displays a message that's retained in `TempData
         message = TempData?.Get("Message") as string ?? "No message";
     }
 
-    private void HandleSubmit()
+    private void Submit()
     {
         TempData!["Message"] = "Form submitted successfully!";
         NavigationManager.NavigateTo("/tempdata-example", forceLoad: true);
@@ -343,6 +354,33 @@ Keep all values for another request (`Keep`):
 protected override void OnInitialized()
 {
     TempData?.Keep();
+}
+```
+
+Similar to the preceding example but when only simple read/write of a single value is required, the following example uses the `[SupplyParameterFromTempData]` attribute.
+
+`Pages/TempDataExample2.razor`:
+
+```razor
+@page "/tempdata-example-2"
+@inject NavigationManager NavigationManager
+
+<p>@Message</p>
+
+<form method="post" @formname="SetMessage" @onsubmit="Submit">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+
+@code {
+    [SupplyParameterFromTempData]
+    public string? Message { get; set; }
+
+    private void Submit()
+    {
+        Message = "Form submitted successfully!";
+        NavigationManager.NavigateTo("/tempdata-example", forceLoad: true);
+    }
 }
 ```
 

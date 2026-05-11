@@ -112,14 +112,52 @@ TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorC
 public ITempData? TempData { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#server-side-storage>.
+When supplied to a parameter for simple read/write of a single value, use the `[SupplyParameterFromTempData]` attribute:
+
+```csharp
+[SupplyParameterFromTempData]
+public string? Message { get; set; }
+```
+
+For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#temporary-data-persistence>.
 
 ### New Blazor Web Worker template (`blazorwebworker`)
 
 Blazor WebAssembly apps can perform heavy computing on the client, but doing so on the UI thread interferes with UI rendering and negatively affects the user experience. In .NET 10, we added an article with a sample app to make offloading heavy work from the UI thread to a Web Worker easier. For .NET 11, we've added the Blazor Web Worker project template (`blazorwebworker`), which provides infrastructure for running .NET code in a Web Worker in Blazor WebAssembly apps. For more information, see <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>.
 
-### `Virtualize` adapts to variable-height items at runtime
+### Virtualization enhancements
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+* The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
-For more information, see the *Item size* and *Overscan count* sections of <xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size>.
+  For more information, see the *Item size* and *Overscan count* sections of <xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size>.
+
+* Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
+
+  * `None`: No edge pinning. The viewport stays at current scroll position regardless of item changes.
+  * `Beginning`: Pins the viewport to the beginning of the list. For example, this pinning behavior is useful for a news feed user experience.
+  * `End`: Pins the viewport to the end of the list. For example, this pinning behavior is useful for a chat or logging user experience.
+
+  In the following example, the virtualized content is pinned to the beginning of the list:
+
+  ```razor
+  <Virtualize AnchorMode="Beginning" ...>
+      ...
+  </Virtualize>
+  ```
+
+  For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+
+### New service defaults library project template for Blazor WebAssembly apps
+
+The `blazor-wasm-servicedefaults` project template creates a service default library for Blazor WebAssembly apps with .NET Aspire integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
+
+### New development server for Blazor WebAssembly apps
+
+<!-- UPDATE 11.0 - Link to package when it's out.
+
+     [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway)
+-->
+
+`Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly applications during development and production.
+
+For more information, see [[Blazor] Replace DevServer with BlazorGateway for standalone WASM apps (`dotnet/aspnetcore` #65982)](https://github.com/dotnet/aspnetcore/pull/65982).
