@@ -389,9 +389,6 @@ The validation for the `Defense` ship classification only occurs on the server b
 > * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
 > * [Microsoft identity platform documentation](/entra/identity-platform/)
 
-> [!NOTE]
-> Long code lines in the following examples are broken into shorter lines to reduce the appearance of horizontal scrollbars on mobile devices. Where appropriate, you're welcome to combine lines to shorten the length of the code.
-
 Create a `Starship` folder in the `.Client` project of the Blazor Web App.
 
 Place the following `StarshipModel` model (`StarshipModel.cs`) into the `Starship` folder ***and*** into the Minimal API project of the solution.
@@ -467,8 +464,8 @@ internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidato
         ValidationProblemDetails problemDetails = new()
         {
             Title = "Validation Error",
-            Detail = "Form validation failed.",
-            Instance = "BlazorSample.Client.ClientFormValidator",
+            Detail = "There was a problem processing the form.",
+            Instance = nameof(ClientFormValidator),
             Status = StatusCodes.Status500InternalServerError
         };
 
@@ -476,19 +473,11 @@ internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidato
         {
             using var response = await httpClient.PostAsJsonAsync("/starship-validation", starship);
 
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.BadRequest)
             {
-                return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? new ValidationProblemDetails
-                {
-                    Title = "Validation succeeded",
-                    Detail = "The starship form is valid.",
-                    Instance = "BlazorSample.Client.ClientFormValidator",
-                    Status = StatusCodes.Status500InternalServerError
-                };
-            }
-            else if (response.StatusCode == HttpStatusCode.BadRequest)
-            {
-                return await response.Content.ReadFromJsonAsync<ValidationProblemDetails>() ?? problemDetails;
+                var deserializedProblemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
+
+                return deserializedProblemDetails ?? problemDetails;
             }
         }
         catch (Exception ex)
@@ -521,19 +510,14 @@ namespace BlazorSample.Starship;
 internal sealed class ServerFormValidator(IDownstreamApi downstreamApi) 
     : IFormValidator
 {
-    private readonly static JsonSerializerOptions jsonSerializerOptions = new()
-    {
-        PropertyNameCaseInsensitive = true
-    };
-
     public async Task<ValidationProblemDetails> ValidateStarshipFormAsync(
         StarshipModel starship)
     {
         ValidationProblemDetails problemDetails = new()
         {
             Title = "Validation Error",
-            Detail = "Form validation failed.",
-            Instance = "BlazorSample.Server.ServerFormValidator",
+            Detail = "There was a problem processing the form.",
+            Instance = nameof(ServerFormValidator),
             Status = StatusCodes.Status500InternalServerError
         };
 
@@ -554,8 +538,6 @@ internal sealed class ServerFormValidator(IDownstreamApi downstreamApi)
         catch (HttpRequestException ex) when 
             (ex.StatusCode == HttpStatusCode.BadRequest)
         {
-            // The response content is only available via
-            // the Message property of the exception
             int index = ex.Message.IndexOf('{');
 
             if (index != -1)
@@ -564,8 +546,9 @@ internal sealed class ServerFormValidator(IDownstreamApi downstreamApi)
 
                 if (problemDetailsJson is not null)
                 {
-                    var deserializedProblemDetails = JsonSerializer.Deserialize
-                        <ValidationProblemDetails>(problemDetailsJson, jsonSerializerOptions);
+                    var deserializedProblemDetails = 
+                        JsonSerializer.Deserialize<ValidationProblemDetails>(
+                            problemDetailsJson);
 
                     return deserializedProblemDetails ?? problemDetails;
                 }
@@ -589,7 +572,7 @@ builder.Services.AddScoped<IFormValidator, ServerFormValidator>();
 
 ...
 
-app.MapPost("/starship-validation", ([IFormValidator formValidator, 
+app.MapPost("/starship-validation", (IFormValidator formValidator, 
     StarshipModel model) =>
 {
     return formValidator.ValidateStarshipFormAsync(model);
@@ -612,23 +595,25 @@ In the `Program` file of the `MinimalApiJwt` project, add the following starship
 In the `Program` file of the Minimal API project:
 
 ```csharp
-app.MapPost("/starship-validation", (StarshipModel model, ILogger<Program> logger) =>
+app.MapPost("/starship-validation", (StarshipModel model, 
+    ILogger<Program> logger) =>
 {
     Dictionary<string, string[]> errors = [];
 
-    if (model.Classification == "Defense" && string.IsNullOrEmpty(model.Description))
+    if (model.Classification == "Defense" && 
+        string.IsNullOrEmpty(model.Description))
     {
-        errors.Add(nameof(model.Description), ["For a 'Defense' ship, 'Description' is required."]);
+        errors.Add(nameof(model.Description), 
+            ["For a 'Defense' ship, 'Description' is required."]);
     }
 
     if (errors.Count > 0)
     {
-        return Results.ValidationProblem(
-            errors: errors, 
-            detail: "One or more validation errors occurred.", 
+        return TypedResults.ValidationProblem(
+            errors: errors,
+            detail: "One or more validation errors occurred.",
             instance: "MinimalApiJwt",
-            statusCode: 400, 
-            title: "Validation Errors", 
+            title: "Validation Errors",
             type: "https://tools.ietf.org/html/rfc9110#section-15.5.1");
     }
 
@@ -643,9 +628,9 @@ Also in the `Program` file of the Minimal API, register [built-in validation ser
 builder.Services.AddValidation();
 ```
 
-Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint code for `/starship-validation`.
+Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint's code.
 
-In the `.Client` project, add the following `CustomValidation` component. Confirm or update the namespace.
+In the `.Client` project, add the following `CustomValidation` component. Confirm or update the namespace. When the component's `DisplayErrors` method is called with a set of validation errors, the errors are added to the parent component's edit context validation message store. Errors are cleared from the edit context by calling the `ClearErrors` method.
 
 `CustomValidation.cs`:
 
@@ -682,16 +667,13 @@ public class CustomValidation : ComponentBase
             messageStore?.Clear(e.FieldIdentifier);
     }
 
-    public void DisplayErrors(ValidationProblemDetails problemDetails)
+    public void DisplayErrors(IDictionary<string, string[]> errors)
     {
         if (CurrentEditContext is not null)
         {
-            foreach (var err in problemDetails.Errors)
+            foreach (var err in errors)
             {
-                foreach (var value in err.Value)
-                {
-                    messageStore?.Add(CurrentEditContext.Field(err.Key), value);
-                }
+                messageStore?.Add(CurrentEditContext.Field(err.Key), err.Value);
             }
 
             CurrentEditContext.NotifyValidationStateChanged();
@@ -809,7 +791,7 @@ Note that the form requires authorization, so the user must be signed into the a
 
             if (validationProblemDetails.Status != StatusCodes.Status204NoContent)
             {
-                customValidation?.DisplayErrors(validationProblemDetails);
+                customValidation?.DisplayErrors(validationProblemDetails.Errors);
             }
             else
             {
@@ -854,13 +836,16 @@ When automatic model binding validation error occurs on the server, the framewor
   "title": "One or more validation errors occurred.",
   "status": 400,
   "errors": {
-    "Id": [ "The Id field is required." ],
-    "Classification": [ "The Classification field is required." ],
-    "IsValidatedDesign": [ "This form disallows unapproved ships." ],
-    "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
+    "Id": ["The Id field is required."],
+    "Classification": ["The Classification field is required."],
+    "IsValidatedDesign": ["This form disallows unapproved ships."],
+    "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
   }
 }
 ```
+
+> [!NOTE]
+> To demonstrate the preceding JSON responses, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the Minimal API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/).
 
 If automatic type validation passes but the custom validation fails, the following JSON response is received from the Minimal API:
 
@@ -871,13 +856,10 @@ If automatic type validation passes but the custom validation fails, the followi
     "instance": "MinimalApiJwt",
     "status": 400,
     "errors": {
-      "Description": [ "For a 'Defense' ship 'Description' is required." ]
+      "Description": ["For a 'Defense' ship, 'Description' is required."]
     }
 }
 ```
-
-> [!NOTE]
-> To demonstrate the preceding JSON responses, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/).
 
 :::moniker-end
 
