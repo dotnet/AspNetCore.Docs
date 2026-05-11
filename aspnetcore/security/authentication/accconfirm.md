@@ -8,7 +8,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/11/2026
 uid: security/authentication/accconfirm
 
-# customer intent: As an ASP.NET developer, I want to 
+# customer intent: As an ASP.NET developer, I want to confirm user accounts and recover passwords, so I can verify user email addresses and allow password resets in my ASP.NET Core app.
 ---
 # Account confirmation and password recovery in ASP.NET Core
 
@@ -40,7 +40,7 @@ For Blazor guidance, which adds to or supersedes the guidance in this article, s
 
 ## Create and test a web app with authentication
 
-Run the following commands to create a web app with authentication
+Run the following commands to create a web app with authentication:
 
 ```dotnetcli
 dotnet new webapp -au Individual -o WebPWrecover
@@ -52,7 +52,7 @@ dotnet run
 
 Run the app, select the **Register** link, and register a user.
 
-After registration completes, you're redirected to the to `/Identity/Account/RegisterConfirmation` page, which contains a link to simulate email confirmation.
+After registration completes, you're redirected to the `/Identity/Account/RegisterConfirmation` page, which contains a link to simulate email confirmation.
 
 1. Select the `Click here to confirm your account` link.
 
@@ -128,13 +128,13 @@ To register for a free SendGrid account, [start sending with a free SendGrid Ema
 
 ### Implement IEmailSender
 
-To Implement the `IEmailSender` interface, create the _Services/EmailSender.cs_ file with code similar to the following example:
+To implement the `IEmailSender` interface, create the _Services/EmailSender.cs_ file with code similar to the following example:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
 
 ### Configure the app to support email
 
-Add the following code to the _Program.cs_ file, which performs the following tasks
+Add the following code to the _Program.cs_ file, which performs the following tasks:
 
 * Adds the `EmailSender` instance as a transient service.
 * Registers the `AuthMessageSenderOptions` configuration instance.

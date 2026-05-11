@@ -40,7 +40,7 @@ A manager can select a contact to see details about the user, as shown in the fo
 
 The **Approve** and **Reject** options display for managers and administrators only.
 
-In the following image, the `admin@contoso.com` user is signed and has access to the administration features:
+In the following image, the `admin@contoso.com` user is signed in and has access to the administration features:
 
 :::image type="content" source="secure-data/_static/admin.png" border="false" alt-text="Screenshot showing the user 'admin@contoso.com' signed in to the web app with visibility of administration features.":::
 
@@ -137,7 +137,7 @@ As an alternate approach, MVC controllers and Razor Pages can add an authorizati
 
 The preceding code uses an authorization filter, setting the fallback policy uses endpoint routing. Setting the fallback policy is the preferred way to require all users be authenticated.
 
-Add the [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) class to the `Index` and `Privacy` pages so anonymous users can get information about the site before they register:
+Add the [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute to the `Index` and `Privacy` pages so anonymous users can get information about the site before they register:
 
 [!code-csharp[](secure-data/samples/final6/Pages/Index.cshtml.cs?highlight=1,6)]
 
@@ -176,7 +176,7 @@ The `ContactIsOwnerAuthorizationHandler` calls the [context.Succeed](xref:Micros
 The authorization handler generally:
 
 * Calls the `context.Succeed` method when the requirements are met.
-* When requirements aren't met, it returns the `Task.CompletedTask` status. When the `Task.CompletedTask` status is returned without a prior call to the `context.Success` or `context.Fail` method, the action doesn't indicate a success or failure. Instead, it allows other authorization handlers to run.
+* When requirements aren't met, it returns `Task.CompletedTask`. When `Task.CompletedTask` is returned without a prior call to `context.Succeed` or `context.Fail`, the result isn't a success or failure. Instead, it allows other authorization handlers to run.
 
 If you need to explicitly fail, call the [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A) method.
 
@@ -342,7 +342,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 
   * Create the app with _Individual Accounts_.
   * Name the app **ContactManager**, so the namespace matches the namespace used in the sample.
-  * Use the `-uld` flag to specify LocalDB instead of SQLite
+  * Use the `-uld` flag to specify LocalDB instead of SQLite.
 
   ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
