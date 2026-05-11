@@ -83,7 +83,7 @@ Secret Manager includes an `init` command. To use user secrets, run the followin
 dotnet user-secrets init
 ```
 
-This command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project. The following example shows the GUID value `0000a1a1-b2b2-c3c3-d4d4-eeeeee555555`.
+This command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project. The following example shows a GUID value of `0000a1a1-b2b2-c3c3-d4d4-eeeeee555555`.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -306,7 +306,7 @@ To manage user secrets in Visual Studio, right-click the project in Solution Exp
 
 You can migrate your stored user secrets from ASP.NET Framework to ASP.NET Core. For more information, see [GitHub dotnet/aspnetcore.docs issue #27611](https://github.com/dotnet/AspNetCore.Docs/issues/27611) - _User Secrets documentation doesn't mention incompatibility with AssemblyInfo.cs_.
 
-## User secrets in nonweb applications 
+## Work with user secrets in nonweb applications 
 
 Projects that target `Microsoft.NET.Sdk.Web` automatically include support for user secrets. For projects that target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
 
@@ -318,8 +318,6 @@ Install-Package Microsoft.Extensions.Configuration.UserSecrets
 ```
 
 # [.NET CLI](#tab/net-cli)
-
-Run the following command in a terminal:
 
 ```dotnetcli
 dotnet add package Microsoft.Extensions.Configuration
