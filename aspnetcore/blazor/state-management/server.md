@@ -379,7 +379,7 @@ Similar to the preceding example but when only simple read/write of a single val
     private void Submit()
     {
         Message = "Form submitted successfully!";
-        NavigationManager.NavigateTo("/tempdata-example", forceLoad: true);
+        NavigationManager.NavigateTo("/tempdata-example-2", forceLoad: true);
     }
 }
 ```

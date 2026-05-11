@@ -276,7 +276,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 :::moniker range=">= aspnetcore-11.0"
 
-## Control viewport scroll position behavior when items are dynamically added 
+## Control viewport scroll position behavior when items are dynamically added
 
 <!-- UPDATE 11.0 - API cross-links -->
 
