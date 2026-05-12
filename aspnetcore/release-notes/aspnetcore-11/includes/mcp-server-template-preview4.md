@@ -2,7 +2,7 @@
 
 The `mcpserver` project template, previously available only by installing `Microsoft.McpServer.ProjectTemplates`, now ships as a bundled template in the .NET SDK:
 
-```bash
+```dotnetcli
 dotnet new mcpserver -o MyMcpServer
 ```
 
