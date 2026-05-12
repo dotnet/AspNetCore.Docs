@@ -1,12 +1,16 @@
-<a name="ddav"></a>
-### Disable default account verification when Account.RegisterConfirmation has been scaffolded
+### Disable default account verification when Account.RegisterConfirmation is scaffolded
 
-This section only applies when `Account.RegisterConfirmation` is scaffolded. Skip this section if you have not scaffolded `Account.RegisterConfirmation`.
+If `Account.RegisterConfirmation` is scaffolded, complete the instructions in this section.
 
-The user is redirected to the `Account.RegisterConfirmation` where they can select a link to have the account confirmed. The default `Account.RegisterConfirmation` is used ***only*** for testing, automatic account verification should be disabled in a production app.
+> [!IMPORTANT]
+> If `Account.RegisterConfirmation` is **not** scaffolded, skip the following instructions and continue to the next section.
 
-To require a confirmed account and prevent immediate login at registration, set `DisplayConfirmAccountLink = false` in the scaffolded `/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs` file:
+The user is redirected to the `/Identity/Account/RegisterConfirmation` page where they can select a link to have the account confirmed. The default `Account.RegisterConfirmation` is used ***only*** for testing. Automatic account verification should be disabled in a production app.
+
+To require a confirmed account and prevent immediate sign in at registration, set `DisplayConfirmAccountLink = false` in the scaffolded _/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs_ file:
 
 [!code-csharp[](~/security/authentication/accconfirm/sample/RegisterConfirmation.cshtml.cs?highlight=63)]
 
-This step is only necessary when `Account.RegisterConfirmation` is scaffolded. The non-scaffolded [RegisterConfirmation](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L87) automatically detects when an [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) has been implemented and registered with the [dependency injection container](xref:fundamentals/dependency-injection).
+This step is necessary only when `Account.RegisterConfirmation` is scaffolded.
+
+The non-scaffolded [RegisterConfirmation](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L87) automatically detects when an [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) is implemented and registered with the [dependency injection container](xref:fundamentals/dependency-injection).
