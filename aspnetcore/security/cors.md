@@ -247,7 +247,7 @@ CORS Middleware declines a preflight request with the following request header b
 Access-Control-Request-Headers: Cache-Control, Content-Language
 ```
 
-The app returns a *204 No Content* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
+The app returns a `204 No Content` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
 
 ### Set the exposed response headers
 
