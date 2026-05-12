@@ -24,7 +24,7 @@ app.MapMethods("/search", ["QUERY"], (SearchRequest request) =>
 app.Run();
 ```
 
-In an OpenAPI 3.2 document, the QUERY operation is described inline as a sibling of `get`, `post`, and friends:
+In an OpenAPI 3.2 document, the QUERY operation is described inline as a sibling of `get`, `post`, and other standard operations:
 
 ```json
 "paths": {
