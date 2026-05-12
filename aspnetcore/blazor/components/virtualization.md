@@ -282,7 +282,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 Assign a `VirtualizeAnchorMode` value to the `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
-* `None`: No edge pinning. The viewport stays at current scroll position regardless of item changes.
+* `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
 * `Beginning`: Pins the viewport to the beginning of the list. When the user is at a scroll position near the top of the list and new items arrive at the beginning, the viewport stays at the top showing the newest items. For example, this pinning behavior is useful for a news feed user experience.
 * `End`: Pins the viewport to the end of the list. When the user is at a scroll position near the bottom of the list and new items arrive at the end, the viewport auto-scrolls to show them. If the user has scrolled away, auto-scroll disengages until they return to the bottom. For example, this pinning behavior is useful for a chat or logging user experience.
 

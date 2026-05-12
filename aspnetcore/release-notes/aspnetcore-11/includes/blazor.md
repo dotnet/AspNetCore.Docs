@@ -133,7 +133,7 @@ Blazor WebAssembly apps can perform heavy computing on the client, but doing so 
 
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
-  * `None`: No edge pinning. The viewport stays at current scroll position regardless of item changes.
+  * `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
   * `Beginning`: Pins the viewport to the beginning of the list. For example, this pinning behavior is useful for a news feed user experience.
   * `End`: Pins the viewport to the end of the list. For example, this pinning behavior is useful for a chat or logging user experience.
 

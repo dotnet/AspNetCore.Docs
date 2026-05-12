@@ -324,7 +324,7 @@ In the following example, a form displays a message that's retained in `TempData
     private void Submit()
     {
         TempData!["Message"] = "Form submitted successfully!";
-        NavigationManager.NavigateTo("/tempdata-example", forceLoad: true);
+        NavigationManager.NavigateTo("/tempdata-example-1", forceLoad: true);
     }
 }
 ```
