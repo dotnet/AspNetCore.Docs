@@ -3,7 +3,7 @@ title: Create backend services for native mobile apps with ASP.NET Core
 author: wadepickett
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: wpickett
-ms.date: 02/10/2025
+ms.date: 05/12/2026
 uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core
@@ -12,7 +12,7 @@ By [James Montemagno](https://twitter.com/JamesMontemagno)
 
 Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to local web services from Android emulators and iOS simulators](/dotnet/maui/data-cloud/local-web-services).
 
-[View or download sample backend services code](https://github.com/dotnet/maui-samples/tree/main/9.0/WebServices/TodoREST)
+[View or download sample backend services code](https://github.com/dotnet/maui-samples/tree/main/10.0/WebServices/TodoREST)
 
 ## The sample native mobile app
 
@@ -22,7 +22,7 @@ This tutorial demonstrates how to create backend services using ASP.NET Core to 
 
 ### Features
 
-The [TodoREST app](https://github.com/dotnet/maui-samples/tree/main/9.0/WebServices/TodoREST) supports listing, adding, deleting, and updating todo items. Each item has an ID, a name, notes, and a property indicating whether it's been done yet.
+The [TodoREST app](https://github.com/dotnet/maui-samples/tree/main/10.0/WebServices/TodoREST) supports listing, adding, deleting, and updating todo items. Each item has an ID, a name, notes, and a property indicating whether it's been done yet.
 
 In the previous example, The main view of the items lists each item's name and indicates if it's done with a checkmark.
 
@@ -34,11 +34,11 @@ Tapping an item on the main page navigates to an edit page where the item's name
 
 ![Edit item dialog](native-mobile-backend/_static/todo-android-edit-item.png)
 
-To test it out yourself against the ASP.NET Core app created in the next section, if you host it online, update the app's [`RestUrl`](https://github.com/dotnet/maui-samples/blob/52607dc4ebf19a51ce59694b57e704b67600f69b/9.0/WebServices/TodoREST/TodoREST/Constants.cs#L6) constant. Otherwise, the app will communicate with the ASP.NET Core app that's hosted locally on your machine.
+To test it out yourself against the ASP.NET Core app created in the next section, if you host it online, update the app's [`RestUrl`](https://github.com/dotnet/maui-samples/blob/main/10.0/WebServices/TodoREST/TodoREST/Constants.cs#L6) constant. Otherwise, the app will communicate with the ASP.NET Core app that's hosted locally on your machine.
 
 Android emulators don't run on the local machine and use a loopback IP (10.0.2.2) to communicate with the local machine. Use .NET MAUI's [DeviceInfo](/dotnet/maui/platform-integration/device/information) class to detect the operating system the app is running on to use the correct URL.
 
-Navigate to the [`TodoREST`](https://github.com/dotnet/maui-samples/tree/main/9.0/WebServices/TodoREST) project and open the [`Constants.cs`](https://github.com/dotnet/maui-samples/blob/main/10.0/WebServices/TodoREST/TodoREST/Constants.cs) file. The `Constants.cs` file contains the following configuration.
+Navigate to the [`TodoREST`](https://github.com/dotnet/maui-samples/tree/main/10.0/WebServices/TodoREST) project and open the [`Constants.cs`](https://github.com/dotnet/maui-samples/blob/main/10.0/WebServices/TodoREST/TodoREST/Constants.cs) file. The `Constants.cs` file contains the following configuration.
 
 :::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoREST/Constants.cs" highlight="10":::
 
