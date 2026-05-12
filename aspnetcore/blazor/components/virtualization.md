@@ -298,7 +298,32 @@ The following example pins the viewport to the beginning of a virtualized flight
 
 Modes can be combined. For example, assigning `Beginning | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
 
-`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> (for more information, see the [Item provider delegate](#item-provider-delegate) section). The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically.
+`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
+
+The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an item comparer to the `Virtualize` component:
+
+<!-- UPDATE 11.0 - Ilona ... Does the 'itemComparer' in the following example
+                   need the '@' symbol (ItemComparer="@itemComparer")? 
+                   I thought that it wouldn't need it. -->
+
+```razor
+<Virtualize ItemsProvider="LoadFlights" AnchorMode="Beginning" 
+    ItemComparer="itemComparer">
+    ...
+</Virtualize>
+
+@code {
+    private static readonly IEqualityComparer<DynamicItem> itemComparer =
+        EqualityComparer<DynamicItem>.Create((a, b) => 
+            a.Index == b.Index, item => item.Index);
+
+    private async ValueTask<ItemsProviderResult<Flight>> LoadFlights(
+        ItemsProviderRequest request)
+    {
+        ...
+    }
+}
+```
 
 :::moniker-end
 
