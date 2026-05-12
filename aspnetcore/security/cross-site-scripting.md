@@ -246,7 +246,31 @@ builder.Services.AddSingleton<HtmlEncoder>(
 
 :::moniker-end
 
-<!-- OLD moniker section goes here -->
+:::moniker range="< aspnetcore-6.0"
+
+You can customize the encoder safe lists to include Unicode ranges appropriate to your application during startup, in `ConfigureServices()`.
+
+For example, using the default configuration you might use a Razor HtmlHelper like so;
+
+```html
+<p>This link text is in Chinese: @Html.ActionLink("汉语/漢語", "Index")</p>
+```
+
+When you view the source of the web page you'll see it has been rendered as follows, with the Chinese text encoded;
+
+```html
+<p>This link text is in Chinese: <a href="/">&#x6C49;&#x8BED;/&#x6F22;&#x8A9E;</a></p>
+```
+
+To widen the characters treated as safe by the encoder you would insert the following line into the `ConfigureServices()` method in `startup.cs`;
+
+```csharp
+services.AddSingleton<HtmlEncoder>(
+     HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
+                                               UnicodeRanges.CjkUnifiedIdeographs }));
+```
+
+:::moniker-end
 
 This example widens the safe list to include the Unicode Range [CJK Unified Ideographs](https://wikipedia.org/wiki/CJK_Unified_Ideographs). The following output shows the rendered view for the wider range of safe characters:
 
