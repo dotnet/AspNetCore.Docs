@@ -5,7 +5,7 @@ description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc, devx-track-js
-ms.date: 04/24/2024
+ms.date: 05/12/2026
 uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
@@ -50,7 +50,7 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
     [!code-javascript[](~/tutorials/first-web-api/samples/6.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
-A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally:
+A change to the ASP.NET Core project's launch settings might be required to test the HTML page locally:
 
 1. Open *Properties\launchSettings.json*.
 1. Remove the `launchUrl` property to force the app to open at `index.html`&mdash;the project's default file.
