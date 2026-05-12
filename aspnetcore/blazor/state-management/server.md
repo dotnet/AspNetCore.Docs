@@ -156,6 +156,8 @@ services.AddRazorComponents()
 
 In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
 
+For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
+
 ## Pause and resume circuits
 
 Pause and resume circuits to implement custom policies that improve the scalability of an app.
@@ -164,8 +166,8 @@ Pausing a circuit stores details about the circuit in client-side browser storag
 
 From a JavaScript event handler:
 
-* Call `Blazor.pauseCircuit` to pause a circuit.
-* Call `Blazor.resumeCircuit` to resume a circuit.
+* Call `Blazor.pauseCircuit()` to pause a circuit.
+* Call `Blazor.resumeCircuit()` to resume a circuit.
 
 The following example assumes that a circuit isn't required for an app that isn't visible:
 
@@ -178,6 +180,230 @@ window.addEventListener('visibilitychange', () => {
   }
 });
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Server-triggered circuit pause
+
+A server-side Blazor app that adopts the Interactive Server render mode can implement server-triggered circuit pause, which allows the app to gracefully pause client circuits, preserving client state for seamless reconnection.
+
+This feature is useful in the following scenarios:
+
+* Planned shutdowns and deployments.
+* Instance draining.
+* App maintenance windows.
+
+`Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
+
+<!-- UPDATE 11.0 - REVIEWER NOTE ... The following example might not be what we show.
+                                     It's placed here as a possible example 
+                                     based on Javier's original non-RequestCircuitPauseAsync
+                                     approach from the issue. If we use this example,
+                                     we need some changes to this.
+                       
+When a server-side Blazor application shuts down (for example, during deployment), connected clients lose their SignalR connection. The approach in this section:
+
+* Detects shutdown before the server closes connections.
+* Triggers a pause on connected circuits.
+* Preserves state using [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) on component properties.
+
+In the following example implementation, the following code files are placed in a `Shutdown` folder at the root of the app:
+
+* `CircuitShutdownService.cs`: A singleton service that coordinates shutdown.
+* `ShutdownCircuitHandler.cs`: A scoped service for each active circuit.
+* `ShutdownCircuitOptions.cs`: Configuration options.
+
+`Shutdown/ShutdownCircuitOptions.cs`:
+
+```csharp
+namespace PauseResumeOnShutdown.Shutdown;
+
+public class ShutdownCircuitOptions
+{
+    public TimeSpan ShutdownTimeout { get; set; } = TimeSpan.FromSeconds(10);
+}
+```
+
+`Shutdown/CircuitShutdownService.cs`:
+
+```csharp
+using System.Collections.Concurrent;
+using Microsoft.Extensions.Options;
+
+namespace PauseResumeOnShutdown.Shutdown;
+
+public class CircuitShutdownService
+{
+    private readonly ConcurrentDictionary<string, ShutdownCircuitHandler> 
+        _handlers = new();
+    private readonly ShutdownCircuitOptions _options;
+    private bool _isShuttingDown;
+    private TaskCompletionSource _shutdownTcs = new();
+
+    public CircuitShutdownService(IHostApplicationLifetime appLifetime, 
+        IOptions<ShutdownCircuitOptions> options)
+    {
+        _options = options.Value;
+        appLifetime.ApplicationStopping.Register(OnApplicationStopping);
+    }
+
+    private void OnApplicationStopping()
+    {
+        _isShuttingDown = true;
+
+        if (_handlers.IsEmpty)
+        {
+            return;
+        }
+
+        foreach (var handler in _handlers.Values)
+        {
+            handler.Pause();
+        }
+
+        _shutdownTcs.Task.Wait(_options.ShutdownTimeout);
+    }
+
+    public void Register(string circuitId, ShutdownCircuitHandler handler)
+    {
+        _handlers.TryAdd(circuitId, handler);
+    }
+
+    public void Unregister(string circuitId)
+    {
+        _handlers.TryRemove(circuitId, out _);
+
+        if (_isShuttingDown && _handlers.IsEmpty)
+        {
+            _shutdownTcs.TrySetResult();
+        }
+    }
+}
+```
+
+`Shutdown/ShutdownCircuitHandler.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.JSInterop;
+
+namespace PauseResumeOnShutdown.Shutdown;
+
+public class ShutdownCircuitHandler(
+    CircuitShutdownService shutdownService,
+    IJSRuntime jsRuntime) : CircuitHandler
+{
+    public override Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        shutdownService.Register(circuit.Id, this);
+
+        return Task.CompletedTask;
+    }
+
+    public override Task OnConnectionDownAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        shutdownService.Unregister(circuit.Id);
+
+        return Task.CompletedTask;
+    }
+
+    public void Pause()
+    {
+        _ = PauseCore();
+    }
+
+    private async Task PauseCore()
+    {
+        try
+        {
+            await jsRuntime.InvokeVoidAsync("remotePause");
+        }
+        catch
+        {
+        }
+    }
+}
+```
+
+`Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using PauseResumeOnShutdown.Components;
+using PauseResumeOnShutdown.Shutdown;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Increase host shutdown timeout to allow time for pause operations
+// Default value is 10 seconds
+builder.Host.ConfigureHostOptions(options =>
+    options.ShutdownTimeout = TimeSpan.FromSeconds(30));
+
+// Set circuit shutdown timeout to allow time for the host to restart
+// Default value is 10 seconds per 'Shutdown/ShutdownCircuitOptions.cs'
+builder.Services.Configure<ShutdownCircuitOptions>(options =>
+    options.ShutdownTimeout = TimeSpan.FromSeconds(10));
+
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+// Register CircuitShutdownService as a singleton
+builder.Services.AddSingleton<CircuitShutdownService>();
+
+// Register ShutdownCircuitHandler as a scoped CircuitHandler
+builder.Services.TryAddEnumerable(
+    ServiceDescriptor.Scoped<CircuitHandler, ShutdownCircuitHandler>());
+
+var app = builder.Build();
+
+// ... rest of pipeline
+```
+
+In `App.razor` after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script), `window.remotePause` is called from the server to trigger pause and returns immediately to avoid a "`Cannot send data`" error when Blazor attempts to send the response back.
+
+```razor
+<script> 
+  window.remotePause = function () {
+    Blazor.pauseCircuit();
+  };
+</script>
+```
+
+The `remotePause` function must not be `async` and must not return a value. If it returns a `Promise`, Blazor attempts to send the result back after the connection closes, which results in an error.
+
+In a component, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to persist component state across pause/resume. In the following `Counter` component example, the current count (`CurrentCount`) is preserved:
+
+```razor
+@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    [PersistentState]
+    public int CurrentCount { get; set; }
+
+    private void IncrementCount()
+    {
+        CurrentCount++;
+    }
+}
+```
+
+For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
+
+-->
 
 :::moniker-end
 
@@ -213,7 +439,7 @@ To persist temporary data between HTTP requests during static server-side render
 `TempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
-* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
 * Supports primitives, <xref:System.DateTime>, <xref:System.Guid>, enums, and collections (arrays, <xref:System.Collections.Generic.List%601>, <xref:System.Collections.Generic.Dictionary%602>).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
@@ -222,6 +448,16 @@ To persist temporary data between HTTP requests during static server-side render
 ```csharp
 [CascadingParameter]
 public ITempData? TempData { get; set; }
+```
+
+When supplied to a parameter for simple read/write of a single value, use the `[SupplyParameterFromTempData]` attribute without or with a key (string):
+
+```csharp
+[SupplyParameterFromTempData]
+public string? Message { get; set; }
+
+[SupplyParameterFromTempData(Name = "flash_message")]
+public string? FlashMessage { get; set; }
 ```
 
 The `ITempData` interface provides the following methods for controlling value lifecycle:
@@ -286,15 +522,16 @@ Browsers enforce a 4 KB cookie size limit. `TempData` automatically uses <xref:M
 
 In the following example, a form displays a message that's retained in `TempData` after the form is submitted (a new request).
 
-`Pages/TempDataExample.razor`:
+`Pages/TempDataExample1.razor`:
 
 ```razor
-@page "/tempdata-example"
+@page "/tempdata-example-1"
 @inject NavigationManager NavigationManager
 
 <p>@message</p>
 
-<form @onsubmit="HandleSubmit">
+<form method="post" @formname="SetMessage" @onsubmit="Submit">
+    <AntiforgeryToken />
     <button type="submit">Submit</button>
 </form>
 
@@ -310,10 +547,10 @@ In the following example, a form displays a message that's retained in `TempData
         message = TempData?.Get("Message") as string ?? "No message";
     }
 
-    private void HandleSubmit()
+    private void Submit()
     {
         TempData!["Message"] = "Form submitted successfully!";
-        NavigationManager.NavigateTo("/tempdata-example", forceLoad: true);
+        NavigationManager.NavigateTo("/tempdata-example-1", forceLoad: true);
     }
 }
 ```
@@ -343,6 +580,33 @@ Keep all values for another request (`Keep`):
 protected override void OnInitialized()
 {
     TempData?.Keep();
+}
+```
+
+Similar to the preceding example but when only simple read/write of a single value is required, the following example uses the `[SupplyParameterFromTempData]` attribute.
+
+`Pages/TempDataExample2.razor`:
+
+```razor
+@page "/tempdata-example-2"
+@inject NavigationManager NavigationManager
+
+<p>@Message</p>
+
+<form method="post" @formname="SetMessage" @onsubmit="Submit">
+    <AntiforgeryToken />
+    <button type="submit">Submit</button>
+</form>
+
+@code {
+    [SupplyParameterFromTempData]
+    public string? Message { get; set; }
+
+    private void Submit()
+    {
+        Message = "Form submitted successfully!";
+        NavigationManager.NavigateTo("/tempdata-example-2", forceLoad: true);
+    }
 }
 ```
 

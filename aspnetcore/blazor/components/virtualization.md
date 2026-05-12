@@ -274,6 +274,59 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Control viewport scroll position behavior when items are dynamically added
+
+<!-- UPDATE 11.0 - API cross-links -->
+
+Assign a `VirtualizeAnchorMode` value to the `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
+
+* `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
+* `Beginning`: Pins the viewport to the beginning of the list. When the user is at a scroll position near the top of the list and new items arrive at the beginning, the viewport stays at the top showing the newest items. For example, this pinning behavior is useful for a news feed user experience.
+* `End`: Pins the viewport to the end of the list. When the user is at a scroll position near the bottom of the list and new items arrive at the end, the viewport auto-scrolls to show them. If the user has scrolled away, auto-scroll disengages until they return to the bottom. For example, this pinning behavior is useful for a chat or logging user experience.
+
+The following example pins the viewport to the beginning of a virtualized flight list:
+
+```razor
+<div style="height:500px;overflow-y:scroll">
+    <Virtualize Items="allFlights" Context="flight" AnchorMode="Beginning">
+        <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+    </Virtualize>
+</div>
+```
+
+Modes can be combined. For example, assigning `Beginning | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
+
+`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
+
+The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an <xref:System.Collections.Generic.IEqualityComparer%601> to the `Virtualize` component:
+
+<!-- UPDATE 11.0 - Ilona ... Does the 'itemComparer' in the following example
+                   need the '@' symbol (ItemComparer="@itemComparer")? 
+                   I thought that it wouldn't need it. -->
+
+```razor
+<Virtualize ItemsProvider="LoadFlights" AnchorMode="Beginning" 
+    ItemComparer="itemComparer">
+    ...
+</Virtualize>
+
+@code {
+    private static readonly IEqualityComparer<Flight> itemComparer =
+        EqualityComparer<Flight>.Create((a, b) => 
+            a.Index == b.Index, item => item.Index);
+
+    private async ValueTask<ItemsProviderResult<Flight>> LoadFlights(
+        ItemsProviderRequest request)
+    {
+        ...
+    }
+}
+```
+
+:::moniker-end
+
 ## State changes
 
 When making changes to items rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to enqueue re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
