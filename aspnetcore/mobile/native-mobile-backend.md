@@ -3,7 +3,7 @@ title: Create backend services for native mobile apps with ASP.NET Core
 author: wadepickett
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: wpickett
-ms.date: 02/10/2025
+ms.date: 05/12/2026
 uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core
@@ -12,7 +12,7 @@ By [James Montemagno](https://twitter.com/JamesMontemagno)
 
 Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to local web services from Android emulators and iOS simulators](/dotnet/maui/data-cloud/local-web-services).
 
-[View or download sample backend services code](https://github.com/dotnet/maui-samples/tree/main/9.0/WebServices/TodoREST)
+[View or download sample backend services code](https://github.com/dotnet/maui-samples/tree/main/10.0/WebServices/TodoREST)
 
 ## The sample native mobile app
 
@@ -22,7 +22,7 @@ This tutorial demonstrates how to create backend services using ASP.NET Core to 
 
 ### Features
 
-The [TodoREST app](https://github.com/dotnet/maui-samples/tree/main/9.0/WebServices/TodoREST) supports listing, adding, deleting, and updating todo items. Each item has an ID, a name, notes, and a property indicating whether it's been done yet.
+The [TodoREST app](https://github.com/dotnet/maui-samples/tree/main/10.0/WebServices/TodoREST) supports listing, adding, deleting, and updating todo items. Each item has an ID, a name, notes, and a property indicating whether it's been done yet.
 
 In the previous example, The main view of the items lists each item's name and indicates if it's done with a checkmark.
 
@@ -34,13 +34,13 @@ Tapping an item on the main page navigates to an edit page where the item's name
 
 ![Edit item dialog](native-mobile-backend/_static/todo-android-edit-item.png)
 
-To test it out yourself against the ASP.NET Core app created in the next section, if you host it online, update the app's [`RestUrl`](https://github.com/dotnet/maui-samples/blob/52607dc4ebf19a51ce59694b57e704b67600f69b/9.0/WebServices/TodoREST/TodoREST/Constants.cs#L6) constant. Otherwise, the app will communicate with the ASP.NET Core app that's hosted locally on your machine.
+To test it out yourself against the ASP.NET Core app created in the next section, if you host it online, update the app's [`RestUrl`](https://github.com/dotnet/maui-samples/blob/main/10.0/WebServices/TodoREST/TodoREST/Constants.cs#L6) constant. Otherwise, the app will communicate with the ASP.NET Core app that's hosted locally on your machine.
 
 Android emulators don't run on the local machine and use a loopback IP (10.0.2.2) to communicate with the local machine. Use .NET MAUI's [DeviceInfo](/dotnet/maui/platform-integration/device/information) class to detect the operating system the app is running on to use the correct URL.
 
-Navigate to the [`TodoREST`](https://github.com/dotnet/maui-samples/tree/main/9.0/WebServices/TodoREST) project and open the [`Constants.cs`](https://github.com/dotnet/maui-samples/blob/main/9.0/WebServices/TodoREST/TodoREST/Constants.cs) file. The `Constants.cs` file contains the following configuration.
+Navigate to the [`TodoREST`](https://github.com/dotnet/maui-samples/tree/main/10.0/WebServices/TodoREST) project and open the [`Constants.cs`](https://github.com/dotnet/maui-samples/blob/main/10.0/WebServices/TodoREST/TodoREST/Constants.cs) file. The `Constants.cs` file contains the following configuration.
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoREST/Constants.cs" highlight="10":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoREST/Constants.cs" highlight="10":::
 
 You can optionally deploy the web service to a cloud service such as Azure and update the `RestUrl`.
 
@@ -57,27 +57,27 @@ The app should respond to all requests made over HTTPS to port 5001.
 
 Add a model class to represent todo items. Mark required fields with the `[Required]` attribute:
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Models/TodoItem.cs":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Models/TodoItem.cs":::
 
 API methods require defining to work with data. Use the same `ITodoRepository` interface the sample uses:
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Interfaces/ITodoRepository.cs":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Interfaces/ITodoRepository.cs":::
 
 For this sample, the repository implementation just uses a private collection of items:
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Services/TodoRepository.cs":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Services/TodoRepository.cs":::
 
 Configure the implementation in `Program.cs`:
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Program.cs" highlight="5":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Program.cs" highlight="5":::
 
 ## Creating the Controller
 
-Add a new controller to the project, [TodoItemsController](https://github.com/dotnet/maui-samples/blob/main/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs). It should inherit from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add a `Route` attribute to indicate that the controller handles requests made to paths starting with `api/todoitems`. The `[controller]` token in the route is replaced by the name of the controller (omitting the `Controller` suffix), and is especially helpful for global routes. Learn more about [routing](../fundamentals/routing.md).
+Add a new controller to the project, [TodoItemsController](https://github.com/dotnet/maui-samples/blob/main/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs). It should inherit from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add a `Route` attribute to indicate that the controller handles requests made to paths starting with `api/todoitems`. The `[controller]` token in the route is replaced by the name of the controller (omitting the `Controller` suffix), and is especially helpful for global routes. Learn more about [routing](../fundamentals/routing.md).
 
 The controller requires an `ITodoRepository` to function; request an instance of this type through the controller's constructor. At runtime, this instance is provided using the framework's support for [dependency injection](../fundamentals/dependency-injection.md).
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDI":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDI":::
 
 This API supports four different HTTP verbs to perform CRUD (Create, Read, Update, Delete) operations on the data source. The simplest of these is the Read operation, which corresponds to an HTTP `GET` request.
 
@@ -132,7 +132,7 @@ For more details on jq installation, see [jq](https://jqlang.github.io/jq/downlo
 
 Requesting a list of items is done with a GET request to the `List` method. The `[HttpGet]` attribute on the `List` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
 
 # [macOS](#tab/macos)
 
@@ -195,11 +195,11 @@ By convention, creating new data items is mapped to the HTTP `POST` verb. The `C
 
 Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it's added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetCreate":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetCreate":::
 
 The sample uses an `enum` containing error codes that are passed to the mobile client:
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetErrorCode":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetErrorCode":::
 
 In the terminal, test adding new items by calling the following curl command using the `POST` verb and providing the new object in JSON format in the Body of the request.
 
@@ -242,7 +242,7 @@ The method returns the newly created item in the response.
 
 Modifying records is achieved using HTTP `PUT` requests. Other than this change, the `Edit` method is almost identical to `Create`. If the record isn't found, the `Edit` action returns a `NotFound` (404) response.
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetEdit":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetEdit":::
 
 To test with curl, change the verb to `PUT`. Specify the updated object data in the Body of the request.
 
@@ -279,7 +279,7 @@ This method returns a `NoContent` (204) response when successful, for consistenc
 
 Deleting records is accomplished by making `DELETE` requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist receive `NotFound` responses. Otherwise, a successful request returns a `NoContent` (204) response.
 
-:::code language="csharp" source="~/../maui-samples/9.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
+:::code language="csharp" source="~/../maui-samples/10.0/WebServices/TodoREST/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
 
 Test with curl by changing the HTTP verb to `DELETE` and appending the ID of the data object to delete at the end of the URL. Nothing is required in the Body of the request.
 

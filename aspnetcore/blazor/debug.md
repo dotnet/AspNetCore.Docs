@@ -164,7 +164,27 @@ Blazor Server: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://ww
 
 :::moniker-end
 
-Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+<!-- UPDATE 11.0 - Activate when the NuGet package is available.
+
+     https://www.nuget.org/packages?q=Microsoft.AspNetCore.Components.Gateway
+
+:::moniker range=">= aspnetcore-11.0"
+
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway): A lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+-->
+
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+<!-- UPDATE 11.0 - Activate when the NuGet package is available.
+
+:::moniker-end
+
+-->
 
 :::moniker range="< aspnetcore-8.0"
 
