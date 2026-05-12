@@ -13,7 +13,7 @@ uid: tutorials/first-mongo-app
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By [Pratik Khandelwal](https://twitter.com/K2Prk) and [Scott Addie](https://twitter.com/Scott_Addie)
+By [Tim Deschryver](https://timdeschryver.dev)
 
 :::moniker range=">= aspnetcore-10.0"
 
