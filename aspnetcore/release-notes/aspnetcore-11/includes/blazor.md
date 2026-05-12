@@ -129,7 +129,7 @@ Blazor WebAssembly apps can perform heavy computing on the client, but doing so 
 
 * The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
-  For more information, see the [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count).
+  For more information, see the [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
 
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
@@ -161,3 +161,23 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 `Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly applications during development and production.
 
 For more information, see [[Blazor] Replace DevServer with BlazorGateway for standalone WASM apps (`dotnet/aspnetcore` #65982)](https://github.com/dotnet/aspnetcore/pull/65982).
+
+### Server-triggered circuit pause
+
+*This feature applies to server-side Blazor apps (Blazor Web Apps and Blazor Server apps).*
+
+Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](xref:blazor/state-management/server#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
+
+`Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
+
+This feature is useful in the following scenarios:
+
+* Planned shutdowns and deployments.
+* Instance draining.
+* App maintenance windows.
+
+For more information and an example, see <xref:blazor/state-management/server#server-triggered-circuit-pause>
+
+### Smaller Blazor WebAssembly publish output
+
+<!-- Waiting for content from Marek or a link to the work that was done. -->
