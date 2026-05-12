@@ -164,7 +164,7 @@ For more information, see [[Blazor] Replace DevServer with BlazorGateway for sta
 
 ### Server-triggered circuit pause
 
-*This feature applies to server-side Blazor apps (Blazor Web Apps and Blazor Server apps).*
+*This feature applies to server-side Blazor apps.*
 
 Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](xref:blazor/state-management/server#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
 
@@ -176,8 +176,10 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-For more information and an example, see <xref:blazor/state-management/server#server-triggered-circuit-pause>
+For more information, see <xref:blazor/state-management/server#server-triggered-circuit-pause>.
+
+<!-- Waiting for content from Marek or a link to the work that was done.
 
 ### Smaller Blazor WebAssembly publish output
 
-<!-- Waiting for content from Marek or a link to the work that was done. -->
+-->
