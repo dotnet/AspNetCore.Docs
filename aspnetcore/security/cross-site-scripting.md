@@ -46,7 +46,7 @@ To avoid introducing XSS into the application, developers should implement the f
 
 ## Explore HTML encoding with Razor
 
-The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work to prevent this behavior. It uses HTML attribute encoding rules whenever you use the at symbol `@` directive. Because HTML attribute encoding is a superset of HTML encoding, you don't have to consider whether to use HTML encoding or HTML-attribute encoding. You must ensure that you only use the at symbol `@` in an HTML context, and not when attempting to insert untrusted input directly into JavaScript. [Razor Tag Helpers](xref:../mvc/views/tag-helpers/intro) also encode input you use in tag parameters.
+The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work to prevent this behavior. It uses HTML attribute encoding rules whenever you use the at symbol `@` directive. Because HTML attribute encoding is a superset of HTML encoding, you don't have to consider whether to use HTML encoding or HTML-attribute encoding. You must ensure that you only use the at symbol `@` in an HTML context, and not when attempting to insert untrusted input directly into JavaScript. [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro) also encode input you use in tag parameters.
 
 Consider the following Razor view:
 
@@ -58,7 +58,7 @@ Consider the following Razor view:
 @untrustedInput
 ```
 
-This view outputs the contents of the `untrustedInput` variable. The variable includes some characters used in XSS attacks: left angle bracket (less than) (`<`), double quote (`"`), and right angle bracket (greater than) (`>`). Examining the source shows the rendered output encoded as:
+This view outputs the contents of the `untrustedInput` variable. The variable includes some characters used in XSS attacks: less than (`<`), double quote (`"`), and right angle bracket or _greater than_ (`>`). Examining the source shows the rendered output encoded as:
 
 ```html
 &lt;&quot;123&quot;&gt;
@@ -302,4 +302,4 @@ Never rely on validation alone. Always encode untrusted input before output, no 
 
 - <xref:fundamentals/dependency-injection>
 - [Unicode 17.0 Character Code Charts](https://www.unicode.org/charts/index.html)
-- [Razor Tag Helpers](xref:../mvc/views/tag-helpers/intro)
+- [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro)
