@@ -35,7 +35,7 @@ Download the latest installer using the following link:
 
 [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle).
+For more detailed instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle).
 
 To download previous versions of the hosting bundle, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28642).
 
