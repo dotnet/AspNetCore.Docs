@@ -171,7 +171,7 @@ Manually add the highlighted lines to the `.csproj` file:
 
 ---
 
-Enabling XML comments provides debug information for undocumented public types and members. The warning message indicates documented types and members. For example, the following message indicates a violation of warning code 1591:
+Enabling XML comments provides debug information for undocumented public types and members. Undocumented types and members are indicated by the warning message. For example, the following message indicates a violation of warning code 1591:
 
 ```text
 warning CS1591: Missing XML comment for publicly visible type or member 'TodoContext'
