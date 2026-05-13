@@ -197,16 +197,16 @@ This feature is useful in the following scenarios:
 
 `Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
 
-<!-- UPDATE 11.0 - REVIEWER NOTE ... The following example might not be what we show.
-                                     It's placed here as a possible example 
-                                     based on Javier's original non-RequestCircuitPauseAsync
-                                     approach from the issue. If we use this example,
-                                     we need some changes to this.
+<!-- UPDATE 11.0 - API doc cross-links
+
+<xref:Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync%2A>
+
+-->
                        
 When a server-side Blazor application shuts down (for example, during deployment), connected clients lose their SignalR connection. The approach in this section:
 
 * Detects shutdown before the server closes connections.
-* Triggers a pause on connected circuits.
+* Triggers a pause on connected circuits via `Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync`.
 * Preserves state using [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) on component properties.
 
 In the following example implementation, the following code files are placed in a `Shutdown` folder at the root of the app:
@@ -226,18 +226,21 @@ public class ShutdownCircuitOptions
 }
 ```
 
+Using the following approach, the fact that the code sends the `RequestCircuitPauseAsync` asynchronously doesn't mean that upon returning the value that the client is already paused. It's only a request to pause that client, which the client can defer. That's why the code includes `_shutdownTcs`, which is set when there aren't any circuits connected (all of them are successfully shut down). In case a client requests a deferral longer than server allows, a period longer than `ShutdownTimeout`, that client doesn't have their state persisted and experiences a normal connection loss.
+
 `Shutdown/CircuitShutdownService.cs`:
 
 ```csharp
 using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.Extensions.Options;
 
 namespace PauseResumeOnShutdown.Shutdown;
 
 public class CircuitShutdownService
 {
-    private readonly ConcurrentDictionary<string, ShutdownCircuitHandler> 
-        _handlers = new();
+    private readonly ConcurrentDictionary<string, Circuit> 
+        _circuits = new();
     private readonly ShutdownCircuitOptions _options;
     private bool _isShuttingDown;
     private TaskCompletionSource _shutdownTcs = new();
@@ -253,29 +256,30 @@ public class CircuitShutdownService
     {
         _isShuttingDown = true;
 
-        if (_handlers.IsEmpty)
+        if (_circuits.IsEmpty)
         {
             return;
         }
 
-        foreach (var handler in _handlers.Values)
-        {
-            handler.Pause();
-        }
+        var pauseTasks = _circuits.Values
+            .Select(c => c.RequestCircuitPauseAsync().AsTask())
+            .Append(_shutdownTcs.Task);
+
+        Task.WhenAll(pauseTasks).Wait(_options.ShutdownTimeout);
 
         _shutdownTcs.Task.Wait(_options.ShutdownTimeout);
     }
 
-    public void Register(string circuitId, ShutdownCircuitHandler handler)
+    public void Register(string circuitId, Circuit circuit)
     {
-        _handlers.TryAdd(circuitId, handler);
+        _circuits.TryAdd(circuitId, handler);
     }
 
     public void Unregister(string circuitId)
     {
-        _handlers.TryRemove(circuitId, out _);
+        _circuits.TryRemove(circuitId, out _);
 
-        if (_isShuttingDown && _handlers.IsEmpty)
+        if (_isShuttingDown && _circuits.IsEmpty)
         {
             _shutdownTcs.TrySetResult();
         }
@@ -287,18 +291,16 @@ public class CircuitShutdownService
 
 ```csharp
 using Microsoft.AspNetCore.Components.Server.Circuits;
-using Microsoft.JSInterop;
 
 namespace PauseResumeOnShutdown.Shutdown;
 
-public class ShutdownCircuitHandler(
-    CircuitShutdownService shutdownService,
-    IJSRuntime jsRuntime) : CircuitHandler
+public class ShutdownCircuitHandler(CircuitShutdownService shutdownService) 
+    : CircuitHandler
 {
     public override Task OnConnectionUpAsync(Circuit circuit, 
         CancellationToken cancellationToken)
     {
-        shutdownService.Register(circuit.Id, this);
+        shutdownService.Register(circuit.Id, circuit);
 
         return Task.CompletedTask;
     }
@@ -309,22 +311,6 @@ public class ShutdownCircuitHandler(
         shutdownService.Unregister(circuit.Id);
 
         return Task.CompletedTask;
-    }
-
-    public void Pause()
-    {
-        _ = PauseCore();
-    }
-
-    private async Task PauseCore()
-    {
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("remotePause");
-        }
-        catch
-        {
-        }
     }
 }
 ```
@@ -340,12 +326,12 @@ using PauseResumeOnShutdown.Shutdown;
 var builder = WebApplication.CreateBuilder(args);
 
 // Increase host shutdown timeout to allow time for pause operations
-// Default value is 10 seconds
+// Must be greater than `ShutdownTimeout` in `ShutdownCircuitOptions` 
+// otherwise the host terminates connections before circuits finish 
+// pausing
 builder.Host.ConfigureHostOptions(options =>
     options.ShutdownTimeout = TimeSpan.FromSeconds(30));
 
-// Set circuit shutdown timeout to allow time for the host to restart
-// Default value is 10 seconds per 'Shutdown/ShutdownCircuitOptions.cs'
 builder.Services.Configure<ShutdownCircuitOptions>(options =>
     options.ShutdownTimeout = TimeSpan.FromSeconds(10));
 
@@ -364,19 +350,25 @@ var app = builder.Build();
 // ... rest of pipeline
 ```
 
-In `App.razor` after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script), `window.remotePause` is called from the server to trigger pause and returns immediately to avoid a "`Cannot send data`" error when Blazor attempts to send the response back.
+Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup). Place the following after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script):
 
 ```razor
 <script> 
-  window.remotePause = function () {
-    Blazor.pauseCircuit();
-  };
+  Blazor.start({
+    circuit: {
+      onPauseRequested: async () => {
+        // Perform any critical cleanup or wait for in-flight operations.
+        // Return true to allow the pause or false to reject it.
+        return true;
+      }
+    }
+  });
 </script>
 ```
 
-The `remotePause` function must not be `async` and must not return a value. If it returns a `Promise`, Blazor attempts to send the result back after the connection closes, which results in an error.
+Without the `onPauseRequested` callback, the client pauses immediately when the server requests it.
 
-In a component, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to persist component state across pause/resume. In the following `Counter` component example, the current count (`CurrentCount`) is preserved:
+In a component, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to persist component state across pause/resume. In the following `Counter` component example, the current count (`CurrentCount`) is preserved across server restarts using the preceding approach:
 
 ```razor
 @page "/counter"
