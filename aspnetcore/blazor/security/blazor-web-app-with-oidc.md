@@ -1465,6 +1465,138 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 * Security groups appear in `groups` claims, one claim per group. The security group GUIDs appear in the Azure portal when you create a security group and are listed when selecting **Identity** > **Overview** > **Groups** > **View**.
 * Built-in ME-ID administrator roles appear in `wids` claims, one claim per role. The `wids` claim with a value of `b79fbf4d-3ef9-4689-8143-76b194e85509` is always sent by ME-ID for non-guest accounts of the tenant and doesn't refer to an administrator role. Administrator role GUIDs (*role template IDs*) appear in the Azure portal when selecting **Roles & admins**, followed by the ellipsis (**&hellip;**) > **Description** for the listed role. The role template IDs are also listed in [Microsoft Entra built-in roles (Entra documentation)](/entra/identity/role-based-access-control/permissions-reference).
 
+## Opaque (reference) access token support
+
+<xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
+
+A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
+
+> [!IMPORTANT]
+> [Duende Software](https://duendesoftware.com/) isn't owned or controlled by Microsoft and might require you to pay a license fee for production use of the Duende Introspection Authentication Handler.
+
+The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a starting point for further development. The handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
+
+`HttpContextExtensions.cs`:
+
+```csharp
+namespace MinimalApiJwt.Extensions;
+
+public static class HttpContextExtensions
+{
+    public static string? ExtractBearerToken(this HttpRequest request)
+    {
+        var authorizationHeader = request.Headers["Authorization"].ToString();
+
+        if (!string.IsNullOrEmpty(authorizationHeader) && 
+            authorizationHeader.StartsWith("Bearer ", 
+            StringComparison.OrdinalIgnoreCase))
+        {
+            var token = authorizationHeader["Bearer ".Length..].Trim();
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                return token;
+            }
+        }
+
+        return null;
+    }
+}
+```
+
+`OpaqueTokenAuthenticationOptions.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Authentication;
+
+namespace MinimalApiJwt.Authentication;
+
+public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
+{
+    public const string DefaultScheme = "OpaqueTokenAuthentication";
+    public string? IntrospectionEndpoint { get; set; }
+    public string? ClientId { get; set; }
+}
+```
+
+`OpaqueTokenAuthenticationHandler.cs`:
+
+```csharp
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
+using MinimalApiJwt.Authentication;
+using MinimalApiJwt.Extensions;
+
+namespace MinimalApiJwt.Services;
+
+public class OpaqueTokenAuthenticationHandler(
+    IOptionsMonitor<OpaqueTokenAuthenticationOptions> options,
+    ILoggerFactory logger,
+    UrlEncoder encoder)
+    : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(options, logger, encoder)
+{
+    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
+        var token = Request.ExtractBearerToken();
+
+        if (token is null)
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Bearer token not found in Authorization header.");
+            return Task.FromResult(failedResult);
+        }
+
+        /* Validate the opaque (reference) access token
+
+           Make an HTTP call to the authorization server's introspection endpoint 
+           with the token and the API's credentials, process the response to 
+           determine if the token is valid.
+
+           If the token is invalid, return a failed authorization result.
+
+           If the token is valid, create an AuthenticationTicket containing the 
+           user's claims.
+        */
+
+        // TODO: Replace the '{USER ID}' placeholder with a claim value extracted 
+        // from the token  introspection response.
+        var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
+        var identity = new ClaimsIdentity(claims, 
+            OpaqueTokenAuthenticationOptions.DefaultScheme);
+        var principal = new ClaimsPrincipal(identity);
+        var ticket = new AuthenticationTicket(principal, 
+            OpaqueTokenAuthenticationOptions.DefaultScheme);
+
+        var result = AuthenticateResult.Success(ticket);
+
+        return Task.FromResult(result);
+    }
+}
+```
+
+In the `Program` file:
+
+```csharp
+builder.Services.AddHttpClient();
+builder.Services.AddAuthentication()
+    .AddScheme<OpaqueTokenAuthenticationOptions, OpaqueTokenAuthenticationHandler>(
+        OpaqueTokenAuthenticationOptions.DefaultScheme,
+        options =>
+        {
+            options.IntrospectionEndpoint = "{AUTH SERVER INTROSPECTION URI}";
+            options.ClientId = "{API CLIENT ID}";
+        });
+```
+
+The preceding example's placeholders:
+
+* `{AUTH SERVER INTROSPECTION URI}`: Authentication server's introspection URI
+* `{API CLIENT ID}`: API Client ID
+
+Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
+
 ## Alternative: Duende Access Token Management
 
 In the sample app, a custom cookie refresher (`CookieOidcRefresher.cs`) implementation is used to perform automatic non-interactive token refresh. An alternative solution can be found in the open source [`Duende.AccessTokenManagement.OpenIdConnect` package](https://docs.duendesoftware.com/accesstokenmanagement/web-apps/).
