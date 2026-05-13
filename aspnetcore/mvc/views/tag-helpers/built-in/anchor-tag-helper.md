@@ -1,12 +1,15 @@
 ---
 title: Anchor Tag Helper in ASP.NET Core
+ai-usage: ai-assisted
 author: pkellner
 description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
+monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/13/2019
+ms.date: 05/08/2026
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
+
 # Anchor Tag Helper in ASP.NET Core
 
 By [Peter Kellner](https://peterkellner.net) and [Scott Addie](https://github.com/scottaddie)
@@ -65,9 +68,14 @@ Consider the following controller action:
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?name=snippet_SpeakerDetailAction)]
 
-With a default route template defined in *Startup.Configure*:
 
-[!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=8-10)]
+With a default route template defined in `Program.cs`:
+
+```csharp
+app.MapControllerRoute(
+  name: "default",
+  pattern: "{controller=Home}/{action=Index}/{id?}");
+```
 
 The MVC view uses the model, provided by the action, as follows:
 
@@ -193,13 +201,9 @@ The generated HTML:
 <a href="/Sessions">View Sessions</a>
 ```
 
+
 > [!TIP]
-> To support areas in a Razor Pages app, do one of the following in `Startup.ConfigureServices`:
->
-> * Set the [compatibility version](xref:mvc/compatibility-version) to 2.1 or later.
-> * Set the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas%2A?displayProperty=nameWithType> property to `true`:
->
->   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
+> To support areas in a Razor Pages app, ensure that area routing is enabled in your app's routing configuration. Use the minimal hosting model and configure area routes in *Program.cs* as needed.
 
 #### Usage in MVC
 
@@ -228,10 +232,15 @@ The generated HTML:
 <a href="/Blogs/Home/AboutBlog">About Blog</a>
 ```
 
+
 > [!TIP]
-> To support areas in an MVC app, the route template must include a reference to the area, if it exists. That template is represented by the second parameter of the `routes.MapRoute` method call in *Startup.Configure*:
+> To support areas in an MVC app, the route template must include a reference to the area, if it exists. Configure area routes in *Program.cs* using `MapControllerRoute` with an area pattern, for example:
 >
-> [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
+> ```csharp
+> app.MapControllerRoute(
+>     name: "mvcAreaRoute",
+>     pattern: "{area:exists}/{controller=Home}/{action=Index}");
+> ```
 
 ### asp-protocol
 
