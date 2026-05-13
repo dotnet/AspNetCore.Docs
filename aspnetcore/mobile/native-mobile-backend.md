@@ -1,5 +1,6 @@
 ---
 title: Create backend services for native mobile apps with ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: wpickett
