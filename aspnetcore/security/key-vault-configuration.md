@@ -214,7 +214,7 @@ When you run the app, a webpage shows the loaded secret values. In the `Developm
 
 If you receive an `Access denied` error, confirm the app is registered with Microsoft Entra ID and has access to the vault. Confirm you restarted the service in Azure.
 
-For information on using the provider with a managed identity and Azure Pipelines, see [Connect to Azure with an Azure Resource Manager service connection](/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
+For information on using the provider with a managed identity and Azure Pipelines, see [Connect to Azure with an Azure Resource Manager service connection](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
 ## Configuration options
 
