@@ -176,7 +176,7 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-For more information, see <xref:blazor/state-management/server#server-triggered-circuit-pause>.
+For more information and an implementation example for server restarts, see <xref:blazor/state-management/server#server-triggered-circuit-pause>.
 
 <!-- Waiting for content from Marek or a link to the work that was done.
 
