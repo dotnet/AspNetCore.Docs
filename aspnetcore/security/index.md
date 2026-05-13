@@ -4,7 +4,7 @@ author: tdykstra
 description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
 ms.author: tdykstra
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 05/12/2026
+ms.date: 05/13/2026
 uid: security/index
 
 # customer intent: As an ASP.NET developer, I want to find topics about working with security in ASP.NET, so I can add authentication and authorization features to my apps.

@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/12/2026
+ms.date: 05/13/2026
 uid: security/cross-site-scripting
 ai-usage: ai-assisted
 
@@ -160,7 +160,7 @@ The preceding code generates the following output:
 ```
 
 > [!WARNING]
-> Don't concatenate untrusted input in JavaScript for creating DOM elements or use `document.write()` on dynamically generated content.
+> Don't concatenate untrusted input in JavaScript to create DOM elements or use `document.write()` on dynamically generated content.
 >
 > Instead, use one of the following approaches to prevent code from being exposed to DOM-based XSS:
 >

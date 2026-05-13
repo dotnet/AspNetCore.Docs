@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/12/2026
+ms.date: 05/13/2026
 uid: security/data-protection/introduction
 
 # customer intent: As a developer, I want to learn about data protection and design principles of the ASP.NET Core Data Protection APIs, so I can use the APIs in my apps.

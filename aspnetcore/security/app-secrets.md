@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: tdykstra
 ms.custom: mvc, sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.0'
-ms.date: 05/12/2026
+ms.date: 05/13/2026
 uid: security/app-secrets
 
 # customer intent: As an ASP.NET Core developer, I want to store and retrieve sensitive information during development of my app, so I can ensure my app secrets remain secure.
