@@ -226,7 +226,7 @@ public class ShutdownCircuitOptions
 }
 ```
 
-Using the following approach, the fact that the code sends the `RequestCircuitPauseAsync` asynchronously doesn't mean that upon returning the value that the client is already paused. It's only a request to pause the client, which the client can defer. That's why the code includes the <xref:System.Threading.Tasks.TaskCompletionSource> (`_shutdownTcs`), which is set when there aren't any circuits connected (all of them are successfully shut down). In case a client requests a deferral longer than the server allows, longer than `ShutdownTimeout`, the client doesn't have their state persisted and experiences a normal connection loss. Other clients that don't defer the pause request have their connections re-established after the app goes back online.
+Using the following approach, the fact that the code sends the `RequestCircuitPauseAsync` asynchronously doesn't mean that upon returning the value that the client is already paused. It's only a request to pause the client, which the client can defer. That's why the code includes the <xref:System.Threading.Tasks.TaskCompletionSource> (`_shutdownTcs`), which is set when there aren't any circuits connected (all of them are successfully shut down). In case a client requests a deferral longer than the server allows, longer than `ShutdownTimeout`, the client doesn't persist state and experiences a normal connection loss. Other clients that don't defer the pause request have their connections re-established after the app goes back online with state persisted.
 
 `Shutdown/CircuitShutdownService.cs`:
 
