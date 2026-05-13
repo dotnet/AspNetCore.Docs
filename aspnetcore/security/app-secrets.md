@@ -100,7 +100,7 @@ This command adds a `UserSecretsId` element within a `PropertyGroup` of the proj
 
 In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the project file.
 
-### If 'GenerateAssemblyInfo' is `false`
+### If 'GenerateAssemblyInfo' is 'false'
 
 If the generation of assembly info attributes (`GenerateAssemblyInfo`) is disabled (set to `false`), manually add the <xref:Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute> in the _AssemblyInfo.cs_ file. For example:
 
