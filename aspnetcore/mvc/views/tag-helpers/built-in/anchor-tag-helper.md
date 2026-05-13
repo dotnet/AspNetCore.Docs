@@ -203,7 +203,7 @@ The generated HTML:
 
 
 > [!TIP]
-> To support areas in a Razor Pages app, ensure that area routing is enabled in your app's routing configuration. In .NET 6 and later, use the minimal hosting model and configure area routes in *Program.cs* as needed.
+> To support areas in a Razor Pages app, ensure that area routing is enabled in your app's routing configuration. Use the minimal hosting model and configure area routes in *Program.cs* as needed.
 
 #### Usage in MVC
 
