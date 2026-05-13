@@ -183,7 +183,7 @@ The `DbContext` check confirms that the app can communicate with the database co
 * Use [Entity Framework (EF) Core](/ef/core/).
 * Include a package reference to the [`Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) NuGet package.
 
-<!-- HOLD: 
+<!-- HOLD: https://github.com/dotnet/AspNetCore.Docs/issues/37147
 
 <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkCoreHealthChecksBuilderExtensions.AddDbContextCheck%2A>
 
