@@ -272,7 +272,7 @@ public class CircuitShutdownService
 
     public void Register(string circuitId, Circuit circuit)
     {
-        _circuits.TryAdd(circuitId, handler);
+        _circuits.TryAdd(circuitId, circuit);
     }
 
     public void Unregister(string circuitId)
