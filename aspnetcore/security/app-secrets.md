@@ -100,7 +100,7 @@ This command adds a `UserSecretsId` element within a `PropertyGroup` of the proj
 
 In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the project file.
 
-### If 'GenerateAssemblyInfo' is false
+### If 'GenerateAssemblyInfo' is `false`
 
 If the generation of assembly info attributes (`GenerateAssemblyInfo`) is disabled (set to `false`), manually add the <xref:Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute> in the _AssemblyInfo.cs_ file. For example:
 
@@ -306,11 +306,11 @@ To manage user secrets in Visual Studio, right-click the project in Solution Exp
 
 You can migrate your stored user secrets from ASP.NET Framework to ASP.NET Core. For more information, see [GitHub dotnet/aspnetcore.docs issue #27611](https://github.com/dotnet/AspNetCore.Docs/issues/27611) - _User Secrets documentation doesn't mention incompatibility with AssemblyInfo.cs_.
 
-## Work with user secrets in nonweb applications 
+## Work with user secrets in non-web applications
 
 Projects that target `Microsoft.NET.Sdk.Web` automatically include support for user secrets. For projects that target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
 ```powershell
 Install-Package Microsoft.Extensions.Configuration

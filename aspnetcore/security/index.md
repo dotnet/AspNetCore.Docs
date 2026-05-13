@@ -32,7 +32,7 @@ ASP.NET Core provides many tools and libraries to secure ASP.NET Core apps, such
 
 ## Authentication vs. Authorization
 
-[Authentication](xref:security/authentication/index) is a process where a user provides credentials that are compared to credentials stored in an operating system, database, app, or resource. When the two sets of credentials match, the user authenticates successfully. They can then perform actions for which they're authorized. The [authorization](xref:security/authorization/introduction) process determines the actions the use is allowed to do.
+[Authentication](xref:security/authentication/index) is a process where a user provides credentials that are compared to credentials stored in an operating system, database, app, or resource. When the two sets of credentials match, the user authenticates successfully. They can then perform actions for which they're authorized. The [authorization](xref:security/authorization/introduction) process determines the actions the user is allowed to do.
 
 Another way to think of authentication is to consider it as a way to **enter** a space, where the space is a server, database, app, or resource. Authorization defines **what actions** the user can perform to which objects inside that space (server, database, or app).
 

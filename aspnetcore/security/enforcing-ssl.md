@@ -253,7 +253,7 @@ The `dotnet dev-certs` tool is expected to be broadly applicable, but official s
 
 ### OpenSSL trust
 
-When a ASP.NET Core development certificate is trusted, the certificate is exported to a folder in the current user's home directory. To have [OpenSSL](https://www.openssl.org/) (and clients that consume it) pick up this folder, you need to set the `SSL_CERT_DIR` environment variable. You can set the variable in a single session by running a command like `export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs` (the exact value is in the output when `--verbose` is passed) or by adding it your (distro- and shell-specific) configuration file (for example _.profile_).
+When an ASP.NET Core development certificate is trusted, the certificate is exported to a folder in the current user's home directory. To have [OpenSSL](https://www.openssl.org/) (and clients that consume it) pick up this folder, you need to set the `SSL_CERT_DIR` environment variable. You can set the variable in a single session by running a command like `export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs` (the exact value is in the output when `--verbose` is passed) or by adding it your (distro- and shell-specific) configuration file (for example _.profile_).
 
 This approach is required to make tools like `curl` trust the development certificate. Alternatively, you can pass `-CAfile` or `-CApath` to each individual `curl` invocation.
 
@@ -380,7 +380,7 @@ dotnet dev-certs https --clean
 
 ## Troubleshoot certificate problems (certificate not trusted)
 
-Sometimes when a ASP.NET Core HTTPS development certificate is [installed and trusted](#trust), the browser warns that the certificate is untrusted. The following sections provide help for troubleshooting this issue.
+Sometimes when an ASP.NET Core HTTPS development certificate is [installed and trusted](#trust), the browser warns that the certificate is untrusted. The following sections provide help for troubleshooting this issue.
 
 The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 

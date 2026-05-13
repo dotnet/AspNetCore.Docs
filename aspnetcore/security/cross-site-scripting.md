@@ -288,7 +288,7 @@ Safe list ranges are specified as Unicode code charts, not languages. The [Unico
 
 In general, the accepted practice is that encoding takes place at the point of output and encoded values should never be stored in a database.
 
-Encoding at the point of output allows you to change the use of data/ For example, change from HTML to a query string value. This approach enables you to easily search your data without having to encode values before searching. It also allows you to take advantage of any changes or bug fixes made to encoders.
+Encoding at the point of output allows you to change the use of data. For example, change from HTML to a query string value. This approach enables you to easily search your data without having to encode values before searching. It also allows you to take advantage of any changes or bug fixes made to encoders.
 
 ## Use validation as an XSS prevention technique
 
