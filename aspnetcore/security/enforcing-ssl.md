@@ -142,7 +142,7 @@ The following code shows configuration of services in the _Program.cs_ file:
 
 ## HTTPS Redirection Middleware alternative approach
 
-An alternative to using HTTPS Redirection Middleware (with the `UseHttpsRedirection` method) is to use URL Rewriting Middleware (via the <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttps> method). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
+An alternative to using HTTPS Redirection Middleware (with the `UseHttpsRedirection` method) is to use URL Rewriting Middleware (via the `AddRedirectToHttps` method). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
 When the app redirects to HTTPS without the requirement for other redirect rules, the recommendation is to use HTTPS Redirection Middleware (`UseHttpsRedirection`) as described in this article.
 
