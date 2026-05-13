@@ -234,7 +234,7 @@ The generated HTML:
 
 
 > [!TIP]
-> To support areas in an MVC app, the route template must include a reference to the area, if it exists. In .NET 6 and later, configure area routes in *Program.cs* using `MapControllerRoute` with an area pattern, for example:
+> To support areas in an MVC app, the route template must include a reference to the area, if it exists. Configure area routes in *Program.cs* using `MapControllerRoute` with an area pattern, for example:
 >
 > ```csharp
 > app.MapControllerRoute(
