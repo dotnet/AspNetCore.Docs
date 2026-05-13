@@ -158,3 +158,51 @@ The following `UserClaims` component can be used directly in apps or serve as th
     }
 }
 ```
+
+### Inspect the access token
+
+Obtaining the access token during development is often helpful when troubleshooting app and Azure configuration problems. In the following example for a weather forecast endpoint, the bearer token and token details are logged only when the app is compiled with the `DEBUG` symbol, which is typically a Debug build. You can decode the token using an online JWT token decoder, such as the [Microsoft JWT token decoder](https://jwt.ms/), or log details from the token in C#, as the following example demonstrates.
+
+> [!CAUTION]
+> In production, avoid logging the token or its contents.
+
+```csharp
+app.MapGet("/weather-forecast", (HttpContext context, ILogger<Program> logger) =>
+{
+#if DEBUG
+    var authHeader = context.Request.Headers.Authorization.FirstOrDefault(v => 
+        v != null && 
+        v.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase));
+
+    if (authHeader is not null)
+    {
+        var token = authHeader["Bearer ".Length..].Trim();
+        logger.LogDebug("Token: {Token}", token);
+
+        try
+        {
+            var handler = 
+                new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+            logger.LogDebug("Audience: {Audience}", 
+                string.Join(", ", jwtToken.Audiences));
+            logger.LogDebug("Issuer: {Issuer}", jwtToken.Issuer);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to decode token.");
+        }
+    }
+#endif
+
+    var forecast = Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return forecast;
+}).RequireAuthorization();
+```
