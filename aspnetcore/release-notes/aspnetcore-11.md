@@ -80,7 +80,7 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/runtime-async-shared-framework-preview4.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/rate-limiting-retry-after-preview4.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/rate-limiting-retry-after-preview-4.md)]
 
 ## Breaking changes
 
