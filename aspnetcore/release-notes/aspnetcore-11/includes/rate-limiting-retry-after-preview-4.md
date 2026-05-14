@@ -4,6 +4,6 @@ The <xref:System.Threading.RateLimiting.FixedWindowRateLimiter> now reports a <x
 
 Additional fixes in `System.Threading.RateLimiting` resolve an issue where <xref:System.Threading.RateLimiting.TokenBucketRateLimiter> mishandled partial token refills during zero-permit acquisition, and improve `System.Threading.RateLimiting.ChainedRateLimiter` to correctly forward idle-duration and replenishment behavior from its inner limiters.
 
-For more information, see [Rate limiting middleware in ASP.NET Core](/aspnet/core/performance/rate-limit).
+For an overview of the rate limiting middleware, see [Rate limiting middleware in ASP.NET Core](/aspnet/core/performance/rate-limit).
 
 Thank you [@asbjornvad](https://github.com/asbjornvad) and [@apoorvdarshan](https://github.com/apoorvdarshan) for these contributions!
