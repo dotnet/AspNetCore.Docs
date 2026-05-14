@@ -14,32 +14,19 @@ uid: security/authentication/identity-enable-qrcodes
 
 # Enable QR code generation for TOTP authenticator apps in ASP.NET Core
 
-ASP.NET Core includes support for authenticator applications for individual authentication:
-
-- Two-factor authentication (2FA) authenticator apps use a Time-based One-time Password Algorithm (TOTP), the industry-recommended approach for 2FA.
-- TOTP-based 2FA is preferred over SMS 2FA.
-- An authenticator app provides a 6 to 8 digit code that users enter after confirming their username and password.
-- Typically, users install an authenticator app on a smartphone.
+ASP.NET Core includes support for authenticator applications for user authentication. Two-factor authentication (2FA) authenticator apps use a Time-based One-time Password Algorithm (TOTP), the industry-recommended approach for 2FA. (TOTP-based 2FA is preferred over SMS 2FA.) Users typically install the authenticator app on a smartphone. The app provides a 6 to 8 digit code that the user enters after they confirm their username and password. 
 
 > [!IMPORTANT]
-> Keep an ASP.NET Core TOTP code secret because it can be used to authenticate successfully multiple times before it expires.
+> Keep the ASP.NET Core TOTP code secret. The user can enter the code multiple times and authenticate successfully before it expires.
 
-:::moniker range=">= aspnetcore-8.0"
+The ASP.NET Core web app templates support authenticators, but they don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article provides guidance for Razor Pages and MVC apps on how to add [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
 
-The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article provides guidance for Razor Pages and MVC apps on how to add [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page. For guidance that applies to Blazor Web Apps, see <xref:blazor/security/qrcodes-for-authenticator-apps>. For guidance that applies to Blazor WebAssembly apps, see <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps>.
+Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External sign ins are protected by whatever mechanism the external authentication provider supports. For example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. When the default templates require 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
 
-:::moniker-end
+If you're working with Blazor in ASP.NET Core 8.0 or later, you can find similar guidance in the following articles:
 
-:::moniker range="< aspnetcore-8.0"
-
-The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article guides you through adding [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
-
-> [!NOTE]
-> For ASP.NET Core 8.0 or later, Blazor-specific guidance for QR code generation is available for <xref:blazor/security/qrcodes-for-authenticator-apps> (Blazor Web App) and <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps> (Blazor WebAssembly with Identity).
-
-:::moniker-end
-
-Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External sign ins are protected by whatever mechanism the external sign-in provider supports. For example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. If the default templates required 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
+* <xref:blazor/security/qrcodes-for-authenticator-apps>
+* <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps>
 
 ## Add QR codes to the 2FA configuration page
 
