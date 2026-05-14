@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 05/15/2026
 uid: security/authentication/mfa
 
-# customer intent: As an ASP.NET developer, I want to set up multifactor authentication in my ASP.NET Core app, so I can TBD.......
+# customer intent: As an ASP.NET developer, I want to set up multifactor authentication in ASP.NET Core, so I can control user access to my app.
 ---
 <!-- ms.sfi.ropc: t -->
 # Multifactor authentication in ASP.NET Core
