@@ -147,7 +147,7 @@ namespace IdentityStandaloneMfa
 Because the Identity service setup changed in the `Startup` class, the layouts of the Identity need to be updated:
 
 * Scaffold the Identity pages into the app.
-* Define the layout in the _Identity/Account/Manage/_Layout.cshtml_ file.
+* Define the layout in the _Identity/Account/Manage/\_Layout.cshtml_ file.
 
    ```cshtml
    @{
