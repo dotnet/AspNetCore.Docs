@@ -23,7 +23,7 @@ if (!lease.IsAcquired && lease.TryGetMetadata(MetadataName.RetryAfter, out TimeS
 }
 ```
 
-Additional fixes in `System.Threading.RateLimiting` resolve an issue where <xref:System.Threading.RateLimiting.TokenBucketRateLimiter> mishandled partial token refills during zero-permit acquisition, and improve <xref:System.Threading.RateLimiting.ChainedRateLimiter%601> to correctly forward idle-duration and replenishment behavior from its inner limiters.
+Additional fixes in `System.Threading.RateLimiting` resolve an issue where <xref:System.Threading.RateLimiting.TokenBucketRateLimiter> mishandled partial token refills during zero-permit acquisition, and improve `System.Threading.RateLimiting.ChainedRateLimiter` to correctly forward idle-duration and replenishment behavior from its inner limiters.
 
 For more information, see [Rate limiting middleware in ASP.NET Core](/aspnet/core/performance/rate-limit).
 
