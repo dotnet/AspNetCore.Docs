@@ -23,22 +23,25 @@ All include files go in:
 
 ### File naming convention
 
-* Lowercase, hyphenated, descriptive names.
-* Append the preview number suffix to each filename: `-preview{N}` (where `{N}` is the preview number, e.g., `-preview2`).
+* Lowercase, hyphenated, descriptive names using whole words only.
+* Each word and number must be separated by a hyphen. Do not combine words or abbreviate them, and do not combine numbers with words.
+  - **Wrong**: `infer-pk-display-name-preview2.md` (`pk` is an abbreviation, and `preview2` combines a word with a number)
+  - **Correct**: `infer-passkey-display-name-preview-2.md` (whole words, number separated by hyphen)
+* Append the preview number suffix to each filename: `-preview-{N}` (where `{N}` is the preview number, e.g., `-preview-2`).
   **CRITICAL**: Every new file MUST include the preview suffix. This was a mistake
   in the initial automation — a file was created without the suffix and had to be
   corrected.
 * Examples:
-  - `native-otel-tracing-preview2.md`
-  - `openapi-3-2-support-preview2.md`
-  - `infer-passkey-display-name-preview2.md`
-  - `performance-improvements-preview2.md`
+  - `native-otel-tracing-preview-2.md`
+  - `openapi-3-2-support-preview-2.md`
+  - `infer-passkey-display-name-preview-2.md`
+  - `performance-improvements-preview-2.md`
 
 ### One file per feature
 
 * Create one include file per feature or section.
 * **Exception — Performance**: Combine all performance improvements into a
-  single `performance-improvements-preview{N}.md` file.
+  single `performance-improvements-preview-{N}.md` file.
 
 ### Exclusions — do NOT create include files for
 
@@ -133,7 +136,8 @@ All include files go in:
 
 Before completing, verify:
 
-- [ ] Every new include filename ends with `-preview{N}`.
+- [ ] Every new include filename ends with `-preview-{N}`.
+- [ ] Every word and number in filenames is separated by a hyphen (no abbreviations, no combined word-numbers).
 - [ ] No Blazor content was included.
 - [ ] No bug-fix-only content was included.
 - [ ] All `<xref:>` IDs are verified (or explicitly flagged as needing verification).
@@ -145,6 +149,18 @@ Before completing, verify:
 - [ ] Community contributor acknowledgments are preserved.
 - [ ] Breaking Change designations are preserved in headings.
 - [ ] No preview-specific language, such as a preview number, appears in include file content.
+
+---
+
+## PR description requirements
+
+* The very first line of the PR description must be `Fixes dotnet/AspNetCore.Docs#{ISSUE NUMBER}` (where `{ISSUE NUMBER}` is the number of the issue this PR addresses), followed by a blank line before any other content.
+* Example:
+  ```
+  Fixes dotnet/AspNetCore.Docs#10000
+
+  Summary of changes...
+  ```
 
 ---
 
