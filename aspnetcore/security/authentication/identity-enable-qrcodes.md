@@ -5,7 +5,7 @@ author: wadepickett
 description: Discover how to enable QR code generation for time-based one-time password (TOTP) authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 05/14/2026
+ms.date: 05/15/2026
 ms.reviewer: wpickett
 uid: security/authentication/identity-enable-qrcodes
 
@@ -19,7 +19,16 @@ ASP.NET Core includes support for authenticator applications for user authentica
 > [!IMPORTANT]
 > Keep the ASP.NET Core TOTP code secret. The user can enter the code multiple times and authenticate successfully before it expires.
 
+:::moniker range=">= aspnetcore-8.0"
+
 The ASP.NET Core web app templates support authenticators, but they don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article provides guidance for Razor Pages and MVC apps on how to add [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
+
+:::moniker-end
+:::moniker range="< aspnetcore-8.0"
+
+The ASP.NET Core web app templates support authenticators but don't provide support for QR code generation. QR code generators make it easier to set up 2FA. This article guides you through adding [QR code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
+
+:::moniker-end
 
 Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External sign ins are protected by whatever mechanism the external authentication provider supports. For example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. When the default templates require 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
 
