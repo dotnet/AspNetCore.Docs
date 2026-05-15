@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor `QuickGrid` component
+ai-usage: ai-assisted
 author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
@@ -40,7 +41,7 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
@@ -64,7 +65,7 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
@@ -139,6 +140,207 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 In the running app, page through the items using a rendered `Paginator` component.
 
 QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages.
+
+## Open and return from a details page with a paged QuickGrid component
+
+A paged QuickGrid component can open a details page for a record and return to the correct page of results using the approach in this section.
+
+<!-- UPDATE 11.0 - Surface content on URL-based navigation
+                   at Preview 5 release and set the 
+                   correct section ID in the link.
+
+:::moniker range=">= aspnetcore-11.0"
+
+[URL-based navigation](#url-based-navigation) is used to save the page number and return the user to the same page of items from a details page.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+> [!NOTE]
+> The approach described in this section is simplified by URL-based navigation in .NET 11 or later. For more information, see this section in a .NET 11 or later version of this article.
+
+-->
+
+The following API is used:
+
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A?displayProperty=nameWithType>: Gets the current zero-based page index.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType>: Sets the current page index and notifies any associated `QuickGrid` components to fetch and render updated data.
+
+<!--
+
+:::moniker-end
+
+-->
+
+The `Details` component receives the page number from the query string in the `Page` property and uses it to form a link back to the `QuickGrid` component at `/scifi-characters`.
+
+`Details.razor`:
+
+```razor
+@page "/details"
+
+<ul>
+    <li>Character ID for this detail record: @Id</li>
+    <li>QuickGrid page number: @Page</li>
+</ul>
+<div>
+    <a href="@($"/scifi-characters?page={Page}")">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromQuery]
+    private int Page { get; set; }
+}
+```
+
+The `SciFiCharacters` component:
+
+<!-- UPDATE 11.0 - Surface content on URL-based navigation
+                   at Preview 5 release and set the 
+                   correct section ID in the link.
+
+:::moniker range=">= aspnetcore-11.0"
+
+* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#url-based-navigation), which sets the page index from the value of a `page` query string value, if it exists.
+* Opens the preceding `Details` component with the current page number, the current page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+
+`ScifiCharacters.razor`:
+
+```razor
+@page "/scifi-characters"
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid Items="characters" Pagination="pagination">
+    <PropertyColumn Property="@(c => c.Id)" />
+    <PropertyColumn Property="@(c => c.Name)" />
+    <TemplateColumn Context="c">
+        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex + 1}")">
+            Details
+        </a>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    PaginationState pagination = new PaginationState { ItemsPerPage = 3 };
+
+    private record Character(int Id, string Name);
+
+    private IQueryable<Character> characters = new[]
+    {
+        new Character(0, "Ellen Ripley"),
+        new Character(1, "Darth Vader"),
+        new Character(2, "Rick Deckard"),
+        new Character(3, "Sarah Connor"),
+        new Character(4, "Malcolm Reynolds"),
+        new Character(5, "Kara Thrace"),
+        new Character(6, "James Kirk"),
+        new Character(7, "Flash Gordon"),
+        new Character(8, "Max Rockatansky"),
+        new Character(9, "Katniss Everdeen"),
+        new Character(10, "Ellie Sattler"),
+        new Character(11, "Leela")
+    }.AsQueryable();
+}
+```
+
+If the `QuickGrid` component sets `QueryParameterNamePrefix`, set the query string parameter key for the results page in the `Details` component to `{PREFIX}_page`, where the `{PREFIX}` placeholder is the query parameter prefix. In the following example, the `QueryParameterNamePrefix` of the `QuickGrid` component is set to `scifi-characters-quickgrid`.
+
+In `Characters.razor`:
+
+```razor
+<QuickGrid ... QueryParameterNamePrefix="scifi-characters-quickgrid">
+```
+
+In `Details.razor`:
+
+```razor
+<a href="@($"/scifi-characters?scifi-characters-quickgrid_page={Page}")">Back to List</a>
+```
+
+> [!NOTE]
+> To disable URL-based navigation, set the following feature flag in the app's `Program` file:
+>
+> ```csharp
+> AppContext.SetSwitch(
+>     "Microsoft.AspNetCore.Components.QuickGrid.EnableUrlBasedQuickGridNavigationAndSorting", 
+>     false);
+> ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+-->
+
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> and [`GetUriWithQueryParameter`](xref:blazor/fundamentals/navigation#query-strings).
+* Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+
+`ScifiCharacters.razor`:
+
+```razor
+@page "/scifi-characters"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid Items="characters" Pagination="pagination">
+    <PropertyColumn Property="@(c => c.Id)" />
+    <PropertyColumn Property="@(c => c.Name)" />
+    <TemplateColumn Context="c">
+        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex + 1}")">
+            Details
+        </a>
+    </TemplateColumn>
+</QuickGrid>
+
+<Paginator State="pagination" />
+
+@code {
+    PaginationState pagination = new PaginationState { ItemsPerPage = 3 };
+
+    private record Character(int Id, string Name);
+
+    private IQueryable<Character> characters = new[]
+    {
+        new Character(0, "Ellen Ripley"),
+        new Character(1, "Darth Vader"),
+        new Character(2, "Rick Deckard"),
+        new Character(3, "Sarah Connor"),
+        new Character(4, "Malcolm Reynolds"),
+        new Character(5, "Kara Thrace"),
+        new Character(6, "James Kirk"),
+        new Character(7, "Flash Gordon"),
+        new Character(8, "Max Rockatansky"),
+        new Character(9, "Katniss Everdeen"),
+        new Character(10, "Ellie Sattler"),
+        new Character(11, "Leela")
+    }.AsQueryable();
+
+    [SupplyParameterFromQuery]
+    private int Page { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Page.HasValue)
+        {
+            await pagination.SetCurrentPageIndexAsync(Page.Value - 1);
+            Navigation.NavigateTo(
+                Navigation.GetUriWithQueryParameter("page", (int?)null));
+        }
+    }
+}
+```
+
+<!--
+
+:::moniker-end
+
+-->
 
 ## Apply row styles
 
