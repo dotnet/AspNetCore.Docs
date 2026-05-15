@@ -278,7 +278,7 @@ In `Details.razor`:
 
 -->
 
-* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index.
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> and [`GetUriWithQueryParameter`](xref:blazor/fundamentals/navigation#query-strings).
 * Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
