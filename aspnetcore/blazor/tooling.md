@@ -628,7 +628,7 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 The template features:
 
-* [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) support: Logging, metrics, and tracing with standard OTLP exporter.
+* [OpenTelemetry (OTEL)](https://opentelemetry.io/) ([OpenTelemetry .NET](https://github.com/open-telemetry/opentelemetry-dotnet)) support: Logging, metrics, and tracing with standard OTEL Protocol (OTLP) exporter.
 * Service discovery integration via the [`Microsoft.Extensions.ServiceDiscovery` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.ServiceDiscovery).
 * HTTP resilience using the standard resilience handler via the [`Microsoft.Extensions.Http.Resilience` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Http.Resilience).
 
