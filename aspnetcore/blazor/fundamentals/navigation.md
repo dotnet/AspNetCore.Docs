@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor navigation
+ai-usage: ai-assisted
 author: guardrex
 description: Learn about navigation in Blazor, including how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
@@ -975,7 +976,7 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 Use <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> to add, change, or remove one or more query parameters on the current URL.
 
 > [!NOTE]
-> For the following examples throughout this section that call <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A>, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>:
+> For the following examples throughout this section that call <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> or <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A>, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>:
 >
 > ```razor
 > @inject NavigationManager Navigation
@@ -1002,7 +1003,7 @@ Call <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWit
 Navigation.NavigateTo(Navigation.GetUriWithQueryParameters({PARAMETERS}));
 ```
 
-The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
+The `{PARAMETERS}` placeholder is an `Dictionary<string, object?>`.
 
 Pass a URI string to <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A> to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
 
@@ -1011,7 +1012,7 @@ Navigation.NavigateTo(Navigation.GetUriWithQueryParameters("{URI}", {PARAMETERS}
 ```
 
 * The `{URI}` placeholder is the URI with or without a query string.
-* The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
+* The `{PARAMETERS}` placeholder is an `Dictionary<string, object?>`.
 
 Supported types are identical to supported types for route constraints:
 
