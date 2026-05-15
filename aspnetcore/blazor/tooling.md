@@ -624,7 +624,7 @@ For more information on template options, see the following resources:
 
 ## Service defaults library for Blazor WebAssembly apps
 
-The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with .NET Aspire integration.
+The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration.
 
 The template features:
 
