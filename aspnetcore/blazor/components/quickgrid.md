@@ -329,6 +329,8 @@ In `Details.razor`:
         if (Page.HasValue)
         {
             await pagination.SetCurrentPageIndexAsync(Page.Value - 1);
+            Navigation.NavigateTo(
+                Navigation.GetUriWithQueryParameter("page", (int?)null));
         }
     }
 }
