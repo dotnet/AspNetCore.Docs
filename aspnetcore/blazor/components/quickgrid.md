@@ -150,7 +150,7 @@ A paged QuickGrid component can open a details page for a record and return to t
 
 :::moniker range=">= aspnetcore-11.0"
 
-[URL-based navigation](#url-based-navigation) is used to save the page index and return the user to the same page of items from a details page.
+[URL-based navigation](#url-based-navigation) is used to save the page number and return the user to the same page of items from a details page.
 
 :::moniker-end
 
@@ -161,7 +161,7 @@ A paged QuickGrid component can open a details page for a record and return to t
 
 -->
 
-To following API is used save the page index and return the user to the same page of items from a details page:
+The following API is used:
 
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A?displayProperty=nameWithType>: Gets the current zero-based page index.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType>: Sets the current page index and notifies any associated `QuickGrid` components to fetch and render updated data.
@@ -172,7 +172,7 @@ To following API is used save the page index and return the user to the same pag
 
 -->
 
-The `Details` component receives the page index from the query string in the `Page` property and uses it to form a link back to the `QuickGrid` component's page at `/characters`.
+The `Details` component receives the page number from the query string in the `Page` property and uses it to form a link back to the `QuickGrid` component at `/scifi-characters`.
 
 `Details.razor`:
 
@@ -181,10 +181,10 @@ The `Details` component receives the page index from the query string in the `Pa
 
 <ul>
     <li>Character ID for this detail record: @Id</li>
-    <li>QuickGrid page index: @Page</li>
+    <li>QuickGrid page number: @Page</li>
 </ul>
 <div>
-    <a href="@($"/characters?page={Page}")">Back to List</a>
+    <a href="@($"/scifi-characters?page={Page}")">Back to List</a>
 </div>
 
 @code {
@@ -196,7 +196,7 @@ The `Details` component receives the page index from the query string in the `Pa
 }
 ```
 
-The `Characters` component:
+The `SciFiCharacters` component:
 
 <!-- UPDATE 11.0 - Surface content on URL-based navigation
                    at Preview 5 release and set the 
@@ -204,16 +204,16 @@ The `Characters` component:
 
 :::moniker range=">= aspnetcore-11.0"
 
-* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#url-based-navigation), setting the page index with the value of `Page`.
-* Opens the preceding `Details` component with the current page index incremented by one (`+1`) to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#url-based-navigation), which sets the page index from the value of `Page` minus one (`-1`).
+* Opens the preceding `Details` component with the current page number, the current page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
-`Characters.razor`:
+`ScifiCharacters.razor`:
 
 ```razor
-@page "/characters"
+@page "/scifi-characters"
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid Items="character" Pagination="pagination">
+<QuickGrid Items="characters" Pagination="pagination">
     <PropertyColumn Property="@(c => c.Id)" />
     <PropertyColumn Property="@(c => c.Name)" />
     <TemplateColumn Context="c">
@@ -230,7 +230,7 @@ The `Characters` component:
 
     private record Character(int Id, string Name);
 
-    private IQueryable<Character> character = new[]
+    private IQueryable<Character> characters = new[]
     {
         new Character(0, "Ellen Ripley"),
         new Character(1, "Darth Vader"),
@@ -251,18 +251,18 @@ The `Characters` component:
 }
 ```
 
-If the `QuickGrid` component sets `QueryParameterNamePrefix`, set the query string parameter key for the results page in the `Details` component to `{PREFIX}_page`, where the `{PREFIX}` placeholder is the query parameter prefix. In the following example, the `QueryParameterNamePrefix` of the `QuickGrid` component is set to `character-quickgrid`.
+If the `QuickGrid` component sets `QueryParameterNamePrefix`, set the query string parameter key for the results page in the `Details` component to `{PREFIX}_page`, where the `{PREFIX}` placeholder is the query parameter prefix. In the following example, the `QueryParameterNamePrefix` of the `QuickGrid` component is set to `scifi-characters-quickgrid`.
 
 In `Characters.razor`:
 
 ```razor
-<QuickGrid ... QueryParameterNamePrefix="character-quickgrid">
+<QuickGrid ... QueryParameterNamePrefix="scifi-characters-quickgrid">
 ```
 
 In `Details.razor`:
 
 ```razor
-<a href="@($"/characters?character-quickgrid_page={Page}")">Back to List</a>
+<a href="@($"/scifi-characters?scifi-characters-quickgrid_page={Page}")">Back to List</a>
 ```
 
 > [!NOTE]
@@ -280,17 +280,17 @@ In `Details.razor`:
 
 -->
 
-* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page`.
-* Opens the preceding `Details` component with the current page index incremented by one (`+1`) to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`).
+* Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
-`Characters.razor`:
+`ScifiCharacters.razor`:
 
 ```razor
-@page "/characters"
+@page "/scifi-characters"
 @rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid Items="character" Pagination="pagination">
+<QuickGrid Items="characters" Pagination="pagination">
     <PropertyColumn Property="@(c => c.Id)" />
     <PropertyColumn Property="@(c => c.Name)" />
     <TemplateColumn Context="c">
@@ -307,7 +307,7 @@ In `Details.razor`:
 
     private record Character(int Id, string Name);
 
-    private IQueryable<Character> character = new[]
+    private IQueryable<Character> characters = new[]
     {
         new Character(0, "Ellen Ripley"),
         new Character(1, "Darth Vader"),
