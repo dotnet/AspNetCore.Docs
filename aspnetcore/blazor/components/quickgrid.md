@@ -205,7 +205,7 @@ The `Characters` component:
 :::moniker range=">= aspnetcore-11.0"
 
 * Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#url-based-navigation), setting the page index with the value of `Page`.
-* Opens the preceding `Details` component with the current page index incremented by one (`+1`) to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string.
+* Opens the preceding `Details` component with the current page index incremented by one (`+1`) to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `Characters.razor`:
 
@@ -281,7 +281,7 @@ In `Details.razor`:
 -->
 
 * Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page`.
-* Opens the preceding `Details` component with the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string.
+* Opens the preceding `Details` component with the current page index incremented by one (`+1`) to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `Characters.razor`:
 
@@ -294,7 +294,7 @@ In `Details.razor`:
     <PropertyColumn Property="@(c => c.Id)" />
     <PropertyColumn Property="@(c => c.Name)" />
     <TemplateColumn Context="c">
-        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex}")">
+        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex + 1}")">
             Details
         </a>
     </TemplateColumn>
@@ -328,7 +328,10 @@ In `Details.razor`:
 
     protected override async Task OnInitializedAsync()
     {
-        await pagination.SetCurrentPageIndexAsync(Page);
+        if (Page.HasValue)
+        {
+            await pagination.SetCurrentPageIndexAsync(Page.Value - 1);
+        }
     }
 }
 ```
