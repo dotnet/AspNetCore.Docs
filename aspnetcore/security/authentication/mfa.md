@@ -23,7 +23,7 @@ Multifactor authentication (MFA) is a process in which a user is requested durin
 
 This article provides an overview of multifactor authentication in ASP.NET Core and the recommended authentication flows with examples that show how to:
 
-* Configure MFA for administration pages by using ASP.NET Core Identity,
+* Configure MFA for administration pages by using ASP.NET Core Identity.
 * Send an MFA sign-in requirement to the OpenID Connect server.
 * Force the ASP.NET Core OpenID Connect client to require MFA.
 
@@ -302,7 +302,7 @@ The following example demonstrates OpenID Connect Duende IdentityServer server w
 
 The page view:
 
-* Displays if the Identity comes from an app that requires MFA, but the user hasn't activated this in Identity.
+* Displays if the Identity comes from an app that requires MFA, but the user hasn't activated MFA in Identity.
 * Informs the user and adds a link to activate this.
 
 ```cshtml
