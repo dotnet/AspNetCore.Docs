@@ -1,15 +1,17 @@
 ---
 title: ASP.NET Core security topics
 author: tdykstra
-description: Provides links to articles on authentication, authorization, and security in ASP.NET Core.
+description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
 ms.author: tdykstra
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 3/9/2022
+ms.date: 05/13/2026
 uid: security/index
+
+# customer intent: As an ASP.NET developer, I want to find topics about working with security in ASP.NET, so I can add authentication and authorization features to my apps.
 ---
 # ASP.NET Core security topics
 
-ASP.NET Core enables developers to configure and manage security. The following list provides links to security topics:
+ASP.NET Core enables developers to configure and manage security. The following list provides links to articles about working with security in ASP.NET Core:
 
 * [Authentication](xref:security/authentication/index)
 * [Authorization](xref:security/authorization/introduction)
@@ -26,20 +28,20 @@ For Blazor security coverage, which adds to or supersedes the guidance in this n
 
 ## ASP.NET Core security features
 
-ASP.NET Core provides many tools and libraries to secure ASP.NET Core apps such as built-in identity providers and third-party identity services such as Facebook, Twitter, and LinkedIn. ASP.NET Core provides several approaches to store app secrets.
+ASP.NET Core provides many tools and libraries to secure ASP.NET Core apps, such as built-in identity providers and non-Microsoft identity services like Facebook, Twitter, and LinkedIn. ASP.NET Core provides several approaches to store app secrets.
 
 ## Authentication vs. Authorization
 
-[Authentication](xref:security/authentication/index) is a process in which a user provides credentials that are then compared to those stored in an operating system, database, app or resource. If they match, users authenticate successfully, and can then perform actions that they're authorized for, during an [authorization](xref:security/authorization/introduction) process. The authorization refers to the process that determines what a user is allowed to do.
+[Authentication](xref:security/authentication/index) is a process where a user provides credentials that are compared to credentials stored in an operating system, database, app, or resource. When the two sets of credentials match, the user authenticates successfully. They can then perform actions for which they're authorized. The [authorization](xref:security/authorization/introduction) process determines the actions the user is allowed to do.
 
-Another way to think of authentication is to consider it as a way to enter a space, such as a server, database, app or resource, while authorization is which actions the user can perform to which objects inside that space (server, database, or app).
+Another way to think of authentication is to consider it as a way to **enter** a space, where the space is a server, database, app, or resource. Authorization defines **what actions** the user can perform to which objects inside that space (server, database, or app).
 
-## Common Vulnerabilities in software
+## Common vulnerabilities in software
 
-ASP.NET Core and EF contain features that help you secure your apps and prevent security breaches. The following list of links takes you to documentation detailing techniques to avoid the most common security vulnerabilities in web apps:
+ASP.NET Core and Entity Framework contain features that help you secure your apps and prevent security breaches. The following list of links takes you to documentation detailing techniques to avoid the most common security vulnerabilities in web apps:
 
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
-* [SQL injection attacks](/ef/core/querying/raw-sql)
+* [SQL queries > SQL injection attacks](/ef/core/querying/sql-queries#passing-parameters)
 * [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery)
 * [Open redirect attacks](xref:security/preventing-open-redirects)
 
@@ -49,11 +51,11 @@ There are more vulnerabilities that you should be aware of. For more information
 
 We recommend using the most secure authentication option. For Azure services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview).
 
-Avoid Resource Owner Password Credentials Grant because it:
+Avoid using the Resource Owner Password Credentials (ROPG) grant:
 
-* Exposes the user's password to the client.
-* Is a significant security risk.
-* Should only be used when other authentication flows are not possible.
+* It exposes the user's password to the client.
+* It's a significant security risk.
+* Use it only when other authentication flows aren't possible.
 
 Managed identities are a secure way to authenticate to services without needing to store credentials in code, environment variables, or configuration files. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
 
@@ -61,7 +63,7 @@ Managed identities are a secure way to authenticate to services without needing 
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
 * [Secure authentication flows](/entra/identity-platform/authentication-flows-app-scenarios#web-app-that-signs-in-a-user)
 
-When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. We recommend against using environment variables to store a production connection string as it's not the most secure approach.
+When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). Environment variables are commonly stored in plain, unencrypted text. If the machine or process is compromised, environment variables might be accessible to untrusted parties. We recommend against using environment variables to store a production connection string as it's not the most secure approach.
 
 Configuration data guidelines:
 
@@ -74,16 +76,16 @@ For more information, see:
 * [Managed identity best practice recommendations](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations)
 * [Connecting from your application to resources without handling credentials in your code](/entra/identity/managed-identities-azure-resources/overview-for-developers?tabs=portal%2Cdotnet)
 * [Azure services that can use managed identities to access other services](/entra/identity/managed-identities-azure-resources/managed-identities-status)
-* [IETF OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#section-2.4)
+* [IETF OAuth 2.0 Security Best Current Practice (Section 2.4. Resource Owner Password Credentials Grant)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#section-2.4)
 
 For information on other cloud providers, see:
 
 * [AWS (Amazon Web Services): AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
-* [Google Cloud Key Management Service overview](https://cloud.google.com/kms/docs/key-management-service)
+* [Google Cloud Key Management Service overview](https://docs.cloud.google.com/kms/docs/key-management-service)
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
-## Additional resources
+## Related content
 
 * <xref:security/authentication/identity>
 * <xref:security/authentication/identity-enable-qrcodes>
