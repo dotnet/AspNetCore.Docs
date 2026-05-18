@@ -123,13 +123,32 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 ### New Blazor Web Worker template (`blazorwebworker`)
 
-Blazor WebAssembly apps can perform heavy computing on the client, but doing so on the UI thread interferes with UI rendering and negatively affects the user experience. In .NET 10, we added an article with a sample app to make offloading heavy work from the UI thread to a Web Worker easier. For .NET 11, we've added the Blazor Web Worker project template (`blazorwebworker`), which provides infrastructure for running .NET code in a Web Worker in Blazor WebAssembly apps. For more information, see <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>.
+The standalone .NET Web Worker project template, which scaffolds a Web Worker client for offloading long-running work to a background thread in Blazor WebAssembly and Blazor Web apps (for client-side rendering, CSR), was renamed to the Blazor Web Worker project template (`blazorwebworker`) to make it clearer that it's part of the Blazor stack. Two often-requested capabilities have been added to the generated `WebWorkerClient`:
+
+* `InvokeVoidAsync` for fire-and-forget worker calls that don't return a value, mirroring the shape on `IJSRuntime`.
+* Cancellation and timeout support on both worker creation and worker invocations, so callers can pass a `CancellationToken` and tear down a stuck worker cleanly.
+
+Existing projects created with the old template continue to work. The rename only affects the template name shown in `dotnet new list` and in Visual Studio's list of **Create a new project** templates.
+
+For more information, see the following resources:
+
+* <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>
+* [.NET Web Worker template update to Blazor Web Worker template (`dotnet/aspnetcore` #66070)](https://github.com/dotnet/aspnetcore/pull/66070) (Please don't comment on closed issues and PRs.)
 
 ### Virtualization enhancements
 
-* The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. The component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary. These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+* The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. Previously, the component disabled the browser's native scroll anchoring (to avoid an infinite rendering loop), which meant any height change above the viewport&mdash;item expansion, data updates, lazy-loaded content&mdash;caused visible items to jump on screen. The `Virtualize` component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary.
 
-  For more information, see the [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
+  The updates use a hybrid approach: native CSS scroll anchoring on browsers that support it for non-`<table>` layouts with a manual `ResizeObserver`-based scroll-compensation fallback for `<table>` layouts and Safari, where native anchoring miscalculates positions on `<tr>` elements.
+  
+  Apps using the `Virtualize` component receive the benefits of these updates automatically. No developer API changes are required.
+
+  These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+
+  For more information, see the following resources:
+  
+  * [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
+  * [[Virtualization] Visible content does not shift when in-DOM items above the viewport change height (`dotnet/aspnetcore` #65951)](https://github.com/dotnet/aspnetcore/pull/65951) (Please don't comment on closed issues and PRs).
 
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
@@ -145,11 +164,14 @@ Blazor WebAssembly apps can perform heavy computing on the client, but doing so 
   </Virtualize>
   ```
 
-  For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+  For more information, see the following resources:
+  
+  * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
+  * [[release/11.0-preview4] Virtualization AnchorMode with for variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
-The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with .NET Aspire integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
+The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
 
 ### New development server for Blazor WebAssembly apps
 
@@ -160,7 +182,7 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 `Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly applications during development and production.
 
-For more information, see [[Blazor] Replace DevServer with BlazorGateway for standalone WASM apps (`dotnet/aspnetcore` #65982)](https://github.com/dotnet/aspnetcore/pull/65982).
+For more information, see [[Blazor] Replace DevServer with BlazorGateway for standalone WASM apps (`dotnet/aspnetcore` #65982)](https://github.com/dotnet/aspnetcore/pull/65982) (Please don't comment on closed issues and PRs).
 
 ### Server-triggered circuit pause
 
@@ -178,8 +200,11 @@ This feature is useful in the following scenarios:
 
 For more information and an implementation example for server restarts, see <xref:blazor/state-management/server#server-triggered-circuit-pause>.
 
-<!-- Waiting for content from Marek or a link to the work that was done.
-
 ### Smaller Blazor WebAssembly publish output
 
--->
+Two trimming changes shrink published Blazor WebAssembly apps that don't use [OpenTelemetry (OTEL)](https://opentelemetry.io/) or Hot Reload:
+
+* The `ComponentsMetrics` and `ComponentsActivitySource` types are now gated behind a `[FeatureSwitchDefinition]` attribute, so the trimmer can drop the metrics and tracing call paths from `Renderer` and friends when `System.Diagnostics.Metrics.Meter.IsSupported` is `false` (the default for trimmed apps) [[browser][wasm] Implement IL trimming for OTEL (`dotnet/aspnetcore` #65901)](https://github.com/dotnet/aspnetcore/pull/65901) (Please don't comment on closed issues and PRs).
+* `HotReloadManager` now exposes a feature-switched `IsSupported` property tied to `System.Reflection.Metadata.MetadataUpdater.IsSupported`, so the trimmer can eliminate hot-reload caches and metadata-update handler registrations across the renderer when published [[blazor][wasm] Fix hot reload IL trimming (`dotnet/aspnetcore` #65903)](https://github.com/dotnet/aspnetcore/pull/65903) (Please don't comment on closed issues and PRs).
+
+Apps that use OTEL or Hot Reload aren't affected by the preceding updates.

@@ -4,21 +4,20 @@ title: YARP Distributed tracing
 description: YARP Distributed tracing
 author: tdykstra
 ms.author: tdykstra
-ms.date: 04/24/2025
+ms.date: 05/15/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
-
 # YARP Distributed tracing
 
 As an ASP.NET Core component, YARP can easily integrate into different tracing systems the same as any other ASP.NET Core application.
 
 .NET has built-in configurable support for distributed tracing that YARP takes advantage of to enable such scenarios out-of-the-box.
 
-## Using Open Telemetry
+## Using OpenTelemetry (OTEL)
 
-YARP supports distributed tracing using Open Telemetry (OTEL). When a request comes in, and there is a listener for Activities, then ASP.NET Core will propagate the [Trace Context](https://www.w3.org/TR/trace-context) trace-id, or create one if necessary, and create new spans/activities for the work performed.
+YARP supports distributed tracing using [OpenTelemetry (OTEL)](https://opentelemetry.io/). When a request comes in, and there is a listener for Activities, then ASP.NET Core will propagate the [Trace Context](https://www.w3.org/TR/trace-context) trace-id, or create one if necessary, and create new spans/activities for the work performed.
 In addition YARP can create activities for:
 
 * Forwarding Requests
@@ -28,7 +27,7 @@ These will only be created if there is a listener for the [`ActivitySource`](/do
 
 ### Example: Application Insights
 
-For example, to monitor the traces with Application Insights, the proxy application needs to use the [Open Telemetry](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry) and [Azure Monitor](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore) SDKs.
+For example, to monitor the traces with Application Insights, the proxy application needs to use the [OpenTelemetry .NET](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry) and [Azure Monitor](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore) SDKs.
 
 `application.csproj`:
 
