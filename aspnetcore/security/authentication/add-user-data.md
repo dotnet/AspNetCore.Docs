@@ -82,9 +82,9 @@ Create and run the Identity scaffolder.
       - *Account/Register*
       - *Account/Manage/Index*
 
-   1.Select the plus icon (**+**) and create a new **Data context class**. Accept the type (for example, **WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
+   1. Select the plus icon (**+**) and create a new **Data context class**. Accept the type (for example, **WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
 
-   1.Select the plus icon (**+**) to create a new **User class**. Accept the type (for example, **WebApp1User** if the project is named **WebApp1**)  and select **Add**.
+   1. Select the plus icon (**+**) and create a new **User class**. Accept the type (for example, **WebApp1User** if the project is named **WebApp1**) and select **Add**.
 
 1. To complete the operation, select **Add**.
 
@@ -131,7 +131,7 @@ After you prepare the Identity scaffolder, create a migration and check your app
 
 1. Create a migration and update the database.
 
-1. Add the `UseaAthentication` method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
+1. Add the `UseAthentication` method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
 
 1. Add the `<partial name="_LoginPartial" />` partial to the layout file. For more information, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
 
@@ -186,7 +186,7 @@ Add sign in and sign out links to every page in the web app. For detailed instru
 
 ### Add a migration for the custom user data
 
-Add data for a customer user to the database.
+Add data for a custom user to the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -218,6 +218,8 @@ Test your web app by adding a new user with custom data:
 
 1. Download and view the user's personal data from the `/Identity/Account/Manage/PersonalData` page.
 
+1. Select **Delete** and confirm you can delete the custom user data.
+   
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
