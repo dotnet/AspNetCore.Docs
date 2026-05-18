@@ -3,7 +3,7 @@ title: Add, download, and delete user data to Identity
 titleSuffix: ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to add custom user data to Identity in an ASP.NET Core project. Mark the data so it can be downloaded and deleted to address GDPR requirements.
+description: Learn how to add custom user data to Identity in an ASP.NET Core project. Mark the data so it can be downloaded and deleted per GDPR.
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 05/19/2026
