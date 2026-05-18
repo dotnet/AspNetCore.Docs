@@ -49,9 +49,9 @@ Some common assumptions can narrow the scope of requirements:
 
 ASP.NET Core data protection is an [easy to use](xref:security/data-protection/using-data-protection) data protection stack based on the following principles:
 
-* **Support ease of configuration**. The system strives for zero configuration. In situations where developers need to configure a specific aspect, such as the key repository, those specific configurations aren't difficult.
+* **Configuration should be easy**. The system strives for zero configuration. In situations where developers need to configure a specific aspect, such as the key repository, those specific configurations aren't difficult.
 * **Offer basic consumer-facing APIs**. The APIs are straight forward to use correctly and difficult to use incorrectly.
-* **Don't require learning key management principles**. The system handles algorithm selection and key lifetime on behalf of the developer. Developers don't have access to the raw key material, so they don't need expert knowledge of the principles.
+* **Don't require the developer to learn the principles of managing keys**. The system handles algorithm selection and key lifetime on behalf of the developer. Developers don't have access to the raw key material, so they don't need expert knowledge of the principles.
 * **Protect keys at rest as much as possible**. The system figures out an appropriate default protection mechanism and applies it automatically.
 
 The data protection APIs aren't primarily intended for indefinite persistence of confidential payloads. Other technologies, such as [Windows CNG DPAPI](/windows/win32/seccng/cng-dpapi) and [Azure Rights Management](/purview/azure-rights-management-learn-about) are more suited to the scenario of indefinite storage. They have correspondingly strong key management capabilities. That said, the ASP.NET Core data protection APIs can be used for long-term protection of confidential data.

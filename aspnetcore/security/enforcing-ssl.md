@@ -8,7 +8,7 @@ ms.custom: mvc, linux-related-content
 ms.date: 05/13/2026
 uid: security/enforcing-ssl
 
-# customer intent: As an ASP.NET Core developer, I want to enforce incoming requests to my apps to use HTTPS/TLS, so I ensure secure interaction with my app.
+# customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
 ---
 # Enforce HTTPS in ASP.NET Core
 
@@ -175,7 +175,7 @@ The following highlighted code:
 
 * Sets the preload parameter of the `Strict-Transport-Security` header. Preload isn't part of the [RFC 6797 HSTS specification](https://datatracker.ietf.org/doc/html/rfc6797). Web browsers support preload of HSTS sites on fresh install. For more information, see [https://hstspreload.org/](https://hstspreload.org/).
 * Enables the `includeSubDomain` directive, which applies the HSTS policy to host subdomains. For more information, see [RFC 6797 HSTS specification (Section 6.1.2)](https://datatracker.ietf.org/doc/html/rfc6797#section-6.1.2).
-* Explicitly sets the `max-age` parameter of the `Strict-Transport-Security` header to 60 days. If not set, it defaults to 30 days. For more information, see the `max-age directive` in [RFC 6797 HSTS specification (Section 6.1.1)](https://datatracker.ietf.org/doc/html/rfc6797#section-6.1.1).
+* Explicitly sets the `max-age` parameter of the `Strict-Transport-Security` header to 60 days. If not set, it defaults to 30 days. For more information, see the `max-age` directive in [RFC 6797 HSTS specification (Section 6.1.1)](https://datatracker.ietf.org/doc/html/rfc6797#section-6.1.1).
 * Adds `example.com` to the list of hosts to exclude.
 
 `UseHsts` excludes the following loopback hosts:
