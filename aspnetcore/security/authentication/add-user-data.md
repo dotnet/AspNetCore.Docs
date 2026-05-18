@@ -22,13 +22,13 @@ This article shows how to:
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for an ASP.NET Core MVC web app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-
 ## Prerequisites
 
 :::moniker range=">= aspnetcore-6.0"
 
 [!INCLUDE [](~/includes/6.0-SDK.md)]
+
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Create a Razor web app
 
@@ -50,7 +50,7 @@ Create a new project for a Razor web app.
 
 # [.NET CLI](#tab/net-cli)
 
-Run the following command in a command terminal:
+Run the following command in a command-line shell or terminal:
 
 ```dotnetcli
 dotnet new webapp --auth Individual -o WebApp1
@@ -90,7 +90,7 @@ Create and run the Identity scaffolder.
 
 # [.NET CLI](#tab/net-cli)
 
-Run the following commands in a command terminal.
+Run the following commands in a command-line shell or terminal:
 
 1. If the ASP.NET Core scaffolder isn't installed, install it now:
 
@@ -100,7 +100,7 @@ Run the following commands in a command terminal.
 
    [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
-1. Add a package reference for [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (_.csproj_) file.
+1. Add a package reference for [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project file (_.csproj_):
 
    Run the following commands in the project directory:
 
@@ -125,17 +125,17 @@ PowerShell uses the semicolon (`;`) as a command separator. When you use PowerSh
 
 ---
 
-### Create a migration and test the app
+### Create a migration and check the app
 
-After you prepare the Identity scaffolder, create a migration and test your app. For the following steps, see the detailed instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#migrations-useauthentication-and-layout).
+After you prepare the Identity scaffolder, create a migration and check your app. For the following steps, see the detailed instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#migrations-useauthentication-and-layout).
 
 1. Create a migration and update the database.
 
-1. Add the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseaAthentication%2A> method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
+1. Add the `UseaAthentication` method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
 
 1. Add the `<partial name="_LoginPartial" />` partial to the layout file. For more information, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
 
-1. Test the app:
+1. Check the app:
 
    1. Register a user.
 
@@ -145,7 +145,7 @@ After you prepare the Identity scaffolder, create a migration and test your app.
    
    1. Select **Download** and examine the _PersonalData.json_ file.
    
-   1. Select **Delete**, and test deletion of the signed in user.
+   1. Select **Delete** and confirm you can delete the signed in user.
 
 ## Add custom user data to the Identity database
 
@@ -182,7 +182,7 @@ Properties with the [PersonalDataAttribute](xref:Microsoft.AspNetCore.Identity.P
 
 ### Update the layout
 
-Add sign in and sign out links to every page in the web app. For detailed or instructions, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
+Add sign in and sign out links to every page in the web app. For detailed instructions, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
 
 ### Add a migration for the custom user data
 
@@ -199,7 +199,7 @@ Update-Database
 
 # [.NET CLI](#tab/net-cli)
 
-Run the following commands in a command terminal:
+Run the following command in a command-line shell or terminal:
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData
@@ -208,15 +208,15 @@ dotnet ef database update
 
 ---
 
-## Test the app (create, view, download, delete custom user data)
+## Test the app with custom user data (create, view, download, delete)
 
-Now you're ready to test your web app with custom user data:
+Test your web app by adding a new user with custom data:
 
 1. Register a new user.
 
 1. View the custom user data on the `/Identity/Account/Manage` page.
 
-1. Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
+1. Download and view the user's personal data from the `/Identity/Account/Manage/PersonalData` page.
 
 :::moniker-end
 
@@ -310,7 +310,9 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`.
+
+Update the file with the following code:
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
@@ -532,7 +534,7 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 * Add `<partial name="_LoginPartial" />` to the layout file.
 * Test the app:
   * Register a user
-  * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
+  * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to mark the user name and other links visible.
   * Select the **Personal Data** tab.
   * Select the **Download** button and examined the `PersonalData.json` file.
   * Test the **Delete** button, which deletes the logged on user.
