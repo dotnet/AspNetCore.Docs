@@ -1,12 +1,15 @@
 ---
-title: Add, download, and delete user data to Identity in an ASP.NET Core project
+title: Add, download, and delete user data to Identity
+titleSuffix: ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
+description: Learn how to add custom user data to Identity in an ASP.NET Core project. Mark the data so it can be downloaded and deleted per GDPR.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/09/2026
+ms.date: 05/19/2026
 uid: security/authentication/add-user-data
+
+# customer intent: As an ASP.NET Core developer, I want to work with custom user data in Identity, so I can add data and make it available for download and deletion.
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
 
@@ -19,25 +22,35 @@ This article shows how to:
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for an ASP.NET Core MVC web app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-
 ## Prerequisites
 
 :::moniker range=">= aspnetcore-6.0"
 
 [!INCLUDE [](~/includes/6.0-SDK.md)]
 
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+
 ## Create a Razor web app
+
+Create a new project for a Razor web app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
-* Select **ASP.NET Core Web Application** > **OK**
-* In the **Authentication type** dropdown, select **Individual Accounts**.
-* Select **Web Application** > **OK**
-* Build and run the project.
+1. In Visual Studio, select **File** > **New** > **Project**.
+
+1. Enter a name for the project. If you want the name to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore,Docs/tree/live/aspnetcore/security/authentication/add-user-data) code, enter **WebApp1**.
+
+1. Select **ASP.NET Core Web Application** and then select **OK**.
+
+1. In the **Authentication type** dropdown list, select **Individual Accounts**.
+
+1. Select **Web Application** and then select **OK**.
+
+1. Build and run the project.
 
 # [.NET CLI](#tab/net-cli)
+
+Run the following command in a command-line shell or terminal:
 
 ```dotnetcli
 dotnet new webapp --auth Individual -o WebApp1
@@ -53,106 +66,131 @@ dotnet new mvc --auth Individual -o WebApp1
 
 ## Run the Identity scaffolder
 
+Create and run the Identity scaffolder.
+
 # [Visual Studio](#tab/visual-studio)
 
-* From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
-* In the **Add Identity** dialog, the following options:
-  * Select the existing layout  file  `~/Pages/Shared/_Layout.cshtml`
-  * Select the following files to override:
-    * **Account/Register**
-    * **Account/Manage/Index**
-  * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
-  * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
-* Select **Add**.
+1. In Visual Studio **Solution Explorer**, right-click the project and select **Add** > **New Scaffolded Item**.
+
+1. In the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
+
+1. In the **Add Identity** dialog, configure the following options:
+
+   1. Select the existing layout file, *~/Pages/Shared/_Layout.cshtml*.
+
+   1. Select the following page files to override:
+      - *Account/Register*
+      - *Account/Manage/Index*
+
+   1. Select the plus icon (**+**) and create a new **Data context class**. Accept the type (for example, **WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
+
+   1. Select the plus icon (**+**) and create a new **User class**. Accept the type (for example, **WebApp1User** if the project is named **WebApp1**) and select **Add**.
+
+1. To complete the operation, select **Add**.
 
 # [.NET CLI](#tab/net-cli)
 
-If you have not previously installed the ASP.NET Core scaffolder, install it now:
+Run the following commands in a command-line shell or terminal:
 
-```dotnetcli
-dotnet tool install -g dotnet-aspnet-codegenerator
-```
+1. If the ASP.NET Core scaffolder isn't installed, install it now:
 
-[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+   ```dotnetcli
+   dotnet tool install -g dotnet-aspnet-codegenerator
+   ```
 
-Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
+   [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
-```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet restore
-```
+1. Add a package reference for [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project file (_.csproj_):
 
-Run the following command to list the Identity scaffolder options:
+   Run the following commands in the project directory:
 
-```dotnetcli
-dotnet aspnet-codegenerator identity -h
-```
+   ```dotnetcli
+   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+   dotnet restore
+   ```
 
-In the project folder, run the Identity scaffolder:
+1. Run the following command to list the Identity scaffolder options:
 
-```dotnetcli
-dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
-```
+   ```dotnetcli
+   dotnet aspnet-codegenerator identity -h
+   ```
 
-PowerShell uses semicolon as a command separator. When using PowerShell, escape the semi-colons in the file list or put the file list in double quotes.
+1. In the project folder, run the Identity scaffolder:
+
+   ```dotnetcli
+   dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
+   ```
+
+PowerShell uses the semicolon (`;`) as a command separator. When you use PowerShell, escape any semicolons in the file list or put the file list in double quotes (`""`).
 
 ---
 
-Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+### Create a migration and check the app
 
-* Create a migration and update the database.
-* Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24)
-* Add `<partial name="_LoginPartial" />` to the layout file.
-* Test the app:
-  * Register a user
-  * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
-  * Select the **Personal Data** tab.
-  * Select the **Download** button and examined the `PersonalData.json` file.
-  * Test the **Delete** button, which deletes the logged on user.
+After you prepare the Identity scaffolder, create a migration and check your app. For the following steps, see the detailed instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#migrations-useauthentication-and-layout).
 
-## Add custom user data to the Identity DB
+1. Create a migration and update the database.
 
-Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
+1. Add the `UseAuthentication` method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
+
+1. Add the `<partial name="_LoginPartial" />` partial to the layout file. For more information, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
+
+1. Check the app:
+
+   1. Register a user.
+
+   1. Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
+
+   1. Select the **Personal Data** tab.
+   
+   1. Select **Download** and examine the _PersonalData.json_ file.
+   
+   1. Select **Delete** and confirm you can delete the signed in user.
+
+## Add custom user data to the Identity database
+
+You need to update the `IdentityUser` derived class with custom properties. If you named the project **WebApp1**, the corresponding file to update is _Areas/Identity/Data/WebApp1User.cs_. Update the file with the following code:
 
 [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
-Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
+Properties with the [PersonalDataAttribute](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
 * Deleted when the `Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml` Razor Page calls `UserManager.Delete`.
 * Included in the downloaded data by the `Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml` Razor Page.
 
-### Update the `Account/Manage/Index.cshtml` page
+### Update the 'Account/Manage/Index.cshtml' page file
 
-Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs` with the following highlighted code:
+1. In the _Areas/Identity/Pages/Account/Manage/Index.cshtml.cs_ file, update the `InputModel` class definition with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
+   [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
 
-Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
+1. In the same file, update the indicated `form-floating` sections as shown in the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
+   [!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
 
-### Update the `Account/Register.cshtml` page
+### Update the 'Account/Register.cshtml' page file
 
-Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
+1. In the _Areas/Identity/Pages/Account/Register.cshtml.cs_ file, update the `InputModel` class definition with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
+   [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
 
-Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
+1. In the same file, update the indicated `form-floating` sections as shown in the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+   [!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
-Build the project.
+1. Build the project.
 
 ### Update the layout
 
-See [Layout changes](xref:security/authentication/scaffold-identity#layout-changes) for instructions to add sign-in and sign-out links to every page.
+Add sign in and sign out links to every page in the web app. For detailed instructions, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
 
 ### Add a migration for the custom user data
 
+Add data for a custom user to the database.
+
 # [Visual Studio](#tab/visual-studio)
 
-In the Visual Studio **Package Manager Console**:
+Run the following commands in the Visual Studio **Package Manager Console**:
 
 ```powershell
 Add-Migration CustomUserData
@@ -161,6 +199,8 @@ Update-Database
 
 # [.NET CLI](#tab/net-cli)
 
+Run the following command in a command-line shell or terminal:
+
 ```dotnetcli
 dotnet ef migrations add CustomUserData
 dotnet ef database update
@@ -168,13 +208,18 @@ dotnet ef database update
 
 ---
 
-## Test create, view, download, delete custom user data
+## Test the app with custom user data (create, view, download, delete)
 
-Test the app:
+Test your web app by adding a new user with custom data:
 
-* Register a new user.
-* View the custom user data on the `/Identity/Account/Manage` page.
-* Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
+1. Register a new user.
+
+1. View the custom user data on the `/Identity/Account/Manage` page.
+
+1. Download and view the user's personal data from the `/Identity/Account/Manage/PersonalData` page.
+
+1. Select **Delete** and confirm you can delete the custom user data.
+   
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
@@ -253,7 +298,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to `Startup.Configure`.
@@ -267,7 +312,9 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`.
+
+Update the file with the following code:
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
@@ -482,7 +529,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to `Startup.Configure`.
@@ -557,3 +604,8 @@ Test the app:
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
 
 :::moniker-end
+
+## Related content
+
+- [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/)
+- <xref:security/authentication/scaffold-identity>
