@@ -132,7 +132,7 @@ rename-item "C:\src\MySolution\Microsoft.WebView2.FixedVersionRuntime.114.0.1823
 
 Repeat the preceding steps for the x64 and ARM64 runtimes.
 
-Add the following code to `CreateMauiApp` method in `MauiProgram.cs`:
+Add the following code to the `CreateMauiApp` method in `MauiProgram.cs`:
 
 ```csharp
 #if WINDOWS
