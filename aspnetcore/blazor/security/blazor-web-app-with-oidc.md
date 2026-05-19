@@ -1558,7 +1558,8 @@ public class OpaqueTokenAuthenticationHandler(
     IOptionsMonitor<OpaqueTokenAuthenticationOptions> options,
     ILoggerFactory logger,
     UrlEncoder encoder,
-    IConfiguration config)
+    IConfiguration config,
+    IHttpClientFactory httpClientFactory)
     : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(options, logger, encoder)
 {
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -1585,18 +1586,13 @@ public class OpaqueTokenAuthenticationHandler(
 
             If the token is invalid, a failed authorization result is 
             returned.
-
-            Values for the authentication server introspection URI
-            ('{AUTH SERVER INTROSPECTION URI}') and the API client ID
-            ('{API CLIENT ID}') can be supplied from app settings
-            or any other configuration source.
         */
 
         var introspectionUri = options.IntrospectionEndpoint;
         var clientId = options.ClientId;
         var clientSecret = config["Authentication:Schemes:AuthServer:ClientSecret"];
 
-        using var client = new HttpClient();
+        using var client = httpClientFactory.CreateClient();
 
         // Set the Authorization header (base64 encoded credentials)
         var authString = Convert.ToBase64String(
