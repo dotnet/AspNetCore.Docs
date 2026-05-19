@@ -1467,7 +1467,7 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 ## Opaque (reference) access token support
 
-*The following guidance requires an authentication server that supports opaque (reference) access token support. Currently, Microsoft Entra doesn't support opaque access token validation.*
+*The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation.*
 
 <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
@@ -1541,7 +1541,7 @@ public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
 }
 ```
 
-`OpaqueTokenAuthenticationHandler.cs`:
+`Authentication/OpaqueTokenAuthenticationHandler.cs`:
 
 ```csharp
 using System.Net.Http.Headers;
@@ -1550,10 +1550,9 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
-using MinimalApiJwt.Authentication;
 using MinimalApiJwt.Extensions;
 
-namespace MinimalApiJwt.Services;
+namespace MinimalApiJwt.Authentication;
 
 public class OpaqueTokenAuthenticationHandler(
     IOptionsMonitor<OpaqueTokenAuthenticationOptions> options,
@@ -1593,8 +1592,8 @@ public class OpaqueTokenAuthenticationHandler(
             or any other configuration source.
         */
 
-        var introspectionUri = "{AUTH SERVER INTROSPECTION URI}";
-        var clientId = "{API CLIENT ID}";
+        var introspectionUri = options.IntrospectionEndpoint;
+        var clientId = options.ClientId;
         var clientSecret = config["Authentication:Schemes:AuthServer:ClientSecret"];
 
         using var client = new HttpClient();
