@@ -123,7 +123,9 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 ### New Blazor Web Worker template (`blazorwebworker`)
 
-The standalone .NET Web Worker project template, which scaffolds a Web Worker client for offloading long-running work to a background thread in Blazor WebAssembly and Blazor Web apps (for client-side rendering, CSR), was renamed to the Blazor Web Worker project template (`blazorwebworker`) to make it clearer that it's part of the Blazor stack. Two often-requested capabilities have been added to the generated `WebWorkerClient`:
+The .NET Web Worker project template contains a Web Worker client for offloading long-running work to a background thread. In .NET 11 or later, the project template has been renamed to the **Blazor Web Worker** project template (`blazorwebworker`) to make it clearer that it's part of the Blazor stack and that it can be used in Blazor WebAssembly and Blazor Web apps (for client-side rendering, CSR).
+
+Two often-requested capabilities have been added to the generated `WebWorkerClient`:
 
 * `InvokeVoidAsync` for fire-and-forget worker calls that don't return a value, mirroring the shape on `IJSRuntime`.
 * Cancellation and timeout support on both worker creation and worker invocations, so callers can pass a `CancellationToken` and tear down a stuck worker cleanly.
