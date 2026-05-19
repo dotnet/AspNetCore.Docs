@@ -126,7 +126,7 @@ For more information on using Aspire and details on the `.AppHost` and `.Service
 
 Confirm that you've met the prerequisites for Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in Aspire (Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information on Aspire tooling security, see [Aspire dashboard security considerations: Aspire tooling (Aspire documentation)](https://aspire.dev/dashboard/security-considerations/#aspire-tooling).
 
 ## `MinimalApiJwt` project
 
