@@ -38,13 +38,13 @@ Create a new project for a Razor web app.
 
 1. In Visual Studio, select **File** > **New** > **Project**.
 
-1. Enter a name for the project. If you want to the name to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore,Docs/tree/live/aspnetcore/security/authentication/add-user-data) code, enter **WebApp1**.
+1. Enter a name for the project. If you want the name to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore,Docs/tree/live/aspnetcore/security/authentication/add-user-data) code, enter **WebApp1**.
 
 1. Select **ASP.NET Core Web Application** and then select **OK**.
 
 1. In the **Authentication type** dropdown list, select **Individual Accounts**.
 
-1. Select **Web Application**  and then select **OK**.
+1. Select **Web Application** and then select **OK**.
 
 1. Build and run the project.
 
@@ -131,7 +131,7 @@ After you prepare the Identity scaffolder, create a migration and check your app
 
 1. Create a migration and update the database.
 
-1. Add the `UseAthentication` method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
+1. Add the `UseAuthentication` method to the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24) file.
 
 1. Add the `<partial name="_LoginPartial" />` partial to the layout file. For more information, see [Layout changes](xref:security/authentication/scaffold-identity#layout-changes).
 
@@ -153,7 +153,7 @@ You need to update the `IdentityUser` derived class with custom properties. If y
 
 [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
-Properties with the [PersonalDataAttribute](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) object are:
+Properties with the [PersonalDataAttribute](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
 * Deleted when the `Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml` Razor Page calls `UserManager.Delete`.
 * Included in the downloaded data by the `Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml` Razor Page.
@@ -536,7 +536,7 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 * Add `<partial name="_LoginPartial" />` to the layout file.
 * Test the app:
   * Register a user
-  * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to mark the user name and other links visible.
+  * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
   * Select the **Personal Data** tab.
   * Select the **Download** button and examined the `PersonalData.json` file.
   * Test the **Delete** button, which deletes the logged on user.

@@ -17,7 +17,7 @@ Run the Identity scaffolder with the following procedures.
 
    1. Select the plus icon (**+**) and add the database context class, **DbContext class**. You must select at least one file to add your data context.
 
-      - To create a data context, select the plus icon (**+**). Accept the default value or specify a new class for Identity.
+      - To create a data context, select the plus icon (**+**). Accept the default value or specify a class (for example, `Contoso.Data.ApplicationDbContext` for a company named "Contoso").
       
       - To create a new user class, select the plus icon (**+**) for **User class** and specify the class (for example, `ContosoUser` for a company named "Contoso").
 

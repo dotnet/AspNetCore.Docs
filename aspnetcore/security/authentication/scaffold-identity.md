@@ -36,7 +36,7 @@ ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/ident
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to generate.
 
-Although the scaffolder generates most of the necessary code, you need to update your project to complete the process. This article shows the steps needed to complete an Identity scaffolding update. After running the Identity scaffolder, Inspect the changes. Use a source control system that shows file differences and allows you to back out of changes.
+Although the scaffolder generates most of the necessary code, you need to update your project to complete the process. This article shows the steps needed to complete an Identity scaffolding update. After running the Identity scaffolder, inspect the changes. Use a source control system that shows file differences and allows you to back out of changes.
 
 Services are required when using [2FA](xref:security/authentication/identity-enable-qrcodes), [account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Configure an email provider](xref:security/authentication/accconfirm#configure-an-email-provider) so the app can require email confirmation.
 
@@ -302,7 +302,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 ## Password configuration
 
-If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, the [StringLengthAttribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages. The `InputModel` and `Password` properties are located in the following files:
+If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, the [StringLengthAttribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages. The `InputModel` and its `Password` properties are located in the following files:
 
 * _Areas/Identity/Pages/Account/Register.cshtml.cs_
 * _Areas/Identity/Pages/Account/ResetPassword.cshtml.cs_
