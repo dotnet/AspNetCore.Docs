@@ -1474,9 +1474,29 @@ A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensio
 > [!IMPORTANT]
 > [Duende Software](https://duendesoftware.com/) isn't owned or controlled by Microsoft and might require you to pay a license fee for production use of the Duende Introspection Authentication Handler.
 
-The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a starting point for further development. The handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
+The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a general approach, which might require further development to suit a specific authorization server's requirements. The following handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
 
-`HttpContextExtensions.cs`:
+Calling an authorization server's introspection endpoint requires authentication. The following example relies on setting the client secret for authentication in the request's Authorization header (base64 encoded credentials) using the [Secret Manager tool](xref:security/app-secrets) for local development and testing.
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:AuthServer:ClientSecret`.
+
+If the Blazor server project hasn't been initialized for the Secret Manager tool, use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
+
+```dotnetcli
+dotnet user-secrets init
+```
+
+Execute the following command to set the client secret for the authorization server. The `{SECRET}` placeholder is the client secret:
+
+```dotnetcli
+dotnet user-secrets set "Authentication:Schemes:AuthServer:ClientSecret" "{SECRET}"
+```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
+
+`Extensions/HttpContextExtensions.cs`:
 
 ```csharp
 namespace MinimalApiJwt.Extensions;
@@ -1504,7 +1524,7 @@ public static class HttpContextExtensions
 }
 ```
 
-`OpaqueTokenAuthenticationOptions.cs`:
+`Authentication/OpaqueTokenAuthenticationOptions.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication;
@@ -1522,8 +1542,10 @@ public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
 `OpaqueTokenAuthenticationHandler.cs`:
 
 ```csharp
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 using MinimalApiJwt.Authentication;
@@ -1534,44 +1556,99 @@ namespace MinimalApiJwt.Services;
 public class OpaqueTokenAuthenticationHandler(
     IOptionsMonitor<OpaqueTokenAuthenticationOptions> options,
     ILoggerFactory logger,
-    UrlEncoder encoder)
+    UrlEncoder encoder,
+    IConfiguration config)
     : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(options, logger, encoder)
 {
-    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        var token = Request.ExtractBearerToken();
+        var opaqueToken = Request.ExtractBearerToken();
 
-        if (token is null)
+        if (opaqueToken is null)
         {
             var failedResult = AuthenticateResult.Fail(
                 "Bearer token not found in Authorization header.");
-            return Task.FromResult(failedResult);
+            return failedResult;
         }
 
-        /* Validate the opaque (reference) access token
+        /*
+            The following example attempts to validate the opaque 
+            (reference) access token.
 
-           Make an HTTP call to the authorization server's introspection endpoint 
-           with the token and the API's credentials, process the response to 
-           determine if the token is valid.
+            An HTTP call is made to the authorization server's introspection 
+            endpoint with the token and the API's credentials. The response
+            is processed to determine if the token is valid.
 
-           If the token is invalid, return a failed authorization result.
+            If the token is valid, an AuthenticationTicket is created 
+            containing the user's claims.
 
-           If the token is valid, create an AuthenticationTicket containing the 
-           user's claims.
+            If the token is invalid, a failed authorization result is 
+            returned.
+
+            Values for the authentication server introspection URI
+            ('{AUTH SERVER INTROSPECTION URI}') and the API client ID
+            ('{API CLIENT ID}') can be supplied from app settings
+            or any other configuration source.
         */
 
-        // TODO: Replace the '{USER ID}' placeholder with a claim value extracted 
-        // from the token  introspection response.
-        var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
-        var identity = new ClaimsIdentity(claims, 
-            OpaqueTokenAuthenticationOptions.DefaultScheme);
-        var principal = new ClaimsPrincipal(identity);
-        var ticket = new AuthenticationTicket(principal, 
-            OpaqueTokenAuthenticationOptions.DefaultScheme);
+        var introspectionUri = "{AUTH SERVER INTROSPECTION URI}";
+        var clientId = "{API CLIENT ID}";
+        var clientSecret = config["Authentication:Schemes:AuthServer:ClientSecret"];
 
-        var result = AuthenticateResult.Success(ticket);
+        using var client = new HttpClient();
 
-        return Task.FromResult(result);
+        // Set the Authorization header (base64 encoded credentials)
+        var authString = Convert.ToBase64String(
+            System.Text.Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Basic", authString);
+
+        // Prepare the form-encoded body containing the token
+        var content = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("token", opaqueToken)
+            // NOTE: Some servers require "token_type_hint", e.g., "access_token"
+        });
+
+        // Post to the introspection endpoint
+        var response = await client.PostAsync(introspectionUri, content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Introspection endpoint failure.");
+
+            return failedResult;
+        }
+
+        // Parse the JSON response
+        var responseString = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(responseString);
+
+        // The 'active' property determines if the token is valid and not expired
+        var tokenIsValid = doc.RootElement.GetProperty("active").GetBoolean();
+
+        if (tokenIsValid)
+        {
+            // TODO: Replace the '{USER ID}' placeholder with extracted claim value
+            // from the token introspection response
+            var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
+            var identity = new ClaimsIdentity(claims,
+                OpaqueTokenAuthenticationOptions.DefaultScheme);
+            var principal = new ClaimsPrincipal(identity);
+            var ticket = new AuthenticationTicket(principal,
+                OpaqueTokenAuthenticationOptions.DefaultScheme);
+
+            var result = AuthenticateResult.Success(ticket);
+
+            return result;
+        }
+        else
+        {
+            var failedResult = AuthenticateResult.Fail("Bearer token invalid.");
+
+            return failedResult;
+        }
     }
 }
 ```
