@@ -1003,7 +1003,7 @@ Call <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWit
 Navigation.NavigateTo(Navigation.GetUriWithQueryParameters({PARAMETERS}));
 ```
 
-The `{PARAMETERS}` placeholder is an `Dictionary<string, object?>`.
+The `{PARAMETERS}` placeholder is a `Dictionary<string, object?>`.
 
 Pass a URI string to <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A> to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
 
@@ -1012,7 +1012,7 @@ Navigation.NavigateTo(Navigation.GetUriWithQueryParameters("{URI}", {PARAMETERS}
 ```
 
 * The `{URI}` placeholder is the URI with or without a query string.
-* The `{PARAMETERS}` placeholder is an `Dictionary<string, object?>`.
+* The `{PARAMETERS}` placeholder is a `Dictionary<string, object?>`.
 
 Supported types are identical to supported types for route constraints:
 
