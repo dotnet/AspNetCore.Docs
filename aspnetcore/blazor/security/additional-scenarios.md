@@ -1063,3 +1063,212 @@ builder.Services.AddHttpClient("HttpMessageHandler")
 ```
 
 :::moniker-end
+
+## Opaque (reference) access token support
+
+*The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation.*
+
+<xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
+
+A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
+
+> [!IMPORTANT]
+> [Duende Software](https://duendesoftware.com/) isn't owned or controlled by Microsoft and might require you to pay a license fee for production use of the Duende Introspection Authentication Handler.
+
+The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a general approach, which might require further development to suit a specific authorization server's requirements. The following handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
+
+Calling an authorization server's introspection endpoint requires authentication. The following example relies on setting the client secret for authentication in the request's Authorization header (base64 encoded credentials) using the [Secret Manager tool](xref:security/app-secrets) for local development and testing.
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:AuthServer:ClientSecret`.
+
+If the Blazor server project hasn't been initialized for the Secret Manager tool, use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
+
+```dotnetcli
+dotnet user-secrets init
+```
+
+Execute the following command to set the client secret for the authorization server. The `{SECRET}` placeholder is the client secret:
+
+```dotnetcli
+dotnet user-secrets set "Authentication:Schemes:AuthServer:ClientSecret" "{SECRET}"
+```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
+
+`Extensions/HttpContextExtensions.cs`:
+
+```csharp
+namespace MinimalApiJwt.Extensions;
+
+public static class HttpContextExtensions
+{
+    public static string? ExtractBearerToken(this HttpRequest request)
+    {
+        var authorizationHeader = request.Headers["Authorization"].ToString();
+
+        if (!string.IsNullOrEmpty(authorizationHeader) && 
+            authorizationHeader.StartsWith("Bearer ", 
+            StringComparison.OrdinalIgnoreCase))
+        {
+            var token = authorizationHeader["Bearer ".Length..].Trim();
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                return token;
+            }
+        }
+
+        return null;
+    }
+}
+```
+
+`Authentication/OpaqueTokenAuthenticationOptions.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Authentication;
+
+namespace MinimalApiJwt.Authentication;
+
+public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
+{
+    public const string DefaultScheme = "OpaqueTokenAuthentication";
+    public string? IntrospectionEndpoint { get; set; }
+    public string? ClientId { get; set; }
+}
+```
+
+`Authentication/OpaqueTokenAuthenticationHandler.cs`:
+
+```csharp
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
+using MinimalApiJwt.Extensions;
+
+namespace MinimalApiJwt.Authentication;
+
+public class OpaqueTokenAuthenticationHandler(
+    IOptionsMonitor<OpaqueTokenAuthenticationOptions> options,
+    ILoggerFactory logger,
+    UrlEncoder encoder,
+    IConfiguration config,
+    IHttpClientFactory httpClientFactory)
+    : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(options, logger, encoder)
+{
+    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
+        var opaqueToken = Request.ExtractBearerToken();
+
+        if (opaqueToken is null)
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Bearer token not found in Authorization header.");
+            return failedResult;
+        }
+
+        /*
+            The following example attempts to validate the opaque 
+            (reference) access token.
+
+            An HTTP call is made to the authorization server's introspection 
+            endpoint with the token and the API's credentials. The response
+            is processed to determine if the token is valid.
+
+            If the token is valid, an AuthenticationTicket is created 
+            containing the user's claims.
+
+            If the token is invalid, a failed authorization result is 
+            returned.
+        */
+
+        var introspectionUri = options.IntrospectionEndpoint;
+        var clientId = options.ClientId;
+        var clientSecret = config["Authentication:Schemes:AuthServer:ClientSecret"];
+
+        using var client = httpClientFactory.CreateClient();
+
+        // Set the Authorization header (base64 encoded credentials)
+        var authString = Convert.ToBase64String(
+            System.Text.Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Basic", authString);
+
+        // Prepare the form-encoded body containing the token
+        var content = new FormUrlEncodedContent(
+        [
+            new KeyValuePair<string, string>("token", opaqueToken)
+            // NOTE: Some servers require "token_type_hint", for example
+            // set to "access_token"
+        ]);
+
+        // Post to the introspection endpoint
+        var response = await client.PostAsync(introspectionUri, content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Introspection endpoint failure.");
+
+            return failedResult;
+        }
+
+        // Parse the JSON response
+        var responseString = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(responseString);
+
+        // The 'active' property determines if the token is valid and not expired
+        var tokenIsValid = doc.RootElement.GetProperty("active").GetBoolean();
+
+        if (tokenIsValid)
+        {
+            // TODO: Replace the '{USER ID}' placeholder with extracted claim value
+            // from the token introspection response
+            var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
+            var identity = new ClaimsIdentity(claims,
+                OpaqueTokenAuthenticationOptions.DefaultScheme);
+            var principal = new ClaimsPrincipal(identity);
+            var ticket = new AuthenticationTicket(principal,
+                OpaqueTokenAuthenticationOptions.DefaultScheme);
+
+            var result = AuthenticateResult.Success(ticket);
+
+            return result;
+        }
+        else
+        {
+            var failedResult = AuthenticateResult.Fail("Bearer token invalid.");
+
+            return failedResult;
+        }
+    }
+}
+```
+
+In the `Program` file:
+
+```csharp
+builder.Services.AddHttpClient();
+builder.Services.AddAuthentication()
+    .AddScheme<OpaqueTokenAuthenticationOptions, OpaqueTokenAuthenticationHandler>(
+        OpaqueTokenAuthenticationOptions.DefaultScheme,
+        options =>
+        {
+            options.IntrospectionEndpoint = "{AUTH SERVER INTROSPECTION URI}";
+            options.ClientId = "{API CLIENT ID}";
+        });
+```
+
+The preceding example's placeholders:
+
+* `{AUTH SERVER INTROSPECTION URI}`: Authentication server's introspection URI
+* `{API CLIENT ID}`: API Client ID
+
+Values for the authentication server introspection URI (`{AUTH SERVER INTROSPECTION URI}`) and the API client ID (`{API CLIENT ID}`) can be supplied from app settings or any other configuration source.
+
+Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).

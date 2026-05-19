@@ -1175,3 +1175,4 @@ We also recommend using a shared [Data Protection](xref:security/data-protection
   * <xref:security/data-protection/configuration/overview>
   * <xref:security/data-protection/implementation/key-storage-providers>
   * <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
