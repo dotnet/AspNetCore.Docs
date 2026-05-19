@@ -1467,6 +1467,8 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 
 ## Opaque (reference) access token support
 
+*The following guidance requires an authentication server that supports opaque (reference) access token support. Currently, Microsoft Entra doesn't support opaque access token validation.*
+
 <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
 A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
@@ -1607,7 +1609,8 @@ public class OpaqueTokenAuthenticationHandler(
         var content = new FormUrlEncodedContent(
         [
             new KeyValuePair<string, string>("token", opaqueToken)
-            // NOTE: Some servers require "token_type_hint", e.g., "access_token"
+            // NOTE: Some servers require "token_type_hint", for example
+            // set to "access_token"
         ]);
 
         // Post to the introspection endpoint
@@ -1671,6 +1674,8 @@ The preceding example's placeholders:
 
 * `{AUTH SERVER INTROSPECTION URI}`: Authentication server's introspection URI
 * `{API CLIENT ID}`: API Client ID
+
+Values for the authentication server introspection URI (`{AUTH SERVER INTROSPECTION URI}`) and the API client ID (`{API CLIENT ID}`) can be supplied from app settings or any other configuration source.
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
 
