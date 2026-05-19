@@ -1604,11 +1604,11 @@ public class OpaqueTokenAuthenticationHandler(
             new AuthenticationHeaderValue("Basic", authString);
 
         // Prepare the form-encoded body containing the token
-        var content = new FormUrlEncodedContent(new[]
-        {
+        var content = new FormUrlEncodedContent(
+        [
             new KeyValuePair<string, string>("token", opaqueToken)
             // NOTE: Some servers require "token_type_hint", e.g., "access_token"
-        });
+        ]);
 
         // Post to the introspection endpoint
         var response = await client.PostAsync(introspectionUri, content);
