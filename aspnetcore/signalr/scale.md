@@ -20,7 +20,7 @@ SignalR requires that all HTTP requests for a specific connection be handled by 
 
 1. When hosting on a single server in a single process.
 1. When using the Azure SignalR Service (sticky sessions are enabled for the service, not the app).
-1. When all clients are configured to **only** use WebSockets, **and** the [`SkipNegotiation` setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration.
+1. When all clients are configured to **only** use WebSockets, **and** the [`SkipNegotiation` setting](xref:signalr/configuration#configure-other-options) is enabled in the client configuration.
 
 In all other circumstances (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
 
@@ -84,7 +84,7 @@ The Azure SignalR Service advantages noted earlier are disadvantages for the Red
 
 * Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required, except when **both** of the following are true:
   * All clients are configured to **only** use WebSockets.
-  * The [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration. 
+  * The [SkipNegotiation setting](xref:signalr/configuration#configure-other-options) is enabled in the client configuration. 
    Once a connection is initiated on a server, the connection has to stay on that server.
 * A SignalR app must scale out based on number of clients even if few messages are being sent.
 * A SignalR app uses significantly more connection resources than a web app without SignalR.

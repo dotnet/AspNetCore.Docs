@@ -22,7 +22,7 @@ The following code is an example that uses SignalR and ASP.NET Core authenticati
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet1)]
 
 > [!NOTE]
-> If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
+> If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options).
 
 ### Cookie authentication
 

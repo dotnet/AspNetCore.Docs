@@ -139,7 +139,7 @@ hubConnection = new HubConnectionBuilder()
 
 The preceding example configures the hub connection URL to the absolute URI address at `/chathub`. The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
-For more information, see <xref:signalr/configuration#configure-additional-options>.
+For more information, see <xref:signalr/configuration#configure-other-options>.
 
 ## Client-side rendering
 
