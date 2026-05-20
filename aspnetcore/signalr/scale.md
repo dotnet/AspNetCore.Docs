@@ -181,12 +181,8 @@ The following code supplements the previous example configuration. In the snippe
 
 * For both configurations, change `proxy_pass http://localhost:5000` in the `server` section to `proxy_pass http://backend`.
 
-### Resources for working with Nginx
-
 You can find more information in <xref:host-and-deploy/linux-nginx>.
-
 - To use WebSockets over Nginx, see [WebSocket proxying with Nginx](https://nginx.org/docs/http/websocket.html).
-
 - To use load balancing and sticky sessions, see [HTTP load balancing with Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/).
 
 ## Other SignalR backplane providers
