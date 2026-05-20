@@ -3,7 +3,7 @@ title: Part 7, add a new field
 author: wadepickett
 description: Part 7 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+ms.date: 05/11/2026
 uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
@@ -75,11 +75,12 @@ From the *View* menu, select *Terminal* and enter the following command:
 ```dotnetcli
 dotnet build
 ```
+
 ---
 
 # [Visual Studio](#tab/visual-studio)
 
-### Add a migration for the rating field
+## Add a migration for the rating field
 
 1. From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 1. In the Package Manager Console (PMC), enter the following command:
@@ -119,7 +120,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-### Add a migration for rating
+## Add a migration for rating
 
 Use the following commands to add a migration for the rating field:
 
@@ -137,7 +138,7 @@ The name `rating` is arbitrary and is used to name the migration file. Use a mea
 
 The `dotnet ef database update` command applies the schema changes to the database and preserves existing data.
 
-If you delete all the records in the database, the initializer seeds the database and includes the `Rating` field. 
+If you delete all the records in the database, the initializer seeds the database and includes the `Rating` field.
 
 ### Optional: Drop and re-create the database for other providers
 
