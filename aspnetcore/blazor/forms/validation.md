@@ -362,13 +362,15 @@ When validation messages are set in the component, they're added to the validato
 
 ## Server validation for Minimal APIs
 
-In a [Minimal API](xref:fundamentals/minimal-apis), call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method for [data annotation validation of model types)](xref:mvc/models/validation#validation-attributes) each web API endpoint:
+In a [Minimal API](xref:fundamentals/minimal-apis), call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method for [data annotation validation of model types)](xref:mvc/models/validation#validation-attributes) for all web API endpoints:
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
 The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
+
+Built-in validation also supports [custom validation attributes](xref:mvc/models/validation#custom-attributes).
 
 For more information, see <xref:fundamentals/minimal-apis#enable-built-in-validation-support-for-minimal-apis>.
 
@@ -378,7 +380,7 @@ For more information, see <xref:fundamentals/minimal-apis#enable-built-in-valida
 
 :::moniker range=">= aspnetcore-10.0"
 
-*This section demonstrates server validation using a server-side Blazor Web App (Interactive Server render mode) and a Minimal API.*
+*This section demonstrates server validation using a server-side Blazor Web App and a Minimal API.*
 
 Server validation is supported in addition to client validation:
 
@@ -397,7 +399,7 @@ The following example is based on:
 * A Blazor Web App with global Interactive Auto components created from the [Blazor Web App project template](xref:blazor/project-structure).
 * A `CustomValidation` component to handle adding model errors to the form's validation message store for display in the UI.
 * A [Minimal API](xref:fundamentals/minimal-apis) project that validates:
-  * Data annotations validation attributes on the model class.
+  * Data annotations validation attributes on the model class (<xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>), including for [custom validation attributes](xref:mvc/models/validation#custom-attributes).
   * Custom validation logic that determines if a description form field (`Description`) has a value if the user selects a particular classification in another form field (`Defense` classification).
 
 The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data is never sent to the client for client validation.
@@ -477,20 +479,27 @@ namespace BlazorSample.Client.Starship;
 
 internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidator
 {
-    public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(StarshipModel starship)
+    public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
+        StarshipModel starship)
     {
         Dictionary<string, string[]> genericError = new()
         {
-            { "Validation Error", ["An unexpected client error occurred during validation."] }
+            {
+                "Validation Error", 
+                ["An unexpected client error occurred during validation."]
+            }
         };
 
         try
         {
-            using var response = await httpClient.PostAsJsonAsync("/starship-validation", starship);
+            using var response = await httpClient.PostAsJsonAsync(
+                "/starship-validation", starship);
 
             if (response.IsSuccessStatusCode)
             {
-                var deserializedResponseContent = await response.Content.ReadFromJsonAsync<IDictionary<string, string[]>>();
+                var deserializedResponseContent = 
+                    await response.Content.ReadFromJsonAsync
+                        <IDictionary<string, string[]>>();
 
                 return deserializedResponseContent ?? genericError;
             }
@@ -509,7 +518,9 @@ Confirm or update the namespace of the preceding class.
 
 Create a `Starship` folder in the server project of the Blazor Web App.
 
-Create a server form validator that implements the preceding interface in the Blazor Web App. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
+In the Blazor Web App, create a server form validator that implements the `IFormValidator` interface. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
+
+In the following example, the `{API URI}` placeholder is the Minimal API endpoint address (for example, `https://localhost:7277/api-starship-validation`).
 
 `Starship/ServerFormValidator.cs`:
 
@@ -532,7 +543,10 @@ internal sealed class ServerFormValidator(
     {
         Dictionary<string, string[]> genericError = new()
         {
-            { "Validation Error", ["An unexpected server error occurred during validation."] }
+            {
+                "Validation Error",
+                ["An unexpected server error occurred during validation."]
+            }
         };
 
         try
@@ -542,12 +556,14 @@ internal sealed class ServerFormValidator(
                 throw new Exception("HttpContext not available");
             }
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7277/api-starship-validation")
+            var request = new HttpRequestMessage(HttpMethod.Post, "{API URI}")
             {
-                Content = new StringContent(JsonSerializer.Serialize(starship), System.Text.Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonSerializer.Serialize(starship), 
+                    System.Text.Encoding.UTF8, "application/json")
             };
 
-            var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+            var accessToken = 
+                await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
 
             request.Headers.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
@@ -565,7 +581,8 @@ internal sealed class ServerFormValidator(
             {
                 var content = await response.Content.ReadAsStringAsync();
 
-                var deserialized = JsonSerializer.Deserialize<ValidationProblemDetails>(content);
+                var deserialized = 
+                    JsonSerializer.Deserialize<ValidationProblemDetails>(content);
 
                 return deserialized?.Errors ?? genericError;
             }
@@ -581,8 +598,6 @@ internal sealed class ServerFormValidator(
     }
 }
 ```
-
-Confirm or update the namespace of the preceding class.
 
 In the `Program` file of the Blazor Web App:
 
@@ -614,10 +629,12 @@ The preceding example sets the base address with `builder.HostEnvironment.BaseAd
 
 In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a `ValidationProblem` returns a dictionary with the failed field and a description of the error. If validation passes, a *204 - No Content* response is issued. In a typical production app, any number of custom form model checks are made, and the validation errors dictionary can include multiple failures (`string[]` value) for each model property.
 
+The `{API RELATIVE URL}` placeholder is the endpoint relative URL (for example, `/api-starship-validation`).
+
 In the `Program` file of the Minimal API project:
 
 ```csharp
-app.MapPost("/api-starship-validation", (
+app.MapPost("{API RELATIVE URL}", (
     StarshipModel model, ILogger<Program> logger) =>
 {
     Dictionary<string, string[]> errors = [];
@@ -651,7 +668,7 @@ builder.Services.AddValidation();
 
 Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint's code.
 
-In the `.Client` project, add the following `CustomValidation` component. Confirm or update the namespace. When the component's `DisplayErrors` method is called with a set of validation errors, the errors are added to the parent component's edit context validation message store. Errors are cleared from the edit context by calling the `ClearErrors` method.
+In the `.Client` project, add the following `CustomValidation` component. When the component's `DisplayErrors` method is called with a set of validation errors, the errors are added to the parent component's edit context validation message store. Errors are cleared from the edit context by calling the `ClearErrors` method.
 
 `CustomValidation.cs`:
 
