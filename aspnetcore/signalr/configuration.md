@@ -403,7 +403,7 @@ You can opt in to stateful reconnect at both the server hub endpoint and the cli
 
 ### Configure other options
 
-You can configure other options in the `WithUrl` (`withUrl` in JavaScript) method on `HubConnectionBuilder` or on the various configuration APIs on the `HttpHubConnectionBuilder` in the Java client:
+You can configure other options in the `WithUrl` (`withUrl` in JavaScript) method on `HubConnectionBuilder` or on the various configuration APIs on the `HttpHubConnectionBuilder` in the Java client.
 
 # [.NET](#tab/dotnet)
 
