@@ -624,11 +624,11 @@ For more information on template options, see the following resources:
 
 ## Service defaults library for Blazor WebAssembly apps
 
-The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with .NET Aspire integration.
+The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration.
 
 The template features:
 
-* [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) support: Logging, metrics, and tracing with standard OTLP exporter.
+* [OpenTelemetry (OTEL)](https://opentelemetry.io/) ([OpenTelemetry .NET](https://github.com/open-telemetry/opentelemetry-dotnet)) support: Logging, metrics, and tracing with standard OTEL Protocol (OTLP) exporter.
 * Service discovery integration via the [`Microsoft.Extensions.ServiceDiscovery` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.ServiceDiscovery).
 * HTTP resilience using the standard resilience handler via the [`Microsoft.Extensions.Http.Resilience` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Http.Resilience).
 
