@@ -362,7 +362,7 @@ When validation messages are set in the component, they're added to the validato
 
 ## Server validation for Minimal APIs
 
-In a [Minimal API](xref:fundamentals/minimal-apis), call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method for [data annotation validation of model types)](xref:mvc/models/validation#validation-attributes) for all web API endpoints:
+In a [Minimal API](xref:fundamentals/minimal-apis), call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method for [data annotation validation of model types](xref:mvc/models/validation#validation-attributes) for all web API endpoints:
 
 ```csharp
 builder.Services.AddValidation();
@@ -457,8 +457,6 @@ Add an interface for a form validation service to the `.Client` project in the `
 `Starship/IFormValidator.cs`:
 
 ```csharp
-using Microsoft.AspNetCore.Mvc;
-
 namespace BlazorSample.Client.Starship;
 
 public interface IFormValidator
@@ -468,7 +466,7 @@ public interface IFormValidator
 }
 ```
 
-Add a client form validator class to the `.Client` project's `Starship` folder. The client form validator is used when the app is running on the client. The validator class posts the form's model to the backend Minimal API for processing.
+Add a client form validator class to the `.Client` project's `Starship` folder. The client form validator is used when the app is running on the client. The validator class posts to the Blazor Web App endpoint, which then proxies to the Minimal API.
 
 `Starship/ClientFormValidator.cs`:
 
@@ -520,8 +518,6 @@ Create a `Starship` folder in the server project of the Blazor Web App.
 
 In the Blazor Web App, create a server form validator that implements the `IFormValidator` interface. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
 
-In the following example, the `{API URI}` placeholder is the Minimal API endpoint address (for example, `https://localhost:7277/api-starship-validation`).
-
 `Starship/ServerFormValidator.cs`:
 
 ```csharp
@@ -556,7 +552,8 @@ internal sealed class ServerFormValidator(
                 throw new Exception("HttpContext not available");
             }
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "{API URI}")
+            var request = new HttpRequestMessage(HttpMethod.Post, 
+                "https://localhost:7277/api-starship-validation")
             {
                 Content = new StringContent(JsonSerializer.Serialize(starship), 
                     System.Text.Encoding.UTF8, "application/json")
@@ -581,8 +578,10 @@ internal sealed class ServerFormValidator(
             {
                 var content = await response.Content.ReadAsStringAsync();
 
-                var deserialized = 
-                    JsonSerializer.Deserialize<ValidationProblemDetails>(content);
+                var deserialized =
+                    JsonSerializer.Deserialize<ValidationProblemDetails>(
+                        content,
+                        new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
                 return deserialized?.Errors ?? genericError;
             }
@@ -629,12 +628,10 @@ The preceding example sets the base address with `builder.HostEnvironment.BaseAd
 
 In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a `ValidationProblem` returns a dictionary with the failed field and a description of the error. If validation passes, a *204 - No Content* response is issued. In a typical production app, any number of custom form model checks are made, and the validation errors dictionary can include multiple failures (`string[]` value) for each model property.
 
-The `{API RELATIVE URL}` placeholder is the endpoint relative URL (for example, `/api-starship-validation`).
-
 In the `Program` file of the Minimal API project:
 
 ```csharp
-app.MapPost("{API RELATIVE URL}", (
+app.MapPost("/api-starship-validation", (
     StarshipModel model, ILogger<Program> logger) =>
 {
     Dictionary<string, string[]> errors = [];
