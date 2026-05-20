@@ -33,7 +33,7 @@ Create a file named `staticwebapp.config.json` in the project's root folder with
 To deploy a standalone Blazor WebAssembly app from Visual Studio:
 
 * Save any unsaved work in the project, as a Visual Studio restart might be required during the process.
-* Follow the guidance at [Deploy a Blazor app on Azure Static Web Apps: Deploy from Visual Studio (Azure Static Web Apps documentation](/azure/static-web-apps/deploy-blazor#deploy-from-visual-studio).
+* Follow the guidance at [Deploy a Blazor app on Azure Static Web Apps: Deploy from Visual Studio (Azure Static Web Apps documentation)](/azure/static-web-apps/deploy-blazor#deploy-from-visual-studio).
 
 ## GitHub deployment scenarios
 
