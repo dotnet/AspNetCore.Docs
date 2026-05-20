@@ -1683,6 +1683,11 @@
             "source_path": "aspnetcore/security/authorization/razor-pages-authorization.md",
             "redirect_url": "/aspnet/core/razor-pages/security/authorization/conventions",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authorization/resourcebased.md",
+            "redirect_url": "/aspnet/core/security/authorization/resource-based",
+            "redirect_document_id": false
         }
     ]
 }
