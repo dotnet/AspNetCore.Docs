@@ -24,17 +24,23 @@ Examples in this article use *primary constructors*, available in C# 12 (.NET 8)
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and page handlers via [dependency injection](xref:fundamentals/dependency-injection). The following page handler constructor also injects a document repository, which the developer creates and registers in the service container to manage document operations:
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and page handlers via [dependency injection](xref:fundamentals/dependency-injection). The following page handler also injects a document repository, which the developer creates and registers in the service container to manage document operations:
 
 ```csharp
-private readonly IAuthorizationService _authorizationService;
-private readonly IDocumentRepository _documentRepository;
-
-public DocumentModel(IAuthorizationService authorizationService,
-    IDocumentRepository documentRepository)
+public class DocumentModel(IAuthorizationService authorizationService,
+    IDocumentRepository documentRepository) : PageModel
 {
-    _authorizationService = authorizationService;
-    _documentRepository = documentRepository;
+    private readonly IAuthorizationService _authorizationService;
+    private readonly IDocumentRepository _documentRepository;
+
+    public DocumentModel(IAuthorizationService authorizationService,
+        IDocumentRepository documentRepository)
+    {
+        _authorizationService = authorizationService;
+        _documentRepository = documentRepository;
+    }
+
+    ...
 }
 ```
 
