@@ -200,7 +200,7 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-For more information and an implementation example for server restarts, see <xref:blazor/state-management/server#server-triggered-circuit-pause>.
+For more information and an implementation example for server restarts, see <xref:blazor/state-management/server?view=aspnetcore-11.0#server-triggered-circuit-pause>.
 
 ### Smaller Blazor WebAssembly publish output
 
