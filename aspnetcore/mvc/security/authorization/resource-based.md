@@ -24,11 +24,18 @@ Examples in this article use *primary constructors*, available in C# 12 (.NET 8)
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](xref:fundamentals/dependency-injection). The following example also injects a document repository, which the developer creates and registers in the service container to manage document operations:
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](xref:fundamentals/dependency-injection). The following controller constructor also injects a document repository, which the developer creates and registers in the service container to manage document operations:
 
 ```csharp
-public class DocumentController(IAuthorizationService authorizationService,
-    IDocumentRepository documentRepository) : Controller
+private readonly IAuthorizationService _authorizationService;
+private readonly IDocumentRepository _documentRepository;
+
+public DocumentController(IAuthorizationService authorizationService,
+    IDocumentRepository documentRepository)
+{
+    _authorizationService = authorizationService;
+    _documentRepository = documentRepository;
+}
 ```
 
 <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> method overloads. One of the overloads accepts a resource and policy name:
@@ -77,14 +84,6 @@ The handler class specifies the requirement and resource type. The following exa
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs" id="snippet_HandlerAndRequirement":::
 
-<!---
-
-AT ...
-
-https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs
-
--->
-
 In the preceding example, imagine that `SameAuthorRequirement` is a special case of a more generic `SpecificAuthorRequirement` class. The `SpecificAuthorRequirement` class (not shown) contains a `Name` property representing the name of the author. The `Name` property could be set to the current user.
 
 :::moniker range=">= aspnetcore-6.0"
@@ -125,25 +124,9 @@ To make decisions based on the outcomes of CRUD (Create, Read, Update, Delete) o
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs" id="snippet_OperationsClass":::
 
-<!--
-
-AT ...
-
-https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs
-
--->
-
 The handler is implemented as follows, using an <xref:Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement> requirement and a `Document` resource:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs" id="snippet_Handler":::
-
-<!--
-
-AT ...
-
-https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/resource-based/3.0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs
-
--->
 
 The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
 
@@ -157,7 +140,7 @@ When authorization fails but the user is authenticated, the app can return a <xr
 > The following example assumes successful authentication with the `User` property set.
 
 ```csharp
-if ((await authorizationService
+if ((await _authorizationService
     .AuthorizeAsync(User, document, Operations.Read)).Succeeded)
 {
     return View(document);
