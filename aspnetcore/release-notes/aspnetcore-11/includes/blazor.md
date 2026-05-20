@@ -169,7 +169,7 @@ For more information, see the following resources:
   For more information, see the following resources:
   
   * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
-  * [[release/11.0-preview4] Virtualization AnchorMode with for variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
+  * [[release/11.0-preview4] Virtualization AnchorMode with variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
