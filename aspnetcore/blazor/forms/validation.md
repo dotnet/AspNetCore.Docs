@@ -523,8 +523,9 @@ using BlazorSample.Client.Starship;
 
 namespace BlazorSample.Starship;
 
-internal sealed class ServerFormValidator2(IHttpContextAccessor httpContextAccessor, HttpClient httpClient) 
-     : IFormValidator
+internal sealed class ServerFormValidator(
+    IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory) 
+    : IFormValidator
 {
     public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
         StarshipModel starship)
@@ -550,6 +551,8 @@ internal sealed class ServerFormValidator2(IHttpContextAccessor httpContextAcces
 
             request.Headers.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
+
+            using var httpClient = httpClientFactory.CreateClient();
 
             var response = await httpClient.SendAsync(request);
 
