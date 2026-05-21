@@ -219,7 +219,7 @@ For more information, see [Form binding in Minimal APIs](https://andrewlock.net/
 
 #### IFormFile collection binding behavior
 
-The following table summarizes how different `IFormFile` collection parameter types are bound in Minimal APIs:
+The following table summarizes how different `IFormFile` collection parameter types are bound in Minimal APIs. The general guidance that the parameter name in the route handler must match the form field name applies to `IFormFile` and supported named file collections such as `IReadOnlyList<IFormFile>`, but not to `IFormFileCollection`, which binds all uploaded files.
 
 | Parameter type | Bound value | Honors parameter name? |
 | --- | --- | --- |
