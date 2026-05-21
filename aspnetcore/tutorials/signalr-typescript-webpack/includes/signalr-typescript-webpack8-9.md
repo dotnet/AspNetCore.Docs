@@ -244,7 +244,7 @@ Confirm that the app works with the following steps:
 
 ## Next steps
 
-* [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
+* [Strongly typed hubs](xref:signalr/hubs#use-strongly-typed-hubs)
 * [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
 * [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
 
