@@ -140,7 +140,7 @@ public class ChatHub : Hub
 }
 ```
 
-Or, you can call `Client(...)` on an instance of [IHubContext<T>](xref:signalr/hubcontext):
+Or, you can call `Client(...)` on an instance of [IHubContext\<T>](xref:signalr/hubcontext):
 
 ```csharp
 async Task SomeMethod(IHubContext<MyHub> context)
