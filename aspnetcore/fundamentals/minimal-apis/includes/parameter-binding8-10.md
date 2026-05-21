@@ -226,7 +226,7 @@ The following table summarizes how different `IFormFile` collection parameter ty
 | `IFormFileCollection` | All files in `HttpContext.Request.Form.Files` | No |
 | `IFormFile` | The single file whose form field name matches the parameter name | Yes |
 | `IReadOnlyList<IFormFile>` | All files whose form field name matches the parameter name | Yes |
-| Other `IFormFile` collection types (`IEnumerable<IFormFile>`, `List<IFormFile>`, `IFormFile[]`, etc.) | Not supported — parameter is not populated | n/a |
+| Other `IFormFile` collection types (`IEnumerable<IFormFile>`, `List<IFormFile>`, `IFormFile[]`, etc.) | Not supported — parameter is not populated | N/A |
 
 Use `IFormFileCollection` when you need all uploaded files regardless of form field name. Use `IReadOnlyList<IFormFile>` when you need only the files whose form field name matches the parameter name.
 
