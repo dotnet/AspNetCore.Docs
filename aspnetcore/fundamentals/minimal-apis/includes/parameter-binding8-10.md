@@ -217,6 +217,22 @@ For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:s
 
 For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
 
+#### IFormFile collection binding behavior
+
+The following table summarizes how different `IFormFile` collection parameter types are bound in Minimal APIs:
+
+| Parameter type | Bound value | Honors parameter name? |
+| --- | --- | --- |
+| `IFormFileCollection` | All files in `HttpContext.Request.Form.Files` | No |
+| `IFormFile` | The single file whose form field name matches the parameter name | Yes |
+| `IReadOnlyList<IFormFile>` | All files whose form field name matches the parameter name | Yes |
+| Other `IFormFile` collection types (`IEnumerable<IFormFile>`, `List<IFormFile>`, `IFormFile[]`, etc.) | Not supported — parameter is not populated | n/a |
+
+Use `IFormFileCollection` when you need all uploaded files regardless of form field name. Use `IReadOnlyList<IFormFile>` when you need only the files whose form field name matches the parameter name.
+
+> [!NOTE]
+> This same binding behavior applies to properties on `[AsParameters]` types and form-mapped complex types, since the form-mapping layer is shared with Blazor.
+
 <a name="bindcc"></a>
 
 ## Bind to collections and complex types from forms
