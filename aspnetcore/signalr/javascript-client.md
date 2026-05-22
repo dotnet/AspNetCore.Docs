@@ -40,7 +40,7 @@ npm install @microsoft/signalr
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open an integrated terminal and run the following `npm`commands:
+Open an integrated terminal and run the following `npm` commands:
 
 ```bash
 npm init -y

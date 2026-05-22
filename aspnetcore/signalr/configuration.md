@@ -231,7 +231,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 In this version of the Java client, WebSockets is the only available transport.
 
-In the Java client, the transport is selected by using the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to calling the WebSockets transport.
+In the Java client, the transport is selected by using the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
 HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
@@ -349,7 +349,7 @@ Stateful reconnect achieves the perceived downtime by:
 
 Stateful reconnect is available in .NET 8 or later.
 
-#### Enable statefile reconnect
+#### Enable stateful reconnect
 
 You can opt in to stateful reconnect at both the server hub endpoint and the client.
 

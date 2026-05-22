@@ -161,7 +161,7 @@ For more control over the timing and number of automatic reconnect attempts, `Wi
 
 - Before the first reconnect attempt, `PreviousRetryCount` and `ElapsedTime` are both zero (0), and `RetryReason` is the Exception that caused the lost connection.
 
-- After each failed retry attempt, `PreviousRetryCount` increments by one, `ElapsedTime` update to reflect the amount of time spent reconnecting so far, and `RetryReason` is the Exception that caused the last reconnect attempt to fail.
+- After each failed retry attempt, `PreviousRetryCount` increments by one, `ElapsedTime` updates to reflect the amount of time spent reconnecting so far, and `RetryReason` is the Exception that caused the last reconnect attempt to fail.
 
 `NextRetryDelay` must return either a `TimeSpan` value that represents the time to wait before the next reconnect attempt or `null` if the `HubConnection` should stop reconnecting.
 

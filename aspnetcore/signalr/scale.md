@@ -18,7 +18,7 @@ This article explains hosting and scaling considerations for high-traffic apps t
 
 ## Sticky sessions
 
-SignalR requires the same server process handle all HTTP requests for a specific connection. When SignalR runs on a server farm (multiple servers), "sticky sessions" must be used. "Sticky sessions" are also called _session affinity_. Azure App Service uses [Microsoft Application Request Routing (ARR)](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) to route requests. Enabling the "Session affinity" (ARR Affinity) setting in your App Service app enables sticky sessions. 
+SignalR requires the same server process handle all HTTP requests for a specific connection. When SignalR runs on a server farm (multiple servers), "sticky sessions" must be used. "Sticky sessions" are also called _session affinity_. Azure App Service uses [Microsoft Application Request Routing (ARR)](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) to route requests. Enabling the "Session affinity" (ARR Affinity) setting in your App Service app enables sticky sessions.
 
 There are three scenarios where sticky sessions aren't required for an app:
 
