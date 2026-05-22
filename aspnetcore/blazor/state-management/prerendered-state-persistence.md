@@ -341,6 +341,7 @@ Logging in the following example is for demonstration purposes and isn't normall
 using System.Buffers;
 using System.Text;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 
 namespace BlazorSample;
 
@@ -386,7 +387,7 @@ public class CustomIntSerializer(ILogger<CustomIntSerializer> logger)
         }
 
         // Fallback to direct parsing if format is unexpected
-        return int.TryParse(text, out int? fallbackValue) ? fallbackValue : null;
+        return int.TryParse(text, out int fallbackValue) ? fallbackValue : null;
     }
 }
 ```
