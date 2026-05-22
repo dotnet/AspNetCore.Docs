@@ -181,8 +181,12 @@ app.MapGet("/weather-forecast", (HttpContext context, ILogger<Program> logger) =
 
         try
         {
-            var handler = 
-                new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                var handler = 
+                    new Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler();
+                var jwtToken = handler.ReadJsonWebToken(token);
+                logger.LogDebug("Audience: {Audience}", 
+                    string.Join(", ", jwtToken.Audiences));
+                logger.LogDebug("Issuer: {Issuer}", jwtToken.Issuer);
             var jwtToken = handler.ReadJwtToken(token);
             logger.LogDebug("Audience: {Audience}", 
                 string.Join(", ", jwtToken.Audiences));

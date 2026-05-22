@@ -1187,7 +1187,7 @@ There are two types of token URIs, named Version 1 (V1) and Version 2 (V2). In A
 
 This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 tokens, make the following changes:
 
-* The STS version must be changed in the apps' registrations in the Azure portal. Set the value of `requestedAccessTokenVersion` to `2` in the apps' manifests, both in the app's registration and the web API's (`MinimalApiJwt`) registration.
+* The STS version must be changed in the web API's (`MinimalApiJwt`) app registration in the Azure portal. Set the value of `requestedAccessTokenVersion` to `2` in the web API app registration's manifest. Entra issues access tokens in the version requested by the resource (audience) app registration, so this setting on the Blazor Web App's client registration has no effect on the tokens that `MinimalApiJwt` receives and validates.
 * Use the V2 authority URL endpoint (example: `https://login.microsoftonline.com/{TENANT ID}/v2.0`, where the `{TENANT ID}` placeholder is the tenant ID).
 * In the web API (`MinimalApiJwt`), explicitly validate the issuer:
 
@@ -1195,7 +1195,8 @@ This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 t
   jwtOptions.TokenValidationParameters = new TokenValidationParameters
   {
       ValidateIssuer = true,
-      // Ensure the issuer ends with /v2.0 if using the V2 endpoint
+      // Ensure the issuer ends with /v2.0 if using the V2 endpoint and that
+      // {TENANT ID} is the tenant GUID (matching the token's tid claim), not a domain
       ValidIssuer = "https://login.microsoftonline.com/{TENANT ID}/v2.0",
       ValidateAudience = true,
       ValidAudiences = new[] { "{WEB API CLIENT ID 1}", "{WEB API CLIENT ID 2}", ... },
