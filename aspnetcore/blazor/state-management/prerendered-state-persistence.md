@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor prerendered state persistence
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
@@ -348,7 +349,8 @@ public class CustomIntSerializer(ILogger<CustomIntSerializer> logger)
 {
     public override void Persist(int? value, IBufferWriter<byte> writer)
     {
-        string customFormat = $"CUSTOM:{value}";
+        string customFormat = 
+            value is not null ? $"CUSTOM:{value}" : $"CUSTOM:null";
 
         logger.LogInformation(
             "Persisting value {Value} with custom format: {CustomFormat}", value, 
@@ -366,10 +368,21 @@ public class CustomIntSerializer(ILogger<CustomIntSerializer> logger)
         logger.LogInformation("Restoring value from custom format: {CustomFormat}", 
             text);
 
-        if (text.StartsWith("CUSTOM:", StringComparison.Ordinal) && 
-            int.TryParse(text.AsSpan(7), out int value))
+        if (text.StartsWith("CUSTOM:", StringComparison.Ordinal))
         {
-            return value;
+            var remainingText = text.AsSpan(7);
+
+            if (remainingText != "null")
+            {
+                if (int.TryParse(remainingText, out int value))
+                {
+                    return value;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // Fallback to direct parsing if format is unexpected
@@ -398,13 +411,13 @@ Using the preceding serializer with the `PrerenderedCounter2` component (`Preren
 > If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 ```
-info: BlazorSample.Components.Pages.Counter[0]
+info: BlazorSample.Components.Pages.PrerenderedCounter2[0]
       CurrentCount set to 49
 info: BlazorSample.CustomIntSerializer[0]
       Persisting value 49 with custom format: CUSTOM:49
 info: BlazorSample.CustomIntSerializer[0]
       Restoring value from custom format: CUSTOM:49
-info: BlazorSample.Components.Pages.Counter[0]
+info: BlazorSample.Components.Pages.PrerenderedCounter2[0]
       CurrentCount restored to 49
 ```
 
