@@ -231,7 +231,6 @@ The following table summarizes how different `IFormFile` collection parameter ty
 Use `IFormFileCollection` when you need all uploaded files regardless of form field name. Use `IReadOnlyList<IFormFile>` when you need only the files whose form field name matches the parameter name.
 
 > [!NOTE]
-> [!NOTE]
 > The `IFormFile` collection binding rules in the preceding table also apply to properties on `[AsParameters]` types and form-mapped complex types, since the form-mapping layer is shared with Blazor.
 
 <a name="bindcc"></a>
