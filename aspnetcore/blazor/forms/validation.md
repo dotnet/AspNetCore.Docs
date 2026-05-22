@@ -380,7 +380,7 @@ For more information, see <xref:fundamentals/minimal-apis#enable-built-in-valida
 
 :::moniker range=">= aspnetcore-10.0"
 
-*This section demonstrates server validation using a server-side Blazor Web App and a Minimal API.*
+*This section demonstrates server validation using a Blazor Web App (global Interactive Auto render mode) and a Minimal API.*
 
 Server validation is supported in addition to client validation:
 
