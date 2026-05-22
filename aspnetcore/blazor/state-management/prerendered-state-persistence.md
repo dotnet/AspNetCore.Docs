@@ -11,7 +11,9 @@ uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
 
-Without persisting component state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered.
+This article explains how to persist component state across prerendering in Blazor apps using the Persistent Component State service. You'll learn how to use the `[PersistentState]` attribute, the `PersistentComponentState` service directly, and how to create custom serializers for persistent state.
+
+Without persisting component state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced with temporary loading content and then fully rendered again.
 
 Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). When the component then renders interactively, the initial count value is replaced when `OnInitialized` executes a second time.
 
