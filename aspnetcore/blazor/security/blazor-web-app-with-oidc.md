@@ -178,8 +178,10 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 AAD B2C tenant Authority example:
 
@@ -526,8 +528,10 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 AAD B2C tenant Authority example:
 
@@ -873,8 +877,10 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 AAD B2C tenant Authority example:
 
@@ -1193,12 +1199,14 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 "Authentication": {
   "Schemes": {
     "Bearer": {
-      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}",
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
       "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
     }
   }
 },
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
 
@@ -1207,9 +1215,11 @@ Update the placeholders in the preceding configuration to match the values that 
 
 Authority formats adopt the following patterns:
 
-* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}`
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
 * Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
+
+The preceding example for the ME-ID tenant type uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
