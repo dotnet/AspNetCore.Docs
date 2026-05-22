@@ -338,6 +338,7 @@ Logging in the following example is for demonstration purposes and isn't normall
 `CustomIntSerializer.cs`:
 
 ```csharp
+using System;
 using System.Buffers;
 using System.Text;
 using Microsoft.AspNetCore.Components;
