@@ -104,7 +104,7 @@ public class ChatController : Controller
 }
 ```
 
-See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
+See [Use strongly typed hubs](xref:signalr/hubs#use-strongly-typed-hubs) for more information.
 
 :::moniker range=">= aspnetcore-6.0"
 
