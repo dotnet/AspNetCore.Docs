@@ -372,7 +372,7 @@ public class CustomIntSerializer(ILogger<CustomIntSerializer> logger)
         {
             var remainingText = text.AsSpan(7);
 
-            if (remainingText != "null")
+            if (!remainingText.SequenceEqual("null"))
             {
                 if (int.TryParse(remainingText, out int value))
                 {
@@ -386,7 +386,7 @@ public class CustomIntSerializer(ILogger<CustomIntSerializer> logger)
         }
 
         // Fallback to direct parsing if format is unexpected
-        return int.TryParse(text, out int fallbackValue) ? fallbackValue : 0;
+        return int.TryParse(text, out int? fallbackValue) ? fallbackValue : null;
     }
 }
 ```
@@ -410,16 +410,14 @@ Using the preceding serializer with the `PrerenderedCounter2` component (`Preren
 > [!NOTE]
 > If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
-```
-info: BlazorSample.Components.Pages.PrerenderedCounter2[0]
-      CurrentCount set to 49
-info: BlazorSample.CustomIntSerializer[0]
-      Persisting value 49 with custom format: CUSTOM:49
-info: BlazorSample.CustomIntSerializer[0]
-      Restoring value from custom format: CUSTOM:49
-info: BlazorSample.Components.Pages.PrerenderedCounter2[0]
-      CurrentCount restored to 49
-```
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
+> :::no-loc text="      CurrentCount set to 49":::  
+> :::no-loc text="info: BlazorSample.CustomIntSerializer[0]":::  
+> :::no-loc text="      Persisting value 49 with custom format: CUSTOM:49":::  
+> :::no-loc text="info: BlazorSample.CustomIntSerializer[0]":::  
+> :::no-loc text="      Restoring value from custom format: CUSTOM:49":::  
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
+> :::no-loc text="      CurrentCount restored to 49":::
 
 :::moniker-end
 
