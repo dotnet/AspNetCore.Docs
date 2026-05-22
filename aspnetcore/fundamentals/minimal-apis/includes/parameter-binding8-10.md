@@ -233,7 +233,7 @@ Use `IFormFileCollection` when you need all uploaded files regardless of form fi
 > [!NOTE]
 > The `IFormFile` collection binding rules in the preceding table also apply to properties on `[AsParameters]` types and form-mapped complex types, since the form-mapping layer is shared with Blazor.
 
-<a name="bindcc"></a>
+<a id="bindcc"></a>
 
 ## Bind to collections and complex types from forms
 
