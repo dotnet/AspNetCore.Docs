@@ -155,12 +155,29 @@ Before completing, verify:
 ## PR description requirements
 
 * The very first line of the PR description must be `Fixes dotnet/AspNetCore.Docs#{ISSUE NUMBER}` (where `{ISSUE NUMBER}` is the number of the issue this PR addresses), followed by a blank line before any other content.
-* Example:
-  ```
-  Fixes dotnet/AspNetCore.Docs#10000
+* When a PR fixes multiple issues, list each issue on its own line at the top of the PR description, each using the `Fixes dotnet/AspNetCore.Docs#{ISSUE NUMBER}` format, followed by a blank line before any other content.
+* When a PR is related to other issues but doesn't fix them, use `Related: dotnet/AspNetCore.Docs#{ISSUE NUMBER}` on a separate line after the `Fixes` line(s).
+* Examples:
+  * Single issue:
+    ```
+    Fixes dotnet/AspNetCore.Docs#10000
 
-  Summary of changes...
-  ```
+    Summary of changes...
+    ```
+  * Multiple issues fixed:
+    ```
+    Fixes dotnet/AspNetCore.Docs#10000
+    Fixes dotnet/AspNetCore.Docs#10001
+
+    Summary of changes...
+    ```
+  * Fixing one issue and related to another:
+    ```
+    Fixes dotnet/AspNetCore.Docs#10000
+    Related: dotnet/AspNetCore.Docs#10001
+
+    Summary of changes...
+    ```
 
 ---
 
