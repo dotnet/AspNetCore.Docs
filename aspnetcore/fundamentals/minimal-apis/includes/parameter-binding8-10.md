@@ -217,7 +217,23 @@ For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:s
 
 For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
 
-<a name="bindcc"></a>
+#### IFormFile collection binding behavior
+
+The following table summarizes how different <xref:Microsoft.AspNetCore.Http.IFormFile> collection parameter types are bound in Minimal APIs. The general guidance that the parameter name in the route handler must match the form field name applies to <xref:Microsoft.AspNetCore.Http.IFormFile> and supported named file collections such as <xref:System.Collections.Generic.IReadOnlyList%601>, but not to <xref:Microsoft.AspNetCore.Http.IFormFileCollection>, which binds all uploaded files.
+
+| Parameter type | Bound value | Honors parameter name? |
+| --- | --- | --- |
+| [`IFormFileCollection`](xref:Microsoft.AspNetCore.Http.IFormFileCollection) | All files in [`HttpContext.Request.Form.Files`](xref:Microsoft.AspNetCore.Http.IFormCollection.Files) | No |
+| [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) | The single file whose form field name matches the parameter name | Yes |
+| [`IReadOnlyList<IFormFile>`](xref:System.Collections.Generic.IReadOnlyList%601) | All files whose form field name matches the parameter name | Yes |
+| Other [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) collection types (`IEnumerable<IFormFile>`, `List<IFormFile>`, `IFormFile[]`, etc.) | Not supported — parameter is not populated | N/A |
+
+Use <xref:Microsoft.AspNetCore.Http.IFormFileCollection> when you need all uploaded files regardless of form field name. Use <xref:System.Collections.Generic.IReadOnlyList%601> when you need only the files whose form field name matches the parameter name.
+
+> [!NOTE]
+> The <xref:Microsoft.AspNetCore.Http.IFormFile> collection binding rules in the preceding table also apply to properties on [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) types and form-mapped complex types, since the form-mapping layer is shared with Blazor.
+
+<a id="bindcc"></a>
 
 ## Bind to collections and complex types from forms
 
