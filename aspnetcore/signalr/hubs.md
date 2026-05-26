@@ -251,6 +251,125 @@ public class ChatHub : Hub
 > [!NOTE]
 > This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented by DI implementations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
 
+## Limit per-connection streaming invocations
+
+`HubOptions.MaximumParallelInvocationsPerClient` controls non-streaming hub invocations only. It does not apply to streaming hub invocations. Streaming invocations are expected to be long-running and can run concurrently. To enforce a per-connection limit for streaming invocations, use a hub filter to track active stream-returning hub methods.
+
+```csharp
+using System.Collections.Concurrent;
+
+public class StreamConcurrencyFilter : IHubFilter
+{
+    private readonly ConcurrentDictionary<string, int> _activeStreams = new();
+    private readonly int _maxConcurrentStreams;
+
+    public StreamConcurrencyFilter(int maxConcurrentStreams = 1)
+    {
+        _maxConcurrentStreams = maxConcurrentStreams;
+    }
+
+    public async ValueTask<object?> InvokeMethodAsync(
+        HubInvocationContext invocationContext,
+        Func<HubInvocationContext, ValueTask<object?>> next)
+    {
+        if (!IsStreamingInvocation(invocationContext.HubMethod.ReturnType))
+        {
+            return await next(invocationContext);
+        }
+
+        var connectionId = invocationContext.Context.ConnectionId;
+        if (connectionId is null)
+        {
+            return await next(invocationContext);
+        }
+
+        var activeStreams = _activeStreams.AddOrUpdate(
+            connectionId,
+            1,
+            (_, current) => current + 1);
+
+        if (activeStreams > _maxConcurrentStreams)
+        {
+            Decrement(connectionId);
+            throw new HubException($"The connection is limited to {_maxConcurrentStreams} concurrent streaming invocations.");
+        }
+
+        try
+        {
+            return await next(invocationContext);
+        }
+        finally
+        {
+            Decrement(connectionId);
+        }
+    }
+
+    private static bool IsStreamingInvocation(Type returnType)
+    {
+        if (returnType is null)
+        {
+            return false;
+        }
+
+        if (returnType.IsGenericType)
+        {
+            var genericDefinition = returnType.GetGenericTypeDefinition();
+            if (genericDefinition == typeof(IAsyncEnumerable<>) ||
+                genericDefinition == typeof(ChannelReader<>))
+            {
+                return true;
+            }
+
+            if (genericDefinition == typeof(Task<>))
+            {
+                return IsStreamingInvocation(returnType.GetGenericArguments()[0]);
+            }
+        }
+
+        return false;
+    }
+
+    private void Decrement(string connectionId)
+    {
+        while (true)
+        {
+            if (!_activeStreams.TryGetValue(connectionId, out var current))
+            {
+                return;
+            }
+
+            if (current <= 1)
+            {
+                if (_activeStreams.TryRemove(connectionId, out _))
+                {
+                    return;
+                }
+
+                continue;
+            }
+
+            if (_activeStreams.TryUpdate(connectionId, current - 1, current))
+            {
+                return;
+            }
+        }
+    }
+}
+```
+
+Register the filter as a singleton so the active-stream count is shared across hub invocations for the same connection:
+
+```csharp
+builder.Services.AddSingleton(new StreamConcurrencyFilter(maxConcurrentStreams: 2));
+builder.Services.AddSignalR(options =>
+{
+    options.AddFilter<StreamConcurrencyFilter>();
+});
+```
+
+> [!NOTE]
+> This filter applies only to methods that return `IAsyncEnumerable<T>` or `ChannelReader<T>` and does not change the behavior of non-streaming hub methods.
+
 ### Keyed services support in Dependency Injection
 
 *Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
