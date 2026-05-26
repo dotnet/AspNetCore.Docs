@@ -1106,12 +1106,12 @@ dotnet user-secrets set "Authentication:Schemes:OpaqueTokenAuthentication:Client
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
-`Extensions/HttpContextExtensions.cs`:
+`Extensions/HttpRequestExtensions.cs`:
 
 ```csharp
 namespace MinimalApiJwt.Extensions;
 
-public static class HttpContextExtensions
+public static class HttpRequestExtensions
 {
     public static string? ExtractBearerToken(this HttpRequest request)
     {
