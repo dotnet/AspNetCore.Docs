@@ -1333,25 +1333,30 @@ app.MapPost("/logout",
     if (!string.IsNullOrEmpty(accessToken))
     {
         // Prepare the revocation request (RFC 7009)
-        var requestContent = 
+        var content = 
             new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "token", accessToken },
                 { "token_type_hint", "access_token" },
-                { "client_id", "your_client_id" },
-                { "client_secret", "your_client_secret" }
+                { "client_id", "{API CLIENT ID}" },
+                { "client_secret", "{CLIENT SECRET}" }
             });
 
         // POST to the revocation endpoint
         using var client = httpClientFactory.CreateClient();
 
-        await client.PostAsync(
-            "https://your-identity-server/connect/revocation", requestContent);
+        await client.PostAsync("{AUTH SERVER TOKEN REVOCATION URI}", content);
     }
 
     TypedResults.SignOut(GetAuthProperties(returnUrl), 
         [CookieAuthenticationDefaults.AuthenticationScheme]);
 });
 ```
+
+The preceding example's placeholders:
+
+* `{AUTH SERVER TOKEN REVOCATION URI}`: The authentication server's token revocation URI.
+* `{API CLIENT ID}`: The API client ID.
+* `{CLIENT SECRET}`: The client secret obtained securely.
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
