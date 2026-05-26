@@ -1042,7 +1042,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> component
 <ValidationMessage For="@(() => Model!.MaximumAccommodation)" />
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
+The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element. `ValidationSummary` applies the `validation-errors` CSS class to the generated `<ul>` element by default. When a `class` attribute is supplied, the provided class value is combined with the default class.
 
 Control the style of validation messages in the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`). The default `validation-message` class sets the text color of validation messages to red:
 
