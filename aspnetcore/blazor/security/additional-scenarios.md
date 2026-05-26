@@ -1197,6 +1197,15 @@ public class OpaqueTokenAuthenticationHandler(
         var clientId = Options.ClientId;
         var clientSecret = Options.ClientSecret;
 
+        if (string.IsNullOrWhiteSpace(introspectionUri) ||
+            string.IsNullOrWhiteSpace(clientId) ||
+            string.IsNullOrWhiteSpace(clientSecret))
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Opaque token authentication isn't fully configured.");
+            return failedResult;
+        }
+
         using var client = httpClientFactory.CreateClient();
 
         // Set the Authorization header (base64 encoded credentials)
