@@ -1066,17 +1066,23 @@ builder.Services.AddHttpClient("HttpMessageHandler")
 
 ## Opaque (reference) access token support
 
+The guidance in this section explains how to implement opaque (reference) access token support, which offers the following advantages over JSON Web Tokens (JWTs):
+
+* Strict revocation: Invalidate access tokens at any time before they naturally expire.
+* Token size limits: Store a large number of user claims in the token to avoid a prohibitively large JWT.
+* Security: Prevent API consumers or third parties from reading access token claims.
+
 > [!NOTE]
-> The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation. Keycloak and Okta issue JWT access tokens by default; the handler still works against them because it relies only on RFC 7662 introspection, but "opaque" in this section describes how the client treats the token rather than how the server mints it. Duende IdentityServer issues true opaque reference tokens out of the box.
+> The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation. [Keycloak](https://www.keycloak.org/) and [Okta](https://developer.okta.com/code/) issue JWT access tokens by default. The opaque token handler in this section still works against Keycloak and Okta because it relies only on RFC 7662 introspection. "Opaque" in this section describes how the client treats the token rather than how the server mints it. Alternatively, [Duende IdentityServer](https://duendesoftware.com/products/identityserver) can be configured to only issue opaque tokens.
 >
-> When testing this pattern against Keycloak specifically, the API's introspection client must be a different OIDC client than the one that issued the user's access token. Introspecting a token using the client that minted it returns `{"active": false}`.
+> When testing this pattern against Keycloak, the API's introspection client must be a different OIDC client than the one that issued the user's access token. Introspecting a token using the client that minted it returns `{"active": false}`.
 
 <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
 A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
 
 > [!IMPORTANT]
-> [Duende Software](https://duendesoftware.com/) isn't owned or controlled by Microsoft and might require you to pay a license fee for production use of the Duende Introspection Authentication Handler.
+> [Duende Software](https://duendesoftware.com/) and [Okta](https://www.okta.com) aren't owned or controlled by Microsoft and might require you to pay a license fee for production use of their services and libraries.
 
 The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a general approach, which might require further development to suit a specific authorization server's requirements. The following handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
 
@@ -1084,7 +1090,7 @@ Calling an authorization server's introspection endpoint requires authentication
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:AuthServer:ClientSecret`.
+In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret`.
 
 If the Blazor server project hasn't been initialized for the Secret Manager tool, use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
@@ -1095,7 +1101,7 @@ dotnet user-secrets init
 Execute the following command to set the client secret for the authorization server. The `{SECRET}` placeholder is the client secret:
 
 ```dotnetcli
-dotnet user-secrets set "Authentication:Schemes:AuthServer:ClientSecret" "{SECRET}"
+dotnet user-secrets set "Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret" "{SECRET}"
 ```
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
@@ -1109,7 +1115,7 @@ public static class HttpContextExtensions
 {
     public static string? ExtractBearerToken(this HttpRequest request)
     {
-        var authorizationHeader = request.Headers["Authorization"].ToString();
+        var authorizationHeader = request.Headers.Authorization.ToString();
 
         if (!string.IsNullOrEmpty(authorizationHeader) && 
             authorizationHeader.StartsWith("Bearer ", 
@@ -1144,6 +1150,17 @@ public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
 }
 ```
 
+The following handler attempts to validate an opaque (reference) access token. An HTTP call is made to the authorization server's introspection endpoint with the token and the API's credentials. The response is processed to determine if the token is valid:
+
+* If the token is valid, an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> is created containing the user's claims.
+* If the token is invalid, a failed authorization result is returned.
+
+The handler's options (`Options`) is an instance of `OpaqueTokenAuthenticationOptions` provided by the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> base type, which is configured in the app's `Program` file with the authorization server's introspection endpoint and the API's client ID. The API's client secret is provided by the Secret Manager tool during development.
+
+`IOptionsMonitor<OpaqueTokenAuthenticationOptions>` (`optionsMonitor`) isn't used, but it could be used to support dynamic configuration changes at runtime.
+
+For the request's content in <xref:System.Net.Http.FormUrlEncodedContent>, some servers require a token type hint (`token_type_hint`). For example, the required value might be `access_token`. See your authentication server's documentation for details.
+
 `Authentication/OpaqueTokenAuthenticationHandler.cs`:
 
 ```csharp
@@ -1158,12 +1175,12 @@ using MinimalApiJwt.Extensions;
 namespace MinimalApiJwt.Authentication;
 
 public class OpaqueTokenAuthenticationHandler(
-    IOptionsMonitor<OpaqueTokenAuthenticationOptions> options,
+    IOptionsMonitor<OpaqueTokenAuthenticationOptions> optionsMonitor,
     ILoggerFactory logger,
     UrlEncoder encoder,
-    IConfiguration config,
     IHttpClientFactory httpClientFactory)
-    : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(options, logger, encoder)
+    : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(optionsMonitor, 
+        logger, encoder)
 {
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
@@ -1176,24 +1193,9 @@ public class OpaqueTokenAuthenticationHandler(
             return failedResult;
         }
 
-        /*
-            The following example attempts to validate the opaque 
-            (reference) access token.
-
-            An HTTP call is made to the authorization server's introspection 
-            endpoint with the token and the API's credentials. The response
-            is processed to determine if the token is valid.
-
-            If the token is valid, an AuthenticationTicket is created 
-            containing the user's claims.
-
-            If the token is invalid, a failed authorization result is 
-            returned.
-        */
-
         var introspectionUri = Options.IntrospectionEndpoint;
         var clientId = Options.ClientId;
-        var clientSecret = config["Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret"];
+        var clientSecret = Options.ClientSecret;
 
         using var client = httpClientFactory.CreateClient();
 
@@ -1207,8 +1209,6 @@ public class OpaqueTokenAuthenticationHandler(
         var content = new FormUrlEncodedContent(
         [
             new KeyValuePair<string, string>("token", opaqueToken)
-            // NOTE: Some servers require "token_type_hint", for example
-            // set to "access_token"
         ]);
 
         // Post to the introspection endpoint
@@ -1269,8 +1269,6 @@ public class OpaqueTokenAuthenticationHandler(
                 OpaqueTokenAuthenticationOptions.DefaultScheme,
                 nameType: ClaimTypes.Name,
                 roleType: ClaimTypes.Role);
-            var identity = new ClaimsIdentity(claims,
-                OpaqueTokenAuthenticationOptions.DefaultScheme);
             var principal = new ClaimsPrincipal(identity);
             var ticket = new AuthenticationTicket(principal,
                 OpaqueTokenAuthenticationOptions.DefaultScheme);
@@ -1292,6 +1290,10 @@ public class OpaqueTokenAuthenticationHandler(
 In the `Program` file:
 
 ```csharp
+using MinimalApiJwt.Authentication;
+
+...
+
 builder.Services.AddHttpClient();
 builder.Services.AddAuthentication()
     .AddScheme<OpaqueTokenAuthenticationOptions, OpaqueTokenAuthenticationHandler>(
