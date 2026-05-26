@@ -1066,7 +1066,10 @@ builder.Services.AddHttpClient("HttpMessageHandler")
 
 ## Opaque (reference) access token support
 
-*The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation.*
+> [!NOTE]
+> The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation. Keycloak and Okta issue JWT access tokens by default; the handler still works against them because it relies only on RFC 7662 introspection, but "opaque" in this section describes how the client treats the token rather than how the server mints it. Duende IdentityServer issues true opaque reference tokens out of the box.
+>
+> When testing this pattern against Keycloak specifically, the API's introspection client must be a different OIDC client than the one that issued the user's access token. Introspecting a token using the client that minted it returns `{"active": false}`.
 
 <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
@@ -1137,6 +1140,7 @@ public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
     public const string DefaultScheme = "OpaqueTokenAuthentication";
     public string? IntrospectionEndpoint { get; set; }
     public string? ClientId { get; set; }
+    public string? ClientSecret { get; set; }
 }
 ```
 
@@ -1187,9 +1191,9 @@ public class OpaqueTokenAuthenticationHandler(
             returned.
         */
 
-        var introspectionUri = options.IntrospectionEndpoint;
-        var clientId = options.ClientId;
-        var clientSecret = config["Authentication:Schemes:AuthServer:ClientSecret"];
+        var introspectionUri = Options.IntrospectionEndpoint;
+        var clientId = Options.ClientId;
+        var clientSecret = config["Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret"];
 
         using var client = httpClientFactory.CreateClient();
 
@@ -1227,9 +1231,44 @@ public class OpaqueTokenAuthenticationHandler(
 
         if (tokenIsValid)
         {
-            // TODO: Replace the '{USER ID}' placeholder with extracted claim value
-            // from the token introspection response
-            var claims = new[] { new Claim(ClaimTypes.Name, "{USER ID}") };
+            // Map standard introspection response fields onto claims.
+            // Field names below match what Keycloak, Duende IdentityServer,
+            // Auth0, and Okta return; adjust the role source for your provider.
+            var claims = new List<Claim>();
+
+            string? Get(string name) =>
+                doc.RootElement.TryGetProperty(name, out var v) &&
+                v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+
+            var sub = Get("sub");
+            var username = Get("preferred_username") ?? Get("username") ?? sub;
+
+            if (sub is not null) claims.Add(new Claim(ClaimTypes.NameIdentifier, sub));
+            if (username is not null) claims.Add(new Claim(ClaimTypes.Name, username));
+            if (Get("email") is { } email) claims.Add(new Claim(ClaimTypes.Email, email));
+            if ((Get("client_id") ?? Get("azp")) is { } cid)
+                claims.Add(new Claim("client_id", cid));
+            if (Get("scope") is { } scope)
+                foreach (var s in scope.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                    claims.Add(new Claim("scope", s));
+
+            // Keycloak surfaces realm roles under realm_access.roles.
+            // Duende/IdentityServer uses a flat "role" claim; Auth0 uses a
+            // configurable custom claim. Adjust for your authorization server.
+            if (doc.RootElement.TryGetProperty("realm_access", out var ra) &&
+                ra.ValueKind == JsonValueKind.Object &&
+                ra.TryGetProperty("roles", out var roles) &&
+                roles.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var r in roles.EnumerateArray())
+                    if (r.ValueKind == JsonValueKind.String)
+                        claims.Add(new Claim(ClaimTypes.Role, r.GetString()!));
+            }
+
+            var identity = new ClaimsIdentity(claims,
+                OpaqueTokenAuthenticationOptions.DefaultScheme,
+                nameType: ClaimTypes.Name,
+                roleType: ClaimTypes.Role);
             var identity = new ClaimsIdentity(claims,
                 OpaqueTokenAuthenticationOptions.DefaultScheme);
             var principal = new ClaimsPrincipal(identity);
@@ -1267,7 +1306,7 @@ builder.Services.AddAuthentication()
 The preceding example's placeholders:
 
 * `{AUTH SERVER INTROSPECTION URI}`: Authentication server's introspection URI
-* `{API CLIENT ID}`: API Client ID
+* `{API CLIENT ID}`: API client ID
 
 Values for the authentication server introspection URI (`{AUTH SERVER INTROSPECTION URI}`) and the API client ID (`{API CLIENT ID}`) can be supplied from app settings or any other configuration source.
 
