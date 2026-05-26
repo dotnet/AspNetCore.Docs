@@ -1157,7 +1157,7 @@ The following handler attempts to validate an opaque (reference) access token. A
 
 The handler's options (`Options`) is an instance of `OpaqueTokenAuthenticationOptions` provided by the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> base type, which is configured in the app's `Program` file with the authorization server's introspection endpoint and the API's client ID. The API's client secret is provided by the Secret Manager tool during development.
 
-`IOptionsMonitor<OpaqueTokenAuthenticationOptions>` (`optionsMonitor`) isn't used, but it could be used to support dynamic configuration changes at runtime.
+`IOptionsMonitor<OpaqueTokenAuthenticationOptions>` (`optionsMonitor`) isn't used directly by the handler, but it could be used to support dynamic configuration changes at runtime.
 
 For the request's content in <xref:System.Net.Http.FormUrlEncodedContent>, some servers require a token type hint (`token_type_hint`). For example, the required value might be `access_token`. See your authentication server's documentation for details.
 
@@ -1236,7 +1236,9 @@ public class OpaqueTokenAuthenticationHandler(
         using var doc = JsonDocument.Parse(responseString);
 
         // The 'active' property determines if the token is valid and not expired
-        var tokenIsValid = doc.RootElement.GetProperty("active").GetBoolean();
+        var tokenIsValid = 
+            doc.RootElement.TryGetProperty("active", out var activeProperty) &&
+            activeProperty.ValueKind == JsonValueKind.True;
 
         if (tokenIsValid)
         {
@@ -1358,5 +1360,7 @@ The preceding example's placeholders:
 * `{AUTH SERVER TOKEN REVOCATION URI}`: The authentication server's token revocation URI.
 * `{API CLIENT ID}`: The API client ID.
 * `{CLIENT SECRET}`: The client secret obtained securely.
+
+In [Duende IdentityServer](https://duendesoftware.com/products/identityserver), tokens are revoked automatically by setting the `CoordinateLifetimeWithUserSession` client configuration property to `true`, which automatically cleans up associated tokens when a session ends. For more information, see [Session Cleanup and Logout (Duende documentation)](https://docs.duendesoftware.com/identityserver/ui/logout/session-cleanup/).
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
