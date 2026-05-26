@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/26/2026
+ms.date: 11/25/2025
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
