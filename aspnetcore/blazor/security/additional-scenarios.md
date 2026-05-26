@@ -1090,7 +1090,7 @@ Calling an authorization server's introspection endpoint requires authentication
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret`.
+In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret`. For production apps, consider using *client assertions*. For more information, see [Confidential client assertions (Microsoft Entra documentation)](/entra/msal/dotnet/acquiring-tokens/web-apps-apis/confidential-client-assertions).
 
 If the Blazor server project hasn't been initialized for the Secret Manager tool, use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
@@ -1311,5 +1311,38 @@ The preceding example's placeholders:
 * `{API CLIENT ID}`: API client ID
 
 Values for the authentication server introspection URI (`{AUTH SERVER INTROSPECTION URI}`) and the API client ID (`{API CLIENT ID}`) can be supplied from app settings or any other configuration source.
+
+Tokens are typically invalidated on a logout event using the revocation endpoint. The following example is a starting point for further development:
+
+```csharp
+app.MapPost("/logout", 
+    async ([FromForm] string? returnUrl, HttpContext context, 
+    IHttpClientFactory httpClientFactory) =>
+{
+    var accessToken = await context.GetTokenAsync("access_token");
+
+    if (!string.IsNullOrEmpty(accessToken))
+    {
+        // Prepare the revocation request (RFC 7009)
+        var requestContent = 
+            new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "token", accessToken },
+                { "token_type_hint", "access_token" },
+                { "client_id", "your_client_id" },
+                { "client_secret", "your_client_secret" }
+            });
+
+        // POST to the revocation endpoint
+        using var client = httpClientFactory.CreateClient();
+
+        await client.PostAsync(
+            "https://your-identity-server/connect/revocation", requestContent);
+    }
+
+    TypedResults.SignOut(GetAuthProperties(returnUrl), 
+        [CookieAuthenticationDefaults.AuthenticationScheme]);
+});
+```
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
