@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.reviewer: wpickett
 ms.custom: mvc
-ms.date: 05/05/2026
+ms.date: 05/27/2026
 uid: web-api/jsonpatch
 ---
 # JSON Patch support in ASP.NET Core web API
@@ -38,14 +38,14 @@ For an overview of the JSON Patch standard, see [jsonpatch.com](https://jsonpatc
 
 ## JSON Patch support in ASP.NET Core web API
 
-JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, starting with .NET 10, implementing <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json> serialization. This feature:
+JSON Patch support in ASP.NET Core web API is based on <xref:System.Text.Json> serialization, starting with .NET 10. It implements <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json> serialization. This feature:
 
 * Requires the [`Microsoft.AspNetCore.JsonPatch.SystemTextJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch.SystemTextJson) NuGet package. 
 * Aligns with modern .NET practices by leveraging the <xref:System.Text.Json> library, which is optimized for .NET.
 * Provides improved performance and reduced memory usage compared to the legacy `Newtonsoft.Json`-based implementation. For more information on the legacy `Newtonsoft.Json`-based implementation, see the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
 
 > [!NOTE]
-> The implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, for example <xref:System.Dynamic.ExpandoObject>.
+> The implementation of <xref:Microsoft.AspNetCore.JsonPatch> based on <xref:System.Text.Json?displayProperty=fullName> serialization isn't a drop-in replacement for the legacy `Newtonsoft.Json`-based implementation. It doesn't support dynamic types, such as <xref:System.Dynamic.ExpandoObject>.
 
 > [!IMPORTANT]
 > The JSON Patch standard has ***inherent security risks***. Since these risks are inherent to the JSON Patch standard, the ASP.NET Core implementation ***doesn't attempt to mitigate inherent security risks***. It's the responsibility of the developer to ensure that the JSON Patch document is safe to apply to the target object. For more information, see the [Mitigating Security Risks](#mitigating-security-risks) section.
@@ -85,13 +85,13 @@ The sample PATCH endpoint's key steps:
   * If no `Customer` object is found, it returns a `404 Not Found` response via `TypedResults.NotFound()`.
 * **Apply JSON Patch**:
   * The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method applies the JSON Patch operations from the `patchDoc` to the retrieved `Customer` object.
-  * If errors occur during the patch application, such as invalid operations or conflicts, they are captured by an error handling delegate. This delegate collects error messages into a dictionary keyed by the type name of the affected object.
+  * If errors occur during the patch application, such as invalid operations or conflicts, an error handling delegate captures them. This delegate collects error messages into a dictionary keyed by the type name of the affected object.
 * **Return validation errors**:
-  * If any errors were captured during the patch application, the endpoint returns a `ValidationProblem` response containing the error details via `TypedResults.ValidationProblem(errors)`.
+  * If the error handling delegate captures any errors during the patch application, the endpoint returns a `ValidationProblem` response containing the error details via `TypedResults.ValidationProblem(errors)`.
 * **Save and return the Updated Customer**:
   * If the patch is successfully applied with no errors, the changes are saved to the database and the endpoint returns the updated `Customer` object via `TypedResults.Ok(customer)`.
 
-### Example error response:
+### Example error response
 
 The following example shows the body of a validation problem response for a JSON Patch operation when the specified path is invalid:
 
@@ -194,7 +194,7 @@ Key differences between <xref:System.Text.Json> and the new <xref:Microsoft.AspN
 
 ### Example: Apply a JsonPatchDocument with error handling
 
-There are various errors that can occur when applying a JSON Patch document. For example, the target object may not have the specified property, or the value specified might be incompatible with the property type.
+Various errors can occur when applying a JSON Patch document. For example, the target object might not have the specified property, or the value specified might be incompatible with the property type.
 
 JSON `Patch` supports the `test` operation, which checks if a specified value equals the target property. If it doesn't, it returns an error.
 
@@ -295,7 +295,7 @@ public void Validate(JsonPatchDocument<T> patch)
 }
 ```
 
-### Business Logic Subversion
+### Business logic subversion
 
 * **Scenario**: Patch operations can manipulate fields with implicit invariants (for example, internal flags, IDs, or computed fields), violating business constraints.
 * **Impact**: Data integrity issues and unintended app behavior.
@@ -309,14 +309,14 @@ public void Validate(JsonPatchDocument<T> patch)
 * **Scenario**: Unauthenticated or unauthorized clients send malicious JSON Patch requests.
 * **Impact**: Unauthorized access to modify sensitive data or disrupt app behavior.
 * **Mitigation**:
-  * Protect endpoints accepting JSON Patch requests with proper authentication and authorization mechanisms.
+  * Protect endpoints that accept JSON Patch requests by using proper authentication and authorization mechanisms.
   * Restrict access to trusted clients or users with appropriate permissions.
 
 ## Get the code
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples/10.x/JsonPatchSample). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 
-To test the sample, run the app and send HTTP requests using the included `.http` file.
+To test the sample, run the app and send HTTP requests by using the included `.http` file.
 
 ## Additional resources
 
