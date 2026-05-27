@@ -68,7 +68,7 @@ In a Minimal API, a PATCH endpoint for JSON Patch:
 * Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> parameter.
 * Calls <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
-### Example Minimal API PATCH endpoint:
+### Example Minimal API PATCH endpoint
 
 :::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/CustomerApi.cs" id="snippet_PatchMethod":::
 
