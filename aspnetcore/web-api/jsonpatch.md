@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.reviewer: wpickett
 ms.custom: mvc
-ms.date: 04/30/2026
+ms.date: 05/05/2026
 uid: web-api/jsonpatch
 ---
 # JSON Patch support in ASP.NET Core web API
@@ -59,14 +59,6 @@ dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson
 ```
 
 This package provides a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> class to represent a JSON Patch document for objects of type `TModel` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> class is <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `TModel`.
-
-## Action method code applying JSON Patch
-
-In an API controller, an action method for JSON Patch:
-
-* Is annotated with the <xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute> attribute.
-* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601>, typically with [<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
-* Calls <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
 ## Minimal API PATCH endpoint applying JSON Patch
 
@@ -322,14 +314,9 @@ public void Validate(JsonPatchDocument<T> patch)
 
 ## Get the code
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples/10.x/JsonPatchSample). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
 
-To test the sample, run the app and send HTTP requests with the following settings:
-
-* URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`
-* HTTP method: `PATCH`
-* Header: `Content-Type: application/json-patch+json`
-* Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.
+To test the sample, run the app and send HTTP requests using the included `.http` file.
 
 ## Additional resources
 
