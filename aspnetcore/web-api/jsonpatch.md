@@ -70,7 +70,7 @@ In a Minimal API, a PATCH endpoint for JSON Patch:
 
 ### Example Minimal API PATCH endpoint:
 
-:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/CustomerApi.cs":::
+:::code language="csharp" source="~/web-api/jsonpatch/samples/10.x/JsonPatchSample/CustomerApi.cs" id="snippet_PatchMethod":::
 
 This code from the sample app works with the following `Customer` and `Order` models:
 
