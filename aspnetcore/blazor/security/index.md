@@ -542,11 +542,11 @@ Two additional abstractions participate in managing authentication state:
 
 ### Authentication state management at sign out
 
-The default revalidation interval is 30 minutes for either ASP.NET Core Identity-based authentication or cookie-based authentication without Identity. Within the 30 minute window, it remains possible under certain sign-out conditions for a user to retain access to areas of the app that you might wish to prevent.
+The default revalidation interval is 30 minutes for either ASP.NET Core Identity-based authentication or cookie-based authentication without Identity. Within the 30-minute window, it remains possible under certain sign-out conditions for a user to retain access to areas of the app that you might wish to prevent.
 
 To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A>.
 
-For an example implementation showing the default 30 minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
+For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
 
 In the following example, the interval is set to five minutes:
 
@@ -566,11 +566,11 @@ To control the revalidation interval in apps that adopt ASP.NET Core Identity wi
 
 To force a complete sign-out within less than the default 30-minute revalidation interval in apps that adopt ASP.NET Core Identity, use the guidance in this section.
 
-For Blazor apps that target .NET 8 or later, reduce the default 30 minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
+For Blazor apps that target .NET 8 or later, reduce the default 30-minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
 
 Whether or not the authentication cookie remains valid is checked by the *security stamp validator* (<xref:Microsoft.AspNetCore.Identity.SecurityStampValidator>), which hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> event of an authentication cookie and queries the user datastore to determine if the user is still signed in. The security stamp validator's interval is governed by <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType>, which defaults to 30 minutes because validating users on every request triggers a database query on every request for every user.
 
-The following example shortens the default 30 minute interval to four minutes:
+The following example shortens the default 30-minute interval to four minutes:
 
 ```csharp
 builder.Services.Configure<SecurityStampValidatorOptions>(
@@ -587,7 +587,7 @@ For more information, see <xref:security/authentication/identity-configuration#i
 
 #### Sign out for cookie-based authentication
 
-To proactively, completely sign a user off within less than the default 30 minute revalidation interval in apps that adopt cookie-based authentication without ASP.NET Core Identity, use the guidance in this section.
+To proactively, completely sign a user off within less than the default 30-minute revalidation interval in apps that adopt cookie-based authentication without ASP.NET Core Identity, use the guidance in this section.
 
 There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> (default: 30 minutes) and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches.
 
