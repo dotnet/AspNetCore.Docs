@@ -85,7 +85,7 @@ For more information on using Aspire and details on the `.AppHost` and `.Service
 
 Confirm that you've met the prerequisites for Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in Aspire (Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing.
 
 ## Server-side Blazor Web App project (`BlazorWebAppEntra`)
 
@@ -1239,3 +1239,4 @@ For more information, see [Access tokens in the Microsoft identity platform: Tok
   * <xref:security/data-protection/configuration/overview>
   * <xref:security/data-protection/implementation/key-storage-providers>
   * <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
