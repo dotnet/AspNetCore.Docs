@@ -535,21 +535,97 @@ Two additional abstractions participate in managing authentication state:
 
 * <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs)): An <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to obtain authentication state from the server.
 
-* <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals.
+* <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals, 30 minutes by default.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-In apps generated from the Blazor project template for .NET 8 or later, adjust the default 30 minute revalidation interval in `IdentityRevalidatingAuthenticationStateProvider`. Earlier than .NET 8, adjust the interval in `RevalidatingIdentityAuthenticationStateProvider`. The following example shortens the interval to 20 minutes:
-
-```csharp
-protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(20);
-```
 
 ### Authentication state management at sign out
 
-Server-side Blazor persists user authentication state for the lifetime of the circuit, including across browser tabs. To proactively sign off a user across browser tabs when the user signs out on one tab, you must implement a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)) with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval>.
+The default revalidation interval is 30 minutes for either ASP.NET Core Identity-based authentication or cookie-based authentication without Identity. Within the 30 minute window, it remains possible under certain sign-out conditions for a user to retain access to areas of the app that you might wish to prevent.
+
+To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A>.
+
+For an example implementation showing the default 30 minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
+
+In the following example, the interval is set to five minutes:
+
+```csharp
+protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(5);
+```
+
+Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> only revalidates the authentication state held by the current Blazor circuit, including across browser tabs. Returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A?displayProperty=nameWithType> flips the circuit's state to unauthenticated, so instances of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>/<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> re-evaluate and redirect the user to sign in. However, returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A> doesn't affect the underlying authentication cookie. The next full navigation that occurs before the cookie expires or is invalidated recreates the principal from the cookie. When that happens, the cookie indicates a signed-in user to the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, so the user appears signed in until the next <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> tick fires.
+
+To control the revalidation interval of the underlying authentication cookie in apps that adopt ASP.NET Core Identity, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
+
+The reference source for <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> is located in [`RevalidatingServerAuthenticationStateProvider.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+#### Sign out for ASP.NET Core Identity
+
+To proactively, completely sign a user off within less than the default 30 minute revalidation interval in apps that adopt ASP.NET Core Identity, use the guidance in this section.
+
+For Blazor apps that target .NET 8 or later, reduce the default 30 minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
+
+Whether or not the authentication cookie remains valid is checked by the *security stamp validator* (<xref:Microsoft.AspNetCore.Identity.SecurityStampValidator>), which hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> event of an authentication cookie and queries the user datastore to determine if the user is still signed in. The security stamp validator's interval is governed by <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType>, which defaults to 30 minutes because validating users on every request triggers a database query on every request for every user.
+
+The following example shortens the default 30 minute interval to four minutes:
+
+```csharp
+builder.Services.Configure<SecurityStampValidatorOptions>(
+    o => o.ValidationInterval = TimeSpan.FromMinutes(4));
+```
+
+The call interval is a tradeoff between hitting the user datastore too frequently and not often enough. Checking with a short interval can result in high demand on the user datastore and reduced app performance but with the benefit of more timely sign-outs. Checking with a long interval results in stale claims, which can make it appear that a user is still signed in if a full navigation recreates the principal from the authentication cookie before it naturally expires.
+
+To catch the next interval tick of the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, set the <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType> to a period just inside the value set for <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A?displayProperty=nameWithType>.
+
+Custom C# code that's required to force a sign out on a user can call <xref:Microsoft.AspNetCore.Identity.UserManager%601.UpdateSecurityStampAsync%2A?displayProperty=nameWithType>, which immediately invalidates existing cookies the next time they're checked.
+
+For more information, see <xref:security/authentication/identity-configuration#isecuritystampvalidator-and-signout-everywhere>.
+
+#### Sign out for cookie-based authentication
+
+To proactively, completely sign a user off within less than the default 30 minute revalidation interval in apps that adopt cookie-based authentication without ASP.NET Core Identity, use the guidance in this section.
+
+There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> (default: 30 minutes) and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches:
+
+* Sign out on GET in the app's login page:
+
+  ```csharp
+  [CascadingParameter]
+  private HttpContext HttpContext { get; set; } = default!;
+
+  protected override async Task OnInitializedAsync()
+  {
+      ...
+
+      if (HttpMethods.IsGet(HttpContext.Request.Method))
+      {
+          await HttpContext.SignOutAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme);
+      }
+  }
+  ```
+
+* Call `NavigationManager.NavigateTo("/Account/Logout", forceLoad: true)` where you sign out users. Create an endpoint for `/Account/Logout` with a call to <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A> in the app's `Program` file, which in turn calls <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync%2A>:
+
+  ```csharp
+  app.MapPost("/Account/Logout", async (HttpContext context) =>
+  {
+      await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+      return TypedResults.LocalRedirect("/");
+  })
+  .RequireAuthorization();
+  ```
+
+The alternative second approach is aimed at first-request freshness without waiting for the next revalidation check. To adopt this approach, perform a user datastore authentication check in <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> and call <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.RejectPrincipal%2A?displayProperty=nameWithType> with <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync%2A>.
+
+For more information, see the following sections of the *Use cookie authentication without ASP.NET Core Identity* article:
+
+* [Sign out](xref:security/authentication/cookie#sign-out)
+* [React to back-end changes](xref:security/authentication/cookie#react-to-back-end-changes)
 
 :::moniker range=">= aspnetcore-8.0"
 
