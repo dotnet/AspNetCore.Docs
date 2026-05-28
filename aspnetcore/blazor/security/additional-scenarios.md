@@ -1079,7 +1079,7 @@ The guidance in this section explains how to implement opaque (reference) access
 
 <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
-A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate their status and retrieve claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
+A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate the status and to retrieve the claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
 
 > [!IMPORTANT]
 > [Duende Software](https://duendesoftware.com/) and [Okta](https://www.okta.com) aren't owned or controlled by Microsoft and might require you to pay a license fee for production use of their services and libraries.
@@ -1298,6 +1298,8 @@ public class OpaqueTokenAuthenticationHandler(
 }
 ```
 
+> [!NOTE]
+> The preceding approach can be further improved by using the OpenID Connect discovery endpoint and adding a cache for the client's <xref:System.Net.Http.HttpClient> introspection requests.
 In the `Program` file:
 
 ```csharp
