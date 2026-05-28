@@ -559,15 +559,12 @@ Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuth
 > [!NOTE]
 > Each browser tab requires a separate circuit, so additional tabs opened by a user don't observe an authentication state change until their circuits revalidate. However, the approach in this section sets the revalidation interval for all of the tabs opened by a user.
 
-To control the revalidation interval of the underlying authentication cookie in apps that adopt ASP.NET Core Identity, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
+To control the revalidation interval in apps that adopt ASP.NET Core Identity with cookie authentication, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
 
-The reference source for <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> is located in [`RevalidatingServerAuthenticationStateProvider.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs).
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 #### Sign out for ASP.NET Core Identity
 
-To proactively, completely sign a user off within less than the default 30 minute revalidation interval in apps that adopt ASP.NET Core Identity, use the guidance in this section.
+To force a complete sign-out within less than the default 30-minute revalidation interval in apps that adopt ASP.NET Core Identity, use the guidance in this section.
 
 For Blazor apps that target .NET 8 or later, reduce the default 30 minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
 
