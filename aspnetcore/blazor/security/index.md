@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor authentication and authorization
+ai-usage: ai-assisted
 author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
@@ -553,7 +554,10 @@ In the following example, the interval is set to five minutes:
 protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(5);
 ```
 
-Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> only revalidates the authentication state held by the current Blazor circuit, including across browser tabs. Returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A?displayProperty=nameWithType> flips the circuit's state to unauthenticated, so instances of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>/<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> re-evaluate and redirect the user to sign in. However, returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A> doesn't affect the underlying authentication cookie. The next full navigation that occurs before the cookie expires or is invalidated recreates the principal from the cookie. When that happens, the cookie indicates a signed-in user to the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, so the user appears signed in until the next <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> tick fires.
+Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> only revalidates the authentication state held by the current Blazor circuit. Returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A?displayProperty=nameWithType> flips the circuit's state to unauthenticated, so instances of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>/<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> re-evaluate and redirect the user to sign in. However, returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A> doesn't affect the underlying authentication cookie. The next full navigation that occurs before the cookie expires or is invalidated recreates the principal from the cookie. When that happens, the cookie indicates a signed-in user to the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, so the user appears signed in until the next <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> tick fires.
+
+> [!NOTE]
+> Each browser tab requires a separate circuit, so additional tabs opened by a user don't observe an authentication state change until their circuits revalidate. However, the approach in this section sets the revalidation interval for all of the tabs opened by a user.
 
 To control the revalidation interval of the underlying authentication cookie in apps that adopt ASP.NET Core Identity, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
 
@@ -590,7 +594,7 @@ To proactively, completely sign a user off within less than the default 30 minut
 
 There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> (default: 30 minutes) and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches.
 
-* Sign out on GET in the app's login page:
+* Sign out on GET in the app's login page. This approach is only valid for static SSR because <xref:Microsoft.AspNetCore.Http.HttpContext> is `null` during interactive rendering:
 
   ```csharp
   [CascadingParameter]
@@ -611,7 +615,7 @@ There are two approaches that you can take. The first approach is to wait for a 
 * Call `NavigationManager.NavigateTo("/Account/Logout", forceLoad: true)` where you sign out users. Create an endpoint for `/Account/Logout` with a call to <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A> in the app's `Program` file, which in turn calls <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync%2A>:
 
   ```csharp
-  app.MapPost("/Account/Logout", async (HttpContext context) =>
+  app.MapGet("/Account/Logout", async (HttpContext context) =>
   {
       await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
