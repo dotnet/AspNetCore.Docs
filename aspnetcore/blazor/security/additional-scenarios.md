@@ -1300,6 +1300,7 @@ public class OpaqueTokenAuthenticationHandler(
 
 > [!NOTE]
 > The preceding approach can be further improved by using the OpenID Connect discovery endpoint and adding a cache for the client's <xref:System.Net.Http.HttpClient> introspection requests.
+
 In the `Program` file:
 
 ```csharp
@@ -1315,6 +1316,9 @@ builder.Services.AddAuthentication()
         {
             options.IntrospectionEndpoint = "{AUTH SERVER INTROSPECTION URI}";
             options.ClientId = "{API CLIENT ID}";
+            options.ClientSecret = 
+                builder.Configuration[
+                    "Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret"];
         });
 ```
 
@@ -1348,11 +1352,10 @@ app.MapPost("/logout",
 
         // POST to the revocation endpoint
         using var client = httpClientFactory.CreateClient();
-
         await client.PostAsync("{AUTH SERVER TOKEN REVOCATION URI}", content);
     }
 
-    TypedResults.SignOut(GetAuthProperties(returnUrl), 
+    return TypedResults.SignOut(new AuthenticationProperties { RedirectUri = "{REDIRECT URI}" }, 
         [CookieAuthenticationDefaults.AuthenticationScheme]);
 });
 ```
@@ -1362,6 +1365,7 @@ The preceding example's placeholders:
 * `{AUTH SERVER TOKEN REVOCATION URI}`: The authentication server's token revocation URI.
 * `{API CLIENT ID}`: The API client ID.
 * `{CLIENT SECRET}`: The client secret obtained securely.
+* `{REDIRECT URI}`: The redirect URI.
 
 In [Duende IdentityServer](https://duendesoftware.com/products/identityserver), tokens are revoked automatically by setting the `CoordinateLifetimeWithUserSession` client configuration property to `true`, which automatically cleans up associated tokens when a session ends. For more information, see [Session Cleanup and Logout (Duende documentation)](https://docs.duendesoftware.com/identityserver/ui/logout/session-cleanup/).
 
