@@ -259,7 +259,7 @@ In releases prior to .NET 11, the following `QuickGrid` components worked implic
 </QuickGrid>
 ```
 
-With the release of .NET 11, the following `QuickGrid` components require unique a `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
+With the release of .NET 11, the following `QuickGrid` components require a unique `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
 
 ```razor
 <QuickGrid ... Pagination="@pagination1">

@@ -355,7 +355,7 @@ The `SciFiCharacters` component:
 
 :::moniker range=">= aspnetcore-11.0"
 
-* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#url-based-navigation), which sets the page index from the value of a `page` query string value, if it exists.
+* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#pagination-modes), which sets the page index from the value of a `page` query string value, if it exists.
 * Opens the preceding `Details` component with the current page number, the current page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
