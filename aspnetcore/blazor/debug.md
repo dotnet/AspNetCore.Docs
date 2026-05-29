@@ -150,6 +150,8 @@ The `inspectUri` property:
 
 The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
 
+[!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 ## Packages
 
 :::moniker range=">= aspnetcore-8.0"

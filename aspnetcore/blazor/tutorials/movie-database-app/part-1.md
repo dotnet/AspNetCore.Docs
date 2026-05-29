@@ -163,6 +163,8 @@ The app is compiled and run. The app is launched at `http://localhost:{PORT}`, w
 
 Navigate the pages of the app to confirm that the app is working normally.
 
+[!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 :::zone-end
 
 ## Stop the app

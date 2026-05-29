@@ -5,7 +5,7 @@ description: Learn how to set and control app behavior across runtime environmen
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/19/2025
+ms.date: 05/29/2026
 uid: fundamentals/environments
 ---
 # ASP.NET Core runtime environments
@@ -203,11 +203,13 @@ Profiles can be selected in the Visual Studio UI next to the Start button (►).
 
 When a solution contains multiple projects, only set the environment for the startup project.
 
-Alternatively, use the [`dotnet run`](/dotnet/core/tools/dotnet-run) command with the [`-lp|--launch-profile` option](/dotnet/core/tools/dotnet-run#options) set to the profile's name. *This approach only supports launch profiles based on the `Project` command.*
+Alternatively, use the [`dotnet watch`](/dotnet/core/tools/dotnet-watch) or [`dotnet run`](/dotnet/core/tools/dotnet-run) command with the [`-lp|--launch-profile` option](/dotnet/core/tools/dotnet-run#options) set to the profile's name. *This approach only supports launch profiles based on the `Project` command.*
 
 ```dotnetcli
 dotnet run -lp "https"
 ```
+
+[!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 When using [Visual Studio Code](https://code.visualstudio.com/) with the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) ([Getting Started with C# in VS Code](https://code.visualstudio.com/docs/csharp/get-started)), launch profiles are picked up from the app's `launchSettings.json` file.
 

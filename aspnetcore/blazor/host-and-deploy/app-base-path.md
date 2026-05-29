@@ -214,6 +214,8 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
         "ASPNETCORE_ENVIRONMENT": "Development"
     }
     ```
+
+    [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
     
     For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
