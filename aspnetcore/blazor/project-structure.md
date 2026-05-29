@@ -79,8 +79,7 @@ An `_Imports.razor` file in each of the server and `.Client` projects includes c
 
 The `Properties` folder of the server project holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
-> [!NOTE]
-> The `http` profile precedes the `https` profile in the `launchSettings.json` file. When an app is run with the .NET CLI, the app runs at an HTTP endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with the .NET CLI without having to pass the `-lp https` or `--launch-profile https` option to the `dotnet watch` (or `dotnet run`) command, simply place the `https` profile above the `http` profile in the file.
+[!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 The `wwwroot` folder of the server project is the [Web Root](xref:fundamentals/index#web-root) folder for the server project that holds the app's public static assets.
 
@@ -135,6 +134,8 @@ Project structure:
 
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 * `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
@@ -181,6 +182,8 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 * `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
@@ -225,6 +228,8 @@ The Blazor Server template creates the initial files and directory structure for
   * `Index` component (`Index.razor`): Implements the Home page.
 
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
@@ -272,6 +277,8 @@ The Blazor Server template creates the initial files and directory structure for
   * `Index` component (`Index.razor`): Implements the Home page.
 
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
@@ -349,8 +356,7 @@ Project structure:
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
-  > [!NOTE]
-  > The `http` profile precedes the `https` profile in the `launchSettings.json` file. When an app is run with the .NET CLI, the app runs at an HTTP endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with the .NET CLI without having to pass the `-lp https` or `--launch-profile https` option to the `dotnet watch` (or `dotnet run`) command, simply place the `https` profile above the `http` profile in the file.
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
@@ -386,6 +392,8 @@ Project structure:
   * `Index` component (`Index.razor`): Implements the Home page.
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
@@ -443,6 +451,8 @@ The Blazor WebAssembly template creates the initial files and directory structur
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 * `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
@@ -495,6 +505,8 @@ The Blazor WebAssembly template creates the initial files and directory structur
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 * `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
@@ -546,6 +558,8 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `Index` component (`Index.razor`): Implements the Home page.
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).

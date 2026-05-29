@@ -426,7 +426,7 @@ dotnet watch
 
 The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned at app creation. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
-When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for non-Windows users.
+[!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-profile` option](/dotnet/core/tools/dotnet-run#options) with the `https` profile name to the `dotnet watch` command:
 
