@@ -210,3 +210,105 @@ Two trimming changes shrink published Blazor WebAssembly apps that don't use [Op
 * `HotReloadManager` now exposes a feature-switched `IsSupported` property tied to `System.Reflection.Metadata.MetadataUpdater.IsSupported`, so the trimmer can eliminate hot-reload caches and metadata-update handler registrations across the renderer when published [[blazor][wasm] Fix hot reload IL trimming (`dotnet/aspnetcore` #65903)](https://github.com/dotnet/aspnetcore/pull/65903) (Please don't comment on closed issues and PRs).
 
 Apps that use OTEL or Hot Reload aren't affected by the preceding updates.
+
+<!-- HOLD for Preview 5 release day ...
+
+### `QuickGrid` improvements
+
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) receives several new features in .NET 11.
+
+For more information on the following features, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0>.
+
+#### Pagination modes
+
+Prior to the release of .NET 11, pagination and sort state is managed in memory inside the `QuickGrid` component without changing the URL, called *inner-state navigation*. An interactive render mode is required.
+
+With the release of .NET 11, `QuickGrid` supports *URL-based navigation*.
+
+Pagination and sort state is persisted in the URL query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&order=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
+
+Sortable column headers and paginator controls render as `<a>` elements with `href` attributes. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
+
+Query string parameters:
+
+* `page`: One-based page number. The first page omits the parameter for clean URLs.
+* `sort`: Column title for sorting the grid.
+* `order`: Ascending (`asc`) or descending (`desc`).
+
+The `sort` column is identified by the column's `Title` property. Columns without a `Title` render a non-clickable `<div>` header.
+
+`QuickGrid` reads the URL on initialization and subscribes to `NavigationManager.LocationChanged`, so browser back/forward and direct URL entry work. When sort parameters are removed from the URL, it falls back to the default sort column/direction.
+
+Disabled paginator links use `aria-disabled="true"` and `pointer-events: none` instead of the HTML `disabled` attribute, which doesn't exist on `<a>` elements.
+
+#### Multiple grids on the same page
+
+Multiple `QuickGrid` components on the same page require unique `QueryParameterNamePrefix` values to avoid query string conflicts. The default prefix is an empty string, producing parameters named `page`, `sort`, `order`. For example, setting the prefix to "`cities`" produces `cities_page`, `cities_sort`, and `cities_order`.
+
+Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they have different prefixes&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
+
+In releases prior to .NET 11, the following `QuickGrid` components worked implicitly:
+
+```razor
+<QuickGrid ... Pagination="@pagination1">
+    ...
+</QuickGrid>
+
+<QuickGrid ... Pagination="@pagination2">
+    ...
+</QuickGrid>
+```
+
+With the release of .NET 11, the following `QuickGrid` components require unique a `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
+
+```razor
+<QuickGrid ... Pagination="@pagination1">
+    ...
+</QuickGrid>
+
+<QuickGrid ... Pagination="@pagination2" QueryParameterNamePrefix="cities">
+    ...
+</QuickGrid>
+```
+
+Example query string for the preceding `QuickGrid` components:
+
+```
+?page=2&sort=Name&order=asc&cities_page=3&cities_sort=Country&cities_order=desc
+```
+
+#### Sort by column
+
+Add `Sortable="true"` to a `PropertyColumn`. With URL-based navigation, selecting a header navigates to a URL with updated `sort` and `order` parameters. With inner-state navigation, selecting a header triggers `@onclick`, which calls `SortByColumnAsync`. In both cases, `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
+
+#### Title-based sort identification
+
+Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&order=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
+
+Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared URLs containing the old title in the `sort` parameter stop matching, and the grid silently falls back to the default sort instead of sorting by the intended column. For `PropertyColumn`, the `Title` defaults to the property name (example: `Property="@(p => p.FirstName)"` produces `Title="First Name"`), so renaming the property or explicitly changing the `Title` parameter both break existing URLs.
+
+#### Paginator
+
+`Paginator` injects `NavigationManager`, subscribes to `LocationChanged`, and reads the page index from the query string on every location change. `GoToPageAsync` navigates to the target URL rather than directly mutating `PaginationState`. State is updated through the `LocationChanged` callback flow.
+
+`GetPageUrl` returns a URL with the one-based page number. Page index 0 (page 1) omits the query parameter entirely.
+
+#### CSS breaking change
+
+When URL-based navigation is enabled, selectors targeting `button.col-title` must also target `a.col-title`, and `nav button`/`nav button:disabled` require `nav a`/`nav a[aria-disabled="true"]`. The built-in QuickGrid stylesheet provides both by default.
+
+#### How to disable URL-based navigation
+
+To disable URL-based navigation, set the `AppContext` switch for the feature to `false`:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.QuickGrid.EnableUrlBasedQuickGridNavigationAndSorting",
+    false);
+```
+
+This restores `<button>` elements with `@onclick` handlers. An interactive render mode is required.
+
+The switch only controls the rendered HTML element (`<a>` versus `<button>`). Even when disabled, `QuickGrid` still reads and writes state to the URL query string internally. `SortByColumnAsync` and `Paginator.GoToPageAsync` navigate via `NavigationManager.NavigateTo` regardless of the flag.
+
+-->
