@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure Map Static
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/05/2026
+ms.date: 05/31/2026
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -960,7 +960,12 @@ If no default-named file exists in the `ExtraStaticFiles` directory, `https://{H
 
 :::moniker-end
 
-Use <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider.Mappings%2A?displayProperty=nameWithType> to add or modify file extension to MIME content type mappings. In the following example, several file extensions are mapped to known MIME types. The `.rtf` extension is replaced, and `.mp4` is removed:
+Use <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider.Mappings%2A?displayProperty=nameWithType> to add or modify file extension to MIME content type mappings.
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> is **not thread-safe** for concurrent writes. Its internal mappings dictionary is a standard `Dictionary<string, string>` without synchronization. If you configure the provider's mappings once at startup and only perform read operations (lookups) afterward, the provider can safely be registered as a singleton. Do not add, remove, or modify mappings after the provider is in use by concurrent requests.
+
+In the following example, several file extensions are mapped to known MIME types. The `.rtf` extension is replaced, and `.mp4` is removed:
 
 :::moniker range=">= aspnetcore-6.0"
 
