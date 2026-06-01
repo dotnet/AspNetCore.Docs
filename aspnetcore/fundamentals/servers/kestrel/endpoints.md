@@ -5,12 +5,9 @@ description: Learn about configuring endpoints with Kestrel, the cross-platform 
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/27/2026
+ms.date: 06/01/2026
 uid: fundamentals/servers/kestrel/endpoints
-
-#customer intent: As an ASP.MEt developer, I want to configure endpoints with Kestrel, so I can use a Kestrel web server with my ASP.NET Core app.
 ---
-
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
