@@ -258,6 +258,12 @@ public class ChatHub : Hub
 
 ### Keyed services support in dependency injection
 
+The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
+
+You access a registered service by specifying the key with the [FromKeyedServices] attribute. The following code shows how to use keyed services:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/KeyedSvsHub/Program.cs" highlight="5-6,34,39":::
+
 ## Limit per-connection streaming invocations
 
 `HubOptions.MaximumParallelInvocationsPerClient` controls non-streaming hub invocations only. It does not apply to streaming hub invocations. Streaming invocations are expected to be long-running and can run concurrently. To enforce a per-connection limit for streaming invocations, use a hub filter to track active stream-returning hub methods.
