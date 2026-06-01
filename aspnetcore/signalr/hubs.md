@@ -10,7 +10,7 @@ uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
 ---
-# Use hubs in SignalR for ASP.NET Core
+ Use hubs in SignalR for ASP.NET Core
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -258,7 +258,7 @@ public class ChatHub : Hub
 
 ### Keyed services support in dependency injection
 
-The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
+The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
 
 You access a registered service by specifying the key with the [FromKeyedServices] attribute. The following code shows how to use keyed services:
 
