@@ -12,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDb>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("AppDb")));
 
+builder.Services.AddProblemDetails();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -26,7 +28,7 @@ await AppDbSeeder.Seed(app);
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseStatusCodePages();
 
 app.MapControllers();
 

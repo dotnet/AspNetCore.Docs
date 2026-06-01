@@ -126,7 +126,7 @@ For more information on using Aspire and details on the `.AppHost` and `.Service
 
 Confirm that you've met the prerequisites for Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in Aspire (Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing.
 
 ## `MinimalApiJwt` project
 
@@ -178,8 +178,10 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 AAD B2C tenant Authority example:
 
@@ -526,8 +528,10 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 AAD B2C tenant Authority example:
 
@@ -873,8 +877,10 @@ The format of the Authority depends on the type of tenant in use. The following 
 ME-ID tenant Authority example:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 AAD B2C tenant Authority example:
 
@@ -1193,12 +1199,14 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 "Authentication": {
   "Schemes": {
     "Bearer": {
-      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}",
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
       "ValidAudiences": [ "{APP ID URI (WEB API)}" ]
     }
   }
 },
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
 
@@ -1207,9 +1215,11 @@ Update the placeholders in the preceding configuration to match the values that 
 
 Authority formats adopt the following patterns:
 
-* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}`
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
 * Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
+
+The preceding example for the ME-ID tenant type uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
@@ -1515,3 +1525,4 @@ We also recommend using a shared [Data Protection](xref:security/data-protection
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 * [How to access an `AuthenticationStateProvider` from a `DelegatingHandler`](xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware)
+* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)

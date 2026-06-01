@@ -85,7 +85,7 @@ For more information on using Aspire and details on the `.AppHost` and `.Service
 
 Confirm that you've met the prerequisites for Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first Aspire solution](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
 
-The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in Aspire (Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing.
 
 ## Server-side Blazor Web App project (`BlazorWebAppEntra`)
 
@@ -138,11 +138,21 @@ jwtOptions.Authority = "{AUTHORITY}";
 
 The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
-If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
+If the app is registered in an ME-ID tenant, the authority should match the issuer (`iss`) of the JWT returned by the identity provider.
+
+V1 STS token endpoint:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+V2 STS token endpoint:
+
+```csharp
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
+```
+
+For more information on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 If the app is registered in a Microsoft Entra External ID tenant:
 
@@ -434,11 +444,21 @@ jwtOptions.Authority = "{AUTHORITY}";
 
 The following examples use a Tenant ID of `aaaabbbb-0000-cccc-1111-dddd2222eeee` and a directory name of `contoso`.
 
-If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
+If the app is registered in an ME-ID tenant, the authority should match the issuer (`iss`) of the JWT returned by the identity provider.
+
+V1 STS token endpoint:
 
 ```csharp
-jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee";
+jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
+
+V2 STS token endpoint:
+
+```csharp
+jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0";
+```
+
+For more information on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 If the app is registered in a Microsoft Entra External ID tenant:
 
@@ -842,12 +862,14 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 "Authentication": {
   "Schemes": {
     "Bearer": {
-      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}",
+      "Authority": "https://sts.windows.net/{TENANT ID (WEB API)}/",
       "ValidAudiences": ["{APP ID URI (WEB API)}"]
     }
   }
 },
 ```
+
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
 
@@ -856,9 +878,11 @@ Update the placeholders in the preceding configuration to match the values that 
 
 Authority formats adopt the following patterns:
 
-* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}`
+* ME-ID tenant type: `https://sts.windows.net/{TENANT ID}/`
 * Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
+
+The preceding example for the ME-ID tenant type uses the V1 STS token URL format. For guidance on V2 STS tokens, see the [STS token version](#sts-token-version) section.
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
@@ -1157,6 +1181,46 @@ Server-side Blazor Web Apps hosted in a web farm or cluster of machines must ado
 
 We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
 
+## STS token version
+
+There are two types of token URIs, named Version 1 (V1) and Version 2 (V2). In Azure's security token services (STS), the V1 endpoint uses the `sts.windows.net` domain as the issuer, while the V2 endpoint uses the `login.microsoftonline.com` domain as the issuer. V2 supports additional features, such as authenticating personal accounts and OpenID Connect (OIDC) protocols.
+
+This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 tokens, make the following changes:
+
+* The STS version must be changed in the web API's (`MinimalApiJwt`) app registration in the Azure portal. Set the value of `requestedAccessTokenVersion` to `2` in the web API app registration's manifest. Entra issues access tokens in the version requested by the resource (audience) app registration, so this setting on the Blazor Web App's client registration has no effect on the tokens that `MinimalApiJwt` receives and validates.
+* Use the V2 authority URL endpoint (example: `https://login.microsoftonline.com/{TENANT ID}/v2.0`, where the `{TENANT ID}` placeholder is the tenant ID).
+* In the web API (`MinimalApiJwt`), explicitly validate the issuer:
+
+  ```csharp
+  jwtOptions.TokenValidationParameters = new TokenValidationParameters
+  {
+      ValidateIssuer = true,
+      // Ensure the issuer ends with /v2.0 if using the V2 endpoint and that
+      // {TENANT ID} is the tenant GUID (matching the token's tid claim), not a domain
+      ValidIssuer = "https://login.microsoftonline.com/{TENANT ID}/v2.0",
+      ValidateAudience = true,
+      ValidAudiences = new[] { "{WEB API CLIENT ID 1}", "{WEB API CLIENT ID 2}", ... },
+      ValidateLifetime = true
+  };
+  ```
+
+  Instead of setting the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudiences%2A> property, you can specify a single valid audience with <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudience%2A>:
+  
+  ```csharp
+  ValidAudience = "{WEB API CLIENT ID}",
+  ```
+
+  The `{WEB API CLIENT ID}` placeholders in the preceding examples are ***only the client IDs***, not the full values passed to the `Audience` property.
+
+  To supply a collection of valid audiences in an app that [configures Identity from app settings](#supply-configuration-with-the-json-configuration-provider-app-settings), you can use the following code to obtain the valid audiences configuration:
+
+  ```csharp
+  ValidAudiences = builder.Configuration.GetSection(
+      "Authentication:Schemes:Bearer:ValidAudiences").Get<string[]>(),
+  ```
+
+For more information, see [Access tokens in the Microsoft identity platform: Token formats](/entra/identity-platform/access-tokens#token-formats).
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
@@ -1175,3 +1239,4 @@ We also recommend using a shared [Data Protection](xref:security/data-protection
   * <xref:security/data-protection/configuration/overview>
   * <xref:security/data-protection/implementation/key-storage-providers>
   * <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
