@@ -1,22 +1,4 @@
----
-title: "Tutorial: Create a Minimal API with ASP.NET Core"
-author: wadepickett
-description: Learn how to build a minimal API with ASP.NET Core.
-ai-usage: ai-assisted
-ms.author: wpickett
-ms.date: 05/29/2026
-monikerRange: '>= aspnetcore-6.0'
-uid: tutorials/min-web-api
----
-
-# Tutorial: Create a Minimal API with ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-<!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
-By [Wade Pickett](https://github.com/wadepickett) and [Tom Dykstra](https://github.com/tdykstra)
-
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range="= aspnetcore-9.0"
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
@@ -40,11 +22,11 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-10.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
 ---
 
@@ -52,20 +34,20 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2026 and select **Create a new project**.
+* Start Visual Studio 2022 and select **Create a new project**.
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/10.x/create-new-project-empty-vs18.6.2.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/9.x/create-new-project-empty-vs17.11.0.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 10.0 (Long Term Support)**
+  * Select **.NET 9.0**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/10.x/add-info-vs18.6.2.png)
+  ![Additional information](~/tutorials/min-web-api/_static/9.x/add-info-vs17.11.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -135,6 +117,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
+* Select **Include Prelease**.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -182,7 +165,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-## Test the web API
+## Create API testing UI with Swagger
 
 There are many available web API testing tools to choose from, and you can follow this tutorial's introductory API test steps with your own preferred tool.
 
@@ -203,7 +186,6 @@ For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorial
   ```
 
 The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) package, which contains tools to generate Swagger documents and UI.
-This project is using OpenAPI, so the NSwag package is only used to generate the Swagger UI.
 
 ### Configure Swagger middleware
 
@@ -751,7 +733,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 See <xref:fundamentals/minimal-apis>
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api6-7.md)]
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api8.md)]
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api9.md)]
