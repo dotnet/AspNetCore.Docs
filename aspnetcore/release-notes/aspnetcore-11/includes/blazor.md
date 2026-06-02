@@ -325,4 +325,32 @@ builder.Services.AddRazorComponents()
     });
 ```
 
+### Persist session data between HTTP requests during static server-side rendering (static SSR)
+
+Session data persistence reads and writes cookie-based HTTP session values during static server-side rendering (static SSR), which is useful for scenarios such as shopping cart IDs or multi-step form progress. Unlike [temporary data persistence (`ITempData`)](#persist-temporary-data-between-http-requests-during-static-server-side-rendering-static-ssr), session values aren't cleared after reading. Values persist across multiple requests for the session lifetime.
+
+Session storage configuration requires adding services by calling `AddSession` and request pipeline configuration with `UseSession`:
+
+```csharp
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddRazorComponents();
+
+var app = builder.Build();
+
+app.UseSession();
+```
+
+When supplied to a parameter, use the `[SupplyParameterFromSession]` attribute without or with a key (string):
+
+```csharp
+[SupplyParameterFromSession]
+public string? Message { get; set; }
+
+[SupplyParameterFromSession(Name = "flash_message")]
+public string? FlashMessage { get; set; }
+```
+
+For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
+
 -->
