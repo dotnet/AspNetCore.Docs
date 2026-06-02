@@ -211,8 +211,6 @@ Two trimming changes shrink published Blazor WebAssembly apps that don't use [Op
 
 Apps that use OTEL or Hot Reload aren't affected by the preceding updates.
 
-<!-- HOLD for Preview 5 release day ...
-
 ### `QuickGrid` improvements
 
 The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) receives several new features in .NET 11.
@@ -352,5 +350,3 @@ public string? FlashMessage { get; set; }
 ```
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
-
--->
