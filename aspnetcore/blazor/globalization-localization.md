@@ -184,6 +184,26 @@ A data file is included to make timezone information correct. If the app doesn't
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - API Browser cross-link -->
+
+## Client-side prerendering in a Blazor Web App preserves the server's culture
+
+By default, client-side prerendering on the server (`.Client` project in a Blazor Web App) persists the server's <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> into component state and applies them on the client before satellite assemblies load.
+
+Apps that require the client to choose a culture independently of the server can opt out with `WebAssemblyComponentsOptions.UseCultureFromServer` in the Blazor Web App's `Program` file:
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveWebAssemblyComponents(options =>
+    {
+        options.UseCultureFromServer = false;
+    });
+```
+
+:::moniker-end
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
