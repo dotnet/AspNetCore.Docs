@@ -83,7 +83,6 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-<!-- replace all of this with an include -->
 
 Press Ctrl+F5 to run without the debugger.
 
