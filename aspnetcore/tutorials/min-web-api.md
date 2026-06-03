@@ -57,7 +57,7 @@ This tutorial creates the following API:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/static/10.x/create-new-project-empty-vs18-6-2.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/static/10/create-new-project-empty-vs18-6-2.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
@@ -65,7 +65,7 @@ This tutorial creates the following API:
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/static/10.x/add-info-vs18-6-2.png)
+  ![Additional information](~/tutorials/min-web-api/static/10/add-info-vs18-6-2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
