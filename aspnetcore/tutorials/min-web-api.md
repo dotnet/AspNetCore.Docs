@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ai-usage: ai-assisted
 ms.author: wpickett
-ms.date: 06/02/2026
+ms.date: 06/03/2026
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -317,7 +317,7 @@ The POST endpoint will be used to add data to the app.
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post resonse](~/tutorials/min-web-api/static/9.x/swagger-post-responses.png)
+  ![Swagger with Post response](~/tutorials/min-web-api/static/9.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
