@@ -57,11 +57,8 @@ The following table describes options for configuring SignalR hubs:
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false` because these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value may increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
-| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. This limit does not apply to streaming hub invocations. |
+| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. This limit does not apply to streaming hub invocations. Note that this limit doesn't apply to streaming hub invocations.|
 | `DisableImplicitFromServicesParameters` | `false` | Hub method arguments will be resolved from DI if possible. |
-
-> [!NOTE]
-> `MaximumParallelInvocationsPerClient` does not apply to streaming hub invocations. Streaming invocations are expected to be long-running and can run concurrently. Use [hub filters](xref:signalr/hub-filters) to enforce per-connection streaming concurrency limits.
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
 

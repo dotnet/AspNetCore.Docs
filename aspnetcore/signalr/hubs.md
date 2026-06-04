@@ -10,7 +10,7 @@ uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
 ---
- Use hubs in SignalR for ASP.NET Core
+# Use hubs in ASP.NET Core SignalR
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -266,122 +266,89 @@ You access a registered service by specifying the key with the [FromKeyedService
 
 ## Limit per-connection streaming invocations
 
-`HubOptions.MaximumParallelInvocationsPerClient` controls non-streaming hub invocations only. It does not apply to streaming hub invocations. Streaming invocations are expected to be long-running and can run concurrently. To enforce a per-connection limit for streaming invocations, use a hub filter to track active stream-returning hub methods.
+`<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> controls the number of non-streaming hub method invocations a client can run in parallel before they are queued. It does **not** apply to streaming hub invocations. Streaming invocations are intentionally excluded because they are expected to be long-running and concurrent, so a client can start any number of concurrent streams regardless of that setting.
+
+To enforce a per-connection limit on streaming invocations, wrap the stream inside the hub method itself using a private helper that increments a counter before yielding items and decrements it in a `finally` block:
 
 ```csharp
 using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
 
-public class StreamConcurrencyFilter : IHubFilter
+public class StreamingHub : Hub
 {
-    private readonly ConcurrentDictionary<string, int> _activeStreams = new();
-    private readonly int _maxConcurrentStreams;
+    // Track the number of active streams per connection.
+    private static readonly ConcurrentDictionary _activeStreams = new();
+    private const int MaxConcurrentStreams = 2;
 
-    public StreamConcurrencyFilter(int maxConcurrentStreams = 1)
+    public IAsyncEnumerable Counter(
+        int count,
+        int delay,
+        CancellationToken cancellationToken)
     {
-        _maxConcurrentStreams = maxConcurrentStreams;
+        return WithLimit(GetCounter(count, delay, cancellationToken));
     }
 
-    public async ValueTask<object?> InvokeMethodAsync(
-        HubInvocationContext invocationContext,
-        Func<HubInvocationContext, ValueTask<object?>> next)
+    private async IAsyncEnumerable GetCounter(
+        int count,
+        int delay,
+        [EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        if (!IsStreamingInvocation(invocationContext.HubMethod.ReturnType))
+        for (var i = 0; i < count; i++)
         {
-            return await next(invocationContext);
+            cancellationToken.ThrowIfCancellationRequested();
+            yield return i;
+            await Task.Delay(delay, cancellationToken);
         }
+    }
 
-        var connectionId = invocationContext.Context.ConnectionId;
-        if (connectionId is null)
-        {
-            return await next(invocationContext);
-        }
+    private async IAsyncEnumerable WithLimit(
+        IAsyncEnumerable stream,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var connectionId = Context.ConnectionId;
 
-        var activeStreams = _activeStreams.AddOrUpdate(
+        var current = _activeStreams.AddOrUpdate(
             connectionId,
-            1,
-            (_, current) => current + 1);
+            addValue: 1,
+            updateValueFactory: (_, count) => count + 1);
 
-        if (activeStreams > _maxConcurrentStreams)
+        if (current > MaxConcurrentStreams)
         {
-            Decrement(connectionId);
-            throw new HubException($"The connection is limited to {_maxConcurrentStreams} concurrent streaming invocations.");
+            _activeStreams.AddOrUpdate(
+                connectionId,
+                addValue: 0,
+                updateValueFactory: (_, count) => Math.Max(0, count - 1));
+
+            throw new HubException(
+                $"The connection is limited to {MaxConcurrentStreams} concurrent streaming invocations.");
         }
 
         try
         {
-            return await next(invocationContext);
+            await foreach (var item in stream.WithCancellation(cancellationToken))
+            {
+                yield return item;
+            }
         }
         finally
         {
-            Decrement(connectionId);
-        }
-    }
-
-    private static bool IsStreamingInvocation(Type returnType)
-    {
-        if (returnType is null)
-        {
-            return false;
-        }
-
-        if (returnType.IsGenericType)
-        {
-            var genericDefinition = returnType.GetGenericTypeDefinition();
-            if (genericDefinition == typeof(IAsyncEnumerable<>) ||
-                genericDefinition == typeof(ChannelReader<>))
-            {
-                return true;
-            }
-
-            if (genericDefinition == typeof(Task<>))
-            {
-                return IsStreamingInvocation(returnType.GetGenericArguments()[0]);
-            }
-        }
-
-        return false;
-    }
-
-    private void Decrement(string connectionId)
-    {
-        while (true)
-        {
-            if (!_activeStreams.TryGetValue(connectionId, out var current))
-            {
-                return;
-            }
-
-            if (current <= 1)
-            {
-                if (_activeStreams.TryRemove(connectionId, out _))
-                {
-                    return;
-                }
-
-                continue;
-            }
-
-            if (_activeStreams.TryUpdate(connectionId, current - 1, current))
-            {
-                return;
-            }
+            _activeStreams.AddOrUpdate(
+                connectionId,
+                addValue: 0,
+                updateValueFactory: (_, count) => Math.Max(0, count - 1));
         }
     }
 }
 ```
 
-Register the filter as a singleton so the active-stream count is shared across hub invocations for the same connection:
-
-```csharp
-builder.Services.AddSingleton(new StreamConcurrencyFilter(maxConcurrentStreams: 2));
-builder.Services.AddSignalR(options =>
-{
-    options.AddFilter<StreamConcurrencyFilter>();
-});
-```
+The key point is that `WithLimit` wraps the original `IAsyncEnumerable<T>` and holds the counter elevated for the *full lifetime of the stream*, not just until the first item is yielded.
+The `finally` block runs only when the client finishes consuming the stream, cancels it, or the connection drops.
 
 > [!NOTE]
-> This filter applies only to methods that return `IAsyncEnumerable<T>` or `ChannelReader<T>` and does not change the behavior of non-streaming hub methods.
+> The `_activeStreams` dictionary is `static` so it is shared across all hub instances for
+a given connection. If you prefer DI-managed state, register a singleton service that owns
+> the dictionary and inject it into the hub constructor.
+
 
 ### Keyed services support in Dependency Injection
 
