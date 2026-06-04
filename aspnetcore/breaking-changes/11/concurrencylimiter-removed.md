@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: ConcurrencyLimiter middleware removed"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the Microsoft.AspNetCore.ConcurrencyLimiter package and middleware are removed. Use the rate-limiting middleware instead."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # ConcurrencyLimiter middleware removed

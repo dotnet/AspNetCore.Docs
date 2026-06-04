@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: Obsolete Blazor APIs removed"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where APIs that were marked obsolete in earlier Blazor releases have been removed."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # Obsolete Blazor APIs removed

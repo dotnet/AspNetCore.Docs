@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: Microsoft.OpenApi upgraded to 3.x"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where Microsoft.AspNetCore.OpenApi takes a dependency on Microsoft.OpenApi 3.x. Document and operation transformers might need updates."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # Microsoft.OpenApi upgraded to 3.x
