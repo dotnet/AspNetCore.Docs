@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where APIs that were marked obsolete in earlier Blazor releases have been removed."
 ms.date: 06/04/2026
 ---
-
 # Obsolete Blazor APIs removed
 
 A set of APIs across the Blazor Components assemblies that were previously marked obsolete have been removed in ASP.NET Core 11. Most of these APIs were marked obsolete several releases ago and have working replacements that have been recommended for years.
@@ -77,8 +76,8 @@ Update your code to use the replacement APIs as listed in the following table.
 ## Affected APIs
 
 - <xref:Microsoft.AspNetCore.Components.Routing.Router.PreferExactMatches?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.AddDataAnnotationsValidation*?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation*?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.AddDataAnnotationsValidation%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A?displayProperty=fullName>
 - `Microsoft.AspNetCore.Components.Forms.RemoteBrowserFileStreamOptions`
 - `Microsoft.AspNetCore.Components.Web.WebEventCallbackFactoryEventArgsExtensions`
 - `Microsoft.AspNetCore.Components.RenderTree.WebRenderer.RendererId` (init accessor)

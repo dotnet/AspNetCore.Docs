@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where Microsoft.Data.SqlClient 7.x extracts Active Directory authentication providers into the Microsoft.Data.SqlClient.Extensions.Azure package."
 ms.date: 06/04/2026
 ---
-
 # SqlClient Active Directory authentication moved to a separate package
 
 ASP.NET Core 11 transitively brings in `Microsoft.Data.SqlClient` 7.x (up from 5.x in .NET 10). Starting in `Microsoft.Data.SqlClient` 6.0, the Microsoft Entra ID (formerly Azure Active Directory) authentication providers are no longer in the main `Microsoft.Data.SqlClient` package; they ship in a separate [`Microsoft.Data.SqlClient.Extensions.Azure`](https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure) package. Apps that use an Entra ID `Authentication=` value in their SQL connection string must add a reference to this package.
@@ -42,7 +41,8 @@ If your app uses a SQL connection string with any `Active Directory *` `Authenti
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Microsoft.Data.SqlClient.Extensions.Azure" Version="1.0.0" />
+  <PackageReference Include="Microsoft.Data.SqlClient.Extensions.Azure" 
+    Version="1.0.0" />
 </ItemGroup>
 ```
 

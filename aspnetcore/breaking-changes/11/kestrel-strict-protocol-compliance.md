@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where Kestrel rejects additional HTTP/2 and HTTP/3 connection-specific headers and closes HTTP/1.1 connections after a request with both Content-Length and Transfer-Encoding."
 ms.date: 06/04/2026
 ---
-
 # Kestrel tightens HTTP protocol compliance
 
 Kestrel in ASP.NET Core 11 makes two HTTP-protocol-compliance changes:

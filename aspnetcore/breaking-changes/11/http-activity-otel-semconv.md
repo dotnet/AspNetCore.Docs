@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the HTTP server Activity emits OpenTelemetry HTTP semantic-convention tags by default, the http.route tag uses literal default values for conventional routes, and Activity.StatusDescription is no longer set on exceptions."
 ms.date: 06/04/2026
 ---
-
 # ASP.NET Core hosting emits OpenTelemetry HTTP semantic-convention tags by default
 
 The HTTP server <xref:System.Diagnostics.Activity> created by `Microsoft.AspNetCore.Hosting` now emits the OpenTelemetry HTTP server-span semantic-convention tags by default, and its `http.route` tag uses the resolved values of conventional-route default parameters. <xref:System.Diagnostics.Activity.StatusDescription> is no longer set when an unhandled exception occurs. Together, these changes bring the built-in `Microsoft.AspNetCore.Hosting` activity into line with the metadata produced by `OpenTelemetry.Instrumentation.AspNetCore`.
@@ -42,7 +41,7 @@ For more information, see [dotnet/aspnetcore#64851](https://github.com/dotnet/as
 
 ## Recommended action
 
-Most apps don't need to do anything — the new defaults match what `OpenTelemetry.Instrumentation.AspNetCore` already produced.
+Most apps don't need to do anything—the new defaults match what `OpenTelemetry.Instrumentation.AspNetCore` already produced.
 
 If you observe **duplicate tags** because both the framework and `OpenTelemetry.Instrumentation.AspNetCore` add the same set, upgrade the instrumentation package to the latest version, which detects the built-in tags and skips adding them.
 
@@ -51,13 +50,14 @@ If you have a custom span enricher or exporter that depended on the *absence* of
 To restore the pre-11 behavior (no OpenTelemetry semantic-convention tags from the framework), set the `AppContext` switch back to `true` early in app startup:
 
 ```csharp
-AppContext.SetSwitch("Microsoft.AspNetCore.Hosting.SuppressActivityOpenTelemetryData", true);
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Hosting.SuppressActivityOpenTelemetryData", true);
 ```
 
 The switch only controls the OpenTelemetry tags. The `http.route` value-substitution change and the `Activity.StatusDescription` change can't be reverted independently.
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Hosting.HostingHostBuilderExtensions?displayProperty=fullName>
+- `Microsoft.AspNetCore.Hosting.HostingHostBuilderExtensions`
 - <xref:System.Diagnostics.Activity.StatusDescription?displayProperty=fullName>
 - The OpenTelemetry [HTTP server span semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-server-span).

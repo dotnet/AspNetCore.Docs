@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the response compression middleware always appends Vary: Accept-Encoding to responses it sees, even when no compression was applied."
 ms.date: 06/04/2026
 ---
-
 # Response compression always emits Vary: Accept-Encoding
 
 The response compression middleware now appends `Vary: Accept-Encoding` to every response that passes through it, including responses for which it didn't actually compress the body. Downstream caches see more correct cache keys, at the cost of slightly more cache variants when caches don't normalize the `Accept-Encoding` request header.
@@ -15,7 +14,7 @@ The response compression middleware now appends `Vary: Accept-Encoding` to every
 
 ## Previous behavior
 
-Previously, the response compression middleware only appended `Vary: Accept-Encoding` to responses it actually compressed. Responses for which compression was skipped — for example, because the content type wasn't in `MimeTypes`, or because the client preferred `identity` encoding — were sent without the `Vary` header added by the middleware.
+Previously, the response compression middleware only appended `Vary: Accept-Encoding` to responses it actually compressed. Responses for which compression was skipped—for example, because the content type wasn't in `MimeTypes`, or because the client preferred `identity` encoding—were sent without the `Vary` header added by the middleware.
 
 A downstream cache could therefore serve a compressed response that was stored for `Accept-Encoding: gzip` to a client that only accepted `identity` (and vice versa), unless the cache or the origin already added the header by another means.
 
@@ -58,4 +57,4 @@ app.Use(async (context, next) =>
 ## Affected APIs
 
 - <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A?displayProperty=fullName>

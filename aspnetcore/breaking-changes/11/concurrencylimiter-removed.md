@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the Microsoft.AspNetCore.ConcurrencyLimiter package and middleware are removed. Use the rate-limiting middleware instead."
 ms.date: 06/04/2026
 ---
-
 # ConcurrencyLimiter middleware removed
 
 The `Microsoft.AspNetCore.ConcurrencyLimiter` package and its middleware have been removed from ASP.NET Core 11. The middleware was marked obsolete in ASP.NET Core 8 in favor of the rate-limiting middleware (`Microsoft.AspNetCore.RateLimiting`), which exposes the equivalent concurrency-limiting functionality through `System.Threading.RateLimiting`.

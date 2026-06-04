@@ -4,10 +4,9 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where WebAssemblyHostBuilder.CreateDefault adds environment variables to IConfiguration by default."
 ms.date: 06/04/2026
 ---
-
 # WebAssemblyHostBuilder loads environment variables into IConfiguration
 
-`WebAssemblyHostBuilder.CreateDefault` now calls `AddEnvironmentVariables()` on the configuration builder. Environment variables that are passed into the Blazor WebAssembly runtime through `MonoConfig.environmentVariables` are now visible through `IConfiguration` in addition to <xref:System.Environment.GetEnvironmentVariable*>.
+`WebAssemblyHostBuilder.CreateDefault` now calls `AddEnvironmentVariables()` on the configuration builder. Environment variables that are passed into the Blazor WebAssembly runtime through `MonoConfig.environmentVariables` are now visible through `IConfiguration` in addition to <xref:System.Environment.GetEnvironmentVariable%2A>.
 
 ## Version introduced
 
@@ -15,7 +14,7 @@ ms.date: 06/04/2026
 
 ## Previous behavior
 
-Previously, environment variables that were available to a Blazor WebAssembly app through <xref:System.Environment.GetEnvironmentVariable*> weren't loaded into `IConfiguration`. To read them through `IConfiguration`, you had to add the environment-variables provider manually:
+Previously, environment variables that were available to a Blazor WebAssembly app through <xref:System.Environment.GetEnvironmentVariable%2A> weren't loaded into `IConfiguration`. To read them through `IConfiguration`, you had to add the environment-variables provider manually:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -63,5 +62,5 @@ builder.Configuration["Logging:LogLevel:Default"] = "Information";
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault*?displayProperty=fullName>
-- <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=fullName>
+- <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A?displayProperty=fullName>

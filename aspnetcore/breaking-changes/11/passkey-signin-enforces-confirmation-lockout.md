@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where PasskeySignInAsync calls PreSignInCheck so that confirmed-email, confirmed-phone, and lockout requirements are honored."
 ms.date: 06/04/2026
 ---
-
 # Passkey sign-in enforces email/phone confirmation and lockout
 
 `SignInManager<TUser>.PasskeySignInAsync` now calls `PreSignInCheck` before signing the user in. This means a successful passkey assertion alone is no longer enough to sign in if the user's account is locked out or hasn't met the configured `RequireConfirmedEmail`, `RequireConfirmedPhoneNumber`, or `RequireConfirmedAccount` policies. This aligns passkey sign-in behavior with `PasswordSignInAsync` and the other sign-in methods.
@@ -47,7 +46,7 @@ If your app currently relies on passkey sign-in to bypass these checks, the safe
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync*?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedPhoneNumber?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedAccount?displayProperty=fullName>

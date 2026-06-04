@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where Blazor.registerCustomEventType throws when eventName equals browserEventName."
 ms.date: 06/04/2026
 ---
-
 # Blazor custom event registration throws when name matches a browser event
 
 The Blazor JavaScript API `Blazor.registerCustomEventType` now throws an error when the custom event name matches its `browserEventName` option. Registering a custom event with the same name as the underlying browser event caused the event to fire twice for each user action.
