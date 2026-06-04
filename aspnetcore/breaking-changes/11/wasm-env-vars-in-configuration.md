@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: WebAssemblyHostBuilder loads environment variables into IConfiguration"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where WebAssemblyHostBuilder.CreateDefault adds environment variables to IConfiguration by default."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # WebAssemblyHostBuilder loads environment variables into IConfiguration

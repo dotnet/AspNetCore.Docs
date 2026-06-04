@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: SqlClient Active Directory authentication moved to a separate package"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where Microsoft.Data.SqlClient 7.x extracts Active Directory authentication providers into the Microsoft.Data.SqlClient.Extensions.Azure package."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # SqlClient Active Directory authentication moved to a separate package

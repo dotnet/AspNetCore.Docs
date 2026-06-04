@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: Blazor enhanced navigation no longer preloads resources"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where Blazor's ResourcePreloader no longer emits preload link hints for pages reached through enhanced navigation."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # Blazor enhanced navigation no longer preloads resources

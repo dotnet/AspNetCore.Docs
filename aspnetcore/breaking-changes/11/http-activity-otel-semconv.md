@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: ASP.NET Core hosting emits OpenTelemetry HTTP semantic-convention tags by default"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the HTTP server Activity emits OpenTelemetry HTTP semantic-convention tags by default, the http.route tag uses literal default values for conventional routes, and Activity.StatusDescription is no longer set on exceptions."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # ASP.NET Core hosting emits OpenTelemetry HTTP semantic-convention tags by default

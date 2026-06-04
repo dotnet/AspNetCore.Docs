@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: Response compression always emits Vary: Accept-Encoding"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the response compression middleware always appends Vary: Accept-Encoding to responses it sees, even when no compression was applied."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # Response compression always emits Vary: Accept-Encoding

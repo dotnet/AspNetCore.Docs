@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: Passkey sign-in enforces email/phone confirmation and lockout"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where PasskeySignInAsync calls PreSignInCheck so that confirmed-email, confirmed-phone, and lockout requirements are honored."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # Passkey sign-in enforces email/phone confirmation and lockout

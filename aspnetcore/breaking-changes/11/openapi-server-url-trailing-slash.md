@@ -1,8 +1,8 @@
 ---
 title: "Breaking change: OpenAPI server URL no longer has a trailing slash when PathBase is empty"
+ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 11 where the generated OpenAPI document's servers[0].url no longer ends with a trailing slash when the request PathBase is empty."
 ms.date: 06/04/2026
-ai-usage: ai-assisted
 ---
 
 # OpenAPI server URL no longer has a trailing slash when PathBase is empty
