@@ -24,13 +24,11 @@ Most apps that are upgrading have `app.UseAntiforgery()` and the `__RequestVerif
 
 * The app must support browsers that don't send `Sec-Fetch-Site`. See the [Browser support](xref:security/csrf-protection#browser-support) section of the reference doc for the baseline.
 * A security review or compliance requirement specifies the token defense as an independent layer.
-* The app is Blazor Server-Side Rendering (SSR). Razor component endpoints still rely on antiforgery tokens for forms.
 * The app uses `IAntiforgeryAdditionalDataProvider` to round-trip extra data inside the antiforgery token.
 
 **Consider dropping the token-based system when:**
 
 * The app targets modern evergreen browsers only.
-* The app isn't a Blazor SSR app (or doesn't use Razor component form posts).
 * Defense in depth at the token layer isn't a hard requirement.
 
 If unsure, keep both. They're complementary, and there's no functional conflict between them.
