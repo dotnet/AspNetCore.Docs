@@ -36,6 +36,9 @@ Both changes are stricter conformance to the HTTP specifications. Compliant clie
 
 **HTTP/1.1.** When a request includes both `Content-Length` and `Transfer-Encoding`, Kestrel still strips `Content-Length` and processes the request, but it now closes the connection after sending the response instead of keeping it alive. This mitigates a known HTTP request-smuggling vector.
 
+> [!NOTE]
+> The HTTP/1.1 connection-close behavior for requests that include both `Content-Length` and `Transfer-Encoding` is also being shipped in servicing updates to earlier supported versions of Kestrel and to IIS and HTTP.sys.
+
 ## Type of breaking change
 
 These changes are [behavioral changes](/dotnet/core/compatibility/categories#behavioral-change).
