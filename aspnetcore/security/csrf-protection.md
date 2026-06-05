@@ -239,23 +239,7 @@ For details on the token-based system — including form integration, AJAX flows
 
 ## Adopting CSRF-only protection in existing apps
 
-If an existing app already uses the token-based antiforgery system (`app.UseAntiforgery()` plus `__RequestVerificationToken` form fields or headers), you can choose to rely on the automatic CSRF middleware alone and remove the token system. The result is a simpler app — no token round-trip, no [Data Protection](xref:security/data-protection/introduction) dependency for antiforgery, and no `IAntiforgery` calls in views or scripts.
-
-This is a reasonable choice when:
-
-* The app targets browsers that send `Sec-Fetch-Site` (effectively all current browsers) — or, for older browsers, send `Origin` on cross-origin write requests (universal for many years).
-* The app doesn't use `IAntiforgeryAdditionalDataProvider` to round-trip non-CSRF data in the token.
-* Defense in depth at the token layer isn't a hard requirement.
-
-To switch:
-
-1. Remove `app.UseAntiforgery()` from `Program.cs`.
-1. In Razor views and pages, remove `@Html.AntiForgeryToken()` and `asp-antiforgery="true"`, or replace `<form>` elements that depended on the token helper.
-1. Stop sending the `RequestVerificationToken` header from client-side JavaScript.
-
-Endpoints remain protected by the automatic CSRF middleware. Cross-origin SPAs still need a CORS policy listing the trusted origin, exactly as described in [Allowing cross-origin clients](#allowing-cross-origin-clients).
-
-If you're unsure, keep both. They're complementary, and there's no functional conflict between them.
+For apps that are upgrading from .NET 10 and already use the token-based system, the automatic CSRF middleware can replace it entirely in many scenarios. For guidance on when to drop the token-based system and how to do so, see <xref:migration/antiforgery-to-csrf>.
 
 ## Troubleshooting
 
@@ -302,6 +286,7 @@ Replace `{PORT}` with the app's local HTTPS port. Without the `Origin` header, t
 ## Additional resources
 
 * <xref:security/anti-request-forgery> — the token-based antiforgery system, including form integration and `IAntiforgery` APIs.
+* <xref:migration/antiforgery-to-csrf> — when and how to drop the token-based system in favor of the automatic middleware.
 * <xref:security/cors> — configuring CORS policies, which this middleware uses as its trusted-origin source.
 * [MDN — `Sec-Fetch-Site`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Sec-Fetch-Site)
 * [MDN — `Origin`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Origin)
