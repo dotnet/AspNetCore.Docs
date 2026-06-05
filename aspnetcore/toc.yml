@@ -29,6 +29,8 @@ items:
                 href: breaking-changes/11/microsoft-openapi-3x.md
               - name: Obsolete Blazor APIs removed
                 href: breaking-changes/11/blazor-obsolete-apis-removed.md
+              - name: OpenAPI document includes all ProducesResponseType entries per status code
+                href: breaking-changes/11/openapi-multiple-produces-per-status.md
               - name: OpenAPI server URL no longer has a trailing slash when PathBase is empty
                 href: breaking-changes/11/openapi-server-url-trailing-slash.md
               - name: Passkey sign-in enforces email/phone confirmation and lockout
