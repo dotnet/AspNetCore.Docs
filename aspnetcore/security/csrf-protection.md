@@ -220,7 +220,7 @@ The middleware still honors `.DisableAntiforgery()` / `[IgnoreAntiforgeryToken]`
 
 The two CSRF defenses target different layers and are designed to coexist:
 
-| | Token-based `AntiforgeryMiddleware` | Automatic CSRF protection middleware |
+| Aspect | Token-based `AntiforgeryMiddleware` | Automatic CSRF protection middleware |
 |---|---|---|
 | Introduced | ASP.NET Core 2.0+ | .NET 11 |
 | Activation | Opt-in via `app.UseAntiforgery()` (or implicitly by `AddMvc` / `MapRazorPages` / `AddRazorComponents`) | Auto-injected by `WebApplication.CreateBuilder` |

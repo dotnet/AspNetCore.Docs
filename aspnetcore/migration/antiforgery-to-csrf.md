@@ -18,7 +18,7 @@ If something stops working after the upgrade — most commonly cross-origin requ
 
 ## Should I keep the token-based antiforgery system?
 
-Most apps that are upgrading have `app.UseAntiforgery()` and the `__RequestVerificationToken` plumbing in place from earlier versions. The new middleware doesn't remove or replace any of that — the two protections coexist. The choice is whether to keep both as defense in depth, or simplify by removing the older token-based system.
+Most apps that use the token-based system have `app.UseAntiforgery()` and the `__RequestVerificationToken` plumbing in place. The new middleware doesn't remove or replace any of that — the two protections coexist. The choice is whether to keep both as defense in depth, or simplify by removing the older token-based system.
 
 **Keep the token-based system when:**
 
@@ -35,7 +35,7 @@ If unsure, keep both. They're complementary, and there's no functional conflict 
 
 ## Simplify: drop the token-based system
 
-For apps that fit the second list above, the automatic CSRF middleware alone is enough to defend against the classic CSRF attack. Dropping the token-based system removes the token round-trip, the [Data Protection](xref:security/data-protection/introduction) dependency that the antiforgery system uses for token encryption, and the `IAntiforgery` calls in views or scripts.
+For apps that fit the second list above, the automatic CSRF middleware alone is enough to defend against the classic CSRF attack. Dropping the token-based system removes the token round-trip, the [Data Protection](xref:security/data-protection/introduction) dependency that the antiforgery system uses for token encryption, and the `IAntiforgery` calls in views and page handlers.
 
 ### What to remove
 
@@ -46,7 +46,7 @@ For apps that fit the second list above, the automatic CSRF middleware alone is 
 | `@Html.AntiForgeryToken()`, `asp-antiforgery` | Razor views / pages | No token to render. |
 | `RequestVerificationToken` header in JavaScript / `fetch` calls | Client code | Browser-supplied `Sec-Fetch-Site` and `Origin` replace it. |
 | `[ValidateAntiForgeryToken]`, `[AutoValidateAntiforgeryToken]` | MVC controllers | These are token-specific attributes. Without `UseAntiforgery()` they have no effect. |
-| `.RequireAntiforgeryToken()` / `RequireAntiforgeryTokenAttribute` | Minimal API endpoints | Token-specific metadata. |
+| `[RequireAntiforgeryToken]` attribute / `RequireAntiforgeryTokenAttribute` metadata | MVC actions and Minimal API endpoints | Token-specific metadata. |
 
 Per-endpoint opt-outs (`.DisableAntiforgery()` on Minimal APIs, `[IgnoreAntiforgeryToken]` on MVC) can stay where they are — both also opt the endpoint out of the new CSRF middleware. Remove them only if the endpoint should be protected after the simplification.
 
