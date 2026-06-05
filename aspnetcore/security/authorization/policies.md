@@ -6,18 +6,38 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 02/17/2026
+ms.date: 06/05/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
 
-:::moniker range=">= aspnetcore-6.0"
+An ASP.NET Core authorization policy is a named set of one or more authorization requirements that the framework evaluates to decide whether a user is allowed to access a resource.
+
+This article explains:
+
+* Registering and applying policies.
+* Authorization handlers for single and multiple requirement evaluation.
+* How multiple requirements in a single policy are evaluated.
+
+In practice, you apply a policy with [Authorize(Policy = "...")] or RequireAuthorization(...), and ASP.NET Core uses handlers to evaluate the requirements behind that policy. If you need policies generated dynamically instead of registered up front, that’s where IAuthorizationPolicyProvider comes in.
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
+:::moniker range=">= aspnetcore-6.0"
+
 An authorization policy consists of one or more requirements. Register it as part of the authorization service configuration, in the app's `Program.cs` file:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-23,29":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" range="20-23,29":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `Startup.ConfigureServices` method:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/3.0PoliciesAuthApp1/Startup.cs" range="31-32,39-40,42-45, 53, 58":::
+
+:::moniker-end
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
@@ -25,7 +45,74 @@ In the preceding example, an "AtLeast21" policy is created. It has a single requ
 
 The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/stubs/copy_of_IAuthorizationService.cs" id="snippet" highlight="24-25,48-49":::
+STUBS (the highlights were for 24-25 and 48-49)...
+
+```csharp
+// THIS IS A COPY OF https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs
+// USED FOR DOCUMENTAION
+// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
+namespace Microsoft.AspNetCore.Authorization
+{
+    // <snippet>
+    /// <summary>
+    /// Checks policy based permissions for a user
+    /// </summary>
+    public interface IAuthorizationService
+    {
+        /// <summary>
+        /// Checks if a user meets a specific set of requirements for the specified resource
+        /// </summary>
+        /// <param name="user">The user to evaluate the requirements against.</param>
+        /// <param name="resource">
+        /// An optional resource the policy should be checked with.
+        /// If a resource is not required for policy evaluation you may pass null as the value
+        /// </param>
+        /// <param name="requirements">The requirements to evaluate.</param>
+        /// <returns>
+        /// A flag indicating whether authorization has succeeded.
+        /// This value is <value>true</value> when the user fulfills the policy; 
+        /// otherwise <value>false</value>.
+        /// </returns>
+        /// <remarks>
+        /// Resource is an optional parameter and may be null. Please ensure that you check 
+        /// it is not null before acting upon it.
+        /// </remarks>
+        Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, object resource, 
+                                         IEnumerable<IAuthorizationRequirement> requirements);
+
+        /// <summary>
+        /// Checks if a user meets a specific authorization policy
+        /// </summary>
+        /// <param name="user">The user to check the policy against.</param>
+        /// <param name="resource">
+        /// An optional resource the policy should be checked with.
+        /// If a resource is not required for policy evaluation you may pass null as the value
+        /// </param>
+        /// <param name="policyName">The name of the policy to check against a specific 
+        /// context.</param>
+        /// <returns>
+        /// A flag indicating whether authorization has succeeded.
+        /// Returns a flag indicating whether the user, and optional resource has fulfilled 
+        /// the policy.    
+        /// <value>true</value> when the policy has been fulfilled; 
+        /// otherwise <value>false</value>.
+        /// </returns>
+        /// <remarks>
+        /// Resource is an optional parameter and may be null. Please ensure that you check
+        /// it is not null before acting upon it.
+        /// </remarks>
+        Task<AuthorizationResult> AuthorizeAsync(
+                                    ClaimsPrincipal user, object resource, string policyName);
+    }
+    // </snippet>
+}
+```
 
 The preceding code highlights the two methods of the [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
@@ -81,6 +168,8 @@ public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
 
 The following code shows a typical authorization service configuration:
 
+:::moniker range=">= aspnetcore-6.0"
+
 ```csharp
 // Add all of your handlers to DI.
 builder.Services.AddSingleton<IAuthorizationHandler, MyHandler1>();
@@ -94,27 +183,71 @@ builder.Services.AddAuthorization(options =>
       policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
 ```
 
-Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, `[Authorize(Policy = "Something")]`, or `RequireAuthorization("Something")` for authorization.
+:::moniker-end
 
-<a name="apply-policies-to-mvc-controllers"></a>
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // Add all of your handlers to DI.
+    services.AddSingleton<IAuthorizationHandler, MyHandler1>();
+    // MyHandler2, ...
+
+    services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
+
+    // Configure your policies
+    services.AddAuthorization(options =>
+          options.AddPolicy("Something",
+          policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
+
+
+    services.AddControllersWithViews();
+    services.AddRazorPages();
+}
+```
+
+:::moniker-end
+
+Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
 ## Apply policies to MVC controllers
 
-For apps that use Razor Pages, see the [Apply policies to Razor Pages](#apply-policies-to-razor-pages) section.
-
 Apply policies to controllers by using the `[Authorize]` attribute with the policy name:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" id="snippet" highlight="1":::
+:::moniker range=">= aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" id="snippet" highlight="1":::
 
 If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller2.cs" id="snippet" highlight="1,4":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller2.cs" id="snippet" highlight="1,4":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Policies are applied to controllers by using the `[Authorize]` attribute with the policy name. For example:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs" id="snippet_AlcoholPurchaseControllerClass" highlight="4":::
+
+:::moniker-end
 
 ## Apply policies to Razor Pages
 
 Apply policies to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs" highlight="6":::
+:::moniker range=">= aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs" highlight="6":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs" id="snippet_AlcoholPurchaseModelClass" highlight="4":::
+
+:::moniker-end
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
@@ -124,36 +257,50 @@ Policies can also be applied to Razor Pages by using an [authorization conventio
 
 Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> with the policy name. For example:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_requireAuthorization":::
-
-<a name="requirements"></a>
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_requireAuthorization":::
 
 ## Requirements
 
 An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our "AtLeast21" policy, the requirement is a single parameter&mdash;the minimum age. A requirement implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, which is an empty marker interface. A parameterized minimum age requirement could be implemented as follows:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/MinimumAgeRequirement.cs":::
+:::moniker range=">= aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Policies/Requirements/MinimumAgeRequirement.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs" id="snippet_MinimumAgeRequirementClass":::
+
+:::moniker-end
 
 If an authorization policy contains multiple authorization requirements, all requirements must pass in order for the policy evaluation to succeed. In other words, multiple authorization requirements added to a single authorization policy are treated on an **AND** basis.
 
 > [!NOTE]
 > A requirement doesn't need to have data or properties.
 
-<a name="security-authorization-policies-based-authorization-handler"></a>
-
 ## Authorization handlers
 
 An authorization handler is responsible for the evaluation of a requirement's properties. The authorization handler evaluates the requirements against a provided <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> to determine if access is allowed.
 
-A requirement can have [multiple handlers](#security-authorization-policies-based-multiple-handlers). A handler may inherit <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler%601>, where `TRequirement` is the requirement to be handled. Alternatively, a handler may implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> directly to handle more than one type of requirement.
+A requirement can have [multiple handlers](#why-would-i-want-multiple-handlers-for-a-requirement?). A handler may inherit <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler%601>, where `TRequirement` is the requirement to be handled. Alternatively, a handler may implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> directly to handle more than one type of requirement.
 
 ### Use a handler for one requirement
 
-<a name="security-authorization-handler-example"></a>
-
 The following example shows a one-to-one relationship in which a minimum age handler handles a single requirement:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/MinimumAgeHandler.cs":::
+:::moniker range=">= aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Policies/Handlers/MinimumAgeHandler.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Handlers/MinimumAgeHandler.cs" id="snippet_MinimumAgeHandlerClass":::
+
+:::moniker-end
 
 The preceding code determines if the current user principal has a date of birth claim that has been issued by a known and trusted Issuer. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is considered successful. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as its sole parameter.
 
@@ -161,17 +308,35 @@ The preceding code determines if the current user principal has a date of birth 
 
 The following example shows a one-to-many relationship in which a permission handler can handle three different types of requirements:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/PermissionHandler.cs":::
+:::moniker range=">= aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Policies/Handlers/PermissionHandler.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Handlers/PermissionHandler.cs" id="snippet_PermissionHandlerClass":::
+
+:::moniker-end
 
 The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements%2A>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
-
-<a name="security-authorization-policies-based-handler-registration"></a>
 
 ### Handler registration
 
 Register handlers in the services collection during configuration. For example:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_minimumAgeHandlerRegistration":::
+:::moniker range=">= aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_minimumAgeHandlerRegistration":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/3.0PoliciesAuthApp1/Startup.cs" range="31-32,39-40,42-45,53-55,58":::
+
+:::moniker-end
 
 The preceding code registers `MinimumAgeHandler` as a singleton. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
@@ -181,7 +346,7 @@ See the implementation of the <xref:Microsoft.AspNetCore.Authorization.Infrastru
 
 ## What should a handler return?
 
-Note that the `Handle` method in the [handler example](#security-authorization-handler-example) returns no value. How is a status of either success or failure indicated?
+Note that the `Handle` method in the [handler example](#use-a-handler-for-one-requirement) returns no value. How is a status of either success or failure indicated?
 
 * A handler indicates success by calling `context.Succeed(IAuthorizationRequirement requirement)`, passing the requirement that has been successfully validated.
 
@@ -194,27 +359,43 @@ If a handler calls `context.Succeed` or `context.Fail`, all other handlers are s
 > [!NOTE]
 > Authorization handlers are called even if authentication fails. Also handlers can execute in any order, so do ***not*** depend on them being called in any particular order.
 
-<a name="security-authorization-policies-based-multiple-handlers"></a>
-
 ## Why would I want multiple handlers for a requirement?
 
 In cases where you want evaluation to be on an **OR** basis, implement multiple handlers for a single requirement. For example, Microsoft has doors that only open with key cards. If you leave your key card at home, the receptionist prints a temporary sticker and opens the door for you. In this scenario, you'd have a single requirement, *BuildingEntry*, but multiple handlers, each one examining a single requirement.
 
+:::moniker range=">= aspnetcore-6.0"
+
 `BuildingEntryRequirement.cs`
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs":::
 
 `BadgeEntryHandler.cs`
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs":::
 
 `TemporaryStickerHandler.cs`
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs":::
 
-Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
+:::moniker-end
 
-<a name="use-a-func-to-fulfill-a-policy"></a>
+:::moniker range="< aspnetcore-6.0"
+
+`BuildingEntryRequirement.cs`
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Requirements/BuildingEntryRequirement.cs" id="snippet_BuildingEntryRequirementClass":::
+
+`BadgeEntryHandler.cs`
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Handlers/BadgeEntryHandler.cs" id="snippet_BadgeEntryHandlerClass":::
+
+`TemporaryStickerHandler.cs`
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs" id="snippet_TemporaryStickerHandlerClass":::
+
+:::moniker-end
+
+Ensure that both handlers are [registered](xref:security/authorization/policies#handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
 ## Use a func to fulfill a policy
 
@@ -222,9 +403,17 @@ There may be situations in which fulfilling a policy is simple to express in cod
 
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-21,25-29":::
+:::moniker range=">= aspnetcore-6.0"
 
-<a name="access-mvc-request-context-in-handlers"></a>
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" range="20-21,25-29":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/3.0PoliciesAuthApp1/Startup.cs" range="42-43,47-53":::
+
+:::moniker-end
 
 ## Access MVC request context in handlers
 
@@ -258,41 +447,141 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
-<a name="exs"></a>
+:::moniker range=">= aspnetcore-6.0"
 
-## Authorization with external service sample
+## Authorization via an external service sample
 
-The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service) shows how to implement additional authorization requirements with an external authorization service. The sample `Contoso.API` project is secured with [Azure AD](/azure/active-directory/fundamentals/active-directory-whatis). An additional authorization check from the `Contoso.Security.API` project returns a payload describing whether the `Contoso.API` client app can invoke the `GetWeather` API.
+The [Authorization via an external service sample (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthorizationExternalService) shows how to implement additional authorization requirements with an external authorization service. The solution's `Contoso.API` project is secured with [Microsoft Entra ID](/entra/fundamentals/what-is-entra). An additional authorization check from the `Contoso.Security.API` project returns a payload describing whether the `Contoso.API` client app can invoke the `GetWeather` API.
 
 ### Configure the sample
 
-* Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Microsoft Entra ID tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
+The following demonstration relies on using the Swagger UI or [cURL](https://curl.se/) in a command shell.
 
- * Assign it an AppRole.
- * Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this app registration represents both the API and the client invoking the API. If you like, you can create two app registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the client. Only the client app registration requires a client secret to be generated.
+In the `Contoso.Security.API` project, configure the `AllowedClients` placeholder of `{CLIENT ID (FOR THE CLIENT CALLING CONTOSO.API)}` of the  with any test GUID value (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`):
 
-* Configure the `Contoso.API` project with the following settings:
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthorizationExternalService/Contoso.Security.API/appsettings.json":::
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.API/appsettings.json":::
+Use [`dotnet user-jwts`](xref:security/authentication/jwt) to generate an access token with an `appid` claim for the client app's ID, which was created in the preceding step (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`).
 
-* Configure `Contoso.Security.API` with the following settings:
+```dotnetcli
+dotnet user-jwts create --claim appid={GUID}
+```
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.Security.API/appsettings.json":::
+Example:
 
-* Open the [ContosoAPI.collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.collection.json) file and configure an environment with the following:
+```dotnetcli
+dotnet user-jwts create --claim appid=00001111-aaaa-2222-bbbb-3333cccc4444
+```
 
-    * `ClientId`: Client Id from app registration representing the client calling the API.
-    * `clientSecret`: Client Secret from app registration representing the client calling the API.
-    * `TenantId`: Tenant Id from AAD properties
+The output produces a token after "`Token:`" in the command shell:
 
-* Extract the commands from the `ContosoAPI.collection.json` file and use them to construct cURL commands to test the app.
-* Run the solution and use [cURL](https://curl.se/) to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
+```dotnetcli
+New JWT saved with ID '{JWT ID}'.
+Name: {USER}
+Custom Claims: [appid=00001111-aaaa-2222-bbbb-3333cccc4444]
+
+Token: {TOKEN}
+```
+
+Set the value of the token (where the `{TOKEN}` placeholder appears in the preceding output) aside for use later.
+
+You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jwt.ms/) to see its contents, revealing that it contains an `appid` claim with the client app's ID:
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}.{
+  "unique_name": "{USER}",
+  "sub": "{USER}",
+  "jti": "14ed7729",
+  "appid": "9e7b23cf-2f98-48b5-a681-42cb4fb0df68",
+  "aud": [
+    "https://localhost:7250",
+    "http://localhost:7251"
+  ],
+  "nbf": 1780660887,
+  "exp": 1788609687,
+  "iat": 1780660888,
+  "iss": "dotnet-user-jwts"
+}.[Signature]
+```
+
+Execute the command again with an incorrect client ID (`appid`) value:
+
+```dotnetcli
+dotnet user-jwts create --claim appid=aaaabbbb-0000-cccc-1111-dddd2222eeee
+```
+
+Set the value of second token aside.
+
+Start both the `Contoso.API` and `Contoso.Security.API` projects in Visual Studio or with the `dotnet watch` command in a command shell:
+
+```dotnetcli
+dotnet watch
+```
+
+# [Swagger UI](#tab/swagger-ui)
+
+
+
+
+
+
+# [cURL in a command shell](#tab/curl-command-shell)
+
+In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `WeatherForecast` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
+
+```dotnetcli
+curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:7250/WeatherForecast
+```
+
+The output indicates success because the user's birth date claim indicates that they're at least 21 years old:
+
+```dotnetcli
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 05 Jun 2026 12:48:58 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+[{ ... WEATHER DATA ... }]
+```
+
+Execute the command again using the second token with the invalid client ID (`appid`). The result indicates a policy failure:
+
+```dotnetcli
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 05 Jun 2026 13:09:56 GMT
+Server: Kestrel
+```
+
+You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the passed client ID (`appid`) is used to assert whether it is allowed to obtain weather data.
+
+You can also send the client ID directly to the `Contoso.Security.API` either via the Swagger UI or cURL in a command shell (for example: ``) to see it return either `true` or `false` for `canGetWeather`
+
+```dotnetcli
+curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:7123/SecurityPolicy/9e7b23cf-2f98-48b5-a681-42cb4fb0df68
+```
+
+With the correct client ID (`appid`), `canGetWeather` is `true`:
+
+```dotnetcli
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 05 Jun 2026 13:19:49 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{"canGetWeather":true}
+```
+
+---
 
 ## Additional resources
 
-* [Quickstart: Configure an application to expose a web API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
-* [AspNetCore.Docs.Samples code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service)
+* [Quickstart: Configure an application to expose a web API](/entra/identity-platform/quickstart-configure-app-expose-web-apis)
+* [Authorization via an external service sample (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthorizationExternalService)
 
 :::moniker-end
-
-[!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
