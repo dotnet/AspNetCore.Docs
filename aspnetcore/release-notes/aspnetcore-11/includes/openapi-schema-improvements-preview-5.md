@@ -1,6 +1,6 @@
 ### OpenAPI schemas better match ASP.NET Core behavior
 
-OpenAPI generation now handles two schema cases more accurately. Non-body enum parameters keep the original C# enum member names even when HTTP JSON options configure a `JsonStringEnumConverter` naming policy, because query, route, header, and form binding use `Enum.TryParse` rather than JSON serialization. Array schema reference IDs now use valid component names such as `stringArray` and `TodoArray` instead of names with array syntax.
+OpenAPI generation now handles several schema cases more accurately. Non-body enum parameters keep the original C# enum member names even when HTTP JSON options configure a <xref:System.Text.Json.Serialization.JsonStringEnumConverter> naming policy, because query, route, header, and form binding use `Enum.TryParse` rather than JSON serialization. Array schema reference IDs now use valid component names such as `stringArray` and `TodoArray` instead of names with array syntax.
 
 ```csharp
 builder.Services.ConfigureHttpJsonOptions(options =>
