@@ -36,7 +36,7 @@ The Blazor framework supports forms and provides built-in input components:
 
 :::moniker range=">= aspnetcore-11.0"
 
-In Blazor Web Apps that use static server-side rendering (static SSR), input components automatically participate in client-side validation when the form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For details, see <xref:blazor/forms/validation#client-side-validation-in-blazor-ssr-forms>.
+In Blazor Web Apps that use static server-side rendering (static SSR), input components automatically participate in client-side validation when the form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
 
 :::moniker-end
 
@@ -446,7 +446,7 @@ In Blazor Web Apps, client-side validation requires an active Blazor SignalR cir
 
 ## Client-side validation in static SSR forms
 
-In Blazor Web Apps, forms in components that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-blazor-ssr-forms>.
+In Blazor Web Apps, forms in components that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
 
 :::moniker-end
 
@@ -474,7 +474,7 @@ For statically-rendered forms on the server, a new mechanism for client-side val
 
 * Follow the guidance in <xref:blazor/forms/validation> for either:
   * Server-side validation in a Blazor Web App that adopts an interactive render mode.
-  * Client-side validation in [Blazor SSR forms](xref:blazor/forms/validation#client-side-validation-in-blazor-ssr-forms).
+  * Client-side validation in [Blazor SSR forms](xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms).
   * Client-side validation in a standalone Blazor WebAssembly app.
 * Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.

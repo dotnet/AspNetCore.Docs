@@ -28,7 +28,7 @@ In Blazor Web Apps, client-side validation requires an active Blazor SignalR cir
 
 :::moniker range=">= aspnetcore-11.0"
 
-In Blazor Web Apps that use interactive render modes (Server, WebAssembly, or Auto), client-side validation runs through the live <xref:Microsoft.AspNetCore.Components.Forms.EditContext> pipeline as in earlier releases. Forms that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see the [Client-side validation in Blazor SSR forms](#client-side-validation-in-blazor-ssr-forms) section.
+In Blazor Web Apps that use interactive render modes (Server, WebAssembly, or Auto), client-side validation runs through the live <xref:Microsoft.AspNetCore.Components.Forms.EditContext> pipeline as in earlier releases. Forms that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
 
 :::moniker-end
 
@@ -167,9 +167,9 @@ There are two general approaches for achieving custom validation, which are desc
 
 :::moniker range=">= aspnetcore-11.0"
 
-## Client-side validation in Blazor SSR forms
+## Client-side validation in static SSR forms
 
-When a Blazor static server-side rendered (static SSR) form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, Blazor automatically validates the form in the browser before the form is submitted. Server-side data annotations validation continues to run after the form is posted, so the client-side check supplements but never replaces the server-side check.
+When a Blazor form that uses [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr) contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, Blazor automatically validates the form in the browser before the form is submitted. Server-side data annotations validation continues to run after the form is posted, so the client-side check supplements but never replaces the server-side check.
 
 Client-side validation activates automatically when both conditions are met:
 
@@ -203,17 +203,17 @@ A field validates when it loses focus (blur) for the first time. After a field h
 
 The existing <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components display client-side validation errors without any changes. ARIA attributes on input elements and on the validation message containers are managed by Blazor automatically so that assistive technologies announce validation errors without additional configuration.
 
+### Localized validation messages
+
+When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side validation shows the same localized strings as the server-side experience. For more information, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
+
 ### CSS framework integration
 
-Client-side validation marks invalid inputs through the browser's [Constraint Validation API](https://developer.mozilla.org/docs/Web/API/Constraint_validation), so the standard CSS pseudo-classes `:valid` and `:invalid` reflect the current state of each input.
+Client-side validation integrates with the browser's [Constraint Validation API](https://developer.mozilla.org/docs/Web/API/Constraint_validation), so the standard CSS pseudo-classes `:valid` and `:invalid` reflect each input's current validation state.
 
 ### Enhanced navigation
 
 Client-side validation is preserved across [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). When the user navigates to a page that contains an SSR form, the form is wired up automatically. Multiple forms on the same page validate independently of each other.
-
-### Localized validation messages
-
-When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side validation shows the same localized strings as the server-side experience. For more information, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
 
 ### Opting out
 
