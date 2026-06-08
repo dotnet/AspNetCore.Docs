@@ -135,36 +135,33 @@ public static class Program
         {
             serverOptions.ListenAnyIP(5005, listenOptions =>
             {
-                listenOptions.UseHttps(httpsOptions =>
+                var localhostCert = CertificateLoader.LoadFromStoreCert(
+                    "localhost", "My", StoreLocation.CurrentUser,
+                    allowInvalid: true);
+                var exampleCert = CertificateLoader.LoadFromStoreCert(
+                    "example.com", "My", StoreLocation.CurrentUser,
+                    allowInvalid: true);
+
+                listenOptions.UseHttps((stream, clientHelloInfo, state, cancellationToken) =>
                 {
-                    var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser,
-                        allowInvalid: true);
-                    var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser,
-                        allowInvalid: true);
-
-                    listenOptions.UseHttps((stream, clientHelloInfo, state, cancellationToken) =>
+                    if (string.Equals(clientHelloInfo.ServerName, "localhost",
+                        StringComparison.OrdinalIgnoreCase))
                     {
-                        if (string.Equals(clientHelloInfo.ServerName, "localhost",
-                            StringComparison.OrdinalIgnoreCase))
-                        {
-                            return new ValueTask<SslServerAuthenticationOptions>(
-                                new SslServerAuthenticationOptions
-                                {
-                                    ServerCertificate = localhostCert,
-                                    // Different TLS requirements for this host
-                                    ClientCertificateRequired = true
-                                });
-                        }
-
                         return new ValueTask<SslServerAuthenticationOptions>(
                             new SslServerAuthenticationOptions
                             {
-                                ServerCertificate = exampleCert
+                                ServerCertificate = localhostCert,
+                                // Different TLS requirements for this host
+                                ClientCertificateRequired = true
                             });
-                    }, state: null!);
-                });
+                    }
+
+                    return new ValueTask<SslServerAuthenticationOptions>(
+                        new SslServerAuthenticationOptions
+                        {
+                            ServerCertificate = exampleCert
+                        });
+                }, state: null!);
             });
         });
         // </snippet_ServerOptionsSelectionCallback>
@@ -179,39 +176,36 @@ public static class Program
         {
             serverOptions.ListenAnyIP(5005, listenOptions =>
             {
-                listenOptions.UseHttps(httpsOptions =>
+                var localhostCert = CertificateLoader.LoadFromStoreCert(
+                    "localhost", "My", StoreLocation.CurrentUser,
+                    allowInvalid: true);
+                var exampleCert = CertificateLoader.LoadFromStoreCert(
+                    "example.com", "My", StoreLocation.CurrentUser,
+                    allowInvalid: true);
+
+                listenOptions.UseHttps(new TlsHandshakeCallbackOptions
                 {
-                    var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser,
-                        allowInvalid: true);
-                    var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser,
-                        allowInvalid: true);
-
-                    listenOptions.UseHttps(new TlsHandshakeCallbackOptions
+                    OnConnection = context =>
                     {
-                        OnConnection = context =>
+                        if (string.Equals(context.ClientHelloInfo.ServerName, "localhost",
+                            StringComparison.OrdinalIgnoreCase))
                         {
-                            if (string.Equals(context.ClientHelloInfo.ServerName, "localhost",
-                                StringComparison.OrdinalIgnoreCase))
-                            {
-                                // Different TLS requirements for this host
-                                context.AllowDelayedClientCertificateNegotation = true;
-
-                                return new ValueTask<SslServerAuthenticationOptions>(
-                                    new SslServerAuthenticationOptions
-                                    {
-                                        ServerCertificate = localhostCert
-                                    });
-                            }
+                            // Different TLS requirements for this host
+                            context.AllowDelayedClientCertificateNegotation = true;
 
                             return new ValueTask<SslServerAuthenticationOptions>(
                                 new SslServerAuthenticationOptions
                                 {
-                                    ServerCertificate = exampleCert
+                                    ServerCertificate = localhostCert
                                 });
                         }
-                    });
+
+                        return new ValueTask<SslServerAuthenticationOptions>(
+                            new SslServerAuthenticationOptions
+                            {
+                                ServerCertificate = exampleCert
+                            });
+                    }
                 });
             });
         });

@@ -397,6 +397,8 @@ The `--contentroot` argument sets the absolute path to the directory that contai
   "commandLineArgs": "--contentroot=/content-root-path"
   ```
 
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
 * In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the `launchSettings.json` file.
 
   ```console
