@@ -213,7 +213,7 @@ Client-side validation is preserved across [enhanced navigation](xref:blazor/fun
 
 ### Localized validation messages
 
-When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side experience uses the same localized strings as the server-side experience. For more information, see the [Localizing validation messages](#localizing-validation-messages) section.
+When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side validation shows the same localized strings as the server-side experience. For more information, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
 
 ### Opting out
 

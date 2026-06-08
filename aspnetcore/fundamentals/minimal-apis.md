@@ -132,6 +132,26 @@ To implement custom validation error responses:
 
 For more information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#customize-validation-error-responses-using-iproblemdetailsservice>.
 
+:::moniker range=">= aspnetcore-11.0"
+
+### Localizing validation messages
+
+Validation error messages and display names can be localized through the `Microsoft.Extensions.Validation.Localization` package, which is included in the Web SDK (`Microsoft.NET.Sdk.Web`) and doesn't require an explicit package reference in Minimal API projects.
+
+Register the validation pipeline, the standard ASP.NET Core localization services, and the validation localization integration in `Program.cs`:
+
+```csharp
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddValidation();
+builder.Services.AddValidationLocalization<ValidationResources>();
+```
+
+Use the typed `AddValidationLocalization<TSharedResource>()` overload for Minimal APIs. Top-level parameters on Minimal API endpoints don't have a containing type, so the default per-type resource lookup has no type to key on; the typed overload supplies one explicitly. A shared resource file resolves messages and display names against one *.resx* file (`Resources/ValidationResources.fr.resx`, and so on).
+
+For the full set of options, including loading messages from sources other than resource files, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
+
+:::moniker-end
+
 ## Responses
 
 Route handlers support the following types of return values:

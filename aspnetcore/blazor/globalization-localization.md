@@ -24,7 +24,20 @@ A limited set of ASP.NET Core's localization features are supported:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> and <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
+:::moniker range="< aspnetcore-11.0"
+
 For Blazor apps, localized validation messages for [forms validation using data annotations](<xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation>) is supported if <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> are implemented.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+For Blazor apps, localized validation messages for [forms validation using data annotations](<xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation>) are supported through two paths:
+
+* The static resource path using <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> for display names and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> for localized error messages. This approach is supported in every release.
+* The `Microsoft.Extensions.Validation.Localization` package, which resolves validation messages and display names through <xref:Microsoft.Extensions.Localization.IStringLocalizer>. Available for Blazor apps that enable the new validation pipeline using `AddValidation()`. For details, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
+
+:::moniker-end
 
 This article describes how to use Blazor's globalization and localization features based on:
 
