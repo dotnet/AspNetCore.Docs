@@ -285,6 +285,36 @@ App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the ap
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## `EnvironmentBoundary` component
+
+<!-- UPDATE 11.0 - API Browser cross-links -->
+
+Use the `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
+
+The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching.
+
+```razor
+@using Microsoft.AspNetCore.Components.Web
+
+<EnvironmentBoundary Include="Development">
+    <div class="alert alert-warning">
+        Debug mode enabled
+    </div>
+</EnvironmentBoundary>
+
+<EnvironmentBoundary Include="Development,Staging">
+    <p>Pre-production environment</p>
+</EnvironmentBoundary>
+
+<EnvironmentBoundary Exclude="Production">
+    <p>@DateTime.Now</p>
+</EnvironmentBoundary>
+```
+
+:::moniker-end
+
 ## Read the environment in a Blazor WebAssembly app
 
 Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property.

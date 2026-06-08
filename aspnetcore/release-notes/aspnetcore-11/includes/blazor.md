@@ -309,6 +309,39 @@ This restores `<button>` elements with `@onclick` handlers. An interactive rende
 
 The switch only controls the rendered HTML element (`<a>` versus `<button>`). Even when disabled, `QuickGrid` still reads and writes state to the URL query string internally. `SortByColumnAsync` and `Paginator.GoToPageAsync` navigate via `NavigationManager.NavigateTo` regardless of the flag.
 
+#### Row click event (`OnRowClick`)
+
+The `QuickGrid` component now supports row click events through the new <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager NavigationManager
+
+<QuickGrid Items="@people.AsQueryable()" 
+    OnRowClick="@((Person args) => HandleRowClick(args))">
+    <PropertyColumn Property="@(p => p.Name)" />
+    <PropertyColumn Property="@(p => p.Email)" />
+</QuickGrid>
+
+@code {
+    private List<Person> people = new()
+    {
+        new(1, "Alice Smith", "alice@example.com", "Engineering"),
+        new(2, "Bob Johnson", "bob@example.com", "Marketing"),
+        new(3, "Carol Williams", "carol@example.com", "Engineering"),
+    };
+
+    private void HandleRowClick(Person person)
+    {
+        NavigationManager.NavigateTo($"/person/{person.Id}");
+    }
+
+    private record Person(int Id, string Name, string Email, string Department);
+}
+```
+
+The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the row-clickable CSS class, providing clear visual feedback to users.
+
 ## Client-side prerendering in a Blazor Web App preserves the server's culture
 
 By default, client-side prerendering on the server (`.Client` project in a Blazor Web App) persists the server's <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> into component state and applies them on the client before satellite assemblies load.
@@ -350,3 +383,52 @@ public string? FlashMessage { get; set; }
 ```
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
+
+### `GetUriWithHash` extension method
+
+A new `GetUriWithHash` extension method permits `NavigationManager` to easily construct URIs with hash fragments. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+
+* Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
+* Method call that receives a section Id (`sectionId`) and navigates to the section of the page.
+
+```razor
+@inject NavigationManager Navigation
+
+<a href="@Navigation.GetUriWithHash("section-1")">
+    Jump to Section 1
+</a>
+
+@code {
+    private void NavigateToSection(string sectionId)
+    {
+        var uri = Navigation.GetUriWithHash(sectionId);
+        Navigation.NavigateTo(uri);
+    }
+}
+```
+
+The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
+
+## `EnvironmentBoundary` component
+
+Blazor now includes a built-in `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
+
+The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching and follows the same semantics as MVC's `EnvironmentTagHelper`.
+
+```razor
+@using Microsoft.AspNetCore.Components.Web
+
+<EnvironmentBoundary Include="Development">
+    <div class="alert alert-warning">
+        Debug mode enabled
+    </div>
+</EnvironmentBoundary>
+
+<EnvironmentBoundary Include="Development,Staging">
+    <p>Pre-production environment</p>
+</EnvironmentBoundary>
+
+<EnvironmentBoundary Exclude="Production">
+    <p>@DateTime.Now</p>
+</EnvironmentBoundary>
+```

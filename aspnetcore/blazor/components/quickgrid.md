@@ -272,6 +272,43 @@ In the following query string:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+#### Row click event (`OnRowClick`)
+
+The `QuickGrid` component supports row click events through the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager NavigationManager
+
+<QuickGrid Items="@people.AsQueryable()" 
+    OnRowClick="@((Person args) => HandleRowClick(args))">
+    <PropertyColumn Property="@(p => p.Name)" />
+    <PropertyColumn Property="@(p => p.Email)" />
+</QuickGrid>
+
+@code {
+    private List<Person> people = new()
+    {
+        new(1, "Alice Smith", "alice@example.com", "Engineering"),
+        new(2, "Bob Johnson", "bob@example.com", "Marketing"),
+        new(3, "Carol Williams", "carol@example.com", "Engineering"),
+    };
+
+    private void HandleRowClick(Person person)
+    {
+        NavigationManager.NavigateTo($"/person/{person.Id}");
+    }
+
+    private record Person(int Id, string Name, string Email, string Department);
+}
+```
+
+The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the row-clickable CSS class, providing clear visual feedback to users.
+
+:::moniker-end
+
 ## Sort by column
 
 :::moniker range=">= aspnetcore-11.0"
@@ -356,7 +393,7 @@ The `SciFiCharacters` component:
 :::moniker range=">= aspnetcore-11.0"
 
 * Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#pagination-modes), which sets the page index from the value of a `page` query string value, if it exists.
-* Opens the preceding `Details` component with the current page number, the current page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+* Opens the preceding `Details` component with the current page number, which is the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) incremented by one to make the value a one-based index in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
 
@@ -364,14 +401,10 @@ The `SciFiCharacters` component:
 @page "/scifi-characters"
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid Items="characters" Pagination="pagination">
+<QuickGrid Items="characters" Pagination="pagination" 
+    OnRowClick="@((Character args) => HandleRowClick(args))">
     <PropertyColumn Property="@(c => c.Id)" />
     <PropertyColumn Property="@(c => c.Name)" />
-    <TemplateColumn Context="c">
-        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex + 1}")">
-            Details
-        </a>
-    </TemplateColumn>
 </QuickGrid>
 
 <Paginator State="pagination" />
@@ -396,6 +429,12 @@ The `SciFiCharacters` component:
         new Character(10, "Ellie Sattler"),
         new Character(11, "Leela")
     }.AsQueryable();
+
+    private void HandleRowClick(Character character)
+    {
+        NavigationManager.NavigateTo(
+            $"/details?id={character.Id}&page={pagination.CurrentPageIndex + 1}");
+    }
 }
 ```
 
