@@ -85,6 +85,35 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Blazor WebAssembly Gateway
+
+<!-- UPDATE 11.0 - Link to package when it's out.
+
+     [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway)
+-->
+
+`Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
+
+The standalone Blazor WebAssembly project template references the Gateway package and adopts the SDK's `StaticWebAssetSpaFallbackEnabled` property in the app's project file:
+
+```xml
+<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
+```
+
+The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so standalone Blazor WebAssembly apps feature:
+
+* Built-in SPA fallback routing: Requests that don't match a static asset fall back to `index.html`, so client-side routes such as `/orders/42` work on browser refresh and direct navigation without a custom MSBuild target.
+* Multiple Blazor WebAssembly clients per host: A single Gateway instance can serve more than one Blazor WebAssembly client under different path prefixes, configured through its `ClientApps` section. This is the integration point .NET Aspire uses to host Blazor WebAssembly clients alongside backend services in a single AppHost run.
+* Built-in YARP reverse-proxy infrastructure: YARP is bundled with the Gateway, providing the foundation for forwarding backend traffic alongside the WebAssembly client and enabling the Aspire multi-client scenarios.
+
+To adopt the Gateway in an existing standalone Blazor WebAssembly app that targets .NET 11 or later, reference the `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+:::moniker-end
+
 ## Prerequisites
 
 This section explains the prerequisites for debugging.
