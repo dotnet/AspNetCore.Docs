@@ -20,9 +20,15 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
 Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+In Blazor Web Apps that use interactive render modes (Server, WebAssembly, or Auto), client-side validation runs through the live <xref:Microsoft.AspNetCore.Components.Forms.EditContext> pipeline as in earlier releases. Forms that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see the [Client-side validation in Blazor SSR forms](#client-side-validation-in-blazor-ssr-forms) section.
 
 :::moniker-end
 
@@ -158,6 +164,72 @@ There are two general approaches for achieving custom validation, which are desc
 
 * [Manual validation using the `OnValidationRequested` event](#manual-validation-using-the-onvalidationrequested-event): Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event.
 * [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation).
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Client-side validation in Blazor SSR forms
+
+When a Blazor static server-side rendered (static SSR) form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, Blazor automatically validates the form in the browser before the form is submitted. Server-side data annotations validation continues to run after the form is posted, so the client-side check supplements but never replaces the server-side check.
+
+Client-side validation activates automatically when both conditions are met:
+
+* The form's hosting component uses static SSR (no `@rendermode` directive applied to the component).
+* The form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
+
+### Supported validation attributes
+
+The following <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> attributes are enforced client-side, matching the server-side data annotations behavior:
+
+* <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>
+* <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute>
+* <xref:System.ComponentModel.DataAnnotations.MinLengthAttribute>
+* <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>
+* <xref:System.ComponentModel.DataAnnotations.RangeAttribute>
+* <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute>
+* <xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute>
+* <xref:System.ComponentModel.DataAnnotations.UrlAttribute>
+* <xref:System.ComponentModel.DataAnnotations.PhoneAttribute>
+* <xref:System.ComponentModel.DataAnnotations.CreditCardAttribute>
+* <xref:System.ComponentModel.DataAnnotations.CompareAttribute>
+* <xref:System.ComponentModel.DataAnnotations.FileExtensionsAttribute>
+
+Validation attributes that don't appear in this list, including custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>-derived attributes, aren't enforced client-side. They continue to run server-side after the form is submitted.
+
+### Validation timing
+
+A field validates when it loses focus (blur) for the first time. After a field has shown a validation error or after the form has been submitted at least once, the field re-validates on every change so corrections appear immediately. Submitting the form validates every field.
+
+### Validation messages and accessibility
+
+The existing <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components display client-side validation errors without any changes. ARIA attributes on input elements and on the validation message containers are managed by Blazor automatically so that assistive technologies announce validation errors without additional configuration.
+
+### CSS framework integration
+
+Client-side validation marks invalid inputs through the browser's [Constraint Validation API](https://developer.mozilla.org/docs/Web/API/Constraint_validation), so the standard CSS pseudo-classes `:valid` and `:invalid` reflect the current state of each input.
+
+### Enhanced navigation
+
+Client-side validation is preserved across [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). When the user navigates to a page that contains an SSR form, the form is wired up automatically. Multiple forms on the same page validate independently of each other.
+
+### Localized validation messages
+
+When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side experience uses the same localized strings as the server-side experience. For more information, see the [Localizing validation messages](#localizing-validation-messages) section.
+
+### Opting out
+
+To keep server-side data annotations validation but disable client-side enforcement for a single form, set the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component's `EnableClientValidation` parameter to `false`:
+
+```razor
+<DataAnnotationsValidator EnableClientValidation="false" />
+```
+
+To bypass client-side validation for a single submit button, use the standard HTML `formnovalidate` attribute on the button. The form is then posted without a client-side check, and server-side validation still runs after the post:
+
+```razor
+<button type="submit" formnovalidate>Save draft</button>
+```
+
+:::moniker-end
 
 ## Manual validation using the `OnValidationRequested` event
 

@@ -34,6 +34,12 @@ The Blazor framework supports forms and provides built-in input components:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+In Blazor Web Apps that use static server-side rendering (static SSR), input components automatically participate in client-side validation when the form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For details, see <xref:blazor/forms/validation#client-side-validation-in-blazor-ssr-forms>.
+
+:::moniker-end
+
 > [!NOTE]
 > Unsupported ASP.NET Core validation features are covered in the [Unsupported validation features](#unsupported-validation-features) section.
 
@@ -428,11 +434,19 @@ To demonstrate how forms work with [data annotations](xref:mvc/models/validation
 
 Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 ## Client-side validation requires a circuit
 
 In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Client-side validation in static SSR forms
+
+In Blazor Web Apps, forms in components that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-blazor-ssr-forms>.
 
 :::moniker-end
 
@@ -441,6 +455,8 @@ In Blazor Web Apps, client-side validation requires an active Blazor SignalR cir
 All of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute).
 
 jQuery validation isn't supported in Razor components. We recommend any of the following approaches:
+
+:::moniker range="< aspnetcore-11.0"
 
 * Follow the guidance in <xref:blazor/forms/validation> for either:
   * Server-side validation in a Blazor Web App that adopts an interactive render mode.
@@ -451,6 +467,19 @@ jQuery validation isn't supported in Razor components. We recommend any of the f
 <!-- UPDATE 11.0 - Remove if the feature is realized or dropped. -->
 
 For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+* Follow the guidance in <xref:blazor/forms/validation> for either:
+  * Server-side validation in a Blazor Web App that adopts an interactive render mode.
+  * Client-side validation in [Blazor SSR forms](xref:blazor/forms/validation#client-side-validation-in-blazor-ssr-forms).
+  * Client-side validation in a standalone Blazor WebAssembly app.
+* Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
+* Adopt a third-party validation JavaScript library.
+
+:::moniker-end
 
 ## Additional resources
 
