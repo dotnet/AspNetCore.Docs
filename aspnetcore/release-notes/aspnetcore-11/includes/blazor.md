@@ -184,24 +184,18 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 `Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly apps during development and production.
 
-The standalone Blazor WebAssembly project template references the Gateway package and adopts the SDK's `StaticWebAssetSpaFallbackEnabled` property in the app's project file:
-
-```xml
-<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
-```
-
-The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so standalone Blazor WebAssembly apps feature:
-
-* Built-in SPA fallback routing: Requests that don't match a static asset fall back to `index.html`, so client-side routes such as `/orders/42` work on browser refresh and direct navigation without a custom MSBuild target.
-* Multiple Blazor WebAssembly clients per host: A single Gateway instance can serve more than one Blazor WebAssembly client under different path prefixes, configured through its `ClientApps` section. This is the integration point .NET Aspire uses to host Blazor WebAssembly clients alongside backend services in a single AppHost run.
-* Built-in YARP reverse-proxy infrastructure: YARP is bundled with the Gateway, providing the foundation for forwarding backend traffic alongside the WebAssembly client and enabling the Aspire multi-client scenarios.
-
 <!-- UPDATE 11.0 - Update the word "preview" in the following remark at RC
                    to "release candidate." Remove entirely at GA. -->
 
 To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the preview `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
 
 [!INCLUDE[](~/includes/package-reference.md)]
+
+Custom routing code and middleware aren't required by the app. Fallback endpoints come from the static web assets manifest the SDK emits when the `StaticWebAssetSpaFallbackEnabled` property is set in the app's project file, which is present by default in standalone Blazor WebAssembly apps created from the project template:
+
+```xml
+<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
+```
 
 Prior to the release of .NET 11, the `inspectUri` property of the `Properties/launchSettings.json` file:
 

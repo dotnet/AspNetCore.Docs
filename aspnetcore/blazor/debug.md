@@ -96,12 +96,6 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 
 `Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
 
-The standalone Blazor WebAssembly project template references the Gateway package and adopts the SDK's `StaticWebAssetSpaFallbackEnabled` property in the app's project file:
-
-```xml
-<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
-```
-
 The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so standalone Blazor WebAssembly apps feature:
 
 * Built-in SPA fallback routing: Requests that don't match a static asset fall back to `index.html`, so client-side routes such as `/orders/42` work on browser refresh and direct navigation without a custom MSBuild target.
@@ -111,6 +105,12 @@ The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so s
 To adopt the Gateway in an existing standalone Blazor WebAssembly app that targets .NET 11 or later, reference the `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
 
 [!INCLUDE[](~/includes/package-reference.md)]
+
+Custom routing code and middleware aren't required by the app. Fallback endpoints come from the static web assets manifest the SDK emits when the `StaticWebAssetSpaFallbackEnabled` property is set in the app's project file, which is present by default in standalone Blazor WebAssembly apps created from the project template:
+
+```xml
+<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
+```
 
 :::moniker-end
 
