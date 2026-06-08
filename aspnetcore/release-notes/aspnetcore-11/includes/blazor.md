@@ -184,6 +184,19 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 `Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly applications during development and production.
 
+Prior to the release of .NET 11, the `inspectUri` property of the `Properties/launchSettings.json` file:
+
+* Enables the IDE to detect that the app is a Blazor app.
+* Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
+
+The property is longer required when using the new development server.
+
+Open the `Properties/launchSettings.json` file of the startup project. Remove the `inspectUri` property in each launch profile of the file's `profiles` node:
+
+```diff
+- "inspectUri": "..."
+```
+
 For more information, see [[Blazor] Replace DevServer with BlazorGateway for standalone WASM apps (`dotnet/aspnetcore` #65982)](https://github.com/dotnet/aspnetcore/pull/65982) (Please don't comment on closed issues and PRs).
 
 ### Server-triggered circuit pause

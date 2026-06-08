@@ -133,6 +133,8 @@ Installing the C# Dev Kit automatically installs the following additional extens
 
 If you encounter warnings or errors, you can [open an issue (`microsoft/vscode-dotnettools` GitHub repository)](https://github.com/microsoft/vscode-dotnettools/issues) describing the problem.
 
+:::moniker range="< aspnetcore-11.0"
+
 ### App configuration prerequisites
 
 *The guidance in this subsection applies to client-side debugging.*
@@ -149,6 +151,8 @@ The `inspectUri` property:
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
 
 The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
+
+:::moniker-end
 
 ## Packages
 
