@@ -355,7 +355,7 @@ The `QuickGrid` component now supports row click events through the new <xref:Mi
 
 The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the row-clickable CSS class, providing clear visual feedback to users.
 
-## Client-side prerendering in a Blazor Web App preserves the server's culture
+### Client-side prerendering in a Blazor Web App preserves the server's culture
 
 By default, client-side prerendering on the server (`.Client` project in a Blazor Web App) persists the server's <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> into component state and applies them on the client before satellite assemblies load.
 
@@ -422,7 +422,7 @@ A new `GetUriWithHash` extension method permits `NavigationManager` to easily co
 
 The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
 
-## `EnvironmentBoundary` component
+### `EnvironmentBoundary` component
 
 Blazor now includes a built-in `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
 
@@ -445,3 +445,149 @@ The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters f
     <p>@DateTime.Now</p>
 </EnvironmentBoundary>
 ```
+
+### MathML namespace support
+
+Blazor now supports MathML elements in interactive rendering. MathML elements, such as `<math>`, `<mrow>`, `<mi>`, and `<mn>`, are created with the correct namespace (http://www.w3.org/1998/Math/MathML) using `document.createElementNS()`, similar to how SVG elements are handled:
+
+<math>
+    <mrow>
+        <mi>x</mi>
+        <mo>=</mo>
+        <mfrac>
+            <mrow>
+                <mo>−</mo>
+                <mi>b</mi>
+                <mo>±</mo>
+                <msqrt>
+                    <mrow>
+                        <msup><mi>b</mi><mn>2</mn></msup>
+                        <mo>−</mo>
+                        <mn>4</mn>
+                        <mi>a</mi>
+                        <mi>c</mi>
+                    </mrow>
+                </msqrt>
+            </mrow>
+            <mrow>
+                <mn>2</mn>
+                <mi>a</mi>
+            </mrow>
+        </mfrac>
+    </mrow>
+</math>
+
+This fix ensures that MathML content renders correctly in browsers when added dynamically through Blazor's renderer, resolving issues where MathML elements were previously created as regular HTML elements without the proper namespace.
+
+### `InvokeVoidAsync()` analyzer
+
+A new Blazor analyzer (BL0010) has been added that recommends using `InvokeVoidAsync` instead of `InvokeAsync<object>` when calling JavaScript functions that don't return values. This analyzer helps developers write more efficient JSInterop code.
+
+**Problematic code:**
+
+```csharp
+// ⚠️ BL0010: Use InvokeVoidAsync for JavaScript functions that don't return a value
+await JSRuntime.InvokeAsync<object>("console.log", "Hello");
+```
+
+**Recommended code:**
+
+```csharp
+// ✅ Correct: Use InvokeVoidAsync
+await JSRuntime.InvokeVoidAsync("console.log", "Hello");
+```
+
+The analyzer helps catch performance issues where `InvokeAsync` is unnecessarily used with `object` or ignored return values, guiding developers toward the more appropriate `InvokeVoidAsync` method.
+
+### `IComponentPropertyActivator`
+
+Blazor now provides `IComponentPropertyActivator` for customizing how `[Inject]` properties are populated on components. This enables advanced scenarios such as:
+
+* Providing additional context for property resolution.
+* Support for custom DI containers that need to intercept property injection.
+* Advanced scenarios requiring property injection customization.
+
+```csharp
+public interface IComponentPropertyActivator
+{
+    Action<IServiceProvider, IComponent> GetActivator(
+        [DynamicallyAccessedMembers(Component)] Type componentType);
+}
+```
+
+The default implementation caches activators per component type, supports keyed services via `[Inject(Key = "...")]`, integrates with Hot Reload for cache invalidation, and includes proper trimming annotations for AOT compatibility.
+
+### SignalR `ConfigureConnection` for Interactive Server components
+
+Blazor now provides access to configure the underlying SignalR connection options when using Interactive Server components through the new `ConfigureConnection` property on `ServerComponentsEndpointOptions`. This enables configuration of `HttpConnectionDispatcherOptions` properties that were previously only accessible through workarounds.
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode(options =>
+    {
+        options.ConfigureConnection = dispatcherOptions =>
+        {
+            dispatcherOptions.CloseOnAuthenticationExpiration = true;
+            dispatcherOptions.AllowStatefulReconnects = true;
+            dispatcherOptions.ApplicationMaxBufferSize = 1024 * 1024;
+        };
+    });
+```
+
+This provides a clean, type-safe API for configuring SignalR connection settings without needing to inspect endpoint metadata.
+
+### `IHostedService` support in Blazor WebAssembly
+
+Blazor WebAssembly now supports `IHostedService` for running background services in the browser. This brings feature parity with Blazor Server and enables scenarios like periodic data refresh, real-time updates, and background processing.
+
+```csharp
+public class DataRefreshService : IHostedService
+{
+    private Timer? _timer;
+    
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        _timer = new Timer(RefreshData, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+        return Task.CompletedTask;
+    }
+
+    private void RefreshData(object? state)
+    {
+        // Refresh data periodically
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        _timer?.Dispose();
+        return Task.CompletedTask;
+    }
+}
+
+// Registration
+builder.Services.AddHostedService<DataRefreshService>();
+```
+
+Hosted services are started when the app starts and stopped when it shuts down, providing a clean lifecycle for background operations in Blazor WebAssembly apps.
+
+### Environment variables in Blazor WebAssembly configuration
+
+Blazor WebAssembly applications can now access environment variables through `IConfiguration`. This enables runtime configuration without rebuilding the application, making it easier to deploy the same build to different environments.
+
+In the following example, the `API_ENDPOINT` and `ENABLE_FEATURE_X` environment variables are automatically included in configuration:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+var apiEndpoint = builder.Configuration["API_ENDPOINT"];
+var featureFlag = builder.Configuration["ENABLE_FEATURE_X"];
+```
+
+Environment variables are loaded into the configuration system alongside other configuration sources, such as app settings (`appsettings.json`), providing a unified way to access configuration values regardless of their source.
+
+### Blazor WebAssembly component metrics and tracing
+
+Blazor WebAssembly apps now provide component specific metrics and tracing when support for metrics has been enabled in the runtime.
+
+### Enable container support in Blazor Web App template
+
+The Blazor Web App project template now supports the **Enable container support** option in Visual Studio. This makes it easier to containerize Blazor Web Apps and deploy them to container orchestration platforms, such as Kubernetes or Azure Container Apps.

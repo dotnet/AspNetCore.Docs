@@ -80,6 +80,31 @@ For security implications, see <xref:blazor/security/interactive-server-side-ren
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+### SignalR `ConfigureConnection` for Interactive Server components
+
+<!-- UPDATE 11.0 - API Browser cross-links -->
+
+Blazor provides access to configure the underlying SignalR connection options when using Interactive Server components through the `ConfigureConnection` property on `ServerComponentsEndpointOptions`. This enables configuration of `HttpConnectionDispatcherOptions` properties.
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode(options =>
+    {
+        options.ConfigureConnection = dispatcherOptions =>
+        {
+            dispatcherOptions.CloseOnAuthenticationExpiration = true;
+            dispatcherOptions.AllowStatefulReconnects = true;
+            dispatcherOptions.ApplicationMaxBufferSize = 1024 * 1024;
+        };
+    });
+```
+
+This provides a clean, type-safe API for configuring SignalR connection settings without needing to inspect endpoint metadata.
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Disable response compression for Hot Reload
