@@ -196,6 +196,9 @@ The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so s
 * Multiple Blazor WebAssembly clients per host: A single Gateway instance can serve more than one Blazor WebAssembly client under different path prefixes, configured through its `ClientApps` section. This is the integration point .NET Aspire uses to host Blazor WebAssembly clients alongside backend services in a single AppHost run.
 * Built-in YARP reverse-proxy infrastructure: YARP is bundled with the Gateway, providing the foundation for forwarding backend traffic alongside the WebAssembly client and enabling the Aspire multi-client scenarios.
 
+<!-- UPDATE 11.0 - Update the word "preview" in the following remark at RC
+                   to "release candidate." Remove entirely at GA. -->
+
 To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the preview `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
 
 [!INCLUDE[](~/includes/package-reference.md)]
