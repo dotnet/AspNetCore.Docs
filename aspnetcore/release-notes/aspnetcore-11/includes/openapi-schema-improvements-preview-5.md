@@ -14,6 +14,8 @@ app.MapGet("/orders", (OrderStatus status) => Results.Ok(status));
 
 With this configuration, a body schema can still describe `OrderStatus.PendingReview` as `pending-review`, while the query parameter schema describes the accepted value as `PendingReview`.
 
-Minimal API endpoints can support multiple `Produces<T>()` extension methods for the same status code—for example, to specify that a 200 response may arrive as `application/json` or `text/plain` with different schemas. The same support applies to MVC controllers via multiple `[ProducesResponseType]` attributes. In prior releases the framework collapsed each status code to a single response type and silently dropped the rest, making it impossible to describe endpoints that serve multiple content types. `ApiExplorer` now preserves every declared response type with deterministic ordering, and the generated OpenAPI document emits separate content entries per media type—or an `anyOf` schema when multiple types share the same content type—so generated clients can accurately model every shape an endpoint returns.
+Minimal API endpoints can support multiple `Produces<T>()` extension methods for the same status code—for example, to specify that a 200 response may arrive as `application/json` or `text/plain` with different schemas. The same support applies to MVC controllers via multiple `[ProducesResponseType]` attributes.
+
+In prior releases, the framework collapsed each status code to a single response type and silently dropped the rest, making it impossible to describe endpoints that serve multiple content types. `ApiExplorer` now preserves every declared response type with deterministic ordering, and the generated OpenAPI document emits separate content entries per media type—or an `anyOf` schema when multiple types share the same content type.
 
 Thank you [@marcominerva](https://github.com/marcominerva) for the array schema reference contribution!
