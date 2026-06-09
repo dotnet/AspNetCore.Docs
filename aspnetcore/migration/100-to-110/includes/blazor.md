@@ -66,9 +66,9 @@ To work without a JavaScript runtime, sortable column headers and paginator cont
 + nav button:disabled, nav a[aria-disabled="true"] { ... }
 ```
 
-Disabled paginator links use aria-disabled="true" instead of the HTML disabled attribute, which isn't valid on `<a>` elements. The built-in QuickGrid CSS already covers both markup styles.
+Disabled paginator links use `aria-disabled="true"` instead of the HTML `disabled` attribute, which isn't valid on `<a>` elements. The built-in QuickGrid CSS already covers both markup styles.
 
-When more than one QuickGrid is rendered on the same page, set a unique QueryParameterNamePrefix on each grid (and give each its own PaginationState) to prevent the grids from sharing the page, sort, and order query parameters:
+When more than one QuickGrid is rendered on the same page, set a unique `QueryParameterNamePrefix` on each grid (and give each its own `PaginationState`) to prevent the grids from sharing the page, sort, and order query parameters:
 
 ```diff
 - <QuickGrid Items="@cities" Pagination="@pagination2">...</QuickGrid>
