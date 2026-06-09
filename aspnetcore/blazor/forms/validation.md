@@ -338,6 +338,8 @@ In the following example, a custom validator component checks a username against
         {
             _messages.Add(field, "The username is already taken.");
         }
+        
+        CurrentEditContext!.NotifyValidationStateChanged();
     }
 
     public void Dispose()
@@ -386,6 +388,7 @@ private void OnFieldChanged(object? sender, FieldChangedEventArgs e)
     }
 
     _usernameCts?.Cancel();
+    _usernameCts?.Dispose();
     _usernameCts = new CancellationTokenSource();
     var token = _usernameCts.Token;
 
@@ -405,10 +408,16 @@ private async Task CheckAsync(FieldIdentifier field, CancellationToken token)
     {
         _messages.Add(field, "The username is already taken.");
     }
+    
+    CurrentEditContext!.NotifyValidationStateChanged();
 }
 
 public void Dispose()
 {
+    _usernameCts?.Cancel();
+    _usernameCts?.Dispose();
+    _usernameCts = null;
+
     if (CurrentEditContext is not null)
     {
         CurrentEditContext.OnValidationRequestedAsync -= ValidateUsernameAsync;

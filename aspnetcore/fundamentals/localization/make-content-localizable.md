@@ -124,7 +124,7 @@ builder.Services.AddValidationLocalization<ValidationResources>();
 The localization integration does not apply to MVC and Razor Pages apps, or to Blazor forms that don't include `AddValidation`.
 
 > [!NOTE]
-> The integration is provided by the `Microsoft.Extensions.Validation.Localization` package, which builds on the `Microsoft.Extensions.Validation` package. Both packages are included in the Web SDK (`Microsoft.NET.Sdk.Web`) and the Razor SDK (`Microsoft.NET.Sdk.Razor`), so ASP.NET Core and Blazor apps don't need explicit package references. Standalone Blazor WebAssembly apps and class libraries based on `Microsoft.NET.Sdk` reference both packages explicitly:
+ > The integration is provided by the `Microsoft.Extensions.Validation.Localization` package, which builds on the `Microsoft.Extensions.Validation` package. Both packages are included in the Web SDK (`Microsoft.NET.Sdk.Web`) and the Razor SDK (`Microsoft.NET.Sdk.Razor`), so apps that use those SDKs don't need explicit package references. Standalone Blazor WebAssembly apps and other project that do not use the Web SDK or the Razor SDK must reference both packages explicitly:
 >
 > ```xml
 > <PackageReference Include="Microsoft.Extensions.Validation" Version="11.0.0" />
