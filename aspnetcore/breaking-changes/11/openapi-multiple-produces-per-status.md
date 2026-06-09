@@ -39,8 +39,7 @@ Only the `Bar` / `text/xml` variant survived in the OpenAPI document.
 ## New behavior
 
 Starting in ASP.NET Core 11, all declared response types for the same status code are preserved and emitted to the generated OpenAPI document. For the minimal API example above, the `responses["200"]` entry now contains both the `application/json` schema (for `Product`) and the `text/xml` schema (for `Customer`). For the controller example, both the `application/json` schema (for `Foo`) and the `text/xml` schema (for `Bar`) are emitted.
-
-When multiple declarations share the same status code *and* the same content type but declare different types, the OpenAPI document represents the response schema as a union of the declared types.
+When multiple declarations share the same status code *and* the same content type but declare different types, the OpenAPI document represents the response schema as an `anyOf` composite of the declared types (a value valid against at least one of them satisfies the schema).
 
 Controller-level `[Produces]` content types continue to apply as the shared default content type for entries that don't specify their own. Attribute-level declarations on an action take precedence over controller-level declarations with the same status code.
 
