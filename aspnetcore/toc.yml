@@ -2347,6 +2347,9 @@ items:
         uid: migration/index
       - name: Version updates
         items:
+          - name: 10 to 11
+            displayName: migrate, migration
+            uid: migration/100-to-110
           - name: 9 to 10
             displayName: migrate, migration
             uid: migration/90-to-100
