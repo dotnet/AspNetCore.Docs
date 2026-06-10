@@ -258,9 +258,9 @@ public class ChatHub : Hub
 
 ### Keyed services support in dependency injection
 
-The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
+The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
 
-You access a registered service by specifying the key with the [FromKeyedServices] attribute. The following code shows how to use keyed services:
+You access a registered service by specifying the key with the [[FromKeyedServices](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute)] attribute. The following code shows how to use keyed services:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/KeyedSvsHub/Program.cs" highlight="5-6,34,39":::
 
@@ -277,10 +277,10 @@ using System.Runtime.CompilerServices;
 public class StreamingHub : Hub
 {
     // Track the number of active streams per connection.
-    private static readonly ConcurrentDictionary _activeStreams = new();
+    private static readonly ConcurrentDictionary<string, int> _activeStreams = new();
     private const int MaxConcurrentStreams = 2;
 
-    public IAsyncEnumerable Counter(
+    public IAsyncEnumerable<int> Counter(
         int count,
         int delay,
         CancellationToken cancellationToken)
@@ -288,7 +288,7 @@ public class StreamingHub : Hub
         return WithLimit(GetCounter(count, delay, cancellationToken));
     }
 
-    private async IAsyncEnumerable GetCounter(
+    private async IAsyncEnumerable<int> GetCounter(
         int count,
         int delay,
         [EnumeratorCancellation] CancellationToken cancellationToken)
@@ -301,8 +301,8 @@ public class StreamingHub : Hub
         }
     }
 
-    private async IAsyncEnumerable WithLimit(
-        IAsyncEnumerable stream,
+    private async IAsyncEnumerable<int> WithLimit(
+        IAsyncEnumerable<int> stream,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var connectionId = Context.ConnectionId;
@@ -348,13 +348,6 @@ The `finally` block runs only when the client finishes consuming the stream, can
 > The `_activeStreams` dictionary is `static` so it is shared across all hub instances for
 a given connection. If you prefer DI-managed state, register a singleton service that owns
 > the dictionary and inject it into the hub constructor.
-
-
-### Keyed services support in Dependency Injection
-
-You access a registered service by specifying the key with the [[FromKeyedServices](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute)] attribute. The following code shows how to use keyed services:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/KeyedSvsHub/Program.cs" highlight="5-6,34,39":::
 
 ## Handle events for a connection
 
