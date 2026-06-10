@@ -5,7 +5,7 @@ description: Learn how to configure and use output caching middleware in ASP.NET
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/01/2026
+ms.date: 06/09/2026
 uid: performance/caching/output
 
 # customer intent: As an ASP.NET developer, I want to configure output caching middleware in ASP.NET Core, so I can use output caching in my apps.
@@ -32,13 +32,14 @@ Add the output caching middleware to the service collection by calling the <xref
 
 Add the middleware to the request processing pipeline by calling the <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A> method. For example:
 
-:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_use" highlight="5":::
+:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_use" highlight="6":::
 
 Calling the `AddOutputCache`and `UseOutputCache` methods doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as described in the following sections.
 
 > [!NOTE]
 > * In apps that use [Cross-Origin Requests (CORS) middleware](xref:security/cors), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> method.
 > * In Razor Pages apps and apps with controllers, the `UseOutputCache` method must be called after the `UseRouting` method.
+> * In apps that use [authentication](xref:security/authentication/index) or [authorization](xref:security/authorization/introduction), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
 
 ## Configure one endpoint or page
 
