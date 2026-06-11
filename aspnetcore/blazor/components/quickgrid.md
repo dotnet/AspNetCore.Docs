@@ -376,15 +376,22 @@ The `Details` component receives the page number from the query string in the `P
     <li>QuickGrid page number: @Page</li>
 </ul>
 <div>
-    <a href="@($"/scifi-characters?page={Page}")">Back to List</a>
+    @if (Page.HasValue)
+    {
+        <a href="@($"/scifi-characters?page={Page}")">Back to List</a>
+    }
+    else
+    {
+        <a href="/scifi-characters">Back to List</a>
+    }
 </div>
 
 @code {
     [SupplyParameterFromQuery]
-    private int Id { get; set; }
+    private int? Id { get; set; }
 
     [SupplyParameterFromQuery]
-    private int Page { get; set; }
+    private int? Page { get; set; }
 }
 ```
 
@@ -400,6 +407,7 @@ The `SciFiCharacters` component:
 ```razor
 @page "/scifi-characters"
 @using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager Navigation
 
 <QuickGrid Items="characters" Pagination="pagination" 
     OnRowClick="@((Character args) => HandleRowClick(args))">
@@ -432,7 +440,7 @@ The `SciFiCharacters` component:
 
     private void HandleRowClick(Character character)
     {
-        NavigationManager.NavigateTo(
+        Navigation.NavigateTo(
             $"/details?id={character.Id}&page={pagination.CurrentPageIndex + 1}");
     }
 }
@@ -474,6 +482,7 @@ In `Details.razor`:
 @page "/scifi-characters"
 @rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager Navigation
 
 <QuickGrid Items="characters" Pagination="pagination">
     <PropertyColumn Property="@(c => c.Id)" />
@@ -509,11 +518,11 @@ In `Details.razor`:
     }.AsQueryable();
 
     [SupplyParameterFromQuery]
-    private int Page { get; set; }
+    private int? Page { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (Page.HasValue)
+        if (Page.HasValue && Page > 0)
         {
             await pagination.SetCurrentPageIndexAsync(Page.Value - 1);
             Navigation.NavigateTo(
