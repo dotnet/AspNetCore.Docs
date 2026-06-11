@@ -110,6 +110,8 @@ The following code shows how to use one resource string for validation attribute
 
 In the preceding code, `SharedResource` is the class corresponding to the *.resx* file where the validation messages are stored. With this approach, DataAnnotations only uses `SharedResource`, rather than the resource for each class.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 ## DataAnnotations localization in Minimal APIs and Blazor
@@ -206,6 +208,8 @@ builder.Services.AddValidationLocalization(options =>
 With the preceding configuration, a `[Required]` attribute with no `ErrorMessage` looks up the resource key `RequiredAttribute_Error`, a `[StringLength(50)]` looks up `StringLengthAttribute_Error`, and so on. The key provider runs only when `ErrorMessage` isn't set on the attribute instance, so model-specific overrides via `ErrorMessage = "MyKey"` continue to take precedence.
 
 :::moniker-end
+
+:::moniker range="> aspnetcore-5.0"
 
 ## Configure localization services
 
