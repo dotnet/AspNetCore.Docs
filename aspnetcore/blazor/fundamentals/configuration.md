@@ -373,3 +373,22 @@ The following Razor component retrieves the settings with the [`@inject`](xref:m
 ```
 
 Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Environment variables in Blazor WebAssembly configuration
+
+Blazor WebAssembly applications access environment variables through <xref:Microsoft.Extensions.Configuration.IConfiguration>. This enables runtime configuration without rebuilding the app, making it easier to deploy the same build to different environments.
+
+In the following example, the `API_ENDPOINT` and `ENABLE_FEATURE_X` environment variables are automatically included in configuration:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+var apiEndpoint = builder.Configuration["API_ENDPOINT"];
+var featureFlag = builder.Configuration["ENABLE_FEATURE_X"];
+```
+
+Environment variables are loaded into the configuration system alongside other configuration sources, such as app settings (`appsettings.json`), providing a unified way to access configuration values regardless of their source.
+
+:::moniker-end

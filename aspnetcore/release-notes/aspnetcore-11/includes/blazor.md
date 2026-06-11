@@ -177,12 +177,33 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 ### New development server for Blazor WebAssembly apps
 
-<!-- UPDATE 11.0 - Link to package when it's out.
+[`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway) is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly apps during development and production.
 
-     [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway)
--->
+<!-- UPDATE 11.0 - Update the word "preview" in the following remark at RC
+                   to "release candidate." Remove entirely at GA. -->
 
-`Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly applications during development and production.
+To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the preview `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Custom routing code and middleware aren't required by the app. Fallback endpoints come from the static web assets manifest the SDK emits when the `StaticWebAssetSpaFallbackEnabled` property is set in the app's project file, which is present by default in standalone Blazor WebAssembly apps created from the project template:
+
+```xml
+<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
+```
+
+Prior to the release of .NET 11, the `inspectUri` property of the `Properties/launchSettings.json` file:
+
+* Enables the IDE to detect that the app is a Blazor app.
+* Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
+
+The property is no longer required when using the new development server.
+
+Open the `Properties/launchSettings.json` file of the startup project. Remove the `inspectUri` property in each launch profile of the file's `profiles` node:
+
+```diff
+- "inspectUri": "..."
+```
 
 For more information, see [[Blazor] Replace DevServer with BlazorGateway for standalone WASM apps (`dotnet/aspnetcore` #65982)](https://github.com/dotnet/aspnetcore/pull/65982) (Please don't comment on closed issues and PRs).
 
@@ -210,3 +231,510 @@ Two trimming changes shrink published Blazor WebAssembly apps that don't use [Op
 * `HotReloadManager` now exposes a feature-switched `IsSupported` property tied to `System.Reflection.Metadata.MetadataUpdater.IsSupported`, so the trimmer can eliminate hot-reload caches and metadata-update handler registrations across the renderer when published [[blazor][wasm] Fix hot reload IL trimming (`dotnet/aspnetcore` #65903)](https://github.com/dotnet/aspnetcore/pull/65903) (Please don't comment on closed issues and PRs).
 
 Apps that use OTEL or Hot Reload aren't affected by the preceding updates.
+
+### `QuickGrid` improvements
+
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) receives several new features in .NET 11.
+
+For more information on the following features, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0>.
+
+#### Pagination modes
+
+Prior to the release of .NET 11, pagination and sort state is managed in memory inside the `QuickGrid` component without changing the URL, called *inner-state navigation*. An interactive render mode is required.
+
+With the release of .NET 11, `QuickGrid` supports *URL-based navigation*.
+
+Pagination and sort state is persisted in the URL query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&order=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
+
+Sortable column headers and paginator controls render as `<a>` elements with `href` attributes. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
+
+Query string parameters:
+
+* `page`: One-based page number. The first page omits the parameter for clean URLs.
+* `sort`: Column title for sorting the grid.
+* `order`: Ascending (`asc`) or descending (`desc`).
+
+The `sort` column is identified by the column's `Title` property. Columns without a `Title` render a non-clickable `<div>` header.
+
+`QuickGrid` reads the URL on initialization and subscribes to `NavigationManager.LocationChanged`, so browser back/forward and direct URL entry work. When sort parameters are removed from the URL, it falls back to the default sort column/direction.
+
+Disabled paginator links use `aria-disabled="true"` and `pointer-events: none` instead of the HTML `disabled` attribute, which doesn't exist on `<a>` elements.
+
+#### Multiple grids on the same page
+
+Multiple `QuickGrid` components on the same page require unique `QueryParameterNamePrefix` values to avoid query string conflicts. The default prefix is an empty string, producing parameters named `page`, `sort`, `order`. For example, setting the prefix to "`cities`" produces `cities_page`, `cities_sort`, and `cities_order`.
+
+Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they have different prefixes&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
+
+In releases prior to .NET 11, the following `QuickGrid` components worked implicitly:
+
+```razor
+<QuickGrid ... Pagination="@pagination1">
+    ...
+</QuickGrid>
+
+<QuickGrid ... Pagination="@pagination2">
+    ...
+</QuickGrid>
+```
+
+With the release of .NET 11, the following `QuickGrid` components require a unique `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
+
+```razor
+<QuickGrid ... Pagination="@pagination1">
+    ...
+</QuickGrid>
+
+<QuickGrid ... Pagination="@pagination2" QueryParameterNamePrefix="cities">
+    ...
+</QuickGrid>
+```
+
+Example query string for the preceding `QuickGrid` components:
+
+```
+?page=2&sort=Name&order=asc&cities_page=3&cities_sort=Country&cities_order=desc
+```
+
+#### Sort by column
+
+Add `Sortable="true"` to a `PropertyColumn`. With URL-based navigation, selecting a header navigates to a URL with updated `sort` and `order` parameters. With inner-state navigation, selecting a header triggers `@onclick`, which calls `SortByColumnAsync`. In both cases, `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
+
+#### Title-based sort identification
+
+Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&order=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
+
+Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared URLs containing the old title in the `sort` parameter stop matching, and the grid silently falls back to the default sort instead of sorting by the intended column. For `PropertyColumn`, the `Title` defaults to the property name (example: `Property="@(p => p.FirstName)"` produces `Title="First Name"`), so renaming the property or explicitly changing the `Title` parameter both break existing URLs.
+
+#### Paginator
+
+`Paginator` injects `NavigationManager`, subscribes to `LocationChanged`, and reads the page index from the query string on every location change. `GoToPageAsync` navigates to the target URL rather than directly mutating `PaginationState`. State is updated through the `LocationChanged` callback flow.
+
+`GetPageUrl` returns a URL with the one-based page number. Page index 0 (page 1) omits the query parameter entirely.
+
+#### CSS breaking change
+
+When URL-based navigation is enabled, selectors targeting `button.col-title` must also target `a.col-title`, and `nav button`/`nav button:disabled` require `nav a`/`nav a[aria-disabled="true"]`. The built-in QuickGrid stylesheet provides both by default.
+
+#### How to disable URL-based navigation
+
+To disable URL-based navigation, set the `AppContext` switch for the feature to `false`:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.QuickGrid.EnableUrlBasedQuickGridNavigationAndSorting",
+    false);
+```
+
+This restores `<button>` elements with `@onclick` handlers. An interactive render mode is required.
+
+The switch only controls the rendered HTML element (`<a>` versus `<button>`). Even when disabled, `QuickGrid` still reads and writes state to the URL query string internally. `SortByColumnAsync` and `Paginator.GoToPageAsync` navigate via `NavigationManager.NavigateTo` regardless of the flag.
+
+#### Row click event (`OnRowClick`)
+
+The `QuickGrid` component now supports row click events through the new <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager NavigationManager
+
+<QuickGrid Items="@people.AsQueryable()" 
+    OnRowClick="@((Person args) => HandleRowClick(args))">
+    <PropertyColumn Property="@(p => p.Name)" />
+    <PropertyColumn Property="@(p => p.Email)" />
+</QuickGrid>
+
+@code {
+    private List<Person> people = new()
+    {
+        new(1, "Alice Smith", "alice@example.com", "Engineering"),
+        new(2, "Bob Johnson", "bob@example.com", "Marketing"),
+        new(3, "Carol Williams", "carol@example.com", "Engineering"),
+    };
+
+    private void HandleRowClick(Person person)
+    {
+        NavigationManager.NavigateTo($"/person/{person.Id}");
+    }
+
+    private record Person(int Id, string Name, string Email, string Department);
+}
+```
+
+The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the row-clickable CSS class, providing clear visual feedback to users.
+
+### Client-side prerendering in a Blazor Web App preserves the server's culture
+
+By default, client-side prerendering on the server (`.Client` project in a Blazor Web App) persists the server's <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> into component state and applies them on the client before satellite assemblies load.
+
+Apps that require the client to choose a culture independently of the server can opt out with `WebAssemblyComponentsOptions.UseCultureFromServer` in the Blazor Web App's `Program` file:
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveWebAssemblyComponents(options =>
+    {
+        options.UseCultureFromServer = false;
+    });
+```
+
+### Persist session data between HTTP requests during static server-side rendering (static SSR)
+
+Session data persistence reads and writes cookie-based HTTP session values during static server-side rendering (static SSR), which is useful for scenarios such as shopping cart IDs or multi-step form progress. Unlike [temporary data persistence (`ITempData`)](#persist-temporary-data-between-http-requests-during-static-server-side-rendering-static-ssr), session values aren't cleared after reading. Values persist across multiple requests for the session lifetime.
+
+Session storage configuration requires adding services by calling `AddSession` and request pipeline configuration with `UseSession`:
+
+```csharp
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddRazorComponents();
+
+var app = builder.Build();
+
+app.UseSession();
+```
+
+When supplied to a parameter, use the `[SupplyParameterFromSession]` attribute without or with a key (string):
+
+```csharp
+[SupplyParameterFromSession]
+public string? Message { get; set; }
+
+[SupplyParameterFromSession(Name = "flash_message")]
+public string? FlashMessage { get; set; }
+```
+
+For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
+
+### `GetUriWithHash` extension method
+
+A new `GetUriWithHash` extension method permits `NavigationManager` to easily construct URIs with hash fragments. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+
+* Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
+* Method call that receives a section Id (`sectionId`) and navigates to the section of the page.
+
+```razor
+@inject NavigationManager Navigation
+
+<a href="@Navigation.GetUriWithHash("section-1")">
+    Jump to Section 1
+</a>
+
+@code {
+    private void NavigateToSection(string sectionId)
+    {
+        var uri = Navigation.GetUriWithHash(sectionId);
+        Navigation.NavigateTo(uri);
+    }
+}
+```
+
+The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
+
+### `EnvironmentBoundary` component
+
+Blazor now includes a built-in `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
+
+The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching and follows the same semantics as MVC's `EnvironmentTagHelper`.
+
+```razor
+@using Microsoft.AspNetCore.Components.Web
+
+<EnvironmentBoundary Include="Development">
+    <div class="alert alert-warning">
+        Debug mode enabled
+    </div>
+</EnvironmentBoundary>
+
+<EnvironmentBoundary Include="Development,Staging">
+    <p>Pre-production environment</p>
+</EnvironmentBoundary>
+
+<EnvironmentBoundary Exclude="Production">
+    <p>@DateTime.Now</p>
+</EnvironmentBoundary>
+```
+
+### MathML namespace support
+
+Blazor now supports MathML elements in interactive rendering. MathML elements, such as `<math>`, `<mrow>`, `<mi>`, and `<mn>`, are created with the correct namespace (http://www.w3.org/1998/Math/MathML) using `document.createElementNS()`, similar to how SVG elements are handled:
+
+```html
+<math>
+    <mrow>
+        <mi>x</mi>
+        <mo>=</mo>
+        <mfrac>
+            <mrow>
+                <mo>−</mo>
+                <mi>b</mi>
+                <mo>±</mo>
+                <msqrt>
+                    <mrow>
+                        <msup><mi>b</mi><mn>2</mn></msup>
+                        <mo>−</mo>
+                        <mn>4</mn>
+                        <mi>a</mi>
+                        <mi>c</mi>
+                    </mrow>
+                </msqrt>
+            </mrow>
+            <mrow>
+                <mn>2</mn>
+                <mi>a</mi>
+            </mrow>
+        </mfrac>
+    </mrow>
+</math>
+```
+
+This fix ensures that MathML content renders correctly in browsers when added dynamically through Blazor's renderer, resolving issues where MathML elements were previously created as regular HTML elements without the proper namespace.
+
+### `InvokeVoidAsync()` analyzer
+
+A new Blazor analyzer (BL0010) has been added that recommends using `InvokeVoidAsync` instead of `InvokeAsync<object>` when calling JavaScript functions that don't return values. This analyzer helps developers write more efficient JSInterop code.
+
+**Problematic code:**
+
+```csharp
+// ⚠️ BL0010: Use InvokeVoidAsync for JavaScript functions that don't return a value
+await JSRuntime.InvokeAsync<object>("console.log", "Hello");
+```
+
+**Recommended code:**
+
+```csharp
+// ✅ Correct: Use InvokeVoidAsync
+await JSRuntime.InvokeVoidAsync("console.log", "Hello");
+```
+
+The analyzer helps catch performance issues where `InvokeAsync` is unnecessarily used with `object` or ignored return values, guiding developers toward the more appropriate `InvokeVoidAsync` method.
+
+### `IComponentPropertyActivator`
+
+Blazor now provides `IComponentPropertyActivator` for customizing how `[Inject]` properties are populated on components. This enables advanced scenarios such as:
+
+* Providing additional context for property resolution.
+* Support for custom DI containers that need to intercept property injection.
+* Advanced scenarios requiring property injection customization.
+
+```csharp
+public interface IComponentPropertyActivator
+{
+    Action<IServiceProvider, IComponent> GetActivator(
+        [DynamicallyAccessedMembers(Component)] Type componentType);
+}
+```
+
+The default implementation caches activators per component type, supports keyed services via `[Inject(Key = "...")]`, integrates with Hot Reload for cache invalidation, and includes proper trimming annotations for AOT compatibility.
+
+### SignalR `ConfigureConnection` for Interactive Server components
+
+Blazor now provides access to configure the underlying SignalR connection options when using Interactive Server components through the new `ConfigureConnection` property on `ServerComponentsEndpointOptions`. This enables configuration of `HttpConnectionDispatcherOptions` properties that were previously only accessible through workarounds.
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode(options =>
+    {
+        options.ConfigureConnection = dispatcherOptions =>
+        {
+            dispatcherOptions.CloseOnAuthenticationExpiration = true;
+            dispatcherOptions.AllowStatefulReconnects = true;
+            dispatcherOptions.ApplicationMaxBufferSize = 1024 * 1024;
+        };
+    });
+```
+
+This provides a clean, type-safe API for configuring SignalR connection settings without needing to inspect endpoint metadata.
+
+### `IHostedService` support in Blazor WebAssembly
+
+Blazor WebAssembly now supports `IHostedService` for running background services in the browser. This brings feature parity with Blazor Server and enables scenarios like periodic data refresh, real-time updates, and background processing.
+
+```csharp
+public class DataRefreshService : IHostedService
+{
+    private Timer? _timer;
+    
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        _timer = new Timer(RefreshData, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+        return Task.CompletedTask;
+    }
+
+    private void RefreshData(object? state)
+    {
+        // Refresh data periodically
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        _timer?.Dispose();
+        return Task.CompletedTask;
+    }
+}
+
+// Registration
+builder.Services.AddHostedService<DataRefreshService>();
+```
+
+Hosted services are started when the app starts and stopped when it shuts down, providing a clean lifecycle for background operations in Blazor WebAssembly apps.
+
+### Environment variables in Blazor WebAssembly configuration
+
+Blazor WebAssembly applications can now access environment variables through `IConfiguration`. This enables runtime configuration without rebuilding the application, making it easier to deploy the same build to different environments.
+
+In the following example, the `API_ENDPOINT` and `ENABLE_FEATURE_X` environment variables are automatically included in configuration:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+var apiEndpoint = builder.Configuration["API_ENDPOINT"];
+var featureFlag = builder.Configuration["ENABLE_FEATURE_X"];
+```
+
+Environment variables are loaded into the configuration system alongside other configuration sources, such as app settings (`appsettings.json`), providing a unified way to access configuration values regardless of their source.
+
+### Blazor WebAssembly component metrics and tracing
+
+Blazor WebAssembly apps now provide component specific metrics and tracing when support for metrics has been enabled in the runtime.
+
+### Enable container support in Blazor Web App template
+
+The Blazor Web App project template now supports the **Enable container support** option in Visual Studio. This makes it easier to containerize Blazor Web Apps and deploy them to container orchestration platforms, such as Kubernetes or Azure Container Apps.
+
+### Static SSR supports client-side validation
+
+Blazor static server-side rendering (static SSR) forms now get instant, in-browser validation feedback without a server round-trip, matching the experience provided by interactive Blazor apps and MVC apps with unobtrusive validation. The .NET model remains the single source of truth for validation rules. The server renders metadata for the validation rules which are then enforced by the Blazor JS code on the client-side.
+
+The feature is enabled by default for all static SSR forms that include the `DataAnnotationsValidator` component. Both enhanced and non-enhanced forms are supported.
+
+Complete feature coverage is available in <xref:blazor/forms/validation?view=aspnetcore-11.0#client-side-validation-in-static-ssr-forms>.
+
+For more information, see the following resources:
+
+* [Add .NET support for client-side validation in Blazor SSR (`dotnet/aspnetcore` #66441)](https://github.com/dotnet/aspnetcore/pull/66441)
+* [Add JS library for client-side validation in Blazor SSR (`dotnet/aspnetcore` #66420)](https://github.com/dotnet/aspnetcore/pull/66420)
+
+Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
+
+### Asynchronous form validation support
+
+Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async tasks via `EditContext.AddValidationTask`. The framework tracks them, cancels superseded tasks, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
+
+<!-- UPDATE 11.0 - We'll adjust the following remark for future
+                   preview releases. -->
+
+While Preview 5 ships the building blocks for Blazor forms, the full built-in async validation experience will be enabled when the new asynchronous `DataAnnotations` APIs are released in a later .NET preview. These APIs will be fully supported by the existing `DataAnnotationsValidator` component.
+
+```razor
+<EditForm EditContext="editContext" OnSubmit="HandleSubmit">
+    <InputText @bind-Value="model.Username" />
+    @if (editContext.IsValidationPending(() => model.Username))
+    {
+        <span>Checking availability...</span>
+    }
+    <ValidationMessage For="() => model.Username" />
+    <button type="submit">Register</button>
+</EditForm>
+
+@code {
+    [Inject] public UserService Users { get; set; } = default!;
+
+    private readonly RegistrationModel model = new();
+    private EditContext editContext = default!;
+    private ValidationMessageStore messages = default!;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        messages = new ValidationMessageStore(editContext);
+        editContext.OnFieldChanged += (_, e) =>
+        {
+            if (e.FieldIdentifier.FieldName == nameof(model.Username))
+            {
+                var cts = new CancellationTokenSource();
+                editContext.AddValidationTask(e.FieldIdentifier,
+                    CheckAsync(e.FieldIdentifier, model.Username, cts.Token), cts);
+            }
+        };
+    }
+
+    private async Task CheckAsync(FieldIdentifier field, string value, CancellationToken ct)
+    {
+        messages.Clear(field);
+        if (await Users.IsUsernameTakenAsync(value, ct))
+        {
+            messages.Add(field, "Username is taken.");
+        }
+        editContext.NotifyValidationStateChanged();
+    }
+
+    private async Task HandleSubmit() => await editContext.ValidateAsync();
+}
+```
+
+Complete feature coverage is available in <xref:blazor/forms/validation?view=aspnetcore-11.0#asynchronous-validation>.
+
+For more information, see [Add built-in support for async form validation in Blazor (`dotnet/aspnetcore` #66526)](https://github.com/dotnet/aspnetcore/pull/66526).
+
+Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
+
+## Blazor and Minimal APIs support error localization
+
+Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. By default, localization uses language-specific RESX files deployed as part of the assembly.
+
+```csharp
+builder.Services.AddValidation()
+    .AddValidationLocalization<ValidationMessages>();
+    // Resolves to ValidationMessages.en.resx, ValidationMessages.es.resx, ...
+```
+
+```csharp
+[ValidatableType]
+public class ContactModel
+{
+    // Values of ErrorMessage are used as localization keys.
+    [Required(ErrorMessage = "RequiredError")]
+    [EmailAddress(ErrorMessage = "EmailError")]
+    [Display(Name = "ContactEmail")]
+    public string? Email { get; set; }
+}
+```
+
+Apps can also register custom `IStringLocalizerFactory` implementations to read the localized strings from other sources, such as databases or JSON files. A user registered type takes precedence over the default RESX localization.
+
+```csharp
+builder.Services.AddValidation()
+    .AddValidationLocalization();
+builder.Services.AddSingleton<IStringLocalizerFactory, DbStringLocalizerFactory>();
+```
+
+Apps can also configure a programmatic strategy for localization, removing the need to specify localization keys on every validation attribute:
+
+```csharp
+builder.Services.AddValidation()
+    .AddValidationLocalization<ValidationMessages>(options =>
+    {
+        options.ErrorMessageKeyProvider = ctx =>
+            ctx.Attribute.ErrorMessage ?? $"{ctx.Attribute.GetType().Name}_Error";
+    });
+```
+
+```csharp
+[ValidatableType]
+public class ContactModel
+{
+    // Looks-up localized string for 'RequiredAttribute_Error' automatically.
+    [Required]
+    public string? Username { get; set; }
+}
+```
+
+Complete feature coverage is available in the following articles:
+
+* <xref:fundamentals/localization/make-content-localizable?view=aspnetcore-11.0#dataannotations-localization-in-minimal-apis-and-blazor>
+* <xref:fundamentals/minimal-apis?view=aspnetcore-11.0#localizing-validation-messages>
+
+For more information, see [Add localization support to Microsoft.Extensions.Validation (`dotnet/aspnetcore` #66646)](https://github.com/dotnet/aspnetcore/pull/66646).
+
+Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.

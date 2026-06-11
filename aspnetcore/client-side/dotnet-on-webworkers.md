@@ -11,7 +11,7 @@ uid: client-side/dotnet-on-webworkers
 ---
 # .NET on Web Workers
 
-<!-- UPDATE 11.0 - Surface the INCLUDES file
+<!-- UPDATE 11.0 - Activate
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
