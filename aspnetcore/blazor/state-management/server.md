@@ -428,16 +428,8 @@ Data can be stored temporarily or permanently in server-side scenarios.
 
 To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports `TempData`. `TempData` is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
-<!-- REVIEW NOTE: CSR is always interactive, so documentation doesn't use
-                  "interactive CSR" ... it's just "CSR" in guidance. 
-                  I'm going to write out "server-side rendering" for the
-                  first mention to remind or educate devs what SSR
-                  means in the docs (i.e., it never means "static server
-                  rendering"). Then, this will refer to 
-                  "interactive SSR" in the next sentence. -->
-
 > [!IMPORTANT]
-> This feature is only available during static server-side rendering (static SSR). During interactive client-side rendering (CSR) and interactive SSR, the session value isn't supplied, and the property retains its default value.
+> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), the session value isn't supplied, and the property retains its default value.
 
 `TempData`:
 
@@ -599,16 +591,8 @@ Similar to the preceding example but when only simple read/write of a single val
 
 Session data persistence reads and writes cookie-based HTTP session values during static server-side rendering (static SSR), which is useful for scenarios such as shopping cart IDs or multi-step form progress. Unlike [temporary data persistence (`ITempData`)](#temporary-data-persistence), session values aren't cleared after reading. Values persist across multiple requests for the session lifetime.
 
-<!-- REVIEW NOTE: CSR is always interactive, so documentation doesn't use
-                  "interactive CSR" ... it's just "CSR" in guidance. 
-                  I'm going to write out "server-side rendering" for the
-                  first mention to remind or educate devs what SSR
-                  means in the docs (i.e., it never means "static server
-                  rendering"). Then, this will refer to 
-                  "interactive SSR" in the next sentence. -->
-
 > [!IMPORTANT]
-> This feature is only available during static server-side rendering (static SSR). During interactive client-side rendering (CSR) and interactive SSR, the session value isn't supplied, and the property retains its default value.
+> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), the session value isn't supplied, and the property retains its default value.
 
 Session storage:
 
@@ -644,8 +628,8 @@ IO Timeout | `IOTimeout` | The maximum amount of time allowed to load a session 
 
 After configuring session services with `AddSession`, call `UseSession` in the request processing pipeline. The following example demonstrates default values:
 
-<!-- Daria ... Is AddDistributedMemoryCache required? What happens if
-               it isn't used? -->
+<!-- UPDATE 11.0 - Is AddDistributedMemoryCache required? What happens if
+                   it isn't used? -->
 
 ```csharp
 builder.Services.AddDistributedMemoryCache();

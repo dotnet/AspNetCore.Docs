@@ -302,7 +302,7 @@ Modes can be combined. For example, assigning `Beginning | End` pins both edges.
 
 The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an <xref:System.Collections.Generic.IEqualityComparer%601> to the `Virtualize` component:
 
-<!-- UPDATE 11.0 - Ilona ... Does the 'itemComparer' in the following example
+<!-- UPDATE 11.0 - Does the 'itemComparer' in the following example
                    need the '@' symbol (ItemComparer="@itemComparer")? 
                    I thought that it wouldn't need it. -->
 

@@ -177,12 +177,7 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 ### New development server for Blazor WebAssembly apps
 
-<!-- UPDATE 11.0 - Link to package when it's out.
-
-     [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway)
--->
-
-`Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly apps during development and production.
+[`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway) is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly apps during development and production.
 
 <!-- UPDATE 11.0 - Update the word "preview" in the following remark at RC
                    to "release candidate." Remove entirely at GA. -->

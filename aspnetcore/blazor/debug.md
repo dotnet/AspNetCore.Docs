@@ -89,12 +89,7 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 
 ## Blazor WebAssembly Gateway
 
-<!-- UPDATE 11.0 - Link to package when it's out.
-
-     [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway)
--->
-
-`Microsoft.AspNetCore.Components.Gateway` is a lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
+[`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway) is a lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
 
 The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so standalone Blazor WebAssembly apps feature:
 
@@ -199,10 +194,6 @@ Blazor Server: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://ww
 
 :::moniker-end
 
-<!-- UPDATE 11.0 - Activate when the NuGet package is available.
-
-     https://www.nuget.org/packages?q=Microsoft.AspNetCore.Components.Gateway
-
 :::moniker range=">= aspnetcore-11.0"
 
 Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway): A lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
@@ -211,15 +202,9 @@ Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.Gateway`](https
 
 :::moniker range="< aspnetcore-11.0"
 
--->
-
 Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 
-<!-- UPDATE 11.0 - Activate when the NuGet package is available.
-
 :::moniker-end
-
--->
 
 :::moniker range="< aspnetcore-8.0"
 
