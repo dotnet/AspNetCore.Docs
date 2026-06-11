@@ -429,8 +429,7 @@ Data can be stored temporarily or permanently in server-side scenarios.
 To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports `TempData`. `TempData` is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
 > [!IMPORTANT]
-> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), the session value isn't supplied, and the property retains its default value.
-
+> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), the `TempData` value isn't supplied, and the property retains its default value.
 `TempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.

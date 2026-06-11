@@ -197,7 +197,7 @@ Prior to the release of .NET 11, the `inspectUri` property of the `Properties/la
 * Enables the IDE to detect that the app is a Blazor app.
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
 
-The property is longer required when using the new development server.
+The property is no longer required when using the new development server.
 
 Open the `Properties/launchSettings.json` file of the startup project. Remove the `inspectUri` property in each launch profile of the file's `profiles` node:
 
