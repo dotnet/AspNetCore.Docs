@@ -13,6 +13,7 @@ Add the middleware to the request processing pipeline by calling <xref:Microsoft
 > [!NOTE]
 > * In apps that use [CORS middleware](xref:security/cors), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>.
 > * In Razor Pages apps and apps with controllers, `UseOutputCache` must be called after `UseRouting`.
+> * In apps that use [authentication](xref:security/authentication/index) or [authorization](xref:security/authorization/introduction), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
 > * Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. Caching response data must be configured as shown in the following sections.
 
 ## Configure one endpoint or page
