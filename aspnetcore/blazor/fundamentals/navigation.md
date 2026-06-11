@@ -1165,11 +1165,42 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Navigate to an element at the current URI
+
+<!-- UPDATE 11.0 - API Browser cross-links and improve the example -->
+
+Use the `GetUriWithHash` extension method to construct a URI with a hash fragment. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+
+* Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
+* Method call that receives a section identifier (`sectionId`) and navigates to the section of the page.
+
+```razor
+@inject NavigationManager Navigation
+
+<a href="@Navigation.GetUriWithHash("section-1")">
+    Jump to Section 1
+</a>
+
+@code {
+    private void NavigateToSection(string sectionId)
+    {
+        var uri = Navigation.GetUriWithHash(sectionId);
+        Navigation.NavigateTo(uri);
+    }
+}
+```
+
+The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
-## Navigate to named elements
+## Navigate to an element with a hashed (`#`) reference
 
-Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
+Navigate to an element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
 
 Examples for each of the following approaches demonstrate navigation to an element with an `id` of `targetElement` in the `Counter` component:
 
@@ -1191,7 +1222,14 @@ Examples for each of the following approaches demonstrate navigation to an eleme
   Navigation.NavigateTo("/counter#targetElement");
   ```
 
-The following example demonstrates navigating to named H2 headings within a component and to external components.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+The following example demonstrates navigating to an H2 heading in an external component.
+
+> [!NOTE]
+> For element navigation at the same URI, see [Navigate to an element at the current URI](#navigate-to-an-element-at-the-current-uri).
 
 In the `Home` (`Home.razor`) and `Counter` (`Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
 
@@ -1212,7 +1250,61 @@ Add the following `FragmentRouting` component to the app.
 
 <PageTitle>Fragment routing</PageTitle>
 
-<h1>Fragment routing to named elements</h1>
+<h1>Fragment routing to elements</h1>
+
+<ul>
+    <li>
+        <a href="/#targetElement">
+            Anchor to the <code>Home</code> component
+        </a>
+    </li>
+    <li>
+        <a href="/counter#targetElement">
+            Anchor to the <code>Counter</code> component
+        </a>
+    </li>
+    <li>
+        <button @onclick="NavigateToElement">
+            Navigate with <code>NavigationManager</code> to the 
+            <code>Counter</code> component
+        </button>
+    </li>
+</ul>
+
+@code {
+    private void NavigateToElement()
+    {
+        Navigation.NavigateTo("/counter#targetElement");
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
+The following example demonstrates navigating to H2 headings within a component and to external components.
+
+In the `Home` (`Home.razor`) and `Counter` (`Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
+
+```razor
+<div class="border border-info rounded bg-info" style="height:500px"></div>
+
+<h2 id="targetElement">Target H2 heading</h2>
+<p>Content!</p>
+```
+
+Add the following `FragmentRouting` component to the app.
+
+`FragmentRouting.razor`:
+
+```razor
+@page "/fragment-routing"
+@inject NavigationManager Navigation
+
+<PageTitle>Fragment routing</PageTitle>
+
+<h1>Fragment routing to elements</h1>
 
 <ul>
     <li>
