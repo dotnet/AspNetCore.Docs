@@ -6,7 +6,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/05/2026
+ms.date: 06/11/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -19,104 +19,52 @@ This article explains:
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
-In practice, you apply a policy with [Authorize(Policy = "...")] or RequireAuthorization(...), and ASP.NET Core uses handlers to evaluate the requirements behind that policy. If you need policies generated dynamically instead of registered up front, that’s where IAuthorizationPolicyProvider comes in.
+In practice, a policy is applied with `[Authorize(Policy = "...")]` or `RequireAuthorization(...)`, and the framework uses handlers to evaluate the requirements behind a policy. `IAuthorizationPolicyProvider` generates policies dynamically instead of registering them at app startup.
 
-Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
+[Role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
+
+## Policy registration
 
 :::moniker range=">= aspnetcore-6.0"
 
-An authorization policy consists of one or more requirements. Register it as part of the authorization service configuration, in the app's `Program.cs` file:
+An authorization policy consists of one or more requirements. Register the policy as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`), which is supplied as a parameter to the requirement (`21`):
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" range="20-23,29":::
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AtLeast21", policy =>
+        policy.Requirements.Add(new MinimumAgeRequirement(21)));
+});
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `Startup.ConfigureServices` method:
+An authorization policy consists of one or more requirements. Register the policy as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in the `Startup.ConfigureServices` method. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`), which is supplied as a parameter to the requirement (`21`):
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/3.0PoliciesAuthApp1/Startup.cs" range="31-32,39-40,42-45, 53, 58":::
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("AtLeast21", policy =>
+        policy.Requirements.Add(new MinimumAgeRequirement(21)));
+});
+```
 
 :::moniker-end
 
-In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
-
-## IAuthorizationService
+## `IAuthorizationService`
 
 The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
 
-STUBS (the highlights were for 24-25 and 48-49)...
+* `AuthorizeAsync(ClaimsPrincipal user, object resource, IEnumerable<IAuthorizationRequirement> requirements)`: Checks if a user meets a specific set of authorization requirements for a specified resource.
+* `AuthorizeAsync(ClaimsPrincipal user, object resource, string policyName)`: Checks if a user meets a specific authorization policy for a specified resource.
 
-```csharp
-// THIS IS A COPY OF https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs
-// USED FOR DOCUMENTAION
-// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+If a resource isn't required for policy evaluation, pass `null` for the resource. Confirm that the resource is assigned when acting on a resource-focused policy.
 
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
+These methods return `true` when authorization succeeds and `false` when it fails.
 
-namespace Microsoft.AspNetCore.Authorization
-{
-    // <snippet>
-    /// <summary>
-    /// Checks policy based permissions for a user
-    /// </summary>
-    public interface IAuthorizationService
-    {
-        /// <summary>
-        /// Checks if a user meets a specific set of requirements for the specified resource
-        /// </summary>
-        /// <param name="user">The user to evaluate the requirements against.</param>
-        /// <param name="resource">
-        /// An optional resource the policy should be checked with.
-        /// If a resource is not required for policy evaluation you may pass null as the value
-        /// </param>
-        /// <param name="requirements">The requirements to evaluate.</param>
-        /// <returns>
-        /// A flag indicating whether authorization has succeeded.
-        /// This value is <value>true</value> when the user fulfills the policy; 
-        /// otherwise <value>false</value>.
-        /// </returns>
-        /// <remarks>
-        /// Resource is an optional parameter and may be null. Please ensure that you check 
-        /// it is not null before acting upon it.
-        /// </remarks>
-        Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, object resource, 
-                                         IEnumerable<IAuthorizationRequirement> requirements);
-
-        /// <summary>
-        /// Checks if a user meets a specific authorization policy
-        /// </summary>
-        /// <param name="user">The user to check the policy against.</param>
-        /// <param name="resource">
-        /// An optional resource the policy should be checked with.
-        /// If a resource is not required for policy evaluation you may pass null as the value
-        /// </param>
-        /// <param name="policyName">The name of the policy to check against a specific 
-        /// context.</param>
-        /// <returns>
-        /// A flag indicating whether authorization has succeeded.
-        /// Returns a flag indicating whether the user, and optional resource has fulfilled 
-        /// the policy.    
-        /// <value>true</value> when the policy has been fulfilled; 
-        /// otherwise <value>false</value>.
-        /// </returns>
-        /// <remarks>
-        /// Resource is an optional parameter and may be null. Please ensure that you check
-        /// it is not null before acting upon it.
-        /// </remarks>
-        Task<AuthorizationResult> AuthorizeAsync(
-                                    ClaimsPrincipal user, object resource, string policyName);
-    }
-    // </snippet>
-}
-```
-
-The preceding code highlights the two methods of the [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
-
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods, and the mechanism for tracking whether authorization is successful.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods that serves as the mechanism for tracking whether authorization is successful.
 
 Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met:
 <!--The following code is a copy/paste from 
@@ -140,31 +88,10 @@ public interface IAuthorizationHandler
 The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class is what the handler uses to mark whether requirements have been met:
 
 ```csharp
- context.Succeed(requirement)
+context.Succeed(requirement)
 ```
 
-The following code shows the simplified (and annotated with comments) default implementation of the authorization service:
 
-```csharp
-public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, 
-             object resource, IEnumerable<IAuthorizationRequirement> requirements)
-{
-    // Create a tracking context from the authorization inputs.
-    var authContext = _contextFactory.CreateContext(requirements, user, resource);
-
-    // By default this returns an IEnumerable<IAuthorizationHandler> from DI.
-    var handlers = await _handlers.GetHandlersAsync(authContext);
-
-    // Invoke all handlers.
-    foreach (var handler in handlers)
-    {
-        await handler.HandleAsync(authContext);
-    }
-
-    // Check the context, by default success is when all requirements have been met.
-    return _evaluator.Evaluate(authContext);
-}
-```
 
 The following code shows a typical authorization service configuration:
 
@@ -177,7 +104,7 @@ builder.Services.AddSingleton<IAuthorizationHandler, MyHandler1>();
 
 builder.Services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
 
-// Configure your policies
+// Configure policies
 builder.Services.AddAuthorization(options =>
       options.AddPolicy("Something",
       policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
@@ -188,23 +115,16 @@ builder.Services.AddAuthorization(options =>
 :::moniker range="< aspnetcore-6.0"
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // Add all of your handlers to DI.
-    services.AddSingleton<IAuthorizationHandler, MyHandler1>();
-    // MyHandler2, ...
+// Add all of your handlers to DI.
+services.AddSingleton<IAuthorizationHandler, MyHandler1>();
+// MyHandler2, ...
 
-    services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
+services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
 
-    // Configure your policies
-    services.AddAuthorization(options =>
-          options.AddPolicy("Something",
-          policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
-
-
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-}
+// Configure your policies
+services.AddAuthorization(options =>
+    options.AddPolicy("Something",
+    policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
 ```
 
 :::moniker-end
@@ -328,13 +248,17 @@ Register handlers in the services collection during configuration. For example:
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_minimumAgeHandlerRegistration":::
+```csharp
+builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/3.0PoliciesAuthApp1/Startup.cs" range="31-32,39-40,42-45,53-55,58":::
+```csharp
+services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
+```
 
 :::moniker-end
 
