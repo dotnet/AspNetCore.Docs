@@ -5,7 +5,7 @@ description: Provides an overview of Minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 06/09/2026
+ms.date: 06/11/2026
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -132,6 +132,8 @@ To implement custom validation error responses:
 
 For more information on customizing validation error responses with IProblemDetailsService, see <xref:fundamentals/minimal-apis/responses#customize-validation-error-responses-using-iproblemdetailsservice>.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 ### Localizing validation messages
@@ -151,6 +153,8 @@ Use the typed `AddValidationLocalization<TSharedResource>()` overload for Minima
 For the full set of options, including loading messages from sources other than resource files, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ## Responses
 
