@@ -52,3 +52,35 @@ If the app has a [Content Security Policy (CSP)](xref:blazor/security/content-se
 ```diff
 - 'unsafe-hashes' 'sha256-qnHnQs7NjQNHHNYv/I9cW+I62HzDJjbnyS/OFzqlix0='
 ```
+
+### QuickGrid adopts URL-based pagination and sorting
+ 
+`QuickGrid` component persists pagination and sort state in the URL query string (for example, `?page=2&sort=Name&order=asc`), which enables link sharing, browser back/forward navigation, and operation under static server-side rendering (static SSR). This behavior is enabled by default.
+
+To work without a JavaScript runtime, sortable column headers and paginator controls now render as `<a>` (link) elements instead of `<button>` elements. Update any custom CSS that targets the previous markup:
+
+```diff
+- button.col-title { ... }
++ button.col-title, a.col-title { ... }
+- nav button:disabled { ... }
++ nav button:disabled, nav a[aria-disabled="true"] { ... }
+```
+
+Disabled paginator links use `aria-disabled="true"` instead of the HTML `disabled` attribute, which isn't valid on `<a>` elements. The built-in QuickGrid CSS already covers both markup styles.
+
+When more than one QuickGrid is rendered on the same page, set a unique `QueryParameterNamePrefix` on each grid (and give each its own `PaginationState`) to prevent the grids from sharing the page, sort, and order query parameters:
+
+```diff
+- <QuickGrid Items="@cities" Pagination="@pagination2">...</QuickGrid>
++ <QuickGrid Items="@cities" Pagination="@pagination2" QueryParameterNamePrefix="cities">...</QuickGrid>
+```
+
+To revert to the previous `<button>`-based markup, which requires an interactive render mode, set the following AppContext switch to false:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.QuickGrid.EnableUrlBasedQuickGridNavigationAndSorting",
+    false);
+```
+
+The switch only controls the rendered HTML element; sort and page state is read from and written to the URL query string regardless of the setting.
