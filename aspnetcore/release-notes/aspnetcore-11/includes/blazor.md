@@ -463,6 +463,7 @@ The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters f
 
 Blazor now supports MathML elements in interactive rendering. MathML elements, such as `<math>`, `<mrow>`, `<mi>`, and `<mn>`, are created with the correct namespace (http://www.w3.org/1998/Math/MathML) using `document.createElementNS()`, similar to how SVG elements are handled:
 
+```html
 <math>
     <mrow>
         <mi>x</mi>
@@ -489,6 +490,7 @@ Blazor now supports MathML elements in interactive rendering. MathML elements, s
         </mfrac>
     </mrow>
 </math>
+```
 
 This fix ensures that MathML content renders correctly in browsers when added dynamically through Blazor's renderer, resolving issues where MathML elements were previously created as regular HTML elements without the proper namespace.
 
