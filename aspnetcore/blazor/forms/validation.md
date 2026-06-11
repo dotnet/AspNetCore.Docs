@@ -20,9 +20,15 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
 Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+In Blazor Web Apps that use interactive render modes (Server, WebAssembly, or Auto), client-side validation runs through the live <xref:Microsoft.AspNetCore.Components.Forms.EditContext> pipeline as in earlier releases. Forms that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
 
 :::moniker-end
 
@@ -159,6 +165,72 @@ There are two general approaches for achieving custom validation, which are desc
 * [Manual validation using the `OnValidationRequested` event](#manual-validation-using-the-onvalidationrequested-event): Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event.
 * [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation).
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Client-side validation in static SSR forms
+
+When a Blazor form that uses [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr) contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, Blazor automatically validates the form in the browser before the form is submitted. Server-side data annotations validation continues to run after the form is posted, so the client-side check supplements but never replaces the server-side check.
+
+Client-side validation activates automatically when both conditions are met:
+
+* The form's hosting component uses static SSR (no `@rendermode` directive applied to the component).
+* The form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
+
+### Supported validation attributes
+
+The following <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> attributes are enforced client-side, matching the server-side data annotations behavior:
+
+* <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>
+* <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute>
+* <xref:System.ComponentModel.DataAnnotations.MinLengthAttribute>
+* <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>
+* <xref:System.ComponentModel.DataAnnotations.RangeAttribute>
+* <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute>
+* <xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute>
+* <xref:System.ComponentModel.DataAnnotations.UrlAttribute>
+* <xref:System.ComponentModel.DataAnnotations.PhoneAttribute>
+* <xref:System.ComponentModel.DataAnnotations.CreditCardAttribute>
+* <xref:System.ComponentModel.DataAnnotations.CompareAttribute>
+* <xref:System.ComponentModel.DataAnnotations.FileExtensionsAttribute>
+
+Validation attributes that don't appear in this list, including custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>-derived attributes, aren't enforced client-side. They continue to run server-side after the form is submitted.
+
+### Validation timing
+
+A field validates when it loses focus (blur) for the first time. After a field has shown a validation error or after the form has been submitted at least once, the field re-validates on every change so corrections appear immediately. Submitting the form validates every field.
+
+### Validation messages and accessibility
+
+The existing <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components display client-side validation errors without any changes. ARIA attributes on input elements and on the validation message containers are managed by Blazor automatically so that assistive technologies announce validation errors without additional configuration.
+
+### Localized validation messages
+
+When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side validation shows the same localized strings as the server-side experience. For more information, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
+
+### CSS framework integration
+
+Client-side validation integrates with the browser's [Constraint Validation API](https://developer.mozilla.org/docs/Web/API/Constraint_validation), so the standard CSS pseudo-classes `:valid` and `:invalid` reflect each input's current validation state.
+
+### Enhanced navigation
+
+Client-side validation is preserved across [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). When the user navigates to a page that contains an SSR form, the form is wired up automatically. Multiple forms on the same page validate independently of each other.
+
+### Opting out
+
+To keep server-side data annotations validation but disable client-side enforcement for a single form, set the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component's `EnableClientValidation` parameter to `false`:
+
+```razor
+<DataAnnotationsValidator EnableClientValidation="false" />
+```
+
+To bypass client-side validation for a single submit button, use the standard HTML `formnovalidate` attribute on the button. The form is then posted without a client-side check, and server-side validation still runs after the post:
+
+```razor
+<button type="submit" formnovalidate>Save draft</button>
+```
+
+:::moniker-end
+
 ## Manual validation using the `OnValidationRequested` event
 
 You can manually validate a form with a custom event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A?displayProperty=nameWithType> event to manage a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>.
@@ -210,6 +282,257 @@ After making the preceding changes, the form's behavior matches the following sp
 * The data annotations validation on the `Id` property doesn't trigger a validation failure when the `Id` field merely loses focus. The validation executes when the user selects the **`Update`** button.
 * Any manual validation that you want to perform in the `HandleValidationRequested` method assigned to the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event executes when the user selects the form's **`Update`** button. In the existing code of the `Starship8` component example, the user must select either or both of the checkboxes to validate the form.
 * The form doesn't process the `Submit` method until both the data annotations and manual validation pass.
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Asynchronous validation
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext> exposes an asynchronous validation pipeline that custom validator components and custom submit handlers can use to run validation work that performs I/O, such as calling a server endpoint to check a value's uniqueness. The pipeline is built around three additions to <xref:Microsoft.AspNetCore.Components.Forms.EditContext>:
+
+<!-- UPDATE 11.0 - API Browser cross-link
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+
+-->
+
+* `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync`: an asynchronous counterpart to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> that awaits any registered async work and accepts a <xref:System.Threading.CancellationToken>.
+* `EditContext.OnValidationRequestedAsync`: an event for validators that run asynchronous work when the form is validated as a whole (typically on submit).
+* `EditContext.AddValidationTask`: a method that registers an in-flight <xref:System.Threading.Tasks.Task> against a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> so the framework can track per-field async work.
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm> awaits any registered async work before invoking <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>. Sync-only forms continue to work without changes.
+
+> [!NOTE]
+> In Preview 5, the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component does not yet route data annotations attributes through the async pipeline. You can adopt the patterns in this section from a custom validator component or from a handler attached directly to <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
+
+### Form-level async validation with `OnValidationRequestedAsync`
+
+Subscribe to `OnValidationRequestedAsync` to run async work whenever the form is validated as a whole. The event arguments expose a <xref:System.Threading.CancellationToken> that should be passed to any I/O the handler performs, so the work is cancelled when the framework supersedes the current validation pass (for example, when a new validation pass starts before the previous one completes).
+
+In the following example, a custom validator component checks a username against a remote endpoint when the form is submitted:
+
+```razor
+@implements IDisposable
+@inject HttpClient Http
+
+@code {
+    [CascadingParameter]
+    private EditContext? CurrentEditContext { get; set; }
+
+    [Parameter, EditorRequired]
+    public RegistrationModel Model { get; set; } = default!;
+
+    private ValidationMessageStore? _messages;
+
+    protected override void OnInitialized()
+    {
+        ArgumentNullException.ThrowIfNull(CurrentEditContext);
+        _messages = new ValidationMessageStore(CurrentEditContext);
+        CurrentEditContext.OnValidationRequestedAsync += ValidateUsernameAsync;
+    }
+
+    private async Task ValidateUsernameAsync(
+        object? sender, ValidationRequestedEventArgs e)
+    {
+        var field = CurrentEditContext!.Field(nameof(Model.Username));
+        _messages!.Clear(field);
+
+        var available = await Http.GetFromJsonAsync<bool>(
+            $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
+            e.CancellationToken);
+
+        if (!available)
+        {
+            _messages.Add(field, "The username is already taken.");
+        }
+        
+        CurrentEditContext!.NotifyValidationStateChanged();
+    }
+
+    public void Dispose()
+    {
+        if (CurrentEditContext is not null)
+        {
+            CurrentEditContext.OnValidationRequestedAsync -= ValidateUsernameAsync;
+        }
+    }
+}
+```
+
+Place the component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> alongside the form's inputs. Because <xref:Microsoft.AspNetCore.Components.Forms.EditForm> awaits the async handlers before invoking <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>, the submit handler runs only after the remote check completes successfully:
+
+```razor
+<EditForm Model="Model" OnValidSubmit="RegisterAsync">
+    <UsernameUniquenessValidator Model="Model" />
+    <InputText @bind-Value="Model.Username" />
+    <ValidationMessage For="() => Model.Username" />
+    <button type="submit">Register</button>
+</EditForm>
+```
+
+### Per-field async validation with `AddValidationTask`
+
+For async work that should run when the user edits a single field, register the in-flight <xref:System.Threading.Tasks.Task> against the field's <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> with `AddValidationTask`. The framework tracks each task so the field's pending and faulted state can be queried and visualized independently of other fields.
+
+Add the following members to the validator component shown in the previous section to re-run the uniqueness check whenever the `Username` field changes. If the user edits the same field again while a check is in flight, the prior task is canceled and a new one is registered:
+
+```csharp
+private CancellationTokenSource? _usernameCts;
+
+protected override void OnInitialized()
+{
+    ArgumentNullException.ThrowIfNull(CurrentEditContext);
+    _messages = new ValidationMessageStore(CurrentEditContext);
+    CurrentEditContext.OnValidationRequestedAsync += ValidateUsernameAsync;
+    CurrentEditContext.OnFieldChanged += OnFieldChanged;
+}
+
+private void OnFieldChanged(object? sender, FieldChangedEventArgs e)
+{
+    if (e.FieldIdentifier.FieldName != nameof(RegistrationModel.Username))
+    {
+        return;
+    }
+
+    _usernameCts?.Cancel();
+    _usernameCts?.Dispose();
+    _usernameCts = new CancellationTokenSource();
+    var token = _usernameCts.Token;
+
+    var task = CheckAsync(e.FieldIdentifier, token);
+    CurrentEditContext!.AddValidationTask(e.FieldIdentifier, task);
+}
+
+private async Task CheckAsync(FieldIdentifier field, CancellationToken token)
+{
+    _messages!.Clear(field);
+
+    var available = await Http.GetFromJsonAsync<bool>(
+        $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
+        token);
+
+    if (!available)
+    {
+        _messages.Add(field, "The username is already taken.");
+    }
+    
+    CurrentEditContext!.NotifyValidationStateChanged();
+}
+
+public void Dispose()
+{
+    _usernameCts?.Cancel();
+    _usernameCts?.Dispose();
+    _usernameCts = null;
+
+    if (CurrentEditContext is not null)
+    {
+        CurrentEditContext.OnValidationRequestedAsync -= ValidateUsernameAsync;
+        CurrentEditContext.OnFieldChanged -= OnFieldChanged;
+    }
+}
+```
+
+A canceled task is discarded silently and does not change the field's faulted state. A task that throws an exception other than <xref:System.OperationCanceledException> places the field in the faulted state described in the next section.
+
+### Pending and faulted state
+
+While an async task is in flight, the field is *pending*. If an async task throws an exception other than <xref:System.OperationCanceledException>, the field is *faulted*. Each state has both a per-field and a form-level query:
+
+| State    | Per-field                                          | Form-level (any field)           |
+|----------|----------------------------------------------------|----------------------------------|
+| Pending  | `EditContext.IsValidationPending(fieldIdentifier)` | `EditContext.IsValidationPending()` |
+| Faulted  | `EditContext.IsValidationFaulted(fieldIdentifier)` | `EditContext.IsValidationFaulted()` |
+
+The per-field overloads accept either a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> or a `() => model.Property` lambda for convenient use in Razor markup:
+
+```razor
+<InputText @bind-Value="Model.Username" />
+<ValidationMessage For="() => Model.Username" />
+
+@if (EditContext.IsValidationPending(() => Model.Username))
+{
+    <span class="spinner" aria-live="polite">Checking&hellip;</span>
+}
+else if (EditContext.IsValidationFaulted(() => Model.Username))
+{
+    <span class="validation-faulted" aria-live="polite">
+        Validation could not be completed.
+    </span>
+}
+```
+
+The form-level parameterless overloads return `true` when any field is currently pending or faulted. A common use is disabling the submit button while validation is in flight:
+
+```razor
+<button type="submit" disabled="@EditContext.IsValidationPending()">
+    Register
+</button>
+```
+
+<xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> automatically adds the `pending` and `faulted` CSS classes to its rendered element while the bound field is in the corresponding state, in addition to the existing `modified` / `valid` / `invalid` classes. The classes compose, so unmodified pending styling and modified pending styling can be targeted independently:
+
+```css
+.pending {
+    background-image: url('spinner.gif');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.modified.pending {
+    border-color: lightblue;
+}
+
+.modified.faulted {
+    border-color: orange;
+}
+```
+
+### Calling `ValidateAsync` from a custom submit handler
+
+<!-- UPDATE 11.0 - API Browser cross-link 
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+
+-->
+
+When a form uses <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> instead of <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>, call `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` from the handler to await any registered async work before deciding whether to proceed:
+
+```razor
+<EditForm EditContext="_editContext" OnSubmit="HandleSubmitAsync">
+    <UsernameUniquenessValidator Model="Model" />
+    <InputText @bind-Value="Model.Username" />
+    <button type="submit">Register</button>
+</EditForm>
+
+@code {
+    private EditContext _editContext = default!;
+
+    protected override void OnInitialized() =>
+        _editContext = new EditContext(Model);
+
+    private async Task HandleSubmitAsync()
+    {
+        if (await _editContext.ValidateAsync(CancellationToken.None))
+        {
+            await RegisterAsync();
+        }
+    }
+}
+```
+
+<!-- UPDATE 11.0 - API Browser cross-link
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+
+-->
+
+The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method continues to work for forms that only have synchronous validators. When a registered async handler returns an incomplete <xref:System.Threading.Tasks.Task>, calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> throws an <xref:System.InvalidOperationException> directing the caller to use `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` instead.
+
+### Async validation across rendering modes
+
+The async validation API is the same in every Blazor rendering mode. Validator code runs wherever the component runs: in the browser for Interactive WebAssembly, on the server for Interactive Server, and on the server during the form POST for static SSR. Static SSR renders the full response after async validation completes.
+
+:::moniker-end
 
 ## Validator components
 
