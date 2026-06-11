@@ -5,7 +5,7 @@ ms.author: tdykstra
 description: Review ASP.NET Core support for Native ahead-of-time (AOT) applications, including publishing and deployment.
 content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
-ms.date: 04/27/2026
+ms.date: 06/02/2026
 uid: fundamentals/native-aot
 ai-usage: ai-assisted
 
@@ -60,6 +60,7 @@ The following table summarizes ASP.NET Core feature compatibility with Native AO
 | Localization         | ✔️ |  |  |
 | Minimal APIs         |  | ✔️ |  |
 | MVC                  |  |  | ❌ |
+| OData                |  |  | ❌ |
 | Other Authentication |  |  | ❌ |
 | OutputCaching        | ✔️ |  |  |
 | RateLimiting         | ✔️ |  |  |

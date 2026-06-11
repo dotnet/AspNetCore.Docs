@@ -110,6 +110,107 @@ The following code shows how to use one resource string for validation attribute
 
 In the preceding code, `SharedResource` is the class corresponding to the *.resx* file where the validation messages are stored. With this approach, DataAnnotations only uses `SharedResource`, rather than the resource for each class.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## DataAnnotations localization in Minimal APIs and Blazor
+
+Validation localization is available for Minimal API and Blazor apps that opt into the `Microsoft.Extensions.Validation` pipeline by calling `AddValidation()` in `Program.cs`. Localize validation error messages and the display names of validated properties and parameters by also calling `AddValidationLocalization`:
+
+```csharp
+builder.Services.AddValidation();
+builder.Services.AddValidationLocalization<ValidationResources>();
+```
+
+The localization integration does not apply to MVC and Razor Pages apps, or to Blazor forms that don't include `AddValidation`.
+
+> [!NOTE]
+ > The integration is provided by the `Microsoft.Extensions.Validation.Localization` package, which builds on the `Microsoft.Extensions.Validation` package. Both packages are included in the Web SDK (`Microsoft.NET.Sdk.Web`) and the Razor SDK (`Microsoft.NET.Sdk.Razor`), so apps that use those SDKs don't need explicit package references. Standalone Blazor WebAssembly apps and other project that do not use the Web SDK or the Razor SDK must reference both packages explicitly:
+>
+> ```xml
+> <PackageReference Include="Microsoft.Extensions.Validation" Version="11.0.0" />
+> <PackageReference Include="Microsoft.Extensions.Validation.Localization" Version="11.0.0" />
+> ```
+
+### Resource file lookup
+
+By default, validation localization resolves messages and display names from *.resx* resource files using ASP.NET Core's standard <xref:Microsoft.Extensions.Localization.IStringLocalizer> infrastructure. For an overview of authoring and naming *.resx* files, see <xref:fundamentals/localization/provide-resources>.
+
+To use a shared resource file for every validated type, pass a marker type argument to `AddValidationLocalization`:
+
+```csharp
+builder.Services.AddValidationLocalization<ValidationResources>();
+```
+
+The marker type identifies the *.resx* file the framework uses (for example, `ValidationResources.resx` for the default culture and `ValidationResources.fr.resx` for French).
+
+> [!IMPORTANT]
+> A shared resource file is necessary for Minimal APIs, because top-level parameters on Minimal API endpoints don't have a containing type that the default per-type convention can key on.
+
+For per-type resource file resolution, use the non-generic overload of `AddValidationLocalization`:
+
+```csharp
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddValidationLocalization();
+```
+
+This approach follows the standard ASP.NET Core convention: under the project's configured `ResourcesPath`, the type's full name (without the project's root namespace prefix) is used as a dotted path. For example, with `ResourcesPath = "Resources"`, a project whose root namespace is `Contoso` looks up validation messages for `Contoso.Models.Customer` in `Resources/Models/Customer.fr.resx` (or equivalently `Resources/Models.Customer.fr.resx`) for French. For a full description of the *.resx* naming and placement conventions, see <xref:fundamentals/localization/provide-resources>.
+
+#### Customize the localizer creation
+
+For full control over which *.resx* file to use for a given validated type, set `ValidationLocalizationOptions.LocalizerProvider`. The delegate receives the validated type and an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory>, and returns the <xref:Microsoft.Extensions.Localization.IStringLocalizer> to use:
+
+```csharp
+builder.Services.AddValidationLocalization(options =>
+{
+    options.LocalizerProvider = (type, factory) =>
+        type is not null && type.Namespace?.StartsWith("Contoso.Admin") == true
+            ? factory.Create(typeof(AdminValidationResources))
+            : factory.Create(typeof(SharedValidationResources));
+});
+```
+
+### Localizing from other sources
+
+The localization data doesn't have to come from *.resx* files. Validation localization resolves strings through whichever <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is registered in DI. Registering a custom factory implementation switches validation messages to that factory's backing store, with no further configuration:
+
+```csharp
+builder.Services.AddSingleton<IStringLocalizerFactory, MyJsonStringLocalizerFactory>();
+builder.Services.AddValidation();
+builder.Services.AddValidationLocalization();
+```
+
+This can be used to load localized messages from JSON files, databases, remote translation services, and other sources.
+
+### What gets localized
+
+When validation localization is configured:
+
+* Error messages whose <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage> property is set to a resource key are looked up by that key. If no resource entry matches, the literal value of `ErrorMessage` is used as the error message.
+* Display names supplied as literal strings through `[Display(Name = "...")]` or `[DisplayName("...")]` are looked up by the literal value as a resource key. If no resource entry matches, the literal value is used as the display name.
+
+Attributes that use static resource localization (via the `DisplayAttribute.ResourceType` and `ValidationAttribute.ErrorMessageResourceType` properties) are not processed by the validation localizer registered by `AddValidationLocalization`.
+
+### Localize the built-in validation messages
+
+Some applications might find it useful to translate or override the default error messages of attributes like <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> without setting <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage> on every attribute instance. This can be achieved by an `ErrorMessageKeyProvider` that derives a resource key programmatically:
+
+```csharp
+builder.Services.AddValidationLocalization(options =>
+{
+    options.ErrorMessageKeyProvider = ctx => ctx.Attribute.ErrorMessage is not null
+        ? ctx.Attribute.ErrorMessage
+        : $"{ctx.Attribute.GetType().Name}_Error";
+});
+```
+
+With the preceding configuration, a `[Required]` attribute with no `ErrorMessage` looks up the resource key `RequiredAttribute_Error`, a `[StringLength(50)]` looks up `StringLengthAttribute_Error`, and so on. The key provider runs only when `ErrorMessage` isn't set on the attribute instance, so model-specific overrides via `ErrorMessage = "MyKey"` continue to take precedence.
+
+:::moniker-end
+
+:::moniker range="> aspnetcore-5.0"
+
 ## Configure localization services
 
 Localization services are configured in `Program.cs`:
