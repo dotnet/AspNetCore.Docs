@@ -74,8 +74,8 @@ public class Program
 
         // Configure the HTTP request pipeline.
         app.UseHttpsRedirection();
-        app.UseOutputCache();
         app.UseAuthorization();
+        app.UseOutputCache();
         //</snippet_use>
 
 
