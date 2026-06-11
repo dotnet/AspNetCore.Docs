@@ -289,7 +289,13 @@ After making the preceding changes, the form's behavior matches the following sp
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditContext> exposes an asynchronous validation pipeline that custom validator components and custom submit handlers can use to run validation work that performs I/O, such as calling a server endpoint to check a value's uniqueness. The pipeline is built around three additions to <xref:Microsoft.AspNetCore.Components.Forms.EditContext>:
 
-* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>: an asynchronous counterpart to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> that awaits any registered async work and accepts a <xref:System.Threading.CancellationToken>.
+<!-- UPDATE 11.0 - API Browser cross-link
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+
+-->
+
+* `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync`: an asynchronous counterpart to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> that awaits any registered async work and accepts a <xref:System.Threading.CancellationToken>.
 * `EditContext.OnValidationRequestedAsync`: an event for validators that run asynchronous work when the form is validated as a whole (typically on submit).
 * `EditContext.AddValidationTask`: a method that registers an in-flight <xref:System.Threading.Tasks.Task> against a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> so the framework can track per-field async work.
 
@@ -483,7 +489,13 @@ The form-level parameterless overloads return `true` when any field is currently
 
 ### Calling `ValidateAsync` from a custom submit handler
 
-When a form uses <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> instead of <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A> from the handler to await any registered async work before deciding whether to proceed:
+<!-- UPDATE 11.0 - API Browser cross-link 
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+
+-->
+
+When a form uses <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> instead of <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>, call `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` from the handler to await any registered async work before deciding whether to proceed:
 
 ```razor
 <EditForm EditContext="_editContext" OnSubmit="HandleSubmitAsync">
@@ -508,7 +520,13 @@ When a form uses <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> 
 }
 ```
 
-The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method continues to work for forms that only have synchronous validators. When a registered async handler returns an incomplete <xref:System.Threading.Tasks.Task>, calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> throws an <xref:System.InvalidOperationException> directing the caller to use <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A> instead.
+<!-- UPDATE 11.0 - API Browser cross-link
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+
+-->
+
+The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method continues to work for forms that only have synchronous validators. When a registered async handler returns an incomplete <xref:System.Threading.Tasks.Task>, calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> throws an <xref:System.InvalidOperationException> directing the caller to use `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` instead.
 
 ### Async validation across rendering modes
 
