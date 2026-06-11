@@ -522,7 +522,7 @@ In `Details.razor`:
 
     protected override async Task OnInitializedAsync()
     {
-        if (Page.HasValue)
+        if (Page.HasValue && Page > 0)
         {
             await pagination.SetCurrentPageIndexAsync(Page.Value - 1);
             Navigation.NavigateTo(
