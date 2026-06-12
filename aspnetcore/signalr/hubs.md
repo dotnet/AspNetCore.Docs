@@ -266,7 +266,7 @@ You access a registered service by specifying the key with the [[FromKeyedServic
 
 ## Limit per-connection streaming invocations
 
-`<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> controls the number of non-streaming hub method invocations a client can run in parallel before they are queued. It does **not** apply to streaming hub invocations. Streaming invocations are intentionally excluded because they are expected to be long-running and concurrent, so a client can start any number of concurrent streams regardless of that setting.
+<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> controls the number of non-streaming hub method invocations a client can run in parallel before they are queued. It does **not** apply to streaming hub invocations. Streaming invocations are intentionally excluded because they are expected to be long-running and concurrent, so a client can start any number of concurrent streams regardless of that setting.
 
 To enforce a per-connection limit on streaming invocations, wrap the stream inside the hub method itself using a private helper that increments a counter before yielding items and decrements it in a `finally` block:
 
