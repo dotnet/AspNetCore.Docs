@@ -53,9 +53,14 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-## `IAuthorizationService`
+## Authorization service interface (`IAuthorizationService`)
 
-The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
+The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>. 
+
+
+
+
+ when one of the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overloads is called:
 
 * `AuthorizeAsync(ClaimsPrincipal user, object resource, IEnumerable<IAuthorizationRequirement> requirements)`: Checks if a user meets a specific set of authorization requirements for a specified resource.
 * `AuthorizeAsync(ClaimsPrincipal user, object resource, string policyName)`: Checks if a user meets a specific authorization policy for a specified resource.
@@ -66,34 +71,15 @@ These methods return `true` when authorization succeeds and `false` when it fail
 
 <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods that serves as the mechanism for tracking whether authorization is successful.
 
-Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met:
-<!--The following code is a copy/paste from 
-https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationHandler.cs -->
+Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met via <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler.HandleAsync%2A?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class contains the authorization information used by <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler>. When <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A?displayProperty=nameWithType> is called with the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, the policy is met:
 
 ```csharp
-/// <summary>
-/// Classes implementing this interface are able to make a decision if authorization
-/// is allowed.
-/// </summary>
-public interface IAuthorizationHandler
-{
-    /// <summary>
-    /// Makes a decision if authorization is allowed.
-    /// </summary>
-    /// <param name="context">The authorization information.</param>
-    Task HandleAsync(AuthorizationHandlerContext context);
-}
+context.Succeed(requirement);
 ```
-
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class is what the handler uses to mark whether requirements have been met:
-
-```csharp
-context.Succeed(requirement)
-```
-
-
 
 The following code shows a typical authorization service configuration:
+
+
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -106,8 +92,9 @@ builder.Services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
 
 // Configure policies
 builder.Services.AddAuthorization(options =>
-      options.AddPolicy("Something",
-      policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
+    options.AddPolicy("Something",
+        policy => 
+            policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
 ```
 
 :::moniker-end
@@ -124,12 +111,22 @@ services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
 // Configure your policies
 services.AddAuthorization(options =>
     options.AddPolicy("Something",
-    policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
+        policy => 
+            policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
 ```
 
 :::moniker-end
 
 Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
+
+## Apply policies in Razor components
+
+
+
+
+
+
+
 
 ## Apply policies to MVC controllers
 
