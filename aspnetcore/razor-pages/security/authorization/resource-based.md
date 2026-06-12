@@ -83,7 +83,7 @@ public async Task<IActionResult> OnGetAsync(Guid documentId)
 
 ## Create a resource-based handler
 
-Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see the [Policy-based authorization: Requirements](xref:security/authorization/policies#requirements).
+Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see the [Policy-based authorization: Requirements](xref:security/authorization/policies#requirements).
 
 The handler class specifies the requirement and resource type. The following example demonstrates a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource:
 
