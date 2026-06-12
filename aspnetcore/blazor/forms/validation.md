@@ -158,7 +158,7 @@ In custom validation scenarios:
 There are two general approaches for achieving custom validation, which are described in the next two sections of this article:
 
 * [Manual validation using the `OnValidationRequested` event](#manual-validation-using-the-onvalidationrequested-event): Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event.
-* [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation).
+* [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server-side validation in a Blazor Web App).
 
 ## Manual validation using the `OnValidationRequested` event
 
@@ -216,15 +216,15 @@ After making the preceding changes, the form's behavior matches the following sp
 
 Validator components support form validation by managing a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 
-The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
+The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server-side validation in a Blazor Web App). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
 
 * [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
-* [Server validation with a validator component](#server-validation-with-a-validator-component)
+* [Remote validation with a validator component](#remote-validation-with-a-validator-component)
 
 Of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes), only the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute) isn't supported in Blazor.
 
 > [!NOTE]
-> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, any custom attributes applied to the model must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
+> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation in a Blazor Web App, any custom attributes applied to the model must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
 
@@ -356,11 +356,11 @@ When validation messages are set in the component, they're added to the validato
 :::moniker-end
 
 > [!NOTE]
-> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
+> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation in a Blazor Web App, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 :::moniker range=">= aspnetcore-10.0"
 
-## Server validation for Minimal APIs
+## Remote validation in a Minimal API
 
 In a [Minimal API](xref:fundamentals/minimal-apis), call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method for [data annotation validation of model types](xref:mvc/models/validation#validation-attributes) for all web API endpoints:
 
@@ -376,17 +376,17 @@ For more information, see <xref:fundamentals/minimal-apis#enable-built-in-valida
 
 :::moniker-end
 
-## Server validation with a validator component
+## Remote validation with a validator component
 
 :::moniker range=">= aspnetcore-10.0"
 
-*This section demonstrates server validation using a Blazor Web App (global Interactive Auto render mode) and a Minimal API.*
+*This section demonstrates remote validation using a Blazor Web App (global Interactive Auto render mode) and a Minimal API.*
 
-Server validation is supported in addition to client validation:
+Remote validation is supported in addition to Blazor Web App client/server-side validation:
 
 * Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server web API for server-side validation.
-* Process model validation on the server:
+* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend Minimal API for remote validation.
+* Process remote model validation:
   * Data annotations validation with built-in support for Minimal APIs.
   * Custom validation logic.
 * Send validation errors, if any, back to the client.
@@ -402,7 +402,7 @@ The following example is based on:
   * Data annotations validation attributes on the model class (<xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>), including for [custom validation attributes](xref:mvc/models/validation#custom-attributes).
   * Custom validation logic that determines if a description form field (`Description`) has a value if the user selects a particular classification in another form field (`Defense` classification).
 
-The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data is never sent to the client for client validation.
+The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Remote validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data is never sent to the client for client validation.
 
 > [!NOTE]
 > For more information on security pertaining to the following example, see the following resources:
@@ -452,14 +452,14 @@ public class StarshipModel
 }
 ```
 
-Add an interface for a form validation service to the `.Client` project in the `Starship` folder. The interface is used to register a service for server validation on the server or client validation on the client.
+Add an interface for a form validation service to the `.Client` project in the `Starship` folder. The interface is used to register validation services in the Blazor Web App.
 
-`Starship/IFormValidator.cs`:
+`Starship/IFormValidation.cs`:
 
 ```csharp
 namespace BlazorSample.Client.Starship;
 
-public interface IFormValidator
+public interface IFormValidation
 {
     Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
         StarshipModel starship);
@@ -468,14 +468,14 @@ public interface IFormValidator
 
 Add a client form validator class to the `.Client` project's `Starship` folder. The client form validator is used when the app is running on the client. The validator class posts to the Blazor Web App endpoint, which then proxies to the Minimal API.
 
-`Starship/ClientFormValidator.cs`:
+`Starship/ClientFormValidation.cs`:
 
 ```csharp
 using System.Net.Http.Json;
 
 namespace BlazorSample.Client.Starship;
 
-internal sealed class ClientFormValidator(HttpClient httpClient) : IFormValidator
+internal sealed class ClientFormValidation(HttpClient httpClient) : IFormValidation
 {
     public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
         StarshipModel starship)
@@ -516,9 +516,9 @@ Confirm or update the namespace of the preceding class.
 
 Create a `Starship` folder in the server project of the Blazor Web App.
 
-In the Blazor Web App, create a server form validator that implements the `IFormValidator` interface. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
+In the Blazor Web App, create a server form validator that implements the `IFormValidation` interface. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
 
-`Starship/ServerFormValidator.cs`:
+`Starship/ServerFormValidation.cs`:
 
 ```csharp
 using System.Net;
@@ -530,9 +530,9 @@ using BlazorSample.Client.Starship;
 
 namespace BlazorSample.Starship;
 
-internal sealed class ServerFormValidator(
+internal sealed class ServerFormValidation(
     IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory) 
-    : IFormValidator
+    : IFormValidation
 {
     public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
         StarshipModel starship)
@@ -600,15 +600,15 @@ internal sealed class ServerFormValidator(
 
 In the `Program` file of the Blazor Web App:
 
-* Register the server form validator (`ServerFormValidator`) for the `IFormValidator` interface in the DI container.
+* Register the server form validator (`ServerFormValidation`) for the `IFormValidation` interface in the DI container.
 * The server form validator is used on the server to call `ValidateStarshipFormAsync` for form validation.
 
 ```csharp
-builder.Services.AddScoped<IFormValidator, ServerFormValidator>();
+builder.Services.AddScoped<IFormValidation, ServerFormValidation>();
 
 ...
 
-app.MapPost("/starship-validation", (IFormValidator formValidator, 
+app.MapPost("/starship-validation", (IFormValidation formValidator, 
     StarshipModel model) =>
 {
     return formValidator.ValidateStarshipFormAsync(model);
@@ -618,7 +618,7 @@ app.MapPost("/starship-validation", (IFormValidator formValidator,
 The `.Client` project of a Blazor Web App must register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to the Minimal API. Add the following to the `.Client` project's `Program` file:
 
 ```csharp
-builder.Services.AddHttpClient<IFormValidator, ClientFormValidator>(httpClient =>
+builder.Services.AddHttpClient<IFormValidation, ClientFormValidation>(httpClient =>
 {
     httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
 });
@@ -663,7 +663,7 @@ Also in the `Program` file of the Minimal API, register [built-in validation ser
 builder.Services.AddValidation();
 ```
 
-Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint's code.
+Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint's code. If you don't want to implement built-in model validation, don't use the preceding line of code in the Minimal API's `Program` file.
 
 In the `.Client` project, add the following `CustomValidation` component. When the component's `DisplayErrors` method is called with a set of validation errors, the errors are added to the parent component's edit context validation message store. Errors are cleared from the edit context by calling the `ClearErrors` method.
 
@@ -723,7 +723,7 @@ public class CustomValidation : ComponentBase
 }
 ```
 
-In the `.Client` project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary. Confirm or update the namespace for `BlazorSample.Client.Starship`.
+In the `.Client` project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary. Confirm or update the namespace for `BlazorSample.Client.Starship`.
 
 Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
@@ -738,7 +738,7 @@ Note that the form requires authorization, so the user must be signed into the a
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using BlazorSample.Client.Starship
 @attribute [Authorize]
-@inject IFormValidator FormValidation
+@inject IFormValidation FormValidation
 @inject ILogger<Starship10> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -850,7 +850,7 @@ Note that the form requires authorization, so the user must be signed into the a
 ```
 
 > [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
+> As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 To reach the form easily, add the following entry to the `NavMenu` component (`Layout/NavMenu.razor`) in the `.Client` project:
 
@@ -899,9 +899,9 @@ If automatic type validation passes but the custom validation fails, the followi
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
-*This section is focused on Blazor Web App scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
+*This section is focused on Blazor Web App scenarios, but the approach for any type of app that uses server-side validation with web API adopts the same general approach.*
 
-Server validation is supported in addition to client validation:
+Remote validation is supported in addition to Blazor Web App client/server-side validation:
 
 * Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 * When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
@@ -923,7 +923,7 @@ Place the `Starship` model (`Starship.cs`) into a shared class library project s
 
 In the main project of the Blazor Web App, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the shared class library project and the `namespace` for the controller class. In addition to client and server data annotations validation, the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
-The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
+The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Remote validation is common in apps that require private business logic validation of user input. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
 
 > [!NOTE]
 > The `StarshipValidation` controller in this section uses Microsoft Identity 2.0. The Web API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`.
@@ -1060,7 +1060,7 @@ For more information on controller routing and validation failure error response
 
 In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
 
-In the `.Client` project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
+In the `.Client` project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
 In the following component, update the namespace of the shared project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
@@ -1208,15 +1208,15 @@ builder.Services.AddScoped(sp =>
 The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 > [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
+> As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
+*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server-side validation with web API adopts the same general approach.*
 
-Server validation is supported in addition to client validation:
+Remote validation is supported in addition to server-side validation in a hosted Blazor WebAssembly app:
 
 * Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 * When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
@@ -1238,7 +1238,7 @@ Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** proj
 
 In the **:::no-loc text="Server":::** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to client and server data annotations validation, the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
-The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
+The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Remote validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
 
 > [!NOTE]
 > The `StarshipValidation` controller in this section uses Microsoft Identity 2.0. The Web API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`.
@@ -1364,7 +1364,7 @@ builder.Services.AddControllersWithViews()
 
 In the **:::no-loc text="Client":::** project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
 
-In the **:::no-loc text="Client":::** project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
+In the **:::no-loc text="Client":::** project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
 In the following component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
@@ -1498,10 +1498,10 @@ In the following component, update the namespace of the **`Shared`** project (`@
 ```
 
 > [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
+> As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 > [!NOTE]
-> The server validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
+> The remote validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
 >
 > * [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
