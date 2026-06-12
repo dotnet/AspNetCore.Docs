@@ -276,7 +276,6 @@ using System.Runtime.CompilerServices;
 
 public class StreamingHub : Hub
 {
-    // Track the number of active streams per connection.
     private static readonly ConcurrentDictionary<string, int> _activeStreams = new();
     private const int MaxConcurrentStreams = 2;
 
@@ -314,11 +313,7 @@ public class StreamingHub : Hub
 
         if (current > MaxConcurrentStreams)
         {
-            _activeStreams.AddOrUpdate(
-                connectionId,
-                addValue: 0,
-                updateValueFactory: (_, count) => Math.Max(0, count - 1));
-
+            Decrement(connectionId);
             throw new HubException(
                 $"The connection is limited to {MaxConcurrentStreams} concurrent streaming invocations.");
         }
@@ -332,10 +327,25 @@ public class StreamingHub : Hub
         }
         finally
         {
-            _activeStreams.AddOrUpdate(
-                connectionId,
-                addValue: 0,
-                updateValueFactory: (_, count) => Math.Max(0, count - 1));
+            Decrement(connectionId);
+        }
+    }
+
+    private static void Decrement(string connectionId)
+    {
+        while (_activeStreams.TryGetValue(connectionId, out var current))
+        {
+            if (current <= 1)
+            {
+                if (_activeStreams.TryRemove(new KeyValuePair<string, int>(connectionId, current)))
+                {
+                    return;
+                }
+            }
+            else if (_activeStreams.TryUpdate(connectionId, current - 1, current))
+            {
+                return;
+            }
         }
     }
 }
@@ -345,9 +355,7 @@ The key point is that `WithLimit` wraps the original `IAsyncEnumerable<T>` and h
 The `finally` block runs only when the client finishes consuming the stream, cancels it, or the connection drops.
 
 > [!NOTE]
-> The `_activeStreams` dictionary is `static` so it is shared across all hub instances for
-a given connection. If you prefer DI-managed state, register a singleton service that owns
-> the dictionary and inject it into the hub constructor.
+> The `_activeStreams` dictionary is `static` so it is shared across all hub instances. If you prefer DI-managed state, register a singleton service that owns the dictionary and inject it into the hub constructor.
 
 ## Handle events for a connection
 
