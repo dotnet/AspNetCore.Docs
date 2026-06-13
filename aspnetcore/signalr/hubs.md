@@ -10,7 +10,7 @@ uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
 ---
-# Use hubs in SignalR for ASP.NET Core
+# Use hubs in ASP.NET Core SignalR
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -258,11 +258,104 @@ public class ChatHub : Hub
 
 ### Keyed services support in dependency injection
 
-The *keyed services* mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
+The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
 
 You access a registered service by specifying the key with the [[FromKeyedServices](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute)] attribute. The following code shows how to use keyed services:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/KeyedSvsHub/Program.cs" highlight="5-6,34,39":::
+
+## Limit per-connection streaming invocations
+
+<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> controls the number of non-streaming hub method invocations a client can run in parallel before they are queued. It does **not** apply to streaming hub invocations. Streaming invocations are intentionally excluded because they are expected to be long-running and concurrent, so a client can start any number of concurrent streams regardless of that setting.
+
+To enforce a per-connection limit on streaming invocations, wrap the stream inside the hub method itself using a private helper that increments a counter before yielding items and decrements it in a `finally` block:
+
+```csharp
+using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
+
+public class StreamingHub : Hub
+{
+    private static readonly ConcurrentDictionary<string, int> _activeStreams = new();
+    private const int MaxConcurrentStreams = 2;
+
+    public IAsyncEnumerable<int> Counter(
+        int count,
+        int delay,
+        CancellationToken cancellationToken)
+    {
+        return WithLimit(GetCounter(count, delay, cancellationToken));
+    }
+
+    private async IAsyncEnumerable<int> GetCounter(
+        int count,
+        int delay,
+        [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        for (var i = 0; i < count; i++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            yield return i;
+            await Task.Delay(delay, cancellationToken);
+        }
+    }
+
+    private async IAsyncEnumerable<int> WithLimit(
+        IAsyncEnumerable<int> stream,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var connectionId = Context.ConnectionId;
+
+        var current = _activeStreams.AddOrUpdate(
+            connectionId,
+            addValue: 1,
+            updateValueFactory: (_, count) => count + 1);
+
+        if (current > MaxConcurrentStreams)
+        {
+            Decrement(connectionId);
+            throw new HubException(
+                $"The connection is limited to {MaxConcurrentStreams} concurrent streaming invocations.");
+        }
+
+        try
+        {
+            await foreach (var item in stream.WithCancellation(cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        finally
+        {
+            Decrement(connectionId);
+        }
+    }
+
+    private static void Decrement(string connectionId)
+    {
+        while (_activeStreams.TryGetValue(connectionId, out var current))
+        {
+            if (current <= 1)
+            {
+                if (_activeStreams.TryRemove(new KeyValuePair<string, int>(connectionId, current)))
+                {
+                    return;
+                }
+            }
+            else if (_activeStreams.TryUpdate(connectionId, current - 1, current))
+            {
+                return;
+            }
+        }
+    }
+}
+```
+
+The key point is that `WithLimit` wraps the original `IAsyncEnumerable<T>` and holds the counter elevated for the *full lifetime of the stream*, not just until the first item is yielded.
+The `finally` block runs only when the client finishes consuming the stream, cancels it, or the connection drops.
+
+> [!NOTE]
+> The `_activeStreams` dictionary is `static` so it is shared across all hub instances. If you prefer DI-managed state, register a singleton service that owns the dictionary and inject it into the hub constructor.
 
 ## Handle events for a connection
 
