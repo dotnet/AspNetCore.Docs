@@ -231,6 +231,239 @@ Here's an example of a filter that uses one of these interfaces:
 
 For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters) and [IResult implementation types](xref:fundamentals/minimal-apis/test-min-api#iresult-implementation-types).
 
+## File result return values
+
+When an API endpoint returns content other than JSON, or supports HTTP protocol features like conditional or range requests,
+ASP.NET Core provides result types that handle the necessary HTTP protocol details for you.
+These result types are referred to as "file results", but provide functionality that can be useful more broadly than just files on disk.
+There are file result types for both Minimal APIs and controller-based APIs, and they share a common underlying implementation and behavior.
+
+To access this functionality, the API endpoint creates and returns a file result object - an instance of one of these file result types.
+The file result object encapsulates the content to be sent, the content type, and any additional parameters like a download file name.
+The result object implements a method -- `ExecuteAsync(HttpContext)` for Minimal APIs or `ExecuteResultAsync(ActionContext)` for controllers -- that the framework calls to write the response.
+This method sets the `Content-Type` header and, when a file name is provided, the `Content-Disposition` header.
+It also handles conditional request headers and range request headers when the appropriate parameters are set on the result object.
+
+### File result types
+
+In Minimal APIs, the most common and recommended way to create a file result is [`TypedResults.File`](xref:Microsoft.AspNetCore.Http.TypedResults.File%2A), which accepts a `byte[]` or `Stream` and returns a [`FileContentHttpResult`](xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult) or [`FileStreamHttpResult`](xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult).
+
+Alternatives include [`TypedResults.Bytes`](xref:Microsoft.AspNetCore.Http.TypedResults.Bytes%2A) for an explicit byte-array helper,
+[`TypedResults.PhysicalFile`](xref:Microsoft.AspNetCore.Http.TypedResults.PhysicalFile%2A) for serving files by absolute path, or
+[`Results.File`](xref:Microsoft.AspNetCore.Http.Results.File%2A) / [`Results.Bytes`](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A) when you only need the `IResult` interface.
+
+Also note that ASP.NET Core provides [static files middleware](xref:fundamentals/static-files) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
+
+```csharp
+app.MapGet("/report", () =>
+{
+    // TypedResults.File with a byte[] returns a FileContentHttpResult
+    byte[] pdf = GenerateReport();
+    return TypedResults.File(pdf, "application/pdf", "report.pdf");
+});
+
+app.MapGet("/download", () =>
+{
+    // TypedResults.File with a Stream returns a FileStreamHttpResult
+    Stream stream = new MemoryStream("Hello, World!"u8.ToArray());
+    return TypedResults.File(stream, "application/octet-stream");
+});
+```
+
+In controller-based APIs, the [`ControllerBase.File()`](xref:Microsoft.AspNetCore.Mvc.ControllerBase.File%2A) helper method accepts either a `byte[]` or `Stream` and returns the appropriate concrete result type ([`FileContentResult`](xref:Microsoft.AspNetCore.Mvc.FileContentResult), [`FileStreamResult`](xref:Microsoft.AspNetCore.Mvc.FileStreamResult)).
+
+Alternatives include returning a [`VirtualFileResult`](xref:Microsoft.AspNetCore.Mvc.VirtualFileResult) for files relative to the web root, or a [`PhysicalFileResult`](xref:Microsoft.AspNetCore.Mvc.PhysicalFileResult) for files by absolute path, but these are less common as the static files middleware usually handles those scenarios.
+
+```csharp
+[HttpGet("report")]
+public FileContentResult Report()
+{
+    // File() with a byte[] returns a FileContentResult
+    byte[] pdf = GenerateReport();
+    return File(pdf, "application/pdf", "report.pdf");
+}
+
+[HttpGet("download")]
+public FileStreamResult Download()
+{
+    // File() with a Stream returns a FileStreamResult
+    Stream stream = new MemoryStream("Hello, World!"u8.ToArray());
+    return File(stream, "application/octet-stream");
+}
+```
+
+### OpenAPI support for file results
+
+File result types don't automatically contribute response metadata to the generated OpenAPI document.
+To get a proper response description in the OpenAPI document, you must specify this metadata explicitly.
+
+In Minimal APIs, use the [`Produces<TResponse>()`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces)
+extension method to provide the OpenAPI metadata for the response. This metadata determines the status code, content type, and schema for the response in the OpenAPI document.
+For a file result, it's important to specify the content type (e.g. `application/pdf`) and to use an appropriate `TResponse` to get the desired schema.
+You can also specify the status code in the `Produces` extension method if it differs from the default of `200 OK`.
+Common status codes are defined in the [`StatusCodes`](xref:Microsoft.AspNetCore.Http.StatusCodes) class, and common content types are defined in the [`MediaTypeNames`](xref:System.Net.Mime.MediaTypeNames) class.
+For example:
+
+```csharp
+app.MapGet("/image", () =>
+{
+    // A 1x1 red pixel BMP (bitmap header + single pixel)
+    byte[] data = [0x42, 0x4D, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    0x1A, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x01, 0x00,
+                    0x01, 0x00, 0x01, 0x00, 0x18, 0x00, 0x00, 0x00, 0xFF, 0x00];
+    return TypedResults.File(data, MediaTypeNames.Image.Bmp, "pixel.bmp");
+})
+// Use Stream to produce the correct schema in OpenAPI (format: binary)
+.Produces<Stream>(contentType: MediaTypeNames.Image.Bmp);
+```
+
+Conceptually, `TResponse` represents the type of the response body, but the appropriate schema for a file result depends
+more on the body content than the CLR type. Therefore, it may be necessary to specify a `TResponse` that doesn't match
+the CLR type of the content in the file result in order to get the desired OpenAPI schema.
+
+In particular, there are three common schemas for file results:
+
+- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
+<!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented-->
+The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
+this type to the `binary` format in the OpenAPI schema.
+
+- **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+
+- **base64-encoded content**, where the schema should be `type: string, format: byte`. It is uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
+
+```csharp
+[HttpGet("image")]
+// Use FileContentResult to produce the correct schema in OpenAPI (format: binary)
+[ProducesResponseType<FileContentResult>(StatusCodes.Status200OK, MediaTypeNames.Image.Bmp)]
+public FileContentResult Image()
+{
+    // A 1x1 red pixel BMP (bitmap header + single pixel)
+    byte[] data = [0x42, 0x4D, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    0x1A, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x01, 0x00,
+                    0x01, 0x00, 0x18, 0x00, 0x00, 0x00, 0xFF, 0x00];
+    return File(data, "image/bmp", "pixel.bmp");
+}
+```
+
+As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
+that corresponds to the desired OpenAPI schema for your file result responses:
+- **binary content** -- Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
+- **text content** -- Use `string` to get a simple `type: string` schema.
+- **base64-encoded content** -- Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+### File result support for conditional requests
+
+File results support [conditional requests](https://www.rfc-editor.org/rfc/rfc9110#section-13) for cache validation. Set the `lastModified` and/or `entityTag` parameters when creating the result object, and the framework automatically inspects incoming `If-None-Match` and `If-Modified-Since` headers. If the resource hasn't changed, the framework returns `304 Not Modified` with no body — no additional code is needed.
+
+| Parameter | Purpose |
+|-----------|---------|
+| `lastModified` | Sets the `Last-Modified` response header. If the client sends `If-Modified-Since` and the file hasn't changed, the framework returns `304 Not Modified` with no body. |
+| `entityTag` | Sets the `ETag` response header. If the client sends `If-None-Match` with a matching ETag, the framework returns `304 Not Modified` with no body. |
+
+> [!NOTE]
+> Precondition checks (`If-Match`, `If-Unmodified-Since`) typically require custom logic in the endpoint to verify preconditions *before* performing their function.
+
+The following example demonstrates how to use file results to enable cache validation for a configuration endpoint.
+
+```csharp
+app.MapGet("/config", (
+    [FromHeader(Name = "If-None-Match")] string? ifNoneMatch,
+    [FromHeader(Name = "If-Modified-Since")] string? ifModifiedSince) =>
+{
+    byte[] data = File.ReadAllBytes("Data/config.json");
+    var lastModified = File.GetLastWriteTimeUtc("Data/config.json");
+    var etag = new EntityTagHeaderValue($"\"{Convert.ToHexString(SHA256.HashData(data))}\"");
+
+    return TypedResults.File(
+        data,
+        contentType: MediaTypeNames.Application.Json,
+        lastModified: lastModified,
+        entityTag: etag);
+})
+.Produces<object>(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status304NotModified);
+```
+
+This example also illustrates how to document the `304 Not Modified` response in the OpenAPI document using the `Produces` extension method, and including the `if-none-match` and `if-modified-since` headers as parameters so they're included in the OpenAPI schema for the endpoint.
+
+A controller-based API can achieve the same behavior using the `File` helper method and the `[ProducesResponseType]` attribute:
+
+```csharp
+[HttpGet("config")]
+[ProducesResponseType<object>(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status304NotModified)]
+public FileContentResult Config(
+    [FromHeader(Name = "If-None-Match")] string? ifNoneMatch,
+    [FromHeader(Name = "If-Modified-Since")] string? ifModifiedSince)
+{
+    byte[] data = System.IO.File.ReadAllBytes("Data/config.json");
+    var lastModified = System.IO.File.GetLastWriteTimeUtc("Data/config.json");
+    var etag = new EntityTagHeaderValue($"\"{Convert.ToHexString(SHA256.HashData(data))}\"");
+
+    return File(
+        data,
+        MediaTypeNames.Application.Json,
+        lastModified: lastModified,
+        entityTag: etag);
+}
+```
+
+### File result support for range requests
+
+**Range requests** allow clients to request only a portion of a file rather than the entire content. A client sends a `Range` header specifying byte offsets, and the server responds with `206 Partial Content` containing just those bytes. This enables resumable downloads, parallel chunked downloads, and efficient seeking in media players.
+
+Range requests can also be conditional: the client sends an `If-Range` header containing an ETag or date alongside the `Range` header, and the server returns the partial content only if the resource hasn't changed since then. If it has changed, the server ignores the range and returns the full resource instead. Note that `If-Range` is only evaluated when `entityTag` or `lastModified` is also set on the file result.
+
+Set `enableRangeProcessing` to `true` to enable range processing. The following examples enable range processing for a video streaming endpoint, and document the additional response types in the OpenAPI metadata.
+
+**Minimal API:**
+
+```csharp
+app.MapGet("/video/{id}", (string id,
+    [FromHeader(Name = "Range")] string? range) =>
+{
+    var bytes = GetVideo(id);
+
+    return TypedResults.File(
+        bytes,
+        contentType: "video/mp4",
+        fileDownloadName: "video.mp4",
+        enableRangeProcessing: true);
+})
+.Produces<Stream>(StatusCodes.Status200OK, "video/mp4")
+.Produces<Stream>(StatusCodes.Status206PartialContent, "video/mp4")
+.Produces(StatusCodes.Status416RangeNotSatisfiable);
+```
+
+**Controller:**
+
+```csharp
+[HttpGet("video/{id}")]
+[ProducesResponseType<FileContentResult>(StatusCodes.Status200OK, "video/mp4")]
+[ProducesResponseType<FileContentResult>(StatusCodes.Status206PartialContent, "video/mp4")]
+[ProducesResponseType(StatusCodes.Status416RangeNotSatisfiable)]
+public FileContentResult Video(string id,
+    [FromHeader(Name = "Range")] string? range)
+{
+    var bytes = GetVideo(id);
+
+    return File(
+        bytes,
+        contentType: "video/mp4",
+        fileDownloadName: "video.mp4",
+        enableRangeProcessing: true);
+}
+```
+
+With this configuration, the framework automatically handles the following HTTP interactions:
+
+* **Full request** &mdash; Returns `200 OK` with the complete file.
+* **Range request** (`Range: bytes=0-1023`) &mdash; Returns `206 Partial Content` with the `Content-Range` header and only the requested bytes.
+* **Invalid range** &mdash; Returns `416 Range Not Satisfiable`.
+
 ## Modifying Headers
 
 Use the `HttpResponse` object to modify response headers:
