@@ -147,7 +147,7 @@ In `appsettings.json`:
 
 Or as an environment variable:
 
-```
+```text
 ASPNETCORE_DisableCsrfProtection=true
 ```
 
