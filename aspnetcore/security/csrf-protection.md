@@ -267,7 +267,7 @@ For apps that are upgrading from .NET 10 and already use the token-based system,
 
 A denial then appears in the log as:
 
-```
+```text
 dbug: Microsoft.AspNetCore.Antiforgery.CsrfProtectionMiddleware[1]
       Cross-origin CSRF protection denied request POST /api/widgets from origin 'https://attacker.example.com'.
 ```
