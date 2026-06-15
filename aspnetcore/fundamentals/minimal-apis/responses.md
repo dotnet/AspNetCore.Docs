@@ -254,43 +254,13 @@ Alternatives include [`TypedResults.Bytes`](xref:Microsoft.AspNetCore.Http.Typed
 
 Also note that ASP.NET Core provides [static files middleware](xref:fundamentals/static-files) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
 
-```csharp
-app.MapGet("/report", () =>
-{
-    // TypedResults.File with a byte[] returns a FileContentHttpResult
-    byte[] pdf = GenerateReport();
-    return TypedResults.File(pdf, "application/pdf", "report.pdf");
-});
-
-app.MapGet("/download", () =>
-{
-    // TypedResults.File with a Stream returns a FileStreamHttpResult
-    Stream stream = new MemoryStream("Hello, World!"u8.ToArray());
-    return TypedResults.File(stream, "application/octet-stream");
-});
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_file_types":::
 
 In controller-based APIs, the [`ControllerBase.File()`](xref:Microsoft.AspNetCore.Mvc.ControllerBase.File%2A) helper method accepts either a `byte[]` or `Stream` and returns the appropriate concrete result type ([`FileContentResult`](xref:Microsoft.AspNetCore.Mvc.FileContentResult), [`FileStreamResult`](xref:Microsoft.AspNetCore.Mvc.FileStreamResult)).
 
 Alternatives include returning a [`VirtualFileResult`](xref:Microsoft.AspNetCore.Mvc.VirtualFileResult) for files relative to the web root, or a [`PhysicalFileResult`](xref:Microsoft.AspNetCore.Mvc.PhysicalFileResult) for files by absolute path, but these are less common as the static files middleware usually handles those scenarios.
 
-```csharp
-[HttpGet("report")]
-public FileContentResult Report()
-{
-    // File() with a byte[] returns a FileContentResult
-    byte[] pdf = GenerateReport();
-    return File(pdf, "application/pdf", "report.pdf");
-}
-
-[HttpGet("download")]
-public FileStreamResult Download()
-{
-    // File() with a Stream returns a FileStreamResult
-    Stream stream = new MemoryStream("Hello, World!"u8.ToArray());
-    return File(stream, "application/octet-stream");
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/Controllers/FilesController.cs" id="snippet_file_types":::
 
 ### OpenAPI support for file results
 
@@ -304,18 +274,7 @@ You can also specify the status code in the `Produces` extension method if it di
 Common status codes are defined in the [`StatusCodes`](xref:Microsoft.AspNetCore.Http.StatusCodes) class, and common content types are defined in the [`MediaTypeNames`](xref:System.Net.Mime.MediaTypeNames) class.
 For example:
 
-```csharp
-app.MapGet("/image", () =>
-{
-    // A 1x1 red pixel BMP (bitmap header + single pixel)
-    byte[] data = [0x42, 0x4D, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                    0x1A, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x01, 0x00,
-                    0x01, 0x00, 0x01, 0x00, 0x18, 0x00, 0x00, 0x00, 0xFF, 0x00];
-    return TypedResults.File(data, MediaTypeNames.Image.Bmp, "pixel.bmp");
-})
-// Use Stream to produce the correct schema in OpenAPI (format: binary)
-.Produces<Stream>(contentType: MediaTypeNames.Image.Bmp);
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_openapi":::
 
 Conceptually, `TResponse` represents the type of the response body, but the appropriate schema for a file result depends
 more on the body content than the CLR type. Therefore, it may be necessary to specify a `TResponse` that doesn't match
@@ -334,19 +293,7 @@ this type to the `binary` format in the OpenAPI schema.
 
 In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
 
-```csharp
-[HttpGet("image")]
-// Use FileContentResult to produce the correct schema in OpenAPI (format: binary)
-[ProducesResponseType<FileContentResult>(StatusCodes.Status200OK, MediaTypeNames.Image.Bmp)]
-public FileContentResult Image()
-{
-    // A 1x1 red pixel BMP (bitmap header + single pixel)
-    byte[] data = [0x42, 0x4D, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                    0x1A, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x01, 0x00,
-                    0x01, 0x00, 0x18, 0x00, 0x00, 0x00, 0xFF, 0x00];
-    return File(data, "image/bmp", "pixel.bmp");
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/Controllers/FilesController.cs" id="snippet_openapi":::
 
 As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
 that corresponds to the desired OpenAPI schema for your file result responses:
@@ -368,48 +315,13 @@ File results support [conditional requests](https://www.rfc-editor.org/rfc/rfc91
 
 The following example demonstrates how to use file results to enable cache validation for a configuration endpoint.
 
-```csharp
-app.MapGet("/config", (
-    [FromHeader(Name = "If-None-Match")] string? ifNoneMatch,
-    [FromHeader(Name = "If-Modified-Since")] string? ifModifiedSince) =>
-{
-    byte[] data = File.ReadAllBytes("Data/config.json");
-    var lastModified = File.GetLastWriteTimeUtc("Data/config.json");
-    var etag = new EntityTagHeaderValue($"\"{Convert.ToHexString(SHA256.HashData(data))}\"");
-
-    return TypedResults.File(
-        data,
-        contentType: MediaTypeNames.Application.Json,
-        lastModified: lastModified,
-        entityTag: etag);
-})
-.Produces<object>(StatusCodes.Status200OK)
-.Produces(StatusCodes.Status304NotModified);
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_conditional":::
 
 This example also illustrates how to document the `304 Not Modified` response in the OpenAPI document using the `Produces` extension method, and including the `if-none-match` and `if-modified-since` headers as parameters so they're included in the OpenAPI schema for the endpoint.
 
 A controller-based API can achieve the same behavior using the `File` helper method and the `[ProducesResponseType]` attribute:
 
-```csharp
-[HttpGet("config")]
-[ProducesResponseType<object>(StatusCodes.Status200OK)]
-[ProducesResponseType(StatusCodes.Status304NotModified)]
-public FileContentResult Config(
-    [FromHeader(Name = "If-None-Match")] string? ifNoneMatch,
-    [FromHeader(Name = "If-Modified-Since")] string? ifModifiedSince)
-{
-    byte[] data = System.IO.File.ReadAllBytes("Data/config.json");
-    var lastModified = System.IO.File.GetLastWriteTimeUtc("Data/config.json");
-    var etag = new EntityTagHeaderValue($"\"{Convert.ToHexString(SHA256.HashData(data))}\"");
-
-    return File(
-        data,
-        MediaTypeNames.Application.Json,
-        lastModified: lastModified,
-        entityTag: etag);
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/Controllers/FilesController.cs" id="snippet_conditional":::
 
 ### File result support for range requests
 
@@ -421,42 +333,11 @@ Set `enableRangeProcessing` to `true` to enable range processing. The following 
 
 **Minimal API:**
 
-```csharp
-app.MapGet("/video/{id}", (string id,
-    [FromHeader(Name = "Range")] string? range) =>
-{
-    var bytes = GetVideo(id);
-
-    return TypedResults.File(
-        bytes,
-        contentType: "video/mp4",
-        fileDownloadName: "video.mp4",
-        enableRangeProcessing: true);
-})
-.Produces<Stream>(StatusCodes.Status200OK, "video/mp4")
-.Produces<Stream>(StatusCodes.Status206PartialContent, "video/mp4")
-.Produces(StatusCodes.Status416RangeNotSatisfiable);
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_range":::
 
 **Controller:**
 
-```csharp
-[HttpGet("video/{id}")]
-[ProducesResponseType<FileContentResult>(StatusCodes.Status200OK, "video/mp4")]
-[ProducesResponseType<FileContentResult>(StatusCodes.Status206PartialContent, "video/mp4")]
-[ProducesResponseType(StatusCodes.Status416RangeNotSatisfiable)]
-public FileContentResult Video(string id,
-    [FromHeader(Name = "Range")] string? range)
-{
-    var bytes = GetVideo(id);
-
-    return File(
-        bytes,
-        contentType: "video/mp4",
-        fileDownloadName: "video.mp4",
-        enableRangeProcessing: true);
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/Controllers/FilesController.cs" id="snippet_range":::
 
 With this configuration, the framework automatically handles the following HTTP interactions:
 
