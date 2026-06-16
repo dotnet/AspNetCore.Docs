@@ -33,6 +33,8 @@ items:
                 href: breaking-changes/11/openapi-multiple-produces-per-status.md
               - name: OpenAPI server URL no longer has a trailing slash when PathBase is empty
                 href: breaking-changes/11/openapi-server-url-trailing-slash.md
+              - name: OpenApiVersion defaults to OpenApi3_2
+                href: breaking-changes/11/openapi-version-default-3-2.md
               - name: Passkey sign-in enforces email/phone confirmation and lockout
                 href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
               - name: Response compression always emits Vary, Accept-Encoding
