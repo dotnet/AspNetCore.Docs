@@ -267,7 +267,7 @@ Alternatives include returning a [`VirtualFileResult`](xref:Microsoft.AspNetCore
 File result types don't automatically contribute response metadata to the generated OpenAPI document.
 To get a proper response description in the OpenAPI document, you must specify this metadata explicitly.
 
-In Minimal APIs, use the [`Produces<TResponse>()`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces)
+In Minimal APIs, use the [`Produces<TResponse>()`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A)
 extension method to provide the OpenAPI metadata for the response. This metadata determines the status code, content type, and schema for the response in the OpenAPI document.
 For a file result, it's important to specify the content type (e.g. `application/pdf`) and to use an appropriate `TResponse` to get the desired schema.
 You can also specify the status code in the `Produces` extension method if it differs from the default of `200 OK`.
