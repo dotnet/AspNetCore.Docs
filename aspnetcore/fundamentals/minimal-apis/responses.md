@@ -5,7 +5,7 @@ description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.author: wpickett
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 08/22/2025
+ms.date: 06/16/2026
 uid: fundamentals/minimal-apis/responses
 ai-usage: ai-assisted
 ---
@@ -235,7 +235,7 @@ For more information, see [Filters in Minimal API apps](xref:fundamentals/minima
 
 When an API endpoint returns content other than JSON, or supports HTTP protocol features like conditional or range requests,
 ASP.NET Core provides result types that handle the necessary HTTP protocol details for you.
-These result types are referred to as "file results", but provide functionality that can be useful more broadly than just files on disk.
+These result types are referred to as "file results", but the functionality is useful for scenarios beyond serving files on disk.
 There are file result types for both Minimal APIs and controller-based APIs, and they share a common underlying implementation and behavior.
 
 To access this functionality, the API endpoint creates and returns a file result object - an instance of one of these file result types.
@@ -252,7 +252,7 @@ Alternatives include [`TypedResults.Bytes`](xref:Microsoft.AspNetCore.Http.Typed
 [`TypedResults.PhysicalFile`](xref:Microsoft.AspNetCore.Http.TypedResults.PhysicalFile%2A) for serving files by absolute path, or
 [`Results.File`](xref:Microsoft.AspNetCore.Http.Results.File%2A) / [`Results.Bytes`](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A) when you only need the `IResult` interface.
 
-Also note that ASP.NET Core provides [static files middleware](xref:fundamentals/static-files) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
+ASP.NET Core also provides [static files middleware](xref:fundamentals/static-files) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_file_types":::
 
@@ -269,7 +269,7 @@ To get a proper response description in the OpenAPI document, you must specify t
 
 In Minimal APIs, use the [`Produces<TResponse>()`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A)
 extension method to provide the OpenAPI metadata for the response. This metadata determines the status code, content type, and schema for the response in the OpenAPI document.
-For a file result, it's important to specify the content type (e.g. `application/pdf`) and to use an appropriate `TResponse` to get the desired schema.
+For a file result, it's important to specify the content type, such as `application/pdf`, and to use an appropriate `TResponse` to get the desired schema.
 You can also specify the status code in the `Produces` extension method if it differs from the default of `200 OK`.
 Common status codes are defined in the [`StatusCodes`](xref:Microsoft.AspNetCore.Http.StatusCodes) class, and common content types are defined in the [`MediaTypeNames`](xref:System.Net.Mime.MediaTypeNames) class.
 For example:
@@ -283,13 +283,11 @@ the CLR type of the content in the file result in order to get the desired OpenA
 In particular, there are three common schemas for file results:
 
 - **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
-<!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented-->
-The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
-this type to the `binary` format in the OpenAPI schema.
-
+  The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
+  this type to the `binary` format in the OpenAPI schema.
+  <!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented -->
 - **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
-
-- **base64-encoded content**, where the schema should be `type: string, format: byte`. It is uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+- **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
 
 In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
 
@@ -297,9 +295,9 @@ In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.
 
 As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
 that corresponds to the desired OpenAPI schema for your file result responses:
-- **binary content** -- Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
-- **text content** -- Use `string` to get a simple `type: string` schema.
-- **base64-encoded content** -- Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+* **binary content**: Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
+* **text content**: Use `string` to get a simple `type: string` schema.
+* **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
 
 ### File result support for conditional requests
 
@@ -327,7 +325,7 @@ A controller-based API can achieve the same behavior using the `File` helper met
 
 **Range requests** allow clients to request only a portion of a file rather than the entire content. A client sends a `Range` header specifying byte offsets, and the server responds with `206 Partial Content` containing just those bytes. This enables resumable downloads, parallel chunked downloads, and efficient seeking in media players.
 
-Range requests can also be conditional: the client sends an `If-Range` header containing an ETag or date alongside the `Range` header, and the server returns the partial content only if the resource hasn't changed since then. If it has changed, the server ignores the range and returns the full resource instead. Note that `If-Range` is only evaluated when `entityTag` or `lastModified` is also set on the file result.
+Range requests can also be conditional: the client sends an `If-Range` header containing an ETag or date alongside the `Range` header, and the server returns the partial content only if the resource hasn't changed. If it has changed, the server ignores the range and returns the full resource instead. `If-Range` is only evaluated when `entityTag` or `lastModified` is also set on the file result.
 
 Set `enableRangeProcessing` to `true` to enable range processing. The following examples enable range processing for a video streaming endpoint, and document the additional response types in the OpenAPI metadata.
 
@@ -341,9 +339,9 @@ Set `enableRangeProcessing` to `true` to enable range processing. The following 
 
 With this configuration, the framework automatically handles the following HTTP interactions:
 
-* **Full request** &mdash; Returns `200 OK` with the complete file.
-* **Range request** (`Range: bytes=0-1023`) &mdash; Returns `206 Partial Content` with the `Content-Range` header and only the requested bytes.
-* **Invalid range** &mdash; Returns `416 Range Not Satisfiable`.
+* **Full request**: Returns `200 OK` with the complete file.
+* **Range request** (`Range: bytes=0-1023`): Returns `206 Partial Content` with the `Content-Range` header and only the requested bytes.
+* **Invalid range**: Returns `416 Range Not Satisfiable`.
 
 ## Modifying Headers
 
