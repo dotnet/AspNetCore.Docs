@@ -29,8 +29,8 @@ public union UnionPet(Cat, Dog);
 STJ serializes a union value *transparently*. The union wrapper is unpacked and only the active case is written, using that case's own JSON contract. There's no envelope object, no `$type` field, and no discriminator of any kind:
 
 ```csharp
-JsonSerializer.Serialize<UnionIntString>(new UnionIntString(42));      // 42
-JsonSerializer.Serialize<UnionIntString>(new UnionIntString("hello")); // "hello"
+JsonSerializer.Serialize(new UnionIntString(42));      // 42
+JsonSerializer.Serialize(new UnionIntString("hello")); // "hello"
 ```
 
 This is a deliberate difference from polymorphic serialization with <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute>, which writes a `$type` discriminator. Unions have no natural discriminator, so none is emitted. For more information, see [Unions compared to polymorphism](#unions-compared-to-polymorphism).
@@ -188,8 +188,8 @@ public class ChatHub : Hub
     // Union stream items (server → client).
     public async IAsyncEnumerable<UnionIntString> Stream()
     {
-        yield return new UnionIntString(1);
-        yield return new UnionIntString("two");
+        yield return 1;
+        yield return "two";
     }
 }
 ```
