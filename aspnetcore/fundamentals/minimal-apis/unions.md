@@ -12,9 +12,7 @@ ai-usage: ai-assisted
 
 C# union types, introduced as a language feature in .NET 11, let a single type represent a value that's exactly one of a fixed set of case types. Unions are a frequently requested feature for modeling APIs that accept or return one of several shapes, such as a success payload or an error payload. This article explains where ASP.NET Core supports unions, how they're serialized, and the cases that require extra configuration.
 
-ASP.NET Core support for unions builds entirely on [`System.Text.Json` (STJ) union support](https://github.com/dotnet/runtime/issues/127299). As a result, unions are supported only where STJ is the serializer: the **JSON request body** (input) and the **JSON response body** (output). Unions aren't supported for non-body binding sources, such as query strings, route values, headers, and form fields. For more information, see [Where unions aren't supported](#where-unions-arent-supported).
-
-For background on the language feature, see the [C# unions proposal](https://github.com/dotnet/csharplang/blob/main/proposals/unions.md).
+ASP.NET Core support for unions builds entirely on union support in [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) (STJ). As a result, unions are supported only where STJ is the serializer: the **JSON request body** (input) and the **JSON response body** (output). Unions aren't supported for non-body binding sources, such as query strings, route values, headers, and form fields. For more information, see [Where unions aren't supported](#where-unions-arent-supported).
 
 ## How unions are serialized
 
@@ -111,8 +109,8 @@ public sealed class PetClassifier : JsonTypeClassifierFactory<UnionPet>
 ```
 
 > [!NOTE]
-> `JsonUnionAttribute`, `JsonTypeClassifier`, and `JsonTypeClassifierFactory<T>` are new `System.Text.Json` APIs in .NET 11. For the complete classifier design, including multi-type classifiers registered through <xref:System.Text.Json.JsonSerializerOptions>, see [System.Text.Json union type support](https://github.com/dotnet/runtime/issues/127299).
-<!-- TODO: Replace GitHub link with <xref:> IDs once the .NET 11 System.Text.Json union APIs are published to dotnet-api-docs. -->
+> `JsonUnionAttribute`, `JsonTypeClassifier`, and `JsonTypeClassifierFactory<T>` are new `System.Text.Json` APIs in .NET 11. A classifier can also be registered for multiple union types through <xref:System.Text.Json.JsonSerializerOptions>.
+<!-- TODO: Add <xref:> links for the .NET 11 System.Text.Json union APIs (JsonUnionAttribute, JsonTypeClassifier, JsonTypeClassifierFactory<T>) once published to dotnet-api-docs. -->
 
 ## Minimal APIs
 
@@ -250,7 +248,7 @@ A union case type can itself be polymorphic. When a derived instance of a `[Json
 
 ## Additional resources
 
-* [System.Text.Json union type support (dotnet/runtime)](https://github.com/dotnet/runtime/issues/127299)
-* [C# unions language proposal (dotnet/csharplang)](https://github.com/dotnet/csharplang/blob/main/proposals/unions.md)
+* [JSON serialization and deserialization in .NET](/dotnet/standard/serialization/system-text-json/overview)
+* [How to serialize polymorphic types with System.Text.Json](/dotnet/standard/serialization/system-text-json/polymorphism)
 * <xref:fundamentals/minimal-apis/parameter-binding>
 * <xref:fundamentals/minimal-apis/responses>
