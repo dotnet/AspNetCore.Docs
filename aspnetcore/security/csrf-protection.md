@@ -277,7 +277,7 @@ The behavior depends on which middleware ran:
 * Apps that call `app.UseAntiforgery()` are unchanged. The token-based middleware validates each request, and antiforgery tokens are generated for rendered forms as before.
 * Apps that don't call `app.UseAntiforgery()` are protected by the automatic CSRF middleware instead. In that configuration, the endpoint skips antiforgery token generation, because no token middleware is present to validate a token on a later request.
 
-This is a behavior change for Blazor SSR apps that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see <xref:migration/antiforgery-to-csrf>.
+This is a behavior change for Blazor SSR apps that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see <xref:migration/antiforgery-to-csrf>. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-ssr-antiforgery-deferred).
 
 ## Adopting CSRF-only protection in existing apps
 
@@ -330,5 +330,6 @@ Replace `{PORT}` with the app's local HTTPS port. The `400` is observed because 
 * <xref:security/anti-request-forgery> — the token-based antiforgery system, including form integration and `IAntiforgery` APIs.
 * <xref:migration/antiforgery-to-csrf> — when and how to drop the token-based system in favor of the automatic middleware.
 * <xref:security/cors> — configuring CORS policies, which this middleware uses as its trusted-origin source.
+* [Breaking change: Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-ssr-antiforgery-deferred)
 * [MDN — `Sec-Fetch-Site`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Sec-Fetch-Site)
 * [MDN — `Origin`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Origin)

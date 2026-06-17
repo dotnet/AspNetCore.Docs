@@ -114,7 +114,7 @@ Removing `app.UseAntiforgery()` is a breaking change for Blazor static server-si
 * Form posts are validated by the automatic CSRF middleware using `Sec-Fetch-Site` and `Origin` instead of antiforgery tokens. Blazor SSR endpoints now trust the verdict recorded by the upstream middleware rather than validating the request themselves.
 * Blazor stops generating antiforgery tokens for rendered forms, because no middleware is present to validate a token on a later request.
 
-This is appropriate for apps that target modern browsers and rely on the header-based defense. Apps that need antiforgery tokens — for example, to support browsers that don't send `Sec-Fetch-Site` — should keep `app.UseAntiforgery()`.
+This is appropriate for apps that target modern browsers and rely on the header-based defense. Apps that need antiforgery tokens — for example, to support browsers that don't send `Sec-Fetch-Site` — should keep `app.UseAntiforgery()`. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-ssr-antiforgery-deferred).
 
 ## After upgrade: if requests start failing
 
@@ -225,4 +225,5 @@ This is an escape hatch, not a recommended end state. Re-enable as soon as CORS 
 * <xref:security/csrf-protection> — full reference for the new middleware.
 * <xref:security/anti-request-forgery> — the token-based antiforgery system.
 * <xref:security/cors> — CORS configuration reference.
+* [Breaking change: Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-ssr-antiforgery-deferred)
 * <xref:migration/100-to-110> — overall .NET 10 → .NET 11 migration guide.
