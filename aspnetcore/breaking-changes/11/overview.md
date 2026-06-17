@@ -16,7 +16,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 |-------|-------------------|
 | [Blazor custom event registration throws when name matches a browser event](blazor-custom-event-name-collision.md) | Behavioral change |
 | [Blazor enhanced navigation no longer preloads resources](blazor-enhanced-nav-preloading-disabled.md) | Behavioral change |
-| [Blazor server-side rendering defers antiforgery validation to middleware](blazor-ssr-antiforgery-deferred.md) | Behavioral change |
+| [Blazor server-side rendering defers antiforgery validation to middleware](blazor-server-side-rendering-antiforgery-deferred.md) | Behavioral change |
 | [ConcurrencyLimiter middleware removed](concurrencylimiter-removed.md) | Binary/source incompatible |
 | [Hosting emits OpenTelemetry HTTP semantic-convention tags by default](http-activity-otel-semconv.md) | Behavioral change |
 | [Kestrel tightens HTTP protocol compliance](kestrel-strict-protocol-compliance.md) | Behavioral change |
