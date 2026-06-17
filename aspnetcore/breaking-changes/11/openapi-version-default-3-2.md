@@ -30,7 +30,7 @@ ASP.NET Core's OpenAPI support uses the latest released version of the OpenAPI s
 
 ## Recommended action
 
-In most cases, no action is needed. If you use downstream tooling that doesn't yet support OpenAPI 3.2, configure the version explicitly:
+In most cases, no action is needed. To support downstream tooling that doesn't yet handle OpenAPI 3.2, configure the version explicitly:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
