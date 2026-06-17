@@ -1,6 +1,6 @@
 ### C# union types as JSON request and response bodies
 
-ASP.NET Core supports C# union types, a .NET 11 language feature, as JSON request bodies and response bodies. Support builds on `System.Text.Json` union serialization, so it applies to Minimal APIs, MVC controllers, Razor Pages, and SignalR's `JsonHubProtocol`.
+ASP.NET Core supports C# union types, a .NET 11 language feature, as JSON request bodies and response bodies. Support builds on `System.Text.Json` union serialization, so it applies to Minimal APIs, MVC controllers, and SignalR's `JsonHubProtocol`.
 
 A union value serializes transparently—only the active case is written, with no envelope or `$type` discriminator. On deserialization, `System.Text.Json` selects the case from the first JSON token. Ambiguous unions, whose cases can't be distinguished from a single token, require a custom `JsonTypeClassifier` attached with `[JsonUnion]`. Because Minimal APIs and MVC bind HTTP JSON using web defaults, a numeric case paired with a `string` case is ambiguous on a JSON string and also needs a classifier.
 

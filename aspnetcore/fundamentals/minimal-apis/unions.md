@@ -118,7 +118,7 @@ public sealed class PetClassifier : JsonTypeClassifierFactory<UnionPet>
 
 ## Minimal APIs
 
-Unions work as request body parameters and as return types in both the runtime path (`RequestDelegateFactory`) and the source-generated path (Request Delegate Generator). Behavior is identical across both.
+Unions work as request body parameters and as return types in both the runtime path (`RequestDelegateFactory`) and the source-generated [Request Delegate Generator (RDG)](xref:fundamentals/aot/rdg). Behavior is identical across both.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -140,20 +140,18 @@ app.MapGet("/pet", () => new UnionPet(new Cat("Whiskers")));
 app.Run();
 ```
 
-Additional supported scenarios include:
+Unions compose with the usual Minimal API return types. For example, a union can be returned asynchronously, wrapped in a nullable, or handed back through <xref:Microsoft.AspNetCore.Http.TypedResults>:
 
-* `Task<TUnion>` and `ValueTask<TUnion>` return types.
-* A nullable union wrapper (`TUnion?`) and unions that include a nullable case, such as `union UnionNullableIntString(int?, string)`.
-* A union returned through <xref:Microsoft.AspNetCore.Http.TypedResults> or `Results<TResult1, TResult2>` wrappers.
-* A union used as a property of another model (an envelope), and `IAsyncEnumerable<TUnion>` streaming, which serializes the active case per item.
-* A union body inside an `[AsParameters]` container, where the union binds from the body and sibling properties bind from the route or query.
-* `ConfigureHttpJsonOptions` is honored for union serialization and deserialization.
+```csharp
+app.MapGet("/maybe", () => new UnionNullableIntString(null));                  // null
+app.MapGet("/typed", () => TypedResults.Ok(new UnionPet(new Cat("Whiskers"))));
+```
 
-For an unambiguous union, an empty request body and content negotiation behave the same as for any other JSON body parameter: a non-JSON content type returns `415 Unsupported Media Type`.
+A union can also be a property of another model, an item streamed from an `IAsyncEnumerable<T>`, or the body slot of an `[AsParameters]` container. Union serialization also respects options configured through `ConfigureHttpJsonOptions`.
 
-## MVC controllers and Razor Pages
+## MVC controllers
 
-Unions flow through the STJ input and output formatters, so controllers and Razor Pages support them as action parameters and return types, including `Task<TUnion>` and `ValueTask<TUnion>` results:
+Unions flow through the STJ input and output formatters, so controllers support them as action parameters and return types, including `Task<TUnion>` and `ValueTask<TUnion>` results:
 
 ```csharp
 [ApiController]
@@ -209,6 +207,18 @@ Unions are supported only with `JsonHubProtocol`. The MessagePack and Newtonsoft
 The OpenAPI document represents a union as an [`anyOf`](https://spec.openapis.org/oas/latest#composition-and-inheritance-polymorphism) schema, with one entry per case type:
 
 ```json
+"Cat": {
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" }
+  }
+},
+"Dog": {
+  "type": "object",
+  "properties": {
+    "breed": { "type": "string" }
+  }
+},
 "UnionIntString": {
   "anyOf": [
     { "type": "integer", "format": "int32" },
@@ -224,7 +234,7 @@ The OpenAPI document represents a union as an [`anyOf`](https://spec.openapis.or
 }
 ```
 
-Because a union case has no discriminator and is structurally identical to the standalone type, each case schema reuses the standalone component name, such as `Cat` and `Dog`. This differs from polymorphic types, whose derived schemas are lifted to prefixed component names because they carry a `$type` discriminator.
+Because a union case has no discriminator and is structurally identical to the standalone type, each case schema reuses the standalone component name. The `Cat` and `Dog` schemas referenced by `UnionPet` are the same components that a standalone `Cat` or `Dog` endpoint produces. This differs from polymorphic types, whose derived schemas are lifted to prefixed component names because they carry a `$type` discriminator.
 
 An endpoint can also produce multiple response types for the same status code and content type. <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> preserves every declared response type, and the generated document emits an `anyOf` schema when several types share a content type:
 
@@ -247,7 +257,7 @@ Union support requires `System.Text.Json`. Binding sources that *don't* route th
 
 These sources bind a string token to a target type without JSON parsing, so there's no reliable way to choose a union case. Even for STJ, most ambiguous unions require a custom classifier, and a single query value such as `?id=42` provides no way to know whether to bind `int`, `string`, `Guid`, or another case. Because of this ambiguity, unions are intentionally not supported in these binding sources.
 
-Use unions only as JSON request and response bodies. For non-body parameters, use a concrete type or a discriminated representation that the binding source can parse unambiguously.
+Parameter binding for unions from non-body sources is still being explored. If you have a scenario that needs it, the team is gathering feedback on the [union parameter binding issue](https://github.com/dotnet/aspnetcore/issues/66648).
 
 ## Unions compared to polymorphism
 
