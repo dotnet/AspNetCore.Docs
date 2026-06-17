@@ -48,22 +48,26 @@ Because there's no discriminator on the wire, STJ recovers the case type from th
 | `StartArray` | Arrays and collections |
 | `Null` | `null` |
 
-Selection is O(1) and requires no read-ahead. A union such as `UnionIntString(int, string)` works out of the box because `int` is the only case compatible with `Number` and `string` is the only case compatible with `String`.
+Selection is O(1) and requires no read-ahead. A union whose cases map to distinct token kinds, such as `UnionBoolString(bool, string)`, deserializes without any extra configuration.
+
+> [!IMPORTANT]
+> Minimal APIs and MVC serialize and deserialize HTTP JSON using web defaults (<xref:System.Text.Json.JsonSerializerDefaults>.Web), which enable `JsonNumberHandling.AllowReadingFromString`. This lets a numeric case be read from a JSON `String` token, so the `String` token becomes compatible with *both* numeric cases and `string`. As a result, a union that pairs a numeric case with a `string` case—such as `UnionIntString(int, string)`—is ambiguous on the `String` token for HTTP JSON binding. A `Number` payload binds to the numeric case, but a `String` payload returns `400 Bad Request` unless the union supplies a classifier. This differs from plain `System.Text.Json` and from SignalR's `JsonHubProtocol`, which don't enable `AllowReadingFromString` and deserialize the same union without a classifier.
 
 ### Ambiguous unions require a classifier
 
-When two or more cases map to the same token kind, the first-token rule can't pick a case. These unions are *ambiguous*:
+A union is ambiguous when more than one case can match the same JSON payload. Ambiguity arises in two ways:
 
-```csharp
-public union UnionIntShort(int, short);              // both → Number
-public union UnionDateTimeString(DateTime, string);  // both → String
-public union UnionPet(Cat, Dog);                     // both → StartObject (records)
-```
+* **Cases that share a JSON token kind.** The source generator reports these at compile time with diagnostic `SYSLIB1227`:
 
-For ambiguous unions:
+  ```csharp
+  public union UnionIntShort(int, short);              // both → Number
+  public union UnionDateTimeString(DateTime, string);  // both → String
+  public union UnionPet(Cat, Dog);                     // both → StartObject (records)
+  ```
 
-* The source generator emits diagnostic `SYSLIB1227` at compile time.
-* At runtime, deserializing an ambiguous union without a classifier fails. In Minimal APIs and MVC, this surfaces as an HTTP `400 Bad Request`.
+* **A numeric case paired with a `string` case in Minimal APIs or MVC**, such as `UnionIntString(int, string)`. There's no compile-time diagnostic, but a JSON `String` payload is ambiguous at runtime under web defaults, as described in the preceding note.
+
+When deserialization of an ambiguous union fails, Minimal APIs and MVC return `400 Bad Request`.
 
 To resolve the ambiguity, attach a custom `JsonTypeClassifier` with the `[JsonUnion]` attribute. The classifier inspects the JSON and returns the case type to bind. Serialization is unaffected by a classifier, because the active case is always known when writing.
 
@@ -120,10 +124,16 @@ Unions work as request body parameters and as return types in both the runtime p
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-// Union as a request body.
+// Request body: UnionBoolString is unambiguous (bool vs string),
+// so it binds without a classifier.
+app.MapPost("/flag", (UnionBoolString flag) => flag);
+
+// Request body: UnionPet is object-cased, so it needs the classifier
+// shown earlier to bind from a body.
 app.MapPost("/pet", ([FromBody] UnionPet pet) => TypedResults.Ok(pet));
 
-// Union as a return type — only the active case is serialized.
+// Return types: only the active case is serialized, and no classifier
+// is needed to write.
 app.MapGet("/value", () => new UnionIntString(42));      // 42
 app.MapGet("/pet", () => new UnionPet(new Cat("Whiskers")));
 
@@ -152,7 +162,7 @@ Unions flow through the STJ input and output formatters, so controllers and Razo
 public class PetsController : ControllerBase
 {
     [HttpPost]
-    public UnionPet Echo([FromBody] UnionPet value) => value;
+    public UnionBoolString Echo([FromBody] UnionBoolString value) => value;
 
     [HttpGet("{kind}")]
     public UnionIntString Primitive(string kind) => kind switch
@@ -189,6 +199,8 @@ public class ChatHub : Hub
 ```
 
 On the read path, the parameter, return, or stream-item `Type` resolved from the invocation binder drives the union converter, including any `[JsonUnion]` classifier. On the write path, the active case is serialized with no envelope or discriminator.
+
+Unlike HTTP JSON binding, `JsonHubProtocol` doesn't enable `JsonNumberHandling.AllowReadingFromString`, so a union such as `UnionIntString(int, string)` round-trips both the `int` and `string` cases without a classifier. Object-cased unions, such as `UnionPet(Cat, Dog)`, are still ambiguous on read and require a classifier.
 
 Unions are supported only with `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions, because their underlying serializers have no union support.
 
