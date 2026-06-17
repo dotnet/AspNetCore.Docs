@@ -1162,6 +1162,8 @@ items:
         uid: fundamentals/minimal-apis/parameter-binding
       - name: Create responses
         uid: fundamentals/minimal-apis/responses
+      - name: C# union types
+        uid: fundamentals/minimal-apis/unions
       - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
