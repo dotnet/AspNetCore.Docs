@@ -7,7 +7,7 @@ description: Discover how to prevent attacks against web apps where a malicious 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/03/2026
+ms.date: 06/18/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -345,7 +345,7 @@ When a form is submitted without a valid antiforgery token:
 
 ### HTTP method limitations and `HttpMethodOverrideMiddleware` interaction
 
-`AntiforgeryMiddleware` and `UseAntiforgery()` validate antiforgery tokens only for HTTP **POST**, **PUT**, and **PATCH** requests. Other HTTP methods, such as **DELETE**, aren't validated automatically.
+For the middleware-based antiforgery path, `AntiforgeryMiddleware` and `UseAntiforgery()` validate antiforgery tokens only for HTTP **POST**, **PUT**, and **PATCH** requests. Other HTTP methods, such as **DELETE**, aren't validated automatically.
 
 To validate antiforgery tokens for other HTTP methods, resolve <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> from DI and call <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery.ValidateRequestAsync%2A> or <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery.IsRequestValidAsync%2A> explicitly:
 
@@ -358,7 +358,15 @@ app.MapDelete("/item/{id}", async (int id, IAntiforgery antiforgery, HttpContext
 ```
 
 > [!WARNING]
-> When `HttpMethodOverrideMiddleware` is configured with `FormFieldName` (form-field mode) and placed before `AntiforgeryMiddleware`, a POST request can be overridden to DELETE (or another non-validated method). Because `AntiforgeryMiddleware` validates only POST, PUT, and PATCH, the overridden request bypasses antiforgery validation. To protect these endpoints, validate the antiforgery token explicitly using `IAntiforgery.ValidateRequestAsync`.
+> When `HttpMethodOverrideMiddleware` is configured with `FormFieldName` (form-field mode) and placed before `AntiforgeryMiddleware`, a POST request can be overridden to DELETE (or another non-validated method). Because `AntiforgeryMiddleware` validates only POST, PUT, and PATCH, the overridden request bypasses antiforgery validation.
+>
+> To protect these endpoints:
+>
+> * Prefer placing `HttpMethodOverrideMiddleware` after antiforgery validation when your pipeline allows it.
+> * Avoid form-field overrides for endpoints that rely on antiforgery validation.
+> * If form-field override must run first, validate the antiforgery token explicitly using `IAntiforgery.ValidateRequestAsync`.
+>
+> For configuration details, see <xref:fundamentals/middleware/index>.
 
 ## Windows authentication and antiforgery cookies
 
