@@ -18,7 +18,7 @@ Minimal API endpoints that bound a parameter from the form via <xref:Microsoft.A
 
 ## New behavior
 
-Minimal API endpoints that bind a parameter from the form via <xref:Microsoft.AspNetCore.Http.IFormFile> or <xref:Microsoft.AspNetCore.Http.IFormFileCollection> require anti-forgery validation. An exception is thrown at startup if the anti-forgery middleware isn't registered for an API that defines these input types.
+Minimal API endpoints that bind a parameter from the form via <xref:Microsoft.AspNetCore.Http.IFormFile> or <xref:Microsoft.AspNetCore.Http.IFormFileCollection> require anti-forgery validation. An exception is thrown when invoking the endpoint if the anti-forgery middleware isn't registered for an API that defines these input types.
 
 ## Type of breaking change
 
@@ -30,11 +30,11 @@ Anti-forgery token validation is a recommended security precaution for APIs that
 
 ## Recommended action
 
-Configure anti-forgery services and middleware for minimal API endpoints that bind <xref:Microsoft.AspNetCore.Http.IFormFile> or <xref:Microsoft.AspNetCore.Http.IFormFileCollection> parameters. Without this configuration, the application will fail at startup due to missing anti-forgery validation.
+Configure anti-forgery services and middleware for minimal API endpoints that bind <xref:Microsoft.AspNetCore.Http.IFormFile> or <xref:Microsoft.AspNetCore.Http.IFormFileCollection> parameters. Without this configuration, the application will fail to handle requests to the misconfigured enpoint due to missing anti-forgery validation.
 
 For detailed guidance on how to configure and use anti-forgery tokens in minimal APIs, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](/aspnet/core/security/anti-request-forgery). The article covers:
 
-- How to resolve missing anti-forgery middleware exceptions at startup.
+- How to resolve missing anti-forgery middleware exceptions.
 - How to register anti-forgery services and middleware.
 - How to generate and validate anti-forgery tokens in Minimal APIs.
 - How to use complete code examples for form handling with file uploads.
