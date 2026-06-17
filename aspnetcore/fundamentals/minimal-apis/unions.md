@@ -51,7 +51,7 @@ Because there's no discriminator on the wire, STJ recovers the case type from th
 Selection is O(1) and requires no read-ahead. A union whose cases map to distinct token kinds, such as `UnionBoolString(bool, string)`, deserializes without any extra configuration.
 
 > [!IMPORTANT]
-> Minimal APIs and MVC serialize and deserialize HTTP JSON using web defaults (<xref:System.Text.Json.JsonSerializerDefaults>.Web), which enable `JsonNumberHandling.AllowReadingFromString`. This lets a numeric case be read from a JSON `String` token, so the `String` token becomes compatible with *both* numeric cases and `string`. As a result, a union that pairs a numeric case with a `string` case—such as `UnionIntString(int, string)`—is ambiguous on the `String` token for HTTP JSON binding. A `Number` payload binds to the numeric case, but a `String` payload returns `400 Bad Request` unless the union supplies a classifier. This differs from plain `System.Text.Json` and from SignalR's `JsonHubProtocol`, which don't enable `AllowReadingFromString` and deserialize the same union without a classifier.
+> Minimal APIs and MVC serialize and deserialize HTTP JSON using web defaults (<xref:System.Text.Json.JsonSerializerDefaults>.Web), which enable `JsonNumberHandling.AllowReadingFromString`. This lets a numeric case be read from a JSON `String` token, so the `String` token becomes compatible with *both* numeric cases and `string`. As a result, a union that pairs a numeric case with a `string` case—such as `UnionIntString(int, string)`—is ambiguous on the `String` token for HTTP JSON binding. A `Number` payload binds to the numeric case, but a `String` payload returns `400 Bad Request` unless the union supplies a classifier. This differs from plain `System.Text.Json` and from SignalR's `JsonHubProtocol`, which deserialize the same union without a classifier.
 
 ### Ambiguous unions require a classifier
 
@@ -80,7 +80,8 @@ public sealed class PetClassifier : JsonTypeClassifierFactory<UnionPet>
     public override JsonTypeClassifier CreateJsonClassifier(
         JsonTypeClassifierContext context, JsonSerializerOptions options)
     {
-        // The delegate receives a defensive copy of the reader.
+        // The delegate receives a defensive copy of the reader, so advancing it
+        // here doesn't affect the reader used for deserialization.
         return static (ref Utf8JsonReader reader) =>
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
@@ -88,22 +89,19 @@ public sealed class PetClassifier : JsonTypeClassifierFactory<UnionPet>
                 return null;
             }
 
-            var clone = reader;
-            clone.Read();
-            while (clone.TokenType is JsonTokenType.PropertyName)
+            while (reader.Read() && reader.TokenType is JsonTokenType.PropertyName)
             {
-                if (clone.ValueTextEquals("name") || clone.ValueTextEquals("Name"))
+                if (reader.ValueTextEquals("name") || reader.ValueTextEquals("Name"))
                 {
                     return typeof(Cat);
                 }
-                if (clone.ValueTextEquals("breed") || clone.ValueTextEquals("Breed"))
+                if (reader.ValueTextEquals("breed") || reader.ValueTextEquals("Breed"))
                 {
                     return typeof(Dog);
                 }
 
-                clone.Read();
-                clone.Skip();
-                clone.Read();
+                reader.Read(); // Move to the property value.
+                reader.Skip(); // Skip the value.
             }
 
             return null; // No case identified; deserialization fails.
@@ -198,7 +196,7 @@ public class ChatHub : Hub
 
 On the read path, the parameter, return, or stream-item `Type` resolved from the invocation binder drives the union converter, including any `[JsonUnion]` classifier. On the write path, the active case is serialized with no envelope or discriminator.
 
-Unlike HTTP JSON binding, `JsonHubProtocol` doesn't enable `JsonNumberHandling.AllowReadingFromString`, so a union such as `UnionIntString(int, string)` round-trips both the `int` and `string` cases without a classifier. Object-cased unions, such as `UnionPet(Cat, Dog)`, are still ambiguous on read and require a classifier.
+Unlike HTTP JSON binding in Minimal APIs and MVC, `JsonHubProtocol` doesn't treat a JSON `String` token as ambiguous for numeric cases, so a union such as `UnionIntString(int, string)` round-trips both the `int` and `string` cases without a classifier. Object-cased unions, such as `UnionPet(Cat, Dog)`, are still ambiguous on read and require a classifier.
 
 Unions are supported only with `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions, because their underlying serializers have no union support.
 
