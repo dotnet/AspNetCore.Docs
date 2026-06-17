@@ -26,7 +26,7 @@ This change is a [behavioral change](/dotnet/core/compatibility/categories#behav
 
 ## Reason for change
 
-ASP.NET Core's OpenAPI support aims to always use the latest released version of the specification by default so that apps automatically benefit from new capabilities.
+ASP.NET Core's OpenAPI support uses the latest released version of the OpenAPI specification as the default so that apps benefit from new capabilities without additional configuration.
 
 ## Recommended action
 

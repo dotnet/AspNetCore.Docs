@@ -6,7 +6,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/17/2025
+ms.date: 06/16/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -15,7 +15,7 @@ uid: fundamentals/openapi/aspnetcore-openapi
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
-* Support for generating [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html) documents.
+* Support for generating [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html) documents starting with .NET 10, and [OpenAPI version 3.2](https://spec.openapis.org/oas/v3.2.0.html) documents starting with .NET 11.
 * Support for [JSON Schema draft 2020-12](https://json-schema.org/specification-links#2020-12).
 * Support for generating OpenAPI documents at run time and accessing them via an endpoint on the app.
 * Support for "transformer" APIs that allow modifying the generated document.
