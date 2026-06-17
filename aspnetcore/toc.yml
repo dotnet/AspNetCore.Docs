@@ -20,7 +20,7 @@ items:
               - name: Blazor enhanced navigation no longer preloads resources
                 href: breaking-changes/11/blazor-enhanced-nav-preloading-disabled.md
               - name: Blazor server-side rendering defers antiforgery validation to middleware
-                href: breaking-changes/11/blazor-server-side-rendering-antiforgery-deferred.md
+                href: breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection.md
               - name: ConcurrencyLimiter middleware removed
                 href: breaking-changes/11/concurrencylimiter-removed.md
               - name: Hosting emits OpenTelemetry HTTP semantic-convention tags by default
