@@ -129,8 +129,8 @@ var app = builder.Build();
 // so it binds without a classifier.
 app.MapPost("/flag", (UnionBoolString flag) => flag);
 
-// Request body: UnionPet is object-cased, so it needs the classifier
-// shown earlier to bind from a body.
+// Request body: UnionPet's cases are both objects (StartObject token),
+// so it needs the classifier shown earlier to bind from a body.
 app.MapPost("/pet", ([FromBody] UnionPet pet) => TypedResults.Ok(pet));
 
 // Return types: only the active case is serialized, and no classifier
