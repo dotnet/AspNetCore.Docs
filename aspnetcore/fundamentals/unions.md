@@ -8,6 +8,7 @@ ms.date: 06/19/2026
 uid: fundamentals/unions
 ai-usage: ai-assisted
 ---
+
 # Use C# union types in ASP.NET Core
 
 C# union types, introduced as a language feature in .NET 11, let a single type represent a value that's exactly one of a fixed set of case types. Unions are a frequently requested feature for modeling APIs that accept or return one of several shapes, such as a success payload or an error payload. This article explains where ASP.NET Core supports unions, how they're serialized, and the cases that require extra configuration.
