@@ -54,7 +54,7 @@ Because there's no discriminator on the wire, STJ recovers the case type from th
 Selection is O(1) and requires no read-ahead. A union whose cases map to distinct token kinds, such as `UnionBoolString(bool, string)`, deserializes without any extra configuration.
 
 > [!IMPORTANT]
-> Minimal APIs and MVC serialize and deserialize HTTP JSON using web defaults (<xref:System.Text.Json.JsonSerializerDefaults>.Web), which enable `JsonNumberHandling.AllowReadingFromString`. This lets a numeric case be read from a JSON `String` token, so the `String` token becomes compatible with *both* numeric cases and `string`. As a result, a union that pairs a numeric case with a `string` case—such as `UnionIntString(int, string)`—is ambiguous on the `String` token for HTTP JSON binding. A `Number` payload binds to the numeric case, but a `String` payload returns `400 Bad Request` unless the union supplies a classifier. This differs from plain `System.Text.Json` and from SignalR's `JsonHubProtocol`, which deserialize the same union without a classifier.
+> Minimal APIs and MVC serialize and deserialize HTTP JSON using <xref:System.Text.Json.JsonSerializerDefaults.Web?displayProperty=nameWithType>, which enables `JsonNumberHandling.AllowReadingFromString`. This lets a numeric case be read from a JSON `String` token, so the `String` token becomes compatible with *both* numeric cases and `string`. As a result, a union that pairs a numeric case with a `string` case—such as `UnionIntString(int, string)`—is ambiguous on the `String` token for HTTP JSON binding. A `Number` payload binds to the numeric case, but a `String` payload returns `400 Bad Request` unless the union supplies a classifier. This differs from plain `System.Text.Json` and from SignalR's `JsonHubProtocol`, which deserialize the same union without a classifier.
 
 ### Ambiguous unions require a classifier
 
@@ -199,7 +199,7 @@ public class ChatHub : Hub
 
 On the read path, the parameter, return, or stream-item `Type` resolved from the invocation binder drives the union converter, including any `[JsonUnion]` classifier. On the write path, the active case is serialized with no envelope or discriminator.
 
-Unlike HTTP JSON binding in Minimal APIs and MVC, `JsonHubProtocol` doesn't treat a JSON `String` token as ambiguous for numeric cases, so a union such as `UnionIntString(int, string)` round-trips both the `int` and `string` cases without a classifier. Object-cased unions, such as `UnionPet(Cat, Dog)`, are still ambiguous on read and require a classifier.
+Unlike HTTP JSON binding in Minimal APIs and MVC, `JsonHubProtocol` doesn't treat a JSON `String` token as ambiguous for numeric cases, so a union such as `UnionIntString(int, string)` round-trips both the `int` and `string` cases without a classifier. Unions whose cases share the `StartObject` token, such as `UnionPet(Cat, Dog)`, are still ambiguous on read and require a classifier.
 
 Unions are supported only with `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions, because their underlying serializers have no union support.
 
@@ -279,12 +279,17 @@ The OpenAPI document represents a union as an [`anyOf`](https://spec.openapis.or
 
 Because a union case has no discriminator and is structurally identical to the standalone type, each case schema reuses the standalone component name. The `Cat` and `Dog` schemas referenced by `UnionPet` are the same components that a standalone `Cat` or `Dog` endpoint produces. This differs from polymorphic types, whose derived schemas are lifted to prefixed component names because they carry a `$type` discriminator.
 
-An endpoint can also produce multiple response types for the same status code and content type. <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> preserves every declared response type, and the generated document emits an `anyOf` schema when several types share a content type:
+An endpoint can also produce multiple response types for the same status code and content type. The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer?displayProperty=fullName> namespace preserves every declared response type, and the generated document emits an `anyOf` schema when several types share a content type:
 
 ```csharp
 app.MapGet("/any-of", () => Results.Ok())
     .Produces<UnionPet>(StatusCodes.Status200OK, "application/json")
-    .Produces<Clinic>(StatusCodes.Status200OK, "application/json");
+    .Produces<UnionDinosaur>(StatusCodes.Status200OK, "application/json");
+    
+public record Tyrannosaurus(string Name, double BiteForceNewtons);
+public record Triceratops(string Name, int HornCount);
+public record Velociraptor(string Name, double TopSpeedKmh);
+public union UnionDinosaur(Tyrannosaurus, Triceratops, Velociraptor);
 ```
 
 The same support applies to MVC controllers that declare multiple <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attributes for one status code and content type.
