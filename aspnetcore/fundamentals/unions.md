@@ -21,6 +21,8 @@ A union type is declared with the `union` keyword and a list of case types:
 
 ```csharp
 public union UnionIntString(int, string);
+public union UnionBoolString(bool, string);
+public union UnionNullableIntString(int?, string);
 
 public record Cat(string Name);
 public record Dog(string Breed);
