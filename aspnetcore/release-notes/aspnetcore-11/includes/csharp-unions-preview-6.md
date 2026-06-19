@@ -13,5 +13,5 @@ app.MapGet("/value", () => new UnionIntString(42));
 
 OpenAPI documents represent a union as an `anyOf` schema with one entry per case type. Unions are supported only where `System.Text.Json` is the serializer, so they aren't supported for query, route, header, or form binding.
 
-For more information, see [Use C# union types in ASP.NET Core](xref:fundamentals/minimal-apis/unions).
+For more information, see [Use C# union types in ASP.NET Core](xref:fundamentals/unions).
 <!-- TODO: System.Text.Json union APIs (JsonUnionAttribute, JsonTypeClassifier) are new in .NET 11; update to <xref:> once published to dotnet-api-docs. -->

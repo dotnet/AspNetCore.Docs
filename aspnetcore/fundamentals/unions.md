@@ -1,18 +1,18 @@
 ---
 title: Use C# union types in ASP.NET Core
 author: DeagleGross
-description: Learn how C# union types are supported as JSON request and response bodies in ASP.NET Core Minimal APIs, MVC, SignalR, and OpenAPI.
+description: Learn how C# union types are supported through System.Text.Json in ASP.NET Core Minimal APIs, MVC, SignalR, Blazor, and OpenAPI.
 monikerRange: '>= aspnetcore-11.0'
 ms.author: wpickett
-ms.date: 06/17/2026
-uid: fundamentals/minimal-apis/unions
+ms.date: 06/19/2026
+uid: fundamentals/unions
 ai-usage: ai-assisted
 ---
 # Use C# union types in ASP.NET Core
 
 C# union types, introduced as a language feature in .NET 11, let a single type represent a value that's exactly one of a fixed set of case types. Unions are a frequently requested feature for modeling APIs that accept or return one of several shapes, such as a success payload or an error payload. This article explains where ASP.NET Core supports unions, how they're serialized, and the cases that require extra configuration.
 
-ASP.NET Core support for unions builds entirely on union support in [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) (STJ). As a result, unions are supported only where STJ is the serializer: the **JSON request body** (input) and the **JSON response body** (output). Unions aren't supported for non-body binding sources, such as query strings, route values, headers, and form fields. For more information, see [Where unions aren't supported](#where-unions-arent-supported).
+ASP.NET Core support for unions builds entirely on union support in [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) (STJ). As a result, unions are supported only where STJ is the serializer: the **JSON request body** (input) and the **JSON response body** (output). The same STJ foundation also enables unions in SignalR's `JsonHubProtocol` and in Blazor's JavaScript interop, persisted component state, and prerendered component parameters. Unions aren't supported for non-body binding sources, such as query strings, route values, headers, and form fields. For more information, see [Where unions aren't supported](#where-unions-arent-supported).
 
 ## How unions are serialized
 
@@ -200,6 +200,48 @@ Unlike HTTP JSON binding in Minimal APIs and MVC, `JsonHubProtocol` doesn't trea
 
 Unions are supported only with `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions, because their underlying serializers have no union support.
 
+## Blazor
+
+Blazor works with unions in two ways, depending on whether a value stays in-process or crosses a serialization boundary. In-process component parameters are assigned directly and need no serialization, while JavaScript interop, persisted component state, and prerendered parameters serialize unions with `System.Text.Json` and follow the same rules described earlier in this article.
+
+### Component parameters
+
+A component parameter is set by direct assignment when a component is rendered from Razor markup or through `RenderTreeBuilder.AddComponentParameter`. In-process rendering doesn't serialize parameters, so a union parameter works with no extra configuration:
+
+```razor
+<PetCard Pet="@(new UnionPet(new Cat("Whiskers")))" />
+```
+
+```csharp
+public class PetCard : ComponentBase
+{
+    [Parameter]
+    public UnionPet Pet { get; set; }
+}
+```
+
+### JavaScript interop
+
+JavaScript interop through <xref:Microsoft.JSInterop.IJSRuntime> serializes arguments and return values with `System.Text.Json`, so a union can be passed to and returned from JavaScript. The first-token dispatch and classifier rules described earlier apply:
+
+```csharp
+// .NET to JavaScript: the argument is serialized to JSON.
+await JS.InvokeVoidAsync("savePet", new UnionPet(new Cat("Whiskers")));
+
+// JavaScript to .NET: the return value is deserialized into the union.
+var pet = await JS.InvokeAsync<UnionPet>("loadPet");
+```
+
+A `[JSInvokable]` .NET method that JavaScript calls uses the same serialization path for its parameters and return value.
+
+### Persisted component state
+
+<xref:Microsoft.AspNetCore.Components.PersistentComponentState> serializes state with `System.Text.Json`, so a union round-trips through `PersistAsJson` and `TryTakeFromJson`, including a union whose active case is `null`.
+
+### Prerendering
+
+When a component is prerendered with Blazor Server or Blazor WebAssembly, its parameters are serialized into the component marker with `System.Text.Json` and deserialized when the component initializes on the client. Unions are supported across this boundary, including a union whose active case serializes to JSON `null`, such as a `UnionNullableIntString` that holds a null `int?`.
+
 ## OpenAPI
 
 The OpenAPI document represents a union as an [`anyOf`](https://spec.openapis.org/oas/latest#composition-and-inheritance-polymorphism) schema, with one entry per case type:
@@ -254,6 +296,8 @@ Union support requires `System.Text.Json`. Binding sources that *don't* route th
 * Form fields
 
 These sources bind a string token to a target type without JSON parsing, so there's no reliable way to choose a union case. Even for STJ, most ambiguous unions require a custom classifier, and a single query value such as `?id=42` provides no way to know whether to bind `int`, `string`, `Guid`, or another case. Because of this ambiguity, unions are intentionally not supported in these binding sources.
+
+In Blazor, the same limitation applies to component parameters supplied from non-body sources, including `[SupplyParameterFromQuery]` and form binding with `[SupplyParameterFromForm]`. These bind string or form values without JSON parsing, so they don't support unions.
 
 Parameter binding for unions from non-body sources is still being explored. If you have a scenario that needs it, the team is gathering feedback on the [union parameter binding issue](https://github.com/dotnet/aspnetcore/issues/66648).
 
