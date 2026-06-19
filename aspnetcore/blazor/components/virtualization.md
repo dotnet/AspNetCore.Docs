@@ -274,6 +274,50 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Scroll to a specific item
+
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialItemIndex` for the first render and `ScrollToItemAsync` for programmatic scrolling after the component is rendered.
+
+### `InitialItemIndex` parameter
+
+Set `InitialItemIndex` to open the list at a specific item index on first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
+
+```razor
+<Virtualize Items="allFlights" Context="flight" InitialItemIndex="500">
+    <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+</Virtualize>
+```
+
+### `ScrollToItemAsync` method
+
+Call `ScrollToItemAsync` to programmatically scroll to an item after first render. The scroll is instant (no animation). The method returns a `Task` that completes when the target item is aligned to the top of the viewport. Cancellation is supported via `CancellationToken`.
+
+If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before first interactive render throws an <xref:System.InvalidOperationException>.
+
+```razor
+<Virtualize Items="allFlights" Context="flight" @ref="virtualizeComponent">
+    <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+</Virtualize>
+
+<button @onclick="ScrollToFlight">Go to flight 200</button>
+
+@code {
+    private Virtualize<Flight>? virtualizeComponent;
+
+    private async Task ScrollToFlight()
+    {
+        if (virtualizeComponent is not null)
+        {
+            await virtualizeComponent.ScrollToItemAsync(200);
+        }
+    }
+}
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 ## Control viewport scroll position behavior when items are dynamically added
