@@ -185,6 +185,73 @@ window.addEventListener('visibilitychange', () => {
 
 :::moniker range=">= aspnetcore-11.0"
 
+## Automatic circuit pause on tab inactivity
+
+The framework can optionally pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. Enable auto-pause using the `ConfigureBrowser` component in `App.razor`:
+
+```razor
+<ConfigureBrowser Configuration="@(new BrowserConfiguration
+{
+    Server = new()
+    {
+        AutoPause = new() { Enabled = true, HiddenDelayMilliseconds = 5000 }
+    }
+})" />
+```
+
+After the tab is hidden for `HiddenDelayMilliseconds` (default: 120,000 ms), the circuit pauses. If the user returns before the delay elapses, the pause doesn't happen.
+
+The framework defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text inputs with Blazor `@bind` bindings are edited or audio/video is playing.
+
+For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Use `onPauseRequested` in the [Blazor startup configuration](xref:blazor/fundamentals/startup):
+
+```razor
+<script>
+  Blazor.start({
+    circuit: {
+      onPauseRequested: async (signal) => {
+        // Example: save canvas state before the pause proceeds.
+        const canvas = document.getElementById('drawing-canvas');
+        if (canvas) {
+          localStorage.setItem('canvasData', canvas.toDataURL());
+        }
+
+        // Example: close an active WebRTC connection gracefully.
+        if (window.activePeerConnection && !signal.aborted) {
+          window.activePeerConnection.close();
+          await new Promise(resolve => {
+            signal.addEventListener('abort', resolve);
+            setTimeout(resolve, 100);
+          });
+        }
+      }
+    }
+  });
+</script>
+```
+
+> [!NOTE]
+> The `<input type="file">` element can't have its value restored after pause/resume due to browser security restrictions. Using `[PersistentState]` on a property bound to a file input causes an `InvalidStateError` that crashes the circuit. Instead, capture the file name in a separate property:
+>
+> ```razor
+> <input type="file" @onchange="HandleFileSelected" />
+> <span>@SelectedFileName</span>
+>
+> @code {
+>     [PersistentState(AllowUpdates = true)]
+>     public string? SelectedFileName { get; set; }
+>
+>     private void HandleFileSelected(InputFileChangeEventArgs e)
+>     {
+>         SelectedFileName = e.File.Name;
+>     }
+> }
+> ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 ## Server-triggered circuit pause
 
 A server-side Blazor app that adopts the Interactive Server render mode can implement server-triggered circuit pause, which allows the app to gracefully pause client circuits, preserving client state for seamless reconnection.
