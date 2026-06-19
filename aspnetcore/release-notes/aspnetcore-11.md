@@ -36,6 +36,8 @@ This section describes new features for Minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/endpoint-filters-binding-failures-preview4.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/csharp-unions-preview-6.md)]
+
 ## OpenAPI
 
 This section describes new features for OpenAPI.
