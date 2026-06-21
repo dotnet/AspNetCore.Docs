@@ -6,7 +6,7 @@ description: Learn how to persist user data (state) in Blazor apps using Blazor'
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 06/20/2026
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -422,6 +422,18 @@ Using the preceding serializer with the `PrerenderedCounter2` component (`Preren
 > :::no-loc text="      Restoring value from custom format: CUSTOM:49":::  
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      CurrentCount restored to 49":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## C# union types in persistent component state
+
+A [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types) can be used as the type of a `[PersistentState]` property or as a value passed to `PersistAsJson`/`TryTakeFromJson`, including a union whose active case is `null`. The state survives the prerender-to-interactive handoff through `System.Text.Json`.
+
+A user-configured `JsonSerializerContext` doesn't flow into the unions deserializer used by persistent component state. To customize how an ambiguous union is disambiguated on read, apply a per-type classifier with `[JsonUnion(TypeClassifier = typeof(MyClassifier))]` instead of registering a serializer context.
+
+For how unions are serialized and disambiguated, see [C# unions in `System.Text.Json`](/dotnet/standard/serialization/system-text-json/unions).
 
 :::moniker-end
 

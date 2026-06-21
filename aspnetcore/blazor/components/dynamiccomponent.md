@@ -5,7 +5,7 @@ description: Learn how to use dynamically-rendered Razor components in Blazor ap
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 06/20/2026
 uid: blazor/components/dynamiccomponent
 ---
 # Dynamically-rendered ASP.NET Core Razor components
@@ -249,6 +249,31 @@ In the following example:
 `DynamicComponentExample2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Box C# union parameters as the union type
+
+When passing a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types) parameter through the dictionary, box the value as the union type, not as one of its case types. The compiler-synthesized implicit conversion from a case type to the union runs at compile time, so the framework only sees the boxed `object` and can't cast a raw case value to the union:
+
+```csharp
+public union ToastMessage(string, MarkupString, RenderFragment);
+
+// Correct: boxed as the union.
+var parameters = new Dictionary<string, object>
+{
+    ["Message"] = new ToastMessage("Hello"),
+};
+
+// Incorrect: boxed as string. Throws at parameter assignment:
+// "Unable to cast object of type 'System.String' to type 'ToastMessage'."
+var bad = new Dictionary<string, object>
+{
+    ["Message"] = "Hello",
+};
+```
 
 :::moniker-end
 

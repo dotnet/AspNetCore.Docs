@@ -6,7 +6,7 @@ description: ActionResult vs IActionResult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/26/2026
+ms.date: 06/20/2026
 uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API
@@ -35,6 +35,28 @@ The most basic action returns a primitive or complex data type, for example, `st
 Without known conditions to safeguard against, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
 
 When multiple return types are possible, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action. Several samples of multiple return types are provided in this article.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+A controller action can also return a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types). The framework serializes only the active case, so a single action can return any of several payload shapes through one return type instead of an `IActionResult`/`ActionResult<T>` mix:
+
+```csharp
+public record Product(int Id, string Name);
+public union ProductOrError(Product, ProblemDetails);
+
+[HttpGet("{id:int}")]
+public ProductOrError Get(int id) => id > 0
+    ? new ProductOrError(new Product(id, "Widget"))
+    : new ProductOrError(new ProblemDetails { Title = "Not found", Status = 404 });
+```
+
+The same rule applies to `[FromBody]` parameters. For how unions are serialized, deserialized, and disambiguated, see [C# unions in `System.Text.Json`](/dotnet/standard/serialization/system-text-json/unions).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 

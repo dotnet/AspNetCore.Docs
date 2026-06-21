@@ -478,8 +478,6 @@ items:
         uid: fundamentals/startup
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
-      - name: C# union types
-        uid: fundamentals/unions
       - name: Native AOT
         items:
           - name: Overview

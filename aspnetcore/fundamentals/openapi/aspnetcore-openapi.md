@@ -6,7 +6,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/17/2025
+ms.date: 06/20/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -318,6 +318,27 @@ Publish the app:
 ```console
 dotnet publish
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## C# union types
+
+A parameter or response of a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types) is represented in the OpenAPI document as an [`anyOf`](https://spec.openapis.org/oas/latest#composition-and-inheritance-polymorphism) schema with one entry per case:
+
+```json
+"UnionIntString": {
+  "anyOf": [
+    { "type": "integer", "format": "int32" },
+    { "type": "string" }
+  ]
+}
+```
+
+Each case schema reuses the standalone component name, because a union case has no discriminator and is structurally identical to the standalone type. This differs from polymorphic types, whose derived schemas carry a `$type` discriminator and are lifted to prefixed component names.
+
+When an endpoint declares multiple response types for the same status code and content type — for example, two <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> calls or two <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attributes — the generated document emits an `anyOf` schema for that response.
 
 :::moniker-end
 

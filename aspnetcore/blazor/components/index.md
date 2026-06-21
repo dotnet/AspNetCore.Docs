@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 06/20/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -1160,6 +1160,49 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Use C# union types for component parameters
+
+A component parameter can be a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types). A union lets a single parameter accept values of any of a fixed set of case types, avoiding the common library-author pattern of exposing a `string` parameter and a separate `RenderFragment` parameter for the same slot:
+
+```csharp
+public union ToastMessage(string, MarkupString, RenderFragment);
+```
+
+```razor
+@* Component definition *@
+<div class="alert alert-info">
+    @switch (Message.Value)
+    {
+        case string text:            @text;      break;
+        case MarkupString markup:    @markup;    break;
+        case RenderFragment fragment: @fragment; break;
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public ToastMessage Message { get; set; }
+}
+```
+
+Callers select a case with the type's compiler-synthesized implicit conversions:
+
+```razor
+<Toast Message="@((ToastMessage)"Saved.")" />
+<Toast Message="@(new ToastMessage(new MarkupString("<strong>Saved</strong>.")))" />
+<Toast Message="@_template" />
+```
+
+> [!NOTE]
+> The Razor literal-attribute shortcut (for example, `<Toast Message="Saved." />`) doesn't compile for a union-typed parameter, because Razor parses unquoted attribute values as C# identifiers for non-`string` parameter types. Use the expression form `Message="@("Saved.")"` until [dotnet/razor#13188](https://github.com/dotnet/razor/issues/13188) is addressed.
+
+Union component parameters are assigned in process and don't go through `System.Text.Json`. The same union type can also flow through Blazor surfaces that do serialize (such as JavaScript interop and prerendered parameters). For how unions are serialized, see [C# unions in `System.Text.Json`](/dotnet/standard/serialization/system-text-json/unions).
+
+Union types aren't supported for component parameters supplied from non-body sources, including `[SupplyParameterFromQuery]` and `[SupplyParameterFromForm]`, which bind string or form values without JSON parsing.
 
 :::moniker-end
 

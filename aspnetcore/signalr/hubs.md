@@ -5,7 +5,7 @@ description: Learn how to work with hubs in ASP.NET Core SignalR, create and use
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/20/2026
+ms.date: 06/20/2026
 uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
@@ -44,6 +44,27 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 > * Don't store state in a property of the hub class. Each hub method call is executed on a new hub instance.
 > * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application, use an [IHubContext](xref:signalr/hubcontext).
 > * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, if you call a method such as  `Clients.All.SendAsync(...)` without using `await`, the call can fail and the hub method completes before `SendAsync` finishes.
+
+:::moniker range=">= aspnetcore-11.0"
+
+Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) when the connection uses the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
+
+```csharp
+public record Saved(int Id);
+public record Conflict(string CurrentETag);
+public union SaveOutcome(Saved, Conflict);
+
+public class ItemHub : Hub
+{
+    public SaveOutcome Save(int id, string etag) =>
+        etag == "v7" ? new SaveOutcome(new Saved(id))
+                     : new SaveOutcome(new Conflict("v7"));
+}
+```
+
+For how unions are serialized and disambiguated, see [C# unions in `System.Text.Json`](/dotnet/standard/serialization/system-text-json/unions).
+
+:::moniker-end
 
 ## Use 'Context' object properties and methods
 
