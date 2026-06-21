@@ -284,7 +284,7 @@ public class StreamingHub : Hub
         int delay,
         CancellationToken cancellationToken)
     {
-        return WithLimit(GetCounter(count, delay, cancellationToken));
+        return WithLimit(Context.ConnectionId, GetCounter(count, delay, cancellationToken));
     }
 
     private async IAsyncEnumerable<int> GetCounter(
@@ -300,12 +300,11 @@ public class StreamingHub : Hub
         }
     }
 
-    private async IAsyncEnumerable<int> WithLimit(
-        IAsyncEnumerable<int> stream,
+    private async IAsyncEnumerable<T> WithLimit(
+        string connectionId,
+        IAsyncEnumerable<T> stream,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        var connectionId = Context.ConnectionId;
-
         var current = _activeStreams.AddOrUpdate(
             connectionId,
             addValue: 1,
@@ -353,6 +352,8 @@ public class StreamingHub : Hub
 
 The key point is that `WithLimit` wraps the original `IAsyncEnumerable<T>` and holds the counter elevated for the *full lifetime of the stream*, not just until the first item is yielded.
 The `finally` block runs only when the client finishes consuming the stream, cancels it, or the connection drops.
+
+If your streaming hub methods return `ChannelReader<T>` instead of `IAsyncEnumerable<T>`, a similar wrapper can be applied. It should use the same *_activeStreams* dictionary so both stream types share a single connection-level limit rather than each maintaining their own independent count.
 
 > [!NOTE]
 > The `_activeStreams` dictionary is `static` so it is shared across all hub instances. If you prefer DI-managed state, register a singleton service that owns the dictionary and inject it into the hub constructor.
