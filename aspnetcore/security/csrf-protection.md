@@ -11,7 +11,7 @@ uid: security/csrf-protection
 ---
 # Automatic CSRF protection in ASP.NET Core
 
-Starting in .NET 11, ASP.NET Core ships an automatic Cross-Site Request Forgery (CSRF) protection middleware that's enabled by default in apps built with `WebApplication.CreateBuilder`. Unlike the [token-based antiforgery system](xref:security/anti-request-forgery), this middleware doesn't issue or validate tokens. Instead, it inspects the [Fetch Metadata](https://developer.mozilla.org/docs/Web/HTTP/Headers/Sec-Fetch-Site) headers that modern browsers attach to every request and the [`Origin`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Origin) header as a fallback, then records a validation verdict on the request. Components that process submitted form data enforce that verdict, rejecting cross-origin write requests that aren't explicitly trusted.
+Starting in .NET 11, ASP.NET Core ships an automatic Cross-Site Request Forgery (CSRF) protection middleware that's enabled by default in apps built with `WebApplication.CreateBuilder`. Unlike the [token-based antiforgery system](xref:security/anti-request-forgery), this middleware doesn't issue or validate tokens. Instead, it inspects the [Fetch Metadata](https://developer.mozilla.org/docs/Web/HTTP/Headers/Sec-Fetch-Site) headers that modern browsers attach to every request, with the [`Origin`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Origin) header as a fallback, then records a validation verdict on the request. Components that process submitted form data enforce that verdict, rejecting cross-origin form posts that aren't explicitly trusted.
 
 For most apps, no code changes are required: same-origin browser requests, safe HTTP methods, and non-browser clients (`curl`, server-to-server, mobile apps) all pass through unaffected. The middleware primarily affects apps that accept cross-origin form posts from a browser, such as a site that posts a form to an API on a different origin. Those scenarios need to either configure [CORS](xref:security/cors) to declare the trusted origin or opt the endpoint out.
 
@@ -28,7 +28,7 @@ For every request, the middleware evaluates a short chain of rules to reach a ve
 1. **No `Sec-Fetch-Site`, but `Origin` is present:** the middleware compares the `Origin` to `scheme://host[:port]` built from the request. If they match, the request is allowed; otherwise it's denied. This is the fallback path for browsers older than the Fetch Metadata spec (released ~2020).
 1. **No `Sec-Fetch-Site` and no `Origin`: the request is allowed.** Browsers always send at least one of these on a write request, so a request missing both is almost certainly a non-browser client such as `curl`, Postman, a mobile app, or a server-to-server caller. CSRF is a browser-only attack vector, so these requests pass through.
 
-The middleware records this verdict on the request rather than ending the request itself. How and when a denied verdict turns into an HTTP `400 Bad Request` response is covered in [Deferred validation](#deferred-validation).
+The middleware records this verdict on the request rather than ending the request itself. For how and when a denied verdict turns into an HTTP `400 Bad Request` response, see [Deferred validation](#deferred-validation).
 
 ### Why `Sec-Fetch-Site` and `Origin` can be trusted
 
@@ -172,7 +172,7 @@ ASPNETCORE_DisableCsrfProtection=true
 
 When this key is set to `true`, `WebApplication` skips registering the middleware in the pipeline. The `ICsrfProtection` service remains registered, so anything that resolves it directly continues to work.
 
-> [!NOTE]
+> [!WARNING]
 > The automatic CSRF middleware also satisfies the antiforgery requirement for endpoints that require validation, even when an app doesn't call `app.UseAntiforgery()`. If an app relies on antiforgery but doesn't call `app.UseAntiforgery()`, disabling the CSRF middleware globally — or running on a host that isn't built with `WebApplication`, where the middleware isn't injected — leaves those endpoints with no antiforgery middleware. A request to such an endpoint then throws an exception. Call `app.UseAntiforgery()` in that configuration.
 
 ## Browser support
@@ -287,7 +287,7 @@ For apps that are upgrading from .NET 10 and already use the token-based system,
 
 **Symptom:** Same-origin requests from a browser succeed, but cross-origin form posts return `400` with no body.
 
-**Cause:** The CSRF middleware recorded an invalid verdict for the cross-origin request, and a form-processing component — an MVC action, a minimal API form binding, or a Blazor SSR form post — enforced that verdict with a `400`. This is the expected default behavior for endpoints that process forms.
+**Cause:** The CSRF middleware recorded an invalid verdict for the cross-origin request, and a form-processing component — such as an MVC action, a Minimal API form binding, or a Blazor SSR form post — enforced that verdict with a `400`. This is the expected default behavior for endpoints that process forms.
 
 **Resolution:** Choose one of the following, depending on the scenario:
 

@@ -22,7 +22,7 @@ As a result, a Blazor SSR app that didn't call `app.UseAntiforgery()` still had 
 
 Starting in ASP.NET Core 11, the Razor Components endpoint trusts the antiforgery verdict recorded on the request's `IAntiforgeryValidationFeature` by upstream middleware. For a form `POST`, it returns `400 Bad Request` only when the recorded verdict is invalid, and it no longer calls `IAntiforgery` to validate the request itself. The endpoint generates antiforgery tokens only when the token-based antiforgery middleware ran for the request; when that middleware isn't present, the endpoint skips token generation.
 
-The verdict can be recorded by either of two middleware:
+The verdict can be recorded by either of two middleware components:
 
 * The token-based antiforgery middleware that `app.UseAntiforgery()` adds.
 * The automatic cross-origin CSRF protection middleware that's injected by default in apps built with `WebApplication.CreateBuilder` (new in .NET 11).
@@ -38,7 +38,9 @@ This change is a [behavioral change](/dotnet/core/compatibility/categories#behav
 
 ## Reason for change
 
-The token-based antiforgery system and the new cross-origin CSRF protection now record a single validation result on the shared `IAntiforgeryValidationFeature`, which form-consuming components read to decide whether to reject a request. Having the Razor Components endpoint validate the request a second time duplicated that work and could produce a result that differed from the middleware. Generating tokens when no antiforgery middleware was present produced tokens that nothing validated. For more information, see [dotnet/aspnetcore#67082](https://github.com/dotnet/aspnetcore/pull/67082).
+The token-based antiforgery system and the new cross-origin CSRF protection now record a single validation result on the shared `IAntiforgeryValidationFeature`, which form-consuming components read to decide whether to reject a request. Having the Razor Components endpoint validate the request a second time duplicated that work and could produce a result that differed from the middleware's. Generating tokens when no antiforgery middleware was present produced tokens that nothing validated.
+
+For more information, see [dotnet/aspnetcore#67082](https://github.com/dotnet/aspnetcore/pull/67082).
 
 ## Recommended action
 
