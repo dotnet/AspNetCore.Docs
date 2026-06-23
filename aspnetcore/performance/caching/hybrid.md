@@ -123,7 +123,7 @@ Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concep
 
 ## Removing all cache entries
 
-The asterisk tag (`*`) is reserved as a wildcard and is disallowed against individual values. Calling `RemoveByTagAsync("*")` has the effect of invalidating *all* `HybridCache` data, even data that doesn't have any tags. As with ccindividual tags, this is a *logical* operation, and individual values continue to exist until they expire naturally. Glob-style matches aren't supported. For example, you can't use `RemoveByTagAsync("foo*")` to remove everything starting with `foo`.
+The asterisk tag (`*`) is reserved as a wildcard and is disallowed against individual values. Calling `RemoveByTagAsync("*")` has the effect of invalidating *all* `HybridCache` data, even data that doesn't have any tags. As with individual tags, this is a *logical* operation, and individual values continue to exist until they expire naturally. Glob-style matches aren't supported. For example, you can't use `RemoveByTagAsync("foo*")` to remove everything starting with `foo`.
 
 ### Additional tag considerations
 
