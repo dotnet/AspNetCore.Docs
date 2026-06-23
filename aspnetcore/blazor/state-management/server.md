@@ -6,7 +6,7 @@ description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 06/23/2026
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -200,6 +200,14 @@ The framework can optionally pause a circuit when the browser tab becomes hidden
 ```
 
 After the tab is hidden for `HiddenDelayMilliseconds` (default: 120,000 ms), the circuit pauses. If the user returns before the delay elapses, the pause doesn't happen.
+
+> [!NOTE]
+> Auto-pause triggers on the [Page Visibility API](https://developer.mozilla.org/docs/Web/API/Page_Visibility_API) `visibilitychange` event, whose meaning differs by platform:
+>
+> * On desktop, the tab becomes hidden when the user switches tabs or minimizes the window. The pause timer runs reliably and the circuit pauses gracefully after the delay.
+> * On mobile, the page also becomes hidden when the *whole app* is backgrounded (switching apps, returning to the home screen, or locking the screen), not just when switching browser tabs.
+>
+> On mobile, the operating system suspends the page's JavaScript shortly after the app is backgrounded (within seconds on Android, up to about 30 seconds on iOS). If `HiddenDelayMilliseconds` is longer than that window, the pause timer never fires and the circuit is dropped by the OS-initiated disconnect instead of pausing gracefully. The session is still preserved through the normal reconnection and [circuit state persistence](#circuit-state-persistence) path, but the client-side veto and deferral logic doesn't run. For this reason, graceful auto-pause isn't guaranteed and isn't a supported scenario on mobile when the app is backgrounded.
 
 The framework defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text inputs with Blazor `@bind` bindings are edited or audio/video is playing.
 
