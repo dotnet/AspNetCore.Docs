@@ -111,18 +111,19 @@ When an entry is removed, it is removed from both the primary and secondary cach
 
 ## Remove cache entries by tag
 
-Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values. Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concept of tags, so tag-based invalidation is a logical operation, not a physical deletion. Calling `RemoveByTagAsync` doesn't actively remove values from either the local or distributed cache. Instead, it establishes an "ignore anything created before this point" rule for entries associated with that tag. When `GetOrCreateAsync` later retrieves a cached value for that tag, `HybridCache` checks whether the value was created before the tag was invalidated. If so, the value is treated as a cache miss and the factory method is called to fetch fresh data. The old values remain in `IMemoryCache` and `IDistributedCache` until they expire naturally based on their configured lifetime.
+Tags can be used to group cache entries and invalidate them together.
+
 Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
-Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
+Remove entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values. 
 
-Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concept of tags, so tag-based invalidation is a *logical* operation only. It doesn't actively remove values from either local or distributed cache. Instead, it ensures that when receiving data with such tags, the data is treated as a cache-miss from both the local and remote cache. The values expire from `IMemoryCache` and `IDistributedCache` in the usual way based on the configured lifetime.
+Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concept of tags, so tag-based invalidation is a logical operation, not a physical deletion. Calling `RemoveByTagAsync` doesn't remove values from either the local or distributed cache. Instead, it establishes an "ignore anything created before this point" rule for entries associated with that tag. When `GetOrCreateAsync` later retrieves a cached value for that tag, `HybridCache` checks whether the value was created before the tag was invalidated. If so, the value is treated as a cache miss and the factory method is called to fetch fresh data. The old values remain in `IMemoryCache` and `IDistributedCache` until they expire in the usual way based on their configured lifetime.
 
 ## Removing all cache entries
 
-The asterisk tag (`*`) is reserved as a wildcard and is disallowed against individual values. Calling `RemoveByTagAsync("*")` has the effect of invalidating *all* `HybridCache` data, even data that doesn't have any tags. As with individual tags, this is a *logical* operation, and individual values continue to exist until they expire naturally. Glob-style matches aren't supported. For example, you can't use `RemoveByTagAsync("foo*")` to remove everything starting with `foo`.
+The asterisk tag (`*`) is reserved as a wildcard and is disallowed against individual values. Calling `RemoveByTagAsync("*")` has the effect of invalidating *all* `HybridCache` data, even data that doesn't have any tags. As with ccindividual tags, this is a *logical* operation, and individual values continue to exist until they expire naturally. Glob-style matches aren't supported. For example, you can't use `RemoveByTagAsync("foo*")` to remove everything starting with `foo`.
 
 ### Additional tag considerations
 
