@@ -5,7 +5,7 @@ description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.author: wpickett
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 06/20/2026
+ms.date: 06/16/2026
 uid: fundamentals/minimal-apis/responses
 ai-usage: ai-assisted
 ---
@@ -57,23 +57,6 @@ The `200` status code is returned with `application/json` Content-Type header an
 ```json
 {"message":"Hello World"}
 ```
-
-:::moniker range=">= aspnetcore-11.0"
-
-A handler can return a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types). Only the active case is serialized, which is useful for endpoints that return one of several payload shapes:
-
-```csharp
-public record Product(int Id, string Name);
-public union ProductOrError(Product, ProblemDetails);
-
-app.MapGet("/product/{id:int}", (int id) => id > 0
-    ? new ProductOrError(new Product(id, "Widget"))
-    : new ProductOrError(new ProblemDetails { Title = "Not found", Status = 404 }));
-```
-
-For how unions are serialized, deserialized, and disambiguated, see [C# unions in `System.Text.Json`](/dotnet/standard/serialization/system-text-json/unions).
-
-:::moniker-end
 
 ## `IResult` return values
 

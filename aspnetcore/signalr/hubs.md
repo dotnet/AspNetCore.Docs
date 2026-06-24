@@ -5,7 +5,7 @@ description: Learn how to work with hubs in ASP.NET Core SignalR, create and use
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/20/2026
+ms.date: 06/24/2026
 uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
@@ -47,22 +47,8 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::moniker range=">= aspnetcore-11.0"
 
-Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) when the connection uses the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
-
-```csharp
-public record Saved(int Id);
-public record Conflict(string CurrentETag);
-public union SaveOutcome(Saved, Conflict);
-
-public class ItemHub : Hub
-{
-    public SaveOutcome Save(int id, string etag) =>
-        etag == "v7" ? new SaveOutcome(new Saved(id))
-                     : new SaveOutcome(new Conflict("v7"));
-}
-```
-
-For how unions are serialized and disambiguated, see [C# unions in `System.Text.Json`](/dotnet/standard/serialization/system-text-json/unions).
+> [!NOTE]
+> Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) only with the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
 
 :::moniker-end
 

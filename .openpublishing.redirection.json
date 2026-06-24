@@ -2,7 +2,7 @@
     "redirections": [
         {
             "source_path": "aspnetcore/fundamentals/unions.md",
-            "redirect_url": "/aspnet/core/fundamentals/minimal-apis/responses",
+            "redirect_url": "/aspnet/core/fundamentals/minimal-apis/parameter-binding",
             "redirect_document_id": false
         },
         {

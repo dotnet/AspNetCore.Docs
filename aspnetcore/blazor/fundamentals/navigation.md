@@ -6,7 +6,7 @@ description: Learn about navigation in Blazor, including how to use the Navigati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/09/2025
+ms.date: 06/24/2026
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
@@ -849,6 +849,17 @@ Component parameters supplied from the query string support the following types:
 * Arrays of the preceding types, whether they're nullable or not nullable.
 
 The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) aren't supported by `[SupplyParameterFromQuery]` or `[SupplyParameterFromForm]`, which bind string or form values without JSON parsing. To track support for unions in non-body binding sources, see [`dotnet/aspnetcore#66648`](https://github.com/dotnet/aspnetcore/issues/66648).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute.Name> property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
 
