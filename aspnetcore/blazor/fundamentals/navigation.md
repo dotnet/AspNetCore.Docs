@@ -855,7 +855,7 @@ The correct culture-invariant formatting is applied for the given type (<xref:Sy
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) aren't supported by `[SupplyParameterFromQuery]` or `[SupplyParameterFromForm]`, which bind string or form values without JSON parsing. To track support for unions in non-body binding sources, see [`dotnet/aspnetcore#66648`](https://github.com/dotnet/aspnetcore/issues/66648).
+> [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) aren't supported by `[SupplyParameterFromQuery]` or `[SupplyParameterFromForm]`, which bind string or form values without JSON parsing.
 
 :::moniker-end
 
