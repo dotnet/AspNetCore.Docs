@@ -1,21 +1,58 @@
-#define FINAL // MINIMAL FINAL WITHPATCH TYPEDR
-#if MINIMAL
-// <snippet_min>
+#define WITHPATCH // TEMPLATESTART MINIMALSTART FINAL WITHPATCH TYPEDR
+#if TEMPLATESTART
+// <snippet_templatestart>
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+
+var summaries = new[]
+{
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+};
+
+app.MapGet("/weatherforecast", () =>
+{
+    var forecast = Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return forecast;
+})
+.WithName("GetWeatherForecast");
 
 app.Run();
-// </snippet_min>
+
+internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+{
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
+// </snippet_templatestart>
+
 #elif FINAL
-// <snippet_all>
+
+#elif MINIMALSTART
+// <snippet_minimal_start_all>
 using Microsoft.EntityFrameworkCore;
 
 // <snippet_DI>
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 // </snippet_DI>
 
@@ -76,13 +113,13 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 // </snippet_delete>
 
 app.Run();
-// </snippet_all>
+
+// </snippet_minimal_start_all>
 #elif WITHPATCH
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
 app.MapGet("/todoitems", async (TodoDb db) =>
@@ -148,58 +185,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 });
 
 app.Run();
+
 #elif TYPEDR
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-var app = builder.Build();
-
-app.MapGet("/todoitems", async (TodoDb db) =>
-    await db.Todos.ToListAsync());
-
-app.MapGet("/todoitems/complete", async (TodoDb db) =>
-    await db.Todos.Where(t => t.IsComplete).ToListAsync());
-
-// <snippet_1a>
-app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
-    await db.Todos.FindAsync(id)
-        is Todo todo
-            ? Results.Ok(todo)
-            : Results.NotFound());
-// </snippet_1a>
-
-/*
-// <snippet_1b>
- app.MapGet("/todoitems/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, TodoDb db) =>
-    await db.Todos.FindAsync(id)
-     is Todo todo
-        ? TypedResults.Ok(todo)
-        : TypedResults.NotFound());
-// </snippet_1b>
-*/
-
-/*
-// <snippet_111>
-app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
-     await db.Todos.FindAsync(id)
-     is Todo todo
-        ? TypedResults.Ok(todo)
-        : TypedResults.NotFound());
-// </snippet_111>
-*/
-
-// <snippet_11b>
-app.MapGet("/hello", () => Results.Ok(new Message() { Text = "Hello World!" }))
-    .Produces<Message>();
-// </snippet_11b>
-
-// <snippet_112b>
-app.MapGet("/hello2", () => TypedResults.Ok(new Message() { Text = "Hello World!" }));
-// </snippet_112b>
-
-app.Run();
 #endif
-
