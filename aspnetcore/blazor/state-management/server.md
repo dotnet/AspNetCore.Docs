@@ -6,7 +6,7 @@ description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 06/23/2026
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -180,6 +180,81 @@ window.addEventListener('visibilitychange', () => {
   }
 });
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Automatic circuit pause on tab inactivity
+
+The framework can optionally pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. Enable auto-pause using the `ConfigureBrowser` component in `App.razor`:
+
+```razor
+<ConfigureBrowser Configuration="@(new BrowserConfiguration
+{
+    Server = new()
+    {
+        AutoPause = new() { Enabled = true, HiddenDelayMilliseconds = 5000 }
+    }
+})" />
+```
+
+After the tab is hidden for `HiddenDelayMilliseconds` (default: 120,000 ms), the circuit pauses. If the user returns before the delay elapses, the pause doesn't happen.
+
+> [!NOTE]
+> Auto-pause triggers on the [Page Visibility API](https://developer.mozilla.org/docs/Web/API/Page_Visibility_API) `visibilitychange` event, whose meaning differs by platform:
+>
+> * On desktop, the tab becomes hidden when the user switches tabs or minimizes the window. The pause timer runs reliably and the circuit pauses gracefully after the delay.
+> * On mobile, the page also becomes hidden when the *whole app* is backgrounded (switching apps, returning to the home screen, or locking the screen), not just when switching browser tabs.
+>
+> On mobile, the operating system suspends the page's JavaScript shortly after the app is backgrounded (within seconds on Android, up to about 30 seconds on iOS). If `HiddenDelayMilliseconds` is longer than that window, the pause timer never fires and the circuit is dropped by the OS-initiated disconnect instead of pausing gracefully. The session is still preserved through the normal reconnection and [circuit state persistence](#circuit-state-persistence) path, but the client-side veto and deferral logic doesn't run. For this reason, graceful auto-pause isn't guaranteed and isn't a supported scenario on mobile when the app is backgrounded.
+
+The framework defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text inputs with Blazor `@bind` bindings are edited or audio/video is playing.
+
+For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Use `onPauseRequested` in the [Blazor startup configuration](xref:blazor/fundamentals/startup):
+
+```razor
+<script>
+  Blazor.start({
+    circuit: {
+      onPauseRequested: async (signal) => {
+        // Example: save canvas state before the pause proceeds.
+        const canvas = document.getElementById('drawing-canvas');
+        if (canvas) {
+          localStorage.setItem('canvasData', canvas.toDataURL());
+        }
+
+        // Example: close an active WebRTC connection gracefully.
+        if (window.activePeerConnection && !signal.aborted) {
+          window.activePeerConnection.close();
+          await new Promise(resolve => {
+            signal.addEventListener('abort', resolve);
+            setTimeout(resolve, 100);
+          });
+        }
+      }
+    }
+  });
+</script>
+```
+
+> [!NOTE]
+> The `<input type="file">` element can't have its value restored after pause/resume due to browser security restrictions. Using `[PersistentState]` on a property bound to a file input causes an `InvalidStateError` that crashes the circuit. Instead, capture the file name in a separate property:
+>
+> ```razor
+> <input type="file" @onchange="HandleFileSelected" />
+> <span>@SelectedFileName</span>
+>
+> @code {
+>     [PersistentState(AllowUpdates = true)]
+>     public string? SelectedFileName { get; set; }
+>
+>     private void HandleFileSelected(InputFileChangeEventArgs e)
+>     {
+>         SelectedFileName = e.File.Name;
+>     }
+> }
+> ```
 
 :::moniker-end
 
