@@ -2,11 +2,11 @@
 title: Automatic CSRF protection in ASP.NET Core
 ai-usage: ai-assisted
 author: tdykstra
-description: Learn how the automatic Cross-Site Request Forgery (CSRF) protection middleware in .NET 11 uses Fetch Metadata and Origin validation to block cross-origin write requests by default.
+description: Learn how the automatic Cross-Site Request Forgery (CSRF) protection middleware in .NET 11 uses Fetch Metadata and Origin validation to reject cross-origin form posts by default.
 monikerRange: '>= aspnetcore-11.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/17/2026
+ms.date: 06/25/2026
 uid: security/csrf-protection
 ---
 # Automatic CSRF protection in ASP.NET Core
@@ -36,7 +36,7 @@ Both `Sec-Fetch-Site` and `Origin` are [forbidden request headers](https://devel
 
 ## Deferred validation
 
-The middleware doesn't reject a request on its own. Instead, it records its verdict on the request's `IAntiforgeryValidationFeature` — the same feature the token-based antiforgery system uses — and lets the request continue down the pipeline. A denied verdict becomes an HTTP `400 Bad Request` only when a component that processes form data observes the verdict. This deferral matches how the token-based system already behaves: the verdict is produced early but enforced at the point where a form is consumed.
+The middleware doesn't reject a request on its own. Instead, it records its verdict on the request's `IAntiforgeryValidationFeature` — the same feature the token-based antiforgery system uses — where a denied verdict is recorded as *invalid*. The request continues down the pipeline; an invalid verdict becomes an HTTP `400 Bad Request` only when a component that processes form data observes it. This deferral matches how the token-based system already behaves: the verdict is produced early but enforced at the point where a form is consumed.
 
 The following components read `IAntiforgeryValidationFeature` and reject a request with `400` when the recorded verdict is invalid:
 

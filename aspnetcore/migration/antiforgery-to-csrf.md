@@ -5,7 +5,7 @@ author: tdykstra
 description: Use the automatic CSRF protection introduced in .NET 11 to simplify or replace the token-based antiforgery system in an existing ASP.NET Core app.
 monikerRange: '>= aspnetcore-11.0'
 ms.author: tdykstra
-ms.date: 06/17/2026
+ms.date: 06/25/2026
 uid: migration/antiforgery-to-csrf
 ---
 # Adopt automatic CSRF protection in .NET 11
