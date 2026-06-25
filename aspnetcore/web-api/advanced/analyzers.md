@@ -5,10 +5,17 @@ description: Learn about the ASP.NET Core MVC web API analyzers package.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 06/25/2026
 uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers
+
+:::moniker range=">= aspnetcore-10.0"
+
+> [!WARNING]
+> The `IncludeOpenAPIAnalyzers` MSBuild property and its associated MVC API analyzers are **deprecated** as of .NET 10 and will be removed in a future release. When `IncludeOpenAPIAnalyzers` is set to `true`, the build emits warning `ASPDEPR007`. Migrate to the <xref:Microsoft.AspNetCore.Http.TypedResults> pattern, which provides compile-time response-type guarantees without separate analyzers. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0).
+
+:::moniker-end
 
 ASP.NET Core provides an MVC analyzers package intended for use with web API projects. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [web API conventions](xref:web-api/advanced/conventions).
 
