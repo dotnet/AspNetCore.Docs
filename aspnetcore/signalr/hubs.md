@@ -45,12 +45,16 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 > * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application, use an [IHubContext](xref:signalr/hubcontext).
 > * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, if you call a method such as  `Clients.All.SendAsync(...)` without using `await`, the call can fail and the hub method completes before `SendAsync` finishes.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
 > Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) only with the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Use 'Context' object properties and methods
 
