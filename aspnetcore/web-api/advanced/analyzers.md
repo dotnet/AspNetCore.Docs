@@ -13,7 +13,7 @@ uid: web-api/advanced/analyzers
 :::moniker range=">= aspnetcore-10.0"
 
 > [!WARNING]
-> The `IncludeOpenAPIAnalyzers` MSBuild property and its associated MVC API analyzers are **deprecated** as of .NET 10 and will be removed in a future release. When `IncludeOpenAPIAnalyzers` is set to `true`, the build emits warning `ASPDEPR007`. Migrate to the <xref:Microsoft.AspNetCore.Http.TypedResults> pattern, which provides compile-time response-type guarantees without separate analyzers. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0).
+> The `IncludeOpenAPIAnalyzers` MSBuild property and its associated MVC API analyzers are deprecated as of .NET 10 and will be removed in a future release. When `IncludeOpenAPIAnalyzers` is set to `true`, the build emits warning `ASPDEPR007`. Migrate to the <xref:Microsoft.AspNetCore.Http.TypedResults> pattern, which provides compile-time response-type guarantees without separate analyzers. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0).
 
 :::moniker-end
 
