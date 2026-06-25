@@ -28,6 +28,25 @@ The following code is an example that uses SignalR and ASP.NET Core authenticati
 > [!NOTE]
 > If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set the [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) option.
 
+### User and role changes during the connection lifetime
+
+SignalR captures the authenticated user when a connection is established and caches it for the lifetime of the connection. The cached principal is exposed by the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property and is used to authorize hub method invocations. SignalR doesn't automatically revalidate the user during the life of the connection, regardless of the authentication scheme. This behavior applies to all schemes, including cookie authentication and bearer token authentication.
+
+Changes to a user's identity, roles, or claims that occur after the connection is established aren't reflected on an existing connection. This behavior applies even when the underlying transport makes new HTTP requests, such as the `LongPolling` and `ServerSentEvents` transports. Although the ASP.NET Core authentication middleware reauthenticates each of these HTTP requests, SignalR continues to use the principal that was cached when the connection was established.
+
+Consider the following scenario:
+
+* An app uses cookie authentication and the `LongPolling` transport. The same behavior applies to bearer token authentication and the `ServerSentEvents` transport.
+* A user is signed in with the `Editor` role and has an open SignalR connection.
+* The app removes the `Editor` role from that user.
+
+On the next long-poll request, the authentication middleware correctly authenticates the user without the `Editor` role. However, the hub continues to authorize the user's `[Authorize(Roles = "Editor")]` hub method invocations because `HubConnectionContext.User` still holds the principal that was cached before the role was removed. The user can keep calling `Editor`-only hub methods until the connection is closed.
+
+To enforce updated authorization on an active connection, take one of the following approaches:
+
+* Close affected connections so that clients reconnect and reauthenticate. For bearer token authentication, the [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) option closes connections when the authentication token expires.
+* Perform authorization checks in hub methods against current data, such as the user's current roles or claims from a data store, instead of relying only on the cached principal.
+
 ### Cookie authentication
 
 In a browser-based app, cookie authentication allows existing user credentials to automatically flow to SignalR connections. When the browser client is used, no extra configuration is needed. If the user is signed in to an app, the SignalR connection automatically inherits this authentication.
@@ -44,7 +63,7 @@ Cookies are a browser-specific way to send access tokens, but nonbrowser clients
 
 ### Bearer token authentication
 
-The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. During the life of the connection, the server doesn't automatically revalidate to check for token revocation.
+The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. As with cookie authentication, the server doesn't automatically revalidate the user during the life of the connection to check for token revocation or for changes to the user's roles or claims. For more information, see [User and role changes during the connection lifetime](#user-and-role-changes-during-the-connection-lifetime).
 
 In the JavaScript client, the token can be provided by using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
 
