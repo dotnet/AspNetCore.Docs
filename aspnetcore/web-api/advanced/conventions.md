@@ -13,7 +13,7 @@ uid: web-api/advanced/conventions
 :::moniker range=">= aspnetcore-10.0"
 
 > [!WARNING]
-> The web API analyzers used with these conventions are **deprecated** as of .NET 10 and will be removed in a future release. Setting `IncludeOpenAPIAnalyzers` to `true` emits warning `ASPDEPR007`. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0).
+> The web API analyzers used with these conventions are deprecated as of .NET 10 and will be removed in a future release. Setting `IncludeOpenAPIAnalyzers` to `true` emits warning `ASPDEPR007`. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0).
 
 :::moniker-end
 
