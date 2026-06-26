@@ -589,7 +589,7 @@ Your `Program.cs` includes a single DELETE endpoint, defined with `MapDelete`:
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use Swagger to send a DELETE request:
+Use the Swagger UI to send a DELETE request:
 
 * Select **DELETE /todoitems/{id}** > **Try it out**.
 * Set the **ID** field to `1` and select **Execute**.
