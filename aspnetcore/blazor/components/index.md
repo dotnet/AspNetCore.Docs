@@ -854,7 +854,7 @@ If the component parameter is of type string, then the attribute value is instea
 
 <!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
 
-The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types), even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, for example `Message="@("Saved.")"`. For more information, see [Razor: extend literal-attribute shortcut to component parameters typed as a C# union with a string case (`dotnet/razor` #13188)](https://github.com/dotnet/razor/issues/13188).
+The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types), even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, for example `Message="@("Saved.")"`.
 
 :::moniker-end
 
