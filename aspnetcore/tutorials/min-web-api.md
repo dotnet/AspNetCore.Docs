@@ -371,7 +371,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
 Test the app by calling the endpoints from a browser or Swagger.
 
-* In Swagger select **GET /todoitems** > **Try it out** > **Execute**.
+* In the Swagger UI select **GET /todoitems** > **Try it out** > **Execute**.
 
 * Alternatively, call **GET /todoitems** from a browser by entering the URI `http://localhost:{port}/todoitems`. For example, `http://localhost:7032/todoitems`
 
