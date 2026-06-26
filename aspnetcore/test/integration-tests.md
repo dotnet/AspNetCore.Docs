@@ -181,6 +181,70 @@ The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-st
 
 See [Extend Startup with startup filters](xref:fundamentals/startup#IStartupFilter) which shows how to configure middleware using <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>, which is useful when a test requires a custom service or middleware.
 
+## Customize the `WebApplicationFactory` with test configurations
+
+There are various ways to supply test-specific configurations to the running web application via `WebApplicationFactory`.
+
+1. Using `ConfigureHostConfiguration`: override the `CreateHost` method and call `builder.ConfigureHostConfiguration` as follows:
+
+    ```csharp
+    private static readonly KeyValuePair<string, string?>[] s_inMemorySettings = new KeyValuePair<string, string?>[]
+    {
+        new("TestConfigKey", "TestConfigValue"),
+    };
+
+    protected override IHost CreateHost(IHostBuilder builder)
+    {
+        builder.ConfigureHostConfiguration(builder =>
+        {
+            builder.AddInMemoryCollection(s_inMemorySettings);
+        });
+        return base.CreateHost(builder);
+    }
+    ```
+
+    Using this approach, the configuration source added via `ConfigureHostConfiguration` will be enumerated before the entry point is called, and the configurations will be passed to the entry point via `args`. The actual configuration source isn't preserved.
+
+    > [!IMPORTANT]
+    > Make sure you pass `args` to `WebApplication.CreateBuilder` call. Otherwise, the configurations will not take effect.
+
+2. Using `ConfigureAppConfiguration`: override the `ConfigureWebHost` method and call `builder.ConfigureAppConfiguration` as follows:
+
+    ```csharp
+    private static readonly KeyValuePair<string, string?>[] s_inMemorySettings = new KeyValuePair<string, string?>[]
+    {
+        new("TestConfigKey", "TestConfigValue"),
+    };
+
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        base.ConfigureWebHost(builder);
+        builder.ConfigureAppConfiguration(builder =>
+        {
+            builder.AddInMemoryCollection(s_inMemorySettings);
+        });
+    }
+    ```
+
+    Using this approach, the configuration source added via `ConfigureAppConfiguration` is preserved, but it's only available after the web application is built. If you try to access the configuration before `WebApplicationBuilder.Build` is called, the configurations will not be available.
+
+3. Starting in .NET 11 Preview 6, you can override a new `ConfigureHostApplicationBuilder` method as follows:
+
+    ```csharp
+    private static readonly KeyValuePair<string, string?>[] s_inMemorySettings = new KeyValuePair<string, string?>[]
+    {
+        new("TestConfigKey", "TestConfigValue"),
+    };
+
+    protected override void ConfigureHostApplicationBuilder(IHostApplicationBuilder hostApplicationBuilder)
+    {
+        hostApplicationBuilder.Configuration.AddInMemoryCollection(s_inMemorySettings);
+        base.ConfigureHostApplicationBuilder(hostApplicationBuilder);
+    }
+    ```
+
+    Using this approach, the configuration source added via `ConfigureHostApplicationBuilder` is preserved, and is also available immediately after `WebApplication.CreateBuilder` returns.
+
 ## Customize the client with WithWebHostBuilder
 
 When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
