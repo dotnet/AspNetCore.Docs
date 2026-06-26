@@ -6,7 +6,7 @@ description: Learn how to use authentication and authorization in your ASP.NET C
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/25/2026
+ms.date: 06/26/2026
 uid: signalr/authn-and-authz
 
 # customer intent: As an ASP.NET developer, I want to use authentication and authorization in ASP.NET Core SignalR, so I can verify user access to my apps.
@@ -31,7 +31,7 @@ The following code is an example that uses SignalR and ASP.NET Core authenticati
 
 ### User and role changes during the connection lifetime
 
-SignalR captures the authenticated user when a connection is established and caches it for the lifetime of the connection. The cached principal is exposed by the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property and is used to authorize hub method invocations. SignalR doesn't automatically revalidate the user during the life of the connection, regardless of the authentication scheme. This behavior applies to all schemes, including cookie authentication and bearer token authentication.
+SignalR captures the authenticated user when a connection is established and caches it for the lifetime of the connection. The cached principal is exposed to hub methods through the `Context.User` property (<xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User?displayProperty=nameWithType>) and is used to authorize hub method invocations. SignalR doesn't automatically revalidate the user during the life of the connection, regardless of the authentication scheme. This behavior applies to all schemes, including cookie authentication and bearer token authentication.
 
 Changes to a user's identity, roles, or claims that occur after the connection is established aren't reflected on an existing connection. This behavior applies even when the underlying transport makes new HTTP requests, such as the `LongPolling` and `ServerSentEvents` transports. Although the ASP.NET Core authentication middleware reauthenticates each of these HTTP requests, SignalR continues to use the principal that was cached when the connection was established.
 
@@ -41,7 +41,7 @@ Consider the following scenario:
 * A user is signed in with the `Editor` role and has an open SignalR connection.
 * The app removes the `Editor` role from that user.
 
-On the next long-poll request, the authentication middleware correctly authenticates the user without the `Editor` role. However, the hub continues to authorize the user's `[Authorize(Roles = "Editor")]` hub method invocations because `HubConnectionContext.User` still holds the principal that was cached before the role was removed. The user can keep calling `Editor`-only hub methods until the connection is closed.
+On the next long-poll request, the authentication middleware might authenticate the user without the `Editor` role (for example, if roles are loaded from a data store or the cookie is refreshed). However, the hub continues to authorize the user's `[Authorize(Roles = "Editor")]` hub method invocations because `Context.User` (<xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User?displayProperty=nameWithType>) still holds the principal that was cached before the role was removed. The user can keep calling `Editor`-only hub methods until the connection is closed.
 
 To enforce updated authorization on an active connection, take one of the following approaches:
 
@@ -64,7 +64,7 @@ Cookies are a browser-specific way to send access tokens, but nonbrowser clients
 
 ### Bearer token authentication
 
-The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. As with cookie authentication, the server doesn't automatically revalidate the user during the life of the connection to check for token revocation or for changes to the user's roles or claims. For more information, see [User and role changes during the connection lifetime](#user-and-role-changes-during-the-connection-lifetime).
+The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. For transports that make multiple HTTP requests (for example, `LongPolling` and `ServerSentEvents`), authentication runs on each request, but SignalR caches the resulting principal for the lifetime of the connection. As with cookie authentication, SignalR doesn't automatically revalidate the user during the life of the connection to check for token revocation or for changes to the user's roles or claims. For more information, see [User and role changes during the connection lifetime](#user-and-role-changes-during-the-connection-lifetime).
 
 In the JavaScript client, the token can be provided by using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
 
