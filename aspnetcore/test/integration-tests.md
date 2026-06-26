@@ -203,12 +203,12 @@ There are various ways to supply test-specific configurations to the running web
     }
     ```
 
-    Using this approach, the configuration source added via `ConfigureHostConfiguration` will be enumerated before the entrypoint is called, and the configurations will be passed to the entrypoint via `args`. The actual configuration source isn't preserved.
+    Using this approach, the configuration source added via `ConfigureHostConfiguration` will be enumerated before the entry point is called, and the configurations will be passed to the entry point via `args`. The actual configuration source isn't preserved.
 
     > [!IMPORTANT]
     > Make sure you pass `args` to `WebApplication.CreateBuilder` call. Otherwise, the configurations will not take effect.
 
-2. Using `ConfigureAppConfiguration`: override the `ConfigureWebHost` method and call `builder.`ConfigureAppConfiguration` as follows:
+2. Using `ConfigureAppConfiguration`: override the `ConfigureWebHost` method and call `builder.ConfigureAppConfiguration` as follows:
 
     ```csharp
     private static readonly KeyValuePair<string, string?>[] s_inMemorySettings = new KeyValuePair<string, string?>[]
