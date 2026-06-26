@@ -464,7 +464,7 @@ Update the Todo item that has `Id = 1` and set its name to `"feed fish"`.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use Swagger to send a PUT request:
+Use the Swagger UI to send a PUT request:
 
 * Select **Put /todoitems/{id}** > **Try it out**.
 
