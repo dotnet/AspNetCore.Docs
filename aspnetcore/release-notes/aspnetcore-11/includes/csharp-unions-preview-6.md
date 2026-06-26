@@ -8,4 +8,4 @@ public union UnionIntString(int, string);
 app.MapGet("/value", () => new UnionIntString(42));
 ```
 
-Unions aren't supported for non-body binding sources such as route values, query strings, headers, and form fields.
+Union types aren't supported for non-body binding sources such as route values, query strings, headers, and form fields.
