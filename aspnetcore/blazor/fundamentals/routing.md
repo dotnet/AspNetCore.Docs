@@ -5,7 +5,7 @@ description: Learn about Blazor app request routing with guidance on static vers
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/09/2025
+ms.date: 06/24/2026
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing
@@ -356,6 +356,13 @@ When the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecy
 
 > [!NOTE]
 > Route parameters don't work with query string values. To work with query strings, see [Query strings](xref:blazor/fundamentals/navigation#query-strings).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> Route parameters can't be typed as a [C# union](/dotnet/csharp/whats-new/csharp-14#union-types). The router parses route segments as strings and converts them to the target type without JSON parsing, so it can't dispatch to a union case.
 
 :::moniker-end
 

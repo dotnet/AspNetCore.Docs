@@ -12,6 +12,17 @@ Supported binding sources:
 * Services provided by dependency injection
 * Custom
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) are supported only as the body (as JSON). Non-body sources—route values, query string, headers, and form values—bind string values without JSON parsing, so they can't dispatch to a union case.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 The following `GET` route handler uses some of these parameter binding sources:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_pbg" highlight="8-11":::
