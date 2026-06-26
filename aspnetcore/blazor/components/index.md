@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 06/24/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -849,6 +849,14 @@ The following rendered HTML markup from the parent component shows `ParameterChi
 Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value. The value of the attribute can typically be any C# expression that matches the type of the parameter. The value of the attribute can optionally lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required.
 
 If the component parameter is of type string, then the attribute value is instead treated as a C# string literal. If you want to specify a C# expression instead, then use the `@` prefix.
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
+
+The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types), even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, for example `Message="@("Saved.")"`.
+
+:::moniker-end
 
 The following parent component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 

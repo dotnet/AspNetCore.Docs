@@ -5,7 +5,7 @@ author: tdykstra
 description: Use the automatic CSRF protection introduced in .NET 11 to simplify or replace the token-based antiforgery system in an existing ASP.NET Core app.
 monikerRange: '>= aspnetcore-11.0'
 ms.author: tdykstra
-ms.date: 06/05/2026
+ms.date: 06/25/2026
 uid: migration/antiforgery-to-csrf
 ---
 # Adopt automatic CSRF protection in .NET 11
@@ -49,6 +49,8 @@ For apps that fit the second list above, the automatic CSRF middleware alone is 
 | `[RequireAntiforgeryToken]` attribute / `RequireAntiforgeryTokenAttribute` metadata | MVC actions and Minimal API endpoints | Token-specific metadata. |
 
 Per-endpoint opt-outs (`.DisableAntiforgery()` on Minimal APIs, `[IgnoreAntiforgeryToken]` on MVC) can stay where they are — both also opt the endpoint out of the new CSRF middleware. Remove them only if the endpoint should be protected after the simplification.
+
+For Blazor static server-side rendering (SSR), removing `app.UseAntiforgery()` is a breaking change that also stops antiforgery token generation. See [Blazor static server-side rendering](#blazor-static-server-side-rendering) before removing it.
 
 ### Before / after
 
@@ -105,22 +107,31 @@ public class WidgetsController : ControllerBase
 
 Cross-origin SPAs still need a CORS policy listing the trusted origin, regardless of which antiforgery model the app uses. See [Allowing cross-origin clients](xref:security/csrf-protection#allowing-cross-origin-clients) for the resolution rules.
 
+### Blazor static server-side rendering
+
+Removing `app.UseAntiforgery()` is a breaking change for Blazor static server-side rendering (SSR). Without the token-based middleware:
+
+* Form posts are validated by the automatic CSRF middleware using `Sec-Fetch-Site` and `Origin` instead of antiforgery tokens. Blazor SSR endpoints now trust the verdict recorded by the upstream middleware rather than validating the request themselves.
+* Blazor stops generating antiforgery tokens for rendered forms, because no middleware is present to validate a token on a later request.
+
+This is appropriate for apps that target modern browsers and rely on the header-based defense. Apps that need antiforgery tokens — for example, to support browsers that don't send `Sec-Fetch-Site` — should keep `app.UseAntiforgery()`. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
+
 ## After upgrade: if requests start failing
 
-The automatic CSRF middleware is enabled by default in .NET 11. Same-origin browser requests and non-browser clients (`curl`, server-to-server, mobile apps) are unaffected. Cross-origin browser write requests that aren't covered by a CORS policy are rejected with HTTP `400`.
+The automatic CSRF middleware is enabled by default in .NET 11. Same-origin browser requests and non-browser clients (`curl`, server-to-server, mobile apps) are unaffected. Cross-origin browser form posts that aren't covered by a CORS policy are rejected with HTTP `400` when the endpoint processes the form.
 
 ### Symptoms
 
-Cross-origin browser write requests that succeeded on .NET 10 fail on .NET 11 with HTTP `400 Bad Request` and an empty response body. The endpoint code doesn't run.
+Cross-origin browser form posts that succeeded on .NET 10 fail on .NET 11 with HTTP `400 Bad Request` and an empty response body when the endpoint binds or reads the form. The form processing is rejected before the handler body runs. Endpoints that don't read form data — such as JSON APIs — aren't affected, because the recorded verdict is only enforced by form consumers.
 
 The same request issued from `curl` or another non-browser client typically succeeds, which is a useful quick check that distinguishes the new middleware from other causes:
 
 ```bash
-# In a browser at https://app.contoso.com posting to https://api.contoso.com: 400
+# In a browser at https://app.contoso.com posting a form to https://api.contoso.com: 400
 # From a terminal, the same request: 200/201 (no Sec-Fetch-Site, no Origin → treated as non-browser)
 curl -i -X POST https://api.contoso.com/widgets \
-     -H "Content-Type: application/json" \
-     -d '{"name":"test"}'
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "name=test"
 ```
 
 ### Confirm with logs
@@ -137,11 +148,11 @@ To confirm the rejection comes from the CSRF middleware, enable `Debug` logging 
 }
 ```
 
-A denied request appears as:
+A recorded verdict appears as:
 
 ```text
 dbug: Microsoft.AspNetCore.Antiforgery.CsrfProtectionMiddleware[1]
-      Cross-origin CSRF protection denied request POST /widgets from origin 'https://app.contoso.com'.
+      Cross-origin CSRF protection marked request POST /widgets from origin 'https://app.contoso.com' as invalid.
 ```
 
 ### Fix A: allow the origin via CORS
@@ -206,9 +217,13 @@ If the upgrade window is tight and individual fixes will take time, the middlewa
 
 This is an escape hatch, not a recommended end state. Re-enable as soon as CORS and per-endpoint opt-outs are in place.
 
+> [!WARNING]
+> The automatic CSRF middleware also satisfies the antiforgery requirement for endpoints that require validation, even when an app doesn't call `app.UseAntiforgery()`. If an app relies on antiforgery but doesn't call `app.UseAntiforgery()`, disabling the CSRF middleware with `DisableCsrfProtection` removes the only antiforgery middleware in the pipeline. A request to an endpoint that requires validation then throws an exception. The same is true when the app runs on a host that isn't built with `WebApplication`, where the CSRF middleware isn't injected. In either configuration, add `app.UseAntiforgery()` so a middleware is present to validate the request.
+
 ## Related
 
 * <xref:security/csrf-protection> — full reference for the new middleware.
 * <xref:security/anti-request-forgery> — the token-based antiforgery system.
 * <xref:security/cors> — CORS configuration reference.
+* [Breaking change: Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
 * <xref:migration/100-to-110> — overall .NET 10 → .NET 11 migration guide.
