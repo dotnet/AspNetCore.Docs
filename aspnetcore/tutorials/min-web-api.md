@@ -543,7 +543,7 @@ Update only the `name` property of the Todo item that has `Id = 1` and set its n
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use Swagger to send a PATCH request:
+Use the Swagger UI to send a PATCH request:
 
 * Select **Patch /todoitems/{id}** > **Try it out**.
 
