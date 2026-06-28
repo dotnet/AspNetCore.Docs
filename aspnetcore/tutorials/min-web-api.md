@@ -146,6 +146,8 @@ The `Secret` property isn't used by the API's endpoints yet. It represents a com
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
+The app uses an in-memory database named `TodoList`. The database is registered later in `Program.cs` with `builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));`, where the string `"TodoList"` is the database name. Because the data is stored in memory, it's reset every time the app restarts.
+
 ## Replace the WeatherForecast sample with the Todo API
 
 The `webapi` template added a sample `GET /weatherforecast` endpoint to `Program.cs` and a `WeatherForecast` record at the bottom of the file. The sample is just a placeholder to show the template works — replace both with the Todo endpoints below.
@@ -426,7 +428,7 @@ The call to `GET /todoitems` produces a response similar to the following:
 
 ---
 
-This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
+This app uses an in-memory database. If the app is restarted, the data is lost: `GET /todoitems` returns an empty array (`[]`), and `GET /todoitems/{id}` returns a `404 Not Found`. To repopulate the app, [POST](#post) data to the app and try the GET request again.
 
 ## Return values
 
