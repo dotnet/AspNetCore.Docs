@@ -164,7 +164,7 @@ The `webapi` template adds a sample `GET /weatherforecast` endpoint to `Program.
 
 The OpenAPI lines added by the template (`builder.Services.AddOpenApi()` and `app.MapOpenApi()`) remain in place. They now describe the Todo endpoints instead of the sample weather endpoint.
 
-The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
+The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
 
 # [Visual Studio](#tab/visual-studio)
 
