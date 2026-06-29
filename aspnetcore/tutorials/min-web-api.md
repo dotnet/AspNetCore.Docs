@@ -136,7 +136,7 @@ Add NuGet packages to support the database used in this tutorial.
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
-The `Secret` property isn't used by the API's endpoints yet. It represents a common real-world need: data the app stores and uses internally, such as the ID of the user who owns the item, that you don't want clients to see or set. In the [Prevent over-posting](#prevent-over-posting) step later in this tutorial, you use a Data Transfer Object (DTO) to keep fields like `Secret` out of the API's input and responses.
+The `Secret` property is included to demonstrate a common real-world need: data the app stores and uses internally, such as the ID of the user who owns the item, that you don't want clients to see or set. In the [Prevent over-posting](#prevent-over-posting) step later in this tutorial, you use a Data Transfer Object (DTO) to keep fields like `Secret` out of the API's input and responses.
 
 * Create a file named `TodoDb.cs` with the following code:
 
@@ -150,7 +150,7 @@ The app uses an in-memory database named `TodoList`. The database is registered 
 
 The `webapi` template adds a sample `GET /weatherforecast` endpoint to `Program.cs` and a `WeatherForecast` record at the bottom of the file. The sample is just a placeholder to show the template works - replace both with the Todo endpoints described in the following section.
 
-* In `Program.cs`, replace the `WeatherForecast` sample endpoint and the `WeatherForecast` record with the following code:
+* Replace all of the code in `Program.cs` with the following. The `WeatherForecast` sample endpoint and record are removed, and the Todo endpoints take their place:
 
 # [Visual Studio](#tab/visual-studio)
 

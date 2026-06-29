@@ -55,6 +55,11 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 // </snippet_DI>
 
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
 // <snippet_get>
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.ToListAsync());
