@@ -114,6 +114,7 @@ app.Run();
 
 // </snippet_minimal_start_all>
 #elif WITHPATCH
+// <snippet_patch_all>
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -190,7 +191,9 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
 app.Run();
 
+// </snippet_patch_all>
 #elif MAPGROUP
+// <snippet_mapgroup_all>
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -267,7 +270,9 @@ todoItems.MapDelete("/{id}", async (int id, TodoDb db) =>
 
 app.Run();
 
+// </snippet_mapgroup_all>
 #elif TYPED
+// <snippet_typed_all>
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -280,6 +285,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+// </snippet_typed_group>
 var todoItems = app.MapGroup("/todoitems");
 
 todoItems.MapGet("/", GetAllTodos);
@@ -290,12 +296,16 @@ todoItems.MapPut("/{id}", UpdateTodo);
 todoItems.MapPatch("/{id}", PatchTodo);
 todoItems.MapDelete("/{id}", DeleteTodo);
 
+// </snippet_typed_group>
 app.Run();
 
+// <snippet_typed_handlers>
+// <snippet_typed_getalltodos>
 static async Task<IResult> GetAllTodos(TodoDb db)
 {
     return TypedResults.Ok(await db.Todos.ToArrayAsync());
 }
+// </snippet_typed_getalltodos>
 
 static async Task<IResult> GetCompleteTodos(TodoDb db)
 {
@@ -358,6 +368,8 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
     return TypedResults.NotFound();
 }
 
+// </snippet_typed_handlers>
+// </snippet_typed_all>
 #elif PREVENTOVERPOST
 using Microsoft.EntityFrameworkCore;
 
@@ -456,4 +468,5 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 
     return TypedResults.NotFound();
 }
+// </snippet_typed_handlers>
 #endif
