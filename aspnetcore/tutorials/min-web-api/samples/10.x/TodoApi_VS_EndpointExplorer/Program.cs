@@ -285,7 +285,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-// </snippet_typed_group>
+// <snippet_typed_group>
 var todoItems = app.MapGroup("/todoitems");
 
 todoItems.MapGet("/", GetAllTodos);
@@ -371,6 +371,7 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 // </snippet_typed_handlers>
 // </snippet_typed_all>
 #elif PREVENTOVERPOST
+// <snippet_dto_all>
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -468,5 +469,5 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 
     return TypedResults.NotFound();
 }
-// </snippet_typed_handlers>
+// </snippet_dto_all>
 #endif
