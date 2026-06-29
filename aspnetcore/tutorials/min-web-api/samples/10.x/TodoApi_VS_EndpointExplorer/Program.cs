@@ -51,6 +51,7 @@ using Microsoft.EntityFrameworkCore;
 // <snippet_DI>
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddOpenApi();
 var app = builder.Build();
 // </snippet_DI>
 
