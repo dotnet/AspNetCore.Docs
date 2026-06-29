@@ -107,7 +107,7 @@ In this tutorial, you replace the `WeatherForecast` with a new Todo sample, with
 
 ## Add NuGet packages
 
-Add NuGet packages to support the database and diagnostics used in this tutorial.
+Add NuGet packages to support the database used in this tutorial.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -115,15 +115,13 @@ Add NuGet packages to support the database and diagnostics used in this tutorial
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following commands:
+* Run the following command:
 
 ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 ---
@@ -170,7 +168,7 @@ The following highlighted code adds the database context to the [dependency inje
 
 # [Visual Studio](#tab/visual-studio)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_DI" highlight="2-3":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_DI" highlight="2":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
