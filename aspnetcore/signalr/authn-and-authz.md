@@ -41,7 +41,7 @@ Consider the following scenario:
 * A user is signed in with the `Editor` role and has an open SignalR connection.
 * The app removes the `Editor` role from that user.
 
-On the next long-poll request, the authentication middleware might authenticate the user without the `Editor` role (for example, if roles are loaded from a data store or the cookie is refreshed). However, the hub continues to authorize the user's `[Authorize(Roles = "Editor")]` hub method invocations because `Context.User` (<xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User?displayProperty=nameWithType>) still holds the principal that was cached before the role was removed. The user can keep calling `Editor`-only hub methods until the connection is closed.
+On the next long-poll request, the authentication middleware might authenticate the user without the `Editor` role. For example, this can happen if roles are loaded from a data store or the cookie is refreshed. However, the hub continues to authorize the user's `[Authorize(Roles = "Editor")]` hub method invocations because `Context.User` (<xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User?displayProperty=nameWithType>) still holds the principal that was cached before the role was removed. The user can keep calling `Editor`-only hub methods until the connection is closed.
 
 To enforce updated authorization on an active connection, take one of the following approaches:
 
