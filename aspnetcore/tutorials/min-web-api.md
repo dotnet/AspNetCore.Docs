@@ -225,18 +225,19 @@ The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` th
 
 ---
 
-Run the app. The browser displays a 404 error because there's no longer a `/` endpoint.
-
-Use the POST endpoint to add data to the app.
 
 # [Visual Studio](#tab/visual-studio)
 
 * Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging. Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and trusts the development certificate if needed.
 
+[!INCLUDE[](~/includes/trustCertVS26.md)]
+
+Use the POST endpoint to add data to the app.
+
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
 
-  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/static/9.x/generate-request-vs17.8.0.png)
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/static/10.x/generate-request-vs18-6-2.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
 
