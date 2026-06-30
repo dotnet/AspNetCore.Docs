@@ -286,7 +286,7 @@ Use the POST endpoint to add data to the app.
 
   The POST request is sent to the app and the response is displayed in the **Response** pane.
 
-  ![.http file window with response from the POST request.](~/tutorials/min-web-api/static/9.x/http-file-window-with-response-vs17.8.0.png)
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/static/10/http-file-window-with-response-vs18-6-2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -516,7 +516,23 @@ Use the Scalar UI to send a PUT request:
 
 ## Create and examine the PATCH endpoint
 
-A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even to change just one. 
+A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even to change just one.
+
+The next steps add a new file and modify `Program.cs`, so stop the app before making these changes.
+
+# [Visual Studio](#tab/visual-studio)
+
+* To stop the app, select the **Stop** button (the red square) in the Visual Studio toolbar.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* To stop the app, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal where the app is running.
+
+---
+
+The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided and a field explicitly set to a value.
+
+This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PATCH call. Call GET to ensure there's an item in the database before making a PATCH call.
 
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided (null) and a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool defaults to false, which could potentially overwrite an existing true value when that field isn't included in the request.
 
@@ -544,6 +560,17 @@ This method is similar to the `MapPut` method, but it uses HTTP PATCH and only u
 > PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
 
 ## Test the PATCH endpoint
+
+# [Visual Studio](#tab/visual-studio)
+
+* Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to rebuild and run the app with the new PATCH endpoint.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Run the app again so it rebuilds with the new PATCH endpoint.
+
+---
+
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PATCH call. Call GET to ensure there's an item in the database before making a PATCH call.
 
