@@ -110,11 +110,9 @@ The following code shows how to enable the Response Compression Middleware for d
 
 :::moniker range=">= aspnetcore-11.0"
 
-The following code shows how to enable the Response Compression Middleware for default [MIME types](https://developer.mozilla.org/docs/Web/HTTP/Guides/MIME_types) and compression providers ([Brotli, Gzip, and Zstandard](#brotli-and-gzip-compression-providers)):
+The following code shows how to enable the Response Compression Middleware for default [MIME types](https://developer.mozilla.org/docs/Web/HTTP/Guides/MIME_types) and compression providers ([Brotli, Gzip, and Zstandard](#review-providers)):
 
 :::moniker-end
-
-[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet&highlight=3-6,10)]
 
 ### Notes about Response Compression Middleware
 
