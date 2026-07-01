@@ -141,7 +141,7 @@ The `Secret` property is included to demonstrate a common real-world need: data 
 
 * Create a file named `TodoDb.cs` with the following code:
 
- :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/TodoDb.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/TodoDb.cs":::
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
@@ -171,7 +171,7 @@ The following highlighted code registers the app's services in the [dependency i
 
 # [Visual Studio](#tab/visual-studio)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_DI" highlight="2":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_DI" highlight="2-3":::
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
