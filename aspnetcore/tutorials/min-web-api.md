@@ -127,7 +127,7 @@ Add NuGet packages to support the database used in this tutorial.
 
 ---
 
-<a name="model-db-classes"></a>
+<a name="model-db-classes"></a> 
 
 ## The model and database context classes
 
@@ -165,6 +165,8 @@ The `webapi` template adds a sample `GET /weatherforecast` endpoint to `Program.
 
 The OpenAPI lines that the template adds (`builder.Services.AddOpenApi()` and `app.MapOpenApi()`) stay in place. They now describe the Todo endpoints instead of the sample weather endpoint.
 
+The pasted code also includes `using Scalar.AspNetCore;` and `app.MapScalarApiReference();`, which add a browser UI for testing the API. You configure the Scalar package for these lines later in this tutorial, in [Add a browser UI to view the OpenAPI document](#add-a-browser-ui-to-view-the-openapi-document). The project won't build until then.
+
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
 
 # [Visual Studio](#tab/visual-studio)
@@ -184,6 +186,8 @@ The DI container provides access to the database context and other services.
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
 # [Visual Studio Code](#tab/visual-studio-code)
+
+<a name="add-a-browser-ui-to-view-the-openapi-document"></a> 
 
 ### Add a browser UI to view the OpenAPI document
 
