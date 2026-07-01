@@ -162,7 +162,7 @@ The `webapi` template adds a sample `GET /weatherforecast` endpoint to `Program.
 
 ---
 
-The OpenAPI lines added by the template (`builder.Services.AddOpenApi()` and `app.MapOpenApi()`) remain in place. They now describe the Todo endpoints instead of the sample weather endpoint.
+The OpenAPI lines that the template adds (`builder.Services.AddOpenApi()` and `app.MapOpenApi()`) stay in place. They now describe the Todo endpoints instead of the sample weather endpoint.
 
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
 
@@ -398,7 +398,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
 Test the app by calling the endpoints from a browser or the Scalar UI.
 
-* In the Scalar UI, select **GET /todoitems**, then **Test Request** > **Send**.
+* In the Scalar UI, select **GET /todoitems**, and then select **Test Request** > **Send**.
 
 * Alternatively, call **GET /todoitems** from a browser by entering the URI `http://localhost:{port}/todoitems`. For example, `http://localhost:7032/todoitems`.
 
@@ -463,7 +463,7 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 ## Test the PUT endpoint
 
-This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
+This sample uses an in-memory database that you must initialize each time you start the app. You need an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
 Update the Todo item that has `Id = 1` and set its name to `"feed fish"`.
 
@@ -525,7 +525,7 @@ Use the Scalar UI to send a PUT request:
 
 A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even to change just one.
 
-The next steps add a new file and modifies the `Program.cs file, so stop the app before making these changes.
+The next steps add a new file and modify the `Program.cs` file. Stop the app before making these changes.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -539,7 +539,7 @@ The next steps add a new file and modifies the `Program.cs file, so stop the app
 
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided and a field explicitly set to a value.
 
-This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PATCH call. Call GET to ensure there's an item in the database before making a PATCH call.
+This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call GET to ensure the database has an item before making a PATCH call.
 
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided (null) and a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool defaults to false, which could potentially overwrite an existing true value when that field isn't included in the request.
 
@@ -579,13 +579,13 @@ This method is similar to the `MapPut` method, but it uses HTTP PATCH and only u
 ---
 
 
-This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PATCH call. Call GET to ensure there's an item in the database before making a PATCH call.
+This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call GET to ensure the database has an item before making a PATCH call.
 
 Update only the `name` property of the Todo item that has `Id = 1` and set its name to `"run errands"`.
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Endpoints Explorer**, select the refresh button, then right-click the **PATCH** endpoint, and select **Generate request**.
+* In **Endpoints Explorer**, select the refresh button. Then, right-click the **PATCH** endpoint, and select **Generate request**.
 
   The following content is added to the `TodoApi.http` file:
 
@@ -680,7 +680,7 @@ Use the Scalar UI to send a DELETE request:
 
 ## Use the MapGroup API
 
-* The next steps modifies the `Program.cs` file, so stop the app before making these changes.
+* The next steps modify the `Program.cs` file, so stop the app before making these changes.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -716,7 +716,7 @@ The preceding code has the following changes:
 
 ## Use the TypedResults API
 
-The next steps modifies the `Program.cs` file, so stop the app before making these changes.
+The next steps modify the `Program.cs` file, so stop the app before making these changes.
 
 Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).
 
@@ -764,7 +764,7 @@ public async Task GetAllTodos_ReturnsOkOfTodosResult()
 
 ## Prevent over-posting
 
-Currently your API exposes the entire `Todo` object, including the `Secret` property you added in [The model and database context classes](#model-db-classes). In production applications, a subset of the model is often used to restrict the data that can be input and returned. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently, your API exposes the entire `Todo` object, including the `Secret` property you added in [The model and database context classes](#model-db-classes). In production applications, use a subset of the model to restrict the data that clients can input and receive. Security is a major reason for this restriction. This subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. This article uses **DTO**.
 
 Use a DTO to:
 
