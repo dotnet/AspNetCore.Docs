@@ -147,7 +147,7 @@ The preceding code defines the *database context*, which is the main class that 
 
 The app uses an in-memory database named `TodoList`. The database is registered later in `Program.cs` with `builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));`, where the string `"TodoList"` is the database name. Because the data is stored in memory, it's reset every time the app restarts.
 
-## Replace the WeatherForecast sample with the Todo API
+## Replace the `WeatherForecast` sample with the Todo API
 
 The `webapi` template adds a sample `GET /weatherforecast` endpoint to `Program.cs` and a `WeatherForecast` record at the bottom of the file. The sample is just a placeholder to show the template works - replace both with the Todo endpoints described in the following section.
 
@@ -161,11 +161,11 @@ The `webapi` template adds a sample `GET /weatherforecast` endpoint to `Program.
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VSC_Scalar/Program.cs" id="snippet_minimal_start_all":::
 
+The pasted code also includes `using Scalar.AspNetCore;` and `app.MapScalarApiReference();`, which add a browser UI for testing the API. You configure the Scalar package for these lines later in this tutorial, in [Add a browser UI to view the OpenAPI document](#add-a-browser-ui-to-view-the-openapi-document). The project won't build until then.
+
 ---
 
 The OpenAPI lines that the template adds (`builder.Services.AddOpenApi()` and `app.MapOpenApi()`) stay in place. They now describe the Todo endpoints instead of the sample weather endpoint.
-
-The pasted code also includes `using Scalar.AspNetCore;` and `app.MapScalarApiReference();`, which add a browser UI for testing the API. You configure the Scalar package for these lines later in this tutorial, in [Add a browser UI to view the OpenAPI document](#add-a-browser-ui-to-view-the-openapi-document). The project won't build until then.
 
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
 
@@ -332,8 +332,8 @@ In this example, the `TodoApi` app is listening at `http://localhost:5090`, so t
 
 The Scalar UI displays the response, including the status code and response body. The response body shows:
 
-- The `id` is set to `1`. 
-- A 201 `HTTP` status code is returned, which indicates that the request was successfully processed and resulted in the creation of a new resource.
+* The `id` is set to `1`.
+* A 201 `HTTP` status code is returned, which indicates that the request was successfully processed and resulted in the creation of a new resource.
 
 ---
 
@@ -539,7 +539,7 @@ The PUT request is sent to the app and the response is displayed in the **Respon
 
 A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even to change just one.
 
-The next steps add a new file and modify the `Program.cs` file. Stop the `TodoApi` app before making these changes. Leave the scalar page in the browser running.
+The next steps add a new file and modify the `Program.cs` file. Stop the `TodoApi` app before making these changes. Leave the Scalar page in the browser running.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -547,11 +547,9 @@ The next steps add a new file and modify the `Program.cs` file. Stop the `TodoAp
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* To stop the app, press <kbd>Shift</kbd>+<kbd>f5</kbd>.
+* To stop the app, press <kbd>Shift</kbd>+<kbd>F5</kbd>.
 
 ---
-
-The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided and a field explicitly set to a value.
 
 This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call POST to ensure the database has an item before making a PATCH call.
 
@@ -702,7 +700,7 @@ The DELETE request is sent to the app and the response is displayed in the **Res
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* To stop the app, press <kbd>Shift</kbd>+<kbd>f5</kbd>.
+* To stop the app, press <kbd>Shift</kbd>+<kbd>F5</kbd>.
 
 ---
 
@@ -750,7 +748,7 @@ The `Map<HttpVerb>` code now calls methods instead of lambdas:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_typed_group":::
 
-These following methods return objects that implement <xref:Microsoft.AspNetCore.Http.IResult> and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
+The following methods return objects that implement <xref:Microsoft.AspNetCore.Http.IResult> and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_typed_handlers":::
 
@@ -791,9 +789,7 @@ This app needs to hide the `Secret` field, but an administrative app could choos
 
 * The next steps add a file, so stop the app before making these changes. Leave the scalar page in the browser running.
 
----
-
-Create a file named `TodoItemDTO.cs` with the following code:
+* Create a file named `TodoItemDTO.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/TodoItemDTO.cs":::
 
