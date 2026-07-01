@@ -295,6 +295,12 @@ Use the POST endpoint to add data to the app.
 
 * In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>control</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+* You're prompted to select a debugger. Select **C#**.
+
+* You're prompted to select a launch configuration. Select **C#:TodoApi  [Default Configuration] TodoApi**
+
+  ![Select a launch configuration prompt.](~/tutorials/min-web-api/static/10/vsc-select-luanch-2026.png)
+
 The default browser launches with the following URL: `https://localhost:{PORT}` where `{PORT}` is the randomly generated port number.
 
 
