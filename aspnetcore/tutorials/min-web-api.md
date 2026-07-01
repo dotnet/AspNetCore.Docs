@@ -1,9 +1,10 @@
 ---
 title: "Tutorial: Create a Minimal API with ASP.NET Core"
 author: wadepickett
-description: Learn how to build a minimal API with ASP.NET Core.
+description: Create a Minimal API with ASP.NET Core using Visual Studio or Visual Studio Code. This tutorial covers GET, POST, PUT, PATCH, and DELETE endpoints for a to-do app.
 ai-usage: ai-assisted
 ms.author: wpickett
+ms.reviewer: wpickett
 ms.date: 06/27/2026
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -65,7 +66,7 @@ This tutorial creates the following API:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Start Visual Studio Code, select **View**, and then select **Terminal** to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change directories (`cd`) to the folder that contains the project folder.
 * Run the following commands:
 
