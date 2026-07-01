@@ -330,7 +330,10 @@ In this example, the `TodoApi` app is listening at `http://localhost:5090`, so t
 
 * Select **Send**.
 
-The Scalar UI displays the response, including the status code and response body. The response body shows the `id` is set to `1`. A 201 `HTTP` status code is returned, which indicates that the request was successfully processed and resulted in the creation of a new resource.
+The Scalar UI displays the response, including the status code and response body. The response body shows:
+
+- The `id` is set to `1`. 
+- A 201 `HTTP` status code is returned, which indicates that the request was successfully processed and resulted in the creation of a new resource.
 
 ---
 
@@ -344,15 +347,7 @@ Your `Program.cs` includes several GET endpoints, defined with `MapGet`:
 |`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 
-# [Visual Studio](#tab/visual-studio)
-
 :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_get":::
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-:::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VSC_Scalar/Program.cs" id="snippet_get":::
-
----
 
 ## Test the GET endpoints
 
@@ -482,7 +477,7 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 ## Test the PUT endpoint
 
-This sample uses an in-memory database that you must initialize each time you start the app. You need an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
+This sample uses an in-memory database that you must initialize each time you start the app. You need an item in the database before you make a PUT call. Call POST to ensure there's an item in the database before making a PUT call.
 
 Update the Todo item that has `Id = 1` and set its name to `"feed fish"`.
 
@@ -515,8 +510,6 @@ Update the Todo item that has `Id = 1` and set its name to `"feed fish"`.
   The preceding code adds a Content-Type header and a JSON request body.
 
 * Select the **Send request** link that is above the new PUT request line.
-
-  The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -540,11 +533,13 @@ Use the Scalar UI to send a PUT request:
 
 ---
 
+The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
+
 ## Create and examine the PATCH endpoint
 
 A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even to change just one.
 
-The next steps add a new file and modify the `Program.cs` file. Stop the app before making these changes.
+The next steps add a new file and modify the `Program.cs` file. Stop the `TodoApi` app before making these changes. Leave the scalar page in the browser running.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -558,7 +553,7 @@ The next steps add a new file and modify the `Program.cs` file. Stop the app bef
 
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided and a field explicitly set to a value.
 
-This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call GET to ensure the database has an item before making a PATCH call.
+This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call POST to ensure the database has an item before making a PATCH call.
 
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. By using nullable properties, the endpoint can distinguish between a field that wasn't provided (null) and a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool defaults to false, which could potentially overwrite an existing true value when that field isn't included in the request.
 
@@ -598,7 +593,7 @@ This method is similar to the `MapPut` method, but it uses HTTP PATCH and only u
 ---
 
 
-This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call GET to ensure the database has an item before making a PATCH call.
+This sample uses an in-memory database that you must initialize each time the app starts. The database must contain an item before you make a PATCH call. Call POST to ensure the database has an item before making a PATCH call.
 
 Update only the `name` property of the Todo item that has `Id = 1` and set its name to `"run errands"`.
 
@@ -635,6 +630,8 @@ Update only the `name` property of the Todo item that has `Id = 1` and set its n
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use the Scalar UI to send a PATCH request:
+
+* Refresh the scalar page in the browser so that the new `PATCH` endpoint appears.
 
 * Select **PATCH /todoitems/{id}**, and then select **Test Request**.
 
