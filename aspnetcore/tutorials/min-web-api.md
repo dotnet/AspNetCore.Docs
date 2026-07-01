@@ -5,7 +5,7 @@ description: Create a Minimal API with ASP.NET Core using Visual Studio or Visua
 ai-usage: ai-assisted
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.date: 06/27/2026
+ms.date: 06/28/2026
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
