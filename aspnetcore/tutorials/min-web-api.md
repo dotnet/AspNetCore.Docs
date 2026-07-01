@@ -208,10 +208,9 @@ In this tutorial, Scalar is used only for its API reference middleware, which re
   > [!NOTE]
   > Scalar is one of several options for an OpenAPI UI. Alternatives such as `NSwag.AspNetCore` or `Swashbuckle.AspNetCore.SwaggerUi` consume the same OpenAPI document and can be substituted for Scalar without changing the rest of the tutorial.
 
-<a name="post"></a>
-
 ---
 
+<a name="post"></a>
 ## Test posting data
 
 The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
