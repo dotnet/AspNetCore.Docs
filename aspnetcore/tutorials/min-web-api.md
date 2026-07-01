@@ -547,7 +547,7 @@ The next steps add a new file and modify the `Program.cs` file. Stop the `TodoAp
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* To stop the app, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal where the app is running.
+* To stop the app, press <kbd>Shift</kbd>+<kbd>f5</kbd>.
 
 ---
 
@@ -624,8 +624,6 @@ Update only the `name` property of the Todo item that has `Id = 1` and set its n
   The preceding code adds a Content-Type header and a JSON request body with only the field to update.
 
 * Select the **Send request** link that is above the new PATCH request line.
-
-  The PATCH request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -648,6 +646,8 @@ Use the Scalar UI to send a PATCH request:
 * Select **Send**.
 
 ---
+
+The PATCH request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
 
 ## Examine the DELETE endpoint
 
@@ -680,8 +680,6 @@ Your `Program.cs` file includes a single DELETE endpoint, defined with `MapDelet
 ```
 
 * Select the **Send request** link for the DELETE request.
-
-  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -690,13 +688,13 @@ Use the Scalar UI to send a DELETE request:
 * Select **DELETE /todoitems/{id}**, then **Test Request**.
 * Set the **id** field to `1` and select **Send**.
 
-  The DELETE request is sent to the app and the response is displayed. The response body is empty, and the status code is 204.
-
 ---
+
+The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
 
 ## Use the MapGroup API
 
-* The next steps modify the `Program.cs` file, so stop the app before making these changes.
+* The next steps modify the `Program.cs` file, so stop the app before making these changes. Leave the scalar page in the browser running.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -704,7 +702,7 @@ Use the Scalar UI to send a DELETE request:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* To stop the app, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal where the app is running.
+* To stop the app, press <kbd>Shift</kbd>+<kbd>f5</kbd>.
 
 ---
 
@@ -732,7 +730,7 @@ The preceding code has the following changes:
 
 ## Use the TypedResults API
 
-The next steps modify the `Program.cs` file, so stop the app before making these changes.
+The next steps modify the `Program.cs` file, so stop the app before making these changes. Leave the scalar page in the browser running.
 
 Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).
 
@@ -791,7 +789,7 @@ Use a DTO to:
 
 This app needs to hide the `Secret` field, but an administrative app could choose to expose it.
 
-* The next steps add a file, so stop the app before making these changes.
+* The next steps add a file, so stop the app before making these changes. Leave the scalar page in the browser running.
 
 ---
 
