@@ -5,7 +5,7 @@ description: Learn about Blazor's event handling features, including event argum
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 07/02/2026
 uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
@@ -13,6 +13,8 @@ uid: blazor/components/event-handling
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains Blazor's event handling features, including event argument types, event callbacks, and managing default browser events.
+
+The [`Microsoft.AspNetCore.Components.Web` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) (<xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace) contains types for supplying information about browser events to the Blazor framework. Blazor apps target the package implicitly, while [Razor class libraries](xref:blazor/components/class-libraries) include an explicit package reference in the library's project file (`.csproj`).
 
 ## Delegate event handlers
 
