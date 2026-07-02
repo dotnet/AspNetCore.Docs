@@ -62,7 +62,7 @@ The following characteristics distinguish an RCL from an ASP.NET Core class libr
 
 :::moniker range=">= aspnetcore-5.0"
 
-* The project file (`.csproj`) includes the `SupportedPlatform` property for the `browser` platform. For more information, see the [Client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
+* An RCL's project file (`.csproj`) includes the `SupportedPlatform` property for the `browser` platform. For more information, see the [Client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
 
 :::moniker-end
 
