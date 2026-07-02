@@ -200,7 +200,7 @@ builder.Services.Configure<ZstandardCompressionProviderOptions>(options =>
 {
     options.CompressionOptions = new ZstandardCompressionOptions
     {
-        Quality = 6 // 1-22, higher = better compression, slower
+        Quality = 6 // 1 to 22, higher = better compression, slower
     };
 });
 ```
