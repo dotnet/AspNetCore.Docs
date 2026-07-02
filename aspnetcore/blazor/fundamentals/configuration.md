@@ -5,7 +5,7 @@ description: Learn about Blazor app configuration, including app settings, authe
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
@@ -264,7 +264,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 *This section applies to apps that configure logging via an app settings file in the `wwwroot` folder.*
 
-Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
+Add the [`Microsoft.Extensions.Logging.Configuration` package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -309,9 +309,7 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 ## Options configuration
 
-[Options configuration](xref:fundamentals/configuration/options) requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
-
-[!INCLUDE[](~/includes/package-reference.md)]
+[Options configuration](xref:fundamentals/configuration/options) uses API in the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
 
 Example:
 
@@ -375,3 +373,22 @@ The following Razor component retrieves the settings with the [`@inject`](xref:m
 ```
 
 Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Environment variables in Blazor WebAssembly configuration
+
+Blazor WebAssembly applications access environment variables through <xref:Microsoft.Extensions.Configuration.IConfiguration>. This enables runtime configuration without rebuilding the app, making it easier to deploy the same build to different environments.
+
+In the following example, the `API_ENDPOINT` and `ENABLE_FEATURE_X` environment variables are automatically included in configuration:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+var apiEndpoint = builder.Configuration["API_ENDPOINT"];
+var featureFlag = builder.Configuration["ENABLE_FEATURE_X"];
+```
+
+Environment variables are loaded into the configuration system alongside other configuration sources, such as app settings (`appsettings.json`), providing a unified way to access configuration values regardless of their source.
+
+:::moniker-end

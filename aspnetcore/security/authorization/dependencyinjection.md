@@ -37,7 +37,7 @@ public class SampleAuthorizationHandler : AuthorizationHandler<SampleRequirement
 }
 ```
 
-The preceding handler can be registered with any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes). The following code uses <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> to register the preceding handler:
+The preceding handler can be registered with any [service lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes). The following code uses <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> to register the preceding handler:
 
 ```csharp
 builder.Services.AddSingleton<IAuthorizationHandler, SampleAuthorizationHandler>();
@@ -78,7 +78,7 @@ public class SampleAuthorizationHandler : AuthorizationHandler<SampleRequirement
 }
 ```
 
-The preceding handler can be registered with any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes). The following code uses <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> to register the preceding handler:
+The preceding handler can be registered with any [service lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes). The following code uses <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> to register the preceding handler:
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, SampleAuthorizationHandler>();

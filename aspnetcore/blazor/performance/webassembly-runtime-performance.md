@@ -5,16 +5,12 @@ description: Learn about ASP.NET Core Blazor WebAssembly runtime performance.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/08/2025
+ms.date: 11/11/2025
 uid: blazor/performance/webassembly-runtime-performance
 ---
 # ASP.NET Core Blazor WebAssembly runtime performance
 
-<!-- UPDATE 10.0 - Activate ...
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
 
 This article provides guidance on Blazor WebAssembly runtime performance.
 

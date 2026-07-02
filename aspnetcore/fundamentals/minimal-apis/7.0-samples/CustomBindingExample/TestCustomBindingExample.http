@@ -1,0 +1,18 @@
+@HostAddress = https://localhost:7042
+
+### Basic endpoint with IBindableFromHttpContext
+GET {{HostAddress}}/bindable
+X-Custom-Header: TestHeaderValue
+Accept: text/plain
+
+### IBindableFromHttpContext with query parameter
+GET {{HostAddress}}/bindable?customValue=TestQueryValue
+Accept: text/plain
+
+### IBindableFromHttpContext with validation - valid
+GET {{HostAddress}}/validated?value=ValidValue
+Accept: application/json
+
+### IBindableFromHttpContext with validation - invalid
+GET {{HostAddress}}/validated
+Accept: application/json

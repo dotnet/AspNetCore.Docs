@@ -12,13 +12,13 @@ The Visual Studio templates for building ASP.NET Core apps with a JavaScript or 
 
 * Clean project separation for the frontend and backend.
 * Stay up-to-date with the latest frontend framework versions.
-* Integrate with the latest frontend framework command-line tooling, such as [Vite](https://vitejs.dev/).
-* Templates for both JavaScript & TypeScript (only TypeScript for Angular).
+* Integrate with the latest frontend framework command-line tooling, such as [Vite](https://vite.dev/).
+* Templates for both JavaScript and TypeScript (only TypeScript for Angular).
 * Rich JavaScript and TypeScript code editing experience.
 * Integrate JavaScript build tools with the .NET build.
 * npm dependency management UI.
 * Compatible with Visual Studio Code debugging and launch configuration.
-* Run frontend unit tests in [Test Explorer](/visualstudio/test/run-unit-tests-with-test-explorer) using JavaScript test frameworks.
+* Run frontend unit tests in [Test Explorer](/visualstudio/test/run-unit-tests-with-test-explorer) by using JavaScript test frameworks.
 
 ## Legacy ASP.NET Core SPA templates
 

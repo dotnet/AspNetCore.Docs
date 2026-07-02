@@ -16,7 +16,7 @@ By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twit
 
 :::moniker range=">= aspnetcore-9.0"
 
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
 
 ## Overview
 
@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 9.0 (Standard Term Support)**.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
-  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Use controllers (uncheck to use Minimal APIs)** is checked.
   * Select **Create**.
 
 ## Add a NuGet package
@@ -800,7 +800,7 @@ The secret field needs to be hidden from this app, but an administrative app cou
 
 Verify you can post and get the secret field.
 
-Create a DTO model in a **Models/TodoItemsDTO.cs** file:
+Create a DTO model in a **Models/TodoItemDTO.cs** file:
 
 :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs" :::
 

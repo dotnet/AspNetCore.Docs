@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps, including debugging Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/debug
 ---
 # Debug ASP.NET Core apps
@@ -85,6 +85,30 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Blazor WebAssembly Gateway
+
+[`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway) is a lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
+
+The Gateway is a full ASP.NET Core host, not merely a static-file dev tool, so standalone Blazor WebAssembly apps feature:
+
+* Built-in SPA fallback routing: Requests that don't match a static asset fall back to `index.html`, so client-side routes such as `/orders/42` work on browser refresh and direct navigation without a custom MSBuild target.
+* Multiple Blazor WebAssembly clients per host: A single Gateway instance can serve more than one Blazor WebAssembly client under different path prefixes, configured through its `ClientApps` section. This is the integration point .NET Aspire uses to host Blazor WebAssembly clients alongside backend services in a single AppHost run.
+* Built-in YARP reverse-proxy infrastructure: YARP is bundled with the Gateway, providing the foundation for forwarding backend traffic alongside the WebAssembly client and enabling the Aspire multi-client scenarios.
+
+To adopt the Gateway in an existing standalone Blazor WebAssembly app that targets .NET 11 or later, reference the `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Custom routing code and middleware aren't required by the app. Fallback endpoints come from the static web assets manifest the SDK emits when the `StaticWebAssetSpaFallbackEnabled` property is set in the app's project file, which is present by default in standalone Blazor WebAssembly apps created from the project template:
+
+```xml
+<StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
+```
+
+:::moniker-end
+
 ## Prerequisites
 
 This section explains the prerequisites for debugging.
@@ -133,6 +157,8 @@ Installing the C# Dev Kit automatically installs the following additional extens
 
 If you encounter warnings or errors, you can [open an issue (`microsoft/vscode-dotnettools` GitHub repository)](https://github.com/microsoft/vscode-dotnettools/issues) describing the problem.
 
+:::moniker range="< aspnetcore-11.0"
+
 ### App configuration prerequisites
 
 *The guidance in this subsection applies to client-side debugging.*
@@ -150,6 +176,10 @@ The `inspectUri` property:
 
 The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
 
+[!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
+
+:::moniker-end
+
 ## Packages
 
 :::moniker range=">= aspnetcore-8.0"
@@ -164,7 +194,17 @@ Blazor Server: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://ww
 
 :::moniker-end
 
-Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+:::moniker range=">= aspnetcore-11.0"
+
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway): A lightweight ASP.NET Core host for serving standalone Blazor WebAssembly apps during development and production.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 

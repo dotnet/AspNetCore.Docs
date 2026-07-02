@@ -1,10 +1,11 @@
 ---
 title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/29/2025
+ms.date: 05/12/2026
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -211,7 +212,7 @@ This section describes the various options that can be set in a CORS policy:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_aa)]
 
-In the preceding code, `SetIsOriginAllowedToAllowWildcardSubdomains` is called with the base origin `"https://example.com"`. This configuration allows CORS requests from any subdomain of `example.com`, such as `https://subdomain.example.com` or `https://api.example.com`. The wildcard matching is handled by the method, so the origin should be specified without the `*` wildcard character.
+In the preceding code, `SetIsOriginAllowedToAllowWildcardSubdomains` is called with the wildcard origin `"https://*.example.com"`. This configuration allows CORS requests from any subdomain of `example.com`, such as `https://subdomain.example.com` or `https://api.example.com`. The `*` wildcard character must be included in the origin to enable wildcard subdomain matching.
 
 ### Set the allowed HTTP methods
 
@@ -246,7 +247,7 @@ CORS Middleware declines a preflight request with the following request header b
 Access-Control-Request-Headers: Cache-Control, Content-Language
 ```
 
-The app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
+The app returns a `204 No Content` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
 
 ### Set the exposed response headers
 
@@ -363,7 +364,7 @@ The preflight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs
 * [Access-Control-Request-Method](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Request-Method): The HTTP method that will be used for the actual request.
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't set the CORS headers. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc6) section of this document.
+If the preflight request is denied, the app returns a `204 No Content` response but doesn't set the CORS headers. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc6) section of this document.
 
 Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 

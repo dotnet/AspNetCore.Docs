@@ -447,7 +447,7 @@ And the `.http` file has this content:
 
 ```http
 GET {{HostAddress}}{{Path}}
-X-UserName: {{$dotEnv USERNAME}}
+X-UserName: {{$dotenv USERNAME}}
 ```
 
 The `X-UserName` header will have "userFromDotenv".
@@ -591,7 +591,7 @@ Right-click a request in **Endpoints Explorer** and select **Generate Request**.
 * If an `.http` file with the project name as the file name exists, the request is added to that file.
 * Otherwise, an `.http` file is created with the project name as the file name, and the request is added to that file.
 
-The preceding screenshot shows endpoints defined by the minimal API project template. The following example shows the request that is generated for the selected endpoint:
+The preceding screenshot shows endpoints defined by the Minimal API project template. The following example shows the request that is generated for the selected endpoint:
 
 ```http
 GET {{WebApplication1_HostAddress}}/weatherforecast/

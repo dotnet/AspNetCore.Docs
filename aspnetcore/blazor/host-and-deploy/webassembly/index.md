@@ -5,7 +5,7 @@ description: Learn how to host and deploy Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, linux-related-content
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/index
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
@@ -34,6 +34,13 @@ The following deployment strategies are supported:
 * An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
 
 :::moniker-end
+
+## Serve a Blazor WebAssembly app locally for testing
+
+Many open-source and commercial HTTP servers can serve a published Blazor WebAssembly app locally. For a simple command-line HTTP server, consider using the [`natemcmaster/dotnet-serve` .NET tool](https://github.com/natemcmaster/dotnet-serve).
+
+> [!WARNING]
+> The [`natemcmaster/dotnet-serve` .NET tool](https://github.com/natemcmaster/dotnet-serve) isn't owned or maintained by Microsoft and isn't covered by any Microsoft support agreement or license. Use caution when using a third-party tool, especially for testing security scenarios. Confirm that the tool follows official specifications and adopts security best practices. Keep the tool's version current to obtain the latest bug fixes.
 
 ## Subdomain and IIS sub-application hosting
 
@@ -118,9 +125,13 @@ In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<scrip
     
 After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block. The following function calls `fetch` with [`cache: 'no-cache'`](https://developer.mozilla.org/docs/Web/API/Request/cache#value) to keep the browser's cache updated.
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 Blazor Web App:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```html
 <script type="module">
@@ -149,9 +160,15 @@ Blazor Web App:
 </script>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
 Standalone Blazor WebAssembly:
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 ```html
 <script type="module">
@@ -177,6 +194,8 @@ Standalone Blazor WebAssembly:
   });
 </script>
 ```
+
+:::moniker-end
 
 For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
@@ -327,6 +346,16 @@ A *standalone deployment* serves the Blazor WebAssembly app as a set of static f
 
 Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin/Release/{TARGET FRAMEWORK}/browser-wasm/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
+:::moniker range=">= aspnetcore-10.0"
+
+## Publish without an HTML document
+
+When an app isn't using an HTML document produced as part of the .NET build/publish process, there's no place to write the site's [import map](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap). For example, this scenario occurs when publishing a standalone Blazor app for consumption by a JavaScript/SPA app through a [Blazor custom element](xref:blazor/components/js-spa-frameworks#blazor-custom-elements).
+
+To avoid problems loading app resources on the client, disable [fingerprinting](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps) for `blazor.webassembly.js` and `dotnet.js` by removing `<OverrideHtmlAssetPlaceholders>` MSBuild property (or set it to `false`) in the app's project file (`.csproj`).
+
+:::moniker-end
+
 ## Azure App Service
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on IIS.
@@ -350,7 +379,7 @@ For configuration guidance, see the following resources:
 
 ## Host configuration values
 
-[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
+[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the `Development` environment.
 
 ### Content root
 
@@ -367,6 +396,8 @@ The `--contentroot` argument sets the absolute path to the directory that contai
   ```json
   "commandLineArgs": "--contentroot=/content-root-path"
   ```
+
+  [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the `launchSettings.json` file.
 

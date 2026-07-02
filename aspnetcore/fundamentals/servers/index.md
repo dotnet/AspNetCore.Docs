@@ -22,7 +22,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index?tabs=windows#korh) in the Windows tab.
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index?tabs=windows#kestrel-vs-httpsys) in the Windows tab.
 * IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
@@ -32,8 +32,6 @@ When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-archit
 * In a process separate from the IIS worker process (the [out-of-process hosting model](#hosting-models)) with the [Kestrel server](#kestrel).
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server or Kestrel. For more information, see <xref:host-and-deploy/aspnet-core-module>.
-
-<a name="korh"></a>
 
 ## Kestrel vs. HTTP.sys
 
@@ -67,7 +65,7 @@ Several hosting models are available:
 
 For more information, see the following:
 
-* [Kestrel vs. HTTP.sys](#korh)
+* [Kestrel vs. HTTP.sys](#kestrel-vs-httpsys)
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/aspnet-core-module>
 
@@ -85,7 +83,7 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 ## Kestrel
 
- [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](#korh) in this document.
+ [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](#kestrel-vs-httpsys) in this document.
 
 Use Kestrel:
 

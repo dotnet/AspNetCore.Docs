@@ -28,13 +28,13 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally in the [Development environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
+If the app is run locally in the [`Development` environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
 
 * Configure the app to run at the insecure endpoint:
 
-  * Deactivate HTTPS Redirection Middleware in the Development environment (`Program.cs`):
+  * Deactivate HTTPS Redirection Middleware in the `Development` environment (`Program.cs`):
 
     ```csharp
     if (!app.Environment.IsDevelopment())
@@ -49,7 +49,7 @@ If the app is run locally in the [Development environment](xref:fundamentals/env
 
 For more information on configuration by environment, see <xref:fundamentals/environments>.
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the `Development` environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -79,7 +79,7 @@ For the purposes of this guide, a single instance of Nginx is used. It runs on t
 
 Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Program.cs` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
@@ -314,7 +314,7 @@ Linux Security Modules (LSM) is a framework that's part of the Linux kernel sinc
 Close off all external ports that aren't in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a CLI for configuring the firewall.
 
 > [!WARNING]
-> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/lunar/en/man8/ufw.8.html).
+> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/resolute/man8/ufw.8.html).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 
@@ -471,13 +471,13 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally in the [Development environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
+If the app is run locally in the [`Development` environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
 
 * Configure the app to run at the insecure endpoint:
 
-  * Deactivate HTTPS Redirection Middleware in the Development environment (`Program.cs`):
+  * Deactivate HTTPS Redirection Middleware in the `Development` environment (`Program.cs`):
 
     ```csharp
     if (!app.Environment.IsDevelopment())
@@ -492,7 +492,7 @@ If the app is run locally in the [Development environment](xref:fundamentals/env
 
 For more information on configuration by environment, see <xref:fundamentals/environments>.
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the `Development` environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -522,9 +522,9 @@ For the purposes of this guide, a single instance of Nginx is used. It runs on t
 
 Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run Forwarded Headers Middleware after Diagnostics and Error Handling Middleware, see [Forwarded Headers Middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
-Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of the request processing pipeline before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
 using Microsoft.AspNetCore.HttpOverrides;
@@ -760,7 +760,7 @@ Linux Security Modules (LSM) is a framework that's part of the Linux kernel sinc
 Close off all external ports that aren't in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a CLI for configuring the firewall.
 
 > [!WARNING]
-> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/lunar/en/man8/ufw.8.html).
+> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/resolute/man8/ufw.8.html).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 

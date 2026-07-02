@@ -1,11 +1,12 @@
 ---
 title: Generate OpenAPI documents
-author: captainsafia
+ai-usage: ai-assisted
+author: wadepickett
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
-ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
+ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/23/2025
+ms.date: 06/16/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -14,7 +15,7 @@ uid: fundamentals/openapi/aspnetcore-openapi
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
-* Support for generating [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html) documents.
+* Support for generating [OpenAPI version 3.1](https://spec.openapis.org/oas/v3.1.1.html) documents starting with .NET 10, and [OpenAPI version 3.2](https://spec.openapis.org/oas/v3.2.0.html) documents starting with .NET 11.
 * Support for [JSON Schema draft 2020-12](https://json-schema.org/specification-links#2020-12).
 * Support for generating OpenAPI documents at run time and accessing them via an endpoint on the app.
 * Support for "transformer" APIs that allow modifying the generated document.
@@ -22,7 +23,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 * Takes advantage of JSON schema support provided by <xref:System.Text.Json?displayProperty=fullName>.
 * Compatible with native AoT.
 
-The default OpenAPI version for generated documents is 3.1. The version can be changed by explicitly setting the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
+Starting in .NET 11, the default OpenAPI version for generated documents is 3.2. In .NET 10, the default is 3.1. To change the version, explicitly set the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -36,9 +37,7 @@ When generating the OpenAPI document at build time, the OpenAPI version can be s
 
 ```xml
 <!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document -->
-<OpenApiGenerateDocumentsOptions>
-  --openapi-version OpenApi3_1
-</OpenApiGenerateDocumentsOptions>
+<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 ```
 
 ## Package installation
@@ -185,6 +184,11 @@ You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldIn
 
 ## Generate OpenAPI documents at build time
 
+> [!NOTE]
+> Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides OpenAPI document generation at runtime, and adding the [`Microsoft.Extensions.ApiDescription.Server` ](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) package enables build-time document generation. 
+>
+>ASP.NET Core generates OpenAPI documents only. Interactive UIs such as **Swagger UI** or **Scalar** are not included by default and must be added separately. For guidance on using these UI options, see <xref:fundamentals/openapi/using-openapi-documents>.
+
 In typical web apps, OpenAPI documents are generated at runtime and served via an HTTP request to the app server.
 
 In some scenarios, it's helpful to generate the OpenAPI document during the app's build step. These scenarios include generating OpenAPI documentation that is:
@@ -215,7 +219,7 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server
 
 Upon installation, this package:
 
-* Automatically generates the Open API document(s) associated with the app during build.
+* Automatically generates the Open API documents associated with the app during build.
 * Populates the Open API documents in the app's output directory.
 
 If multiple documents are registered ***and*** the document name is ***not*** `v1`, the project name is post-fixed with the document name. Example: `{ProjectName}_{DocumentName}.json`. The `{ProjectName}` placeholder is the project name, and the `{DocumentName}` placeholder is the document name.
@@ -272,9 +276,7 @@ By default, the generated OpenAPI document has the same name as the app's projec
 
 ```xml
 <PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>
-    --file-name my-open-api
-  </OpenApiGenerateDocumentsOptions>
+  <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
 
@@ -284,9 +286,7 @@ Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI
 
 ```xml
 <PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>
-    --document-name v2
-  </OpenApiGenerateDocumentsOptions>
+  <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
 
@@ -301,7 +301,7 @@ In order to restrict invoking these code paths by the build-time generation pipe
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/AspireApp1/AspireApp1.Web/Program.cs" highlight="5-8":::
 
-[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references)<!--keep--> adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
+[`AddServiceDefaults`](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) adds common Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
 ## Trimming and Native AOT
 

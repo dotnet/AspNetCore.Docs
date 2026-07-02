@@ -5,7 +5,7 @@ description: YARP Proxying gRPC
 author: wadepickett
 ms.author: wpickett
 ms.date: 04/12/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---

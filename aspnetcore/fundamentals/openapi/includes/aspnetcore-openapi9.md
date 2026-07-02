@@ -169,7 +169,7 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server
 
 Upon installation, this package:
 
-* Automatically generates the Open API document(s) associated with the app during build.
+* Automatically generates the Open API documents associated with the app during build.
 * Populates the Open API documents in the app's output directory.
 
 If multiple documents are registered, ***and*** document name is ***not*** `v1`, it's post-fixed with the document name. E.g., `{ProjectName}_{DocumentName}.json`.
@@ -235,7 +235,7 @@ In order to restrict these code paths from being invoked by the build-time gener
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/AspireApp1/AspireApp1.Web/Program.cs" highlight="5-8":::
 
-[AddServiceDefaults](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references)<!--keep--> adds common .NET Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
+[AddServiceDefaults](https://source.dot.net/#TestingAppHost1.ServiceDefaults/Extensions.cs,0f0d863053754768,references) adds common Aspire services such as service discovery, resilience, health checks, and OpenTelemetry.
 
 ## Trimming and Native AOT
 

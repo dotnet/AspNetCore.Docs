@@ -1,11 +1,12 @@
 ---
 title: Razor file compilation in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/20/2023
+ms.date: 02/06/2026
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -16,11 +17,14 @@ Razor files with a `.cshtml` extension are compiled at both build and publish ti
 
 > [!NOTE]
 > Runtime compilation:
+> * Was obsoleted starting in .NET 10.
 > * Isn't supported for Razor components of Blazor apps.
 > * Doesn't support [global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives).
 > * Doesn't support [implicit using directives](/dotnet/core/tutorials/top-level-templates#implicit-using-directives).
 > * Disables [.NET Hot Reload](xref:test/hot-reload).
-> * Is recommended for development, not for production.
+> * Isn't recommended for production scenarios.
+>
+> For production scenarios, use the default build-time compilation. For development scenarios, use Hot Reload. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).
 
 ## Razor compilation
 
@@ -29,7 +33,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 Updating Razor views and Razor Pages during development while the app is running is also supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead of Razor runtime compilation during development.
+> Razor runtime compilation was obsoleted starting in .NET 10. When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead for development scenarios. For more information, see [Razor runtime compilation is obsolete](/dotnet/core/compatibility/aspnet-core/10/razor-runtime-compilation-obsolete).
 
 ## Enable runtime compilation for all environments
 
@@ -47,14 +51,14 @@ Runtime compilation can be enabled conditionally, which ensures that the publish
 * Uses compiled views.
 * Doesn't enable file watchers in production.
 
-To enable runtime compilation only for the Development environment:
+To enable runtime compilation only for the `Development` environment:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
 1. Call <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A> in `Program.cs` when the current environment is set to Development:
 
    :::code language="csharp" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/Program.cs" id="snippet_AddRazorRuntimeCompilationDevelopment" highlight="5-8":::
 
-Runtime compilation can also be enabled with a [hosting startup assembly](xref:fundamentals/configuration/platform-specific-configuration). To enable runtime compilation in the Development environment for specific launch profiles:
+Runtime compilation can also be enabled with a [hosting startup assembly](xref:fundamentals/configuration/platform-specific-configuration). To enable runtime compilation in the `Development` environment for specific launch profiles:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
 1. Modify the launch profile's `environmentVariables` section in `launchSettings.json`:
@@ -138,14 +142,14 @@ Runtime compilation can be enabled such that it's only available for local devel
 * Uses compiled views.
 * Doesn't enable file watchers in production.
 
-To enable runtime compilation only in the Development environment:
+To enable runtime compilation only in the `Development` environment:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
 1. Modify the launch profile `environmentVariables` section in `launchSettings.json`:
     * Verify `ASPNETCORE_ENVIRONMENT` is set to `"Development"`.
     * Set `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` to `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
 
-In the following example, runtime compilation is enabled in the Development environment for the `IIS Express` and `RazorPagesApp` launch profiles:
+In the following example, runtime compilation is enabled in the `Development` environment for the `IIS Express` and `RazorPagesApp` launch profiles:
 
 :::code language="json" source="view-compilation/samples_snapshot/3.x/launchSettings.json" highlight="15-16,24-25":::
 

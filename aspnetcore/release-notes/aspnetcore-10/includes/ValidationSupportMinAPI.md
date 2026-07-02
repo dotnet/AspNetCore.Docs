@@ -13,15 +13,15 @@ Validations are defined using attributes in the [`DataAnnotations`](xref:System.
 
 If validation fails, the runtime returns a 400 Bad Request response with details of the validation errors.
 
-#### Enable built-in validation support for minimal APIs
+#### Enable built-in validation support for Minimal APIs
 
-Enable the built-in validation support for minimal APIs by calling the `AddValidation` extension method to register the required services in the service container for your application:
+Enable the built-in validation support for Minimal APIs by calling the `AddValidation` extension method to register the required services in the service container for your application:
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
-The implementation automatically discovers types that are defined in minimal API handlers or as base types of types defined in minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
+The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
 Validation can be disabled for specific endpoints by using the `DisableValidation` extension method, as in the following example:
 

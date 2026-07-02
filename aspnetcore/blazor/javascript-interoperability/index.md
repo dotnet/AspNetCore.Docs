@@ -5,7 +5,7 @@ description: Learn how to interact with JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/js-interop/index
 ---
 # ASP.NET Core Blazor JavaScript interoperability (JS interop)
@@ -331,15 +331,14 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
 
 :::moniker range=">= aspnetcore-10.0"
 
-<!-- UPDATE 10.0 - API Browser cross-links -->
-
 * JS interop method calls
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-  * `InvokeConstructorAsync`
-  * `GetValueAsync`
-  * `SetValueAsync`
+  * <xref:Microsoft.JSInterop.IJSObjectReference.InvokeConstructorAsync%2A>
+  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.GetValueAsync%2A>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.SetValueAsync%2A>
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end

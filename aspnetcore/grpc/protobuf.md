@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to create Protobuf messages for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 02/12/2021
+ms.date: 04/07/2026
 uid: grpc/protobuf
 ---
 # Create Protobuf messages for .NET apps
@@ -107,12 +107,12 @@ The generated properties in the C# class aren't the .NET date and time types. Th
 // Create Timestamp and Duration from .NET DateTimeOffset and TimeSpan.
 var meeting = new Meeting
 {
-    Time = Timestamp.FromDateTimeOffset(meetingTime), // also FromDateTime()
+    Start = Timestamp.FromDateTimeOffset(meetingTime), // also FromDateTime()
     Duration = Duration.FromTimeSpan(meetingLength)
 };
 
 // Convert Timestamp and Duration to .NET DateTimeOffset and TimeSpan.
-var time = meeting.Time.ToDateTimeOffset();
+var time = meeting.Start.ToDateTimeOffset();
 var duration = meeting.Duration?.ToTimeSpan();
 ```
 

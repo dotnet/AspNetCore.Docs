@@ -3,7 +3,7 @@ title: Articles based on ASP.NET Core projects created with individual accounts
 author: tdykstra
 description: Discover articles based on ASP.NET Core projects created with individual accounts.
 ms.author: tdykstra
-ms.date: 12/11/2019
+ms.date: 01/22/2026
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual accounts
@@ -64,6 +64,8 @@ The following table shows the authentication options available for new web apps:
 | MultiOrg        |  Organizational authentication for multiple tenants. | [Entra ID](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication. | [Windows Authentication](xref:security/authentication/windowsauth)
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 ## Visual Studio new webapp authentication options
 
 The following table shows the authentication options available when creating a new web app with Visual Studio:
@@ -76,6 +78,8 @@ The following table shows the authentication options available when creating a n
 | Work or School Cloud / Single Org  |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Work or School Cloud / Multiple Org |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 ## Additional resources
 

@@ -5,7 +5,7 @@ description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/02/2025
+ms.date: 11/11/2025
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
@@ -64,7 +64,7 @@ When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fund
 * Blazor creates an endpoint to expose the resource collection as a JS module.
 * The URL is emitted to the body of the request as persisted component state when a WebAssembly component is rendered into the page.
 * During WebAssembly boot, Blazor retrieves the URL, imports the module, and calls a function to retrieve the asset collection and reconstruct it in memory. The URL is specific to the content and cached forever, so this overhead cost is only paid once per user until the app is updated.
-* The resource collection is also exposed at a human-readable URL (`_framework/resource-collection.js`), so JS has access to the resource collection for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) or to implement features of other frameworks and third-party components.
+* The resource collection is also exposed at a human-readable URL (`_framework/resource-collection.js`), so JS has access to the resource collection for [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) or to implement features of other frameworks and third-party components.
 
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
 
@@ -77,8 +77,6 @@ For more information, see <xref:fundamentals/static-files>.
 ## Deliver assets with Map Static Assets routing endpoint conventions
 
 *This section applies to server-side Blazor apps.*
-
-<!-- UPDATE 10.0 Compiler implementation for tilde/slash-based HREFs. -->
 
 Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property, which resolves the fingerprinted URL for a given asset. In the following example, Bootstrap, the Blazor project template app stylesheet (`app.css`), and the [CSS isolation stylesheet](xref:blazor/components/css-isolation) (based on an app's namespace of `BlazorSample`) are linked in a root component, typically the `App` component (`Components/App.razor`):
 
@@ -234,7 +232,7 @@ In releases prior to .NET 8, Blazor framework static files, such as the Blazor s
 
 ## Fingerprint client-side static assets in standalone Blazor WebAssembly apps
 
-In standalone Blazor WebAssembly apps during build/publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering. A [fingerprint](https://wikipedia.org/wiki/Fingerprint_(computing)) is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
+In standalone Blazor WebAssembly apps during build and publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets for client-side rendering. A [fingerprint](https://wikipedia.org/wiki/Fingerprint_(computing)) is placed into the `blazor.webassembly.js` script file name, and an import map is generated for other .NET assets.
 
 The following configuration must be present in the `wwwwoot/index.html` file of a standalone Blazor WebAssembly app to adopt fingerprinting:
 
@@ -264,11 +262,24 @@ In the project file (`.csproj`), the `<OverrideHtmlAssetPlaceholders>` property 
 
 When resolving imports for JavaScript interop, the import map is used by the browser resolve fingerprinted files.
 
-Any script in `index.html` with the fingerprint marker is fingerprinted by the framework. For example, a script file named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
+In the following example, all developer-supplied JS files are modules with a `.js` file extension.
+
+A module named `scripts.js` in the app's `wwwroot/js` folder is fingerprinted by adding `#[.{fingerprint}]` before the file extension (`.js`):
 
 ```html
-<script src="js/scripts#[.{fingerprint}].js"></script>
+<script type="module" src="js/scripts#[.{fingerprint}].js"></script>
 ```
+
+Specify the fingerprint expression with the `<StaticWebAssetFingerprintPattern>` property in the app's project file (`.csproj`):
+
+```xml
+<ItemGroup>
+  <StaticWebAssetFingerprintPattern Include="JSModule" Pattern="*.js" 
+    Expression="#[.{fingerprint}]!" />
+</ItemGroup>
+```
+
+Any JS file (`*.js`) in `index.html` with the fingerprint marker is fingerprinted by the framework, including when the app is published.
 
 ## Fingerprint client-side static assets in Blazor Web Apps
 

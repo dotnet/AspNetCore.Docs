@@ -2,7 +2,7 @@
 
 PR: https://github.com/dotnet/aspnetcore/pull/62895
 
-See https://github.com/dotnet/core/blob/dotnet10-p7-libraries/release-notes/10.0/preview/preview7/libraries.md#pipereader-support-for-json-serializer
+See https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview7/libraries.md#pipereader-support-for-json-serializer
 
 MVC, Minimal APIs, and the `HttpRequestJsonExtensions.ReadFromJsonAsync` methods have all been updated to use the new Json+PipeReader support without requiring any code changes from applications.
 

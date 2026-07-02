@@ -189,7 +189,7 @@ When no explicit annotation is provided, the framework attempts to determine the
 
 ## Support API versioning
 
-Minimal APIs support API versioning via the [Asp.Versioning.Http package](https://www.nuget.org/packages/Asp.Versioning.Http). Examples of configuring versioning with minimal APIs can be found in [the API versioning repo](https://github.com/dotnet/aspnet-api-versioning/tree/3857a332057d970ad11bac0edfdbff8a559a215d/examples/AspNetCore/WebApi).
+Minimal APIs support API versioning via the [Asp.Versioning.Http package](https://www.nuget.org/packages/Asp.Versioning.Http). Examples of configuring versioning with Minimal APIs can be found in [the API versioning repo](https://github.com/dotnet/aspnet-api-versioning/tree/3857a332057d970ad11bac0edfdbff8a559a215d/examples/AspNetCore/WebApi).
 
 ## ASP.NET Core OpenAPI source code on GitHub
 
@@ -204,7 +204,7 @@ Minimal APIs support API versioning via the [Asp.Versioning.Http package](https:
 
 :::moniker range="= aspnetcore-6.0"
 
-A minimal API app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
+A Minimal API app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 
 For information about support for OpenAPI in controller-based APIs, see the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
 

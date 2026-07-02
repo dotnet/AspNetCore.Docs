@@ -43,8 +43,6 @@ Suppose the goal is to create a middleware that reads the entire request body as
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
 
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
-
 This code works, but there are some issues:
 
 * Before appending to the `StringBuilder`, the example creates another string (`encodedString`) that is thrown away immediately. This process occurs for all bytes in the stream, so the result is extra memory allocation the size of the entire request body.

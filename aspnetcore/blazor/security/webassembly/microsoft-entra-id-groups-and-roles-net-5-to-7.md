@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0 < aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/meid-groups-roles-net5to7
 zone_pivot_groups: blazor-groups-and-roles
 ---
@@ -532,7 +532,7 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the role claims.
 
-Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without an Microsoft Entra ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
+Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without a Microsoft Entra ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
 When working with the default directory, follow the guidance in [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) to configure and assign roles. If you aren't working with the default directory, edit the app's manifest in the Azure portal to establish the app's roles manually in the `appRoles` entry of the manifest file. The following is an example `appRoles` entry that creates `Admin` and `Developer` roles. These example roles are used later in this section's example at the component level to implement access restrictions:
 
@@ -613,7 +613,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
 
-After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>, you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claim(s) are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>, you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claims are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 
@@ -761,9 +761,7 @@ Multiple role tests are supported:
   if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
 
-Because .NET string comparisons are case-sensitive, matching role names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
-
-Pascal case is typically used for role names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role names is also unusual but permitted. For example, `billing administrator` is an unusual role name format in .NET apps but valid.
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>. By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
 
 ## Additional resources
 

@@ -14,9 +14,9 @@ namespace MiddlewareExtensibilitySample
 {
     public class Startup
     {
+        #region snippet1
         private Container _container = new Container();
 
-        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();

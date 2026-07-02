@@ -5,7 +5,7 @@ description: Learn how to host and deploy standalone Blazor WebAssembly using Gi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/31/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/github-pages
 ---
 # Host and deploy ASP.NET Core standalone Blazor WebAssembly with GitHub Pages
@@ -42,7 +42,7 @@ To obtain the SHA hash:
 1. Locate and select the short SHA hash (for example, `5b54862`).
 1. Either:
    * Take the full SHA from the URL in the browser's address bar.
-   * Select the copy button on the right side of page ![Copy button](~/blazor/host-and-deploy/index/copy-button.svg) to put the SHA on your clipboard.
+   * Select the copy button on the right side of page to put the SHA on your clipboard.
 
 For more information, see [Using pre-written building blocks in your workflow: Using SHAs (GitHub documentation)](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow#using-shas).
 
@@ -53,9 +53,9 @@ For more information, see [Using pre-written building blocks in your workflow: U
 Configure the following entries in the script for your deployment:
 
 * Publish directory (`PUBLISH_DIR`): Use the path to the repository's folder where the Blazor WebAssembly app is published. The app is compiled for a specific .NET version, and the path segment for the version must match. Example: `BlazorWebAssemblyXrefGenerator/bin/Release/net9.0/publish/wwwroot` is the path for an app that adopts the `net9.0` [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) for the .NET 9 SDK.
-* Push path (`on:push:paths`): Set the push path to match the app's repo folder with a `**` wildcard. Example: `BlazorWebAssemblyXrefGenerator/**`.
+* Push path (`on:push:paths`): Set the push path to match the app's repository folder with a `**` wildcard. Example: `BlazorWebAssemblyXrefGenerator/**`.
 * .NET SDK version (`dotnet-version` via the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet)): Currently, there's no way to set the version to "latest" (see [Allow specifying 'latest' as dotnet-version (`actions/setup-dotnet` #497)](https://github.com/actions/setup-dotnet/issues/497) to up-vote the feature request). Set the SDK version at least as high as the app's framework version.
-* Publish path (`dotnet publish` command): Set the publish folder path to the app's repo folder. Example: `dotnet publish BlazorWebAssemblyXrefGenerator -c Release`.
+* Publish path (`dotnet publish` command): Set the publish folder path to the app's repository folder. Example: `dotnet publish BlazorWebAssemblyXrefGenerator -c Release`.
 * Base HREF (`base_href` for the [`SteveSandersonMS/ghaction-rewrite-base-href` Action](https://github.com/SteveSandersonMS/ghaction-rewrite-base-href)): Set the SHA hash for the latest version of the Action (see the guidance in the [*GitHub Pages settings*](#github-pages-settings) section for instructions). Set the base href for the app to the repository's name. Example: The Blazor sample's repository owner is `dotnet`. The Blazor sample's repository's name is `blazor-samples`. When the Xref Generator tool is deployed to GitHub Pages, its web address is based on the repository's name (`https://dotnet.github.io/blazor-samples/`). The base href of the app is `/blazor-samples/`, which is set into `base_href` for the `ghaction-rewrite-base-href` Action to write into the app's `wwwroot/index.html` `<base>` tag when the app is deployed. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
 
 The GitHub-hosted Ubuntu (latest) server has a version of the .NET SDK pre-installed. You can remove the [`actions/setup-dotnet` Action](https://github.com/actions/setup-dotnet) step from the `static.yml` script if the pre-installed .NET SDK is sufficient to compile the app. To determine the .NET SDK installed for `ubuntu-latest`:

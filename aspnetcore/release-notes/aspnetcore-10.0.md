@@ -1,17 +1,16 @@
 ---
 title: What's new in ASP.NET Core in .NET 10
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 10.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/15/2025
+ms.date: 04/22/2026
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
 
 This article highlights the most significant changes in ASP.NET Core in .NET 10 with links to relevant documentation.
-
-This article will be updated as new preview releases are made available. For breaking changes, see [Breaking changes in .NET](/dotnet/core/compatibility/10.0#aspnet-core).
 
 ## Blazor
 
@@ -31,7 +30,7 @@ This section describes new features for SignalR.
 
 ## Minimal APIs
 
-This section describes new features for minimal APIs.
+This section describes new features for Minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/MinApiEmptyStringInFormPost.md)]
 
@@ -66,6 +65,8 @@ This section describes new features for OpenAPI.
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/formdata-enum-parameters.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/OpenApiSchemasInTransformers.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-10/includes/endpoint-specific-operation-transformers.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/upgrade-microsoft-openapi-2.md)]
 

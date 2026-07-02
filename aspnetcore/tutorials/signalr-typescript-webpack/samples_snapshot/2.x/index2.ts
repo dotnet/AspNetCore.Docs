@@ -13,8 +13,14 @@ const connection = new signalR.HubConnectionBuilder()
 connection.on("messageReceived", (username: string, message: string) => {
     let m = document.createElement("div");
 
-    m.innerHTML =
-        `<div class="message-author">${username}</div><div>${message}</div>`;
+    const author = document.createElement("div");
+    author.className = "message-author";
+    author.textContent = username;
+
+    const content = document.createElement("div");
+    content.textContent = message;
+
+    m.append(author, content);
 
     divMessages.appendChild(m);
     divMessages.scrollTop = divMessages.scrollHeight;

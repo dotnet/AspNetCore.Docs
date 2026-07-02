@@ -5,12 +5,14 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
 
 [!INCLUDE[](~/blazor/security/includes/hosted-blazor-webassembly-notice.md)]
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
@@ -158,6 +160,12 @@ To configure the app to receive the value from the `name` claim type:
           options.TokenValidationParameters.NameClaimType = "name";
       });
   ```
+
+## Remote authentication paths
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
+[!INCLUDE[](~/blazor/security/includes/remote-authentication-paths.md)]
 
 ## Parts of the solution
 
@@ -326,7 +334,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 The `{SCOPE URI}` is the default access token scope (for example, `https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444/API.Access` or the custom URI that you configured in the Azure portal).
 
-The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure portal AAD configuration when you register the app.
 
 ### Access token scopes
 

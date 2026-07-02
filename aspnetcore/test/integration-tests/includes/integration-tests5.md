@@ -42,7 +42,7 @@ Entity Framework Core is also used in the tests. The app references:
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
+If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to `Development`.
 
 ## Basic tests with the default WebApplicationFactory
 
@@ -208,7 +208,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's Login page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
@@ -233,7 +233,7 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 
 ## Set the environment
 
-By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment when using `IHostBuilder`:
+By default, the SUT's host and app environment is configured to use the `Development` environment. To override the SUT's environment when using `IHostBuilder`:
 
 * Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
 * Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.

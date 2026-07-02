@@ -579,7 +579,7 @@ The configuration and settings in following sections is not required by most app
 To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:
 [!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_ac&highlight=5-9)]
 
-Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).
+Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions).
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation).
 
@@ -598,13 +598,13 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 ## Additional resources
 
 * See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
-* [Authorize attribute and Razor Pages](xref:security/authorization/simple#aarp)
+* [`[Authorize]` attribute in Razor Pages apps](xref:razor-pages/security/authorization/simple#authorize-attribute-in-razor-pages-apps)
 * [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/6.0sample)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/security/authorization/conventions>
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>

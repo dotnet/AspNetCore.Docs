@@ -1,10 +1,11 @@
 ---
 title: Overview of ASP.NET Core Authentication
+ai-usage: ai-assisted
 author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/18/2022
+ms.date: 02/26/2026
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -110,7 +111,7 @@ An authentication scheme's authenticate action is responsible for constructing t
 
 ### Challenge
 
-An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
+An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication schemes, or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
 * A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
@@ -132,12 +133,12 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
+* [Resource-based authorization](xref:security/authorization/resource-based).
 * [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
 
 ## Authentication providers per tenant
 
-ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers consider [Orchard Core](https://www.orchardcore.net/), [ABP Framework](https://abp.io/), or [Finbuckle.MultiTenant](https://www.finbuckle.com/multitenant)  for multi-tenant authentication.
+ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers consider [Orchard Core](https://www.orchardcore.net/), [ABP Framework](https://abp.io/), or [Finbuckle.MultiTenant](https://www.finbuckle.com/multitenant) for multi-tenant authentication.
 
 Orchard Core is:
 
@@ -156,13 +157,12 @@ Finbuckle.MultiTenant:
 * Provides data isolation
 * Configure app behavior uniquely for each tenant
 
-
 ## Additional resources
 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -259,7 +259,7 @@ An authentication scheme's authenticate action is responsible for constructing t
 
 ### Challenge
 
-An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
+An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication schemes, or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
 * A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
@@ -281,12 +281,12 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
+* [Challenge and forbid with an operational resource handler](xref:razor-pages/security/authorization/resource-based#challenge-and-forbid-with-an-operational-resource-handler).
 * [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
 
 ## Authentication providers per tenant
 
-ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers to consider [Orchard Core](https://www.orchardcore.net/) or [ABP Framework](https://abp.io/) for multi-tenant authentication.
+ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers consider [Orchard Core](https://www.orchardcore.net/) or [ABP Framework](https://abp.io/) for multi-tenant authentication.
 
 Orchard Core is:
 
@@ -302,7 +302,7 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -402,7 +402,7 @@ An authentication scheme's authenticate action is responsible for constructing t
 
 ### Challenge
 
-An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
+An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication schemes, or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
 * A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
@@ -424,28 +424,23 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
+* [Resource-based authorization](xref:security/authorization/resource-based).
 * [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
 
 ## Authentication providers per tenant
 
-ASP.NET Core framework doesn't have a built-in solution for multi-tenant authentication.
-While it's possible for customers to write an app with multi-tenant authentication, we recommend using one of the following asp.net core application frameworks that support multi-tenant authentication:
+ASP.NET Core framework doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write an app with multi-tenant authentication, we recommend using one of the following ASP.NET Core application frameworks that support multi-tenant authentication.
 
-### Orchard Core
+[Orchard Core](https://www.orchardcore.net/) is an open-source, modular, and multi-tenant app framework built with ASP.NET Core that also provides a content management system (CMS). See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
 
-[Orchard Core](https://orchardcore.net/). See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
-
-### ABP Framework
-
-[ABP Framework](https://abp.io/) supports various architectural patterns including modularity, microservices, domain driven design, and multi-tenancy. See [ABP Framework source on GitHub](https://github.com/abpframework/abp).
+[ABP Framework](https://abp.io/) supports various architectural patterns including modularity, microservices, domain-driven design, and multi-tenancy. See [ABP Framework source on GitHub](https://github.com/abpframework/abp).
 
 ## Additional resources
 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end

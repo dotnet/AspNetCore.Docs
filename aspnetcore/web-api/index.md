@@ -5,14 +5,14 @@ description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/29/2024
+ms.date: 05/06/2026
 uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
 :::moniker range=">= aspnetcore-7.0"
 
-ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Controllers are activated and disposed on a per request basis.
+ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Controllers are activated and disposed on a per request basis.
 
 This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
 
@@ -136,7 +136,7 @@ The default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore
 The `ValidationProblemDetails` type:
 
 * Provides a machine-readable format for specifying errors in web API responses.
-* Complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
+* Complies with the [RFC 7807 specification](https://datatracker.ietf.org/doc/html/rfc7807).
 
 To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
 
@@ -254,7 +254,7 @@ To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ## Problem details for error status codes
 
-MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The `ProblemDetails` type is based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807) for providing machine-readable error details in an HTTP response.
+MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The `ProblemDetails` type is based on the [RFC 7807 specification](https://datatracker.ietf.org/doc/html/rfc7807) for providing machine-readable error details in an HTTP response.
 
 Consider the following code in a controller action:
 
@@ -291,7 +291,7 @@ The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allo
 public IActionResult CreateProduct(Product product)
 ```
 
-In the preceding code, the `CreateProduct` action specifies the content type `application/xml`. Requests routed to this action must specify a `Content-Type` header of `application/xml`. Requests that don't specify a `Content-Type` header of `application/xml` result in a [415 Unsupported Media Type](https://developer.mozilla.org/docs/Web/HTTP/Status/415) response.
+In the preceding code, the `CreateProduct` action specifies the content type `application/xml`. Requests routed to this action must specify a `Content-Type` header of `application/xml`. Requests that don't specify a `Content-Type` header of `application/xml` result in a [415 Unsupported Media Type](https://developer.mozilla.org/docs/Web/HTTP/Reference/Status/415) response.
 
 The `[Consumes]` attribute also allows an action to influence its selection based on an incoming request's content type by applying a type constraint. Consider the following example:
 
@@ -299,7 +299,7 @@ The `[Consumes]` attribute also allows an action to influence its selection base
 
 In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
 
-The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
+The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`.
 
 ## Additional resources
 
@@ -317,7 +317,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 :::moniker range="= aspnetcore-6.0"
 
-ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
+ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
 
 ## ControllerBase class
 

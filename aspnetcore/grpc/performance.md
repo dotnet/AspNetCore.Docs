@@ -241,7 +241,7 @@ Server streaming calls don't have a request stream. This means that the only way
 
 Always dispose streaming calls once they're no longer needed. The type returned when starting streaming calls implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
 
-In the following example, the [using declaration](/dotnet/csharp/language-reference/proposals/csharp-8.0/using#using-declaration) on the `AccumulateCount()` call ensures it's always disposed if an unexpected error occurs.
+In the following example, the [using declaration](/dotnet/csharp/language-reference/keywords/using-directive) on the `AccumulateCount()` call ensures it's always disposed if an unexpected error occurs.
 
 [!code-csharp[](~/grpc/performance/dispose-streaming-call.cs?highlight=2)]
 

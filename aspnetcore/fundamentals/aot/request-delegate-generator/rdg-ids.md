@@ -6,7 +6,7 @@ ms.author: tdykstra
 monikerRange: '>= aspnetcore-8.0'
 content_well_notification: AI-contribution
 ms.date: 9/23/2023
-ms.topic: article
+ms.topic: concept-article
 uid: fundamentals/aot/request-delegate-generator/rdg-ids
 ai-usage: ai-assisted
 ---

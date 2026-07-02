@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-8.0"
 
-In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
+In this section [Entity Framework Core migrations](/ef/core/managing-schemas/migrations/) is used to:
 
 * Add a new field to the model.
 * Migrate the new field to the database.
@@ -54,7 +54,9 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/VSCode-UpdatingForm.png)
+You can copy/paste the previous "form group" and let IntelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro). The [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) extension provides IntelliSense support in Visual Studio Code.
+
+![Updating the existing form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/VSCode-UpdatingForm.png)
 
 ---
 

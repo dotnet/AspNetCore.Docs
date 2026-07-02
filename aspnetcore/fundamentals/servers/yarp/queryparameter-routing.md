@@ -4,8 +4,8 @@ title: YARP Query Parameter Based Routing
 description: YARP Query Parameter Based Routing
 author: wadepickett
 ms.author: wpickett
-ms.date: 2/6/2025
-ms.topic: article
+ms.date: 05/19/2026
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,15 @@ Proxy routes specified in [config](xref:fundamentals/servers/yarp/config-files) 
 
 ### Precedence
 
-The default route match precedence order is 1) path, 2) method, 3) host, 4) headers 5) query parameters. That means a route which specifies methods and no query parameters will match before a route which specifies query parameters and no methods. This can be overridden by setting the `Order` property on a route.
+The default route match precedence order is
+
+1. path
+1. method
+1. host
+1. headers
+1. query parameters
+
+That means a route which specifies methods and no query parameters will match before a route which specifies query parameters and no methods. This can be overridden by setting the `Order` property on a route (see example in [config properties](config-files.md#review-all-config-properties)).
 
 ## Configuration
 
@@ -252,13 +260,13 @@ A list of possible values to search for. The query parameter must match at least
 
 ### Mode
 
-[QueryParameterMatchMode](xref:Yarp.ReverseProxy.Configuration.QueryParameterMatchMode) specifies how to match the value(s) against the request query parameter. The default is `Exact`.
+[QueryParameterMatchMode](xref:Yarp.ReverseProxy.Configuration.QueryParameterMatchMode) specifies how to match the values against the request query parameter. The default is `Exact`.
 
-* Exact - The query parameter must match in its entirety, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
-* Prefix - The query parameter must match by prefix, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
-* Exists - The query parameter must exist and contain any non-empty value.
-* Contains - The query parameter must contain the value for a match, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
-* NotContains - The query parameter must not contain any of the match values, subject to the value of `IsCaseSensitive`. Only single query parameters are supported. If there are multiple query parameters with the same name then the match fails.
+* Exact - Any of the query parameters with the given name must match in its entirety, subject to the value of `IsCaseSensitive`.
+* Prefix - Any of the query parameters with the given name must match by prefix, subject to the value of `IsCaseSensitive`.
+* Exists - The query parameter must exist and contain any non-empty value. If there are multiple query parameters with the same name, the rule will also match.
+* Contains - Any of the query parameters with the given name must contain any of the match values, subject to the value of `IsCaseSensitive`.
+* NotContains - None of the query parameters with the given name may contain any of the match values, subject to the value of `IsCaseSensitive`.
 
 ### IsCaseSensitive
 
@@ -303,11 +311,10 @@ A request with the following query parameter will match against route1.
 ?QueryParam1=Value1
 ```
 
-Multiple query parameters with the same name are not currently supported and will _not_ match.
+If multiple query parameters with the same name are present, each one is matched separately. The following request will match because at least one value matches.
 ```
 ?QueryParam1=Value1&QueryParam1=Value2
 ```
-
 
 ### Scenario 2 - Multiple Values
 
@@ -327,9 +334,9 @@ Any of the following query parameters will match route2.
 ?QueryParam2=2prefix-extra
 ```
 
-Multiple query parameters with the same name are not currently supported and will _not_ match.
+If multiple query parameters with the same name are present, each one is matched separately. The following request will match because at least one value matches one of the expected prefixes.
 ```
-?QueryParam2=2prefix&QueryParam2=1prefix
+?QueryParam2=foo&QueryParam2=1prefix&QueryParam2=2prefix
 ```
 
 ### Scenario 3 - Exists

@@ -35,7 +35,7 @@ Entity Framework Core is also used in the tests. See the [project file in GitHub
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
+If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to `Development`.
 
 ## Basic tests with the default WebApplicationFactory
 
@@ -212,7 +212,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's sign in page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet1)]
 

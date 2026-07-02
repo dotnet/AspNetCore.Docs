@@ -5,7 +5,7 @@ description: Learn about Blazor Hybrid authentication and authorization scenario
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
@@ -21,13 +21,13 @@ Authentication in Blazor Hybrid apps is handled by native platform libraries, as
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
-* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package, such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
+* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization), such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
 * React to changes in the authentication context.
 * Access credentials provisioned by the app from the identity provider, such as access tokens to perform authorized API calls.
 
 After authentication is added to a .NET MAUI, WPF, or Windows Forms app and users are able to log in and log out successfully, integrate authentication with Blazor to make the authenticated user available to Razor components and services. Perform the following steps:
 
-* Reference the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package.
+* Reference the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -56,11 +56,15 @@ WPF apps use the [Microsoft identity platform](/entra/identity-platform/) to int
 * [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/azure/active-directory-b2c/quickstart-native-app-desktop)
 * [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/azure/active-directory-b2c/configure-authentication-sample-wpf-desktop-app)
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::zone-end
 
 :::zone pivot="winforms"
 
 Windows Forms apps use the [Microsoft identity platform](/entra/identity-platform/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-overview).
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::zone-end
 
@@ -559,13 +563,13 @@ Authentication in Blazor Hybrid apps is handled by native platform libraries, as
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
-* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package, such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
+* Use the abstractions in the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization), such as <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
 * React to changes in the authentication context.
 * Access credentials provisioned by the app from the identity provider, such as access tokens to perform authorized API calls.
 
 After authentication is added to a .NET MAUI, WPF, or Windows Forms app and users are able to log in and log out successfully, integrate authentication with Blazor to make the authenticated user available to Razor components and services. Perform the following steps:
 
-* Reference the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) package.
+* Reference the [`Microsoft.AspNetCore.Components.Authorization` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -594,11 +598,15 @@ WPF apps use the [Microsoft identity platform](/entra/identity-platform/) to int
 * [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/azure/active-directory-b2c/quickstart-native-app-desktop)
 * [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/azure/active-directory-b2c/configure-authentication-sample-wpf-desktop-app)
 
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
+
 :::zone-end
 
 :::zone pivot="winforms"
 
 Windows Forms apps use the [Microsoft identity platform](/entra/identity-platform/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-overview).
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 :::zone-end
 

@@ -5,14 +5,14 @@ description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/11/2025
+ms.date: 11/11/2025
 uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
 
-<!-- UPDATE 10.0 - Enable after release
+<!-- UPDATE 11.0 - Activate ...
 
-[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 -->
 
@@ -71,12 +71,12 @@ builder.Services.AddAuthorizationBuilder()
             "S-1-5-113"));   
 ```
 
-The authorization policy is enforced by the `LocalAccountOnly` component.
+The authorization policy is enforced by the `LocalAccount` component.
 
-`Components/Pages/LocalAccountOnly.razor`:
+`Components/Pages/LocalAccount.razor`:
 
 ```razor
-@page "/local-account-only"
+@page "/local-account"
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize("LocalAccount")]
 

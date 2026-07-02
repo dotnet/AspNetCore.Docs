@@ -34,7 +34,7 @@ The following list contains third-party web performance tools with various featu
 * [West Wind WebSurge](https://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
-* [NBomber](https://github.com/PragmaticFlow/NBomber)
+* [NBomber C#/F#](https://nbomber.com/)
 
 ## Load and stress test with release builds
 

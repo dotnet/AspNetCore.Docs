@@ -5,12 +5,14 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/07/2025
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+[!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
 This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
@@ -88,7 +90,7 @@ The output location specified with the `-o|--output` option creates a project fo
 
 After creating the app, you should be able to:
 
-* Log into the app using an Microsoft Entra ID user account.
+* Log into the app using a Microsoft Entra ID user account.
 * Request access tokens for Microsoft APIs. For more information, see:
   * [Access token scopes](#access-token-scopes)
   * [Quickstart: Configure an application to expose web APIs](/entra/identity-platform/quickstart-configure-app-expose-web-apis).
@@ -103,6 +105,10 @@ Use one of the following approaches to run the app:
   * Press <kbd>F5</kbd>.
 * .NET CLI command shell: Execute the `dotnet watch` (or `dotnet run`) command from the app's folder.
 
+## Remote authentication paths
+
+[!INCLUDE[](~/blazor/security/includes/remote-authentication-paths.md)]
+
 ## Parts of the app
 
 This section describes the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in this section for a basic working application if you created the app using the guidance in the [Walkthrough](#walkthrough) section. The guidance in this section is helpful for updating an app to authenticate and authorize users. However, an alternative approach to updating an app is to create a new app from the guidance in the [Walkthrough](#walkthrough) section and moving the app's components, classes, and resources to the new app.
@@ -111,15 +117,15 @@ This section describes the parts of an app generated from the Blazor WebAssembly
 
 When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/entra/identity-platform/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
-If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
+If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
+The [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) to the app.
 
 ### Authentication service support
 
-Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). This method sets up all of the services required for the app to interact with the Identity Provider (IP).
 
 In the `Program` file:
 

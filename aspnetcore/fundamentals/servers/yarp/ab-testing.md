@@ -5,7 +5,7 @@ description: YARP A/B Testing and Rolling Upgrades
 author: wadepickett
 ms.author: wpickett
 ms.date: 2/6/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -18,7 +18,7 @@ A/B testing and rolling upgrades require procedures for dynamically assigning in
 
 ## Example
 
-```
+```csharp
 app.MapReverseProxy(proxyPipeline =>
 {
     // Custom cluster selection

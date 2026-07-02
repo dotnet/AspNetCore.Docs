@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats in static server-side Blazor
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/security/static-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering

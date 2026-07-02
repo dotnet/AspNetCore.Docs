@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-8.0"
 
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
 
 ## Overview
 
@@ -40,7 +40,7 @@ The following diagram shows the design of the app.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 8.0 (Long Term Support)**.
-  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Use controllers(uncheck to use Minimal APIs)** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Create**.
 

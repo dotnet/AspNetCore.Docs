@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssembly apps with ASP.NET Core Ident
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/29/2025
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-identity/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
@@ -181,10 +181,23 @@ A standalone Blazor WebAssembly frontend app demonstrates user authentication an
 
 The app uses the following NuGet packages:
 
+:::moniker range=">= aspnetcore-11.0"
+
+* [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication)
+* [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
+* [`Microsoft.AspNetCore.Components.WebAssembly`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly)
+* [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 * [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication)
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.AspNetCore.Components.WebAssembly`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly)
 * [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer)
+
+:::moniker-end
 
 ### Sample app code
 

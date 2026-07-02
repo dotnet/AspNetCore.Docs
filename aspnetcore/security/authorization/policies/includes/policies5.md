@@ -1,6 +1,6 @@
 :::moniker range="< aspnetcore-6.0"
 
-Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
+Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
 An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `Startup.ConfigureServices` method:
 
@@ -16,7 +16,7 @@ The primary service that determines if authorization is successful is <xref:Micr
 
 The preceding code highlights the two methods of the [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker service with no methods, and the mechanism for tracking whether authorization is successful.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods, and the mechanism for tracking whether authorization is successful.
 
 Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met:
 <!--The following code is a copy/paste from 
@@ -108,7 +108,7 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
-Policies can be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+Policies can be applied to Razor Pages by using an [authorization convention](xref:razor-pages/security/authorization/conventions).
 
 <a name="requirements"></a>
 
@@ -240,6 +240,6 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 ## Globally require all users to be authenticated
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 :::moniker-end

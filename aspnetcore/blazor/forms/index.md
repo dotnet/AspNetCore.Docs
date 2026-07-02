@@ -5,7 +5,7 @@ description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/forms/index
 ---
 # ASP.NET Core Blazor forms overview
@@ -31,6 +31,12 @@ The Blazor framework supports forms and provides built-in input components:
 
 * An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](xref:mvc/models/validation).
 * [Built-in input components](xref:blazor/forms/input-components).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+In Blazor Web Apps that use static server-side rendering (static SSR), input components automatically participate in client-side validation when the form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
 
 :::moniker-end
 
@@ -69,14 +75,14 @@ Standard HTML forms are supported. Create a form using the normal HTML `<form>` 
 In the preceding `StarshipPlainForm` component:
 
 * The form is rendered where the `<form>` element appears. The form is named with the [`@formname`](xref:mvc/views/razor#formname) directive attribute, which uniquely identifies the form to the Blazor framework.
-* The model is created in the component's `@code` block and held in a public property (`Model`). The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
+* The model is created in the component's `@code` block and held in a `public` property (`Model`). The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <!-- <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> --> `@onsubmit` callback. The handler is called when the form is submitted by the user.
 
 > [!IMPORTANT]
 > Always use the [`@formname`](xref:mvc/views/razor#formname) directive attribute with a unique form name.
 
-Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 <!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
 
@@ -117,14 +123,14 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 In the preceding `Starship1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears. The form is named with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> property, which uniquely identifies the form to the Blazor framework.
-* The model is created in the component's `@code` block and held in a public property (`Model`). The property is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
+* The model is created in the component's `@code` block and held in a `public` property (`Model`). The property is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an [input component](xref:blazor/forms/input-components) for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
 > [!IMPORTANT]
 > Always use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> property with a unique form name.
 
-Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 <!-- UPDATE 11.0 - Check the PU issue (backlogged as of 2/27/25 -->
 
@@ -337,7 +343,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Enhanced form handling
 
-[Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
+[Enhance navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm ... Enhance ...>
@@ -380,7 +386,7 @@ In the following example, the content of the `<div>` element is updated dynamica
 
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
-For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 
@@ -428,11 +434,19 @@ To demonstrate how forms work with [data annotations](xref:mvc/models/validation
 
 Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 ## Client-side validation requires a circuit
 
 In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Client-side validation in static SSR forms
+
+In Blazor Web Apps, forms in components that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
 
 :::moniker-end
 
@@ -442,15 +456,26 @@ All of the [data annotation built-in validators](xref:mvc/models/validation#buil
 
 jQuery validation isn't supported in Razor components. We recommend any of the following approaches:
 
-* Follow the guidance in <xref:blazor/forms/validation> for either:
+:::moniker range=">= aspnetcore-11.0"
+
+* Follow the guidance in <xref:blazor/forms/validation> for any of the following scenarios:
   * Server-side validation in a Blazor Web App that adopts an interactive render mode.
-  * Client-side validation in a standalone Blazor Web Assembly app.
+  * Client-side validation in [static SSR forms](xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms).
+  * Client-side validation in a standalone Blazor WebAssembly app.
 * Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.
 
-<!-- UPDATE 10.0 - Remove if the feature is realized. -->
+:::moniker-end
 
-For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration for .NET 10 in late 2025. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
+:::moniker range="< aspnetcore-11.0"
+
+* Follow the guidance in <xref:blazor/forms/validation> for either:
+  * Server-side validation in a Blazor Web App that adopts an interactive render mode.
+  * Client-side validation in a standalone Blazor WebAssembly app.
+* Use native HTML validation attributes (see [Client-side form validation](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
+* Adopt a third-party validation JavaScript library.
+
+:::moniker-end
 
 ## Additional resources
 

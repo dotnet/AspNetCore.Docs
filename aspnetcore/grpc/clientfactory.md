@@ -108,7 +108,7 @@ builder.Services
     .AddInterceptor<LoggingInterceptor>(InterceptorScope.Client);
 ```
 
-Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
 A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
 
@@ -331,7 +331,7 @@ services
     .AddInterceptor<LoggingInterceptor>(InterceptorScope.Client);
 ```
 
-Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
 A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
 

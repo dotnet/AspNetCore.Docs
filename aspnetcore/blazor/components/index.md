@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 06/24/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -528,54 +528,6 @@ In the following example, the `BlazorRocksBase1` base class derives from <xref:M
 
 :::moniker-end
 
-### Routing
-
-Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`][9] directive. When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
-
-The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`.
-
-`HelloWorld.razor`:
-
-:::moniker range=">= aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
-
-:::moniker-end
-
-The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
-
-For the preceding `HelloWorld` component, you can add a `NavLink` component to the `NavMenu` component. For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
-
 ### Markup
 
 A component's UI is defined using [Razor syntax](xref:mvc/views/razor), which consists of Razor markup, C#, and HTML. When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
@@ -897,6 +849,14 @@ The following rendered HTML markup from the parent component shows `ParameterChi
 Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value. The value of the attribute can typically be any C# expression that matches the type of the parameter. The value of the attribute can optionally lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required.
 
 If the component parameter is of type string, then the attribute value is instead treated as a C# string literal. If you want to specify a C# expression instead, then use the `@` prefix.
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
+
+The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types), even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, for example `Message="@("Saved.")"`.
+
+:::moniker-end
 
 The following parent component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
@@ -1670,6 +1630,50 @@ Rendered output of the preceding code:
 ```html
 <p>The time is 4/19/2021 8:54:46 AM.</p>
 <p>Pet: Nutty Rex</p>
+```
+
+When the Razor delegate must return more than one HTML element, wrap the result in a `<text>` tag for an [explicit delimited transition](xref:mvc/views/razor#explicit-delimited-transition):
+
+```razor
+@RenderTwoElements()
+
+<h2>ReturnIf</h2>
+@ReturnIf()
+
+<h2>ReturnForeach</h2>
+@ReturnForeach()
+
+@code {
+    private bool showTrueStatement = true;
+
+    private RenderFragment RenderTwoElements() =>
+        @<text>
+            <h2>Render Two Elements</h2>
+            @ChildFragment
+        </text>;
+
+    private RenderFragment ChildFragment => @<p>This is a paragraph.</p>;
+
+    private RenderFragment ReturnIf() =>
+        @<text>
+            @if (showTrueStatement)
+            {
+                <p>This is true!</p>
+            }
+            else
+            {
+                <p>This is false!</p>
+            }
+        </text>;
+
+    private RenderFragment ReturnForeach() =>
+        @<text>
+            @foreach (var item in new[] { 1, 2, 3 })
+            {
+                <p>Item: @item</p>
+            }
+        </text>;
+}
 ```
 
 ## Static assets

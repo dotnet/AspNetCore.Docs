@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace App.Models;
 
 public class Customer
@@ -8,7 +10,6 @@ public class Customer
     public string? PhoneNumber { get; set; }
     public string? Address { get; set; }
     public List<Order>? Orders { get; set; }
-
     public Customer()
     {
         Id = Guid.NewGuid().ToString();

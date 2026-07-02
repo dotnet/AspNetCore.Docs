@@ -166,7 +166,7 @@ For more information, see <xref:mvc/compatibility-version>.
 
 ## Migrate from 2.0 to 2.1
 
-See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20_21).
+See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
 
 ## Breaking changes
 

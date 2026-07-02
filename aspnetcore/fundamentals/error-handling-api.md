@@ -5,7 +5,7 @@ description: Learn about error handling in ASP.NET Core APIs with Minimal APIs a
 ai-usage: ai-assisted
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 08/15/2025
+ms.date: 03/04/2026
 uid: fundamentals/error-handling-api
 ---
 
@@ -31,7 +31,7 @@ This article describes how to handle errors in ASP.NET Core APIs. Documentation 
 
 To see the Developer Exception Page in a Minimal API:
 
-* Run the sample app in the [Development environment](xref:fundamentals/environments).
+* Run the sample app in the [`Development` environment](xref:fundamentals/environments).
 * Go to the `/exception` endpoint.
 
 This section refers to the following sample app to demonstrate ways to handle exceptions in a Minimal API. It throws an exception when the endpoint `/exception` is requested:
@@ -139,8 +139,17 @@ In the following code, `httpContext.Response.WriteAsync("Fallback: An error occu
 
 The preceding code:
 
-* Writes an error message with the fallback code if the `problemDetailsService` is unable to write a `ProblemDetails`. For example, an endpoint where the [Accept request header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept) specifies a media type that the `DefaulProblemDetailsWriter` does not support.
+* Writes an error message with the fallback code if the `problemDetailsService` is unable to write a `ProblemDetails`. For example, an endpoint where the [Accept request header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept) specifies a media type that the `DefaultProblemDetailsWriter` does not support.
 * Uses the [Exception Handler Middleware](#exception-handler).
+
+> [!NOTE]
+> The `DefaultProblemDetailsWriter` supports the following media types in the `Accept` request header:
+>
+> * `application/json`
+> * `application/problem+json`
+> * Wildcard types such as `*/*` and `application/*`
+>
+> Non-JSON media types, such as `application/xml` or `text/html`, are **not** supported and trigger the fallback behavior.
 
 The following sample is similar to the preceding except that it calls the [`Status Code Pages middleware`](#client-and-server-error-responses).
 

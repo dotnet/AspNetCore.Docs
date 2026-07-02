@@ -7,42 +7,292 @@ items:
     uid: get-started
   - name: What's new
     items:
+      - name: ASP.NET Core 11
+        items:
+          - name: What's new in 11
+            uid: aspnetcore-11
+          - name: Breaking changes
+            items:
+              - name: Overview
+                href: breaking-changes/11/overview.md
+              - name: Blazor custom event registration throws when name matches a browser event
+                href: breaking-changes/11/blazor-custom-event-name-collision.md
+              - name: Blazor enhanced navigation no longer preloads resources
+                href: breaking-changes/11/blazor-enhanced-nav-preloading-disabled.md
+              - name: Blazor server-side rendering defers antiforgery validation to middleware
+                href: breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection.md
+              - name: ConcurrencyLimiter middleware removed
+                href: breaking-changes/11/concurrencylimiter-removed.md
+              - name: Hosting emits OpenTelemetry HTTP semantic-convention tags by default
+                href: breaking-changes/11/http-activity-otel-semconv.md
+              - name: Kestrel tightens HTTP protocol compliance
+                href: breaking-changes/11/kestrel-strict-protocol-compliance.md
+              - name: Microsoft.OpenApi upgraded to 3.x
+                href: breaking-changes/11/microsoft-openapi-3x.md
+              - name: Obsolete Blazor APIs removed
+                href: breaking-changes/11/blazor-obsolete-apis-removed.md
+              - name: OpenAPI document includes all ProducesResponseType entries per status code
+                href: breaking-changes/11/openapi-multiple-produces-per-status.md
+              - name: OpenAPI server URL no longer has a trailing slash when PathBase is empty
+                href: breaking-changes/11/openapi-server-url-trailing-slash.md
+              - name: OpenApiVersion defaults to OpenApi3_2
+                href: breaking-changes/11/openapi-version-default-3-2.md
+              - name: Passkey sign-in enforces email/phone confirmation and lockout
+                href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
+              - name: Response compression always emits Vary, Accept-Encoding
+                href: breaking-changes/11/response-compression-always-vary.md
+              - name: SqlClient Active Directory authentication moved to a separate package
+                href: breaking-changes/11/sqlclient-azure-extensions-required.md
+              - name: WebAssemblyHostBuilder loads environment variables into IConfiguration
+                href: breaking-changes/11/wasm-env-vars-in-configuration.md
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
             uid: aspnetcore-10
           - name: Breaking changes
-            href: /dotnet/core/compatibility/10.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
+            items:
+              - name: Overview
+                href: breaking-changes/10/overview.md
+              - name: Cookie login redirects disabled for known API endpoints
+                href: breaking-changes/10/cookie-authentication-api-endpoints.md
+              - name: Deprecation of WithOpenApi extension method
+                href: breaking-changes/10/withopenapi-deprecated.md
+              - name: Exception diagnostics suppressed when TryHandleAsync returns true
+                href: breaking-changes/10/exception-handler-diagnostics-suppressed.md
+              - name: IActionContextAccessor and ActionContextAccessor are obsolete
+                href: breaking-changes/10/iactioncontextaccessor-obsolete.md
+              - name: IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated
+                href: breaking-changes/10/openapi-analyzers-deprecated.md
+              - name: IPNetwork and ForwardedHeadersOptions.KnownNetworks are obsolete
+                href: breaking-changes/10/ipnetwork-knownnetworks-obsolete.md
+              - name: Microsoft.Extensions.ApiDescription.Client package deprecated
+                href: breaking-changes/10/apidescription-client-deprecated.md
+              - name: Razor run-time compilation is obsolete
+                href: breaking-changes/10/razor-runtime-compilation-obsolete.md
+              - name: WebHostBuilder, IWebHost, and WebHost are obsolete
+                href: breaking-changes/10/webhostbuilder-deprecated.md
       - name: ASP.NET Core 9
         items:
           - name: What's new in 9
             uid: aspnetcore-9
           - name: Breaking changes
-            href: /dotnet/core/compatibility/9.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
+            items:
+              - name: Overview
+                href: breaking-changes/9/overview.md
+              - name: DefaultKeyResolution.ShouldGenerateNewKey has altered meaning
+                href: breaking-changes/9/key-resolution.md
+              - name: Dev cert export no longer creates folder
+                href: breaking-changes/9/certificate-export.md
+              - name: Forwarded Headers Middleware ignores X-Forwarded-* headers from unknown proxies
+                href: breaking-changes/8/forwarded-headers-unknown-proxies.md
+              - name: HostBuilder enables ValidateOnBuild/ValidateScopes in development environment
+                href: breaking-changes/9/hostbuilder-validation.md
+              - name: Legacy Mono and Emscripten APIs not exported to global namespace
+                href: breaking-changes/9/legacy-apis.md
+              - name: Middleware types with multiple constructors
+                href: breaking-changes/9/middleware-constructors.md
       - name: ASP.NET Core 8
         items:
           - name: What's new in 8
             uid: aspnetcore-8
           - name: Breaking changes
-            href: /dotnet/core/compatibility/8.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
+            items:
+              - name: Overview
+                href: breaking-changes/8/overview.md
+              - name: ConcurrencyLimiterMiddleware is obsolete
+                href: breaking-changes/8/concurrencylimitermiddleware-obsolete.md
+              - name: Custom converters for serialization removed
+                href: breaking-changes/8/problemdetails-custom-converters.md
+              - name: Forwarded Headers Middleware ignores X-Forwarded-* headers from unknown proxies
+                href: breaking-changes/8/forwarded-headers-unknown-proxies.md
+              - name: HTTP logging middleware requires AddHttpLogging()
+                href: breaking-changes/8/httplogging-addhttplogging-requirement.md
+              - name: ISystemClock is obsolete
+                href: breaking-changes/8/isystemclock-obsolete.md
+              - name: "Minimal APIs: IFormFile parameters require anti-forgery checks"
+                href: breaking-changes/8/antiforgery-checks.md
+              - name: Rate-limiting middleware requires AddRateLimiter
+                href: breaking-changes/8/addratelimiter-requirement.md
+              - name: Security token events return a JsonWebToken
+                href: breaking-changes/8/securitytoken-events.md
+              - name: TrimMode defaults to full for Web SDK projects
+                href: breaking-changes/8/trimmode-full.md
       - name: ASP.NET Core 7
         items:
           - name: What's new in 7
             uid: aspnetcore-7
           - name: Breaking changes
-            href: /dotnet/core/compatibility/7.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
+            items:
+              - name: Overview
+                href: breaking-changes/7/overview.md
+              - name: API controller actions try to infer parameters from DI
+                href: breaking-changes/7/api-controller-action-parameters-di.md
+              - name: ASPNET-prefixed environment variable precedence
+                href: breaking-changes/7/environment-variable-precedence.md
+              - name: AuthenticateAsync for remote auth providers
+                href: breaking-changes/7/authenticateasync-anonymous-request.md
+              - name: Authentication in WebAssembly apps
+                href: breaking-changes/7/wasm-app-authentication.md
+              - name: Default authentication scheme
+                href: breaking-changes/7/default-authentication-scheme.md
+              - name: Event IDs for some Microsoft.AspNetCore.Mvc.Core log messages changed
+                href: breaking-changes/7/microsoft-aspnetcore-mvc-core-log-event-ids.md
+              - name: Fallback file endpoints
+                href: breaking-changes/7/fallback-file-endpoints.md
+              - name: IHubClients and IHubCallerClients hide members
+                href: breaking-changes/7/ihubclients-ihubcallerclients.md
+              - name: "Kestrel: Default HTTPS binding removed"
+                href: breaking-changes/7/https-binding-kestrel.md
+              - name: Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv and libuv.dll removed
+                href: breaking-changes/7/libuv-transport-dll-removed.md
+              - name: Microsoft.Data.SqlClient updated to 4.0.1
+                href: breaking-changes/7/microsoft-data-sqlclient-updated-to-4-0-1.md
+              - name: Middleware no longer defers to endpoint with null request delegate
+                href: breaking-changes/7/middleware-null-requestdelegate.md
+              - name: MVC's detection of an empty body in model binding changed
+                href: breaking-changes/7/mvc-empty-body-model-binding.md
+              - name: Output caching API changes
+                href: breaking-changes/7/output-caching-renames.md
+              - name: SignalR Hub methods try to resolve parameters from DI
+                href: breaking-changes/7/signalr-hub-method-parameters-di.md
       - name: ASP.NET Core 6
         items:
           - name: What's new in 6
             uid: aspnetcore-6.0
           - name: Breaking changes
-            href: /dotnet/core/compatibility/6.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
+            items:
+              - name: Overview
+                href: breaking-changes/6/overview.md
+              - name: ActionResult<T> sets StatusCode to 200
+                href: breaking-changes/6/actionresult-statuscode.md
+              - name: AddDataAnnotationsValidation method made obsolete
+                href: breaking-changes/6/adddataannotationsvalidation-obsolete.md
+              - name: Assemblies removed from shared framework
+                href: breaking-changes/6/assemblies-removed-from-shared-framework.md
+              - name: "Blazor: Parameter name changed in RequestImageFileAsync method"
+                href: breaking-changes/6/blazor-parameter-name-changed-in-method.md
+              - name: "Blazor: WebEventDescriptor.EventArgsType property replaced"
+                href: breaking-changes/6/blazor-eventargstype-property-replaced.md
+              - name: "Blazor: Byte-array interop"
+                href: breaking-changes/6/byte-array-interop.md
+              - name: ClientCertificate doesn't trigger renegotiation
+                href: breaking-changes/6/clientcertificate-doesnt-trigger-renegotiation.md
+              - name: EndpointName metadata not set automatically
+                href: breaking-changes/6/endpointname-metadata.md
+              - name: "Identity: Default Bootstrap version of UI changed"
+                href: breaking-changes/6/identity-bootstrap4-to-5.md
+              - name: "Kestrel: Log message attributes changed"
+                href: breaking-changes/6/kestrel-log-message-attributes-changed.md
+              - name: "MessagePack: Library changed in @microsoft/signalr-protocol-msgpack"
+                href: breaking-changes/6/messagepack-library-change.md
+              - name: Microsoft.AspNetCore.Http.Features split
+                href: breaking-changes/6/microsoft-aspnetcore-http-features-package-split.md
+              - name: "Middleware: HTTPS Redirection Middleware throws exception on ambiguous HTTPS ports"
+                href: breaking-changes/6/middleware-ambiguous-https-ports-exception.md
+              - name: "Middleware: New Use overload"
+                href: breaking-changes/6/middleware-new-use-overload.md
+              - name: Minimal API renames in RC 1
+                href: breaking-changes/6/rc1-minimal-api-renames.md
+              - name: Minimal API renames in RC 2
+                href: breaking-changes/6/rc2-minimal-api-renames.md
+              - name: MVC doesn't buffer IAsyncEnumerable types
+                href: breaking-changes/6/iasyncenumerable-not-buffered-by-mvc.md
+              - name: Nullable reference type annotations changed
+                href: breaking-changes/6/nullable-reference-type-annotations-changed.md
+              - name: Obsoleted and removed APIs
+                href: breaking-changes/6/obsolete-removed-apis.md
+              - name: PreserveCompilationContext not configured by default
+                href: breaking-changes/6/preservecompilationcontext-not-set-by-default.md
+              - name: "Razor: Compiler generates single assembly"
+                href: breaking-changes/6/razor-compiler-doesnt-produce-views-assembly.md
+              - name: "Razor: Logging ID changes"
+                href: breaking-changes/6/razor-pages-logging-ids.md
+              - name: "Razor: RazorEngine APIs marked obsolete"
+                href: breaking-changes/6/razor-engine-apis-obsolete.md
+              - name: "SignalR: Java Client updated to RxJava3"
+                href: breaking-changes/6/signalr-java-client-updated.md
+              - name: TryParse and BindAsync methods are validated
+                href: breaking-changes/6/tryparse-bindasync-validation.md
       - name: ASP.NET Core 5
         items:
           - name: What's new in 5
             uid: aspnetcore-5.0
           - name: Breaking changes
-            href: /dotnet/core/compatibility/5.0?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json#aspnet-core
+            items:
+              - name: Overview
+                href: breaking-changes/5/overview.md
+              - name: ASP.NET Core apps deserialize quoted numbers
+                href: /dotnet/core/compatility/serialization/5.0/jsonserializer-allows-reading-numbers-as-strings
+              - name: AzureAD.UI and AzureADB2C.UI APIs obsolete
+                href: breaking-changes/5/authentication-aad-packages-obsolete.md
+              - name: BinaryFormatter serialization methods are obsolete
+                href: /dotnet/core/compatility/serialization/5.0/binaryformatter-serialization-obsolete
+              - name: Resource in endpoint routing is HttpContext
+                href: breaking-changes/5/authorization-resource-in-endpoint-routing.md
+              - name: Microsoft-prefixed Azure integration packages removed
+                href: breaking-changes/5/azure-integration-packages-removed.md
+              - name: "Blazor: Route precedence logic changed in Blazor apps"
+                href: breaking-changes/5/blazor-routing-logic-changed.md
+              - name: "Blazor: Updated browser support"
+                href: breaking-changes/5/blazor-browser-support-updated.md
+              - name: "Blazor: Insignificant whitespace trimmed by compiler"
+                href: breaking-changes/5/blazor-components-trim-insignificant-whitespace.md
+              - name: "Blazor: JSObjectReference and JSInProcessObjectReference types are internal"
+                href: breaking-changes/5/blazor-jsobjectreference-to-internal.md
+              - name: "Blazor: Target framework of NuGet packages changed"
+                href: breaking-changes/5/blazor-packages-target-framework-changed.md
+              - name: "Blazor: ProtectedBrowserStorage feature moved to shared framework"
+                href: breaking-changes/5/blazor-protectedbrowserstorage-moved.md
+              - name: "Blazor: RenderTreeFrame readonly public fields are now properties"
+                href: breaking-changes/5/blazor-rendertreeframe-fields-become-properties.md
+              - name: "Blazor: Updated validation logic for static web assets"
+                href: breaking-changes/5/blazor-static-web-assets-validation-logic-updated.md
+              - name: Cryptography APIs not supported on browser
+                href: /dotnet/core/compatility/cryptography/5.0/cryptography-apis-not-supported-on-blazor-webassembly
+              - name: "Extensions: Package reference changes"
+                href: breaking-changes/5/extensions-package-reference-changes.md
+              - name: Kestrel and IIS BadHttpRequestException types are obsolete
+                href: breaking-changes/5/http-badhttprequestexception-obsolete.md
+              - name: HttpClient instances created by IHttpClientFactory log integer status codes
+                href: breaking-changes/5/http-httpclient-instances-log-integer-status-codes.md
+              - name: "HttpSys: Client certificate renegotiation disabled by default"
+                href: breaking-changes/5/httpsys-client-certificate-renegotiation-disabled-by-default.md
+              - name: "IIS: UrlRewrite middleware query strings are preserved"
+                href: breaking-changes/5/iis-urlrewrite-middleware-query-strings-are-preserved.md
+              - name: "Kestrel: Configuration changes detected by default"
+                href: breaking-changes/5/kestrel-configuration-changes-at-run-time-detected-by-default.md
+              - name: "Kestrel: Default supported TLS protocol versions changed"
+                href: breaking-changes/5/kestrel-default-supported-tls-protocol-versions-changed.md
+              - name: "Kestrel: HTTP/2 disabled over TLS on incompatible Windows versions"
+                href: breaking-changes/5/kestrel-disables-http2-over-tls.md
+              - name: "Kestrel: Libuv transport marked as obsolete"
+                href: breaking-changes/5/kestrel-libuv-transport-obsolete.md
+              - name: Obsolete properties on ConsoleLoggerOptions
+                href: /dotnet/core/compatility/core-libraries/5.0/obsolete-consoleloggeroptions-properties
+              - name: ResourceManagerWithCultureStringLocalizer class and WithCulture interface member removed
+                href: breaking-changes/5/localization-members-removed.md
+              - name: Pubternal APIs removed
+                href: breaking-changes/5/localization-pubternal-apis-removed.md
+              - name: Obsolete constructor removed in request localization middleware
+                href: breaking-changes/5/localization-requestlocalizationmiddleware-constructor-removed.md
+              - name: "Middleware: Database error page marked as obsolete"
+                href: breaking-changes/5/middleware-database-error-page-obsolete.md
+              - name: Exception handler middleware throws original exception
+                href: breaking-changes/5/middleware-exception-handler-throws-original-exception.md
+              - name: ObjectModelValidator calls a new overload of Validate
+                href: breaking-changes/5/mvc-objectmodelvalidator-calls-new-overload.md
+              - name: Cookie name encoding removed
+                href: breaking-changes/5/security-cookie-name-encoding-removed.md
+              - name: IdentityModel NuGet package versions updated
+                href: breaking-changes/5/security-identitymodel-nuget-package-versions-updated.md
+              - name: "SignalR: MessagePack Hub Protocol options type changed"
+                href: breaking-changes/5/signalr-messagepack-hub-protocol-options-changed.md
+              - name: "SignalR: MessagePack Hub Protocol moved"
+                href: breaking-changes/5/signalr-messagepack-package.md
+              - name: UseSignalR and UseConnections methods removed
+                href: breaking-changes/5/signalr-usesignalr-useconnections-removed.md
+              - name: CSV content type changed to standards-compliant
+                href: breaking-changes/5/static-files-csv-content-type-changed.md
       - name: What's new in 3.1
         uid: aspnetcore-3.1
       - name: What's new in 3.0
@@ -198,9 +448,6 @@ items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
             href: /training/modules/create-razor-pages-aspnet-core/
-          - name: Web APIs >>
-            displayName: tutorial
-            href: /training/modules/build-web-api-aspnet-core/
           - name: Cloud-native microservices
             items:
               - name: Create and deploy >>
@@ -227,9 +474,6 @@ items:
           - name: Data access >>
             displayName: tutorial, ef, entity framework
             href: /training/modules/persist-data-ef-core/
-          - name: Web app security >>
-            displayName: tutorial, identity
-            href: /training/modules/secure-aspnet-core-identity/
   - name: Fundamentals
     items:
       - name: Overview
@@ -295,6 +539,8 @@ items:
             uid: fundamentals/logging/index
           - name: HTTP logging
             uid: fundamentals/http-logging/index
+          - name: Enrich HTTP request logs in ASP.NET Core
+            uid: fundamentals/http-logging/http-log-enricher
           - name: W3C logger
             uid: fundamentals/w3c-logger/index
           - name: Health checks
@@ -350,6 +596,20 @@ items:
             uid: razor-pages/filter
           - name: Route and app conventions
             uid: razor-pages/razor-pages-conventions
+          - name: Security and Identity
+            items:
+              - name: Authorization
+                items:
+                  - name: Simple authorization
+                    uid: razor-pages/security/authorization/simple
+                  - name: Authorization conventions
+                    uid: razor-pages/security/authorization/conventions
+                  - name: Role-based authorization
+                    uid: razor-pages/security/authorization/roles
+                  - name: Claim-based authorization
+                    uid: razor-pages/security/authorization/claims
+                  - name: Resource-based authorization
+                    uid: razor-pages/security/authorization/resource-based
       - name: MVC
         items:
           - name: Overview
@@ -390,6 +650,20 @@ items:
             uid: mvc/views/dependency-injection
           - name: Unit test
             uid: mvc/controllers/testing
+          - name: Security and Identity
+            items:
+              - name: Authorization
+                items:
+                  - name: Simple authorization
+                    uid: mvc/security/authorization/simple
+                  - name: Custom authorization with IAuthorizationRequirementData
+                    uid: mvc/security/authorization/iard
+                  - name: Role-based authorization
+                    uid: mvc/security/authorization/roles
+                  - name: Claim-based authorization
+                    uid: mvc/security/authorization/claims
+                  - name: Resource-based authorization
+                    uid: mvc/security/authorization/resource-based
       - name: Blazor
         items:
           - name: Overview
@@ -460,6 +734,8 @@ items:
                 uid: blazor/hybrid/reuse-razor-components
               - name: Class libraries
                 uid: blazor/hybrid/class-libraries
+              - name: Class libraries best practices
+                uid: blazor/hybrid/class-libraries-best-practices
               - name: Root component parameters
                 uid: blazor/hybrid/root-component-parameters
               - name: Security and Identity
@@ -480,8 +756,10 @@ items:
             items:
               - name: Overview
                 uid: blazor/fundamentals/index
-              - name: Routing and navigation
+              - name: Routing
                 uid: blazor/fundamentals/routing
+              - name: Navigation
+                uid: blazor/fundamentals/navigation
               - name: Configuration
                 uid: blazor/fundamentals/configuration
               - name: Dependency injection
@@ -674,6 +952,8 @@ items:
             uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
+          - name: Blazor with .NET on Web Workers
+            uid: blazor/blazor-web-workers
           - name: Performance
             items:
               - name: Overview
@@ -874,7 +1154,7 @@ items:
     items:
       - name: Overview
         uid: fundamentals/apis
-      - name: "Tutorial: Create a minimal API"
+      - name: "Tutorial: Create a Minimal API"
         uid: tutorials/min-web-api
       - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
@@ -892,6 +1172,8 @@ items:
         uid: fundamentals/minimal-apis/test-min-api
       - name: Middleware
         uid: fundamentals/minimal-apis/middleware
+      - name: Handle JSON Patch requests
+        uid: web-api/jsonpatch
       - name: Handle errors
         uid: fundamentals/error-handling-api
       - name: Authentication and authorization
@@ -932,8 +1214,6 @@ items:
               uid: tutorials/first-mongo-app
         - name: Action return types
           uid: web-api/action-return-types
-        - name: Handle JSON Patch requests
-          uid: web-api/jsonpatch
         - name: Format response data
           uid: web-api/advanced/formatting
         - name: Custom formatters
@@ -1187,6 +1467,9 @@ items:
           - name: Diagnostics
             displayName: diagnostics
             uid: fundamentals/servers/kestrel/diagnostics
+          - name: Memory management
+            displayName: memory, pool, kestrel
+            uid: fundamentals/servers/kestrel/memory-management
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
             uid: fundamentals/servers/kestrel/http2
@@ -1430,8 +1713,10 @@ items:
       - name: Azure and IIS errors reference
         uid: host-and-deploy/azure-iis-errors-reference
   - name: Code analysis
-    uid: diagnostics/code-analysis
     items:
+      - name: Overview
+        displayName: code analysis
+        uid: diagnostics/code-analysis
       - name: ASP0000
         uid: diagnostics/asp0000
       - name: ASP0001
@@ -1502,6 +1787,8 @@ items:
         uid: diagnostics/bl0006
       - name: BL0007
         uid: diagnostics/bl0007
+      - name: BL0008
+        uid: diagnostics/bl0008
       - name: MVC1000
         uid: diagnostics/mvc1000
       - name: MVC1001
@@ -1516,8 +1803,10 @@ items:
         uid: diagnostics/mvc1005
       - name: MVC1006
         uid: diagnostics/mvc1006
-      - name: RDG diagnostics
-        displayName: aot, RDG diagnostics
+  - name: RDG diagnostics
+    items:
+      - name: Overview
+        displayName: aot, rdg diagnostics
         uid: fundamentals/aot/request-delegate-generator/rdg-ids
       - name: RDG002
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
@@ -1541,6 +1830,13 @@ items:
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
       - name: RDG013
         uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
+  - name: ASPDEPR diagnostics
+    items:
+      - name: Overview
+        displayName: aspdepr diagnostics
+        uid: diagnostics/aspdepr-ids
+      - name: ASPDEPR002
+        uid: diagnostics/aspdepr002
   - name: Data access
     items:
       - name: Tutorials
@@ -1823,15 +2119,13 @@ items:
             uid: security/authorization/introduction
           - name: Create a web app with authorization
             uid: security/authorization/secure-data
-          - name: Razor Pages authorization conventions
-            uid: security/authorization/razor-pages-authorization
           - name: Simple authorization
             uid: security/authorization/simple
           - name: Custom authorization with IAuthorizationRequirementData
             uid: security/authorization/iard
           - name: Role-based authorization
             uid: security/authorization/roles
-          - name: Claims-based authorization
+          - name: Claim-based authorization
             uid: security/authorization/claims
           - name: Policy-based authorization
             uid: security/authorization/policies
@@ -1842,7 +2136,7 @@ items:
           - name: Dependency injection in requirement handlers
             uid: security/authorization/dependencyinjection
           - name: Resource-based authorization
-            uid: security/authorization/resourcebased
+            uid: security/authorization/resource-based
           - name: View-based authorization
             uid: security/authorization/views
           - name: Limit identity by scheme
@@ -1939,6 +2233,8 @@ items:
         uid: security/gdpr
       - name: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks
         uid: security/anti-request-forgery
+      - name: Automatic CSRF protection
+        uid: security/csrf-protection
       - name: Prevent open redirect attacks
         uid: security/preventing-open-redirects
       - name: Prevent Cross-Site Scripting (XSS)
@@ -2085,8 +2381,17 @@ items:
       - name: Overview
         displayName: migrate, migration
         uid: migration/index
+      - name: Adopt automatic CSRF protection in .NET 11
+        displayName: migrate, migration, csrf, antiforgery
+        uid: migration/antiforgery-to-csrf
       - name: Version updates
         items:
+          - name: 10 to 11
+            displayName: migrate, migration
+            uid: migration/100-to-110
+          - name: 9 to 10
+            displayName: migrate, migration
+            uid: migration/90-to-100
           - name: 8 to 9
             displayName: migrate, migration
             uid: migration/80-to-90
@@ -2124,7 +2429,7 @@ items:
                 uid: migration/logging-nonaspnetcore
               - name: 2.0 to 2.1
                 displayName: migrate, migration
-                uid: migration/20_21
+                uid: migration/20-to-21
               - name: 1.x to 2.0
                 displayName: migrate, migration
                 items:
@@ -2156,18 +2461,24 @@ items:
             items:
             - name: Overview
               uid: migration/fx-to-core/areas
+            - name: HttpApplicationHost
+              uid: migration/fx-to-core/areas/hosting
             - name: HttpContext
               uid: migration/fx-to-core/areas/http-context
             - name: HTTP Modules
               uid: migration/fx-to-core/areas/http-modules
             - name: HTTP Handlers
               uid: migration/fx-to-core/areas/http-handlers
+            - name: Machine Key
+              uid: migration/fx-to-core/areas/machine-key
             - name: Session
               uid: migration/fx-to-core/areas/session
             - name: Authentication
               uid: migration/fx-to-core/areas/authentication
             - name: Membership
               uid: migration/fx-to-core/areas/membership
+            - name: OWIN
+              uid: migration/fx-to-core/areas/owin
             - name: Web API
               uid: migration/fx-to-core/areas/webapi
             - name: ClaimsPrincipal.Current

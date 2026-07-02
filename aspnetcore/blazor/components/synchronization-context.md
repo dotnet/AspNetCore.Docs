@@ -5,7 +5,7 @@ description: Learn about Blazor's synchronization context, how to avoid thread-b
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/sync-context
 ---
 # ASP.NET Core Blazor synchronization context
@@ -206,7 +206,7 @@ In the preceding example:
 :::moniker-end
 
 > [!IMPORTANT]
-> If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (<xref:System.Threading.ExecutionContext>) at the time the handler is registered. For more information, see [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521).
+> If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (<xref:System.Threading.ExecutionContext>) at the time the handler is registered. For more information, see [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (`dotnet/aspnetcore` #28521)](https://github.com/dotnet/aspnetcore/issues/28521#issuecomment-1112513408).
 
 :::moniker range=">= aspnetcore-8.0"
 

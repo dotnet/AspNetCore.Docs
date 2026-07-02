@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
+using Google.Apis.Auth.AspNetCore3;
 
 namespace SocialWithoutIdentitySample.Snippets;
 
@@ -12,10 +12,10 @@ public static class Program
             .AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
             })
             .AddCookie()
-            .AddGoogle(options =>
+            .AddGoogleOpenIdConnect(options =>
             {
                 options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
                 options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];

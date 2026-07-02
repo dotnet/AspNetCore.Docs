@@ -1,11 +1,12 @@
 ---
 title: Controller action return types in ASP.NET Core web API
+ai-usage: ai-assisted
 author: tdykstra
 description: ActionResult vs IActionResult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 6/20/2023
+ms.date: 02/26/2026
 uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API
@@ -37,7 +38,7 @@ When multiple return types are possible, it's common to mix an <xref:Microsoft.A
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
-See [Return `IEnumerable<T>` or `IAsyncEnumerable<T>`](/aspnet/core/fundamentals/best-practices#return-ienumerablet-or-iasyncenumerablet) for performance considerations.
+See [Return `IEnumerable<T>` or `IAsyncEnumerable<T>`](xref:fundamentals/best-practices#return-ienumerablet-or-iasyncenumerablet) for performance considerations.
 
 ASP.NET Core buffers the result of actions that return <xref:System.Collections.Generic.IEnumerable%601> before writing them to the response. Consider declaring the action signature's return type as <xref:System.Collections.Generic.IAsyncEnumerable%601> to guarantee asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned and the selected formatter affects how the result is processed:
 
@@ -97,7 +98,7 @@ If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute)
 
 ## ActionResult vs IActionResult
 
-The following section compares `ActionResult` to  `IActionResult`
+The following section compares `ActionResult` to `IActionResult`.
 
 ### ActionResult\<T> type
 
@@ -144,12 +145,12 @@ In the preceding action:
 
 ## HttpResults type
 
-In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601)), ASP.NET Core includes the [HttpResults](xref:Microsoft.AspNetCore.Http.HttpResults) types that can be used in both [Minimal APIs](/aspnet/core/fundamentals/minimal-apis) and Web API.
+In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601)), ASP.NET Core includes the [HttpResults](xref:Microsoft.AspNetCore.Http.HttpResults) types that can be used in both [Minimal APIs](xref:fundamentals/minimal-apis) and Web API.
 
 Different than the MVC-specific result types, the `HttpResults`:
 
 * Are a results implementation that is processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A).
-* Does ***not*** leverage the configured [Formatters](/aspnet/core/web-api/advanced/formatting#format-specific-action-results). Not leveraging the configured formatters means:
+* Does ***not*** leverage the configured [Formatters](xref:web-api/advanced/formatting#format-specific-action-results). Not leveraging the configured formatters means:
 
   * Some features like `Content negotiation` aren't available.
   * The produced `Content-Type` is decided by the `HttpResults` implementation.
@@ -160,7 +161,7 @@ The `HttpResults` can be useful when sharing code between Minimal APIs and Web A
 
 The <xref:Microsoft.AspNetCore.Http.HttpResults> namespace contains classes that implement the <xref:Microsoft.AspNetCore.Http.IResult> interface. The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class is used to create varying `IResult` objects that represent different types of responses.
 
-The [Built-in results](/aspnet/core/fundamentals/minimal-apis#built-in-results) table shows the common result helpers.
+The [Built-in results](xref:fundamentals/minimal-apis#built-in-results) table shows the common result helpers.
 
 Consider the following code:
 

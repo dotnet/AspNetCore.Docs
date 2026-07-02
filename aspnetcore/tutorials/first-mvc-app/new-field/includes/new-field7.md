@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-7.0"
 
-In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
+In this section [Entity Framework Core migrations](/ef/core/managing-schemas/migrations/) is used to:
 
 * Add a new field to the model.
 * Migrate the new field to the database.

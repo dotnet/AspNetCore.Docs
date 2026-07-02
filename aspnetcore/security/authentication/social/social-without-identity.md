@@ -4,7 +4,7 @@ author: serpent5
 description: Use Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 04/05/2022
+ms.date: 04/09/2026
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
@@ -38,7 +38,7 @@ The call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationService
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync%2A>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync%2A>
 
-Setting the app's `DefaultScheme` to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> ("Cookies") configures the app to use Cookies as the default scheme for these extension methods. Setting the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> to <xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme?displayProperty=nameWithType> ("Google") configures the app to use Google as the default scheme for calls to `ChallengeAsync`. `DefaultChallengeScheme` overrides `DefaultScheme`. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions> for more properties that override `DefaultScheme` when set.
+Setting the app's `DefaultScheme` to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> ("Cookies") configures the app to use Cookies as the default scheme for these extension methods. Setting the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> to `Google.Apis.Auth.AspNetCore3.GoogleOpenIdConnectDefaults.AuthenticationScheme` ("`GoogleOpenIdConnect`") configures the app to use Google as the default scheme for calls to `ChallengeAsync`. `DefaultChallengeScheme` overrides `DefaultScheme`. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions> for more properties that override `DefaultScheme` when set.
 
 In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property and runs the Authorization Middleware for requests:
 

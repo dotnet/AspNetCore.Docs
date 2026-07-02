@@ -5,7 +5,7 @@ description: Overview of extensibility
 author: tdykstra
 ms.author: tdykstra
 ms.date: 04/03/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -32,7 +32,7 @@ Most of the prebuilt pipeline can be customized through code:
 * [Request Transforms](xref:fundamentals/servers/yarp/transform-extensibility)
 * [HttpClient configuration](./http-client-config.md#code-configuration)
 
-You can also change the pipeline definition to replace modules with your own implementation(s) or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
+You can also change the pipeline definition to replace modules with your own implementations or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
 
 ## HTTP Forwarder
 

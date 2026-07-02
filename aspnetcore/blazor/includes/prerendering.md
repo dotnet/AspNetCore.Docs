@@ -1,13 +1,12 @@
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 *This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
 
-<!-- UPDATE 10.0 - Persistent component state across enhanced nav
-                   is arriving for RC1. 
-                   
-                   The following remarks will be updated/versioned
-                   on the upcoming docs RC1 PR.
-                   -->
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
+
+*This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
 
 > [!NOTE]
 > Internal navigation for [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.

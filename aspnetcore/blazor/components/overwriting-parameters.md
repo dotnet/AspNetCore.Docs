@@ -5,7 +5,7 @@ description: Learn how to avoid overwriting parameters in Blazor apps during rer
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/13/2024
+ms.date: 11/11/2025
 uid: blazor/components/overwriting-parameters
 ---
 # Avoid overwriting parameters in ASP.NET Core Blazor

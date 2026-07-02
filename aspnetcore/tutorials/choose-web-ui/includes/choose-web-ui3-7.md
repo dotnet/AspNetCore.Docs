@@ -45,21 +45,21 @@ ASP.NET Core MVC benefits:
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
 * The Model-View-Controller separation of responsibilities ensures that the business model can evolve without being tightly coupled to low-level implementation details.
 
-To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
+To get started with ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
 
-## ASP.NET Core Single Page Applications (SPA) with frontend JavaScript frameworks
+## ASP.NET Core Single Page Applications (SPA) with frontend JavaScript technologies
 
-Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). ASP.NET Core provides project templates for Angular, React, and Vue, and it can be used with other JavaScript frameworks as well.
+Build client-side logic for ASP.NET Core apps using popular JavaScript technologies, such as [Angular](https://angular.dev/), [React](https://react.dev/), and [Vue](https://vuejs.org/). ASP.NET Core provides project templates for Angular, React, and Vue, and it can be used with other JavaScript frameworks as well.
 
-Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
+Benefits of ASP.NET Core SPA with JavaScript technologies, in addition to the client rendering benefits previously listed:
 
 * The JavaScript runtime environment is already provided with the browser.
 * Large community and mature ecosystem.
-* Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular, React, and Vue.
+* Build client-side logic for ASP.NET Core apps using popular JavaScript technologies, such as Angular, React, and Vue.
 
 Downsides:
 
-* More coding languages, frameworks, and tools required.
+* More coding languages and tools are required.
 * Difficult to share code so some logic may be duplicated.
 
 To get started, see:

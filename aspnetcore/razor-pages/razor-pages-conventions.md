@@ -288,7 +288,7 @@ The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filte
 ## Additional resources
 
 * [Razor Pages Routing](https://www.learnrazorpages.com/razor-pages/routing)
-* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/security/authorization/conventions>
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
 :::moniker-end
@@ -569,7 +569,7 @@ The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filte
 
 ## Additional resources
 
-* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/security/authorization/conventions>
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
 :::moniker-end
@@ -825,7 +825,7 @@ The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filte
 
 ## Additional resources
 
-* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/security/authorization/conventions>
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
 :::moniker-end

@@ -23,9 +23,9 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🧟💀 *Happy Halloween!!_** 🎃🧛
+              body: `### 👋 ***Thanks for your issue!*** 😊
 
-            *Stand-by!* ... A green dinosaur 🦖 will be along shortly to assist.`
+            *Stand-by!* A green dinosaur 🦖 will be along shortly to assist.`
             })
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,

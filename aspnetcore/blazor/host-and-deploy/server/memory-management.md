@@ -5,7 +5,7 @@ description: Learn how to manage memory use in deployed ASP.NET Core server-side
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 03/31/2025
+ms.date: 11/11/2025
 uid: blazor/host-and-deploy/server/memory-management
 ---
 # Manage memory in deployed ASP.NET Core server-side Blazor apps

@@ -1,26 +1,26 @@
 ---
-title: "Tutorial: Create a minimal API with ASP.NET Core"
+title: "Tutorial: Create a Minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
+ai-usage: ai-assisted
 ms.author: wpickett
-ms.date: 07/29/2024
-ms.custom: engagement-fy24
+ms.date: 06/03/2026
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
 
-# Tutorial: Create a minimal API with ASP.NET Core
+# Tutorial: Create a Minimal API with ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 <!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
+By [Wade Pickett](https://github.com/wadepickett) and [Tom Dykstra](https://github.com/tdykstra)
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -33,17 +33,18 @@ This tutorial creates the following API:
 | `GET /todoitems/{id}`                  | Get an item by ID              | None         | To-do item           |
 | `POST /todoitems`                      | Add a new item                 | To-do item   | To-do item           |
 | `PUT /todoitems/{id}`                  | Update an existing item &nbsp; | To-do item   | None                 |
+| `PATCH /todoitems/{id}`                | Partially update an item &nbsp;| Partial to-do item | None           |
 | `DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp;   | None         | None                 |
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-10.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-10.0.md)]
 
 ---
 
@@ -51,20 +52,20 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 and select **Create a new project**.
+* Start Visual Studio 2026 and select **Create a new project**.
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/9.x/create-new-project-empty-vs17.11.0.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/static/10/create-new-project-empty-vs18-6-2.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 9.0**
+  * Select **.NET 10.0 (Long Term Support)**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/9.x/add-info-vs17.11.0.png)
+  ![Additional information](~/tutorials/min-web-api/static/10/add-info-vs18-6-2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -81,7 +82,7 @@ This tutorial creates the following API:
 * When a dialog box asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding commands create a new web minimal API project and open it in Visual Studio Code.
+  The preceding commands create a new web Minimal API project and open it in Visual Studio Code.
 
 ---
 
@@ -134,7 +135,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
-* Select **Include Prelease**.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -182,7 +182,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-## Create API testing UI with Swagger
+## Test the web API
 
 There are many available web API testing tools to choose from, and you can follow this tutorial's introductory API test steps with your own preferred tool.
 
@@ -203,6 +203,7 @@ For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorial
   ```
 
 The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) package, which contains tools to generate Swagger documents and UI.
+This project is using OpenAPI, so the NSwag package is only used to generate the Swagger UI.
 
 ### Configure Swagger middleware
 
@@ -240,7 +241,7 @@ The POST endpoint will be used to add data to the app.
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
 
-  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/9.x/generate-request-vs17.8.0.png)
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/static/9.x/generate-request-vs17.8.0.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
 
@@ -287,17 +288,17 @@ The POST endpoint will be used to add data to the app.
 
 * Select the **Send request** link that is above the `POST` request line.
 
-  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/9.x/http-file-run-button-vs17.8.0.png)
+  ![.http file window with run link highlighted.](~/tutorials/min-web-api/static/9.x/http-file-run-button-vs17.8.0.png)
 
   The POST request is sent to the app and the response is displayed in the **Response** pane.
 
-  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/9.x/http-file-window-with-response-vs17.8.0.png)
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/static/9.x/http-file-window-with-response-vs17.8.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * With the app still running, in the browser, navigate to `https://localhost:<port>/swagger` to display the API testing page generated by Swagger.
 
-  ![Swagger generated API testing page](~/tutorials/min-web-api/_static/9.x/swagger.png)
+  ![Swagger generated API testing page](~/tutorials/min-web-api/static/9.x/swagger.png)
 
 * On the Swagger API testing page, select **Post /todoitems** > **Try it out**.
 * Note that the **Request body** field contains a generated example format reflecting the parameters for the API.
@@ -312,11 +313,11 @@ The POST endpoint will be used to add data to the app.
 
 * Select **Execute**.
 
-  ![Swagger with Post request](~/tutorials/min-web-api/_static/9.x/swagger-post-1.png)
+  ![Swagger with Post request](~/tutorials/min-web-api/static/9.x/swagger-post-1.png)
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post resonse](~/tutorials/min-web-api/_static/9.x/swagger-post-responses.png)
+  ![Swagger with Post response](~/tutorials/min-web-api/static/9.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
@@ -513,6 +514,81 @@ Use Swagger to send a PUT request:
 
 ---
 
+## Examine the PATCH endpoint
+
+Create a file named `TodoPatchDto.cs` with the following code:
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todo/TodoPatchDto.cs":::
+
+The `TodoPatchDto` class uses nullable properties (`string?` and `bool?`) to distinguish between a field that wasn't provided in the request versus a field explicitly set to a value.
+
+The sample app implements a single PATCH endpoint using `MapPatch`:
+
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_patch)]
+
+This method is similar to the `MapPut` method, except it uses HTTP PATCH and only updates the fields provided in the request. A successful response returns [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PATCH request enables partial updates, allowing clients to send only the fields that need to be changed.
+
+The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. Using nullable properties allows the endpoint to distinguish between a field that wasn't provided (null) versus a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool would default to false, potentially overwriting an existing true value when that field wasn't included in the request.
+
+> [!NOTE]
+> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
+
+## Test the PATCH endpoint
+
+This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PATCH call. Call GET to ensure there's an item in the database before making a PATCH call.
+
+Update only the `name` property of the to-do item that has `Id = 1` and set its name to `"run errands"`.
+
+# [Visual Studio](#tab/visual-studio)
+
+* In **Endpoints Explorer**, right-click the **PATCH** endpoint, and select **Generate request**.
+
+  The following content is added to the `TodoApi.http` file:
+
+  ```http
+  PATCH {{TodoApi_HostAddress}}/todoitems/{id}
+
+  ###
+  ```
+
+* In the PATCH request line, replace `{id}` with `1`.
+
+* Add the following lines immediately after the PATCH request line:
+
+  ```http
+  Content-Type: application/json
+
+  {
+    "name": "run errands"
+  }
+  ```
+
+  The preceding code adds a Content-Type header and a JSON request body with only the field to update.
+
+* Select the **Send request** link that is above the new PATCH request line.
+
+  The PATCH request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
+  
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Use Swagger to send a PATCH request:
+
+* Select **Patch /todoitems/{id}** > **Try it out**.
+
+* Set the **id** field to `1`.
+
+* Set the request body to the following JSON:
+
+  ```json
+  {
+    "name": "run errands"
+  }
+  ```
+
+* Select **Execute**.
+
+---
+
 ## Examine and test the DELETE endpoint
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
@@ -664,9 +740,9 @@ If you run into a problem you can't resolve, compare your code to the completed 
 ## Next steps
 
 * [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-* Handle errors and exceptions: The [developer exception page](xref:fundamentals/error-handling-api#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/error-handling-api).
-* For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-* [OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
+* Handle errors and exceptions: The [developer exception page](xref:fundamentals/error-handling-api#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/error-handling-api).
+* For an example of testing a Minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
+* [OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
@@ -676,5 +752,6 @@ See <xref:fundamentals/minimal-apis>
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api6-7.md)]
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api8.md)]
+[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api-6-7.md)]
+[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api-8.md)]
+[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api-9.md)]

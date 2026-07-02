@@ -5,7 +5,7 @@ description: Learn how to control the content in a Razor component from a child 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 09/10/2025
+ms.date: 11/11/2025
 uid: blazor/components/sections
 ---
 # ASP.NET Core Blazor sections

@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains the da
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---
@@ -286,6 +286,47 @@ If the model state has errors when the form is posted, for example if `ReleaseDa
 
 Review the `UpdateMovie` method of the `Edit` component (`Components/Pages/MoviePages/Edit.razor`):
 
+:::moniker range=">= aspnetcore-10.0"
+
+```csharp
+private async Task UpdateMovie()
+{
+    using var context = DbFactory.CreateDbContext();
+    context.Attach(Movie!).State = EntityState.Modified;
+
+    try
+    {
+        await context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!MovieExists(Movie!.Id))
+        {
+            NavigationManager.NotFound();
+        }
+        else
+        {
+            throw;
+        }
+    }
+
+    NavigationManager.NavigateTo("/movies");
+}
+```
+
+Concurrency exceptions are detected when one client deletes the movie and a different client posts changes to the movie.
+
+To test how concurrency is handled by the preceding code:
+
+1. Select **:::no-loc text="Edit":::** for a movie, make changes, but don't select **:::no-loc text="Save":::**.
+1. In a different browser window, open the app to the movie `Index` page and select the **:::no-loc text="Delete":::** link for the same movie to delete the movie.
+1. In the previous browser window, post changes to the movie by selecting the **:::no-loc text="Save":::** button.
+1. The browser is navigated to the Not Found page with a 404 (Not Found) status code.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
 ```csharp
 private async Task UpdateMovie()
 {
@@ -320,6 +361,8 @@ To test how concurrency is handled by the preceding code:
 1. In a different browser window, open the app to the movie `Index` page and select the **:::no-loc text="Delete":::** link for the same movie to delete the movie.
 1. In the previous browser window, post changes to the movie by selecting the **:::no-loc text="Save":::** button.
 1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+
+:::moniker-end
 
 Additional guidance on handling concurrency with EF Core in Blazor apps is available in the Blazor documentation.
 

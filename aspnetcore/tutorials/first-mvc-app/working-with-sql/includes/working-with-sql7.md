@@ -1,5 +1,22 @@
 :::moniker range="= aspnetcore-7.0"
 
+## Introduction
+
+This part of the tutorial series focuses on working with a SQL database in your ASP.NET Core MVC application.
+
+You’ll learn how to:
+
+- Register and configure the Entity Framework Core database context for your ASP.NET Core MVC app.
+- Work with database connection strings for local development.
+- Use SQL Server Express LocalDB for development and examine your database and data using SQL Server Object Explorer.
+- Seed your database with initial sample data.
+
+## Prerequisite
+
+This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+
+## Working with the database context
+
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
@@ -104,6 +121,8 @@ Test the app. Stop it and restart it so the `SeedData.Initialize` method runs an
 The app shows the seeded data.
 
 ![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/m80.png)
+
+[!INCLUDE[](~/includes/localization/currency.md)]
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)

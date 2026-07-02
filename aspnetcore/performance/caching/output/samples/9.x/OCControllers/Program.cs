@@ -90,8 +90,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-        app.UseOutputCache();
         app.UseAuthorization();
+        app.UseOutputCache();
 
         app.MapControllers();
         

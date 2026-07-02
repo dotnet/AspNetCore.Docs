@@ -3,9 +3,10 @@ title: Use ASP.NET Core with HTTP/3 on IIS
 author: tratcher
 description: Learn how to use HTTP/3 features with IIS.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: chrross
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 09/09/2021
+ms.reviewer: chrross
 uid: host-and-deploy/iis/http3
 ---
 

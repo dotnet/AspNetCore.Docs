@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core Blazor render modes
+ai-usage: ai-assisted
 author: guardrex
 description: Learn about Blazor render modes and how to apply them in Blazor Web Apps.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
@@ -156,7 +157,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component propagates i
 
 You also typically must set the same interactive render mode on the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component), which is also found in the `App` component of a Blazor Web App generated from the project template:
 
-```
+```razor
 <HeadOutlet @rendermode="InteractiveServer" />
 ```
 
@@ -173,7 +174,7 @@ To enable global interactivity when creating a Blazor Web App:
 
 For more information, see <xref:blazor/tooling>.
 
-## Apply a render mode programatically
+## Apply a render mode programmatically
 
 Properties and fields can assign a render mode.
 
@@ -357,7 +358,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 If the app exhibits root-level interactivity, server-side ASP.NET Core request processing isn't involved after the initial static SSR, which means that the preceding Blazor features work as expected.
 
-[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+[Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
 
 ## Interactive server-side rendering (interactive SSR)
 
@@ -550,10 +551,15 @@ Non-serializable component parameters, such as child content or a render fragmen
 
 > :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'InteractiveServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
 
-<!-- UPDATE 11.0 Is https://github.com/dotnet/aspnetcore/issues/52768 addressed
-                 to resolve the following limitation? -->
+:::moniker range="< aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - This is resolved in .NET 11 or later via 
+                   https://github.com/dotnet/aspnetcore/issues/52768.
+                   Determine if more work is needed here. -->
 
 The same thing happens if you attempt to adopt interactive rendering in a layout that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, such as the app's `MainLayout` component, in an app that adopts per-page/component rendering. For more information, see <xref:blazor/components/layouts#statically-rendered-layout-components>.
+
+:::moniker-end
 
 To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component.
 

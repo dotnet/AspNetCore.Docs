@@ -5,7 +5,7 @@ description: Learn how to use component virtualization in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -22,7 +22,6 @@ Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601>
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
-* The rendered items are the same size.
 
 When the user scrolls to an arbitrary point in the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component's list of items, the component calculates the visible items to show. Unseen items aren't rendered.
 
@@ -221,6 +220,22 @@ protected override void OnInitialized() =>
 
 ## Item size
 
+:::moniker range=">= aspnetcore-11.0"
+
+The height of each item in pixels can be set initially with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example sets the initial height of each item from 50 pixels to 25 pixels:
+
+```razor
+<Virtualize Context="employee" Items="employees" ItemSize="25">
+    ...
+</Virtualize>
+```
+
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures actual item heights as they enter the viewport and maintains a running average of measured heights. All items use this running average for positioning (or the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> parameter before any measurements exist).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:
 
 ```razor
@@ -231,7 +246,23 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 
 The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
+:::moniker-end
+
 ## Overscan count
+
+:::moniker range=">= aspnetcore-11.0"
+
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 15). The following example changes the overscan count from the default of 15 items to 17 items:
+
+```razor
+<Virtualize Context="employee" Items="employees" OverscanCount="17">
+    ...
+</Virtualize>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3). The following example changes the overscan count from the default of three items to four items:
 
@@ -240,6 +271,61 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
     ...
 </Virtualize>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Control viewport scroll position behavior when items are dynamically added
+
+<!-- UPDATE 11.0 - API cross-links -->
+
+Assign a `VirtualizeAnchorMode` value to the `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
+
+* `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
+* `Beginning`: Pins the viewport to the beginning of the list. When the user is at a scroll position near the top of the list and new items arrive at the beginning, the viewport stays at the top showing the newest items. For example, this pinning behavior is useful for a news feed user experience.
+* `End`: Pins the viewport to the end of the list. When the user is at a scroll position near the bottom of the list and new items arrive at the end, the viewport auto-scrolls to show them. If the user has scrolled away, auto-scroll disengages until they return to the bottom. For example, this pinning behavior is useful for a chat or logging user experience.
+
+The following example pins the viewport to the beginning of a virtualized flight list:
+
+```razor
+<div style="height:500px;overflow-y:scroll">
+    <Virtualize Items="allFlights" Context="flight" AnchorMode="Beginning">
+        <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+    </Virtualize>
+</div>
+```
+
+Modes can be combined. For example, assigning `Beginning | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
+
+`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
+
+The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an <xref:System.Collections.Generic.IEqualityComparer%601> to the `Virtualize` component:
+
+<!-- UPDATE 11.0 - Does the 'itemComparer' in the following example
+                   need the '@' symbol (ItemComparer="@itemComparer")? 
+                   I thought that it wouldn't need it. -->
+
+```razor
+<Virtualize ItemsProvider="LoadFlights" AnchorMode="Beginning" 
+    ItemComparer="itemComparer">
+    ...
+</Virtualize>
+
+@code {
+    private static readonly IEqualityComparer<Flight> itemComparer =
+        EqualityComparer<Flight>.Create((a, b) => 
+            a.Index == b.Index, item => item.Index);
+
+    private async ValueTask<ItemsProviderResult<Flight>> LoadFlights(
+        ItemsProviderRequest request)
+    {
+        ...
+    }
+}
+```
+
+:::moniker-end
 
 ## State changes
 

@@ -1,18 +1,19 @@
 ---
 title: Policy-based authorization in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 1/5/2023
+ms.date: 02/17/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
 
-Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
+Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
 An authorization policy consists of one or more requirements. Register it as part of the authorization service configuration, in the app's `Program.cs` file:
 
@@ -28,7 +29,7 @@ The primary service that determines if authorization is successful is <xref:Micr
 
 The preceding code highlights the two methods of the [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker service with no methods, and the mechanism for tracking whether authorization is successful.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods, and the mechanism for tracking whether authorization is successful.
 
 Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met:
 <!--The following code is a copy/paste from 
@@ -117,7 +118,7 @@ Apply policies to Razor Pages by using the `[Authorize]` attribute with the poli
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
-Policies can also be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+Policies can also be applied to Razor Pages by using an [authorization convention](xref:razor-pages/security/authorization/conventions).
 
 ## Apply policies to endpoints
 
@@ -255,7 +256,7 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 ## Globally require all users to be authenticated
 
-[!INCLUDE[](~/includes/requireAuth.md)]
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 <a name="exs"></a>
 

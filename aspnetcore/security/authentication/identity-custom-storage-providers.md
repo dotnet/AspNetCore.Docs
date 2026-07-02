@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to configure custom storage providers for ASP.NET Core Identity.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 10/29/2024
+ms.date: 01/29/2026
 uid: security/authentication/identity-custom-storage-providers
 ---
 <!-- ms.sfi.ropc: t -->
@@ -201,9 +201,9 @@ You can create a `RoleStore` class that provides the methods for all data operat
 
 Once you have implemented a storage provider, you configure your app to use it. If your app used the default provider, replace it with your custom provider.
 
-1. Remove the `Microsoft.AspNetCore.EntityFramework.Identity` NuGet package.
+1. Remove the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` NuGet package.
 1. If the storage provider resides in a separate project or package, add a reference to it.
-1. Replace all references to `Microsoft.AspNetCore.EntityFramework.Identity` with a using statement for the namespace of your storage provider.
+1. Replace all references to `Microsoft.AspNetCore.Identity.EntityFrameworkCore` with a using statement for the namespace of your storage provider.
 1. Change the `AddIdentity` method to use the custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
 1. If you are using Roles, update the `RoleManager` to use your `RoleStore` class.
 1. Update the connection string and credentials to your app's configuration.

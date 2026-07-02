@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how me
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/tutorials/movie-database-app/part-5
 zone_pivot_groups: tooling
 ---
@@ -19,7 +19,7 @@ This part of the tutorial series explains how metadata of the `Movie` model is u
 
 ## Validation using data annotations
 
-Validation rules are specified on a model class using *data annotations*. The following list shows some of the <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties in a form's model:
+Validation rules are specified on a model class using *data annotations*. The following list shows some of the <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of `public` properties in a form's model:
 
 * [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Require that the user provide a value.
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Specifies the minimum and maximum length of characters. Note that a `MinimumLength` passed to the attribute doesn't make the string required (apply the [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)).
@@ -40,7 +40,7 @@ Add the following data annotations to the `Movie` class properties. To update al
   public string? Title { get; set; }
 
 + [Required]
-* [StringLength(30)]
++ [StringLength(30)]
 + [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
   public string? Genre { get; set; }
 
@@ -50,7 +50,7 @@ Add the following data annotations to the `Movie` class properties. To update al
   public decimal Price { get; set; }
 ```
 
-<!-- HOLD for a later version of the tutorial
+<!-- UPDATE 11.0 - HOLD for a later version of the tutorial
      when QuickGrid has display name support per
      https://github.com/dotnet/aspnetcore/issues/49147.
 

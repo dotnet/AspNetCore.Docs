@@ -5,7 +5,7 @@ description: Learn how to build Blazor WebAssembly apps with native dependencies
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/webassembly-native-dependencies
 ---
 # ASP.NET Core Blazor WebAssembly native dependencies
@@ -103,7 +103,7 @@ NuGet packages can contain native dependencies for use on WebAssembly. These lib
 
 The section demonstrates how to implement SkiaSharp in a Blazor WebAssembly app.
 
-Add a package reference to the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages** with **Include prerelease** selected) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell with the `--prerelease` option:
+Add a package reference to the [`SkiaSharp.Views.Blazor` package](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages** with **Include prerelease** selected) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell with the `--prerelease` option:
 
 ```dotnetcli
 dotnet add package –-prerelease SkiaSharp.Views.Blazor

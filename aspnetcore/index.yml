@@ -7,7 +7,7 @@ brand: aspnet
 metadata:
   title: ASP.NET documentation
   description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more.
-  ms.product: aspnet
+  ms.service: aspnet-core
   ms.topic: hub-page
   author: wadepickett
   ms.author: wpickett
@@ -52,7 +52,7 @@ conceptualContent:
       links:
         - url: fundamentals/apis.md
           itemType: overview
-          text: "Choose between controller-based APIs and minimal APIs"
+          text: "Choose between controller-based APIs and Minimal APIs"
         - url: tutorials/min-web-api.md
           itemType: get-started
           text: "Create a minimal web API with ASP.NET Core"

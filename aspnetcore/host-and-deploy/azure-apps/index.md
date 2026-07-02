@@ -46,7 +46,7 @@ Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 
 ### Platform
 
-The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure Portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure Portal.
+The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
 
 :::moniker range=">= aspnetcore-2.2"
 
@@ -72,26 +72,12 @@ Include the following NuGet packages to provide automatic logging features for a
 
 The preceding packages must be explicitly referenced in the app's project file.
 
-## Override app configuration using the Azure Portal
+## Override app configuration using the Azure portal
 
-:::moniker range=">= aspnetcore-3.0"
+App settings in the Azure portal permit you to set environment variables for the app. For more information, see the following resources:
 
-App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables).
-
-When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
-
-Environment variables are loaded into the app's configuration when [CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder) is called to build the host. For more information, see the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables).
-
-:::moniker-end
-:::moniker range="< aspnetcore-3.0"
-
-App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#evcp).
-
-When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
-
-When an app uses the [Web Host](xref:fundamentals/host/web-host), environment variables are loaded into the app's configuration when <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> is called to build the host. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#evcp).
-
-:::moniker-end
+* [Configure an App Service app (Azure documentation)](/azure/app-service/configure-common)
+* <xref:fundamentals/configuration/index#environment-variables-configuration-provider>
 
 ## Proxy server and load balancer scenarios
 
@@ -200,7 +186,7 @@ The Docker Hub at `https://hub.docker.com/_/microsoft-dotnet` contains the lates
 
 If a problem occurs using the preview site extension, open an [dotnet/AspNetCore issue](https://github.com/dotnet/AspNetCore/issues).
 
-1. From the Azure Portal, navigate to the App Service.
+1. From the Azure portal, navigate to the App Service.
 1. Select the web app.
 1. Type "ex" in the search box to filter for "Extensions" or scroll down the list of management tools.
 1. Select **Extensions**.
@@ -223,9 +209,9 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
-> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure Portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
+> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
 >
-> If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension using the Azure Portal.
+> If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension using the Azure portal.
 >
 > After installing the x64 preview runtime, run the following command in the Azure Kudu PowerShell command window to verify the installation. Substitute the ASP.NET Core runtime version for `{X.Y}` in the following command:
 >

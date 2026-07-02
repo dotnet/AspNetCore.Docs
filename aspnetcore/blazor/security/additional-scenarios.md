@@ -5,7 +5,7 @@ description: Learn how to configure server-side Blazor and Blazor Web Apps for a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/30/2025
+ms.date: 11/11/2025
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core server-side and Blazor Web App additional security scenarios
@@ -24,6 +24,9 @@ This article explains how to configure server-side Blazor for additional securit
 *This section applies to Blazor Web Apps. For Blazor Server, view the [.NET 7 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
 If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties server-side for other purposes.
+
+> [!NOTE]
+> For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
 
 To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
 
@@ -99,7 +102,7 @@ builder.Services.AddHttpClient("ExternalApi",
 > [!CAUTION]
 > Ensure that tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
 >
-> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc?pivots=bff-pattern> for OIDC providers and <xref:blazor/security/blazor-web-app-entra?pivots=bff-pattern> for Microsoft Identity Web with Entra.
+> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc> for OIDC providers and <xref:blazor/security/blazor-web-app-entra> for Microsoft Identity Web with Entra.
 
 ## Use a token handler for web API calls
 
@@ -551,7 +554,7 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 ```json
 {
   "AzureAd": {
-    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0",
     ...
   }
 }
@@ -848,15 +851,167 @@ app.UseMiddleware<UserServiceMiddleware>();
 
 ## Access `AuthenticationStateProvider` in outgoing request middleware
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> for <xref:System.Net.Http.HttpClient> created with <xref:System.Net.Http.IHttpClientFactory> can be accessed in outgoing request middleware using a [circuit activity handler](xref:blazor/fundamentals/signalr#monitor-circuit-activity-blazor-server).
+<xref:System.Net.Http.IHttpClientFactory> creates <xref:System.Net.Http.DelegatingHandler> instances in a separate dependency injection (DI) scope from the app. If you inject <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> into a derived <xref:System.Net.Http.DelegatingHandler> type, the handler doesn't have access to the current user's authentication state from the Blazor circuit.
+
+Use either of the following approaches to address this scenario:
+
+* [Application scope handler](#application-scope-handler-recommended) (*Recommended*)
+* [Circuit activity handler](#circuit-activity-handler)
 
 > [!NOTE]
-> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> in ASP.NET Core apps, see the following sections of <xref:fundamentals/http-requests>:
+> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory>, see the following sections of <xref:fundamentals/http-requests>:
 >
 > * [Outgoing request middleware](xref:fundamentals/http-requests#outgoing-request-middleware)
 > * [Use DI in outgoing request middleware](xref:fundamentals/http-requests#use-di-in-outgoing-request-middleware)
 
-The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to attach a custom user name header for authenticated users to outgoing requests.
+The examples in the following subsections attach a custom user name header for authenticated users to outgoing requests.
+
+### Application scope handler (*Recommended*)
+
+The approach in this section uses a [keyed service](xref:fundamentals/dependency-injection#keyed-services) to register a custom <xref:System.Net.Http.HttpClient> that wraps the base client with an application scope handler resolved from the current application scope to access <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
+
+Overview of the approach:
+
+* Base client configuration: <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> is called to register a [named client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) with <xref:System.Net.Http.IHttpClientFactory>.
+* Keyed registration: A custom `AddApplicationScopeHandler` extension method registers a keyed <xref:System.Net.Http.HttpClient> with the same client name.
+* Scope-aware handler: The application scope handler is resolved from the current scope, giving it access to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
+* Handler caching: The application scope handler uses <xref:System.Net.Http.IHttpMessageHandlerFactory> to get the cached <xref:System.Net.Http.HttpMessageHandler>, which preserves connection pooling.
+* Configuration reuse: The application scope handler applies the same <xref:Microsoft.Extensions.Http.HttpClientFactoryOptions> configuration to its <xref:System.Net.Http.HttpClient> as the base client.
+
+Create the following methods and classes:
+
+* `AddApplicationScopeHandler`: An extension method to add the application scope handler and a keyed <xref:System.Net.Http.HttpClient> service to the DI container.
+* `ApplicationScopeHandler`: The application scope handler class.
+* `AuthenticationStateHandler`: A <xref:System.Net.Http.DelegatingHandler> that attaches a custom user name header for authenticated users to outgoing requests.
+
+`Services/ApplicationScopeHttpClientExtensions.cs`:
+
+```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Http;
+using Microsoft.Extensions.Options;
+
+namespace BlazorSample.Services;
+
+public static class ApplicationScopeHttpClientExtensions
+{
+    public static readonly HttpRequestOptionsKey<IServiceProvider> ScopeKey = 
+        new("ApplicationScope");
+
+    public static IHttpClientBuilder AddApplicationScopeHandler(
+        this IHttpClientBuilder builder)
+    {
+        var name = builder.Name;
+
+        builder.Services.AddTransient<ApplicationScopeHandler>();
+
+        builder.Services.AddKeyedScoped<HttpClient>(name, (sp, key) =>
+        {
+            var handler = sp.GetRequiredService<ApplicationScopeHandler>();
+            handler.InnerHandler = 
+                sp.GetRequiredService<IHttpMessageHandlerFactory>()
+                .CreateHandler(name);
+
+            var client = new HttpClient(handler, disposeHandler: false);
+
+            var options = 
+                sp.GetRequiredService<IOptionsMonitor<HttpClientFactoryOptions>>()
+                .Get(name);
+
+            foreach (var action in options.HttpClientActions)
+            {
+                action(client);
+            }
+
+            return client;
+        });
+
+        return builder;
+    }
+}
+
+public class ApplicationScopeHandler(IServiceProvider serviceProvider) 
+    : DelegatingHandler
+{
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        request.Options.Set(ApplicationScopeHttpClientExtensions.ScopeKey, 
+            serviceProvider);
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+
+public class AuthenticationStateHandler : DelegatingHandler
+{
+    private ClaimsPrincipal? user;
+
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken)
+    {
+        if (user is null)
+        {
+            if (request.Options.TryGetValue(
+                ApplicationScopeHttpClientExtensions.ScopeKey, out var sp))
+            {
+                var authStateProvider = sp.GetService<AuthenticationStateProvider>();
+
+                if (authStateProvider is not null)
+                {
+                    user = (await authStateProvider.GetAuthenticationStateAsync())
+                        .User;
+                }
+            }
+        }
+
+        if (user?.Identity?.IsAuthenticated)
+        {
+            request.Headers.TryAddWithoutValidation("X-USER-IDENTITY-NAME", 
+                user.Identity.Name);
+        }
+
+        return await base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+The `AuthenticationStateHandler` in the preceding example caches the user for the lifetime of the <xref:System.Net.Http.DelegatingHandler>. To fetch the user's current authentication state for each request, remove the `null` conditional check on the user.
+
+Register the named client in the `Program` file, calling `AddApplicationScopeHandler` to add the application scope handler:
+
+```csharp
+builder.Services.AddHttpClient("ExternalApi", client =>
+{
+    client.BaseAddress = new Uri("{REQUEST URI}");
+})
+.AddApplicationScopeHandler()
+.AddHttpMessageHandler<AuthenticationStateHandler>();
+```
+
+The `{REQUEST URI}` placeholder in the preceding example is the request URI (localhost example: `http://localhost:5209`).
+
+Inject the client into components using the keyed service:
+
+```razor
+@using Microsoft.Extensions.DependencyInjection
+
+@code {
+    [Inject(Key = "ExternalApi")]
+    public HttpClient Http { get; set; } = default!;
+
+    private async Task CallApiAsync()
+    {
+        var response = await Http.GetAsync("/api/endpoint");
+    }
+}
+```
+
+### Circuit activity handler
+
+The approach in this section uses a [circuit activity handler](xref:blazor/fundamentals/signalr#monitor-circuit-activity-blazor-server) to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, which is an alternative to the recommended [application scope handler approach](#application-scope-handler-recommended) in the preceding section.
 
 First, implement the `CircuitServicesAccessor` class in the following section of the Blazor dependency injection (DI) article:
 
@@ -908,3 +1063,310 @@ builder.Services.AddHttpClient("HttpMessageHandler")
 ```
 
 :::moniker-end
+
+## Opaque (reference) access token support
+
+The guidance in this section explains how to implement opaque (reference) access token support, which offers the following advantages over JSON Web Tokens (JWTs):
+
+* Strict revocation: Invalidate access tokens at any time before they naturally expire.
+* Token size limits: Store a large number of user claims in the token to avoid a prohibitively large JWT.
+* Security: Prevent API consumers or third parties from reading access token claims.
+
+> [!NOTE]
+> The following guidance requires an authentication server that supports opaque (reference) access tokens. Currently, Microsoft Entra doesn't support opaque access token validation. [Keycloak](https://www.keycloak.org/) and [Okta](https://developer.okta.com/code/) issue JWT access tokens by default. The opaque token handler in this section still works against Keycloak and Okta because it relies only on RFC 7662 introspection. "Opaque" in this section describes how the client treats the token rather than how the server mints it. Alternatively, [Duende IdentityServer](https://duendesoftware.com/products/identityserver) can be configured to only issue opaque tokens.
+>
+> When testing this pattern against Keycloak, the API's introspection client must be a different OIDC client than the one that issued the user's access token. Introspecting a token using the client that minted it returns `{"active": false}` with "`Access token JWT check failed`" in the server's log. This doesn't happen naturally for the following scenario because the Blazor Web App and the Minimal API (`MinimalApiJwt`) are separate clients.
+
+<xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
+
+A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate the status and to retrieve the claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
+
+> [!IMPORTANT]
+> [Duende Software](https://duendesoftware.com/) and [Okta](https://www.okta.com) aren't owned or controlled by Microsoft and might require you to pay a license fee for production use of their services and libraries.
+
+The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a general approach, which might require further development to suit a specific authorization server's requirements. The following handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
+
+Calling an authorization server's introspection endpoint requires authentication. The following example relies on setting the client secret for authentication in the request's Authorization header (base64 encoded credentials) using the [Secret Manager tool](xref:security/app-secrets) for local development and testing.
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+In the following handler, the authorization server's introspection endpoint client secret uses the configuration key `Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret`. For production apps, consider using *client assertions*. For more information, see [Confidential client assertions (Microsoft Entra documentation)](/entra/msal/dotnet/acquiring-tokens/web-apps-apis/confidential-client-assertions).
+
+If the Blazor server project hasn't been initialized for the Secret Manager tool, use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
+
+```dotnetcli
+dotnet user-secrets init
+```
+
+Execute the following command to set the client secret for the authorization server. The `{SECRET}` placeholder is the client secret:
+
+```dotnetcli
+dotnet user-secrets set "Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret" "{SECRET}"
+```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
+
+`Extensions/HttpRequestExtensions.cs`:
+
+```csharp
+namespace MinimalApiJwt.Extensions;
+
+public static class HttpRequestExtensions
+{
+    public static string? ExtractBearerToken(this HttpRequest request)
+    {
+        var authorizationHeader = request.Headers.Authorization.ToString();
+
+        if (!string.IsNullOrEmpty(authorizationHeader) && 
+            authorizationHeader.StartsWith("Bearer ", 
+            StringComparison.OrdinalIgnoreCase))
+        {
+            var token = authorizationHeader["Bearer ".Length..].Trim();
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                return token;
+            }
+        }
+
+        return null;
+    }
+}
+```
+
+`Authentication/OpaqueTokenAuthenticationOptions.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Authentication;
+
+namespace MinimalApiJwt.Authentication;
+
+public class OpaqueTokenAuthenticationOptions : AuthenticationSchemeOptions
+{
+    public const string DefaultScheme = "OpaqueTokenAuthentication";
+    public string? IntrospectionEndpoint { get; set; }
+    public string? ClientId { get; set; }
+    public string? ClientSecret { get; set; }
+}
+```
+
+The following handler attempts to validate an opaque (reference) access token. An HTTP call is made to the authorization server's introspection endpoint with the token and the API's credentials. The response is processed to determine if the token is valid:
+
+* If the token is valid, an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> is created containing the user's claims.
+* If the token is invalid, a failed authorization result is returned.
+
+The handler's options (`Options`) is an instance of `OpaqueTokenAuthenticationOptions` provided by the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> base type, which is configured in the app's `Program` file with the authorization server's introspection endpoint and the API's client ID. The API's client secret is provided by the Secret Manager tool during development.
+
+`IOptionsMonitor<OpaqueTokenAuthenticationOptions>` (`optionsMonitor`) isn't used directly by the handler, but it could be used to support dynamic configuration changes at runtime.
+
+For the request's content in <xref:System.Net.Http.FormUrlEncodedContent>, some servers require a token type hint (`token_type_hint`). For example, the required value might be `access_token`. See your authentication server's documentation for details.
+
+`Authentication/OpaqueTokenAuthenticationHandler.cs`:
+
+```csharp
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
+using MinimalApiJwt.Extensions;
+
+namespace MinimalApiJwt.Authentication;
+
+public class OpaqueTokenAuthenticationHandler(
+    IOptionsMonitor<OpaqueTokenAuthenticationOptions> optionsMonitor,
+    ILoggerFactory logger,
+    UrlEncoder encoder,
+    IHttpClientFactory httpClientFactory)
+    : AuthenticationHandler<OpaqueTokenAuthenticationOptions>(optionsMonitor, 
+        logger, encoder)
+{
+    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
+        var opaqueToken = Request.ExtractBearerToken();
+
+        if (opaqueToken is null)
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Bearer token not found in Authorization header.");
+            return failedResult;
+        }
+
+        var introspectionUri = Options.IntrospectionEndpoint;
+        var clientId = Options.ClientId;
+        var clientSecret = Options.ClientSecret;
+
+        if (string.IsNullOrWhiteSpace(introspectionUri) ||
+            string.IsNullOrWhiteSpace(clientId) ||
+            string.IsNullOrWhiteSpace(clientSecret))
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Opaque token authentication isn't fully configured.");
+            return failedResult;
+        }
+
+        using var client = httpClientFactory.CreateClient();
+
+        // Set the Authorization header (base64 encoded credentials)
+        var authString = Convert.ToBase64String(
+            System.Text.Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}"));
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Basic", authString);
+
+        // Prepare the form-encoded body containing the token
+        var content = new FormUrlEncodedContent(
+        [
+            new KeyValuePair<string, string>("token", opaqueToken)
+        ]);
+
+        // Post to the introspection endpoint
+        var response = await client.PostAsync(introspectionUri, content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var failedResult = AuthenticateResult.Fail(
+                "Introspection endpoint failure.");
+
+            return failedResult;
+        }
+
+        // Parse the JSON response
+        var responseString = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(responseString);
+
+        // The 'active' property determines if the token is valid and not expired
+        var tokenIsValid = 
+            doc.RootElement.TryGetProperty("active", out var activeProperty) &&
+            activeProperty.ValueKind == JsonValueKind.True;
+
+        if (tokenIsValid)
+        {
+            // Map standard introspection response fields onto claims.
+            // Field names below match what Keycloak, Duende IdentityServer,
+            // Auth0, and Okta return; adjust the role source for your provider.
+            var claims = new List<Claim>();
+
+            string? Get(string name) =>
+                doc.RootElement.TryGetProperty(name, out var v) &&
+                v.ValueKind == JsonValueKind.String ? v.GetString() : null;
+
+            var sub = Get("sub");
+            var username = Get("preferred_username") ?? Get("username") ?? sub;
+
+            if (sub is not null) claims.Add(new Claim(ClaimTypes.NameIdentifier, sub));
+            if (username is not null) claims.Add(new Claim(ClaimTypes.Name, username));
+            if (Get("email") is { } email) claims.Add(new Claim(ClaimTypes.Email, email));
+            if ((Get("client_id") ?? Get("azp")) is { } cid)
+                claims.Add(new Claim("client_id", cid));
+            if (Get("scope") is { } scope)
+                foreach (var s in scope.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                    claims.Add(new Claim("scope", s));
+
+            // Keycloak surfaces realm roles under realm_access.roles.
+            // Duende/IdentityServer uses a flat "role" claim; Auth0 uses a
+            // configurable custom claim. Adjust for your authorization server.
+            if (doc.RootElement.TryGetProperty("realm_access", out var ra) &&
+                ra.ValueKind == JsonValueKind.Object &&
+                ra.TryGetProperty("roles", out var roles) &&
+                roles.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var r in roles.EnumerateArray())
+                    if (r.ValueKind == JsonValueKind.String)
+                        claims.Add(new Claim(ClaimTypes.Role, r.GetString()!));
+            }
+
+            var identity = new ClaimsIdentity(claims,
+                OpaqueTokenAuthenticationOptions.DefaultScheme,
+                nameType: ClaimTypes.Name,
+                roleType: ClaimTypes.Role);
+            var principal = new ClaimsPrincipal(identity);
+            var ticket = new AuthenticationTicket(principal,
+                OpaqueTokenAuthenticationOptions.DefaultScheme);
+
+            var result = AuthenticateResult.Success(ticket);
+
+            return result;
+        }
+        else
+        {
+            var failedResult = AuthenticateResult.Fail("Bearer token invalid.");
+
+            return failedResult;
+        }
+    }
+}
+```
+
+> [!NOTE]
+> The preceding approach can be further improved by using the OpenID Connect discovery endpoint and adding a cache for the client's <xref:System.Net.Http.HttpClient> introspection requests.
+
+In the `Program` file:
+
+```csharp
+using MinimalApiJwt.Authentication;
+
+...
+
+builder.Services.AddHttpClient();
+builder.Services.AddAuthentication()
+    .AddScheme<OpaqueTokenAuthenticationOptions, OpaqueTokenAuthenticationHandler>(
+        OpaqueTokenAuthenticationOptions.DefaultScheme,
+        options =>
+        {
+            options.IntrospectionEndpoint = "{AUTH SERVER INTROSPECTION URI}";
+            options.ClientId = "{API CLIENT ID}";
+            options.ClientSecret = 
+                builder.Configuration[
+                    "Authentication:Schemes:OpaqueTokenAuthentication:ClientSecret"];
+        });
+```
+
+The preceding example's placeholders:
+
+* `{AUTH SERVER INTROSPECTION URI}`: Authentication server's introspection URI
+* `{API CLIENT ID}`: API client ID
+
+Values for the authentication server introspection URI (`{AUTH SERVER INTROSPECTION URI}`) and the API client ID (`{API CLIENT ID}`) can be supplied from app settings or any other configuration source.
+
+Tokens are typically invalidated on a logout event using the revocation endpoint. The following example is a starting point for further development:
+
+```csharp
+app.MapPost("/logout", 
+    async ([FromForm] string? returnUrl, HttpContext context, 
+    IHttpClientFactory httpClientFactory) =>
+{
+    var accessToken = await context.GetTokenAsync("access_token");
+
+    if (!string.IsNullOrEmpty(accessToken))
+    {
+        // Prepare the revocation request (RFC 7009)
+        var content = 
+            new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "token", accessToken },
+                { "token_type_hint", "access_token" },
+                { "client_id", "{API CLIENT ID}" },
+                { "client_secret", "{CLIENT SECRET}" }
+            });
+
+        // POST to the revocation endpoint
+        using var client = httpClientFactory.CreateClient();
+        await client.PostAsync("{AUTH SERVER TOKEN REVOCATION URI}", content);
+    }
+
+    return TypedResults.SignOut(new AuthenticationProperties { RedirectUri = "{REDIRECT URI}" }, 
+        [CookieAuthenticationDefaults.AuthenticationScheme]);
+});
+```
+
+The preceding example's placeholders:
+
+* `{AUTH SERVER TOKEN REVOCATION URI}`: The authentication server's token revocation URI.
+* `{API CLIENT ID}`: The API client ID.
+* `{CLIENT SECRET}`: The client secret obtained securely.
+* `{REDIRECT URI}`: The redirect URI.
+
+In [Duende IdentityServer](https://duendesoftware.com/products/identityserver), tokens are revoked automatically by setting the `CoordinateLifetimeWithUserSession` client configuration property to `true`, which automatically cleans up associated tokens when a session ends. For more information, see [Session Cleanup and Logout (Duende documentation)](https://docs.duendesoftware.com/identityserver/ui/logout/session-cleanup/).
+
+Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).

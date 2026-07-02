@@ -5,7 +5,7 @@ author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 04/24/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 uid: data/dotnet-scaffold-rp

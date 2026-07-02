@@ -1,7 +1,7 @@
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-8.0"
 
-By [Shadi Alnamrouti](https://stackoverflow.com/users/3380497/shadi-alnamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://github.com/ardalis)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://github.com/ardalis)
 
 ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection (DI)](xref:fundamentals/dependency-injection). DI makes apps easier to test and maintain.
 
@@ -54,6 +54,28 @@ Configure the app to read the settings from a JSON-formatted file:
 The following code requests the `IOptions<SampleWebSettings>` settings from the service container and uses them in the `Index` method:
 
 [!code-csharp[](~/mvc/controllers/dependency-injection/3.1sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
+
+## Controllers as services
+
+By default, ASP.NET Core doesn't register controllers as services in the DI container. The runtime uses the [DefaultControllerActivator](https://source.dot.net/#Microsoft.AspNetCore.Mvc.Core/Controllers/DefaultControllerActivator.cs) to create controller instances and resolves services from the DI container for constructor parameters, but the controller itself isn't resolved from the container.
+
+Calling `AddControllersAsServices` registers all controllers as services in the DI container:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews().AddControllersAsServices();
+}
+```
+
+Registering controllers as services enables:
+
+* Intercepting controller creation with a custom `IControllerActivator`.
+* Using any DI lifetime management for controllers.
+* Injecting services into controllers using any registered constructor, since the DI container selects the constructor.
+
+> [!NOTE]
+> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
 
 ## Additional resources
 
@@ -117,6 +139,28 @@ The following code requests the `IOptions<SampleWebSettings>` settings from the 
 
 [!code-csharp[](~/mvc/controllers/dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 
+## Controllers as services
+
+By default, ASP.NET Core doesn't register controllers as services in the DI container. The runtime uses the [DefaultControllerActivator](https://source.dot.net/#Microsoft.AspNetCore.Mvc.Core/Controllers/DefaultControllerActivator.cs) to create controller instances and resolves services from the DI container for constructor parameters, but the controller itself isn't resolved from the container.
+
+Calling `AddControllersAsServices` registers all controllers as services in the DI container:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc().AddControllersAsServices();
+}
+```
+
+Registering controllers as services enables:
+
+* Intercepting controller creation with a custom `IControllerActivator`.
+* Using any DI lifetime management for controllers.
+* Injecting services into controllers using any registered constructor, since the DI container selects the constructor.
+
+> [!NOTE]
+> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
+
 ## Additional resources
 
 * See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
@@ -124,3 +168,4 @@ The following code requests the `IOptions<SampleWebSettings>` settings from the 
 * [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).
 
 :::moniker-end
+

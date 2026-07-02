@@ -1,6 +1,6 @@
 // <snippet_AddAuthentication>
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
+using Google.Apis.Auth.AspNetCore3;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +8,10 @@ builder.Services
     .AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
     })
     .AddCookie()
-    .AddGoogle(options =>
+    .AddGoogleOpenIdConnect(options =>
     {
         options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
         options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];

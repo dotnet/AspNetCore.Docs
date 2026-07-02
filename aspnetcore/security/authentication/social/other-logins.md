@@ -32,8 +32,6 @@ The following list includes common external OAuth authentication providers that 
 
 * [Pinterest](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F) ([Instructions](https://developers.pinterest.com/docs/api/overview/?))
 
-* [Pocket](https://getpocket.com/developer/apps/new) ([Instructions](https://getpocket.com/developer/docs/authentication))
-
 * [Flickr](https://www.flickr.com/services/apps/create) ([Instructions](https://www.flickr.com/services/api/auth.oauth.html))
 
 * [Dribbble](https://dribbble.com/signup) ([Instructions](https://developer.dribbble.com))

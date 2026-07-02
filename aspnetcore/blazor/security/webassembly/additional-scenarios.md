@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -26,7 +26,8 @@ For convenience, the framework provides the <xref:Microsoft.AspNetCore.Component
 In the following example:
 
 * <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> adds <xref:System.Net.Http.IHttpClientFactory> and related services to the service collection and configures a named <xref:System.Net.Http.HttpClient> (`WebAPI`). <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is the base address of the resource URI when sending requests. <xref:System.Net.Http.IHttpClientFactory> is provided by the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package.
-* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is the <xref:System.Net.Http.DelegatingHandler> used to process access tokens. Access tokens are only added when the request URI is within the app's base URI.
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is the <xref:System.Net.Http.DelegatingHandler> used to process access tokens. Access tokens are only added when the request URI is within the app's base URI. For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+
 * <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A?displayProperty=nameWithType> creates and configures an <xref:System.Net.Http.HttpClient> instance for outgoing requests using the configuration that corresponds to the named <xref:System.Net.Http.HttpClient> (`WebAPI`).
 
 In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A?displayProperty=nameWithType> is an extension in <xref:Microsoft.Extensions.Http?displayProperty=fullName>. Add the package to an app that doesn't already reference it.
@@ -337,7 +338,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 :::moniker-end
 
-The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) package), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API. If the request URI is a relative URI, as it is in the following example (`ExampleAPIMethod`), it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress> when the client app makes the request:
+The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http` package](https://www.nuget.org/packages/Microsoft.Extensions.Http)), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API. If the request URI is a relative URI, as it is in the following example (`ExampleAPIMethod`), it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress> when the client app makes the request:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -541,7 +542,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 The preceding registration is in addition to the existing secure default <xref:System.Net.Http.HttpClient> registration.
 
-A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) package) to make unauthenticated or unauthorized requests:
+A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> ([`Microsoft.Extensions.Http` package](https://www.nuget.org/packages/Microsoft.Extensions.Http)) to make unauthenticated or unauthorized requests:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -1341,7 +1342,7 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 ```json
 {
   "Local": {
-    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0",
     ...
   }
 }

@@ -1,11 +1,8 @@
 :::moniker range="= aspnetcore-6.0"
 
-This document:
+This document provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
 
-* Provides a quick reference for minimal APIs.
-* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
-
-The minimal APIs consist of:
+The Minimal APIs consist of:
 
 * <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>
 * Route handlers
@@ -267,7 +264,7 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 ## ASP.NET Core Middleware
 
-The following table lists some of the middleware frequently used with minimal APIs.
+The following table lists some of the middleware frequently used with Minimal APIs.
 
 | Middleware | Description | API |
 |--|--|--|
@@ -278,7 +275,7 @@ The following table lists some of the middleware frequently used with minimal AP
 | [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
 | [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
 | [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
-| [Request Logging](xref:fundamentals/logging/index?view=aspnetcore-6.0) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
+| [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> |
@@ -434,7 +431,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 
 ### Parameter binding with DI
 
-Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for Minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
 
@@ -753,6 +750,6 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## See also
 
-[OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi)
+[OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi)
 
 :::moniker-end

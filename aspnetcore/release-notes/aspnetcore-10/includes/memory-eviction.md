@@ -48,7 +48,7 @@ public class MyBackgroundService : BackgroundService
 }
 ```
 
-To use your own memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way also benefit from the automatic eviction feature:
+To use your own memory pool factory, make a class that implements `IMemoryPoolFactory` and register it with dependency injection, as the following example does. Memory pools created this way do not benefit from the automatic eviction feature unless you implement similar eviction logic in your custom factory:
 
 ```csharp
 services.AddSingleton<IMemoryPoolFactory<byte>,

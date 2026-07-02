@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Overview)
 author: guardrex
 description: This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
 ms.author: wpickett
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 monikerRange: '>= aspnetcore-8.0'
 ms.custom: mvc
 uid: blazor/tutorials/movie-database-app/index
@@ -29,10 +29,8 @@ At the end of the tutorial, you'll have a Blazor Web App that can display and ma
 
 ## Secure authentication flow required for production apps
 
-This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
+This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see <xref:blazor/security/index> and the following articles in the *Server* security node:
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
 * <xref:blazor/security/blazor-web-app-entra>
 
@@ -46,6 +44,28 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 ## Sample app
 
 If you don't intend to create the demonstration app while reading the article, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.
+
+To run the sample locally, apply the pending migrations, which include a migration to create the database. Use the following instructions:
+
+If the [`dotnet-ef` tool](/ef/core/miscellaneous/cli/dotnet) isn't installed, install the tool with the following command from either a command shell, the Developer PowerShell command shell in Visual Studio, or the **Terminal** PowerShell command shell in VS Code:
+
+```dotnetcli
+dotnet tool install --global dotnet-ef
+```
+
+From a command shell opened to the project's root folder (the project directory containing the `BlazorWebAppMovies.csproj` file), execute the following command:
+
+```dotnetcli
+dotnet ef database update
+```
+
+After executing the preceding command, run the sample using any of the following approaches:
+
+* Visual Studio
+  * Select the **Run** button.
+  * Use **Debug** > **Start Debugging** from the menu.
+  * Press <kbd>F5</kbd>.
+* .NET CLI command shell: Execute the `dotnet watch` (or `dotnet run`) command from the project's root folder.
 
 ## Article code examples
 

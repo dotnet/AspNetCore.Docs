@@ -5,7 +5,7 @@ description: Learn how to implement EU General Data Protection Regulation (GDPR)
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/16/2025
+ms.date: 11/11/2025
 uid: blazor/security/gdpr
 zone_pivot_groups: blazor-app-models
 ---

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Google;
+using Google.Apis.Auth.AspNetCore3;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,7 +12,7 @@ public class PrivacyModel : PageModel
     public async Task OnGetAsync()
     {
         var accessToken = await HttpContext.GetTokenAsync(
-            GoogleDefaults.AuthenticationScheme, "access_token");
+            GoogleOpenIdConnectDefaults.AuthenticationScheme, "access_token");
 
         // ...
     }

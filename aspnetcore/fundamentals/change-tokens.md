@@ -85,7 +85,7 @@ In `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Startup.cs?name=snippet3)]
 
-The `state` of the callback is used to pass in the `IWebHostEnvironment`, which is useful for specifying the correct `appsettings` configuration file to monitor (for example, `appsettings.Development.json` when in the Development environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
+The `state` of the callback is used to pass in the `IWebHostEnvironment`, which is useful for specifying the correct `appsettings` configuration file to monitor (for example, `appsettings.Development.json` when in the `Development` environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
 
 This system runs as long as the app is running and can't be disabled by the user.
 
@@ -283,7 +283,7 @@ In `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Startup.cs?name=snippet3)]
 
-The `state` of the callback is used to pass in the `IHostingEnvironment`, which is useful for specifying the correct `appsettings` configuration file to monitor (for example, `appsettings.Development.json` when in the Development environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
+The `state` of the callback is used to pass in the `IHostingEnvironment`, which is useful for specifying the correct `appsettings` configuration file to monitor (for example, `appsettings.Development.json` when in the `Development` environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
 
 This system runs as long as the app is running and can't be disabled by the user.
 

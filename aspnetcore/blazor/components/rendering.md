@@ -5,7 +5,7 @@ description: Learn about Razor component rendering in ASP.NET Core Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/components/rendering
 ---
 # ASP.NET Core Razor component rendering
@@ -57,9 +57,9 @@ To stream content updates when using static server-side rendering (static SSR) o
 
 :::moniker range=">= aspnetcore-10.0"
 
-If [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) is active, streaming rendering renders [Not Found responses](xref:blazor/fundamentals/routing#not-found-responses) without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. 
+If [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) is active, streaming rendering renders [Not Found responses](xref:blazor/fundamentals/navigation#not-found-responses) without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. 
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](xref:blazor/fundamentals/routing#not-found-responses) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](xref:blazor/fundamentals/navigation#not-found-responses) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
 
 Streaming `NavigationManager.NotFound` content rendering uses (in order):
 
@@ -349,7 +349,4 @@ The state manager approach is similar to the earlier case with <xref:System.Time
 
 ## WebAssembly loading progress indicator for Blazor Web Apps
 
-<!-- UPDATE 10.0 Will be removed for a new feature in this area. 
-                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
-
-A loading progress indicator isn't present in an app created from the Blazor Web App project template. A new loading progress indicator feature is planned for a future release of .NET. In the meantime, an app can adopt custom code to create a loading progress indicator. For more information, see <xref:blazor/fundamentals/startup#client-side-loading-indicators>.
+An app can adopt custom code to create a loading progress indicator. For more information, see <xref:blazor/fundamentals/startup#client-side-loading-indicators>.

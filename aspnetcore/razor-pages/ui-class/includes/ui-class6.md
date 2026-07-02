@@ -9,7 +9,7 @@ For information on how to integrate npm and webpack into the build process for a
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create new a new project**.
+* From Visual Studio's **Start Window**, select **Create a new project**. Alternatively, select **File** > **New** > **Project/Solution**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
@@ -135,7 +135,7 @@ The consuming app references static assets provided by the library with `<script
 
 [!code-csharp[](~/razor-pages/ui-class/6samples/MvcProgram.cs?highlight=15)]
 
-When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
+When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
 
 [!code-csharp[](~/razor-pages/ui-class/6samples/cli/WebApp1/Program.cs?name=snippet1&highlight=3)]
 
@@ -175,7 +175,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create a new project**.
+* From Visual Studio's **Start Window**, select **Create a new project**. Alternatively, select the **File** > **New** > **Project/Solution**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create** > **Next**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select the **Target Framework**. Check **☑ Support pages and views** to support views. By default, only Razor components are supported. Select **Create**.
@@ -304,7 +304,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call `UseStaticWebAssets` on the host builder in `Program.cs`:
+When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call `UseStaticWebAssets` on the host builder in `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Hosting;
@@ -564,7 +564,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create new a new project**.
+* From Visual Studio's **Start Window**, select **Create a new project**. Alternatively, select the **File** > **New** > **Project/Solution**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
@@ -699,7 +699,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call `UseStaticWebAssets` on the host builder in `Program.cs`:
+When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call `UseStaticWebAssets` on the host builder in `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Hosting;

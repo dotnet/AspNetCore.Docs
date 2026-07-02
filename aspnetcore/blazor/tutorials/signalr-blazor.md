@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2024
+ms.date: 11/11/2025
 uid: blazor/tutorials/signalr-blazor
 ---
 # Use ASP.NET Core SignalR with Blazor
@@ -156,7 +156,7 @@ In the **Manage NuGet Packages** dialog, confirm that the **Package source** is 
 
 With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-In the search results, select the latest release of the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Select **Install**.
+In the search results, select the latest release of the [`Microsoft.AspNetCore.SignalR.Client` package](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client). Select **Install**.
 
 If the **Preview Changes** dialog appears, select **OK**.
 
@@ -348,7 +348,7 @@ In the **Manage NuGet Packages** dialog, confirm that the **Package source** is 
 
 With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-In the search results, select the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Install**.
+In the search results, select the [`Microsoft.AspNetCore.SignalR.Client` package](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client). Set the version to match the shared framework of the app. Select **Install**.
 
 If the **Preview Changes** dialog appears, select **OK**.
 

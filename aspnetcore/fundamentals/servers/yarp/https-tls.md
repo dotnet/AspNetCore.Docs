@@ -5,7 +5,7 @@ description: YARP HTTPS & TLS
 author: wadepickett
 ms.author: wpickett
 ms.date: 02/14/2025
-ms.topic: article
+ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,7 @@ HTTPS (HTTP over TLS encrypted connections) is the standard way to make HTTP req
 
 ## TLS Termination
 
-YARP is a level 7 HTTP proxy which means that incoming HTTPS/TLS connections are fully decrypted by the proxy so it can process and forward the HTTP requests. This is commonly known as TLS Termination. The outgoing connections to the destination(s) may or may not be encrypted, depending on the configuration provided.
+YARP is a level 7 HTTP proxy which means that incoming HTTPS/TLS connections are fully decrypted by the proxy so it can process and forward the HTTP requests. This is commonly known as TLS Termination. The outgoing connections to the destinations may or may not be encrypted, depending on the configuration provided.
 
 ## TLS tunneling (CONNECT)
 
@@ -32,7 +32,7 @@ Kestrel supports intercepting incoming connections before the TLS handshake. YAR
 
 ## Configuring outgoing connections
 
-To enable TLS encryption when communicating with a destination specify the destination address as `https` like `"https://destinationHost"`. See the [configuration docs](config-files.md#configuration-structure) for examples.
+To enable TLS encryption when communicating with a destination specify the destination address as `https` like `"https://destinationHost"`. See the [configuration docs](config-files.md#examine-the-configuration-structure) for examples.
 
 The host name specified in the destination address will be used for the TLS handshake by default, including SNI and server certificate validation. If proxying the [original host header](xref:fundamentals/servers/yarp/transforms#requestheaderoriginalhost) is enabled, that value will be used for the TLS handshake instead. If a custom host value needs to be used then use the [RequestHeader](xref:fundamentals/servers/yarp/transforms#requestheader) transform to set the host header.
 

@@ -316,7 +316,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
 
-1. In the Azure Portal, navigate to the web app.
+1. In the Azure portal, navigate to the web app.
 1. In the **App Service** blade, enter **kudu** in the search box.
 1. Select **Advanced Tools** > **Go**.
 1. Select  **Debug console > CMD**.
@@ -487,7 +487,7 @@ For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enha
 
 ### Enable the Developer Exception Page
 
-The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) to run the app in the Development environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](xref:fundamentals/error-handling) to appear when the app is run.
+The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](xref:fundamentals/error-handling) to appear when the app is run.
 
 ```xml
 <aspNetCore processPath="dotnet"
