@@ -62,7 +62,7 @@ Some solutions are free and open source, while others are commercially licensed.
 
 ## Disconnected scenarios
 
-Many solutions, such as [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. 
+Many solutions, such as [Microsoft Entra ID](/entra/fundamentals/what-is-entra), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. 
 
 ASP.NET Core Identity works perfectly well in disconnected scenarios, such as:
 
