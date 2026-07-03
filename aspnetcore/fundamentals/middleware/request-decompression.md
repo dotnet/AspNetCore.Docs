@@ -4,8 +4,9 @@ author: tdykstra
 description: Learn how to use the request decompression middleware in ASP.NET Core
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
-ms.date: 8/17/2022
+ms.date: 06/30/2026
 uid: fundamentals/middleware/request-decompression
+ai-usage: ai-assisted
 ---
 # Request decompression in ASP.NET Core
 
@@ -29,7 +30,17 @@ Requests that don't include a `Content-Encoding` header are ignored by the reque
 Decompression:
 
 * Occurs when the body of the request is read. That is, decompression occurs at the endpoint on model binding. The request body isn't decompressed eagerly.
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
+
 * When attempting to read the decompressed request body with invalid compressed data for the specified `Content-Encoding`, an exception is thrown. Brotli can throw <xref:System.InvalidOperationException?displayProperty=fullName>: :::no-loc text="Decoder ran into invalid data."::: Deflate and GZip can throw <xref:System.IO.InvalidDataException?displayProperty=fullName>: :::no-loc text="The archive entry was compressed using an unsupported compression method.":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+* When attempting to read the decompressed request body with invalid compressed data for the specified `Content-Encoding`, an exception is thrown. Brotli can throw <xref:System.InvalidOperationException?displayProperty=fullName>: :::no-loc text="Decoder ran into invalid data."::: Deflate, GZip, and Zstandard can throw <xref:System.IO.InvalidDataException?displayProperty=fullName>: :::no-loc text="The archive entry was compressed using an unsupported compression method.":::
+
+:::moniker-end
 
 If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values is passed to the next delegate in the pipeline.
 
@@ -45,11 +56,26 @@ The following code uses <xref:Microsoft.Extensions.DependencyInjection.RequestDe
 
 The `Content-Encoding` header values that the request decompression middleware supports by default are listed in the following table:
 
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
+
 | [`Content-Encoding`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding) header values | Description |
 | --------- | --------- |
 | `br`      | [Brotli compressed data format](https://tools.ietf.org/html/rfc7932) |
 | `deflate` | [DEFLATE compressed data format](https://tools.ietf.org/html/rfc1951) |
 | `gzip`    | [Gzip file format](https://tools.ietf.org/html/rfc1952) |
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+| [`Content-Encoding`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding) header values | Description |
+| --------- | --------- |
+| `br`      | [Brotli compressed data format](https://tools.ietf.org/html/rfc7932) |
+| `deflate` | [DEFLATE compressed data format](https://tools.ietf.org/html/rfc1951) |
+| `gzip`    | [Gzip file format](https://tools.ietf.org/html/rfc1952) |
+| `zstd`    | [Zstandard compressed data format](https://tools.ietf.org/html/rfc8878) |
+
+:::moniker-end
 
 ## Custom decompression providers
 
@@ -90,3 +116,4 @@ In order of precedence, the maximum request size for an endpoint is set by:
 * [Brotli Compressed Data Format](https://www.rfc-editor.org/rfc/rfc7932)
 * [DEFLATE Compressed Data Format Specification version 1.3](https://www.rfc-editor.org/rfc/rfc1951)
 * [GZIP file format specification version 4.3](https://www.rfc-editor.org/rfc/rfc1952)
+* [RFC 8878: Zstandard Compression for HTTP](https://www.rfc-editor.org/rfc/rfc8878)
