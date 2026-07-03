@@ -1,9 +1,10 @@
 ---
 title: Migrate from ASP.NET Framework to ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
 ms.author: wpickett
-ms.date: 12/04/2025
+ms.date: 07/03/2026
 uid: migration/fx-to-core/index
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
@@ -65,6 +66,9 @@ For documentation around important areas that have changed, see the associated t
 ## Start here: Choose your migration path
 
 Your ASP.NET Framework application can successfully move to ASP.NET Core. The key is choosing the right approach for your specific situation.
+
+> [!TIP]
+> Regardless of the path you choose, the [GitHub Copilot app modernization agent](/dotnet/core/porting/github-copilot-app-modernization/overview) can assess your solution, generate an upgrade plan, and automate many of the migration steps. For more information, see <xref:migration/fx-to-core/tooling>.
 
 ### Quick decision guide
 
