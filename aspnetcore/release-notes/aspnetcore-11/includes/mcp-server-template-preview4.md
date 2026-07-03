@@ -1,6 +1,6 @@
 ### MCP Server template ships with the .NET SDK
 
-The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that lets AI applications and agents, such as those in Visual Studio, Visual Studio Code, and GitHub Copilot, discover and call external tools, data, and services through a consistent interface. An *MCP server* exposes your own functionality, for example custom tools or access to a data source, so that an AI host can invoke it on the user's behalf.
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that AI applications and agents, such as those in Visual Studio, Visual Studio Code, and GitHub Copilot, use to discover and call external tools, data, and services through a consistent interface. An *MCP server* exposes your own functionality, such as custom tools or access to a data source, so an AI host can invoke it on the user's behalf.
 
 Use the `mcpserver` template when you want to build a C# MCP server that integrates your code or services with AI-powered tools. The generated project uses the [official C# SDK for MCP](https://github.com/modelcontextprotocol/csharp-sdk) and includes a working sample tool, so you have a runnable starting point to extend with your own tools.
 
