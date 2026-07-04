@@ -6,7 +6,7 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 12/17/2025
+ms.date: 07/06/2026
 uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
@@ -1120,7 +1120,13 @@ For more information on using a shared Data Protection key ring and key storage 
 
 ## YARP forwarder destination prefix
 
-The Blazor Web App server project's YARP forwarder, where the user's access token is attached to the `MinimalApiJwt` web API call, specifies a destination prefix of `https://weatherapi`. This value matches the project name passed to <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> in the `Program` file of the `Aspire.AppHost` project.
+<!-- UPDATE 11.0 - Awaiting the reappearance of Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject
+                   in the API Browswer 
+                   
+                   xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A
+-->
+
+The Blazor Web App server project's YARP forwarder, where the user's access token is attached to the `MinimalApiJwt` web API call, specifies a destination prefix of `https://weatherapi`. This value matches the project name passed to `Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject` in the `Program` file of the `Aspire.AppHost` project.
 
 Forwarder in the Blazor Web App server project (`BlazorWebAppEntra`):
 

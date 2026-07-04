@@ -6,7 +6,7 @@ description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 02/06/2026
+ms.date: 07/06/2026
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
@@ -660,7 +660,7 @@ public record Todo(
 
 #### required
 
-In a class, struct, or record, properties with the [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) attribute or [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier are always `required` in the corresponding schema.
+In a class, struct, or record, properties with the [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) attribute or [`required`](/dotnet/csharp/language-reference/keywords/required) modifier are always `required` in the corresponding schema.
 
 Other properties may also be required based on the constructors (implicit and explicit) for the class, struct, or record.
 
