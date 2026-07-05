@@ -1121,7 +1121,7 @@ For more information on using a shared Data Protection key ring and key storage 
 ## YARP forwarder destination prefix
 
 <!-- UPDATE 11.0 - Awaiting the reappearance of Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject
-                   in the API Browswer 
+                   in the API Browser 
                    
                    xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A
 -->
