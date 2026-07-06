@@ -5,12 +5,12 @@ description: The features described in this article are obsolete as of ASP.NET C
 monikerRange: '>= aspnetcore-2.1 <= aspnetcore-3.0'
 ms.author: wpickett
 ms.custom: H1Hack27Feb2017
-ms.date: 09/06/2019
+ms.date: 07/06/2026
 uid: client-side/spa-services
 ---
 # Use JavaScript Services to Create Single Page Applications in ASP.NET Core
 
-By [Fiyaz Hasan](https://fiyazhasan.me/)
+By [Fiyaz Hasan](https://github.com/fiyazbinhasan)
 
 :::moniker range=">= aspnetcore-3.0"
 

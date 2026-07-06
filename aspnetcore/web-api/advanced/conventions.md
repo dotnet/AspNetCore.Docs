@@ -5,7 +5,7 @@ description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/25/2026
+ms.date: 07/06/2026
 uid: web-api/advanced/conventions
 ---
 # Use web API conventions
@@ -13,7 +13,7 @@ uid: web-api/advanced/conventions
 :::moniker range=">= aspnetcore-10.0"
 
 > [!WARNING]
-> The web API analyzers used with these conventions are deprecated as of .NET 10 and will be removed in a future release. Setting `IncludeOpenAPIAnalyzers` to `true` emits warning `ASPDEPR007`. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0).
+> The web API analyzers used with these conventions are deprecated as of .NET 10 and will be removed in a future release. Setting `IncludeOpenAPIAnalyzers` to `true` emits warning `ASPDEPR007`. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0&preserve-view=true).
 
 :::moniker-end
 

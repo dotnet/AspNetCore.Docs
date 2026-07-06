@@ -5,12 +5,12 @@ description: Learn how to design SignalR APIs for compatibility across versions 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 07/06/2026
 uid: signalr/api-design
 ---
 # SignalR API design considerations
 
-By [Andrew Stanton-Nurse](https://twitter.com/anurse)
+By [Ashley Stanton-Nurse](https://github.com/analogrelay)
 
 This article provides guidance for building SignalR-based APIs.
 
