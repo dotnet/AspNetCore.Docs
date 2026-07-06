@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 04/02/2026
+ms.date: 07/05/2026
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -25,7 +25,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 [!INCLUDE [](~/includes/10.0-SDK.md)]
 
-## Quick start: Add two custom properties
+## Quickstart: Add two custom properties
 
 For the common case of adding two custom properties such as `FirstName` and `LastName`:
 
