@@ -1,11 +1,12 @@
 ---
 title: Static files in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and Static File Middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/31/2026
+ms.date: 07/06/2026
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -40,6 +41,9 @@ Map Static Assets provides the following benefits:
     * Generate link tags in the `<head>` content of the page to preload assets.
 
 Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
+
+> [!NOTE]
+> [Default documents](#serve-default-documents) are served compressed by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> only when Default Files Middleware (<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>) runs before Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
 
 :::moniker-end
 
@@ -801,6 +805,9 @@ Setting a default page provides visitors a starting point on a site. To serve a 
 ```csharp
 app.UseDefaultFiles();
 ```
+
+> [!NOTE]
+> When <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is used (.NET 9 or later), default documents are served compressed only when <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> runs before Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
 
 With <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>, requests to a folder in `wwwroot` search for:
 
