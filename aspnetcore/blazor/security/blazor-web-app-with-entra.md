@@ -1120,13 +1120,7 @@ For more information on using a shared Data Protection key ring and key storage 
 
 ## YARP forwarder destination prefix
 
-<!-- UPDATE 11.0 - Awaiting the reappearance of Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject
-                   in the API Browser 
-                   
-                   xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A
--->
-
-The Blazor Web App server project's YARP forwarder, where the user's access token is attached to the `MinimalApiJwt` web API call, specifies a destination prefix of `https://weatherapi`. This value matches the project name passed to `Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject` in the `Program` file of the `Aspire.AppHost` project.
+The Blazor Web App server project's YARP forwarder, where the user's access token is attached to the `MinimalApiJwt` web API call, specifies a destination prefix of `https://weatherapi`. This value matches the project name passed to [`AddProject`](https://aspire.dev/reference/api/csharp/aspire.hosting/projectresourcebuilderextensions/methods/#addproject-idistributedapplicationbuilder-string) in the `AppHost.cs` file of the `Aspire.AppHost` project.
 
 Forwarder in the Blazor Web App server project (`BlazorWebAppEntra`):
 
@@ -1137,7 +1131,7 @@ app.MapForwarder("/weather-forecast", "https://weatherapi", transformBuilder =>
 }).RequireAuthorization();
 ```
 
-Matching project name in the `Program` file of the Aspire App Host project (`Aspire.AppHost`):
+Matching project name in the `AppHost.cs` file of the Aspire App Host project (`Aspire.AppHost`):
 
 ```csharp
 var weatherApi = builder.AddProject<Projects.MinimalApiJwt>("weatherapi");
