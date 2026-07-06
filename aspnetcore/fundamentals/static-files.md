@@ -807,7 +807,7 @@ app.UseDefaultFiles();
 ```
 
 > [!NOTE]
-> When <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is used (.NET 9 or later), default documents are served compressed only when <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> runs before Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
+> When <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is used (.NET 9 or later), default documents are served compressed only when <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> is called before <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. This ordering ensures the path rewrite to the default document (for example, `/` to `/index.html`) happens before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset.
 
 With <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>, requests to a folder in `wwwroot` search for:
 
