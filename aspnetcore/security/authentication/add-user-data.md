@@ -32,9 +32,9 @@ For the common case of adding two custom properties such as `FirstName` and `Las
 1. Create a new ASP.NET Core project with Individual Accounts authentication
 1. Scaffold Identity to override the Register and Manage/Index pages
 1. Add custom properties such as `FirstName` and `LastName` to the user class, with the `[PersonalData]` attribute.
-1. Update the Register and Manage/Index pages to include input fields for your properties
-1. Create and apply a migration
-1. Test registration and profile management
+1. Update the Register and Manage/Index pages to include input fields for your properties.
+1. Create and apply a migration.
+1. Test registration and profile management.
 
 The sections below provide detailed step-by-step instructions for this process.
 
