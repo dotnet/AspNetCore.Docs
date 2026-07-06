@@ -5,6 +5,7 @@ author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and Static File Middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
+ms.reviewer: wpickett
 ms.custom: mvc
 ms.date: 07/06/2026
 uid: fundamentals/static-files
@@ -13,7 +14,7 @@ uid: fundamentals/static-files
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Static files, also called static assets, are files an ASP.NET Core app that aren't dynamically generated. Instead, they're served directly to clients on request, such as HTML, CSS, image, and JavaScript files.
+Static files, also called static assets, are files in an ASP.NET Core app that aren't dynamically generated. Instead, the app serves them directly to clients on request. Examples of static files include HTML, CSS, image, and JavaScript files.
 
 For Blazor static files guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/static-files>.
 
@@ -21,7 +22,7 @@ For Blazor static files guidance, which adds to or supersedes the guidance in th
 
 To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. 
 
-By default, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the wwwroot folder will be addressable, so you don't need to worry about the rest of your code.
+By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
 Only files with specific file extensions mapped to supported media types are treated as static web assets.
 
@@ -37,7 +38,7 @@ Map Static Assets provides the following benefits:
 * [Fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting) for all assets at build time with a [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded string of the [SHA-256](xref:System.Security.Cryptography.SHA256) hash of each file's content. This prevents reusing an old version of a file, even if the old file is cached. Fingerprinted assets are cached using the [`immutable` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives), which results in the browser never requesting the asset again until it changes. For browsers that don't support the `immutable` directive, a [`max-age` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives) is added.
   * Even if an asset isn't fingerprinted, content based `ETags` are generated for each static asset using the fingerprint hash of the file as the `ETag` value. This ensures that the browser only downloads a file if its content changes (or the file is being downloaded for the first time).
   * Internally, the framework maps physical assets to their fingerprints, which allows the app to:
-    * Find automatically-generated assets, such as Razor component scoped CSS for Blazor's [CSS isolation feature](xref:blazor/components/css-isolation) and JS assets described by [JS import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap).
+    * Find automatically generated assets, such as Razor component scoped CSS for Blazor's [CSS isolation feature](xref:blazor/components/css-isolation) and JS assets described by [JS import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap).
     * Generate link tags in the `<head>` content of the page to preload assets.
 
 Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
@@ -51,7 +52,7 @@ Map Static Assets doesn't provide features for minification or other file transf
 
 To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>. 
 
-By default, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the wwwroot folder will be addressable, so you don't need to worry about the rest of your code.
+By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
 At runtime, static web assets are returned by Static File Middleware when requested with asset modification and content type headers applied. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set.
 
@@ -63,9 +64,9 @@ You can also serve static web assets from [referenced projects and packages](xre
 
 ## Change the web root directory
 
-Use the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method if you want to change the web root. For more information, see <xref:fundamentals/index#web-root>.
+To change the web root, use the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method. For more information, see <xref:fundamentals/index#web-root>.
 
-Prevent publishing files in `wwwroot` with the [`<Content>` project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in `wwwroot/local` and its sub-directories:
+Prevent publishing files in `wwwroot` by using the [`<Content>` project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in `wwwroot/local` and its subdirectories:
 
 ```xml
 <ItemGroup>
@@ -95,7 +96,7 @@ Host.CreateDefaultBuilder(args)
 
 :::moniker range=">= aspnetcore-9.0"
 
-In the request processing pipeline after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> in the app's request processing pipeline to enable serving static files from the app's [web root](xref:fundamentals/index#web-root):
+In the request processing pipeline, after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> to enable serving static files from the app's [web root](xref:fundamentals/index#web-root):
 
 ```csharp
 app.MapStaticAssets();
@@ -105,7 +106,7 @@ app.MapStaticAssets();
 
 :::moniker range="< aspnetcore-9.0"
 
-In the request processing pipeline after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline to enable serving static files from the app's [web root](xref:fundamentals/index#web-root):
+In the request processing pipeline, after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to enable serving static files from the app's [web root](xref:fundamentals/index#web-root):
 
 ```csharp
 app.UseStaticFiles();
@@ -148,7 +149,7 @@ app.MapStaticAssets().ShortCircuit();
 
 ## Control static file caching during development
 
-When running in the `Development` environment, for example during [Visual Studio Hot Reload](/visualstudio/debugger/hot-reload) development testing, the framework overrides cache headers to prevent browsers from caching static files. This helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the correct cache headers are set, allowing browsers to cache static assets as expected.
+When running in the `Development` environment, for example during [Visual Studio Hot Reload](/visualstudio/debugger/hot-reload) development testing, the framework overrides cache headers to prevent browsers from caching static files. This behavior helps ensure that the latest version of files are used when files change, avoiding issues with stale content. In production, the framework sets the correct cache headers, so browsers can cache static assets as expected.
 
 To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `true` in the `Development` environment's app setting file (`appsettings.Development.json`).
 
@@ -156,7 +157,7 @@ To disable this behavior, set `EnableStaticAssetsDevelopmentCaching` to `true` i
 
 ## Static files in non-`Development` environments
 
-When running an app locally, static web assets are only enabled in the `Development` environment. To enable static files for environments other than `Development` during local development and testing (for example, in the `Staging` environment), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
+When running an app locally, the `Development` environment is the only environment that enables static web assets. To enable static files for environments other than `Development` during local development and testing (for example, in the `Staging` environment), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
 > [!WARNING]
 > Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** to prevent activating the feature in production, as it serves files from separate locations on disk *other than from the project*. The example in this section checks for the `Staging` environment with <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsStaging%2A>.
@@ -172,7 +173,7 @@ if (builder.Environment.IsStaging())
 
 ## Serve files outside of the web root directory via `IWebHostEnvironment.WebRootPath`
 
-When <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> is set to a folder other than `wwwroot`, the following default behaviors are exhibited:
+When you set <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> to a folder other than `wwwroot`, the app exhibits the following default behaviors:
 
 * In the `Development` environment, static assets are served from `wwwroot` if assets with the same name are in both `wwwroot` and a different folder assigned to <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A>.
 * In any environment other than `Development`, duplicate static assets are served from the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A> folder.
@@ -236,7 +237,7 @@ Map Static Assets endpoint conventions are used in apps that target .NET 9 or la
 
 Static File Middleware serves static files, but it doesn't provide the same level of optimization as Map Static Assets endpoint conventions. The build-time compression and fingerprinting features of Map Static Assets endpoint conventions aren't available when only relying on Static File Middleware.
 
-The endpoint conventions are optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, Static File Middleware should be used.
+The endpoint conventions are optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, use Static File Middleware.
 
 The following features covered in this article are supported with Static File Middleware but not with Map Static Assets endpoint conventions:
 
@@ -271,7 +272,7 @@ Namespaces for the following API:
 using Microsoft.Extensions.FileProviders;
 ```
 
-In the request processing pipeline after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
+In the request processing pipeline, after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
 
 ```csharp
 app.UseStaticFiles(new StaticFileOptions
@@ -312,7 +313,7 @@ The developer intends to use the [Image Tag Helper](xref:mvc/views/tag-helpers/b
 
 The following example calls <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> to serve files from `wwwroot` and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to serve files from `ExtraStaticFiles`:
 
-In the request processing pipeline after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
+In the request processing pipeline, after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
 
 ```csharp
 app.UseStaticFiles(new StaticFileOptions
@@ -328,7 +329,7 @@ app.UseStaticFiles(new StaticFileOptions
 
 The following example calls <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> twice to serve files from both `wwwroot` and `ExtraStaticFiles`.
 
-In the request processing pipeline after the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+In the request processing pipeline, after the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 ```csharp
 app.UseStaticFiles(new StaticFileOptions
@@ -378,7 +379,7 @@ Namespaces for the following API:
 using Microsoft.AspNetCore.Http;
 ```
 
-In the request processing pipeline after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
+In the request processing pipeline, after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
 
 ```csharp
 app.UseStaticFiles(new StaticFileOptions
@@ -428,7 +429,7 @@ app.MapStaticAssets();
 
 :::moniker range=">= aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), authorization is required for all requests that don't explicitly specify an authorization policy, including requests for static files after Authorization Middleware processes requests. Allow anonymous access to static files by applying <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder for static files:
+When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), it requires authorization for all requests that don't explicitly specify an authorization policy. This requirement includes requests for static files after Authorization Middleware processes requests. To allow anonymous access to static files, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder for static files:
 
 ```csharp
 app.MapStaticAssets().Add(endpointBuilder => 
@@ -442,7 +443,7 @@ app.MapStaticAssets().Add(endpointBuilder =>
 When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), authorization is required for all requests that don't explicitly specify an authorization policy, including requests for static files after Authorization Middleware processes requests. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
 * No authorization checks are performed on the static files.
-* Static files served by the Static File Middleware, such as those web root (typically, `wwwroot`), are publicly accessible.
+* Static files served by the Static File Middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
 
 :::moniker-end
 
@@ -703,9 +704,9 @@ app.MapPost("/files", async (IFormFile file, LinkGenerator linker,
 
 Directory browsing allows directory listing within specified directories.
 
-Directory browsing is disabled by default for security reasons. For more information, see [Security considerations for static files](#security-considerations-for-static-files).
+For security reasons, directory browsing is disabled by default. For more information, see [Security considerations for static files](#security-considerations-for-static-files).
 
-Enable directory browsing with the following API:
+Enable directory browsing by using the following APIs:
 
 * <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A>
 * <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>
@@ -731,7 +732,7 @@ Service registration:
 builder.Services.AddDirectoryBrowser();
 ```
 
-In the request processing pipeline after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
+In the request processing pipeline, after the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
 
 ```csharp
 var fileProvider = new PhysicalFileProvider(
@@ -849,7 +850,7 @@ Service registration:
 builder.Services.AddDirectoryBrowser();
 ```
 
-In the request processing pipeline after the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+In the request processing pipeline, after the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 ```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
@@ -902,7 +903,7 @@ Service registration:
 builder.Services.AddDirectoryBrowser();
 ```
 
-In the request processing pipeline after the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+In the request processing pipeline, after the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 ```csharp
 app.UseFileServer(new FileServerOptions
