@@ -143,12 +143,16 @@ In the following example that serializes state for multiple components of the sa
 }
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
 > A user-configured <xref:System.Text.Json.Serialization.JsonSerializerContext> doesn't flow into [C# union](/dotnet/csharp/whats-new/csharp-14#union-types) deserialization. Instead, use `[JsonUnion(TypeClassifier = …)]`.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ## Serialize state for services
 
