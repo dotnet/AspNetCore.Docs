@@ -1,10 +1,11 @@
 ---
 title: Inter-process communication with gRPC
+ai-usage: ai-assisted
 author: jamesnk
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
-ms.date: 11/08/2023
+ms.date: 07/07/2026
 uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC
@@ -142,6 +143,18 @@ The client and server must be configured to use an inter-process communication (
 
 > [!NOTE]
 > Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.
+
+> [!WARNING]
+> An IPC transport, such as Unix domain sockets or named pipes, requires the client to configure `SocketsHttpHandler.ConnectCallback` to create a connection to the custom endpoint. A channel that uses a `ConnectCallback` doesn't support client-side load balancing or connectivity state tracking, and the following features aren't available:
+>
+> * Client-side load balancing configured with `ServiceConfig.LoadBalancingConfigs`.
+> * Connectivity state tracking with `GrpcChannel.State` and `GrpcChannel.WaitForStateChangedAsync`.
+>
+> Attempting to use these features on a channel configured for IPC throws an exception:
+>
+> ```output
+> System.InvalidOperationException: Channel is configured with an HTTP transport doesn't support client-side load balancing or connectivity state tracking. The underlying HTTP transport must be a SocketsHttpHandler with no SocketsHttpHandler.ConnectCallback configured. The HTTP transport must be configured on the channel using GrpcChannelOptions.HttpHandler.
+> ```
 
 :::moniker-end
 
