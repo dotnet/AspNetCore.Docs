@@ -6,7 +6,7 @@ author: mariamaziz
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/09/2026
+ms.date: 06/08/2026
 uid: fundamentals/http-logging/http-log-enricher
 ---
 
@@ -57,58 +57,11 @@ Your custom HTTP log enricher needs to implement a single <xref:Microsoft.AspNet
 > it's acceptable to send any type of argument to the `value` parameter as-is, because it's parsed into the actual type and serialized internally
 > to be sent further down the logging pipeline.
 
-```csharp
-using Microsoft.AspNetCore.Diagnostics.Logging;
-using Microsoft.Extensions.Diagnostics.Enrichment;
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/httplogging/httplogenricher/CustomHttpLogEnricher.cs":::
 
-public class CustomHttpLogEnricher : IHttpLogEnricher
-{
-    public void Enrich(IEnrichmentTagCollector collector, HttpContext httpContext)
-    {
-        // Add custom tags based on the incoming HTTP request
-        collector.Add("request_method", httpContext.Request.Method);
-        collector.Add("request_scheme", httpContext.Request.Scheme);
-
-        // Add tags based on the response status code (available during the response phase)
-        collector.Add("response_status_code", httpContext.Response.StatusCode);
-
-        // Add tags based on user authentication status
-        if (httpContext.User?.Identity?.IsAuthenticated is true)
-        {
-            collector.Add("user_authenticated", true);
-        }
-    }
-}
-
-```
 And you register it as shown in the following code using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLogEnricher``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)>:
 
-```csharp
-
-using System.Text.Json;
-
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddHttpLogEnricher<CustomHttpLogEnricher>();
-builder.Services.AddRedaction();
-
-builder.Logging.AddJsonConsole(op =>
-{
-    op.JsonWriterOptions = new JsonWriterOptions
-    {
-        Indented = true
-    };
-});
-
-WebApplication app = builder.Build();
-
-app.UseHttpLogging();
-
-app.MapGet("/", () => "Hello, World!");
-
-await app.RunAsync();
-
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/httplogging/httplogenricher/Program.cs":::
 
 ## Key differences from general log enrichers
 
@@ -131,6 +84,7 @@ HTTP log enrichers differ from general-purpose log enrichers (<xref:Microsoft.Ex
 
 ## See also
 
+- [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/httplogging/httplogenricher) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 - [HTTP logging in ASP.NET Core](~/fundamentals/http-logging/index.md)
 
 :::moniker-end
