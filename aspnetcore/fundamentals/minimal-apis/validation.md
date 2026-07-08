@@ -25,7 +25,7 @@ builder.Services.AddValidation();
 Parameter validation is the first step in the validation pipeline in minimal API endpoints. It involves the following steps:
 
 1. Validate `ValidationAttribute`s applied to the minimal API parameter.
-2. If the parameter type is `IEnumerable`, a type validation for all non-null elements happens. Otherwise, a single type validation for the parameter value happens.
+1. If the parameter type is `IEnumerable`, validate the type for all non-null elements. Otherwise, validate the type for the value.
 
 > [!NOTE]
 > There is a known limitation currently that nullable value types declared as minimal API parameters don't get validated.
@@ -35,18 +35,18 @@ If the minimal API parameter type is `IEnumerable`, a type validation for all no
 
 ## Type validation
 
-Type validation is the next step after parameter validation. It involves the following:
+Type validation is the next step after parameter validation. It involves the following steps:
 
-1. Validate properties on the type. If any errors are found in this step, the validation stops here.
-2. Validate type-level `ValidationAttribute`s. If any errors are found in this step, the validation stops here.
-3. Validate `IValidatableObject`, if it's implemented.
+1. Validate properties on the type. If any errors are found, the validation process stops.
+1. Validate type-level `ValidationAttribute`s. If any errors are found, the validation process stops.
+1. Validate `IValidatableObject`, if it's implemented.
 
 ## Property validation
 
 Property validation happens as part of the type validation as explained in the previous section. It involves the following steps:
 
 1. Validate `ValidationAttribute`s applied on the property.
-2. If the property value is `IEnumerable`, a type validation for all non-null elements happens. Otherwise, a single type validation for the value happens.
+1. If the property value is `IEnumerable`, perform type validation for all non-null elements. Otherwise, perform a single type validation for the value.
 
 ## Explicit validation skipping
 
@@ -54,7 +54,7 @@ When needed, you can skip validation for a specific parameter, type, or property
 
 ## Force-generate validatable type information
 
-The Microsoft.Extensions.Validation package works via a Roslyn source generator which detects the object graph and types for minimal API endpoint parameters.
+The Microsoft.Extensions.Validation package works via a Roslyn source generator that detects the object graph and types for minimal API endpoint parameters.
 
 In some cases, not all types that will be part of the object graph can be determined at compile time. In these cases, you can force the source generator to consider a type for validation by applying `ValidatableTypeAttribute` to that type.
 
@@ -63,8 +63,8 @@ In some cases, not all types that will be part of the object graph can be determ
 Starting in .NET 11, Microsoft.Extensions.Validation supports async validation. You can apply custom implementations of `AsyncValidationAttribute` to parameters, types, or properties, and they will be called asynchronously. In addition, types can implement `IAsyncValidatableObject` as well.
 
 > [!IMPORTANT]
-> Both `IAsyncValidatableObject` and `AsyncValidationAttribute` forces to implement the validation logic synchronously **and** asynchronously.
-> For the case of minimal API validation using Microsoft.Extensions.Validation, we will always call the async path and never the sync path.
-> The sync and async path are never intended to be both called together. If your implementation can't support the sync path, you can throw `InvalidOperationException`.
+> Both `IAsyncValidatableObject` and `AsyncValidationAttribute` require you to implement the validation logic synchronously **and** asynchronously.
+> For minimal API validation using `Microsoft.Extensions.Validation`, the framework always calls the async path and never the sync path.
+> The sync and async paths are never intended to both be called together. If your implementation can't support the sync path, throw `InvalidOperationException`.
 
 When validating properties on a type, we start all validation tasks concurrently. Similarly, when we validate `IEnumerable`s, we start validation tasks for elements concurrently.
