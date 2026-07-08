@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to implement resource-based authorization in an ASP.NET Core app when an [Authorize] attribute doesn't suffice.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 05/20/2026
+ms.date: 07/08/2026
 uid: security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core
@@ -101,13 +101,13 @@ public class Document
 
 The handler class specifies the requirement and resource type. The following example demonstrates a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource.
 
-`Services/DocumentAuthorizationHandler.cs`:
+`Policies/Handlers/DocumentAuthorizationHandler.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using BlazorWebAppAuthorization.Models;
 
-namespace BlazorWebAppAuthorization.Services;
+namespace BlazorWebAppAuthorization.Policies.Handlers;
 
 public class DocumentAuthorizationHandler :
     AuthorizationHandler<SameAuthorRequirement, Document>
@@ -244,14 +244,14 @@ The following `DocumentAuthorizationCrudHandler` authorization handler validates
 * Only users in the `Admin` role can create and update documents.
 * Only users in the `SuperUser` role can delete documents.
 
-`Services/DocumentAuthorizationCrudHandler.cs`:
+`Policies/Handlers/DocumentAuthorizationCrudHandler.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using BlazorWebAppAuthorization.Models;
 
-namespace BlazorWebAppAuthorization.Services;
+namespace BlazorWebAppAuthorization.Policies.Handlers;
 
 public class DocumentAuthorizationCrudHandler :
     AuthorizationHandler<OperationAuthorizationRequirement, Document>

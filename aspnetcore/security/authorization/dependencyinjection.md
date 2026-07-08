@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to inject authorization requirement handlers into an ASP.NET Core app using dependency injection.
 monikerRange: ">= aspnetcore-2.1"
 ms.author: tdykstra
-ms.date: 03/25/2022
+ms.date: 07/08/2026
 uid: security/authorization/dependencyinjection
 ---
 # Dependency injection in requirement handlers in ASP.NET Core
