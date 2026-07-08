@@ -61,7 +61,7 @@ Your custom HTTP log enricher needs to implement a single <xref:Microsoft.AspNet
 
 And you register it as shown in the following code using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLogEnricher``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)>:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/httplogging/httplogenricher/Program.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/httplogging/httplogenricher/Program.cs" highlight="7, 20":::
 
 ## Key differences from general log enrichers
 
