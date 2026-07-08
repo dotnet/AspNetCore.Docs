@@ -26,8 +26,6 @@ One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repe
 
 The validation support provided by MVC and Entity Framework Core is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-[!INCLUDE[](~/includes/validation-package-net10.md)]
-
 ## Delete the previously edited data
 
 In the next step, validation rules are added that don't allow null values. 
