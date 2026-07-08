@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core Razor components
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/24/2026
+ms.date: 07/08/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -850,14 +851,6 @@ Assign a C# field, property, or result of a method to a component parameter as a
 
 If the component parameter is of type string, then the attribute value is instead treated as a C# string literal. If you want to specify a C# expression instead, then use the `@` prefix.
 
-:::moniker range=">= aspnetcore-11.0"
-
-<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
-
-The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types), even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, for example `Message="@("Saved.")"`.
-
-:::moniker-end
-
 The following parent component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
@@ -1168,6 +1161,72 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Support for [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) allow a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
+
+The following C# union type, `SlotContent`, accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public union SlotContent(string Text, MarkupString Html, RenderFragment Fragment);
+```
+
+The following `Slot` component exposes a component parameter typed to the `SlotContent` union and renders the union's content using a [C# `switch` expression](/dotnet/csharp/language-reference/operators/switch-expression). In the following example, the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) specifies that `Content` is a required component parameter at design-time or build-time.
+
+`Slot.razor`:
+
+```razor
+<div>
+    @ContentSwitch()
+</div>
+
+@code {
+    [Parameter, EditorRequired] 
+    public SlotContent Content { get; set; }
+
+    private RenderFragment ContentSwitch() => Content switch
+    {
+        SlotContent.Text text => @<span>@text.Text</span>,
+        SlotContent.Html html => @<span>@html.Html</span>,
+        SlotContent.Fragment fragment => fragment.Fragment
+    };
+}
+```
+
+Using the preceding `SlotContent` type and `Slot` component in a Razor component:
+
+```razor
+<Slot Content="@("Simple plain text slot.")" />
+
+<Slot Content="@((MarkupString)"<strong>Bold HTML</strong>")" />
+
+<Slot>
+    <Content>
+        <button class="btn btn-primary" @onclick="IncrementCount">
+            Custom UI Counter: @currentCount
+        </button>
+    </Content>
+</Slot>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount() => currentCount++;
+}
+```
+
+<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
+
+The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot.")"` in the preceding example.
+
+<!-- UPDATE 13.0 - Remove the following cross-link when C# unions get some time on them (target removal for .NET 13) -->
+
+For more information, see [Explore union types in C# 15](https://devblogs.microsoft.com/dotnet/csharp-15-union-types/).
 
 :::moniker-end
 

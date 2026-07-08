@@ -5,7 +5,7 @@ description: Learn how to use dynamically-rendered Razor components in Blazor ap
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 07/08/2026
 uid: blazor/components/dynamiccomponent
 ---
 # Dynamically-rendered ASP.NET Core Razor components
@@ -249,6 +249,84 @@ In the following example:
 `DynamicComponentExample2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Dictionary values for [C# union-typed parameters](/dotnet/csharp/whats-new/csharp-14#union-types) must be boxed as the union, not the raw case value, because an implicit conversion is only valid at compile-time.
+
+Consider the following C# union type, `SlotContent`, that accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public union SlotContent(string Text, MarkupString Html, RenderFragment Fragment);
+```
+
+The following `Slot` component exposes a component parameter typed to the `SlotContent` union and renders the union's content using a [C# `switch` expression](/dotnet/csharp/language-reference/operators/switch-expression). In the following example, the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) specifies that `Content` is a required component parameter at design-time or build-time.
+
+`Slot.razor`:
+
+```razor
+<div>
+    @ContentSwitch()
+</div>
+
+@code {
+    [Parameter, EditorRequired] 
+    public SlotContent Content { get; set; }
+
+    private RenderFragment ContentSwitch() => Content switch
+    {
+        SlotContent.Text text => @<span>@text.Text</span>,
+        SlotContent.Html html => @<span>@html.Html</span>,
+        SlotContent.Fragment fragment => fragment.Fragment
+    };
+}
+```
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> Using the preceding `Slot` component, the following component fails at run time with an <xref:System.InvalidCastException>:
+
+```razor
+@using Microsoft.AspNetCore.Components
+
+<DynamicComponent Type="@TargetComponent" Parameters="@BadParameters" />
+
+@code {
+    [Parameter]
+    public Type TargetComponent { get; set; } = typeof(Slot);
+
+    [Parameter]
+    public string RawTextPayload { get; set; } = "Hello from dynamic data!";
+
+    private Dictionary<string, object> BadParameters => new()
+    {
+         { "Content", RawTextPayload } 
+    };
+}
+```
+
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> To box the union, wrap the raw value explicitly into the union wrapper type (`new SlotContent(...)`), as the following example demonstrates. Explicitly wrap the string in the `SlotContent` union wrapper, so the value is boxed as `SlotContent` object, preserving the exact type contract:
+
+```razor
+@using Microsoft.AspNetCore.Components
+
+<DynamicComponent Type="@TargetComponent" Parameters="@ValidParameters" />
+
+@code {
+    [Parameter]
+    public Type TargetComponent { get; set; } = typeof(Slot);
+
+    [Parameter]
+    public string RawTextPayload { get; set; } = "Hello from dynamic data!";
+
+    private Dictionary<string, object> ValidParameters => new()
+    {
+        { "Content", new SlotContent(RawTextPayload) }
+    };
+}
+```
 
 :::moniker-end
 
