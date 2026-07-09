@@ -27,7 +27,7 @@ builder.Services.AddValidation();
 
 ## Validatable entities
 
-There are three types of entities that can be validated:
+Three types of entities can be validated:
 
 - Parameters (specific to minimal API endpoint parameters)
 - Types
@@ -41,7 +41,7 @@ Parameter validation is the first step in the validation pipeline in minimal API
 1. If the parameter type is `IEnumerable`, validate the type for all non-null elements. Otherwise, validate the type for the value.
 
 > [!NOTE]
-> There is a known limitation currently that nullable value types declared as minimal API parameters don't get validated.
+> There's a known limitation where nullable value types declared as minimal API parameters aren't validated.
 > For more information, see [dotnet/aspnetcore#67033](https://github.com/dotnet/aspnetcore/issues/67033).
 
 If the minimal API parameter type is `IEnumerable`, a type validation for all non-null elements happens. Otherwise, a single type validation for the value happens.
