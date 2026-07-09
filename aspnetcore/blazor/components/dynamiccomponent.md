@@ -334,7 +334,7 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 
     private Dictionary<string, object> BadParameters => new()
     {
-         { "Content", RawTextPayload } 
+        { "Content", RawTextPayload }
     };
 }
 ```

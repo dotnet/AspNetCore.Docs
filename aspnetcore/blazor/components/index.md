@@ -1166,7 +1166,7 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 :::moniker range=">= aspnetcore-11.0"
 
-Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allow a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
+Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
 
 <!-- UPDATE 11.0 - Remove the NOTE at GA -->
 
@@ -1243,7 +1243,7 @@ Using the preceding `SlotContent` type and `Slot` component in a Razor component
 
 <h1><code>MarkupString</code></h1>
 
-<Slot Content="@((MarkupString)"<strong>Bold HTML slot</strong>")" />
+<Slot Content='@((MarkupString)"<strong>Bold HTML slot</strong>")' />
 
 <h1><code>RenderFragment</code></h1>
 
@@ -1272,7 +1272,7 @@ Using the preceding `SlotContent` type and `Slot` component in a Razor component
 
 <!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
 
-The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot.")"` in the preceding example.
+The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot")"` in the preceding example.
 
 <!-- UPDATE 13.0 - Remove the following cross-link when C# unions get some time on them (target removal for .NET 13) -->
 
