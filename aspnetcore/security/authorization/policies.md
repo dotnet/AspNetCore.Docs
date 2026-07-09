@@ -178,7 +178,7 @@ The following example shows a one-to-many relationship in which a permission han
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Handlers/PermissionHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Handlers/PermissionHandler.cs":::
 
 :::moniker-end
 
@@ -244,15 +244,15 @@ In the following example implementations:
 
 `BuildingEntryRequirement.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Requirements/BuildingEntryRequirement.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Requirements/BuildingEntryRequirement.cs":::
 
 `BadgeEntryHandler.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Handlers/BadgeEntryHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Handlers/BadgeEntryHandler.cs":::
 
 `TemporaryStickerHandler.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Handlers/TemporaryStickerHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Handlers/TemporaryStickerHandler.cs":::
 
 :::moniker-end
 
