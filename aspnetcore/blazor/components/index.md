@@ -6,7 +6,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/08/2026
+ms.date: 07/09/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -1166,23 +1166,54 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 :::moniker range=">= aspnetcore-11.0"
 
-Support for [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) allow a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
+Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allow a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
+
+<!-- UPDATE 11.0 - Remove the NOTE at GA -->
+
+> [!NOTE]
+> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
+>
+> ```xml
+> <LangVersion>preview</LangVersion>
+> ```
 
 The following C# union type, `SlotContent`, accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
 ```csharp
 using Microsoft.AspNetCore.Components;
 
-public union SlotContent(string Text, MarkupString Html, RenderFragment Fragment);
+public union SlotContent(string, MarkupString, RenderFragment);
 ```
 
-The following `Slot` component exposes a component parameter typed to the `SlotContent` union and renders the union's content using a [C# `switch` expression](/dotnet/csharp/language-reference/operators/switch-expression). In the following example, the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) specifies that `Content` is a required component parameter at design-time or build-time.
+The following `Slot` component exposes a component parameter typed to the `SlotContent` union and renders the union's content using two implementations of the [C# `switch` expression](/dotnet/csharp/language-reference/operators/switch-expression), one through an assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> (`ContentSwitch`) and one via an inline `switch` expression. In the following example, the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) specifies that `Content` is a required component parameter at design-time or build-time.
 
 `Slot.razor`:
 
 ```razor
+<h2>@@ContentSwitch</h2>
+
 <div>
     @ContentSwitch()
+</div>
+
+<h2>Inline <code>switch</code> expression</h2>
+
+<div>
+    @switch (Content)
+    {
+        case string text:
+            @text
+            break;
+        case MarkupString html:
+            @html
+            break;
+        case RenderFragment fragment:
+            @fragment
+            break;
+        default:
+            <em>Empty slot!</em>
+            break;
+    }
 </div>
 
 @code {
@@ -1191,32 +1222,51 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 
     private RenderFragment ContentSwitch() => Content switch
     {
-        SlotContent.Text text => @<span>@text.Text</span>,
-        SlotContent.Html html => @<span>@html.Html</span>,
-        SlotContent.Fragment fragment => fragment.Fragment
+        string text => @<span>@text</span>,
+        MarkupString html => @<span>@html</span>,
+        RenderFragment fragment => fragment,
+        _ => @<em>Empty slot!</em>
     };
 }
 ```
 
-Using the preceding `SlotContent` type and `Slot` component in a Razor component:
+Using the preceding `SlotContent` type and `Slot` component in a Razor component.
+
+`SlotTest.razor`:
 
 ```razor
-<Slot Content="@("Simple plain text slot.")" />
+@page "/slot-test"
 
-<Slot Content="@((MarkupString)"<strong>Bold HTML</strong>")" />
+<h1>Plain text</h1>
 
-<Slot>
-    <Content>
-        <button class="btn btn-primary" @onclick="IncrementCount">
-            Custom UI Counter: @currentCount
-        </button>
-    </Content>
-</Slot>
+<Slot Content="@("Simple plain text slot")" />
+
+<h1><code>MarkupString</code></h1>
+
+<Slot Content="@((MarkupString)"<strong>Bold HTML slot</strong>")" />
+
+<h1><code>RenderFragment</code></h1>
+
+<Slot Content="@renderFrag" />
 
 @code {
+    private SlotContent renderFrag;
+
+    protected override void OnInitialized()
+    {
+        renderFrag = new SlotContent((RenderFragment)(b =>
+        {
+            b.OpenElement(0, "button");
+            b.AddAttribute(1, "onclick", EventCallback.Factory.Create(this, Increment));
+            b.AddContent(2, "Count: ");
+            b.AddContent(3, currentCount);
+            b.CloseElement();
+        }));
+    }
+
     private int currentCount = 0;
 
-    private void IncrementCount() => currentCount++;
+    private void Increment() => currentCount++;
 }
 ```
 

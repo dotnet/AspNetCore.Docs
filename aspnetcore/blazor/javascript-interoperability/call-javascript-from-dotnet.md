@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-ropc-nochange
-ms.date: 07/08/2026
+ms.date: 07/09/2026
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -34,7 +34,7 @@ For the preceding .NET methods that invoke JS functions:
 * `TimeSpan` represents a time limit for a JS operation.
 * The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
 * A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-* [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) are supported.
+* [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported.
 
 :::moniker-end
 
