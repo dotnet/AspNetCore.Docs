@@ -148,7 +148,8 @@ In the following example that serializes state for multiple components of the sa
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> A user-configured <xref:System.Text.Json.Serialization.JsonSerializerContext> doesn't flow into [C# union](/dotnet/csharp/language-reference/builtin-types/union) deserialization. Instead, use `[JsonUnion(TypeClassifier = typeof({TYPE CLASSIFIER}))]`.
+> A user-configured <xref:System.Text.Json.Serialization.JsonSerializerContext> doesn't flow into [C# union](/dotnet/csharp/language-reference/builtin-types/union) deserialization. Instead, use `[JsonUnion(TypeClassifier = typeof({TYPE CLASSIFIER}))]`, where the `{TYPE CLASSIFIER}` placeholder is the type classifier.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
