@@ -5,6 +5,7 @@ ai-usage: ai-assisted
 author: mariamaziz
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
+ms.reviewer: tdykstra
 ms.custom: mvc
 ms.date: 06/08/2026
 uid: fundamentals/http-logging/http-log-enricher
