@@ -299,6 +299,10 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
 
+## Validation
+
+For more information, see <xref:validation/index>.
+
 ## Authorization
 
 Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:

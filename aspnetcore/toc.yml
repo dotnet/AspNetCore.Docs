@@ -1999,6 +1999,11 @@ items:
       - name: Directory structure
         displayName: deploy, publish
         uid: host-and-deploy/directory-structure
+  - name: Validation
+    displayName: validation
+    items:
+      - name: Overview
+        uid: validation/index
   - name: Security and Identity
     displayName: authentication, authorization
     items:

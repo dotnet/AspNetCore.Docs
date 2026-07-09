@@ -1,18 +1,20 @@
 ---
-title: Validation in Minimal API apps
+title: Validation in ASP.NET Core
 author: Youssef1313
-description: Use Microsoft.Extensions.Validation in Minimal API apps to validate API models.
+description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 ms.author: ygerges
-ms.date: 07/08/2026
+ms.date: 07/09/2026
 monikerRange: '>= aspnetcore-10.0'
-uid: fundamentals/minimal-apis/validation
+uid: validation/index
 
-# customer intent: As an ASP.NET developer, I want to have automatic validation of models in Minimal API parameters.
+# customer intent: As an ASP.NET developer, I want to have automatic validation of models.
 ---
 
-# Validation in Minimal API apps
+# Validation in ASP.NET Core
 
 In .NET 10, Microsoft.Extensions.Validation was introduced to support complex model validation.
+
+While the Microsoft.Extensions.Validation NuGet package can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core.
 
 To enable validation, call `AddValidation` on the `IServiceCollection` instance in the web application entry point.
 
@@ -20,7 +22,18 @@ To enable validation, call `AddValidation` on the `IServiceCollection` instance 
 builder.Services.AddValidation();
 ```
 
-## Parameter validation
+> [!NOTE]
+> ASP.NET Core has built-in support for Microsoft.Extensions.Validation for both minimal APIs and Blazor scenarios. It's not supported by default in MVC.
+
+## Validatable entities
+
+There are three types of entities that can be validated:
+
+- Parameters (specific to minimal API endpoint parameters)
+- Types
+- Properties
+
+### Parameter validation
 
 Parameter validation is the first step in the validation pipeline in minimal API endpoints. It involves the following steps:
 
@@ -33,15 +46,15 @@ Parameter validation is the first step in the validation pipeline in minimal API
 
 If the minimal API parameter type is `IEnumerable`, a type validation for all non-null elements happens. Otherwise, a single type validation for the value happens.
 
-## Type validation
+### Type validation
 
-Type validation is the next step after parameter validation. It involves the following steps:
+Type validation is the next step after parameter validation (and is the first step in Blazor). It involves the following steps:
 
 1. Validate properties on the type. If any errors are found, the validation process stops.
 1. Validate type-level `ValidationAttribute`s. If any errors are found, the validation process stops.
 1. Validate `IValidatableObject`, if it's implemented.
 
-## Property validation
+### Property validation
 
 Property validation happens as part of the type validation as explained in the previous section. It involves the following steps:
 
