@@ -33,7 +33,6 @@ To get started, install the [Microsoft.AspNetCore.Diagnostics.Middleware](https:
 dotnet add package Microsoft.AspNetCore.Diagnostics.Middleware
 ```
 
-
 ### [PackageReference](#tab/package-reference)
 
 ```xml
