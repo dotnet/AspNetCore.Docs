@@ -33,15 +33,13 @@ Examples in this article use *primary constructors*, available in C# 12 (.NET 8)
 
 ## Requirements and policy registration
 
-:::moniker range=">= aspnetcore-6.0"
-
 An authorization policy consists of one or more *requirements*. An authorization requirement is a collection of data parameters that a policy can use to evaluate authorization for the current user principal.
 
 A requirement implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, which is an empty marker interface. Consider the following `MinimumAgeRequirement` requirement, which describes a single parameter, a minimum age, to evaluate for user authorization:
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/BlazorWebAppAuthorization/Policies/Requirements/MinimumAgeRequirement.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Requirements/MinimumAgeRequirement.cs":::
 
 :::moniker-end
 
@@ -74,7 +72,7 @@ builder.Services.AddAuthorizationBuilder()
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore=6.0 < aspnetcore-7.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`), which is supplied as a parameter to the requirement (`21`):
 
@@ -156,7 +154,7 @@ The following example shows a one-to-one relationship in which a minimum age han
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/BlazorWebAppAuthorization/Policies/Handlers/MinimumAgeHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Handlers/MinimumAgeHandler.cs":::
 
 :::moniker-end
 
@@ -180,7 +178,7 @@ The following example shows a one-to-many relationship in which a permission han
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/BlazorWebAppAuthorization/Handlers/PermissionHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Handlers/PermissionHandler.cs":::
 
 :::moniker-end
 
@@ -246,15 +244,15 @@ In the following example implementations:
 
 `BuildingEntryRequirement.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/BlazorWebAppAuthorization/Requirements/BuildingEntryRequirement.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Requirements/BuildingEntryRequirement.cs":::
 
 `BadgeEntryHandler.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/BlazorWebAppAuthorization/Handlers/BadgeEntryHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Handlers/BadgeEntryHandler.cs":::
 
 `TemporaryStickerHandler.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/BlazorWebAppAuthorization/Handlers/TemporaryStickerHandler.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Handlers/TemporaryStickerHandler.cs":::
 
 :::moniker-end
 
