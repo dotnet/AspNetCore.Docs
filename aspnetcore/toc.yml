@@ -1168,8 +1168,6 @@ items:
         uid: fundamentals/minimal-apis/responses
       - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
-      - name: Validation in minimal API apps
-        uid: fundamentals/minimal-apis/validation
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
       - name: Middleware
