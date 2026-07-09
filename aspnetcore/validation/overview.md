@@ -69,7 +69,7 @@ When needed, you can skip validation for a specific parameter, type, or property
 
 The Microsoft.Extensions.Validation package works via a Roslyn source generator that detects the object graph and types for minimal API endpoint parameters.
 
-In some cases, not all types that will be part of the object graph can be determined at compile time. In these cases, you can force the source generator to consider a type for validation by applying `ValidatableTypeAttribute` to that type.
+In some cases, not all types that are part of the object graph can be determined at compile time. In these cases, you can force the source generator to consider a type for validation by applying `ValidatableTypeAttribute` to that type.
 
 ## Async validation support
 
