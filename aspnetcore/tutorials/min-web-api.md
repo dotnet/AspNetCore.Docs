@@ -67,7 +67,7 @@ This tutorial creates the following API:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Start Visual Studio Code, select **View**, and then select **Terminal** to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to the folder that contains the project folder.
+* Change directory(`cd`) to the folder that contains the project folder.
 * Run the following commands:
 
 ```dotnetcli
@@ -537,7 +537,7 @@ The PUT request is sent to the app and the response is displayed in the **Respon
 
 ## Create and examine the PATCH endpoint
 
-A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even to change just one.
+A PATCH endpoint lets clients send only the fields they want to update, such as renaming a Todo item without resending its completion status. This approach differs from a PUT request, which replaces the entire item, so the client must send every field even if only one is changed.
 
 The next steps add a new file and modify the `Program.cs` file. Stop the `TodoApi` app before making these changes. Leave the Scalar page in the browser running.
 
