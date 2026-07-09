@@ -42,7 +42,7 @@ For more information, see [dotnet/aspnetcore#67436](https://github.com/dotnet/as
 
 ## Recommended action
 
-No action is required for most users. The new API is opt-in. Apps that don't call `TryGetChannelBindingBytes` see only one extra `HttpSetUrlGroupProperty` call at startup, which has no runtime cost.
+No action is required for most users. The new API is opt-in. Apps that don't call `TryGetChannelBindingBytes` still incur a small per-request cost: with `Medium` hardening (the default), http.sys captures the channel binding token for every HTTPS request and includes it in the request info handed to user mode, which adds a small amount of kernel work and roughly 40 extra bytes per request. The overhead is negligible for typical workloads but not zero. Apps that need to eliminate it entirely can opt out by setting `HttpAuthenticationHardeningLevel.Legacy` (see the code snippet below).
 
 To restore the pre-.NET 11 behavior, set the hardening level to `Legacy`:
 
