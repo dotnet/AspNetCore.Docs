@@ -44,8 +44,6 @@ Parameter validation is the first step in the validation pipeline in minimal API
 > There's a known limitation where nullable value types declared as minimal API parameters aren't validated.
 > For more information, see [dotnet/aspnetcore#67033](https://github.com/dotnet/aspnetcore/issues/67033).
 
-If the minimal API parameter type is `IEnumerable`, a type validation for all non-null elements happens. Otherwise, a single type validation for the value happens.
-
 ### Type validation
 
 Type validation is the next step after parameter validation (and is the first step in Blazor). It involves the following steps:
