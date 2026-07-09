@@ -149,9 +149,9 @@ Quick reference for production deployments. Each row links to the detailed secti
 | [**TLS Protocol Versions**](#tls-protocol-versions) | OS default | Review—ensure TLS 1.0/1.1 disabled | N/A (proxy terminates) | [Transport Security](#transport-security-tlshttps) |
 | [**Client Certificates**](#client-certificate-modes-mtls) | `NoCertificate` | Configure if mTLS needed | N/A (proxy handles) | [Transport Security](#transport-security-tlshttps) |
 | [**Certificate Revocation**](#certificate-revocation) | `false` | Consider enabling | N/A | [Transport Security](#transport-security-tlshttps) |
-| [**Server Header**](#server-header) | `Server: Kestrel` | Consider disabling | Consider disabling | [Server Identity](#server-identity-information-disclosure) |
-| [**AllowHostHeaderOverride**](#host-header-enforcement) | `false` | Keep `false` | Keep `false` unless proxy requires | [HTTP/1.1 Parsing](#http11-request-parsing-validation) |
-| [**AllowAlternateSchemes**](#scheme-enforcement) | `false` | Keep `false` | Enable only if proxy requires | [Server Identity](#server-identity-information-disclosure) |
+| [**Server Header**](#server-header) | `Server: Kestrel` | Consider disabling | Consider disabling | [Server Identity](#server-identity-and-information-disclosure) |
+| [**AllowHostHeaderOverride**](#host-header-enforcement) | `false` | Keep `false` | Keep `false` unless proxy requires | [HTTP/1.1 Parsing](#http11-request-parsing-and-validation) |
+| [**AllowAlternateSchemes**](#scheme-enforcement) | `false` | Keep `false` | Enable only if proxy requires | [Server Identity](#server-identity-and-information-disclosure) |
 | [**AllowSynchronousIO**](#synchronous-io-protection) | `false` | Keep `false` | Keep `false` | [Configurable Limits](#configurable-limits) |
 
 ### Minimum recommended configuration (edge server)
@@ -243,7 +243,7 @@ The `HandshakeTimeout` defaults to **10 seconds**. This limits how long a client
 - **`UseTlsClientHelloListener`** (.NET 11+): A connection middleware (on `ListenOptions`) that inspects the raw TLS Client Hello bytes before the handshake begins. This enables custom logic based on the client's TLS capabilities (e.g., SNI-based routing, fingerprinting). It must be called **before** `UseHttps()` in the middleware pipeline. It has its own timeout (default 8 seconds), which is **additive** with the TLS handshake timeout—consider reducing each timeout to keep the total bounded (e.g., 5s + 5s instead of 8s + 10s).
 - **`TlsClientHelloBytesCallback`** (.NET 10): A property on `HttpsConnectionAdapterOptions` and `TlsHandshakeCallbackOptions` that provides raw Client Hello inspection. In .NET 11 this property is obsolete in favor of `UseTlsClientHelloListener`.
 
-## HTTP/1.1 request parsing & validation
+## HTTP/1.1 request parsing and validation
 
 Kestrel implements HTTP/1.1 parsing per RFC 9112 with several security-motivated constraints.
 
@@ -292,7 +292,7 @@ Per RFC 9110 Section 7.2, Kestrel enforces Host header requirements:
 
 When the request target is in absolute-form (e.g., `GET http://example.com/path`), the `AllowHostHeaderOverride` option (default `false`) controls whether the Host header in the request target overrides the standalone Host header. Keep this `false` unless behind a trusted proxy that requires absolute-form URIs (RFC 9112 Section 3.2.2).
 
-### Request smuggling protection (Transfer-Encoding / Content-Length)
+### Request smuggling protection (Transfer-Encoding and Content-Length)
 
 Kestrel implements protections against HTTP request smuggling per RFC 9112 Section 6.3 and Section 11:
 
@@ -362,7 +362,7 @@ Security consideration: most middleware processes request headers **before** the
 
 Kestrel's HTTP/2 implementation addresses numerous CVEs and denial-of-service attack patterns.
 
-HTTP/2's binary framing eliminates the primary class of [request smuggling vulnerabilities](#request-smuggling-protection-transfer-encoding-content-length) that affect HTTP/1.1. Each request is carried on an explicit stream with length-prefixed frames, so there is no ambiguity about where one message ends and the next begins. There is no Transfer-Encoding/Content-Length conflict to exploit. However, HTTP/2 introduces its own denial-of-service attack surface through stream multiplexing, flow control, and [header compression](#hpack-qpack-header-compression-security).
+HTTP/2's binary framing eliminates the primary class of [request smuggling vulnerabilities](#request-smuggling-protection-transfer-encoding-and-content-length) that affect HTTP/1.1. Each request is carried on an explicit stream with length-prefixed frames, so there is no ambiguity about where one message ends and the next begins. There is no Transfer-Encoding/Content-Length conflict to exploit. However, HTTP/2 introduces its own denial-of-service attack surface through stream multiplexing, flow control, and [header compression](#hpack-and-qpack-header-compression-security).
 
 ### Key threats and mitigations
 
@@ -413,7 +413,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 Kestrel's HTTP/3 implementation runs over QUIC via `System.Net.Quic`. QUIC mandates TLS 1.3, so there is no clear-text HTTP/3.
 
-Like HTTP/2, HTTP/3's binary framing eliminates common [HTTP/1.1-style request smuggling](#request-smuggling-protection-transfer-encoding-content-length). Each request is carried on an independent QUIC stream with explicit length framing. The primary threat categories for HTTP/3 are denial-of-service through stream and connection resource exhaustion.
+Like HTTP/2, HTTP/3's binary framing eliminates common [HTTP/1.1-style request smuggling](#request-smuggling-protection-transfer-encoding-and-content-length). Each request is carried on an independent QUIC stream with explicit length framing. The primary threat categories for HTTP/3 are denial-of-service through stream and connection resource exhaustion.
 
 ### Key threats and mitigations
 
@@ -487,7 +487,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 ```
 
-## HPACK & QPACK header compression security
+## HPACK and QPACK header compression security
 
 Header compression introduces specific security concerns.
 
@@ -588,7 +588,7 @@ if (syncIoFeature is not null)
 > [!TIP]
 > Keep the default (`false`). If legacy middleware or libraries require synchronous I/O, prefer the per-request override rather than enabling it server-wide.
 
-## Timeouts & data rate limits
+## Timeouts and data rate limits
 
 Timeouts and minimum data rates protect against slow-client denial-of-service attacks (slowloris, slow POST, slow read).
 
@@ -621,7 +621,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 ```
 
-## Request rejection & error responses
+## Request rejection and error responses
 
 When Kestrel rejects a request due to a protocol violation or limit breach, it sends a minimal error response and closes the connection. The request **never reaches application middleware or endpoints**—there is no opportunity to customize the response body or headers for rejected requests.
 
@@ -940,7 +940,7 @@ The socket path must be an absolute path. Kestrel validates this and rejects rel
 - **Socket file cleanup**: If Kestrel exits without cleaning up the socket file, the next startup may fail. Ensure the deployment process handles stale socket files.
 - **Permissions are the primary access control**: Unlike named pipes on Windows, there is no built-in API in Kestrel for configuring socket permissions. This must be handled at the OS level.
 
-## Memory safety & System.IO.Pipelines
+## Memory safety and System.IO.Pipelines
 
 Kestrel uses `System.IO.Pipelines` for internal I/O buffering. While this is an implementation detail for most developers, it has security implications for advanced scenarios such as custom middleware or transport implementations.
 
@@ -1018,7 +1018,7 @@ These concerns primarily affect developers writing:
 
 Standard ASP.NET Core request/response patterns (reading `Request.Body`, writing to `Response.Body`) are safe—Kestrel handles the pipeline management internally.
 
-## Server identity & information disclosure
+## Server identity and information disclosure
 
 ### Server header
 
