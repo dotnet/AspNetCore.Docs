@@ -6,7 +6,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/08/2026
+ms.date: 07/10/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -20,7 +20,7 @@ This article explains:
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
-In practice, a policy is applied with `[Authorize(Policy = "...")]` or `RequireAuthorization(...)`, and the framework uses handlers to evaluate the requirements behind a policy. `IAuthorizationPolicyProvider` generates policies dynamically instead of registering them at app startup.
+In practice, a policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/iauthorizationpolicyprovider> documentation) generates policies dynamically instead of registering them at app startup.
 
 [Role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 
@@ -62,7 +62,7 @@ If an authorization policy contains multiple authorization requirements, all of 
 
 :::moniker range=">= aspnetcore-7.0"
 
-A policy is registered as part of the authorization service configuration with either <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`), which is supplied as a parameter to the requirement (`21`):
+A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`) and setting the minimum age to 21 years old:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
@@ -74,7 +74,7 @@ builder.Services.AddAuthorizationBuilder()
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`), which is supplied as a parameter to the requirement (`21`):
+A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`) and setting the minimum age to 21 years old:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -88,7 +88,7 @@ builder.Services.AddAuthorization(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in `Startup.ConfigureServices` (`Startup.cs`). In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`), which is supplied as a parameter to the requirement (`21`):
+A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in `Startup.ConfigureServices` (`Startup.cs`). In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`) and setting the minimum age to 21 years old:
 
 ```csharp
 services.AddAuthorization(options =>
@@ -123,6 +123,13 @@ Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.Authoriz
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_requireAuthorization":::
 
+## Apply policies in MVC and Razor Pages apps
+
+For guidance on applying policies in Razor Pages and MVC apps, see the following resources:
+
+* <xref:razor-pages/security/authorization/policies>
+* <xref:mvc/security/authorization/policies>
+
 ## Authorization service interface (`IAuthorizationService`)
 
 <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> is primarily responsible for determining if authorization is successful when an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> overload is called:
@@ -130,7 +137,7 @@ Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.Authoriz
 * `AuthorizeAsync(ClaimsPrincipal user, object resource, IEnumerable<IAuthorizationRequirement> requirements)`: Checks if a user meets a specific set of authorization requirements for a specified resource.
 * `AuthorizeAsync(ClaimsPrincipal user, object resource, string policyName)`: Checks if a user meets a specific authorization policy for a specified resource.
 
-If a resource isn't required for policy evaluation, pass `null` for the resource. When acting on a resource-focused policy, confirm that the resource is assigned.
+If a resource isn't required for policy evaluation, `null` is passed for the resource.
 
 The preceding methods return `true` when authorization succeeds and `false` when it fails.
 
@@ -139,8 +146,6 @@ Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsi
 ```csharp
 context.Succeed(requirement);
 ```
-
-Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> with the policy name parameter overload, `[Authorize(Policy = "{POLICY NAME}")]`, or `RequireAuthorization("{POLICY NAME}")` for authorization, where the `{POLICY NAME}` placeholder is the policy name. These approaches are demonstrated later in this article.
 
 ## Authorization handlers
 
@@ -216,7 +221,7 @@ See the [implementation of the ASP.NET Core `AssertionRequirement` class](https:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-## What should a handler return?
+### What should a handler return?
 
 The `Handle` method in the [handler example](#use-a-handler-for-one-requirement) returns no value. How is a status of either success or failure indicated?
 
@@ -231,7 +236,7 @@ If a handler calls [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.A
 > [!NOTE]
 > Authorization handlers are called even if authentication fails. Also handlers can execute in any order, so do ***not*** depend on the order of calling handlers.
 
-## Why would I want multiple handlers for a requirement?
+### Why would I want multiple handlers for a requirement?
 
 In cases where you want evaluation to be on an **OR** basis, implement multiple handlers for a single requirement. For example, assume that the Contoso Corporation has doors that only open with key cards. If you leave your key card at home, the receptionist prints a temporary sticker and opens the door for you. In this scenario, the app has a single requirement but multiple handlers, each one examining a single requirement.
 
