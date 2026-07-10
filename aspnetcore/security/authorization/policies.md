@@ -139,7 +139,7 @@ For guidance on applying policies in Razor Pages and MVC apps, see the following
 
 If a resource isn't required for policy evaluation, `null` is passed for the resource.
 
-The preceding methods return `true` when authorization succeeds and `false` when it fails.
+The preceding methods return an <xref:Microsoft.AspNetCore.Authorization.AuthorizationResult> wrapped in a <xref:System.Threading.Tasks.Task>.
 
 Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met via <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler.HandleAsync%2A?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class contains the authorization information used by the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> implementation. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods that serves as the mechanism for tracking whether authorization is successful. When <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A?displayProperty=nameWithType> is called with the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, the policy is met:
 
@@ -307,9 +307,9 @@ The [Authorization via an external service sample (`dotnet/AspNetCore.Docs.Sampl
 
 ### Configure the sample
 
-The following demonstration relies on using the [Nswag (Swagger/OpenAPI)](https://github.com/RicoSuter/NSwag) or [cURL](https://curl.se/) in a command shell.
+The following demonstration relies on using the [NSwag (Swagger/OpenAPI)](https://github.com/RicoSuter/NSwag) or [cURL](https://curl.se/) in a command shell.
 
-In the `Contoso.Security.API` project, configure the `AllowedClients` placeholder of `{CLIENT ID (FOR THE CLIENT CALLING CONTOSO.API)}` of the  with any test GUID value (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`):
+In the `Contoso.Security.API` project, set the `AllowedClients` placeholder (`{CLIENT ID}`) to any test GUID value (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`):
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthorizationExternalService/Contoso.Security.API/appsettings.json":::
 
