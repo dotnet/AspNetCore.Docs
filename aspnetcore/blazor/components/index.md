@@ -1230,12 +1230,12 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 }
 ```
 
-The following `SlotTest` component uses the preceding `SlotContent` type and `Slot` component.
+The following `SlotExample` component uses the preceding `SlotContent` type and `Slot` component.
 
-`SlotTest.razor`:
+`SlotExample.razor`:
 
 ```razor
-@page "/slot-test"
+@page "/slot-example"
 
 <h1>Plain text</h1>
 
@@ -1247,14 +1247,14 @@ The following `SlotTest` component uses the preceding `SlotContent` type and `Sl
 
 <h1><code>RenderFragment</code></h1>
 
-<Slot Content="@renderFrag" />
+<Slot Content="@content" />
 
 @code {
-    private SlotContent renderFrag;
+    private SlotContent content;
 
     protected override void OnInitialized()
     {
-        renderFrag = new SlotContent((RenderFragment)(b =>
+        content = new SlotContent((RenderFragment)(b =>
         {
             b.OpenElement(0, "button");
             b.AddAttribute(1, "onclick", EventCallback.Factory.Create(this, Increment));
