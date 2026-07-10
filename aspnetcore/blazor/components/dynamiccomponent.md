@@ -279,7 +279,7 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 `Slot.razor`:
 
 ```razor
-<h2>@@ContentSwitch</h2>
+<h2><code>ContentSwitch</code></h2>
 
 <div>
     @ContentSwitch()
