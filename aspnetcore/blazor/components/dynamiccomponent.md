@@ -1,11 +1,12 @@
 ---
 title: Dynamically-rendered ASP.NET Core Razor components
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/09/2026
+ms.date: 07/10/2026
 uid: blazor/components/dynamiccomponent
 ---
 # Dynamically-rendered ASP.NET Core Razor components
@@ -341,7 +342,7 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 
 > :::no-loc text="System.InvalidCastException: Unable to cast object of type 'System.String' to type 'SlotContent'.":::
 
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> To box the union, wrap the raw value explicitly into the union wrapper type (`new SlotContent(...)`), as the following example demonstrates. Explicitly wrap the string in the `SlotContent` union wrapper, so the value is boxed as `SlotContent` object, preserving the exact type contract.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> To box the union, wrap the raw value explicitly into the union wrapper type (`new SlotContent(...)`), as the following example demonstrates.
 
 `SlotTest2.razor`:
 

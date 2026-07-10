@@ -6,7 +6,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/09/2026
+ms.date: 07/10/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -1230,7 +1230,7 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 }
 ```
 
-Using the preceding `SlotContent` type and `Slot` component in a Razor component.
+The following `SlotTest` component uses the preceding `SlotContent` type and `Slot` component.
 
 `SlotTest.razor`:
 
