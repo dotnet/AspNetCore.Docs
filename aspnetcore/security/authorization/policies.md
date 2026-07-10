@@ -29,7 +29,7 @@ This article uses Razor component examples and focuses on [Blazor](xref:blazor/i
 * <xref:razor-pages/security/authorization/policies>
 * <xref:mvc/security/authorization/policies>
 
-Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+Some examples in this article (ASP.NET Core 8.0 or later) use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
 ## Requirements and policy registration
 
@@ -347,7 +347,7 @@ You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jw
   "unique_name": "{USER}",
   "sub": "{USER}",
   "jti": "14ed7729",
-  "appid": "9e7b23cf-2f98-48b5-a681-42cb4fb0df68",
+  "appid": "{CLIENT ID}",
   "aud": [
     "https://localhost:7250",
     "http://localhost:7251"
@@ -416,10 +416,10 @@ Server: Kestrel
 
 You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the passed client ID (`appid`) is used to assert whether it is allowed to obtain weather data.
 
-You can also send the client ID directly to the `Contoso.Security.API` either via the Swagger UI or cURL in a command shell (for example: ``) to see it return either `true` or `false` for `canGetWeather`
+You can also send the client ID directly to the `Contoso.Security.API` either via the Swagger UI or cURL in a command shell (for example: `https://localhost:7123/SecurityPolicy/{CLIENT ID}`) to see it return either `true` or `false` for `canGetWeather`.
 
 ```dotnetcli
-curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:7123/SecurityPolicy/9e7b23cf-2f98-48b5-a681-42cb4fb0df68
+curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:7123/SecurityPolicy/{CLIENT ID}
 ```
 
 With the correct client ID (`appid`), `canGetWeather` is `true`:

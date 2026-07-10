@@ -4,7 +4,7 @@ description: A guide to help choose the right identity management solution for a
 author: JeremyLikness
 ms.author: wpickett
 ms.reviewer: jeliknes
-ms.topic: how-to 
+ms.topic: how-to
 ms.date: 07/10/2026
 uid: security/how-to-choose-identity
 ---
