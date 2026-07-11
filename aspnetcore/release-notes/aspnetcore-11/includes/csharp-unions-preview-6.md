@@ -5,10 +5,10 @@ C# union types are a preview language feature in .NET 11 (see the [C# release no
 * Minimal APIs — union body parameters and return types, including `Task<Union>`, `IAsyncEnumerable<Union>`, and `Results<T1, T2>`, in both the runtime and source-generated request delegates.
 * MVC and Razor Pages — union types as `[FromBody]` parameters and action or page-handler return types.
 * SignalR — union types as hub method parameters, return values, and stream items when using the JSON hub protocol.
-* Blazor — union types as component parameters, JS interop arguments and results, and persisted component state.
+* Blazor — union types as component parameters, JavaScript interop arguments and results, and persisted component state.
 
 ```csharp
-// Requires <LangVersion>preview</LangVersion>
+// Requires <LangVersion>preview</LangVersion> in the project file.
 public record class Dog(string Name);
 public record class Cat(int Lives);
 public union Pet(Dog, Cat);
