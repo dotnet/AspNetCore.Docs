@@ -405,9 +405,9 @@ public string? FlashMessage { get; set; }
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
 
-### `GetUriWithHash` extension method
+### `GetUriWithFragment` extension method
 
-A new `GetUriWithHash` extension method permits `NavigationManager` to easily construct URIs with hash fragments. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+A new `GetUriWithFragment` extension method permits `NavigationManager` to easily construct URIs with hash fragments. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
 
 * Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
 * Method call that receives a section Id (`sectionId`) and navigates to the section of the page.
@@ -415,14 +415,14 @@ A new `GetUriWithHash` extension method permits `NavigationManager` to easily co
 ```razor
 @inject NavigationManager Navigation
 
-<a href="@Navigation.GetUriWithHash("section-1")">
+<a href="@Navigation.GetUriWithFragment("section-1")">
     Jump to Section 1
 </a>
 
 @code {
     private void NavigateToSection(string sectionId)
     {
-        var uri = Navigation.GetUriWithHash(sectionId);
+        var uri = Navigation.GetUriWithFragment(sectionId);
         Navigation.NavigateTo(uri);
     }
 }
