@@ -756,7 +756,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Redundant `app.UseAntiforgery()` removed from Blazor Web templates
 
-[CSRF protection](xref:security/csrf-protection) is now on by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web templates has been removed.
+[CSRF protection](xref:security/csrf-protection) is enabled by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates has been removed.
 
 For more information, see the following resources:
 
