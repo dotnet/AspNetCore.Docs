@@ -4,7 +4,7 @@ title: YARP HTTP header guidelines
 description: Learn about YARP HTTP header guidelines.
 author: wadepickett
 ms.author: wpickett
-ms.date: 04/03/2025
+ms.date: 07/13/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -12,6 +12,9 @@ ai-usage: ai-assisted
 # YARP HTTP header guidelines
 
 Headers are a very important part of processing HTTP requests and each have their own semantics and considerations. Most headers are proxied by default, though some used to control how the request is delivered are automatically adjusted or removed by the proxy. The connections between the client and the proxy and between the proxy and the destination are independent. Therefore, headers that affect the connection and transport must be filtered. Many headers contain information like domain names, paths, or other details that may be affected when a reverse proxy is included in the application architecture. The following is a collection of guidelines about how specific headers might be impacted and what to do about them.
+
+> [!NOTE]
+> YARP doesn't normalize dashes (`-`) and underscores (`_`) in header names. They're treated as different characters, so a name such as `my-header` doesn't match a request header named `my_header`.
 
 ## YARP header filtering
 
