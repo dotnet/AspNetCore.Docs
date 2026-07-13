@@ -289,7 +289,7 @@ There's no need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.Stat
 
 Antiforgery services are automatically added to Blazor apps when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the `Program` file.
 
-:::monkier-end
+:::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
