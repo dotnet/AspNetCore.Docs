@@ -758,4 +758,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 [CSRF protection](xref:security/csrf-protection) is now on by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web templates has been removed.
 
-For more information, see <xref:migration/antiforgery-to-csrf>.
+For more information, see the following resources:
+
+* <xref:migration/antiforgery-to-csrf>
+* [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
