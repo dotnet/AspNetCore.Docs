@@ -1069,9 +1069,9 @@ Standalone Blazor WebAssembly:
 
 :::moniker-end
 
-:::moniker range ">= aspnetcore-11.0"
+:::moniker range=">= aspnetcore-11.0"
 
-To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), set `PreserveDom` to `false` for `Blazor.start`:
+To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), set `preserveDom` to `false` for `Blazor.start`:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1086,7 +1086,7 @@ To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navi
 
 :::moniker-end
 
-:::moniker range ">= aspnetcore-8.0 < aspnetcore-11.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
 
