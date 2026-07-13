@@ -688,7 +688,7 @@ For more information, see [Add built-in support for async form validation in Bla
 
 Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
 
-## Blazor and Minimal APIs support error localization
+### Blazor and Minimal APIs support error localization
 
 Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. By default, localization uses language-specific RESX files deployed as part of the assembly.
 
@@ -753,3 +753,9 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 When a page uses session-backed features, where a component has a `[SupplyParameterFromSession]` parameter (which creates a subscription) or the session-storage TempData provider is active, the session cookie (`.AspNetCore.Session`) is now issued before streaming begins, even if no value is ultimately written. Pages that don't use session-backed features are unaffected.
 
 For more information, see [Fix TempData and SupplyParameterFromSession persistence for streaming SSR case (`dotnet/aspnetcore` #66832)](https://github.com/dotnet/aspnetcore/pull/66832) (Please don't comment on closed issues and PRs.).
+
+### Redundant `app.UseAntiforgery()` removed from Blazor Web templates
+
+[CSRF protection](xref:security/csrf-protection) is now on by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web templates has been removed.
+
+For more information, see <xref:migration/antiforgery-to-csrf>.
