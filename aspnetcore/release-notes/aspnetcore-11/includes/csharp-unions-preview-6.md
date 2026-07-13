@@ -9,3 +9,5 @@ app.MapGet("/value", () => new UnionIntString(42));
 ```
 
 Union types aren't supported for non-body binding sources such as route values, query strings, headers, and form fields.
+
+For examples and additional information that apply to Blazor apps, see the [Component parameters section in the Components overview article](xref:blazor/components/index#component-parameters) and the [Pass parameters section of the Dynamically-rendered ASP.NET Core Razor components article](xref:blazor/components/dynamiccomponent).

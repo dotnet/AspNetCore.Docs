@@ -430,28 +430,28 @@ A new `GetUriWithHash` extension method permits `NavigationManager` to easily co
 
 The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
 
-### `EnvironmentBoundary` component
+### `EnvironmentView` component
 
-Blazor now includes a built-in `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
+Blazor now includes a built-in `EnvironmentView` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
 
-The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching and follows the same semantics as MVC's `EnvironmentTagHelper`.
+The `EnvironmentView` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching and follows the same semantics as MVC's `EnvironmentTagHelper`.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
 
-<EnvironmentBoundary Include="Development">
+<EnvironmentView Include="Development">
     <div class="alert alert-warning">
         Debug mode enabled
     </div>
-</EnvironmentBoundary>
+</EnvironmentView>
 
-<EnvironmentBoundary Include="Development,Staging">
+<EnvironmentView Include="Development,Staging">
     <p>Pre-production environment</p>
-</EnvironmentBoundary>
+</EnvironmentView>
 
-<EnvironmentBoundary Exclude="Production">
+<EnvironmentView Exclude="Production">
     <p>@DateTime.Now</p>
-</EnvironmentBoundary>
+</EnvironmentView>
 ```
 
 ### MathML namespace support
