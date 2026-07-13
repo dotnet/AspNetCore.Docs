@@ -6,7 +6,7 @@ description: Learn about the security considerations, configurable limits, and b
 monikerRange: '>= aspnetcore-8.0'
 ms.author: brecon
 ms.custom: mvc
-ms.date: 07/09/2026
+ms.date: 07/13/2026
 uid: fundamentals/servers/kestrel/security-considerations
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
@@ -250,7 +250,7 @@ Kestrel implements HTTP/1.1 parsing per RFC 9112 with several security-motivated
 ### Request line validation
 
 - **Method**: Only valid HTTP token characters are accepted. Invalid token characters in the method cause rejection.
-- **Request target**: Empty paths and paths starting with `?` or `%` are rejected. Null bytes (`0x00`) are rejected because they can cause issues with native servers when forwarded; non-ASCII bytes (>= `0x80`) are rejected during ASCII string conversion. Kestrel's parser scans for delimiters to find target boundaries but doesn't perform a per-byte VCHAR check (RFC 9112 §4), so bytes in `0x01–0x1F` (excluding `\0`, `\n`, `\r`, space) and `0x7F` (DEL) reach `Request.Path` unchanged. The practical risk is log injection—for example, `0x1B` (ESC) in the path can inject ANSI escape sequences into log viewers. Applications can defend by deploying behind a stricter reverse proxy, using a logger provider that escapes control characters, sanitizing logs before displaying them by escaping control characters.
+- **Request target**: Empty paths and paths starting with `?` or `%` are rejected. Null bytes (`0x00`) are rejected because they can cause issues with native servers when forwarded; non-ASCII bytes (>= `0x80`) are rejected during ASCII string conversion. Kestrel's parser scans for delimiters to find target boundaries but doesn't perform a per-byte VCHAR check (RFC 9112 §4), so bytes in `0x01–0x1F` (excluding `\0`, `\n`, `\r`, space) and `0x7F` (DEL) reach `Request.Path` unchanged. The practical risk is log injection—for example, `0x1B` (ESC) in the path can inject ANSI escape sequences into log viewers. Applications can defend against this with one or more of the following measures: deploying behind a stricter reverse proxy, using a logger provider that escapes control characters, or sanitizing logs before they're displayed.
 - **HTTP version**: Only `HTTP/1.0` and `HTTP/1.1` are accepted by the `HTTP/1.1` parser. The `HTTP/2` parser is selected via ALPN or prior-knowledge. Unrecognized versions (including `HTTP/0.9`, `HTTP/2.0`) are rejected with `505 HTTP Version Not Supported`.
 
 ### Request-target form validation
@@ -323,7 +323,7 @@ Kestrel validates chunked transfer encoding per RFC 9112 Section 7.1:
 
 - Chunk format: `chunk-size [chunk-ext] CRLF chunk-data CRLF`
 - Maximum chunk prefix length: 10 bytes (supports chunk sizes up to `0x7FFFFFFF`)
-- Chunk extensions are validated—unpaired `\r` or `\n` in extensions cause rejection
+- Chunk extensions are validated—unpaired `\r` or `\n` in extensions cause rejection.
 - `BadChunkSuffix`, `BadChunkSizeData`, `BadChunkExtension`, and `ChunkedRequestIncomplete` errors each produce `400 Bad Request`
 
 An [`EnableInsecureChunkedRequestParsing`](#appcontext-compatibility-switches) AppContext switch exists for backwards compatibility but is disabled by default. See [AppContext Compatibility Switches](#appcontext-compatibility-switches).
@@ -911,7 +911,7 @@ Kestrel supports Unix domain sockets (UDS) as a transport, commonly used for com
 
 Unix domain sockets are represented as files in the filesystem. Access control is governed by file permissions (owner, group, other). **Kestrel doesn't explicitly set file permissions on the socket file**—the socket inherits permissions based on the process's `umask` at the time of creation.
 
-For production deployments, ensure the socket file's permissions restrict access to the intended user or group:
+For production deployments, ensure the socket file's permissions restrict access to the intended user or group (`www-data` in the example below):
 
 ```bash
 # After Kestrel creates the socket, restrict permissions
