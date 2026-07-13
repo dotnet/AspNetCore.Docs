@@ -5,7 +5,7 @@ description: Learn how to use component virtualization in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 07/13/2026
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -470,5 +470,18 @@ In the preceding example, the document root is used as the scroll container, so 
 
 * [Root-level virtualization](#root-level-virtualization) section
 * <xref:blazor/components/control-head-content>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Content Security Policy (CSP) compliance
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer and placeholder elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction.
+
+To avoid CSP violations, `Virtualize` components:
+
+* Render CSS styles in a `data-blazor-style` attribute instead of a `style` attribute.
+* Use a JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) to read the attribute's value and apply each declaration via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model): `element.style.setProperty(name, value)`.
 
 :::moniker-end
