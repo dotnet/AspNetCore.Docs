@@ -2386,9 +2386,6 @@ items:
       - name: Overview
         displayName: migrate, migration
         uid: migration/index
-      - name: Adopt automatic CSRF protection in .NET 11
-        displayName: migrate, migration, csrf, antiforgery
-        uid: migration/antiforgery-to-csrf
       - name: Version updates
         items:
           - name: 10 to 11

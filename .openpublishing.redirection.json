@@ -571,6 +571,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/migration/antiforgery-to-csrf.md",
+            "redirect_url": "/aspnet/core/migration/100-to-110",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/migration/rc1-to-rtm.md",
             "redirect_url": "/aspnet/core/migration/",
             "redirect_document_id": false
