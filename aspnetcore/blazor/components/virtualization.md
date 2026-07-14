@@ -280,7 +280,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 ## Scroll to a specific item
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialItemIndex` for the first render and `ScrollToItemAsync` for programmatic scrolling after the component is rendered.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialIndex` for the first render and `ScrollToIndexAsync` for programmatic scrolling after the component is rendered.
 
 ### `InitialItemIndex` parameter
 
