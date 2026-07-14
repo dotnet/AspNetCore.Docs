@@ -187,6 +187,8 @@ window.addEventListener('visibilitychange', () => {
 
 ## Automatic circuit pause on tab inactivity
 
+<!-- UPDATE 11.0 - API browser cross-links -->
+
 The framework can optionally pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. Auto-pause is provided by the `Microsoft.AspNetCore.Components.Server.AutoPause` package. After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
 
 ```csharp
@@ -199,17 +201,17 @@ app.MapRazorComponents<App>()
 * `Enabled`: Whether auto-pause is enabled. Defaults to `true`, so calling `AddAutoPause` is what enables the feature.
 * `HiddenDelay`: The delay after the tab becomes hidden before the circuit pauses. Defaults to two minutes (`TimeSpan.FromMinutes(2)`) and must be greater than `TimeSpan.Zero`.
 
-After the tab is hidden for `HiddenDelay`, the circuit pauses. If the user returns before the delay elapses, the pause doesn't happen.
+After the tab is hidden for `HiddenDelay`, the circuit pauses. If the user returns before the delay elapses, the pause doesn't occur.
 
 > [!NOTE]
 > Auto-pause triggers on the [Page Visibility API](https://developer.mozilla.org/docs/Web/API/Page_Visibility_API) `visibilitychange` event, whose meaning differs by platform:
 >
-> * On desktop, the tab becomes hidden when the user switches tabs or minimizes the window. The pause timer runs reliably and the circuit pauses gracefully after the delay.
+> * On desktop, the tab becomes hidden when the user switches tabs or minimizes the window. The pause timer runs reliably, and the circuit pauses gracefully after the delay.
 > * On mobile, the page also becomes hidden when the *whole app* is backgrounded (switching apps, returning to the home screen, or locking the screen), not just when switching browser tabs.
 >
-> On mobile, the operating system suspends the page's JavaScript shortly after the app is backgrounded (within seconds on Android, up to about 30 seconds on iOS). If `HiddenDelay` is longer than that window, the pause timer never fires and the circuit is dropped by the OS-initiated disconnect instead of pausing gracefully. The session is still preserved through the normal reconnection and [circuit state persistence](#circuit-state-persistence) path, but the client-side veto and deferral logic doesn't run. For this reason, graceful auto-pause isn't guaranteed and isn't a supported scenario on mobile when the app is backgrounded.
+> On mobile, the operating system suspends the page's JavaScript shortly after the app is backgrounded (within seconds on Android, up to about 30 seconds on iOS). If `HiddenDelay` is longer than that window, the pause timer never fires, and the circuit is dropped by the OS-initiated disconnect instead of pausing gracefully. The session is still preserved through the normal reconnection and [circuit state persistence](#circuit-state-persistence) path, but the client-side veto and deferral logic doesn't run. For this reason, graceful auto-pause isn't guaranteed and isn't a supported scenario on mobile when the app is backgrounded.
 
-The framework defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text inputs with Blazor `@bind` bindings are edited or audio/video is playing.
+The framework defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text `<input>` elements with Blazor `@bind` bindings are edited or audio/video is playing.
 
 For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Register a circuit handler with an `onCircuitPausing` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup):
 
@@ -243,7 +245,7 @@ For elements without Blazor bindings (for example, `<canvas>`, WebRTC connection
 ```
 
 > [!NOTE]
-> The `<input type="file">` element can't have its value restored after pause/resume due to browser security restrictions. Using `[PersistentState]` on a property bound to a file input causes an `InvalidStateError` that crashes the circuit. Instead, capture the file name in a separate property. Because the browser doesn't expose the file name through the native `change` event, read it with a small JS interop helper:
+> The `<input type="file">` element can't have its value restored after pause/resume due to browser security restrictions. Using `[PersistentState]` on a property bound to a file `<input>` element causes an `InvalidStateError` that crashes the circuit. Instead, capture the file name in a separate property. Because the browser doesn't expose the file name through the native `change` event, read it with a small JS interop helper:
 >
 > ```razor
 > @inject IJSRuntime JS
