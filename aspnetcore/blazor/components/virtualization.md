@@ -296,7 +296,7 @@ Set `InitialIndex` to open the list at a specific item index on the first intera
 
 Call `ScrollToItemAsync` to programmatically scroll to an item after first render. The scroll is instant (no animation). The method returns a `Task` that completes when the target item is aligned to the top of the viewport. Cancellation is supported via `CancellationToken`.
 
-If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before first interactive render throws an <xref:System.InvalidOperationException>.
+If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before the first interactive render throws an <xref:System.InvalidOperationException>.
 
 ```razor
 <Virtualize Items="allFlights" Context="flight" @ref="virtualizeComponent">
