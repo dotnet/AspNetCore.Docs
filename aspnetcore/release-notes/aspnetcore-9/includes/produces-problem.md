@@ -22,4 +22,4 @@ Prior to .NET 9, constructing [Problem](/dotnet/api/microsoft.aspnetcore.http.ty
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/ProducesProblem/Program.cs" id="snippet_2" :::
 
-Thanks to GitHub user [joegoldman2](https://github.com/joegoldman2) for this contribution!
+Thanks to Joseph Goldman for this contribution!
