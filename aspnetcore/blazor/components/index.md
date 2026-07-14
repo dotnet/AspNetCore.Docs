@@ -1274,6 +1274,11 @@ The following `SlotExample` component uses the preceding `SlotContent` type and 
 
 The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot")"` in the preceding example.
 
+<!-- UPDATE 11.0 - Track on https://github.com/dotnet/razor/issues/13200 for 
+                   the following feature. -->
+
+Populating a union-typed parameter via a [child content render fragment](#child-content-render-fragments) (`<Slot>...</Slot>`) isn't supported at this time but might be introduced in a future preview release.
+
 <!-- UPDATE 13.0 - Remove the following cross-link when C# unions get some time on them (target removal for .NET 13) -->
 
 For more information, see [Explore union types in C# 15](https://devblogs.microsoft.com/dotnet/csharp-15-union-types/).

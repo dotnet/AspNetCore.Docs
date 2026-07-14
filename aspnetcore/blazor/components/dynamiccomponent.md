@@ -319,30 +319,7 @@ The following `Slot` component exposes a component parameter typed to the `SlotC
 }
 ```
 
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> Using the preceding `Slot` component, the following component fails at run time with an <xref:System.InvalidCastException>:
-
-```razor
-@page "/slot-test-1"
-
-<DynamicComponent Type="@TargetComponent" Parameters="@BadParameters" />
-
-@code {
-    [Parameter]
-    public Type TargetComponent { get; set; } = typeof(Slot);
-
-    [Parameter]
-    public string RawTextPayload { get; set; } = "Hello from dynamic data!";
-
-    private Dictionary<string, object> BadParameters => new()
-    {
-        { "Content", RawTextPayload }
-    };
-}
-```
-
-> :::no-loc text="System.InvalidCastException: Unable to cast object of type 'System.String' to type 'SlotContent'.":::
-
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> To box the union, wrap the raw value explicitly into the union wrapper type (`new SlotContent(...)`), as the following example demonstrates.
+To box the union, wrap the raw value explicitly into the union wrapper type (`new SlotContent(...)`), as the following example demonstrates.
 
 `SlotTest2.razor`:
 
