@@ -274,7 +274,9 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - API Browser cross-links -->
 
 ## Scroll to a specific item
 
