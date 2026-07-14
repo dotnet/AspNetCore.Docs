@@ -312,7 +312,7 @@ If multiple calls occur, the last call wins—earlier calls complete normally bu
     {
         if (virtualizeComponent is not null)
         {
-            await virtualizeComponent.ScrollToItemAsync(200);
+            await virtualizeComponent.ScrollToIndexAsync(200);
         }
     }
 }
