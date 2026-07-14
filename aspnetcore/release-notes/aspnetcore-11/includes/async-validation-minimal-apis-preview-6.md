@@ -4,7 +4,7 @@ Minimal API validation supports asynchronous validators end-to-end. The base lib
 
 <!-- TODO: Update `AsyncValidationAttribute`, `IAsyncValidatableObject`, and `Validator.ValidateObjectAsync` to <xref:> once API docs are published. -->
 
-Asynchronous validation lets a validation rule do real work, such as a database lookup or a remote API call, without blocking a thread. A model implements `IAsyncValidatableObject` and returns validation results as an `IAsyncEnumerable<ValidationResult>`. Because `IAsyncValidatableObject` extends `IValidatableObject`, also implement the synchronous `Validate` method. When a type validates asynchronously only, throw from `Validate` so it isn't silently validated through the synchronous APIs:
+Asynchronous validation lets a validation rule do real work, such as a database lookup or a remote API call, without blocking a thread. A model implements `IAsyncValidatableObject` and returns validation results as an `IAsyncEnumerable<ValidationResult`. Because `IAsyncValidatableObject` extends `IValidatableObject`, also implement the synchronous `Validate` method. When a type validates asynchronously only, throw from `Validate` so it isn't silently validated through the synchronous APIs:
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +26,7 @@ public class ReservationRequest : IAsyncValidatableObject
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var rooms = context.GetRequiredService<IRoomService>();
+
         if (!await rooms.HasAvailabilityAsync(Date, cancellationToken))
         {
             yield return new ValidationResult(
