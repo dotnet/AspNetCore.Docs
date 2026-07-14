@@ -788,7 +788,7 @@ When a page uses session-backed features, where a component has a `[SupplyParame
 
 For more information, see [Fix TempData and SupplyParameterFromSession persistence for streaming SSR case (`dotnet/aspnetcore` #66832)](https://github.com/dotnet/aspnetcore/pull/66832). (Please don't comment on closed issues and PRs.)
 
-### Redundant `app.UseAntiforgery()` removed from Blazor Web templates
+### Redundant `app.UseAntiforgery()` removed from Blazor Web App templates
 
 [CSRF protection](xref:security/csrf-protection) is enabled by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates has been removed.
 
@@ -796,6 +796,12 @@ For more information, see the following resources:
 
 * <xref:migration/antiforgery-to-csrf>
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
+
+General coverage for the new automatic CSRF protection in ASP.NET Core:
+
+* <xref:security/csrf-protection>
+* <xref:blazor/forms/index#antiforgery-support>
+* <xref:blazor/security/index#antiforgery-support>
 
 ### Blazor Virtualize can scroll to an item
 
