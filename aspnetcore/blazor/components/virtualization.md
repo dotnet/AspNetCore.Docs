@@ -284,7 +284,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 ### `InitialItemIndex` parameter
 
-Set `InitialItemIndex` to open the list at a specific item index on first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
+Set `InitialIndex` to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
 
 ```razor
 <Virtualize Items="allFlights" Context="flight" InitialItemIndex="500">
