@@ -762,3 +762,37 @@ For more information, see the following resources:
 
 * <xref:migration/antiforgery-to-csrf>
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
+
+### Configure Blazor client behavior from the server
+
+<!-- UPDATE 11.0 - We need reference article coverage for this. 
+                   I'll open an issue and try to resolve it by
+                   EOD. -->
+
+Blazor apps can now configure client-side startup behavior from the server in C# when mapping Razor components instead of hand-writing `Blazor.start` JavaScript. `WithBrowserOptions` sets options that the server serializes into the rendered page and the Blazor script applies in the browser, across the Server, WebAssembly, and Auto render modes. The options cover the client log level, interactive Server reconnection, whether enhanced navigation preserves the DOM, and a WebAssembly runtime's environment name, culture, and environment variables:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .WithBrowserOptions(options =>
+    {
+        options.LogLevel = LogLevel.Warning;
+        options.Server.ReconnectionMaxRetries = 10;
+        options.Server.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
+        options.Ssr.PreserveDom = true;
+        options.WebAssembly.EnvironmentName = "Staging";
+        options.WebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] = 
+            "https://localhost:4318";
+    });
+```
+
+You can also set the options from a component with `<ConfigureBrowser>` or read the resolved options from `HttpContext` with `GetBrowserOptions()`.
+
+The API was introduced in Preview 4 and reshaped in Preview 6 to follow options conventions. If you adopted the earlier shape, `WithBrowserConfiguration` is now `WithBrowserOptions`, `BrowserConfiguration` is now `BrowserOptions`, `ServerBrowserOptions` is now `InteractiveServerBrowserOptions`, `SsrBrowserOptions.DisableDomPreservation` is now `PreserveDom` (with the opposite meaning), and `CircuitInactivityTimeoutMs` is now `CircuitInactivityTimeout` (a `TimeSpan`).
+
+For more information, see the following resources:
+
+* [API Proposal: BrowserOptions for server-to-client configuration (`dotnet/aspnetcore` #66393)](https://github.com/dotnet/aspnetcore/issues/66393)
+* [Reshape BrowserConfiguration API per review (BrowserOptions) while preserving the JS wire format (`dotnet/aspnetcore` #67337)](https://github.com/dotnet/aspnetcore/pull/67337)
+
+Please don't comment on closed issues and PRs. Open a new issue to provide feedback on this API.
