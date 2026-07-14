@@ -1,6 +1,6 @@
 ### C# union types
 
-C# union types are a preview language feature in .NET 11 (see the [C# release notes](/dotnet/csharp/whats-new/csharp-14#union-types)), and [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) serializes them natively. Because ASP.NET Core uses `System.Text.Json` for JSON, union types work as JSON request bodies and return types throughout the stack with no ASP.NET-specific configuration:
+C# union types are a preview language feature in .NET 11 (see the [C# release notes](/dotnet/csharp/whats-new/csharp-14#union-types) and [C# language reference](/dotnet/csharp/language-reference/builtin-types/union)), and [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) serializes them natively. Because ASP.NET Core uses `System.Text.Json` for JSON, union types work as JSON request bodies and return types throughout the stack with no ASP.NET-specific configuration:
 
 * Minimal APIs — union body parameters and return types, including `Task<Union>`, `IAsyncEnumerable<Union>`, and `Results<T1, T2>`, in both the runtime and source-generated request delegates.
 * MVC and Razor Pages — union types as `[FromBody]` parameters and action or page-handler return types.
