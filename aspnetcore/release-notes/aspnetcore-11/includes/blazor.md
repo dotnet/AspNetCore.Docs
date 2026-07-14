@@ -796,3 +796,31 @@ For more information, see the following resources:
 
 * <xref:migration/antiforgery-to-csrf>
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
+
+### Blazor Virtualize can scroll to an item
+
+<!-- UPDATE 11.0 - Cross-link to ref content -->
+
+The `Virtualize<TItem>` component can now open at a specific item and scroll to any item on demand. Two new public APIs make this possible:
+
+* `InitialIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
+* `ScrollToIndexAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
+
+```razor
+<Virtualize TItem="Product" Items="products" InitialIndex="500" @ref="list">
+    <div class="product">@context.Name</div>
+</Virtualize>
+
+<button @onclick="GoToTop">Back to top</button>
+
+@code {
+    private Virtualize<Product> list = default!;
+    private List<Product> products = ProductCatalog.All;
+
+    private async Task GoToTop() => await list.ScrollToIndexAsync(0);
+}
+```
+
+Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialIndex` to set the starting position instead.
+
+For more information, see [Add `InitialIndex` parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
