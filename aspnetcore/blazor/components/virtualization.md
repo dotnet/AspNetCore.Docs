@@ -294,7 +294,7 @@ Set `InitialIndex` to open the list at a specific item index on the first intera
 
 ### `ScrollToItemAsync` method
 
-Call `ScrollToItemAsync` to programmatically scroll to an item after first render. The scroll is instant (no animation). The method returns a `Task` that completes when the target item is aligned to the top of the viewport. Cancellation is supported via `CancellationToken`.
+Call `ScrollToIndexAsync` to programmatically scroll to an item after the first render. The scroll is instant (no animation). The method returns a <xref:System.Threading.Tasks.Task> that completes when the target item is aligned to the top of the viewport. Cancellation is supported via a <xref:System.Threading.CancellationToken>.
 
 If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before the first interactive render throws an <xref:System.InvalidOperationException>.
 
