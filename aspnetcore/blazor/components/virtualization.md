@@ -282,7 +282,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialIndex` for the first render and `ScrollToIndexAsync` for programmatic scrolling after the component is rendered.
 
-### `InitialItemIndex` parameter
+### `InitialIndex` parameter
 
 Set `InitialIndex` to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
 
