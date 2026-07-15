@@ -75,9 +75,31 @@ The Blazor project template:
 :::moniker range=">= aspnetcore-11.0"
 
 * Enables automatic Cross-Site Request Forgery (CSRF) protection middleware in apps built with `WebApplication.CreateBuilder`. The middleware inspects the `Sec-Fetch-Site` and `Origin` headers on unsafe HTTP methods and records a validation verdict on the request. Blazor server-side rendering (SSR) form posts enforce that verdict and return `400 Bad Request` for cross-origin form posts that aren't trusted.
-* Implicitly adds token-based antiforgery services to the app when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the `Program` file. Antiforgery middleware isn't automatically included in the request processing pipeline without explicitly calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
+* Implicitly adds token-based antiforgery *services* to the app when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the `Program` file.
 
-To explicitly add antiforgery middleware, call <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+Antiforgery *middleware* isn't automatically included in the request processing pipeline without explicitly calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
+
+To explicitly add Antiforgery Middleware, call <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+
+Adding token-based antiforgery middleware doesn't replace the automatic header-based CSRF protection middleware. When an app calls <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>, both defense mechanisms run for a form post:
+
+* The header-based CSRF protection middleware runs first and records its verdict.
+* Antiforgery middleware performs token-based validation.
+
+The token-based result from antiforgery middleware is authoritative and overrides the earlier header-based CSRF middleware verdict.
+
+To disable the automatic header-based CSRF protection middleware, set the `DisableCsrfProtection` configuration key to true. For example, use the app settings file (`appsettings.json`) to disable the middleware:
+
+```json
+{
+  "DisableCsrfProtection": true
+}
+```
+
+The the `DisableCsrfProtection` configuration setting can be supplied by any configuration source, including via an environment variable (`DisableCsrfProtection=true`).
+
+> [!WARNING]
+> Disabling the automatic CSRF protection middleware removes the default header-based (`Sec-Fetch-Site`/`Origin`) protection for the entire app. Only disable it if you provide an alternative CSRF defense, such as explicitly adopting token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
 
 For more information, see <xref:security/csrf-protection>.
 
