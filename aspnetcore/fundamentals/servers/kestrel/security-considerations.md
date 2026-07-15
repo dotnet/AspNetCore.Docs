@@ -245,7 +245,7 @@ The `HandshakeTimeout` defaults to **10 seconds**. This limits how long a client
 
 ## HTTP/1.1 request parsing and validation
 
-Kestrel implements HTTP/1.1 parsing per RFC 9112 with several security-motivated constraints.
+Kestrel implements HTTP/1.1 parsing per [RFC 9112](https://www.rfc-editor.org/rfc/rfc9112) with several security-motivated constraints.
 
 ### Request line validation
 
@@ -327,10 +327,6 @@ Kestrel validates chunked transfer encoding per RFC 9112 Section 7.1:
 - `BadChunkSuffix`, `BadChunkSizeData`, `BadChunkExtension`, and `ChunkedRequestIncomplete` errors each produce `400 Bad Request`
 
 An [`EnableInsecureChunkedRequestParsing`](#appcontext-compatibility-switches) AppContext switch exists for backwards compatibility but is disabled by default. See [AppContext Compatibility Switches](#appcontext-compatibility-switches).
-
-### Line termination
-
-HTTP/1.1 requires CRLF (`\r\n`) line terminators. By default, Kestrel also accepts bare LF (`\n`), as permitted by RFC 9112 Section 2.2 ("a recipient MAY recognize a single LF as a line terminator"). This is a robustness accommodation for non-compliant clients and intermediaries. The [`Microsoft.AspNetCore.Server.Kestrel.DisableHttp1LineFeedTerminators`](#appcontext-compatibility-switches) AppContext switch can be set to reject bare LF for defense-in-depth against intermediaries that disagree about framing boundaries.
 
 ### Content-Length validation
 
