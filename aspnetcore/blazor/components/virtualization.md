@@ -5,7 +5,7 @@ description: Learn how to use component virtualization in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 07/14/2026
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -411,6 +411,26 @@ If your source code looks like the following:
 
 At runtime, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component renders a DOM structure similar to the following:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+```html
+<div style="height:500px; overflow-y:scroll" tabindex="-1">
+    <div data-blazor-virtualize-reserved-height="1100" aria-hidden="true"></div>
+    <div class="flight-info">Flight 12</div>
+    <div class="flight-info">Flight 13</div>
+    <div class="flight-info">Flight 14</div>
+    <div class="flight-info">Flight 15</div>
+    <div class="flight-info">Flight 16</div>
+    <div data-blazor-virtualize-reserved-height="3400" aria-hidden="true"></div>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```html
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
     <div style="height:1100px"></div>
@@ -422,6 +442,10 @@ At runtime, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtual
     <div style="height:3400px"></div>
 </div>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The actual number of rows rendered and the size of the spacers vary according to your styling and `Items` collection size. However, notice that there are spacer `div` elements injected before and after your content. These serve two purposes:
 
@@ -516,5 +540,21 @@ In the preceding example, the document root is used as the scroll container, so 
 
 * [Root-level virtualization](#root-level-virtualization) section
 * <xref:blazor/components/control-head-content>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Content Security Policy (CSP) compliance
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction.
+
+To avoid CSP violations, render CSS height in a `data-blazor-virtualize-reserved-height` attribute instead of a `style` attribute, which makes the rendered component compatible with strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) configurations.
+
+In the following example, the height is set to 3,400 pixels:
+
+```razor
+<div data-blazor-virtualize-reserved-height="3400" aria-hidden="true"></div>
+```
 
 :::moniker-end

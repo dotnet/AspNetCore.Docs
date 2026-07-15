@@ -251,7 +251,7 @@ Replace or append MIME types with the [ResponseCompressionOptions.MimeTypes](xre
 
 ## Add the Vary header
 
-When responses are compressed based on the [Accept-Encoding request header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Accept-Encoding), there can be uncompressed and multiple compressed versions of the response. To instruct client and proxy caches that multiple versions exist and should be stored, the `Vary` header is added with an `Accept-Encoding` value. The response middleware [adds the 'Vary' header](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionBody.cs#L198-L241) in the _ResponseCompressionBody.cs_ file automatically when the response is compressed.
+When responses are compressed based on the [Accept-Encoding request header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Accept-Encoding), there can be uncompressed and multiple compressed versions of the response. To instruct client and proxy caches that multiple versions exist and should be stored, the `Vary` header is added with an `Accept-Encoding` value. The response middleware [adds the 'Vary' header](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionBody.cs#L198-L241) in the _ResponseCompressionBody.cs_ file automatically when the response is compressed.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

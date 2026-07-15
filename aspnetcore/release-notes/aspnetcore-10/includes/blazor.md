@@ -231,6 +231,13 @@ In standalone Blazor WebAssembly apps, framework assets are scheduled for high p
 
 For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
 
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> This feature is disabled for Blazor Web App enhanced navigation in .NET 11 or later. For more information, see [Blazor enhanced navigation no longer preloads resources](/aspnet/core/breaking-changes/11/blazor-enhanced-nav-preloading-disabled).
+
+:::moniker-end
+
 ### Set the environment in standalone Blazor WebAssembly apps
 
 The `Blazor-Environment` header and `Properties/launchSettings.json` file (`ASPNETCORE_ENVIRONMENT` environment variable) are no longer used to control the environment in standalone Blazor WebAssembly apps.

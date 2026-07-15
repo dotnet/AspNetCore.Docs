@@ -112,7 +112,7 @@ If the default source is not correct, use one of the following attributes to spe
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) are supported only with `[FromBody]`. The other binding sources—`[FromQuery]`, `[FromRoute]`, `[FromForm]`, and `[FromHeader]`—bind string values without JSON parsing, so they can't dispatch to a union case.
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported only with `[FromBody]`. The other binding sources—`[FromQuery]`, `[FromRoute]`, `[FromForm]`, and `[FromHeader]`—bind string values without JSON parsing, so they can't dispatch to a union case.
 
 :::moniker-end
 

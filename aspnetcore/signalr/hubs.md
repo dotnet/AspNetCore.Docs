@@ -50,7 +50,7 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) only with the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
+> Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/language-reference/builtin-types/union) only with the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
 
 :::moniker-end
 
