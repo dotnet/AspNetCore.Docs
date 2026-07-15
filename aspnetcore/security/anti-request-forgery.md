@@ -122,7 +122,7 @@ The following components read `IAntiforgeryValidationFeature` and reject a reque
 
 * MVC actions protected by antiforgery.
 * Minimal API endpoints that bind a form parameter.
-* Blazor static server-side rendering (SSR) form posts.
+* Blazor SSR endpoints.
 * Any code that reads the request form directly, which acts as a backstop.
 
 Each consumer first confirms that an antiforgery or CSRF middleware actually ran before it trusts the verdict, so a pipeline without either middleware doesn't produce false rejections.
