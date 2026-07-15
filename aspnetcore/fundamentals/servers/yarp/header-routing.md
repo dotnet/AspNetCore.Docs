@@ -4,7 +4,7 @@ title: YARP Header Based Routing
 description: YARP Header Based Routing
 author: wadepickett
 ms.author: wpickett
-ms.date: 2/6/2025
+ms.date: 07/13/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
@@ -282,6 +282,9 @@ var routes = new[]
 ### Name
 
 The header name to check for on the request. A non-empty value is required. This field is case-insensitive per the HTTP RFCs.
+
+> [!NOTE]
+> YARP doesn't normalize dashes (`-`) and underscores (`_`) in header names. They're treated as different characters, so a name such as `my-header` doesn't match a request header named `my_header`.
 
 ### Values
 

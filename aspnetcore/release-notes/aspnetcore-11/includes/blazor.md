@@ -171,6 +171,15 @@ For more information, see the following resources:
   * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
   * [[release/11.0-preview4] Virtualization AnchorMode with variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
+* Content Security Policy (CSP) compliance
+
+  The `Virtualize` component renders dynamic inline `style` attributes on its spacer and placeholder elements (for example, `style="height: 478896px; flex-shrink: 0;"`) because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. These are blocked by a Content Security Policy (CSP) when `style-src 'self'` is set, breaking virtualization entirely for apps with strict CSP policies.
+
+  Now, CSP violations are avoided because `Virtualize` components:
+
+  * Render CSS styles in a `data-blazor-style` attribute instead of a `style` attribute.
+  * Use a JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) to read the attribute's value and apply each declaration via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model): `element.style.setProperty(name, value)`.
+
 ### New service defaults library project template for Blazor WebAssembly apps
 
 The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
@@ -405,9 +414,9 @@ public string? FlashMessage { get; set; }
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
 
-### `GetUriWithHash` extension method
+### `GetUriWithFragment` extension method
 
-A new `GetUriWithHash` extension method permits `NavigationManager` to easily construct URIs with hash fragments. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+A new `GetUriWithFragment` extension method permits `NavigationManager` to easily construct URIs with hash fragments. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
 
 * Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
 * Method call that receives a section Id (`sectionId`) and navigates to the section of the page.
@@ -415,14 +424,14 @@ A new `GetUriWithHash` extension method permits `NavigationManager` to easily co
 ```razor
 @inject NavigationManager Navigation
 
-<a href="@Navigation.GetUriWithHash("section-1")">
+<a href="@Navigation.GetUriWithFragment("section-1")">
     Jump to Section 1
 </a>
 
 @code {
     private void NavigateToSection(string sectionId)
     {
-        var uri = Navigation.GetUriWithHash(sectionId);
+        var uri = Navigation.GetUriWithFragment(sectionId);
         Navigation.NavigateTo(uri);
     }
 }
@@ -430,28 +439,28 @@ A new `GetUriWithHash` extension method permits `NavigationManager` to easily co
 
 The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
 
-### `EnvironmentBoundary` component
+### `EnvironmentView` component
 
-Blazor now includes a built-in `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
+Blazor now includes a built-in `EnvironmentView` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
 
-The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching and follows the same semantics as MVC's `EnvironmentTagHelper`.
+The `EnvironmentView` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching and follows the same semantics as MVC's `EnvironmentTagHelper`.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
 
-<EnvironmentBoundary Include="Development">
+<EnvironmentView Include="Development">
     <div class="alert alert-warning">
         Debug mode enabled
     </div>
-</EnvironmentBoundary>
+</EnvironmentView>
 
-<EnvironmentBoundary Include="Development,Staging">
+<EnvironmentView Include="Development,Staging">
     <p>Pre-production environment</p>
-</EnvironmentBoundary>
+</EnvironmentView>
 
-<EnvironmentBoundary Exclude="Production">
+<EnvironmentView Exclude="Production">
     <p>@DateTime.Now</p>
-</EnvironmentBoundary>
+</EnvironmentView>
 ```
 
 ### MathML namespace support
@@ -579,6 +588,40 @@ builder.Services.AddHostedService<DataRefreshService>();
 
 Hosted services are started when the app starts and stopped when it shuts down, providing a clean lifecycle for background operations in Blazor WebAssembly apps.
 
+### Configure Blazor client behavior from the server
+
+<!-- UPDATE 11.0 - We need reference article coverage for this. 
+                   I'll open an issue and try to resolve it by
+                   EOD. -->
+
+Blazor apps can now configure client-side startup behavior from the server in C# when mapping Razor components instead of hand-writing `Blazor.start` JavaScript. `WithBrowserOptions` sets options that the server serializes into the rendered page and the Blazor script applies in the browser, across the Server, WebAssembly, and Auto render modes. The options cover the client log level, interactive Server reconnection, whether enhanced navigation preserves the DOM, and a WebAssembly runtime's environment name, culture, and environment variables:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .WithBrowserOptions(options =>
+    {
+        options.LogLevel = LogLevel.Warning;
+        options.Server.ReconnectionMaxRetries = 10;
+        options.Server.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
+        options.Ssr.PreserveDom = true;
+        options.WebAssembly.EnvironmentName = "Staging";
+        options.WebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] = 
+            "https://localhost:4318";
+    });
+```
+
+You can also set the options from a component with `<ConfigureBrowser>` or read the resolved options from `HttpContext` with `GetBrowserOptions()`.
+
+The API was introduced in Preview 4 and reshaped in Preview 6 to follow options conventions. If you adopted the earlier shape, `WithBrowserConfiguration` is now `WithBrowserOptions`, `BrowserConfiguration` is now `BrowserOptions`, `ServerBrowserOptions` is now `InteractiveServerBrowserOptions`, `SsrBrowserOptions.DisableDomPreservation` is now `PreserveDom` (with the opposite meaning), and `CircuitInactivityTimeoutMs` is now `CircuitInactivityTimeout` (a `TimeSpan`).
+
+For more information, see the following resources:
+
+* [API Proposal: BrowserOptions for server-to-client configuration (`dotnet/aspnetcore` #66393)](https://github.com/dotnet/aspnetcore/issues/66393)
+* [Reshape BrowserConfiguration API per review (BrowserOptions) while preserving the JS wire format (`dotnet/aspnetcore` #67337)](https://github.com/dotnet/aspnetcore/pull/67337)
+
+Please don't comment on closed issues and PRs. Open a new issue to provide feedback on this API.
+
 ### Environment variables in Blazor WebAssembly configuration
 
 Blazor WebAssembly applications can now access environment variables through `IConfiguration`. This enables runtime configuration without rebuilding the application, making it easier to deploy the same build to different environments.
@@ -679,7 +722,7 @@ For more information, see [Add built-in support for async form validation in Bla
 
 Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
 
-## Blazor and Minimal APIs support error localization
+### Blazor and Minimal APIs support error localization
 
 Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. By default, localization uses language-specific RESX files deployed as part of the assembly.
 
@@ -738,3 +781,52 @@ Complete feature coverage is available in the following articles:
 For more information, see [Add localization support to Microsoft.Extensions.Validation (`dotnet/aspnetcore` #66646)](https://github.com/dotnet/aspnetcore/pull/66646).
 
 Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
+
+### Fixes to TempData and `[SupplyParameterFromSession]` persistence for streaming SSR
+
+When a page uses session-backed features, where a component has a `[SupplyParameterFromSession]` parameter (which creates a subscription) or the session-storage TempData provider is active, the session cookie (`.AspNetCore.Session`) is now issued before streaming begins, even if no value is ultimately written. Pages that don't use session-backed features are unaffected.
+
+For more information, see [Fix TempData and SupplyParameterFromSession persistence for streaming SSR case (`dotnet/aspnetcore` #66832)](https://github.com/dotnet/aspnetcore/pull/66832). (Please don't comment on closed issues and PRs.)
+
+### Redundant `app.UseAntiforgery()` removed from Blazor Web App templates
+
+[CSRF protection](xref:security/csrf-protection) is enabled by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates has been removed.
+
+For more information, see the following resources:
+
+* <xref:migration/100-to-110>
+* [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
+
+General coverage for the new automatic CSRF protection in ASP.NET Core:
+
+* <xref:security/csrf-protection>
+* <xref:blazor/forms/index#antiforgery-support>
+* <xref:blazor/security/index#antiforgery-support>
+
+### Blazor Virtualize can scroll to an item
+
+<!-- UPDATE 11.0 - Cross-link to ref content -->
+
+The `Virtualize<TItem>` component can now open at a specific item and scroll to any item on demand. Two new public APIs make this possible:
+
+* `InitialIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
+* `ScrollToIndexAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
+
+```razor
+<Virtualize TItem="Product" Items="products" InitialIndex="500" @ref="list">
+    <div class="product">@context.Name</div>
+</Virtualize>
+
+<button @onclick="GoToTop">Back to top</button>
+
+@code {
+    private Virtualize<Product> list = default!;
+    private List<Product> products = ProductCatalog.All;
+
+    private async Task GoToTop() => await list.ScrollToIndexAsync(0);
+}
+```
+
+Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialIndex` to set the starting position instead.
+
+For more information, see [Add `InitialIndex` parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)

@@ -12,7 +12,7 @@ Endpoints without antiforgery metadata — for example, a plain `MapPost` or `[H
 
 Going forward, the automatic CSRF protection is the recommended defense, and most apps no longer need the token-based antiforgery system. Keep the token-based system when the app must support browsers that don't send `Sec-Fetch-Site`, uses `IAntiforgeryAdditionalDataProvider`, or must keep the token defense as an independent layer for a compliance requirement. Both protections can coexist.
 
-To simplify an app that configures antiforgery explicitly, drop the `AddAntiforgery()` and `UseAntiforgery()` calls and rely on the automatic protection. For most apps this is a one-line change with no other code updates.
+To simplify an app that configures antiforgery explicitly, drop the `AddAntiforgery()` and `UseAntiforgery()` calls and rely on the automatic protection. For most apps this is a one-line change with no other code updates. For Blazor static SSR, removing `app.UseAntiforgery()` also stops antiforgery token generation for rendered forms; see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
 
 If a cross-origin form post from a browser starts returning `400 Bad Request` after the upgrade:
 

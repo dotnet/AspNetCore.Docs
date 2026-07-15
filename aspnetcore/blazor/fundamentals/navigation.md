@@ -6,7 +6,7 @@ description: Learn about navigation in Blazor, including how to use the Navigati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/09/2025
+ms.date: 06/24/2026
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
@@ -850,6 +850,17 @@ Component parameters supplied from the query string support the following types:
 
 The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) aren't supported by `[SupplyParameterFromQuery]` or `[SupplyParameterFromForm]`, which bind string or form values without JSON parsing.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute.Name> property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
 
 :::moniker-end
@@ -1171,7 +1182,7 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 <!-- UPDATE 11.0 - API Browser cross-links and improve the example -->
 
-Use the `GetUriWithHash` extension method to construct a URI with a hash fragment. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+Use the `GetUriWithFragment` extension method to construct a URI with a hash fragment. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
 
 * Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
 * Method call that receives a section identifier (`sectionId`) and navigates to the section of the page.
@@ -1179,14 +1190,14 @@ Use the `GetUriWithHash` extension method to construct a URI with a hash fragmen
 ```razor
 @inject NavigationManager Navigation
 
-<a href="@Navigation.GetUriWithHash("section-1")">
+<a href="@Navigation.GetUriWithFragment("section-1")">
     Jump to Section 1
 </a>
 
 @code {
     private void NavigateToSection(string sectionId)
     {
-        var uri = Navigation.GetUriWithHash(sectionId);
+        var uri = Navigation.GetUriWithFragment(sectionId);
         Navigation.NavigateTo(uri);
     }
 }

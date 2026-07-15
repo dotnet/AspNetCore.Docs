@@ -5,7 +5,7 @@ description: Learn about URL rewriting and redirecting with URL Rewriting Middle
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-image-nochange
-ms.date: 3/3/2022
+ms.date: 07/06/2026
 uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
@@ -44,7 +44,7 @@ When redirecting requests to a different URL, indicate whether the redirect is p
 
 * The [`301 - Moved Permanently`](https://developer.mozilla.org/docs/Web/HTTP/Status/301) status code is used where the resource has a new, permanent URL and that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
-* The [`302 - Found`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
+* The [`302 - Found`](https://developer.mozilla.org/docs/Web/HTTP/Status/302) status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
 For more information on status codes, see [RFC 9110: Status Code Definitions](https://www.rfc-editor.org/rfc/rfc9110#name-status-codes).
 
@@ -1081,4 +1081,4 @@ Original Request: `/image.jpg`
 * [URL Rewrite Module Configuration Reference](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)
 * [Keep a simple URL structure](https://support.google.com/webmasters/answer/76329?hl=en)
 * [10 URL Rewriting Tips and Tricks](https://ruslany.net/2009/04/10-url-rewriting-tips-and-tricks/)
-* [To slash or not to slash](https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html)
+* [To slash or not to slash](https://developers.google.com/search/blog/2010/04/to-slash-or-not-to-slash)
