@@ -2238,8 +2238,6 @@ items:
         uid: security/gdpr
       - name: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks
         uid: security/anti-request-forgery
-      - name: Automatic CSRF protection
-        uid: security/csrf-protection
       - name: Prevent open redirect attacks
         uid: security/preventing-open-redirects
       - name: Prevent Cross-Site Scripting (XSS)

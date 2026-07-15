@@ -572,7 +572,12 @@
         },
         {
             "source_path": "aspnetcore/migration/antiforgery-to-csrf.md",
-            "redirect_url": "/aspnet/core/security/csrf-protection",
+            "redirect_url": "/aspnet/core/security/anti-request-forgery",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/csrf-protection.md",
+            "redirect_url": "/aspnet/core/security/anti-request-forgery",
             "redirect_document_id": false
         },
         {
