@@ -89,13 +89,13 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 
 ### Fetch metadata headers
 
-Modern browsers attach [Fetch Metadata](https://developer.mozilla.org/docs/Web/HTTP/Headers/Sec-Fetch-Site) request headers — most importantly `Sec-Fetch-Site` — to every request. `Sec-Fetch-Site` describes the relationship between the origin that initiated the request and the origin being requested: `same-origin` identifies a request the site made to itself, while `same-site` and `cross-site` identify requests initiated by another origin. The [`Origin`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Origin) header carries the initiating origin and serves as a fallback for browsers that predate Fetch Metadata.
+Modern browsers attach [Fetch Metadata](https://developer.mozilla.org/docs/Web/HTTP/Headers/Sec-Fetch-Site) request headers—most importantly `Sec-Fetch-Site`—to every request. `Sec-Fetch-Site` describes the relationship between the origin that initiated the request and the origin being requested: `same-origin` identifies a request the site made to itself, while `same-site` and `cross-site` identify requests initiated by another origin. The [`Origin`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Origin) header carries the initiating origin and serves as a fallback for browsers that predate Fetch Metadata.
 
-`Sec-Fetch-Site` and `Origin` are [forbidden request headers](https://developer.mozilla.org/docs/Glossary/Forbidden_request_header): the browser sets them, and JavaScript running in a page can't override or forge them. That makes them a trustworthy signal for telling a site's own requests apart from cross-site requests, without a server-issued token. The [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) built into ASP.NET Core uses this signal to reject cross-site form posts that aren't explicitly trusted.
+`Sec-Fetch-Site` and `Origin` are [forbidden request headers](https://developer.mozilla.org/docs/Glossary/Forbidden_request_header): the browser sets them, and JavaScript running in a page can't override or forge them. That makes them a trustworthy signal for telling a site's own requests apart from cross-site requests without a server-issued token. The [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) built into ASP.NET Core uses this signal to reject cross-site form posts that aren't explicitly trusted.
 
 ## Automatic CSRF protection in ASP.NET Core
 
-Starting in .NET 11, ASP.NET Core ships an automatic CSRF protection middleware that's enabled by default in apps built with `WebApplication.CreateBuilder`. Unlike the [token-based antiforgery system](#antiforgery-in-aspnet-core), this middleware doesn't issue or validate tokens. Instead, it inspects the `Sec-Fetch-Site` and `Origin` [Fetch metadata headers](#fetch-metadata-headers), then records a validation verdict on the request. Components that process submitted form data enforce that verdict, rejecting cross-origin form posts that aren't explicitly trusted.
+ASP.NET Core ships an automatic CSRF protection middleware that's enabled by default in apps built with `WebApplication.CreateBuilder`. Unlike the [token-based antiforgery system](#antiforgery-in-aspnet-core), this middleware doesn't issue or validate tokens. Instead, it inspects the `Sec-Fetch-Site` and `Origin` [Fetch metadata headers](#fetch-metadata-headers) and records a validation verdict on the request. Components that process submitted form data enforce that verdict, rejecting cross-origin form posts that aren't explicitly trusted.
 
 For most apps, no code changes are required: same-origin browser requests, safe HTTP methods, and non-browser clients (`curl`, server-to-server, mobile apps) all pass through unaffected. The middleware primarily affects apps that accept cross-origin form posts from a browser, such as a site that posts a form to an API on a different origin. Those scenarios need to either configure [CORS](xref:security/cors) to declare the trusted origin or opt the endpoint out.
 
@@ -103,10 +103,10 @@ This middleware is *additive* to the token-based antiforgery system. The two pro
 
 ### How it works
 
-For every request, the middleware evaluates a short chain of rules to reach a verdict — *allowed* or *denied*. The checks run in order, and the first match wins:
+For every request, the middleware evaluates a short chain of rules to reach a verdict—*allowed* or *denied*. The checks run in order, and the first match wins:
 
 1. **Safe HTTP methods are always allowed.** `GET`, `HEAD`, `OPTIONS`, and `TRACE` requests pass through. This follows [RFC 9110 §9.2.1](https://datatracker.ietf.org/doc/html/rfc9110#section-9.2.1) and is consistent with the long-standing rule that endpoints shouldn't change state on `GET`.
-1. **`Sec-Fetch-Site: same-origin` or `Sec-Fetch-Site: none` is allowed.** Modern browsers send `Sec-Fetch-Site` on every request. `same-origin` covers normal in-app navigation and fetch, and `none` covers requests initiated directly by the user (typing a URL, using a bookmark). This is the most common code path — most legitimate browser traffic exits here.
+1. **`Sec-Fetch-Site: same-origin` or `Sec-Fetch-Site: none` is allowed.** Modern browsers send `Sec-Fetch-Site` on every request. `same-origin` covers normal in-app navigation and fetch, and `none` covers requests initiated directly by the user (typing a URL, using a bookmark). This is the most common code path—most legitimate browser traffic exits here.
 1. **A trusted origin from CORS is allowed.** If the request carries an `Origin` header and the endpoint's resolved CORS policy trusts that origin, the request is allowed. The middleware resolves the policy the same way the CORS middleware does: per-endpoint policy from `[EnableCors("name")]` first, then the default policy registered with `AddDefaultPolicy`. See [Allowing cross-origin clients](#allowing-cross-origin-clients) for important limits on this rule.
 1. **Any other `Sec-Fetch-Site` value is denied.** When `Sec-Fetch-Site` is `cross-site` or `same-site` and the origin isn't trusted via CORS, the request is denied.
 1. **No `Sec-Fetch-Site`, but `Origin` is present:** the middleware compares the `Origin` to `scheme://host[:port]` built from the request. If they match, the request is allowed; otherwise it's denied. This is the fallback path for browsers older than the Fetch Metadata spec (released ~2020).
@@ -116,9 +116,9 @@ The middleware records this verdict on the request rather than ending the reques
 
 ### Deferred validation
 
-The middleware doesn't reject a request on its own. Instead, it records its verdict on the request's `IAntiforgeryValidationFeature` — the same feature the token-based antiforgery system uses — where a denied verdict is recorded as *invalid*. The request continues down the pipeline; an invalid verdict becomes an HTTP `400 Bad Request` only when a component that processes form data observes it. This deferral matches how the token-based system already behaves: the verdict is produced early but enforced at the point where a form is consumed.
+The middleware doesn't reject a request on its own. Instead, it records its verdict on the request's <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature>—the same feature the token-based antiforgery system uses—where a denied verdict is recorded as *invalid*. The request continues down the pipeline. An invalid verdict becomes an HTTP `400 Bad Request` only when a component that processes form data observes it. This deferral matches how the token-based system already behaves: the verdict is produced early but enforced at the point where a form is consumed.
 
-The following components read `IAntiforgeryValidationFeature` and reject a request with `400` when the recorded verdict is invalid:
+The following components read <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> and reject a request with `400 - Bad Request` when the recorded verdict is invalid:
 
 * MVC actions protected by antiforgery.
 * Minimal API endpoints that bind a form parameter.
@@ -127,7 +127,7 @@ The following components read `IAntiforgeryValidationFeature` and reject a reque
 
 Each consumer first confirms that an antiforgery or CSRF middleware actually ran before it trusts the verdict, so a pipeline without either middleware doesn't produce false rejections.
 
-A consequence of this model is that an endpoint that never reads form data runs even when the verdict is invalid. For example, a JSON API endpoint that binds its body from JSON, or a handler that ignores the request body, isn't rejected automatically on a cross-origin request. The verdict is still recorded on `IAntiforgeryValidationFeature` for code that wants to inspect it, but nothing enforces it. CSRF is a form-and-cookie attack vector, so endpoints that don't consume a browser-submitted form generally don't need this rejection. Endpoints that do process forms — Razor Pages, MVC views, Blazor SSR, and minimal API form binding — get the protection automatically.
+A consequence of this model is that an endpoint that never reads form data runs even when the verdict is invalid. For example, a JSON API endpoint that binds its body from JSON, or a handler that ignores the request body, isn't rejected automatically on a cross-origin request. The verdict is still recorded on <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> for code that wants to inspect it, but nothing enforces it. CSRF is a form-and-cookie attack vector, so endpoints that don't consume a browser-submitted form generally don't need this rejection. Endpoints that do process forms—Razor Pages, MVC views, Blazor SSR, and minimal API form binding—get the protection automatically.
 
 ### Default behavior
 
@@ -145,18 +145,18 @@ app.MapPost("/widgets", ([FromForm] Widget w) =>
 app.Run();
 ```
 
-A browser making a same-origin `POST /widgets` request reaches the endpoint normally. A browser at `https://attacker.example.com` posting the same form is rejected with `400` when the endpoint binds the form, before the handler body runs. A `curl` request without `Sec-Fetch-Site` or `Origin` is allowed.
+A browser making a same-origin `POST /widgets` request reaches the endpoint normally. A browser at `https://attacker.example.com` posting the same form is rejected with `400 - Bad Request` when the endpoint binds the form, before the handler body runs. A `curl` request without `Sec-Fetch-Site` or `Origin` is allowed.
 
-Because rejection is [deferred to form consumers](#deferred-validation), an endpoint that doesn't read form data — such as a JSON API that binds its body from JSON — isn't rejected automatically, even on a cross-origin request. The verdict is still recorded on the request for code that wants to inspect it.
+Because rejection is [deferred to form consumers](#deferred-validation), an endpoint that doesn't read form data—such as a JSON API that binds its body from JSON—isn't rejected automatically, even on a cross-origin request. The verdict is still recorded on the request for code that wants to inspect it.
 
 The middleware integrates with the existing antiforgery model:
 
-* **Minimal APIs:** Calling `.DisableAntiforgery()` on an endpoint opts that endpoint out of *both* the token-based middleware and this middleware. The same metadata (`IAntiforgeryMetadata { RequiresValidation = false }`) is checked by both.
-* **MVC controllers and actions:** `[IgnoreAntiforgeryToken]` is bridged to the same metadata in .NET 11, so it also opts the endpoint out of both protections.
+* **Minimal APIs:** Calling `.DisableAntiforgery()` on an endpoint opts that endpoint out of *both* the token-based middleware and CSRF protection middleware. The same metadata (`IAntiforgeryMetadata { RequiresValidation = false }`) is checked by both.
+* **MVC controllers and actions:** `[IgnoreAntiforgeryToken]` also opts the endpoint out of both protections.
 
 ### Allowing cross-origin clients
 
-The most common scenario that requires action is a browser-based client that submits a cross-origin form — for example, a site at `https://app.contoso.com` posting a form to an API at `https://api.contoso.com`. Such form posts are denied by default because `Sec-Fetch-Site` is `same-site` or `cross-site` rather than `same-origin`, and the form consumer enforces that verdict with a `400`.
+The most common scenario that requires action is a browser-based client that submits a cross-origin form—for example, a site at `https://app.contoso.com` posting a form to an API at `https://api.contoso.com`. Such form posts are denied by default because `Sec-Fetch-Site` is `same-site` or `cross-site` rather than `same-origin`, and the form consumer enforces that verdict with a `400 - Bad Request`.
 
 The CSRF middleware doesn't introduce its own trust list. It reuses the same CORS policy that the [CORS middleware](xref:security/cors) resolves for the endpoint: if that policy allows the request's `Origin`, the CSRF middleware records an allowed verdict for the request.
 
@@ -197,15 +197,15 @@ app.MapPost("/widgets", ([FromForm] Widget w) => Results.Created($"/widgets/{w.I
 ```
 
 > [!WARNING]
-> `AllowAnyOrigin` is intentionally **not** honored as a CSRF trust signal. `AllowAnyOrigin` means "any browser can read this resource", which is a different concern than "any origin may mutate state on the user's behalf". Treating `AllowAnyOrigin` as trusted would turn this middleware into a no-op for cross-origin writes. Apps that need a public-read CORS policy combined with CSRF-protected writes should list trusted write origins explicitly with `WithOrigins`, or [opt write endpoints out](#opting-an-endpoint-out) if they don't rely on cookie-based authentication.
+> `AllowAnyOrigin` is intentionally **not** honored as a CSRF trust signal. `AllowAnyOrigin` means "any browser can read this resource," which is a different concern than "any origin may mutate state on the user's behalf." Treating `AllowAnyOrigin` as trusted would turn this middleware into a no-op for cross-origin writes. Apps that need a public-read CORS policy combined with CSRF-protected writes should list trusted write origins explicitly with `WithOrigins` or [opt write endpoints out](#opting-an-endpoint-out) if they don't rely on cookie-based authentication.
 
 `[DisableCors]` on an endpoint isn't a CSRF opt-out. It skips the CORS-derived trust step, and the request still has to satisfy the `Sec-Fetch-Site` and Origin-vs-Host rules. To opt out of CSRF protection, see [Opting an endpoint out](#opting-an-endpoint-out).
 
-For details on configuring CORS itself — `AddCors`, `AddDefaultPolicy`, `AddPolicy`, `WithOrigins`, and the rest of the policy builder API — see <xref:security/cors>.
+For details on configuring CORS itself—`AddCors`, `AddDefaultPolicy`, `AddPolicy`, `WithOrigins`, and the rest of the policy builder API—see <xref:security/cors>.
 
 ### Opting an endpoint out
 
-If an endpoint isn't browser-reachable, or is secured by a non-cookie mechanism such as a bearer token or API key, opt it out individually rather than disabling the middleware globally.
+If an endpoint isn't browser-reachable or is secured by a non-cookie mechanism, such as a bearer token or API key, opt it out individually rather than disabling the middleware globally.
 
 **Minimal APIs** — call `DisableAntiforgery` on the endpoint or group:
 
@@ -230,11 +230,11 @@ public class WebhookController : ControllerBase
 Either approach adds `IAntiforgeryMetadata { RequiresValidation = false }` to the endpoint, which the CSRF middleware honors by skipping validation.
 
 > [!WARNING]
-> Disabling CSRF protection on an endpoint should only be done when the endpoint isn't vulnerable to CSRF attacks — for example, endpoints that aren't callable from a browser, or that are secured with non-cookie authentication such as bearer tokens or API keys. Don't disable CSRF protection on browser-accessible endpoints that rely on cookies for authentication.
+> Disabling CSRF protection on an endpoint should only be done when the endpoint isn't vulnerable to CSRF attacks—for example, endpoints that aren't callable from a browser or that are secured with non-cookie authentication such as bearer tokens or API keys. Don't disable CSRF protection on browser-accessible endpoints that rely on cookies for authentication.
 
 ### Disabling globally
 
-The middleware can be disabled across the entire app using the `DisableCsrfProtection` configuration key. This is an escape hatch — prefer per-endpoint opt-outs.
+The middleware can be disabled across the entire app using the `DisableCsrfProtection` configuration key. This is an escape hatch—prefer per-endpoint opt-outs.
 
 In `appsettings.json`:
 
@@ -253,7 +253,7 @@ ASPNETCORE_DisableCsrfProtection=true
 When this key is set to `true`, `WebApplication` skips registering the middleware in the pipeline. The `ICsrfProtection` service remains registered, so anything that resolves it directly continues to work.
 
 > [!WARNING]
-> The automatic CSRF middleware also satisfies the antiforgery requirement for endpoints that require validation, even when an app doesn't call `app.UseAntiforgery()`. If an app relies on antiforgery but doesn't call `app.UseAntiforgery()`, disabling the CSRF middleware globally — or running on a host that isn't built with `WebApplication`, where the middleware isn't injected — leaves those endpoints with no antiforgery middleware. A request to such an endpoint then throws an exception. Call `app.UseAntiforgery()` in that configuration.
+> The automatic CSRF middleware also satisfies the antiforgery requirement for endpoints that require validation, even when an app doesn't call `app.UseAntiforgery()`. If an app relies on antiforgery but doesn't call `app.UseAntiforgery()`, disabling the CSRF middleware globally or running on a host that isn't built with `WebApplication`, where the middleware isn't injected, leaves those endpoints with no antiforgery middleware. A request to such an endpoint then throws an exception. Call `app.UseAntiforgery()` in that configuration.
 
 ### Browser support
 
@@ -261,7 +261,7 @@ When this key is set to `true`, `WebApplication` skips registering the middlewar
 
 Older browsers that predate Fetch Metadata don't send `Sec-Fetch-Site`. For those clients, the middleware falls back to comparing the `Origin` header against the request's scheme and host. Browsers have sent `Origin` on cross-origin write requests for many years, so this fallback covers essentially all legacy browser traffic.
 
-Non-browser clients — `curl`, Postman, mobile apps, server-to-server callers — typically send neither `Sec-Fetch-Site` nor `Origin`. Those requests are allowed because CSRF is a browser-only attack vector that depends on the browser automatically attaching ambient credentials such as cookies. A non-browser client that wants to attack the API has no need for CSRF; it can simply call the API directly with whatever credentials it possesses.
+Non-browser clients—`curl`, Postman, mobile apps, server-to-server callers—typically send neither `Sec-Fetch-Site` nor `Origin`. Those requests are allowed because CSRF is a browser-only attack vector that depends on the browser automatically attaching ambient credentials such as cookies. A non-browser client that wants to attack the API has no need for CSRF; it can simply call the API directly with whatever credentials it possesses.
 
 ### Customizing: implement `ICsrfProtection`
 
@@ -282,7 +282,7 @@ To replace the default implementation, register a singleton in DI. Because the f
 builder.Services.AddSingleton<ICsrfProtection, AllowlistCsrfProtection>();
 ```
 
-A custom implementation is useful when the trust model doesn't fit CORS — for example, when a fixed allowlist of partner origins is preferred, or when stricter rules are needed:
+A custom implementation is useful when the trust model doesn't fit CORS—for example, when a fixed allowlist of partner origins is preferred, or when stricter rules are needed:
 
 ```csharp
 using Microsoft.AspNetCore.Antiforgery;
@@ -316,11 +316,11 @@ public sealed class AllowlistCsrfProtection : ICsrfProtection
 }
 ```
 
-The middleware still honors `.DisableAntiforgery()` / `[IgnoreAntiforgeryToken]` regardless of which implementation is registered — opt-out is handled by the middleware itself before `ValidateAsync` is called.
+The middleware still honors `.DisableAntiforgery()` / `[IgnoreAntiforgeryToken]` regardless of which implementation is registered—opt-out is handled by the middleware itself before `ValidateAsync` is called.
 
 ### Interaction with token-based antiforgery
 
-The two CSRF defenses target different layers and are designed to coexist. They also share the same request feature: both record their result on `IAntiforgeryValidationFeature`, and form consumers enforce whatever verdict is present.
+The two CSRF defenses target different layers and are designed to coexist. They also share the same request feature: both record their result on <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature>, and form consumers enforce whatever verdict is present.
 
 | Aspect | Token-based `AntiforgeryMiddleware` | Automatic CSRF protection middleware |
 |---|---|---|
@@ -337,7 +337,7 @@ The token-based middleware specifically protects against the classic CSRF attack
 * **Minimal API apps** that bind forms get a useful default without needing to call `app.UseAntiforgery()` or thread `IAntiforgery` through endpoints.
 * **APIs called from cross-origin SPAs** can rely on this middleware combined with a CORS allowlist, and skip the token system entirely if the API never serves HTML forms.
 
-For details on the token-based system — including form integration, AJAX flows, configuration via `AntiforgeryOptions`, and `IAntiforgery` APIs — see [Antiforgery in ASP.NET Core](#antiforgery-in-aspnet-core).
+For details on the token-based system, including form integration, AJAX flows, configuration via `AntiforgeryOptions`, and `IAntiforgery` APIs, see [Antiforgery in ASP.NET Core](#antiforgery-in-aspnet-core).
 
 #### Token validation takes precedence
 
@@ -348,36 +348,22 @@ When an app calls `app.UseAntiforgery()`, the token-based middleware runs after 
 
 This ordering means apps that use the token system see the same end-to-end behavior they had before the automatic middleware existed, while apps that don't use tokens fall back to the CSRF middleware's verdict.
 
-### Blazor server-side rendering
+### Blazor static server-side rendering
 
-Blazor static server-side rendering (SSR) endpoints participate in the same deferred model. The Razor Components endpoint trusts the verdict recorded on `IAntiforgeryValidationFeature` by the upstream middleware and returns `400 Bad Request` for a form post only when that verdict is invalid. The endpoint no longer validates the request itself.
+Blazor static server-side rendering (SSR) endpoints participate in the same deferred model. The Razor Components endpoint trusts the verdict recorded on <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> by the upstream middleware and returns `400 - Bad Request` for a form post only when that verdict is invalid. The endpoint no longer validates the request itself.
 
 The behavior depends on which middleware ran:
 
 * Apps that call `app.UseAntiforgery()` are unchanged. The token-based middleware validates each request, and antiforgery tokens are generated for rendered forms as before.
-* Apps that don't call `app.UseAntiforgery()` are protected by the automatic CSRF middleware instead. In that configuration, the endpoint skips antiforgery token generation, because no token middleware is present to validate a token on a later request.
+* Apps that don't call `app.UseAntiforgery()` are protected by the automatic CSRF middleware instead. In that configuration, the endpoint skips antiforgery token generation because no token middleware is present to validate a token on a later request.
 
-This is a behavior change for Blazor SSR apps that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see <xref:migration/100-to-110>. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
-
-### Adopting CSRF-only protection in existing apps
-
-For apps that are upgrading from .NET 10 and already use the token-based system, the automatic CSRF middleware can replace it entirely in many scenarios. Both systems protect the same form-handling endpoints, so the automatic middleware is often enough on its own.
-
-Keep the token-based system when:
-
-* The app must support browsers that don't send `Sec-Fetch-Site`. See [Browser support](#browser-support).
-* The app uses `IAntiforgeryAdditionalDataProvider` to round-trip extra data inside the token.
-* A security review or compliance requirement specifies the token defense as an independent layer.
-
-Consider dropping the token-based system when the app targets modern evergreen browsers only and defense in depth at the token layer isn't a hard requirement. To drop it, remove the `app.UseAntiforgery()` and `AddAntiforgery(...)` calls along with the token plumbing: `@Html.AntiForgeryToken()` in views, the `RequestVerificationToken` header in client code, and the `[ValidateAntiForgeryToken]` and `[AutoValidateAntiforgeryToken]` attributes. Per-endpoint opt-outs (`.DisableAntiforgery()`, `[IgnoreAntiforgeryToken]`) can stay — they also opt the endpoint out of the automatic middleware.
-
-For the .NET 10 to .NET 11 upgrade walkthrough, see <xref:migration/100-to-110>.
+This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see <xref:migration/100-to-110>. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
 
 ### Troubleshooting
 
-**Symptom:** Same-origin requests from a browser succeed, but cross-origin form posts return `400` with no body.
+**Symptom:** Same-origin requests from a browser succeed, but cross-origin form posts return `400 - Bad Request` with no body.
 
-**Cause:** The CSRF middleware recorded an invalid verdict for the cross-origin request, and a form-processing component — such as an MVC action, a Minimal API form binding, or a Blazor SSR form post — enforced that verdict with a `400`. This is the expected default behavior for endpoints that process forms.
+**Cause:** The CSRF middleware recorded an invalid verdict for the cross-origin request, and a form-processing component—such as an MVC action, a Minimal API form binding, or a Blazor SSR form post—enforced that verdict with a `400 - Bad Request`. This is the expected default behavior for endpoints that process forms.
 
 **Resolution:** Choose one of the following, depending on the scenario:
 
@@ -413,9 +399,9 @@ curl -i -X POST https://localhost:{PORT}/widgets \
      -d "name=test"
 ```
 
-Replace `{PORT}` with the app's local HTTPS port. The `400` is observed because the endpoint binds the form, which enforces the recorded verdict. A non-form endpoint returns its normal response, because nothing reads the verdict. Without the `Origin` header, the same request is allowed because `curl` doesn't send `Sec-Fetch-Site` either, and a request with neither header is treated as a non-browser client.
+Replace `{PORT}` with the app's local HTTPS port. The `400 - Bad Request` is observed because the endpoint binds the form, which enforces the recorded verdict. A non-form endpoint returns its normal response because nothing reads the verdict. Without the `Origin` header, the same request is allowed because `curl` doesn't send `Sec-Fetch-Site` either and a request with neither header is treated as a non-browser client.
 
-The token-based antiforgery system described in the rest of this article predates this middleware and remains available. Use it in the scenarios listed in [Adopting CSRF-only protection in existing apps](#adopting-csrf-only-protection-in-existing-apps); for most apps, the automatic protection is enough on its own.
+The token-based antiforgery system described in the rest of this article predates this middleware and remains available. For most apps, the automatic protection is enough on its own. For guidance on when to keep the token-based system and how to migrate, see <xref:migration/100-to-110>.
 
 :::moniker-end
 
