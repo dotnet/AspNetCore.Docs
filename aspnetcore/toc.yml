@@ -1488,6 +1488,9 @@ items:
           - name: Request draining
             displayName: deploy, publish, server, Kestrel
             uid: fundamentals/servers/kestrel/request-draining
+          - name: Security considerations
+            displayName: deploy, publish, server, Kestrel, security
+            uid: fundamentals/servers/kestrel/security-considerations
       - name: IIS
         items:
           - name: Overview
