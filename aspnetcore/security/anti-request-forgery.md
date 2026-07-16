@@ -337,6 +337,12 @@ The token-based middleware specifically protects against the classic CSRF attack
 * **Minimal API apps** that bind forms get a useful default without needing to call `app.UseAntiforgery()` or thread `IAntiforgery` through endpoints.
 * **APIs called from cross-origin SPAs** can rely on this middleware combined with a CORS allowlist, and skip the token system entirely if the API never serves HTML forms.
 
+The automatic CSRF middleware replaces the token-based system in many scenarios, because both protect the same form-handling endpoints. Keep the token-based system when:
+
+* The app must support browsers that don't send `Sec-Fetch-Site`. See [Browser support](#browser-support).
+* The app uses <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> to round-trip extra data inside the token.
+* A security review or compliance requirement specifies the token defense as an independent layer.
+
 For details on the token-based system, including form integration, AJAX flows, configuration via `AntiforgeryOptions`, and `IAntiforgery` APIs, see [Antiforgery in ASP.NET Core](#antiforgery-in-aspnet-core).
 
 #### Token validation takes precedence
