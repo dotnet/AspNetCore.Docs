@@ -101,7 +101,7 @@ The the `DisableCsrfProtection` configuration setting can be supplied by any con
 > [!WARNING]
 > Disabling the automatic CSRF protection middleware removes the default header-based (`Sec-Fetch-Site`/`Origin`) protection for the entire app. Only disable it if you provide an alternative CSRF defense, such as explicitly adopting token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
 
-For more information, see [Automatic CSRF protection in ASP.NET Core](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core).
+For more information, see [Automatic CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core).
 
 > [!IMPORTANT]
 > The following guidance on the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component and the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider> service only apply to an app that explicitly adopts token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in its request processing pipeline.
