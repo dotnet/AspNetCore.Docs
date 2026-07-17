@@ -18,7 +18,7 @@ This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint withi
 
 * Razor components
 * SignalR hub classes and methods
-* <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> in MVC and Razor Pages
+* <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter>s in MVC and Razor Pages
 
 For a demonstration in an MVC app with a controller and an <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler%601>, see the <xref:mvc/security/authorization/iard>.
 
