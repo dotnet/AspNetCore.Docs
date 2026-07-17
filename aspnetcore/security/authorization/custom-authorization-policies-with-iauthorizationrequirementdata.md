@@ -12,7 +12,7 @@ uid: security/authorization/iard
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within a Blazor Web App and focuses on testing JWT-based authorization. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> is only supported in Minimal APIs. For a demonstration in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
+This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within a Blazor Web App and focuses on testing JWT-based authorization. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> isn't supported in Razor components. For a demonstration in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
 
 ## Sample app
 
