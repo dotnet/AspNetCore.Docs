@@ -20,7 +20,7 @@ This document applies to Razor Pages, API controllers, and controllers with view
 
 Filters run within the *ASP.NET Core action invocation pipeline*, sometimes referred to as the *filter pipeline*. The filter pipeline runs after ASP.NET Core selects the action to execute:
 
-:::image source="~/mvc/controllers/filters/_static/filter-pipeline-1.png" alt-text="The request is processed through Other Middleware, Routing Middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.":::
+:::image source="~/mvc/controllers/filters/_static/filter-pipeline-1.png" alt-text="The request is processed through other middleware, routing middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, routing middleware, and various other middleware before becoming a response sent to the client.":::
 
 ### Filter types
 
@@ -564,7 +564,7 @@ This document applies to Razor Pages, API controllers, and controllers with view
 
 Filters run within the *ASP.NET Core action invocation pipeline*, sometimes referred to as the *filter pipeline*. The filter pipeline runs after ASP.NET Core selects the action to execute.
 
-:::image source="~/mvc/controllers/filters/_static/filter-pipeline-1.png" alt-text="The request is processed through Other Middleware, Routing Middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.":::
+:::image source="~/mvc/controllers/filters/_static/filter-pipeline-1.png" alt-text="The request is processed through other middleware, routing middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, outing Middleware, and various ther Middleware before becoming a response sent to the client.":::
 
 ### Filter types
 

@@ -193,7 +193,7 @@ For more information, see the [Filter by port](#filter-by-port) section.
 
 ### Require authorization
 
-Call `RequireAuthorization` to run Authorization Middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used.
+Call `RequireAuthorization` to run authorization middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -962,7 +962,7 @@ For more information, see the [Filter by port](#filter-by-port) section.
 
 ### Require authorization
 
-Call `RequireAuthorization` to run Authorization Middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used.
+Call `RequireAuthorization` to run authorization middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used.
 
 ```csharp
 app.UseEndpoints(endpoints =>

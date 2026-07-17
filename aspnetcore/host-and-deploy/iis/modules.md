@@ -30,7 +30,7 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default Files Middleware](xref:fundamentals/static-files#serve-a-default-document) |
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |
 | **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory Browsing Middleware](xref:fundamentals/static-files#enable-directory-browsing) |
-| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response Compression Middleware](xref:performance/response-compression) |
+| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response compression middleware](xref:performance/response-compression) |
 | **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#dotnet-trace-tooling) |
 | **File Caching**<br>`FileCacheModule`                                                            | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
 | **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
@@ -46,8 +46,8 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Request Monitor**<br>`RequestMonitorModule`                                                    | Yes | |
 | **URL Rewriting**&#8224;<br>`RewriteModule`                                                      | Yes | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
 | **Server-Side Includes**<br>`ServerSideIncludeModule`                                            | No  | |
-| **Static Compression**<br>`StaticCompressionModule`                                              | No  | [Response Compression Middleware](xref:performance/response-compression) |
-| **Static Content**<br>`StaticFileModule`                                                         | No  | [Static File Middleware](xref:fundamentals/static-files) |
+| **Static Compression**<br>`StaticCompressionModule`                                              | No  | [Response compression Middleware](xref:performance/response-compression) |
+| **Static Content**<br>`StaticFileModule`                                                         | No  | [Static file middleware](xref:fundamentals/static-files) |
 | **Token Caching**<br>`TokenCacheModule`                                                          | Yes | |
 | **URI Caching**<br>`UriCacheModule`                                                              | Yes | |
 | **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
@@ -65,7 +65,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [Cookie Authentication Middleware](xref:security/authentication/cookie) |
+| FormsAuthentication     | [Coookie authentication middleware](xref:security/authentication/cookie) |
 | OutputCache             | [Response Caching Middleware](xref:performance/caching/middleware) |
 | Profile                 | |
 | RoleManager             | |

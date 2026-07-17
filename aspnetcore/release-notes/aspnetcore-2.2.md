@@ -89,7 +89,7 @@ For more information, see [CORS Middleware](xref:security/cors?view=aspnetcore-2
 
 ASP.NET Core 2.2 can compress responses with the [Brotli compression format](https://tools.ietf.org/html/rfc7932).
 
-For more information, see [Response Compression Middleware supports Brotli compression](xref:performance/response-compression?view=aspnetcore-2.2#brotli-compression-provider).
+For more information, see [response compression middleware supports Brotli compression](xref:performance/response-compression?view=aspnetcore-2.2#brotli-compression-provider).
 
 ## Project templates
 

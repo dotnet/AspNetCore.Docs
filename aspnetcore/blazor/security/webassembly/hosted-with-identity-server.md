@@ -185,7 +185,7 @@ The following services are registered.
 
 :::moniker range="< aspnetcore-7.0"
 
-  * The Authentication Middleware is responsible for validating request credentials and setting the user on the request context:
+  * The authentication middleware is responsible for validating request credentials and setting the user on the request context:
 
     ```csharp
     app.UseAuthentication();
@@ -193,7 +193,7 @@ The following services are registered.
 
 :::moniker-end
 
-  * Authorization Middleware enables authorization capabilities:
+  * Authorization iddleware enables authorization capabilities:
 
     ```csharp
     app.UseAuthorization();

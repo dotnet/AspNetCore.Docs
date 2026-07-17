@@ -2,7 +2,7 @@
 
 This sample illustrates usage of ASP.NET Core URL Rewriting Middleware. The app demonstrates URL redirect and URL rewriting options.
 
-When running the sample, non-file responses return the rewritten or redirected URL when one of the rules is applied to a request URL. For the XML and text file examples, Static File Middleware serves the file after the request URL is rewritten by the middleware.
+When running the sample, non-file responses return the rewritten or redirected URL when one of the rules is applied to a request URL. For the XML and text file examples, static file middleware serves the file after the request URL is rewritten by the middleware.
 
 ## Examples in this sample
 

@@ -59,12 +59,12 @@ To stream content updates when using static server-side rendering (static SSR) o
 
 If [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) is active, streaming rendering renders [Not Found responses](xref:blazor/fundamentals/navigation#not-found-responses) without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. 
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](xref:blazor/fundamentals/navigation#not-found-responses) (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](xref:blazor/fundamentals/navigation#not-found-responses) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
 
 Streaming `NavigationManager.NotFound` content rendering uses (in order):
 
 * A `NotFoundPage` passed to the `Router` component, if present.
-* A Status Code Pages Re-execution Middleware page, if configured.
+* A status code pages re-execution middleware page, if configured.
 * No action if neither of the preceding approaches is adopted.
 
 Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
