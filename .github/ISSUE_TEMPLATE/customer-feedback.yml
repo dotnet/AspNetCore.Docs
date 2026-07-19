@@ -9,11 +9,12 @@ body:
     attributes:
       value: Describe the issue in the following text box. Add as much detail as needed to help us resolve the issue.
   - type: textarea
-    id: feedback
+    id: userfeedback
     validations:
       required: true
     attributes:
       label: Description
+      placeholder: Describe your problem or suggestion
   - type: markdown
     attributes:
       value: "## 🚧 Article information 🚧"

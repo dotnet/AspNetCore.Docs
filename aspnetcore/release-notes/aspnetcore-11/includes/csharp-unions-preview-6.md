@@ -1,6 +1,6 @@
 ### C# union types
 
-C# union types are a preview language feature in .NET 11 (see the [C# release notes](/dotnet/csharp/whats-new/csharp-14#union-types) and [C# language reference](/dotnet/csharp/language-reference/builtin-types/union)), and [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) serializes them natively. Because ASP.NET Core uses `System.Text.Json` for JSON, union types work as JSON request bodies and return types throughout the stack with no ASP.NET-specific configuration:
+C# union types are a preview language feature in .NET 11 (see the [C# release notes](/dotnet/csharp/whats-new/csharp-15#union-types) and [C# language reference](/dotnet/csharp/language-reference/builtin-types/union)), and [`System.Text.Json`](/dotnet/standard/serialization/system-text-json/overview) serializes them natively. Because ASP.NET Core uses `System.Text.Json` for JSON, union types work as JSON request bodies and return types throughout the stack with no ASP.NET-specific configuration:
 
 * Minimal APIs — union body parameters and return types, including `Task<Union>`, `IAsyncEnumerable<Union>`, and `Results<T1, T2>`, in both the runtime and source-generated request delegates.
 * MVC and Razor Pages — union types as `[FromBody]` parameters and action or page-handler return types.
@@ -20,3 +20,5 @@ app.MapGet("/pets/{id}", Pet (int id) => id == 0 ? new Dog("Rex") : new Cat(9));
 For OpenAPI, an endpoint that returns a union is described with an `anyOf` schema listing each case type. Unlike polymorphic types, union cases don't carry a `$type` discriminator, so a case such as `Dog` reuses the standalone `#/components/schemas/Dog` component instead of a duplicated, prefixed one. ApiExplorer detects a union through `JsonTypeInfoKind.Union`, so the schema also flows through to Swashbuckle and NSwag.
 
 A few limits apply. Only JSON request bodies and responses are supported—binding a union from the query string, route values, headers, or form fields isn't yet available. When multiple cases serialize to the same JSON shape, disambiguate them with a `[JsonUnion]` classifier. SignalR unions require the JSON hub protocol; the MessagePack and `Newtonsoft.Json` protocols don't support unions.
+
+For examples and additional information that apply to Blazor apps, see the [Component parameters section in the Components overview article](xref:blazor/components/index#component-parameters) and the [Pass parameters section of the Dynamically-rendered ASP.NET Core Razor components article](xref:blazor/components/dynamiccomponent).
