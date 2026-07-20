@@ -362,7 +362,7 @@ When the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecy
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> Route parameters can't be typed as a [C# union](/dotnet/csharp/whats-new/csharp-14#union-types). The router parses route segments as strings and converts them to the target type without JSON parsing, so it can't dispatch to a union case.
+> Route parameters can't be typed as a [C# union](/dotnet/csharp/language-reference/builtin-types/union). The router parses route segments as strings and converts them to the target type without JSON parsing, so it can't dispatch to a union case.
 
 :::moniker-end
 

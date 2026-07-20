@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core Razor components
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/24/2026
+ms.date: 07/14/2026
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -850,14 +851,6 @@ Assign a C# field, property, or result of a method to a component parameter as a
 
 If the component parameter is of type string, then the attribute value is instead treated as a C# string literal. If you want to specify a C# expression instead, then use the `@` prefix.
 
-:::moniker range=">= aspnetcore-11.0"
-
-<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
-
-The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a [C# union type](/dotnet/csharp/whats-new/csharp-14#union-types), even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, for example `Message="@("Saved.")"`.
-
-:::moniker-end
-
 The following parent component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
@@ -1168,6 +1161,127 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
+
+<!-- UPDATE 11.0 - Remove the NOTE at GA -->
+
+> [!NOTE]
+> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
+>
+> ```xml
+> <LangVersion>preview</LangVersion>
+> ```
+
+The following C# union type, `SlotContent`, accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public union SlotContent(string, MarkupString, RenderFragment);
+```
+
+The following `Slot` component exposes a component parameter typed to the `SlotContent` union and renders the union's content using two implementations of the [C# `switch` expression](/dotnet/csharp/language-reference/operators/switch-expression), one through an assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> (`ContentSwitch`) and one via an inline `switch` expression. In the following example, the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) specifies that `Content` is a required component parameter at design-time or build-time.
+
+`Slot.razor`:
+
+```razor
+<h2><code>ContentSwitch</code></h2>
+
+<div>
+    @ContentSwitch()
+</div>
+
+<h2>Inline <code>switch</code> expression</h2>
+
+<div>
+    @switch (Content)
+    {
+        case string text:
+            @text
+            break;
+        case MarkupString html:
+            @html
+            break;
+        case RenderFragment fragment:
+            @fragment
+            break;
+        default:
+            <em>Empty slot!</em>
+            break;
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] 
+    public SlotContent Content { get; set; }
+
+    private RenderFragment ContentSwitch() => Content switch
+    {
+        string text => @<span>@text</span>,
+        MarkupString html => @<span>@html</span>,
+        RenderFragment fragment => fragment,
+        _ => @<em>Empty slot!</em>
+    };
+}
+```
+
+The following `SlotExample` component uses the preceding `SlotContent` type and `Slot` component.
+
+`SlotExample.razor`:
+
+```razor
+@page "/slot-example"
+
+<h1>Plain text</h1>
+
+<Slot Content="@("Simple plain text slot")" />
+
+<h1><code>MarkupString</code></h1>
+
+<Slot Content='@((MarkupString)"<strong>Bold HTML slot</strong>")' />
+
+<h1><code>RenderFragment</code></h1>
+
+<Slot Content="@content" />
+
+@code {
+    private SlotContent content;
+
+    protected override void OnInitialized()
+    {
+        content = new SlotContent((RenderFragment)(b =>
+        {
+            b.OpenElement(0, "button");
+            b.AddAttribute(1, "onclick", EventCallback.Factory.Create(this, Increment));
+            b.AddContent(2, "Count: ");
+            b.AddContent(3, currentCount);
+            b.CloseElement();
+        }));
+    }
+
+    private int currentCount = 0;
+
+    private void Increment() => currentCount++;
+}
+```
+
+<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
+
+The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot")"` in the preceding example.
+
+<!-- UPDATE 11.0 - Track on https://github.com/dotnet/razor/issues/13200 for 
+                   the following feature. -->
+
+Populating a union-typed parameter via a [child content render fragment](#child-content-render-fragments) (`<Slot>...</Slot>`) isn't supported at this time but might be introduced in a future preview release.
+
+<!-- UPDATE 13.0 - Remove the following cross-link when C# unions get some time on them (target removal for .NET 13) -->
+
+For more information, see [Explore union types in C# 15](https://devblogs.microsoft.com/dotnet/csharp-15-union-types/).
 
 :::moniker-end
 

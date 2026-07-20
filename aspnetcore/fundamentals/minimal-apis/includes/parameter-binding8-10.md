@@ -17,7 +17,7 @@ Supported binding sources:
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> [C# union types](/dotnet/csharp/whats-new/csharp-14#union-types) are supported only as the body (as JSON). Non-body sources—route values, query string, headers, and form values—bind string values without JSON parsing, so they can't dispatch to a union case.
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported only as the body (as JSON). Non-body sources—route values, query string, headers, and form values—bind string values without JSON parsing, so they can't dispatch to a union case.
 
 :::moniker-end
 

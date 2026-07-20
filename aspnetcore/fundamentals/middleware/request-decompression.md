@@ -58,7 +58,7 @@ The `Content-Encoding` header values that the request decompression middleware s
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
 
-| [`Content-Encoding`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding) header values | Description |
+| [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) header values | Description |
 | --------- | --------- |
 | `br`      | [Brotli compressed data format](https://tools.ietf.org/html/rfc7932) |
 | `deflate` | [DEFLATE compressed data format](https://tools.ietf.org/html/rfc1951) |
@@ -68,7 +68,7 @@ The `Content-Encoding` header values that the request decompression middleware s
 
 :::moniker range=">= aspnetcore-11.0"
 
-| [`Content-Encoding`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding) header values | Description |
+| [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) header values | Description |
 | --------- | --------- |
 | `br`      | [Brotli compressed data format](https://tools.ietf.org/html/rfc7932) |
 | `deflate` | [DEFLATE compressed data format](https://tools.ietf.org/html/rfc1951) |
@@ -112,7 +112,7 @@ In order of precedence, the maximum request size for an endpoint is set by:
 ## Additional Resources
 
 * <xref:fundamentals/middleware/index>
-* [Mozilla Developer Network: Content-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding)
+* [Mozilla Developer Network: Content-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding)
 * [Brotli Compressed Data Format](https://www.rfc-editor.org/rfc/rfc7932)
 * [DEFLATE Compressed Data Format Specification version 1.3](https://www.rfc-editor.org/rfc/rfc1951)
 * [GZIP file format specification version 4.3](https://www.rfc-editor.org/rfc/rfc1952)
