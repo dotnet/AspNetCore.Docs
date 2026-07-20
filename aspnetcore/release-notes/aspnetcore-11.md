@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/14/2026
+ms.date: 07/19/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -69,6 +69,8 @@ This section describes new features for authentication and authorization.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/identity-time-provider.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/infer-passkey-display-name-preview2.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/user-jwts-file-based-apps-preview-6.md)]
 
 ## Miscellaneous
 
