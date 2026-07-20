@@ -127,7 +127,7 @@ The following components read <xref:Microsoft.AspNetCore.Antiforgery.IAntiforger
 
 Each consumer first confirms that an antiforgery or CSRF middleware actually ran before it trusts the verdict, so a pipeline without either middleware doesn't produce false rejections.
 
-A consequence of this model is that an endpoint that never reads form data runs even when the verdict is invalid. For example, a JSON API endpoint that binds its body from JSON, or a handler that ignores the request body, isn't rejected automatically on a cross-origin request. The verdict is still recorded on <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> for code that wants to inspect it, but nothing enforces it. CSRF is a form-and-cookie attack vector, so endpoints that don't consume a browser-submitted form generally don't need this rejection. Endpoints that do process forms—Razor Pages, MVC views, Blazor SSR, and minimal API form binding—get the protection automatically.
+A consequence of this model is that an endpoint that never reads form data runs even when the verdict is invalid. For example, a JSON API endpoint that binds its body from JSON, or a handler that ignores the request body, isn't rejected automatically on a cross-origin request. The verdict is still recorded on <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> for code that wants to inspect it, but nothing enforces it. CSRF is a form-and-cookie attack vector, so endpoints that don't consume a browser-submitted form generally don't need this rejection. Endpoints that do process forms—Razor Pages, MVC views, Blazor SSR, and Minimal API form binding—get the protection automatically.
 
 ### Default behavior
 
