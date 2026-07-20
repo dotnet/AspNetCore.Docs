@@ -14,7 +14,7 @@ Going forward, the automatic CSRF protection is the recommended defense, and mos
 
 To simplify an app that configures antiforgery explicitly, drop the <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery%2A> and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> calls and rely on the automatic protection. For most apps, this is a one-line change with no other code updates. For Blazor static SSR, removing `app.UseAntiforgery()` also stops antiforgery token generation for rendered forms; see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
 
-A `400 Bad Request` on a cross-origin form post is the CSRF protection working as intended. When the request comes from a legitimate origin, allow that origin rather than suppressing the check:
+A `400 - Bad Request` on a cross-origin form post is the CSRF protection working as intended. When the request comes from a legitimate origin, allow that origin rather than suppressing the check:
 
 * Configure [CORS](xref:security/cors) so the endpoint's resolved policy includes the caller's origin. The CSRF middleware honors that policy and allows the request.
 * Only opt an endpoint out with `.DisableAntiforgery()` (minimal APIs) or `[IgnoreAntiforgeryToken]` (MVC) when it isn't vulnerable to CSRF, such as an endpoint that isn't reachable from a browser or that authenticates with a non-cookie mechanism (for example, bearer authentication).
