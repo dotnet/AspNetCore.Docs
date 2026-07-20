@@ -18,6 +18,7 @@ public sealed class UniqueEmailAttribute : AsyncValidationAttribute
         object? value, ValidationContext context, CancellationToken cancellationToken)
     {
         var users = context.GetRequiredService<IUserService>();
+        
         if (value is string email && await users.EmailExistsAsync(email, cancellationToken))
         {
             return new ValidationResult("That email is already registered.");
