@@ -4,7 +4,7 @@ The new `[ShortCircuit]` attribute marks an endpoint to run immediately after ro
 
 <!-- TODO: Update `[ShortCircuit]` to <xref:> once API docs are published. -->
 
-Short-circuiting is useful for endpoints that don't need authentication, CORS, or other middleware—for example a health check or a `robots.txt` response—and it avoids the cost of running that middleware. The endpoint still runs and produces its response. Pass an optional status code, such as `[ShortCircuit(404)]`, to set the response status code.
+Short-circuiting is useful for endpoints that don't need authentication, CORS, or other middleware—for example a health check or a `robots.txt` response, and it avoids the cost of running that middleware. The endpoint still runs and produces its response. Pass an optional status code, such as `[ShortCircuit(404)]`, to set the response status code.
 
 ```csharp
 [ApiController]
