@@ -11,7 +11,7 @@ app.MapHub<ChatHub>("/chat", options =>
 {
     options.EnableAuthenticationRefresh = true;
 
-    // Optional: decide whether a given connection may refresh.
+    // Optional: decide whether a given connection can refresh.
     options.OnAuthenticationRefresh = context => ValueTask.FromResult(true);
 });
 ```
