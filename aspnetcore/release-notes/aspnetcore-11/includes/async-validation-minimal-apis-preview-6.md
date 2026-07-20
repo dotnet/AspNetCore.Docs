@@ -53,6 +53,7 @@ public class ReservationRequest : IAsyncValidatableObject
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var rooms = context.GetRequiredService<IRoomService>();
+
         if (!await rooms.HasAvailabilityAsync(Date, cancellationToken))
         {
             yield return new ValidationResult(
