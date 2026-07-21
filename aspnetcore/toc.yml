@@ -2241,8 +2241,6 @@ items:
         uid: security/gdpr
       - name: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks
         uid: security/anti-request-forgery
-      - name: Automatic CSRF protection
-        uid: security/csrf-protection
       - name: Prevent open redirect attacks
         uid: security/preventing-open-redirects
       - name: Prevent Cross-Site Scripting (XSS)
@@ -2389,9 +2387,6 @@ items:
       - name: Overview
         displayName: migrate, migration
         uid: migration/index
-      - name: Adopt automatic CSRF protection in .NET 11
-        displayName: migrate, migration, csrf, antiforgery
-        uid: migration/antiforgery-to-csrf
       - name: Version updates
         items:
           - name: 10 to 11

@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 06/09/2026
+ms.date: 07/19/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -30,6 +30,10 @@ This section describes new features for Blazor Hybrid.
 
 This section describes new features for SignalR.
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-authentication-refresh-preview-6.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-cancel-hub-invocations-preview-6.md)]
+
 ## Minimal APIs
 
 This section describes new features for Minimal APIs.
@@ -37,6 +41,10 @@ This section describes new features for Minimal APIs.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/endpoint-filters-binding-failures-preview4.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/csharp-unions-preview-6.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/async-validation-minimal-apis-preview-6.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/short-circuit-endpoints-attribute-preview-6.md)]
 
 ## OpenAPI
 
@@ -52,6 +60,8 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-schema-improvements-preview-5.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-3-2-default-preview-6.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
@@ -59,6 +69,8 @@ This section describes new features for authentication and authorization.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/identity-time-provider.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/infer-passkey-display-name-preview2.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/user-jwts-file-based-apps-preview-6.md)]
 
 ## Miscellaneous
 

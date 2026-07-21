@@ -54,7 +54,7 @@ app.UseAntiforgery();
 
 Apps that call `app.UseAntiforgery()`, directly or implicitly through `AddRazorComponents`, require no changes.
 
-If you intentionally removed `app.UseAntiforgery()` and want to rely on the automatic cross-origin CSRF protection instead, no action is required. Be aware that antiforgery tokens are no longer generated for your forms, and cross-origin form posts are rejected based on `Sec-Fetch-Site` and `Origin` rather than tokens. For more information, see <xref:security/csrf-protection> and <xref:migration/antiforgery-to-csrf>.
+If you intentionally removed `app.UseAntiforgery()` and want to rely on the automatic cross-origin CSRF protection instead, no action is required. Be aware that antiforgery tokens are no longer generated for your forms, and cross-origin form posts are rejected based on `Sec-Fetch-Site` and `Origin` rather than tokens. For more information, see <xref:security/anti-request-forgery> and <xref:migration/100-to-110>.
 
 ## Affected APIs
 
