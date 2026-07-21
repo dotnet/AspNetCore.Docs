@@ -65,7 +65,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [Coookie authentication middleware](xref:security/authentication/cookie) |
+| FormsAuthentication     | [Cookie authentication middleware](xref:security/authentication/cookie) |
 | OutputCache             | [Response caching middleware](xref:performance/caching/middleware) |
 | Profile                 | |
 | RoleManager             | |

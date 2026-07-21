@@ -317,7 +317,7 @@ This remote authentication approach has a couple known limitations:
 
 ## Shared cookie authentication
 
-If authentication in the ASP.NET app is done using `Microsoft.Owin` coookie authentication middleware, an alternative solution to remote authentication is to configure the ASP.NET and ASP.NET Core apps so that they are able to share an authentication cookie. 
+If authentication in the ASP.NET app is done using `Microsoft.Owin` cookie authentication middleware, an alternative solution to remote authentication is to configure the ASP.NET and ASP.NET Core apps so that they are able to share an authentication cookie. 
 
 ### How shared cookies work
 
