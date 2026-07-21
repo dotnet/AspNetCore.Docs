@@ -7,7 +7,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.date: 07/10/2026
 uid: security/authorization/authorizationmiddlewareresulthandler
 ---
-# Customize the behavior of `AuthorizationMiddleware`
+# Customize the behavior of authorization middleware
 
 :::moniker range=">= aspnetcore-6.0"
   

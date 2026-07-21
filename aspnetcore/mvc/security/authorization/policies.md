@@ -5,7 +5,6 @@ author: wadepickett
 description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core MVC app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/10/2026
 uid: mvc/security/authorization/policies
 ---

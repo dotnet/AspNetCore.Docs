@@ -15,16 +15,16 @@ An ASP.NET Core authorization policy is a named set of one or more authorization
 
 This article explains:
 
-* Creating requirements.
-* Registering and applying policies.
+* How to create requirements.
+* How to register and apply policies.
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
 In practice, a policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/iauthorizationpolicyprovider> documentation) generates policies dynamically instead of registering them at app startup.
 
-[Role-based authorization](xref:security/authorization/roles) and [claim-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
+[Role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 
-This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources after reading this article:
+This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance that applies to all releases of ASP.NET Core, see the following resources after reading this article:
 
 * <xref:razor-pages/security/authorization/policies>
 * <xref:mvc/security/authorization/policies>
@@ -62,7 +62,7 @@ If an authorization policy contains multiple authorization requirements, all of 
 
 :::moniker range=">= aspnetcore-7.0"
 
-A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`) and setting the minimum age to 21 years old:
+A policy is registered as part of the authorization service configuration in the app's `Program` file by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old.
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
@@ -74,7 +74,7 @@ builder.Services.AddAuthorizationBuilder()
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in the app's `Program` file. In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`) and setting the minimum age to 21 years old:
+A policy is registered as part of the authorization service configuration in the app's `Program` file by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -88,7 +88,7 @@ builder.Services.AddAuthorization(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-A policy is registered as part of the authorization service configuration with <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> in `Startup.ConfigureServices` (`Startup.cs`). In the following example, the `AtLeast21` policy is created with a single requirement of a minimum age (`MinimumAgeRequirement`) and setting the minimum age to 21 years old:
+A policy is registered as part of the authorization service configuration in `Startup.ConfigureServices` (`Startup.cs`) by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old:
 
 ```csharp
 services.AddAuthorization(options =>
@@ -307,7 +307,7 @@ The [Authorization via an external service sample (`dotnet/AspNetCore.Docs.Sampl
 
 ### Configure the sample
 
-The following demonstration relies on using the [NSwag (Swagger/OpenAPI)](https://github.com/RicoSuter/NSwag) or [cURL](https://curl.se/) in a command shell.
+The following demonstration relies on using [NSwag (Swagger/OpenAPI)](https://github.com/RicoSuter/NSwag) or [cURL](https://curl.se/) in a command shell.
 
 In the `Contoso.Security.API` project, set the `AllowedClients` placeholder (`{CLIENT ID}`) to any test GUID value (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`):
 
@@ -414,7 +414,7 @@ Date: Fri, 05 Jun 2026 13:09:56 GMT
 Server: Kestrel
 ```
 
-You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the passed client ID (`appid`) is used to assert whether it is allowed to obtain weather data.
+You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and see that the passed client ID (`appid`) is used to assert whether it is allowed to obtain weather data.
 
 You can also send the client ID directly to the `Contoso.Security.API` either via the Swagger UI or cURL in a command shell (for example: `https://localhost:7123/SecurityPolicy/{CLIENT ID}`) to see it return either `true` or `false` for `canGetWeather`.
 
