@@ -318,7 +318,7 @@ HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuil
 app.UseHttpsRedirection();
 ```
 
-Antiforgery iddleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>) enforces antiforgery protection for form processing:
+Antiforgery middleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>) enforces antiforgery protection for form processing:
 
 ```csharp
 app.UseAntiforgery();

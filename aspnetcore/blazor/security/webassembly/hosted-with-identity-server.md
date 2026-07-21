@@ -193,7 +193,7 @@ The following services are registered.
 
 :::moniker-end
 
-  * Authorization iddleware enables authorization capabilities:
+  * Authorization middleware enables authorization capabilities:
 
     ```csharp
     app.UseAuthorization();
