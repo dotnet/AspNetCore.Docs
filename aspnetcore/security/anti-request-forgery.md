@@ -52,7 +52,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -420,7 +420,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -710,7 +710,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -976,7 +976,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 

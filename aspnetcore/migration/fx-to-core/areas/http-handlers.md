@@ -50,7 +50,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP handler
 
 * Able to create their own HTTP response
 
-![Authorization middleware short-circuits a request for a user who isn't authorized. A request for the Index page is permitted and processed by MVC Middleware. A request for a sales report is permitted and processed by a custom report Middleware.](_static/middleware.png)
+![Authorization middleware short-circuits a request for a user who isn't authorized. A request for the Index page is permitted and processed by MVC middleware. A request for a sales report is permitted and processed by a custom report middleware.](_static/middleware.png)
 
 ## Migrating handler code to middleware
 

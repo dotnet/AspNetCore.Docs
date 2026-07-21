@@ -248,7 +248,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 var app = builder.Build();
 ```
 
-### Add Middleware
+### Add middleware
 
 Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
@@ -262,7 +262,7 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dep)]
 
-## ASP.NET Core Middleware
+## ASP.NET Core middleware
 
 The following table lists some of the middleware frequently used with Minimal APIs.
 

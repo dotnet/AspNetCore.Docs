@@ -233,7 +233,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 var app = builder.Build();
 ```
 
-### Add Middleware
+### Add middleware
 
 Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 

@@ -53,17 +53,17 @@ To see the Developer Exception Page in a controller-based API:
 
 ## Exception handler
 
-In non-development environments, use the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload.
+In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-To configure the `Exception Handler Middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see the [Problem Details](#problem-details) section later in this article.
+To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see the [Problem Details](#problem-details) section later in this article.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="4-7":::
 
 #### [Controllers](#tab/controllers)
 
-1. In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to add the Exception Handling Middleware:
+1. In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to add the exception handling middleware:
 
     :::code language="csharp" source="~/web-api/handle-errors/samples/6.x/HandleErrorsSample/Program.cs" id="snippet_Middleware" highlight="7":::
 
@@ -140,7 +140,7 @@ In the following code, `httpContext.Response.WriteAsync("Fallback: An error occu
 The preceding code:
 
 * Writes an error message with the fallback code if the `problemDetailsService` is unable to write a `ProblemDetails`. For example, an endpoint where the [Accept request header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept) specifies a media type that the `DefaultProblemDetailsWriter` does not support.
-* Uses the [Exception Handler Middleware](#exception-handler).
+* Uses the [exception handler middleware](#exception-handler).
 
 > [!NOTE]
 > The `DefaultProblemDetailsWriter` supports the following media types in the `Accept` request header:

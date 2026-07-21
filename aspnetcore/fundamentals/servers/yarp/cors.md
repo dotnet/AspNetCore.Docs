@@ -48,7 +48,7 @@ Example:
 }
 ```
 
-[CORS policies](/aspnet/core/security/cors#cors-with-named-policy-and-middleware) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core CORS Middleware.
+[CORS policies](/aspnet/core/security/cors#cors-with-named-policy-and-middleware) are an ASP.NET Core concept that the proxy utilizes. The proxy provides the above configuration to specify a policy per route and the rest is handled by existing ASP.NET Core CORS middleware.
 
 CORS policies can be configured in the application as follows:
 ```csharp

@@ -1,14 +1,14 @@
 ---
-title: URL Rewriting Middleware in ASP.NET Core
+title: URL rewriting middleware in ASP.NET Core
 author: wadepickett
-description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
+description: Learn about URL rewriting and redirecting with URL rewriting middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc, sfi-image-nochange
 ms.date: 07/06/2026
 uid: fundamentals/url-rewriting
 ---
-# URL Rewriting Middleware in ASP.NET Core
+# URL rewriting middleware in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -16,7 +16,7 @@ By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitt
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
+This article introduces URL rewriting with instructions on how to use URL rewriting middleware in ASP.NET Core apps.
 
 URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses aren't tightly linked. URL rewriting is valuable in several scenarios to:
 
@@ -32,7 +32,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 
 ## URL redirect and URL rewrite
 
-The difference in wording between *URL redirect* and *URL rewrite* is subtle but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
+The difference in wording between *URL redirect* and *URL rewrite* is subtle but has important implications for providing resources to clients. ASP.NET Core's URL rewriting middleware is capable of meeting the need for both.
 
 A *URL redirect* involves a client-side operation, where the client is instructed to access a resource at a different address than the client originally requested. This requires a round trip to the server. The redirect URL returned to the client appears in the browser's address bar when the client makes a new request for the resource.
 
@@ -58,11 +58,11 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-Explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+Explore the features of the URL rewriting middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
 ## When to use URL rewriting middleware
 
-Use URL Rewriting Middleware when the following approaches aren't satisfactory:
+Use URL rewriting middleware when the following approaches aren't satisfactory:
 
 * [URL Rewrite module with IIS on Windows Server](https://www.iis.net/downloads/microsoft/url-rewrite)
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
@@ -81,7 +81,7 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
 
 ## Extension and options
 
-Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of the rewrite rules. Chain multiple rules ***in the order that they should be processed***. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
+Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of the rewrite rules. Chain multiple rules ***in the order that they should be processed***. The `RewriteOptions` are passed into the URL rewriting middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=7-24)]
 
@@ -135,7 +135,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 <!-- Note: something wrong with project because the localhostHTTPSport is correctly calculated but not used in the redirect. The exact same code at https://github.com/Rick-Anderson/WebRedirect does work. -->
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
 
 The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an insecure HTTP request to the app at `http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`. When testing HTTP to HTTPS redirection with localhost:
 
@@ -362,7 +362,7 @@ In most of the preceding regular expression samples, the literal `path` is used 
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
+This document introduces URL rewriting with instructions on how to use URL rewriting middleware in ASP.NET Core apps.
 
 URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses aren't tightly linked. URL rewriting is valuable in several scenarios to:
 
@@ -381,7 +381,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 
 ## URL redirect and URL rewrite
 
-The difference in wording between *URL redirect* and *URL rewrite* is subtle but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
+The difference in wording between *URL redirect* and *URL rewrite* is subtle but has important implications for providing resources to clients. ASP.NET Core's URL rewriting middleware is capable of meeting the need for both.
 
 A *URL redirect* involves a client-side operation, where the client is instructed to access a resource at a different address than the client originally requested. This requires a round trip to the server. The redirect URL returned to the client appears in the browser's address bar when the client makes a new request for the resource.
 
@@ -407,11 +407,11 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+You can explore the features of the URL rewriting middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
 ## When to use URL rewriting middleware
 
-Use URL Rewriting Middleware when you're unable to use the following approaches:
+Use URL rewriting middleware when you're unable to use the following approaches:
 
 * [URL Rewrite module with IIS on Windows Server](https://www.iis.net/downloads/microsoft/url-rewrite)
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
@@ -430,11 +430,11 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
 
 ## Package
 
-URL Rewriting Middleware is provided by the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package, which is implicitly included in ASP.NET Core apps.
+URL rewriting middleware is provided by the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package, which is implicitly included in ASP.NET Core apps.
 
 ## Extension and options
 
-Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of your rewrite rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
+Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of your rewrite rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL rewriting middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -502,7 +502,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -716,7 +716,7 @@ Original Request: `/image.jpg`
 
 :::moniker range="< aspnetcore-3.0"
 
-This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
+This document introduces URL rewriting with instructions on how to use URL rewriting middleware in ASP.NET Core apps.
 
 URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses aren't tightly linked. URL rewriting is valuable in several scenarios to:
 
@@ -735,7 +735,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 
 ## URL redirect and URL rewrite
 
-The difference in wording between *URL redirect* and *URL rewrite* is subtle but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
+The difference in wording between *URL redirect* and *URL rewrite* is subtle but has important implications for providing resources to clients. ASP.NET Core's URL rewriting middleware is capable of meeting the need for both.
 
 A *URL redirect* involves a client-side operation, where the client is instructed to access a resource at a different address than the client originally requested. This requires a round trip to the server. The redirect URL returned to the client appears in the browser's address bar when the client makes a new request for the resource.
 
@@ -761,11 +761,11 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+You can explore the features of the URL rewriting middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
-## When to use URL Rewriting Middleware
+## When to use URL rewriting middleware
 
-Use URL Rewriting Middleware when you're unable to use the following approaches:
+Use URL rewriting middleware when you're unable to use the following approaches:
 
 * [URL Rewrite module with IIS on Windows Server](https://www.iis.net/downloads/microsoft/url-rewrite)
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
@@ -790,7 +790,7 @@ When not using the `Microsoft.AspNetCore.App` metapackage, add a project referen
 
 ## Extension and options
 
-Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of your rewrite rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
+Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of your rewrite rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL rewriting middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -858,7 +858,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 

@@ -44,7 +44,7 @@ Map Static Assets provides the following benefits:
 Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
 
 > [!NOTE]
-> [Default documents](#serve-default-documents) are served compressed by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> only when Default Files Middleware (<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>) runs before routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
+> [Default documents](#serve-default-documents) are served compressed by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> only when default files middleware (<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>) runs before routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
 
 :::moniker-end
 
@@ -412,7 +412,7 @@ In the following example, the exclusion patten adds the static files in the `lib
 </StaticWebAssetEndpointExclusionPattern>
 ```
 
-After HTTPS Redirection Middleware (`app.UseHttpsRedirection();`) processing in the `Program` file:
+After HTTPS redirection middleware (`app.UseHttpsRedirection();`) processing in the `Program` file:
 
 * Call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to handle the excluded files (`lib/icons/**`) and any other files not covered by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>.
 * Call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> after <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to handle critical application files (CSS, JS, images).
@@ -793,7 +793,7 @@ The preceding code allows directory browsing of the `wwwroot/images` folder usin
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> adds services required by the Directory Browsing Middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> to ensure the services are added.
+<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> adds services required by the directory-browsing middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> to ensure the services are added.
 
 :::moniker-end
 

@@ -44,20 +44,20 @@ Configure <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthentication
 
 [!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet2&highlight=8-14)]
 
-## Cookie Policy Middleware
+## Cookie policy middleware
 
 The 
-[Cookie Policy Middleware (GitHub Source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/CookiePolicy/src/CookiePolicyMiddleware.cs) <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> enables cookie policy capabilities. Middleware is processed in the order it's added, and Cookie Policy Middleware should be added before cookie authentication middleware.
+[Cookie policy middleware (GitHub Source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/CookiePolicy/src/CookiePolicyMiddleware.cs) <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> enables cookie policy capabilities. Middleware is processed in the order it's added, and cookie policy middleware should be added before cookie authentication middleware.
 
-Use <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> provided to the Cookie Policy Middleware to control global characteristics of cookie processing and hook into cookie processing handlers when cookies are appended or deleted.
+Use <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> provided to the cookie policy middleware to control global characteristics of cookie processing and hook into cookie processing handlers when cookies are appended or deleted.
 
 The default <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> value is `SameSiteMode.Lax` to permit OAuth2 authentication. To strictly enforce a same-site policy of `SameSiteMode.Strict`, set the `MinimumSameSitePolicy`. Although this setting breaks OAuth2 and other cross-origin authentication schemes, it elevates the level of cookie security for other types of apps that don't rely on cross-origin request processing.
 
-The following example shows how to configure cookie authentication with Cookie Policy Middleware:
+The following example shows how to configure cookie authentication with cookie policy middleware:
 
 :::code language="csharp" source="cookie/snippets/6.0/Program.cs" id="snippet_policy" highlight="3-5,9":::
 
-The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect the setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
+The cookie policy middleware setting for `MinimumSameSitePolicy` can affect the setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
 
 | MinimumSameSitePolicy | Cookie.SameSite | Resultant Cookie.SameSite setting |
 | --------------------- | --------------- | --------------------------------- |
@@ -213,19 +213,19 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## Cookie Policy Middleware
+## Cookie policy middleware
 
-[Cookie Policy Middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) enables cookie policy capabilities. Adding the middleware to the app processing pipeline is order sensitive&mdash;it only affects downstream components registered in the pipeline, and Cookie Policy Middleware should be added before cookie authentication middleware.
+[Cookie policy middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) enables cookie policy capabilities. Adding the middleware to the app processing pipeline is order sensitive&mdash;it only affects downstream components registered in the pipeline, and cookie policy middleware should be added before cookie authentication middleware.
 
-Use <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> provided to the Cookie Policy Middleware to control global characteristics of cookie processing and hook into cookie processing handlers when cookies are appended or deleted.
+Use <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> provided to the cookie policy middleware to control global characteristics of cookie processing and hook into cookie processing handlers when cookies are appended or deleted.
 
 The default <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> value is `SameSiteMode.Lax` to permit OAuth2 authentication. To strictly enforce a same-site policy of `SameSiteMode.Strict`, set the `MinimumSameSitePolicy`. Although this setting breaks OAuth2 and other cross-origin authentication schemes, it elevates the level of cookie security for other types of apps that don't rely on cross-origin request processing.
 
-The following example shows how to configure cookie authentication with Cookie Policy Middleware:
+The following example shows how to configure cookie authentication with cookie policy middleware:
 
 :::code language="csharp" source="cookie/snippets/3.x/Startup.cs" id="snippet_policy" highlight="3-5,9":::
 
-The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect the setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
+The cookie policy middleware setting for `MinimumSameSitePolicy` can affect the setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
 
 | MinimumSameSitePolicy | Cookie.SameSite | Resultant Cookie.SameSite setting |
 | --------------------- | --------------- | --------------------------------- |

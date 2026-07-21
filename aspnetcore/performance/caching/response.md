@@ -19,7 +19,7 @@ Response caching reduces the number of requests a client or proxy makes to a web
 
 The [ResponseCache attribute](#responsecache-attribute) sets response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification.
 
-For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
+For server-side caching that follows the HTTP 1.1 Caching specification, use [response caching middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
@@ -54,7 +54,7 @@ The [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. .NET 7 and later includes support for *output caching* to better control server load. For more information, see [Output caching](xref:performance/caching/overview#output-caching).
+There's no developer control over this caching behavior when using the [response caching middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. .NET 7 and later includes support for *output caching* to better control server load. For more information, see [Output caching](xref:performance/caching/overview#output-caching).
 
 ## ResponseCache attribute
 
@@ -65,7 +65,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> class specifies the p
 
 The <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property varies the stored response by the values of the given list of query keys. When a single value of the wildcard asterisk (`*`) is provided, the middleware varies responses by all request query string parameters.
 
-[Response Caching Middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table:
+[Response caching middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table:
 
 | Request                          | Returned from                    |
 | -------------------------------- | ------------------------- |
@@ -94,7 +94,7 @@ Cache-Control: public,max-age=30
 Vary: User-Agent
 ```
 
-The preceding code requires adding the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> method to the service collection. The code configures the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. 
+The preceding code requires adding the response caching middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> method to the service collection. The code configures the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. 
 
 [!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet&highlight=4,13)]
 
@@ -140,11 +140,11 @@ To enable caching, the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> pro
 
 The <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property options of `Any` and `Client` translate into `Cache-Control` header values of `public` and `private`, respectively. As noted in the [NoStore and Location.None](#nostore-and-locationnone-properties) section, setting the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property to `None` sets both the `Cache-Control` and `Pragma` headers to `no-cache`.
 
-The `Location.Any` (`Cache-Control` set to `public`) property setting indicates that the *client or any intermediate proxy* can cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
+The `Location.Any` (`Cache-Control` set to `public`) property setting indicates that the *client or any intermediate proxy* can cache the value, including [response caching middleware](xref:performance/caching/middleware).
 
-The `Location.Client` (`Cache-Control` set to `private`) property setting indicates that *only the client* can cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
+The `Location.Client` (`Cache-Control` set to `private`) property setting indicates that *only the client* can cache the value. No intermediate cache should cache the value, including [response caching middleware](xref:performance/caching/middleware).
 
-Cache control headers provide guidance to clients and intermediary proxies about when and how to cache responses. There's no guarantee that clients and proxies honor the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification. [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers provide guidance to clients and intermediary proxies about when and how to cache responses. There's no guarantee that clients and proxies honor the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification. [Response caching middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
 The following example shows the headers produced by setting the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> property and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property value:
 
@@ -200,7 +200,7 @@ Response caching reduces the number of requests a client or proxy makes to a web
 
 The [`[ResponseCache]`](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
 
-For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) properties to set server-side caching headers.
+For server-side caching that follows the HTTP 1.1 Caching specification, use [response caching middleware](xref:performance/caching/middleware). The middleware can use the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) properties to set server-side caching headers.
 
 ## HTTP-based response caching
 
@@ -231,7 +231,7 @@ Other cache headers that play a role in caching are shown in the following table
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. Support for *output caching* to better control server load is a design proposal for a future release of ASP.NET Core. For more information, see [Add support for Output Caching (dotnet/aspnetcore #27387)](https://github.com/dotnet/aspnetcore/issues/27387).
+There's no developer control over this caching behavior when using the [response caching middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. Support for *output caching* to better control server load is a design proposal for a future release of ASP.NET Core. For more information, see [Add support for Output Caching (dotnet/aspnetcore #27387)](https://github.com/dotnet/aspnetcore/issues/27387).
 
 ## Other caching technology in ASP.NET Core
 
@@ -268,7 +268,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> specifies the paramet
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> varies the stored response by the values of the given list of query keys. When a single value of `*` is provided, the middleware varies responses by all request query string parameters.
 
-[Response Caching Middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
+[Response caching middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Result                    |
 | -------------------------------- | ------------------------- |
@@ -339,11 +339,11 @@ To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>'s options of `Any` and `Client` translate into `Cache-Control` header values of `public` and `private`, respectively. As noted in the [NoStore and Location.None](#nostore-and-locationnone) section, setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> to `None` sets both `Cache-Control` and `Pragma` headers to `no-cache`.
 
-`Location.Any` (`Cache-Control` set to `public`) indicates that the *client or any intermediate proxy* may cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
+`Location.Any` (`Cache-Control` set to `public`) indicates that the *client or any intermediate proxy* may cache the value, including [response caching middleware](xref:performance/caching/middleware).
 
-`Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
+`Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [response caching middleware](xref:performance/caching/middleware).
 
-Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). [Response caching middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
 The following example shows the Cache3 page model from the sample app and the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
 

@@ -267,7 +267,7 @@ Comparing the two preceding charts:
 
 Temporary large objects are problematic because they cause Gen 2 collections.
 
-For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [Response Caching Middleware](xref:performance/caching/response) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
+For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [response caching middleware](xref:performance/caching/response) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
 

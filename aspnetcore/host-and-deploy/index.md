@@ -107,7 +107,7 @@ For more information, see <xref:host-and-deploy/docker/index>.
 
 ## Perform health checks
 
-Use Health Check Middleware to perform health checks on an app and its dependencies. For more information, see <xref:host-and-deploy/health-checks>.
+Use health checks middleware to perform health checks on an app and its dependencies. For more information, see <xref:host-and-deploy/health-checks>.
 
 ## Additional resources
 

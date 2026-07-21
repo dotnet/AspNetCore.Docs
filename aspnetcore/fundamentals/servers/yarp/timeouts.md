@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 ## Introduction
 
-.NET 8 introduced the [Request Timeouts Middleware](/aspnet/core/performance/timeouts) to enable configuring request timeouts globally as well as per endpoint. This functionality is also available in YARP 2.1 when running on .NET 8 or newer.
+.NET 8 introduced the [request timeouts middleware](/aspnet/core/performance/timeouts) to enable configuring request timeouts globally as well as per endpoint. This functionality is also available in YARP 2.1 when running on .NET 8 or newer.
 
 ## Defaults
 Requests do not have any timeouts by default, other than the [ActivityTimeout](xref:fundamentals/servers/yarp/http-client-config#HttpRequest) used to clean up idle requests. A default policy specified in [RequestTimeoutOptions](/dotnet/api/microsoft.aspnetcore.http.timeouts.requesttimeoutoptions) will apply to proxied requests as well.

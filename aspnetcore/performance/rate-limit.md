@@ -48,7 +48,7 @@ When using a cloud hosting service, DDoS protection is usually available as part
 
 Implementing a commercial DDoS protection service in conjunction with rate limiting can provide a comprehensive defense strategy, ensuring the stability, security, and performance of an app.
 
-## Use Rate Limiting Middleware
+## Use rate-limiting middleware
 
 The following steps show how to use the rate limiting middleware in an ASP.NET Core app:
 

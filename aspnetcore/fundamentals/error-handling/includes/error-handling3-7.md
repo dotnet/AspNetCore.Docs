@@ -32,7 +32,7 @@ To configure a custom error handling page for the [`Production` environment](xre
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
 
 > [!WARNING]
-> If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
+> If the alternate pipeline throws an exception of its own, exception handling middleware rethrows the original exception.
 
 Since this middleware can re-execute the request pipeline:
 
@@ -84,7 +84,7 @@ By default, an ASP.NET Core app doesn't provide a status code page for HTTP erro
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
 
-Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the Endpoints Middleware.
+Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the endpoints middleware.
 
 When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser-dependent error message indicating the endpoint can't be found. When `UseStatusCodePages` is called, the browser returns the following response:
 
@@ -351,7 +351,7 @@ To configure a custom error handling page for the [`Production` environment](xre
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
 
 > [!WARNING]
-> If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
+> If the alternate pipeline throws an exception of its own, exception handling middleware rethrows the original exception.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-`Development` environments:
 
@@ -394,7 +394,7 @@ By default, an ASP.NET Core app doesn't provide a status code page for HTTP erro
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
 
-Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the Endpoints Middleware.
+Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the endpoints middleware.
 
 When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser-dependent error message indicating the endpoint can't be found. When `UseStatusCodePages` is called, the browser returns the following response:
 
@@ -561,7 +561,7 @@ To configure a custom error handling page for the [`Production` environment](xre
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
 
 > [!WARNING]
-> If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
+> If the alternate pipeline throws an exception of its own, exception handling middleware rethrows the original exception.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-`Development` environments:
 
@@ -620,7 +620,7 @@ By default, an ASP.NET Core app doesn't provide a status code page for HTTP erro
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupUseStatusCodePages.cs" id="snippet" highlight="13":::
 
-Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the Endpoints Middleware.
+Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the endpoints middleware.
 
 When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser-dependent error message indicating the endpoint can't be found. For example, navigating to `Home/Privacy2`. When `UseStatusCodePages` is called, the browser returns:
 
@@ -810,12 +810,12 @@ The Developer Exception Page includes the following information about the except
 
 ## Exception handler page
 
-To configure a custom error handling page for the `Production` environment, use the Exception Handling Middleware. The middleware:
+To configure a custom error handling page for the `Production` environment, use the exception handling middleware. The middleware:
 
 * Catches and logs exceptions.
 * Re-executes the request in an alternate pipeline for the page or controller indicated. The request isn't re-executed if the response has started. The template generated code re-executes the request to `/Error`.
 
-In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the Exception Handling Middleware in non-`Development` environments:
+In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-`Development` environments:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="5-9":::
 
@@ -859,7 +859,7 @@ To enable default text-only handlers for common error status codes, call <xref:M
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePages":::
 
-Call `UseStatusCodePages` before request handling middleware (for example, static file middleware and MVC Middleware).
+Call `UseStatusCodePages` before request handling middleware (for example, static file middleware and MVC middleware).
 
 When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser dependent error message indicating the endpoint can't be found. For example, navigating to `Home/Privacy2`. When `UseStatusCodePages` is called, the browser returns:
 
@@ -967,7 +967,7 @@ When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensi
 
 ## Database error page
 
-Database Error Page Middleware captures database-related exceptions that can be resolved by using Entity Framework migrations. When these exceptions occur, an HTML response with details of possible actions to resolve the issue is generated. This page should be enabled only in the `Development` environment. Enable the page by adding code to `Startup.Configure`:
+Database error page middleware captures database-related exceptions that can be resolved by using Entity Framework migrations. When these exceptions occur, an HTML response with details of possible actions to resolve the issue is generated. This page should be enabled only in the `Development` environment. Enable the page by adding code to `Startup.Configure`:
 
 ```csharp
 if (env.IsDevelopment())
@@ -985,7 +985,7 @@ if (env.IsDevelopment())
 In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. For more information, see <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
-> Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the Exception Handling Middleware. We recommend using the middleware. Use filters only where you need to perform error handling differently based on which MVC action is chosen.
+> Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the exception handling middleware. We recommend using the middleware. Use filters only where you need to perform error handling differently based on which MVC action is chosen.
 
 ## Model state errors
 
