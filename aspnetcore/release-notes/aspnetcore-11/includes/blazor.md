@@ -790,16 +790,16 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Redundant `app.UseAntiforgery()` removed from Blazor Web App templates
 
-[CSRF protection](xref:security/csrf-protection) is enabled by default via the auto-injected CSRF Protection Middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates has been removed.
+[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates has been removed.
 
 For more information, see the following resources:
 
-* <xref:migration/antiforgery-to-csrf>
+* <xref:migration/100-to-110>
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
-* <xref:security/csrf-protection>
+* <xref:security/anti-request-forgery>
 * <xref:blazor/forms/index#antiforgery-support>
 * <xref:blazor/security/index#antiforgery-support>
 
