@@ -5,7 +5,7 @@ author: JeremyLikness
 ms.author: wpickett
 ms.reviewer: jeliknes
 ms.topic: how-to
-ms.date: 07/10/2026
+ms.date: 07/21/2026
 uid: security/how-to-choose-identity
 ---
 # Choose an identity management solution

@@ -6,7 +6,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/10/2026
+ms.date: 07/21/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -33,9 +33,19 @@ Some examples in this article (ASP.NET Core 8.0 or later) use *primary construct
 
 ## Requirements and policy registration
 
-An authorization policy consists of one or more *requirements*. An authorization requirement is a collection of data parameters that a policy can use to evaluate authorization for the current user principal.
+An authorization policy consists of one or more *requirements*, which are used by a policy to evaluate authorization for the current user principal. A requirement implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, which is an empty marker interface.
 
-A requirement implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, which is an empty marker interface. Consider the following `MinimumAgeRequirement` requirement, which describes a single parameter, a minimum age, to evaluate for user authorization:
+When a requirement doesn't contain data or have properties (parameters), it acts as an empty marker to trigger an associated *authorization handler* (<xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler>) for processing authorization (described in detail later in this article). Because the handler in this case relies entirely on the HTTP context, user claims, or backend data to make a decision about the user meeting the requirement, the requirement class itself doesn't require internal data or parameters. The requirement only instructs the framework which rule to evaluate.
+
+For example, consider the following minimum age requirement (`MinimumAgeRequirement`), which is implemented merely as a marker class:
+
+```csharp
+public class MinimumAgeRequirement : IAuthorizationRequirement { }
+```
+
+The preceding requirement would be used to create a policy to confirm that the user is over some specific age that the handler is checking. An `AuthorizationHandler<AdministratorOnlyRequirement>` inspects the `AuthorizationHandlerContext.User`. If the user has an birth date claim that indicates that they are over a certain age, the requirement succeeds. The requirement object doesn't require any properties (parameters) in this case. The next example demonstrates the complete implementation of a minimum age requirement that has a parameter to set the minimum age.
+
+Consider the following `MinimumAgeRequirement` requirement, which describes a single parameter, a minimum age, to evaluate for user authorization:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -54,11 +64,6 @@ A requirement implements <xref:Microsoft.AspNetCore.Authorization.IAuthorization
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs":::
 
 :::moniker-end
-
-If an authorization policy contains multiple authorization requirements, all of the requirements must pass in order for the policy evaluation to succeed. In other words, multiple authorization requirements added to a single authorization policy are treated on an **AND** basis.
-
-> [!NOTE]
-> A requirement doesn't require data or properties.
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -99,6 +104,8 @@ services.AddAuthorization(options =>
 ```
 
 :::moniker-end
+
+If an authorization policy contains multiple authorization requirements, all of the requirements must pass in order for the policy evaluation to succeed. In other words, multiple authorization requirements added to a single authorization policy are treated on an **AND** basis.
 
 ## Apply policies to Razor components
 
