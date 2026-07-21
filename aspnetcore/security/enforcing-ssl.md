@@ -146,8 +146,6 @@ An alternative to using HTTPS redirection middleware (with the `UseHttpsRedirect
 
 When the app redirects to HTTPS without the requirement for other redirect rules, the recommendation is to use HTTPS redirection middleware (`UseHttpsRedirection`) as described in this article.
 
-<a name="hsts"></a>
-
 ## HTTP Strict Transport Security (HSTS) protocol
 
 Per [OWASP](https://owasp.org/about/), [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) is an opt-in security enhancement specified by a web app via a response header. When a [browser that supports HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html#browser-support) receives this header:
