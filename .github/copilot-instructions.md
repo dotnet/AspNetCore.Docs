@@ -135,6 +135,12 @@ When working on an issue:
 ### 4. ASP.NET Core Specific Guidelines
 - [ ] Use the latest supported version for examples unless otherwise specified
 - [ ] Title and section header casing is sentence case (capitalize the first word and any proper nouns)
+- [ ] Capitalization of middleware and feature names: Treat middleware and descriptive framework feature names as common (general) nouns, NOT proper nouns. Use lowercase unless a word is a true proper noun, a branded product/feature name, or a code identifier (in backticks).
+  - [ ] Correct: "response caching middleware", "exception handling middleware", "URL rewriting middleware" (URL is an initialism)
+  - [ ] Incorrect: "Response Caching Middleware", "Exception Handling Middleware"
+  - [ ] Apply only normal first-word capitalization at the start of a sentence. Do NOT capitalize interior words of a middleware name in table cells, list items, or headings.
+  - [ ] Reserve capitalization for the exact API type name in code style when referring to the type itself (example: the `ResponseCachingMiddleware` class).
+  - [ ] Hyphenate compound adjectives in a middleware name when needed to prevent adjective/name ambiguity (example: "host-filtering middleware", not "host filtering middleware"). Leave unambiguous cases unhyphenated (example: "exception handling middleware").
 - [ ] For parts of a title or section header that normally use code style in article text (backticks around the content), also use code style in the title or section header (example H1 header: "# Modify the `Program.cs` file")
 - [ ] Use code style for any words that shouldn't be localized
 - [ ] For bullet lists, use an asterisk as the bullet marker
@@ -154,4 +160,9 @@ When working on an issue:
 - [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
 - [ ] Include a clear summary of changes made
 - [ ] List all files that were modified with brief descriptions
+
+### 7. PR Review Guidelines (Copilot-assigned reviews)
+- [ ] Flag capitalization of middleware/feature names that use proper-noun casing (interior capitals) and suggest lowercase per the "4. ASP.NET Core Specific Guidelines" section, except for code identifiers, initialisms (URL, HTTP), and true branded names.
+- [ ] Flag compound adjectives in feature names that risk adjective/name ambiguity and suggest hyphenation (example: "host-filtering middleware").
+- [ ] Verify sentence-case titles/headers and the metadata/ms.date rules already defined above.
 
