@@ -788,9 +788,19 @@ When a page uses session-backed features, where a component has a `[SupplyParame
 
 For more information, see [Fix TempData and SupplyParameterFromSession persistence for streaming SSR case (`dotnet/aspnetcore` #66832)](https://github.com/dotnet/aspnetcore/pull/66832). (Please don't comment on closed issues and PRs.)
 
-### Redundant `app.UseAntiforgery()` removed from Blazor Web App templates
+### Antiforgery middleware (`app.UseAntiforgery()`) optional in Blazor Web Apps
 
-[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates has been removed.
+<!-- HOLD FOR PREVIEW 7 language changes ...
+
+    Redundant `app.UseAntiforgery()` removed from Blazor Web App templates
+
+    Next paragraph: ... has been removed.
+
+    Next paragraph: Remove the last sentence.
+    
+-->
+
+[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates is optional, unless required in specific use cases. In a future preview release, the middleware will be removed from the request processing pipeline for apps created from the Blazor Web App project template.
 
 For more information, see the following resources:
 
