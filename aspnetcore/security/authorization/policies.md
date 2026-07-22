@@ -42,7 +42,7 @@ For example, consider the following minimum age requirement (`MinimumAgeRequirem
 public class MinimumAgeRequirement : IAuthorizationRequirement { }
 ```
 
-The preceding requirement would be used to create a policy to confirm that the user is over some specific age that the handler is checking. An `AuthorizationHandler<AdministratorOnlyRequirement>` inspects the `AuthorizationHandlerContext.User`. If the user has an birth date claim that indicates that they are over a certain age, the requirement succeeds. The requirement object doesn't require any properties (parameters) in this case. The next example demonstrates the complete implementation of a minimum age requirement that has a parameter to set the minimum age.
+The preceding requirement is used to create a policy that confirms the user is over a specific age that the handler checks. An `AuthorizationHandler<MinimumAgeRequirement>` inspects the `AuthorizationHandlerContext.User`. If the user has a birth date claim that indicates they're over a certain age, the requirement succeeds. The requirement object doesn't require any properties (parameters) in this case. The next example demonstrates the complete implementation of a minimum age requirement that has a parameter to set the minimum age.
 
 Consider the following `MinimumAgeRequirement` requirement, which describes a single parameter, a minimum age, to evaluate for user authorization:
 
@@ -203,7 +203,7 @@ The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.Authorizat
 
 ### Handler registration
 
-Register handlers in the services collection during configuration. The following example registers a minimum age handler (`MinimumAgeHandler`) as singleton service, but a handler can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes):
+Register handlers in the services collection during configuration. The following example registers a minimum age handler (`MinimumAgeHandler`) as a singleton service, but a handler can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes):
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -371,7 +371,7 @@ Execute the command again with an incorrect client ID (`appid`) value:
 dotnet user-jwts create --claim appid=aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
-Set the value of second token aside.
+Set the value of the second token aside.
 
 Start both the `Contoso.API` and `Contoso.Security.API` projects in Visual Studio or with the `dotnet watch` command in a command shell:
 
