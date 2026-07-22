@@ -4,11 +4,10 @@ description: A guide to help choose the right identity management solution for a
 author: JeremyLikness
 ms.author: wpickett
 ms.reviewer: jeliknes
-ms.topic: how-to 
-ms.date: 10/27/2025
+ms.topic: how-to
+ms.date: 07/21/2026
 uid: security/how-to-choose-identity
 ---
-
 # Choose an identity management solution
 
 Most web apps support authentication to ensure that users are who they claim to be. A *user* might be a person or another app. Management of access ensures users are only able to see and modify the information they're authorized to see and modify. For example, an end user shouldn't have access to the administrative section of a website. Identity management solutions are built to handle the requirements of authentication and authorization-related tasks. To learn more about identity management, see [What is identity and access management?](/azure/active-directory/fundamentals/introduction-identity-access-management). Many [identity management solutions for .NET web apps](xref:security/identity-management-solutions) are available, each with different capabilities and requirements to use or install. This article provides guidance on how to choose the right solution.
@@ -62,7 +61,7 @@ Some solutions are free and open source, while others are commercially licensed.
 
 ## Disconnected scenarios
 
-Many solutions, such as [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. 
+Many solutions, such as [Microsoft Entra ID](/entra/fundamentals/what-is-entra), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. 
 
 ASP.NET Core Identity works perfectly well in disconnected scenarios, such as:
 

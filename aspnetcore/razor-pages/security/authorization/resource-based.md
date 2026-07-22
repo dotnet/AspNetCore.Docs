@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to implement resource-based authorization in an ASP.NET Core Razor Pages app when an [Authorize] attribute doesn't suffice.
 ms.author: wpickett
-ms.date: 05/20/2026
+ms.date: 07/21/2026
 uid: razor-pages/security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core Razor Pages
@@ -82,7 +82,7 @@ public async Task<IActionResult> OnGetAsync(Guid documentId)
 
 ## Create a resource-based handler
 
-Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see the [Policy-based authorization: Requirements](xref:security/authorization/policies#requirements).
+Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see <xref:security/authorization/policies#requirements-and-policy-registration>.
 
 The handler class specifies the requirement and resource type. The following example demonstrates a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource:
 
