@@ -6,7 +6,6 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 <!-- ms.author: bradyg -->
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc, engagement-fy23
 ms.date: 03/20/2026
 uid: tutorials/signalr
 

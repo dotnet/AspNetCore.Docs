@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core 3.0
 author: wadepickett
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 12/05/2019
 uid: aspnetcore-3.0
 ---

@@ -6,7 +6,6 @@ description: Learn how to serve and secure static files and configure Map Static
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.custom: mvc
 ms.date: 07/06/2026
 uid: fundamentals/static-files
 ---

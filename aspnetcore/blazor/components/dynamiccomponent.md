@@ -5,7 +5,6 @@ author: guardrex
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/14/2026
 uid: blazor/components/dynamiccomponent
 ---

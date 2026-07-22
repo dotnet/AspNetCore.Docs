@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/05/2026
 uid: security/authentication/add-user-data
 ---

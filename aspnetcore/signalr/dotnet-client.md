@@ -4,7 +4,6 @@ author: wadepickett
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 05/21/2026
 uid: signalr/dotnet-client
 

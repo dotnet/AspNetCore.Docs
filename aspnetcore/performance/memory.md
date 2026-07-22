@@ -3,7 +3,6 @@ title: Memory management and patterns in ASP.NET Core
 author: tdykstra
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/06/2026
 uid: performance/memory
 

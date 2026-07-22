@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ---

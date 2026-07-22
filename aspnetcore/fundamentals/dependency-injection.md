@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 author: tdykstra
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 03/06/2026
 uid: fundamentals/dependency-injection
 ---

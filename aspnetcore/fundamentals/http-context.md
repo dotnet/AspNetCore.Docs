@@ -4,7 +4,6 @@ author: coderandhiker
 description: Learn about using HttpContext in ASP.NET Core apps. HttpContext isn't thread-safe and can throw an exception when accessed.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/27/2026
 uid: fundamentals/httpcontext
 

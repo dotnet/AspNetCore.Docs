@@ -4,7 +4,6 @@ author: guardrex
 description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 01/30/2025
 uid: signalr/httpcontext
 ---

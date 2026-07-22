@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/iis/transform-webconfig
 ---

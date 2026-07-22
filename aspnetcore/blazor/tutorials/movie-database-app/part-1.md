@@ -4,7 +4,6 @@ author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to create a Blazor Web App that adopts static server-side rendering (static SSR), where content is only rendered on the server.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/tutorials/movie-database-app/part-1
 zone_pivot_groups: tooling

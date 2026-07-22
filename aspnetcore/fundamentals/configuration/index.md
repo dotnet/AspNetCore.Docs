@@ -5,7 +5,6 @@ author: tdykstra
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/28/2026
 uid: fundamentals/configuration/index
 ---

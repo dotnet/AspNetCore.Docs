@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn about using host filtering with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/04/2020
 uid: fundamentals/servers/kestrel/host-filtering
 ---

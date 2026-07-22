@@ -3,7 +3,6 @@ title: Environment Tag Helper in ASP.NET Core
 author: tdykstra
 description: ASP.NET Core Environment Tag Helper defined including all properties
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 10/10/2018
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 ---

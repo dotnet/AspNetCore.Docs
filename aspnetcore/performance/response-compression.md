@@ -5,7 +5,6 @@ description: Learn about response compression and how to use response compressio
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 07/02/2026
 uid: performance/response-compression
 

@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use the Azure Key Vault configuration provider to configure an app by using name-value pairs loaded at runtime.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc, devx-track-azurecli
+ms.custom: devx-track-azurecli
 ms.date: 05/13/2026
 uid: security/key-vault-configuration
 

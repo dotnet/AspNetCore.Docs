@@ -4,7 +4,6 @@ author: guardrex
 ms.author: wpickett
 description: Learn how to use the ASP.NET Core Persist Component State Tag Helper to persist state when prerendering components.
 monikerRange: '>= aspnetcore-6.0'
-ms.custom: mvc
 ms.date: 09/25/2023
 uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
 ---
