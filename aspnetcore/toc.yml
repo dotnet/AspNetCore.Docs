@@ -668,6 +668,8 @@ items:
                     uid: mvc/security/authorization/policies
                   - name: Resource-based authorization
                     uid: mvc/security/authorization/resource-based
+                  - name: View-based authorization
+                    uid: mvc/security/authorization/views
       - name: Blazor
         items:
           - name: Overview
@@ -2149,8 +2151,6 @@ items:
             uid: security/authorization/dependencyinjection
           - name: Resource-based authorization
             uid: security/authorization/resource-based
-          - name: View-based authorization
-            uid: security/authorization/views
           - name: Limit identity by scheme
             uid: security/authorization/limitingidentitybyscheme
       - name: Data protection

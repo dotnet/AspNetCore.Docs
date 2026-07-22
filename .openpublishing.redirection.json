@@ -1688,6 +1688,11 @@
             "source_path": "aspnetcore/security/authorization/resourcebased.md",
             "redirect_url": "/aspnet/core/security/authorization/resource-based",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authorization/views.md",
+            "redirect_url": "/aspnet/core/mvc/security/authorization/views",
+            "redirect_document_id": false
         }
     ]
 }
