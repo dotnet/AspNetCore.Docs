@@ -5,7 +5,6 @@ author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/security/index
 ---
@@ -79,7 +78,7 @@ The Blazor project template:
 
 Antiforgery *middleware* isn't automatically included in the request processing pipeline without explicitly calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
 
-To explicitly add Antiforgery Middleware, call <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+To explicitly add antiforgery middleware, call <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
 
 Adding token-based antiforgery middleware doesn't replace the automatic header-based CSRF protection middleware. When an app calls <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>, both defense mechanisms run for a form post:
 
@@ -1815,7 +1814,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/entra/identity-platform/quickstart-v2-aspnet-core-webapp)
   * [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/entra/identity-platform/quickstart-v2-aspnet-core-web-api)
   * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
-    * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+    * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
     * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * Microsoft identity platform documentation
   * [Overview](/entra/identity-platform/)
@@ -1839,7 +1838,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/entra/identity-platform/quickstart-v2-aspnet-core-webapp)
   * [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/entra/identity-platform/quickstart-v2-aspnet-core-web-api)
   * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
-    * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+    * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
     * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * Microsoft identity platform documentation
   * [Overview](/entra/identity-platform/)

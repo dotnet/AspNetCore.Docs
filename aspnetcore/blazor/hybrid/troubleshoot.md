@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to troubleshoot issues in ASP.NET Core Blazor Hybrid with BlazorWebView logging.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: "mvc"
 ms.date: 11/11/2025
 uid: blazor/hybrid/troubleshoot
 ---

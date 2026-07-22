@@ -5,7 +5,6 @@ author: BrennanConroy
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: brecon
-ms.custom: mvc
 ms.date: 07/13/2026
 uid: fundamentals/servers/kestrel/security-considerations
 ---
@@ -49,7 +48,7 @@ Kestrel's security posture depends on where it sits in the network architecture.
 When Kestrel is directly accessible from the internet, it is the first line of defense:
 
 - **Kestrel handles all TLS termination.** Configure [certificates, TLS protocol versions, and client certificate requirements](#transport-security-tlshttps) directly in Kestrel.
-- **[Host header filtering](#host-filtering) is critical.** Without a reverse proxy to validate the Host header, Kestrel must do it. Use Host Filtering middleware to prevent DNS rebinding and host header attacks.
+- **[Host header filtering](#host-filtering) is critical.** Without a reverse proxy to validate the Host header, Kestrel must do it. Use host-filtering middleware to prevent DNS rebinding and host header attacks.
 - **Don't enable [Forwarded Headers](#forwarded-headers) middleware.** When there is no trusted proxy, processing `X-Forwarded-*` headers allows any client to spoof their IP address, scheme, and host. Also verify the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable isn't set—see the [environment variable warning](#behind-a-reverse-proxy) in the reverse proxy section.
 - **[Rate limiting](#rate-limiting) must be handled by the application.** There is no upstream proxy to absorb floods.
 - **[Connection limits](#connection-limits) should be monitored.** The defaults for `MaxConcurrentConnections` and `MaxConcurrentUpgradedConnections` are unlimited. Setting a limit can DoS legitimate requests if the limits are too low, or there is an unexpected surge in traffic. [Metrics](#monitoring-with-metrics) can be used to observe traffic patterns.
@@ -139,12 +138,12 @@ Quick reference for production deployments. Each row links to the detailed secti
 
 | Feature | Default | [Edge Server](#edge-server-direct-internet-exposure) | [Behind Proxy](#behind-a-reverse-proxy) | Details |
 |---|---|---|---|---|
-| [**Host Filtering**](#host-filtering) | All hosts allowed | Configure `AllowedHosts` | Optional (defense-in-depth) | [Security Middleware](#security-middleware) |
-| [**HTTPS Redirection**](#https-redirection) | Not enabled | Enable | Depends on proxy config | [Security Middleware](#security-middleware) |
-| [**HSTS**](#http-strict-transport-security-hsts) | Not enabled | Enable | Enable | [Security Middleware](#security-middleware) |
-| [**Forwarded Headers**](#forwarded-headers) | Not enabled | **Don't enable** | Enable with `KnownProxies` | [Security Middleware](#security-middleware) |
-| [**Rate Limiting**](#rate-limiting) | Disabled | Enable | Enable (app-level) | [Security Middleware](#security-middleware) |
-| [**CORS**](#cors) | Disabled | Configure per API (if needed) | Configure per API (if needed) | [Security Middleware](#security-middleware) |
+| [**Host Filtering**](#host-filtering) | All hosts allowed | Configure `AllowedHosts` | Optional (defense-in-depth) | [Security middleware](#security-middleware) |
+| [**HTTPS Redirection**](#https-redirection) | Not enabled | Enable | Depends on proxy config | [Security middleware](#security-middleware) |
+| [**HSTS**](#http-strict-transport-security-hsts) | Not enabled | Enable | Enable | [Security middleware](#security-middleware) |
+| [**Forwarded Headers**](#forwarded-headers) | Not enabled | **Don't enable** | Enable with `KnownProxies` | [Security middleware](#security-middleware) |
+| [**Rate Limiting**](#rate-limiting) | Disabled | Enable | Enable (app-level) | [Security middleware](#security-middleware) |
+| [**CORS**](#cors) | Disabled | Configure per API (if needed) | Configure per API (if needed) | [Security middleware](#security-middleware) |
 | [**MaxRequestBodySize**](#request-limits) | 30 MB | Review and lower | Review and lower | [Configurable Limits](#configurable-limits) |
 | [**TLS Protocol Versions**](#tls-protocol-versions) | OS default | Review—ensure TLS 1.0/1.1 disabled | N/A (proxy terminates) | [Transport Security](#transport-security-tlshttps) |
 | [**Client Certificates**](#client-certificate-modes-mtls) | `NoCertificate` | Configure if mTLS needed | N/A (proxy handles) | [Transport Security](#transport-security-tlshttps) |

@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/14/2026
 uid: blazor/fundamentals/startup
 ---
@@ -572,7 +571,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 ### Server-side and prerendered client-side scenarios
 
-Use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.
+Use [ASP.NET Core middleware](xref:fundamentals/middleware/index) to control the headers collection.
 
 :::moniker range=">= aspnetcore-6.0"
 

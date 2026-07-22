@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to set up two-factor authentication (2FA) with an ASP.NET Core app.
 monikerRange: '< aspnetcore-2.0'
 ms.author: wpickett
-ms.custom: mvc, sfi-image-nochange
+ms.custom: sfi-image-nochange
 ms.date: 09/22/2018
 uid: security/authentication/2fa
 ---

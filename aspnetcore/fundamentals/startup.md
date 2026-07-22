@@ -4,7 +4,6 @@ author: wadepickett
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 04/24/2026
 uid: fundamentals/startup
 

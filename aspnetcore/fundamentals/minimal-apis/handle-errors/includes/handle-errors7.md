@@ -60,7 +60,7 @@ Accept-Encoding: gzip, deflate, br
 
 ### Exception handler
 
-In non-development environments, use the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handler Middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
+In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
 
 For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
 

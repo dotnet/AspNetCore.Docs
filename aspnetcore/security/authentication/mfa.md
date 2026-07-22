@@ -4,7 +4,6 @@ author: damienbod
 description: Learn how to set up multifactor authentication (MFA) in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 05/15/2026
 uid: security/authentication/mfa
 

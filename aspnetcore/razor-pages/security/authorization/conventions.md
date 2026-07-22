@@ -4,7 +4,6 @@ author: wadepickett
 description: Learn how to control access to pages with conventions that authorize users and allow anonymous users to access pages or folders of pages.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 03/25/2026
 uid: razor-pages/security/authorization/conventions
 ---

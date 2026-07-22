@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
@@ -229,5 +228,5 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
-  * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+  * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.

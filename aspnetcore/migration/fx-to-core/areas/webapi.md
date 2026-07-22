@@ -3,7 +3,6 @@ title: Migrate from ASP.NET Web API to ASP.NET Core
 author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/17/2025
 uid: migration/fx-to-core/areas/webapi
 ---

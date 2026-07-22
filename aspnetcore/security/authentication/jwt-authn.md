@@ -5,7 +5,6 @@ description: Learn how to generate and manage JSON Web Tokens in development wit
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
 ms.date: 05/11/2026
-ms.custom: mvc
 uid: security/authentication/jwt
 
 # customer intent: As an ASP.NET developer, I want to use the dotnet user-jwts command, so I can generate and manage JSON Web Tokens in development.

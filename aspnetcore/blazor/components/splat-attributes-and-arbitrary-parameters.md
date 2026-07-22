@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how components can capture and render additional attributes in addition to the component's declared parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/attribute-splatting
 ---

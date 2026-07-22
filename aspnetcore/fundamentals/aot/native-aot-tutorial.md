@@ -7,7 +7,6 @@ ms.reviewer: midenn
 ms.topic: tutorial
 content_well_notification: AI-contribution
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 05/13/2025
 uid: fundamentals/native-aot-tutorial
 ai-usage: ai-assisted

@@ -13,8 +13,8 @@ ai-usage: ai-assisted
 
 There are 2 main styles of extensibility for YARP, depending on the routing behavior desired:
 
-* Middleware Pipeline
-* Http Forwarder
+* Middleware pipeline
+* HTTP forwarder
 
 ## Middleware pipeline
 
@@ -34,7 +34,7 @@ Most of the prebuilt pipeline can be customized through code:
 
 You can also change the pipeline definition to replace modules with your own implementations or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
 
-## HTTP Forwarder
+## HTTP forwarder
 
 If the YARP pipeline is too rigid for your use case or the scale of routing rules and destinations isn't suitable for loading into memory, then you can implement your own routing logic and use the HTTP Forwarder to direct requests to your chosen destination. The `HttpForwarder` component takes the HTTP context and forwards the request to the supplied destination.
 

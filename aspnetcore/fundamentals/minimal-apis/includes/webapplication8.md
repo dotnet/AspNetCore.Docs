@@ -237,7 +237,7 @@ Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be 
 
 ### Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the Static File Middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method:
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static file middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_chngr)]
 
@@ -257,7 +257,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 var app = builder.Build();
 ```
 
-### Add Middleware
+### Add middleware
 
 Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 

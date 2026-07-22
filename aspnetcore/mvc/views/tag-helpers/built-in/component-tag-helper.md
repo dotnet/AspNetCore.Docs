@@ -4,7 +4,6 @@ author: guardrex
 ms.author: wpickett
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 monikerRange: '>= aspnetcore-3.1'
-ms.custom: mvc
 ms.date: 09/25/2023
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---

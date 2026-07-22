@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 6
 author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 6.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 10/29/2021
 uid: aspnetcore-6.0
 ---
@@ -488,7 +487,7 @@ The following changes were made to both `appsettings.json` and `appsettings.Deve
 The change from `"Microsoft": "Warning"` to `"Microsoft.AspNetCore": "Warning"` results in logging all informational messages from the `Microsoft` namespace ***except*** `Microsoft.AspNetCore`. For example, `Microsoft.EntityFrameworkCore` is now logged at the informational level.
 
 <!-- TODO add and routing -->
-### Developer exception page Middleware added automatically
+### Developer exception page middleware added automatically
 
 In the [development environment](xref:fundamentals/environments), the <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> is added by default. It's no longer necessary to add the following code to web UI apps:
 

@@ -25,7 +25,7 @@ If you're migrating an app to ASP.NET Core 6, the breaking changes listed here m
 | [Identity: Default Bootstrap version of UI changed](identity-bootstrap4-to-5.md) | ❌ | ❌  |
 | [Kestrel: Log message attributes changed](kestrel-log-message-attributes-changed.md) | ✔️ | ❌ |
 | [Microsoft.AspNetCore.Http.Features split](microsoft-aspnetcore-http-features-package-split.md) | ❌ | ✔️ |
-| [Middleware: HTTPS Redirection Middleware throws exception on ambiguous HTTPS ports](middleware-ambiguous-https-ports-exception.md) | ✔️ | ❌ |
+| [Middleware: HTTPS redirection middleware throws exception on ambiguous HTTPS ports](middleware-ambiguous-https-ports-exception.md) | ✔️ | ❌ |
 | [Middleware: New Use overload](middleware-new-use-overload.md) | ✔️ | ❌ |
 | [Minimal API renames in RC 1](rc1-minimal-api-renames.md) | ❌ | ❌ |
 | [Minimal API renames in RC 2](rc2-minimal-api-renames.md) | ❌ | ❌ |

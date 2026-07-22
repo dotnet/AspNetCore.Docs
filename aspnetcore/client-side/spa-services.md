@@ -4,7 +4,6 @@ author: wadepickett
 description: The features described in this article are obsolete as of ASP.NET Core 3.0
 monikerRange: '>= aspnetcore-2.1 <= aspnetcore-3.0'
 ms.author: wpickett
-ms.custom: H1Hack27Feb2017
 ms.date: 07/06/2026
 uid: client-side/spa-services
 ---
@@ -45,7 +44,7 @@ SpaServices was created to position ASP.NET Core as developers' preferred server
 SpaServices provides useful infrastructure such as:
 
 * [Server-side prerendering](#server-side-prerendering)
-* [Webpack Dev Middleware](#webpack-dev-middleware)
+* [Webpack dev middleware](#webpack-dev-middleware)
 * [Hot Module Replacement](#hot-module-replacement)
 * [Routing helpers](#routing-helpers)
 
@@ -125,15 +124,15 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 ![global postList variable attached to window object](spa-services/_static/global_variable.png)
 
-## Webpack Dev Middleware
+## Webpack dev middleware
 
-[Webpack Dev Middleware](https://webpack.js.org/guides/development/#using-webpack-dev-middleware) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate approach is to manually invoke Webpack via the project's npm build script when a third-party dependency or the custom code changes. An npm build script in the `package.json` file is shown in the following example:
+[Webpack dev middleware](https://webpack.js.org/guides/development/#using-webpack-dev-middleware) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate approach is to manually invoke Webpack via the project's npm build script when a third-party dependency or the custom code changes. An npm build script in the `package.json` file is shown in the following example:
 
 ```json
 "build": "npm run build:vendor && npm run build:custom",
 ```
 
-### Webpack Dev Middleware prerequisites
+### Webpack dev middleware prerequisites
 
 Install the [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package:
 
@@ -141,9 +140,9 @@ Install the [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm p
 npm i -D aspnet-webpack
 ```
 
-### Webpack Dev Middleware configuration
+### Webpack dev middleware configuration
 
-Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the `Startup.cs` file's `Configure` method:
+Webpack dev middleware is registered into the HTTP request pipeline via the following code in the `Startup.cs` file's `Configure` method:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
@@ -155,7 +154,7 @@ The `webpack.config.js` file's `output.publicPath` property tells the middleware
 
 ## Hot Module Replacement
 
-Think of Webpack's [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There's a live link between the Webpack Dev Middleware service and the browser, which means changes are pushed to the browser.
+Think of Webpack's [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) (HMR) feature as an evolution of [webpack dev middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There's a live link between the webpack dev middleware service and the browser, which means changes are pushed to the browser.
 
 ### Hot Module Replacement prerequisites
 
@@ -175,7 +174,7 @@ app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
 });
 ```
 
-As was true with [Webpack Dev Middleware](#webpack-dev-middleware), the `UseWebpackDevMiddleware` extension method must be called before the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
+As was true with [webpack dev middleware](#webpack-dev-middleware), the `UseWebpackDevMiddleware` extension method must be called before the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
 
 The `webpack.config.js` file must define a `plugins` array, even if it's left empty:
 
@@ -266,7 +265,7 @@ Open the `.csproj` file generated by the [dotnet new](/dotnet/core/tools/dotnet-
 
 ## Test the app
 
-SpaServices templates are pre-configured to run client-side tests using [Karma](https://karma-runner.github.io/1.0/index.html) and [Jasmine](https://jasmine.github.io/). Jasmine is a popular unit testing framework for JavaScript, whereas Karma is a test runner for those tests. Karma is configured to work with the [Webpack Dev Middleware](#webpack-dev-middleware) such that the developer isn't required to stop and run the test every time changes are made. Whether it's the code running against the test case or the test case itself, the test runs automatically.
+SpaServices templates are pre-configured to run client-side tests using [Karma](https://karma-runner.github.io/1.0/index.html) and [Jasmine](https://jasmine.github.io/). Jasmine is a popular unit testing framework for JavaScript, whereas Karma is a test runner for those tests. Karma is configured to work with the [webpack dev middleware](#webpack-dev-middleware) such that the developer isn't required to stop and run the test every time changes are made. Whether it's the code running against the test case or the test case itself, the test runs automatically.
 
 Using the Angular application as an example, two Jasmine test cases are already provided for the `CounterComponent` in the `counter.component.spec.ts` file:
 

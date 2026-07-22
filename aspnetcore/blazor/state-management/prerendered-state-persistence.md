@@ -5,7 +5,6 @@ author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/14/2026
 uid: blazor/state-management/prerendered-state-persistence
 ---

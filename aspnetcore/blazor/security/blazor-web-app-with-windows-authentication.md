@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/security/blazor-web-app-windows-authentication
 ---

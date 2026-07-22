@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 03/10/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
@@ -294,7 +293,7 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 :::zone-end
 
-**_NOTE:_** To avoid HTTPS redirection warnings in logs when using HTTPS Redirection Middleware, set `BaseAddress = new Uri("https://localhost")`
+**_NOTE:_** To avoid HTTPS redirection warnings in logs when using HTTPS redirection middleware, set `BaseAddress = new Uri("https://localhost")`
 
 ## Inject mock services
 

@@ -3,7 +3,7 @@ title: Safe storage of app secrets in development
 author: tdykstra
 description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app, including the Secret Manager tool.
 ms.author: tdykstra
-ms.custom: mvc, sfi-ropc-nochange
+ms.custom: sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 05/13/2026
 uid: security/app-secrets

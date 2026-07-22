@@ -1,7 +1,7 @@
 ---
 uid: fundamentals/servers/yarp/middleware
-title: YARP Middleware
-description: YARP Middleware
+title: YARP middleware
+description: YARP middleware
 author: wadepickett
 ms.author: wpickett
 ms.date: 04/04/2025
@@ -10,7 +10,7 @@ content_well_notification: AI-contribution
 ai-usage: ai-assisted
 ---
 
-# YARP Middleware
+# YARP middleware
 
 ## Introduction
 
@@ -30,7 +30,7 @@ app.Run();
 
 The parameterless `MapReverseProxy()` in [ReverseProxyIEndpointRouteBuilderExtensions](xref:Microsoft.AspNetCore.Builder.ReverseProxyIEndpointRouteBuilderExtensions) overload includes all standard proxy middleware for [session affinity](xref:fundamentals/servers/yarp/session-affinity), [load balancing](xref:fundamentals/servers/yarp/load-balancing), [passive health checks](dests-health-checks.md#passive-health-checks), and the final proxying of the request. Each of these check the configuration of the matched route, cluster, and destination and perform their task accordingly.
 
-## Adding Middleware
+## Add middleware
 
 Middleware added to your application pipeline will see the request in different states of processing depending on where the middleware is added. Middleware added before `UseRouting` will see all requests and can manipulate them before any routing takes place. Middleware added between `UseRouting` and `UseEndpoints` can call `HttpContext.GetEndpoint()` to check which endpoint routing matched the request to (if any), and use any metadata that was associated with that endpoint. This is how [Authentication, Authorization](xref:fundamentals/servers/yarp/authn-authz) and [CORS](xref:fundamentals/servers/yarp/cors) are handled.
 
@@ -53,7 +53,7 @@ app.MapReverseProxy(proxyPipeline =>
 
 By default this overload of `MapReverseProxy` only includes the minimal setup, proxying logic, and limit enforcement at the start and end of its pipeline. Middleware for session affinity, load balancing, and passive health checks are not included by default so that you can exclude, replace, or control their ordering with any additional middleware.
 
-## Custom Proxy Middleware
+## Custom proxy middleware
 
 Middleware inside the `MapReverseProxy` pipeline have access to all of the proxy data and state associated with a request (the route, cluster, destinations, etc.) through the [IReverseProxyFeature](xref:Yarp.ReverseProxy.Model.IReverseProxyFeature). This is available from `HttpContext.Features` or the extension method `HttpContext.GetReverseProxyFeature()`.
 

@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn how to configure and use output caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 06/09/2026
 uid: performance/caching/output
 
@@ -256,7 +255,7 @@ The recommended approach is to use the built-in support for Redis or create a cu
 ## Related content
 
 * [Overview of caching in ASP.NET Core](xref:performance/caching/overview)
-* [ASP.NET Core Middleware](xref:fundamentals/middleware/index)
+* [ASP.NET Core middleware](xref:fundamentals/middleware/index)
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions>
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>
 

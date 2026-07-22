@@ -188,7 +188,7 @@ public class CustomProbingRequestFactory : IProbingRequestFactory
 ```
 
 ## Passive health checks
-YARP can passively watch for successes and failures in client request proxying to reactively evaluate destination health states. Responses to the proxied requests are intercepted by a dedicated passive health check middleware which passes them to a policy configured on the cluster. The policy analyzes the responses to evaluate if the destinations that produced them are healthy or not. Then, it calculates and assigns new passive health states to the respective destinations and rebuilds the cluster's healthy destination collection.
+YARP can passively watch for successes and failures in client request proxying to reactively evaluate destination health states. Responses to the proxied requests are intercepted by a dedicated passive health checks middleware which passes them to a policy configured on the cluster. The policy analyzes the responses to evaluate if the destinations that produced them are healthy or not. Then, it calculates and assigns new passive health states to the respective destinations and rebuilds the cluster's healthy destination collection.
 
 Note the response is normally sent to the client before the passive health policy runs, so a policy cannot intercept the response body, nor modify anything in the response headers unless the proxy application introduces full response buffering.
 

@@ -17,7 +17,7 @@ This article provides samples of code migrated to ASP.NET Core in .NET 6. ASP.NE
 
 ## Middleware
 
-The following code adds the Static File Middleware to a .NET 5 app:
+The following code adds the static file middleware to a .NET 5 app:
 
 ```csharp
 public class Startup
@@ -29,7 +29,7 @@ public class Startup
 }
 ```
 
-The following code adds the Static File Middleware to an ASP.NET Core in .NET 6 app:
+The following code adds the static file middleware to an ASP.NET Core in .NET 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
@@ -211,7 +211,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the Static File Middleware looks for static files. Web root can be changed by setting the <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions.WebRootPath> property on <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions>:
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static file middleware looks for static files. Web root can be changed by setting the <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions.WebRootPath> property on <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions>:
 
 ### ASP.NET Core in .NET 5
 

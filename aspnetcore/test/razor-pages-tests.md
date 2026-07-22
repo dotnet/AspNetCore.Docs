@@ -4,7 +4,6 @@ author: wadepickett
 description: Learn how to create unit tests for Razor Pages apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 7/30/2020
 uid: test/razor-pages-tests
 ---

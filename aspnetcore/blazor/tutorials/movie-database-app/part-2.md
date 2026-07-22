@@ -5,7 +5,6 @@ author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold the database and UI from the movie class.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling

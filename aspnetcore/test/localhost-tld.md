@@ -3,7 +3,6 @@ author: tdykstra
 description: Learn how using localhost as top-level domain can make testing easier in some scenarios.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: tdykstra
-ms.custom: 
 ms.date: 11/19/2025
 title: Support for the .localhost top-level domain
 uid: test/localhost-tld

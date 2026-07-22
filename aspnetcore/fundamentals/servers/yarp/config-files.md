@@ -41,7 +41,7 @@ app.Run();
 ```
 
 > [!NOTE]
-> For details about middleware ordering, see [ASP.NET Core Middleware > Middleware order](/aspnet/core/fundamentals/middleware/#middleware-order).
+> For details about middleware ordering, see [ASP.NET Core middleware > Middleware order](/aspnet/core/fundamentals/middleware/#middleware-order).
 
 Configuration can be modified during the load sequence by using [YARP configuration filters](xref:fundamentals/servers/yarp/config-filters).
 

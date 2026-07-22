@@ -4,7 +4,6 @@ author: tdykstra
 description: Use .NET Generic Host in ASP.NET Core apps. Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/22/2026
 uid: fundamentals/host/generic-host
 
@@ -146,7 +145,7 @@ The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWeb
 
 * Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it by using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
 
-* Adds [Host Filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
+* Adds [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
 
 * Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` property is set to `true`.
 

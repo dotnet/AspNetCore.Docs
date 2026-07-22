@@ -155,5 +155,5 @@ curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/hello
 
 - [The authentication service (IAuthenticationService)](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice)
 - [The authorization service (IAuthorizationService)](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice)
-- [ASP.NET Core Middleware](./middleware.md)
+- [ASP.NET Core middleware](xref:fundamentals/middleware/index)
 - [Manage JSON Web Tokens with the dotnet user-jwts tool](../../security/authentication/jwt-authn.md)
