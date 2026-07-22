@@ -162,7 +162,7 @@ When working on an issue:
 - [ ] List all files that were modified with brief descriptions
 
 ### 7. PR Review Guidelines (Copilot-assigned reviews)
-- [ ] Flag capitalization of middleware/feature names that use proper-noun casing (interior capitals) and suggest lowercase per the "4. ASP.NET Core Specific Guidelines" section, except for code identifiers, proper adjectives (URL, HTTP), and true branded names.
+- [ ] Flag capitalization of middleware/feature names that use proper-noun casing (interior capitalization) and suggest lowercase per the "4. ASP.NET Core Specific Guidelines" section, except for code identifiers, proper adjectives (URL, HTTP), and true branded names.
 - [ ] Flag compound adjectives in feature names that risk adjective/name ambiguity and suggest hyphenation (example: "host-filtering middleware").
 - [ ] Verify sentence-case titles/headers and the metadata/ms.date rules already defined above.
 
