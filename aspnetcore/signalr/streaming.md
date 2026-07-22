@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to stream data between the client and the server.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc, devx-track-js
+ms.custom: devx-track-js
 ms.date: 10/29/2020
 uid: signalr/streaming
 ---

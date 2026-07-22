@@ -5,7 +5,6 @@ author: tdykstra
 description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 02/06/2026
 uid: mvc/views/view-compilation
 ---

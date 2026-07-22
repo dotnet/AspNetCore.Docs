@@ -5,7 +5,6 @@ author: wadepickett
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 03/25/2026
 uid: signalr/troubleshoot
 ---

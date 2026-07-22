@@ -3,7 +3,6 @@ title: Google external login setup in ASP.NET Core
 author: wadepickett
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 04/09/2026
 uid: security/authentication/google-logins
 ---

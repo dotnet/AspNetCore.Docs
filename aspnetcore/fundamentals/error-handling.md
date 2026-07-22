@@ -5,7 +5,6 @@ author: tdykstra
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 09/25/2025
 uid: fundamentals/error-handling
 ---

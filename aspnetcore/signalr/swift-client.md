@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR Swift client
 author: zackliu
 description: Overview of the ASP.NET Core SignalR Swift client library.
 ms.author: wpickett
-ms.custom: mvc, devx-track-swift
+ms.custom: devx-track-swift
 ms.date: 03/20/2025
 uid: signalr/swift-client
 ---

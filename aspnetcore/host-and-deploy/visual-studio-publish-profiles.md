@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/27/2026
 uid: host-and-deploy/visual-studio-publish-profiles
 ---

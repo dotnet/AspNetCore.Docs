@@ -5,7 +5,6 @@ description: This tutorial explains the basics of building a Blazor Web App with
 ms.author: wpickett
 ms.date: 11/11/2025
 monikerRange: '>= aspnetcore-8.0'
-ms.custom: mvc
 uid: blazor/tutorials/movie-database-app/index
 ---
 # Build a Blazor movie database app (Overview)

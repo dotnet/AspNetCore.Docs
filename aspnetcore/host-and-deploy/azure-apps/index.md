@@ -4,7 +4,6 @@ author: wadepickett
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 05/27/2025
 uid: host-and-deploy/azure-apps/index
 ---

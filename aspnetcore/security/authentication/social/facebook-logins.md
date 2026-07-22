@@ -5,7 +5,6 @@ author: wadepickett
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 02/27/2026
 uid: security/authentication/facebook-logins
 ---

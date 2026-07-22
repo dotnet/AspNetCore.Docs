@@ -4,7 +4,6 @@ author: guardrex
 description: Learn about Razor component integration scenarios for hosted Blazor WebAssembly apps with MVC or Razor Pages, including prerendering of Razor components on the server.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/integration-hosted-webassembly
 ---

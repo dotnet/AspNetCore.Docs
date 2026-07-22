@@ -6,7 +6,6 @@ description: This tutorial provides a walkthrough of bundling and building an AS
 <!-- ms.author: bradyg -->
 monikerRange: ">= aspnetcore-2.1"
 ms.author: wpickett
-ms.custom: mvc, engagement-fy23
 ms.date: 02/24/2026
 uid: tutorials/signalr-typescript-webpack
 ---

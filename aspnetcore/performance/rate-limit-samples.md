@@ -4,7 +4,6 @@ author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
-ms.custom: mvc
 ms.date: 03/05/2025
 uid: performance/rate-limit-sample
 ---

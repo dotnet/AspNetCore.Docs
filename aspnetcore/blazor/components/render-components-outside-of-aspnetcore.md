@@ -4,7 +4,6 @@ author: guardrex
 description: Render Razor components outside of the context of an HTTP request.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/render-outside-of-aspnetcore
 ---

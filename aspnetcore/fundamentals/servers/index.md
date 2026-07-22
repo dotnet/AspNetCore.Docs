@@ -4,7 +4,6 @@ author: tdykstra
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/28/2025
 uid: fundamentals/servers/index
 ---

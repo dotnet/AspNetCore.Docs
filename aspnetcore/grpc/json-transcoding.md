@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-7.0'
 ms.author: wpickett
 ms.date: 05/10/2023
 uid: grpc/json-transcoding
-ms.custom: engagement-fy23
 ---
 # gRPC JSON transcoding in ASP.NET Core
 

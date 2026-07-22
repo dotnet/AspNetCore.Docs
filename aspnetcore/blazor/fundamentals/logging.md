@@ -4,7 +4,6 @@ author: guardrex
 description: Learn about Blazor app logging, particularly in client-side logging scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/fundamentals/logging
 ---

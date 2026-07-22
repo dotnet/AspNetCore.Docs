@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 02/26/2026
 uid: security/authentication/index
 ---

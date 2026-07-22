@@ -4,7 +4,6 @@ author: guardrex
 description: This part of the Blazor movie database app tutorial explains the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling

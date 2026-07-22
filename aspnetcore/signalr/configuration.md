@@ -4,7 +4,6 @@ author: wadepickett
 description: Learn how to configure ASP.NET Core SignalR apps, including allowed transports, logging levels, timeout intervals, and serialization.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 05/20/2026
 uid: signalr/configuration
 

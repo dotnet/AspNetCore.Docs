@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, X (formerly Twitter), Google, and Microsoft.
 ms.author: wpickett
-ms.custom: mvc, sfi-image-nochange
+ms.custom: sfi-image-nochange
 ms.date: 04/21/2026
 uid: security/authentication/social/index
 ---

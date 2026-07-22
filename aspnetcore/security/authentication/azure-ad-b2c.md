@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: wpickett
-ms.custom: "devx-track-csharp, mvc"
+ms.custom: devx-track-csharp
 ms.date: 03/25/2026
 uid: security/authentication/azure-ad-b2c
 ---

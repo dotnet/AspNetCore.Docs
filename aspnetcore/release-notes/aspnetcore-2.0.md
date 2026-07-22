@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core 2.0
 author: tdykstra
 description: Learn about the new features in ASP.NET Core 2.0.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 12/05/2019
 uid: aspnetcore-2.0
 ---

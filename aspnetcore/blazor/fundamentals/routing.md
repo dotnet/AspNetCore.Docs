@@ -4,7 +4,6 @@ author: guardrex
 description: Learn about Blazor app request routing with guidance on static versus interactive routing, endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 06/24/2026
 uid: blazor/fundamentals/routing
 ---

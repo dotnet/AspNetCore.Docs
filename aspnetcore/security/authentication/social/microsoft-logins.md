@@ -3,7 +3,6 @@ title: Microsoft Account external login setup with ASP.NET Core
 author: tdykstra
 description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/07/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: security/authentication/microsoft-logins

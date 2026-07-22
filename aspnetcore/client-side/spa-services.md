@@ -4,7 +4,6 @@ author: wadepickett
 description: The features described in this article are obsolete as of ASP.NET Core 3.0
 monikerRange: '>= aspnetcore-2.1 <= aspnetcore-3.0'
 ms.author: wpickett
-ms.custom: H1Hack27Feb2017
 ms.date: 07/06/2026
 uid: client-side/spa-services
 ---

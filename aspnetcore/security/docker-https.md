@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
 ms.author: wpickett
-ms.custom: mvc, sfi-ropc-nochange
+ms.custom: sfi-ropc-nochange
 ms.date: 03/03/2026
 uid: security/docker-https
 ---

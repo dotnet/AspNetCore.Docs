@@ -4,7 +4,6 @@ author: tdykstra
 description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/development-time-iis-support
 ---

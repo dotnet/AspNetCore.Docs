@@ -4,7 +4,6 @@ author: tdykstra
 description: Discover how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 9/25/2019
 uid: mvc/compatibility-version
 ---

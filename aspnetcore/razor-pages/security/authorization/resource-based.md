@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to implement resource-based authorization in an ASP.NET Core Razor Pages app when an [Authorize] attribute doesn't suffice.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/21/2026
 uid: razor-pages/security/authorization/resource-based
 ---

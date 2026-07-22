@@ -5,7 +5,6 @@ author: wadepickett
 description: Learn about security in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/06/2026
 uid: signalr/security
 ---

@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.custom: mvc, devx-track-js
+ms.custom: devx-track-js
 ms.date: 05/12/2026
 uid: tutorials/web-api-javascript
 ---

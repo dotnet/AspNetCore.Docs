@@ -4,7 +4,6 @@ author: guardrex
 description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to manually trigger a component to render.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/rendering
 ---
