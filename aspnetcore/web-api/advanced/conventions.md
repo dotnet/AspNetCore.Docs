@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 07/06/2026
 uid: web-api/advanced/conventions
 ---

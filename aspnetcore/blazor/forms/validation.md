@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/25/2025
 uid: blazor/forms/validation
 ---

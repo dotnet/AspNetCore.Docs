@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 12/18/2025
 uid: blazor/call-web-api
 ---

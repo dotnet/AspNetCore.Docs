@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to host and deploy Blazor WebAssembly using Nginx.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc, linux-related-content
+ms.custom: linux-related-content
 ms.date: 01/21/2026
 uid: blazor/host-and-deploy/webassembly/nginx
 ---

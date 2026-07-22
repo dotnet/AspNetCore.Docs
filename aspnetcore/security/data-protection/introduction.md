@@ -3,7 +3,6 @@ title: ASP.NET Core Data Protection Overview
 author: tdykstra
 description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/13/2026
 uid: security/data-protection/introduction
 

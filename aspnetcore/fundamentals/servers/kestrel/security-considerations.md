@@ -5,7 +5,6 @@ author: BrennanConroy
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: brecon
-ms.custom: mvc
 ms.date: 07/13/2026
 uid: fundamentals/servers/kestrel/security-considerations
 ---

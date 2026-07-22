@@ -3,7 +3,7 @@ title: "Tutorial: Create a controller-based web API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.author: wpickett
-ms.custom: mvc, engagement-fy24
+ms.custom: engagement-fy24
 ms.date: 09/15/2025
 uid: tutorials/first-web-api
 ---

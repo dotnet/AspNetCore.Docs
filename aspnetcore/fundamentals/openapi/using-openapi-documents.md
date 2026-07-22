@@ -5,7 +5,6 @@ author: wadepickett
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 02/02/2026
 uid: fundamentals/openapi/using-openapi-documents
 ---

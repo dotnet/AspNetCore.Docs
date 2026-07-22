@@ -5,7 +5,6 @@ author: tdykstra
 description: ActionResult vs IActionResult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 02/26/2026
 uid: web-api/action-return-types
 ---

@@ -5,7 +5,6 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-3.1'
 content_well_notification: AI-contribution
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 03/17/2026
 uid: fundamentals/routing
 ai-usage: ai-assisted

@@ -5,7 +5,6 @@ author: guardrex
 description: Learn about navigation in Blazor, including how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 06/24/2026
 uid: blazor/fundamentals/navigation
 ---

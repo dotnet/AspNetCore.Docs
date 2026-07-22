@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/templated-components
 ---

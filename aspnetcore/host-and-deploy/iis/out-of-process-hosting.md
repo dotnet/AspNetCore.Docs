@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn about out-of-process Hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/out-of-process-hosting
 ---

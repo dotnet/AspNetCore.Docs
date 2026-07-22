@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/12/2026
 uid: security/cors
 ---

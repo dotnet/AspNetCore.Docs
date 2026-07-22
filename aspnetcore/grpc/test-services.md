@@ -4,7 +4,6 @@ author: jamesnk
 description: Learn how to test gRPC services in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 01/01/2022
 uid: grpc/test-services
 ---

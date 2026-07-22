@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to use the @key directive attribute to retain element, component, and model relationships when rendering and the elements or components subsequently change.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/key
 ---

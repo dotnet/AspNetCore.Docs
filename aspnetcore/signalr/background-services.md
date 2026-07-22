@@ -4,7 +4,6 @@ author: wadepickett
 description: Learn how to send messages to SignalR clients from .NET BackgroundService classes.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/12/2019
 uid: signalr/background-services
 ---

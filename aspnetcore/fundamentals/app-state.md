@@ -3,7 +3,6 @@ title: Session in ASP.NET Core
 author: tdykstra
 description: Discover approaches to preserve session between requests.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/24/2025
 uid: fundamentals/app-state
 ---

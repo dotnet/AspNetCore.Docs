@@ -4,7 +4,6 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.custom: mvc
 ms.date: 11/12/2025
 uid: security/authentication/passkeys/index
 ---

@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn about the ASP.NET Core MVC web API analyzers package.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 07/06/2026
 uid: web-api/advanced/analyzers
 ---

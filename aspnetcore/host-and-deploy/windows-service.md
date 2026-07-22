@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/27/2026
 uid: host-and-deploy/windows-service
 ---

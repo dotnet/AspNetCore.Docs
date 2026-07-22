@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 6
 author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 6.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 10/29/2021
 uid: aspnetcore-6.0
 ---

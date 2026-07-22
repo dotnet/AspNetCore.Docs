@@ -4,7 +4,6 @@ author: tdykstra
 description: Use .NET Hot Reload to apply code changes to a running app without restarting the app and without losing app state.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/05/2026
 uid: test/hot-reload
 ---

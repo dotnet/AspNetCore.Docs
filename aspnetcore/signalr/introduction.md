@@ -6,7 +6,6 @@ description: Explore ASP.NET Core SignalR, where you can add real-time capabilit
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.custom: mvc
 ms.date: 05/20/2026
 uid: signalr/introduction
 
