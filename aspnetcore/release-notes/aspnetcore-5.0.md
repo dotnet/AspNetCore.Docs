@@ -3,7 +3,7 @@ title: What's new in ASP.NET Core in .NET 5
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.author: wpickett
-ms.date: 07/29/2025
+ms.date: 07/21/2026
 uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core in .NET 5
@@ -343,7 +343,7 @@ Prior to .NET 5, building and publishing a *Dockerfile* for an ASP.NET Core app 
 
 ### Microsoft Entra ID authentication with Microsoft.Identity.Web
 
-The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
+The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Microsoft Entra ID](/entra/fundamentals/what-is-entra). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
 
 * A better experience for authentication through Microsoft Entra ID.
 * An easier way to access Azure resources on behalf of your users, including [Microsoft Graph](/graph/overview). See the [Microsoft.Identity.Web sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2), which starts with a basic login and advances through multi-tenancy, using Azure APIs, using Microsoft Graph, and protecting your own APIs. `Microsoft.Identity.Web` is available alongside .NET 5.

@@ -3,7 +3,7 @@ title: Custom Authorization Policy Providers
 author: mjrousos
 description: Learn how to use a custom IAuthorizationPolicyProvider in an ASP.NET Core app to dynamically generate authorization policies.
 ms.author: wpickett
-ms.date: 05/15/2026
+ms.date: 07/21/2026
 uid: security/authorization/iauthorizationpolicyprovider
 
 # customer intent: As an ASP.NET developer, I want to use a custom IAuthorizationPolicyProvider in my ASP.NET Core app, so I can dynamically generate authorization policies.
@@ -179,7 +179,7 @@ public Task<AuthorizationPolicy> GetFallbackPolicyAsync() =>
 
 To use custom policies from an `IAuthorizationPolicyProvider`, you ***must***:
 
-* Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler)), as with all policy-based authorization scenarios.
+* Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
 
 * Register the custom `IAuthorizationPolicyProvider` type in the application dependency injection service collection in `Startup.ConfigureServices` and replace the default policy provider.
 

@@ -114,8 +114,8 @@ You can decode the token in an online JWT decoder, such as [`jwt.ms`](https://jw
   "alg": "HS256",
   "typ": "JWT"
 }.{
-  "unique_name": "guard",
-  "sub": "guard",
+  "unique_name": "{USER}",
+  "sub": "{USER}",
   "jti": "6cd613ed",
   "birthdate": "1989-01-01",
   "aud": [

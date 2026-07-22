@@ -608,6 +608,8 @@ items:
                     uid: razor-pages/security/authorization/roles
                   - name: Claim-based authorization
                     uid: razor-pages/security/authorization/claims
+                  - name: Policy-based authorization
+                    uid: razor-pages/security/authorization/policies
                   - name: Resource-based authorization
                     uid: razor-pages/security/authorization/resource-based
       - name: MVC
@@ -662,6 +664,8 @@ items:
                     uid: mvc/security/authorization/roles
                   - name: Claim-based authorization
                     uid: mvc/security/authorization/claims
+                  - name: Policy-based authorization
+                    uid: mvc/security/authorization/policies
                   - name: Resource-based authorization
                     uid: mvc/security/authorization/resource-based
       - name: Blazor
