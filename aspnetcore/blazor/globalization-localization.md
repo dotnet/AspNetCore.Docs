@@ -306,7 +306,7 @@ In ***client-side development***, dynamically setting the culture from the `Acce
 > [!NOTE]
 > If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the client-side culture by user preference](#dynamically-set-the-client-side-culture-by-user-preference) section of this article.
 
-Apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 Add the following line to the `Program` file where services are registered:
 
@@ -316,13 +316,13 @@ builder.Services.AddLocalization();
 
 :::moniker range=">= aspnetcore-8.0"
 
-In ***server-side development***, specify the app's supported cultures before any middleware that might check the request culture. Generally, place Request Localization Middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures supported cultures for United States English and Costa Rican Spanish:
+In ***server-side development***, specify the app's supported cultures before any middleware that might check the request culture. Generally, place localization middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures supported cultures for United States English and Costa Rican Spanish:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In ***server-side development***, specify the app's supported cultures immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish using the following API:
+In ***server-side development***, specify the app's supported cultures immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish using the following API:
 
 * <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A> adds the set of the supported cultures for *globalization* (date, number, and currency formatting).
 * <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A> adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
@@ -355,7 +355,7 @@ app.UseRequestLocalization(localizationOptions);
 
 In the preceding example, [`CultureTypes.SpecificCultures`](xref:System.Globalization.CultureTypes) returns only cultures that are specific to a country or region—such as `en-US` or `fr-FR`—which come with full, concrete globalization data (for dates, numbers, calendars, and other cultural UI) that .NET can use for accurate formatting and parsing. Neutral cultures, such as `en` or `fr`, may not have complete globalization data, so they aren't included in this list.
 
-For information on ordering the Localization Middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again.
 
@@ -469,7 +469,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker range=">= aspnetcore-6.0"
 
-Server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 In the `Program` file:
 
@@ -481,13 +481,13 @@ builder.Services.AddLocalization();
 
 :::moniker range=">= aspnetcore-8.0"
 
-Specify the static culture in the `Program` file before any middleware that might check the request culture. Generally, place Request Localization Middleware immediately before <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures United States English:
+Specify the static culture in the `Program` file before any middleware that might check the request culture. Generally, place localization middleware immediately before <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures United States English:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Specify the static culture in the `Program` file immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures United States English:
+Specify the static culture in the `Program` file immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures United States English:
 
 :::moniker-end
 
@@ -499,13 +499,13 @@ app.UseRequestLocalization("en-US");
 
 The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
-For information on ordering the Localization Middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
 
@@ -513,7 +513,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Specify the static culture in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures United States English:
+Specify the static culture in `Startup.Configure` (`Startup.cs`) immediately after routing middleware is added to the processing pipeline. The following example configures United States English:
 
 ```csharp
 app.UseRequestLocalization("en-US");
@@ -521,7 +521,7 @@ app.UseRequestLocalization("en-US");
 
 The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 :::moniker-end
 
@@ -750,7 +750,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 In the `Program` file:
 
@@ -768,7 +768,7 @@ Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRou
 
 :::moniker range="< aspnetcore-8.0"
 
-After Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the request processing pipeline, place the following code:
+After routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the request processing pipeline, place the following code:
 
 :::moniker-end
 
@@ -782,9 +782,9 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.
+The following example shows how to set the current culture in a cookie that can be read by the localization middleware.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -845,7 +845,7 @@ Add the following to the file:
 
 :::moniker-end
 
-For information on ordering the Localization Middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
 
 If the app isn't configured to process controller actions:
 
@@ -1338,7 +1338,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 In the server project's `Program` file where services are registered:
 
@@ -1360,7 +1360,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.
+The following example shows how to set the current culture in a cookie that can be read by the localization middleware.
 
 The following namespaces are required for the `App` component:
 
@@ -1496,7 +1496,7 @@ builder.Services.AddLocalization();
 
 ### Server-side localization
 
-Use [Localization Middleware](xref:fundamentals/localization#localization-middleware) to set the app's culture.
+Use [localization middleware](xref:fundamentals/localization#localization-middleware) to set the app's culture.
 
 If the app doesn't already support dynamic culture selection:
 
@@ -1513,13 +1513,13 @@ builder.Services.AddLocalization();
 
 :::moniker range=">= aspnetcore-8.0"
 
-Place Request Localization Middleware before any middleware that might check the request culture. Generally, place the middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
+Place localization middleware before any middleware that might check the request culture. Generally, place the middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
+Immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
 
 :::moniker-end
 
@@ -1535,7 +1535,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
 
 :::moniker-end
 
@@ -1550,7 +1550,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-In `Startup.Configure` immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
+In `Startup.Configure` immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CR" };
@@ -1562,7 +1562,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 :::moniker-end
 

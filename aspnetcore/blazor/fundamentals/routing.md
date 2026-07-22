@@ -188,7 +188,7 @@ The Blazor project template includes a `NotFound.razor` page. This page automati
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter, which supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
 
 In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter:
 

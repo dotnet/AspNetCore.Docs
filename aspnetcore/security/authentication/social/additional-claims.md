@@ -74,7 +74,7 @@ By default, a user's claims are stored in the authentication cookie. If the auth
 If a large amount of user data is required for processing user requests:
 
 * Limit the number and size of user claims for request processing to only what the app requires.
-* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
+* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the cookie authentication middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
 
 ## Save the access token
 
@@ -242,7 +242,7 @@ By default, a user's claims are stored in the authentication cookie. If the auth
 If a large amount of user data is required for processing user requests:
 
 * Limit the number and size of user claims for request processing to only what the app requires.
-* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
+* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the cookie authentication middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
 
 ## Save the access token
 
@@ -510,7 +510,7 @@ By default, a user's claims are stored in the authentication cookie. If the auth
 If a large amount of user data is required for processing user requests:
 
 * Limit the number and size of user claims for request processing to only what the app requires.
-* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
+* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the cookie authentication middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
 
 ## Save the access token
 

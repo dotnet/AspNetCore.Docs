@@ -15,7 +15,7 @@ If you're migrating an app to ASP.NET Core 8, the breaking changes listed here m
 | ---------------------------------------------------------------------------------------------------- | ------------------- |
 | [ConcurrencyLimiterMiddleware is obsolete](concurrencylimitermiddleware-obsolete.md) | Source incompatible |
 | [Custom converters for serialization removed](problemdetails-custom-converters.md)   | Behavioral change   |
-| [Forwarded Headers Middleware ignores X-Forwarded-* headers from unknown proxies](forwarded-headers-unknown-proxies.md) | Behavioral change   |
+| [Forwarded headers middleware ignores X-Forwarded-* headers from unknown proxies](forwarded-headers-unknown-proxies.md) | Behavioral change   |
 | [HTTP logging middleware requires AddHttpLogging()](httplogging-addhttplogging-requirement.md) | Behavioral change |
 | [ISystemClock is obsolete](isystemclock-obsolete.md)                                 | Source incompatible |
 | [Minimal APIs: IFormFile parameters require anti-forgery checks](antiforgery-checks.md) | Behavioral change   |

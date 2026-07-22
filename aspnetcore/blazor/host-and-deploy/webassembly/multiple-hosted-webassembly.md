@@ -196,7 +196,7 @@ In the server app's `Program.cs` file, remove the following code, which appears 
   - app.MapFallbackToFile("index.html");
   ```
 
-  Leave Static File Middleware in place:
+  Leave static file middleware in place:
 
   ```csharp
   app.UseStaticFiles();

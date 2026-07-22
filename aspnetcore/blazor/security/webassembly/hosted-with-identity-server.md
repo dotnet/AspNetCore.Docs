@@ -177,7 +177,7 @@ The following services are registered.
 
 :::moniker-end
 
-  * The Identity Server Middleware exposes the OpenID Connect (OIDC) endpoints:
+  * The Identity Server middleware exposes the OpenID Connect (OIDC) endpoints:
 
     ```csharp
     app.UseIdentityServer();
@@ -185,7 +185,7 @@ The following services are registered.
 
 :::moniker range="< aspnetcore-7.0"
 
-  * The Authentication Middleware is responsible for validating request credentials and setting the user on the request context:
+  * The authentication middleware is responsible for validating request credentials and setting the user on the request context:
 
     ```csharp
     app.UseAuthentication();
@@ -193,7 +193,7 @@ The following services are registered.
 
 :::moniker-end
 
-  * Authorization Middleware enables authorization capabilities:
+  * Authorization middleware enables authorization capabilities:
 
     ```csharp
     app.UseAuthorization();
@@ -212,7 +212,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigur
 The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space under `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
 
 * Registers an API resource with Identity Server with a default scope of `{PROJECT NAME}API`, where the `{PROJECT NAME}` placeholder is the project's name at app creation.
-* Configures the JWT Bearer Token Middleware to validate tokens issued by Identity Server for the app.
+* Configures the JWT bearer token middleware to validate tokens issued by Identity Server for the app.
 
 ### Weather forecast controller
 
@@ -734,6 +734,6 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
-  * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+  * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * [Duende Identity Server](https://docs.duendesoftware.com)

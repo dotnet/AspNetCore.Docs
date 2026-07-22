@@ -1,13 +1,13 @@
 ---
-title: "Breaking change: Middleware: Exception Handler Middleware throws original exception if handler not found"
-description: "Learn about the breaking change in ASP.NET Core 5.0 titled Middleware: Exception Handler Middleware throws original exception if handler not found"
+title: "Breaking change: Middleware: Exception handler middleware throws original exception if handler not found"
+description: "Learn about the breaking change in ASP.NET Core 5.0 titled Middleware: Exception handler middleware throws original exception if handler not found"
 ms.author: wpickett
 ms.date: 10/01/2020
 ms.custom: https://github.com/aspnet/Announcements/issues/434
 ---
-# Middleware: Exception Handler Middleware throws original exception if handler not found
+# Middleware: Exception handler middleware throws original exception if handler not found
 
-Before ASP.NET Core 5.0, the [Exception Handler Middleware](xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A) executes the configured exception handler when an exception has occurred. If the exception handler, configured via <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.ExceptionHandlingPath>, can't be found, an HTTP 404 response is produced. The response is misleading in that it:
+Before ASP.NET Core 5.0, the [exception handler middleware](xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A) executes the configured exception handler when an exception has occurred. If the exception handler, configured via <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.ExceptionHandlingPath>, can't be found, an HTTP 404 response is produced. The response is misleading in that it:
 
 * Seems to be a user error.
 * Obscures the fact that an exception occurred on the server.
@@ -22,11 +22,11 @@ For discussion, see GitHub issue [dotnet/aspnetcore#25288](https://github.com/do
 
 ## Old behavior
 
-The Exception Handler Middleware produces an HTTP 404 response if the configured exception handler can't be found.
+The exception handler middleware produces an HTTP 404 response if the configured exception handler can't be found.
 
 ## New behavior
 
-The Exception Handler Middleware throws the original exception if the configured exception handler can't be found.
+The exception handler middleware throws the original exception if the configured exception handler can't be found.
 
 ## Reason for change
 

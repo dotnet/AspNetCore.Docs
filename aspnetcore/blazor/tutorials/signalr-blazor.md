@@ -201,7 +201,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using BlazorSignalRApp.Hubs;
 ```
 
-Add SignalR and Response Compression Middleware services:
+Add SignalR and response compression middleware services:
 
 ```csharp
 builder.Services.AddSignalR();
@@ -213,7 +213,7 @@ builder.Services.AddResponseCompression(opts =>
 });
 ```
 
-Use Response Compression Middleware at the top of the processing pipeline's configuration. Place the following line of code immediately after the line that builds the app (`var app = builder.Build();`):
+Use response compression middleware at the top of the processing pipeline's configuration. Place the following line of code immediately after the line that builds the app (`var app = builder.Build();`):
    
 ```csharp
 app.UseResponseCompression();
@@ -242,7 +242,7 @@ Add an entry to the `NavMenu` component to reach the chat page. In `Components/L
 ```
 
 > [!NOTE]
-> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 ## Run the app
 
@@ -422,7 +422,7 @@ Add the namespace for the `ChatHub` class to the top of the file:
 using BlazorWebAssemblySignalRApp.Server.Hubs;
 ```
 
-Add SignalR and Response Compression Middleware services:
+Add SignalR and response compression middleware services:
 
 ```csharp
 builder.Services.AddSignalR();
@@ -433,7 +433,7 @@ builder.Services.AddResponseCompression(opts =>
 });
 ```
 
-Use Response Compression Middleware at the top of the processing pipeline's configuration immediately after the line that builds the app:
+Use response compression middleware at the top of the processing pipeline's configuration immediately after the line that builds the app:
    
 ```csharp
 app.UseResponseCompression();
@@ -457,7 +457,7 @@ Add the namespace for the `ChatHub` class to the top of the file:
 using BlazorWebAssemblySignalRApp.Server.Hubs;
 ```
 
-Add SignalR and Response Compression Middleware services:
+Add SignalR and response compression middleware services:
 
 ```csharp
 services.AddSignalR();
@@ -468,7 +468,7 @@ services.AddResponseCompression(opts =>
 });
 ```
 
-Use Response Compression Middleware at the top of the processing pipeline's configuration:
+Use response compression middleware at the top of the processing pipeline's configuration:
    
 ```csharp
 app.UseResponseCompression();
@@ -519,7 +519,7 @@ Replace the markup with the following code:
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
-> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 :::moniker-end
 

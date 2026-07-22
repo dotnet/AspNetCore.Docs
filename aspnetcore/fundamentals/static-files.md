@@ -2,7 +2,7 @@
 title: Static files in ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and Static File Middleware in ASP.NET Core web apps.
+description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.reviewer: wpickett
@@ -44,7 +44,7 @@ Map Static Assets provides the following benefits:
 Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
 
 > [!NOTE]
-> [Default documents](#serve-default-documents) are served compressed by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> only when Default Files Middleware (<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>) runs before Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
+> [Default documents](#serve-default-documents) are served compressed by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> only when default files middleware (<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>) runs before routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
 
 :::moniker-end
 
@@ -54,9 +54,9 @@ To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.
 
 By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
-At runtime, static web assets are returned by Static File Middleware when requested with asset modification and content type headers applied. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set.
+At runtime, static web assets are returned by static file middleware when requested with asset modification and content type headers applied. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set.
 
-Static File Middleware enables static file serving and is used by an app when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> is called in the app's request processing pipeline. Files are served from the path specified in <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which defaults to the web root folder, typically `wwwroot`.
+Static file middleware enables static file serving and is used by an app when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> is called in the app's request processing pipeline. Files are served from the path specified in <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which defaults to the web root folder, typically `wwwroot`.
 
 :::moniker-end
 
@@ -227,19 +227,19 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 :::moniker range=">= aspnetcore-9.0"
 
-## Static File Middleware
+## Static file middleware
 
-Static File Middleware enables static file serving in specific static files scenarios, usually in addition to Map Static Assets endpoint routing conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>).
+Static file middleware enables static file serving in specific static files scenarios, usually in addition to Map Static Assets endpoint routing conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>).
 
-Static File Middleware is included in request processing when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> is called in the app's request processing pipeline, typically after Map Static Assets endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) are added.
+Static file middleware is included in request processing when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> is called in the app's request processing pipeline, typically after Map Static Assets endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) are added.
 
-Map Static Assets endpoint conventions are used in apps that target .NET 9 or later. Static File Middleware must be used in apps that target versions of .NET prior to .NET 9.
+Map Static Assets endpoint conventions are used in apps that target .NET 9 or later. Static file middleware must be used in apps that target versions of .NET prior to .NET 9.
 
-Static File Middleware serves static files, but it doesn't provide the same level of optimization as Map Static Assets endpoint conventions. The build-time compression and fingerprinting features of Map Static Assets endpoint conventions aren't available when only relying on Static File Middleware.
+Static file middleware serves static files, but it doesn't provide the same level of optimization as Map Static Assets endpoint conventions. The build-time compression and fingerprinting features of Map Static Assets endpoint conventions aren't available when only relying on static file middleware.
 
-The endpoint conventions are optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, use Static File Middleware.
+The endpoint conventions are optimized for serving assets that the app has knowledge of at runtime. If the app serves assets from other locations, such as disk or embedded resources, use static file middleware.
 
-The following features covered in this article are supported with Static File Middleware but not with Map Static Assets endpoint conventions:
+The following features covered in this article are supported with static file middleware but not with Map Static Assets endpoint conventions:
 
 * [Serve files outside of the web root directory](#serve-files-outside-of-the-web-root-directory-via-usestaticfiles)
 * [Set HTTP response headers](#set-http-response-headers)
@@ -264,7 +264,7 @@ Consider the following directory hierarchy with static files residing outside of
   * `images`
     * `red-rose.jpg`
 
-A request can access `red-rose.jpg` by configuring a new instance of Static File Middleware:
+A request can access `red-rose.jpg` by configuring a new instance of static file middleware:
 
 Namespaces for the following API:
 
@@ -371,7 +371,7 @@ app.Environment.WebRootFileProvider = compositeProvider;
 
 ## Set HTTP response headers
 
-Use <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to set HTTP response headers. In addition to configuring Static File Middleware to serve static files, the following code sets the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) to 604,800 seconds (one week).
+Use <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to set HTTP response headers. In addition to configuring static file middleware to serve static files, the following code sets the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) to 604,800 seconds (one week).
 
 Namespaces for the following API:
 
@@ -412,7 +412,7 @@ In the following example, the exclusion patten adds the static files in the `lib
 </StaticWebAssetEndpointExclusionPattern>
 ```
 
-After HTTPS Redirection Middleware (`app.UseHttpsRedirection();`) processing in the `Program` file:
+After HTTPS redirection middleware (`app.UseHttpsRedirection();`) processing in the `Program` file:
 
 * Call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to handle the excluded files (`lib/icons/**`) and any other files not covered by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>.
 * Call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> after <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to handle critical application files (CSS, JS, images).
@@ -429,7 +429,7 @@ app.MapStaticAssets();
 
 :::moniker range=">= aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), it requires authorization for all requests that don't explicitly specify an authorization policy. This requirement includes requests for static files after Authorization Middleware processes requests. To allow anonymous access to static files, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder for static files:
+When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), it requires authorization for all requests that don't explicitly specify an authorization policy. This requirement includes requests for static files after authorization middleware processes requests. To allow anonymous access to static files, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder for static files:
 
 ```csharp
 app.MapStaticAssets().Add(endpointBuilder => 
@@ -440,10 +440,10 @@ app.MapStaticAssets().Add(endpointBuilder =>
 
 :::moniker range="< aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), authorization is required for all requests that don't explicitly specify an authorization policy, including requests for static files after Authorization Middleware processes requests. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
+When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), authorization is required for all requests that don't explicitly specify an authorization policy, including requests for static files after authorization middleware processes requests. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
 
 * No authorization checks are performed on the static files.
-* Static files served by the Static File Middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
+* Static files served by the static file middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
 
 :::moniker-end
 
@@ -523,11 +523,11 @@ In the preceding code, the fallback authorization policy requires authenticated 
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
-Static assets stored in the app's web root are publicly accessible because the default Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is called before <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Static assets in the `SecureStaticFiles` folder require authentication.
+Static assets stored in the app's web root are publicly accessible because the default static file middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is called before <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Static assets in the `SecureStaticFiles` folder require authentication.
 
 An alternative approach to serve files based on authorization is to:
 
-* Store the files outside of the web root and any directory accessible to Static File Middleware.
+* Store the files outside of the web root and any directory accessible to static file middleware.
 * Serve the files via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object.
 
 From a Razor page (`Pages/BannerImage.cshtml.cs`):
@@ -793,7 +793,7 @@ The preceding code allows directory browsing of the `wwwroot/images` folder usin
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> adds services required by the Directory Browsing Middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> to ensure the services are added.
+<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> adds services required by the directory-browsing middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> to ensure the services are added.
 
 :::moniker-end
 
@@ -1061,7 +1061,7 @@ For more information, see [MIME content types](https://www.iana.org/assignments/
 
 ## Non-standard content types
 
-The Static File Middleware understands almost 400 known file content types. If the user requests a file with an unknown file type, the Static File Middleware passes the request to the next middleware in the pipeline. If no middleware handles the request, a *404 Not Found* response is returned. If directory browsing is enabled, a link to the file is displayed in a directory listing.
+The static file middleware understands almost 400 known file content types. If the user requests a file with an unknown file type, the static file middleware passes the request to the next middleware in the pipeline. If no middleware handles the request, a *404 Not Found* response is returned. If directory browsing is enabled, a link to the file is displayed in a directory listing.
 
 The following code enables serving unknown content types and renders the unknown file as an image:
 

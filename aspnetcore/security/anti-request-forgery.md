@@ -52,7 +52,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -67,7 +67,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the Cookie Authentication Middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
+When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -628,7 +628,7 @@ The antiforgery token is only validated if:
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods) of type POST, PUT, or PATCH.
 * The request is associated with a valid endpoint.
 
-Antiforgery Middleware doesn't short-circuit the request pipeline. Endpoint code always runs, even if token validation fails. To observe the outcome of the token validation, resolve the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> from <xref:Microsoft.AspNetCore.Http.HttpContext.Features%2A?displayProperty=nameWithType> and inspect its <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.IsValid%2A> property or the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.Error%2A> property for failure details. This approach is useful when endpoints require custom handling for failed antiforgery validation.
+Antiforgery middleware doesn't short-circuit the request pipeline. Endpoint code always runs, even if token validation fails. To observe the outcome of the token validation, resolve the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> from <xref:Microsoft.AspNetCore.Http.HttpContext.Features%2A?displayProperty=nameWithType> and inspect its <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.IsValid%2A> property or the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.Error%2A> property for failure details. This approach is useful when endpoints require custom handling for failed antiforgery validation.
 
 ***Note:*** When enabled manually, the antiforgery middleware must run after the authentication and authorization middleware to prevent reading form data when the user is unauthenticated.
 
@@ -750,7 +750,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -765,7 +765,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the Cookie Authentication Middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1040,7 +1040,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -1055,7 +1055,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the Cookie Authentication Middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1306,7 +1306,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -1321,7 +1321,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the Cookie Authentication Middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 

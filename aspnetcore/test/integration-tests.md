@@ -294,7 +294,7 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 :::zone-end
 
-**_NOTE:_** To avoid HTTPS redirection warnings in logs when using HTTPS Redirection Middleware, set `BaseAddress = new Uri("https://localhost")`
+**_NOTE:_** To avoid HTTPS redirection warnings in logs when using HTTPS redirection middleware, set `BaseAddress = new Uri("https://localhost")`
 
 ## Inject mock services
 

@@ -106,7 +106,7 @@ For example:
 
 All passkey operations require HTTPS. The implementation stores authentication data in encrypted and signed cookies that could be intercepted over unencrypted connections.
 
-**Requirement**: Always use HTTPS in production. Configure [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) to prevent protocol downgrade attacks.
+**Requirement**: Always use HTTPS in production. Configure [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) to prevent protocol downgrade attacks.
 
 ### Account recovery
 

@@ -9,7 +9,7 @@ The Minimal APIs consist of:
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication9.md)]
 
-## ASP.NET Core Middleware
+## ASP.NET Core middleware
 
 The following table lists some of the middleware frequently used with Minimal APIs.
 

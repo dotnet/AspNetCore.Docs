@@ -137,7 +137,7 @@ If you haven't already done so, enable IIS to host ASP.NET Core apps. For more i
 
 Enable the IIS Role Service for Windows Authentication. For more information, see [Enable Windows Authentication in IIS Role Services (see Step 2)](xref:host-and-deploy/iis/advanced#iis-configuration).
 
-[IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
+[IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
 
 The ASP.NET Core Module is configured to forward the Windows Authentication token to the app by default. For more information, see [ASP.NET Core Module configuration reference: Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
@@ -290,7 +290,7 @@ When Windows Authentication is enabled and anonymous access is disabled, the [`[
 When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see <xref:security/authorization/simple>.
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages Middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
 
 ## Impersonation
 
@@ -445,7 +445,7 @@ If you haven't already done so, enable IIS to host ASP.NET Core apps. For more i
 
 Enable the IIS Role Service for Windows Authentication. For more information, see [Enable Windows Authentication in IIS Role Services (see Step 2)](xref:host-and-deploy/iis/index#iis-configuration).
 
-[IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
+[IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
 
 The ASP.NET Core Module is configured to forward the Windows Authentication token to the app by default. For more information, see [ASP.NET Core Module configuration reference: Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
@@ -495,7 +495,7 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
-Add Authentication Middleware by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> in `Startup.Configure`:
+Add authentication middleware by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> in `Startup.Configure`:
 
  ```csharp
 app.UseAuthentication();
@@ -596,7 +596,7 @@ When Windows Authentication is enabled and anonymous access is disabled, the [`[
 When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see <xref:security/authorization/simple>.
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages Middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
 
 ## Impersonation
 

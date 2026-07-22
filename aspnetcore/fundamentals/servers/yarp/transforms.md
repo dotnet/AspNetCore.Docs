@@ -50,7 +50,7 @@ Transforms fall into a few categories: [Request](./transforms-request.md), [Resp
 
 If the built-in set of transforms is insufficient, then custom transforms can be added via [extensibility](./extensibility-transforms.md).
 
-## Adding transforms
+## Add transforms
 
 Transforms can be added to routes either through configuration or programmatically.
 

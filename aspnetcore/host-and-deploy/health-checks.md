@@ -17,7 +17,7 @@ By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitt
 
 :::moniker range=">= aspnetcore-8.0"
 
-ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
+ASP.NET Core offers health checks middleware and libraries for reporting the health of app infrastructure components.
 
 Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for various real-time monitoring scenarios:
 
@@ -31,7 +31,7 @@ Health checks are typically used with an external monitoring service or containe
 
 For many apps, a basic health probe configuration that reports the app's availability to process requests (*liveness*) is sufficient to discover the status of the app.
 
-The basic configuration registers health check services and calls the Health Checks Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it can respond at the health endpoint URL. The default response writer writes <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus> as a plaintext response to the client. The `HealthStatus` is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy?displayProperty=nameWithType>, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded?displayProperty=nameWithType>, or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
+The basic configuration registers health check services and calls the health checks middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it can respond at the health endpoint URL. The default response writer writes <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus> as a plaintext response to the client. The `HealthStatus` is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy?displayProperty=nameWithType>, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded?displayProperty=nameWithType>, or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
 
 Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Program.cs`. Create a health check endpoint by calling <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>.
 
@@ -111,13 +111,13 @@ For more information, see [Host matching in routes with RequireHost](xref:fundam
 
 ### Require authorization
 
-Call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> to run Authorization Middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used:
+Call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> to run authorization middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireAuthorization":::
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common scenario, CORS Middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The [`RequireCors`](/dotnet/api/microsoft.aspnetcore.builder.corsendpointconventionbuilderextensions.requirecors) overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common scenario, CORS middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The [`RequireCors`](/dotnet/api/microsoft.aspnetcore.builder.corsendpointconventionbuilderextensions.requirecors) overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see <xref:security/cors>.
 
 ## Health check options
 
@@ -130,7 +130,7 @@ Although running health checks manually from a browser isn't a common scenario, 
 
 ### Filter health checks
 
-By default, the Health Checks Middleware runs all registered health checks. To run a subset of health checks, provide a function that returns a boolean to the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate> option.
+By default, the health checks middleware runs all registered health checks. To run a subset of health checks, provide a function that returns a boolean to the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate> option.
 
 The following example filters the health checks so that only those tagged with `sample` run:
 
@@ -144,7 +144,7 @@ Use <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Resul
 
 ### Suppress cache headers
 
-<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controls whether the Health Checks Middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response:
+<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controls whether the health checks middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksAllowCachingResponses":::
 
@@ -326,7 +326,7 @@ By using `MapHealthChecks` instead of `UseHealthChecks`, you can use endpoint aw
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>:
 * Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
-* Is primarily used for configuring the health check middleware in the pipeline.
+* Is primarily used for configuring the health checks middleware in the pipeline.
 * Can match any path on a port with a `null` or empty `PathString`. Allows performing a health check on any request made to the specified port.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 

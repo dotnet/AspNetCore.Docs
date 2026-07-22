@@ -158,10 +158,10 @@ For more information on how to configure the certificate forwarding middleware, 
 
 ### Certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. The Certificate Forwarding Middleware sets up the configuration.
+No forwarding configuration is required for Azure. The certificate-forwarding middleware sets up the configuration.
 
 > [!NOTE]
-> Certificate Forwarding Middleware is required for this scenario.
+> Certificate-forwarding middleware is required for this scenario.
 
 For more information, see [Use TLS/SSL certificates in your app code (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
 
@@ -636,10 +636,10 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. Forwarding configuration is set up by the Certificate Forwarding Middleware.
+No forwarding configuration is required for Azure. Forwarding configuration is set up by the certificate-forwarding middleware.
 
 > [!NOTE]
-> Certificate Forwarding Middleware is required for this scenario.
+> Certificate-forwarding middleware is required for this scenario.
 
 For more information, see [Use a TLS/SSL certificate in your code in Azure App Service (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
 
@@ -1294,10 +1294,10 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. Forwarding configuration is set up by the Certificate Forwarding Middleware.
+No forwarding configuration is required for Azure. Forwarding configuration is set up by the certificate-forwarding middleware.
 
 > [!NOTE]
-> Certificate Forwarding Middleware is required for this scenario.
+> Certificate-forwarding middleware is required for this scenario.
 
 For more information, see [Use a TLS/SSL certificate in your code in Azure App Service (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
 
