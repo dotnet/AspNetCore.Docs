@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 5
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/29/2025
 uid: aspnetcore-5.0
 ---
@@ -357,7 +356,7 @@ The `AllowAnonymous` extension method allows anonymous access to an endpoint:
 
 ### Custom handling of authorization failures
 
-Custom handling of authorization failures is now easier with the new <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> interface that is invoked by the [Authorization Middleware (`UseAuthorization`)](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A). The default implementation remains the same, but a custom handler can be registered with dependency injection, which allows custom HTTP responses based on an authorization failure. See [`SampleAuthorizationMiddlewareResultHandler.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) for a demonstration of `IAuthorizationMiddlewareResultHandler`.
+Custom handling of authorization failures is now easier with the new <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> interface that is invoked by the [authorization middleware (`UseAuthorization`)](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A). The default implementation remains the same, but a custom handler can be registered with dependency injection, which allows custom HTTP responses based on an authorization failure. See [`SampleAuthorizationMiddlewareResultHandler.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) for a demonstration of `IAuthorizationMiddlewareResultHandler`.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

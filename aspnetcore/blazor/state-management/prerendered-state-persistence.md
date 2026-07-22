@@ -5,8 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 07/14/2026
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -142,6 +141,17 @@ In the following example that serializes state for multiple components of the sa
     <PersistentChild @key="element.Name" />
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> A user-configured <xref:System.Text.Json.Serialization.JsonSerializerContext> doesn't flow into [C# union](/dotnet/csharp/language-reference/builtin-types/union) deserialization. Instead, use `[JsonUnion(TypeClassifier = typeof({TYPE CLASSIFIER}))]`, where the `{TYPE CLASSIFIER}` placeholder is the type classifier.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ## Serialize state for services
 

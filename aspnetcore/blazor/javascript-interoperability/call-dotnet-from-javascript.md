@@ -4,8 +4,8 @@ author: guardrex
 description: Learn how to invoke .NET methods from JavaScript functions in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc, sfi-ropc-nochange
-ms.date: 11/11/2025
+ms.custom: sfi-ropc-nochange
+ms.date: 07/14/2026
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
@@ -21,6 +21,16 @@ NOTE: The console output block quotes in this topic use a double-space at the en
 This article explains how to invoke .NET methods from JavaScript (JS).
 
 For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 13.0 - Consider removing the following cross-link because the 'call JS from .NET' article
+                   will maintain a versioned support remark beyond .NET 13. -->
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported.
+
+:::moniker-end
 
 ## Invoke a static .NET method
 

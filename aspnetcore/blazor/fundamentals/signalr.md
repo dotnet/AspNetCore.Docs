@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/fundamentals/signalr
 ---
@@ -109,7 +108,7 @@ This provides a clean, type-safe API for configuring SignalR connection settings
 
 ## Disable response compression for Hot Reload
 
-When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
+When using [Hot Reload](xref:test/hot-reload), disable response compression middleware in the `Development` environment. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
 
 In the `Program` file:
 

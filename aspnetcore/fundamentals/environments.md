@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn how to set and control app behavior across runtime environments in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/29/2026
 uid: fundamentals/environments
 ---
@@ -86,8 +85,8 @@ Use <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment?display
 The following code in the app's `Program` file:
 
 * Uses <xref:Microsoft.AspNetCore.Builder.WebApplication.Environment?displayProperty=nameWithType> to distinguish the environment.
-* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>, which adds [Exception Handler Middleware](xref:fundamentals/error-handling) to the request processing pipeline to handle exceptions.
-* Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>, which adds [HSTS Middleware](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
+* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>, which adds [exception handler middleware](xref:fundamentals/error-handling) to the request processing pipeline to handle exceptions.
+* Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>, which adds [HSTS middleware](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -109,7 +108,7 @@ The following code in `Startup.Configure`:
 
 * Injects <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure` to tailor the code to the environment. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment. When many code differences exist per environment, consider using [accessing the environment from a `Startup` class](#access-the-environment-from-a-startup-class), which is covered later in this article.
 * Calls <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> when `ASPNETCORE_ENVIRONMENT` is set to `Development`. The call adds middleware that captures exceptions and generates HTML error responses.
-* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> when the value of `ASPNETCORE_ENVIRONMENT` is set to `Production`, `Staging`, or `Testing`. The call adds [Exception Handler Middleware](xref:fundamentals/error-handling) to the pipeline to handle exceptions.
+* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> when the value of `ASPNETCORE_ENVIRONMENT` is set to `Production`, `Staging`, or `Testing`. The call adds [exception handler middleware](xref:fundamentals/error-handling) to the pipeline to handle exceptions.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

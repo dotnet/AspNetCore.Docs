@@ -3,7 +3,6 @@ title: Tag Helpers in forms in ASP.NET Core
 author: tdykstra
 description: Describes the built-in Tag Helpers used with Forms.
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 05/05/2026
 uid: mvc/views/working-with-forms
 ---

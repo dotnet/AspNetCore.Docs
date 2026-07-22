@@ -4,7 +4,6 @@ author: damienbod
 description: Learn how to set up JWT bearer authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 09/29/2025
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
@@ -97,7 +96,7 @@ The [OAuth specifications](/entra/identity-platform/access-token-claims-referenc
 
 ### 403 Forbidden
 
-A [403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) response typically indicates that the authenticated user lacks the necessary permissions to access the requested resource. This is distinct from authentication issues, e.g. an invalid token, and is unrelated to the standard claims within the access token.
+A [403 Forbidden](https://developer.mozilla.org/docs/Web/HTTP/Status/403) response typically indicates that the authenticated user lacks the necessary permissions to access the requested resource. This is distinct from authentication issues, e.g. an invalid token, and is unrelated to the standard claims within the access token.
 
 In ASP.NET Core, you can enforce authorization using:
 

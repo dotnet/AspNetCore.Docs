@@ -5,14 +5,12 @@ author: wadepickett
 description: Learn about security in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
-ms.date: 03/31/2026
+ms.date: 07/06/2026
 uid: signalr/security
 ---
-
 # Security considerations in ASP.NET Core SignalR
 
-By [Andrew Stanton-Nurse](https://twitter.com/anurse)
+By [Ashley Stanton-Nurse](https://github.com/analogrelay)
 
 :::moniker range=">= aspnetcore-8.0"
 This article provides information on securing SignalR.

@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to secure Blazor WebAssembly apps as single-page applications (SPAs).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc, sfi-ropc-nochange
+ms.custom: sfi-ropc-nochange
 ms.date: 11/11/2025
 uid: blazor/security/webassembly/index
 ---
@@ -376,7 +376,7 @@ For more information, see the following resources:
   * [General documentation](/entra/identity-platform/)
   * [Access tokens](/entra/identity-platform/access-tokens)
 * <xref:host-and-deploy/proxy-load-balancer>
-  * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+  * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
 * [WebAssembly: Security](https://webassembly.org/docs/security/)

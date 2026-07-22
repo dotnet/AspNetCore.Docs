@@ -4,8 +4,7 @@ author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
-ms.custom: mvc
-ms.date: 11/11/2025
+ms.date: 07/14/2026
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -276,6 +275,52 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 :::moniker range=">= aspnetcore-11.0"
 
+<!-- UPDATE 11.0 - API Browser cross-links -->
+
+## Scroll to a specific item
+
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialIndex` for the first render and `ScrollToIndexAsync` for programmatic scrolling after the component is rendered.
+
+### `InitialIndex` parameter
+
+Set `InitialIndex` to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
+
+```razor
+<Virtualize Items="allFlights" Context="flight" InitialItemIndex="500">
+    <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+</Virtualize>
+```
+
+### `ScrollToItemAsync` method
+
+Call `ScrollToIndexAsync` to programmatically scroll to an item after the first render. The scroll is instant (no animation). The method returns a <xref:System.Threading.Tasks.Task> that completes when the target item is aligned to the top of the viewport. Cancellation is supported via a <xref:System.Threading.CancellationToken>.
+
+If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before the first interactive render throws an <xref:System.InvalidOperationException>.
+
+```razor
+<Virtualize Items="allFlights" Context="flight" @ref="virtualizeComponent">
+    <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+</Virtualize>
+
+<button @onclick="ScrollToFlight">Go to flight 200</button>
+
+@code {
+    private Virtualize<Flight>? virtualizeComponent;
+
+    private async Task ScrollToFlight()
+    {
+        if (virtualizeComponent is not null)
+        {
+            await virtualizeComponent.ScrollToIndexAsync(200);
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 ## Control viewport scroll position behavior when items are dynamically added
 
 <!-- UPDATE 11.0 - API cross-links -->
@@ -283,20 +328,20 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 Assign a `VirtualizeAnchorMode` value to the `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
 * `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
-* `Beginning`: Pins the viewport to the beginning of the list. When the user is at a scroll position near the top of the list and new items arrive at the beginning, the viewport stays at the top showing the newest items. For example, this pinning behavior is useful for a news feed user experience.
+* `Start`: Pins the viewport to the start of the list. When the user is at a scroll position near the top of the list and new items arrive at the start, the viewport stays at the top showing the newest items. For example, this pinning behavior is useful for a news feed user experience.
 * `End`: Pins the viewport to the end of the list. When the user is at a scroll position near the bottom of the list and new items arrive at the end, the viewport auto-scrolls to show them. If the user has scrolled away, auto-scroll disengages until they return to the bottom. For example, this pinning behavior is useful for a chat or logging user experience.
 
-The following example pins the viewport to the beginning of a virtualized flight list:
+The following example pins the viewport to the start of a virtualized flight list:
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
-    <Virtualize Items="allFlights" Context="flight" AnchorMode="Beginning">
+    <Virtualize Items="allFlights" Context="flight" AnchorMode="Start">
         <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
     </Virtualize>
 </div>
 ```
 
-Modes can be combined. For example, assigning `Beginning | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
+Modes can be combined. For example, assigning `Start | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
 
 `Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
 
@@ -307,7 +352,7 @@ The comparer determines if the first loaded item changed between provider calls,
                    I thought that it wouldn't need it. -->
 
 ```razor
-<Virtualize ItemsProvider="LoadFlights" AnchorMode="Beginning" 
+<Virtualize ItemsProvider="LoadFlights" AnchorMode="Start" 
     ItemComparer="itemComparer">
     ...
 </Virtualize>
@@ -365,6 +410,26 @@ If your source code looks like the following:
 
 At runtime, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component renders a DOM structure similar to the following:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+```html
+<div style="height:500px; overflow-y:scroll" tabindex="-1">
+    <div data-blazor-virtualize-reserved-height="1100" aria-hidden="true"></div>
+    <div class="flight-info">Flight 12</div>
+    <div class="flight-info">Flight 13</div>
+    <div class="flight-info">Flight 14</div>
+    <div class="flight-info">Flight 15</div>
+    <div class="flight-info">Flight 16</div>
+    <div data-blazor-virtualize-reserved-height="3400" aria-hidden="true"></div>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```html
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
     <div style="height:1100px"></div>
@@ -376,6 +441,10 @@ At runtime, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtual
     <div style="height:3400px"></div>
 </div>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The actual number of rows rendered and the size of the spacers vary according to your styling and `Items` collection size. However, notice that there are spacer `div` elements injected before and after your content. These serve two purposes:
 
@@ -470,5 +539,21 @@ In the preceding example, the document root is used as the scroll container, so 
 
 * [Root-level virtualization](#root-level-virtualization) section
 * <xref:blazor/components/control-head-content>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Content Security Policy (CSP) compliance
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction.
+
+To avoid CSP violations, render CSS height in a `data-blazor-virtualize-reserved-height` attribute instead of a `style` attribute, which makes the rendered component compatible with strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) configurations.
+
+In the following example, the height is set to 3,400 pixels:
+
+```razor
+<div data-blazor-virtualize-reserved-height="3400" aria-hidden="true"></div>
+```
 
 :::moniker-end

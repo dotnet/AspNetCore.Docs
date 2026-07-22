@@ -114,7 +114,7 @@ msgstr[1] "Il y a {0} éléments."
 
 See [What is a PO file?](#what-is-a-po-file) for an explanation of what each entry in this example represents.
 
-### Adding a language using different pluralization forms
+### Add a language using different pluralization forms
 
 English and French strings were used in the previous example. English and French have only two pluralization forms and share the same form rules, which is that a cardinality of one is mapped to the first plural form. Any other cardinality is mapped to the second plural form.
 
@@ -334,7 +334,7 @@ msgstr[1] "Il y a {0} éléments."
 
 See [What is a PO file?](#what-is-a-po-file) for an explanation of what each entry in this example represents.
 
-### Adding a language using different pluralization forms
+### Add a language using different pluralization forms
 
 English and French strings were used in the previous example. English and French have only two pluralization forms and share the same form rules, which is that a cardinality of one is mapped to the first plural form. Any other cardinality is mapped to the second plural form.
 
@@ -547,7 +547,7 @@ msgstr[1] "Il y a {0} éléments."
 
 See [What is a PO file?](#what-is-a-po-file) for an explanation of what each entry in this example represents.
 
-### Adding a language using different pluralization forms
+### Add a language using different pluralization forms
 
 English and French strings were used in the previous example. English and French have only two pluralization forms and share the same form rules, which is that a cardinality of one is mapped to the first plural form. Any other cardinality is mapped to the second plural form.
 

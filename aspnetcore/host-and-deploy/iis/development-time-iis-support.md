@@ -4,7 +4,6 @@ author: tdykstra
 description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/development-time-iis-support
 ---
@@ -61,11 +60,11 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) to the app when it's created.
 
-For an existing project that requires HTTPS, use HTTPS Redirection and HSTS Middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
+For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
 
-For a project that uses HTTP, [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
+For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
 
 ### IIS launch profile
 
@@ -176,11 +175,11 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) to the app when it's created.
 
-For an existing project that requires HTTPS, use HTTPS Redirection and HSTS Middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
+For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
 
-For a project that uses HTTP, [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
+For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
 
 ### IIS launch profile
 

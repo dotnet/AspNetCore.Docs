@@ -1,26 +1,25 @@
 ---
-title: Response Caching Middleware in ASP.NET Core
+title: Response caching middleware in ASP.NET Core
 author: tdykstra
-description: Learn how to configure and use Response Caching Middleware in ASP.NET Core.
+description: Learn how to configure and use response caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 1/1/2022
 uid: performance/caching/middleware
 ---
-# Response Caching Middleware in ASP.NET Core
+# Response caching middleware in ASP.NET Core
 
 By [John Luo](https://github.com/JunTaoLuo) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article explains how to configure [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
+This article explains how to configure [response caching middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
 ## Configuration
 
-In `Program.cs`, add the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
+In `Program.cs`, add the response caching middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
 [!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3,12)]
 
@@ -38,7 +37,7 @@ The preceding headers are not written to the response and are overridden when a 
 
 * Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute. This applies even if a property isn't set. For example, omitting the [VaryByHeader](./response.md#vary) property will cause the corresponding header to be removed from the response.
 
-Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
+Response caching middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
@@ -79,7 +78,7 @@ if (responseCachingFeature != null)
 
 Using a single value equal to `*` in `VaryByQueryKeys` varies the cache by all request query parameters.
 
-## HTTP headers used by Response Caching Middleware
+## HTTP headers used by response caching middleware
 
 The following table provides information on HTTP headers that affect response caching.
 
@@ -88,7 +87,7 @@ The following table provides information on HTTP headers that affect response ca
 | `Authorization` | The response isn't cached if the header exists. |
 | `Cache-Control` | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 9111: Request Directives](https://www.rfc-editor.org/rfc/rfc9111.html#name-request-directives). |
 | `Pragma` | A `Pragma: no-cache` header in the request produces the same effect as `Cache-Control: no-cache`. This header is overridden by the relevant directives in the `Cache-Control` header, if present. Considered for backward compatibility with HTTP/1.0. |
-| `Set-Cookie` | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the Response Caching Middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
+| `Set-Cookie` | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the response caching middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
 | `Vary` | The `Vary` header is used to vary the cached response by another header. For example, cache responses by encoding by including the `Vary: Accept-Encoding` header, which caches responses for requests with headers `Accept-Encoding: gzip` and `Accept-Encoding: text/plain` separately. A response with a header value of `*` is never stored. |
 | `Expires` | A response deemed stale by this header isn't stored or retrieved unless overridden by other `Cache-Control` headers. |
 | `If-None-Match` | The full response is served from cache if the value isn't `*` and the `ETag` of the response doesn't match any of the values provided. Otherwise, a 304 (Not Modified) response is served. |
@@ -110,7 +109,7 @@ For more control over caching behavior, explore other caching features of ASP.NE
 
 ## Troubleshooting
 
-The [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) uses <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>, which has a limited capacity. When the capacity is exceeded, the [memory cache is compacted (`TriggerOvercapacityCompaction`)](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs).
+The [response caching middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) uses <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>, which has a limited capacity. When the capacity is exceeded, the [memory cache is compacted (`TriggerOvercapacityCompaction`)](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -124,7 +123,7 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 
 * The request must result in a server response with a 200 (OK) status code.
 * The request method must be GET or HEAD.
-* Response Caching Middleware must be placed before middleware that require caching. For more information, see <xref:fundamentals/middleware/index>.
+* Response caching middleware must be placed before middleware that require caching. For more information, see <xref:fundamentals/middleware/index>.
 * The `Authorization` header must not be present.
 * `Cache-Control` header parameters must be valid, and the response must be marked `public` and not marked `private`.
 * The `Pragma: no-cache` header must not be present if the `Cache-Control` header isn't present, as the `Cache-Control` header overrides the `Pragma` header when present.
@@ -157,15 +156,15 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 
 :::moniker range="< aspnetcore-6.0"
 
-This article explains how to configure Response Caching Middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
+This article explains how to configure response caching middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/middleware/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Configuration
 
-Response Caching Middleware is implicitly available for ASP.NET Core apps via the shared framework.
+Response caching middleware is implicitly available for ASP.NET Core apps via the shared framework.
 
-In `Startup.ConfigureServices`, add the Response Caching Middleware to the service collection:
+In `Startup.ConfigureServices`, add the response caching middleware to the service collection:
 
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
 
@@ -187,7 +186,7 @@ The preceding headers are not written to the response and are overridden when a 
 
 * Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute. This applies even if a property isn't set. For example, omitting the [VaryByHeader](./response.md#vary) property will cause the corresponding header to be removed from the response.
 
-Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
+Response caching middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
@@ -232,7 +231,7 @@ if (responseCachingFeature != null)
 
 Using a single value equal to `*` in `VaryByQueryKeys` varies the cache by all request query parameters.
 
-## HTTP headers used by Response Caching Middleware
+## HTTP headers used by response caching middleware
 
 The following table provides information on HTTP headers that affect response caching.
 
@@ -241,7 +240,7 @@ The following table provides information on HTTP headers that affect response ca
 | `Authorization` | The response isn't cached if the header exists. |
 | `Cache-Control` | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 9111: Request Directives](https://www.rfc-editor.org/rfc/rfc9111.html#name-request-directives). |
 | `Pragma` | A `Pragma: no-cache` header in the request produces the same effect as `Cache-Control: no-cache`. This header is overridden by the relevant directives in the `Cache-Control` header, if present. Considered for backward compatibility with HTTP/1.0. |
-| `Set-Cookie` | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the Response Caching Middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
+| `Set-Cookie` | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the response caching middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
 | `Vary` | The `Vary` header is used to vary the cached response by another header. For example, cache responses by encoding by including the `Vary: Accept-Encoding` header, which caches responses for requests with headers `Accept-Encoding: gzip` and `Accept-Encoding: text/plain` separately. A response with a header value of `*` is never stored. |
 | `Expires` | A response deemed stale by this header isn't stored or retrieved unless overridden by other `Cache-Control` headers. |
 | `If-None-Match` | The full response is served from cache if the value isn't `*` and the `ETag` of the response doesn't match any of the values provided. Otherwise, a 304 (Not Modified) response is served. |
@@ -273,7 +272,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 
 * The request must result in a server response with a 200 (OK) status code.
 * The request method must be GET or HEAD.
-* In `Startup.Configure`, Response Caching Middleware must be placed before middleware that require caching. For more information, see <xref:fundamentals/middleware/index>.
+* In `Startup.Configure`, response caching middleware must be placed before middleware that require caching. For more information, see <xref:fundamentals/middleware/index>.
 * The `Authorization` header must not be present.
 * `Cache-Control` header parameters must be valid, and the response must be marked `public` and not marked `private`.
 * The `Pragma: no-cache` header must not be present if the `Cache-Control` header isn't present, as the `Cache-Control` header overrides the `Pragma` header when present.

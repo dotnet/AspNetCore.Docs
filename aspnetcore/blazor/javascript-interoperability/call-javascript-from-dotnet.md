@@ -4,8 +4,8 @@ author: guardrex
 description: Learn how to invoke JavaScript functions from .NET methods in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc, sfi-ropc-nochange
-ms.date: 11/11/2025
+ms.custom: sfi-ropc-nochange
+ms.date: 07/14/2026
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -26,12 +26,28 @@ For information on how to call .NET methods from JS, see <xref:blazor/js-interop
 
 For the preceding .NET methods that invoke JS functions:
 
+:::moniker range=">= aspnetcore-11.0"
+
 * The function identifier (`String`) is relative to the global scope (`window`). To call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called.
 * Pass any number of JSON-serializable arguments in `Object[]` to a JS function.
 * The cancellation token (`CancellationToken`) propagates a notification that operations should be canceled.
 * `TimeSpan` represents a time limit for a JS operation.
 * The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
 * A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+* The function identifier (`String`) is relative to the global scope (`window`). To call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called.
+* Pass any number of JSON-serializable arguments in `Object[]` to a JS function.
+* The cancellation token (`CancellationToken`) propagates a notification that operations should be canceled.
+* `TimeSpan` represents a time limit for a JS operation.
+* The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
+* A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+:::moniker-end
 
 For Blazor apps with prerendering enabled, which is the default for server-side apps, calling into JS isn't possible during prerendering. For more information, see the [Prerendering](#prerendering) section.
 

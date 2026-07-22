@@ -119,7 +119,7 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 * [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page)
 * [Exception handler](xref:fundamentals/error-handling#exception-handler-page)
-* [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
+* [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol)
 * [HTTPS redirection](xref:security/enforcing-ssl)
 * [Static files](xref:fundamentals/static-files)
 * ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](xref:razor-pages/index)

@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how CSS isolation scopes CSS to Razor components, which can simplify CSS and avoid collisions with other components or libraries.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/components/css-isolation
 ---

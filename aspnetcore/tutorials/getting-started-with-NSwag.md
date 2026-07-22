@@ -1,16 +1,26 @@
 ---
 title: Get started with NSwag and ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 ms.author: wpickett
-ms.custom: mvc
+ms.reviewer: wpickett
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
-ms.date: 05/11/2026
+ms.date: 07/06/2026
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
+
+> [!NOTE]
+> In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. NSwag isn't included by default, but you can add it manually as a community package to ASP.NET Core projects targeting .NET 9 or later.
+>
+> • To understand the built-in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
+> • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.  
+> • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see <xref:tutorials/min-web-api>. It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
+>
+> The following instructions apply when using NSwag with .NET versions earlier than 9.
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 

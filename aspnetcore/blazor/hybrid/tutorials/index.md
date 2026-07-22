@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to build Blazor Hybrid apps with the tutorials listed in this article.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/hybrid/tutorials/index
 ---

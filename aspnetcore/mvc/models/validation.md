@@ -4,7 +4,6 @@ author: tdykstra
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.custom: mvc
 ms.date: 04/28/2026
 uid: mvc/models/validation
 ---
@@ -16,10 +15,6 @@ This article explains how to validate user input in an ASP.NET Core MVC or Razor
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-10.0"
-[!INCLUDE[](~/includes/validation-package-net10.md)]
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"

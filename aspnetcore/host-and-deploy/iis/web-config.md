@@ -4,7 +4,7 @@ author: tdykstra
 description: Discover what is inside of the web.config file and how to configure different ASP.NET Core Module options.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
-ms.custom: mvc, sfi-ropc-nochange
+ms.custom: sfi-ropc-nochange
 ms.date: 04/22/2026
 uid: host-and-deploy/iis/web-config
 ---

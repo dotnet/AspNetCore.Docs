@@ -4,8 +4,7 @@ author: guardrex
 description: Learn about Blazor app request routing with guidance on static versus interactive routing, endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
-ms.date: 12/09/2025
+ms.date: 06/24/2026
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing
@@ -188,7 +187,7 @@ The Blazor project template includes a `NotFound.razor` page. This page automati
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter, which supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
 
 In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter:
 
@@ -356,6 +355,13 @@ When the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecy
 
 > [!NOTE]
 > Route parameters don't work with query string values. To work with query strings, see [Query strings](xref:blazor/fundamentals/navigation#query-strings).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> Route parameters can't be typed as a [C# union](/dotnet/csharp/language-reference/builtin-types/union). The router parses route segments as strings and converts them to the target type without JSON parsing, so it can't dispatch to a union case.
 
 :::moniker-end
 

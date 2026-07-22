@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to use browser developer tools with ASP.NET Core Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.custom: "mvc"
 ms.date: 11/11/2025
 uid: blazor/hybrid/developer-tools
 zone_pivot_groups: blazor-hybrid-operating-systems

@@ -12,6 +12,17 @@ Supported binding sources:
 * Services provided by dependency injection
 * Custom
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported only as the body (as JSON). Non-body sources—route values, query string, headers, and form values—bind string values without JSON parsing, so they can't dispatch to a union case.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 The following `GET` route handler uses some of these parameter binding sources:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_pbg" highlight="8-11":::
@@ -69,7 +80,7 @@ The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tre
 
 Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> using the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute):
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1" highlight="20-28":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1" highlight="20-35":::
 
 Parameters bound to the request with `[FromForm]` include an [antiforgery token](xref:security/anti-request-forgery). The antiforgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 

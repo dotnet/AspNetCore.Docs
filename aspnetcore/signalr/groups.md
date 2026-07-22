@@ -4,7 +4,6 @@ author: wadepickett
 description: Overview of ASP.NET Core SignalR User and Group management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 04/04/2024
 uid: signalr/groups
 ---

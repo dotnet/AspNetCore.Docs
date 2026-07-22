@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 07/19/2025
+ms.date: 06/24/2026
 ai-usage: ai-assisted
 uid: mvc/models/model-binding
 ---
@@ -106,6 +106,17 @@ If the default source is not correct, use one of the following attributes to spe
 * [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) - Gets values from posted form fields.
 * [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) - Gets values from the request body.
 * [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) - Gets values from HTTP headers.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) are supported only with `[FromBody]`. The other binding sources—`[FromQuery]`, `[FromRoute]`, `[FromForm]`, and `[FromHeader]`—bind string values without JSON parsing, so they can't dispatch to a union case.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 These attributes:
 

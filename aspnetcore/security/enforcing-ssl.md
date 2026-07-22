@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
-ms.custom: mvc, linux-related-content
+ms.custom: linux-related-content
 ms.date: 05/13/2026
 uid: security/enforcing-ssl
 
@@ -41,7 +41,7 @@ To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment var
 
 ### HSTS and API projects
 
-The secure approach for [HTTP Strict Transport Security Protocol (HSTS)](#hsts) is to configure API projects to only listen to and respond over HTTPS.
+The secure approach for [HTTP Strict Transport Security (HSTS) protocol](#hsts) is to configure API projects to only listen to and respond over HTTPS.
 
 > [!WARNING]
 > The default API projects don't include [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) because it's generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks.
@@ -56,12 +56,12 @@ API projects can reject HTTP requests rather than use the `UseHttpsRedirection` 
 
 For production ASP.NET Core web apps, the following approach is recommended:
 
-* To redirect HTTP requests to HTTPS, use HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>).
+* To redirect HTTP requests to HTTPS, use HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>).
 
-* To send HSTS headers to clients, use HSTS Middleware via the [UseHsts](#hsts) method.
+* To send HSTS headers to clients, use HSTS middleware via the [UseHsts](#hsts) method.
 
 > [!NOTE]
-> Apps deployed in a reverse proxy configuration allow the proxy to handle connection security (HTTPS). If the proxy also handles HTTPS redirection, there's no need to use HTTPS Redirection Middleware. If the proxy server also handles writing HSTS headers (for example, [native HSTS support in Internet Information Services (IIS) 10.0 version 1709 or later](/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#iis-100-version-1709-native-hsts-support)), then the app doesn't require HSTS Middleware. For more information, see [Opt-out of HTTPS/HSTS on project creation](#opt-out-of-httpshsts-on-project-creation).
+> Apps deployed in a reverse proxy configuration allow the proxy to handle connection security (HTTPS). If the proxy also handles HTTPS redirection, there's no need to use HTTPS redirection middleware. If the proxy server also handles writing HSTS headers (for example, [native HSTS support in Internet Information Services (IIS) 10.0 version 1709 or later](/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#iis-100-version-1709-native-hsts-support)), then the app doesn't require HSTS middleware. For more information, see [Opt-out of HTTPS/HSTS on project creation](#opt-out-of-httpshsts-on-project-creation).
 
 ### UseHttpsRedirection
 
@@ -115,7 +115,7 @@ For more information, see [Kestrel endpoint configuration](xref:fundamentals/ser
 
 Any firewall between the client and server must also have communication ports open for traffic.
 
-If requests are forwarded in a reverse proxy configuration, use [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) before calling HTTPS Redirection Middleware. Forwarded Headers Middleware updates the `Request.Scheme` by using the `X-Forwarded-Proto` header. The middleware permits redirect URIs and other security policies to work correctly. When Forwarded Headers Middleware isn't used, the back-end app might not receive the correct scheme and get caught in a redirect loop. A common end user error message is there are too many redirects.
+If requests are forwarded in a reverse proxy configuration, use [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer) before calling HTTPS redirection middleware. Forwarded headers middleware updates the `Request.Scheme` by using the `X-Forwarded-Proto` header. The middleware permits redirect URIs and other security policies to work correctly. When forwarded headers middleware isn't used, the back-end app might not receive the correct scheme and get caught in a redirect loop. A common end user error message is there are too many redirects.
 
 When deploying to Azure App Service, follow the guidance in [Enable HTTPS for a custom domain in Azure App Service](/azure/app-service/configure-ssl-bindings).
 
@@ -140,15 +140,13 @@ The following code shows configuration of services in the _Program.cs_ file:
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
 
-## HTTPS Redirection Middleware alternative approach
+## HTTPS redirection middleware alternative approach
 
-An alternative to using HTTPS Redirection Middleware (with the `UseHttpsRedirection` method) is to use URL Rewriting Middleware (via the `AddRedirectToHttps` method). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
+An alternative to using HTTPS redirection middleware (with the `UseHttpsRedirection` method) is to use URL rewriting middleware (via the `AddRedirectToHttps` method). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL rewriting middleware](xref:fundamentals/url-rewriting).
 
-When the app redirects to HTTPS without the requirement for other redirect rules, the recommendation is to use HTTPS Redirection Middleware (`UseHttpsRedirection`) as described in this article.
+When the app redirects to HTTPS without the requirement for other redirect rules, the recommendation is to use HTTPS redirection middleware (`UseHttpsRedirection`) as described in this article.
 
-<a name="hsts"></a>
-
-## HTTP Strict Transport Security Protocol (HSTS)
+## HTTP Strict Transport Security (HSTS) protocol
 
 Per [OWASP](https://owasp.org/about/), [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) is an opt-in security enhancement specified by a web app via a response header. When a [browser that supports HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html#browser-support) receives this header:
 

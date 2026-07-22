@@ -4,7 +4,6 @@ author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
-ms.custom: mvc
 ms.date: 11/26/2025
 uid: performance/rate-limit
 ---
@@ -48,7 +47,7 @@ When using a cloud hosting service, DDoS protection is usually available as part
 
 Implementing a commercial DDoS protection service in conjunction with rate limiting can provide a comprehensive defense strategy, ensuring the stability, security, and performance of an app.
 
-## Use Rate Limiting Middleware
+## Use rate-limiting middleware
 
 The following steps show how to use the rate limiting middleware in an ASP.NET Core app:
 

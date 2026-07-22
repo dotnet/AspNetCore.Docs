@@ -4,7 +4,6 @@ author: guardrex
 description: Learn about environments in Blazor, including how to set the environment.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/fundamentals/environments
 ---
@@ -291,30 +290,30 @@ App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the ap
 
 :::moniker range=">= aspnetcore-11.0"
 
-## `EnvironmentBoundary` component
+## `EnvironmentView` component
 
 <!-- UPDATE 11.0 - API Browser cross-links -->
 
-Use the `EnvironmentBoundary` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
+Use the `EnvironmentView` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
 
-The `EnvironmentBoundary` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching.
+The `EnvironmentView` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
 
-<EnvironmentBoundary Include="Development">
+<EnvironmentView Include="Development">
     <div class="alert alert-warning">
         Debug mode enabled
     </div>
-</EnvironmentBoundary>
+</EnvironmentView>
 
-<EnvironmentBoundary Include="Development,Staging">
+<EnvironmentView Include="Development,Staging">
     <p>Pre-production environment</p>
-</EnvironmentBoundary>
+</EnvironmentView>
 
-<EnvironmentBoundary Exclude="Production">
+<EnvironmentView Exclude="Production">
     <p>@DateTime.Now</p>
-</EnvironmentBoundary>
+</EnvironmentView>
 ```
 
 :::moniker-end

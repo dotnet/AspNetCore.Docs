@@ -4,15 +4,15 @@ author: wadepickett
 description: Learn how to avoid performance and scaling problems in apps that use ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.custom: mvc, linux-related-content
-ms.date: 05/20/2026
+ms.custom: linux-related-content
+ms.date: 07/06/2026
 uid: signalr/scale
 
 # customer intent: As an ASP.NET developer, I want to review hosting and scaling considerations when using SignalR, so I can avoid performance and scaling problems in my high-traffic apps. 
 ---
 # ASP.NET Core SignalR hosting and scaling
 
-By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra)
+By [Ashley Stanton-Nurse](https://github.com/analogrelay), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains hosting and scaling considerations for high-traffic apps that use ASP.NET Core SignalR.
 

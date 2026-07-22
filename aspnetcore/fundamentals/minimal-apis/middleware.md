@@ -23,6 +23,6 @@ This article describes how to use middleware in Minimal API applications. Take a
 
 ## Related content
 
-- [ASP.NET Core Middleware](xref:fundamentals/middleware/index)
+- [ASP.NET Core middleware](xref:fundamentals/middleware/index)
 - [Built-in middleware (list)](xref:fundamentals/middleware/index#built-in-middleware)
 - [Minimal APIs overview](xref:fundamentals/apis)

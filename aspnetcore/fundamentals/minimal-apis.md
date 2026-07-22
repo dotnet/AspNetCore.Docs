@@ -34,7 +34,7 @@ The Minimal APIs consist of:
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication10.md)]
 
-## ASP.NET Core Middleware
+## ASP.NET Core middleware
 
 The following table lists some of the middleware frequently used with Minimal APIs.
 
@@ -298,6 +298,10 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 ## Filters
 
 For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
+
+## Validation
+
+For more information, see <xref:validation/index>.
 
 ## Authorization
 

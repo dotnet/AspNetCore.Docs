@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 author: RicoSuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
 ms.author: wpickett
-ms.custom: mvc
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 02/23/2026
 uid: tutorials/web-api-help-pages-using-swagger

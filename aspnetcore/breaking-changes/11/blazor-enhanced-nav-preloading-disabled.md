@@ -30,7 +30,9 @@ This change is a [behavioral change](/dotnet/core/compatibility/categories#behav
 
 ## Reason for change
 
-The implicit preload hints during enhanced navigation produced redundant browser preload requests because the WebAssembly runtime doesn't restart and the DOM-merge step often produced an unstable order of `<link>` elements. Removing the hints for enhanced navigation gives more predictable network behavior. For more information, see [dotnet/aspnetcore#63544](https://github.com/dotnet/aspnetcore/pull/63544).
+The implicit preload hints during enhanced navigation produced redundant browser preload requests because the WebAssembly runtime doesn't restart and the DOM-merge step often produced an unstable order of `<link>` elements. Removing the hints for enhanced navigation gives more predictable network behavior. 
+
+For more information, see [[Blazor] Disable preloading for enhanced navigation (`dotnet/aspnetcore` #63544)](https://github.com/dotnet/aspnetcore/pull/63544), and please don't comment on the closed PR. If you have feedback on this change, open a new issue on the `dotnet/aspnetcore` GitHub repository.
 
 ## Recommended action
 

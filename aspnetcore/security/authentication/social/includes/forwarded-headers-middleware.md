@@ -4,6 +4,6 @@ If the app is deployed behind a proxy server or load balancer, some of the origi
 
 The scheme is used in link generation that affects the authentication flow with external providers. Losing the secure scheme (`https`) results in the app generating incorrect insecure redirect URLs.
 
-Use Forwarded Headers Middleware to make the original request information available to the app for request processing.
+Use forwarded headers middleware to make the original request information available to the app for request processing.
 
 For more information, see <xref:host-and-deploy/proxy-load-balancer>.

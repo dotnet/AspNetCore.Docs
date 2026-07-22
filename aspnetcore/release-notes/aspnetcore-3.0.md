@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core 3.0
 author: wadepickett
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 12/05/2019
 uid: aspnetcore-3.0
 ---
@@ -416,7 +415,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 ## Kestrel
 
 * Kestrel configuration has been updated for the migration to the Generic Host. In 3.0, Kestrel is configured on the web host builder provided by `ConfigureWebHostDefaults`.
-* Connection Adapters have been removed from Kestrel and replaced with Connection Middleware, which is similar to HTTP Middleware in the ASP.NET Core pipeline but for lower-level connections.
+* Connection Adapters have been removed from Kestrel and replaced with connection middleware, which is similar to HTTP middleware in the ASP.NET Core pipeline but for lower-level connections.
 * The Kestrel transport layer has been exposed as a public interface in `Connections.Abstractions`.
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
 * Synchronous I/O APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
@@ -489,11 +488,11 @@ For more information, see:
 * <xref:fundamentals/host/hosted-services>
 * <xref:host-and-deploy/windows-service>
 
-## Forwarded Headers Middleware improvements
+## Forwarded headers middleware improvements
 
 In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-This scenario is fixed in ASP.NET Core 3.0. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
+This scenario is fixed in ASP.NET Core 3.0. The host enables the [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
 
 ## Performance improvements
 

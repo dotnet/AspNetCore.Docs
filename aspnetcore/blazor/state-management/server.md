@@ -5,7 +5,6 @@ author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 07/14/2026
 uid: blazor/state-management/server
 ---

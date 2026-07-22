@@ -4,7 +4,6 @@ author: guardrex
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: mvc
 ms.date: 11/11/2025
 uid: blazor/security/additional-scenarios
 ---
@@ -478,13 +477,13 @@ In a component that presents a **Logout** button to authorized users:
 
 :::moniker range=">= aspnetcore-6.0"
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of the `Program` file. The following example sets the OpenID Connect (OIDC) scheme:
+For an app that uses more than one authentication middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of the `Program` file. The following example sets the OpenID Connect (OIDC) scheme:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.cs`. The following example sets the OpenID Connect (OIDC) scheme:
+For an app that uses more than one authentication middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.cs`. The following example sets the OpenID Connect (OIDC) scheme:
 
 :::moniker-end
 
@@ -523,7 +522,7 @@ app.MapBlazorHub().RequireAuthorization(
 
 :::moniker range="< aspnetcore-5.0"
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Microsoft Entra ID scheme:
+For an app that uses more than one authentication middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Microsoft Entra ID scheme:
 
 ```csharp
 endpoints.MapBlazorHub().RequireAuthorization(
@@ -803,7 +802,7 @@ Use the service in a component to obtain the user:
 <h1>Hello, @(UserService.GetUser().Identity?.Name ?? "world")!</h1>
 ```
 
-To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the Authentication Middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
+To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
 
 `UserServiceMiddleware.cs`:
 
