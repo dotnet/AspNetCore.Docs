@@ -35,13 +35,13 @@ builder.Services.AddHttpContextAccessor();
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, add Cookie Policy Middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, add Cookie Policy Middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
 
 :::moniker-end
 

@@ -224,7 +224,7 @@ A reverse proxy:
 * Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
 
 > [!WARNING]
-> Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
+> Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 ## Kestrel in ASP.NET Core apps
 
@@ -885,7 +885,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-Use Connection Middleware to filter TLS handshakes on a per-connection basis for specific ciphers if required.
+Use connection middleware to filter TLS handshakes on a per-connection basis for specific ciphers if required.
 
 The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare [ITlsHandshakeFeature.CipherAlgorithm](xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm) to a list of acceptable cipher suites.
 
@@ -1056,7 +1056,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
+  > Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 * Host `localhost` name with port number or loopback IP with port number
 
@@ -1072,11 +1072,11 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
 
 While Kestrel supports configuration based on prefixes such as `http://example.com:5000`, Kestrel largely ignores the host name. Host `localhost` is a special case used for binding to loopback addresses. Any host other than an explicit IP address binds to all public IP addresses. `Host` headers aren't validated.
 
-As a workaround, use Host Filtering Middleware. Host Filtering Middleware is provided by the [Microsoft.AspNetCore.HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) package, which is implicitly provided for ASP.NET Core apps. The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering%2A>:
+As a workaround, use host-filtering middleware. Host-filtering middleware is provided by the [Microsoft.AspNetCore.HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) package, which is implicitly provided for ASP.NET Core apps. The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering%2A>:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples-snapshot/2.x/KestrelSample/Program.cs" id="snippet_Program" highlight="9":::
 
-Host Filtering Middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in `appsettings.json`/`appsettings.{Environment}.json`. The value is a semicolon-delimited list of host names without port numbers:
+Host-filtering middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in `appsettings.json`/`appsettings.{Environment}.json`. The value is a semicolon-delimited list of host names without port numbers:
 
 `appsettings.json`:
 
@@ -1087,9 +1087,9 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 ```
 
 > [!NOTE]
-> [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option. Forwarded Headers Middleware and Host Filtering Middleware have similar functionality for different scenarios. Setting `AllowedHosts` with Forwarded Headers Middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with Host Filtering Middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.
+> [Forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option. Forwarded headers middleware and host-filtering middleware have similar functionality for different scenarios. Setting `AllowedHosts` with forwarded headers middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with host-filtering middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.
 >
-> For more information on Forwarded Headers Middleware, see <xref:host-and-deploy/proxy-load-balancer>.
+> For more information on forwarded headers middleware, see <xref:host-and-deploy/proxy-load-balancer>.
 
 ## Libuv transport configuration
 

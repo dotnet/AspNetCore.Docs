@@ -92,10 +92,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 11.0 Is https://github.com/dotnet/aspnetcore/issues/52768 addressed
-                 to resolve the following limitation? -->
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 ## Statically-rendered layout components
 
@@ -103,9 +100,9 @@ When a Blazor Web App adopts per-page/component rendering (the `Routes` componen
 
 > :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'Body' to component 'MainLayout' with rendermode 'InteractiveServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
 
-This applies to any layout component that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> in an app that adopts per-page/component rendering.
+This applies to any layout component that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> in an app that adopts per-page/component rendering prior to the release of .NET 11.
 
-This scenario might be addressed in a future release of Blazor. For more information, see [[Blazor] Support serializing render fragments from SSR (`dotnet/aspnetcore` #52768)](https://github.com/dotnet/aspnetcore/issues/52768). In the meantime, you can adopt the following approach in a Blazor Web App that adopts per-page/component rendering.
+In apps that target .NET 10 or earlier, you can adopt the following approach in a Blazor Web App that adopts per-page/component rendering.
 
 Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](xref:blazor/components/sections) that can receive content from a child component.
 

@@ -16,7 +16,7 @@ To configure a custom error handling page for the [`Production` environment](xre
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
 
 > [!WARNING]
-> If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
+> If the alternate pipeline throws an exception of its own, exception handling middleware rethrows the original exception.
 
 Since this middleware can re-execute the request pipeline:
 
@@ -98,7 +98,7 @@ By default, an ASP.NET Core app doesn't provide a status code page for HTTP erro
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
 
-Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the Static File Middleware and the Endpoints Middleware.
+Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the static file middleware and the endpoints middleware.
 
 When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser-dependent error message indicating the endpoint can't be found. When `UseStatusCodePages` is called, the browser returns the following response:
 

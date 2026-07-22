@@ -41,7 +41,7 @@ The `IAuthorizationPolicyProvider` interface contains three APIs:
 
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync%2A> method returns an authorization policy for a given name.
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> method returns the default authorization policy, which is the policy used for `[Authorize]` attributes without a policy specified.
-* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method returns the fallback authorization policy, which is the policy used by the Authorization Middleware when no policy is specified.
+* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method returns the fallback authorization policy, which is the policy used by the authorization middleware when no policy is specified.
 
 By implementing these APIs, you can customize how authorization policies are provided.
 
@@ -167,7 +167,7 @@ As with all aspects of a custom `IAuthorizationPolicyProvider`, you can make cus
 
 ## Fallback policy
 
-A custom `IAuthorizationPolicyProvider` can optionally implement the `GetFallbackPolicyAsync` method to provide a policy to use when [combining policies](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.Combine%2A) and when no policies are specified. If the `GetFallbackPolicyAsync` method returns a non-null policy, the returned policy is used by the Authorization Middleware when no policies are specified for the request.
+A custom `IAuthorizationPolicyProvider` can optionally implement the `GetFallbackPolicyAsync` method to provide a policy to use when [combining policies](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.Combine%2A) and when no policies are specified. If the `GetFallbackPolicyAsync` method returns a non-null policy, the returned policy is used by the authorization middleware when no policies are specified for the request.
 
 If no fallback policy is required, the provider can return `null` or defer to the fallback provider:
 

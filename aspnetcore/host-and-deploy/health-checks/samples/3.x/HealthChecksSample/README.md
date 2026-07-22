@@ -1,6 +1,6 @@
 # ASP.NET Core Health Check Sample
 
-This sample illustrates the use of Health Check Middleware and services. This sample demonstrates the scenario described in the [Health checks in ASP.NET Core](https://learn.microsoft.com/aspnet/core/host-and-deploy/health-checks) topic.
+This sample illustrates the use of health checks middleware and services. This sample demonstrates the scenario described in the [Health checks in ASP.NET Core](https://learn.microsoft.com/aspnet/core/host-and-deploy/health-checks) topic.
 
 To run the sample app for a scenario described in the topic, use the [dotnet run](https://learn.microsoft.com/dotnet/core/tools/dotnet-run) command from the project's folder in a command shell. Pass a switch for the scenario that you're exploring. The app defaults to the `basic` configuration when a switch isn't provided to `dotnet run`.
 

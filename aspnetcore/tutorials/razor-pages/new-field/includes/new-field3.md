@@ -14,7 +14,7 @@ When using EF Code First to automatically create a database, Code First:
 
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
 
-## Adding a Rating Property to the Movie Model
+## Add a `Rating` property to the `Movie` model
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
 

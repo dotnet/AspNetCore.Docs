@@ -6,7 +6,7 @@ description: Learn about navigation in Blazor, including how to use the Navigati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 12/09/2025
+ms.date: 06/24/2026
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
@@ -301,7 +301,7 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 > [!NOTE]
 > The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [Status Code Pages Re-execution Middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 > [!NOTE]
 > The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
@@ -310,10 +310,10 @@ Streaming rendering can only render components that have a route, such as a <xre
 
 * If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path%2A?displayProperty=nameWithType> is set, render the contents of the assigned page.
 * If <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> is set, render the assigned page.
-* A Status Code Pages Re-execution Middleware page, if configured.
+* A status code pages re-execution middleware page, if configured.
 * No action if none of the preceding approaches are adopted.
 
-[Status Code Pages Re-execution Middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+[Status code pages re-execution middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, the 404 status code is set on the response:
 
@@ -344,7 +344,7 @@ To provide Not Found content for global interactive rendering, use a Not Found p
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType>, which supports routing that can be used across Status Code Pages Re-execution Middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType>, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
 
 In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A> parameter:
 
@@ -850,6 +850,17 @@ Component parameters supplied from the query string support the following types:
 
 The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> [C# union types](/dotnet/csharp/language-reference/builtin-types/union) aren't supported by `[SupplyParameterFromQuery]` or `[SupplyParameterFromForm]`, which bind string or form values without JSON parsing.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute.Name> property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
 
 :::moniker-end
@@ -1165,11 +1176,42 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Navigate to an element at the current URI
+
+<!-- UPDATE 11.0 - API Browser cross-links and improve the example -->
+
+Use the `GetUriWithFragment` extension method to construct a URI with a hash fragment. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+
+* Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
+* Method call that receives a section identifier (`sectionId`) and navigates to the section of the page.
+
+```razor
+@inject NavigationManager Navigation
+
+<a href="@Navigation.GetUriWithFragment("section-1")">
+    Jump to Section 1
+</a>
+
+@code {
+    private void NavigateToSection(string sectionId)
+    {
+        var uri = Navigation.GetUriWithFragment(sectionId);
+        Navigation.NavigateTo(uri);
+    }
+}
+```
+
+The method uses `string.Create` for optimal performance and works correctly with non-root base URIs (for example, when using `<base href="/app/">`).
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
-## Navigate to named elements
+## Navigate to an element with a hashed (`#`) reference
 
-Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
+Navigate to an element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
 
 Examples for each of the following approaches demonstrate navigation to an element with an `id` of `targetElement` in the `Counter` component:
 
@@ -1191,7 +1233,14 @@ Examples for each of the following approaches demonstrate navigation to an eleme
   Navigation.NavigateTo("/counter#targetElement");
   ```
 
-The following example demonstrates navigating to named H2 headings within a component and to external components.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+The following example demonstrates navigating to an H2 heading in an external component.
+
+> [!NOTE]
+> For element navigation at the same URI, see [Navigate to an element at the current URI](#navigate-to-an-element-at-the-current-uri).
 
 In the `Home` (`Home.razor`) and `Counter` (`Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
 
@@ -1212,7 +1261,61 @@ Add the following `FragmentRouting` component to the app.
 
 <PageTitle>Fragment routing</PageTitle>
 
-<h1>Fragment routing to named elements</h1>
+<h1>Fragment routing to elements</h1>
+
+<ul>
+    <li>
+        <a href="/#targetElement">
+            Anchor to the <code>Home</code> component
+        </a>
+    </li>
+    <li>
+        <a href="/counter#targetElement">
+            Anchor to the <code>Counter</code> component
+        </a>
+    </li>
+    <li>
+        <button @onclick="NavigateToElement">
+            Navigate with <code>NavigationManager</code> to the 
+            <code>Counter</code> component
+        </button>
+    </li>
+</ul>
+
+@code {
+    private void NavigateToElement()
+    {
+        Navigation.NavigateTo("/counter#targetElement");
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
+The following example demonstrates navigating to H2 headings within a component and to external components.
+
+In the `Home` (`Home.razor`) and `Counter` (`Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
+
+```razor
+<div class="border border-info rounded bg-info" style="height:500px"></div>
+
+<h2 id="targetElement">Target H2 heading</h2>
+<p>Content!</p>
+```
+
+Add the following `FragmentRouting` component to the app.
+
+`FragmentRouting.razor`:
+
+```razor
+@page "/fragment-routing"
+@inject NavigationManager Navigation
+
+<PageTitle>Fragment routing</PageTitle>
+
+<h1>Fragment routing to elements</h1>
 
 <ul>
     <li>

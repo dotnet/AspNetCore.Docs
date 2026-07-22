@@ -44,6 +44,13 @@ In standalone Blazor WebAssembly apps, framework assets are scheduled for high p
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> Blazor Web App enhanced navigation doesn't attempt to preload resources in .NET 11 or later. For more information, see [Blazor enhanced navigation no longer preloads resources](/aspnet/core/breaking-changes/11/blazor-enhanced-nav-preloading-disabled).
+
+:::moniker-end
+
 ## Static asset delivery in server-side Blazor apps
 
 :::moniker range=">= aspnetcore-9.0"
@@ -53,7 +60,7 @@ Serving static assets is managed by either routing endpoint conventions or a mid
 Feature | API | .NET Version | Description
 --- | --- | :---: | ---
 Map Static Assets routing endpoint conventions | <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> | .NET 9 or later | Optimizes the delivery of static assets to clients.
-Static File Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets but useful for some tasks that Map Static Assets isn't capable of managing.
+Static file middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets but useful for some tasks that Map Static Assets isn't capable of managing.
 
 Map Static Assets can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
@@ -66,7 +73,7 @@ When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fund
 * During WebAssembly boot, Blazor retrieves the URL, imports the module, and calls a function to retrieve the asset collection and reconstruct it in memory. The URL is specific to the content and cached forever, so this overhead cost is only paid once per user until the app is updated.
 * The resource collection is also exposed at a human-readable URL (`_framework/resource-collection.js`), so JS has access to the resource collection for [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) or to implement features of other frameworks and third-party components.
 
-Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
+Static file middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
 
 * Serving files from disk that aren't part of the build or publish process, for example, files added to the application folder during or after deployment.
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
@@ -222,9 +229,9 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 :::moniker range="< aspnetcore-9.0"
 
-Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
+Configure static file middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
 
-In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via static file middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and static file middleware is no longer used.
 
 :::moniker-end
 
@@ -499,7 +506,7 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
   app.UseStaticFiles();
   ```
 
-* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:
+* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom static file middleware:
 
   ```csharp
   app.MapWhen(ctx => !ctx.Request.Path

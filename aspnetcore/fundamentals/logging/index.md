@@ -1466,9 +1466,9 @@ Diagnostics
 
 Host Filtering
 
-* `Microsoft.AspNetCore.HostFiltering`: Hosts allowed and denied by the host filtering middleware.
-* `Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware`: Logs related to the host filtering middleware, including allowed and denied hosts.
-* `Microsoft.AspNetCore.HostFiltering.HostFilteringOptions`: Logs concerning options for the HostFiltering middleware.
+* `Microsoft.AspNetCore.HostFiltering`: Hosts allowed and denied by the host-filtering middleware.
+* `Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware`: Logs related to the host-filtering middleware, including allowed and denied hosts.
+* `Microsoft.AspNetCore.HostFiltering.HostFilteringOptions`: Logs concerning options for the host-filtering middleware.
 
 Hosting
 

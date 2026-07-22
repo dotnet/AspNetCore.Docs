@@ -11,6 +11,40 @@ items:
         items:
           - name: What's new in 11
             uid: aspnetcore-11
+          - name: Breaking changes
+            items:
+              - name: Overview
+                href: breaking-changes/11/overview.md
+              - name: Blazor custom event registration throws when name matches a browser event
+                href: breaking-changes/11/blazor-custom-event-name-collision.md
+              - name: Blazor enhanced navigation no longer preloads resources
+                href: breaking-changes/11/blazor-enhanced-nav-preloading-disabled.md
+              - name: Blazor server-side rendering defers antiforgery validation to middleware
+                href: breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection.md
+              - name: ConcurrencyLimiter middleware removed
+                href: breaking-changes/11/concurrencylimiter-removed.md
+              - name: Hosting emits OpenTelemetry HTTP semantic-convention tags by default
+                href: breaking-changes/11/http-activity-otel-semconv.md
+              - name: Kestrel tightens HTTP protocol compliance
+                href: breaking-changes/11/kestrel-strict-protocol-compliance.md
+              - name: Microsoft.OpenApi upgraded to 3.x
+                href: breaking-changes/11/microsoft-openapi-3x.md
+              - name: Obsolete Blazor APIs removed
+                href: breaking-changes/11/blazor-obsolete-apis-removed.md
+              - name: OpenAPI document includes all ProducesResponseType entries per status code
+                href: breaking-changes/11/openapi-multiple-produces-per-status.md
+              - name: OpenAPI server URL no longer has a trailing slash when PathBase is empty
+                href: breaking-changes/11/openapi-server-url-trailing-slash.md
+              - name: OpenApiVersion defaults to OpenApi3_2
+                href: breaking-changes/11/openapi-version-default-3-2.md
+              - name: Passkey sign-in enforces email/phone confirmation and lockout
+                href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
+              - name: Response compression always emits Vary, Accept-Encoding
+                href: breaking-changes/11/response-compression-always-vary.md
+              - name: SqlClient Active Directory authentication moved to a separate package
+                href: breaking-changes/11/sqlclient-azure-extensions-required.md
+              - name: WebAssemblyHostBuilder loads environment variables into IConfiguration
+                href: breaking-changes/11/wasm-env-vars-in-configuration.md
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
@@ -1458,6 +1492,9 @@ items:
           - name: Request draining
             displayName: deploy, publish, server, Kestrel
             uid: fundamentals/servers/kestrel/request-draining
+          - name: Security considerations
+            displayName: deploy, publish, server, Kestrel, security
+            uid: fundamentals/servers/kestrel/security-considerations
       - name: IIS
         items:
           - name: Overview
@@ -1967,6 +2004,11 @@ items:
       - name: Directory structure
         displayName: deploy, publish
         uid: host-and-deploy/directory-structure
+  - name: Validation
+    displayName: validation
+    items:
+      - name: Overview
+        uid: validation/index
   - name: Security and Identity
     displayName: authentication, authorization
     items:
@@ -2351,6 +2393,9 @@ items:
         uid: migration/index
       - name: Version updates
         items:
+          - name: 10 to 11
+            displayName: migrate, migration
+            uid: migration/100-to-110
           - name: 9 to 10
             displayName: migrate, migration
             uid: migration/90-to-100

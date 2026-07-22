@@ -149,7 +149,7 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
 
-***NOTE:*** To avoid HTTPS redirection warnings in logs when using HTTPS Redirection Middleware, set `BaseAddress = new Uri("https://localhost")`
+***NOTE:*** To avoid HTTPS redirection warnings in logs when using HTTPS redirection middleware, set `BaseAddress = new Uri("https://localhost")`
 
 ## Inject mock services
 

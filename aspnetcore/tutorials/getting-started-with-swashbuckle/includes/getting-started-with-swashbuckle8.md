@@ -226,7 +226,7 @@ To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.
 
 The default UI is both functional and presentable. However, API documentation pages should represent your brand or theme. Branding the Swashbuckle components requires adding the resources to serve static files and building the folder structure to host those files.
 
-Enable Static File Middleware:
+Enable static file middleware:
 
 [!code-csharp[](~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs?name=snippet_MiddlewareStaticFiles&highlight=2)]
 
@@ -307,7 +307,7 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 > Swashbuckle relies on MVC's <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> to discover the routes and endpoints. If the project calls <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>, routes and endpoints are discovered automatically. When calling <xref:Microsoft.Extensions.DependencyInjection.MvcCoreServiceCollectionExtensions.AddMvcCore%2A>, the <xref:Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions.AddApiExplorer%2A> method must be explicitly called. For more information, see [Swashbuckle, ApiExplorer, and Routing](https://github.com/domaindrivendev/Swashbuckle.AspNetCore#swashbuckle-apiexplorer-and-routing).
 
 In development, the preceding `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool. This depends on
-the [Static File Middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
+the [static file middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](xref:tutorials/web-api-help-pages-using-swagger#openapi-specification-openapijson).
 
@@ -531,7 +531,7 @@ If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.Stat
 
 The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](xref:fundamentals/metapackage).
 
-Enable Static File Middleware:
+Enable static file middleware:
 
 :::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup.cs" id="snippet_Configure" highlight="3":::
 

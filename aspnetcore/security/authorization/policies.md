@@ -190,7 +190,139 @@ The following example shows a one-to-many relationship in which a permission han
 
 :::moniker range=">= aspnetcore-6.0"
 
+<<<<<<< HEAD
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Handlers/PermissionHandler.cs":::
+=======
+The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements%2A>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
+
+<a name="security-authorization-policies-based-handler-registration"></a>
+
+### Handler registration
+
+Register handlers in the services collection during configuration. For example:
+
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_minimumAgeHandlerRegistration":::
+
+The preceding code registers `MinimumAgeHandler` as a singleton. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
+
+It's possible to bundle both a requirement and a handler into a single class implementing both <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> and <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler>. This bundling creates a tight coupling between the handler and requirement and is only recommended for simple requirements and handlers. Creating a class that implements both interfaces removes the need to register the handler in DI because of the built-in <xref:Microsoft.AspNetCore.Authorization.Infrastructure.PassThroughAuthorizationHandler> that allows requirements to handle themselves.
+
+See the implementation of the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement> class for a good example where the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement> is both a requirement and the handler in a fully self-contained class.
+
+## What should a handler return?
+
+Note that the `Handle` method in the [handler example](#security-authorization-handler-example) returns no value. How is a status of either success or failure indicated?
+
+* A handler indicates success by calling `context.Succeed(IAuthorizationRequirement requirement)`, passing the requirement that has been successfully validated.
+
+* A handler doesn't need to handle failures generally, as other handlers for the same requirement may succeed.
+
+* To guarantee failure, even if other requirement handlers succeed, call `context.Fail`.
+
+If a handler calls `context.Succeed` or `context.Fail`, all other handlers are still called. This allows requirements to produce side effects, such as logging, which takes place even if another handler has successfully validated or failed a requirement. When set to `false`, the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure%2A> property short-circuits the execution of handlers when `context.Fail` is called. `InvokeHandlersAfterFailure` defaults to `true`, in which case all handlers are called.
+
+> [!NOTE]
+> Authorization handlers are called even if authentication fails. Also handlers can execute in any order, so do ***not*** depend on them being called in any particular order.
+
+<a name="security-authorization-policies-based-multiple-handlers"></a>
+
+## Why would I want multiple handlers for a requirement?
+
+In cases where you want evaluation to be on an **OR** basis, implement multiple handlers for a single requirement. For example, Microsoft has doors that only open with key cards. If you leave your key card at home, the receptionist prints a temporary sticker and opens the door for you. In this scenario, you'd have a single requirement, *BuildingEntry*, but multiple handlers, each one examining a single requirement.
+
+`BuildingEntryRequirement.cs`
+
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs":::
+
+`BadgeEntryHandler.cs`
+
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs":::
+
+`TemporaryStickerHandler.cs`
+
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs":::
+
+Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
+
+<a name="use-a-func-to-fulfill-a-policy"></a>
+
+## Use a func to fulfill a policy
+
+There may be situations in which fulfilling a policy is simple to express in code. It's possible to supply a `Func<AuthorizationHandlerContext, bool>` when configuring a policy with the `RequireAssertion` policy builder.
+
+For example, the previous `BadgeEntryHandler` could be rewritten as follows:
+
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-21,25-29":::
+
+<a name="access-mvc-request-context-in-handlers"></a>
+
+## Access MVC request context in handlers
+
+The `HandleRequirementAsync` method has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` being handled. Frameworks such as MVC or SignalR are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
+
+When using endpoint routing, authorization is typically handled by the authorization middleware. In this case, the `Resource` property is an instance of <xref:Microsoft.AspNetCore.Http.HttpContext>. The context can be used to access the current endpoint, which can be used to probe the underlying resource to which you're routing. For example:
+
+```csharp
+if (context.Resource is HttpContext httpContext)
+{
+    var endpoint = httpContext.GetEndpoint();
+    var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+    ...
+}
+```
+
+With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of `Resource` is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
+
+The use of the `Resource` property is framework-specific. Using information in the `Resource` property limits your authorization policies to particular frameworks. Cast the `Resource` property using the `is` keyword, and then confirm the cast has succeeded to ensure your code doesn't crash with an `InvalidCastException` when run on other frameworks:
+
+```csharp
+// Requires the following import:
+//     using Microsoft.AspNetCore.Mvc.Filters;
+if (context.Resource is AuthorizationFilterContext mvcContext)
+{
+    // Examine MVC-specific things like routing data.
+}
+```
+
+## Globally require all users to be authenticated
+
+For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+
+<a name="exs"></a>
+
+## Authorization with external service sample
+
+The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service) shows how to implement additional authorization requirements with an external authorization service. The sample `Contoso.API` project is secured with [Azure AD](/azure/active-directory/fundamentals/active-directory-whatis). An additional authorization check from the `Contoso.Security.API` project returns a payload describing whether the `Contoso.API` client app can invoke the `GetWeather` API.
+
+### Configure the sample
+
+* Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Microsoft Entra ID tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
+
+ * Assign it an AppRole.
+ * Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this app registration represents both the API and the client invoking the API. If you like, you can create two app registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the client. Only the client app registration requires a client secret to be generated.
+
+* Configure the `Contoso.API` project with the following settings:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.API/appsettings.json":::
+
+* Configure `Contoso.Security.API` with the following settings:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.Security.API/appsettings.json":::
+
+* Open the [ContosoAPI.collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.collection.json) file and configure an environment with the following:
+
+    * `ClientId`: Client Id from app registration representing the client calling the API.
+    * `clientSecret`: Client Secret from app registration representing the client calling the API.
+    * `TenantId`: Tenant Id from AAD properties
+
+* Extract the commands from the `ContosoAPI.collection.json` file and use them to construct cURL commands to test the app.
+* Run the solution and use [cURL](https://curl.se/) to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
+
+## Additional resources
+
+* [Quickstart: Configure an application to expose a web API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+* [AspNetCore.Docs.Samples code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service)
+>>>>>>> origin/main
 
 :::moniker-end
 

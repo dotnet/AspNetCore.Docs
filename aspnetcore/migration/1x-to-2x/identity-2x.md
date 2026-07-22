@@ -20,7 +20,7 @@ In 2.0, the <xref:Microsoft.AspNetCore.Identity> namespace became the new home f
 
 <a name="auth-middleware"></a>
 
-## Authentication Middleware and services
+## Authentication middleware and services
 
 In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support.
 

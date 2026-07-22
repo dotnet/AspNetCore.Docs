@@ -29,7 +29,35 @@ For various QuickGrid demonstrations, see the [**QuickGrid for Blazor** sample a
 
 To implement a `QuickGrid` component:
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - API Browser cross-link -->
+
+* Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
+* Name a queryable source of data for the grid. Use ***either*** of the following data sources:
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
+* `QueryParameterNamePrefix`: The parameter from which the page and sorting URL parameters are derived. The default value is an empty string, which results in query parameters named "`page`", "`sort`", and "`order`". Setting a prefix for the preceding query string parameters allows the use of multiple `QuickGrid` components on the same page without their URL parameters conflicting with each other. For more information, see the [Pagination modes](#pagination-modes) and [Multiple grids on the same page](#multiple-grids-on-the-same-page) sections. 
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
+* In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-11.0"
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
@@ -80,7 +108,11 @@ To implement a `QuickGrid` component:
 
 For example, add the following component to render a grid.
 
+:::moniker range="< aspnetcore-11.0"
+
 For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes) to enable interactive features, such as paging and sorting.
+
+:::moniker-end
 
 `PromotionGrid.razor`:
 
@@ -100,21 +132,19 @@ Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend QuickGrid with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
 
-## Sort by column
-
-The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
-
-Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tag:
-
-```razor
-<PropertyColumn Property="..." Sortable="true" />
-```
-
-In the running app, sort the QuickGrid column by selecting the rendered column title.
-
 ## Page items with a `Paginator` component
 
+:::moniker range=">= aspnetcore-11.0"
+
+The `QuickGrid` component can page data from the data source.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 The `QuickGrid` component can page data from the data source. In Blazor Web Apps, paging requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+
+:::moniker-end
 
 Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`, and ten items per page is set:
 
@@ -128,10 +158,17 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 <QuickGrid Items="..." Pagination="pagination">
 ```
 
-<!-- UPDATE 11.0 Tracked by https://github.com/dotnet/aspnetcore/issues/57289
-                 for multiple paginator components problem. -->
+:::moniker range=">= aspnetcore-11.0"
+
+To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above or below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
+
+:::moniker-end
 
 ```razor
 <Paginator State="pagination" />
@@ -139,39 +176,193 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 
 In the running app, page through the items using a rendered `Paginator` component.
 
+:::moniker range="< aspnetcore-11.0"
+
 QuickGrid renders additional empty rows to fill in the final page of data when used with a `Paginator` component. In .NET 9 or later, empty data cells (`<td></td>`) are added to the empty rows. The empty rows are intended to facilitate rendering the QuickGrid with stable row height and styling across all pages.
 
-## Open and return from a details page with a paged QuickGrid component
-
-A paged QuickGrid component can open a details page for a record and return to the correct page of results using the approach in this section.
-
-<!-- UPDATE 11.0 - Surface content on URL-based navigation
-                   at Preview 5 release and set the 
-                   correct section ID in the link.
+:::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
-[URL-based navigation](#url-based-navigation) is used to save the page number and return the user to the same page of items from a details page.
+<!-- UPDATE 11.0 - API Browser cross-link -->
+
+`GetPageUrl` returns a URL with the one-based page number. Page index 0 (page 1) omits the query parameter entirely.
+
+:::moniker-end
+
+## Pagination modes
+
+:::moniker range=">= aspnetcore-11.0"
+
+`QuickGrid` supports *URL-based navigation* with pagination and sort state persisted by the URL's query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&order=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
+
+Sortable column headers and [paginator controls](#page-items-with-a-paginator-component) render as `<a>` elements with `href` attributes. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
+
+Query string parameters:
+
+* `page`: One-based page number. The first page omits the parameter for clean URLs.
+* `sort`: Column title for sorting the grid.
+* `order`: Ascending (`asc`) or descending (`desc`).
+
+The `sort` column is identified by the column's `Title` property. Columns without a `Title` render a non-clickable `<div>` header.
+
+`QuickGrid` reads the URL on initialization and subscribes to `NavigationManager.LocationChanged`, so browser back/forward and direct URL entry work. When sort parameters are removed from the URL, it falls back to the default sort column/direction.
+
+> [!NOTE]
+> Disabled [paginator links](#page-items-with-a-paginator-component) use `aria-disabled="true"` and `pointer-events: none` instead of the HTML `disabled` attribute, which doesn't exist on `<a>` elements.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
+Pagination and sort state is managed in memory inside the `QuickGrid` component without changing the URL, called *inner-state navigation*. An interactive render mode is required.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+To disable URL-based navigation, set the `AppContext` switch for the feature to `false`:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Components.QuickGrid.EnableUrlBasedQuickGridNavigationAndSorting",
+    false);
+```
+
+This restores `<button>` elements with `@onclick` handlers. An interactive render mode is required.
+
+The switch only controls the rendered HTML element (`<a>` versus `<button>`). Even when disabled, `QuickGrid` still reads and writes state to the URL query string internally. `SortByColumnAsync` and `Paginator.GoToPageAsync` navigate via `NavigationManager.NavigateTo` regardless of the flag.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Multiple grids on the same page
+
+<!-- UPDATE 11.0 - API Browser cross-link -->
+
+Multiple `QuickGrid` components on the same page require unique `QueryParameterNamePrefix` values to avoid query string conflicts. The default prefix is an empty string, producing parameters named `page`, `sort`, `order`. For example, setting the prefix to "`cities`" produces `cities_page`, `cities_sort`, and `cities_order`.
+
+Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they have different prefixes&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
+
+In the following example, each `QuickGrid` requires a unique `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
+
+```razor
+<QuickGrid ... Pagination="@pagination1">
+    ...
+</QuickGrid>
+
+<Paginator State="pagination1" />
+
+<QuickGrid ... Pagination="@pagination2" QueryParameterNamePrefix="cities">
+    ...
+</QuickGrid>
+
+<Paginator State="pagination2" />
+```
+
+In the following query string:
+
+* The `page=2&sort=Name&order=asc` portion applies to the first `QuickGrid` component.
+* The `cities_sort=Country&cities_order=desc` portion applies to the second `QuickGrid` component.
+
+```
+?page=2&sort=Name&order=asc&cities_page=3&cities_sort=Country&cities_order=desc
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+#### Row click event (`OnRowClick`)
+
+The `QuickGrid` component supports row click events through the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager NavigationManager
+
+<QuickGrid Items="@people.AsQueryable()" 
+    OnRowClick="@((Person args) => HandleRowClick(args))">
+    <PropertyColumn Property="@(p => p.Name)" />
+    <PropertyColumn Property="@(p => p.Email)" />
+</QuickGrid>
+
+@code {
+    private List<Person> people = new()
+    {
+        new(1, "Alice Smith", "alice@example.com", "Engineering"),
+        new(2, "Bob Johnson", "bob@example.com", "Marketing"),
+        new(3, "Carol Williams", "carol@example.com", "Engineering"),
+    };
+
+    private void HandleRowClick(Person person)
+    {
+        NavigationManager.NavigateTo($"/person/{person.Id}");
+    }
+
+    private record Person(int Id, string Name, string Email, string Department);
+}
+```
+
+The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the row-clickable CSS class, providing clear visual feedback to users.
+
+:::moniker-end
+
+## Sort by column
+
+:::moniker range=">= aspnetcore-11.0"
+
+The `QuickGrid` component can sort items by columns. Selecting a header navigates to a URL with updated `sort` and `order` parameters. `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+
+:::moniker-end
+
+Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tag:
+
+```razor
+<PropertyColumn Property="..." Sortable="true" />
+```
+
+In the running app, sort the QuickGrid column by selecting the rendered column title.
+
+:::moniker range=">= aspnetcore-11.0"
+
+Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&order=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
+
+Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared URLs containing the old title in the `sort` parameter stop matching, and the grid silently falls back to the default sort instead of sorting by the intended column. For `PropertyColumn`, the `Title` defaults to the property name (example: `Property="@(p => p.FirstName)"` produces `Title="First Name"`), so renaming the property or explicitly changing the `Title` parameter both break existing URLs.
+
+> [!NOTE]
+> If you want to share stylesheet classes between URL-based and inner-state based pagination, selectors targeting `button.col-title` must also target `a.col-title`, and `nav button`/`nav button:disabled` require `nav a`/`nav a[aria-disabled="true"]`. The built-in QuickGrid stylesheet provides both by default.
+
+:::moniker-end
+
+## Open and return from a details page with a paged QuickGrid component
+
+:::moniker range=">= aspnetcore-11.0"
+
+A paged QuickGrid component can open a details page for a record and return to the correct page of results using the approach in this section. URL-based navigation is used to save the page number and return the user to the same page of items from a details page.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+A paged QuickGrid component can open a details page for a record and return to the correct page of results using the approach in this section.
+
 > [!NOTE]
 > The approach described in this section is simplified by URL-based navigation in .NET 11 or later. For more information, see this section in a .NET 11 or later version of this article.
-
--->
 
 The following API is used:
 
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A?displayProperty=nameWithType>: Gets the current zero-based page index.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType>: Sets the current page index and notifies any associated `QuickGrid` components to fetch and render updated data.
 
-<!--
-
 :::moniker-end
-
--->
 
 The `Details` component receives the page number from the query string in the `Page` property and uses it to form a link back to the `QuickGrid` component at `/scifi-characters`.
 
@@ -185,43 +376,43 @@ The `Details` component receives the page number from the query string in the `P
     <li>QuickGrid page number: @Page</li>
 </ul>
 <div>
-    <a href="@($"/scifi-characters?page={Page}")">Back to List</a>
+    @if (Page.HasValue)
+    {
+        <a href="@($"/scifi-characters?page={Page}")">Back to List</a>
+    }
+    else
+    {
+        <a href="/scifi-characters">Back to List</a>
+    }
 </div>
 
 @code {
     [SupplyParameterFromQuery]
-    private int Id { get; set; }
+    private int? Id { get; set; }
 
     [SupplyParameterFromQuery]
-    private int Page { get; set; }
+    private int? Page { get; set; }
 }
 ```
 
 The `SciFiCharacters` component:
 
-<!-- UPDATE 11.0 - Surface content on URL-based navigation
-                   at Preview 5 release and set the 
-                   correct section ID in the link.
-
 :::moniker range=">= aspnetcore-11.0"
 
-* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#url-based-navigation), which sets the page index from the value of a `page` query string value, if it exists.
-* Opens the preceding `Details` component with the current page number, the current page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+* Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#pagination-modes), which sets the page index from the value of a `page` query string value, if it exists.
+* Opens the preceding `Details` component with the current page number, which is the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) incremented by one to make the value a one-based index in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
 
 ```razor
 @page "/scifi-characters"
 @using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager Navigation
 
-<QuickGrid Items="characters" Pagination="pagination">
+<QuickGrid Items="characters" Pagination="pagination" 
+    OnRowClick="@((Character args) => HandleRowClick(args))">
     <PropertyColumn Property="@(c => c.Id)" />
     <PropertyColumn Property="@(c => c.Name)" />
-    <TemplateColumn Context="c">
-        <a href="@($"/details?id={c.Id}&page={pagination.CurrentPageIndex + 1}")">
-            Details
-        </a>
-    </TemplateColumn>
 </QuickGrid>
 
 <Paginator State="pagination" />
@@ -246,6 +437,12 @@ The `SciFiCharacters` component:
         new Character(10, "Ellie Sattler"),
         new Character(11, "Leela")
     }.AsQueryable();
+
+    private void HandleRowClick(Character character)
+    {
+        Navigation.NavigateTo(
+            $"/details?id={character.Id}&page={pagination.CurrentPageIndex + 1}");
+    }
 }
 ```
 
@@ -276,8 +473,6 @@ In `Details.razor`:
 
 :::moniker range="< aspnetcore-11.0"
 
--->
-
 * Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> and [`GetUriWithQueryParameter`](xref:blazor/fundamentals/navigation#query-strings).
 * Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
@@ -287,6 +482,7 @@ In `Details.razor`:
 @page "/scifi-characters"
 @rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.QuickGrid
+@inject NavigationManager Navigation
 
 <QuickGrid Items="characters" Pagination="pagination">
     <PropertyColumn Property="@(c => c.Id)" />
@@ -322,11 +518,11 @@ In `Details.razor`:
     }.AsQueryable();
 
     [SupplyParameterFromQuery]
-    private int Page { get; set; }
+    private int? Page { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (Page.HasValue)
+        if (Page.HasValue && Page > 0)
         {
             await pagination.SetCurrentPageIndexAsync(Page.Value - 1);
             Navigation.NavigateTo(
@@ -336,11 +532,7 @@ In `Details.razor`:
 }
 ```
 
-<!--
-
 :::moniker-end
-
--->
 
 ## Apply row styles
 
@@ -799,9 +991,9 @@ dotnet aspnet-codegenerator blazor -h
 
 For an example use of the QuickGrid scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
 
-<!-- UPDATE 11.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
+<!-- UPDATE 12.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
                    We will continue to show this for now. The PU plans to look at it
-                   for framework updates at 11.0. -->
+                   for framework updates at 12.0. -->
 
 ## Multiple concurrent EF Core queries trigger `System.InvalidOperationException`
 

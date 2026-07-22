@@ -131,8 +131,8 @@ Default host configuration sources from highest to lowest priority for the [Web 
   * Command-line arguments using the [Command-line Configuration Provider](#command-line).
 * Web Host default configuration (<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A>)
   * Kestrel is used as the web server and configured using the app's configuration providers.
-  * Add [Host Filtering Middleware](xref:fundamentals/servers/kestrel/host-filtering).
-  * Add [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
+  * Add [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
+  * Add [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
   * Enable IIS integration.
 
 :::moniker-end

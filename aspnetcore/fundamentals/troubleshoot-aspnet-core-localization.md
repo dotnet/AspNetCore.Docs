@@ -120,5 +120,5 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 
 ## GitHub issues with helpful problem solving tips
 
-* [Please add more info about shared files (`dotnet/AspNetCore.Docs` #28674](https://github.com/dotnet/AspNetCore.Docs/issues/28674)
+* [Please add more info about shared files (`dotnet/AspNetCore.Docs` #28674)](https://github.com/dotnet/AspNetCore.Docs/issues/28674)
 * [Blazor Localization does not work with InteractiveServer (`dotnet/aspnetcore` #53707)](https://github.com/dotnet/aspnetcore/issues/53707) ([Location override using "Sensors" pane](#location-override-using-sensors-pane-in-developer-tools))

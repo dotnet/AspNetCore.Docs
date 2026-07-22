@@ -12,7 +12,7 @@ When using EF Code First to automatically create and track a database, Code Firs
 
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
 
-## Adding a Rating Property to the Movie Model
+## Add a `Rating` property to the `Movie` model
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRating.cs?highlight=13&name=snippet)]

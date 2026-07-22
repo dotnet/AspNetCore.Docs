@@ -246,7 +246,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
@@ -265,7 +265,7 @@ Don't prefix [Navigation Manager](xref:blazor/fundamentals/navigation#uri-and-na
 * <span aria-hidden="true">✔️</span> Correct: `Navigation.NavigateTo("other");`
 * <span aria-hidden="true">✔️</span> Correct: `Navigation.NavigateTo("./other");`
 
-In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required:
+In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional static file middleware configuration might be required:
 
 * To serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`).
 * To serve the Blazor script (`_framework/blazor.*.js`). For more information, see <xref:blazor/fundamentals/static-files>.

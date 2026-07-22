@@ -342,7 +342,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 :::moniker range=">= aspnetcore-10.0"
 
-During static SSR, Razor component page requests are processed by server-side ASP.NET Core middleware pipeline request processing for authorization. Dedicated Blazor features for authorization aren't operational because Razor components aren't rendered during server-side request processing. Blazor router features in the `Routes` component that aren't available during static SSR include displaying [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>). Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of Authorization Middleware](xref:security/authorization/authorizationmiddlewareresulthandler).
+During static SSR, Razor component page requests are processed by server-side ASP.NET Core middleware pipeline request processing for authorization. Dedicated Blazor features for authorization aren't operational because Razor components aren't rendered during server-side request processing. Blazor router features in the `Routes` component that aren't available during static SSR include displaying [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>). Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](xref:security/authorization/authorizationmiddlewareresulthandler).
 
 :::moniker-end
 
@@ -350,7 +350,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 During static SSR, Razor component page requests are processed by server-side ASP.NET Core middleware pipeline request processing for routing and authorization. Dedicated Blazor features for routing and authorization aren't operational because Razor components aren't rendered during server-side request processing. Blazor router features in the `Routes` component that aren't available during static SSR include displaying:
 
-* [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of Authorization Middleware](xref:security/authorization/authorizationmiddlewareresulthandler).
+* [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](xref:security/authorization/authorizationmiddlewareresulthandler).
 
 * [Not Found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
 
@@ -551,10 +551,15 @@ Non-serializable component parameters, such as child content or a render fragmen
 
 > :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'InteractiveServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
 
-<!-- UPDATE 11.0 Is https://github.com/dotnet/aspnetcore/issues/52768 addressed
-                 to resolve the following limitation? -->
+:::moniker range="< aspnetcore-11.0"
+
+<!-- UPDATE 11.0 - This is resolved in .NET 11 or later via 
+                   https://github.com/dotnet/aspnetcore/issues/52768.
+                   Determine if more work is needed here. -->
 
 The same thing happens if you attempt to adopt interactive rendering in a layout that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, such as the app's `MainLayout` component, in an app that adopts per-page/component rendering. For more information, see <xref:blazor/components/layouts#statically-rendered-layout-components>.
+
+:::moniker-end
 
 To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component.
 

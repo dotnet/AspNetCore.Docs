@@ -18,10 +18,6 @@ This article explains how to validate user input in an ASP.NET Core MVC or Razor
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-10.0"
-[!INCLUDE[](~/includes/validation-package-net10.md)]
-:::moniker-end
-
 :::moniker range=">= aspnetcore-7.0"
 
 ## Model state

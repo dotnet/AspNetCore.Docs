@@ -268,7 +268,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### gRPC Interceptors versus Middleware
+### gRPC Interceptors versus middleware
 
 ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. ASP.NET Core middleware and interceptors are conceptually similar. Both:
 
@@ -278,7 +278,7 @@ ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar fun
   * In middleware, the `HttpContext` is a parameter.
   * In interceptors, the `HttpContext` can be accessed using the `ServerCallContext` parameter with the `ServerCallContext.GetHttpContext` extension method. This feature is specific to interceptors running in ASP.NET Core.
 
-gRPC Interceptor differences from ASP.NET Core Middleware:
+gRPC Interceptor differences from ASP.NET Core middleware:
 
 * Interceptors:
   * Operate on the gRPC layer of abstraction using the [`ServerCallContext`](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).

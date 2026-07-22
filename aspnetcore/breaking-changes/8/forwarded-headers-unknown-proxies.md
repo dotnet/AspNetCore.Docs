@@ -1,12 +1,12 @@
 ---
-title: "Breaking change: Forwarded Headers Middleware ignores X-Forwarded-* headers from unknown proxies"
-description: Learn about the breaking change in ASP.NET Core where Forwarded Headers Middleware now ignores headers from proxies that aren't explicitly configured as trusted.
+title: "Breaking change: Forwarded headers middleware ignores X-Forwarded-* headers from unknown proxies"
+description: Learn about the breaking change in ASP.NET Core where forwarded headers middleware now ignores headers from proxies that aren't explicitly configured as trusted.
 ms.date: 08/15/2025
 ms.custom: https://github.com/aspnet/Announcements/issues/517
 ---
-# Forwarded Headers Middleware ignores X-Forwarded-* headers from unknown proxies
+# Forwarded headers middleware ignores X-Forwarded-* headers from unknown proxies
 
-Starting in ASP.NET Core 8.0.17 and 9.0.6, the Forwarded Headers Middleware ignores all `X-Forwarded-*` headers from proxies that aren't explicitly configured as trusted. This change was made for security hardening, as the proxy and IP lists weren't being applied in all cases.
+Starting in ASP.NET Core 8.0.17 and 9.0.6, the forwarded headers middleware ignores all `X-Forwarded-*` headers from proxies that aren't explicitly configured as trusted. This change was made for security hardening, as the proxy and IP lists weren't being applied in all cases.
 
 ## Version introduced
 
