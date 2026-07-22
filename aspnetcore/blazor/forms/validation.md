@@ -390,7 +390,7 @@ Remote validation is supported in addition to Blazor Web App client/server-side 
   * Data annotations validation with built-in support for Minimal APIs.
   * Custom validation logic.
 * Send validation errors, if any, back to the client.
-* Either disable the form on success or display the errors, allowing the user to correct any problems with the form's field values.
+* Either disable the form on success or display the errors so that the user can correct any problems with the form's field values.
 
 Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a *validator component* is recommended where an independent model class is used across several components. The approach demonstrated by the following guidance uses a validator component.
 
@@ -862,7 +862,7 @@ To reach the form easily, add the following entry to the `NavMenu` component (`L
 </div>
 ```
 
-When automatic model binding validation error occurs on the server, the framework returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
+When automatic model binding validation fails on the server, the framework returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
 
 ```json
 {
@@ -901,7 +901,7 @@ If automatic type validation passes but the custom validation fails, the followi
 
 *This section is focused on Blazor Web App scenarios, but the approach for any type of app that uses server-side validation with web API adopts the same general approach.*
 
-Remote validation is supported in addition to Blazor Web App client/server-side validation:
+Remote validation is supported in addition to Blazor Web App client-side and server-side validation:
 
 * Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 * When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
