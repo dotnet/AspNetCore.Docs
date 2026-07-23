@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/14/2026
+ms.date: 07/23/2026
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -188,7 +188,7 @@ window.addEventListener('visibilitychange', () => {
 
 <!-- UPDATE 11.0 - API browser cross-links -->
 
-The framework can optionally pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. Auto-pause is provided by the `Microsoft.AspNetCore.Components.Server.AutoPause` package. After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
+Auto-pause can pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. It's an opt-in feature provided by the `Microsoft.AspNetCore.Components.Server.AutoPause` package. After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -210,11 +210,12 @@ After the tab is hidden for `HiddenDelay`, the circuit pauses. If the user retur
 >
 > On mobile, the operating system suspends the page's JavaScript shortly after the app is backgrounded (within seconds on Android, up to about 30 seconds on iOS). If `HiddenDelay` is longer than that window, the pause timer never fires, and the circuit is dropped by the OS-initiated disconnect instead of pausing gracefully. The session is still preserved through the normal reconnection and [circuit state persistence](#circuit-state-persistence) path, but the client-side veto and deferral logic doesn't run. For this reason, graceful auto-pause isn't guaranteed and isn't a supported scenario on mobile when the app is backgrounded.
 
-The framework defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text `<input>` elements with Blazor `@bind` bindings are edited or audio/video is playing.
+The package defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text `<input>` elements with Blazor `@bind` bindings are edited or audio/video is playing.
 
 For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Register a circuit handler with an `onCircuitPausing` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup):
 
 ```razor
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     circuit: {
