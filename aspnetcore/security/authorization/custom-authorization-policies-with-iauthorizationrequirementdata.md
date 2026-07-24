@@ -5,18 +5,26 @@ author: tdykstra
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 03/11/2026
+ms.date: 07/17/2026
 uid: security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
+This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within a Blazor Web App and focuses on testing JWT-based authorization.
+
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> isn't supported for authorization attributes applied to:
+
+* Razor components
+* SignalR hub classes and methods
+* <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter>s in MVC and Razor Pages
+
+For a demonstration in an MVC app with a controller and an <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler%601>, see the <xref:mvc/security/authorization/iard>.
 
 ## Sample app
 
-The Blazor Web App sample for this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
+The Blazor Web App sample for this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users accessing a Minimal API endpoint at `/api/greetings/hello`, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
 ## Minimum age authorize attribute
 
