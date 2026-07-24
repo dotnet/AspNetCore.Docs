@@ -24,6 +24,7 @@ namespace ContosoUniversity.Data
                 .HasMany(c => c.Instructors)
                 .WithMany(i => i.Courses);
             modelBuilder.Entity<Student>().ToTable(nameof(Student));
+            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
             modelBuilder.Entity<Instructor>().ToTable(nameof(Instructor));
             modelBuilder.Entity<Department>()
                 .Property(d => d.ConcurrencyToken)
@@ -58,6 +59,7 @@ namespace ContosoUniversity.Data
                 .HasMany(c => c.Instructors)
                 .WithMany(i => i.Courses);
             modelBuilder.Entity<Student>().ToTable(nameof(Student));
+            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
             modelBuilder.Entity<Instructor>().ToTable(nameof(Instructor));
         }
     }
