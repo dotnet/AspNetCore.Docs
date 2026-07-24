@@ -2144,7 +2144,7 @@ items:
           - name: Policy-based authorization
             uid: security/authorization/policies
           - name: Authorization policy providers
-            uid: security/authorization/iauthorizationpolicyprovider
+            uid: security/authorization/custom-authorization-policy-providers
           - name: Customize the behavior of AuthorizationMiddleware
             uid: security/authorization/authorizationmiddlewareresulthandler
           - name: Dependency injection in requirement handlers
