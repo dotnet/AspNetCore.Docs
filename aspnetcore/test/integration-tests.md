@@ -227,7 +227,7 @@ There are various ways to supply test-specific configurations to the running web
 
     Using this approach, the configuration source added via `ConfigureAppConfiguration` is preserved, but it's only available after the web application is built. If you try to access the configuration before `WebApplicationBuilder.Build` is called, the configurations will not be available.
 
-3. Starting in .NET 11 Preview 6, you can override a new `ConfigureHostApplicationBuilder` method as follows:
+3. Starting in .NET 11 Preview 7, you can override a new `ConfigureWebApplicationBuilder` method as follows:
 
     ```csharp
     private static readonly KeyValuePair<string, string?>[] s_inMemorySettings = new KeyValuePair<string, string?>[]
@@ -235,14 +235,14 @@ There are various ways to supply test-specific configurations to the running web
         new("TestConfigKey", "TestConfigValue"),
     };
 
-    protected override void ConfigureHostApplicationBuilder(IHostApplicationBuilder hostApplicationBuilder)
+    protected override void ConfigureWebApplicationBuilder(IHostApplicationBuilder hostApplicationBuilder)
     {
         hostApplicationBuilder.Configuration.AddInMemoryCollection(s_inMemorySettings);
-        base.ConfigureHostApplicationBuilder(hostApplicationBuilder);
+        base.ConfigureWebApplicationBuilder(hostApplicationBuilder);
     }
     ```
 
-    Using this approach, the configuration source added via `ConfigureHostApplicationBuilder` is preserved, and is also available immediately after `WebApplication.CreateBuilder` returns.
+    Using this approach, the configuration source added via `ConfigureWebApplicationBuilder` is preserved, and is also available immediately after `WebApplication.CreateBuilder` returns.
 
 ## Customize the client with WithWebHostBuilder
 
