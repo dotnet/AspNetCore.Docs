@@ -19,7 +19,7 @@ A developer often wants to show, hide, or otherwise modify a UI based on the cur
 
 To inject the authorization service into every view, place the `@inject` directive in the `Views/_ViewImports.cshtml` file. For more information, see <xref:mvc/views/dependency-injection>.
 
-Use the injected authorization service to invoke <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> in exactly the same way an app would check authorization during [resource-based authorization](xref:security/authorization/resource-based#use-imperative-authorization):
+Use the injected authorization service to invoke <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> in exactly the same way an app would check authorization during [resource-based authorization](xref:mvc/security/authorization/resource-based#use-imperative-authorization):
 
 ```razor
 @if ((await AuthService.AuthorizeAsync(User, "PolicyName")).Succeeded)
@@ -28,7 +28,7 @@ Use the injected authorization service to invoke <xref:Microsoft.AspNetCore.Auth
 }
 ```
 
-In some cases, the resource is the view model. Invoke <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> in exactly the same way the app would check authorization during [resource-based authorization](xref:security/authorization/resource-based#use-imperative-authorization). The model is passed as a resource for the policy's evaluation:
+In some cases, the resource is the view model. Invoke <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> in exactly the same way the app would check authorization during [resource-based authorization](xref:mvc/security/authorization/resource-based#use-imperative-authorization). The model is passed as a resource for the policy's evaluation:
 
 ```razor
 @if ((await AuthService.AuthorizeAsync(User, Model, Operations.Edit)).Succeeded)
