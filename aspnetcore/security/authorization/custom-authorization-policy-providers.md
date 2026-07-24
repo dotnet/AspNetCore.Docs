@@ -203,7 +203,7 @@ To use custom policies:
 
   For more information, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` example code in <xref:security/authorization/policies>, which work with the `MinimumAgePolicyProvider` demonstrated in this article.
 
-:::moniker range=">= aspnetcore-6.0
+:::moniker range=">= aspnetcore-6.0"
 
 * Register the custom policy provider type in the service collection to replace the default policy provider.
 
@@ -215,7 +215,7 @@ To use custom policies:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 
 * Register the custom policy provider type in the service collection to replace the default policy provider.
 
