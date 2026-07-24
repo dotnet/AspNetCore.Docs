@@ -72,8 +72,7 @@ This tutorial creates the following API:
 
 ```dotnetcli
   dotnet new webapi -o TodoApi
-  cd TodoApi
-  code -r ../TodoApi
+  code -r TodoApi
 ```
 
 * When a dialog box asks if you want to trust the authors, select **Yes**.
