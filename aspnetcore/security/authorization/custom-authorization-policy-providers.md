@@ -131,38 +131,18 @@ Consider a situation where authorization is based on a user's minimum age and th
   * <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>
   * <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>
 
-ASP.NET Core only uses one instance of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider>.
+ASP.NET Core only uses one instance of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider>, which is the custom provider when its registered in the app's service container.
 
-If the custom provider is able to return all authorization policies that the app uses, the provider can return `Task.FromResult<AuthorizationPolicy>(null)` from the `GetPolicyAsync` method. However, most apps that implement a custom provider defer traditional policy retrieval, such as role-based and claim-based policies, to a fallback policy provider. Such an app uses a custom provider that:
+If a custom provider is able to explicitly match and return all of the authorization policies that the app uses, the provider can return `Task.FromResult<AuthorizationPolicy>(null)` from the `GetPolicyAsync` method when no policy name matches. However, most apps that implement a custom provider defer traditional policy retrieval, for example to handle role-based and claim-based policies, to a fallback policy provider. Such an app typically uses a custom provider that:
 
 * Attempts to parse policy names, returning an authorization policy for a matching name with one or more requirements or assertions.
-* Uses a different fallback policy provider, such as the framework's <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider>, if the policy name doesn't match any of the policy names that the custom provider normally handles.
+* Uses the framework's <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider> for any non-matching policies.
 
-The class injects <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> as `options`:
-
-```csharp
-internal class MinimumAgePolicyProviderWithBackupProvider(
-    IOptions<AuthorizationOptions> options) : IAuthorizationPolicyProvider
-```
-
-The framework's <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider> is added to the class as the fallback policy provider (`FallbackPolicyProvider`):
-
-```csharp
-private DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = 
-    new DefaultAuthorizationPolicyProvider(options);
-```
-
-The `GetPolicyAsync` method uses the `FallbackPolicyProvider` to return any policy matching the policy name after checking if a custom policy should be returned:
-
-```csharp
-return FallbackPolicyProvider.GetPolicyAsync(policyName);
-```
-
-In addition to providing named authorization policies, a custom provider should implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> to provide an authorization policy for `[Authorize]` attributes without a policy name specified.
+In addition to handling custom-named authorization policies, a custom provider should implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> to provide an authorization policy for `[Authorize]` attributes that don't specify a policy name:
 
 ```csharp
 public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => 
-    FallbackPolicyProvider.GetDefaultPolicyAsync();
+    DefaultPolicyProvider.GetDefaultPolicyAsync();
 ```
 
 `Policies/Providers/MinimumAgePolicyProvider.cs`:
@@ -182,12 +162,12 @@ using Microsoft.Extensions.Options;
 
 namespace BlazorWebAppAuthorization.Policies.Providers;
 
-internal class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) 
+public class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) 
     : IAuthorizationPolicyProvider
 {
     private const string PolicyPrefix = "MinimumAge";
 
-    private DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = 
+    private DefaultAuthorizationPolicyProvider DefaultPolicyProvider { get; } = 
         new(options);
 
     public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
@@ -204,18 +184,18 @@ internal class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
             return Task.FromResult<AuthorizationPolicy?>(policy.Build());
         }
 
-        return FallbackPolicyProvider.GetPolicyAsync(policyName);
+        return DefaultPolicyProvider.GetPolicyAsync(policyName);
     }
 
-    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => 
-        FallbackPolicyProvider.GetDefaultPolicyAsync();
+    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
+        DefaultPolicyProvider.GetDefaultPolicyAsync();
 
-    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() => 
-        FallbackPolicyProvider.GetFallbackPolicyAsync();
+    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() =>
+        DefaultPolicyProvider.GetFallbackPolicyAsync();
 }
 ```
 
-A custom policy provider can optionally implement the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method to provide a policy to use when [combining policies](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.Combine%2A) and when no policies are specified. If the method returns a non-`null` policy, the returned policy is used by the authorization middleware when no policies are specified for the request.
+A custom policy provider can optionally implement the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method to provide a policy to use when [combining policies](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.Combine%2A) or for middleware-based authorization flows where no per-endpoint authorization is specified. In the following example, any the fallback policy combines a standard user policy that requires and authenticated user with a `Status` claim of `Active` with a manager policy that requires the `Manager` role with a `Department` claim of `Sales`:
 
 ```csharp
 public Task<AuthorizationPolicy?> GetFallbackPolicyAsync()
