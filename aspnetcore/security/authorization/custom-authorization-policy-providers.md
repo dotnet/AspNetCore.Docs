@@ -66,7 +66,7 @@ namespace BlazorWebAppAuthorization.Policies.Attributes;
 
 internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
 {
-    const string POLICY_PREFIX = "MinimumAge";
+    private const string PolicyPrefix = "MinimumAge";
 
     public MinimumAgeAuthorizeAttribute(int age) => Age = age;
 
@@ -74,7 +74,10 @@ internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
     {
         get
         {
-            if (int.TryParse(Policy.AsSpan(POLICY_PREFIX.Length), out var age))
+            if (!string.IsNullOrEmpty(Policy) &&
+                Policy.StartsWith(PolicyPrefix, 
+                    StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(Policy.AsSpan(PolicyPrefix.Length), out var age))
             {
                 return age;
             }
@@ -83,7 +86,8 @@ internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
         }
         set
         {
-            Policy = $"{POLICY_PREFIX}{value}";
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
+            Policy = $"{PolicyPrefix}{value}";
         }
     }
 }
@@ -181,15 +185,16 @@ namespace BlazorWebAppAuthorization.Policies.Providers;
 internal class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) 
     : IAuthorizationPolicyProvider
 {
-    const string POLICY_PREFIX = "MinimumAge";
-    public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = 
+    private const string PolicyPrefix = "MinimumAge";
+
+    private DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = 
         new(options);
 
     public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
         if (policyName.StartsWith(
-                POLICY_PREFIX, StringComparison.OrdinalIgnoreCase) &&
-            int.TryParse(policyName.AsSpan(POLICY_PREFIX.Length), out var age) &&
+                PolicyPrefix, StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(policyName.AsSpan(PolicyPrefix.Length), out var age) &&
             age >= 0)
         {
             var policy = new AuthorizationPolicyBuilder(
