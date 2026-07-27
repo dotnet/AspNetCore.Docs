@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: mjrousos
 description: Learn how to use a custom authorization policy provider (IAuthorizationPolicyProvider) in an ASP.NET Core app to dynamically generate authorization policies.
 ms.author: wpickett
-ms.date: 07/24/2026
+ms.date: 07/27/2026
 uid: security/authorization/custom-authorization-policy-providers
 ---
 # Custom authorization policy providers in ASP.NET Core
@@ -27,10 +27,10 @@ The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` s
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
 
-> [!TIP]
-> Use the [`git sparse-checkout` command](https://git-scm.com/docs/git-sparse-checkout) to download only the sample subfolder.
-
 For an MVC sample, see the [`CustomPolicyProvider` sample in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider).
+
+> [!TIP]
+> Use the [`git sparse-checkout` command](https://git-scm.com/docs/git-sparse-checkout) to download a single sample subfolder.
 
 ## Customize policy retrieval
 
@@ -48,9 +48,14 @@ Customize how authorization policies are provided by implementing the following 
 
 Start by implementing a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. A custom implementation of the attribute, `MinimumAgeAuthorizeAttribute` in the following example, must map arguments into a string that are used to retrieve the corresponding authorization policy. To accomplish this goal, derive from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and make the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy%2A?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix ("`MinimumAge`") and an integer passed in via the constructor.
 
-`Policies\Attributes\MinimumAgeAuthorizeAttribute.cs`:
+`Policies/Attributes/MinimumAgeAuthorizeAttribute.cs`:
 
-XXXXXXXXXXX REPLACE WITH SAMPLE CROSSLINK XXXXXXXXXXXX
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Attributes/MinimumAgeAuthorizeAttribute.cs":::
+
+<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
+                        The following code will be removed prior to merging
+                        the PR.
+-->
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -120,26 +125,37 @@ The following code shows the complete implementation from the sample app with a 
 
 `Policies/Providers/MinimumAgePolicyProvider.cs`:
 
-XXXXXXXXXXX REPLACE WITH SAMPLE CROSSLINK XXXXXXXXXXXX
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Providers/MinimumAgePolicyProvider.cs":::
+
+<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
+                        The following code will be removed prior to merging
+                        the PR.
+-->
 
 ```csharp
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using BlazorWebAppAuthorization.Policies.Requirements;
 
 namespace BlazorWebAppAuthorization.Policies.Providers;
 
-internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
+internal class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) 
+    : IAuthorizationPolicyProvider
 {
+    private readonly DefaultAuthorizationPolicyProvider fallbackPolicyProvider = 
+        new(options);
     const string POLICY_PREFIX = "MinimumAge";
 
     public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
-        if (policyName.StartsWith(POLICY_PREFIX, StringComparison.OrdinalIgnoreCase) &&
-            int.TryParse(policyName.AsSpan(POLICY_PREFIX.Length), out var age))
+        if (policyName.StartsWith(
+                POLICY_PREFIX, StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(policyName.AsSpan(POLICY_PREFIX.Length), out var age) &&
+            age >= 0)
         {
             var policy = new AuthorizationPolicyBuilder(
-                CookieAuthenticationDefaults.AuthenticationScheme);
+                IdentityConstants.ApplicationScheme);
             policy.AddRequirements(new MinimumAgeRequirement(age));
 
             return Task.FromResult<AuthorizationPolicy?>(policy.Build());
@@ -149,9 +165,9 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
     }
 
     public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
-        Task.FromResult<AuthorizationPolicy>(
+        Task.FromResult(
             new AuthorizationPolicyBuilder(
-                CookieAuthenticationDefaults.AuthenticationScheme)
+                IdentityConstants.ApplicationScheme)
             .RequireAuthenticatedUser().Build());
 
     public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() =>
@@ -231,12 +247,21 @@ Primarily only for demonstration purposes, an `AuthorizeView` component can spec
 
 `Components/Pages/PassMinimumAge21Policy.razor`:
 
-XXXXXXXXXXX REPLACE WITH SAMPLE CROSSLINK XXXXXXXXXXXX
+:::code language="razor" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Components/Pages/PassMinimumAge21Policy.razor":::
+
+<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
+                        The following code will be removed prior to merging
+                        the PR.
+-->
 
 ```razor
 @page "/pass-minimumage21-policy"
 
-<h1>Pass 'MinimumAge21' policy with AuthorizeView</h1>
+<h1>Pass 'MinimumAge21' policy (weakly-typed approach)</h1>
+
+<p>
+    Uses an AuthorizeView component to apply with the policy by name.
+</p>
 
 <AuthorizeView Policy="MinimumAge21">
     <Authorized>
@@ -248,16 +273,29 @@ XXXXXXXXXXX REPLACE WITH SAMPLE CROSSLINK XXXXXXXXXXXX
 </AuthorizeView>
 ```
 
-The following components uses the [custom `MinimumAgeAuthorizeAttribute` implementation](#custom-authorization-attribute) described earlier in this article.
+The following component uses the [custom `MinimumAgeAuthorizeAttribute` implementation](#custom-authorization-attribute) described earlier in this article.
 
 `Components/Pages/PassMinimumAge21PolicyWithAttribute.razor`:
+
+:::code language="razor" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Components/Pages/PassMinimumAge21PolicyWithAttribute.razor":::
+
+<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
+                        The following code will be removed prior to merging
+                        the PR.
+-->
 
 ```csharp
 @page "/pass-minimumage21-policy-with-attribute"
 @using BlazorWebAppAuthorization.Policies.Attributes
 @attribute [MinimumAgeAuthorize(21)]
 
-<h1>Pass 'MinimumAge21' policy</h1>
+<h1>Pass 'MinimumAge21' policy applied with </h1>
+
+<h1>Pass 'MinimumAge21' policy (strongly-typed approach)</h1>
+
+<p>
+    Applies the policy to the Razor component with an [Authorize] attribute.
+</p>
 
 <p>You satisfy the 'MinimumAge21' policy.</p>
 ```
