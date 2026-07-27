@@ -243,7 +243,7 @@ To use custom policies:
 
 :::moniker-end
 
-Primarily only for demonstration purposes, an `AuthorizeView` component can specify the weakly-typed `MinimumAge21` (`"MinimumAge" + Age`) policy, as the following sample app component demonstrates. Using a weakly-typed policy name isn't the best approach for applying a custom authorization policy. After the following example, a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> is demonstrated using the [custom `MinimumAgeAuthorizeAttribute` implementation](#custom-authorization-attribute) described earlier in this article.
+For demonstration purposes, an `AuthorizeView` component can specify the weakly-typed `MinimumAge21` (`"MinimumAge" + Age`) policy, as the following sample app component demonstrates. Using a weakly-typed policy name isn't the best approach for applying a custom authorization policy. After the following example, a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> is demonstrated using the [`MinimumAgeAuthorizeAttribute` implementation](#custom-authorization-attribute) described earlier in this article.
 
 `Components/Pages/PassMinimumAge21Policy.razor`:
 
@@ -260,7 +260,9 @@ Primarily only for demonstration purposes, an `AuthorizeView` component can spec
 <h1>Pass 'MinimumAge21' policy (weakly-typed approach)</h1>
 
 <p>
-    Uses an AuthorizeView component to apply with the policy by name.
+    Uses an AuthorizeView component to apply the policy using the policy's name. 
+    This approach is shown for demonstration purposes, and isn't recommended for 
+    production code.
 </p>
 
 <AuthorizeView Policy="MinimumAge21">
@@ -289,15 +291,22 @@ The following component uses the [custom `MinimumAgeAuthorizeAttribute` implemen
 @using BlazorWebAppAuthorization.Policies.Attributes
 @attribute [MinimumAgeAuthorize(21)]
 
-<h1>Pass 'MinimumAge21' policy applied with </h1>
-
 <h1>Pass 'MinimumAge21' policy (strongly-typed approach)</h1>
 
 <p>
-    Applies the policy to the Razor component with an [Authorize] attribute.
+    Applies the policy to the Razor component with an [Authorize] attribute. 
+    This approach is preferred for production code, as it's strongly-typed 
+    and avoids the use of a string to set the policy and minimum age.
 </p>
 
 <p>You satisfy the 'MinimumAge21' policy.</p>
+```
+
+The same approach is useful for securing [Minimal API endpoints](xref:fundamentals/minimal-apis#authorization):
+
+```csharp
+app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () => 
+    "This endpoint requires a 21-year-old birthdate claim.");
 ```
 
 ## Additional resources
