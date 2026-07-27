@@ -319,7 +319,8 @@ The following component uses the [custom `MinimumAgeAuthorizeAttribute` implemen
 <h1>Pass 'MinimumAge21' policy (strongly-typed approach)</h1>
 
 <p>
-    Applies the policy to the Razor component with an [Authorize] attribute. 
+    Applies the policy to the Razor component with a custom 
+    [MinimumAgeAuthorize] attribute (derived from AuthorizeAttribute). 
     This approach is preferred for production code, as it's strongly-typed 
     and avoids the use of a string to set the policy and minimum age.
 </p>
