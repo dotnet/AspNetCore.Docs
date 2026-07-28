@@ -124,10 +124,7 @@ See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github
 * [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
 
-For more information on setting the HTTPS ports with the `ASPNETCORE_HTTPS_PORTS` environment variable, see the following resources:
-
-* <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
-* <xref:security/enforcing-ssl#port-configuration>
+For more information on setting the HTTPS ports with the `ASPNETCORE_HTTPS_PORTS` environment variable, see <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>.
 
 :::moniker-end
 

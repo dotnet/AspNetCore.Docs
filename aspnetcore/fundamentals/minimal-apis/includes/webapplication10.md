@@ -98,7 +98,7 @@ The preceding samples can use the environment variables `ASPNETCORE_HTTP_PORTS` 
 For more information, see the following resources:
 
 * <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
-* <xref:security/enforcing-ssl#port-configuration>
+* <xref:fundamentals/servers/httpsys#specify-ports-only>
 
 ### Specify HTTPS with development certificate
 

@@ -746,7 +746,6 @@ For more information, see the following resources:
 
 * <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
 * <xref:fundamentals/servers/httpsys#specify-ports-only>
-* <xref:security/enforcing-ssl#port-configuration>
 
 ### SNI host name in ITlsHandshakeFeature
 
