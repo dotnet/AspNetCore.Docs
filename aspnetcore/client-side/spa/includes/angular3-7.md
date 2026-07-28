@@ -87,7 +87,7 @@ npm start
 
 When you start your ASP.NET Core app, it won't launch an Angular CLI server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for Angular CLI to rebuild your client app each time.
 
-When the proxy is launched, the target URL and port is inferred from the environment variable set by .NET from `ASPNETCORE_URLS`. To set the URLs or HTTPS port, use the environment variable or change the value in `proxy.conf.json`.
+When the proxy is launched, the target URL and port are inferred from the environment variable set by .NET: `ASPNETCORE_URLS`. To set the URLs or HTTPS port, update this environment variable or change the value in `proxy.conf.json`.
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
