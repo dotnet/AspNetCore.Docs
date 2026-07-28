@@ -70,14 +70,9 @@ The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuild
 The preceding highlighted code:
 
 * Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode?displayProperty=nameWithType> property with the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code.
-* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> property (passing `null`), unless overridden by the `ASPNETCORE_HTTPS_PORTS` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
+* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> property (passing `null`), unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 The recommended approach is to use temporary redirects rather than permanent redirects. Link caching can cause unstable behavior in development environments. If you prefer to send a permanent redirect status code when the app is in a non-`Development` environment, see the [Configure permanent redirects in production](#configure-permanent-redirects-in-production) section. Use [HSTS](#hsts) to signal to clients that only secure resource requests should be sent to the app (only in production).
-
-For more information on setting the HTTPS ports with the `ASPNETCORE_HTTPS_PORTS` environment variable, see the following resources:
-
-* <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
-* <xref:security/enforcing-ssl#port-configuration>
 
 ### Port configuration
 
@@ -92,7 +87,7 @@ Specify the HTTPS port by using any of the following approaches:
 * Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https-port):
 
   * In host configuration.
-  * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
+  * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By adding a top-level entry in the `appsettings.json` file:
 
   [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
