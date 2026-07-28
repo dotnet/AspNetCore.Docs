@@ -1,4 +1,4 @@
-Most configurations for apps and containers define only a port for listening, like port 80, without specifying other constraints like the host or path. HTTP_PORTS and HTTPS_PORTS are config keys that specify the listening ports for the Kestrel and HTTP.sys servers. You can specify the keys as environment variables defined with the `DOTNET_` or `ASPNETCORE_` prefixes, or set them directly through any other config input, such as the _appsettings.json_ file. Each configuration is a semicolon-delimited list of port values, as shown in the following example:
+Most configurations for apps and containers define only a port for listening, like port 80, without specifying other constraints like the host or path. HTTP_PORTS and HTTPS_PORTS are config keys that specify the listening ports for the Kestrel and HTTP.sys servers. You can specify the keys as environment variables defined with the `DOTNET_` or `ASPNETCORE_` prefixes, or set them directly through any other config input, such as the `appsettings.json` file. Each configuration is a semicolon-delimited list of port values, as shown in the following example:
 
 ```json
 ASPNETCORE_HTTP_PORTS=80;8080

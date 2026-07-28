@@ -87,7 +87,7 @@ The following samples demonstrate listening on all interfaces
 
 ### Listen on all interfaces using ASPNETCORE_URLS
 
-The preceding samples can use `ASPNETCORE_URLS`
+The preceding samples can use `ASPNETCORE_URLS`:
 
 ```
 ASPNETCORE_URLS=http://*:3000;https://+:5000;http://0.0.0.0:5005

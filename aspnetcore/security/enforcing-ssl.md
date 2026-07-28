@@ -5,10 +5,8 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 05/13/2026
+ms.date: 07/28/2026
 uid: security/enforcing-ssl
-
-# customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
 ---
 # Enforce HTTPS in ASP.NET Core
 
@@ -46,7 +44,7 @@ The secure approach for [HTTP Strict Transport Security (HSTS) protocol](#hsts) 
 > [!WARNING]
 > The default API projects don't include [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) because it's generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks.
 
-### HTTP redirect to HTTPS (ERR_INVALID_REDIRECT on CORS preflight request)
+### HTTP redirect to HTTPS (`ERR_INVALID_REDIRECT` on CORS preflight request)
 
 When a request to an endpoint using HTTP is redirected to HTTPS with the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method, the redirection fails with the `ERR_INVALID_REDIRECT` error on the CORS preflight request.
 
@@ -63,38 +61,44 @@ For production ASP.NET Core web apps, the following approach is recommended:
 > [!NOTE]
 > Apps deployed in a reverse proxy configuration allow the proxy to handle connection security (HTTPS). If the proxy also handles HTTPS redirection, there's no need to use HTTPS redirection middleware. If the proxy server also handles writing HSTS headers (for example, [native HSTS support in Internet Information Services (IIS) 10.0 version 1709 or later](/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#iis-100-version-1709-native-hsts-support)), then the app doesn't require HSTS middleware. For more information, see [Opt-out of HTTPS/HSTS on project creation](#opt-out-of-httpshsts-on-project-creation).
 
-### UseHttpsRedirection
+### HTTPS redirection middleware (`UseHttpsRedirection`)
 
-The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method in the _Program.cs_ file:
+The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method in the `Program.cs` file:
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=13)]
 
 The preceding highlighted code:
 
 * Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode?displayProperty=nameWithType> property with the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code.
-* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> property (passing null), unless overridden by the `ASPNETCORE_HTTPS_PORTS` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
+* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> property (passing `null`), unless overridden by the `ASPNETCORE_HTTPS_PORTS` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 The recommended approach is to use temporary redirects rather than permanent redirects. Link caching can cause unstable behavior in development environments. If you prefer to send a permanent redirect status code when the app is in a non-`Development` environment, see the [Configure permanent redirects in production](#configure-permanent-redirects-in-production) section. Use [HSTS](#hsts) to signal to clients that only secure resource requests should be sent to the app (only in production).
+
+For more information on setting the HTTPS ports with the `ASPNETCORE_HTTPS_PORTS` environment variable, see the following resources:
+
+* <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
+* <xref:security/enforcing-ssl#port-configuration>
 
 ### Port configuration
 
 A port must be available for the middleware to redirect an insecure request to HTTPS. If no port is available:
 
 * Redirection to HTTPS doesn't occur.
-* The middleware logs the warning _Failed to determine the https port for redirect_.
+* The middleware logs the warning `Failed to determine the https port for redirect`.
 
 Specify the HTTPS port by using any of the following approaches:
 
 * Set [HttpsRedirectionOptions.HttpsPort](#options).
 * Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https-port):
-   * In host configuration.
-   * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
-   * By adding a top-level entry in the _appsettings.json_ file:
 
-      [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
+  * In host configuration.
+  * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
+  * By adding a top-level entry in the `appsettings.json` file:
 
-* Indicate a port with the secure scheme by using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#server-urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
-* The ASP.NET Core web templates set an HTTPS URL in the _Properties/launchsettings.json_ file for both Kestrel and IIS Express. The _launchsettings.json_ file is used on the local machine only.
+  [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
+
+* Indicate a port with the secure scheme by using the [`ASPNETCORE_URLS` environment variable](xref:fundamentals/host/generic-host#server-urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
+* The ASP.NET Core web templates set an HTTPS URL in the `Properties/launchsettings.json` file for both Kestrel and IIS Express. The `launchsettings.json` file is used on the local machine only.
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) server or [HTTP.sys](xref:fundamentals/servers/httpsys) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
@@ -136,7 +140,7 @@ The preceding highlighted code:
 
 The middleware defaults to sending a <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code with all redirects. If you prefer to send a permanent redirect status code when the app is in a non-`Development` environment, wrap the middleware options configuration in a conditional check for a non-`Development` environment.
 
-The following code shows configuration of services in the _Program.cs_ file:
+The following code shows configuration of services in the `Program.cs` file:
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
 
@@ -184,7 +188,7 @@ The following highlighted code:
 
 ## Opt out of HTTPS/HSTS on project creation
 
-In some back-end service scenarios where connection security is handled at the public-facing edge of the network, configuring connection security at each node isn't required. Web apps that are generated from the templates in Visual Studio or from the [dotnet new](/dotnet/core/tools/dotnet-new) command enable [HTTPS redirection](#require-https) and [HSTS](#hsts). For deployments that don't require these scenarios, you can opt out of HTTPS/HSTS when the app is created from the template.
+In some back-end service scenarios where connection security is handled at the public-facing edge of the network, configuring connection security at each node isn't required. Web apps that are generated from the templates in Visual Studio or from the [`dotnet new`](/dotnet/core/tools/dotnet-new) command enable [HTTPS redirection](#require-https) and [HSTS](#hsts). For deployments that don't require these scenarios, you can opt out of HTTPS/HSTS when the app is created from the template.
 
 To opt out of HTTPS/HSTS:
 
@@ -236,7 +240,7 @@ dotnet dev-certs https --help
 
 ## Set up developer certificate for Docker
 
-To configure the developer certificate for Docker, see [GitHub dotnet/aspnetcore.docs issue #6199](https://github.com/dotnet/AspNetCore.Docs/issues/6199) - _How to set up the dev certificate when using Docker in development_.
+To configure the developer certificate for Docker, see [How to set up the dev certificate when using Docker in development (`dotnet/AspNetCore.Docs` #6199)](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 ## Linux-specific considerations
 
@@ -251,14 +255,14 @@ The `dotnet dev-certs` tool is expected to be broadly applicable, but official s
 
 ### OpenSSL trust
 
-When an ASP.NET Core development certificate is trusted, the certificate is exported to a folder in the current user's home directory. To have [OpenSSL](https://www.openssl.org/) (and clients that consume it) pick up this folder, you need to set the `SSL_CERT_DIR` environment variable. You can set the variable in a single session by running a command like `export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs` (the exact value is in the output when `--verbose` is passed) or by adding it your (distro- and shell-specific) configuration file (for example _.profile_).
+When an ASP.NET Core development certificate is trusted, the certificate is exported to a folder in the current user's home directory. To have [OpenSSL](https://www.openssl.org/) (and clients that consume it) pick up this folder, you need to set the `SSL_CERT_DIR` environment variable. You can set the variable in a single session by running a command like `export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs` (the exact value is in the output when `--verbose` is passed) or by adding it your (distro- and shell-specific) configuration file (for example `.profile`).
 
 This approach is required to make tools like `curl` trust the development certificate. Alternatively, you can pass `-CAfile` or `-CApath` to each individual `curl` invocation.
 
 > [!NOTE]
 > Requires 1.1.1h or later or 3.0.0 or later, depending on which major version you're using.
 
-If OpenSSL trust gets into a bad state (for example if `dotnet dev-certs https --clean` fails to remove it), you can frequently resolve the situation by using the [c_rehash](https://docs.openssl.org/master/man1/openssl-rehash/) tool.
+If OpenSSL trust gets into a bad state (for example if `dotnet dev-certs https --clean` fails to remove it), you can frequently resolve the situation by using the [`c_rehash`](https://docs.openssl.org/master/man1/openssl-rehash/) tool.
 
 ### Overrides
 
@@ -273,7 +277,7 @@ If you store the certificates you want OpenSSL to trust in a specific directory,
 
 As on other platforms, development certificates are stored and trusted separately for each user. 
 
-If you run `dotnet dev-certs` as a different user (for example, by using `sudo`), then _that_ specific user (for example `root`) trusts the development certificate.
+If you run `dotnet dev-certs` as a different user (for example, by using `sudo`), then *that* specific user (for example `root`) trusts the development certificate.
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
@@ -290,7 +294,7 @@ For more information or to report issues, see the [linux-dev-certs GitHub reposi
 
 #### SUSE Linux Enterprise Server (SLES Linux)
 
-If your configuration includes SUSE Linux Enterprise Server, see [GitHub dotnet/aspnetcore.docs issue #28292](https://github.com/dotnet/AspNetCore.Docs/issues/28292) - _Trust HTTPS certificate on SLES_.
+If your configuration includes SUSE Linux Enterprise Server, see [Trust HTTPS certificate on SLES (`dotnet/AspNetCore.Docs` #28292)](https://github.com/dotnet/AspNetCore.Docs/issues/28292).
 
 <!-- Instructions for development purposes only --
 
@@ -405,9 +409,9 @@ The `dotnet dev-certs https` commands usually solve most browser trust issues. I
 
 If you're using Docker, try to resolve the issue with the following steps:
 
-1. Delete the _C:\Users\{USER}\AppData\Roaming\ASP.NET\Https_ folder.
+1. Delete the `C:\Users\{USER}\AppData\Roaming\ASP.NET\Https` folder.
 
-1. Clean the solution. Delete the _bin_ and _obj_ folders.
+1. Clean the solution. Delete the `bin` and `obj` folders.
 
 1. Restart the development tool. For example, Visual Studio or Visual Studio Code.
 
@@ -417,8 +421,8 @@ If you're working in Windows, complete the following troubleshooting steps:
 
 1. Check the certificates in the certificate store. Look for a `localhost` certificate with the `ASP.NET Core HTTPS development certificate` friendly name in two folders:
 
-   * _Current User > Personal > Certificates_
-   * _Current User > Trusted root certification authorities > Certificates_
+   * `Current User > Personal > Certificates`
+   * `Current User > Trusted root certification authorities > Certificates`
 
 1. Remove all certificates from both Personal and Trusted root certification authorities.
 
@@ -455,7 +459,7 @@ If you're working with OS X, try to resolve the issue with the following steps:
 
 1. Close any open browser instances, and open the app in a new browser window.
 
-For more information about troubleshooting certificate issues with Visual Studio, see [GitHub dotnet/aspnetcore issue #16892)](https://github.com/dotnet/AspNetCore/issues/16892) - _HTTPS Error using IIS Express_.
+For more information about troubleshooting certificate issues with Visual Studio, see [HTTPS Error using IIS Express (`dotnet/aspnetcore` #16892)](https://github.com/dotnet/AspNetCore/issues/16892).
 
 ### Linux - certificate not trusted
 
@@ -481,9 +485,7 @@ If you're running Linux, follow these steps to troubleshoot the untrusted certif
 
    * Check if the certificate is old.
 
-   * Check if the certificate is an exported developer certificate for the root user.
-
-      * If it is, export the certificate.
+   * Check if the certificate is an exported developer certificate for the root user. If it is, export the certificate.
 
 1. Check the root user certificate in the following folder:
 
@@ -493,11 +495,11 @@ If you're running Linux, follow these steps to troubleshoot the untrusted certif
 
 ### IIS Express SSL certificate used with Visual Studio
 
-To fix problems with the IIS Express certificate, select **Repair** in the Visual Studio installer. For more information, see [GitHub dotnet/aspnetcore issue #16892)](https://github.com/dotnet/AspNetCore/issues/16892) - _HTTPS Error using IIS Express_.
+To fix problems with the IIS Express certificate, select **Repair** in the Visual Studio installer. For more information, see [HTTPS Error using IIS Express (`dotnet/aspnetcore` #16892)](https://github.com/dotnet/AspNetCore/issues/16892).
 
 ### Group policy prevents trusting self-signed certificates
 
-In some cases, group policy can prevent self-signed certificates from being trusted. For more information, see [GitHub dotnet/aspnetcore issue #21173](https://github.com/dotnet/aspnetcore/issues/21173) - _Error trusting HTTPS developer certificate_.
+In some cases, group policy can prevent self-signed certificates from being trusted. For more information, see [Error trusting HTTPS developer certificate (`dotnet/aspnetcore` #21173)](https://github.com/dotnet/aspnetcore/issues/21173).
 
 ## Related content
 

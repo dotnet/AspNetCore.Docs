@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 03/03/2026
+ms.date: 07/28/2026
 uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
@@ -119,10 +119,15 @@ The password must match the password used for the certificate. When using [Power
 
 See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) for information and samples on how to develop ASP.NET Core applications with HTTPS in Docker containers.
 
-## See also
+## Additional resources
 
 * [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
+
+For more information on setting the HTTPS ports with the `ASPNETCORE_HTTPS_PORTS` environment variable, see the following resources:
+
+* <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
+* <xref:security/enforcing-ssl#port-configuration>
 
 :::moniker-end
 

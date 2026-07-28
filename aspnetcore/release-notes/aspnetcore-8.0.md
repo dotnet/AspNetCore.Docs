@@ -3,7 +3,7 @@ title: What's new in ASP.NET Core in .NET 8
 author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: tdykstra
-ms.date: 10/30/2025
+ms.date: 07/28/2026
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
@@ -742,7 +742,11 @@ This is shorthand for the following, which specifies the scheme (HTTP or HTTPS) 
 ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
 ```
 
-For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
+For more information, see the following resources:
+
+* <xref:fundamentals/servers/kestrel/endpoints#specify-ports-only>
+* <xref:fundamentals/servers/httpsys#specify-ports-only>
+* <xref:security/enforcing-ssl#port-configuration>
 
 ### SNI host name in ITlsHandshakeFeature
 

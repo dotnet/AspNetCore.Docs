@@ -336,6 +336,10 @@ Requirements to run gRPC with HTTP.sys:
 
 For information about how to get traces from HTTP.sys, see [HTTP.sys Manageability Scenarios](/windows/win32/http/http-sys-manageability-scenarios).
 
+## Specify ports only
+
+[!INCLUDE [http-ports](~/includes/http-ports.md)]
+
 ## Additional resources
 
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
