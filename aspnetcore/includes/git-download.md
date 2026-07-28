@@ -1,11 +1,11 @@
 > [!TIP]
-> Use [`git sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) to only download the sample subfolder and the last commit. For example:
-```
-git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.git --sparse
-cd AspNetCore.Docs
-git sparse-checkout init --cone
-git sparse-checkout set aspnetcore/security/authorization/secure-data/samples
-```
-
-In the preceding example, the `git sparse-checkout set` command specifies the path to the subfolder that you want to download. Replace 
-`aspnetcore/security/authorization/secure-data/samples` with the path to the subfolder that you want to download.
+> Use the [`git sparse-checkout` command](https://git-scm.com/docs/git-sparse-checkout) to download a single folder from the main branch of a GitHub repository.
+>
+> In the following example, the `security/authorization/BlazorWebAppAuthorization` subfolder is downloaded from the `dotnet/AspNetCore.Docs.Samples` repository. Replace `https://github.com/dotnet/AspNetCore.Docs.Samples.git` with the repository's Git Version Control Repository file, and replace the `security/authorization/BlazorWebAppAuthorization` path with the path to the subfolder that you want to download:
+>
+> ```
+> git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.Samples.git --sparse
+> cd AspNetCore.Docs
+> git sparse-checkout init --cone
+> git sparse-checkout set security/authorization/BlazorWebAppAuthorization
+> ```
