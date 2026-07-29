@@ -5,7 +5,7 @@ description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
 ms.custom: sfi-ropc-nochange
-ms.date: 05/22/2025
+ms.date: 07/28/2026
 uid: performance/caching/hybrid
 ms.ai: assisted
 ---
@@ -38,7 +38,7 @@ The `HybridCache` service provides a <xref:Microsoft.Extensions.Caching.Hybrid.H
 
 The method uses the key to try to retrieve the object from the primary cache. If the item isn't found in the primary cache (a cache miss), it then checks the secondary cache if one is configured. If it doesn't find the data there (another cache miss), it calls the factory method to get the object from the data source. It then stores the object in both primary and secondary caches. The factory method is never called if the object is found in the primary or secondary cache (a cache hit).
 
-The `HybridCache` service ensures that only one concurrent caller for a given key calls the factory method, and all other callers wait for the result of that call. The `CancellationToken` passed to `GetOrCreateAsync` represents the combined cancellation of all concurrent callers.
+A `HybridCache` instance ensures that only one concurrent caller for a given key calls the factory method, and all other callers using the same instance wait for the result of that call. The cancellation token passed to the factory is canceled when all callers awaiting the shared operation have canceled. This coordination doesn't extend to other `HybridCache` instances, even if they use the same secondary distributed cache.
 
 ### The main `GetOrCreateAsync` overload
 
