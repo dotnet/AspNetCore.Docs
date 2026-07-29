@@ -11,7 +11,7 @@ simple API for adding new caching code. If the app has an `IDistributedCache` im
 
 * Stampede protection.
 
-  *Cache stampede* happens when a frequently used cache entry is revoked, and too many requests try to repopulate the same cache entry at the same time. `HybridCache` combines concurrent operations, which ensures that all requests for a given response wait for the first request to populate the cache.
+  *Cache stampede* happens when a frequently used cache entry is revoked, and too many requests try to repopulate the same cache entry at the same time. `HybridCache` combines concurrent operations that use the same `HybridCache` instance, which ensures that all requests for a given response wait for the first request to populate the cache. This coordination doesn't extend to other `HybridCache` instances.
 
 * Configurable serialization.
 
