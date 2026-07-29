@@ -98,7 +98,7 @@ You can define endpoints by using HTTPS URL prefixes only if a default certifica
 
 [!INCLUDE[](~/includes/http-ports.md)]
 
-### Create endpoints in appsettings.json
+### Create endpoints in `appsettings.json`
 
 Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance. By default, Kestrel configuration is loaded from the `Kestrel` section and endpoints are configured in `Kestrel:Endpoints`:
 
