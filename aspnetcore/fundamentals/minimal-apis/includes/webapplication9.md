@@ -12,7 +12,7 @@ The following code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> 
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_create)]
 
-<xref:Microsoft.AspNetCore.Builder.WebApplication.Create%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
+<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults:
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/middleware7.md)]
 
