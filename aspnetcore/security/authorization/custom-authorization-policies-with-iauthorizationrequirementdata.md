@@ -16,7 +16,7 @@ This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint withi
 
 :::moniker range=">= aspnetcore-11.0"
 
-In .NET 11 or later, you can apply `IAuthorizationRequirementData` attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's `AuthorizeView` and `AuthorizeRouteView` components, not just to endpoints. In earlier versions, these attributes are only enforced on Minimal API and routed endpoints.
+You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
 :::moniker-end
 
