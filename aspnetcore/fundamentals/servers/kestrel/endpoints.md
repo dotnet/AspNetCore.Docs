@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
-ms.date: 06/01/2026
+ms.date: 07/29/2026
 uid: fundamentals/servers/kestrel/endpoints
 ---
 # Configure endpoints for the ASP.NET Core Kestrel web server
@@ -96,7 +96,7 @@ You can define endpoints by using HTTPS URL prefixes only if a default certifica
 
 ### Specify ports only
 
-[!INCLUDE [http-ports](~/includes/http-ports.md)]
+[!INCLUDE[](~/includes/http-ports.md)]
 
 ### Create endpoints in appsettings.json
 
