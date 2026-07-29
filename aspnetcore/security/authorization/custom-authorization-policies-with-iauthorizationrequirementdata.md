@@ -5,7 +5,7 @@ author: tdykstra
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 03/11/2026
+ms.date: 07/29/2026
 uid: security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
@@ -13,6 +13,12 @@ uid: security/authorization/iard
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
 This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
+
+:::moniker range=">= aspnetcore-11.0"
+
+In .NET 11 or later, you can apply `IAuthorizationRequirementData` attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's `AuthorizeView` and `AuthorizeRouteView` components, not just to endpoints. In earlier versions, these attributes are only enforced on Minimal API and routed endpoints.
+
+:::moniker-end
 
 ## Sample app
 

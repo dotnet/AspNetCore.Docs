@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 06/26/2026
+ms.date: 07/29/2026
 uid: signalr/authn-and-authz
 
 # customer intent: As an ASP.NET developer, I want to use authentication and authorization in ASP.NET Core SignalR, so I can verify user access to my apps.
@@ -222,6 +222,12 @@ In the _Program.cs_ file, add the new policy, providing the custom `DomainRestri
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_drr&highlight=19-25)]
 
 In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. The approach in this example provides the benefit of not having to inject the `AuthorizationHandler` during startup because the requirement and the handler are the same thing.
+
+:::moniker range=">= aspnetcore-11.0"
+
+As an alternative to registering the `DomainRestricted` policy and referencing it with `[Authorize("DomainRestricted")]`, you can apply an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attribute directly to a hub or hub method. SignalR combines the attribute's requirements into the effective policy for the method invocation. For more information, see <xref:security/authorization/iard>.
+
+:::moniker-end
 
 ## Related content
 
