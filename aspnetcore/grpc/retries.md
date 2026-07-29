@@ -136,7 +136,7 @@ The `grpc-previous-rpc-attempts` metadata is not present on the initial gRPC cal
 
 ### gRPC retry options
 
-The following table describes options for configuring gRPC retry policies:
+The following table describes options for configuring gRPC retry policies.
 
 | Option | Description |
 | ------ | ----------- |
@@ -178,7 +178,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 ### gRPC hedging options
 
-The following table describes options for configuring gRPC hedging policies:
+The following table describes options for configuring gRPC hedging policies.
 
 | Option | Description |
 | ------ | ----------- |

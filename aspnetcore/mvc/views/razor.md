@@ -696,7 +696,7 @@ The `@namespace` directive:
 @namespace Your.Namespace.Here
 ```
 
-For the Razor Pages example shown in the following table:
+For the Razor Pages example shown in the following table.
 
 * Each page imports `Pages/_ViewImports.cshtml`.
 * `Pages/_ViewImports.cshtml` contains `@namespace Hello.World`.

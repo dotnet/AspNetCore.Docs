@@ -99,7 +99,7 @@ Zero-based indexes are used to specify array elements. The first element of the 
 
 ### Operations
 
-The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902):
+The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902).
 
 |Operation  | Notes |
 |-----------|--------------------------------|
@@ -391,7 +391,7 @@ Zero-based indexes are used to specify array elements. The first element of the 
 
 ### Operations
 
-The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902):
+The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902).
 
 |Operation  | Notes |
 |-----------|--------------------------------|

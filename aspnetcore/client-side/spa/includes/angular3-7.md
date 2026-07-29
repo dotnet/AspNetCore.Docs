@@ -90,7 +90,7 @@ When you start your ASP.NET Core app, it won't launch an Angular CLI server. The
 When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORTS`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 > [!NOTE]
-> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the port for Kestrel/HTTP.sys endpoint configuration, with the the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the port for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
@@ -207,7 +207,7 @@ When you start your ASP.NET Core app, it won't launch an Angular CLI server. The
 When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORTS`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 > [!NOTE]
-> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the port for Kestrel/HTTP.sys endpoint configuration, with the the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the port for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
 
 ### Pass data from .NET code into TypeScript code
 

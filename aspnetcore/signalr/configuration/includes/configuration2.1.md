@@ -96,7 +96,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
+The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options.
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
