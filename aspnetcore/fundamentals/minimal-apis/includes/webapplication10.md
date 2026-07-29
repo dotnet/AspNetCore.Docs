@@ -66,7 +66,7 @@ ASPNETCORE_URLS=http://localhost:3000;https://localhost:5000
 
 ### Listen on all interfaces
 
-The following samples demonstrate listening on all interfaces
+The following samples demonstrate listening on all interfaces.
 
 #### `http://*:3000`
 
