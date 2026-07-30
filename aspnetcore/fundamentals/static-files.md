@@ -5,8 +5,8 @@ author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.reviewer: wpickett
 ms.date: 07/30/2026
+ms.reviewer: wpickett
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
