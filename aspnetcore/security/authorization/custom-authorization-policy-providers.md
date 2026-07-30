@@ -46,7 +46,7 @@ For an MVC sample, see the [`CustomPolicyProvider` sample in the `dotnet/aspnetc
 >
 > ```
 > git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.Samples.git --sparse
-> cd AspNetCore.Docs
+> cd AspNetCore.Docs.Samples
 > git sparse-checkout init --cone
 > git sparse-checkout set security/authorization/BlazorWebAppAuthorization
 > ```
@@ -56,7 +56,7 @@ For an MVC sample, see the [`CustomPolicyProvider` sample in the `dotnet/aspnetc
 The developer decides in advance how custom policies are named by inventing a naming scheme in a string format that's easily parsed to meet one or more requirements for each policy evaluation:
 
 * The custom authorization attribute adopts the policy naming scheme.
-* The custom policy provider creates policies adopts the same policy naming scheme.
+* The custom policy provider adopts the same policy naming scheme.
 
 For example, consider a minimum age naming scheme in the format `MinimumAge{AGE}`, where the `{AGE}` placeholder is any given age, for example, `MinimumAge21`. This naming scheme is easily identified by its prefix "`MinimumAge`" with an easily parsed string-based age ("`21`").
 
@@ -68,7 +68,7 @@ The developer customizes how authorization policies are provided by implementing
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> method returns the default authorization policy. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> applies whenever authorization is required, but no specific policy is set. If an `[Authorize]` attribute is present without a policy name, the default policy is used instead of the fallback policy. This behavior ensures that endpoints explicitly requesting authorization (via `[Authorize]` or `RequireAuthorization()`) default to a secure policy.
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method returns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=fullName> when no authorization metadata (for example, no `[Authorize]` attribute or `RequireAuthorization()`) is explicitly provided for a resource. The fallback policy only applies when there are no authorization attributes or explicit policies set. If a resource has an `[Authorize]` attribute (even without a policy name), the default policy is used instead of the fallback policy. This means fallback policy is mainly relevant for middleware-based authorization flows where no per-endpoint authorization is specified. By default, fallback policy is `null`, meaning it has no effect unless explicitly set.
 
-The general format of a custom policy provider that either returns a policy for a given matching name (represented by the `{IDENTIFY POLICY BY NAME}` placeholder) or no policy, including for `[Authorize]` attributes without a policy name (represented by returning `Task.FromResult<AuthorizationPolicy?>(null)`), is similar to the following:
+The general format of a custom policy provider that either returns a policy for a given matching name (represented by the `{IDENTIFY POLICY BY NAME}` placeholder) or returns `null` when no policy name matches is similar to the following:
 
 ```csharp
 internal class CustomPolicyProvider() : IAuthorizationPolicyProvider
@@ -326,7 +326,7 @@ The following component uses the strongly-typed [custom `MinimumAgeAuthorizeAttr
                         the PR.
 -->
 
-```csharp
+```razor
 @page "/pass-minimumage21-policy-with-attribute"
 @using BlazorWebAppAuthorization.Policies.Attributes
 @attribute [MinimumAgeAuthorize(21)]

@@ -5,7 +5,7 @@
 >
 > ```
 > git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.Samples.git --sparse
-> cd AspNetCore.Docs
+> cd AspNetCore.Docs.Samples
 > git sparse-checkout init --cone
 > git sparse-checkout set security/authorization/BlazorWebAppAuthorization
 > ```
