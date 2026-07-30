@@ -46,7 +46,7 @@ For ASP.NET Core Blazor WebAssembly Native AOT guidance, which adds to or supers
 
 Not all features in ASP.NET Core are currently compatible with Native AOT.
 
-The following table summarizes ASP.NET Core feature compatibility with Native AOT:
+The following table summarizes ASP.NET Core feature compatibility with Native AOT.
 
 | Feature | Supported | Partial support | Not supported |
 |---|:---:|:---:|:---:|

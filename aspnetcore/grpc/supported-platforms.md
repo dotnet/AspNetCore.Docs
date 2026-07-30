@@ -91,7 +91,7 @@ The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package s
 
 Limited support is available for gRPC over HTTP/2 on .NET Framework. Other .NET versions such as UWP and Unity don't have required HTTP/2 support, and must use gRPC-Web instead.
 
-The following table lists .NET implementations and their gRPC client support:
+The following table lists .NET implementations and their gRPC client support.
 
 | .NET implementation                          | gRPC over HTTP/2   | gRPC-Web   |
 |----------------------------------------------|--------------------|------------|

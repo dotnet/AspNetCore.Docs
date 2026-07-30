@@ -161,7 +161,7 @@ For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
 
 ### Change the content root, app name, and environment by environment variables or command line
 
-The following table shows the environment variable and command-line argument used to change the content root, app name, and environment:
+The following table shows the environment variable and command-line argument used to change the content root, app name, and environment.
 
 | feature   | Environment variable | Command-line argument |
 | ------------- | ------------- | -- |
@@ -363,7 +363,7 @@ app.MapGet("/posts/{slug:regex(^[a-z0-9_-]+$)}", (string slug) => $"Post {slug}"
 app.Run();
 ```
 
-The following table demonstrates the preceding route templates and their behavior:
+The following table demonstrates the preceding route templates and their behavior.
 
 | Route Template | Example Matching URI |
 |--|--|

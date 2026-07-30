@@ -65,7 +65,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> class specifies the p
 
 The <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property varies the stored response by the values of the given list of query keys. When a single value of the wildcard asterisk (`*`) is provided, the middleware varies responses by all request query string parameters.
 
-[Response caching middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table:
+[Response caching middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Returned from                    |
 | -------------------------------- | ------------------------- |

@@ -599,7 +599,7 @@ When the <xref:System.Text.Json.JsonSerializerOptions.NumberHandling> property i
 
 #### String types
 
-The following table shows how C# types map to `string` type properties in the generated OpenAPI document:
+The following table shows how C# types map to `string` type properties in the generated OpenAPI document.
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` | Other assertions               |
 | -------------- | -------------- | ---------------- | ------------------------------ |
@@ -614,7 +614,7 @@ The following table shows how C# types map to `string` type properties in the ge
 
 #### Other types
 
-Other C# types are represented in the generated OpenAPI document as shown in the following table:
+Other C# types are represented in the generated OpenAPI document as shown in the following table.
 
 | C# Type        | OpenAPI `type` | OpenAPI `format` |
 | -------------- | -------------- | ---------------- |
@@ -626,7 +626,7 @@ Other C# types are represented in the generated OpenAPI document as shown in the
 
 ASP.NET uses metadata from attributes on class or record properties to set metadata on the corresponding properties of the generated schema.
 
-The following table summarizes attributes from the `System.ComponentModel` namespace that provide metadata for the generated schema:
+The following table summarizes attributes from the `System.ComponentModel` namespace that provide metadata for the generated schema.
 
 | Attribute                    | Description |
 | ---------------------------- | ----------- |
@@ -749,7 +749,7 @@ The following code configures some JSON options globally, for Minimal APIs and C
 
 ## MVC JSON options and global JSON options
 
-The following table shows the key differences beween the MVC JSON options and global Minimal API JSON options:
+The following table shows the key differences between the MVC JSON options and global Minimal API JSON options.
 
 | **Aspect**           | **MVC JSON Options**                       | **Global JSON Options**             |
 |-----------------------|--------------------------------------------|-----------------------------------------------|

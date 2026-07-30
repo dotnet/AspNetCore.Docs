@@ -52,7 +52,7 @@ For more information about Protobuf messages see the [Protobuf language guide](h
 
 ## Scalar Value Types
 
-Protobuf supports a range of native scalar value types. The following table lists them all with their equivalent C# type:
+Protobuf supports a range of native scalar value types. The following table lists them all with their equivalent C# type.
 
 | Protobuf type | C# type      |
 | ------------- | ------------ |
@@ -138,7 +138,7 @@ message Person {
 
 `wrappers.proto` types aren't exposed in generated properties. Protobuf automatically maps them to appropriate .NET nullable types in C# messages. For example, a `google.protobuf.Int32Value` field generates an `int?` property. Reference type properties like `string` and `ByteString` are unchanged except `null` can be assigned to them without error.
 
-The following table shows the complete list of wrapper types with their equivalent C# type:
+The following table shows the complete list of wrapper types with their equivalent C# type.
 
 | C# type      | Well-Known Type wrapper       |
 | ------------ | ----------------------------- |

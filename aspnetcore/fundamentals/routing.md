@@ -442,7 +442,7 @@ The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.R
 
 Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformers](#parameter-transformers) section.
 
-The following table demonstrates example route templates and their behavior:
+The following table demonstrates example route templates and their behavior.
 
 | Route Template                           | Example Matching URI    | The request URI&hellip;                                                      |
 |------------------------------------------|-------------------------|------------------------------------------------------------------------------|
@@ -563,7 +563,7 @@ To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the 
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match:
+Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
