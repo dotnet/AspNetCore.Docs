@@ -244,7 +244,7 @@ The following features covered in this article are supported with static file mi
 * [Set HTTP response headers](#set-http-response-headers)
 * [Serving files from disk or embedded resources, or other locations](#serve-files-from-multiple-locations)
 * [Directory browsing](#directory-browsing)
-* [Serve default documents](#serve-default-documents) (requires a call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> when using <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>)
+* [Serve default documents](#serve-default-documents) (with <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>, requires a call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>)
 * [Combine static files, default documents, and directory browsing](#combine-static-files-default-documents-and-directory-browsing)
 * [Map file extensions to MIME types](#map-file-extensions-to-mime-types)
 * [Serving non-standard content types](#non-standard-content-types)
@@ -428,7 +428,7 @@ app.MapStaticAssets();
 
 ## Static assets manifest
 
-<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> serves assets from a *static assets manifest* rather than by scanning the [web root](xref:fundamentals/index#web-root) at runtime. The manifest is generated at build and publish time and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations (Gzip and Brotli). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> serves assets from a *static assets manifest* rather than by scanning the [web root](xref:fundamentals/index#web-root) at runtime. The manifest is generated at build and publish time and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations ([Gzip](https://tools.ietf.org/html/rfc1952) and [Brotli](https://tools.ietf.org/html/rfc7932)). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
 
 The manifest is generated in the build output directory. By default, its file name is based on the app's <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName%2A> (for example, `{ASSEMBLY NAME}.staticwebassets.endpoints.json`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name). To provide a manifest from a different location, see the [Provide a custom static files manifest](#provide-a-custom-static-files-manifest) section.
 
