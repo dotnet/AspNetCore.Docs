@@ -2,7 +2,7 @@
 title: .NET OpenAPI tool command reference and installation
 ai-usage: ai-assisted
 author: ryanbrandenburg
-description: Command reference for the 'Microsoft.dotnet-openapi' tool, which adds and manages OpenAPI references that generate clients to consume OpenAPI documents.
+description: Command reference for the `Microsoft.dotnet-openapi` tool, which adds and manages OpenAPI references that generate clients to consume OpenAPI documents.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 07/30/2026
@@ -14,7 +14,7 @@ uid: fundamentals/openapi/openapi-tools
 
 This article is a command reference for the `Microsoft.dotnet-openapi` .NET global tool, which adds and manages `<OpenApiReference />` entries in a project file. These references let a project generate a strongly typed client from an existing OpenAPI document so the app can call the described API.
 
-This tool addresses the *consumer* side of OpenAPI. If you instead need to generate an OpenAPI document for your own ASP.NET Core API, see the following articles:
+This tool addresses the *consumer* side of OpenAPI. For guidance on generating and using an OpenAPI document for your own ASP.NET Core API, see the following articles:
 
 * <xref:fundamentals/openapi/overview>
 * <xref:fundamentals/openapi/aspnetcore-openapi>
