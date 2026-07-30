@@ -14,7 +14,7 @@ uid: fundamentals/openapi/openapi-tools
 
 This article is a command reference for the `Microsoft.dotnet-openapi` .NET global tool, which adds and manages `<OpenApiReference />` entries in a project file. These references let a project generate a strongly typed client from an existing OpenAPI document so the app can call the described API.
 
-This tool addresses the *consumer* side of OpenAPI. To generate an OpenAPI document for your own ASP.NET Core API, see the following articles:
+This tool addresses the *consumer* side of OpenAPI. If you instead need to generate an OpenAPI document for your own ASP.NET Core API, see the following articles:
 
 * <xref:fundamentals/openapi/overview>
 * <xref:fundamentals/openapi/aspnetcore-openapi>
@@ -131,5 +131,5 @@ After adding an OpenAPI reference and generating a client, see the following res
 * <xref:tutorials/first-web-api>
 * <xref:tutorials/min-web-api>
 
-When you generate an OpenAPI document, avoid exposing it in production, since it reveals details of the API that you might not want to make public. The preceding articles show how to make the OpenAPI document and related UI available only in the development environment.
+When you generate an OpenAPI document, avoid exposing it in production, because it reveals details of the API that you might not want to make public. The preceding articles show how to make the OpenAPI document and related UI available only in the development environment.
 
