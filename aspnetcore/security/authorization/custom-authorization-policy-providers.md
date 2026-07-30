@@ -157,7 +157,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorWebAppAuthorization.Policies.Attributes;
 
-internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
+public class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
 {
     private const string PolicyPrefix = "MinimumAge";
 
@@ -243,10 +243,10 @@ public class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
         return DefaultPolicyProvider.GetPolicyAsync(policyName);
     }
 
-    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
+    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => 
         DefaultPolicyProvider.GetDefaultPolicyAsync();
 
-    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() =>
+    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() => 
         DefaultPolicyProvider.GetFallbackPolicyAsync();
 }
 ```
@@ -335,8 +335,8 @@ The following component uses the strongly-typed [custom `MinimumAgeAuthorizeAttr
 
 <p>
     Applies the policy to the Razor component with a custom 
-    [MinimumAgeAuthorize] attribute (derived from AuthorizeAttribute). 
-    This approach is preferred for production code, as it's strongly-typed 
+    [MinimumAgeAuthorize] attribute (derived from AuthorizeAttribute).
+    This approach is preferred for production code, as it's strongly-typed
     and avoids the use of a string to set the policy and minimum age.
 </p>
 
