@@ -2,21 +2,22 @@
 title: ASP.NET Core OpenAPI XML documentation comment support in ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to integrate XML documentation comments on types by OpenAPI document generation in ASP.NET Core.
+description: OpenAPI XML documentation comments in ASP.NET Core enrich generated API documents automatically. Learn how to enable, customize, and disable XML comment support.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
+ms.reviewer: wpickett
 ms.date: 07/31/2026
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 # OpenAPI XML documentation comment support in ASP.NET Core
 
-ASP.NET Core XML documentation processing extracts code comments automatically to populate API documentation, ensuring the code and documentation remain synchronized. Metadata from XML documentation comments is included in the generated OpenAPI document without requiring changes to the app code, as long as the project is configured to generate the XML documentation file. XML documentation comments are automatically detected in the application assembly and referenced assemblies with XML documentation enabled.
+ASP.NET Core XML documentation processing automatically extracts code comments to populate API documentation, so your code and documentation stay in sync. If you configure your project to generate the XML documentation file, the generated OpenAPI document includes metadata from XML documentation comments without needing any changes to your app code. The application assembly and referenced assemblies with XML documentation enabled automatically provide XML documentation comments.
 
-ASP.NET Core processes [XML documentation tags](/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation strips out the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
+ASP.NET Core processes [XML documentation tags](/dotnet/csharp/language-reference/xmldoc/recommended-tags) like: `<c>`, `<code>`, `<list>`, `<para>`, `<paramref>`, `<typeparamref>`, `<see>`, and `<seealso>`. For XML documentation tags that use references to other elements, like `<see cref="SomeOtherType">`, the implementation removes the XML tag and maps the reference to plain text for inclusion in the OpenAPI document.
 
-ASP.NET Core XML documentation processing doesn't affect runtime performance. The source generator processes XML documentation at compile time and caches the results, with minimal runtime overhead when rendering the OpenAPI documentation. Furthermore, the OpenAPI document can be cached at runtime using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
+ASP.NET Core XML documentation processing doesn't affect runtime performance. The source generator processes XML documentation at compile time and caches the results, so there's minimal runtime overhead when rendering the OpenAPI documentation. You can also cache the OpenAPI document at runtime by using [output-caching](/aspnet/core/performance/caching/overview#output-caching) to further optimize performance.
 
-This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project to generate OpenAPI documents. The XML documentation comments are used to populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
+This article includes a [sample app](#download10) that demonstrates the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package's ability to integrate XML documentation comments on types into OpenAPI documents. The sample app is a minimal ASP.NET Core Web API project to generate OpenAPI documents. The XML documentation comments populate summaries, descriptions, parameter information, and response details in the generated OpenAPI document.
 
 The following image shows the Scalar UI with XML documentation comments integrated into the OpenAPI document of the sample app:
 
@@ -35,7 +36,7 @@ The following image shows the Scalar UI with XML documentation comments integrat
 
 ### Document HTTP responses
 
-Document HTTP responses with the `<response>` tag and the `code` attribute:
+Document HTTP responses by using the `<response>` tag and the `code` attribute:
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/10.x/aspnet-openapi-xml/api/ProjectBoardApis.cs" id="snippet_1" highlight="6-7":::
 
