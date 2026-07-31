@@ -10,8 +10,6 @@ uid: blazor/components/return-component-html-from-a-web-api
 ---
 # Return Razor component HTML from a web API in ASP.NET Core Blazor
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 This article demonstrates how to return Razor component HTML (as a `string`) from a web API (Minimal API) using the <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult> class.
 
 Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult> are rendered as static HTML strings. Features requiring an active SignalR connection for component interactivity can't execute in this context.
