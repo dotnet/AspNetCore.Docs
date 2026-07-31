@@ -44,13 +44,15 @@ Document HTTP responses with the `<response>` tag and the `code` attribute:
 /// <response code="404">Resource not found</response>
 ```-->
 
+The `<response>` tag supplies the *description* for a response, but it doesn't by itself *declare* that an endpoint can return a given status code. The set of status codes in the generated OpenAPI document comes from the endpoint's response metadata, which the framework infers from the endpoint's return types or reads from explicit metadata. The `<response>` tag then annotates those already-declared responses with descriptions.
+
+To make a status code appear in the OpenAPI document, ensure it's part of the endpoint's response metadata:
+
+* For minimal APIs, return a typed result such as `Results<Ok<T>, NotFound>` or add [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*)/[`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*) metadata. In the preceding sample, `GetProjectBoardById` returns `Results.Ok(...)` and `Results.NotFound()`, so both the `200` and `404` responses are inferred and the `<response>` descriptions are applied.
+* For controllers, add a [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute for each status code. For example, a `204` response requires `[ProducesResponseType(StatusCodes.Status204NoContent)]`.
+
 > [!NOTE]
-> The `<response>` tag supplies the *description* for a response, but it doesn't by itself *declare* that an endpoint can return a given status code. The set of status codes in the generated OpenAPI document comes from the endpoint's response metadata, which the framework infers from the endpoint's return types or reads from explicit metadata. The `<response>` tag then annotates those already-declared responses with descriptions. If a status code isn't part of the endpoint's response metadata, adding a `<response>` tag for it has no effect and the response is omitted from the OpenAPI document.
->
-> To make a status code appear in the OpenAPI document, ensure it's part of the endpoint's response metadata:
->
-> * For minimal APIs, return a typed result such as `Results<Ok<T>, NotFound>` or add [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*)/[`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*) metadata. In the preceding sample, `GetProjectBoardById` returns `Results.Ok(...)` and `Results.NotFound()`, so both the `200` and `404` responses are inferred and the `<response>` descriptions are applied.
-> * For controllers, add a [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute for each status code. For example, a `204` response requires `[ProducesResponseType(StatusCodes.Status204NoContent)]`.
+> If a status code isn't part of the endpoint's response metadata, adding a `<response>` tag for it has no effect and the response is omitted from the OpenAPI document.
 
 ### Add examples
 
