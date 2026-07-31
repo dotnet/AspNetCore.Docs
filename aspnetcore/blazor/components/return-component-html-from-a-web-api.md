@@ -12,7 +12,9 @@ uid: blazor/components/return-component-html-from-a-web-api
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult`1> are rendered as static HTML strings. Features requiring an active SignalR connection for component interactivity can't execute in this context.
+This article demonstrates how to return Razor component HTML (as a `string`) from a web API (Minimal API) using the <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult%601> class.
+
+Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult%601> are rendered as static HTML strings. Features requiring an active SignalR connection for component interactivity can't execute in this context.
 
 ## Place the Razor components into the web API
 
@@ -39,7 +41,7 @@ Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorCompone
 
 ## Add Razor component services and endpoints to the web API
 
-For components with parameters, pass dictionary keys that exactly match the names of properties decorated with `[Parameter]` on the component.
+For components with parameters, pass dictionary keys that exactly match the names of properties decorated with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
 
 ```csharp
 using Microsoft.AspNetCore.Http.HttpResults;
