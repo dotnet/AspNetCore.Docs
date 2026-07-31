@@ -5,8 +5,8 @@ author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
+ms.date: 07/30/2026
 ms.reviewer: wpickett
-ms.date: 07/06/2026
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -43,7 +43,7 @@ Map Static Assets provides the following benefits:
 Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
 
 > [!NOTE]
-> [Default documents](#serve-default-documents) are served compressed by <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> only when default files middleware (<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>) runs before routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>). `UseDefaultFiles` rewrites the request path to the default document (for example, `/` to `/index.html`) before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset. Calling `UseDefaultFiles` before `MapStaticAssets` satisfies this requirement.
+> <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> doesn't serve [default documents](#serve-default-documents) on its own. To serve default documents, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> followed by <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>. For more information, see the [Serve default documents](#serve-default-documents) section.
 
 :::moniker-end
 
@@ -244,7 +244,7 @@ The following features covered in this article are supported with static file mi
 * [Set HTTP response headers](#set-http-response-headers)
 * [Serving files from disk or embedded resources, or other locations](#serve-files-from-multiple-locations)
 * [Directory browsing](#directory-browsing)
-* [Serve default documents](#serve-default-documents)
+* [Serve default documents](#serve-default-documents) (with <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>, requires a call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>)
 * [Combine static files, default documents, and directory browsing](#combine-static-files-default-documents-and-directory-browsing)
 * [Map file extensions to MIME types](#map-file-extensions-to-mime-types)
 * [Serving non-standard content types](#non-standard-content-types)
@@ -423,6 +423,23 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 ```
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Static assets manifest
+
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> serves assets from a *static assets manifest* rather than by scanning the [web root](xref:fundamentals/index#web-root) at runtime. The manifest is generated at build and publish time and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations ([Gzip](https://tools.ietf.org/html/rfc1952) and [Brotli](https://tools.ietf.org/html/rfc7932)). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
+
+The manifest is generated in the build output directory at build time. Its file name is based on the project's assembly name (for example, `{ASSEMBLY NAME}.staticwebassets.endpoints.json`, where the `{ASSEMBLY NAME}` placeholder is the app's MSBuild `AssemblyName` value). To provide a manifest from a different location, see the [Provide a custom static files manifest](#provide-a-custom-static-files-manifest) section.
+
+Because `MapStaticAssets` only serves assets listed in the manifest, files that aren't part of the manifest aren't served by `MapStaticAssets`. Files aren't part of the manifest when they're:
+
+* Located outside the build-time web root, such as files served from disk, embedded resources, or a custom <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A> set at runtime.
+* Excluded from the manifest with the `StaticWebAssetEndpointExclusionPattern` MSBuild property (see the [Large collection of assets](#large-collection-of-assets) section).
+
+To serve files that aren't in the manifest, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, which serves files directly from the web root at runtime. This is also why serving [default documents](#serve-default-documents) with `MapStaticAssets` requires a call to `UseStaticFiles`.
+
+:::moniker-end
 
 ## Static file authorization
 
@@ -800,14 +817,32 @@ The preceding code allows directory browsing of the `wwwroot/images` folder usin
 
 Setting a default page provides visitors a starting point on a site. To serve a default file from `wwwroot` without requiring the request URL to include the file's name, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method.
 
-<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> is a URL rewriter that doesn't serve the file. In the request processing pipeline before the existing call to either <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (.NET 9 or later) or <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (.NET 8 or earlier):
+<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> is a URL rewriter that doesn't serve the file. It rewrites the request URL to the default document (for example, `/` to `/index.html`), and another component serves the file.
+
+:::moniker range=">= aspnetcore-9.0"
+
+Because <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> serves assets discovered at build time through endpoint routing, it doesn't serve default documents on its own. Call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> to rewrite the request, followed by <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> to serve the rewritten request for the default document:
+
+```csharp
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.MapStaticAssets();
+```
+
+> [!IMPORTANT]
+> Configuring only <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> (without <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) returns a *404 - Not Found* response for a request to `/`. This is because minimal hosting adds routing middleware at the start of the request processing pipeline, so endpoint routing matches the request before `UseDefaultFiles` rewrites it to the default document. The problem is especially apparent when the [web root](xref:fundamentals/index#web-root) is changed to a custom path with <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A>, because files in a custom web root aren't part of the [build-time static assets manifest](#static-assets-manifest) that `MapStaticAssets` serves. Add a call to `UseStaticFiles` after `UseDefaultFiles`, as shown in the preceding example, to serve default documents.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+In the request processing pipeline before the existing call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 ```csharp
 app.UseDefaultFiles();
 ```
 
-> [!NOTE]
-> When <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> is used (.NET 9 or later), default documents are served compressed only when <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> is called before <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>. This ordering ensures the path rewrite to the default document (for example, `/` to `/index.html`) happens before endpoint routing matches the request, which allows the Map Static Assets endpoint to serve the compressed asset.
+:::moniker-end
 
 With <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A>, requests to a folder in `wwwroot` search for:
 
