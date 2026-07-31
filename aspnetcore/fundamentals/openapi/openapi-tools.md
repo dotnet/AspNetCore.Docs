@@ -10,9 +10,7 @@ uid: fundamentals/openapi/openapi-tools
 ---
 # .NET OpenAPI tool command reference and installation
 
-[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
-
-This article is a command reference for the `Microsoft.dotnet-openapi` .NET global tool, which adds and manages `<OpenApiReference />` entries in a project file. These references let a project generate a strongly typed client from an existing OpenAPI document so the app can call the described API.
+[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Global Tool](/dotnet/core/tools/global-tools) that adds and manages `<OpenApiReference />` entries in a project file. These references let a project generate a strongly typed client from an existing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) document so the app can call the described API.
 
 This tool addresses the *consumer* side of OpenAPI. For guidance on generating and using an OpenAPI document for your own ASP.NET Core API, see the following articles:
 
