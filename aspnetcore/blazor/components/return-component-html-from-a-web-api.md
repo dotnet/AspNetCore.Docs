@@ -12,9 +12,9 @@ uid: blazor/components/return-component-html-from-a-web-api
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article demonstrates how to return Razor component HTML (as a `string`) from a web API (Minimal API) using the <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult%601> class.
+This article demonstrates how to return Razor component HTML (as a `string`) from a web API (Minimal API) using the <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult> class.
 
-Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult%601> are rendered as static HTML strings. Features requiring an active SignalR connection for component interactivity can't execute in this context.
+Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult> are rendered as static HTML strings. Features requiring an active SignalR connection for component interactivity can't execute in this context.
 
 ## Place the Razor components into the web API
 
@@ -75,7 +75,10 @@ builder.Services.AddHttpClient("WebAPI", client =>
     client.BaseAddress = new Uri("https://localhost:7286"));
 ```
 
-In a component, create an <xref:System.Net.Http.IHttpClientFactory> and request the component HTML (as `string`s), casting each to a <xref:Microsoft.AspNetCore.Components.MarkupString> for rendering:
+In a component, inject <xref:System.Net.Http.IHttpClientFactory> and request the component HTML (as `string`s), casting each to a <xref:Microsoft.AspNetCore.Components.MarkupString> for rendering:
+
+> [!WARNING]
+> Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided.
 
 ```razor
 @inject IHttpClientFactory ClientFactory
