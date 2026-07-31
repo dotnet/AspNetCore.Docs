@@ -426,7 +426,7 @@ Route templates that you apply to an action and that begin with `/` or `~/` don'
 
 [!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet)]
 
-The following table explains the `[Route]` attributes in the preceding code:
+The following table explains the `[Route]` attributes in the preceding code.
 
 | Attribute               | Combines with `[Route("Home")]` | Defines route template |
 | ----------------- | ------------ | --------- |
@@ -1268,7 +1268,7 @@ Route templates that you apply to an action and that begin with `/` or `~/` don'
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
 
-The following table explains the `[Route]` attributes in the preceding code:
+The following table explains the `[Route]` attributes in the preceding code.
 
 | Attribute               | Combines with `[Route("Home")]` | Defines route template |
 | ----------------- | ------------ | --------- |

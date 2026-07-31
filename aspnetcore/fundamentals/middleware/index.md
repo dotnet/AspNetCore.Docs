@@ -494,7 +494,7 @@ public class Startup
 }
 ```
 
-The following table shows the requests and responses from `http://localhost:1234` using the previous code:
+The following table shows the requests and responses from `http://localhost:1234` using the previous code.
 
 | Request                       | Response                     |
 | ----------------------------- | ---------------------------- |

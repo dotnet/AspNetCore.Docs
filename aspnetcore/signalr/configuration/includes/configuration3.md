@@ -46,7 +46,7 @@ MessagePack serialization can be configured by providing a delegate to the <xref
 
 ## Configure server options
 
-The following table describes options for configuring SignalR hubs:
+The following table describes options for configuring SignalR hubs.
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
@@ -101,7 +101,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
+The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options.
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |

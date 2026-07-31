@@ -3,7 +3,7 @@ title: What's new in ASP.NET Core in .NET 8
 author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: tdykstra
-ms.date: 10/30/2025
+ms.date: 07/29/2026
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
@@ -729,20 +729,7 @@ If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled
 
 ### `HTTP_PORTS` and `HTTPS_PORTS` config keys
 
-Applications and containers are often only given a port to listen on, like 80, without additional constraints like host or path. `HTTP_PORTS` and `HTTPS_PORTS` are new config keys that allow specifying the listening ports for the Kestrel and HTTP.sys servers. These can be defined with the `DOTNET_` or `ASPNETCORE_` environment variable prefixes, or specified directly through any other config input like appsettings.json. Each is a semicolon delimited list of port values. For example:
-
-```cli
-ASPNETCORE_HTTP_PORTS=80;8080
-ASPNETCORE_HTTPS_PORTS=443;8081
-```
-
-This is shorthand for the following, which specifies the scheme (HTTP or HTTPS) and any host or IP:
-
-```cli
-ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
-```
-
-For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
+[!INCLUDE[](~/includes/http-ports.md)]
 
 ### SNI host name in ITlsHandshakeFeature
 

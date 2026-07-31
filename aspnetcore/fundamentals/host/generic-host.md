@@ -4,7 +4,7 @@ author: tdykstra
 description: Use .NET Generic Host in ASP.NET Core apps. Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 04/22/2026
+ms.date: 07/29/2026
 uid: fundamentals/host/generic-host
 
 # customer intent: As an ASP.NET developer, I want to explore the .NET Generic Host in ASP.NET Core, so I can configure startup and management for my web app.
@@ -521,7 +521,7 @@ webBuilder.UseSetting("https_port", "8080");
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
 
 ### HTTPS ports
 
@@ -533,10 +533,11 @@ Specifies the possible ports to listen on for HTTPS connections.
 **Set using**: Configuration or `UseSetting`  
 **Environment variable**: `{PREFIX_}HTTPS_PORTS`
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHttpsPorts":::
+```csharp
+webBuilder.UseSetting("https_ports", "8080");
+```
 
 :::moniker-end
-
 
 ### Prefer hosting URLs
 
