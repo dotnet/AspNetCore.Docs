@@ -1,10 +1,11 @@
 ---
 title: Web server implementations in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 05/28/2025
+ms.date: 08/04/2026
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -72,6 +73,9 @@ For more information, see the following:
 
 ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
 
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, and continuous integration (CI), but not for production server workloads. There are no server editions of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
+
 # [Linux](#tab/linux)
 
 ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
@@ -129,6 +133,9 @@ For IIS and ASP.NET Core Module configuration guidance, see the following topics
 # [macOS](#tab/macos)
 
 ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, and continuous integration (CI), but not for production server workloads. There are no server editions of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
 
 # [Linux](#tab/linux)
 
