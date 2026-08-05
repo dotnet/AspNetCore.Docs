@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core built-in authentication, authorization, and Identity metrics
+title: ASP.NET Core built-in authentication and authorization metrics
 ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in authentication, authorization, and Identity metrics for ASP.NET Core apps.
@@ -9,9 +9,9 @@ ms.date: 08/05/2026
 ms.topic: reference
 uid: log-mon/metrics/built-in-security
 ---
-# ASP.NET Core built-in authentication, authorization, and Identity metrics
+# ASP.NET Core built-in authentication and authorization metrics
 
-This article describes the built-in authentication, authorization, and Identity metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics cover authorization attempts and authentication operations. They're available in ASP.NET Core 10.0 or later.
+This article describes the built-in authentication and authorization metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics cover authorization attempts and authentication operations. They're available in ASP.NET Core 10.0 or later.
 
 For an overview of all built-in metrics reference pages and how to read this reference, see <xref:log-mon/metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
 
