@@ -2,7 +2,7 @@
 title: ASP.NET Core built-in authentication and authorization metrics
 ai-usage: ai-assisted
 author: guardrex
-description: Learn about built-in authentication, authorization, and Identity metrics for ASP.NET Core apps.
+description: Learn about built-in authentication and authorization metrics for ASP.NET Core apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
 ms.date: 08/05/2026
