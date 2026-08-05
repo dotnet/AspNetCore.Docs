@@ -31,7 +31,7 @@ Learn how to build and dockerize an ASP.NET Core app. Explore Docker images main
 Samples and guidance that demonstrate how to use .NET and Docker for development, testing and production.
 
 [Visual Studio Container Tools](/visualstudio/containers/add-container-support)  
-Discover how Visual Studio supports building, debugging, and running ASP.NET Core apps on Docker for Windows. Both Windows and Linux containers are supported.
+Discover how Visual Studio supports building, debugging, and running containerized apps, including an ASP.NET Core example. Both Windows and Linux containers are supported.
 
 [Publish to Azure Container Registry](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)  
 Find out how to use the Visual Studio Container Tools extension to deploy an ASP.NET Core app to a Docker host on Azure using PowerShell.
