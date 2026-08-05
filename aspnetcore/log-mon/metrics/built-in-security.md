@@ -19,6 +19,8 @@ For an overview of all built-in metrics reference pages and how to read this ref
 
 The `Microsoft.AspNetCore.Authorization` metrics report information about [authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
 
+* [`aspnetcore.authorization.attempts`](#metric-aspnetcoreauthorizationattempts)
+
 ### Metric: `aspnetcore.authorization.attempts`
 
 Name | Instrument Type | Unit (UCUM) | Description
