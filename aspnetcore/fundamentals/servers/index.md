@@ -74,7 +74,7 @@ For more information, see the following:
 ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
 
 > [!NOTE]
-> macOS is supported for ASP.NET Core development, testing, and continuous integration (CI), but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
 
 # [Linux](#tab/linux)
 
