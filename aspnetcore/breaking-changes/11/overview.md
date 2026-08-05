@@ -21,6 +21,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 | [Hosting emits OpenTelemetry HTTP semantic-convention tags by default](http-activity-otel-semconv.md) | Behavioral change |
 | [Kestrel tightens HTTP protocol compliance](kestrel-strict-protocol-compliance.md) | Behavioral change |
 | [Microsoft.OpenApi upgraded to 3.x](microsoft-openapi-3x.md) | Source incompatible |
+| [MVC compatibility options removed](mvc-compatibility-options-removed.md) | Binary/source incompatible |
 | [Obsolete Blazor APIs removed](blazor-obsolete-apis-removed.md) | Source incompatible |
 | [OpenAPI document includes all ProducesResponseType entries per status code](openapi-multiple-produces-per-status.md) | Behavioral change |
 | [OpenAPI server URL no longer has a trailing slash when PathBase is empty](openapi-server-url-trailing-slash.md) | Behavioral change |

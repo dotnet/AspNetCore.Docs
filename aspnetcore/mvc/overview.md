@@ -3,7 +3,7 @@ title: Overview of ASP.NET Core MVC
 author: ardalis
 description: Learn how ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 ms.author: tdykstra
-ms.date: 04/29/2026
+ms.date: 08/05/2026
 uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
@@ -228,9 +228,7 @@ Tag Helpers provide an HTML-friendly development experience and a rich IntelliSe
 
 ## Compatibility version
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
-
-For more information, see <xref:mvc/compatibility-version>.
+The `SetCompatibilityVersion` method allowed an app to opt in or opt out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later. The method is a no-op for ASP.NET Core 3.0 and later apps, and it's removed in ASP.NET Core 11. For more information, see <xref:mvc/compatibility-version> and [MVC compatibility options removed](/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed).
 
 ## Additional resources
 
