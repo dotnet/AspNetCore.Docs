@@ -1,10 +1,11 @@
 ---
 title: gRPC on .NET supported platforms
+ai-usage: ai-assisted
 author: jamesnk
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 01/08/2025
+ms.date: 08/05/2026
 uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms
@@ -46,6 +47,9 @@ ASP.NET Core gRPC services can be hosted on all operating system that .NET suppo
 > * Linux
 > * macOS
 
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
@@ -57,6 +61,9 @@ ASP.NET Core gRPC services can be hosted on all operating system that .NET suppo
 > * macOS&dagger;
 
 &dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
 
 :::moniker-end
 
