@@ -339,7 +339,7 @@ Value | Description
 
 Value | Description
 --- | ---
-`server_sent_events` | [server-sent events](https://developer.mozilla.org/docs/Web/API/Server-sent_events/Using_server-sent_events) 
+`server_sent_events` | [server-sent events](https://developer.mozilla.org/docs/Web/API/Server-sent_events/Using_server-sent_events)
 `long_polling` | [Long Polling](/archive/msdn-magazine/2012/april/cutting-edge-long-polling-and-signalr)
 `web_sockets` | [WebSocket](https://datatracker.ietf.org/doc/html/rfc6455)
 
