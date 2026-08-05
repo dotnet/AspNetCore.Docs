@@ -52,7 +52,7 @@ Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.authentication.result` | string | The authentication result. | `success`; `failure`; `none`; `_OTHER` | `Conditionally Required` if the request did not end with an error.
 `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies` | `Conditionally Required` if the request did not end with an error.
-`error.type` | string | The full name of the exception type. | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if authentication failed or the request. has ended with an error.
+`error.type` | string | The full name of the exception type. | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if authentication failed or the request has ended with an error.
 
 ### Metric: `aspnetcore.authentication.challenges`
 
