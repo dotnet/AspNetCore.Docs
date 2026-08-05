@@ -17,7 +17,7 @@ For an overview of all built-in metrics reference pages and how to read this ref
 
 ## `Microsoft.AspNetCore.Authorization`
 
-The `Microsoft.AspNetCore.Authorization` metrics report information about [Authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
+The `Microsoft.AspNetCore.Authorization` metrics report information about [authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
 
 ### Metric: `aspnetcore.authorization.attempts`
 
@@ -27,7 +27,7 @@ Name | Instrument Type | Unit (UCUM) | Description
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-`user.is_authenticated` | boolean | Whether the request came from an authenticated user | `true` | `Required`
+`user.is_authenticated` | boolean | Whether the request came from an authenticated user. | `true` | `Required`
 `aspnetcore.authorization.policy` | string | The name of the authorization policy. | `AtLeast21`; `EmployeeOnly` | `Conditionally required` if an authorization policy is used.
 `aspnetcore.authorization.result` | string | Whether the authorization succeeded or failed. | `success`; `failure` | `Conditionally Required` if an exception is not thrown during authorization.
 `error.type` | string | The full name of the exception type. | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error.

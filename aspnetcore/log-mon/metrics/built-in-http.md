@@ -54,7 +54,7 @@ When using OpenTelemetry, the default buckets for this metric are set to [ 0.005
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-[`http.server.active_requests`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-httpserveractive_requests) | UpDownCounter | `{request}` | Measures the number of concurrent HTTP requests that are currently in-flight.
+[`http.server.active_requests`](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-httpserveractive_requests) | UpDownCounter | `{request}` | Measures the number of concurrent HTTP requests that are currently in flight.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
