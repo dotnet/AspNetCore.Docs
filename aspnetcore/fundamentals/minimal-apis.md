@@ -113,11 +113,11 @@ builder.Services.AddValidation();
 The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
 > [!NOTE]
-> `AddValidation` uses a source generator to discover validatable types at compile time. The source generator only discovers types within the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a different assembly than the assembly where `AddValidation` is called, the source generator doesn't discover those endpoint handler types, and validation silently doesn't execute. For more information, see the [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps) section.
+> `AddValidation` uses a source generator that only discovers validatable types in the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a referenced assembly rather than the assembly where `AddValidation` is called, register validation as shown in the [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps) section.
 
 ### Register validation in multi-assembly apps
 
-Because `AddValidation` relies on a source generator that only inspects the assembly where the method is called, calling `AddValidation` from the host app assembly doesn't register validation for endpoint handler types defined in a referenced assembly. In that case, invalid requests are accepted and return a *200 - OK* response instead of the expected *400 - Bad Request* response, even though `AddValidation` is registered and the request types use validation attributes such as `[Required]`.
+When endpoint handler types are defined in a referenced assembly but `AddValidation` is called from the host app assembly, validation silently doesn't execute: invalid requests are accepted and return a *200 - OK* response instead of the expected *400 - Bad Request* response, even though `AddValidation` is registered and the request types use validation attributes such as `[Required]`.
 
 To validate types defined in a different assembly, call `AddValidation` from within that assembly. Create a service collection extension method in the assembly that defines the Minimal API endpoints, and call it from the host app:
 
