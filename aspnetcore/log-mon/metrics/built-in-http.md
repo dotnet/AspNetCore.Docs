@@ -215,7 +215,7 @@ Attribute | Type | Description | Examples | Presence
 `server.port` | int | Server port number | `80`; `8080`; `443` | If the transport is `tcp` or `udp`.
 `tls.protocol.version` | string | TLS protocol version. | `1.2`; `1.3` | If the connection is secured with TLS.
 
-As this metric is tracking the connection duration, and ideally http connections are used for multiple requests, the buckets should be longer than those used for request durations. For example, using [ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300] provides an upper bucket of 5 mins.
+As this metric is tracking the connection duration, and ideally HTTP connections are used for multiple requests, the buckets should be longer than those used for request durations. For example, using [ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300] provides an upper bucket of 5 mins.
 
 :::moniker range="= aspnetcore-9.0"
 
