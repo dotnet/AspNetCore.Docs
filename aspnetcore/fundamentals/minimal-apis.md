@@ -124,7 +124,7 @@ To validate types defined in a different assembly, call `AddValidation` from wit
 `ServiceCollectionExtensions.cs` (in the assembly that defines the endpoints):
 
 ```csharp
-namespace ApiAssembly;
+namespace MinimalApisAssembly;
 
 public static class ServiceCollectionExtensions
 {
@@ -138,7 +138,7 @@ public static class ServiceCollectionExtensions
 In the host app's `Program` file, call the extension method instead of calling `AddValidation` directly:
 
 ```csharp
-using ApiAssembly;
+using MinimalApisAssembly;
 
 var builder = WebApplication.CreateBuilder(args);
 
