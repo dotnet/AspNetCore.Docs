@@ -164,6 +164,8 @@ app.MapPost("/products",
     ([EvenNumber(ErrorMessage = "Product ID must be even")] int productId, [Required] string name)
         => TypedResults.Ok(productId))
     .DisableValidation();
+```
+
 ### Customize validation error responses using IProblemDetailsService
 
 Customize error responses from Minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for Minimal API validation was introduced in ASP.NET Core in .NET 10.
