@@ -151,6 +151,8 @@ app.MapApi();
 app.Run();
 ```
 
+In the preceding example, `MapApi` is an extension method defined in the endpoints assembly that maps the Minimal API endpoints. Define it alongside `AddApiValidation` so both the endpoint mappings and validation are registered from the same assembly.
+
 If types are validated in more than one assembly, call `AddValidation` in each assembly that defines validatable types and call each of those extension methods from the host app.
 
 If validation silently doesn't execute, confirm that `AddValidation` is called from the same assembly that defines the Minimal API endpoint mappings and the validatable types.
