@@ -76,7 +76,7 @@ Name | Instrument Type | Unit (UCUM) | Description
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.routing.match_status` | string | Match result. | `success`; `failure` | Always
-`aspnetcore.routing.is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `True` | If a route was successfully matched.
+`aspnetcore.routing.is_fallback_route` | boolean | A value that indicates whether the matched route is a fallback route. | `true` | If a route was successfully matched.
 `http.route` | string | The matched route. | `{controller}/{action}/`<br>`{id?}` | If a route was successfully matched.
 
 ## `Microsoft.AspNetCore.RateLimiting`
