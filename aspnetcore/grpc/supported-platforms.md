@@ -63,7 +63,7 @@ ASP.NET Core gRPC services can be hosted on all operating system that .NET suppo
 &dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 > [!NOTE]
-> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). In addition, macOS [doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos). For production hosting, use Windows or Linux.
 
 :::moniker-end
 
