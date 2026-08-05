@@ -552,14 +552,14 @@ items:
           - name: Built-in metrics
             uid: log-mon/metrics/built-in
             items:
-            - name: HTTP metrics
-              uid: log-mon/metrics/built-in-http
-            - name: Diagnostics metrics
-              uid: log-mon/metrics/built-in-diagnostics
-            - name: Blazor (Components) metrics
-              uid: log-mon/metrics/built-in-components
-            - name: Authentication, authorization, and Identity metrics
-              uid: log-mon/metrics/built-in-security
+              - name: HTTP metrics
+                uid: log-mon/metrics/built-in-http
+              - name: Diagnostics metrics
+                uid: log-mon/metrics/built-in-diagnostics
+              - name: Blazor (Components) metrics
+                uid: log-mon/metrics/built-in-components
+              - name: Authentication, authorization, and Identity metrics
+                uid: log-mon/metrics/built-in-security
       - name: HttpContext
         uid: fundamentals/use-httpcontext
       - name: Routing
