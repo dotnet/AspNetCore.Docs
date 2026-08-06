@@ -15,10 +15,10 @@ ai-usage: ai-assisted
 
 YARP is designed as a .NET library that provides core proxy functionality. You can customize the library by adding or replacing modules. YARP is currently provided as a NuGet package and code samples, but a project template and prebuilt executable (`.exe`) are planned for the future.
 
-YARP is implemented on top of .NET infrastructure. You can develop apps on Windows, Linux, or macOS with the .NET SDK and your favorite editor: [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/). For production hosting, use Windows or Linux.
+YARP is implemented on top of .NET infrastructure. You can develop apps on Windows, Linux, or macOS with the .NET SDK and your favorite editor: [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/). For production hosting, use Windows or Linux server distributions.
 
 > [!NOTE]
-> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux.
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
 YARP 2.3.0 supports .NET 8 or later. You can download the .NET SDK from https://dotnet.microsoft.com/download/dotnet/.
 
