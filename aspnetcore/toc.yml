@@ -1407,8 +1407,6 @@ items:
                 uid: grpc/json-transcoding
               - name: HTTP rules and JSON
                 uid: grpc/json-transcoding-binding
-              - name: Swagger / OpenAPI
-                uid: grpc/json-transcoding-openapi
       - name: Configuration
         uid: grpc/configuration
       - name: Authentication and authorization
