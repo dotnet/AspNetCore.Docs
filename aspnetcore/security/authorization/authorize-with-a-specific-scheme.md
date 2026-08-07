@@ -141,7 +141,7 @@ By specifying a single scheme, the corresponding handler runs. In the following 
 > [!NOTE]
 > If authentication to the app requires cookie-based authentication by default, the user's request must succeed with authentication middleware based on a valid authentication cookie even if the attribute doesn't specify the Cookies authentication scheme.
 
-## Selecting the scheme with policies
+## Select the scheme with an authorization policy
 
 If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.Net.Http.Server.AuthenticationSchemes> collection when adding the policy.
 
@@ -232,9 +232,13 @@ public class MixedAuthSchemesModel : PageModel
 }
 ```
 
+## `[Authorize]` attribute scheme and policy scheme interaction
+
+The authorization schemes for an endpoint with one or more [`Authorize` attributes](#select-a-scheme-with-an-authorize-attribute) and one or more [policy-based schemes](#select-the-scheme-with-an-authorization-policy) are *combined* to set the final set of permitted schemes for the endpoint.
+
 ## Use multiple authentication schemes
 
-Some apps require support for multiple types of authentication. A typical scenario involves accepting bearer JWTs issued by several identity providers.
+Some apps require support for multiple methods of authentication. A typical scenario involves accepting bearer JWTs issued by several identity providers.
 
 Only one JWT Bearer handler is registered with the default authentication scheme <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>. Register additional JWT Bearer schemes for additional identity providers with unique authentication scheme names. The following example names the second scheme "`MEID`" for the ME-ID issuer.
 
@@ -330,7 +334,23 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-Because the default authorization policy is overridden, the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can specify that requests are approved with a valid JWT issued by the first or second issuer.
+The preceding code configures default authorization with support for multiple authentication schemes:
+
+1. A new <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder> initializes a policy builder that accepts authentication from two schemes:
+
+   * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> (JWT Bearer tokens)
+   * "MEID" (the custom authentication scheme for ME-ID, defined earlier)
+
+   This means users can authenticate using either JWT tokens or the MEID scheme
+
+2. <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> is called to require authenticated users for access to protected endpoints.
+
+3. <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> chained to <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A>:
+
+   * Registers authorization services.
+   * Sets this policy as the default for all `[Authorize]` attributes that don't specify a custom policy. Any endpoint marked with `[Authorize]` automatically uses this policy
+
+The result of using the preceding API is that protected endpoints in the app require authentication via either JWT Bearer tokens or the MEID scheme, providing flexibility in how users authenticate.
 
 ## Select a policy scheme based on the `Authorization` header
 
