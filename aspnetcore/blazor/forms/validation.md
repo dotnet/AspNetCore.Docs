@@ -2625,10 +2625,6 @@ public class ShipDescription
 
 ## Use validation models from a different assembly
 
-<!-- UPDATE 11.0 - The first list item changes when the content
-                   is updated for plain class libs upon 
-                   experimental status dropping at 11.0 -->
-
 For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
 
 * If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation). Additional steps are required for plain class libraries, which are described later in this section.
@@ -2665,9 +2661,7 @@ builder.Services.AddValidationForTypesInClient();
 builder.Services.AddValidation();
 ```
 
-<!-- UPDATE 11.0 - The following changes when the content
-                   is updated for plain class libs upon 
-                   experimental status dropping at 11.0 -->
+:::moniker range="= aspnetcore-10.0"
 
 The new attributes from the `Microsoft.Extensions.Validation` package (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks.
 
@@ -2718,6 +2712,8 @@ namespace Microsoft.Extensions.Validation.Embedded
 Use the exact namespace (`Microsoft.Extensions.Validation.Embedded`) and class name (`ValidatableTypeAttribute`) in order for the validation source generator to detect and use the type. You can declare a global `using` statement for the namespace, either with a `global using Microsoft.Extensions.Validation.Embedded;` statement or with a `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item in the library's project file.
 
 Whichever approach is adopted, denote the presence of the workaround for a future update to your code. Framework updates to ease the adoption of validation types in plain class libraries are planned for .NET 11 (November, 2026).
+
+:::moniker-end
 
 :::moniker-end
 
