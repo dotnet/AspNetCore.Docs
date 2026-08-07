@@ -2661,6 +2661,8 @@ builder.Services.AddValidationForTypesInClient();
 builder.Services.AddValidation();
 ```
 
+:::moniker-end
+
 :::moniker range="= aspnetcore-10.0"
 
 The new attributes from the `Microsoft.Extensions.Validation` package (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks.
@@ -2712,8 +2714,6 @@ namespace Microsoft.Extensions.Validation.Embedded
 Use the exact namespace (`Microsoft.Extensions.Validation.Embedded`) and class name (`ValidatableTypeAttribute`) in order for the validation source generator to detect and use the type. You can declare a global `using` statement for the namespace, either with a `global using Microsoft.Extensions.Validation.Embedded;` statement or with a `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item in the library's project file.
 
 Whichever approach is adopted, denote the presence of the workaround for a future update to your code. Framework updates to ease the adoption of validation types in plain class libraries are planned for .NET 11 (November, 2026).
-
-:::moniker-end
 
 :::moniker-end
 
