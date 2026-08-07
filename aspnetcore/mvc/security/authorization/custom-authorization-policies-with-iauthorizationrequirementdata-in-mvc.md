@@ -20,7 +20,7 @@ The MVC sample for this article is the [`AuthRequirementsData` sample app (`dotn
 
 Test the sample with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
 
-From the project's folder in a command shell, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
+From the project's folder in a command shell, execute the following command to create a JWT Bearer token with a birth date claim that makes the user over 21 years old:
 
 ```dotnetcli
 dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01
@@ -74,7 +74,7 @@ Start the app in Visual Studio or with the `dotnet watch` command in a command s
 dotnet watch
 ```
 
-In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
+In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `api/greetings/hello` endpoint. Replace the `{TOKEN}` placeholder with the first JWT Bearer token that you saved earlier:
 
 ```dotnetcli
 curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:5001/api/greetings/hello

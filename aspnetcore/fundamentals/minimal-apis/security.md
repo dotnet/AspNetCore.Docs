@@ -63,7 +63,7 @@ In some cases, such as controlling middleware order, it's necessary to explicitl
 
 Authentication strategies typically support various configurations that are loaded via options. Minimal apps support loading options from configuration for the following authentication strategies:
 
-* [JWT bearer-based authentication](https://jwt.io/introduction#what-is-json-web-token)
+* [JWT Bearer-based authentication](https://jwt.io/introduction#what-is-json-web-token)
 * [OpenID Connect-based authentication](https://openid.net/developers/how-connect-works/)
 
 The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in the [configuration](../configuration/index.md). In the following sample, two different schemes, `Bearer` and `LocalAuthIssuer`, are defined with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy.
@@ -92,7 +92,7 @@ The ASP.NET Core framework expects to find these options under the `Authenticati
 }
 ```
 
-In the _Program.cs_ file, two JWT bearer-based authentication strategies are registered with the following scheme names:
+In the _Program.cs_ file, two JWT Bearer-based authentication strategies are registered with the following scheme names:
 
 * "Bearer"
 * "LocalAuthIssuer"
@@ -128,7 +128,7 @@ The `admin_greetings` policy is provided as a required policy to the `/hello` en
 
 ## Use 'dotnet user-jwts' for development testing
 
-The examples in this article use an app configured with JWT-bearer based authentication. JWT bearer-based authentication requires clients to present a token in the request header, which is used to validate their identity and claims. Typically, a central authority like an identity server issues the tokens.
+The examples in this article use an app configured with JWT-bearer based authentication. JWT Bearer-based authentication requires clients to present a token in the request header, which is used to validate their identity and claims. Typically, a central authority like an identity server issues the tokens.
 
 For development on the local machine, the [dotnet user-jwts](../../security/authentication/jwt-authn.md) command-line tool can be used to create bearer tokens.
 

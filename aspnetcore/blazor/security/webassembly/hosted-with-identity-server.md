@@ -212,7 +212,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigur
 The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space under `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
 
 * Registers an API resource with Identity Server with a default scope of `{PROJECT NAME}API`, where the `{PROJECT NAME}` placeholder is the project's name at app creation.
-* Configures the JWT bearer token middleware to validate tokens issued by Identity Server for the app.
+* Configures the JWT Bearer token middleware to validate tokens issued by Identity Server for the app.
 
 ### Weather forecast controller
 

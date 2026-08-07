@@ -885,7 +885,7 @@ Consider a scenario in which the web API you're testing is behind a proxy secure
 Examples of supported authentication and authorization schemes include:
 
 * basic authentication
-* JWT bearer tokens
+* JWT Bearer tokens
 * digest authentication
 
 For example, you can send a bearer token to an endpoint with the following command:

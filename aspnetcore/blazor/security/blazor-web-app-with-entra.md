@@ -768,7 +768,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
-The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT Bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
 
 In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project, add the following JSON configuration:
 
@@ -890,7 +890,7 @@ Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of
 * Microsoft Entra External ID: `{CLIENT ID}`
 * B2C tenant type: `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
 
-The configuration is automatically picked up by the JWT bearer authentication builder.
+The configuration is automatically picked up by the JWT Bearer authentication builder.
 
 Remove the following lines from the `Program` file:
 
