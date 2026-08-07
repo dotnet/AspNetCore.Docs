@@ -4,7 +4,7 @@ author: damienbod
 description: Learn how to set up JWT Bearer authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 09/29/2025
+ms.date: 08/07/2026
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT Bearer authentication in ASP.NET Core
@@ -115,7 +115,7 @@ OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for 
 
 ## Implementing JWT Bearer token authentication
 
-The [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) Nuget package can be used to validate the JWT Bearer tokens.
+The [`Microsoft.AspNetCore.Authentication.JwtBearer` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) can be used to validate the JWT Bearer tokens.
 
 JWT Bearer tokens should be fully validated in an API. The following should be validated:
 
