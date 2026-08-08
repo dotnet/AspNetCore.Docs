@@ -1,10 +1,11 @@
 ---
 title: Enable Web Authentication API (WebAuthn) passkeys
+ai-usage: ai-assisted
 author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 11/12/2025
+ms.date: 08/08/2026
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -208,6 +209,160 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
         return true;
     };
 });
+```
+
+## Customize passkey handling with `IPasskeyHandler<TUser>`
+
+<xref:Microsoft.AspNetCore.Identity.SignInManager%601> is the recommended way to handle passkey registration and authentication. Its <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyCreationOptionsAsync%2A> and <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAttestationAsync%2A> methods store the *attestation state* between the two registration requests in a data-protected authentication cookie and clear it after use, so most apps should use that path and don't need the guidance in this section.
+
+For advanced scenarios, the passkey operations that `SignInManager` calls are provided by <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601>, a public service with four methods:
+
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeCreationOptionsAsync%2A>: Generates the creation options and attestation state for registering a new passkey.
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeRequestOptionsAsync%2A>: Generates the request options for authenticating with an existing passkey.
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAttestationAsync%2A>: Validates the credential returned by the browser during registration.
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAssertionAsync%2A>: Validates the credential returned by the browser during authentication.
+
+Implement or wrap `IPasskeyHandler<TUser>` only when you need behavior that `SignInManager` doesn't provide, for example:
+
+* Per-request or per-tenant creation or request options.
+* Users that don't come from `UserManager<TUser>`.
+* Extra checks before or after the built-in attestation or assertion logic.
+
+In most cases, wrapping the built-in `PasskeyHandler<TUser>` and delegating to it is sufficient. When you use `IPasskeyHandler<TUser>` directly instead of `SignInManager`, your app takes over storing the attestation state, which introduces the security responsibilities described in the following sections.
+
+### Understand the attestation state
+
+Registration is a two-request flow. <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeCreationOptionsAsync%2A> returns a <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult> with two parts:
+
+* <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult.CreationOptionsJson%2A>: The options JSON sent to the browser for the `navigator.credentials.create()` call.
+* <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult.AttestationState%2A>: The state that the app holds and passes back on the second request as <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationContext.AttestationState%2A>.
+
+The attestation state carries the challenge and the `PasskeyUserEntity` that identifies the account the new passkey attaches to. When <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAttestationAsync%2A> succeeds, it returns that user entity as <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity%2A>.
+
+> [!WARNING]
+> The default `PasskeyHandler<TUser>` serializes the attestation state as plain JSON with no signature or encryption. If your app round-trips the state through the browser without protection, an attacker can edit the user ID in the state and register their authenticator against another user's account. The app that stores the state is responsible for protecting it.
+
+### Validate integrity and ownership
+
+When your app stores the attestation state, it must enforce three requirements. Each row lists the attack it prevents and what `SignInManager` does as reference behavior.
+
+| Requirement | Attack prevented | `SignInManager` reference behavior |
+| --- | --- | --- |
+| The state can't be modified by the client. | An attacker edits the user ID to attach a passkey to another account. | Stores the state in a data-protected authentication cookie that the client can't read or forge. |
+| The state is bound to the requesting session and user, and rechecked when it returns. | An attacker replays another user's state in their own session. | Ties the state to the authenticated user in the two-factor authentication cookie for the current session. |
+| The state is single use with a short lifetime. | An attacker reuses a captured state to register additional passkeys. | Clears the cookie when the state is read and relies on a short cookie lifetime. |
+
+### Registration example
+
+The following minimal API example stores the attestation state with the [data protection APIs](xref:security/data-protection/introduction) and keeps it out of the browser. Two endpoints implement the two registration requests. The `{PROTECTED STATE STORE}` placeholder is the app's server-side store that maps a session to its protected state, such as a distributed cache keyed by session ID.
+
+The first endpoint generates the creation options, protects the attestation state, and stores it bound to the current session and user:
+
+```csharp
+app.MapPost("/Account/PasskeyCreationOptions", async (
+    HttpContext context,
+    UserManager<ApplicationUser> userManager,
+    IPasskeyHandler<ApplicationUser> passkeyHandler,
+    IDataProtectionProvider dataProtectionProvider) =>
+{
+    var user = await userManager.GetUserAsync(context.User);
+
+    if (user is null)
+    {
+        return Results.NotFound();
+    }
+
+    var userId = await userManager.GetUserIdAsync(user);
+    var userName = await userManager.GetUserNameAsync(user) ?? "User";
+
+    var optionsResult = await passkeyHandler.MakeCreationOptionsAsync(new()
+    {
+        Id = userId,
+        Name = userName,
+        DisplayName = userName
+    }, context);
+
+    // Protect the attestation state and store it server-side, bound to the
+    // current session and user. Never send the raw state to the browser.
+    var protector = dataProtectionProvider.CreateProtector("Passkeys.Attestation");
+    var protectedState = protector.Protect(optionsResult.AttestationState ?? string.Empty);
+
+    // Store 'protectedState', 'userId', and a short expiration keyed by the
+    // session ID in '{PROTECTED STATE STORE}'.
+
+    return TypedResults.Content(
+        optionsResult.CreationOptionsJson, contentType: "application/json");
+});
+```
+
+The second endpoint reads the state back, confirms it belongs to the current session and user, performs attestation, verifies the returned user entity, stores the passkey, and then clears the state so it can't be reused:
+
+```csharp
+app.MapPost("/Account/PasskeyCreation", async (
+    HttpContext context,
+    UserManager<ApplicationUser> userManager,
+    IPasskeyHandler<ApplicationUser> passkeyHandler,
+    IDataProtectionProvider dataProtectionProvider,
+    [FromForm] string credentialJson) =>
+{
+    var user = await userManager.GetUserAsync(context.User);
+
+    if (user is null)
+    {
+        return Results.NotFound();
+    }
+
+    var userId = await userManager.GetUserIdAsync(user);
+
+    // Read 'protectedState' and the stored user ID for the current session from
+    // '{PROTECTED STATE STORE}'. Reject the request if no state exists or if the
+    // stored user ID doesn't match the current user.
+    // if (storedUserId != userId) { return Results.BadRequest("State mismatch"); }
+
+    var protector = dataProtectionProvider.CreateProtector("Passkeys.Attestation");
+    var attestationState = protector.Unprotect(protectedState);
+
+    var attestationResult = await passkeyHandler.PerformAttestationAsync(new()
+    {
+        HttpContext = context,
+        CredentialJson = credentialJson,
+        AttestationState = attestationState
+    });
+
+    if (!attestationResult.Succeeded)
+    {
+        return Results.BadRequest($"Error: {attestationResult.Failure.Message}");
+    }
+
+    // Verify the user entity from the result matches the current user before
+    // storing the passkey. This is the check that prevents attaching a passkey
+    // to another account.
+    if (attestationResult.UserEntity.Id != userId)
+    {
+        return Results.BadRequest("User entity mismatch");
+    }
+
+    var addResult =
+        await userManager.AddOrUpdatePasskeyAsync(user, attestationResult.Passkey);
+
+    if (!addResult.Succeeded)
+    {
+        return Results.BadRequest("Failed to store passkey");
+    }
+
+    // Clear the stored state for the current session so it can't be reused.
+
+    return Results.Ok();
+});
+```
+
+### Register the handler
+
+`IPasskeyHandler<TUser>` is registered by ASP.NET Core Identity with a scoped lifetime when you add Identity services, so injecting it (as shown in the previous example) works without extra configuration. To replace or wrap the default handler, register your implementation after calling `AddIdentity` or `AddIdentityCore`:
+
+```csharp
+builder.Services.AddScoped<
+    IPasskeyHandler<ApplicationUser>, CustomPasskeyHandler>();
 ```
 
 ## Registration flow
