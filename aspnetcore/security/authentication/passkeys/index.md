@@ -314,10 +314,16 @@ app.MapPost("/Account/PasskeyCreation", async (
 
     var userId = await userManager.GetUserIdAsync(user);
 
-    // Read 'protectedState' and the stored user ID for the current session from
-    // '{PROTECTED STATE STORE}'. Reject the request if no state exists or if the
-    // stored user ID doesn't match the current user.
-    // if (storedUserId != userId) { return Results.BadRequest("State mismatch"); }
+    // Read the protected state and the stored user ID for the current session
+    // from '{PROTECTED STATE STORE}'. Reject the request if no state exists or
+    // if the stored user ID doesn't match the current user.
+    string protectedState = ""; // Load from '{PROTECTED STATE STORE}'.
+    string storedUserId = ""; // Load from '{PROTECTED STATE STORE}'.
+
+    if (storedUserId != userId)
+    {
+        return Results.BadRequest("State mismatch");
+    }
 
     var protector = dataProtectionProvider.CreateProtector("Passkeys.Attestation");
     var attestationState = protector.Unprotect(protectedState);
