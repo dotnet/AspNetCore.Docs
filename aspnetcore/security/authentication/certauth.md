@@ -321,7 +321,7 @@ By default, certificate authentication disables caching. To enable caching, call
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
-When `AddCertificateCache` is enabled, the result produced by `OnCertificateValidated` must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy, or provide a context-aware implementation of `ICertificateValidationCache`.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache%2A> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated%2A> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
@@ -1004,7 +1004,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-When `AddCertificateCache` is enabled, the result produced by `OnCertificateValidated` must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy, or provide a context-aware implementation of `ICertificateValidationCache`.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache%2A> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated%2A> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
