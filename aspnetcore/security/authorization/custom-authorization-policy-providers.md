@@ -139,7 +139,7 @@ public Task<AuthorizationPolicy?> GetFallbackPolicyAsync()
 
 ## Custom authorization attribute
 
-The recommended approach for applying policies in concert with a custom policy provider is to use a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. A custom attribute implementation maps arguments into a string that are used to retrieve a corresponding authorization policy.
+The recommended approach for applying policies in concert with a custom policy provider is to use a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. A custom attribute implementation maps arguments into a string that's used to retrieve a corresponding authorization policy.
 
 The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and makes the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy%2A?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix (`MinimumAge`) and an integer passed in via its constructor (`MinimumAge{AGE}`), where the `{AGE}` placeholder is the minimum age, for example, `MinimumAge21`. The following attribute is used with the custom policy provider shown later in this article in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section.
 
