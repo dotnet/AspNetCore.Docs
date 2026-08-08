@@ -5,7 +5,7 @@ description: Provides an overview of Minimal APIs in ASP.NET Core
 ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 06/11/2026
+ms.date: 08/05/2026
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
 ---
@@ -112,6 +112,51 @@ builder.Services.AddValidation();
 
 The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
+> [!NOTE]
+> `AddValidation` uses a source generator that only discovers validatable types in the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a referenced assembly rather than the assembly where `AddValidation` is called, register validation as shown in the [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps) section.
+
+### Register validation in multi-assembly apps
+
+When endpoint handler types are defined in a referenced assembly but `AddValidation` is called from the host app assembly, validation doesn't execute: invalid requests are accepted and return a *200 - OK* response instead of the expected *400 - Bad Request* response, even though `AddValidation` is registered and the request types use validation attributes such as `[Required]`.
+
+To validate types defined in a different assembly, call `AddValidation` from within that assembly. Create a service collection extension method in the assembly that defines the Minimal API endpoints, and call it from the host app:
+
+`ServiceCollectionExtensions.cs` (in the assembly that defines the endpoints):
+
+```csharp
+namespace MinimalApisAssembly;
+
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddApiValidation(this IServiceCollection services)
+    {
+        return services.AddValidation();
+    }
+}
+```
+
+In the host app's `Program` file, call the extension method instead of calling `AddValidation` directly:
+
+```csharp
+using MinimalApisAssembly;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApiValidation();
+
+var app = builder.Build();
+
+app.MapApi();
+
+app.Run();
+```
+
+In the preceding example, `MapApi` is an extension method defined in the endpoints assembly that maps the Minimal API endpoints. Define it alongside `AddApiValidation` so both the endpoint mappings and validation are registered from the same assembly.
+
+If types are validated in more than one assembly, call `AddValidation` in each assembly that defines validatable types, and call each of those extension methods from the host app.
+
+If validation silently doesn't execute, confirm that `AddValidation` is called from the same assembly that defines the Minimal API endpoint mappings and the validatable types.
+
 Validation can be disabled for specific endpoints by using the `DisableValidation` extension method, as in the following example:
 
 ```csharp
@@ -120,6 +165,7 @@ app.MapPost("/products",
         => TypedResults.Ok(productId))
     .DisableValidation();
 ```
+
 ### Customize validation error responses using IProblemDetailsService
 
 Customize error responses from Minimal API validation logic with an <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation. Register this service in your application's service collection to enable more consistent and user-specific error responses. Support for Minimal API validation was introduced in ASP.NET Core in .NET 10.
