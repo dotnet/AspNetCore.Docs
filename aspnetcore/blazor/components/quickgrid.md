@@ -874,7 +874,7 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 * In the **Model class** dropdown list, select the model class. A folder is created for the generated components from the model name (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
 * For **DbContext class**, take either of the following approaches:
   * Select an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class.
-  * Select the **+** (plus sign) button and use the **Add Data Context** modal dialog to supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class name, which registers the class with a factory provider instead of using the context type directly as a service registration.
+  * Select the **+** (plus sign) button and use the **Add Data Context** modal dialog to supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class name. The scaffolder registers a new context with a factory provider instead of using the context type directly as a service registration, and it updates an existing `ApplicationDbContext` registration to use a factory provider when needed.
 * After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. You can select the appropriate provider for the database that you're using. The options include SQL Server, SQLite, PostgreSQL, and Azure Cosmos DB.
 * Select **Add**.
 
