@@ -213,7 +213,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 
 ## Customize passkey handling with `IPasskeyHandler<TUser>`
 
-<xref:Microsoft.AspNetCore.Identity.SignInManager%601> is the recommended way to handle passkey registration and authentication. Its <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyCreationOptionsAsync%2A> and <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAttestationAsync%2A> methods store the *attestation state* between the two registration requests in a data-protected authentication cookie and clear it after use, so most apps should use that path and don't need the guidance in this section.
+<xref:Microsoft.AspNetCore.Identity.SignInManager%601> is the recommended way to handle passkey registration and authentication. Its <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyCreationOptionsAsync%2A> and <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAttestationAsync%2A> methods store the *attestation state* between the two registration requests in a data-protected authentication cookie and clear it after use. Most apps should use that path and don't need the guidance in this section.
 
 For advanced scenarios, the passkey operations that `SignInManager` calls are provided by <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601>, a public service with four methods:
 
@@ -222,13 +222,13 @@ For advanced scenarios, the passkey operations that `SignInManager` calls are pr
 * <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAttestationAsync%2A>: Validates the credential returned by the browser during registration.
 * <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAssertionAsync%2A>: Validates the credential returned by the browser during authentication.
 
-Implement or wrap `IPasskeyHandler<TUser>` only when you need behavior that `SignInManager` doesn't provide, for example:
+Implement or wrap `IPasskeyHandler<TUser>` only when you need behavior that `SignInManager` doesn't provide, such as:
 
 * Per-request or per-tenant creation or request options.
 * Users that don't come from `UserManager<TUser>`.
 * Extra checks before or after the built-in attestation or assertion logic.
 
-In most cases, wrapping the built-in `PasskeyHandler<TUser>` and delegating to it is sufficient. When you use `IPasskeyHandler<TUser>` directly instead of `SignInManager`, your app takes over storing the attestation state, which introduces the security responsibilities described in the following sections.
+In most cases, wrapping the built-in `PasskeyHandler<TUser>` and delegating to it is sufficient. When you use `IPasskeyHandler<TUser>` directly instead of `SignInManager`, your app takes over storing the attestation state. Storing the state directly introduces the security responsibilities described in the following sections.
 
 ### Understand the attestation state
 
