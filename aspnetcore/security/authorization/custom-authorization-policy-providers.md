@@ -143,15 +143,6 @@ The recommended approach for applying policies in concert with a custom policy p
 
 The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and makes the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy%2A?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix (`MinimumAge`) and an integer passed in via its constructor (`MinimumAge{AGE}`), where the `{AGE}` placeholder is the minimum age, for example, `MinimumAge21`. The following attribute is used with the custom policy provider shown later in this article in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section.
 
-> [!IMPORTANT]
-> As with all policy-based authorization scenarios, create a requirement and an authorization handler in the app's service container for the policy. Register the handler in the app's service container.
->
-> For an example, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` example code in the *Policy-based authorization* article, which work with the `MinimumAgePolicyProvider` demonstrated in this article:
->
-> * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
-> * [`MinimumAgeHandler` class for one requirement](xref:#use-a-handler-for-one-requirement)
-> * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
-
 `Policies/Attributes/MinimumAgeAuthorizeAttribute.cs`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Attributes/MinimumAgeAuthorizeAttribute.cs":::
@@ -196,6 +187,25 @@ public class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
 ```
 
 You can apply the attribute for any given authorized minimum age with an integer parameter for the age. Examples are shown later in this article in the [Use policies from a custom policy provider](#use-policies-from-a-custom-policy-provider) section.
+
+> [!IMPORTANT]
+> As with all policy-based authorization scenarios, create a requirement and an authorization handler for the policy. Register the handler in the app's service container.
+>
+> For examples that work with the custom policy provider in this article, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` code in the *Policy-based authorization* article, which work with the `MinimumAgePolicyProvider` demonstrated in this article:
+>
+> * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
+> * [`MinimumAgeHandler` class for one requirement](xref:security/authorization/policies#use-a-handler-for-one-requirement)
+> * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
+
+<!-- DOC REVIEWER NOTE: The preceding links go to ......
+
+https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#requirements-and-policy-registration
+
+https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#use-a-handler-for-one-requirement
+
+https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#handler-registration
+
+-->
 
 ## Minimum age custom policy provider example
 
@@ -264,17 +274,23 @@ public class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
 
 To use custom policies:
 
-* As with all policy-based authorization scenarios, register the appropriate `AuthorizationHandler` types in the app's service container.
+* As with all policy-based authorization scenarios, create a requirement and an authorization handler for the policy. Register the handler in the app's service container.
 
-  For more information, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` example code in <xref:security/authorization/policies>, which work with the `MinimumAgePolicyProvider` demonstrated in this article.
-
-* As with all policy-based authorization scenarios, create a requirement and an authorization handler in the app's service container for the policy. Register the handler in the app's service container.
-
-  For an example, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` example code in the *Policy-based authorization* article, which work with the `MinimumAgePolicyProvider` demonstrated in this article:
+  For examples that work with the custom policy provider in this article, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` code in the *Policy-based authorization* article, which work with the `MinimumAgePolicyProvider` demonstrated in this article:
 
   * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
-  * [`MinimumAgeHandler` class for one requirement](xref:#use-a-handler-for-one-requirement)
+  * [`MinimumAgeHandler` class for one requirement](xref:security/authorization/policies#use-a-handler-for-one-requirement)
   * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
+
+  <!-- DOC REVIEWER NOTE: The preceding links go to ......
+
+  https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#requirements-and-policy-registration
+
+  https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#use-a-handler-for-one-requirement
+
+  https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#handler-registration
+
+  -->
 
 :::moniker range=">= aspnetcore-6.0"
 
