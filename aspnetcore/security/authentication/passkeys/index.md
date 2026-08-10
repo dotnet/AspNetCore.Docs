@@ -282,8 +282,13 @@ app.MapPost("/Account/PasskeyCreationOptions", async (
         DisplayName = userName
     }, context);
 
+    if (string.IsNullOrEmpty(optionsResult.AttestationState))
+    {
+        return Results.Problem("Failed to generate attestation state.");
+    }
+
     var protector = dataProtectionProvider.CreateProtector("Passkeys.Attestation");
-    var protectedState = protector.Protect(optionsResult.AttestationState ?? string.Empty);
+    var protectedState = protector.Protect(optionsResult.AttestationState);
 
     // Store 'protectedState', 'userId', and a short expiration in
     // '{PROTECTED STATE STORE}', keyed by the session ID.
