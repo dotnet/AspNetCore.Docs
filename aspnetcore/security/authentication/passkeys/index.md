@@ -5,7 +5,7 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/08/2026
+ms.date: 08/10/2026
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -282,18 +282,21 @@ app.MapPost("/Account/PasskeyCreationOptions", async (
         DisplayName = userName
     }, context);
 
-    // Protect the attestation state and store it server-side, bound to the
-    // current session and user. Never send the raw state to the browser.
     var protector = dataProtectionProvider.CreateProtector("Passkeys.Attestation");
     var protectedState = protector.Protect(optionsResult.AttestationState ?? string.Empty);
 
-    // Store 'protectedState', 'userId', and a short expiration keyed by the
-    // session ID in '{PROTECTED STATE STORE}'.
+    // Store 'protectedState', 'userId', and a short expiration in
+    // '{PROTECTED STATE STORE}', keyed by the session ID.
 
     return TypedResults.Content(
         optionsResult.CreationOptionsJson, contentType: "application/json");
 });
 ```
+
+The preceding code:
+
+* Protects the attestation state and stores it server-side, bound to the current session and user. The raw state is never sent to the browser.
+* Stores the protected state, the user ID, and a short expiration in the `{PROTECTED STATE STORE}`, keyed by the session ID, where the `{PROTECTED STATE STORE}` placeholder is the app's server-side store.
 
 The second endpoint reads the state back, confirms it belongs to the current session and user, performs attestation, verifies the returned user entity, stores the passkey, and then clears the state so it can't be reused:
 
@@ -314,9 +317,6 @@ app.MapPost("/Account/PasskeyCreation", async (
 
     var userId = await userManager.GetUserIdAsync(user);
 
-    // Read the protected state and the stored user ID for the current session
-    // from '{PROTECTED STATE STORE}'. Reject the request if no state exists or
-    // if the stored user ID doesn't match the current user.
     string protectedState = ""; // Load from '{PROTECTED STATE STORE}'.
     string storedUserId = ""; // Load from '{PROTECTED STATE STORE}'.
 
@@ -340,9 +340,6 @@ app.MapPost("/Account/PasskeyCreation", async (
         return Results.BadRequest($"Error: {attestationResult.Failure.Message}");
     }
 
-    // Verify the user entity from the result matches the current user before
-    // storing the passkey. This is the check that prevents attaching a passkey
-    // to another account.
     if (attestationResult.UserEntity.Id != userId)
     {
         return Results.BadRequest("User entity mismatch");
@@ -356,11 +353,17 @@ app.MapPost("/Account/PasskeyCreation", async (
         return Results.BadRequest("Failed to store passkey");
     }
 
-    // Clear the stored state for the current session so it can't be reused.
+    // Clear the stored state for the current session in '{PROTECTED STATE STORE}'.
 
     return Results.Ok();
 });
 ```
+
+The preceding code:
+
+* Reads the protected state and the stored user ID for the current session from the `{PROTECTED STATE STORE}`. The request is rejected if no state exists or if the stored user ID doesn't match the current user.
+* Verifies that the user entity from the result matches the current user before storing the passkey. This check prevents attaching a passkey to another account.
+* Clears the stored state for the current session so it can't be reused.
 
 ### Register the handler
 
