@@ -325,7 +325,7 @@ app.MapPost("/Account/PasskeyCreation", async (
     string protectedState = ""; // Load from '{PROTECTED STATE STORE}'.
     string storedUserId = ""; // Load from '{PROTECTED STATE STORE}'.
 
-    if (storedUserId != userId)
+    if (string.IsNullOrEmpty(protectedState) || storedUserId != userId)
     {
         return Results.BadRequest("State mismatch");
     }
