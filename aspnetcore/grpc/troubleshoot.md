@@ -217,11 +217,11 @@ System.OperationCanceledException: The request was canceled due to the configure
 
 There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=5)]
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=3)]
 
 Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=6)]
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=4)]
 
 :::moniker-end
 
