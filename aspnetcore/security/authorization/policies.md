@@ -393,7 +393,7 @@ Perform the same steps with the access token that was generated with an invalid 
 
 # [cURL in a command shell](#tab/curl-command-shell)
 
-In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `WeatherForecast` endpoint. Replace the `{TOKEN}` placeholder with the first JWT Bearer token that you saved earlier:
+In a command shell, use the .NET CLI to execute the following `curl.exe` command to request the `WeatherForecast` endpoint. Replace the `{TOKEN}` placeholder with the first JWT bearer token that you saved earlier:
 
 ```dotnetcli
 curl.exe -i -H "Authorization: Bearer {TOKEN}" https://localhost:7250/WeatherForecast

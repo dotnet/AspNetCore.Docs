@@ -25,7 +25,7 @@ Authentication schemes are specified by registering authentication services in `
 * By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
 * Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
-For example, the following code registers authentication services and handlers for cookie and JWT Bearer authentication schemes:
+For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -106,14 +106,14 @@ Based on the authentication scheme's configuration and the incoming request cont
 An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Authenticate examples include:
 
 * A cookie authentication scheme constructing the user's identity from cookies.
-* A JWT Bearer scheme deserializing and validating a JWT Bearer token to construct the user's identity.
+* A JWT bearer scheme deserializing and validating a JWT bearer token to construct the user's identity.
 
 ### Challenge
 
 An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication schemes, or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
-* A JWT Bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
+* A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
 
 A challenge action should let the user know what authentication mechanism to use to access the requested resource.
 
@@ -122,7 +122,7 @@ A challenge action should let the user know what authentication mechanism to use
 An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they're not permitted to access. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Authentication forbid examples include:
 
 * A cookie authentication scheme redirecting the user to a page indicating access was forbidden.
-* A JWT Bearer scheme returning a 403 result.
+* A JWT bearer scheme returning a 403 result.
 * A custom authentication scheme redirecting to a page where the user can request access to the resource.
 
 A forbid action can let the user know:
@@ -182,7 +182,7 @@ Authentication schemes are specified by registering authentication services in `
 * By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
 * Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
-For example, the following code registers authentication services and handlers for cookie and JWT Bearer authentication schemes:
+For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -254,14 +254,14 @@ Based on the authentication scheme's configuration and the incoming request cont
 An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Authenticate examples include:
 
 * A cookie authentication scheme constructing the user's identity from cookies.
-* A JWT Bearer scheme deserializing and validating a JWT Bearer token to construct the user's identity.
+* A JWT bearer scheme deserializing and validating a JWT bearer token to construct the user's identity.
 
 ### Challenge
 
 An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication schemes, or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
-* A JWT Bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
+* A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
 
 A challenge action should let the user know what authentication mechanism to use to access the requested resource.
 
@@ -270,7 +270,7 @@ A challenge action should let the user know what authentication mechanism to use
 An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they're not permitted to access. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Authentication forbid examples include:
 
 * A cookie authentication scheme redirecting the user to a page indicating access was forbidden.
-* A JWT Bearer scheme returning a 403 result.
+* A JWT bearer scheme returning a 403 result.
 * A custom authentication scheme redirecting to a page where the user can request access to the resource.
 
 A forbid action can let the user know:
@@ -322,7 +322,7 @@ Authentication schemes are specified by registering authentication services in `
 * By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> (such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>, for example). These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
 * Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
-For example, the following code registers authentication services and handlers for cookie and JWT Bearer authentication schemes:
+For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
 
 ```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -397,14 +397,14 @@ Based on the authentication scheme's configuration and the incoming request cont
 An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Authenticate examples include:
 
 * A cookie authentication scheme constructing the user's identity from cookies.
-* A JWT Bearer scheme deserializing and validating a JWT Bearer token to construct the user's identity.
+* A JWT bearer scheme deserializing and validating a JWT bearer token to construct the user's identity.
 
 ### Challenge
 
 An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or follows a login link. Authorization invokes a challenge using the specified authentication schemes, or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
-* A JWT Bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
+* A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
 
 A challenge action should let the user know what authentication mechanism to use to access the requested resource.
 
@@ -413,7 +413,7 @@ A challenge action should let the user know what authentication mechanism to use
 An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they're not permitted to access. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Authentication forbid examples include:
 
 * A cookie authentication scheme redirecting the user to a page indicating access was forbidden.
-* A JWT Bearer scheme returning a 403 result.
+* A JWT bearer scheme returning a 403 result.
 * A custom authentication scheme redirecting to a page where the user can request access to the resource.
 
 A forbid action can let the user know:

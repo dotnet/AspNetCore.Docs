@@ -1,25 +1,25 @@
 ---
-title: Configure JWT Bearer authentication in ASP.NET Core
+title: Configure JWT bearer authentication in ASP.NET Core
 author: damienbod
-description: Learn how to set up JWT Bearer authentication in an ASP.NET Core app.
+description: Learn how to set up JWT bearer authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.date: 08/07/2026
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
-# Configure JWT Bearer authentication in ASP.NET Core
+# Configure JWT bearer authentication in ASP.NET Core
 
 By [Damien Bowden](https://github.com/damienbod)
 
 JWT (JSON Web Token) Bearer Authentication is commonly utilized for APIs. While it operates similarly to cookie authentication, the identity provider issues a JWT or tokens upon a successful authentication. These tokens can then be sent to other servers to authenticate, unlike cookies which are only sent back to the issuing domain. A JWT is a self-contained token that encapsulates information for an API resource or a client. The client which requested the JWT can request data from an API resource using the Authorization header and a bearer token.
 
-JWT Bearer Authentication provides:
+JWT bearer Authentication provides:
 
 * **Authentication**: When using the `JwtBearerHandler`, bearer tokens are essential for authentication. The `JwtBearerHandler` validates the token and extracts the user's identity from its claims.
 * **Authorization**: Bearer tokens enable authorization by providing a collection of claims representing the user's or application's permissions, much like a cookie.
 * **Delegated Authorization**: When a user-specific access token is used to authenticate between APIs instead of an application-wide access token, this process is known as *delegated authorization*.
 
-For an introduction to JWT Bearer Authentication, see [JSON Web Tokens.](https://en.wikipedia.org/wiki/JSON_Web_Token)
+For an introduction to JWT bearer Authentication, see [JSON Web Tokens.](https://en.wikipedia.org/wiki/JSON_Web_Token)
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/configure-jwt-bearer-authentication/sample/JwtBearer)
 
 This article covers the following areas:
@@ -27,7 +27,7 @@ This article covers the following areas:
 * Token types
 * Using JWT tokens to secure an APIs
 * How OIDC/OAuth fits into this?
-* Implementing JWT Bearer token authentication
+* Implementing JWT bearer token authentication
 * Recommended approaches to create a JWT
 
 ## Token types
@@ -113,11 +113,11 @@ OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for 
   * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), you can use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A).
 * If the app has no user: The OAuth 2.0 client credentials flow is suitable for obtaining application access tokens.
 
-## Implementing JWT Bearer token authentication
+## Implementing JWT bearer token authentication
 
-The [`Microsoft.AspNetCore.Authentication.JwtBearer` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) can be used to validate the JWT Bearer tokens.
+The [`Microsoft.AspNetCore.Authentication.JwtBearer` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) can be used to validate the JWT bearer tokens.
 
-JWT Bearer tokens should be fully validated in an API. The following should be validated:
+JWT bearer tokens should be fully validated in an API. The following should be validated:
 
 *  Signature, for trust and integrity. This ensures the token was created by the designated secure token service and has not been tampered with.
 *  Issuer claim with the expected value.
@@ -128,7 +128,7 @@ The following claims are required for OAuth 2.0 access tokens: `iss`, `exp`, `au
 
 If any of these claims or values are incorrect, the API should return a 401 response.
 
-### JWT Bearer token basic validation
+### JWT bearer token basic validation
 
 A basic implementation of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
 
@@ -141,7 +141,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 });
 ```
 
-### JWT Bearer token explicit validation
+### JWT bearer token explicit validation
 
 The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
 

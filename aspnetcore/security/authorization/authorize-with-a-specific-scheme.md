@@ -10,7 +10,7 @@ uid: security/authorization/authorize-with-a-specific-scheme
 ---
 # Authorize with a specific scheme in ASP.NET Core
 
-<!-- DOC AUTHOR NOTE: "Bearer," "Cookie," "Cookies," and "JWT Bearer" aren't localized globally per the DocFX file. -->
+<!-- DOC AUTHOR NOTE: "Bearer," "Cookie," "Cookies," and "JWT bearer" aren't localized globally per the DocFX file. -->
 
 For an introduction to authentication schemes, see [Overview of ASP.NET Core Authentication: Authentication scheme](xref:security/authentication/index#authentication-scheme).
 
@@ -19,7 +19,7 @@ In some scenarios, such as Single Page Applications (SPAs), it's common to use m
 For the following <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> call without a default authentication scheme specified, two authentication handlers are added to the app using their default authentication scheme names:
 
 * Cookie (scheme name: "Cookies"): <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>
-* JWT Bearer (scheme name: "Bearer"): <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>
+* JWT bearer (scheme name: "Bearer"): <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -57,7 +57,7 @@ services.AddAuthentication()
 
 Specifying the default scheme when calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> results in setting the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property to a <xref:System.Security.Claims.ClaimsPrincipal> that relies on that identity. If this behavior isn't desired, invoke the parameterless form of <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, as shown in the preceding example.
 
-## JWT Bearer NuGet package
+## JWT bearer NuGet package
 
 Several examples in this article rely on API in the [`Microsoft.AspNetCore.Authentication.JwtBearer` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer). The package provides middleware that facilitates JSON Web Token (JWT) authentication, enabling secure authentication for APIs and web services.
 
@@ -144,7 +144,7 @@ By specifying a single scheme, the corresponding handler runs. In the following 
 
 If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.Net.Http.Server.AuthenticationSchemes> collection when adding the policy.
 
-In the following example, the `Over18` policy only runs against the identity created by the JWT Bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method enforces user authentication to endpoints where the policy is applied.
+In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method enforces user authentication to endpoints where the policy is applied.
 
 > [!NOTE]
 > The following example requires the <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> namespace.
@@ -239,7 +239,7 @@ The authorization schemes for an endpoint with one or more [`Authorize` attribut
 
 Some apps require support for multiple methods of authentication. A typical scenario involves accepting bearer JWTs issued by several identity providers.
 
-Only one JWT Bearer handler is registered with the default authentication scheme <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>. Register additional JWT Bearer schemes for additional identity providers with unique authentication scheme names. The following example names the second scheme "`MEID`" for the ME-ID issuer.
+Only one JWT bearer handler is registered with the default authentication scheme <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>. Register additional JWT bearer schemes for additional identity providers with unique authentication scheme names. The following example names the second scheme "`MEID`" for the ME-ID issuer.
 
 > [!NOTE]
 > The following examples require the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> and <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> namespaces.
@@ -337,7 +337,7 @@ The preceding code configures default authorization with support for multiple au
 
 1. A new <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder> initializes a policy builder that accepts authentication from two schemes:
 
-   * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> (JWT Bearer tokens)
+   * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> (JWT bearer tokens)
    * "MEID" (the custom authentication scheme for ME-ID, defined earlier)
 
    This means users can authenticate using either JWT tokens or the MEID scheme
@@ -349,7 +349,7 @@ The preceding code configures default authorization with support for multiple au
    * Registers authorization services.
    * Sets this policy as the default for all `[Authorize]` attributes that don't specify a custom policy. Any endpoint marked with `[Authorize]` automatically uses this policy
 
-The result of using the preceding API is that protected endpoints in the app require authentication via either JWT Bearer tokens or the MEID scheme, providing flexibility in how users authenticate.
+The result of using the preceding API is that protected endpoints in the app require authentication via either JWT bearer tokens or the MEID scheme, providing flexibility in how users authenticate.
 
 ## Select a policy scheme based on the `Authorization` header
 

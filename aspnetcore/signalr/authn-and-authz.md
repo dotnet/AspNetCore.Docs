@@ -296,7 +296,7 @@ In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured using the [JWT Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
