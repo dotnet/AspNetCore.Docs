@@ -213,7 +213,12 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 
 ## Customize the passkey handler
 
-<xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601> is the service that generates passkey options and performs attestation and assertion. ASP.NET Core Identity registers <xref:Microsoft.AspNetCore.Identity.PasskeyHandler%601> as the default implementation, and <xref:Microsoft.AspNetCore.Identity.SignInManager%601> calls into it.
+<xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601> is the service that generates passkey options and performs attestation and assertion. ASP.NET Core Identity registers <xref:Microsoft.AspNetCore.Identity.PasskeyHandler%601> as the default implementation, and <xref:Microsoft.AspNetCore.Identity.SignInManager%601> calls into it. The interface has four methods:
+
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeCreationOptionsAsync%2A>: Generates the creation options and the attestation state for registering a passkey.
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeRequestOptionsAsync%2A>: Generates the request options and the assertion state for authenticating with an existing passkey.
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAttestationAsync%2A>: Validates the credential that the browser returns during registration.
+* <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAssertionAsync%2A>: Validates the credential that the browser returns during authentication.
 
 Most apps should use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> methods shown in the [Registration flow](#registration-flow) and [Authentication flow](#authentication-flow) sections instead of calling the handler directly. Those methods manage the temporary state that the two-request registration and authentication ceremonies require, and they protect that state on the app's behalf.
 
@@ -243,7 +248,7 @@ The state that the default handler produces holds the challenge and the <xref:Mi
 
 The state is the only place that records the account. An attestation response from the browser contains a new public key and the signed challenge but nothing that identifies a user, so <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAttestationAsync%2A> reports the user taken from the state in <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity%2A>. If the state is modified before the credential is submitted, the passkey is registered to whichever account the modified state names.
 
-### Validate the integrity and ownership of the attestation state
+### Validate integrity and ownership
 
 An app that manages the attestation state itself must meet the following three requirements.
 
@@ -312,6 +317,11 @@ app.MapPost("/Account/PasskeyCreationOptions", async (
 }).RequireAuthorization();
 ```
 
+The preceding code:
+
+* Protects the attestation state with the data protection APIs before the state reaches the browser, so the client can't read or modify it.
+* Limits the cookie to a five minute lifetime, which bounds how long a registration can stay open.
+
 When the credential arrives, the app restores the state, verifies that the attestation belongs to the signed-in user, and only then stores the passkey:
 
 ```csharp
@@ -335,7 +345,6 @@ app.MapPost("/Account/PasskeyRegistration", async (
         return Results.BadRequest("No passkey registration is underway");
     }
 
-    // The state is single-use, so discard it before it's consumed.
     context.Response.Cookies.Delete(AttestationStateCookieName);
 
     var protector = 
@@ -363,8 +372,6 @@ app.MapPost("/Account/PasskeyRegistration", async (
         return Results.BadRequest($"Error: {attestationResult.Failure.Message}");
     }
 
-    // The handler takes the account from the attestation state, so confirm that
-    // the passkey is registered to the signed-in user before storing it.
     var userId = await userManager.GetUserIdAsync(user);
 
     if (!string.Equals(attestationResult.UserEntity.Id, userId, 
@@ -384,6 +391,12 @@ app.MapPost("/Account/PasskeyRegistration", async (
     return Results.Ok();
 }).RequireAuthorization();
 ```
+
+The preceding code:
+
+* Deletes the state cookie before the state is used, so the state is good for a single registration.
+* Rejects the request when the state can't be unprotected, which happens when the value was tampered with or was protected with a different key.
+* Confirms that the attestation result names the signed-in user before the passkey is stored. The handler takes the account from the attestation state, so this check is what stops a passkey from being attached to another account.
 
 The `PasskeyRegistrationRequest` type carries the serialized credential from the browser:
 
