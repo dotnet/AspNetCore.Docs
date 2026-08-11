@@ -809,9 +809,9 @@ For more information, see the following resources:
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
-* <xref:security/anti-request-forgery>
-* <xref:blazor/forms/index#antiforgery-support>
-* <xref:blazor/security/index#antiforgery-support>
+* <xref:security/anti-request-forgery?view=aspnetcore-11.0>
+* <xref:blazor/forms/index#antiforgery-support?view=aspnetcore-11.0>
+* <xref:blazor/security/index#antiforgery-support?view=aspnetcore-11.0>
 
 ### Blazor Virtualize can scroll to an item
 
@@ -840,3 +840,42 @@ The `Virtualize<TItem>` component can now open at a specific item and scroll to 
 Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialIndex` to set the starting position instead.
 
 For more information, see [Add `InitialIndex` parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
+
+### Automatic circuit pause on tab inactivity
+
+Auto-pause can pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. It's an opt-in feature provided by the `Microsoft.AspNetCore.Components.Server.AutoPause` package. After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
+
+```csharp
+app.MapRazorComponents<App>()
+    .WithBrowserOptions(options => options.AddAutoPause(p => p.HiddenDelay = TimeSpan.FromSeconds(30)));
+```
+
+After the tab is hidden for a configurable delay period (default: 2 minutes), the circuit pauses. If the user returns before the delay elapses, the pause doesn't occur.
+
+For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#automatic-circuit-pause-on-tab-inactivity>.
+
+### Wider support for `AuthorizationPolicy` and `IAuthorizationRequirementData`
+
+Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+
+For more information, see <xref:security/authorization/iard?view=aspnetcore-11.0>.
+
+### QuickGrid APIs from Virtualize are exposed
+
+The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> set to `true`):
+
+* `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
+* `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
+* `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+
+For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
+
+### `ValidatableTypeAttribute` and `SkipValidationAttribute` are no longer experimental
+
+The <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> attributes from the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer experimental.
+
+For more information, see the following resources:
+
+* <xref:blazor/forms/validation?view=aspnetcore-11.0#nested-objects-and-collection-types>
+* <xref:validation/index?view=aspnetcore-11.0#force-generate-validatable-type-information>
