@@ -53,7 +53,7 @@ app.Run();
   * All assets are compressed with the goal of reducing the size of the assets to the minimum.
 * Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0&preserve-view=true) hash of the content. This ensures that the browser only redownloads a file if its contents have changed.
 
-The following table shows the original and compressed sizes of the CSS and JS files in the default Razor Pages template:
+The following table shows the original and compressed sizes of the CSS and JS files in the default Razor Pages template.
 
 File | Original | Compressed | % Reduction
 -- | -- | --
@@ -62,7 +62,7 @@ jquery.js | 89.6 | 28 | 68.75%
 bootstrap.min.js | 78.5 | 20 | 74.52%
 **Total** | 331.1 | 65.5 | 80.20%
 
-The following table shows the original and compressed sizes using the [Fluent UI Blazor components library](https://www.fluentui-blazor.net/):
+The following table shows the original and compressed sizes using the [Fluent UI Blazor components library](https://www.fluentui-blazor.net/).
 
 File | Original | Compressed | % Reduction
 -- | -- | -- | --
@@ -72,7 +72,7 @@ fluent.css | 94 | 11 | 88.30%
 
 For a total of 478 KB uncompressed to 84 KB compressed.
 
-The following table shows the original and compressed sizes using the [MudBlazor](https://mudblazor.com) Blazor components library:
+The following table shows the original and compressed sizes using the [MudBlazor](https://mudblazor.com) Blazor components library.
 
 File | Original | Compressed | Reduction
 -- | -- | -- | --
@@ -99,7 +99,7 @@ If we take MudBlazor as an example, IIS will compress the CSS bundle at around 9
 * Is more performant because the assets are compressed at build time. <!-- IIS can do static compression -->
 * Allows the developer to spend extra time during the build process to ensure that the assets are the minimum size.
 
-Consider the following table comparing MudBlazor compression with IIS dynamic compression and `MapStaticAssets`:
+Consider the following table comparing MudBlazor compression with IIS dynamic compression and `MapStaticAssets`.
 <!-- MapStaticAssets uses brotli max so it's the same as IIS brotli max is the same as -->
 
 IIS gzip | `MapStaticAssets` | `MapStaticAssets` reduction

@@ -1,10 +1,11 @@
 ---
 title: gRPC on .NET supported platforms
+ai-usage: ai-assisted
 author: jamesnk
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 01/08/2025
+ms.date: 08/05/2026
 uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms
@@ -36,7 +37,7 @@ Hosting gRPC services with ASP.NET Core requires .NET Core 3.x or later.
 > * .NET 5 or later
 > * .NET Core 3
 
-ASP.NET Core gRPC services can be hosted on all operating system that .NET supports.
+ASP.NET Core gRPC services can be hosted on all operating systems that .NET supports.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -45,6 +46,9 @@ ASP.NET Core gRPC services can be hosted on all operating system that .NET suppo
 > * Windows
 > * Linux
 > * macOS
+
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
 :::moniker-end
 
@@ -57,6 +61,9 @@ ASP.NET Core gRPC services can be hosted on all operating system that .NET suppo
 > * macOS&dagger;
 
 &dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). In addition, macOS [doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos). For production hosting, use Windows or Linux server distributions.
 
 :::moniker-end
 
@@ -91,7 +98,7 @@ The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package s
 
 Limited support is available for gRPC over HTTP/2 on .NET Framework. Other .NET versions such as UWP and Unity don't have required HTTP/2 support, and must use gRPC-Web instead.
 
-The following table lists .NET implementations and their gRPC client support:
+The following table lists .NET implementations and their gRPC client support.
 
 | .NET implementation                          | gRPC over HTTP/2   | gRPC-Web   |
 |----------------------------------------------|--------------------|------------|

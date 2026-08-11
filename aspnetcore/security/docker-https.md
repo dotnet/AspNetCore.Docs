@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 03/03/2026
+ms.date: 07/29/2026
 uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
@@ -69,7 +69,10 @@ In the preceding code, replace `<CREDENTIAL_PLACEHOLDER>` with the password. The
 
 When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.
 
-Note: The certificate in this case must be a `.pfx` file.  Utilizing a `.crt` or `.key` file with or without the password isn't supported with the sample container.  For example, when specifying a `.crt` file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'. When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.
+The certificate in this case must be a `.pfx` file.  Utilizing a `.crt` or `.key` file with or without the password isn't supported with the sample container.  For example, when specifying a `.crt` file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'. When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.
+
+> [!NOTE]
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
 
 ### macOS or Linux
 
@@ -92,6 +95,9 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 ```
 
 In the preceding code, replace `<CREDENTIAL_PLACEHOLDER>` with the password. The password must match the password used for the certificate.
+
+> [!NOTE]
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
 
 ### Windows using Windows containers
 

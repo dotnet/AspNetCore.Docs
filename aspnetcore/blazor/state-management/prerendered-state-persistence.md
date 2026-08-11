@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 07/14/2026
+ms.date: 08/03/2026
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -165,7 +165,7 @@ In the following example that serializes state for a dependency injection servic
 * The service is resolved during the initialization of an interactive render mode, and the properties annotated with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) are deserialized.
 
 > [!NOTE]
-> Only persisting scoped services is supported.
+> Only persisting scoped services is supported on the **server**. On the WebAssembly client (`InteractiveAuto` or `InteractiveWebAssembly` render modes), the service must be registered as a **singleton**. See [Client project service registration](#client-project-service-registration) for details.
 
 Serialized properties are identified from the actual service instance:
 
@@ -191,7 +191,9 @@ public class CounterTracker
 }
 ```
 
-In the `Program` file, register the scoped service and register the service for persistence with `RegisterPersistentService`. In the following example, the `CounterTracker` service is available for both the Interactive Server and Interactive WebAssembly render modes if a component renders in either of those modes because it's registered with `RenderMode.InteractiveAuto`.
+### Server project service registration
+
+In the server project's `Program` file, register the scoped service and register the service for persistence with `RegisterPersistentService`. In the following example, the `CounterTracker` service is available for both the Interactive Server and Interactive WebAssembly render modes if a component renders in either of those modes because it's registered with `RenderMode.InteractiveAuto`.
 
 If the `Program` file doesn't already use the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace, add the following `using` statement to the top of the file:
 
@@ -199,7 +201,7 @@ If the `Program` file doesn't already use the <xref:Microsoft.AspNetCore.Compone
 using Microsoft.AspNetCore.Components.Web;
 ```
 
-Where services are registered in the `Program` file:
+Where services are registered in the server project's `Program` file:
 
 ```csharp
 builder.Services.AddScoped<CounterTracker>();
@@ -207,6 +209,16 @@ builder.Services.AddScoped<CounterTracker>();
 builder.Services.AddRazorComponents()
     .RegisterPersistentService<CounterTracker>(RenderMode.InteractiveAuto);
 ```
+
+### Client project service registration
+
+For `RenderMode.InteractiveAuto` or `RenderMode.InteractiveWebAssembly`, the service must also be registered in the `.Client` project's `Program` file. Register it as a **singleton**, not scoped:
+
+```csharp
+builder.Services.AddSingleton<CounterTracker>();
+```
+
+The client-side `ComponentStatePersistenceManager` is registered as a singleton, so it resolves its dependencies from the root service provider. *Avoid a scoped service registration.* If the service is incorrectly registered as scoped on the client, resolving it from the root provider throws a `DirectScopedResolvedFromRootException` in Development environments. Beyond the exception, a scoped registration produces two separate instances on the client: one resolved from the root during state restoration and another from the app scope for injected components. This means the restored state doesn't reach the instance the components use. Registering the service as a singleton on the client ensures that the same instance is used for both state restoration and component injection.
 
 Inject the `CounterTracker` service into a component and use it to increment a counter. For demonstration purposes in the following example, the value of the service's `CurrentCount` property is set to 10 only during prerendering.
 

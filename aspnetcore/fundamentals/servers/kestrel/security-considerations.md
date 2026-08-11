@@ -5,7 +5,7 @@ author: BrennanConroy
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: brecon
-ms.date: 07/13/2026
+ms.date: 07/29/2026
 uid: fundamentals/servers/kestrel/security-considerations
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
@@ -714,12 +714,14 @@ app.UseHttpsRedirection();
 ```
 
 | Option | Default | Description |
-|---|---|---|
-| `HttpsPort` | Auto-detected | The HTTPS port to redirect to. Auto-detected from `HTTPS_PORT` environment variable or `IServerAddressesFeature`. |
-| `RedirectStatusCode` | 307 (Temporary Redirect) | Use `308` (Permanent Redirect) for production APIs where clients should cache the redirect. |
+| --- | --- | --- |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort%2A> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode%2A> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
 
 > [!NOTE]
 > **Edge servers:** Enable HTTPS Redirection. **Behind a proxy**: Often unnecessary if the proxy handles TLS termination and all internal traffic is over a private network.
+>
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
 
 ### HTTP strict transport security (HSTS)
 

@@ -198,7 +198,7 @@ The `Input` Tag Helper sets the HTML `type` attribute based on the .NET type. Th
 |Int|type="number"|
 |Single, Double|type="number"|
 
-The following table shows some common [data annotations](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes that the input tag helper will map to specific input types (not every validation attribute is listed):
+The following table shows some common [data annotations](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes that the input tag helper will map to specific input types (not every validation attribute is listed).
 
 |Attribute|Input Type|
 |---|---|

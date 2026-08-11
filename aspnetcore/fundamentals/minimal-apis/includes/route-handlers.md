@@ -85,7 +85,7 @@ app.MapGet("/posts/{slug:regex(^[a-z0-9_-]+$)}", (string slug) => $"Post {slug}"
 app.Run();
 ```
 
-The following table demonstrates the preceding route templates and their behavior:
+The following table demonstrates the preceding route templates and their behavior.
 
 | Route template | Example matching URI |
 |---|---|
