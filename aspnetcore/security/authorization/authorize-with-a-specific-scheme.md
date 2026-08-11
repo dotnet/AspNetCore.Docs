@@ -76,16 +76,15 @@ For a Razor component:
     JwtBearerDefaults.AuthenticationScheme)]
 ```
 
-For a Minimal API endpoint, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> in a <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A> call to set the schemes:
+For a Minimal API endpoint, decorate the constructor with an <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> to set the schemes:
 
 ```csharp
-app.MapGet("/api/data", () =>
+app.MapGet("/api/data", [Authorize(AuthenticationSchemes = 
+    CookieAuthenticationDefaults.AuthenticationScheme + "," + 
+    JwtBearerDefaults.AuthenticationScheme)] () =>
 {
     ...
-})
-.WithMetadata(new AuthorizeAttribute(
-    CookieAuthenticationDefaults.AuthenticationScheme + "," + 
-    JwtBearerDefaults.AuthenticationScheme));
+});
 ```
 
 Alternatively, you can pass the schemes via a custom policy:
@@ -107,9 +106,9 @@ For an MVC controller:
 [Authorize(AuthenticationSchemes = AuthSchemes)]
 public class MixedAuthSchemesController : Controller
 {
-    private const string AuthSchemes = string.Join(", ", 
-        CookieAuthenticationDefaults.AuthenticationScheme, 
-        JwtBearerDefaults.AuthenticationScheme);
+    private const string AuthSchemes = 
+    CookieAuthenticationDefaults.AuthenticationScheme + "," + 
+    JwtBearerDefaults.AuthenticationScheme;
 
     ...
 }
@@ -137,12 +136,9 @@ By specifying a single scheme, the corresponding handler runs. In the following 
 @attribute [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 ```
 
-> [!NOTE]
-> If authentication to the app requires cookie-based authentication by default, the user's request must succeed with authentication middleware based on a valid authentication cookie even if the attribute doesn't specify the Cookies authentication scheme.
-
 ## Select the scheme with an authorization policy
 
-If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.Net.Http.Server.AuthenticationSchemes> collection when adding the policy.
+If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes%2A> collection when adding the policy.
 
 In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method enforces user authentication to endpoints where the policy is applied.
 
@@ -233,7 +229,7 @@ public class MixedAuthSchemesModel : PageModel
 
 ## `[Authorize]` attribute scheme and policy scheme interaction
 
-The authorization schemes for an endpoint with one or more [`Authorize` attributes](#select-a-scheme-with-an-authorize-attribute) and one or more [policy-based schemes](#select-the-scheme-with-an-authorization-policy) are *combined* to set the final set of permitted schemes for the endpoint.
+The authorization schemes for an endpoint with one or more [`Authorize` attributes](#select-a-scheme-with-an-authorize-attribute) and one or more [policy-based schemes](#select-the-scheme-with-an-authorization-policy) are *combined* to set the final set of permitted schemes for the endpoint. This forms a union, and any listed scheme may authenticate the request. An attribute adding cookies to a policy restricted to Bearer authentication allows a cookie-only request, assuming the cookie creates a <xref:System.Security.Claims.ClaimsPrincipal> meeting the policy requirements.
 
 ## Use multiple authentication schemes
 
