@@ -55,6 +55,7 @@ To control which users or groups can connect, use the <xref:Microsoft.AspNetCore
 Example:
 
 ```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
 using System.IO.Pipes;
 using System.Security.AccessControl;
