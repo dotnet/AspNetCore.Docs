@@ -95,6 +95,9 @@ The preceding example:
 > [!IMPORTANT]
 > When setting a custom `PipeSecurity`, set `CurrentUserOnly` to `false`. Leaving `CurrentUserOnly` at its default value of `true` while also setting `PipeSecurity` throws an `ArgumentException`.
 
+> [!NOTE]
+> Account names such as `Users` are resolved to security identifiers (SIDs) when the access rule is added. On a domain-joined machine that can't reach a domain controller, resolution can fail. Use a well-known SID (for example, <xref:System.Security.Principal.WellKnownSidType.BuiltinUsersSid>) to avoid a network round-trip.
+
 ### Customize Kestrel named pipe endpoints
 
 Kestrel's named pipe support enables advanced customization, allowing you to configure different security settings for each endpoint using the `CreateNamedPipeServerStream` option. This approach is ideal for scenarios where multiple named pipe endpoints require unique access controls. The ability to customize pipes per endpoint is available starting with .NET 9.
