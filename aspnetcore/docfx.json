@@ -91,7 +91,7 @@
         "**/**.{md,yml}": "365-days"
       },
       "no-loc": {
-        "**/**.md": [ "Bearer", "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "Cookies", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "JWT Bearer", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
+        "**/**.md": [ "Bearer", "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "Cookies", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "JWT", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
       }
     },
     "template": [],
