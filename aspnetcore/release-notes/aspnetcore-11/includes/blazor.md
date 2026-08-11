@@ -810,8 +810,8 @@ For more information, see the following resources:
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 * <xref:security/anti-request-forgery?view=aspnetcore-11.0>
-* <xref:blazor/forms/index#antiforgery-support?view=aspnetcore-11.0>
-* <xref:blazor/security/index#antiforgery-support?view=aspnetcore-11.0>
+* <xref:blazor/forms/index?view=aspnetcore-11.0#antiforgery-support>
+* <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
 
 ### Blazor Virtualize can scroll to an item
 
