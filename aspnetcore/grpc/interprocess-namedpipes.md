@@ -48,9 +48,9 @@ The preceding example:
 * Calls `ListenNamedPipe` to listen to a named pipe with the specified name.
 * Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
-### Configuring PipeSecurity for Named Pipes
+### Configuring PipeSecurity for named pipes
 
-To control which users or groups can connect, use the [`NamedPipeTransportOptions`](xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions) class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
+To control which users or groups can connect, use the <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions> class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
 
 Example:
 
