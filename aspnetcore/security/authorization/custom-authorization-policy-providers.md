@@ -60,7 +60,6 @@ The developer decides in advance how custom policies are named by inventing a na
 
 For example, consider a minimum age naming scheme in the format `MinimumAge{AGE}`, where the `{AGE}` placeholder is any given age, for example, `MinimumAge21`. This naming scheme is easily identified by its prefix "`MinimumAge`" with an easily parsed string-based age ("`21`").
 
-The authorization attribute can be established before or after the custom policy provider is created. In this article's example of a minimum age policy provider, the attribute is shown in the [Custom authorization attribute](#custom-authorization-attribute) section before the example minimum age policy provider is shown in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section. In practice, however, these classes can be created in reverse order.
 
 The developer customizes how authorization policies are provided by implementing the following APIs in the custom policy provider:
 
