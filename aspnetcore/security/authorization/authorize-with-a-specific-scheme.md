@@ -76,7 +76,7 @@ For a Razor component:
     JwtBearerDefaults.AuthenticationScheme)]
 ```
 
-For a Minimal API endpoint, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> in a <xref:Microsoft.Teams.Cards.AdaptiveCard.WithMetadata%2A> call to set the schemes:
+For a Minimal API endpoint, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> in a <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A> call to set the schemes:
 
 ```csharp
 app.MapGet("/api/data", () =>
