@@ -34,23 +34,6 @@ For an MVC sample, see the [`CustomPolicyProvider` sample in the `dotnet/aspnetc
 
 [!INCLUDE[](~/includes/git-download.md)]
 
-<!-- DOC REVIEWER NOTE: The preceding INCLUDE inserts the following content.
-                        The following content will be removed prior to merging
-                        the PR.
--->
-
-> [!TIP]
-> Use the [`git sparse-checkout` command](https://git-scm.com/docs/git-sparse-checkout) to download a single folder from the main branch of a GitHub repository.
->
-> In the following example, the `security/authorization/BlazorWebAppAuthorization` subfolder is downloaded from the `dotnet/AspNetCore.Docs.Samples` repository. Replace `https://github.com/dotnet/AspNetCore.Docs.Samples.git` with the repository's Git Version Control Repository file, and replace the `security/authorization/BlazorWebAppAuthorization` path with the path to the subfolder that you want to download:
->
-> ```
-> git clone --depth 1 --filter=blob:none https://github.com/dotnet/AspNetCore.Docs.Samples.git --sparse
-> cd AspNetCore.Docs.Samples
-> git sparse-checkout init --cone
-> git sparse-checkout set security/authorization/BlazorWebAppAuthorization
-> ```
-
 ## Customize policy retrieval
 
 The developer decides in advance how custom policies are named by inventing a naming scheme in a string format that's easily parsed to meet one or more requirements for each policy evaluation:
@@ -156,45 +139,6 @@ The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsof
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Attributes/MinimumAgeAuthorizeAttribute.cs":::
 
-<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
-                        The following code will be removed prior to merging
-                        the PR.
--->
-
-```csharp
-using Microsoft.AspNetCore.Authorization;
-
-namespace BlazorWebAppAuthorization.Policies.Attributes;
-
-public class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
-{
-    private const string PolicyPrefix = "MinimumAge";
-
-    public MinimumAgeAuthorizeAttribute(int age) => Age = age;
-
-    public int Age
-    {
-        get
-        {
-            if (!string.IsNullOrEmpty(Policy) &&
-                Policy.StartsWith(PolicyPrefix, 
-                    StringComparison.OrdinalIgnoreCase) &&
-                int.TryParse(Policy.AsSpan(PolicyPrefix.Length), out var age))
-            {
-                return age;
-            }
-
-            return default;
-        }
-        set
-        {
-            ArgumentOutOfRangeException.ThrowIfNegative(value);
-            Policy = $"{PolicyPrefix}{value}";
-        }
-    }
-}
-```
-
 You can apply the attribute for any given authorized minimum age with an integer parameter for the age. Examples are shown later in this article in the [Use policies from a custom policy provider](#use-policies-from-a-custom-policy-provider) section.
 
 > [!IMPORTANT]
@@ -205,16 +149,6 @@ You can apply the attribute for any given authorized minimum age with an integer
 > * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
 > * [`MinimumAgeHandler` class for one requirement](xref:security/authorization/policies#use-a-handler-for-one-requirement)
 > * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
-
-<!-- DOC REVIEWER NOTE: The preceding links go to ......
-
-https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#requirements-and-policy-registration
-
-https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#use-a-handler-for-one-requirement
-
-https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#handler-registration
-
--->
 
 ## Minimum age custom policy provider example
 
@@ -234,52 +168,6 @@ The following example demonstrates a minimum age custom policy provider.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Policies/Providers/MinimumAgePolicyProvider.cs":::
 
-<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
-                        The following code will be removed prior to merging
-                        the PR.
--->
-
-```csharp
-using BlazorWebAppAuthorization.Policies.Requirements;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-
-namespace BlazorWebAppAuthorization.Policies.Providers;
-
-public class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) 
-    : IAuthorizationPolicyProvider
-{
-    private const string PolicyPrefix = "MinimumAge";
-
-    private DefaultAuthorizationPolicyProvider DefaultPolicyProvider { get; } = 
-        new(options);
-
-    public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
-    {
-        if (policyName.StartsWith(
-                PolicyPrefix, StringComparison.OrdinalIgnoreCase) &&
-            int.TryParse(policyName.AsSpan(PolicyPrefix.Length), out var age) &&
-            age >= 0)
-        {
-            var policy = new AuthorizationPolicyBuilder(
-                IdentityConstants.ApplicationScheme);
-            policy.AddRequirements(new MinimumAgeRequirement(age));
-
-            return Task.FromResult<AuthorizationPolicy?>(policy.Build());
-        }
-
-        return DefaultPolicyProvider.GetPolicyAsync(policyName);
-    }
-
-    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => 
-        DefaultPolicyProvider.GetDefaultPolicyAsync();
-
-    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() => 
-        DefaultPolicyProvider.GetFallbackPolicyAsync();
-}
-```
-
 ## Use policies from a custom policy provider
 
 To use custom policies:
@@ -291,16 +179,6 @@ To use custom policies:
   * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
   * [`MinimumAgeHandler` class for one requirement](xref:security/authorization/policies#use-a-handler-for-one-requirement)
   * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
-
-  <!-- DOC REVIEWER NOTE: The preceding links go to ......
-
-  https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#requirements-and-policy-registration
-
-  https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#use-a-handler-for-one-requirement
-
-  https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies#handler-registration
-
-  -->
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -345,59 +223,11 @@ For demonstration purposes, an `AuthorizeView` component can specify the weakly-
 
 :::code language="razor" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Components/Pages/PassMinimumAge21Policy.razor":::
 
-<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
-                        The following code will be removed prior to merging
-                        the PR.
--->
-
-```razor
-@page "/pass-minimumage21-policy"
-
-<h1>Pass 'MinimumAge21' policy (weakly-typed approach)</h1>
-
-<p>
-    Uses an AuthorizeView component to apply the policy using the policy's name. 
-    This approach is shown for demonstration purposes and isn't recommended for 
-    production code.
-</p>
-
-<AuthorizeView Policy="MinimumAge21">
-    <Authorized>
-        <p>You satisfy the 'MinimumAge21' policy.</p>
-    </Authorized>
-    <NotAuthorized>
-        <p>You <b>don't</b> satisfy the 'MinimumAge21' policy.</p>
-    </NotAuthorized>
-</AuthorizeView>
-```
-
 The following component uses the strongly-typed [custom `MinimumAgeAuthorizeAttribute` implementation](#custom-authorization-attribute) described in the [Custom authorization attribute](#custom-authorization-attribute) section. Using a strongly-typed attribute is recommended for production apps.
 
 `Components/Pages/PassMinimumAge21PolicyWithAttribute.razor`:
 
 :::code language="razor" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Components/Pages/PassMinimumAge21PolicyWithAttribute.razor":::
-
-<!-- DOC REVIEWER NOTE: The preceding cross-link inserts the following code.
-                        The following code will be removed prior to merging
-                        the PR.
--->
-
-```razor
-@page "/pass-minimumage21-policy-with-attribute"
-@using BlazorWebAppAuthorization.Policies.Attributes
-@attribute [MinimumAgeAuthorize(21)]
-
-<h1>Pass 'MinimumAge21' policy (strongly-typed approach)</h1>
-
-<p>
-    Applies the policy to the Razor component with a custom 
-    [MinimumAgeAuthorize] attribute (derived from AuthorizeAttribute).
-    This approach is preferred for production code, as it's strongly-typed
-    and avoids the use of a string to set the policy and minimum age.
-</p>
-
-<p>You satisfy the 'MinimumAge21' policy.</p>
-```
 
 The same approach is useful for securing [Minimal API endpoints](xref:fundamentals/minimal-apis#authorization):
 
