@@ -5,10 +5,8 @@ author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 06/26/2026
+ms.date: 07/29/2026
 uid: signalr/authn-and-authz
-
-# customer intent: As an ASP.NET developer, I want to use authentication and authorization in ASP.NET Core SignalR, so I can verify user access to my apps.
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -54,11 +52,13 @@ In a browser-based app, cookie authentication allows existing user credentials t
 Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](xref:signalr/dotnet-client) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
 
 :::moniker-end
+
 :::moniker range=">= aspnetcore-10.0"
 
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
 
 :::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 ### Bearer token authentication
@@ -104,7 +104,7 @@ Register the service after adding services for authentication (with the <xref:Mi
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
 
-### Cookies vs. bearer tokens
+### Cookies versus bearer tokens
 
 Cookies are specific to browsers. Sending them from other kinds of clients adds complexity compared to sending bearer tokens. Cookie authentication isn't recommended unless the app only needs to authenticate users from the browser client. Bearer token authentication is the recommended approach when using clients other than the browser client.
 
@@ -121,7 +121,7 @@ Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Window
 > [!NOTE]
 > The specified value must be unique among all the users in the system. Otherwise, a message intended for one user might end up reaching a different user.
 
-Register this component in the _Program.cs_ file:
+Register this component in the `Program.cs` file:
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
@@ -153,7 +153,7 @@ The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.N
 
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/6.0sample/SignalRAuthenticationSample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=AddEmailClaim&highlight=14)]
 
-Register this component in the _Program.cs_ file:
+Register this component in the `Program.cs` file:
 
 ```csharp
 builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
@@ -212,18 +212,27 @@ public class ChatHub : Hub
     {
     }
 }
-
 ```
 
 [!code-csharp[Restrict a hub only DomainRestrictedRequirement users](authn-and-authz/6.0sample/SignalRAuthenticationSample/DomainRestrictedRequirement.cs)]
 
-In the _Program.cs_ file, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy:
+In the `Program.cs` file, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy:
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_drr&highlight=19-25)]
 
 In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. The approach in this example provides the benefit of not having to inject the `AuthorizationHandler` during startup because the requirement and the handler are the same thing.
 
-## Related content
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+As an alternative to registering the `DomainRestricted` policy and referencing it with `[Authorize("DomainRestricted")]`, you can apply an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attribute directly to a hub or hub method. SignalR combines the attribute's requirements into the effective policy for the method invocation. For more information, see <xref:security/authorization/iard>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+## Additional resources
 
 * [Bearer token authentication in ASP.NET Core (blog)](https://devblogs.microsoft.com/dotnet/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based authorization](xref:security/authorization/resource-based)
