@@ -1,5 +1,6 @@
 ---
 title: Minimal APIs quick reference
+ai-usage: ai-assisted
 author: wadepickett
 description: Provides an overview of Minimal APIs in ASP.NET Core
 ms.author: wpickett
@@ -7,7 +8,6 @@ content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 08/05/2026
 uid: fundamentals/minimal-apis
-ai-usage: ai-assisted
 ---
 
 <!--
@@ -347,7 +347,7 @@ For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
 
 ## Validation
 
-For more information, see <xref:validation/index>.
+For more information, see <xref:fundamentals/validation/index>.
 
 ## Authorization
 

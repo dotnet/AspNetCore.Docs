@@ -571,6 +571,11 @@ items:
         uid: fundamentals/http-requests
       - name: Static files
         uid: fundamentals/static-files
+      - name: Validation
+        displayName: validation
+        items:
+          - name: Overview
+            uid: fundamentals/validation/index
       - name: dotnet-scaffold telemetry
         uid: fundamentals/dotnet-scaffold-telemetry
   - name: Web apps
@@ -2015,11 +2020,6 @@ items:
       - name: Directory structure
         displayName: deploy, publish
         uid: host-and-deploy/directory-structure
-  - name: Validation
-    displayName: validation
-    items:
-      - name: Overview
-        uid: validation/index
   - name: Security and Identity
     displayName: authentication, authorization
     items:

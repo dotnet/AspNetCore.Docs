@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/25/2025
+ms.date: 08/12/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -2660,60 +2660,6 @@ using BlazorSample.Client.Extensions;
 builder.Services.AddValidationForTypesInClient();
 builder.Services.AddValidation();
 ```
-
-:::moniker-end
-
-:::moniker range="= aspnetcore-10.0"
-
-Attributes from the `Microsoft.Extensions.Validation` package (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks. As of .NET 11, the attributes are no longer experimental, so the following guidance doesn't apply to apps that target .NET 11 or later.
-
-In Blazor apps, types are made available via a generated embedded attribute. If a web app project that uses the `Microsoft.NET.Sdk.Web` SDK (`<Project Sdk="Microsoft.NET.Sdk.Web">`) or an RCL that uses the `Microsoft.NET.Sdk.Razor` SDK (`<Project Sdk="Microsoft.NET.Sdk.Razor">`) contains Razor components (`.razor`), the framework automatically generates an internal attribute inside the project (`Microsoft.Extensions.Validation.Embedded.ValidatableType`, `Microsoft.Extensions.Validation.Embedded.SkipValidation`). These types are interchangeable with the actual attributes and not marked experimental. In the majority of cases, developers use the `[ValidatableType]`/`[SkipValidation]` attributes on their classes without concern over their source.
-
-However, the preceding approach isn't viable in plain class libraries that use the `Microsoft.NET.Sdk` SDK (`<Project Sdk="Microsoft.NET.Sdk">`). Using the types in a plain class library results in an code analysis warning:
-
-> :::no-loc text="ASP0029: 'Microsoft.Extensions.Validation.ValidatableTypeAttribute' is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.":::
-
-The warning can be suppressed using any of the following approaches:
-
-* A `<NoWarn>` property in the project file:
-
-  ```xml
-  <PropertyGroup>
-    <NoWarn>$(NoWarn);ASP0029</NoWarn>
-  </PropertyGroup>
-  ```
-
-* A [`pragma` directive](/cpp/preprocessor/pragma-directives-and-the-pragma-keyword) where the attribute is used:
-
-  ```csharp
-  #pragma warning disable ASP0029
-  [Microsoft.Extensions.Validation.ValidatableType]
-  #pragma warning restore ASP0029
-  ```
-
-* An [EditorConfig file (`.editorconfig`)](/visualstudio/ide/create-portable-custom-editor-options) rule:
-
-  ```
-  dotnet_diagnostic.ASP0029.severity = none
-  ```
-
-If suppressing the warning isn't acceptable, manually create the embedded attribute in the library that the Web and Razor SDKs generate automatically.
-
-`ValidatableTypeAttribute.cs`:
-
-```csharp
-namespace Microsoft.Extensions.Validation.Embedded
-{
-    [AttributeUsage(AttributeTargets.Class)]
-    internal sealed class ValidatableTypeAttribute : Attribute
-    {
-    }
-}
-```
-
-Use the exact namespace (`Microsoft.Extensions.Validation.Embedded`) and class name (`ValidatableTypeAttribute`) in order for the validation source generator to detect and use the type. You can declare a global `using` statement for the namespace, either with a `global using Microsoft.Extensions.Validation.Embedded;` statement or with a `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item in the library's project file.
-
-Whichever approach is adopted, denote the presence of the workaround for a future update to your code when the app can target .NET 11 or later. At that time, you can remove your workarounds from the app.
 
 :::moniker-end
 
