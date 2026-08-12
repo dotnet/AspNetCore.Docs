@@ -34,7 +34,7 @@ This change can affect [source compatibility](/dotnet/core/compatibility/categor
 
 ## Reason for change
 
-`HostBuilder` and <xref:Microsoft.AspNetCore.Builder.WebApplication> have all the features of `WebHostBuilder` and are the focus of future investment. `WebHostBuilder` was replaced by the generic host in ASP.NET Core 3.0, and minimal APIs with <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> were introduced in ASP.NET Core 6.0. These newer hosting models provide better integration with the .NET ecosystem and are the recommended approach for new applications.
+`HostBuilder` and <xref:Microsoft.AspNetCore.Builder.WebApplication> have all the features of `WebHostBuilder` and are the focus of future investment. `WebHostBuilder` was replaced by the generic host in ASP.NET Core 3.0, and Minimal APIs with <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> were introduced in ASP.NET Core 6.0. These newer hosting models provide better integration with the .NET ecosystem and are the recommended approach for new applications.
 
 ## Recommended action
 
@@ -71,7 +71,7 @@ Migrate from `WebHostBuilder` to either [`HostBuilder`](/aspnet/core/fundamental
   var testServer = host.GetTestServer();
   ```
 
-- For new applications, especially those using minimal APIs, migrate to <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
+- For new applications, especially those using Minimal APIs, migrate to <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
 ## Affected APIs
 

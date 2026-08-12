@@ -76,7 +76,7 @@ This change affects [source compatibility](/dotnet/core/compatibility/categories
 
 ## Reason for change
 
-This same behavior is already implemented in minimal APIs.
+This same behavior is already implemented in Minimal APIs.
 
 The likelihood of breaking apps is low as it isn't common to have a type in DI and as an argument in your API controller action at the same time.
 

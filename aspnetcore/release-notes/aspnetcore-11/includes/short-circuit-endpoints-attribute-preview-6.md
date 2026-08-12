@@ -17,7 +17,7 @@ public class RobotsController : ControllerBase
 }
 ```
 
-The same attribute works on minimal API endpoints, and the existing `ShortCircuit()` convention continues to work unchanged:
+The same attribute works on Minimal API endpoints, and the existing `ShortCircuit()` convention continues to work unchanged:
 
 ```csharp
 app.MapGet("/health", [ShortCircuit] () => "Healthy");

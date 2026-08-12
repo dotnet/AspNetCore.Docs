@@ -24,7 +24,7 @@ builder.Services.AddValidation();
 The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
 > [!NOTE]
-> `AddValidation` uses a source generator that only discovers validatable types within the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a different assembly, call `AddValidation` from within that assembly. For more information, see <xref:fundamentals/minimal-apis#register-validation-in-multi-assembly-apps>.
+> `AddValidation` uses a source generator that only discovers validatable types within the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a different assembly, call `AddValidation` from within that assembly. For more information, see <xref:fundamentals/validation/index#register-validation-in-multi-assembly-apps>.
 
 Validation can be disabled for specific endpoints by using the `DisableValidation` extension method, as in the following example:
 

@@ -10,9 +10,9 @@ uid: fundamentals/validation/index
 ---
 # Validation in ASP.NET Core
 
-<xref:Microsoft.Extensions.Validation?displayProperty=fullName> supports complex model validation.
+<xref:Microsoft.Extensions.Validation?displayProperty=fullName> supports complex model validation in Blazor and Minimal API projects.
 
-While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core.
+While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC and Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
 
 To enable validation, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services%2A?displayProperty=nameWithType> in the app's `Program` file:
 
@@ -20,10 +20,54 @@ To enable validation, call <xref:Microsoft.Extensions.DependencyInjection.Valida
 builder.Services.AddValidation();
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> uses a source generator that only discovers validatable types within the assembly where `AddValidation` called. If Minimal API endpoints are defined in a different assembly, call `AddValidation` from within that assembly. For more information, see <xref:fundamentals/minimal-apis#register-validation-in-multi-assembly-apps>.
+For Minimal APIs, the implementation automatically discovers types that are defined in handlers or as base types of the types defined in handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
-> [!NOTE]
-> <xref:Microsoft.Extensions.Validation?displayProperty=fullName> API is supported for Blazor and Minimal APIs but not MVC and Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
+Validation uses a source generator that only discovers validatable types in the assembly where `AddValidation` is called. If Minimal API endpoints are defined in a referenced assembly rather than the assembly where `AddValidation` is called, register validation as shown in the [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps) section.
+
+## Register validation in multi-assembly apps
+
+When endpoint handler types are defined in a referenced assembly but <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called from the host app assembly, validation doesn't execute: Invalid requests are processed and return a `200 - OK` response instead of the expected `400 - Bad Request` response, even though `AddValidation` is registered and the request types use validation attributes, such as the [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute).
+
+To validate types defined in a different assembly, call `AddValidation` from within that assembly. Create a service collection extension method in the assembly that defines the Minimal API endpoints and call it from the host app.
+
+`ServiceCollectionExtensions.cs` in the assembly that defines the endpoints, which uses the example namespace `MinimalApisAssembly`:
+
+```csharp
+namespace MinimalApisAssembly;
+
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddApiValidation(this IServiceCollection services)
+    {
+        return services.AddValidation();
+    }
+}
+```
+
+In the host app's `Program` file, call the extension method instead of calling `AddValidation` directly:
+
+```csharp
+using MinimalApisAssembly;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApiValidation();
+
+var app = builder.Build();
+
+app.MapApi();
+
+app.Run();
+```
+
+In the preceding example, `MapApi` is an extension method defined in the endpoints assembly that maps the Minimal API endpoints. Define it alongside `AddApiValidation` so both the endpoint mappings and validation are registered from the same assembly.
+
+If types are validated in more than one assembly:
+
+* Call `AddValidation` in each assembly that defines validatable types.
+* Call each of those extension methods from the host app.
+
+If validation silently doesn't execute, confirm that `AddValidation` is called from the same assembly that defines the Minimal API endpoint mappings and the validatable types.
 
 :::moniker range="= aspnetcore-10.0"
 
