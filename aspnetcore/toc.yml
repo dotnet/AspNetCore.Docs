@@ -839,7 +839,7 @@ items:
               - name: Class libraries with static SSR
                 uid: blazor/components/class-libraries-with-static-ssr
              - name: Return component HTML from a web API
-                uid: blazor/components/return-component-html-from-a-web-api
+               uid: blazor/components/return-component-html-from-a-web-api
               - name: JavaScript apps and SPA frameworks
                 uid: blazor/components/js-spa-frameworks
               - name: Components outside of ASP.NET Core
