@@ -1,6 +1,6 @@
 ### Validation localization is built in
 
-`Microsoft.Extensions.Validation` localizes validation messages and display names without a separate package. Localization activates automatically as soon as an `IStringLocalizerFactory` is registered, and the lookup is emitted by the validation source generator into your assembly.
+`Microsoft.Extensions.Validation` localizes validation messages and display names without a separate package. Calling `AddLocalization` to register an `IStringLocalizerFactory`, followed by `AddValidation`, activates localization automatically, and the lookup is emitted by the validation source generator into your assembly.
 
 <!-- TODO: Update `AddValidation`, `ValidationOptions.LocalizerProvider`, and `IValidationMessageFormatter` to <xref:> once API docs are published. -->
 

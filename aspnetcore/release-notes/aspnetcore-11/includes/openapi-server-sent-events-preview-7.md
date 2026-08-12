@@ -1,4 +1,4 @@
-### OpenAPI Server-Sent Events in OpenAPI 3.2
+### Server-Sent Events support in OpenAPI 3.2
 
 Endpoints that return `SseItem<T>` are described in the generated OpenAPI document with the OpenAPI 3.2 `itemSchema` shape for `text/event-stream` responses. The `itemSchema` describes a stream's per-event payload shape instead of falling back to a plain `string` schema.
 
