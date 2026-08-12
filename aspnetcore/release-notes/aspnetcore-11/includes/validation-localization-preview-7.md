@@ -1,6 +1,6 @@
 ### Validation localization is built in
 
-`Microsoft.Extensions.Validation` localizes validation messages and display names without a separate package. Calling `AddLocalization` to register an `IStringLocalizerFactory`, followed by `AddValidation`, activates localization automatically, and the lookup is emitted by the validation source generator into your assembly.
+`Microsoft.Extensions.Validation` localizes validation messages and display names without a separate package. Calling `AddLocalization` to register an `IStringLocalizerFactory`, followed by `AddValidation`, activates localization automatically. The validation source generator emits the localization lookup into your assembly.
 
 <!-- TODO: Update `AddValidation`, `ValidationOptions.LocalizerProvider`, and `IValidationMessageFormatter` to <xref:> once API docs are published. -->
 
@@ -28,7 +28,7 @@ builder.Services.AddValidation(options =>
 });
 ```
 
-Attributes that already localize themselves (`ErrorMessageResourceType`, `[Display(ResourceType = …)]`) bypass the pipeline entirely. A custom attribute that needs to substitute its own values into the message template can implement `IValidationMessageFormatter`:
+Attributes that already localize themselves (`ErrorMessageResourceType`, `[Display(ResourceType = ...)]`) bypass the pipeline entirely. A custom attribute that needs to substitute its own values into the message template can implement `IValidationMessageFormatter`:
 
 ```csharp
 public sealed class DivisibleByAttribute : ValidationAttribute, IValidationMessageFormatter
