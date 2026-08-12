@@ -1,16 +1,14 @@
 ---
-title: Multifactor authentication in ASP.NET Core
+title: Multi-factor authentication in ASP.NET Core
 author: damienbod
-description: Learn how to set up multifactor authentication (MFA) in an ASP.NET Core app.
+description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 05/15/2026
+ms.date: 08/07/2026
 uid: security/authentication/mfa
-
-# customer intent: As an ASP.NET developer, I want to set up multifactor authentication in ASP.NET Core, so I can control user access to my app.
 ---
 <!-- ms.sfi.ropc: t -->
-# Multifactor authentication in ASP.NET Core
+# Multi-factor authentication in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -18,9 +16,9 @@ uid: security/authentication/mfa
 
 By [Damien Bowden](https://github.com/damienbod)
 
-Multifactor authentication (MFA) is a process in which a user is requested during sign in for more forms of identification. The prompt might request the user to enter a code from a cellphone, use an FIDO2 key, or provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The extra factor isn't easily obtained or duplicated by a cyberattacker.
+Multi-factor authentication (MFA) is a process in which a user is requested during sign in for more forms of identification. The prompt might request the user to enter a code from a cellphone, use an FIDO2 key, or provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The extra factor isn't easily obtained or duplicated by a cyberattacker.
 
-This article provides an overview of multifactor authentication in ASP.NET Core and the recommended authentication flows with examples that show how to:
+This article provides an overview of MFA in ASP.NET Core and the recommended authentication flows with examples that show how to:
 
 * Configure MFA for administration pages by using ASP.NET Core Identity.
 * Send an MFA sign-in requirement to the OpenID Connect server.
@@ -375,7 +373,7 @@ If the user is already signed in, the client app:
 * Still validates the `amr` claim.
 * Can set up the MFA with a link to the ASP.NET Core Identity view, such as **Enable MFA**:
 
-   :::image type="content" source="~/security/authentication/mfa/_static/acr_values-1.png" alt-text="Screenshot showing the client requires sign in with multifactor authentication and the 'Enable MFA' option.":::
+   :::image type="content" source="~/security/authentication/mfa/_static/acr_values-1.png" alt-text="Screenshot showing the client requires sign in with MFA and the 'Enable MFA' option.":::
 
 ## Force ASP.NET Core OpenID Connect client to require MFA
 

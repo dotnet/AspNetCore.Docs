@@ -4,7 +4,7 @@ author: damienbod
 description: Learn how to set up JWT bearer authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 09/29/2025
+ms.date: 08/07/2026
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core
@@ -13,13 +13,13 @@ By [Damien Bowden](https://github.com/damienbod)
 
 JWT (JSON Web Token) Bearer Authentication is commonly utilized for APIs. While it operates similarly to cookie authentication, the identity provider issues a JWT or tokens upon a successful authentication. These tokens can then be sent to other servers to authenticate, unlike cookies which are only sent back to the issuing domain. A JWT is a self-contained token that encapsulates information for an API resource or a client. The client which requested the JWT can request data from an API resource using the Authorization header and a bearer token.
 
-JWT Bearer Authentication provides:
+JWT bearer Authentication provides:
 
 * **Authentication**: When using the `JwtBearerHandler`, bearer tokens are essential for authentication. The `JwtBearerHandler` validates the token and extracts the user's identity from its claims.
 * **Authorization**: Bearer tokens enable authorization by providing a collection of claims representing the user's or application's permissions, much like a cookie.
 * **Delegated Authorization**: When a user-specific access token is used to authenticate between APIs instead of an application-wide access token, this process is known as *delegated authorization*.
 
-For an introduction to JWT Bearer Authentication, see [JSON Web Tokens.](https://en.wikipedia.org/wiki/JSON_Web_Token)
+For an introduction to JWT bearer Authentication, see [JSON Web Tokens.](https://en.wikipedia.org/wiki/JSON_Web_Token)
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/configure-jwt-bearer-authentication/sample/JwtBearer)
 
 This article covers the following areas:
@@ -115,7 +115,7 @@ OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for 
 
 ## Implementing JWT bearer token authentication
 
-The [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) Nuget package can be used to validate the JWT bearer tokens.
+The [`Microsoft.AspNetCore.Authentication.JwtBearer` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) can be used to validate the JWT bearer tokens.
 
 JWT bearer tokens should be fully validated in an API. The following should be validated:
 
