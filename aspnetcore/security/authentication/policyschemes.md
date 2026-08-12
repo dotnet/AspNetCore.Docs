@@ -3,10 +3,9 @@ title: Policy schemes in ASP.NET Core
 author: wadepickett
 description: Authentication policy schemes make it easier to have a single logical authentication scheme
 ms.author: wpickett
-ms.date: 12/05/2019
+ms.date: 08/07/2026
 uid: security/authentication/policyschemes
 ---
-
 # Policy schemes in ASP.NET Core
 
 Authentication policy schemes make it easier to have a single logical authentication scheme potentially use multiple approaches. For example, a policy scheme might use Google authentication for challenges, and cookie authentication for everything else. Authentication policy schemes make it:
@@ -21,9 +20,21 @@ All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentic
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
+Framework default forwarding logic checks the following settings:
+
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardAuthenticate>
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardChallenge>
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardForbid>
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardSignIn>
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardSignOut>
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector>
+1. <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefault>
+
+The first non-`null` result is used as the target scheme for forwarding.
+
 ## JWT with multiple schemes
 
-The AddPolicyScheme method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (e.g., issuer, claims). This approach allows for greater flexibility within a single API.
+The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme%2A> method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (for example, issuer, claims). This approach allows for greater flexibility within a single API.
 
 ```csharp
 services.AddAuthentication(options =>

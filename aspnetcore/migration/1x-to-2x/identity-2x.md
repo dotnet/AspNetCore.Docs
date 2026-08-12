@@ -114,7 +114,7 @@ Select one of the two options below, and make the necessary changes in `Startup.
                 });
         ```
 
-### JWT Bearer Authentication
+### JWT bearer Authentication
 
 Make the following changes in `Startup.cs`:
 * Replace the `UseJwtBearerAuthentication` method call in the `Configure` method with `UseAuthentication`:
