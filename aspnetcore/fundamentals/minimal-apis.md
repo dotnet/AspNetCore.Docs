@@ -100,7 +100,7 @@ public record Product(
 
 Developers customize the behavior of the validation system by:
 
-* Creating custom [`[Validation]` attribute](xref:System.ComponentModel.DataAnnotations.ValidationAttribute) implementations.
+* Creating custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> implementations.
 * Implementing the <xref:System.ComponentModel.DataAnnotations.IValidatableObject> interface for complex validation logic.
 
 If validation fails, the runtime returns a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response with details of the validation errors.
