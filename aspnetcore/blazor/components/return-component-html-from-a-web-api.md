@@ -73,7 +73,7 @@ builder.Services.AddHttpClient("WebAPI", client =>
     client.BaseAddress = new Uri("https://localhost:7286"));
 ```
 
-In a component, inject <xref:System.Net.Http.IHttpClientFactory> and request the component HTML (as `string`s), casting each to a <xref:Microsoft.AspNetCore.Components.MarkupString> for rendering:
+In a component, inject an <xref:System.Net.Http.IHttpClientFactory> and request the component HTML (as `string`s), casting each to a <xref:Microsoft.AspNetCore.Components.MarkupString> for rendering:
 
 > [!WARNING]
 > Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided.

@@ -838,7 +838,7 @@ items:
                 uid: blazor/components/class-libraries
               - name: Class libraries with static SSR
                 uid: blazor/components/class-libraries-with-static-ssr
-              - name: Return a component from a web API
+             - name: Return component HTML from a web API
                 uid: blazor/components/return-component-html-from-a-web-api
               - name: JavaScript apps and SPA frameworks
                 uid: blazor/components/js-spa-frameworks
