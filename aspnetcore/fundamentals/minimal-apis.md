@@ -40,7 +40,7 @@ The following table lists some of the middleware frequently used with Minimal AP
 
 Middleware | Description | API |
 --- | --- | ---
-| [Authentication](xref:security/authentication/index) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>
+[Authentication](xref:security/authentication/index) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>
 [Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>
 [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>
 [Exception Handler](xref:fundamentals/error-handling-api) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>
@@ -166,7 +166,7 @@ Return value | Behavior | Content-Type
 `string` | The framework writes the string directly to the response. | `text/plain`
 `T` (Any other type) | The framework JSON-serializes the response. | `application/json`
 
-For a more information on route handler return values, see <xref:fundamentals/minimal-apis/responses>.
+For more information on route handler return values, see <xref:fundamentals/minimal-apis/responses>.
 
 ### Example return values
 
@@ -190,7 +190,7 @@ The following code returns <xref:Microsoft.AspNetCore.Http.TypedResults>:
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
-Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [`TypedResults` vs `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
+Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
 
 #### `IResult` return values
 

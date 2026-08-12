@@ -64,7 +64,7 @@ This tutorial creates the following API:
 * When a dialog box asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding commands create a new web API project and open it in Visual Studio Code.
+  The preceding commands create a new ASP.NET Core project and open it in Visual Studio Code.
 
 ---
 
