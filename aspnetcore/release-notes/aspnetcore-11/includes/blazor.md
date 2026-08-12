@@ -155,13 +155,13 @@ For more information, see the following resources:
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
   * `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
-  * `Beginning`: Pins the viewport to the beginning of the list. For example, this pinning behavior is useful for a news feed user experience.
+  * `Start` (default): Pins the viewport to the beginning of the list. For example, this pinning behavior is useful for a news feed user experience.
   * `End`: Pins the viewport to the end of the list. For example, this pinning behavior is useful for a chat or logging user experience.
 
   In the following example, the virtualized content is pinned to the beginning of the list:
 
   ```razor
-  <Virtualize AnchorMode="Beginning" ...>
+  <Virtualize AnchorMode="Start" ...>
       ...
   </Virtualize>
   ```
