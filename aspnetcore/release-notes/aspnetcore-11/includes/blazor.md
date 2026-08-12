@@ -819,11 +819,11 @@ General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 The `Virtualize<TItem>` component can now open at a specific item and scroll to any item on demand. Two new public APIs make this possible:
 
-* `InitialIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
+* `InitialItemIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
 * `ScrollToIndexAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
 
 ```razor
-<Virtualize TItem="Product" Items="products" InitialIndex="500" @ref="list">
+<Virtualize TItem="Product" Items="products" InitialItemIndex="500" @ref="list">
     <div class="product">@context.Name</div>
 </Virtualize>
 
@@ -837,9 +837,9 @@ The `Virtualize<TItem>` component can now open at a specific item and scroll to 
 }
 ```
 
-Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialIndex` to set the starting position instead.
+Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialItemIndex` to set the starting position instead.
 
-For more information, see [Add `InitialIndex` parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
+For more information, see [Add `InitialIndex` (sic) parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
 
 ### Automatic circuit pause on tab inactivity
 
