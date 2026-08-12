@@ -1700,6 +1700,16 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/security/authorization/iauthorizationpolicyprovider.md",
+            "redirect_url": "/aspnet/core/security/authorization/custom-authorization-policy-providers",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authorization/limitingidentitybyscheme.md",
+            "redirect_url": "/aspnet/core/security/authorization/authorize-with-a-specific-scheme",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/validation/overview.md",
             "redirect_url": "/aspnet/core/fundamentals/validation/overview",
             "redirect_document_id": false

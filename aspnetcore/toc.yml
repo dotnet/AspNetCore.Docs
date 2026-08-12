@@ -2153,15 +2153,15 @@ items:
           - name: Policy-based authorization
             uid: security/authorization/policies
           - name: Authorization policy providers
-            uid: security/authorization/iauthorizationpolicyprovider
+            uid: security/authorization/custom-authorization-policy-providers
           - name: Customize the behavior of AuthorizationMiddleware
             uid: security/authorization/authorizationmiddlewareresulthandler
           - name: Dependency injection in requirement handlers
             uid: security/authorization/dependencyinjection
           - name: Resource-based authorization
             uid: security/authorization/resource-based
-          - name: Limit identity by scheme
-            uid: security/authorization/limitingidentitybyscheme
+          - name: Authorize with a specific scheme
+            uid: security/authorization/authorize-with-a-specific-scheme
       - name: Data protection
         displayName: encryption
         items:
