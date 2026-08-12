@@ -14,7 +14,7 @@ This article demonstrates how to return Razor component HTML (as a `string`) fro
 
 Components returned via <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult> are rendered as static HTML strings. Features requiring an active SignalR connection for component interactivity can't execute in this context.
 
-## Place the Razor components into the web API
+## Add the Razor components to the web API
 
 `Components/Greeting.razor`:
 
