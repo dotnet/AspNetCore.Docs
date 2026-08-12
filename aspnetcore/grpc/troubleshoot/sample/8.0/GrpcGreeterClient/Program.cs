@@ -209,8 +209,6 @@ using GrpcGreeterClient;
 
 // <snippet_CallTimeoutHttpClient>
 var handler = new HttpClientHandler();
-handler.ServerCertificateCustomValidationCallback = 
-    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
 var httpClient = new HttpClient(handler) { Timeout = Timeout.InfiniteTimeSpan };
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
@@ -231,8 +229,6 @@ using GrpcGreeterClient;
 
 // <snippet_CallTimeoutSetGrpcChannel>
 var handler = new HttpClientHandler();
-handler.ServerCertificateCustomValidationCallback = 
-    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
     new GrpcChannelOptions { HttpHandler = handler });

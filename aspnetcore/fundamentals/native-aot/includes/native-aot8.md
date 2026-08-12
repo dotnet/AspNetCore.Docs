@@ -22,7 +22,7 @@ The preceding chart shows that Native AOT has lower app size, memory usage, and 
 
 ## ASP.NET Core and Native AOT compatibility
 
-Not all features in ASP.NET Core are currently compatible with Native AOT. The following table summarizes ASP.NET Core feature compatibility with Native AOT:
+Not all features in ASP.NET Core are currently compatible with Native AOT. The following table summarizes ASP.NET Core feature compatibility with Native AOT.
 
 | Feature | Fully Supported | Partially Supported | Not Supported |
 | - | - | - | - |

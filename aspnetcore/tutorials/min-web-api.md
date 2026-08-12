@@ -67,13 +67,12 @@ This tutorial creates the following API:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Start Visual Studio Code, select **View**, and then select **Terminal** to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directory(`cd`) to the folder that contains the project folder.
+* Change directory (`cd`) to the folder where you want to create the project.
 * Run the following commands:
 
 ```dotnetcli
   dotnet new webapi -o TodoApi
-  cd TodoApi
-  code -r ../TodoApi
+  code -r TodoApi
 ```
 
 * When a dialog box asks if you want to trust the authors, select **Yes**.

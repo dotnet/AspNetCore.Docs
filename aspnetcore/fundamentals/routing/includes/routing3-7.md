@@ -422,7 +422,7 @@ The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.R
 
 Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformers](#parameter-transformers) section.
 
-The following table demonstrates example route templates and their behavior:
+The following table demonstrates example route templates and their behavior.
 
 | Route Template                           | Example Matching URI    | The request URI&hellip;                                                      |
 |------------------------------------------|-------------------------|------------------------------------------------------------------------------|
@@ -478,7 +478,7 @@ Route constraints execute when a match has occurred to the incoming URL and the 
 > [!WARNING]
 > Don't use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produce a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
-The following table demonstrates example route constraints and their expected behavior:
+The following table demonstrates example route constraints and their expected behavior.
 
 | constraint          | Example                                     | Example Matches                        | Notes                                                                                     |
 |---------------------|---------------------------------------------|----------------------------------------|-------------------------------------------------------------------------------------------|
@@ -534,14 +534,14 @@ Regular expressions use delimiters and tokens similar to those used by routing a
 * Replace `\` characters provided in the string as `\\` characters in the C# source file in order to escape the `\` string escape character.
 * [Verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
 
-To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version:
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version.
 
 | Regular expression    | Escaped regular expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match:
+Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -823,8 +823,8 @@ The following links provide information on how to configure endpoint metadata:
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
 * [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>
-* [Selecting the scheme with the [Authorize] attribute](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
-* [Apply policies using the [Authorize] attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
+* [Select a scheme with an `[Authorize]` attribute](xref:security/authorization/authorize-with-a-specific-scheme#select-a-scheme-with-an-authorize-attribute)
+* [Apply policies using an `[Authorize]` attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
 
 <a name="hostmatch"></a>
@@ -1439,7 +1439,7 @@ The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.R
 
 Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformers](#parameter-transformers) section.
 
-The following table demonstrates example route templates and their behavior:
+The following table demonstrates example route templates and their behavior.
 
 | Route Template                           | Example Matching URI    | The request URI&hellip;                                                      |
 |------------------------------------------|-------------------------|------------------------------------------------------------------------------|
@@ -1495,7 +1495,7 @@ Route constraints execute when a match has occurred to the incoming URL and the 
 > [!WARNING]
 > Don't use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produce a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
-The following table demonstrates example route constraints and their expected behavior:
+The following table demonstrates example route constraints and their expected behavior.
 
 | constraint          | Example                                     | Example Matches                        | Notes                                                                                     |
 |---------------------|---------------------------------------------|----------------------------------------|-------------------------------------------------------------------------------------------|
@@ -1551,14 +1551,14 @@ Regular expressions use delimiters and tokens similar to those used by routing a
 * Replace `\` characters provided in the string as `\\` characters in the C# source file in order to escape the `\` string escape character.
 * [Verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
 
-To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version:
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version.
 
 | Regular expression    | Escaped regular expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match:
+Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -1834,8 +1834,8 @@ The following links provide information on how to configure endpoint metadata:
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
 * [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>
-* [Selecting the scheme with the [Authorize] attribute](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
-* [Apply policies using the [Authorize] attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
+* [Select a scheme with an `[Authorize]` attribute](xref:security/authorization/authorize-with-a-specific-scheme#select-a-scheme-with-an-authorize-attribute)
+* [Apply policies using an `[Authorize]` attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
 
 <a name="hostmatch"></a>
@@ -2438,7 +2438,7 @@ The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.R
 
 Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
-The following table demonstrates example route templates and their behavior:
+The following table demonstrates example route templates and their behavior.
 
 | Route Template                           | Example Matching URI    | The request URI&hellip;                                                      |
 |------------------------------------------|-------------------------|------------------------------------------------------------------------------|
@@ -2492,7 +2492,7 @@ Route constraints execute when a match has occurred to the incoming URL and the 
 > [!WARNING]
 > Don't use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produce a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
-The following table demonstrates example route constraints and their expected behavior:
+The following table demonstrates example route constraints and their expected behavior.
 
 | constraint          | Example                                     | Example Matches                        | Notes                                                                                     |
 |---------------------|---------------------------------------------|----------------------------------------|-------------------------------------------------------------------------------------------|
@@ -2548,14 +2548,14 @@ Regular expressions use delimiters and tokens similar to those used by routing a
 * Replace `\` characters provided in the string as `\\` characters in the C# source file in order to escape the `\` string escape character.
 * [Verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
 
-To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version:
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version.
 
 | Regular expression    | Escaped regular expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match:
+Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -2825,8 +2825,8 @@ The following links provide information on configuring endpoint metadata:
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
 * [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>
-* [Selecting the scheme with the [Authorize] attribute](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
-* [Apply policies using the [Authorize] attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
+* [Select a scheme with an `[Authorize]` attribute](xref:security/authorization/authorize-with-a-specific-scheme#select-a-scheme-with-an-authorize-attribute)
+* [Apply policies using an `[Authorize]` attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
 
 <a name="hostmatch"></a>

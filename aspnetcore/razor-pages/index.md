@@ -77,7 +77,7 @@ The `Pages/Index2.cshtml.cs` page model:
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with `.cs` appended. For example, the previous Razor Page is `Pages/Index2.cshtml`. The file containing the `PageModel` class is named `Pages/Index2.cshtml.cs`.
 
-The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Page path and the matching URL:
+The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Page path and the matching URL.
 
 | File name and path               | matching URL |
 | ----------------- | ------------ |

@@ -479,7 +479,7 @@ The `type` and `format` can also be set with a [Schema Transformer](xref:fundame
 
 ASP.NET uses metadata from attributes on class or record properties to set metadata on the corresponding properties of the generated schema.
 
-The following table summarizes attributes from the `System.ComponentModel` namespace that provide metadata for the generated schema:
+The following table summarizes attributes from the `System.ComponentModel` namespace that provide metadata for the generated schema.
 
 | Attribute                    | Description |
 | ---------------------------- | ----------- |

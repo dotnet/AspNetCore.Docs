@@ -1,18 +1,22 @@
 ---
 title: .NET OpenAPI tool command reference and installation
+ai-usage: ai-assisted
 author: ryanbrandenburg
-description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
+description: Command reference for the `Microsoft.dotnet-openapi` tool, which adds and manages OpenAPI references that generate clients to consume OpenAPI documents.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/09/2025
+ms.date: 07/30/2026
 uid: fundamentals/openapi/openapi-tools
 ---
 # .NET OpenAPI tool command reference and installation
 
-<!-- TODO: Expand this section to be a more general topic on OpenAPI tooling that includes other popular tools.
-If tools other than for working with OpenAPI are included, a new section will be needed, not under the OpenAPI heading.  -->
+[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Global Tool](/dotnet/core/tools/global-tools) that adds and manages `<OpenApiReference />` entries in a project file. These references let a project generate a strongly typed client from an existing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) document so the app can call the described API.
 
-[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
+This tool addresses the *consumer* side of OpenAPI. For guidance on generating and using an OpenAPI document for your own ASP.NET Core API, see the following articles:
+
+* <xref:fundamentals/openapi/overview>
+* <xref:fundamentals/openapi/aspnetcore-openapi>
+* <xref:fundamentals/openapi/using-openapi-documents>
 
 ## Installation
 
@@ -115,4 +119,15 @@ Refreshes the local version of a file that was downloaded using the latest conte
 |  Argument  | Description | Example |
 | ------------|-------------|---------|
 | source-URL | The URL to refresh the reference from. | dotnet openapi refresh `https://contoso.com/openapi.json` |
+
+## Next steps
+
+After adding an OpenAPI reference and generating a client, see the following resources to generate code, test pages, and UIs that consume an API described by an OpenAPI document:
+
+* <xref:fundamentals/openapi/using-openapi-documents>
+* <xref:tutorials/get-started-with-nswag>
+* <xref:tutorials/first-web-api>
+* <xref:tutorials/min-web-api>
+
+When you generate an OpenAPI document, avoid exposing it in production, because it reveals details of the API that you might not want to make public. The preceding articles show how to make the OpenAPI document and related UI available only in the development environment.
 

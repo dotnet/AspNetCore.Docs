@@ -302,7 +302,7 @@ dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovie
 
 *CRUD* is an acronym for Create, Read, Update, and Delete. The `blazor` generator with the `CRUD` template produces create, edit, delete, details, and index components for the app.
 
-The following table details the ASP.NET Core code generator options used in the preceding command:
+The following details the ASP.NET Core code generator options used in the preceding command:
 
 * `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
 * `-dc`: The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace (`BlazorWebAppMovies.Data`).
@@ -361,7 +361,7 @@ dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovie
 
 *CRUD* is an acronym for Create, Read, Update, and Delete. The `blazor` generator with the `CRUD` template produces create, edit, delete, details, and index components for the app.
 
-The following table details the ASP.NET Core code generator options used in the preceding command:
+The following details the ASP.NET Core code generator options used in the preceding command:
 
 * `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
 * `-dc`: The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace (`BlazorWebAppMovies.Data`).

@@ -53,7 +53,7 @@ If Windows Authentication is selected, the app is configured to use the [Windows
 
 ## dotnet new webapp authentication options
 
-The following table shows the authentication options available for new web apps:
+The following table shows the authentication options available for new web apps.
 
 | Option | Type of authentication | Link for more information |
  | ----------------- | ------------ | ---------- |
@@ -68,7 +68,7 @@ The following table shows the authentication options available for new web apps:
 
 ## Visual Studio new webapp authentication options
 
-The following table shows the authentication options available when creating a new web app with Visual Studio:
+The following table shows the authentication options available when creating a new web app with Visual Studio.
 
 | Option | Type of authentication | Link for more information |
  | ----------------- | ------------ | ---------- |

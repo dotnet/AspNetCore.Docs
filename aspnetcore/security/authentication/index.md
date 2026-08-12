@@ -37,7 +37,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
 
-If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
+If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/authorize-with-a-specific-scheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
@@ -66,7 +66,7 @@ To disable automatically using the single authentication scheme as the `DefaultS
 
 ### Authentication scheme
 
-The [authentication scheme](xref:security/authorization/limitingidentitybyscheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme).
+The [authentication scheme](xref:security/authorization/authorize-with-a-specific-scheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme).
 
 An authentication scheme is a name that corresponds to:
 
@@ -158,7 +158,7 @@ Finbuckle.MultiTenant:
 
 ## Additional resources
 
-* <xref:security/authorization/limitingidentitybyscheme>
+* <xref:security/authorization/authorize-with-a-specific-scheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
 * [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
@@ -194,7 +194,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
 
-If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
+If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/authorize-with-a-specific-scheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
@@ -214,7 +214,7 @@ There's no automatic probing of schemes. If the default scheme isn't specified, 
 
 ### Authentication scheme
 
-The [authentication scheme](xref:security/authorization/limitingidentitybyscheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme).
+The [authentication scheme](xref:security/authorization/authorize-with-a-specific-scheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme).
 
 An authentication scheme is a name that corresponds to:
 
@@ -298,7 +298,7 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 
 ## Additional resources
 
-* <xref:security/authorization/limitingidentitybyscheme>
+* <xref:security/authorization/authorize-with-a-specific-scheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
 * [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
@@ -334,7 +334,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
 
-If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
+If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/authorize-with-a-specific-scheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
@@ -357,7 +357,7 @@ There's no automatic probing of schemes. If the default scheme isn't specified, 
 
 ### Authentication scheme
 
-The [authentication scheme](xref:security/authorization/limitingidentitybyscheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme).
+The [authentication scheme](xref:security/authorization/authorize-with-a-specific-scheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme).
 
 An authentication scheme is a name that corresponds to:
 
@@ -436,7 +436,7 @@ ASP.NET Core framework doesn't have a built-in solution for multi-tenant authent
 
 ## Additional resources
 
-* <xref:security/authorization/limitingidentitybyscheme>
+* <xref:security/authorization/authorize-with-a-specific-scheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
 * [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)

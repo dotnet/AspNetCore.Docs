@@ -1321,7 +1321,7 @@ Make an API call from the client to the server API. From the server, retrieve th
 
 ## Use OpenID Connect (OIDC) v2.0 endpoints
 
-The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, ME-ID is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
+The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, ME-ID is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;

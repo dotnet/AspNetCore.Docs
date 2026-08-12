@@ -5,7 +5,7 @@ author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 08/10/2026
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -30,7 +30,14 @@ To implement a `QuickGrid` component:
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API Browser cross-link -->
+<!-- UPDATE 11.0 - API Browser cross-links 
+
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.InitialItemIndex%2A>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ScrollToItemAsync%2A>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.AnchorMode%2A>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemComparer%2A>
+
+-->
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
@@ -43,6 +50,10 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>.
+* `InitialItemIndex`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
+* `ScrollToItemAsync`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
+* `AnchorMode`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `ItemComparer`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
@@ -870,18 +881,11 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
-<!-- UPDATE 11.0 Keep an eye on https://github.com/dotnet/Scaffolding/issues/3131
-                 for a scaffolding update that makes the scaffolder a little 
-                 smarter about suggesting an existing dB context that has a
-                 factory provider. If the scaffolder can do that, this instruction
-                 can be lightened up to just select ANY one from the list of 
-                 existing providers or create a new one. -->
-
 * The **Template** dropdown list includes other templates for specifically creating create, edit, delete, details, and list components. This dropdown list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** dropdown list set to **CRUD** to scaffold a full set of components.
 * In the **Model class** dropdown list, select the model class. A folder is created for the generated components from the model name (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
 * For **DbContext class**, take either of the following approaches:
-  * Select an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>).
-  * Select the **+** (plus sign) button and use the **Add Data Context** modal dialog to supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class name, which registers the class with a factory provider instead of using the context type directly as a service registration.
+  * Select an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class.
+  * Select the **+** (plus sign) button and use the **Add Data Context** modal dialog to supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class name. The scaffolder registers a new context with a factory provider instead of using the context type directly as a service registration, and it updates an existing `ApplicationDbContext` registration to use a factory provider when needed.
 * After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. You can select the appropriate provider for the database that you're using. The options include SQL Server, SQLite, PostgreSQL, and Azure Cosmos DB.
 * Select **Add**.
 
@@ -927,7 +931,7 @@ The following table explains the ASP.NET Core code generator options in the prec
 Option        | Placeholder          | Description
 ------------- | -------------------- | ---
 `-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace. To make sure that a <xref:Microsoft.EntityFrameworkCore.DbContext> class is registered in the app's services with a factory provider (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>), either use an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration or supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
 `-m`          | `{MODEL}`            | The name of the model class.
 `-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
@@ -976,7 +980,7 @@ The following table explains the ASP.NET Core code generator options in the prec
 Option        | Placeholder          | Description
 ------------- | -------------------- | ---
 `-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace. To make sure that a <xref:Microsoft.EntityFrameworkCore.DbContext> class is registered in the app's services with a factory provider (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>), either use an existing <xref:Microsoft.EntityFrameworkCore.DbContext> class that you know has a factory provider registration or supply a new <xref:Microsoft.EntityFrameworkCore.DbContext> class.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
 `-m`          | `{MODEL}`            | The name of the model class.
 `-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 

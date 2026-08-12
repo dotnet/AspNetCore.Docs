@@ -19,7 +19,7 @@ ASPDEPR diagnostics are similar to the [`SYSLIB` obsoletions](/dotnet/fundamenta
 
 ## ASPDEPR diagnostics
 
-The following table lists the `ASPDEPR` deprecation diagnostics for ASP.NET Core:
+The following table lists the `ASPDEPR` deprecation diagnostics for ASP.NET Core.
 
 | Diagnostic ID                             | Description                 |
 |-------------------------------------------|-----------------------------|

@@ -1,0 +1,25 @@
+name: 'Preview link generator'
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  preview_link_generator_job:
+    name: Generate preview link table
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: read
+      pull-requests: write
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
+      - uses: dotnet/docs-tools/actions/preview-link-generator@455480c2e1c2fa90ecb711963250f000d66d3251 # main
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,10 +1,11 @@
 ---
 title: Kestrel web server in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 12/04/2025
+ms.date: 08/05/2026
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server in ASP.NET Core
@@ -33,6 +34,9 @@ Kestrel's features include:
 * **Extensibility:** Customize Kestrel through configuration, middleware, and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics.
 * **Memory management:** Kestrel includes features for efficient memory management. For more information, see <xref:fundamentals/servers/kestrel/memory-management>.
+
+> [!NOTE]
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
 ## Get started
 
