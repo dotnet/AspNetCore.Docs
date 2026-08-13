@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/25/2025
+ms.date: 08/11/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -2460,7 +2460,7 @@ To opt into the nested objects and collection types validation feature:
 
 1. Call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method in the `Program` file where services are registered.
 2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
-3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute).
+3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute), which indicates that a type is validatable to support discovery by the validation source generator.
 
 The following example demonstrates customer orders with nested collection form validation.
 
