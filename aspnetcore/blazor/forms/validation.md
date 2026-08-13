@@ -2566,7 +2566,7 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 
 The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the nested collection validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
 
-For guidance on using validation models from a different assembly, see the [Use validation models from a different assembly](#use-validation-models-from-a-different-assembly) section.
+For guidance on using validation models from a different assembly, such as a library or the `.Client` project of a Blazor Web App, see <xref:fundamentals/validation#register-validation-in-multi-assembly-apps>.
 
 :::moniker-end
 
@@ -2623,48 +2623,6 @@ public class ShipDescription
     [StringLength(240, ErrorMessage = "Description too long (240 char).")]
     public string? LongDescription { get; set; }
 }
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-10.0"
-
-## Use validation models from a different assembly
-
-For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
-
-* If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation). Additional steps are required for plain class libraries, which are described later in this section.
-* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on it.
-* In the app, call both the method and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
-
-The preceding approach results in validation of the types from both assemblies.
-
-In the following example, the `AddValidationForTypesInClient` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
-
-`ServiceCollectionExtensions.cs` (in the `.Client` project):
-
-```csharp
-namespace BlazorSample.Client.Extensions;
-
-public static class ServiceCollectionExtensions
-{
-    public static IServiceCollection AddValidationForTypesInClient(
-        this IServiceCollection collection)
-    {
-        return collection.AddValidation();
-    }
-}
-```
-
-In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
-
-```csharp
-using BlazorSample.Client.Extensions;
-
-...
-
-builder.Services.AddValidationForTypesInClient();
-builder.Services.AddValidation();
 ```
 
 :::moniker-end

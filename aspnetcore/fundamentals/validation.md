@@ -26,18 +26,27 @@ Validation uses a source generator that only discovers validatable types in the 
 
 ## Register validation in multi-assembly apps
 
-When endpoint handler types are defined in a referenced assembly but <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called from the host app assembly, validation doesn't execute: Invalid requests are processed and return a `200 - OK` response instead of the expected `400 - Bad Request` response, even though `AddValidation` is registered and the request types use validation attributes, such as the [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute).
+When endpoint handler types are defined in a referenced assembly, such as a library or the `.Client` project of a Blazor Web App, but <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is only called from the host app assembly, validation doesn't execute: Invalid requests are processed and return a `200 - OK` response instead of the expected `400 - Bad Request` response, even though `AddValidation` is registered and the request types use validation attributes.
 
-To validate types defined in a different assembly, call `AddValidation` from within that assembly. Create a service collection extension method in the assembly that defines the Minimal API endpoints and call it from the host app.
+If types are validated in more than one assembly:
+
+* If any assembly with validatable types is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the project for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation).
+* Call `AddValidation` in each assembly that defines validatable types.
+* Call each of those extension methods from the host app.
+
+### Minimal API example
+
+Create a service collection extension method in the assembly that defines the Minimal API endpoints and call it from the host app.
 
 `ServiceCollectionExtensions.cs` in the assembly that defines the endpoints, which uses the example namespace `MinimalApisAssembly`:
 
 ```csharp
-namespace MinimalApisAssembly;
+namespace MinimalApisAssembly.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddApiValidation(this IServiceCollection services)
+    public static IServiceCollection AddApiValidation(
+        this IServiceCollection services)
     {
         return services.AddValidation();
     }
@@ -47,27 +56,54 @@ public static class ServiceCollectionExtensions
 In the host app's `Program` file, call the extension method instead of calling `AddValidation` directly:
 
 ```csharp
-using MinimalApisAssembly;
+using MinimalApisAssembly.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
+...
 
 builder.Services.AddApiValidation();
-
-var app = builder.Build();
-
-app.MapApi();
-
-app.Run();
 ```
 
 In the preceding example, `MapApi` is an extension method defined in the endpoints assembly that maps the Minimal API endpoints. Define it alongside `AddApiValidation` so both the endpoint mappings and validation are registered from the same assembly.
 
-If types are validated in more than one assembly:
+### Blazor Web App example
 
-* Call `AddValidation` in each assembly that defines validatable types.
-* Call each of those extension methods from the host app.
+For model validation defined in the `.Client` project of a Blazor Web App:
 
-If validation silently doesn't execute, confirm that `AddValidation` is called from the same assembly that defines the Minimal API endpoint mappings and the validatable types.
+* Create a method in the `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on it.
+* In the app, call both the method and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
+
+The preceding approach results in validation of the types from both assemblies.
+
+In the following example, the `AddValidationForClientTypes` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
+
+`ServiceCollectionExtensions.cs` (in the `.Client` project):
+
+```csharp
+namespace BlazorSample.Client.Extensions;
+
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddValidationForClientTypes(
+        this IServiceCollection services)
+    {
+        return services.AddValidation();
+    }
+}
+```
+
+In the server project's `Program` file:
+
+* Call the `.Client` project's service collection extension method to validate types in the `.Client` project.
+* Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> to validate types in the server project.
+
+```csharp
+using BlazorSample.Client.Extensions;
+
+...
+
+builder.Services.AddValidationForClientTypes();
+builder.Services.AddValidation();
+```
 
 :::moniker range="= aspnetcore-10.0"
 
@@ -240,7 +276,6 @@ public class ValidateUser : IAsyncValidatableObject
 :::moniker range=">= aspnetcore-11.0"
 
 * <xref:blazor/forms/validation>
-  * [Use validation models from a different assembly](xref:blazor/forms/validation#use-validation-models-from-a-different-assembly)
   * [Localized validation messages](xref:blazor/forms/validation#localized-validation-messages)
   * [Nested objects and collection types](xref:blazor/forms/validation#nested-objects-and-collection-types)
 * <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>
@@ -254,8 +289,7 @@ public class ValidateUser : IAsyncValidatableObject
 :::moniker range="< aspnetcore-11.0"
 
 * <xref:blazor/forms/validation>
-  * [Use validation models from a different assembly](xref:blazor/forms/validation#use-validation-models-from-a-different-assembly)
-  * [Nested objects and collection types](xref:blazor/forms/validation#nested-objects-and-collection-types)
+* [Nested objects and collection types (Blazor)](xref:blazor/forms/validation#nested-objects-and-collection-types)
 * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
 * <xref:mvc/models/validation>
 
