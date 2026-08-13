@@ -6,7 +6,7 @@ content_well_notification: AI-contribution
 description: Provides an overview of Minimal APIs in ASP.NET Core
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 08/12/2026
+ms.date: 08/13/2026
 uid: fundamentals/minimal-apis
 ---
 
@@ -80,7 +80,7 @@ The <xref:System.Delegate> arguments passed to these methods are called *route h
 
 ## Validation support in Minimal APIs
 
-For an overview of <xref:Microsoft.Extensions.Validation?displayProperty=fullName> validation, including how to register services for Minimal API projects, see <xref:fundamentals/validation/index>.
+For an overview of <xref:Microsoft.Extensions.Validation?displayProperty=fullName> validation, including how to register services for Minimal API projects, see <xref:fundamentals/validation>.
 
 Enabling validation allows the ASP.NET Core runtime to perform validations defined on the:
 

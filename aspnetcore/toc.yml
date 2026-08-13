@@ -572,10 +572,7 @@ items:
       - name: Static files
         uid: fundamentals/static-files
       - name: Validation
-        displayName: validation
-        items:
-          - name: Overview
-            uid: fundamentals/validation/index
+        uid: fundamentals/validation
       - name: dotnet-scaffold telemetry
         uid: fundamentals/dotnet-scaffold-telemetry
   - name: Web apps

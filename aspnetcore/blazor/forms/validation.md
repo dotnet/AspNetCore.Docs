@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/12/2026
+ms.date: 08/13/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -13,6 +13,12 @@ uid: blazor/forms/validation
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to use validation in Blazor forms.
+
+:::moniker range=">= aspnetcore-10.0"
+
+For an overview of <xref:Microsoft.Extensions.Validation?displayProperty=fullName> validation, including how to register services for Minimal API projects, see <xref:fundamentals/validation>.
+
+:::moniker-end
 
 ## Form validation
 

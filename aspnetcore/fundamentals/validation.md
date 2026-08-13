@@ -5,14 +5,14 @@ author: Youssef1313
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: ygerges
-ms.date: 08/12/2026
-uid: fundamentals/validation/index
+ms.date: 08/13/2026
+uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
 
 <xref:Microsoft.Extensions.Validation?displayProperty=fullName> supports complex model validation in Blazor and Minimal API projects.
 
-While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC and Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
+While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
 
 To enable validation, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services%2A?displayProperty=nameWithType> in the app's `Program` file:
 
@@ -73,7 +73,7 @@ If validation silently doesn't execute, confirm that `AddValidation` is called f
 
 ## Experimental API in apps that target .NET 10
 
-Attributes from the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks. As of .NET 11, the attributes are no longer experimental, so the following guidance doesn't apply to apps that target .NET 11 or later.
+Attributes from the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks. As of .NET 11, the attributes are no longer experimental, so the guidance in this section doesn't apply to apps that target .NET 11 or later.
 
 In Blazor apps, types are made available via a generated embedded attribute. If a web app project that uses the `Microsoft.NET.Sdk.Web` SDK (`<Project Sdk="Microsoft.NET.Sdk.Web">`) or an RCL that uses the `Microsoft.NET.Sdk.Razor` SDK (`<Project Sdk="Microsoft.NET.Sdk.Razor">`) contains Razor components (`.razor`), the framework automatically generates an internal attribute inside the project (`Microsoft.Extensions.Validation.Embedded.ValidatableType`, `Microsoft.Extensions.Validation.Embedded.SkipValidation`). These types are interchangeable with the actual attributes and not marked experimental. In the majority of cases, developers use the `[ValidatableType]`/`[SkipValidation]` attributes on their classes without concern over their source.
 
@@ -185,14 +185,53 @@ In some cases, not all of the types that are part of the object graph can be det
 
 <xref:Microsoft.Extensions.Validation?displayProperty=fullName> supports asynchronous validation. Apply custom implementations of `AsyncValidationAttribute` to parameters, types, or properties, and they're called asynchronously. In addition, types can implement `IAsyncValidatableObject` as well.
 
-> [!IMPORTANT]
-> Both `IAsyncValidatableObject` and `AsyncValidationAttribute` require you to implement the validation logic synchronously **and** asynchronously.
->
-> For Minimal API validation, <xref:Microsoft.Extensions.Validation?displayProperty=fullName> always calls the asynchronous path and never the synchronous path.
->
-> The asynchronous and synchronous paths are never intended to be called together. If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
-
 When validating properties on a type, all validation tasks are started concurrently. Similarly, elements of `IEnumerable` collections are validated concurrently.
+
+`IAsyncValidatableObject` and `AsyncValidationAttribute` require synchronous **and** asynchronous validation logic. For example, the `Validate` and `ValidateAsync` methods of `IAsyncValidatableObject` must be implemented for objects that use the interface. However, validation never calls both methods. If validation is called through an asynchronous code path, only `ValidateAsync` is called. If validation is called through a synchronous code path, only `Validate` is called.
+
+For Minimal API and Blazor validation, <xref:Microsoft.Extensions.Validation?displayProperty=fullName> always calls the asynchronous path and never the synchronous path.
+
+If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
+
+The following example demonstrates a validation class that implements the `IAsyncValidatableObject` interface. In the following scenario, validation requires an asynchronous call path to check a database for a valid email username via a hypothetical `IUserService` service. Because validation requires an asynchronous database call in this scenario, the synchronous `Validate` method, which is required by the interface's contract, shouldn't be called by developer code elsewhere and throws <xref:System.InvalidOperationException> if it ever is called.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class ValidateUser : IAsyncValidatableObject
+{
+    [Required, EmailAddress]
+    public string Email { get; set; } = string.Empty;
+
+    // Asynchronous validation path
+    public async IAsyncEnumerable<ValidationResult> ValidateAsync(
+        ValidationContext validationContext, 
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var userService = validationContext.GetService<IUserService>();
+
+        if (userService is not null)
+        {
+            // Asynchronous call that checks a database via a service
+            if (await userService.IsEmailExistsAsync(Email, cancellationToken))
+            {
+                yield return new ValidationResult(
+                    "Email is already registered.", new[] { nameof(Email) });
+            }
+        }
+    }
+
+    // Synchronous validation path that throws InvalidOperationException
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        throw new InvalidOperationException("Synchronous validation isn't supported.");
+    }
+}
+```
 
 :::moniker-end
 

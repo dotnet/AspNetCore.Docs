@@ -1711,7 +1711,7 @@
         },
         {
             "source_path": "aspnetcore/validation/overview.md",
-            "redirect_url": "/aspnet/core/fundamentals/validation/overview",
+            "redirect_url": "/aspnet/core/fundamentals/validation",
             "redirect_document_id": false
         }
     ]
