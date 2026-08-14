@@ -1,6 +1,6 @@
 ---
 title: "Breaking change: Minimal API renames in RC 2"
-description: Learn about the breaking change in ASP.NET Core 6.0 RC 2 where some minimal APIs were renamed.
+description: Learn about the breaking change in ASP.NET Core 6.0 RC 2 where some Minimal APIs were renamed.
 ms.date: 10/25/2021
 ms.custom: https://github.com/aspnet/Announcements/issues/474
 ---
