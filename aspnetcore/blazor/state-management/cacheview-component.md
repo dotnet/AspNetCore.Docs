@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor CacheView component
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
@@ -72,9 +73,9 @@ Without a matching vary-by parameter, requests with different values share the s
 
 `CacheView` supports three expiration parameters:
 
-- `ExpiresAfter` sets an absolute lifetime relative to entry creation.
-- `ExpiresOn` sets an absolute expiration date and time.
-- `ExpiresSliding` expires an entry after a period without access.
+* `ExpiresAfter` sets an absolute lifetime relative to entry creation.
+* `ExpiresOn` sets an absolute expiration date and time.
+* `ExpiresSliding` expires an entry after a period without access.
 
 When no expiration is specified, entries expire after 30 seconds.
 
@@ -97,9 +98,9 @@ Some components contain per-request content that must not be baked into shared c
 
 These attributes allow component authors to declare that a component:
 
-- Must never be included in cached output but can render live by using `CacheBehavior.Rerender`.
-- Must not be used inside a `CacheView` by using `CacheBehavior.Throw` without a cache condition.
-- Can only be included in cached output when the enclosing `CacheView` varies by specific request dimensions by combining `CacheBehavior.Throw` with `CacheConditionAttribute`.
+* Must never be included in cached output but can render live by using `CacheBehavior.Rerender`.
+* Must not be used inside a `CacheView` by using `CacheBehavior.Throw` without a cache condition.
+* Can only be included in cached output when the enclosing `CacheView` varies by specific request dimensions by combining `CacheBehavior.Throw` with `CacheConditionAttribute`.
 
 ```csharp
 [CacheBehavior(CacheBehavior.Rerender)]
