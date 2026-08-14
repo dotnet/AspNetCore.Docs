@@ -6,7 +6,7 @@ content_well_notification: AI-contribution
 description: Provides an overview of Minimal APIs in ASP.NET Core
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 08/13/2026
+ms.date: 08/14/2026
 uid: fundamentals/minimal-apis
 ---
 
