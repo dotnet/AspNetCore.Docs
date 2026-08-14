@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
-ms.date: 08/12/2026
+ms.date: 08/13/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
