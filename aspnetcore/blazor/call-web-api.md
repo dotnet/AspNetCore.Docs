@@ -289,7 +289,7 @@ builder.Services.AddScoped(sp =>
 
 ## Named `HttpClient` with `IHttpClientFactory`
 
-*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App or a Blazor Server app, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
@@ -375,7 +375,7 @@ For a working demonstration in a client app based on calling Microsoft Graph wit
 
 ## Typed `HttpClient`
 
-*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App or a Blazor Server app, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
 
 Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints. Typed clients are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
