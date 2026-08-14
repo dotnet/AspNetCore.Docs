@@ -879,3 +879,17 @@ For more information, see the following resources:
 
 * <xref:blazor/forms/validation?view=aspnetcore-11.0#nested-objects-and-collection-types>
 * <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
+
+### Cache rendered output of a component subtree during static SSR
+
+The new `CacheView` component caches the rendered output of a Razor component subtree during static server-side rendering (static SSR). On a cache hit, cached markup is replayed without instantiating or running the lifecycle of the child components that were included in the cached output.
+
+`CacheView` is useful for expensive, mostly static sections of a page that don't require the entire response to be cached:
+
+```razor
+<CacheView VaryByQuery="category" ExpiresAfter="TimeSpan.FromMinutes(5)">
+    <ProductList Category="@Category" />
+</CacheView>
+```
+
+For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
