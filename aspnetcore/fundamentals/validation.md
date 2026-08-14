@@ -61,7 +61,12 @@ using MinimalApisAssembly.Extensions;
 ...
 
 builder.Services.AddApiValidation();
-builder.Services.MapApi();
+
+...
+
+var app = builder.Build();
+
+app.MapApi();
 ```
 
 In the preceding example, `MapApi` is an extension method defined in the endpoints assembly that maps the Minimal API endpoints. Define it alongside `AddApiValidation` so both the endpoint mappings and validation are registered from the same assembly.
@@ -230,7 +235,9 @@ When validating properties on a type, all validation tasks are started concurren
 
 `IAsyncValidatableObject` and `AsyncValidationAttribute` require synchronous **and** asynchronous validation logic. For example, the `Validate` and `ValidateAsync` methods of `IAsyncValidatableObject` must be implemented for objects that use the interface. However, validation never calls both methods. If validation is called through an asynchronous code path, only `ValidateAsync` is called. If validation is called through a synchronous code path, only `Validate` is called.
 
-For Minimal API and Blazor validation, <xref:Microsoft.Extensions.Validation?displayProperty=fullName> always calls the asynchronous path and never the synchronous path.
+For Minimal API validation, <xref:Microsoft.Extensions.Validation?displayProperty=fullName> always calls the asynchronous path and never the synchronous path.
+
+Blazor form validation calls the synchronous path through the (obsoleted as of .NET 11) <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> method.
 
 If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
 
