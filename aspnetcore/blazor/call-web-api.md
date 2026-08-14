@@ -289,18 +289,18 @@ builder.Services.AddScoped(sp =>
 
 ## Named `HttpClient` with `IHttpClientFactory`
 
-*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in the `.Client` project of a Blazor Web App or in prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
 
-<xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported for classes and Razor components in the `.Client` project of a Blazor Web App and for prerendered client-side components in a Blazor Web App.
+<xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
 > [!NOTE]
 > An alternative to using a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory> is to use a typed <xref:System.Net.Http.HttpClient>. For more information, see the [Typed `HttpClient`](#typed-httpclient) section.
 
-Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the `.Client` project.
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-In the `Program` file of the `.Client` project, register HTTP client services, giving a name to the client. In the following example, the name is `WebAPI`:
+In the `Program` file of the project, register HTTP client services, giving a name to the client. In the following example, the name is `WebAPI`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -375,14 +375,14 @@ For a working demonstration in a client app based on calling Microsoft Graph wit
 
 ## Typed `HttpClient`
 
-*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in the `.Client` project of a Blazor Web App or in prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps, focusing on only using an HTTP client in the server project of a Blazor Web App, see <xref:fundamentals/http-requests#review-consumption-patterns>.*
 
-Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints. Typed clients are supported for classes and Razor components in the `.Client` project of a Blazor Web App and for prerendered client-side components in a Blazor Web App.
+Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints. Typed clients are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
 > [!NOTE]
 > An alternative to using a typed <xref:System.Net.Http.HttpClient> is to use a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory>. For more information, see the [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory) section.
 
-Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the `.Client` project.
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the project.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -402,7 +402,7 @@ public class ForecastHttpClient(HttpClient http)
 }
 ```
 
-In the `Program` file of the `.Client` project:
+In the `Program` file of the project:
 
 ```csharp
 builder.Services.AddHttpClient<ForecastHttpClient>(client => 
