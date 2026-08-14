@@ -662,7 +662,7 @@ If one of the preceding steps produces a validation error, the remaining steps a
 You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App, by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
 * In the app, call both the method and `AddValidation`.
 
-For more information and an example, see <xref:blazor/forms/validation#use-validation-models-from-a-different-assembly?view=aspnetcore-10.0>.
+For more information, see <xref:fundamentals/validation?view=aspnetcore-10.0#register-validation-in-multi-assembly-apps>.
 
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 

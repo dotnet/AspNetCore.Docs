@@ -78,7 +78,7 @@ This tutorial creates the following API:
 * When a dialog box asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding commands create a new web Minimal API project and open it in Visual Studio Code.
+  The preceding commands create a new web API project and open it in Visual Studio Code.
 
 ---
 
@@ -729,7 +729,7 @@ The preceding code has the following changes:
 
 The next steps modify the `Program.cs` file, so stop the app before making these changes. Leave the scalar page in the browser running.
 
-Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).
+Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
 
 * The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 

@@ -878,7 +878,7 @@ The <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Mi
 For more information, see the following resources:
 
 * <xref:blazor/forms/validation?view=aspnetcore-11.0#nested-objects-and-collection-types>
-* <xref:validation/index?view=aspnetcore-11.0#force-generate-validatable-type-information>
+* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
 
 ### Cache rendered output of a component subtree during static SSR
 

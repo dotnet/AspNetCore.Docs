@@ -1708,6 +1708,11 @@
             "source_path": "aspnetcore/security/authorization/limitingidentitybyscheme.md",
             "redirect_url": "/aspnet/core/security/authorization/authorize-with-a-specific-scheme",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/validation/overview.md",
+            "redirect_url": "/aspnet/core/fundamentals/validation",
+            "redirect_document_id": false
         }
     ]
 }
