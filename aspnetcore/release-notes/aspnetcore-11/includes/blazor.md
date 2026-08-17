@@ -662,12 +662,9 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 ### Asynchronous form validation support
 
-Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async tasks via `EditContext.AddValidationTask`. The framework tracks them, cancels superseded tasks, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
+Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async validation via `EditContext.RegisterAsyncFieldValidator`. The framework tracks them, cancels superseded validations, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
 
-<!-- UPDATE 11.0 - We'll adjust the following remark for future
-                   preview releases. -->
-
-While Preview 5 ships the building blocks for Blazor forms, the full built-in async validation experience will be enabled when the new asynchronous `DataAnnotations` APIs are released in a later .NET preview. These APIs will be fully supported by the existing `DataAnnotationsValidator` component.
+The built-in `DataAnnotationsValidator` component runs the asynchronous `DataAnnotations` APIs (`AsyncValidationAttribute` and `IAsyncValidatableObject`), so asynchronous rules declared on the model work without additional configuration.
 
 ```razor
 <EditForm EditContext="editContext" OnSubmit="HandleSubmit">
@@ -695,9 +692,8 @@ While Preview 5 ships the building blocks for Blazor forms, the full built-in as
         {
             if (e.FieldIdentifier.FieldName == nameof(model.Username))
             {
-                var cts = new CancellationTokenSource();
-                editContext.AddValidationTask(e.FieldIdentifier,
-                    CheckAsync(e.FieldIdentifier, model.Username, cts.Token), cts);
+                editContext.RegisterAsyncFieldValidator(e.FieldIdentifier,
+                    token => CheckAsync(e.FieldIdentifier, model.Username, token));
             }
         };
     }
@@ -724,12 +720,11 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 ### Blazor and Minimal APIs support error localization
 
-Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. By default, localization uses language-specific RESX files deployed as part of the assembly.
+Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. Localization activates automatically once an `IStringLocalizerFactory` is available. By default, localization registered by `AddLocalization` uses language-specific RESX files deployed as part of the assembly.
 
 ```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization<ValidationMessages>();
-    // Resolves to ValidationMessages.en.resx, ValidationMessages.es.resx, ...
+builder.Services.AddLocalization();
+builder.Services.AddValidation();
 ```
 
 ```csharp
@@ -747,27 +742,27 @@ public class ContactModel
 Apps can also register custom `IStringLocalizerFactory` implementations to read the localized strings from other sources, such as databases or JSON files. A user registered type takes precedence over the default RESX localization.
 
 ```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization();
 builder.Services.AddSingleton<IStringLocalizerFactory, DbStringLocalizerFactory>();
+builder.Services.AddValidation();
 ```
 
-Apps can also configure a programmatic strategy for localization, removing the need to specify localization keys on every validation attribute:
+To resolve keys from a shared resource file instead of the validated type's own resources, set `ValidationOptions.LocalizerProvider`:
 
 ```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization<ValidationMessages>(options =>
-    {
-        options.ErrorMessageKeyProvider = ctx =>
-            ctx.Attribute.ErrorMessage ?? $"{ctx.Attribute.GetType().Name}_Error";
-    });
+builder.Services.AddValidation(options =>
+{
+    options.LocalizerProvider = (_, factory) => factory.Create(typeof(ValidationMessages));
+});
 ```
+
+When an attribute doesn't set `ErrorMessage`, conventional lookup keys are tried from most to least specific, removing the need to specify localization keys on every validation attribute:
 
 ```csharp
 [ValidatableType]
 public class ContactModel
 {
-    // Looks-up localized string for 'RequiredAttribute_Error' automatically.
+    // Looks up 'ContactModel_Username_RequiredAttribute_Error', then
+    // 'ContactModel_RequiredAttribute_Error', then 'RequiredAttribute_Error'.
     [Required]
     public string? Username { get; set; }
 }

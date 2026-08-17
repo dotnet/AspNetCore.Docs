@@ -34,7 +34,7 @@ For Blazor apps, localization of validation messages for [forms validation using
 For Blazor apps, localized validation messages for [forms validation using data annotations](<xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation>) are supported through two paths:
 
 * The static resource path using <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> for display names and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> for localized error messages. This approach is supported in every release.
-* The `Microsoft.Extensions.Validation.Localization` package, which resolves validation messages and display names through <xref:Microsoft.Extensions.Localization.IStringLocalizer>. Available for Blazor apps that enable the new validation pipeline using `AddValidation()`. For details, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
+* The `Microsoft.Extensions.Validation` package, which resolves validation messages and display names through <xref:Microsoft.Extensions.Localization.IStringLocalizer>. Available for Blazor apps that enable the new validation pipeline using `AddValidation()`. For details, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
 
 :::moniker-end
 
