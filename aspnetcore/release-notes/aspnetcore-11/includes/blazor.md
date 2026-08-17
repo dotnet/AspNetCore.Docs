@@ -651,7 +651,7 @@ Blazor static server-side rendering (static SSR) forms now get instant, in-brows
 
 The feature is enabled by default for all static SSR forms that include the `DataAnnotationsValidator` component. Both enhanced and non-enhanced forms are supported.
 
-Complete feature coverage is available in <xref:blazor/forms/validation?view=aspnetcore-11.0#client-side-validation-in-static-ssr-forms>.
+Complete feature coverage is available in <xref:blazor/forms/validation-client-side?view=aspnetcore-11.0>.
 
 For more information, see the following resources:
 
@@ -662,15 +662,14 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 ### Asynchronous form validation support
 
-Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async tasks via `EditContext.AddValidationTask`. The framework tracks them, cancels superseded tasks, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
+Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation awaits async validators end-to-end.
 
-<!-- UPDATE 11.0 - We'll adjust the following remark for future
-                   preview releases. -->
+The built-in `DataAnnotationsValidator` component runs the asynchronous `DataAnnotations` APIs (`AsyncValidationAttribute` and `IAsyncValidatableObject`), so asynchronous rules declared on the model work without additional configuration.
 
-While Preview 5 ships the building blocks for Blazor forms, the full built-in async validation experience will be enabled when the new asynchronous `DataAnnotations` APIs are released in a later .NET preview. These APIs will be fully supported by the existing `DataAnnotationsValidator` component.
+Validator components register asynchronous work with `ValidationRequestedEventArgs.AddAsyncValidator` for the whole form and `EditContext.RegisterAsyncFieldValidator` for a single field. The framework owns the cancellation token source, cancels superseded validations, and exposes progress with `IsValidationPending(field)` and `IsValidationFaulted(field)`.
 
 ```razor
-<EditForm EditContext="editContext" OnSubmit="HandleSubmit">
+<EditForm EditContext="editContext" OnValidSubmit="HandleSubmit">
     <InputText @bind-Value="model.Username" />
     @if (editContext.IsValidationPending(() => model.Username))
     {
@@ -695,9 +694,8 @@ While Preview 5 ships the building blocks for Blazor forms, the full built-in as
         {
             if (e.FieldIdentifier.FieldName == nameof(model.Username))
             {
-                var cts = new CancellationTokenSource();
-                editContext.AddValidationTask(e.FieldIdentifier,
-                    CheckAsync(e.FieldIdentifier, model.Username, cts.Token), cts);
+                editContext.RegisterAsyncFieldValidator(e.FieldIdentifier,
+                    token => CheckAsync(e.FieldIdentifier, model.Username, token));
             }
         };
     }
@@ -712,75 +710,16 @@ While Preview 5 ships the building blocks for Blazor forms, the full built-in as
         editContext.NotifyValidationStateChanged();
     }
 
-    private async Task HandleSubmit() => await editContext.ValidateAsync();
+    private Task HandleSubmit() => RegisterAsync();
 }
 ```
 
-Complete feature coverage is available in <xref:blazor/forms/validation?view=aspnetcore-11.0#asynchronous-validation>.
+Complete feature coverage is available in <xref:blazor/forms/validation-advanced?view=aspnetcore-11.0#asynchronous-validation>.
 
 For more information, see [Add built-in support for async form validation in Blazor (`dotnet/aspnetcore` #66526)](https://github.com/dotnet/aspnetcore/pull/66526).
 
 Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
 
-### Blazor and Minimal APIs support error localization
-
-Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. By default, localization uses language-specific RESX files deployed as part of the assembly.
-
-```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization<ValidationMessages>();
-    // Resolves to ValidationMessages.en.resx, ValidationMessages.es.resx, ...
-```
-
-```csharp
-[ValidatableType]
-public class ContactModel
-{
-    // Values of ErrorMessage are used as localization keys.
-    [Required(ErrorMessage = "RequiredError")]
-    [EmailAddress(ErrorMessage = "EmailError")]
-    [Display(Name = "ContactEmail")]
-    public string? Email { get; set; }
-}
-```
-
-Apps can also register custom `IStringLocalizerFactory` implementations to read the localized strings from other sources, such as databases or JSON files. A user registered type takes precedence over the default RESX localization.
-
-```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization();
-builder.Services.AddSingleton<IStringLocalizerFactory, DbStringLocalizerFactory>();
-```
-
-Apps can also configure a programmatic strategy for localization, removing the need to specify localization keys on every validation attribute:
-
-```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization<ValidationMessages>(options =>
-    {
-        options.ErrorMessageKeyProvider = ctx =>
-            ctx.Attribute.ErrorMessage ?? $"{ctx.Attribute.GetType().Name}_Error";
-    });
-```
-
-```csharp
-[ValidatableType]
-public class ContactModel
-{
-    // Looks-up localized string for 'RequiredAttribute_Error' automatically.
-    [Required]
-    public string? Username { get; set; }
-}
-```
-
-Complete feature coverage is available in the following articles:
-
-* <xref:fundamentals/localization/make-content-localizable?view=aspnetcore-11.0#dataannotations-localization-in-minimal-apis-and-blazor>
-* <xref:fundamentals/minimal-apis?view=aspnetcore-11.0#localizing-validation-messages>
-
-For more information, see [Add localization support to Microsoft.Extensions.Validation (`dotnet/aspnetcore` #66646)](https://github.com/dotnet/aspnetcore/pull/66646).
-
-Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
 
 ### Fixes to TempData and `[SupplyParameterFromSession]` persistence for streaming SSR
 

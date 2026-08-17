@@ -398,6 +398,75 @@ Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Component
 
 :::moniker-end
 
+## `InputText` based on the input event
+
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
+
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
+
+`CustomInputText.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/CustomInputText.razor":::
+
+The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following  component uses the shared `CustomInputText` component.
+
+`Starship11.razor`:
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```razor
+@page "/starship-11"
+@using System.ComponentModel.DataAnnotations
+@inject ILogger<Starship11> Logger
+
+<EditForm Model="Model" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <CustomInputText @bind-Value="Model!.Id" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+<div>
+    CurrentValue: @Model?.Id
+</div>
+
+@code {
+    public Starship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        Logger.LogInformation("Submit called: Processing the form");
+    }
+
+    public class Starship
+    {
+        [Required]
+        [StringLength(10, ErrorMessage = "Id is too long.")]
+        public string? Id { get; set; }
+    }
+}
+```
+
+<!--
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship11.razor":::
+-->
+
+:::moniker-end
+
 ## Custom input components
 
 For custom input processing scenarios, the following subsections demonstrate custom input components:
