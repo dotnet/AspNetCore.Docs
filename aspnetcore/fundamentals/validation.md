@@ -438,94 +438,56 @@ In some cases, not all of the types that are part of the object graph can be det
 
 ## Register validation in multi-assembly apps
 
+The validation source generator only discovers validatable types in the assembly where <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called. Types declared in a referenced assembly, such as a class library or the `.Client` project of a Blazor Web App, aren't validated when `AddValidation` is only called from the host app.
+
+There's no error or log entry when this happens. In a Minimal API, invalid requests return a `200 - OK` response instead of `400 - Bad Request`. In Blazor, the form doesn't honor the validation attributes of the models.
+
 To validate types from separate assemblies:
 
 * If the assembly is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the project for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation).
-* Create an extension method in each external assembly that calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
-* Call each of those extension methods from the host app.
+* Create an extension method in each assembly that declares validatable types. The method calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> so that the source generator runs in that assembly:
 
-### Minimal API example
+  ```csharp
+  namespace ValidatableTypesAssembly.Extensions;
 
-When endpoint handler types are defined for endpoints in a separate Minimal API assembly but <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is only called from the host app assembly, validation doesn't execute: Invalid requests are processed and return a `200 - OK` response instead of the expected `400 - Bad Request` response, even though `AddValidation` is registered and the request types use validation attributes.
+  public static class ServiceCollectionExtensions
+  {
+      public static IServiceCollection AddValidationForLibraryTypes(
+          this IServiceCollection services)
+      {
+          return services.AddValidation();
+      }
+  }
+  ```
 
-Create a service collection extension method in an assembly that defines Minimal API endpoints and call it from the host app.
+* Call each of those extension methods from the host app, along with `AddValidation` for the host app's own types:
 
-`ServiceCollectionExtensions.cs` in the assembly that defines the endpoints, which uses the example namespace `MinimalApisAssembly.Extensions`:
+  ```csharp
+  using ValidatableTypesAssembly.Extensions;
 
-```csharp
-namespace MinimalApisAssembly.Extensions;
+  ...
 
-public static class ServiceCollectionExtensions
-{
-    public static IServiceCollection AddApiValidation(
-        this IServiceCollection services)
-    {
-        return services.AddValidation();
-    }
-}
-```
+  builder.Services.AddValidationForLibraryTypes();
+  builder.Services.AddValidation();
+  ```
 
-In the host app's `Program` file, call the extension method instead of calling `AddValidation` directly:
+The preceding approach validates the types from both assemblies.
 
-```csharp
-using MinimalApisAssembly.Extensions;
+Two framework-specific notes:
 
-...
+* **Minimal APIs:** when endpoints are mapped from the referenced assembly, define the endpoint-mapping extension method (`MapApi` in the following example) alongside the validation extension method so both are registered from the same assembly:
 
-builder.Services.AddApiValidation();
+  ```csharp
+  builder.Services.AddApiValidation();
 
-...
+  ...
 
-var app = builder.Build();
+  var app = builder.Build();
 
-app.MapApi();
-```
+  app.MapApi();
+  ```
 
-In the preceding example, `MapApi` is an extension method defined in the endpoints assembly that maps the Minimal API endpoints. Define it alongside `AddApiValidation` so both the endpoint mappings and validation are registered from the same assembly.
-
-### Blazor Web App example
-
-When form model types are defined in a separate library or the `.Client` project of a Blazor Web App but <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is only called from the server app's assembly, form validation doesn't honor the validation attributes of the models.
-
-Create a service collection extension method in the assembly that defines the validatable types and call it from the host app.
-
-For model validation defined in the `.Client` project of a Blazor Web App:
-
-* Create a method in the `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on it.
-* In the app, call both the method and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
-
-The preceding approach results in validation of the types from both assemblies.
-
-In the following example, the `AddValidationForClientTypes` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
-
-`ServiceCollectionExtensions.cs` in the `.Client` project that defines validatable types, which uses the example namespace `BlazorSample.Client.Extensions`:
-
-```csharp
-namespace BlazorSample.Client.Extensions;
-
-public static class ServiceCollectionExtensions
-{
-    public static IServiceCollection AddValidationForClientTypes(
-        this IServiceCollection services)
-    {
-        return services.AddValidation();
-    }
-}
-```
-
-In the server project's `Program` file:
-
-* Call the `.Client` project's service collection extension method to validate types in the `.Client` project.
-* Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> to validate types in the server project.
-
-```csharp
-using BlazorSample.Client.Extensions;
-
-...
-
-builder.Services.AddValidationForClientTypes();
-builder.Services.AddValidation();
-```
+* **Blazor Web Apps:** form model types are commonly declared in the `.Client` project. Create the extension method there and call it from the server project's `Program` file.
 
 :::moniker range="= aspnetcore-10.0"
 
