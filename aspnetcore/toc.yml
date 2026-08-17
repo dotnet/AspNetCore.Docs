@@ -873,6 +873,10 @@ items:
                 uid: blazor/forms/binding
               - name: Validation
                 uid: blazor/forms/validation
+              - name: Client-side validation (static SSR)
+                uid: blazor/forms/validation-client-side
+              - name: Advanced validation
+                uid: blazor/forms/validation-advanced
               - name: Troubleshoot
                 uid: blazor/forms/troubleshoot
           - name: File uploads

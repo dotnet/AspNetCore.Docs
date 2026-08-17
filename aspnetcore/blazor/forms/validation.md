@@ -5,137 +5,117 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/14/2026
+ms.date: 08/17/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to use validation in Blazor forms.
+This article explains how to validate user input in Blazor forms.
 
-:::moniker range=">= aspnetcore-10.0"
+Blazor validates a form's model using [data annotations attributes](xref:System.ComponentModel.DataAnnotations), the same attributes used elsewhere in ASP.NET Core. Most forms only require adding a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> and annotating the model.
 
-For an overview of <xref:Microsoft.Extensions.Validation?displayProperty=fullName> validation, including how to register services for Minimal API projects, see <xref:fundamentals/validation>.
-
-:::moniker-end
-
-## Form validation
-
-In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
-
-Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
-
-In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
-
-:::moniker-end
+More advanced scenarios are covered in separate articles:
 
 :::moniker range=">= aspnetcore-11.0"
 
-In Blazor Web Apps that use interactive render modes (Server, WebAssembly, or Auto), client-side validation runs through the live <xref:Microsoft.AspNetCore.Components.Forms.EditContext> pipeline as in earlier releases. Forms that adopt static server-side rendering (static SSR) gain client-side validation automatically when a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the form. For details, see <xref:blazor/forms/validation#client-side-validation-in-static-ssr-forms>.
+* <xref:blazor/forms/validation-client-side>: How forms that use static server-side rendering (static SSR) are validated in the browser before submission.
+* <xref:blazor/forms/validation-advanced>: Driving validation directly with <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, writing validator components, and remote validation.
+* <xref:fundamentals/validation>: Behavior shared with Minimal APIs, including writing custom rules, validating nested objects and collections, and localizing messages.
 
 :::moniker-end
 
-In the following component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
+:::moniker range="= aspnetcore-10.0"
 
-`Starship8.razor`:
-
-:::moniker range=">= aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship8.razor":::
+* <xref:blazor/forms/validation-advanced>: Driving validation directly with <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, writing validator components, and remote validation.
+* <xref:fundamentals/validation>: Behavior shared with Minimal APIs, including validating nested objects and collections.
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+:::moniker range="< aspnetcore-10.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship8.razor":::
+* <xref:blazor/forms/validation-advanced>: Driving validation directly with <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, writing validator components, and remote validation.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+## Validate a form with data annotations
 
-```razor
-@page "/starship-8"
-@implements IDisposable
-@inject ILogger<Starship8> Logger
+To validate a form:
 
-<h2>Holodeck Configuration</h2>
+1. Annotate the model's properties with [validation attributes](xref:mvc/models/validation#built-in-attributes).
+1. Add a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
+1. Display errors with <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> or <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components.
 
-<EditForm EditContext="editContext" OnValidSubmit="Submit">
-    <div>
-        <label>
-            <InputCheckbox @bind-Value="Model!.Subsystem1" />
-            Safety Subsystem
-        </label>
-    </div>
-    <div>
-        <label>
-            <InputCheckbox @bind-Value="Model!.Subsystem2" />
-            Emergency Shutdown Subsystem
-        </label>
-    </div>
-    <div>
-        <ValidationMessage For="() => Model!.Options" />
-    </div>
-    <div>
-        <button type="submit">Update</button>
-    </div>
-</EditForm>
+The following model uses the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and <xref:System.ComponentModel.DataAnnotations.RangeAttribute> attributes:
 
-@code {
-    private EditContext? editContext;
+```csharp
+using System.ComponentModel.DataAnnotations;
 
-    public Holodeck? Model { get; set; }
+public class Starship
+{
+    [Required]
+    public string? Identifier { get; set; }
 
-    private ValidationMessageStore? messageStore;
-
-    protected override void OnInitialized()
-    {
-        Model ??= new();
-        editContext = new(Model);
-        editContext.OnValidationRequested += HandleValidationRequested;
-        messageStore = new(editContext);
-    }
-
-    private void HandleValidationRequested(object? sender,
-        ValidationRequestedEventArgs args)
-    {
-        messageStore?.Clear();
-
-        // Custom validation logic
-        if (!Model!.Options)
-        {
-            messageStore?.Add(() => Model.Options, "Select at least one.");
-        }
-    }
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public class Holodeck
-    {
-        public bool Subsystem1 { get; set; }
-        public bool Subsystem2 { get; set; }
-        public bool Options => Subsystem1 || Subsystem2;
-    }
-
-    public void Dispose()
-    {
-        if (editContext is not null)
-        {
-            editContext.OnValidationRequested -= HandleValidationRequested;
-        }
-    }
+    [Range(1, 10, ErrorMessage = "Accommodation must be between 1 and 10.")]
+    public int MaximumAccommodation { get; set; }
 }
 ```
 
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship8.razor":::
--->
+The following form validates the model. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> callback is only invoked when validation passes:
+
+```razor
+<EditForm Model="Model" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Identifier:
+            <InputText @bind-Value="Model!.Identifier" />
+        </label>
+        <ValidationMessage For="() => Model!.Identifier" />
+    </p>
+    <p>
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="Model!.MaximumAccommodation" />
+        </label>
+        <ValidationMessage For="() => Model!.MaximumAccommodation" />
+    </p>
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Starship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit() { /* Process the valid form. */ }
+}
+```
+
+Without a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, the model's validation attributes have no effect on the form.
+
+### When validation runs
+
+Blazor performs two types of validation:
+
+* *Field validation* runs when the user changes a field and moves out of it. The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component associates all reported validation results with that field.
+* *Model validation* runs when the form is submitted. The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component determines the field for each result from the member name that the result reports. Results that aren't associated with an individual member are associated with the model rather than a field.
+
+:::moniker range=">= aspnetcore-10.0"
+
+## `DataAnnotationsValidator` validation behavior
+
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
+
+1. Member properties of `T` are validated, including recursively validating nested objects.
+1. Type-level attributes of `T` are validated.
+1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
+
+If one of the preceding steps produces a validation error, the remaining steps are skipped.
 
 :::moniker-end
 
@@ -146,1764 +126,19 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`EnableDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs)
 
-:::moniker range=">= aspnetcore-10.0"
-
-For details on validation behavior, see the [`DataAnnotationsValidator` validation behavior](#dataannotationsvalidator-validation-behavior) section.
-
-:::moniker-end
-
 If you need to enable data annotations validation support for an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A> with an injected <xref:System.IServiceProvider> (`@inject IServiceProvider ServiceProvider`) on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. For an advanced example, see the [`NotifyPropertyChangedValidationComponent` component in the ASP.NET Core Blazor framework's `BasicTestApp` (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/FormsTest/NotifyPropertyChangedValidationComponent.razor). In a production version of the example, replace the `new TestServiceProvider()` argument for the service provider with an injected <xref:System.IServiceProvider>.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-Blazor performs two types of validation:
-
-* *Field validation* is performed when the user tabs out of a field. During field validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component associates all reported validation results with the field.
-* *Model validation* is performed when the user submits the form. During model validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attempts to determine the field based on the member name that the validation result reports. Validation results that aren't associated with an individual member are associated with the model rather than a field.
 
 In custom validation scenarios:
 
 * Validation manages a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 * The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is used to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes).
 
-There are two general approaches for achieving custom validation, which are described in the next two sections of this article:
+Two general approaches are available for validation logic that isn't declared on the model, both described in <xref:blazor/forms/validation-advanced>:
 
-* [Manual validation using the `OnValidationRequested` event](#manual-validation-using-the-onvalidationrequested-event): Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event.
-* [Validator components](#validator-components): One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server-side validation in a Blazor Web App).
-
-:::moniker range=">= aspnetcore-11.0"
-
-## Client-side validation in static SSR forms
-
-When a Blazor form that uses [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr) contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component, Blazor automatically validates the form in the browser before the form is submitted. Server-side data annotations validation continues to run after the form is posted, so the client-side check supplements but never replaces the server-side check.
-
-Client-side validation activates automatically when both conditions are met:
-
-* The form's hosting component uses static SSR (no `@rendermode` directive applied to the component).
-* The form contains a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-
-### Supported validation attributes
-
-The following <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> attributes are enforced client-side, matching the server-side data annotations behavior:
-
-* <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>
-* <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute>
-* <xref:System.ComponentModel.DataAnnotations.MinLengthAttribute>
-* <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>
-* <xref:System.ComponentModel.DataAnnotations.RangeAttribute>
-* <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute>
-* <xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute>
-* <xref:System.ComponentModel.DataAnnotations.UrlAttribute>
-* <xref:System.ComponentModel.DataAnnotations.PhoneAttribute>
-* <xref:System.ComponentModel.DataAnnotations.CreditCardAttribute>
-* <xref:System.ComponentModel.DataAnnotations.CompareAttribute>
-* <xref:System.ComponentModel.DataAnnotations.FileExtensionsAttribute>
-
-Validation attributes that don't appear in this list, including custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>-derived attributes, aren't enforced client-side. They continue to run server-side after the form is submitted.
-
-### Validation timing
-
-A field validates when it loses focus (blur) for the first time. After a field has shown a validation error or after the form has been submitted at least once, the field re-validates on every change so corrections appear immediately. Submitting the form validates every field.
-
-### Validation messages and accessibility
-
-The existing <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components display client-side validation errors without any changes. ARIA attributes on input elements and on the validation message containers are managed by Blazor automatically so that assistive technologies announce validation errors without additional configuration.
-
-### Localized validation messages
-
-When validation localization is configured through `Microsoft.Extensions.Validation`, error messages are localized at server-render time before being included in the page, so the client-side validation shows the same localized strings as the server-side experience. For more information, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
-
-### CSS framework integration
-
-Client-side validation integrates with the browser's [Constraint Validation API](https://developer.mozilla.org/docs/Web/API/Constraint_validation), so the standard CSS pseudo-classes `:valid` and `:invalid` reflect each input's current validation state.
-
-### Enhanced navigation
-
-Client-side validation is preserved across [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). When the user navigates to a page that contains an SSR form, the form is wired up automatically. Multiple forms on the same page validate independently of each other.
-
-### Opting out
-
-To keep server-side data annotations validation but disable client-side enforcement for a single form, set the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component's `DisableClientValidation` parameter to `true`:
-
-```razor
-<DataAnnotationsValidator DisableClientValidation="true" />
-```
-
-To bypass client-side validation for a single submit button, use the standard HTML `formnovalidate` attribute on the button. The form is then posted without a client-side check, and server-side validation still runs after the post:
-
-```razor
-<button type="submit" formnovalidate>Save draft</button>
-```
-
-:::moniker-end
-
-## Manual validation using the `OnValidationRequested` event
-
-You can manually validate a form with a custom event handler assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A?displayProperty=nameWithType> event to manage a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>.
-
-The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach additional validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). 
-
-Recalling the earlier `Starship8` component example, the `HandleValidationRequested` method is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A>, where you can perform manual validation in C# code. A few changes demonstrate combining the existing manual validation with data annotations validation via a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> and a validation attribute applied to the `Holodeck` model.
-
-Reference the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace in the component's Razor directives at the top of the component definition file:
-
-```razor
-@using System.ComponentModel.DataAnnotations
-```
-
-Add an `Id` property to the `Holodeck` model with a validation attribute to limit the string's length to six characters:
-
-```csharp
-[StringLength(6)]
-public string? Id { get; set; }
-```
-
-Add a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component (`<DataAnnotationsValidator />`) to the form. Typically, the component is placed immediately under the `<EditForm>` tag, but you can place it anywhere in the form:
-
-```razor
-<DataAnnotationsValidator />
-```
-
-Change the form's submit behavior in the `<EditForm>` tag from <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, which ensures that the form is valid before executing the assigned event handler method:
-
-```diff
-- OnSubmit="Submit"
-+ OnValidSubmit="Submit"
-```
-
-In the `<EditForm>`, add a field for the `Id` property:
-
-```razor
-<div>
-    <label>
-        <InputText @bind-Value="Model!.Id" />
-        ID (6 characters max)
-    </label>
-    <ValidationMessage For="() => Model!.Id" />
-</div>
-```
-
-After making the preceding changes, the form's behavior matches the following specification:
-
-* The data annotations validation on the `Id` property doesn't trigger a validation failure when the `Id` field merely loses focus. The validation executes when the user selects the **`Update`** button.
-* Any manual validation that you want to perform in the `HandleValidationRequested` method assigned to the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event executes when the user selects the form's **`Update`** button. In the existing code of the `Starship8` component example, the user must select either or both of the checkboxes to validate the form.
-* The form doesn't process the `Submit` method until both the data annotations and manual validation pass.
-
-:::moniker range=">= aspnetcore-11.0"
-
-## Asynchronous validation
-
-<xref:Microsoft.AspNetCore.Components.Forms.EditContext> exposes an asynchronous validation pipeline that custom validator components and custom submit handlers can use to run validation work that performs I/O, such as calling a server endpoint to check a value's uniqueness. The pipeline is built around the following API:
-
-<!-- UPDATE 11.0 - API Browser cross-links
-
-<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
-<xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A>
-<xref:Microsoft.AspNetCore.Components.Forms.ValidationRequestedEventArgs.AddAsyncValidator%2A>
-
--->
-
-* `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync`: an asynchronous counterpart to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> that awaits any registered async work and accepts a <xref:System.Threading.CancellationToken>.
-* `ValidationRequestedEventArgs.AddAsyncValidator`: registers asynchronous work to run as part of the current validation pass. It's called from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> handler, typically to validate the form as a whole on submit.
-* `EditContext.RegisterAsyncFieldValidator`: registers asynchronous work for a single field. Registering a new validation for a field cancels and replaces the field's current pending validation.
-
-<xref:Microsoft.AspNetCore.Components.Forms.EditForm> awaits any registered async work before invoking <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>. Sync-only forms continue to work without changes.
-
-The built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component runs the asynchronous `DataAnnotations` APIs (`AsyncValidationAttribute` and `IAsyncValidatableObject`), so asynchronous rules declared on the model work without adopting the patterns in this section.
-
-> [!IMPORTANT]
-> Asynchronous work can only be registered during an asynchronous validation pass. If a form is validated with the synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method, `AddAsyncValidator` throws an <xref:System.InvalidOperationException> that directs the caller to `ValidateAsync`. This guarantees that an asynchronous validator is never silently skipped.
-
-### Form-level async validation
-
-Subscribe to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and call `AddAsyncValidator` from the handler to run async work whenever the form is validated as a whole. The framework invokes the registered validator with the validation pass's cancellation token, which should be passed to any I/O that the validator performs, so the work is cancelled when the framework supersedes the current validation pass.
-
-In the following example, a custom validator component checks a username against a remote endpoint when the form is submitted:
-
-```razor
-@implements IDisposable
-@inject HttpClient Http
-
-@code {
-    [CascadingParameter]
-    private EditContext? CurrentEditContext { get; set; }
-
-    [Parameter, EditorRequired]
-    public RegistrationModel Model { get; set; } = default!;
-
-    private ValidationMessageStore? _messages;
-
-    protected override void OnInitialized()
-    {
-        ArgumentNullException.ThrowIfNull(CurrentEditContext);
-        _messages = new ValidationMessageStore(CurrentEditContext);
-        CurrentEditContext.OnValidationRequested += OnValidationRequested;
-    }
-
-    private void OnValidationRequested(
-        object? sender, ValidationRequestedEventArgs e) =>
-        e.AddAsyncValidator(ValidateUsernameAsync);
-
-    private async Task ValidateUsernameAsync(CancellationToken token)
-    {
-        var field = CurrentEditContext!.Field(nameof(Model.Username));
-        _messages!.Clear(field);
-
-        var available = await Http.GetFromJsonAsync<bool>(
-            $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
-            token);
-
-        if (!available)
-        {
-            _messages.Add(field, "The username is already taken.");
-        }
-        
-        CurrentEditContext!.NotifyValidationStateChanged();
-    }
-
-    public void Dispose()
-    {
-        if (CurrentEditContext is not null)
-        {
-            CurrentEditContext.OnValidationRequested -= OnValidationRequested;
-        }
-    }
-}
-```
-
-Place the component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> alongside the form's inputs. Because <xref:Microsoft.AspNetCore.Components.Forms.EditForm> awaits the async handlers before invoking <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>, the submit handler runs only after the remote check completes successfully:
-
-```razor
-<EditForm Model="Model" OnValidSubmit="RegisterAsync">
-    <UsernameUniquenessValidator Model="Model" />
-    <InputText @bind-Value="Model.Username" />
-    <ValidationMessage For="() => Model.Username" />
-    <button type="submit">Register</button>
-</EditForm>
-```
-
-### Per-field async validation
-
-For async work that should run when the user edits a single field, call `RegisterAsyncFieldValidator` with the field's <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> and a validator that starts the work. The framework tracks each validation so the field's pending and faulted state can be queried and visualized independently of other fields.
-
-The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> owns the cancellation token source. If the user edits the same field again while a check is in flight, the prior validation is canceled and superseded automatically, so there's no token source for the component to create, cancel, or dispose.
-
-Add the following members to the validator component shown in the previous section to re-run the uniqueness check whenever the `Username` field changes:
-
-```csharp
-protected override void OnInitialized()
-{
-    ArgumentNullException.ThrowIfNull(CurrentEditContext);
-    _messages = new ValidationMessageStore(CurrentEditContext);
-    CurrentEditContext.OnValidationRequested += OnValidationRequested;
-    CurrentEditContext.OnFieldChanged += OnFieldChanged;
-}
-
-private void OnFieldChanged(object? sender, FieldChangedEventArgs e)
-{
-    if (e.FieldIdentifier.FieldName != nameof(RegistrationModel.Username))
-    {
-        return;
-    }
-
-    CurrentEditContext!.RegisterAsyncFieldValidator(
-        e.FieldIdentifier,
-        token => CheckAsync(e.FieldIdentifier, token));
-}
-
-private async Task CheckAsync(FieldIdentifier field, CancellationToken token)
-{
-    _messages!.Clear(field);
-
-    var available = await Http.GetFromJsonAsync<bool>(
-        $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
-        token);
-
-    if (!available)
-    {
-        _messages.Add(field, "The username is already taken.");
-    }
-    
-    CurrentEditContext!.NotifyValidationStateChanged();
-}
-
-public void Dispose()
-{
-    if (CurrentEditContext is not null)
-    {
-        CurrentEditContext.OnValidationRequested -= OnValidationRequested;
-        CurrentEditContext.OnFieldChanged -= OnFieldChanged;
-    }
-}
-```
-
-A canceled task is discarded silently and does not change the field's faulted state. A task that throws an exception other than <xref:System.OperationCanceledException> places the field in the faulted state described in the next section.
-
-### Pending and faulted state
-
-While an async task is in flight, the field is *pending*. If an async task throws an exception other than <xref:System.OperationCanceledException>, the field is *faulted*. Each state has both a per-field and a form-level query:
-
-| State    | Per-field                                          | Form-level (any field)           |
-|----------|----------------------------------------------------|----------------------------------|
-| Pending  | `EditContext.IsValidationPending(fieldIdentifier)` | `EditContext.IsValidationPending()` |
-| Faulted  | `EditContext.IsValidationFaulted(fieldIdentifier)` | `EditContext.IsValidationFaulted()` |
-
-The per-field overloads accept either a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> or a `() => model.Property` lambda for convenient use in Razor markup:
-
-```razor
-<InputText @bind-Value="Model.Username" />
-<ValidationMessage For="() => Model.Username" />
-
-@if (EditContext.IsValidationPending(() => Model.Username))
-{
-    <span class="spinner" aria-live="polite">Checking&hellip;</span>
-}
-else if (EditContext.IsValidationFaulted(() => Model.Username))
-{
-    <span class="validation-faulted" aria-live="polite">
-        Validation could not be completed.
-    </span>
-}
-```
-
-The form-level parameterless overloads return `true` when any field is currently pending or faulted. A common use is disabling the submit button while validation is in flight:
-
-```razor
-<button type="submit" disabled="@EditContext.IsValidationPending()">
-    Register
-</button>
-```
-
-<xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> automatically adds the `pending` and `faulted` CSS classes to its rendered element while the bound field is in the corresponding state, in addition to the existing `modified` / `valid` / `invalid` classes. The classes compose, so unmodified pending styling and modified pending styling can be targeted independently:
-
-```css
-.pending {
-    background-image: url('spinner.gif');
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-
-.modified.pending {
-    border-color: lightblue;
-}
-
-.modified.faulted {
-    border-color: orange;
-}
-```
-
-### Calling `ValidateAsync` from a custom submit handler
-
-<!-- UPDATE 11.0 - API Browser cross-link 
-
-<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
-
--->
-
-When a form uses <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> instead of <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>, call `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` from the handler to await any registered async work before deciding whether to proceed:
-
-```razor
-<EditForm EditContext="_editContext" OnSubmit="HandleSubmitAsync">
-    <UsernameUniquenessValidator Model="Model" />
-    <InputText @bind-Value="Model.Username" />
-    <button type="submit">Register</button>
-</EditForm>
-
-@code {
-    private EditContext _editContext = default!;
-
-    protected override void OnInitialized() =>
-        _editContext = new EditContext(Model);
-
-    private async Task HandleSubmitAsync()
-    {
-        if (await _editContext.ValidateAsync(CancellationToken.None))
-        {
-            await RegisterAsync();
-        }
-    }
-}
-```
-
-<!-- UPDATE 11.0 - API Browser cross-link
-
-<xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
-
--->
-
-The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method continues to work for forms that only have synchronous validators, but it's obsolete as of .NET 11. Call `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` instead. If a handler attempts to register asynchronous work during a synchronous pass, `AddAsyncValidator` throws an <xref:System.InvalidOperationException> directing the caller to use `ValidateAsync`.
-
-### Async validation across rendering modes
-
-The async validation API is the same in every Blazor rendering mode. Validator code runs wherever the component runs: in the browser for Interactive WebAssembly, on the server for Interactive Server, and on the server during the form POST for static SSR. Static SSR renders the full response after async validation completes.
-
-:::moniker-end
-
-## Validator components
-
-Validator components support form validation by managing a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
-
-The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server-side validation in a Blazor Web App). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
-
-* [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
-* [Remote validation with a validator component](#remote-validation-with-a-validator-component)
-
-Of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes), only the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute) isn't supported in Blazor.
-
-> [!NOTE]
-> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation in a Blazor Web App, any custom attributes applied to the model must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
-
-Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
-
-* The form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading parameter](xref:blazor/components/cascading-values-and-parameters) of the component.
-* When the validator component is initialized, a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> is created to maintain a current list of form errors.
-* The message store receives errors when developer code in the form's component calls the `DisplayErrors` method. The errors are passed to the `DisplayErrors` method in a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602). In the dictionary, the key is the name of the form field that has one or more errors. The value is the error list.
-* Messages are cleared when any of the following have occurred:
-  * Validation is requested on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> when the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event is raised. All of the errors are cleared.
-  * A field changes in the form when the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> event is raised. Only the errors for the field are cleared.
-  * The `ClearErrors` method is called by developer code. All of the errors are cleared.
-
-Update the namespace in the following class to match your app's namespace.
-
-`CustomValidation.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/CustomValidation.cs":::
-
-> [!IMPORTANT]
-> Specifying a namespace is **required** when deriving from <xref:Microsoft.AspNetCore.Components.ComponentBase>. Failing to specify a namespace results in a build error:
->
-> > :::no-loc text="Tag helpers cannot target tag name '\<global namespace>.{CLASS NAME}' because it contains a ' ' character.":::
->
-> The `{CLASS NAME}` placeholder is the name of the component class. The custom validator example in this section specifies the example namespace `BlazorSample`.
-
-> [!NOTE]
-> Anonymous lambda expressions are registered event handlers for <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> in the preceding example. It isn't necessary to implement <xref:System.IDisposable> and unsubscribe the event delegates in this scenario. For more information, see <xref:blazor/components/component-disposal>.
-
-## Business logic validation with a validator component
-
-For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
-
-Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
-
-In the following example:
-
-* A shortened version of the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article is used that only accepts the starship's classification and description. Data annotation validation isn't triggered on form submission because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component isn't included in the form.
-* The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
-* The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
-
-When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s validation summary.
-
-`Starship9.razor`:
-
-:::moniker range=">= aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship9.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship9.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-@page "/starship-9"
-@inject ILogger<Starship9> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm Model="Model" OnValidSubmit="Submit">
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" />
-        </label>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    private CustomValidation? customValidation;
-
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() =>
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private void Submit()
-    {
-        customValidation?.ClearErrors();
-
-        var errors = new Dictionary<string, List<string>>();
-
-        if (Model!.Classification == "Defense" &&
-                string.IsNullOrEmpty(Model.Description))
-        {
-            errors.Add(nameof(Model.Description),
-                new() { "For a 'Defense' ship classification, " +
-                "'Description' is required." });
-        }
-
-        if (errors.Any())
-        {
-            customValidation?.DisplayErrors(errors);
-        }
-        else
-        {
-            Logger.LogInformation("Submit called: Processing the form");
-        }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship9.razor":::
--->
-
-:::moniker-end
-
-> [!NOTE]
-> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation in a Blazor Web App, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
-
-:::moniker range=">= aspnetcore-10.0"
-
-## Remote validation in a Minimal API
-
-In a [Minimal API](xref:fundamentals/minimal-apis), call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method for [data annotation validation of model types](xref:mvc/models/validation#validation-attributes) for all web API endpoints:
-
-```csharp
-builder.Services.AddValidation();
-```
-
-The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
-
-Built-in validation also supports [custom validation attributes](xref:mvc/models/validation#custom-attributes).
-
-For more information, see <xref:fundamentals/minimal-apis#enable-built-in-validation-support-for-minimal-apis>.
-
-:::moniker-end
-
-## Remote validation with a validator component
-
-:::moniker range=">= aspnetcore-10.0"
-
-*This section demonstrates remote validation using a Blazor Web App (global Interactive Auto render mode) and a Minimal API.*
-
-Remote validation is supported in addition to Blazor Web App client/server-side validation:
-
-* Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend Minimal API for remote validation.
-* Process remote model validation:
-  * Data annotations validation with built-in support for Minimal APIs.
-  * Custom validation logic.
-* Send validation errors, if any, back to the client.
-* Either disable the form on success or display the errors so that the user can correct any problems with the form's field values.
-
-Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a *validator component* is recommended where an independent model class is used across several components. The approach demonstrated by the following guidance uses a validator component.
-
-The following example is based on:
-
-* A Blazor Web App with global Interactive Auto components created from the [Blazor Web App project template](xref:blazor/project-structure).
-* A `CustomValidation` component to handle adding model errors to the form's validation message store for display in the UI.
-* A [Minimal API](xref:fundamentals/minimal-apis) project that validates:
-  * Data annotations validation attributes on the model class (<xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>), including for [custom validation attributes](xref:mvc/models/validation#custom-attributes).
-  * Custom validation logic that determines if a description form field (`Description`) has a value if the user selects a particular classification in another form field (`Defense` classification).
-
-The validation for the `Defense` ship classification only occurs on the server because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Remote validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data is never sent to the client for client validation.
-
-> [!NOTE]
-> For more information on security pertaining to the following example, see the following resources:
->
-> * <xref:blazor/security/blazor-web-app-entra>
-> * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
-> * [Microsoft identity platform documentation](/entra/identity-platform/)
-
-Create a `Starship` folder in the `.Client` project of the Blazor Web App.
-
-Place the following `StarshipModel` model (`StarshipModel.cs`) into the `Starship` folder ***and*** into the Minimal API project of the solution.
-
-> [!NOTE]
-> If you choose to place one copy of the `StarshipModel` into a shared class library project for use by both the Blazor Web App and the Minimal API project, confirm that the shared class library uses the shared framework or add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the shared project. This ensures that the model has access to data annotations.
->
-> [!INCLUDE[](~/includes/package-reference.md)]
-
-In the two `StarshipModel` classes, set the namespace (`{NAMESPACE}`) appropriately for each project (for example, `BlazorSample.Client.Starship` in the Blazor Web App and `MinimalApiJwt.Models` in the Minimal API project). Some developers prefer to use a different folder scheme. If you position the classes in the projects in different locations, set the namespaces appropriately.
-
-`Starship/StarshipModel.cs` (Blazor Web App) or `Models/StarshipModel.cs` (Minimal API project):
-
-```csharp
-using System.ComponentModel.DataAnnotations;
-
-namespace {NAMESPACE};
-
-public class StarshipModel
-{
-    [Required]
-    [StringLength(16, ErrorMessage = "Identifier too long (16 character limit).")]
-    public string? Id { get; set; }
-
-    public string? Description { get; set; }
-
-    [Required]
-    public string? Classification { get; set; }
-
-    [Range(1, 100000, ErrorMessage = "Accommodation invalid (1-100000).")]
-    public int MaximumAccommodation { get; set; }
-
-    [Required]
-    [Range(typeof(bool), "true", "true", ErrorMessage = "Approval required.")]
-    public bool IsValidatedDesign { get; set; }
-
-    [Required]
-    public DateTime ProductionDate { get; set; }
-}
-```
-
-Add an interface for a form validation service to the `.Client` project in the `Starship` folder. The interface is used to register validation services in the Blazor Web App.
-
-`Starship/IFormValidation.cs`:
-
-```csharp
-namespace BlazorSample.Client.Starship;
-
-public interface IFormValidation
-{
-    Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
-        StarshipModel starship);
-}
-```
-
-Add a client form validator class to the `.Client` project's `Starship` folder. The client form validator is used when the app is running on the client. The validator class posts to the Blazor Web App endpoint, which then proxies to the Minimal API.
-
-`Starship/ClientFormValidation.cs`:
-
-```csharp
-using System.Net.Http.Json;
-
-namespace BlazorSample.Client.Starship;
-
-internal sealed class ClientFormValidation(HttpClient httpClient) : IFormValidation
-{
-    public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
-        StarshipModel starship)
-    {
-        Dictionary<string, string[]> genericError = new()
-        {
-            {
-                "Validation Error", 
-                ["An unexpected client error occurred during validation."]
-            }
-        };
-
-        try
-        {
-            using var response = await httpClient.PostAsJsonAsync(
-                "/starship-validation", starship);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var deserializedResponseContent = 
-                    await response.Content.ReadFromJsonAsync
-                        <IDictionary<string, string[]>>();
-
-                return deserializedResponseContent ?? genericError;
-            }
-        }
-        catch (Exception ex)
-        {
-            // Log exception
-        }
-
-        return genericError;
-    }
-}
-```
-
-Confirm or update the namespace of the preceding class.
-
-Create a `Starship` folder in the server project of the Blazor Web App.
-
-In the Blazor Web App, create a server form validator that implements the `IFormValidation` interface. Place the server form validator class in the server-side `Starship` folder. The server form validator is used when the Blazor Web App is running on the server. The validator class posts the form's model to the backend Minimal API for processing.
-
-`Starship/ServerFormValidation.cs`:
-
-```csharp
-using System.Net;
-using System.Net.Http.Headers;
-using System.Text.Json;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using BlazorSample.Client.Starship;
-
-namespace BlazorSample.Starship;
-
-internal sealed class ServerFormValidation(
-    IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory) 
-    : IFormValidation
-{
-    public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
-        StarshipModel starship)
-    {
-        Dictionary<string, string[]> genericError = new()
-        {
-            {
-                "Validation Error",
-                ["An unexpected server error occurred during validation."]
-            }
-        };
-
-        try
-        {
-            if (httpContextAccessor.HttpContext is null)
-            {
-                throw new Exception("HttpContext not available");
-            }
-
-            var request = new HttpRequestMessage(HttpMethod.Post, 
-                "https://localhost:7277/api-starship-validation")
-            {
-                Content = new StringContent(JsonSerializer.Serialize(starship), 
-                    System.Text.Encoding.UTF8, "application/json")
-            };
-
-            var accessToken = 
-                await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
-
-            request.Headers.Authorization =
-                new AuthenticationHeaderValue("Bearer", accessToken);
-
-            using var httpClient = httpClientFactory.CreateClient();
-
-            var response = await httpClient.SendAsync(request);
-
-            if (response?.StatusCode == HttpStatusCode.NoContent)
-            {
-                return new Dictionary<string, string[]>();
-            }
-
-            if (response?.StatusCode == HttpStatusCode.BadRequest)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-
-                var deserialized =
-                    JsonSerializer.Deserialize<ValidationProblemDetails>(
-                        content,
-                        new JsonSerializerOptions(JsonSerializerDefaults.Web));
-
-                return deserialized?.Errors ?? genericError;
-            }
-
-            return genericError;
-        }
-        catch (Exception ex)
-        {
-            // Log exception
-        }
-
-        return genericError;
-    }
-}
-```
-
-In the `Program` file of the Blazor Web App:
-
-* Register the server form validator (`ServerFormValidation`) for the `IFormValidation` interface in the DI container.
-* The server form validator is used on the server to call `ValidateStarshipFormAsync` for form validation.
-
-```csharp
-builder.Services.AddScoped<IFormValidation, ServerFormValidation>();
-
-...
-
-app.MapPost("/starship-validation", (IFormValidation formValidator, 
-    StarshipModel model) =>
-{
-    return formValidator.ValidateStarshipFormAsync(model);
-}).RequireAuthorization();
-```
-
-The `.Client` project of a Blazor Web App must register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to the Minimal API. Add the following to the `.Client` project's `Program` file:
-
-```csharp
-builder.Services.AddHttpClient<IFormValidation, ClientFormValidation>(httpClient =>
-{
-    httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
-});
-```
-
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
-
-In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a `ValidationProblem` returns a dictionary with the failed field and a description of the error. If validation passes, a *204 - No Content* response is issued. In a typical production app, any number of custom form model checks are made, and the validation errors dictionary can include multiple failures (`string[]` value) for each model property.
-
-In the `Program` file of the Minimal API project:
-
-```csharp
-app.MapPost("/api-starship-validation", (
-    StarshipModel model, ILogger<Program> logger) =>
-{
-    Dictionary<string, string[]> errors = [];
-
-    if (model.Classification == "Defense" && string.IsNullOrEmpty(model.Description))
-    {
-        errors.Add(nameof(model.Description), 
-            ["For a 'Defense' ship, 'Description' is required."]);
-    }
-
-    if (errors.Count > 0)
-    {
-        return Results.ValidationProblem(
-            errors: errors,
-            detail: "One or more validation errors occurred.",
-            instance: typeof(Program).Assembly.GetName().Name,
-            title: "Validation Errors",
-            type: "https://tools.ietf.org/html/rfc9110#section-15.5.1");
-    }
-
-    return Results.NoContent();
-
-}).RequireAuthorization();
-```
-
-Also in the `Program` file of the Minimal API, register [built-in validation services](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis):
-
-```csharp
-builder.Services.AddValidation();
-```
-
-Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint's code. If you don't want to implement built-in model validation, don't use the preceding line of code in the Minimal API's `Program` file.
-
-In the `.Client` project, add the following `CustomValidation` component. When the component's `DisplayErrors` method is called with a set of validation errors, the errors are added to the parent component's edit context validation message store. Errors are cleared from the edit context by calling the `ClearErrors` method.
-
-`CustomValidation.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Mvc;
-
-namespace BlazorSample.Client;
-
-public class CustomValidation : ComponentBase
-{
-    private ValidationMessageStore? messageStore;
-
-    [CascadingParameter]
-    private EditContext? CurrentEditContext { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (CurrentEditContext is null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(CustomValidation)} requires a cascading " +
-                $"parameter of type {nameof(EditContext)}. " +
-                $"For example, you can use {nameof(CustomValidation)} " +
-                $"inside an {nameof(EditForm)}.");
-        }
-
-        messageStore = new(CurrentEditContext);
-
-        CurrentEditContext.OnValidationRequested += (s, e) =>
-            messageStore?.Clear();
-        CurrentEditContext.OnFieldChanged += (s, e) =>
-            messageStore?.Clear(e.FieldIdentifier);
-    }
-
-    public void DisplayErrors(IDictionary<string, string[]> errors)
-    {
-        if (CurrentEditContext is not null)
-        {
-            foreach (var err in errors)
-            {
-                messageStore?.Add(CurrentEditContext.Field(err.Key), err.Value);
-            }
-
-            CurrentEditContext.NotifyValidationStateChanged();
-        }
-    }
-
-    public void ClearErrors()
-    {
-        messageStore?.Clear();
-        CurrentEditContext?.NotifyValidationStateChanged();
-    }
-}
-```
-
-In the `.Client` project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary. Confirm or update the namespace for `BlazorSample.Client.Starship`.
-
-Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
-
-> [!NOTE]
-> Forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm> automatically enable [antiforgery support](xref:blazor/forms/index#antiforgery-support).
-
-`Pages/Starship10.razor` in the `.Client` project:
-
-```razor
-@page "/starship-10"
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using BlazorSample.Client.Starship
-@attribute [Authorize]
-@inject IFormValidation FormValidation
-@inject ILogger<Starship10> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm FormName="Starship10" Model="Model" OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
-    <div>
-        <label>
-            Identifier: 
-            <InputText @bind-Value="Model!.Id" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification" disabled="@disabled">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Maximum Accommodation:
-            <InputNumber @bind-Value="Model!.MaximumAccommodation" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Engineering Approval:
-            <InputCheckbox @bind-Value="Model!.IsValidatedDesign" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Production Date:
-            <InputDate @bind-Value="Model!.ProductionDate" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <button type="submit" disabled="@disabled">Submit</button>
-    </div>
-    <div style="@messageStyles">
-        @message
-    </div>
-</EditForm>
-
-@code {
-    private CustomValidation? customValidation;
-    private bool disabled;
-    private string? message;
-    private string messageStyles = "visibility:hidden";
-
-    [SupplyParameterFromForm]
-    private StarshipModel? Model { get; set; }
-
-    protected override void OnInitialized() => 
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private async Task Submit(EditContext editContext)
-    {
-        customValidation?.ClearErrors();
-
-        try
-        {
-            var validationProblemDetails = 
-                await FormValidation.ValidateStarshipFormAsync(
-                    (StarshipModel)editContext.Model);
-
-            if (validationProblemDetails?.Count > 0)
-            {
-                customValidation?.DisplayErrors(validationProblemDetails);
-            }
-            else
-            {
-                disabled = true;
-                messageStyles = "color:green";
-                message = "The form has been processed.";
-            }
-        }
-        catch (AccessTokenNotAvailableException ex)
-        {
-            ex.Redirect();
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(ex, "Form processing error.");
-            disabled = true;
-            messageStyles = "color:red";
-            message = "There was an error processing the form.";
-        }
-    }
-}
-```
-
-> [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
-
-To reach the form easily, add the following entry to the `NavMenu` component (`Layout/NavMenu.razor`) in the `.Client` project:
-
-```razor
-<div class="nav-item px-3">
-    <NavLink class="nav-link" href="starship-10">
-        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Starship
-    </NavLink>
-</div>
-```
-
-When automatic model binding validation fails on the server, the framework returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
-
-```json
-{
-  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
-  "title": "One or more validation errors occurred.",
-  "status": 400,
-  "errors": {
-    "Id": ["The Id field is required."],
-    "Classification": ["The Classification field is required."],
-    "IsValidatedDesign": ["This form disallows unapproved ships."],
-    "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
-  }
-}
-```
-
-> [!NOTE]
-> To demonstrate the preceding JSON responses, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the Minimal API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/).
-
-If automatic type validation passes but the custom validation fails, the following JSON response is received from the Minimal API:
-
-```json
-{
-    "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
-    "title": "One or more validation errors occurred.",
-    "instance": "MinimalApiJwt",
-    "status": 400,
-    "errors": {
-      "Description": ["For a 'Defense' ship, 'Description' is required."]
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
-
-*This section is focused on Blazor Web App scenarios, but the approach for any type of app that uses server-side validation with web API adopts the same general approach.*
-
-Remote validation is supported in addition to Blazor Web App client-side and server-side validation:
-
-* Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
-* Process model validation on the server.
-* The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
-* Either disable the form on success or display the errors.
-
-Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
-
-The following example is based on:
-
-* A Blazor Web App with Interactive WebAssembly components created from the [Blazor Web App project template](xref:blazor/project-structure).
-* The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
-* The `CustomValidation` component shown in the [Validator components](#validator-components) section.
-
-Place the `Starship` model (`Starship.cs`) into a shared class library project so that both the client and server projects can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, confirm that the shared class library uses the shared framework or add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the shared project.
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-In the main project of the Blazor Web App, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the shared class library project and the `namespace` for the controller class. In addition to client and server data annotations validation, the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
-
-The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Remote validation is common in apps that require private business logic validation of user input. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
-
-> [!NOTE]
-> The `StarshipValidation` controller in this section uses Microsoft Identity 2.0. The Web API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`.
->
-> For more information on security, see:
->
-> * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
-> * [Microsoft identity platform documentation](/entra/identity-platform/)
-
-`Controllers/StarshipValidation.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using BlazorSample.Shared;
-
-namespace BlazorSample.Server.Controllers;
-
-[Authorize]
-[ApiController]
-[Route("[controller]")]
-public class StarshipValidationController(
-    ILogger<StarshipValidationController> logger) 
-    : ControllerBase
-{
-    static readonly string[] scopeRequiredByApi = [ "API.Access" ];
-
-    [HttpPost]
-    public async Task<IActionResult> Post(Starship model)
-    {
-        HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
-
-        try
-        {
-            if (model.Classification == "Defense" && 
-                string.IsNullOrEmpty(model.Description))
-            {
-                ModelState.AddModelError(nameof(model.Description),
-                    "For a 'Defense' ship " +
-                    "classification, 'Description' is required.");
-            }
-            else
-            {
-                logger.LogInformation("Processing the form asynchronously");
-
-                // async ...
-
-                return Ok(ModelState);
-            }
-        }
-        catch (Exception ex)
-        {
-            logger.LogError("Validation Error: {Message}", ex.Message);
-        }
-
-        return BadRequest(ModelState);
-    }
-}
-```
-
-Confirm or update the namespace of the preceding controller (`BlazorSample.Server.Controllers`) to match the app's controllers' namespace.
-
-When a model binding validation error occurs on the server, an [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
-
-```json
-{
-  "title": "One or more validation errors occurred.",
-  "status": 400,
-  "errors": {
-    "Id": [ "The Id field is required." ],
-    "Classification": [ "The Classification field is required." ],
-    "IsValidatedDesign": [ "This form disallows unapproved ships." ],
-    "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
-  }
-}
-```
-
-> [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/).
-
-If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors, as the following example shows:
-
-```json
-{
-  "Id": [ "The Id field is required." ],
-  "Classification": [ "The Classification field is required." ],
-  "IsValidatedDesign": [ "This form disallows unapproved ships." ],
-  "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
-}
-```
-
-To modify the server API's response to make it only return the validation errors, change the delegate that's invoked on actions that are annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> in the `Program` file. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
-
-Add the <xref:Microsoft.AspNetCore.Mvc?displayProperty=fullName> namespace to the top of the `Program` file in the main project of the Blazor Web App:
-
-```csharp
-using Microsoft.AspNetCore.Mvc;
-```
-
-In the `Program` file, add or update the following <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> extension method and add the following call to <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.ConfigureApiBehaviorOptions%2A>:
-
-```csharp
-builder.Services.AddControllersWithViews()
-    .ConfigureApiBehaviorOptions(options =>
-    {
-        options.InvalidModelStateResponseFactory = context =>
-        {
-            if (context.HttpContext.Request.Path == "/StarshipValidation")
-            {
-                return new BadRequestObjectResult(context.ModelState);
-            }
-            else
-            {
-                return new BadRequestObjectResult(
-                    new ValidationProblemDetails(context.ModelState));
-            }
-        };
-    });
-```
-
-If you're adding controllers to the main project of the Blazor Web App for the first time, map controller endpoints when you place the preceding code that registers services for controllers. The following example uses default controller routes:
-
-```csharp
-app.MapDefaultControllerRoute();
-```
-
-> [!NOTE]
-> The preceding example explicitly registers controller services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, antiforgery isn't enabled automatically.
-
-For more information on controller routing and validation failure error responses, see the following resources:
-
-* <xref:mvc/controllers/routing>
-* <xref:fundamentals/error-handling-api#validation-failure-error-response>
-
-In the `.Client` project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
-
-In the `.Client` project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
-
-In the following component, update the namespace of the shared project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
-
-`Starship10.razor`:
-
-> [!NOTE]
-> Forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm> automatically enable [antiforgery support](xref:blazor/forms/index#antiforgery-support). The controller should use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> to register controller services and automatically enable antiforgery support for the web API.
-
-```razor
-@page "/starship-10"
-@rendermode InteractiveWebAssembly
-@using System.Net
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using BlazorSample.Shared
-@attribute [Authorize]
-@inject HttpClient Http
-@inject ILogger<Starship10> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm FormName="Starship10" Model="Model" OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
-    <div>
-        <label>
-            Identifier: 
-            <InputText @bind-Value="Model!.Id" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification" disabled="@disabled">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Maximum Accommodation:
-            <InputNumber @bind-Value="Model!.MaximumAccommodation" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Engineering Approval:
-            <InputCheckbox @bind-Value="Model!.IsValidatedDesign" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Production Date:
-            <InputDate @bind-Value="Model!.ProductionDate" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <button type="submit" disabled="@disabled">Submit</button>
-    </div>
-    <div style="@messageStyles">
-        @message
-    </div>
-</EditForm>
-
-@code {
-    private CustomValidation? customValidation;
-    private bool disabled;
-    private string? message;
-    private string messageStyles = "visibility:hidden";
-
-    [SupplyParameterFromForm]
-    private Starship? Model { get; set; }
-
-    protected override void OnInitialized() => 
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private async Task Submit(EditContext editContext)
-    {
-        customValidation?.ClearErrors();
-
-        try
-        {
-            using var response = await Http.PostAsJsonAsync<Starship>(
-                "StarshipValidation", (Starship)editContext.Model);
-
-            var errors = await response.Content
-                .ReadFromJsonAsync<Dictionary<string, List<string>>>() ?? 
-                new Dictionary<string, List<string>>();
-
-            if (response.StatusCode == HttpStatusCode.BadRequest && 
-                errors.Any())
-            {
-                customValidation?.DisplayErrors(errors);
-            }
-            else if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException(
-                    $"Validation failed. Status Code: {response.StatusCode}");
-            }
-            else
-            {
-                disabled = true;
-                messageStyles = "color:green";
-                message = "The form has been processed.";
-            }
-        }
-        catch (AccessTokenNotAvailableException ex)
-        {
-            ex.Redirect();
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError("Form processing error: {Message}", ex.Message);
-            disabled = true;
-            messageStyles = "color:red";
-            message = "There was an error processing the form.";
-        }
-    }
-}
-```
-
-The `.Client` project of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the `.Client` project's `Program` file:
-
-```csharp
-builder.Services.AddScoped(sp => 
-    new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-```
-
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
-
-> [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server-side validation with web API adopts the same general approach.*
-
-Remote validation is supported in addition to server-side validation in a hosted Blazor WebAssembly app:
-
-* Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
-* Process model validation on the server.
-* The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
-* Either disable the form on success or display the errors.
-
-Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
-
-The following example is based on:
-
-* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
-* The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
-* The `CustomValidation` component shown in the [Validator components](#validator-components) section.
-
-Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations` package](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the **`Shared`** project.
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-In the **:::no-loc text="Server":::** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to client and server data annotations validation, the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
-
-The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Remote validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
-
-> [!NOTE]
-> The `StarshipValidation` controller in this section uses Microsoft Identity 2.0. The Web API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`.
->
-> For more information on security, see:
->
-> * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
-> * [Microsoft identity platform documentation](/entra/identity-platform/)
-
-`Controllers/StarshipValidation.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using BlazorSample.Shared;
-
-namespace BlazorSample.Server.Controllers;
-
-[Authorize]
-[ApiController]
-[Route("[controller]")]
-public class StarshipValidationController(
-    ILogger<StarshipValidationController> logger) 
-    : ControllerBase
-{
-    static readonly string[] scopeRequiredByApi = new[] { "API.Access" };
-
-    [HttpPost]
-    public async Task<IActionResult> Post(Starship model)
-    {
-        HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
-
-        try
-        {
-            if (model.Classification == "Defense" && 
-                string.IsNullOrEmpty(model.Description))
-            {
-                ModelState.AddModelError(nameof(model.Description),
-                    "For a 'Defense' ship " +
-                    "classification, 'Description' is required.");
-            }
-            else
-            {
-                logger.LogInformation("Processing the form asynchronously");
-
-                // async ...
-
-                return Ok(ModelState);
-            }
-        }
-        catch (Exception ex)
-        {
-            logger.LogError("Validation Error: {Message}", ex.Message);
-        }
-
-        return BadRequest(ModelState);
-    }
-}
-```
-
-Confirm or update the namespace of the preceding controller (`BlazorSample.Server.Controllers`) to match the app's controllers' namespace.
-
-When a model binding validation error occurs on the server, an [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the `Starfleet Starship Database` form aren't submitted and the form fails validation:
-
-```json
-{
-  "title": "One or more validation errors occurred.",
-  "status": 400,
-  "errors": {
-    "Id": [ "The Id field is required." ],
-    "Classification": [ "The Classification field is required." ],
-    "IsValidatedDesign": [ "This form disallows unapproved ships." ],
-    "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
-  }
-}
-```
-
-> [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/).
-
-If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors, as the following example shows:
-
-```json
-{
-  "Id": [ "The Id field is required." ],
-  "Classification": [ "The Classification field is required." ],
-  "IsValidatedDesign": [ "This form disallows unapproved ships." ],
-  "MaximumAccommodation": [ "Accommodation invalid (1-100000)." ]
-}
-```
-
-To modify the server API's response to make it only return the validation errors, change the delegate that's invoked on actions that are annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> in the `Program` file. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
-
-Add the <xref:Microsoft.AspNetCore.Mvc?displayProperty=fullName> namespace to the top of the `Program` file in the **:::no-loc text="Server":::** app:
-
-```csharp
-using Microsoft.AspNetCore.Mvc;
-```
-
-In the `Program` file, locate the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> extension method and add the following call to <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.ConfigureApiBehaviorOptions%2A>:
-
-```csharp
-builder.Services.AddControllersWithViews()
-    .ConfigureApiBehaviorOptions(options =>
-    {
-        options.InvalidModelStateResponseFactory = context =>
-        {
-            if (context.HttpContext.Request.Path == "/StarshipValidation")
-            {
-                return new BadRequestObjectResult(context.ModelState);
-            }
-            else
-            {
-                return new BadRequestObjectResult(
-                    new ValidationProblemDetails(context.ModelState));
-            }
-        };
-    });
-```
-
-> [!NOTE]
-> The preceding example explicitly registers controller services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, antiforgery isn't enabled automatically.
-
-In the **:::no-loc text="Client":::** project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
-
-In the **:::no-loc text="Client":::** project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
-
-In the following component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
-
-`Starship10.razor`:
-
-```razor
-@page "/starship-10"
-@using System.Net
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using BlazorSample.Shared
-@attribute [Authorize]
-@inject HttpClient Http
-@inject ILogger<Starship10> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm Model="Model" OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
-    <div>
-        <label>
-            Identifier: 
-            <InputText @bind-Value="Model!.Id" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification" disabled="@disabled">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Maximum Accommodation:
-            <InputNumber @bind-Value="Model!.MaximumAccommodation" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Engineering Approval:
-            <InputCheckbox @bind-Value="Model!.IsValidatedDesign" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Production Date:
-            <InputDate @bind-Value="Model!.ProductionDate" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <button type="submit" disabled="@disabled">Submit</button>
-    </div>
-    <div style="@messageStyles">
-        @message
-    </div>
-</EditForm>
-
-@code {
-    private CustomValidation? customValidation;
-    private bool disabled;
-    private string? message;
-    private string messageStyles = "visibility:hidden";
-    
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => 
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private async Task Submit(EditContext editContext)
-    {
-        customValidation?.ClearErrors();
-
-        try
-        {
-            using var response = await Http.PostAsJsonAsync<Starship>(
-                "StarshipValidation", (Starship)editContext.Model);
-
-            var errors = await response.Content
-                .ReadFromJsonAsync<Dictionary<string, List<string>>>() ?? 
-                new Dictionary<string, List<string>>();
-
-            if (response.StatusCode == HttpStatusCode.BadRequest && 
-                errors.Any())
-            {
-                customValidation?.DisplayErrors(errors);
-            }
-            else if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException(
-                    $"Validation failed. Status Code: {response.StatusCode}");
-            }
-            else
-            {
-                disabled = true;
-                messageStyles = "color:green";
-                message = "The form has been processed.";
-            }
-        }
-        catch (AccessTokenNotAvailableException ex)
-        {
-            ex.Redirect();
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError("Form processing error: {Message}", ex.Message);
-            disabled = true;
-            messageStyles = "color:red";
-            message = "There was an error processing the form.";
-        }
-    }
-}
-```
-
-> [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
-
-> [!NOTE]
-> The remote validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
->
-> * [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
-> * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
-> * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
-
-:::moniker-end
-
-## `InputText` based on the input event
-
-Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
-
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
-
-`CustomInputText.razor`:
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/CustomInputText.razor":::
-
-The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following  component uses the shared `CustomInputText` component.
-
-`Starship11.razor`:
-
-:::moniker range=">= aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-@page "/starship-11"
-@using System.ComponentModel.DataAnnotations
-@inject ILogger<Starship11> Logger
-
-<EditForm Model="Model" OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <CustomInputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-<div>
-    CurrentValue: @Model?.Id
-</div>
-
-@code {
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public class Starship
-    {
-        [Required]
-        [StringLength(10, ErrorMessage = "Id is too long.")]
-        public string? Id { get; set; }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship11.razor":::
--->
-
-:::moniker-end
+* Manual validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> event: Manually validate a form's fields with data annotations validation and custom code for field checks when validation is requested via an event handler assigned to the event.
+* Validator components: One or more custom validator components can be used to process validation for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server-side validation in a Blazor Web App).
 
 ## Validation Summary and Validation Message components
 
@@ -1955,9 +190,83 @@ var isValid = editContext.IsValid(fieldIdentifier);
 
 :::moniker-end
 
-## Custom validation attributes
+## Choose the validation your form needs
 
-To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>.
+The default configuration validates the top-level properties of the form's model. Some scenarios require additional setup. Use the following table to find the guidance for a goal:
+
+:::moniker range=">= aspnetcore-11.0"
+
+| Goal | What to do |
+|---|---|
+| Validate top-level properties with built-in attributes | Nothing further. Add a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to the form, as shown earlier in this article. |
+| Express a rule that built-in attributes can't | Write a [custom validation attribute or implement `IValidatableObject`](xref:fundamentals/validation#write-custom-validation-rules). For validation logic that isn't declared on the model, see <xref:blazor/forms/validation-advanced>. |
+| Validate properties of nested objects and collection items | Call `AddValidation` and annotate the root model type. See <xref:fundamentals/validation#nested-objects-and-collections>. |
+| Validate against a database or web API | Use [asynchronous validation](xref:fundamentals/validation#asynchronous-validation-support), or a [validator component](xref:blazor/forms/validation-advanced). |
+| Display error messages in the user's language | See [Localize validation messages](xref:fundamentals/validation#localize-validation-messages). |
+| Give immediate feedback in a static SSR form | Supported automatically. See <xref:blazor/forms/validation-client-side>. |
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-10.0"
+
+| Goal | What to do |
+|---|---|
+| Validate top-level properties with built-in attributes | Nothing further. Add a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to the form, as shown earlier in this article. |
+| Express a rule that built-in attributes can't | Write a [custom validation attribute](xref:mvc/models/validation#custom-attributes) or implement [`IValidatableObject`](xref:mvc/models/validation#ivalidatableobject). For validation logic that isn't declared on the model, see <xref:blazor/forms/validation-advanced>. |
+| Validate properties of nested objects and collection items | Call `AddValidation` and annotate the root model type. See <xref:fundamentals/validation#nested-objects-and-collections>. |
+| Validate against a database or web API | Use a [validator component](xref:blazor/forms/validation-advanced). |
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+| Goal | What to do |
+|---|---|
+| Validate top-level properties with built-in attributes | Nothing further. Add a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to the form, as shown earlier in this article. |
+| Express a rule that built-in attributes can't | Write a [custom validation attribute](xref:mvc/models/validation#custom-attributes) or implement [`IValidatableObject`](xref:mvc/models/validation#ivalidatableobject). For validation logic that isn't declared on the model, see <xref:blazor/forms/validation-advanced>. |
+| Validate properties of nested objects and collection items | See [Nested objects, collection types, and complex types](#nested-objects-collection-types-and-complex-types). |
+| Validate against a database or web API | Use a [validator component](xref:blazor/forms/validation-advanced). |
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+### Nested objects and collections require additional configuration
+
+By default, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component validates the top-level properties of the model. Validation attributes on the properties of a nested object, or on the items of a collection, aren't evaluated.
+
+To validate a nested object graph, opt into <xref:Microsoft.Extensions.Validation?displayProperty=fullName> by calling <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> and annotating the root model type with <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute>. The model types must be declared in C# files (`.cs`), not in Razor component files (`.razor`).
+
+For the full guidance and an example, see <xref:fundamentals/validation#nested-objects-and-collections>.
+
+> [!WARNING]
+> A model that isn't discovered by the validation source generator doesn't produce a build error or a log entry. The form silently validates only the top-level properties, and validation messages are not localized. If nested validation or localization appears to have no effect, see [Validation when `AddValidation` isn't called](xref:fundamentals/validation#validation-when-addvalidation-isnt-called).
+
+:::moniker-end
+
+## Custom validation rules
+
+When the built-in validation attributes can't express a rule, declare the rule on the model with a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or by implementing <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. Both are executed by the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component wherever the form runs.
+
+:::moniker range=">= aspnetcore-10.0"
+
+For guidance on writing these rules, which is shared with Minimal APIs, see <xref:fundamentals/validation#write-custom-validation-rules>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+For guidance on writing these rules, see [Custom attributes](xref:mvc/models/validation#custom-attributes) and [`IValidatableObject`](xref:mvc/models/validation#ivalidatableobject).
+
+:::moniker-end
+
+When validation logic can't be declared on the model, for example when messages come from a web API response, use a validator component or drive validation directly with <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. See <xref:blazor/forms/validation-advanced>.
+
+Of the [built-in data annotations validators](xref:mvc/models/validation#built-in-attributes), only the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute) isn't supported in Blazor.
+
+### Associate a validation result with a field
+
+To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>. Without a member name, the message is associated with the model rather than the field, so it doesn't appear in the field's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> component.
 
 `CustomValidator.cs`:
 
@@ -2023,6 +332,8 @@ public class CustomValidator : ValidationAttribute
 ```
 
 :::moniker-end
+
+### Inject services into a custom validation attribute
 
 Inject services into custom validation attributes through the <xref:System.ComponentModel.DataAnnotations.ValidationContext>. The following example demonstrates a salad chef form that validates user input with dependency injection (DI).
 
@@ -2091,6 +402,150 @@ The following component validates user input by applying the `SaladChefValidator
 
     protected override void OnInitialized() => 
         saladToppers ??= string.Join(", ", SaladChef.SaladToppers);
+}
+```
+
+:::moniker-end
+
+## Class-level validation with `IValidatableObject`
+
+[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
+
+:::moniker range="< aspnetcore-10.0"
+
+## Nested objects, collection types, and complex types
+
+> [!NOTE]
+> For apps targeting .NET 10 or later, we no longer recommend using the [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) and approach described in this section. We recommend using the built-in validation features of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
+
+Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> in .NET 9 or earlier only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
+
+To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) in .NET 9 or earlier:
+
+```razor
+<EditForm ...>
+    <ObjectGraphDataAnnotationsValidator />
+    ...
+</EditForm>
+```
+
+Annotate model properties with `[ValidateComplexType]`. In the following model classes, the `ShipDescription` class contains additional data annotations to validate when the model is bound to the form:
+
+`Starship.cs`:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class Starship
+{
+    ...
+
+    [ValidateComplexType]
+    public ShipDescription ShipDescription { get; set; } = new();
+
+    ...
+}
+```
+
+`ShipDescription.cs`:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class ShipDescription
+{
+    [Required]
+    [StringLength(40, ErrorMessage = "Description too long (40 char).")]
+    public string? ShortDescription { get; set; }
+
+    [Required]
+    [StringLength(240, ErrorMessage = "Description too long (240 char).")]
+    public string? LongDescription { get; set; }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+## Blazor data annotations validation package
+
+> [!NOTE]
+> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is no longer recommended for apps that target .NET 10 or later. For more information, see the [Nested objects, collection types, and complex types](#nested-objects-collection-types-and-complex-types) section.
+
+The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
+
+> [!WARNING]
+> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) has a latest version of *release candidate* at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continue to use the *experimental* release candidate package at this time. Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version. Watch the [Announcements GitHub repository](https://github.com/aspnet/Announcements), the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore), or this topic section for further updates.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+## `[CompareProperty]` attribute
+
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Display pending and faulted validation state
+
+Asynchronous validation, such as a uniqueness check against a database, doesn't complete immediately. Blazor tracks the state of in-flight validation per field so that the UI can show progress and report failures.
+
+To author asynchronous validation rules, see <xref:fundamentals/validation#asynchronous-validation-support> for attribute-based rules, or <xref:blazor/forms/validation-advanced> for validator components.
+
+While an async task is in flight, the field is *pending*. If an async task throws an exception other than <xref:System.OperationCanceledException>, the field is *faulted*. Each state has both a per-field and a form-level query:
+
+| State    | Per-field                                          | Form-level (any field)           |
+|----------|----------------------------------------------------|----------------------------------|
+| Pending  | `EditContext.IsValidationPending(fieldIdentifier)` | `EditContext.IsValidationPending()` |
+| Faulted  | `EditContext.IsValidationFaulted(fieldIdentifier)` | `EditContext.IsValidationFaulted()` |
+
+The per-field overloads accept either a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> or a `() => model.Property` lambda for convenient use in Razor markup:
+
+```razor
+<InputText @bind-Value="Model.Username" />
+<ValidationMessage For="() => Model.Username" />
+
+@if (EditContext.IsValidationPending(() => Model.Username))
+{
+    <span class="spinner" aria-live="polite">Checking&hellip;</span>
+}
+else if (EditContext.IsValidationFaulted(() => Model.Username))
+{
+    <span class="validation-faulted" aria-live="polite">
+        Validation could not be completed.
+    </span>
+}
+```
+
+The form-level parameterless overloads return `true` when any field is currently pending or faulted. A common use is disabling the submit button while validation is in flight:
+
+```razor
+<button type="submit" disabled="@EditContext.IsValidationPending()">
+    Register
+</button>
+```
+
+<xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> automatically adds the `pending` and `faulted` CSS classes to its rendered element while the bound field is in the corresponding state, in addition to the existing `modified` / `valid` / `invalid` classes. The classes compose, so unmodified pending styling and modified pending styling can be targeted independently:
+
+```css
+.pending {
+    background-image: url('spinner.gif');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.modified.pending {
+    border-color: lightblue;
+}
+
+.modified.faulted {
+    border-color: orange;
 }
 ```
 
@@ -2427,205 +882,6 @@ Using `CustomFieldClassProvider3`:
 
 :::moniker-end
 
-## Class-level validation with `IValidatableObject`
-
-[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
-
-:::moniker range="< aspnetcore-10.0"
-
-## Blazor data annotations validation package
-
-> [!NOTE]
-> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is no longer recommended for apps that target .NET 10 or later. For more information, see the [Nested objects, collection types, and complex types](#nested-objects-collection-types-and-complex-types) section.
-
-The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
-
-> [!WARNING]
-> The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) has a latest version of *release candidate* at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continue to use the *experimental* release candidate package at this time. Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version. Watch the [Announcements GitHub repository](https://github.com/aspnet/Announcements), the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore), or this topic section for further updates.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-## `[CompareProperty]` attribute
-
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-10.0"
-
-## Nested objects and collection types
-
-Blazor form validation includes support for validating properties of nested objects and collection items with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.
-
-To create a validated form, use a <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
-
-To opt into the nested objects and collection types validation feature:
-
-1. Call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method in the `Program` file where services are registered.
-2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
-3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute), which indicates that a type is validatable to support discovery by the validation source generator.
-
-The following example demonstrates customer orders with nested collection form validation.
-
-In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on the service collection:
-
-```csharp
-builder.Services.AddValidation();
-```
-
-In the following `Order` class, the `[ValidatableType]` attribute is required on the top-level model type. The other types are discovered automatically.
-
-`Order.cs`:
-
-```csharp
-using System.ComponentModel.DataAnnotations;
-
-[ValidatableType]
-public class Order
-{
-    public Customer Customer { get; set; } = new();
-    public List<OrderItem> OrderItems { get; set; } = [];
-}
-
-public class Customer
-{
-    [Required(ErrorMessage = "Name is required.")]
-    public string? FullName { get; set; }
-
-    [Required(ErrorMessage = "Email is required.")]
-    public string? Email { get; set; }
-
-    public ShippingAddress ShippingAddress { get; set; } = new();
-}
-```
-
-`OrderItem.cs`:
-
-```csharp
-public class OrderItem
-{
-    [Required(ErrorMessage = "Id is required.")]
-    public int Id { get; set; }
-
-    [Required(ErrorMessage = "Description is required.")]
-    public string? Description { get; set; }
-
-    [Required(ErrorMessage = "Price is required.")]
-    public decimal Price { get; set; }
-}
-```
-
-`ShippingAddress.cs`:
-
-```csharp
-public class ShippingAddress
-{
-    [Required(ErrorMessage = "Street is required.")]
-    public string? Street { get; set; }
-
-    [Required(ErrorMessage = "City is required.")]
-    public string? City { get; set; }
-
-    [Required(ErrorMessage = "State/Province is required.")]
-    public string? StateProvince { get; set; }
-
-    [Required(ErrorMessage = "PostalCode is required.")]
-    public string? PostalCode { get; set; }
-}
-```
-
-In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is present in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
-
-`OrderPage.razor`:
-
-```razor
-<EditForm Model="Model">
-    <DataAnnotationsValidator />
-
-    <h3>Customer Details</h3>
-    <div class="mb-3">
-        <label>
-            Full Name
-            <InputText @bind-Value="Model!.Customer.FullName" />
-        </label>
-        <ValidationMessage For="@(() => Model!.Customer.FullName)" />
-    </div>
-
-    // ... form continues ...
-</EditForm>
-
-@code {
-    public Order? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-}
-```
-
-The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the nested collection validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
-
-For guidance on using validation models from a different assembly, such as a library or the `.Client` project of a Blazor Web App, see <xref:fundamentals/validation#register-validation-in-multi-assembly-apps>.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
-
-## Nested objects, collection types, and complex types
-
-> [!NOTE]
-> For apps targeting .NET 10 or later, we no longer recommend using the [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` *experimental* package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) and approach described in this section. We recommend using the built-in validation features of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-
-Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> in .NET 9 or earlier only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
-
-To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) in .NET 9 or earlier:
-
-```razor
-<EditForm ...>
-    <ObjectGraphDataAnnotationsValidator />
-    ...
-</EditForm>
-```
-
-Annotate model properties with `[ValidateComplexType]`. In the following model classes, the `ShipDescription` class contains additional data annotations to validate when the model is bound to the form:
-
-`Starship.cs`:
-
-```csharp
-using System;
-using System.ComponentModel.DataAnnotations;
-
-public class Starship
-{
-    ...
-
-    [ValidateComplexType]
-    public ShipDescription ShipDescription { get; set; } = new();
-
-    ...
-}
-```
-
-`ShipDescription.cs`:
-
-```csharp
-using System;
-using System.ComponentModel.DataAnnotations;
-
-public class ShipDescription
-{
-    [Required]
-    [StringLength(40, ErrorMessage = "Description too long (40 char).")]
-    public string? ShortDescription { get; set; }
-
-    [Required]
-    [StringLength(240, ErrorMessage = "Description too long (240 char).")]
-    public string? LongDescription { get; set; }
-}
-```
-
-:::moniker-end
-
 ## Enable the submit button based on form validation
 
 To enable and disable the submit button based on form validation, the following example:
@@ -2637,6 +893,23 @@ To enable and disable the submit button based on form validation, the following 
 
 > [!NOTE]
 > When assigning to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>, don't also assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!IMPORTANT]
+> The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method used by the following example is obsolete as of .NET 11. In new code, call `EditContext.ValidateAsync` and `await` the result, which also awaits any asynchronous validators registered for the form:
+>
+> ```csharp
+> private async Task HandleFieldChanged(object? sender, FieldChangedEventArgs e)
+> {
+>     formInvalid = !await editContext!.ValidateAsync();
+>     StateHasChanged();
+> }
+> ```
+>
+> For more information, see <xref:blazor/forms/validation-advanced>.
+
+:::moniker-end
 
 `Starship14.razor`:
 
@@ -2753,16 +1026,15 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 }
 ```
 
+## Additional resources
+
+* <xref:blazor/forms/validation-advanced>
+* <xref:blazor/forms/index>
+* <xref:blazor/forms/input-components>
+* <xref:mvc/models/validation>
+
 :::moniker range=">= aspnetcore-10.0"
 
-## `DataAnnotationsValidator` validation behavior
-
-The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
-
-1. Member properties of `T` are validated, including recursively validating nested objects.
-1. Type-level attributes of `T` are validated.
-1. The <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> method is executed, if `T` implements it.
-
-If one of the preceding steps produces a validation error, the remaining steps are skipped.
+* <xref:fundamentals/validation>
 
 :::moniker-end

@@ -331,7 +331,7 @@ protected override void OnInitialized()
 }
 ```
 
-The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms/validation#validator-components> article.
+The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms/validation-advanced#validator-components> article.
 
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
