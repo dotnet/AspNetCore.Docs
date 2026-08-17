@@ -171,51 +171,13 @@ Implement `IClientValidationRuleProvider` on the validation attribute and return
 
 The framework attaches each rule's resolved error message, including the localized message when localization is configured, so the attribute supplies only the rule's shape.
 
-The following `StartsWithAttribute` validates server-side in `IsValid` and contributes a `startsWith` client-side rule with a `prefix` parameter:
+The following `StartsWithAttribute` validates server-side in `IsValid` and contributes a `startswith` client-side rule with a `prefix` parameter:
 
-```csharp
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Components.Forms;
-
-public sealed class StartsWithAttribute : ValidationAttribute, IClientValidationRuleProvider
-{
-    private readonly string prefix;
-
-    public StartsWithAttribute(string prefix)
-    {
-        this.prefix = prefix;
-        ErrorMessage = $"The value must start with '{prefix}'.";
-    }
-
-    protected override ValidationResult? IsValid(object? value, 
-        ValidationContext validationContext)
-    {
-        if (value is string text && !text.StartsWith(prefix, StringComparison.Ordinal))
-        {
-            return new ValidationResult(ErrorMessage, [ validationContext.MemberName! ]);
-        }
-
-        return ValidationResult.Success;
-    }
-
-    public IEnumerable<ClientValidationRule> GetClientValidationRules()
-    {
-        yield return new ClientValidationRule(
-            "startswith", 
-            new Dictionary<string, string> { ["prefix"] = prefix });
-    }
-}
-```
+:::code language="csharp" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/Validation/StartsWithAttribute.cs":::
 
 Apply the attribute to the model in the usual way:
 
-```csharp
-public class ShipModel
-{
-    [StartsWith("NCC-")]
-    public string? Registry { get; set; }
-}
-```
+:::code language="csharp" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/Validation/ShipModel.cs":::
 
 ### Register the matching client-side validator
 
@@ -225,20 +187,7 @@ The `Blazor.formValidation` service is created while Blazor starts, so it isn't 
 
 In a JavaScript initializer file named `{APP NAMESPACE}.lib.module.js` placed in the app's `wwwroot` folder, where the `{APP NAMESPACE}` placeholder is the app's namespace:
 
-```javascript
-export function afterWebStarted(blazor) {
-  blazor.formValidation.addValidator('startswith', (context) => {
-    const value = context.value;
-
-    // An empty value is valid. Use [Required] to require a value.
-    if (!value) {
-      return { success: true };
-    }
-
-    return { success: value.startsWith(context.params.prefix) };
-  });
-}
-```
+:::code language="javascript" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/wwwroot/BlazorSample.lib.module.js":::
 
 Rule names are matched exactly, so the name passed to `addValidator` must match the `ClientValidationRule` `Name` value, including casing.
 
