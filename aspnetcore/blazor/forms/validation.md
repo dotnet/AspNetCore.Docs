@@ -107,7 +107,7 @@ Blazor performs two types of validation:
 
 :::moniker range=">= aspnetcore-10.0"
 
-## `DataAnnotationsValidator` validation behavior
+### `DataAnnotationsValidator` validation behavior
 
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component has the same validation order and short-circuiting behavior as <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. The following rules are applied when validating an instance of type `T`:
 
@@ -119,7 +119,7 @@ If one of the preceding steps produces a validation error, the remaining steps a
 
 :::moniker-end
 
-## Data Annotations Validator component and custom validation
+### Data Annotations Validator component and custom validation
 
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches data annotations validation to a cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling data annotations validation requires the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. To use a different validation system than data annotations, use a custom implementation instead of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The framework implementations for <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> are available for inspection in the reference source:
 
@@ -170,9 +170,29 @@ Control the style of validation messages in the app's stylesheet (`wwwroot/css/a
 }
 ```
 
+### Validation state CSS classes
+
+Blazor applies CSS classes to input elements and validation components to reflect validation state. The classes make it possible to style validation without writing any C#:
+
+| Element | Classes |
+|---|---|
+| Input | `valid` or `invalid`, plus `modified` after the user edits the field |
+| Validation message | `validation-message` |
+| Validation summary | `validation-summary-errors` or `validation-summary-valid` |
+
+The stylesheet included in the Blazor project templates styles these classes, so a form gets validation styling with no additional configuration. For example, the following rule outlines a field that the user has edited and that's currently valid:
+
+```css
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+```
+
+To supply different class names, for example to integrate with a CSS framework such as [Bootstrap](https://getbootstrap.com/), see <xref:blazor/forms/validation-advanced#customize-validation-css-classes>.
+
 :::moniker range=">= aspnetcore-8.0"
 
-## Determine if a form field is valid
+### Determine if a form field is valid
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.EditContext.IsValid%2A?displayProperty=nameWithType> to determine if a field is valid without obtaining validation messages.
 
@@ -407,7 +427,7 @@ The following component validates user input by applying the `SaladChefValidator
 
 :::moniker-end
 
-## Class-level validation with `IValidatableObject`
+### Class-level validation with `IValidatableObject`
 
 [Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
 
@@ -548,337 +568,6 @@ The form-level parameterless overloads return `true` when any field is currently
     border-color: orange;
 }
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-## Custom validation CSS class attributes
-
-Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
-
-To specify custom validation CSS class attributes, start by providing CSS styles for custom validation. In the following example, valid (`validField`) and invalid (`invalidField`) styles are specified.
-
-Add the following CSS classes to the app's stylesheet:
-
-```css
-.validField {
-    border-color: lawngreen;
-}
-
-.invalidField {
-    background-color: tomato;
-}
-```
-
-Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCssClassProvider> that checks for field validation messages and applies the appropriate valid or invalid style.
-
-`CustomFieldClassProvider.cs`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext, 
-        in FieldIdentifier fieldIdentifier)
-    {
-        var isValid = editContext.IsValid(fieldIdentifier);
-
-        return isValid ? "validField" : "invalidField";
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext, 
-        in FieldIdentifier fieldIdentifier)
-    {
-        var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
-
-        return isValid ? "validField" : "invalidField";
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-<!--
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs":::
--->
-
-Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
-
-`Starship13.razor`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship13.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship13.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-```razor
-@page "/starship-13"
-@using System.ComponentModel.DataAnnotations
-@inject ILogger<Starship13> Logger
-
-<EditForm EditContext="editContext" OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <InputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    private EditContext? editContext;
-
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model ??= new();
-        editContext = new(Model);
-        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
-    }
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public class Starship
-    {
-        [Required]
-        [StringLength(10, ErrorMessage = "Id is too long.")]
-        public string? Id { get; set; }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship13.razor":::
--->
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied. Using [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the field is matched to the model member's property or field name, not an `id` assigned to the HTML entity.
-
-`CustomFieldClassProvider2.cs`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider2 : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext,
-        in FieldIdentifier fieldIdentifier)
-    {
-        if (fieldIdentifier.FieldName == "Name")
-        {
-            var isValid = editContext.IsValid(fieldIdentifier);
-
-            return isValid ? "validField" : "invalidField";
-        }
-
-        return string.Empty;
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider2 : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext,
-        in FieldIdentifier fieldIdentifier)
-    {
-        if (fieldIdentifier.FieldName == "Name")
-        {
-            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
-
-            return isValid ? "validField" : "invalidField";
-        }
-
-        return string.Empty;
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-<!--
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
--->
-
-> [!NOTE]
-> Matching the field name in the preceding example is case sensitive, so a model property member designated "`Name`" must match a conditional check on "`Name`":
->
-> * <span aria-hidden="true">✔️</span><span class="visually-hidden">Correctly matches:</span> `fieldId.FieldName == "Name"`
-> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldId.FieldName == "name"`
-> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldId.FieldName == "NAME"`
-> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldId.FieldName == "nAmE"`
-
-Add an additional property to `Model`, for example:
-
-```csharp
-[StringLength(10, ErrorMessage = "Description is too long.")]
-public string? Description { get; set; } 
-```
-
-Add the `Description` to the `CustomValidationForm` component's form:
-
-```razor
-<InputText @bind-Value="Model!.Description" />
-```
-
-Update the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A> instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
-
-```csharp
-editContext?.SetFieldCssClassProvider(new CustomFieldClassProvider2());
-```
-
-Because a CSS validation class isn't applied to the `Description` field, it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
-
-> Description is too long.
-
-In the following example:
-
-* The custom CSS style is applied to the `Name` field.
-* Any other fields apply logic similar to Blazor's default logic and using Blazor's default field CSS validation styles, `modified` with `valid` or `invalid`. Note that for the default styles, you don't need to add them to the app's stylesheet if the app is based on a Blazor project template. For apps not based on a Blazor project template, the default styles can be added to the app's stylesheet:
-
-  ```css
-  .valid.modified:not([type=checkbox]) {
-      outline: 1px solid #26b050;
-  }
-
-  .invalid {
-      outline: 1px solid red;
-  }
-  ```
-
-`CustomFieldClassProvider3.cs`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider3 : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext,
-        in FieldIdentifier fieldIdentifier)
-    {
-        var isValid = editContext.IsValid(fieldIdentifier);
-
-        if (fieldIdentifier.FieldName == "Name")
-        {
-            return isValid ? "validField" : "invalidField";
-        }
-        else
-        {
-            if (editContext.IsModified(fieldIdentifier))
-            {
-                return isValid ? "modified valid" : "modified invalid";
-            }
-            else
-            {
-                return isValid ? "valid" : "invalid";
-            }
-        }
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider3 : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext,
-        in FieldIdentifier fieldIdentifier)
-    {
-        var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
-
-        if (fieldIdentifier.FieldName == "Name")
-        {
-            return isValid ? "validField" : "invalidField";
-        }
-        else
-        {
-            if (editContext.IsModified(fieldIdentifier))
-            {
-                return isValid ? "modified valid" : "modified invalid";
-            }
-            else
-            {
-                return isValid ? "valid" : "invalid";
-            }
-        }
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-<!--
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
--->
-
-Update the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A> instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
-
-```csharp
-editContext.SetFieldCssClassProvider(new CustomFieldClassProvider3());
-```
-
-Using `CustomFieldClassProvider3`:
-
-* The `Name` field uses the app's custom validation CSS styles.
-* The `Description` field uses logic similar to Blazor's logic and Blazor's default field CSS validation styles.
 
 :::moniker-end
 
@@ -1038,3 +727,4 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 * <xref:fundamentals/validation>
 
 :::moniker-end
+

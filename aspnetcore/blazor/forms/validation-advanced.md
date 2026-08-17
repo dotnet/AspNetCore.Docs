@@ -436,17 +436,9 @@ For asynchronous work that should run when the user edits a single field, call `
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> owns the cancellation token source. If the user edits the same field again while a check is in flight, the prior validation is canceled and superseded automatically, so there's no token source for the component to create, cancel, or dispose.
 
-Add the following members to the validator component shown in the previous section to re-run the uniqueness check whenever the `Username` field changes:
+Add a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> event to the validator component shown in the previous section. Subscribe to the event in `OnInitialized` and unsubscribe in `Dispose` alongside the existing `OnValidationRequested` subscription. The rest of the component is unchanged:
 
 ```csharp
-protected override void OnInitialized()
-{
-    ArgumentNullException.ThrowIfNull(CurrentEditContext);
-    _messages = new ValidationMessageStore(CurrentEditContext);
-    CurrentEditContext.OnValidationRequested += OnValidationRequested;
-    CurrentEditContext.OnFieldChanged += OnFieldChanged;
-}
-
 private void OnFieldChanged(object? sender, FieldChangedEventArgs e)
 {
     if (e.FieldIdentifier.FieldName != nameof(RegistrationModel.Username))
@@ -458,32 +450,13 @@ private void OnFieldChanged(object? sender, FieldChangedEventArgs e)
         e.FieldIdentifier,
         token => CheckAsync(e.FieldIdentifier, token));
 }
-
-private async Task CheckAsync(FieldIdentifier field, CancellationToken token)
-{
-    _messages!.Clear(field);
-
-    var available = await Http.GetFromJsonAsync<bool>(
-        $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
-        token);
-
-    if (!available)
-    {
-        _messages.Add(field, "The username is already taken.");
-    }
-
-    CurrentEditContext!.NotifyValidationStateChanged();
-}
-
-public void Dispose()
-{
-    if (CurrentEditContext is not null)
-    {
-        CurrentEditContext.OnValidationRequested -= OnValidationRequested;
-        CurrentEditContext.OnFieldChanged -= OnFieldChanged;
-    }
-}
 ```
+
+The `CheckAsync` method performs the same work as `ValidateUsernameAsync` in the preceding example but takes the field to validate as a parameter, so the same logic serves both the form-level and per-field passes.
+
+For a complete validator component that combines form-level and per-field asynchronous validation, see the following sample:
+
+:::code language="razor" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/Components/UsernameUniquenessValidator.razor":::
 
 Write the validator as an `async` method so that an exception thrown before the first `await` is captured into the returned task rather than thrown from `RegisterAsyncFieldValidator`. To cancel from an additional source, create a linked token source inside the validator with <xref:System.Threading.CancellationTokenSource.CreateLinkedTokenSource%2A>.
 
@@ -585,6 +558,8 @@ The validation for the `Defense` ship classification only occurs on the server b
 > * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
 > * [Microsoft identity platform documentation](/entra/identity-platform/)
 
+### Create the shared model
+
 Create a `Starship` folder in the `.Client` project of the Blazor Web App.
 
 Place the following `StarshipModel` model (`StarshipModel.cs`) into the `Starship` folder ***and*** into the Minimal API project of the solution.
@@ -594,37 +569,13 @@ Place the following `StarshipModel` model (`StarshipModel.cs`) into the `Starshi
 >
 > [!INCLUDE[](~/includes/package-reference.md)]
 
-In the two `StarshipModel` classes, set the namespace (`{NAMESPACE}`) appropriately for each project (for example, `BlazorSample.Client.Starship` in the Blazor Web App and `MinimalApiJwt.Models` in the Minimal API project). Some developers prefer to use a different folder scheme. If you position the classes in the projects in different locations, set the namespaces appropriately.
+The following `StarshipModel` model is placed in the `Starship` folder of the `.Client` project ***and*** in the Minimal API project of the solution. Set the namespace appropriately for each project: the sample uses `BlazorSample.Client.Starship` in the Blazor Web App and `MinimalApiJwt.Models` in the Minimal API project. Some developers prefer a different folder scheme. If you position the classes in different locations, set the namespaces appropriately.
 
-`Starship/StarshipModel.cs` (Blazor Web App) or `Models/StarshipModel.cs` (Minimal API project):
+`Starship/StarshipModel.cs` (Blazor Web App) or `StarshipModel.cs` (Minimal API project):
 
-```csharp
-using System.ComponentModel.DataAnnotations;
+:::code language="csharp" source="~/../blazor-samples/10.0/BlazorWebAppRemoteValidation/BlazorSample.Client/Starship/StarshipModel.cs":::
 
-namespace {NAMESPACE};
-
-public class StarshipModel
-{
-    [Required]
-    [StringLength(16, ErrorMessage = "Identifier too long (16 character limit).")]
-    public string? Id { get; set; }
-
-    public string? Description { get; set; }
-
-    [Required]
-    public string? Classification { get; set; }
-
-    [Range(1, 100000, ErrorMessage = "Accommodation invalid (1-100000).")]
-    public int MaximumAccommodation { get; set; }
-
-    [Required]
-    [Range(typeof(bool), "true", "true", ErrorMessage = "Approval required.")]
-    public bool IsValidatedDesign { get; set; }
-
-    [Required]
-    public DateTime ProductionDate { get; set; }
-}
-```
+### Create the validation abstraction
 
 Add an interface for a form validation service to the `.Client` project in the `Starship` folder. The interface is used to register validation services in the Blazor Web App.
 
@@ -644,49 +595,9 @@ Add a client form validator class to the `.Client` project's `Starship` folder. 
 
 `Starship/ClientFormValidation.cs`:
 
-```csharp
-using System.Net.Http.Json;
+:::code language="csharp" source="~/../blazor-samples/10.0/BlazorWebAppRemoteValidation/BlazorSample.Client/Starship/ClientFormValidation.cs":::
 
-namespace BlazorSample.Client.Starship;
-
-internal sealed class ClientFormValidation(HttpClient httpClient) : IFormValidation
-{
-    public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
-        StarshipModel starship)
-    {
-        Dictionary<string, string[]> genericError = new()
-        {
-            {
-                "Validation Error", 
-                ["An unexpected client error occurred during validation."]
-            }
-        };
-
-        try
-        {
-            using var response = await httpClient.PostAsJsonAsync(
-                "/starship-validation", starship);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var deserializedResponseContent = 
-                    await response.Content.ReadFromJsonAsync
-                        <IDictionary<string, string[]>>();
-
-                return deserializedResponseContent ?? genericError;
-            }
-        }
-        catch (Exception ex)
-        {
-            // Log exception
-        }
-
-        return genericError;
-    }
-}
-```
-
-Confirm or update the namespace of the preceding class.
+### Create the server form validator
 
 Create a `Starship` folder in the server project of the Blazor Web App.
 
@@ -694,83 +605,9 @@ In the Blazor Web App, create a server form validator that implements the `IForm
 
 `Starship/ServerFormValidation.cs`:
 
-```csharp
-using System.Net;
-using System.Net.Http.Headers;
-using System.Text.Json;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using BlazorSample.Client.Starship;
+:::code language="csharp" source="~/../blazor-samples/10.0/BlazorWebAppRemoteValidation/BlazorSample/Starship/ServerFormValidation.cs":::
 
-namespace BlazorSample.Starship;
-
-internal sealed class ServerFormValidation(
-    IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory) 
-    : IFormValidation
-{
-    public async Task<IDictionary<string, string[]>> ValidateStarshipFormAsync(
-        StarshipModel starship)
-    {
-        Dictionary<string, string[]> genericError = new()
-        {
-            {
-                "Validation Error",
-                ["An unexpected server error occurred during validation."]
-            }
-        };
-
-        try
-        {
-            if (httpContextAccessor.HttpContext is null)
-            {
-                throw new Exception("HttpContext not available");
-            }
-
-            var request = new HttpRequestMessage(HttpMethod.Post, 
-                "https://localhost:7277/api-starship-validation")
-            {
-                Content = new StringContent(JsonSerializer.Serialize(starship), 
-                    System.Text.Encoding.UTF8, "application/json")
-            };
-
-            var accessToken = 
-                await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
-
-            request.Headers.Authorization =
-                new AuthenticationHeaderValue("Bearer", accessToken);
-
-            using var httpClient = httpClientFactory.CreateClient();
-
-            var response = await httpClient.SendAsync(request);
-
-            if (response?.StatusCode == HttpStatusCode.NoContent)
-            {
-                return new Dictionary<string, string[]>();
-            }
-
-            if (response?.StatusCode == HttpStatusCode.BadRequest)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-
-                var deserialized =
-                    JsonSerializer.Deserialize<ValidationProblemDetails>(
-                        content,
-                        new JsonSerializerOptions(JsonSerializerDefaults.Web));
-
-                return deserialized?.Errors ?? genericError;
-            }
-
-            return genericError;
-        }
-        catch (Exception ex)
-        {
-            // Log exception
-        }
-
-        return genericError;
-    }
-}
-```
+### Register the server form validator
 
 In the `Program` file of the Blazor Web App:
 
@@ -789,6 +626,8 @@ app.MapPost("/starship-validation", (IFormValidation formValidator,
 }).RequireAuthorization();
 ```
 
+### Register the client form validator
+
 The `.Client` project of a Blazor Web App must register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to the Minimal API. Add the following to the `.Client` project's `Program` file:
 
 ```csharp
@@ -799,6 +638,8 @@ builder.Services.AddHttpClient<IFormValidation, ClientFormValidation>(httpClient
 ```
 
 The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+
+### Add the validation endpoint to the Minimal API
 
 In the `Program` file of the `MinimalApiJwt` project, add the following starship form validation endpoint. The endpoint validates that the model's `Description` property has a value when the model's `Classification` property is `Defense`. If validation fails, a `ValidationProblem` returns a dictionary with the failed field and a description of the error. If validation passes, a *204 - No Content* response is issued. In a typical production app, any number of custom form model checks are made, and the validation errors dictionary can include multiple failures (`string[]` value) for each model property.
 
@@ -839,63 +680,18 @@ builder.Services.AddValidation();
 
 Built-in validation automatically intercepts the endpoint request and validates the types that the endpoint receives. If the model fails validation, the framework returns a *400 - Bad Request* response with error details without executing the endpoint's code. If you don't want to implement built-in model validation, don't use the preceding line of code in the Minimal API's `Program` file.
 
+### Add the validator component
+
 In the `.Client` project, add the following `CustomValidation` component. When the component's `DisplayErrors` method is called with a set of validation errors, the errors are added to the parent component's edit context validation message store. Errors are cleared from the edit context by calling the `ClearErrors` method.
 
 `CustomValidation.cs`:
 
-```csharp
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Mvc;
+:::code language="csharp" source="~/../blazor-samples/10.0/BlazorWebAppRemoteValidation/BlazorSample.Client/CustomValidation.cs":::
 
-namespace BlazorSample.Client;
+> [!NOTE]
+> This is the same `CustomValidation` component described in the [Validator components](#validator-components) section.
 
-public class CustomValidation : ComponentBase
-{
-    private ValidationMessageStore? messageStore;
-
-    [CascadingParameter]
-    private EditContext? CurrentEditContext { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (CurrentEditContext is null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(CustomValidation)} requires a cascading " +
-                $"parameter of type {nameof(EditContext)}. " +
-                $"For example, you can use {nameof(CustomValidation)} " +
-                $"inside an {nameof(EditForm)}.");
-        }
-
-        messageStore = new(CurrentEditContext);
-
-        CurrentEditContext.OnValidationRequested += (s, e) =>
-            messageStore?.Clear();
-        CurrentEditContext.OnFieldChanged += (s, e) =>
-            messageStore?.Clear(e.FieldIdentifier);
-    }
-
-    public void DisplayErrors(IDictionary<string, string[]> errors)
-    {
-        if (CurrentEditContext is not null)
-        {
-            foreach (var err in errors)
-            {
-                messageStore?.Add(CurrentEditContext.Field(err.Key), err.Value);
-            }
-
-            CurrentEditContext.NotifyValidationStateChanged();
-        }
-    }
-
-    public void ClearErrors()
-    {
-        messageStore?.Clear();
-        CurrentEditContext?.NotifyValidationStateChanged();
-    }
-}
-```
+### Update the form to display validation errors
 
 In the `.Client` project, the `Starfleet Starship Database` form is updated to show validation errors with help of the `CustomValidation` component. When validation messages are returned, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary. Confirm or update the namespace for `BlazorSample.Client.Starship`.
 
@@ -904,127 +700,12 @@ Note that the form requires authorization, so the user must be signed into the a
 > [!NOTE]
 > Forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm> automatically enable [antiforgery support](xref:blazor/forms/index#antiforgery-support).
 
-`Pages/Starship10.razor` in the `.Client` project:
-
-```razor
-@page "/starship-10"
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using BlazorSample.Client.Starship
-@attribute [Authorize]
-@inject IFormValidation FormValidation
-@inject ILogger<Starship10> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm FormName="Starship10" Model="Model" OnValidSubmit="Submit">
-    <DataAnnotationsValidator />
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
-    <div>
-        <label>
-            Identifier: 
-            <InputText @bind-Value="Model!.Id" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification" disabled="@disabled">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Maximum Accommodation:
-            <InputNumber @bind-Value="Model!.MaximumAccommodation" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Engineering Approval:
-            <InputCheckbox @bind-Value="Model!.IsValidatedDesign" 
-                disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Production Date:
-            <InputDate @bind-Value="Model!.ProductionDate" disabled="@disabled" />
-        </label>
-    </div>
-    <div>
-        <button type="submit" disabled="@disabled">Submit</button>
-    </div>
-    <div style="@messageStyles">
-        @message
-    </div>
-</EditForm>
-
-@code {
-    private CustomValidation? customValidation;
-    private bool disabled;
-    private string? message;
-    private string messageStyles = "visibility:hidden";
-
-    [SupplyParameterFromForm]
-    private StarshipModel? Model { get; set; }
-
-    protected override void OnInitialized() => 
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private async Task Submit(EditContext editContext)
-    {
-        customValidation?.ClearErrors();
-
-        try
-        {
-            var validationProblemDetails = 
-                await FormValidation.ValidateStarshipFormAsync(
-                    (StarshipModel)editContext.Model);
-
-            if (validationProblemDetails?.Count > 0)
-            {
-                customValidation?.DisplayErrors(validationProblemDetails);
-            }
-            else
-            {
-                disabled = true;
-                messageStyles = "color:green";
-                message = "The form has been processed.";
-            }
-        }
-        catch (AccessTokenNotAvailableException ex)
-        {
-            ex.Redirect();
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(ex, "Form processing error.");
-            disabled = true;
-            messageStyles = "color:red";
-            message = "There was an error processing the form.";
-        }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/10.0/BlazorWebAppRemoteValidation/BlazorSample.Client/Pages/Starship10.razor":::
 
 > [!NOTE]
 > As an alternative to the use of a [validation component](#validator-components), custom data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For more information, see <xref:blazor/forms/validation#custom-validation-rules>.
+
+### Add a navigation entry
 
 To reach the form easily, add the following entry to the `NavMenu` component (`Layout/NavMenu.razor`) in the `.Client` project:
 
@@ -1680,6 +1361,218 @@ In the following component, update the namespace of the **`Shared`** project (`@
 > * [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 > * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Customize validation CSS classes
+
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
+
+To specify custom validation CSS class attributes, start by providing CSS styles for custom validation. In the following example, valid (`validField`) and invalid (`invalidField`) styles are specified.
+
+Add the following CSS classes to the app's stylesheet:
+
+```css
+.validField {
+    border-color: lawngreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+```
+
+### Style all fields
+
+Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCssClassProvider> that checks for field validation messages and applies the appropriate valid or invalid style.
+
+`CustomFieldClassProvider.cs`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/CustomFieldClassProvider.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+
+Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
+
+`Starship13.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship13.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship13.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+```razor
+@page "/starship-13"
+@using System.ComponentModel.DataAnnotations
+@inject ILogger<Starship13> Logger
+
+<EditForm EditContext="editContext" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputText @bind-Value="Model!.Id" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private EditContext? editContext;
+
+    public Starship? Model { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+        editContext = new(Model);
+        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+    }
+
+    private void Submit()
+    {
+        Logger.LogInformation("Submit called: Processing the form");
+    }
+
+    public class Starship
+    {
+        [Required]
+        [StringLength(10, ErrorMessage = "Id is too long.")]
+        public string? Id { get; set; }
+    }
+}
+```
+
+<!--
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship13.razor":::
+-->
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+### Style a single field
+
+The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied. Using [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the field is matched to the model member's property or field name, not an `id` assigned to the HTML entity.
+
+`CustomFieldClassProvider2.cs`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/CustomFieldClassProvider2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+
+> [!NOTE]
+> Matching the field name in the preceding example is case sensitive, so a model property member designated "`Name`" must match a conditional check on "`Name`":
+>
+> * <span aria-hidden="true">✔️</span><span class="visually-hidden">Correctly matches:</span> `fieldId.FieldName == "Name"`
+> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldId.FieldName == "name"`
+> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldId.FieldName == "NAME"`
+> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldId.FieldName == "nAmE"`
+
+Add an additional property to `Model`, for example:
+
+```csharp
+[StringLength(10, ErrorMessage = "Description is too long.")]
+public string? Description { get; set; } 
+```
+
+Add the `Description` to the `CustomValidationForm` component's form:
+
+```razor
+<InputText @bind-Value="Model!.Description" />
+```
+
+Update the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A> instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
+
+```csharp
+editContext?.SetFieldCssClassProvider(new CustomFieldClassProvider2());
+```
+
+Because a CSS validation class isn't applied to the `Description` field, it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
+
+> Description is too long.
+
+### Apply Blazor's default classes to other fields
+
+In the following example:
+
+* The custom CSS style is applied to the `Name` field.
+* Any other fields apply logic similar to Blazor's default logic and using Blazor's default field CSS validation styles, `modified` with `valid` or `invalid`. Note that for the default styles, you don't need to add them to the app's stylesheet if the app is based on a Blazor project template. For apps not based on a Blazor project template, the default styles can be added to the app's stylesheet:
+
+  ```css
+  .valid.modified:not([type=checkbox]) {
+      outline: 1px solid #26b050;
+  }
+
+  .invalid {
+      outline: 1px solid red;
+  }
+  ```
+
+`CustomFieldClassProvider3.cs`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/CustomFieldClassProvider3.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+
+Update the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A> instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
+
+```csharp
+editContext.SetFieldCssClassProvider(new CustomFieldClassProvider3());
+```
+
+Using `CustomFieldClassProvider3`:
+
+* The `Name` field uses the app's custom validation CSS styles.
+* The `Description` field uses logic similar to Blazor's logic and Blazor's default field CSS validation styles.
 
 :::moniker-end
 
