@@ -144,7 +144,12 @@ builder.Services.AddValidation();
 builder.Services.AddValidationLocalization<ValidationResources>();
 ```
 
-Use the typed [`AddValidationLocalization<TResource>`](xref:Microsoft.Extensions.DependencyInjection.ValidationLocalizationServiceCollectionExtensions.AddValidationLocalization%2A) overload for Minimal APIs. Top-level parameters on Minimal API endpoints don't have a containing type, so the default per-type resource lookup has no type to key on&mdash;the typed overload supplies one explicitly. A shared resource file resolves messages and display names against one `.resx` file (for example, `Resources/ValidationResources.fr.resx`).
+<!-- UPDATE 11.0 - Resurface the API Browser cross-link at GA ...
+
+                   [`AddValidationLocalization<TResource>`](xref:Microsoft.Extensions.DependencyInjection.ValidationLocalizationServiceCollectionExtensions.AddValidationLocalization%2A)
+-->
+
+Use the typed `AddValidationLocalization<TResource>` overload for Minimal APIs. Top-level parameters on Minimal API endpoints don't have a containing type, so the default per-type resource lookup has no type to key on&mdash;the typed overload supplies one explicitly. A shared resource file resolves messages and display names against one `.resx` file (for example, `Resources/ValidationResources.fr.resx`).
 
 For the full set of options, including loading messages from sources other than resource files, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
 
