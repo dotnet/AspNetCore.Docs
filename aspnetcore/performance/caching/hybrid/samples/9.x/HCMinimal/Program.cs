@@ -82,6 +82,9 @@ public class SomeService(HybridCache cache)
 
     public async Task<string> GetDataFromTheSourceAsync(string name, int id, CancellationToken token)
     {
+        // Placeholder for retrieving data from a real backing store (database, HTTP API, etc.).
+        // A real implementation would await that call; this stub returns synchronously,
+        // so it intentionally has no await (and produces compiler warning CS1998).
         string someInfo = $"someinfo-{name}-{id}";
         return someInfo;
     }
@@ -113,6 +116,9 @@ public class SomeService(HybridCache cache)
     
     public async Task<string> GetDataFromTheSourceAsync(string name, int id, CancellationToken token)
     {
+        // Placeholder for retrieving data from a real backing store (database, HTTP API, etc.).
+        // A real implementation would await that call. This stub returns synchronously and
+        // intentionally has no await, so the compiler emits warning CS1998 for this method.
         string someInfo = $"someinfo-{name}-{id}";
         return someInfo;
     }
@@ -138,6 +144,9 @@ public class SomeService(HybridCache cache)
 
     public async Task<string> GetDataFromTheSourceAsync(string name, int id, CancellationToken token)
     {
+        // Placeholder for retrieving data from a real backing store (database, HTTP API, etc.).
+        // A real implementation would await that call. This stub returns synchronously and
+        // intentionally has no await, so the compiler emits warning CS1998 for this method.
         string someInfo = $"someinfo-{name}-{id}";
         return someInfo;
     }

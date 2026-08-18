@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/25/2025
+ms.date: 08/14/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -13,6 +13,12 @@ uid: blazor/forms/validation
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to use validation in Blazor forms.
+
+:::moniker range=">= aspnetcore-10.0"
+
+For an overview of <xref:Microsoft.Extensions.Validation?displayProperty=fullName> validation, including how to register services for Minimal API projects, see <xref:fundamentals/validation>.
+
+:::moniker-end
 
 ## Form validation
 
@@ -217,10 +223,10 @@ Client-side validation is preserved across [enhanced navigation](xref:blazor/fun
 
 ### Opting out
 
-To keep server-side data annotations validation but disable client-side enforcement for a single form, set the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component's `EnableClientValidation` parameter to `false`:
+To keep server-side data annotations validation but disable client-side enforcement for a single form, set the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component's `DisableClientValidation` parameter to `true`:
 
 ```razor
-<DataAnnotationsValidator EnableClientValidation="false" />
+<DataAnnotationsValidator DisableClientValidation="true" />
 ```
 
 To bypass client-side validation for a single submit button, use the standard HTML `formnovalidate` attribute on the button. The form is then posted without a client-side check, and server-side validation still runs after the post:
@@ -287,26 +293,30 @@ After making the preceding changes, the form's behavior matches the following sp
 
 ## Asynchronous validation
 
-<xref:Microsoft.AspNetCore.Components.Forms.EditContext> exposes an asynchronous validation pipeline that custom validator components and custom submit handlers can use to run validation work that performs I/O, such as calling a server endpoint to check a value's uniqueness. The pipeline is built around three additions to <xref:Microsoft.AspNetCore.Components.Forms.EditContext>:
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext> exposes an asynchronous validation pipeline that custom validator components and custom submit handlers can use to run validation work that performs I/O, such as calling a server endpoint to check a value's uniqueness. The pipeline is built around the following API:
 
-<!-- UPDATE 11.0 - API Browser cross-link
+<!-- UPDATE 11.0 - API Browser cross-links
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A>
+<xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A>
+<xref:Microsoft.AspNetCore.Components.Forms.ValidationRequestedEventArgs.AddAsyncValidator%2A>
 
 -->
 
 * `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync`: an asynchronous counterpart to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> that awaits any registered async work and accepts a <xref:System.Threading.CancellationToken>.
-* `EditContext.OnValidationRequestedAsync`: an event for validators that run asynchronous work when the form is validated as a whole (typically on submit).
-* `EditContext.AddValidationTask`: a method that registers an in-flight <xref:System.Threading.Tasks.Task> against a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> so the framework can track per-field async work.
+* `ValidationRequestedEventArgs.AddAsyncValidator`: registers asynchronous work to run as part of the current validation pass. It's called from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> handler, typically to validate the form as a whole on submit.
+* `EditContext.RegisterAsyncFieldValidator`: registers asynchronous work for a single field. Registering a new validation for a field cancels and replaces the field's current pending validation.
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> awaits any registered async work before invoking <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A>. Sync-only forms continue to work without changes.
 
-> [!NOTE]
-> In Preview 5, the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component does not yet route data annotations attributes through the async pipeline. You can adopt the patterns in this section from a custom validator component or from a handler attached directly to <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
+The built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component runs the asynchronous `DataAnnotations` APIs (`AsyncValidationAttribute` and `IAsyncValidatableObject`), so asynchronous rules declared on the model work without adopting the patterns in this section.
 
-### Form-level async validation with `OnValidationRequestedAsync`
+> [!IMPORTANT]
+> Asynchronous work can only be registered during an asynchronous validation pass. If a form is validated with the synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method, `AddAsyncValidator` throws an <xref:System.InvalidOperationException> that directs the caller to `ValidateAsync`. This guarantees that an asynchronous validator is never silently skipped.
 
-Subscribe to `OnValidationRequestedAsync` to run async work whenever the form is validated as a whole. The event arguments expose a <xref:System.Threading.CancellationToken> that should be passed to any I/O the handler performs, so the work is cancelled when the framework supersedes the current validation pass (for example, when a new validation pass starts before the previous one completes).
+### Form-level async validation
+
+Subscribe to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and call `AddAsyncValidator` from the handler to run async work whenever the form is validated as a whole. The framework invokes the registered validator with the validation pass's cancellation token, which should be passed to any I/O that the validator performs, so the work is cancelled when the framework supersedes the current validation pass.
 
 In the following example, a custom validator component checks a username against a remote endpoint when the form is submitted:
 
@@ -327,18 +337,21 @@ In the following example, a custom validator component checks a username against
     {
         ArgumentNullException.ThrowIfNull(CurrentEditContext);
         _messages = new ValidationMessageStore(CurrentEditContext);
-        CurrentEditContext.OnValidationRequestedAsync += ValidateUsernameAsync;
+        CurrentEditContext.OnValidationRequested += OnValidationRequested;
     }
 
-    private async Task ValidateUsernameAsync(
-        object? sender, ValidationRequestedEventArgs e)
+    private void OnValidationRequested(
+        object? sender, ValidationRequestedEventArgs e) =>
+        e.AddAsyncValidator(ValidateUsernameAsync);
+
+    private async Task ValidateUsernameAsync(CancellationToken token)
     {
         var field = CurrentEditContext!.Field(nameof(Model.Username));
         _messages!.Clear(field);
 
         var available = await Http.GetFromJsonAsync<bool>(
             $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
-            e.CancellationToken);
+            token);
 
         if (!available)
         {
@@ -352,7 +365,7 @@ In the following example, a custom validator component checks a username against
     {
         if (CurrentEditContext is not null)
         {
-            CurrentEditContext.OnValidationRequestedAsync -= ValidateUsernameAsync;
+            CurrentEditContext.OnValidationRequested -= OnValidationRequested;
         }
     }
 }
@@ -369,20 +382,20 @@ Place the component inside an <xref:Microsoft.AspNetCore.Components.Forms.EditFo
 </EditForm>
 ```
 
-### Per-field async validation with `AddValidationTask`
+### Per-field async validation
 
-For async work that should run when the user edits a single field, register the in-flight <xref:System.Threading.Tasks.Task> against the field's <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> with `AddValidationTask`. The framework tracks each task so the field's pending and faulted state can be queried and visualized independently of other fields.
+For async work that should run when the user edits a single field, call `RegisterAsyncFieldValidator` with the field's <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> and a validator that starts the work. The framework tracks each validation so the field's pending and faulted state can be queried and visualized independently of other fields.
 
-Add the following members to the validator component shown in the previous section to re-run the uniqueness check whenever the `Username` field changes. If the user edits the same field again while a check is in flight, the prior task is canceled and a new one is registered:
+The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> owns the cancellation token source. If the user edits the same field again while a check is in flight, the prior validation is canceled and superseded automatically, so there's no token source for the component to create, cancel, or dispose.
+
+Add the following members to the validator component shown in the previous section to re-run the uniqueness check whenever the `Username` field changes:
 
 ```csharp
-private CancellationTokenSource? _usernameCts;
-
 protected override void OnInitialized()
 {
     ArgumentNullException.ThrowIfNull(CurrentEditContext);
     _messages = new ValidationMessageStore(CurrentEditContext);
-    CurrentEditContext.OnValidationRequestedAsync += ValidateUsernameAsync;
+    CurrentEditContext.OnValidationRequested += OnValidationRequested;
     CurrentEditContext.OnFieldChanged += OnFieldChanged;
 }
 
@@ -393,13 +406,9 @@ private void OnFieldChanged(object? sender, FieldChangedEventArgs e)
         return;
     }
 
-    _usernameCts?.Cancel();
-    _usernameCts?.Dispose();
-    _usernameCts = new CancellationTokenSource();
-    var token = _usernameCts.Token;
-
-    var task = CheckAsync(e.FieldIdentifier, token);
-    CurrentEditContext!.AddValidationTask(e.FieldIdentifier, task);
+    CurrentEditContext!.RegisterAsyncFieldValidator(
+        e.FieldIdentifier,
+        token => CheckAsync(e.FieldIdentifier, token));
 }
 
 private async Task CheckAsync(FieldIdentifier field, CancellationToken token)
@@ -420,13 +429,9 @@ private async Task CheckAsync(FieldIdentifier field, CancellationToken token)
 
 public void Dispose()
 {
-    _usernameCts?.Cancel();
-    _usernameCts?.Dispose();
-    _usernameCts = null;
-
     if (CurrentEditContext is not null)
     {
-        CurrentEditContext.OnValidationRequestedAsync -= ValidateUsernameAsync;
+        CurrentEditContext.OnValidationRequested -= OnValidationRequested;
         CurrentEditContext.OnFieldChanged -= OnFieldChanged;
     }
 }
@@ -526,7 +531,7 @@ When a form uses <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> 
 
 -->
 
-The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method continues to work for forms that only have synchronous validators. When a registered async handler returns an incomplete <xref:System.Threading.Tasks.Task>, calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> throws an <xref:System.InvalidOperationException> directing the caller to use `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` instead.
+The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method continues to work for forms that only have synchronous validators, but it's obsolete as of .NET 11. Call `Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync` instead. If a handler attempts to register asynchronous work during a synchronous pass, `AddAsyncValidator` throws an <xref:System.InvalidOperationException> directing the caller to use `ValidateAsync`.
 
 ### Async validation across rendering modes
 
@@ -2460,7 +2465,7 @@ To opt into the nested objects and collection types validation feature:
 
 1. Call the <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> extension method in the `Program` file where services are registered.
 2. Declare the form model types in a C# class file, not in a Razor component (`.razor`).
-3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute).
+3. Annotate the root form model type with the [`[ValidatableType]` attribute](xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute), which indicates that a type is validatable to support discovery by the validation source generator.
 
 The following example demonstrates customer orders with nested collection form validation.
 
@@ -2560,7 +2565,7 @@ In the following `OrderPage` component, the <xref:Microsoft.AspNetCore.Component
 
 The requirement to declare the model types outside of Razor components (`.razor` files) is due to the fact that both the nested collection validation feature and the Razor compiler itself are using a source generator. Currently, output of one source generator can't be used as an input for another source generator.
 
-For guidance on using validation models from a different assembly, see the [Use validation models from a different assembly](#use-validation-models-from-a-different-assembly) section.
+For guidance on using validation models from a different assembly, such as a library or the `.Client` project of a Blazor Web App, see <xref:fundamentals/validation#register-validation-in-multi-assembly-apps>.
 
 :::moniker-end
 
@@ -2618,106 +2623,6 @@ public class ShipDescription
     public string? LongDescription { get; set; }
 }
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-10.0"
-
-## Use validation models from a different assembly
-
-<!-- UPDATE 11.0 - The first list item changes when the content
-                   is updated for plain class libs upon 
-                   experimental status dropping at 11.0 -->
-
-For model validation defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App:
-
-* If the library is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the library for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation). Additional steps are required for plain class libraries, which are described later in this section.
-* Create a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on it.
-* In the app, call both the method and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>.
-
-The preceding approach results in validation of the types from both assemblies.
-
-In the following example, the `AddValidationForTypesInClient` method is created for the `.Client` project of a Blazor Web App for validation using types defined in the `.Client` project.
-
-`ServiceCollectionExtensions.cs` (in the `.Client` project):
-
-```csharp
-namespace BlazorSample.Client.Extensions;
-
-public static class ServiceCollectionExtensions
-{
-    public static IServiceCollection AddValidationForTypesInClient(
-        this IServiceCollection collection)
-    {
-        return collection.AddValidation();
-    }
-}
-```
-
-In the server project's `Program` file, add the namespace and call the `.Client` project's service collection extension method (`AddValidationForTypesInClient`) and <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
-
-```csharp
-using BlazorSample.Client.Extensions;
-
-...
-
-builder.Services.AddValidationForTypesInClient();
-builder.Services.AddValidation();
-```
-
-<!-- UPDATE 11.0 - The following changes when the content
-                   is updated for plain class libs upon 
-                   experimental status dropping at 11.0 -->
-
-The new attributes from the `Microsoft.Extensions.Validation` package (<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>) are published as *experimental* in .NET 10. The package is intended to provide a new shared infrastructure for validation features across frameworks, and publishing experimental types provides greater flexibility for the final design of the public API for better support in consuming frameworks.
-
-In Blazor apps, types are made available via a generated embedded attribute. If a web app project that uses the `Microsoft.NET.Sdk.Web` SDK (`<Project Sdk="Microsoft.NET.Sdk.Web">`) or an RCL that uses the `Microsoft.NET.Sdk.Razor` SDK (`<Project Sdk="Microsoft.NET.Sdk.Razor">`) contains Razor components (`.razor`), the framework automatically generates an internal attribute inside the project (`Microsoft.Extensions.Validation.Embedded.ValidatableType`, `Microsoft.Extensions.Validation.Embedded.SkipValidation`). These types are interchangeable with the actual attributes and not marked experimental. In the majority of cases, developers use the `[ValidatableType]`/`[SkipValidation]` attributes on their classes without concern over their source.
-
-However, the preceding approach isn't viable in plain class libraries that use the `Microsoft.NET.Sdk` SDK (`<Project Sdk="Microsoft.NET.Sdk">`). Using the types in a plain class library results in an code analysis warning:
-
-> :::no-loc text="ASP0029: 'Microsoft.Extensions.Validation.ValidatableTypeAttribute' is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.":::
-
-The warning can be suppressed using any of the following approaches:
-
-* A `<NoWarn>` property in the project file:
-
-  ```xml
-  <PropertyGroup>
-    <NoWarn>$(NoWarn);ASP0029</NoWarn>
-  </PropertyGroup>
-  ```
-
-* A [`pragma` directive](/cpp/preprocessor/pragma-directives-and-the-pragma-keyword) where the attribute is used:
-
-  ```csharp
-  #pragma warning disable ASP0029
-  [Microsoft.Extensions.Validation.ValidatableType]
-  #pragma warning restore ASP0029
-  ```
-
-* An [EditorConfig file (`.editorconfig`)](/visualstudio/ide/create-portable-custom-editor-options) rule:
-
-  ```
-  dotnet_diagnostic.ASP0029.severity = none
-  ```
-
-If suppressing the warning isn't acceptable, manually create the embedded attribute in the library that the Web and Razor SDKs generate automatically.
-
-`ValidatableTypeAttribute.cs`:
-
-```csharp
-namespace Microsoft.Extensions.Validation.Embedded
-{
-    [AttributeUsage(AttributeTargets.Class)]
-    internal sealed class ValidatableTypeAttribute : Attribute
-    {
-    }
-}
-```
-
-Use the exact namespace (`Microsoft.Extensions.Validation.Embedded`) and class name (`ValidatableTypeAttribute`) in order for the validation source generator to detect and use the type. You can declare a global `using` statement for the namespace, either with a `global using Microsoft.Extensions.Validation.Embedded;` statement or with a `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item in the library's project file.
-
-Whichever approach is adopted, denote the presence of the workaround for a future update to your code. Framework updates to ease the adoption of validation types in plain class libraries are planned for .NET 11 (November, 2026).
 
 :::moniker-end
 

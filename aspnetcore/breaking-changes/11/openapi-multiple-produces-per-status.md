@@ -6,7 +6,7 @@ ms.date: 06/05/2026
 ---
 # OpenAPI document includes all ProducesResponseType entries per status code
 
-ASP.NET Core 11 changes how MVC's `ApiExplorer` and minimal API's metadata-collection step handle multiple `[ProducesResponseType]` or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> declarations for the same status code. Previously, all but one declaration per status code were dropped before the OpenAPI document was generated. Starting in ASP.NET Core 11, all declarations are preserved, and the generated OpenAPI document reflects every declared content type and schema for each status code.
+ASP.NET Core 11 changes how MVC's `ApiExplorer` and Minimal API's metadata-collection step handle multiple `[ProducesResponseType]` or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> declarations for the same status code. Previously, all but one declaration per status code were dropped before the OpenAPI document was generated. Starting in ASP.NET Core 11, all declarations are preserved, and the generated OpenAPI document reflects every declared content type and schema for each status code.
 
 ## Version introduced
 
@@ -14,9 +14,9 @@ ASP.NET Core 11 changes how MVC's `ApiExplorer` and minimal API's metadata-colle
 
 ## Previous behavior
 
-For both MVC controllers and minimal APIs, only one `ApiResponseType` survived per status code. Additional `[ProducesResponseType]` attributes or `.Produces<T>(...)` calls with the same status code silently overwrote the previous entry. The generated OpenAPI document therefore contained a single response variant per status code, even when the developer declared several.
+For both MVC controllers and Minimal APIs, only one `ApiResponseType` survived per status code. Additional `[ProducesResponseType]` attributes or `.Produces<T>(...)` calls with the same status code silently overwrote the previous entry. The generated OpenAPI document therefore contained a single response variant per status code, even when the developer declared several.
 
-For example, with the following minimal API endpoint:
+For example, with the following Minimal API endpoint:
 
 ```csharp
 app.MapGet("/items/{id}", (int id) => /* ... */)
@@ -38,7 +38,7 @@ Only the `Bar` / `text/xml` variant survived in the OpenAPI document.
 
 ## New behavior
 
-Starting in ASP.NET Core 11, all declared response types for the same status code are preserved and emitted to the generated OpenAPI document. For the minimal API example above, the `responses["200"]` entry now contains both the `application/json` schema (for `Product`) and the `text/xml` schema (for `Customer`). For the controller example, both the `application/json` schema (for `Foo`) and the `text/xml` schema (for `Bar`) are emitted.
+Starting in ASP.NET Core 11, all declared response types for the same status code are preserved and emitted to the generated OpenAPI document. For the Minimal API example above, the `responses["200"]` entry now contains both the `application/json` schema (for `Product`) and the `text/xml` schema (for `Customer`). For the controller example, both the `application/json` schema (for `Foo`) and the `text/xml` schema (for `Bar`) are emitted.
 When multiple declarations share the same status code *and* the same content type but declare different types, the OpenAPI document represents the response schema as an `anyOf` composite of the declared types (a value valid against at least one of them satisfies the schema).
 
 Controller-level `[Produces]` content types continue to apply as the shared default content type for entries that don't specify their own. Attribute-level declarations on an action take precedence over controller-level declarations with the same status code.

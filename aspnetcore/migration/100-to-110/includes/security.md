@@ -17,6 +17,6 @@ To simplify an app that configures antiforgery explicitly, drop the <xref:Micros
 A `400 - Bad Request` on a cross-origin form post is the CSRF protection working as intended. When the request comes from a legitimate origin, allow that origin rather than suppressing the check:
 
 * Configure [CORS](xref:security/cors) so the endpoint's resolved policy includes the caller's origin. The CSRF middleware honors that policy and allows the request.
-* Only opt an endpoint out with `.DisableAntiforgery()` (minimal APIs) or `[IgnoreAntiforgeryToken]` (MVC) when it isn't vulnerable to CSRF, such as an endpoint that isn't reachable from a browser or that authenticates with a non-cookie mechanism (for example, bearer authentication).
+* Only opt an endpoint out with `.DisableAntiforgery()` (Minimal APIs) or `[IgnoreAntiforgeryToken]` (MVC) when it isn't vulnerable to CSRF, such as an endpoint that isn't reachable from a browser or that authenticates with a non-cookie mechanism (for example, bearer authentication).
 
 For a full description of the middleware, the validation rules, and how it interacts with the token-based antiforgery system, see [Automatic CSRF protection in ASP.NET Core](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core).

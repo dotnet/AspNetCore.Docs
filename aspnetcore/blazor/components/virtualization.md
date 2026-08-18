@@ -279,11 +279,11 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 ## Scroll to a specific item
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialIndex` for the first render and `ScrollToIndexAsync` for programmatic scrolling after the component is rendered.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialItemIndex` for the first render and `ScrollToIndexAsync` for programmatic scrolling after the component is rendered.
 
-### `InitialIndex` parameter
+### `InitialItemIndex` parameter
 
-Set `InitialIndex` to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
+Set `InitialItemIndex` to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
 
 ```razor
 <Virtualize Items="allFlights" Context="flight" InitialItemIndex="500">

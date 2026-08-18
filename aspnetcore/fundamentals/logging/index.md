@@ -1432,7 +1432,7 @@ Authentication
 
 * `Microsoft.AspNetCore.Authentication`: Logs from the authentication middleware and services, including authentication scheme handling.
 * `Microsoft.AspNetCore.Authentication.Cookies`: Logs specific to cookie-based authentication.
-* `Microsoft.AspNetCore.Authentication.JwtBearer`: Logs related to JWT Bearer token authentication.
+* `Microsoft.AspNetCore.Authentication.JwtBearer`: Logs related to JWT bearer token authentication.
 * `Microsoft.AspNetCore.Authentication.OpenIdConnect`: Logs concerning OpenID Connect authentication processes.
 * `Microsoft.AspNetCore.Authentication.OAuth`: Logs related to OAuth authentication and authorization flows.
 

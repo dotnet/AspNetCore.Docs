@@ -19,7 +19,7 @@ This article explains:
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
-In practice, a policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/iauthorizationpolicyprovider> documentation) generates policies dynamically instead of registering them at app startup.
+In practice, a policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/custom-authorization-policy-providers> documentation) generates policies dynamically instead of registering them at app startup.
 
 [Role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 

@@ -1,11 +1,11 @@
 ---
 title: Inter-process communication with gRPC and Named pipes
+ai-usage: ai-assisted
 author: jamesnk
 description: Learn how to use gRPC for inter-process communication with Named pipes.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ai-usage: ai-assisted
-ms.date: 08/01/2025
+ms.date: 08/14/2026
 uid: grpc/interprocess-namedpipes
 ---
 # Inter-process communication with gRPC and Named pipes
@@ -48,46 +48,55 @@ The preceding example:
 * Calls `ListenNamedPipe` to listen to a named pipe with the specified name.
 * Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
-### Configuring PipeSecurity for Named Pipes
+### Configuring `PipeSecurity` for named pipes
 
-To control which users or groups can connect, use the [`NamedPipeTransportOptions`](xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions) class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
+To control which users or groups can connect, use the <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions> class. This allows a custom [`PipeSecurity`](xref:System.IO.Pipes.PipeSecurity) object to be specified.
 
 Example:
 
 ```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
 using System.IO.Pipes;
 using System.Security.AccessControl;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure PipeSecurity
+builder.WebHost.UseNamedPipes(options =>
+{
+    var pipeSecurity = new PipeSecurity();
+    // Grant read/write and CreateNewInstance access to the Users group
+    pipeSecurity.AddAccessRule(new PipeAccessRule(
+        "Users",
+        PipeAccessRights.ReadWrite | PipeAccessRights.CreateNewInstance,
+        AccessControlType.Allow));
+    // Add additional rules as needed
+
+    options.PipeSecurity = pipeSecurity;
+    options.CurrentUserOnly = false;
+});
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ListenNamedPipe("MyPipeName", listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http2;
-
-        // Configure PipeSecurity
-        listenOptions.UseNamedPipes(options =>
-        {
-            var pipeSecurity = new PipeSecurity();
-            // Grant read/write access to the Users group
-            pipeSecurity.AddAccessRule(new PipeAccessRule(
-                "Users",
-                PipeAccessRights.ReadWrite,
-                AccessControlType.Allow));
-            // Add additional rules as needed
-
-            options.PipeSecurity = pipeSecurity;
-        });
     });
 });
 ```
 
 The preceding example:
 
-* Uses `UseNamedPipes` to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
+* Calls `UseNamedPipes` on the <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
+* Sets <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions.CurrentUserOnly> to `false`, which is required when providing a custom <xref:System.IO.Pipes.PipeSecurity> object.
 * Sets the <xref:System.IO.Pipes.PipeSecurity> property to control which users or groups can connect to the named pipe.
-* Grants read/write access to the `Users` group. Additional security rules can be added as needed for the scenario.
+* Grants read/write and `CreateNewInstance` access to the `Users` group. The `CreateNewInstance` permission is needed to allow the server process to create the pipe. Additional security rules can be added as needed for the scenario.
+
+> [!IMPORTANT]
+> When setting a custom `PipeSecurity`, set `CurrentUserOnly` to `false`. Leaving `CurrentUserOnly` at its default value of `true` while also setting `PipeSecurity` throws an `ArgumentException`.
+
+> [!NOTE]
+> Account names such as `Users` are resolved to security identifiers (SIDs) when the access rule is added. On a domain-joined machine that can't reach a domain controller, resolution can fail. Use a well-known SID (for example, <xref:System.Security.Principal.WellKnownSidType.BuiltinUsersSid>) to avoid a network round-trip.
 
 ### Customize Kestrel named pipe endpoints
 

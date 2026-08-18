@@ -20,6 +20,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 | [ConcurrencyLimiter middleware removed](concurrencylimiter-removed.md) | Binary/source incompatible |
 | [Hosting emits OpenTelemetry HTTP semantic-convention tags by default](http-activity-otel-semconv.md) | Behavioral change |
 | [Obsolete ImageTagHelper members removed](image-tag-helper-obsolete-members-removed.md) | Binary/source incompatible |
+| [HttpSys enables TLS channel binding token exposure by default](httpsys-channel-binding-token-enabled.md) | Behavioral change |
 | [Kestrel tightens HTTP protocol compliance](kestrel-strict-protocol-compliance.md) | Behavioral change |
 | [Microsoft.OpenApi upgraded to 3.x](microsoft-openapi-3x.md) | Source incompatible |
 | [Obsolete Blazor APIs removed](blazor-obsolete-apis-removed.md) | Source incompatible |

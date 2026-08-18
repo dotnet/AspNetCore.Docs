@@ -21,6 +21,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker.md",
+            "redirect_url": "/visualstudio/containers/add-container-support",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/host-and-deploy/linux-apache.md",
             "redirect_url": "/aspnet/core/host-and-deploy/linux-nginx",
             "redirect_document_id": false
@@ -497,7 +502,7 @@
         },
         {
             "source_path": "aspnetcore/publishing/visual-studio-tools-for-docker.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/docker/visual-studio-tools-for-docker",
+            "redirect_url": "/visualstudio/containers/add-container-support",
             "redirect_document_id": false
         },
         {
@@ -1692,6 +1697,21 @@
         {
             "source_path": "aspnetcore/security/authorization/views.md",
             "redirect_url": "/aspnet/core/mvc/security/authorization/views",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authorization/iauthorizationpolicyprovider.md",
+            "redirect_url": "/aspnet/core/security/authorization/custom-authorization-policy-providers",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authorization/limitingidentitybyscheme.md",
+            "redirect_url": "/aspnet/core/security/authorization/authorize-with-a-specific-scheme",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/validation/overview.md",
+            "redirect_url": "/aspnet/core/fundamentals/validation",
             "redirect_document_id": false
         }
     ]

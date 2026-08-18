@@ -131,7 +131,7 @@ Articles in the *Fundamentals* node make reference to the concept of *render mod
 
 For the early references in this node of articles to render mode concepts, merely note the following at this time:
 
-Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's rendered statically on the server, rendered with for user interactivity on the server, or rendered for user interactivity on the client (usually with prerendering on the server).
+Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's rendered statically on the server, rendered for user interactivity on the server, or rendered for user interactivity on the client (usually with prerendering on the server).
 
 Blazor Server and Blazor WebAssembly apps for ASP.NET Core releases prior to .NET 8 remain fixated on *hosting model* concepts, not render modes. Render modes are conceptually applied to Blazor Web Apps in .NET 8 or later.
 

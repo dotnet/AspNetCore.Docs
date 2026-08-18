@@ -155,13 +155,13 @@ For more information, see the following resources:
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
 
   * `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
-  * `Beginning`: Pins the viewport to the beginning of the list. For example, this pinning behavior is useful for a news feed user experience.
+  * `Start` (default): Pins the viewport to the beginning of the list. For example, this pinning behavior is useful for a news feed user experience.
   * `End`: Pins the viewport to the end of the list. For example, this pinning behavior is useful for a chat or logging user experience.
 
   In the following example, the virtualized content is pinned to the beginning of the list:
 
   ```razor
-  <Virtualize AnchorMode="Beginning" ...>
+  <Virtualize AnchorMode="Start" ...>
       ...
   </Virtualize>
   ```
@@ -662,12 +662,9 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 ### Asynchronous form validation support
 
-Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async tasks via `EditContext.AddValidationTask`. The framework tracks them, cancels superseded tasks, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
+Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async validation via `EditContext.RegisterAsyncFieldValidator`. The framework tracks them, cancels superseded validations, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
 
-<!-- UPDATE 11.0 - We'll adjust the following remark for future
-                   preview releases. -->
-
-While Preview 5 ships the building blocks for Blazor forms, the full built-in async validation experience will be enabled when the new asynchronous `DataAnnotations` APIs are released in a later .NET preview. These APIs will be fully supported by the existing `DataAnnotationsValidator` component.
+The built-in `DataAnnotationsValidator` component runs the asynchronous `DataAnnotations` APIs (`AsyncValidationAttribute` and `IAsyncValidatableObject`), so asynchronous rules declared on the model work without additional configuration.
 
 ```razor
 <EditForm EditContext="editContext" OnSubmit="HandleSubmit">
@@ -695,9 +692,8 @@ While Preview 5 ships the building blocks for Blazor forms, the full built-in as
         {
             if (e.FieldIdentifier.FieldName == nameof(model.Username))
             {
-                var cts = new CancellationTokenSource();
-                editContext.AddValidationTask(e.FieldIdentifier,
-                    CheckAsync(e.FieldIdentifier, model.Username, cts.Token), cts);
+                editContext.RegisterAsyncFieldValidator(e.FieldIdentifier,
+                    token => CheckAsync(e.FieldIdentifier, model.Username, token));
             }
         };
     }
@@ -724,12 +720,11 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 ### Blazor and Minimal APIs support error localization
 
-Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. By default, localization uses language-specific RESX files deployed as part of the assembly.
+Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. Localization activates automatically once an `IStringLocalizerFactory` is available. By default, localization registered by `AddLocalization` uses language-specific RESX files deployed as part of the assembly.
 
 ```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization<ValidationMessages>();
-    // Resolves to ValidationMessages.en.resx, ValidationMessages.es.resx, ...
+builder.Services.AddLocalization();
+builder.Services.AddValidation();
 ```
 
 ```csharp
@@ -747,27 +742,27 @@ public class ContactModel
 Apps can also register custom `IStringLocalizerFactory` implementations to read the localized strings from other sources, such as databases or JSON files. A user registered type takes precedence over the default RESX localization.
 
 ```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization();
 builder.Services.AddSingleton<IStringLocalizerFactory, DbStringLocalizerFactory>();
+builder.Services.AddValidation();
 ```
 
-Apps can also configure a programmatic strategy for localization, removing the need to specify localization keys on every validation attribute:
+To resolve keys from a shared resource file instead of the validated type's own resources, set `ValidationOptions.LocalizerProvider`:
 
 ```csharp
-builder.Services.AddValidation()
-    .AddValidationLocalization<ValidationMessages>(options =>
-    {
-        options.ErrorMessageKeyProvider = ctx =>
-            ctx.Attribute.ErrorMessage ?? $"{ctx.Attribute.GetType().Name}_Error";
-    });
+builder.Services.AddValidation(options =>
+{
+    options.LocalizerProvider = (_, factory) => factory.Create(typeof(ValidationMessages));
+});
 ```
+
+When an attribute doesn't set `ErrorMessage`, conventional lookup keys are tried from most to least specific, removing the need to specify localization keys on every validation attribute:
 
 ```csharp
 [ValidatableType]
 public class ContactModel
 {
-    // Looks-up localized string for 'RequiredAttribute_Error' automatically.
+    // Looks up 'ContactModel_Username_RequiredAttribute_Error', then
+    // 'ContactModel_RequiredAttribute_Error', then 'RequiredAttribute_Error'.
     [Required]
     public string? Username { get; set; }
 }
@@ -809,9 +804,9 @@ For more information, see the following resources:
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
-* <xref:security/anti-request-forgery>
-* <xref:blazor/forms/index#antiforgery-support>
-* <xref:blazor/security/index#antiforgery-support>
+* <xref:security/anti-request-forgery?view=aspnetcore-11.0>
+* <xref:blazor/forms/index?view=aspnetcore-11.0#antiforgery-support>
+* <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
 
 ### Blazor Virtualize can scroll to an item
 
@@ -819,11 +814,11 @@ General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 The `Virtualize<TItem>` component can now open at a specific item and scroll to any item on demand. Two new public APIs make this possible:
 
-* `InitialIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
+* `InitialItemIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
 * `ScrollToIndexAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
 
 ```razor
-<Virtualize TItem="Product" Items="products" InitialIndex="500" @ref="list">
+<Virtualize TItem="Product" Items="products" InitialItemIndex="500" @ref="list">
     <div class="product">@context.Name</div>
 </Virtualize>
 
@@ -837,6 +832,59 @@ The `Virtualize<TItem>` component can now open at a specific item and scroll to 
 }
 ```
 
-Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialIndex` to set the starting position instead.
+Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialItemIndex` to set the starting position instead.
 
-For more information, see [Add `InitialIndex` parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
+For more information, see [Add `InitialIndex` (sic) parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
+
+### Automatic circuit pause on tab inactivity
+
+Auto-pause can pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. It's an opt-in feature provided by the `Microsoft.AspNetCore.Components.Server.AutoPause` package. After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
+
+```csharp
+app.MapRazorComponents<App>()
+    .WithBrowserOptions(options => options.AddAutoPause(p => p.HiddenDelay = TimeSpan.FromSeconds(30)));
+```
+
+After the tab is hidden for a configurable delay period (default: 2 minutes), the circuit pauses. If the user returns before the delay elapses, the pause doesn't occur.
+
+For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#automatic-circuit-pause-on-tab-inactivity>.
+
+### Wider support for `AuthorizationPolicy` and `IAuthorizationRequirementData`
+
+Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+
+For more information, see <xref:security/authorization/iard?view=aspnetcore-11.0>.
+
+### QuickGrid APIs from Virtualize are exposed
+
+The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> set to `true`):
+
+* `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
+* `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
+* `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+
+For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
+
+### `ValidatableTypeAttribute` and `SkipValidationAttribute` are no longer experimental
+
+The <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> attributes from the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer experimental.
+
+For more information, see the following resources:
+
+* <xref:blazor/forms/validation?view=aspnetcore-11.0#nested-objects-and-collection-types>
+* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
+
+### Cache rendered output of a component subtree during static SSR
+
+The new `CacheView` component caches the rendered output of a Razor component subtree during static server-side rendering (static SSR). On a cache hit, cached markup is replayed without instantiating or running the lifecycle of the child components that were included in the cached output.
+
+`CacheView` is useful for expensive, mostly static sections of a page that don't require the entire response to be cached:
+
+```razor
+<CacheView VaryByQuery="category" ExpiresAfter="TimeSpan.FromMinutes(5)">
+    <ProductList Category="@Category" />
+</CacheView>
+```
+
+For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
