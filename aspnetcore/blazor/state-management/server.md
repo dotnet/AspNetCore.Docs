@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/23/2026
+ms.date: 08/18/2026
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -254,7 +254,7 @@ For elements without Blazor bindings (for example, `<canvas>`, WebRTC connection
 > <span>@SelectedFileName</span>
 >
 > @code {
->     [PersistentState(AllowUpdates = true)]
+>     [PersistentState]
 >     public string? SelectedFileName { get; set; }
 >
 >     private async Task HandleFileSelected(ChangeEventArgs e)
