@@ -542,18 +542,31 @@ In the preceding example, the document root is used as the scroll container, so 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
-
 ## Content Security Policy (CSP) compliance
 
-The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction.
+:::moniker range=">= aspnetcore-11.0"
 
-To avoid CSP violations, render CSS height in a `data-blazor-virtualize-reserved-height` attribute instead of a `style` attribute, which makes the rendered component compatible with strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) configurations.
+CSP violations are avoided because `Virtualize` components:
+
+* Render CSS styles in a `data-blazor-style` attribute instead of a `style` attribute.
+* Use a JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) to read the attribute's value and apply each declaration via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model): `element.style.setProperty(name, value)`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. To avoid CSP violations, render CSS height in a `data-blazor-virtualize-reserved-height` attribute instead of a `style` attribute, which makes the rendered component compatible with strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) configurations.
 
 In the following example, the height is set to 3,400 pixels:
 
 ```razor
 <div data-blazor-virtualize-reserved-height="3400" aria-hidden="true"></div>
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. Apps are required to relax `style-src` with `'unsafe-inline'` to allow inline styles for the component to function.
 
 :::moniker-end
