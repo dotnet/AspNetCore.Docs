@@ -488,16 +488,14 @@ protected override async Task OnInitializedAsync()
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't
-control whether property mutations are captured when a circuit pauses due to [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) or [tab inactivity](xref:#automatic-circuit-pause-on-tab-inactivity).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether property mutations are captured when a circuit pauses due to [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) or [tab inactivity](xref:#automatic-circuit-pause-on-tab-inactivity).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't
-control whether property mutations are captured when a circuit pauses due to [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether property mutations are captured when a circuit pauses due to [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence).
 
 :::moniker-end
 
