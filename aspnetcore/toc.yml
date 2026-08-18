@@ -501,7 +501,7 @@ items:
             uid: performance/rate-limit
           - name: Rate limiting samples
             uid: performance/rate-limit-sample
-          - name: Middleware in Minimal API apps
+          - name: Middleware in ASP.NET Core apps
             uid: fundamentals/minimal-apis/middleware
           - name: Test middleware
             uid: test/middleware

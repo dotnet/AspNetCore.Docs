@@ -1,20 +1,21 @@
 ---
-title: Middleware with Minimal API applications
+title: Middleware in ASP.NET Core apps
+ai-usage: ai-assisted
 author: BrennanConroy
-description: Use middleware in Minimal API applications, including automatic middleware, user-configured middleware, and terminal middleware.
-ms.author: wpickett
-ms.date: 04/28/2026
+description: Use middleware in ASP.NET Core apps, including automatic middleware added by WebApplication, user-configured middleware, and terminal middleware.
 monikerRange: '>= aspnetcore-7.0'
+ms.author: wpickett
+ms.date: 08/18/2026
 uid: fundamentals/minimal-apis/middleware
 
-# customer intent: As an ASP.NET developer, I want to use middleware in ASP.NET Core, so I can use the functionality to handle requests and responses in my Minimal API apps.
+# customer intent: As an ASP.NET Core developer, I want to use middleware, so I can handle requests and responses in my ASP.NET Core apps.
 ---
 
-# Middleware in Minimal API apps
+# Middleware in ASP.NET Core apps
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article describes how to use middleware in Minimal API applications. Take advantage of automatic middleware in your Minimal API apps, or define user-configured middleware and terminal middleware.
+This article describes the middleware that <xref:Microsoft.AspNetCore.Builder.WebApplication> configures automatically in ASP.NET Core apps and explains how to customize the request pipeline. Most ASP.NET Core apps, including Minimal API, web API, MVC, Razor Pages, and server-side Blazor apps, are built with `WebApplication`, which adds a default set of middleware based on the app's registered services and hosting environment. You can rely on the automatic middleware, add your own user-configured middleware, or define terminal middleware.
 
 ## Available middleware
 
