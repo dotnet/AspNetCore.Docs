@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
-ms.date: 07/14/2026
+ms.date: 08/18/2026
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -542,7 +542,7 @@ In the preceding example, the document root is used as the scroll container, so 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
 
 ## Content Security Policy (CSP) compliance
 
