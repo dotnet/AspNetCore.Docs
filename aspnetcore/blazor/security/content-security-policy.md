@@ -301,9 +301,9 @@ For Blazor Server apps:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-11.0"
 
-If the app uses one or more `Virtualize` components, they render dynamic inline `style` attributes on their spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. For guidance on how to avoid CSP violations for `Virtualize` components, see <xref:blazor/components/virtualization#content-security-policy-csp-compliance>.
+If the app uses one or more `Virtualize` components, they render dynamic inline `style` attributes on their spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. Strict CSP configurations that don't allow inline styles can block these `style` attributes and prevent virtualization from working. If you can't upgrade to ASP.NET Core 11.0 or later (where `Virtualize` is CSP-compliant), you may need to relax `style-src` to allow inline styles for the component to function. For more information, see <xref:blazor/components/virtualization#content-security-policy-csp-compliance>.
 
 :::moniker-end
 
