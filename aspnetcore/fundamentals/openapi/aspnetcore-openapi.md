@@ -74,7 +74,7 @@ Launch the app and navigate to `https://localhost:{port}/openapi/v1.json` to vie
 
 OpenAPI document generation applies the following behaviors:
 
-* Unknown HTTP methods are excluded from the generated document. For example, the `QUERY` method is a standard HTTP method that isn't recognized by the OpenAPI specification, so it's gracefully excluded from the generated document.
+* Unknown HTTP methods are excluded from the generated document. For example, the `QUERY` method is an HTTP method that isn't yet recognized by the OpenAPI specification, so it's gracefully excluded from the generated document.
 * Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
 
 ## Options to Customize OpenAPI document generation
