@@ -21,7 +21,7 @@ This article includes a [sample app](#download10) that demonstrates the [`Micros
 
 The following image shows the Scalar UI with XML documentation comments integrated into the OpenAPI document of the sample app:
 
-![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
+![screenshot of app with XML comments in Scalar UI](~/fundamentals/openapi/_static/screenshot.png)
 
 ### Supported XML documentation tags
 
