@@ -1,12 +1,12 @@
 ---
-title: Generate OpenAPI documents
+title: Customize OpenAPI documents
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-6.0'
+description: Learn how to customize OpenAPI documents in an ASP.NET Core app
+monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
 ms.date: 08/19/2026
-uid: fundamentals/openapi/aspnetcore-openapi
+uid: fundamentals/openapi/customize-openapi
 ---
 # Generate OpenAPI documents
 
