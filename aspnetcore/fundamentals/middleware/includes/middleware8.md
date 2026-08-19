@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-8.0"
 
-[WebApplication](xref:fundamentals/minimal-apis/webapplication) automatically adds the following middleware in [Minimal API applications](xref:fundamentals/apis) depending on certain conditions:
+[WebApplication](xref:fundamentals/minimal-apis/webapplication) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
 
 * [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [HostingEnvironment](xref:fundamentals/environments) is `"Development"`.
 
