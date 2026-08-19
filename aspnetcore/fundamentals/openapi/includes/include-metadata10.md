@@ -659,7 +659,7 @@ For example, a C# property defined as `string?` is represented in the generated 
   },
 ```
 
-For nullable complex types and collections, the generated schema uses the `oneOf` keyword to combine a schema with `type: "null"` and the schema for the actual type. This pattern is used because a schema reference (`$ref`) can't be combined with a `type` array. ASP.NET Core detects the nullability of parameters, properties, and return types using reflection and `NullabilityInfoContext`. For example, a property defined as a nullable complex type `Address?` is represented in the generated schema as:
+For nullable complex types and collections, the generated schema uses the `oneOf` keyword to combine a schema with `type: "null"` and the schema for the actual type. This allows the schema to reference the type's definition (`$ref`) while also permitting a `null` value. ASP.NET Core detects the nullability of parameters, properties, and return types using reflection and `NullabilityInfoContext`. For example, a property defined as a nullable complex type `Address?` is represented in the generated schema as:
 
 ```json
   "address": {
