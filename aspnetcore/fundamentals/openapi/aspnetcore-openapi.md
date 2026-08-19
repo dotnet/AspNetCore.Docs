@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 06/16/2026
+ms.date: 08/19/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -71,6 +71,11 @@ The following code:
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,9)]
 
 Launch the app and navigate to `https://localhost:{port}/openapi/v1.json` to view the generated OpenAPI document, where the `{port}` placeholder is the port.
+
+OpenAPI document generation applies the following behaviors:
+
+* Unknown HTTP methods are excluded from the generated document. For example, the `QUERY` method is a standard HTTP method that isn't recognized by the OpenAPI specification, so it's gracefully excluded from the generated document.
+* Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
 
 ## Options to Customize OpenAPI document generation
 

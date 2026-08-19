@@ -1,10 +1,11 @@
 ---
 title: Customize OpenAPI documents
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 03/20/2026
+ms.date: 08/19/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -220,6 +221,9 @@ builder.Services.AddOpenApi(options =>
         type.Type.IsEnum ? null : OpenApiOptions.CreateDefaultSchemaReferenceId(type);
 });
 ```
+
+> [!NOTE]
+> Starting with .NET 10, relative JSON schema references (`$ref`) within the root schema document are resolved correctly during OpenAPI document generation.
 
 ## Additional resources
 

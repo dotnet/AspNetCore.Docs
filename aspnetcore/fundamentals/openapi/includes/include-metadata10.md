@@ -186,6 +186,8 @@ Form bodies are always required and have `required` set to `true`.
 
 Use a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or an [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
 
+For endpoints that accept a JSON Patch document, the generated OpenAPI document uses the `application/json-patch+json` media type for the request body and includes a detailed schema that describes the structure of the JSON Patch document, including the operations it can contain. For more information about JSON Patch in ASP.NET Core, see <xref:web-api/jsonpatch>.
+
 Other mechanisms for setting request body metadata depend on the type of app being developed and are described in the following sections.
 
 #### [Minimal APIs](#tab/minimal-apis)
@@ -570,7 +572,11 @@ The following table summarizes attributes from the `System.ComponentModel` names
 | [`[MaxLength]`](xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute) | Sets the `maxLength` of a string or `maxItems` of an array. |
 | [`[RegularExpression]`](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute) | Sets the `pattern` of a string. |
 
+The `description` of a property is included in the generated OpenAPI document even when the property's schema is a reference (`$ref`) to a schema in the `components.schemas` section. Including a `description` as a sibling of `$ref` is allowed in OpenAPI 3.1 documents. In OpenAPI 3.0 and 2.0 documents, sibling keywords aren't allowed next to `$ref`, so the `description` isn't included for these properties.
+
 Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
+
+Validation is separate from OpenAPI schema generation. The `[SkipValidation]` attribute opts a parameter, type, or property out of runtime validation but doesn't change the generated OpenAPI schema. For more information about validating request data, including the experimental validation attributes introduced in .NET 10, see <xref:fundamentals/validation>.
 
 Attributes can also be placed on parameters in the parameter list of a record definition but must include the `property` modifier. For example:
 
@@ -652,6 +658,23 @@ For example, a C# property defined as `string?` is represented in the generated 
     ]
   },
 ```
+
+For nullable complex types and collections, the generated schema uses the `oneOf` keyword to combine a schema with `type: "null"` and the schema for the actual type. This pattern is used because a schema reference (`$ref`) can't be combined with a `type` array. ASP.NET Core detects the nullability of parameters, properties, and return types using reflection and `NullabilityInfoContext`. For example, a property defined as a nullable complex type `Address?` is represented in the generated schema as:
+
+```json
+  "address": {
+    "oneOf": [
+      {
+        "type": "null"
+      },
+      {
+        "$ref": "#/components/schemas/Address"
+      }
+    ]
+  },
+```
+
+Null types are pruned from the schemas in the `components.schemas` section to avoid duplication.
 
 If the app is configured to produce OpenAPI v3.0 or OpenAPI v2 documents, nullable value or reference types have `nullable: true` in the generated schema because these OpenAPI versions do not allow the `type` field to be an array.
 
