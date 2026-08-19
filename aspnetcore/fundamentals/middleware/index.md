@@ -5,8 +5,8 @@ author: tdykstra
 description: ASP.NET Core middleware handles requests and responses through a configurable pipeline. Learn how to use Run, Map, and Use delegates, branch pipelines, and order middleware correctly.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
+ms.date: 08/19/2026
 ms.reviewer: tdykstra
-ms.date: 08/18/2026
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core middleware
