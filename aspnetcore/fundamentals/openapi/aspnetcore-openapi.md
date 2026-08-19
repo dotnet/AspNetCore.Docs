@@ -70,7 +70,7 @@ The following code:
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,9)]
 
-Launch the app and navigate to `https://localhost:{port}/openapi/v1.json` to view the generated OpenAPI document, where the `{port}` placeholder is the port.
+Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to view the generated OpenAPI document, where the `{PORT}` placeholder is the port.
 
 OpenAPI document generation applies the following behaviors:
 
