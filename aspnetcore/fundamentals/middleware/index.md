@@ -5,7 +5,7 @@ author: tdykstra
 description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 06/09/2026
+ms.date: 08/19/2026
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core middleware
@@ -533,6 +533,15 @@ public class Startup
 ```
 
 In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Middleware added automatically by `WebApplication`
+
+[!INCLUDE[](~/fundamentals/middleware/includes/middleware7.md)]
+[!INCLUDE[](~/fundamentals/middleware/includes/middleware8.md)]
 
 :::moniker-end
 
@@ -1178,3 +1187,4 @@ All |
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>
 * <xref:fundamentals/middleware/extensibility-third-party-container>
+* <xref:fundamentals/apis>
