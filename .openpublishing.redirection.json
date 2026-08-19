@@ -46,6 +46,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/middleware.md",
+            "redirect_url": "/aspnet/core/fundamentals/middleware/index#middleware-added-automatically-by-webapplication",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/web-api/route-to-code.md",
             "redirect_url": "/aspnet/core/fundamentals/minimal-apis/overview",
             "redirect_document_id": false
