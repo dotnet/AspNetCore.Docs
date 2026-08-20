@@ -3,10 +3,8 @@ title: Introduction to authorization in ASP.NET Core
 author: wadepickett
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 ms.author: wpickett
-ms.date: 05/15/2026
+ms.date: 08/20/2026
 uid: security/authorization/introduction
-
-# customer intent: As an ASP.NET developer, I want to learn about authorization in ASP.NET Core, so I can use authorization in my apps. 
 ---
 # Introduction to authorization in ASP.NET Core
 
@@ -22,12 +20,15 @@ ASP.NET Core authorization provides a simple declarative [role](xref:security/au
 
 ## Namespaces
 
-Authorization components, including the `AuthorizeAttribute` and `AllowAnonymousAttribute` attributes, are defined in the `Microsoft.AspNetCore.Authorization` namespace.
+Authorization components, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes, are defined in the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace.
 
-Consult the documentation on [simple authorization](xref:security/authorization/simple).
+For more information, see <xref:security/authorization/simple>.
 
-## Related content
+## Additional resources
 
 * <xref:fundamentals/minimal-apis/security>
 * <xref:blazor/security/index>
 * <xref:razor-pages/security/authorization/conventions>
+* Patterns to require authorization in Blazor apps
+  * [Server-side Blazor apps (Blazor Web Apps, Blazor Server apps)](xref:blazor/security/additional-scenarios#patterns-to-require-authorization-in-a-server-side-blazor-app)
+  * [Blazor WebAssembly apps](xref:blazor/security/webassembly/index#patterns-to-require-authorization-in-a-blazor-webassembly-app)

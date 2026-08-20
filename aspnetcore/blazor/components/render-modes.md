@@ -109,7 +109,7 @@ In the following example, interactive server-side rendering (interactive SSR) is
 ```
 
 > [!NOTE]
-> Blazor templates include a static `using` directive for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the app's `_Imports` file (`Components/_Imports.razor`) for shorter `@rendermode` syntax:
+> Blazor templates include a static `using` directive for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the app's imports file (`Components/_Imports.razor`) for shorter `@rendermode` syntax:
 >
 > ```razor
 > @using static Microsoft.AspNetCore.Components.Web.RenderMode
@@ -834,7 +834,7 @@ Normally, a component uses the following `@rendermode` directive to [disable pre
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 ```
 
-However, consider the following example that creates a shorthand interactive server-side render mode without prerendering via the app's `_Imports` file (`Components/_Imports.razor`):
+However, consider the following example that creates a shorthand interactive server-side render mode without prerendering via the app's imports file (`Components/_Imports.razor`):
 
 ```csharp
 public static IComponentRenderMode InteractiveServerWithoutPrerendering { get; } = 
