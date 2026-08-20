@@ -5,7 +5,7 @@ author: wadepickett
 description: OpenAPI XML documentation comments in ASP.NET Core enrich generated API documents automatically. Learn how to enable, customize, and disable XML comment support.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
-ms.date: 07/31/2026
+ms.date: 08/19/2026
 ms.reviewer: wpickett
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
@@ -21,7 +21,7 @@ This article includes a [sample app](#download10) that demonstrates the [`Micros
 
 The following image shows the Scalar UI with XML documentation comments integrated into the OpenAPI document of the sample app:
 
-![screenshot of app with XML comments in sclaar UI](~/fundamentals/openapi/_static/screenshot.png)
+![screenshot of app with XML comments in Scalar UI](~/fundamentals/openapi/_static/screenshot.png)
 
 ### Supported XML documentation tags
 
@@ -62,6 +62,24 @@ To add examples to documentation, use the [`<example>`](/dotnet/csharp/language-
 ```csharp
 /// <example>{"name":"Sample","value":42}</example>
 /// <param name="id" example="42">The unique identifier</param>
+```
+
+### Document `[AsParameters]` types
+
+Minimal API endpoints can group request parameters into a single type annotated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute. ASP.NET Core processes XML documentation comments on the properties of an `[AsParameters]` type to add metadata, such as parameter descriptions, to the generated OpenAPI document.
+
+```csharp
+app.MapGet("/todos", ([AsParameters] TodoParameters parameters) => { /* ... */ });
+
+/// <summary>Parameters for querying todos.</summary>
+public struct TodoParameters
+{
+    /// <summary>The page number to return.</summary>
+    public int Page { get; set; }
+
+    /// <summary>The number of items to return per page.</summary>
+    public int PageSize { get; set; }
+}
 ```
 
 ## Customizing XML documentation behavior
