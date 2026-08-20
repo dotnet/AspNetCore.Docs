@@ -497,14 +497,6 @@ protected override async Task OnInitializedAsync()
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
 
-
-doesn't control whether property mutations are captured when a circuit pauses due to .
-
-
-doesn't control whether the current property value is captured by [circuit state persistance] when circuit pauses.
-
-
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
