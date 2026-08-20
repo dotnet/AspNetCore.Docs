@@ -321,11 +321,11 @@ Transfer-Encoding: chunked
 Kestrel validates chunked transfer encoding per RFC 9112 Section 7.1:
 
 - Chunk format: `chunk-size [chunk-ext] CRLF chunk-data CRLF`
-- Maximum chunk prefix length: 10 bytes (supports chunk sizes up to `0x7FFFFFFF`)
-- Chunk extensions are validated—unpaired `\r` or `\n` in extensions cause rejection.
+- Maximum chunk size length: 8 bytes (supports chunk sizes up to `0x7FFFFFFF`)
+- Chunk extensions are validated: unpaired `\r` or `\n` in extensions cause rejection.
 - `BadChunkSuffix`, `BadChunkSizeData`, `BadChunkExtension`, and `ChunkedRequestIncomplete` errors each produce `400 Bad Request`
 
-An [`EnableInsecureChunkedRequestParsing`](#appcontext-compatibility-switches) AppContext switch exists for backwards compatibility but is disabled by default. See [AppContext Compatibility Switches](#appcontext-compatibility-switches).
+An [`EnableInsecureChunkedRequestParsing`](#appcontext-compatibility-switches) AppContext switch exists in .NET 8, 9, and 10 for backwards compatibility but is disabled by default. See [AppContext Compatibility Switches](#appcontext-compatibility-switches).
 
 ### Content-Length validation
 
@@ -1068,7 +1068,7 @@ AppContext.SetSwitch("Microsoft.AspNetCore.Server.Kestrel.DisableHttp1LineFeedTe
 |---|---|---|
 | `Microsoft.AspNetCore.Server.Kestrel.DisableHttp1LineFeedTerminators` | `false` | When `true`, bare LF (`\n`) line terminators are **rejected** in HTTP/1.1. The default (`false`) accepts bare LF as permitted by RFC 9112 Section 2.2. Setting this to `true` provides defense-in-depth against intermediaries that treat bare LF differently than Kestrel. |
 | `Microsoft.AspNetCore.Server.Kestrel.AllowKeepAliveAfterCLTE` | `false` | When `true`, the connection is allowed to be kept alive after a request that contains **both** Content-Length and Transfer-Encoding headers. When `false` (default), Kestrel closes the connection after processing such a request, eliminating potential smuggling risk from pipeline reuse. **Setting this to `true` weakens request smuggling protections.** |
-| `Microsoft.AspNetCore.Server.Kestrel.EnableInsecureChunkedRequestParsing` | `false` | When `true`, allows lenient parsing of chunk extensions (unpaired `\r` or `\n`). **This weakens request smuggling protections.** |
+| `Microsoft.AspNetCore.Server.Kestrel.EnableInsecureChunkedRequestParsing` | `false` | When `true`, allows lenient parsing of chunk extensions (unpaired `\r` or `\n`). **This weakens request smuggling protections and isn't available in .NET 11.** |
 | `Microsoft.AspNetCore.Server.Kestrel.FinOnError` | `false` | Controls connection close behavior on protocol errors. When `true`, sends FIN instead of RST. FIN helps avoid response truncation but might use more resources to close abusive connections. |
 | `Microsoft.AspNetCore.Server.Kestrel.DisableCertificateFileWatching` | `false` | When `true`, disables automatic certificate file reload on change. |
 | `Microsoft.AspNetCore.Server.Kestrel.Experimental.WebTransportAndH3Datagrams` | `false` | When `true`, enables experimental WebTransport and HTTP/3 Datagram support. **Experimental features may have unresolved security implications and aren't recommended for production.** |
