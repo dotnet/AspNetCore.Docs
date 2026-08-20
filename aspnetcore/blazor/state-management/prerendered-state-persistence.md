@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 08/03/2026
+ms.date: 08/20/2026
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -471,7 +471,7 @@ Blazor supports handling persistent component state during [enhanced navigation]
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 
-If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting `AllowUpdates = true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often. The following example demonstrates the use of `AllowUpdates` for weather forecast data:
+If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A> to `true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often, such as weather forecast data in the following example:
 
 ```csharp
 [PersistentState(AllowUpdates = true)]
@@ -482,6 +482,24 @@ protected override async Task OnInitializedAsync()
     Forecasts ??= await ForecastService.GetForecastAsync();
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 To skip restoring state during prerendering, set `RestoreBehavior` to `SkipInitialValue`:
 
