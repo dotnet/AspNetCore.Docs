@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 08/18/2026
+ms.date: 08/20/2026
 uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
@@ -488,14 +488,22 @@ protected override async Task OnInitializedAsync()
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether property mutations are captured when a circuit pauses due to [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) or [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether property mutations are captured when a circuit pauses due to [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
+
+
+doesn't control whether property mutations are captured when a circuit pauses due to .
+
+
+doesn't control whether the current property value is captured by [circuit state persistance] when circuit pauses.
+
+
 
 :::moniker-end
 
