@@ -24,6 +24,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 | [Microsoft.OpenApi upgraded to 3.x](microsoft-openapi-3x.md) | Source incompatible |
 | [MVC compatibility options removed](mvc-compatibility-options-removed.md) | Binary/source incompatible |
 | [Obsolete Blazor APIs removed](blazor-obsolete-apis-removed.md) | Source incompatible |
+| [Obsolete ImageTagHelper members removed](image-tag-helper-obsolete-members-removed.md) | Binary/source incompatible |
 | [Obsolete ModelMetadataIdentity.ForProperty overload removed](modelmetadataidentity-forproperty-removed.md) | Binary/source incompatible |
 | [OpenAPI document includes all ProducesResponseType entries per status code](openapi-multiple-produces-per-status.md) | Behavioral change |
 | [OpenAPI server URL no longer has a trailing slash when PathBase is empty](openapi-server-url-trailing-slash.md) | Behavioral change |
