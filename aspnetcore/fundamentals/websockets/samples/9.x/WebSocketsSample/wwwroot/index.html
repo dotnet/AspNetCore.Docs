@@ -115,6 +115,7 @@
         closeButton.onclick = function () {
             if (!socket || socket.readyState !== WebSocket.OPEN) {
                 alert("socket not connected");
+                return;
             }
             socket.close(1000, "Closing from client");
         };
