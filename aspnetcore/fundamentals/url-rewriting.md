@@ -114,7 +114,8 @@ Both of the following configurations evaluate authorization against the endpoint
 * Relying on the authentication and authorization middleware that's added automatically when the corresponding services are registered, without calling `UseAuthentication` and `UseAuthorization`.
 * Calling `UseAuthentication` and `UseAuthorization` before `UseRewriter`.
 
-Always run the latest supported patch release.
+> [!IMPORTANT]
+> Explicitly add and order the authentication and authorization middleware after `UseRewriter` as shown earlier. Keep the app updated to the latest supported patch release to ensure the framework's built-in authorization behavior includes the newest fixes.
 
 ### Redirect non-www to www
 
