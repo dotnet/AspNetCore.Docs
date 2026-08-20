@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against Cross-Site Scripting (XSS) attacks.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 08/18/2026
 uid: blazor/security/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor
@@ -298,6 +298,12 @@ For Blazor Server apps:
 
 > [!NOTE]
 > The preceding SHA256 hash is for demonstration purposes. You may need to calculate a new hash for your CSP.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-11.0"
+
+If the app uses one or more `Virtualize` components, they render dynamic inline `style` attributes on their spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. Strict CSP configurations that don't allow inline styles block these `style` attributes and prevent virtualization from working. If you can't upgrade to ASP.NET Core 11.0 or later (where `Virtualize` is CSP-compliant), see <xref:blazor/components/virtualization#content-security-policy-csp-compliance>.
 
 :::moniker-end
 
