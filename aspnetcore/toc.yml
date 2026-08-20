@@ -29,6 +29,8 @@ items:
                 href: breaking-changes/11/kestrel-strict-protocol-compliance.md
               - name: Microsoft.OpenApi upgraded to 3.x
                 href: breaking-changes/11/microsoft-openapi-3x.md
+              - name: MVC compatibility options removed
+                href: breaking-changes/11/mvc-compatibility-options-removed.md
               - name: Obsolete Blazor APIs removed
                 href: breaking-changes/11/blazor-obsolete-apis-removed.md
               - name: Obsolete ModelMetadataIdentity.ForProperty overload removed
