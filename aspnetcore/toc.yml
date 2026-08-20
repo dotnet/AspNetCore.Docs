@@ -29,10 +29,14 @@ items:
                 href: breaking-changes/11/kestrel-strict-protocol-compliance.md
               - name: Microsoft.OpenApi upgraded to 3.x
                 href: breaking-changes/11/microsoft-openapi-3x.md
+              - name: MVC compatibility options removed
+                href: breaking-changes/11/mvc-compatibility-options-removed.md
               - name: Obsolete Blazor APIs removed
                 href: breaking-changes/11/blazor-obsolete-apis-removed.md
               - name: Obsolete ImageTagHelper members removed
                 href: breaking-changes/11/image-tag-helper-obsolete-members-removed.md
+              - name: Obsolete ModelMetadataIdentity.ForProperty overload removed
+                href: breaking-changes/11/modelmetadataidentity-forproperty-removed.md
               - name: OpenAPI document includes all ProducesResponseType entries per status code
                 href: breaking-changes/11/openapi-multiple-produces-per-status.md
               - name: OpenAPI server URL no longer has a trailing slash when PathBase is empty
@@ -503,8 +507,6 @@ items:
             uid: performance/rate-limit
           - name: Rate limiting samples
             uid: performance/rate-limit-sample
-          - name: Middleware in Minimal API apps
-            uid: fundamentals/minimal-apis/middleware
           - name: Test middleware
             uid: test/middleware
           - name: Response caching middleware
@@ -851,6 +853,8 @@ items:
                 uid: blazor/components/class-libraries
               - name: Class libraries with static SSR
                 uid: blazor/components/class-libraries-with-static-ssr
+              - name: Return component HTML from a web API
+                uid: blazor/components/return-component-html-from-a-web-api
               - name: JavaScript apps and SPA frameworks
                 uid: blazor/components/js-spa-frameworks
               - name: Components outside of ASP.NET Core
@@ -1189,8 +1193,6 @@ items:
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
-      - name: Middleware
-        uid: fundamentals/minimal-apis/middleware
       - name: Handle JSON Patch requests
         uid: web-api/jsonpatch
       - name: Handle errors

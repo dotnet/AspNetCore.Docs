@@ -1,11 +1,12 @@
 ---
 title: URL rewriting middleware in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn about URL rewriting and redirecting with URL rewriting middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: sfi-image-nochange
-ms.date: 07/06/2026
+ms.date: 08/17/2026
 uid: fundamentals/url-rewriting
 ---
 # URL rewriting middleware in ASP.NET Core
@@ -86,6 +87,35 @@ Establish URL rewrite and redirect rules by creating an instance of the [Rewrite
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=7-24)]
 
 In the preceding code, [`MethodRules`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/url-rewriting/samples/6.x/SampleApp/RewriteRules.cs) is a user defined class. See [`RewriteRules.cs`](#rrr) in this article for more information.
+
+### Authorization and URL rewriting
+
+When a rule changes the request path, routing evaluates the new path and can select a different endpoint than the one that matched the original path. Authorization must run for the endpoint that's finally selected. Otherwise, the authorization requirements of that endpoint aren't applied.
+
+An app that calls `UseRewriter` and protects any endpoint with authorization must add the authentication and authorization middleware explicitly, and must add it after `UseRewriter`:
+
+```csharp
+app.UseRewriter(options);
+app.UseAuthentication();
+app.UseAuthorization();
+```
+
+When the app calls `UseRouting` explicitly, use the following order:
+
+```csharp
+app.UseRewriter(options);
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+```
+
+Both of the following configurations evaluate authorization against the endpoint selected for the original path rather than the rewritten path:
+
+* Relying on the authentication and authorization middleware that's added automatically when the corresponding services are registered, without calling `UseAuthentication` and `UseAuthorization`.
+* Calling `UseAuthentication` and `UseAuthorization` before `UseRewriter`.
+
+> [!IMPORTANT]
+> Explicitly add and order the authentication and authorization middleware after `UseRewriter` as shown earlier. Keep the app updated to the latest supported patch release to ensure the framework's built-in authorization behavior includes the newest fixes.
 
 ### Redirect non-www to www
 

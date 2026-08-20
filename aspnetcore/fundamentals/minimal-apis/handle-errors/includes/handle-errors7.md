@@ -30,7 +30,7 @@ ASP.NET Core apps enable the developer exception page by default when both:
 * Running in the [`Development` environment](xref:fundamentals/environments).
 * App is using [WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder).
 
-For more information on configuring middleware, see [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
+For more information on configuring middleware, see [Middleware in ASP.NET Core apps](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
 
 Using the preceding Minimal API app, when the `Developer Exception Page` detects an unhandled exception, it generates a default plain-text response similar to the following example:
 
