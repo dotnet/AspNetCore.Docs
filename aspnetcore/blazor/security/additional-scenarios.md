@@ -1436,37 +1436,22 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-At this point, the app requires an authenticated user for any resource where no specific policy is set.
+The app requires an authenticated user for any resource where no specific policy is set.
 
 :::moniker range=">= aspnetcore-9.0"
 
-Next, an app typically removes protection for static assets in the request processing pipeline, which allows static assets to load for unauthenticated users accessing endpoints (for example, Razor component pages) that don't require an authenticated user:
+An app typically removes protection for static assets in the request processing pipeline, which allows static assets to load for unauthenticated users accessing endpoints (for example, Razor component pages) that don't require an authenticated user:
 
 ```csharp
 app.MapStaticAssets().AllowAnonymous();
 ```
 
-To selectively allow anonymous access for specific files or paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add%2A?displayProperty=nameWithType>.
+To selectively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add%2A?displayProperty=nameWithType>.
 
 > [!IMPORTANT]
 > When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If anonymous Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
 
-In the following example, a company logo image (`wwwroot/company-logo.png`) is served anonymously when requested:
-
-```csharp
-app.MapStaticAssets()
-    .Add(endpointBuilder => 
-    {
-        if (endpointBuilder is RouteEndpointBuilder routeBuilder &&
-            routeBuilder.RoutePattern.RawText?.Contains(
-            "company-logo.png", StringComparison.OrdinalIgnoreCase) == true)
-        {
-            routeBuilder.Metadata.Add(new AllowAnonymousAttribute());
-        }
-    });
-```
-
-Usually, it's more convenient to place static assets for anonymous requests into a single folder. In the following example, endpoint routes with the `/public/` path segment are served anonymously:
+Place static assets for anonymous access into a single folder. In the following example, endpoint routes with the `/public/` path segment are served anonymously:
 
 ```csharp
 app.MapStaticAssets()
@@ -1507,7 +1492,7 @@ app.MapStaticAssets()
 
 :::moniker range="< aspnetcore-9.0"
 
-Next, an app typically removes protection for static assets in the request processing pipeline, which allows static assets to load for unauthenticated users accessing endpoints (for example, Razor component pages) that don't require an authenticated user. Place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called:
+An app typically removes protection for static assets in the request processing pipeline, which allows static assets to load for unauthenticated users accessing endpoints (for example, Razor component pages) that don't require an authenticated user. Place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called:
 
 ```csharp
 app.UseStaticFiles();
@@ -1516,25 +1501,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-To selectively allow anonymous access for specific files or paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> after authorization pipeline processing only serves other static assets if the user is authorized.
+To selectively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> after authorization pipeline processing only serves other static assets if the user is authorized.
 
 > [!IMPORTANT]
 > When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If anonymous Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
-
-In the following example, the company logo file (`wwwroot/company-logo.png`) is served anonymously when requested:
-
-```csharp
-app.UseStaticFiles(new StaticFileOptions {
-    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-        System.IO.Path.Combine(builder.Environment.WebRootPath, "company-logo.png")),
-    RequestPath = "/"
-});
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseStaticFiles();
-```
 
 In the following example, static assets in the app's `wwwroot/public` folder are served anonymously:
 
@@ -1551,23 +1521,8 @@ app.UseAuthorization();
 app.UseStaticFiles();
 ```
 
-The next example demonstrates anonymously serving the Blazor server script (`_framework/blazor.server.js`):
-
-```csharp
-app.UseStaticFiles(new StaticFileOptions {
-    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-        System.IO.Path.Combine(builder.Environment.WebRootPath, "_framework/blazor.server.js")),
-    RequestPath = "/public"
-});
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseStaticFiles();
-```
-
 > [!NOTE]
-> For a typical Blazor app, setting up explicit anonymous asset loading typically requires mapping assets for several dozen uncompressed and compressed assets. For this reason, we recommend avoiding explicit anonymous asset mapping in favor of calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before the authorization pipeline methods are called to serve all of the app's static assets anonymously when the security specification of the app permits it.
+> In a typical Blazor app, setting up explicit anonymous asset loading requires mapping assets for several dozen uncompressed and compressed assets. For this reason, we recommend avoiding explicit anonymous asset mapping in favor of calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before the authorization pipeline methods are called to serve all of the app's static assets anonymously when the security specification of the app permits it.
 
 :::moniker-end
 
