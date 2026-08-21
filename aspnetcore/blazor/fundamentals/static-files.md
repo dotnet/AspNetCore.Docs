@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 08/21/2026
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
@@ -505,7 +505,7 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
   app.UseStaticFiles();
   ```
 
-* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom static file middleware:
+* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom static files middleware:
 
   ```csharp
   app.MapWhen(ctx => !ctx.Request.Path
@@ -538,7 +538,7 @@ Add the following `using` statement to the top of the server project's `Program`
 using Microsoft.Extensions.FileProviders;
 ```
 
-In the server project's `Program` file ***before*** the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, add the following code:
+In the server project's `Program` file ***before*** any calls to <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, add the following code:
 
 ```csharp
 var secondaryProvider = new PhysicalFileProvider(
