@@ -20,7 +20,7 @@ ASP.NET Core authorization provides a simple declarative [role](xref:security/au
 
 ## Namespaces
 
-Authorization components, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes, are defined in the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace.
+Authorization components, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute), are defined in the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace.
 
 For more information, see <xref:security/authorization/simple>.
 

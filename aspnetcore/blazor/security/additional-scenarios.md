@@ -8,7 +8,7 @@ ms.author: wpickett
 ms.date: 08/21/2026
 uid: blazor/security/additional-scenarios
 ---
-# ASP.NET Core Blazor additional server-side security scenarios 
+# ASP.NET Core Blazor additional server-side security scenarios
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -1456,7 +1456,7 @@ In the following example, the company logo file (`wwwroot/company-logo.png`) is 
 
 ```csharp
 app.UseStaticFiles(new StaticFileOptions {
-    FileProvider = new Microsoft.Extensions.FileProviders.SingleFileProvider(
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
         System.IO.Path.Combine(builder.Environment.WebRootPath, "company-logo.png")),
     RequestPath = "/"
 });
