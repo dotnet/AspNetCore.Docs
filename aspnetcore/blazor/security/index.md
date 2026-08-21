@@ -5,7 +5,7 @@ author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/20/2026
+ms.date: 08/21/2026
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization

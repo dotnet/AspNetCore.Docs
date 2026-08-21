@@ -3,7 +3,7 @@ title: Introduction to authorization in ASP.NET Core
 author: wadepickett
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 ms.author: wpickett
-ms.date: 08/20/2026
+ms.date: 08/21/2026
 uid: security/authorization/introduction
 ---
 # Introduction to authorization in ASP.NET Core
