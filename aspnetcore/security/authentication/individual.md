@@ -1,9 +1,10 @@
 ---
 title: Articles based on ASP.NET Core projects created with individual accounts
+ai-usage: ai-assisted
 author: tdykstra
 description: Discover articles based on ASP.NET Core projects created with individual accounts.
 ms.author: tdykstra
-ms.date: 01/22/2026
+ms.date: 08/22/2026
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual accounts
@@ -60,8 +61,8 @@ The following table shows the authentication options available for new web apps.
 | None            |  No authentication. | | 
 | Individual      |  Individual authentication. | <xref:security/authentication/identity>
 | IndividualB2C   |  Cloud-hosted individual authentication with Azure AD B2C. | [Azure AD B2C](/azure/active-directory-b2c/) |
-| SingleOrg       |  Organizational authentication for a single tenant. Entra External ID tenants also use SingleOrg.| [Entra ID](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| MultiOrg        |  Organizational authentication for multiple tenants. | [Entra ID](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| SingleOrg       |  Organizational authentication for a single tenant. Entra External ID tenants also use SingleOrg.| [Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
+| MultiOrg        |  Organizational authentication for multiple tenants. | [Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
 | Windows         |  Windows authentication. | [Windows Authentication](xref:security/authentication/windowsauth)
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
@@ -75,8 +76,8 @@ The following table shows the authentication options available when creating a n
 | None            |  No authentication | | 
 | Individual Accounts / Store user accounts in-app |  Individual authentication | <xref:security/authentication/identity> |
 | Individual Accounts / Connect to an existing user store in the cloud |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
-| Work or School Cloud / Single Org  |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Work or School Cloud / Multiple Org |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Work or School Cloud / Single Org  |  Organizational authentication for a single tenant | [Microsoft Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
+| Work or School Cloud / Multiple Org |  Organizational authentication for multiple tenants | [Microsoft Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]

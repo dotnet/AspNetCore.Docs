@@ -1,10 +1,11 @@
 ---
 title: Configure JWT bearer authentication in ASP.NET Core
+ai-usage: ai-assisted
 author: damienbod
 description: Learn how to set up JWT bearer authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 08/07/2026
+ms.date: 08/22/2026
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core
@@ -247,7 +248,7 @@ See [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 
 Using the [Microsoft Identity Web authentication library](/entra/msal/dotnet/microsoft-identity-web/) is the easiest and a secure approach. It only works with Microsoft Entra ID, Microsoft Entra External ID.
 
-For more information, see [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow).
+For more information, see [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/entra/identity-platform/v2-oauth2-on-behalf-of-flow).
 
 ### Use the same delegated access token sent to the API
 
@@ -331,7 +332,7 @@ Refer to the following document:
 * [OAuth 2.0 JWT-Secured Authorization Request (JAR) RFC 9101](https://datatracker.ietf.org/doc/rfc9101/)
 * [OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens](https://datatracker.ietf.org/doc/html/rfc8705)
 * [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html)
-* [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow)
+* [Microsoft identity platform and OAuth 2.0 On-Behalf-Of flow](/entra/identity-platform/v2-oauth2-on-behalf-of-flow)
 * [OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
 * [JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens](https://datatracker.ietf.org/doc/html/rfc9068)
 * [HTTP Semantics RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2)
