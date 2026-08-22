@@ -1,11 +1,12 @@
 ---
 title: Authenticate users with WS-Federation in ASP.NET Core
+ai-usage: ai-assisted
 author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: sfi-image-nochange
-ms.date: 01/16/2019
+ms.date: 08/22/2026
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
@@ -60,22 +61,12 @@ By default, the new middleware:
 
 ### Microsoft Entra ID
 
-* Navigate to the Microsoft Entra ID tenant's app registrations blade. Click **New application registration**:
+Microsoft Entra ID can serve as the app's WS-Federation identity provider. Identity provider setup is maintained in the Microsoft Entra documentation. To register the app, follow the [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app) quickstart.
 
-![Microsoft Entra ID: App registrations](ws-federation/_static/AadNewAppRegistration.png)
+After registering the app, provide the following two values to the WS-Federation middleware:
 
-* Enter a name for the app registration. This isn't important to the ASP.NET Core app.
-* Enter the URL the app listens on as the **Sign-on URL**:
-
-![Microsoft Entra ID: Create app registration](ws-federation/_static/AadCreateAppRegistration.png)
-
-* Click **Endpoints** and note the **Federation Metadata Document** URL. This is the WS-Federation middleware's `MetadataAddress`:
-
-![Microsoft Entra ID: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
-
-* Navigate to the new app registration. Click **Expose an API**. Click Application ID URI **Set** > **Save**. Make note of the  **Application ID URI**. This is the WS-Federation middleware's `Wtrealm`:
-
-![Microsoft Entra ID: App registration properties](ws-federation/_static/AadAppIdUri.png)
+* `MetadataAddress`: The **Federation Metadata Document** URL, listed under the app registration's **Endpoints**.
+* `Wtrealm`: The **Application ID URI**, configured under the app registration's **Expose an API**.
 
 ## Use WS-Federation without ASP.NET Core Identity
 
