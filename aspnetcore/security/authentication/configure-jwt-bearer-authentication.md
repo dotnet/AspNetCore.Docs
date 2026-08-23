@@ -19,7 +19,7 @@ JWT bearer Authentication provides:
 
 * **Authentication**: When using the `JwtBearerHandler`, bearer tokens are essential for authentication. The `JwtBearerHandler` validates the token and extracts the user's identity from its claims.
 * **Authorization**: Bearer tokens enable authorization by providing a collection of claims that represent the user's or application's permissions, much like a cookie.
-* **Delegated Authorization**: When a user-specific access token is used to authenticate between APIs instead of an application-wide access token, this process is known as *delegated authorization*.
+* **Delegated Authorization**: When a user-specific access token is used to authenticate between APIs instead of an application-wide access token, this process is known as _delegated authorization_.
 
 For an introduction to JWT bearer Authentication, see [JSON Web Tokens.](https://en.wikipedia.org/wiki/JSON_Web_Token)
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/configure-jwt-bearer-authentication/sample/JwtBearer)
