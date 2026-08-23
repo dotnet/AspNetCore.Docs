@@ -845,6 +845,7 @@ For more information, see the following resources:
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
+* [ASP.NET Core Web API RESTful pattern](https://www.yogihosting.com/aspnet-core-api-controllers/)
 
 :::moniker-end
 
