@@ -381,5 +381,6 @@ For more information, see <xref:blazor/security/blazor-web-app-oidc>.
 
 * [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html)
 * [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
+* [OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/rfc10017)
 * [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
 * [OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126)
