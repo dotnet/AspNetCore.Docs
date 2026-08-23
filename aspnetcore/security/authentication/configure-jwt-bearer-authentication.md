@@ -6,7 +6,7 @@ description: JWT bearer tokens protect ASP.NET Core APIs from unauthorized calls
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.reviewer: tdykstra
-ms.date: 08/22/2026
+ms.date: 08/23/2026
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core
