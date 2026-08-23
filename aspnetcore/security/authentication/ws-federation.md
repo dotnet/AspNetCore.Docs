@@ -61,7 +61,7 @@ By default, the new middleware:
 
 ### Microsoft Entra ID
 
-Microsoft Entra ID can serve as the app's WS-Federation identity provider. Identity provider setup is maintained in the Microsoft Entra documentation. To register the app, follow the [Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app) quickstart.
+Microsoft Entra ID can serve as the app's WS-Federation identity provider. Identity provider setup is maintained in the Microsoft Entra documentation. To register the app, follow the [Register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app) quickstart.
 
 After registering the app, provide the following two values to the WS-Federation middleware:
 
