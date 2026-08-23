@@ -2,8 +2,9 @@
 title: Articles based on ASP.NET Core projects created with individual accounts
 ai-usage: ai-assisted
 author: tdykstra
-description: Discover articles based on ASP.NET Core projects created with individual accounts.
+description: ASP.NET Core individual accounts let you scaffold Identity UI, sign-in pages, and authentication code. Explore the authentication options and related articles.
 ms.author: tdykstra
+ms.reviewer: tdykstra
 ms.date: 08/22/2026
 uid: security/authentication/individual
 ---
@@ -31,13 +32,13 @@ dotnet new razor -au Individual
 
 :::moniker-end
 
-See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5833) for web API authentication.
+For more information about web API authentication, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5833).
 
 <a name="no"></a>
 
 ## No Authentication
 
-Authentication is specified in the .NET CLI with the `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
+Specify authentication in the .NET CLI with the `-au` option. In Visual Studio, new web applications include the **Change Authentication** dialog. The default for new web apps in Visual Studio is **No Authentication**.
 
 Projects created with no authentication:
 
@@ -48,9 +49,9 @@ Projects created with no authentication:
 
 ## Windows Authentication
 
-Windows Authentication is specified for new web apps in the .NET CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
+Specify Windows Authentication for new web apps in the .NET CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
 
-If Windows Authentication is selected, the app is configured to use the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
+If you select Windows Authentication, the app uses the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
 
 ## dotnet new webapp authentication options
 

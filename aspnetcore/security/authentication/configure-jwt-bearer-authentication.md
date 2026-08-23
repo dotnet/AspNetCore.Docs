@@ -2,9 +2,10 @@
 title: Configure JWT bearer authentication in ASP.NET Core
 ai-usage: ai-assisted
 author: damienbod
-description: Learn how to set up JWT bearer authentication in an ASP.NET Core app.
+description: JWT bearer tokens protect ASP.NET Core APIs from unauthorized calls. See how to add AddJwtBearer, set validation parameters, and support multiple issuer schemes.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
+ms.reviewer: tdykstra
 ms.date: 08/22/2026
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
@@ -12,12 +13,12 @@ uid: security/authentication/configure-jwt-bearer-authentication
 
 By [Damien Bowden](https://github.com/damienbod)
 
-JWT (JSON Web Token) Bearer Authentication is commonly utilized for APIs. While it operates similarly to cookie authentication, the identity provider issues a JWT or tokens upon a successful authentication. These tokens can then be sent to other servers to authenticate, unlike cookies which are only sent back to the issuing domain. A JWT is a self-contained token that encapsulates information for an API resource or a client. The client which requested the JWT can request data from an API resource using the Authorization header and a bearer token.
+APIs commonly use JWT (JSON Web Token) Bearer Authentication. While it works similarly to cookie authentication, the identity provider issues a JWT or tokens when authentication succeeds. You can send these tokens to other servers to authenticate, unlike cookies which you only send back to the issuing domain. A JWT is a self-contained token that encapsulates information for an API resource or a client. The client that requests the JWT can request data from an API resource by using the Authorization header and a bearer token.
 
 JWT bearer Authentication provides:
 
 * **Authentication**: When using the `JwtBearerHandler`, bearer tokens are essential for authentication. The `JwtBearerHandler` validates the token and extracts the user's identity from its claims.
-* **Authorization**: Bearer tokens enable authorization by providing a collection of claims representing the user's or application's permissions, much like a cookie.
+* **Authorization**: Bearer tokens enable authorization by providing a collection of claims that represent the user's or application's permissions, much like a cookie.
 * **Delegated Authorization**: When a user-specific access token is used to authenticate between APIs instead of an application-wide access token, this process is known as *delegated authorization*.
 
 For an introduction to JWT bearer Authentication, see [JSON Web Tokens.](https://en.wikipedia.org/wiki/JSON_Web_Token)
@@ -33,34 +34,34 @@ This article covers the following areas:
 
 ## Token types
 
-There are numerous types of tokens and formats. Generating your own access tokens or ID tokens is discouraged, except for testing purposes. Self-created tokens that do not adhere to established standards:
+There are many types of tokens and formats. Don't generate your own access tokens or ID tokens, except for testing purposes. Self-created tokens that don't follow established standards:
 
 * Can lead to security vulnerabilities.
 * Are only suitable for closed systems.
 
-We recommend using [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html) or an OAuth standard for creating access tokens intended for API access. 
+Use [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html) or an OAuth standard to create access tokens for API access. 
 
 ### Access tokens
 
 Access tokens:
-* Are strings used by a client app to make requests to the server implementing an API.
-* Can vary in format. Different APIs may use different formats for the tokens.
+* Are strings that a client app uses to make requests to the server implementing an API.
+* Can vary in format. Different APIs might use different formats for the tokens.
 * Can be encrypted.
-* Should never be read or interpreted by a web client or UI app holding the access token.
+* Should never be read or interpreted by a web client or UI app that holds the access token.
 * Are intended solely for making requests to an API.
 * Are typically sent to the API in the **Authorization** request header as a bearer token.
 
-See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4)
+See [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4).
 
 #### Application access tokens and delegated access tokens
 
-Access tokens can be either *application access tokens* or *delegated access tokens*. The tokens have different claims and are managed and stored differently. An *application access token* is typically stored once in the app until it expires, while a *delegated access token* is stored per user, either in a cookie or in a secure server cache.
+Access tokens can be either *application access tokens* or *delegated access tokens*. These tokens have different claims and are managed and stored differently. An *application access token* is typically stored once in the app until it expires, while a *delegated access token* is stored per user, either in a cookie or in a secure server cache.
 
-We recommend using delegated user access tokens whenever a user is involved. Downstream APIs can request a delegated user access token on behalf of the authenticated user. 
+Use delegated user access tokens whenever a user is involved. Downstream APIs can request a delegated user access token on behalf of the authenticated user. 
 
-#### Sender constrained access tokens
+#### Sender-constrained access tokens
 
-Access tokens can be used as [bearer tokens](https://cloud.google.com/docs/authentication/token-types#bearer) or [sender-constrained tokens](https://docs.verify.ibm.com/ibm-security-verify-access/docs/tasks-certboundaccesstoken) to access resources. Sender-constrained tokens require the requesting client to prove possession of a private key to use the token. Proving possession of a private key guarantees the token can't be used independently. Sender-constrained tokens can be implemented in two ways:
+Access tokens can be used as [bearer tokens](https://cloud.google.com/docs/authentication/token-types#bearer) or [sender-constrained tokens](https://docs.verify.ibm.com/ibm-security-verify-access/docs/tasks-certboundaccesstoken) to access resources. Sender-constrained tokens require the requesting client to prove possession of a private key to use the token. Proving possession of a private key guarantees the token can't be used independently. You can implement sender-constrained tokens in two ways:
 
 * [Demonstrating Proof of Possession (DPoP)](https://datatracker.ietf.org/doc/html/rfc9449)
 * [Mutual-TLS (MTLS)](https://datatracker.ietf.org/doc/html/rfc8705)
@@ -84,35 +85,35 @@ When using JWT access tokens for API authorization, the API grants or denies acc
 
 ### 401 Unauthorized
 
-A 401 Unauthorized response indicates that the provided access token doesn't meet the required standards. This could be due to several reasons, including:
+A 401 Unauthorized response indicates that the provided access token doesn't meet the required standards. This condition could be due to several reasons, including:
 
 * **Invalid signature**: The token's signature doesn't match, suggesting potential tampering.
 * **Expiration**: The token has expired and is no longer valid.
 * **Incorrect claims**: Critical claims within the token, such as the audience (`aud`) or issuer (`iss`), are missing or invalid.
 
 > [!NOTE]
-> From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2): The server generating a 401 response MUST send a WWW-Authenticate header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
+> From the HTTP Semantics [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2): The server generating a 401 response MUST send a `WWW-Authenticate` header field (Section 11.6.1) containing at least one challenge applicable to the target resource.
 
 The [OAuth specifications](/entra/identity-platform/access-token-claims-reference) provide detailed guidelines on the required claims and their validation. 
 
 ### 403 Forbidden
 
-A [403 Forbidden](https://developer.mozilla.org/docs/Web/HTTP/Status/403) response typically indicates that the authenticated user lacks the necessary permissions to access the requested resource. This is distinct from authentication issues, e.g. an invalid token, and is unrelated to the standard claims within the access token.
+A [403 Forbidden](https://developer.mozilla.org/docs/Web/HTTP/Status/403) response typically indicates that the authenticated user lacks the necessary permissions to access the requested resource. This condition is distinct from authentication issues, such as an invalid token, and is unrelated to the standard claims within the access token.
 
 In ASP.NET Core, you can enforce authorization using:
 
-[Requirements and policies](/aspnet/core/security/authorization/policies): Define custom requirements, e.g., "Must be an administrator" and associate them with policies.
-[Role-based authorization](/aspnet/core/security/authorization/roles): Assign users to roles e.g., "Admin," "Editor", and restrict access based on those roles.
+- [Requirements and policies](/aspnet/core/security/authorization/policies): Define custom requirements, such as "Must be an administrator," and associate them with policies.
+- [Role-based authorization](/aspnet/core/security/authorization/roles): Assign users to roles, such as "Admin" or "Editor," and restrict access based on those roles.
 
 ## What role has OIDC and/or OAuth when using bearer tokens?
 
-When an API uses JWT access tokens for authorization, the API only validates the access token, not on how the token was obtained.
+When an API uses JWT access tokens for authorization, the API only validates the access token and doesn't consider how the token was obtained.
 
 OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
 
-* For apps acting on behalf of a user and an application: OIDC is the preferred choice, enabling delegated user access. In web apps, the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) is recommended for enhanced security.
-  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), you can use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A).
-* If the app has no user: The OAuth 2.0 client credentials flow is suitable for obtaining application access tokens.
+* For apps acting on behalf of a user and an application: Use OIDC to enable delegated user access. In web apps, use the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) for enhanced security.
+  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A).
+* If the app has no user: Use the OAuth 2.0 client credentials flow to obtain application access tokens.
 
 ## Implementing JWT bearer token authentication
 
@@ -173,14 +174,14 @@ builder.Services.AddAuthentication()
 
 ### JWT with multiple schemes
 
-APIs often need to accommodate access tokens from various issuers. Supporting multiple token issuers in an API can be accomplished by:
+APIs often need to accommodate access tokens from various issuers. You can support multiple token issuers in an API by using the following approaches:
 
 * **Separate APIs**: Create distinct APIs with dedicated authentication schemes for each issuer.
-* [AddPolicyScheme](xref:security/authentication/policyschemes) This method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (e.g., issuer, claims). This approach allows for greater flexibility within a single API.
+* [AddPolicyScheme](xref:security/authentication/policyschemes): Define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties, such as the issuer or claims. This approach offers greater flexibility within a single API.
 
 ### Forcing the bearer authentication
 
-<xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> can be used to require authentication for all requests even to endpoints without an `[Authorize]` attribute. <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> configures the policy used for endpoints with the `[Authorize]` attribute and already defaults to requiring authenticated users. See the [require authenticated users documentation](/aspnet/core/security/authorization/secure-data#require-authenticated-users) for more details.
+Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> to require authentication for all requests, including requests to endpoints without an `[Authorize]` attribute. Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> to configure the policy for endpoints with the `[Authorize]` attribute; it defaults to requiring authenticated users. For more information, see [require authenticated users documentation](/aspnet/core/security/authorization/secure-data#require-authenticated-users).
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
@@ -191,7 +192,7 @@ builder.Services.AddAuthorizationBuilder()
 	.SetFallbackPolicy(requireAuthPolicy);
 ```
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute can also be used to force the authentication. If multiple schemes are used, the bearer scheme generally needs to be set as the default authentication scheme or specified via `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
+You can also use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to force authentication. If you use multiple schemes, set the bearer scheme as the default authentication scheme or specify it by using `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
 
 Authorization in controllers:
 
@@ -211,11 +212,11 @@ app.MapGet("/hello", [Authorize] () => "Hi");
 
 ## Recommended approaches to create a JWT
 
-Insecure handling of access tokens, such as weak authentication or storing tokens in vulnerable client-side storage, can lead to significant security vulnerabilities. For example, storing access tokens directly in the browser using local storage, session storage, or web workers. The following section contains best practices for apps using and creating access tokens.
+Insecure handling of access tokens, such as weak authentication or storing tokens in vulnerable client-side storage, can lead to significant security vulnerabilities. For example, storing access tokens directly in the browser by using local storage, session storage, or web workers. The following section contains best practices for apps that use and create access tokens.
 
 ### Use standards
 
-Standards like OpenID Connect or OAuth should **always** be used when creating access tokens. Access tokens should **not** be created in production apps without adhering to the security precautions outlined in this article. Creating access tokens should be limited to test scenarios.
+Use standards like OpenID Connect or OAuth when creating access tokens. Don't create access tokens in production apps without following the security precautions outlined in this article. Limit creating access tokens to test scenarios.
 
 ### Use asymmetric keys
 
@@ -270,14 +271,14 @@ When using access tokens in a client application, the access tokens must be rota
 > [!NOTE]
 > If deploying to production, the cache should work in a multi-instance deployment. A persistent cache is normally required.
 
-Some secure token servers encrypt the access tokens. Access tokens do not require any format. When using OAuth introspection, a reference token is used instead of an access token. A client (UI) application should never open an access token as the access token is not intended for this. Only an API for which the access token was created for should open the access token. 
+Some secure token servers encrypt access tokens. Access tokens don't require any format. When you use OAuth introspection, use a reference token instead of an access token. A client (UI) application should never open an access token because the access token isn't intended for this purpose. Only an API for which the access token was created should open the access token. 
 
-* Do not open access tokens in a UI application
-* Do not send the ID token to the APIs
-* Access tokens can have any format
-* Access tokens can be encrypted
-* Access tokens expire and need to be rotated
-* Access tokens are persisted on a secure backend server
+* Don't open access tokens in a UI application.
+* Don't send the ID token to the APIs.
+* Access tokens can have any format.
+* Access tokens can be encrypted.
+* Access tokens expire and need to be rotated.
+* Persist access tokens on a secure backend server.
 
 ## YARP (Yet Another Reverse Proxy)
 
@@ -311,10 +312,10 @@ Create dedicated and isolated test environments where security features can safe
 
 ### Use Swagger UI, Curl and other API UI tools
 
-Swagger UI and Curl are great UI tools for testing APIs. For the tools to work, the API can produce an OpenAPI document and this can be loaded into the client testing tool. A security flow to acquire a new access token can be added to the API OpenAPI file. 
+Swagger UI and Curl are great UI tools for testing APIs. For the tools to work, the API can produce an OpenAPI document and the client testing tool can load this document. You can add a security flow to acquire a new access token to the API OpenAPI file. 
 
 > [!WARNING]
-> Do not deploy insecure security test flows to production.
+> Don't deploy insecure security test flows to production.
 
 When implementing a Swagger UI for an API, you should normally not deploy the UI to production as the security must be weakened to allow this to work. 
 
