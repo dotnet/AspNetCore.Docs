@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 08/22/2026
+ms.date: 08/23/2026
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
