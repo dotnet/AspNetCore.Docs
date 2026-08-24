@@ -273,7 +273,7 @@ You can test metrics in ASP.NET Core apps. One way to do this is to collect and 
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 
-The proceeding test:
+The preceding test:
 
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>
