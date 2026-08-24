@@ -5,7 +5,7 @@ author: tdykstra
 description: Metrics for ASP.NET Core apps
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 11/10/2025
+ms.date: 08/24/2026
 ms.topic: concept-article
 uid: log-mon/metrics/metrics
 ---
@@ -185,6 +185,28 @@ Press p to pause, r to resume, q to quit.
 * Works with .NET using the .NET metric APIs.
 * Is endorsed by [Azure Monitor](/azure/azure-monitor/app/opentelemetry-overview) and many APM vendors.
 
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces are compliant with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity now emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:log-mon/metrics/built-in-http>.
+
+Tracing has one more consideration beyond metrics:
+
+> [!IMPORTANT]
+> When you enable OpenTelemetry *tracing* (in addition to metrics) without the `OpenTelemetry.Instrumentation.AspNetCore` package, register the framework's HTTP server <xref:System.Diagnostics.ActivitySource> so that the request activity is recorded. ASP.NET Core's HTTP server activity source is named `Microsoft.AspNetCore`, and the framework creates a request activity named `Microsoft.AspNetCore.Hosting.HttpRequestIn` for each request to propagate trace context. If the `Microsoft.AspNetCore` source isn't registered with the OpenTelemetry SDK, the request activity isn't recorded, and the default `ParentBased` sampler silently drops any custom child spans started during the request. Register the source explicitly, for example:
+>
+> ```csharp
+> builder.Services.AddOpenTelemetry()
+>     .WithTracing(tracing => tracing
+>         .AddSource("Microsoft.AspNetCore")
+>         .AddSource("MyApp")
+>         .AddConsoleExporter());
+> ```
+>
+> Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
+
+:::moniker-end
+
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
 
 1. The ASP.NET Core metric APIs record measurements from the example app.
@@ -310,4 +332,4 @@ dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
 
 ## ASP.NET Core meters and counters
 
-See [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a list of ASP.NET Core meters and counters.
+See [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a list of ASP.NET Core meters and counters. In ASP.NET Core 11 and later, these meters emit data that conforms to the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/), so you can consume them with the OpenTelemetry SDK without the `OpenTelemetry.Instrumentation.AspNetCore` package.
