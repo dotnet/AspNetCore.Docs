@@ -102,7 +102,7 @@ The `http.server.request.duration` metric supports tag enrichment by using <xref
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/EnrichMetrics/Program.cs":::
 
-The proceeding example:
+The preceding example:
 
 * Adds middleware to enrich the ASP.NET Core request metric.
 * Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is present on the context only if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` isn't `null` before using it.
