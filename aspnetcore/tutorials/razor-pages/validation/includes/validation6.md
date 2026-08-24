@@ -226,6 +226,9 @@ CREATE TABLE [dbo].[Movie] (
 );
 ```
 
+> [!NOTE]
+> The preceding `Up` method and schema show SQL Server output. If you're using SQLite instead of SQL Server, the generated migration and schema differ. SQLite has a minimal type system that maps `string` properties to `TEXT` and doesn't apply the `[StringLength]` maximum length to the schema. Columns such as `Title`, `Genre`, and `Rating` are created as `TEXT` with no length. The maximum length is still enforced by ASP.NET Core model validation, not by the database schema. For more information, see [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations).
+
 ### Publish to Azure
 
 For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
