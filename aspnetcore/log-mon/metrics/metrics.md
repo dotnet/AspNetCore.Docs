@@ -2,23 +2,24 @@
 title: ASP.NET Core metrics
 ai-usage: ai-assisted
 author: tdykstra
-description: Metrics for ASP.NET Core apps
+description: Learn how ASP.NET Core metrics work, from instrumentation to alerting. Explore built-in instruments, custom meters, and testing metrics in integration tests.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
 ms.date: 08/24/2026
+ms.reviewer: tdykstra
 ms.topic: concept-article
 uid: log-mon/metrics/metrics
 ---
 
 # ASP.NET Core metrics
 
-Metrics are numerical measurements reported over time. They're typically used to monitor the health of an app and generate alerts. For example, a web service might track how many:
+Metrics are numerical measurements reported over time. Use them to monitor the health of an app and generate alerts. For example, a web service might track how many:
 
-* Requests it received per second.
-* Milliseconds it took to respond.
-* Responses sent an error.
+* Requests it receives per second.
+* Milliseconds it takes to respond.
+* Responses it sends with an error.
 
-These metrics can be reported to a monitoring system at regular intervals. Dashboards can be setup to view metrics and alerts created to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
+Report these metrics to a monitoring system at regular intervals. Set up dashboards to view metrics and create alerts to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
 See [ASP.NET Core metrics](xref:log-mon/metrics/built-in) for a comprehensive list of all instruments together with their attributes.
 
@@ -27,17 +28,17 @@ See [ASP.NET Core metrics](xref:log-mon/metrics/built-in) for a comprehensive li
 Using metrics involves the following:
 
 * **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name. .NET and ASP.NET Core include many built-in metrics.
-* **Collection and storage:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
+* **Collection and storage:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools might perform configuration outside the app by using configuration files or a UI tool.
 * **Visualization:** A tool that can display the metrics in a human-readable format. For example, [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/).
 * **Alerting:** A tool that provides notifications when a metric exceeds a threshold. For example, if the average response time for a web service exceeds 400 ms, an alert can be sent to the operations staff.
-* **Analysis:** A tool that can analyze the metrics over time. This is often a web-based dashboard that can be customized to show the most important metrics for a specific app.
+* **Analysis:** A tool that can analyze the metrics over time. This tool is often a web-based dashboard that can be customized to show the most important metrics for a specific app.
 
-Instrumented code can record numeric measurements, but the measurements need to be aggregated, transmitted, and stored to create useful metrics for monitoring. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting and displaying metrics:
+Instrumented code can record numeric measurements, but to create useful metrics for monitoring, you need to aggregate, transmit, and store the measurements. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting and displaying metrics:
 
 * Populating metrics in [Grafana](https://grafana.com/) with [OpenTelemetry](https://opentelemetry.io/) and [Prometheus](https://prometheus.io/).
 * Viewing metrics in real time with [`dotnet-counters`](/dotnet/core/diagnostics/dotnet-counters)
 
-Measurements can also be associated with key-value pairs called tags that allow data to be categorized for analysis. For more information, see [Multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics).
+You can also associate measurements with key-value pairs called tags that allow you to categorize data for analysis. For more information, see [Multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics).
 
 ## Create the starter app
 
@@ -97,35 +98,35 @@ ASP.NET Core has many built-in metrics. The `http.server.request.duration` metri
 * Records the duration of HTTP requests on the server.
 * Captures request information in tags, such as the matched route and response status code.
 
-The `http.server.request.duration` metric supports tag enrichment using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
+The `http.server.request.duration` metric supports tag enrichment by using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This feature is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/EnrichMetrics/Program.cs":::
 
 The proceeding example:
 
 * Adds middleware to enrich the ASP.NET Core request metric.
-* Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` is not `null` before using it.
+* Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is present on the context only if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` isn't `null` before using it.
 * Adds a custom tag containing the request's marketing source to the [`http.server.request.duration`](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) metric.
   * The tag has the name `mkt_medium` and a value based on the [utm_medium](https://wikipedia.org/wiki/UTM_parameters) query string value. The `utm_medium` value is resolved to a known range of values.
   * The tag allows requests to be categorized by marketing medium type, which could be useful when analyzing web app traffic.
 
 > [!NOTE]
-> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Tags that are too numerous or have an unbound range create many tag combinations, resulting in high dimensions. Collection tools have limits on supported dimensions for a counter and may filter results to prevent excessive memory use.
+> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Tags that are too numerous or have an unbound range create many tag combinations, resulting in high dimensions. Collection tools have limits on supported dimensions for a counter and might filter results to prevent excessive memory use.
 
 :::moniker range=">= aspnetcore-9.0"
 
-## Opt-out of HTTP metrics on certain endpoints and requests
+## Opt out of HTTP metrics on certain endpoints and requests
 
 Opting out of recording metrics is beneficial for endpoints frequently called by automated systems, such as health checks. Recording metrics for these requests is generally unnecessary. Unwanted telemetry uses resources to collect and store, and can distort results displayed in a telemetry dashboard.
 
-HTTP requests to an endpoint can be excluded from metrics by adding metadata, with either the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute or the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)) method:
+You can exclude HTTP requests to an endpoint from metrics by adding metadata, with either the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute or the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)) method:
 
-* Add the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute to the Web API controller, SignalR hub or gRPC service.
+* Add the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute to the Web API controller, SignalR hub, or gRPC service.
 * Call [DisableHttpMetrics](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)) when mapping endpoints in app startup:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/DisableMetrics/Program.cs" id="snippet_1" highlight="5":::
 
-Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature.MetricsDisabled?displayProperty=nameWithType> property has been added for:
+Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature.MetricsDisabled?displayProperty=nameWithType> property was added for:
 
 * Advanced scenarios where a request doesn't map to an endpoint.
 * Dynamically disabling metrics collection for specific HTTP requests.
@@ -136,13 +137,13 @@ Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeat
 
 ## Create custom metrics
 
-Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric) for information on creating custom metrics.
+You create metrics by using APIs in the <xref:System.Diagnostics.Metrics> namespace. For information on creating custom metrics, see [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric).
 
 ### Creating metrics in ASP.NET Core apps with `IMeterFactory`
 
-We recommended creating <xref:System.Diagnostics.Metrics.Meter> instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
+Create <xref:System.Diagnostics.Metrics.Meter> instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
 
-ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in dependency injection (DI) by default. The meter factory integrates metrics with DI, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
+ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in dependency injection (DI) by default. The meter factory integrates metrics with DI, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collects metrics values that are recorded in a test.
 
 To use `IMeterFactory` in an app, create a type that uses `IMeterFactory` to create the app's custom metrics:
 
@@ -152,7 +153,7 @@ Register the metrics type with DI in `Program.cs`:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
 
-Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, Minimal APIs, or any other type that is created by DI:
+Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be used with MVC controllers, Minimal APIs, or any other type that is created by DI:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
 
@@ -187,7 +188,7 @@ Press p to pause, r to resume, q to quit.
 
 :::moniker range=">= aspnetcore-11.0"
 
-Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces are compliant with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity now emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:log-mon/metrics/built-in-http>.
+Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:log-mon/metrics/built-in-http>.
 
 > [!IMPORTANT]
 > When you enable OpenTelemetry *tracing* (in addition to metrics) without the `OpenTelemetry.Instrumentation.AspNetCore` package, register the framework's HTTP server <xref:System.Diagnostics.ActivitySource> so that the request activity is recorded. ASP.NET Core's HTTP server activity source is named `Microsoft.AspNetCore`, and the framework creates a request activity named `Microsoft.AspNetCore.Hosting.HttpRequestIn` for each request to propagate trace context. If the `Microsoft.AspNetCore` source isn't registered with the OpenTelemetry SDK, the request activity isn't recorded, and the default `ParentBased` sampler silently drops any custom child spans started during the request. Register the source explicitly, for example:
@@ -211,10 +212,10 @@ This tutorial shows one of the integrations available for OpenTelemetry metrics 
 1. The Prometheus exporter library makes the aggregated data available via an HTTP metrics endpoint. 'Exporter' is what OpenTelemetry calls the libraries that transmit telemetry to vendor-specific backends.
 1. A Prometheus server:
 
-   * Polls the metrics endpoint
-   * Reads the data
+   * Polls the metrics endpoint.
+   * Reads the data.
    * Stores the data in a database for long-term persistence. Prometheus refers to reading and storing data as *scraping* an endpoint.
-   * Can run on a different machine
+   * Can run on a different machine.
 
 1. The Grafana server:
 
@@ -223,7 +224,7 @@ This tutorial shows one of the integrations available for OpenTelemetry metrics 
 
 ### View metrics from sample app
 
-Navigate to the sample app. The browser displays `Hello OpenTelemetry! ticks:<3digits>` where `3digits` are the last 3 digits of the current [DateTime.Ticks](/dotnet/api/system.datetime.ticks).
+Go to the sample app. The browser shows `Hello OpenTelemetry! ticks:<3digits>` where `3digits` are the last three digits of the current [DateTime.Ticks](/dotnet/api/system.datetime.ticks).
 
 Append `/metrics` to the URL to view the metrics endpoint. The browser displays the metrics being collected:
 
@@ -233,11 +234,11 @@ Append `/metrics` to the URL to view the metrics endpoint. The browser displays 
 
 Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/first_steps/) to set up a Prometheus server and confirm it's working.
 
-Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app is exposing. Add the following highlighted text in the `scrape_configs` section:
+Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app exposes. Add the following highlighted text in the `scrape_configs` section:
 
 :::code language="yaml" source="~/log-mon/metrics/metrics/samples/web-metrics/prometheus.yml" highlight="31-99":::
 
-In the preceding highlighted YAML, replace `5045` with the port number that the example app is running on.
+In the preceding highlighted YAML, replace `5045` with the port number that the example app uses.
 
 #### Start Prometheus
 
@@ -250,11 +251,11 @@ Select the **Open metric explorer** icon to see available metrics:
 
 ![Prometheus open_metric_exp](~/log-mon/metrics/metrics/static/open_metric_exp.png)
 
-Enter counter category such as `http_` in the **Expression** input box to see the available metrics:
+Enter a counter category such as `http_` in the **Expression** input box to see the available metrics:
 
 ![available metrics](~/log-mon/metrics/metrics/static/metrics2.png)
 
-Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available metrics:
+Alternatively, enter a counter category such as `kestrel` in the **Expression** input box to see the available metrics:
 
 ![Prometheus kestrel](~/log-mon/metrics/metrics/static/kestrel.png)
 
@@ -268,7 +269,7 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 ## Test metrics in ASP.NET Core apps
 
-It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>.
+You can test metrics in ASP.NET Core apps. One way to do this is to collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) by using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>.
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 
@@ -280,7 +281,7 @@ The proceeding test:
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes an HTTP request to the web app.
-* Asserts the test using results from the metrics collector.
+* Asserts the test by using results from the metrics collector.
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -294,7 +295,7 @@ The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described i
 
 * `aspnetcore.identity.user.create.duration` measures the duration of user creation operations.
 * `aspnetcore.identity.user.update.duration` measures the duration of user update operations.
-* `aspnetcore.identity.user.delete.duration` measures the duration of user deletion operations
+* `aspnetcore.identity.user.delete.duration` measures the duration of user deletion operations.
 * `aspnetcore.identity.user.check_password_attempts` counts password verification attempts.
 * `aspnetcore.identity.user.generated_tokens` counts tokens generated for users, such as password reset tokens.
 * `aspnetcore.identity.user.verify_token_attempts` counts token verification attempts.
@@ -308,7 +309,7 @@ The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described i
 * `aspnetcore.identity.sign_in.two_factor_clients_remembered` counts remembered two-factor clients.
 * `aspnetcore.identity.sign_in.two_factor_clients_forgotten` counts forgotten two-factor clients.
 
-These metrics can be used to:
+Use these metrics to:
 
 * Monitor user registration and management.
 * Track authentication patterns and potential security issues.
@@ -317,7 +318,7 @@ These metrics can be used to:
 
 ### Viewing Identity metrics
 
-You can view these metrics using `dotnet-counters` to monitor them in real-time or export them to Prometheus and visualize them in Grafana using the techniques described earlier in this article.
+Use `dotnet-counters` to view these metrics and monitor them in real-time. Or, export them to Prometheus and visualize them in Grafana by using the techniques described earlier in this article.
 
 For example, to monitor all Identity metrics with `dotnet-counters`:
 
@@ -329,4 +330,4 @@ dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
 
 ## ASP.NET Core meters and counters
 
-See [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a list of ASP.NET Core meters and counters. In ASP.NET Core 11 and later, these meters emit data that conforms to the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/), so you can consume them with the OpenTelemetry SDK without the `OpenTelemetry.Instrumentation.AspNetCore` package.
+For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore). In ASP.NET Core 11 and later, these meters emit data that conforms to the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). You can consume them with the OpenTelemetry SDK without the `OpenTelemetry.Instrumentation.AspNetCore` package.
