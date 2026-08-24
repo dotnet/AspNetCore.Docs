@@ -6,6 +6,8 @@ using Ticketer.Services;
 using Ticketer;
 
 JwtSecurityTokenHandler JwtTokenHandler = new JwtSecurityTokenHandler();
+// WARNING: This ephemeral key is regenerated on every app restart, which invalidates all previously issued tokens.
+// In production, load a stable key from secure configuration (e.g. Azure Key Vault, environment variable, or appsettings.json).
 SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray());
 
 string GenerateJwtToken(string name)
@@ -43,6 +45,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters =
             new TokenValidationParameters
             {
+                // WARNING: The following three validations are disabled only because this sample self-issues tokens
+                // using a hardcoded issuer ("ExampleServer"), audience ("ExampleClients"), and an ephemeral in-memory signing key.
+                // In a real application you MUST enable these and configure ValidIssuer, ValidAudience, and a stable IssuerSigningKey.
                 ValidateAudience = false,
                 ValidateIssuer = false,
                 ValidateActor = false,
