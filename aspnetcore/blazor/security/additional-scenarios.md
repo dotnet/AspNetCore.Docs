@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/21/2026
+ms.date: 08/24/2026
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core Blazor additional server-side security scenarios
@@ -1440,16 +1440,16 @@ The app requires an authenticated user for any resource where no specific policy
 
 :::moniker range=">= aspnetcore-9.0"
 
-An app typically removes protection for static assets in the request processing pipeline, which allows static assets to load for unauthenticated users accessing endpoints (for example, Razor component pages) that don't require an authenticated user:
+If the app's security specification doesn't call for protecting static assets, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A?displayProperty=nameWithType> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>:
 
 ```csharp
 app.MapStaticAssets().AllowAnonymous();
 ```
 
-To selectively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add%2A?displayProperty=nameWithType>.
+To alternatively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add%2A?displayProperty=nameWithType>.
 
 > [!IMPORTANT]
-> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If anonymous Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
+> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
 
 Place static assets for anonymous access into a single folder. In the following example, endpoint routes with the `/public/` path segment are served anonymously:
 
@@ -1485,14 +1485,11 @@ app.MapStaticAssets()
     });
 ```
 
-> [!NOTE]
-> For a typical Blazor Web App, setting up explicit anonymous asset loading typically requires mapping assets for several dozen uncompressed and compressed, sometimes fingerprinted, assets. For this reason, we recommend avoiding explicit anonymous asset mapping in favor of calling `app.MapStaticAssets().AllowAnonymous();` to serve all of the app's static assets anonymously when the security specification of the app permits it.
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-An app typically removes protection for static assets in the request processing pipeline, which allows static assets to load for unauthenticated users accessing endpoints (for example, Razor component pages) that don't require an authenticated user. Place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called:
+If the app's security specification doesn't call for protecting static assets, place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>:
 
 ```csharp
 app.UseStaticFiles();
@@ -1501,10 +1498,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-To selectively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> after authorization pipeline processing only serves other static assets if the user is authorized.
+To alternatively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> after authorization pipeline processing only serves other static assets if the user is authorized.
 
 > [!IMPORTANT]
-> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If anonymous Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
+> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
 
 In the following example, static assets in the app's `wwwroot/public` folder are served anonymously:
 
@@ -1521,15 +1518,9 @@ app.UseAuthorization();
 app.UseStaticFiles();
 ```
 
-> [!NOTE]
-> In a typical Blazor app, setting up explicit anonymous asset loading requires mapping assets for several dozen uncompressed and compressed assets. For this reason, we recommend avoiding explicit anonymous asset mapping in favor of calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before the authorization pipeline methods are called to serve all of the app's static assets anonymously when the security specification of the app permits it.
-
 :::moniker-end
 
 Use an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to permit anonymous access to individual components. In the following example, the `Home` component sets the attribute.
-
-> [!NOTE]
-> The [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace in the following example can be applied broadly to the app's components by placing it into the app's imports file (`_Imports.razor`) instead of in individual components.
 
 At the top of `Components/Pages/Home.razor`:
 
@@ -1539,7 +1530,7 @@ At the top of `Components/Pages/Home.razor`:
 @attribute [AllowAnonymous]
 ```
 
-Often, it's more convenient to apply authorization to an entire folder of components. In the following example, a user account pages' imports file sets the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute), so users can anonymously reach the app's sign-in, sign-out, access denied, and invalid user pages.
+Often, it's convenient to apply authorization to an entire folder of components. In the following example, a user account pages' imports file sets the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute), so users can anonymously reach the app's sign-in, sign-out, access denied, and invalid user pages in the `Components/Account/Pages` folder.
 
 In `Components/Account/Pages/_Imports.razor`:
 
