@@ -348,7 +348,7 @@ Open the generated `Controllers/TodoItemsController.cs` file to review the scaff
 
 The following sections examine these generated methods, starting with `PostTodoItem`.
 
-## Examine the PostTodoItem create method
+## Examine the `PostTodoItem` create method
 
 Examine the scaffolded `PostTodoItem` method, which already works as generated. The return statement uses the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator so the action name isn't hard-coded as a string. The commented-out line shows the equivalent hard-coded form that `nameof` replaces:
 
