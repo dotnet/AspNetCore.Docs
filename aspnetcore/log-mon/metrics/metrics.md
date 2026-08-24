@@ -191,15 +191,22 @@ Press p to pause, r to resume, q to quit.
 Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:log-mon/metrics/built-in-http>.
 
 > [!IMPORTANT]
-> When you enable OpenTelemetry *tracing* (in addition to metrics) without the `OpenTelemetry.Instrumentation.AspNetCore` package, register the framework's HTTP server <xref:System.Diagnostics.ActivitySource> so that the request activity is recorded. ASP.NET Core's HTTP server activity source is named `Microsoft.AspNetCore`, and the framework creates a request activity named `Microsoft.AspNetCore.Hosting.HttpRequestIn` for each request to propagate trace context. If the `Microsoft.AspNetCore` source isn't registered with the OpenTelemetry SDK, the request activity isn't recorded, and the default `ParentBased` sampler silently drops any custom child spans started during the request. Register the source explicitly, for example:
+> When you enable OpenTelemetry *tracing* (in addition to metrics) without the `OpenTelemetry.Instrumentation.AspNetCore` package, register the framework's HTTP server <xref:System.Diagnostics.ActivitySource> so that the request activity is recorded. ASP.NET Core's HTTP server activity source is named `Microsoft.AspNetCore`, and the framework creates a request activity named `Microsoft.AspNetCore.Hosting.HttpRequestIn` for each request to propagate trace context. If the `Microsoft.AspNetCore` source isn't registered with the OpenTelemetry SDK, the request activity isn't recorded, and the default `ParentBased` sampler silently drops any custom child spans started during the request.
+>
+> In your existing tracing pipeline, register the source explicitly:
 >
 > ```csharp
 > builder.Services.AddOpenTelemetry()
 >     .WithTracing(tracing => tracing
 >         .AddSource("Microsoft.AspNetCore")
->         .AddSource("MyApp")
->         .AddConsoleExporter());
+>         .AddSource("MyApp"));
 > ```
+>
+> In the preceding example:
+>
+> * `AddSource("Microsoft.AspNetCore")` registers ASP.NET Core's HTTP server activity source so the request activity is recorded.
+> * `AddSource("MyApp")` registers the app's own <xref:System.Diagnostics.ActivitySource>. Replace `MyApp` with the name your app uses.
+> * An exporter isn't shown. This example assumes an exporter is already configured in your tracing pipeline.
 >
 > Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
 
