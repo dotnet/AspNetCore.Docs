@@ -350,7 +350,7 @@ The following sections examine these generated methods, starting with `PostTodoI
 
 ## Examine the PostTodoItem create method
 
-Examine the scaffolded `PostTodoItem` method. The generated code already works. The return statement uses the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator so the action name isn't hard-coded as a string. The commented-out line shows the equivalent hard-coded form that `nameof` replaces:
+Examine the scaffolded `PostTodoItem` method, which already works as generated. The return statement uses the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator so the action name isn't hard-coded as a string. The commented-out line shows the equivalent hard-coded form that `nameof` replaces:
 
 [!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
