@@ -809,15 +809,6 @@ The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.Q
 
 For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
 
-### `ValidatableTypeAttribute` and `SkipValidationAttribute` are no longer experimental
-
-The <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> attributes from the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer experimental.
-
-For more information, see the following resources:
-
-* <xref:blazor/forms/validation?view=aspnetcore-11.0#nested-objects-and-collection-types>
-* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
-
 ### Cache rendered output of a component subtree during static SSR
 
 The new `CacheView` component caches the rendered output of a Razor component subtree during static server-side rendering (static SSR). On a cache hit, cached markup is replayed without instantiating or running the lifecycle of the child components that were included in the cached output.

@@ -519,7 +519,7 @@ The implementation automatically discovers types that are defined in Minimal API
 
 Built-in validation also supports [custom validation attributes](xref:mvc/models/validation#custom-attributes).
 
-For more information, see <xref:fundamentals/minimal-apis#enable-built-in-validation-support-for-minimal-apis>.
+For more information, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
 
 :::moniker-end
 
