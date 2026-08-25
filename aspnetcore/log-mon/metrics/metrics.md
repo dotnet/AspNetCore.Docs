@@ -337,4 +337,4 @@ dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
 
 ## ASP.NET Core meters and counters
 
-For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore). In ASP.NET Core 11 and later, these meters emit data that conforms to the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). You can consume them with the OpenTelemetry SDK without the `OpenTelemetry.Instrumentation.AspNetCore` package.
+For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore). In ASP.NET Core 11 and later, the built-in HTTP server meters (for example, `Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) emit data that conforms to the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). You can consume these meters with the OpenTelemetry SDK without the `OpenTelemetry.Instrumentation.AspNetCore` package.
