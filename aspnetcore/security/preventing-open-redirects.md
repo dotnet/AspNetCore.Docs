@@ -45,6 +45,8 @@ Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result in a Mi
 ```csharp
 app.MapGet("/SomeEndpoint", (string redirectUri) =>
 {
+    ...
+    
     return Results.LocalRedirect(redirectUri);
 });
 ```

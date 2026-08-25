@@ -657,7 +657,7 @@ The following `CultureSelector` component shows how to perform the following act
         if (selectedCulture is not null && 
             CultureInfo.CurrentCulture != selectedCulture)
         {
-            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
+            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
 
             Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
         }
@@ -708,7 +708,7 @@ The following `CultureSelector` component shows how to perform the following act
         if (selectedCulture is not null && 
             CultureInfo.CurrentCulture != selectedCulture)
         {
-            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
+            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
 
             Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
         }
@@ -862,10 +862,10 @@ using Microsoft.AspNetCore.Mvc;
 In the request processing pipeline of the app's `Program` file:
 
 ```csharp
-app.MapGet("/Culture/Set", ([FromQuery] string culture, string redirectUri,
+app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
     HttpContext context) =>
 {
-    if (culture != null)
+    if (!string.IsNullOrWhiteSpace(culture))
     {
         context.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
@@ -1222,7 +1222,7 @@ The component adopts the following approaches to work for either SSR or CSR comp
         if (selectedCulture is not null && 
             CultureInfo.CurrentCulture != selectedCulture)
         {
-            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
+            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
 
             var uri = new Uri(Navigation.Uri)
                 .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
@@ -1477,10 +1477,10 @@ using Microsoft.AspNetCore.Mvc;
 In the request processing pipeline of the app's `Program` file:
 
 ```csharp
-app.MapGet("/Culture/Set", (string culture, string redirectUri,
+app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
     HttpContext context) =>
 {
-    if (culture != null)
+    if (!string.IsNullOrWhiteSpace(culture))
     {
         context.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
