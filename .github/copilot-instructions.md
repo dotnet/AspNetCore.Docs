@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: wpickett
-ms.date: 08-25-2026
+ms.date: 08/25/2026
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
