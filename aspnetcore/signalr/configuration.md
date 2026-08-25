@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to configure ASP.NET Core SignalR apps, including allowed transports, logging levels, timeout intervals, and serialization.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 05/20/2026
+ms.date: 08/25/2026
 uid: signalr/configuration
 
 # customer intent: As an ASP.NET developer, I want to configure ASP.NET Core SignalR, so I can specify my preferences for client and server options.
@@ -116,6 +116,22 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `WebSockets` | See [Configure WebSocket transport](#configure-websocket-transport) | Options specific to the WebSockets transport. |
 | `MinimumProtocolVersion` | 0 | The minimum version of the negotiation protocol. This value is used to limit clients to newer versions of the protocol. |
 | `CloseOnAuthenticationExpiration` | `false` | Controls authentication expiration tracking, which closes connections when a token expires. |
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+The following advanced HTTP options configure SignalR *authentication refresh*, introduced in .NET 11. Authentication refresh lets a connected client update its authentication credentials without reconnecting. For more information, see <xref:signalr/authn-and-authz#authentication-refresh>.
+
+| Option | Default value | Description |
+| ------ | ------------- | ----------- |
+| `EnableAuthenticationRefresh` | `false` | Enables authentication refresh for connections. Enable it together with `CloseOnAuthenticationExpiration` so that connections that aren't refreshed before their token expires are closed. |
+| `MaximumAuthenticationExpiration` | `null` | Caps how far in the future a refreshed token's expiration can be set, relative to the time of the refresh. Setting it also gives tokens that have no expiration a known lifetime, which enables automatic refresh. The value must be greater than zero and doesn't apply to Windows authentication. |
+| `OnAuthenticationRefresh` | `null` | An optional `Func<AuthenticationRefreshContext, Task<bool>>` callback invoked on each refresh attempt. Return `false` to reject the refresh, which causes the `/refresh` request to fail with an HTTP 403 response. This check runs in addition to the built-in requirement that the refreshed principal map to the same SignalR user. |
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 #### Configure Long Polling transport
 
