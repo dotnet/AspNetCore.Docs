@@ -654,7 +654,8 @@ The following `CultureSelector` component shows how to perform the following act
 
     private async Task ApplySelectedCultureAsync()
     {
-        if (CultureInfo.CurrentCulture != selectedCulture)
+        if (selectedCulture is not null && 
+            CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
 
@@ -704,7 +705,8 @@ The following `CultureSelector` component shows how to perform the following act
     {
         selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
 
-        if (CultureInfo.CurrentCulture != selectedCulture)
+        if (selectedCulture is not null && 
+            CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
 
@@ -860,9 +862,7 @@ using Microsoft.AspNetCore.Mvc;
 In the request processing pipeline of the app's `Program` file:
 
 ```csharp
-app.MapGet("/Culture/Set", (
-    [FromQuery] string? culture,
-    [FromQuery] string redirectUri,
+app.MapGet("/Culture/Set", ([FromQuery] string culture, string redirectUri,
     HttpContext context) =>
 {
     if (culture != null)
@@ -981,7 +981,8 @@ The following `CultureSelector` component shows how to call the `Set` endpoint w
 
     private async Task ApplySelectedCultureAsync()
     {
-        if (CultureInfo.CurrentCulture != selectedCulture)
+        if (selectedCulture is not null && 
+            CultureInfo.CurrentCulture != selectedCulture)
         {
             var uri = new Uri(Navigation.Uri)
                 .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
@@ -1036,7 +1037,8 @@ The following `CultureSelector` component shows how to call the `Set` endpoint w
     {
         selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
 
-        if (CultureInfo.CurrentCulture != selectedCulture)
+        if (selectedCulture is not null && 
+            CultureInfo.CurrentCulture != selectedCulture)
         {
             var uri = new Uri(Navigation.Uri)
                 .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
@@ -1172,7 +1174,7 @@ Add the following `CultureSelector` component to the `.Client` project in a `Sha
 The component adopts the following approaches to work for either SSR or CSR components:
 
 * The display name of each available culture in the dropdown list is provided by a dictionary because client-side globalization data includes localized text of culture display names that server-side globalization data provides. For example, server-side localization displays `English (United States)` when `en-US` is the culture and `Ingles ()` when a different culture is used. Because localization of the culture display names isn't available for Blazor WebAssembly globalization, the display name for United States English on the client for any loaded culture is just `en-US`. Using a custom dictionary permits the component to at least display full English culture names.
-* When user changes the culture, JS interop sets the culture in local browser storage and a Minimal API endpoint updates the localization cookie with the culture. The Minimal API endpoint is added to the app later in the [Server project updates](#server-project-updates) section.
+* When the user changes the culture, JS interop sets the culture in local browser storage and a Minimal API endpoint updates the localization cookie with the culture. The Minimal API endpoint is added to the app later in the [Server project updates](#server-project-updates) section.
 
 `Shared/CultureSelector.razor`:
 
@@ -1217,7 +1219,8 @@ The component adopts the following approaches to work for either SSR or CSR comp
 
     private async Task ApplySelectedCultureAsync()
     {
-        if (CultureInfo.CurrentCulture != selectedCulture)
+        if (selectedCulture is not null && 
+            CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
 
@@ -1237,7 +1240,7 @@ The component adopts the following approaches to work for either SSR or CSR comp
 > [!NOTE]
 > For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
 
-In the server project, add the `CultureSelector` component to the `MainLayout` component. First, add the namespace for the `.Client` project's `Shared` folder:
+In the server project's imports file (`_Imports.razor`), add the namespace for the `.Client` project's `Shared` folder (update the namespace to match your app):
 
 ```razor
 @using BlazorSample.Client.Shared
@@ -1474,9 +1477,7 @@ using Microsoft.AspNetCore.Mvc;
 In the request processing pipeline of the app's `Program` file:
 
 ```csharp
-app.MapGet("/Culture/Set", (
-    [FromQuery] string? culture,
-    [FromQuery] string redirectUri,
+app.MapGet("/Culture/Set", (string culture, string redirectUri,
     HttpContext context) =>
 {
     if (culture != null)

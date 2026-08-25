@@ -43,7 +43,7 @@ When developing web applications, treat all user-provided data as untrustworthy.
 Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result in a Minimal API endpoint:
 
 ```csharp
-app.MapGet("/SomeEndpoint", ([FromQuery] string redirectUri) =>
+app.MapGet("/SomeEndpoint", (string redirectUri) =>
 {
     return Results.LocalRedirect(redirectUri);
 });
