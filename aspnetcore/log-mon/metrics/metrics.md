@@ -190,28 +190,34 @@ Press p to pause, r to resume, q to quit.
 
 Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:log-mon/metrics/built-in-http>.
 
+Although the package is optional, it isn't a drop-in equivalent of the built-in instrumentation. The built-in instrumentation covers only the *required* parts of the semantic conventions. Consider the following differences before you remove the package:
+
+* Some *recommended* HTTP server attributes aren't emitted by the built-in instrumentation, such as certain client and network attributes (for example, `client.address`). Full support for the *conditionally required* `url.query` attribute, including redaction, is also still in progress. If you rely on these attributes, keep the package. For more information, see [dotnet/aspnetcore#65873](https://github.com/dotnet/aspnetcore/issues/65873).
+* The package registers extra tracing activity sources for SignalR (`Microsoft.AspNetCore.SignalR.Server` on .NET 9 and later) and Blazor (`Microsoft.AspNetCore.Components` and `Microsoft.AspNetCore.Components.Server.Circuits` on .NET 10 and later). Without the package, register these sources yourself with `AddSource` if you want that telemetry.
+
+When you add telemetry to an app that only needs HTTP server metrics and traces, you can rely on the built-in instrumentation and omit the package. When you upgrade an existing app from .NET 10 to .NET 11 that already references the package, keep it if you depend on the attributes or sources described in the preceding list. Removing the package silently drops that telemetry.
+
 > [!IMPORTANT]
 > When you enable OpenTelemetry *tracing* (in addition to metrics) without the `OpenTelemetry.Instrumentation.AspNetCore` package, register the framework's HTTP server <xref:System.Diagnostics.ActivitySource> so that the request activity is recorded. ASP.NET Core's HTTP server activity source is named `Microsoft.AspNetCore`, and the framework creates a request activity named `Microsoft.AspNetCore.Hosting.HttpRequestIn` for each request to propagate trace context. If the `Microsoft.AspNetCore` source isn't registered with the OpenTelemetry SDK, the request activity isn't recorded, and the default `ParentBased` sampler silently drops any custom child spans started during the request.
->
-> In your existing tracing pipeline, register the source explicitly:
->
-> ```csharp
-> builder.Services.AddOpenTelemetry()
->     .WithTracing(tracing => tracing
->         .AddSource("Microsoft.AspNetCore")
->         .AddSource("MyApp"));
-> ```
->
-> In the preceding example:
->
-> * `AddSource("Microsoft.AspNetCore")` registers ASP.NET Core's HTTP server activity source so the request activity is recorded.
-> * `AddSource("MyApp")` registers the app's own <xref:System.Diagnostics.ActivitySource>. Replace `MyApp` with the name your app uses.
-> * An exporter isn't shown. This example assumes an exporter is already configured in your tracing pipeline.
->
-> Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
+
+In your existing tracing pipeline, register the source explicitly:
+
+```csharp
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing
+        .AddSource("Microsoft.AspNetCore")
+        .AddSource("MyApp"));
+```
+
+In the preceding example:
+
+* `AddSource("Microsoft.AspNetCore")` registers ASP.NET Core's HTTP server activity source so the request activity is recorded.
+* `AddSource("MyApp")` registers the app's own <xref:System.Diagnostics.ActivitySource>. Replace `MyApp` with the name your app uses.
+* An exporter isn't shown. This example assumes an exporter is already configured in your tracing pipeline.
+
+Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
 
 :::moniker-end
-
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
 
 1. The ASP.NET Core metric APIs record measurements from the example app.
