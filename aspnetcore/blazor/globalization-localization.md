@@ -654,7 +654,7 @@ The following `CultureSelector` component shows how to perform the following act
 
     private async Task ApplySelectedCultureAsync()
     {
-        if (selectedCulture is not null && 
+        if (selectedCulture is not null &&
             CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
@@ -705,7 +705,7 @@ The following `CultureSelector` component shows how to perform the following act
     {
         selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
 
-        if (selectedCulture is not null && 
+        if (selectedCulture is not null &&
             CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
@@ -852,11 +852,10 @@ For information on ordering the localization middleware in the middleware pipeli
 
 To provide UI to allow a user to select a culture, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a Minimal API endpoint. The endpoint sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
 
-At the top of the `Program` file, add the following `using` statements for the required namespaces:
+At the top of the `Program` file, add the following `using` statement for the required namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
 ```
 
 In the request processing pipeline of the app's `Program` file:
@@ -981,7 +980,7 @@ The following `CultureSelector` component shows how to call the `Set` endpoint w
 
     private async Task ApplySelectedCultureAsync()
     {
-        if (selectedCulture is not null && 
+        if (selectedCulture is not null &&
             CultureInfo.CurrentCulture != selectedCulture)
         {
             var uri = new Uri(Navigation.Uri)
@@ -1037,7 +1036,7 @@ The following `CultureSelector` component shows how to call the `Set` endpoint w
     {
         selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
 
-        if (selectedCulture is not null && 
+        if (selectedCulture is not null &&
             CultureInfo.CurrentCulture != selectedCulture)
         {
             var uri = new Uri(Navigation.Uri)
@@ -1219,7 +1218,7 @@ The component adopts the following approaches to work for either SSR or CSR comp
 
     private async Task ApplySelectedCultureAsync()
     {
-        if (selectedCulture is not null && 
+        if (selectedCulture is not null &&
             CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
@@ -1467,11 +1466,10 @@ Add the following `@code` block to the bottom of the `App` component file:
 
 To provide UI to allow a user to select a culture, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a Minimal API endpoint. The endpoint sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
 
-At the top of the `Program` file, add the following `using` statements for the required namespaces:
+At the top of the `Program` file, add the following `using` statement for the required namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
 ```
 
 In the request processing pipeline of the app's `Program` file:
