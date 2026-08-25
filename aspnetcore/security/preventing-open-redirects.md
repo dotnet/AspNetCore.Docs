@@ -1,9 +1,10 @@
 ---
 title: Prevent open redirect attacks in ASP.NET Core
+ai-usage: ai-assisted
 author: ardalis
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
 ms.author: tdykstra
-ms.date: 07/07/2017
+ms.date: 08/25/2026
 uid: security/preventing-open-redirects
 ---
 # Prevent open redirect attacks in ASP.NET Core
@@ -35,11 +36,20 @@ In addition to login pages, some sites provide redirect pages or endpoints. Imag
 
 ## Protecting against open redirect attacks
 
-When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).
+When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL, ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).
 
 ### LocalRedirect
 
-Use the `LocalRedirect` helper method from the base `Controller` class:
+Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result in a Minimal API endpoint:
+
+```csharp
+app.MapGet("/SomeEndpoint", ([FromQuery] string redirectUri) =>
+{
+    return Results.LocalRedirect(redirectUri);
+});
+```
+
+Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> helper method in MVC actions:
 
 ```csharp
 public IActionResult SomeAction(string redirectUrl)
@@ -48,7 +58,7 @@ public IActionResult SomeAction(string redirectUrl)
 }
 ```
 
-`LocalRedirect` will throw an exception if a non-local URL is specified. Otherwise, it behaves just like the `Redirect` method.
+`LocalRedirect` throws an exception if a non-local URL is specified. Otherwise, it behaves just like the `Redirect` method.
 
 ### IUrlHelper.IsLocalUrl
 

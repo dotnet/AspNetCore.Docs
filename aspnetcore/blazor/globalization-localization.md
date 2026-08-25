@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core Blazor globalization and localization
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to render globalized and localized content to users in different cultures and languages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 08/25/2026
 uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
@@ -730,20 +731,19 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Dynamically set the server-side culture by user preference
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
-
 :::moniker range=">= aspnetcore-8.0"
 
-> [!NOTE]
-> The following example assumes that the app adopts ***global*** interactivity by specifying the interactive server-side rendering (interactive SSR) on the `Routes` component in the `App` component (`Components/App.razor`):
->
-> ```razor
-> <Routes @rendermode="InteractiveServer" />
-> ```
->
-> If the app adopts ***per-page/component*** interactivity, see the remarks at the end of this section to modify the render modes of the example's components.
+*This section applies to Blazor Web Apps adopting the global Interactive Server render mode and Blazor Server apps. For guidance that covers a Blazor Web App adopting per-page/component interactivity, see the [Dynamically set the culture in a Blazor Web App by user preference](#dynamically-set-the-culture-in-a-blazor-web-app-by-user-preference) section.*
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+*This section applies to Blazor Server apps.*
+
+:::moniker-end
+
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
 Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
@@ -846,6 +846,44 @@ Add the following to the file:
 
 For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
 
+:::moniker range=">= aspnetcore-6.0"
+
+To provide UI to allow a user to select a culture, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a Minimal API endpoint. The endpoint sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
+
+At the top of the `Program` file, add the following `using` statements for the required namespaces:
+
+```csharp
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+```
+
+In the request processing pipeline of the app's `Program` file:
+
+```csharp
+app.MapGet("/Culture/Set", (
+    [FromQuery] string? culture,
+    [FromQuery] string redirectUri,
+    HttpContext context) =>
+{
+    if (culture != null)
+    {
+        context.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(culture, culture)));
+    }
+
+    return Results.LocalRedirect(redirectUri);
+});
+```
+
+> [!WARNING]
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 If the app isn't configured to process controller actions:
 
 * Add MVC services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> on the service collection in the `Program` file:
@@ -889,9 +927,23 @@ public class CultureController : Controller
 > [!WARNING]
 > Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
-The following `CultureSelector` component shows how to call the `Set` method of the `CultureController` with the new culture. The component is placed in the `Shared` folder for use throughout the app.
+:::moniker-end
 
-`CultureSelector.razor`:
+:::moniker range=">= aspnetcore-8.0"
+
+The following `CultureSelector` component shows how to call the `Set` endpoint with the new culture. The component is placed in the `Components` folder for use throughout the app.
+
+`Components/CultureSelector.razor`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The following `CultureSelector` component shows how to call the `Set` endpoint with the new culture. The component is placed in the `Shared` folder for use throughout the app.
+
+`Shared/CultureSelector.razor`:
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1001,22 +1053,22 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 
 :::moniker-end
 
+Add the `CultureSelector` component to the `MainLayout` component. 
+
 :::moniker range=">= aspnetcore-8.0"
 
-Add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Components/Layout/MainLayout.razor` file:
+In the header markup of `Components/Layout/MainLayout.razor`:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-Add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Shared/MainLayout.razor` file:
+In the header markup of `Shared/MainLayout.razor`:
 
 :::moniker-end
 
 ```razor
-<article class="bottom-row px-4">
-    <CultureSelector />
-</article>
+<CultureSelector />
 ```
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how the preceding example works.
@@ -1049,9 +1101,9 @@ If the app adopts ***per-page/component*** interactivity, make the following cha
 
 ## Dynamically set the culture in a Blazor Web App by user preference
 
-*This section applies to Blazor Web Apps that adopt Auto (Server and WebAssembly) interactivity.*
+*This section applies to Blazor Web Apps that adopt per-page/component interactivity.*
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), both local storage and a localization cookie (Blazor Web Apps with server and WebAssembly components), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage for client-side rendered (CSR) components and a localization cookie for server-side rendered (SSR) components.
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), both local storage and a localization cookie (Blazor Web Apps with server and WebAssembly components), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage for client-side rendered (CSR) components and a localization cookie for server-side rendered (SSR) components. The guidance in this section also works for components in apps that adopt per-page/component rendering and specify the Interactive Auto render mode (`@rendermode InteractiveAuto`).
 
 ### Updates to the `.Client` project
 
@@ -1115,14 +1167,14 @@ await host.RunAsync();
 
 :::moniker range=">= aspnetcore-8.0"
 
-Add the following `CultureSelector` component to the `.Client` project.
+Add the following `CultureSelector` component to the `.Client` project in a `Shared` folder. If a `Shared` folder doesn't exist in the `.Client` project, create one to hold shared components. 
 
 The component adopts the following approaches to work for either SSR or CSR components:
 
-* The display name of each available culture in the dropdown list is provided by a dictionary because client-side globalization data include localized text of culture display names that server-side globalization data provides. For example, server-side localization displays `English (United States)` when `en-US` is the culture and `Ingles ()` when a different culture is used. Because localization of the culture display names isn't available with Blazor WebAssembly globalization, the display name for United States English on the client for any loaded culture is just `en-US`. Using a custom dictionary permits the component to at least display full English culture names.
-* When user changes the culture, JS interop sets the culture in local browser storage and a controller action updates the localization cookie with the culture. The controller is added to the app later in the [Server project updates](#server-project-updates) section.
+* The display name of each available culture in the dropdown list is provided by a dictionary because client-side globalization data includes localized text of culture display names that server-side globalization data provides. For example, server-side localization displays `English (United States)` when `en-US` is the culture and `Ingles ()` when a different culture is used. Because localization of the culture display names isn't available for Blazor WebAssembly globalization, the display name for United States English on the client for any loaded culture is just `en-US`. Using a custom dictionary permits the component to at least display full English culture names.
+* When user changes the culture, JS interop sets the culture in local browser storage and a Minimal API endpoint updates the localization cookie with the culture. The Minimal API endpoint is added to the app later in the [Server project updates](#server-project-updates) section.
 
-`Pages/CultureSelector.razor`:
+`Shared/CultureSelector.razor`:
 
 ```razor
 @using System.Globalization
@@ -1182,21 +1234,19 @@ The component adopts the following approaches to work for either SSR or CSR comp
 }
 ```
 
-In the `.Client` project's `_Imports` file (`_Imports.razor`), add the namespace for the components in the `Pages` folder, updating the namespace to match your `.Client` project's namespace:
-
-```razor
-@using BlazorSample.Client.Pages
-```
-
 > [!NOTE]
 > For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
 
-In the `.Client` project, add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Layout/MainLayout.razor` file:
+In the server project, add the `CultureSelector` component to the `MainLayout` component. First, add the namespace for the `.Client` project's `Shared` folder:
 
 ```razor
-<article class="bottom-row px-4">
-    <CultureSelector @rendermode="InteractiveAuto" />
-</article>
+@using BlazorSample.Client.Shared
+```
+
+Place the following markup in the header content of the `Components/Layout/MainLayout.razor` file:
+
+```razor
+<CultureSelector @rendermode="InteractiveAuto" />
 ```
 
 In the `.Client` project, place the following `CultureClient` component to study how globalization works for CSR components.
@@ -1309,9 +1359,13 @@ In the `.Client` project, place the following `CultureServer` component to study
 }
 ```
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works for a component that inherits the global Auto render mode. Add the `CultureExample1` component to the `.Client` project's `Pages` folder.
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works for a component that inherits the global Auto render mode. Add the `CultureExample1` component to the `.Client` project's `Pages` folder. At the top of the component, specify the Interactive Auto render mode:
 
-Add the `CultureClient`, `CultureServer`, and `CultureExample1` components to the sidebar navigation in `Layout/NavMenu.razor`:
+```razor
+@rendermode InteractiveAuto
+```
+
+Add the `CultureClient`, `CultureServer`, and `CultureExample1` components to the sidebar navigation in `Components/Layout/NavMenu.razor` of the server project:
 
 ```razor
 <div class="nav-item px-3">
@@ -1408,56 +1462,37 @@ Add the following `@code` block to the bottom of the `App` component file:
 }
 ```
 
-If the server project isn't configured to process controller actions:
+To provide UI to allow a user to select a culture, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a Minimal API endpoint. The endpoint sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
 
-* Add MVC services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> on the service collection in the `Program` file:
-
-  ```csharp
-  builder.Services.AddControllers();
-  ```
-
-* Add controller endpoint routing in the `Program` file by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> (`app`):
-
-  ```csharp
-  app.MapControllers();
-  ```
-
-To allow a user to select a culture for SSR components, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a controller. The controller sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
-
-`Controllers/CultureController.cs`:
+At the top of the `Program` file, add the following `using` statements for the required namespaces:
 
 ```csharp
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+```
 
-[Route("[controller]/[action]")]
-public class CultureController : Controller
+In the request processing pipeline of the app's `Program` file:
+
+```csharp
+app.MapGet("/Culture/Set", (
+    [FromQuery] string? culture,
+    [FromQuery] string redirectUri,
+    HttpContext context) =>
 {
-    public IActionResult Set(string culture, string redirectUri)
+    if (culture != null)
     {
-        if (culture != null)
-        {
-            HttpContext.Response.Cookies.Append(
-                CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(
-                    new RequestCulture(culture, culture)));
-        }
-
-        return LocalRedirect(redirectUri);
+        context.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(culture, culture)));
     }
-}
+
+    return Results.LocalRedirect(redirectUri);
+});
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
-
-### Interactive Auto components
-
-The guidance in this section also works for components in apps that adopt per-page/component rendering and specify the Interactive Auto render mode:
-
-```razor
-@rendermode InteractiveAuto
-```
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
 :::moniker-end
 
