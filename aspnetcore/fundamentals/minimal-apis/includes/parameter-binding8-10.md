@@ -254,7 +254,7 @@ Binding is supported for:
 * Complex types, for example, `Todo` or `Project`
 
 > [!WARNING]
-> Complex-type form mapping with [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) in Minimal APIs doesn't use MVC model binding. Attributes in the `Microsoft.AspNetCore.Mvc.ModelBinding` namespace, such as [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute) and [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute), aren't supported. Don't use these attributes to prevent overposting. Instead, use a dedicated input model or data transfer object (DTO) that includes only the properties clients are allowed to modify.
+> Complex-type form mapping with [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) in Minimal APIs doesn't use MVC model binding. Attributes in the <xref:Microsoft.AspNetCore.Mvc.ModelBinding?displayProperty=fullName> namespace, such as [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute) and [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute), aren't supported. Don't use these attributes to prevent overposting. Instead, use a dedicated input model or data transfer object (DTO) that includes only the properties clients are allowed to modify.
 
 The following code shows:
 
