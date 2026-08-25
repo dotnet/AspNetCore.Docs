@@ -294,7 +294,7 @@ The preceding test:
 
 ## ASP.NET Core Identity metrics
 
-ASP.NET Core Identity observability help you monitor user management activities and authentication processes.
+ASP.NET Core Identity observability helps you monitor user management activities and authentication processes.
 
 The metrics are in the `Microsoft.AspNetCore.Identity` meter and are described in the following sections.
 
