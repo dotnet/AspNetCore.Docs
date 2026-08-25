@@ -253,6 +253,9 @@ Binding is supported for:
 * Collections, for example [List](/dotnet/api/system.collections.generic.list-1) and [Dictionary](/dotnet/api/system.collections.generic.dictionary-2)
 * Complex types, for example, `Todo` or `Project`
 
+> [!WARNING]
+> Complex-type form mapping with [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) in Minimal APIs doesn't use MVC model binding. Attributes in the `Microsoft.AspNetCore.Mvc.ModelBinding` namespace, such as [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute) and [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute), aren't supported. Don't use these attributes to prevent overposting. Instead, use a dedicated input model or data transfer object (DTO) that includes only the properties clients are allowed to modify.
+
 The following code shows:
 
 * A minimal endpoint that binds a multi-part form input to a complex object.
@@ -264,7 +267,7 @@ In the preceding code:
 
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
 * Binding from complex or collection types is ***not*** supported for Minimal APIs that are compiled with the Request Delegate Generator.
-* The markup shows an additional hidden input with a name of `isCompleted` and a value of `false`. If the `isCompleted` checkbox is checked when the form is submitted, both values `true` and `false` are submitted as values. If the checkbox is unchecked, only the hidden input value `false` is submitted. The ASP.NET Core model-binding process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
+* The markup shows an additional hidden input with a name of `isCompleted` and a value of `false`. If the `isCompleted` checkbox is checked when the form is submitted, both values `true` and `false` are submitted as values. If the checkbox is unchecked, only the hidden input value `false` is submitted. The ASP.NET Core form-mapping process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
   
 An example of the form data submitted to the preceding endpoint looks as follows:
 
