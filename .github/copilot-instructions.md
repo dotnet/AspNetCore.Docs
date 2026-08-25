@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: wpickett
-ms.date: 10-16-2025
+ms.date: 08-25-2026
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -157,7 +157,13 @@ When working on an issue:
   * [ ] When significantly updating, revise the introductory paragraph to match the new scope and content.
 
 ### 6. PR Description Requirements
-* [ ] ALWAYS include "Fixes #[issue-number]" in the PR description, at the first line of the description to link back to the original issue
+* [ ] On the first line of the PR description, reference the originating issue:
+  * [ ] Issue in this repository (`dotnet/AspNetCore.Docs`): use a closing keyword: `Fixes #[issue-number]`
+  * [ ] Issue in another repository: use a non-closing, fully-qualified reference so it links without closing: `Contributes to [owner]/[repo]#[issue-number]`
+* [ ] Exceptions to the above defaults:
+  * [ ] If this PR only partially addresses an issue in this repository, use `Contributes to #[issue-number]` instead of `Fixes`, so the issue stays open.
+  * [ ] Only use a closing keyword for an issue in another repository when a maintainer explicitly asks for it, and then use the fully-qualified form: `Fixes [owner]/[repo]#[issue-number]`.
+* [ ] Never use a bare `#[issue-number]` for an issue in another repository; the bare form resolves to an issue of that number in this repository and links to the wrong issue. Always use the `[owner]/[repo]#[issue-number]` form for cross-repository references.
 * [ ] Include a clear summary of changes made
 * [ ] List all files that were modified with brief descriptions
 
