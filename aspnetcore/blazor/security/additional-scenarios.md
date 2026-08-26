@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/24/2026
+ms.date: 08/26/2026
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core Blazor additional server-side security scenarios
@@ -1371,9 +1371,9 @@ In [Duende IdentityServer](https://duendesoftware.com/products/identityserver), 
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
 
-## Patterns to require authorization in a server-side Blazor app
+## Server-side Blazor app authorization patterns
 
-*For patterns that apply to Blazor WebAssembly apps, see <xref:blazor/security/webassembly/index#patterns-to-require-authorization-in-a-blazor-webassembly-app>.*
+*For patterns that apply to Blazor WebAssembly apps, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.*
 
 Server-side Blazor apps (Blazor Web Apps, Blazor Server apps) usually adopt **either** of the following approaches to require authorization:
 

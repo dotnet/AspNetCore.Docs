@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 ms.author: wpickett
-ms.date: 08/24/2026
+ms.date: 08/26/2026
 uid: security/authorization/introduction
 ---
 # Introduction to authorization in ASP.NET Core
@@ -30,6 +30,6 @@ For more information, see <xref:security/authorization/simple>.
 * <xref:fundamentals/minimal-apis/security>
 * <xref:blazor/security/index>
 * <xref:razor-pages/security/authorization/conventions>
-* Patterns to require authorization in Blazor apps
-  * [Server-side Blazor apps (Blazor Web Apps, Blazor Server apps)](xref:blazor/security/additional-scenarios#patterns-to-require-authorization-in-a-server-side-blazor-app)
-  * [Blazor WebAssembly apps](xref:blazor/security/webassembly/index#patterns-to-require-authorization-in-a-blazor-webassembly-app)
+* Blazor app authorization patterns
+  * [Server-side Blazor (Blazor Web Apps, Blazor Server apps)](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
+  * [Blazor WebAssembly](xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns)

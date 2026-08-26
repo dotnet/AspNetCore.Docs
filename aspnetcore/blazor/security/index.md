@@ -5,7 +5,7 @@ author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/24/2026
+ms.date: 08/26/2026
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -1811,7 +1811,7 @@ PII refers any information relating to an identified or identifiable natural per
 :::moniker range=">= aspnetcore-6.0"
 
 * Server-side and Blazor Web App resources
-  * [Patterns to require authorization](xref:blazor/security/additional-scenarios#patterns-to-require-authorization-in-a-server-side-blazor-app)
+  * [Authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
   * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/entra/identity-platform/quickstart-v2-aspnet-core-webapp)
   * [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/entra/identity-platform/quickstart-v2-aspnet-core-web-api)
   * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
@@ -1830,14 +1830,14 @@ PII refers any information relating to an identified or identifiable natural per
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * <xref:blazor/hybrid/security/index>
 * [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
-* [Patterns to require authorization in a Blazor WebAssembly app](xref:blazor/security/webassembly/index#patterns-to-require-authorization-in-a-blazor-webassembly-app)
+* [Blazor WebAssembly authorization patterns](xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
 * Server-side Blazor resources
-  * [Patterns to require authorization](xref:blazor/security/additional-scenarios#patterns-to-require-authorization-in-a-server-side-blazor-app)
+  * [Authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
   * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/entra/identity-platform/quickstart-v2-aspnet-core-webapp)
   * [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/entra/identity-platform/quickstart-v2-aspnet-core-web-api)
   * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
@@ -1855,6 +1855,6 @@ PII refers any information relating to an identified or identifiable natural per
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
-* [Patterns to require authorization in a Blazor WebAssembly app](xref:blazor/security/webassembly/index#patterns-to-require-authorization-in-a-blazor-webassembly-app)
+* [Blazor WebAssembly authorization patterns](xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns)
 
 :::moniker-end
