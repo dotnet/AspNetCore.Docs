@@ -451,7 +451,7 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 
 ### Basic tests for authentication middleware
 
-See [this GitHub repository](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) for basic tests of authentication middleware. It contains a [test server](https://github.com/blowdart/idunno.Authentication/blob/dev/test/idunno.Authentication.Basic.Test/BasicAuthenticationTests.cs#L331) that’s specific to the test scenario.
+See [this GitHub repository](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) for basic tests of authentication middleware. It contains a [test server](https://github.com/blowdart/idunno.Authentication/blob/dev/test/idunno.Authentication.Basic.Test/BasicAuthenticationTests.cs#L331) that's specific to the test scenario.
 
 ## Set the environment
 

@@ -68,7 +68,7 @@ Access tokens can be used as [bearer tokens](https://cloud.google.com/docs/authe
 
 ### ID tokens
 
-ID tokens are security tokens that confirm a user’s successful authentication. The tokens allow the client to verify the user’s identity. The JWT token server issues ID tokens containing claims with user information. ID tokens are always in [JWT](https://jwt.io/introduction) format.
+ID tokens are security tokens that confirm a user's successful authentication. The tokens allow the client to verify the user's identity. The JWT token server issues ID tokens containing claims with user information. ID tokens are always in [JWT](https://jwt.io/introduction) format.
 
 ID tokens ***should never*** be used to access APIs.
 

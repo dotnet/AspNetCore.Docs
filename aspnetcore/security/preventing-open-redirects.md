@@ -8,19 +8,19 @@ uid: security/preventing-open-redirects
 ---
 # Prevent open redirect attacks in ASP.NET Core
 
-A web app that redirects to a URL that's specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
+A web app that redirects to a URL that's specified via the request such as the query string or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.
 
 Whenever your application logic redirects to a specified URL, you must verify that the redirection URL hasn't been tampered with. ASP.NET Core has built-in functionality to help protect apps from open redirect (also known as open redirection) attacks.
 
 ## What is an open redirect attack?
 
-Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typically includes a `returnUrl` querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they're redirected to the URL they had originally requested.
+Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typically includes a `returnUrl` query string parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they're redirected to the URL they had originally requested.
 
-Because the destination URL is specified in the querystring of the request, a malicious user could tamper with the querystring. A tampered querystring could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.
+Because the destination URL is specified in the query string of the request, a malicious user could tamper with the query string. A tampered query string could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.
 
 ### An example attack
 
-A malicious user can develop an attack intended to allow the malicious user access to a user's credentials or sensitive information. To begin the attack, the malicious user convinces the user to click a link to your site's login page with a `returnUrl` querystring value added to the URL. For example, consider an app at `contoso.com` that includes a login page at `http://contoso.com/Account/LogOn?returnUrl=/Home/About`. The attack follows these steps:
+A malicious user can develop an attack intended to allow the malicious user access to a user's credentials or sensitive information. To begin the attack, the malicious user convinces the user to click a link to your site's login page with a `returnUrl` query string value added to the URL. For example, consider an app at `contoso.com` that includes a login page at `http://contoso.com/Account/LogOn?returnUrl=/Home/About`. The attack follows these steps:
 
 1. The user clicks a malicious link to `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (the second URL is "contoso**1**.com", not "contoso.com").
 2. The user logs in successfully.
@@ -35,7 +35,7 @@ In addition to login pages, some sites provide redirect pages or endpoints. Imag
 
 ## Protecting against open redirect attacks
 
-When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).
+When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the query string).
 
 ### LocalRedirect
 

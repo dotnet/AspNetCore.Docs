@@ -355,7 +355,7 @@ Register the event handler on one or more HTML elements. Access the data that wa
 }
 ```
 
-If the `@oncustomevent` attribute isn't recognized by [IntelliSense](/visualstudio/ide/using-intellisense), make sure that the component or the `_Imports.razor` file contains an `@using` statement for the namespace containing the `EventHandler` class.
+If the `@oncustomevent` attribute isn't recognized by [IntelliSense](/visualstudio/ide/using-intellisense), make sure that the component or the imports file (`_Imports.razor`) contains an `@using` statement for the namespace containing the `EventHandler` class.
 
 Whenever the custom event is fired on the DOM, the event handler is called with the data passed from the JavaScript.
 

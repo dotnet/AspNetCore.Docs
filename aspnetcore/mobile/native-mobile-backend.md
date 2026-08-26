@@ -162,8 +162,8 @@ The previous curl command includes the following components:
 
 * `-v`: Activates verbose mode, providing detailed information about the HTTP response and is useful for API testing and troubleshooting.
 * `-X GET`: Specifies the use of the HTTP `GET` method for the request. While curl can often infer the intended HTTP method, this option makes it explicit.
-* `'https://localhost:5001/api/todoitems/'`: This is the request’s target URL. In this instance, it’s a REST API endpoint.
-* `| jq`: This segment isn’t related to curl directly. The pipe `|` is a shell operator that takes the output from the command on its left and “pipes” it to the command on its right. `jq` is a command-line JSON processor. While not required, `jq` makes the returned JSON data easier to read.
+* `'https://localhost:5001/api/todoitems/'`: This is the request's target URL. In this instance, it's a REST API endpoint.
+* `| jq`: This segment isn't related to curl directly. The pipe `|` is a shell operator that takes the output from the command on its left and “pipes” it to the command on its right. `jq` is a command-line JSON processor. While not required, `jq` makes the returned JSON data easier to read.
 
 The `List` method returns a 200 OK response code and all of the Todo items, serialized as JSON:
 

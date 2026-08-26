@@ -64,7 +64,7 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
 Save the changes to the project file (`WinFormsBlazor.csproj`).
 
-Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
+Add an imports file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
 
 `_Imports.razor`:
 
@@ -72,7 +72,7 @@ Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:
 @using Microsoft.AspNetCore.Components.Web
 ```
 
-Save the `_Imports.razor` file.
+Save the imports file.
 
 Add a `wwwroot` folder to the project.
 

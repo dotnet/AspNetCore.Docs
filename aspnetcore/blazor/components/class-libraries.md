@@ -65,7 +65,7 @@ The following characteristics distinguish an RCL from an ASP.NET Core class libr
 
 :::moniker-end
 
-* An RCL references the [`Microsoft.AspNetCore.Components.Web` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) and usually relies on an Imports file (`_Imports.razor`) with an `@using` statement for the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace. The package provides web-specific infrastructure, HTML element abstractions, and event handling bindings required to run Blazor apps inside a web browser.
+* An RCL references the [`Microsoft.AspNetCore.Components.Web` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) and usually relies on an imports file (`_Imports.razor`) with an `@using` statement for the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace. The package provides web-specific infrastructure, HTML element abstractions, and event handling bindings required to run Blazor apps inside a web browser.
 
 ## Consume a Razor component from an RCL
 
@@ -74,7 +74,7 @@ To consume components from an RCL in another project, use either of the followin
 * Use the full component type name, which includes the RCL's namespace.
 * Individual components can be added by name without the RCL's namespace if Razor's [`@using`](xref:mvc/views/razor#using) directive declares the RCL's namespace. Use the following approaches:
   * Add the `@using` directive to individual components.
-  * Include the `@using` directive in the top-level `_Imports.razor` file to make the library's components available to an entire project. Add the directive to an `_Imports.razor` file at any level to apply the namespace to a single component or set of components within a folder. When an `_Imports.razor` file is used, individual components don't require an `@using` directive for the RCL's namespace.
+  * Include the `@using` directive in the top-level imports file (`_Imports.razor`) to make the library's components available to an entire project. Add the directive to an imports file at any level to apply the namespace to a single component or set of components within a folder. When an imports file is used, individual components don't require an `@using` directive for the RCL's namespace.
 
 In the following examples, `ComponentLibrary` is an RCL containing the `Component1` component. The `Component1` component is an example component automatically added to an RCL created from the RCL project template that isn't created to support pages and views.
 
@@ -98,7 +98,7 @@ In the app that consumes the RCL, reference the `Component1` component using its
 <ComponentLibrary.Component1 />
 ```
 
-Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace. The following `@using` directive can also appear in any `_Imports.razor` file in or above the current folder.
+Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace. The following `@using` directive can also appear in any imports file (`_Imports.razor`) in or above the current folder.
 
 `ConsumeComponent2.razor`:
 

@@ -27,7 +27,7 @@ Although the argument passed to <xref:Microsoft.AspNetCore.Components.Sections.S
 
 In the following example, the app's main layout component implements an increment counter button for the app's `Counter` component.
 
-If the namespace for sections isn't in the `_Imports.razor` file, add it:
+If the namespace for sections isn't in the imports file (`_Imports.razor`), add it:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Sections

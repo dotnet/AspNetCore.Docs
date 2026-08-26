@@ -506,7 +506,7 @@
 * Added feature: Add errorClass to invalid field's parent element, making it easy to style the label/field container or the label for the field.
 * Added feature: focusCleanup - If enabled, removes the errorClass from the invalid elements and hides all errors messages whenever the element is focused.
 * Added success option to show the a field was validated successfully
-* Fixed Opera select-issue (avoiding a attribute-collision)
+* Fixed Opera select-issue (avoiding an attribute-collision)
 * Fixed problems with focussing hidden elements in IE
 * Added feature to skip validation for submit buttons with class "cancel"
 * Fixed potential issues with Google Toolbar by preferring plugin option messages over title attribute
