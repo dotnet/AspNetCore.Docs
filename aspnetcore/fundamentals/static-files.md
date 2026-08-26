@@ -9,7 +9,7 @@ ms.date: 08/26/2026
 ms.reviewer: wpickett
 uid: fundamentals/static-files
 ---
-# Static files in ASP.NET Core
+# Serve static files in ASP.NET Core apps
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
