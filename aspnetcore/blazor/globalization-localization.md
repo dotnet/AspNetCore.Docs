@@ -1206,10 +1206,7 @@ await host.RunAsync();
 
 Add the following `CultureSelector` component to the `.Client` project in a `Shared` folder. If a `Shared` folder doesn't exist in the `.Client` project, create one to hold shared components. 
 
-The component adopts the following approaches to work for either SSR or CSR components:
-
-* The display name of each available culture in the dropdown list is provided by a dictionary because client-side globalization data includes localized text of culture display names that server-side globalization data provides. For example, server-side localization displays `English (United States)` when `en-US` is the culture and `Ingles ()` when a different culture is used. Because localization of the culture display names isn't available for Blazor WebAssembly globalization, the display name for United States English on the client for any loaded culture is just `en-US`. Using a custom dictionary permits the component to at least display full English culture names.
-* When the user changes the culture, JS interop sets the culture in local browser storage and a Minimal API endpoint updates the localization cookie with the culture. The Minimal API endpoint is added to the app later in the [Server project updates](#server-project-updates) section.
+When the user changes the culture, JS interop sets the culture in local browser storage and a Minimal API endpoint updates the localization cookie with the culture. The Minimal API endpoint is added to the app later in the [Server project updates](#server-project-updates) section.
 
 `Shared/CultureSelector.razor`:
 
@@ -1224,7 +1221,7 @@ The component adopts the following approaches to work for either SSR or CSR comp
         <select @bind="@selectedCulture" @bind:after="ApplySelectedCultureAsync">
             @foreach (var culture in supportedCultures)
             {
-                <option value="@culture">@cultureDict[culture.Name]</option>
+                <option value="@culture">@culture.DisplayName</option>
             }
         </select>
     </label>
@@ -1232,13 +1229,6 @@ The component adopts the following approaches to work for either SSR or CSR comp
 
 @code
 {
-    private Dictionary<string, string> cultureDict = 
-        new()
-        {
-            { "en-US", "English (United States)" },
-            { "es-CR", "Spanish (Costa Rica)" }
-        };
-
     private CultureInfo[] supportedCultures = 
         [ 
             new CultureInfo("en-US"), 

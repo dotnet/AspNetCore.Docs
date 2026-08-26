@@ -40,6 +40,8 @@ When developing web applications, treat all user-provided data as untrustworthy.
 
 ### LocalRedirect
 
+:::moniker range=">= aspnetcore-6.0"
+
 Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result in a Minimal API endpoint:
 
 ```csharp
@@ -50,6 +52,8 @@ app.MapGet("/SomeEndpoint", (string redirectUri) =>
     return Results.LocalRedirect(redirectUri);
 });
 ```
+
+:::moniker-end
 
 Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> helper method in MVC actions:
 
