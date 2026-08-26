@@ -607,7 +607,7 @@ For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/nat
 
 There's another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> factory method for building small apps that only contain necessary features: `WebApplication.CreateEmptyBuilder(WebApplicationOptions options)`. This `WebApplicationBuilder` is created with no built-in behavior. The app it builds contains only the services and middleware that are explicitly configured.
 
-Here’s an example of using this API to create a small web application:
+Here's an example of using this API to create a small web application:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
 
@@ -706,7 +706,7 @@ For more information about this feature and how to use .NET and gRPC to create a
 
 ### Performance improvements to named pipes transport
 
-We’ve improved named pipe connection performance. Kestrel’s named pipe transport now accepts connections in parallel, and reuses <xref:System.IO.Pipes.NamedPipeServerStream> instances.
+We've improved named pipe connection performance. Kestrel's named pipe transport now accepts connections in parallel, and reuses <xref:System.IO.Pipes.NamedPipeServerStream> instances.
 
 Time to create 100,000 connections:
 

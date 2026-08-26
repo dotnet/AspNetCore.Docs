@@ -289,7 +289,7 @@ The template:
 * Supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios with authenticated users. 
 * Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multi-factor authentication](xref:security/authentication/mfa) using a third-party app. Note that the Identity components themselves don't support interactivity.
 * Adds the Identity-related packages and dependencies.
-* References the Identity packages in `_Imports.razor`.
+* References the Identity packages in the imports file (`_Imports.razor`).
 * Creates a custom user Identity class (`ApplicationUser`).
 * Creates and registers an EF Core database context (`ApplicationDbContext`).
 * Configures routing for the built-in Identity endpoints.
@@ -699,7 +699,7 @@ Add the following:
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace to the app's `_Imports.razor` file.
+* The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace to the app's imports file (`_Imports.razor`).
 
 To handle authentication, use the built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service.
 
@@ -1321,7 +1321,7 @@ You can also supply different content for display if the user isn't authorized w
 }
 ```
 
-Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component controls the visibility of elements based on the user’s authorization status, it doesn't enforce security on the event handler itself. In the preceding example, the `HandleClick` method is only associated with a button visible to authorized users, but nothing prevents invoking this method from other places. To ensure method-level security, implement additional authorization logic within the handler itself or in the relevant API.
+Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component controls the visibility of elements based on the user's authorization status, it doesn't enforce security on the event handler itself. In the preceding example, the `HandleClick` method is only associated with a button visible to authorized users, but nothing prevents invoking this method from other places. To ensure method-level security, implement additional authorization logic within the handler itself or in the relevant API.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1648,7 +1648,7 @@ In the following example:
 * The `user.IsInRole("admin")` executes code for users in the 'Admin' role.
 * The `(await AuthorizationService.AuthorizeAsync(user, "content-editor")).Succeeded` executes code for users satisfying the 'content-editor' policy.
 
-A server-side Blazor app includes the appropriate namespaces when created from the project template. In a client-side Blazor app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
+A server-side Blazor app includes the appropriate namespaces when created from the project template. In a client-side Blazor app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's imports file (`_Imports.razor`):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization

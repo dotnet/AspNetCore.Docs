@@ -47,7 +47,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 * Classes for managing form elements, state, and validation.
 * Access to built-in :::no-loc text="Input*"::: components.
 
-A project created from the Blazor project template includes the namespace in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
+A project created from the Blazor project template includes the namespace in the app's imports file (`_Imports.razor`), which makes the namespace available to the app's Razor components.
 
 :::moniker range=">= aspnetcore-8.0"
 

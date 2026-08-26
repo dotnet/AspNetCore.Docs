@@ -150,7 +150,7 @@ The preceding code generates the following HTML:
 <a href="/Speaker/EvaluationsCurrent?speakerId=11&currentYear=true">Speaker Evaluations</a>
 ```
 
-The `asp-all-route-data` dictionary is flattened to produce a querystring meeting the requirements of the overloaded `Evaluations` action:
+The `asp-all-route-data` dictionary is flattened to produce a query string meeting the requirements of the overloaded `Evaluations` action:
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?range=26-30)]
 

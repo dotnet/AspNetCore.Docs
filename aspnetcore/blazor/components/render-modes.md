@@ -109,7 +109,7 @@ In the following example, interactive server-side rendering (interactive SSR) is
 ```
 
 > [!NOTE]
-> Blazor templates include a static `using` directive for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the app's `_Imports` file (`Components/_Imports.razor`) for shorter `@rendermode` syntax:
+> Blazor templates include a static `using` directive for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the app's imports file (`Components/_Imports.razor`) for shorter `@rendermode` syntax:
 >
 > ```razor
 > @using static Microsoft.AspNetCore.Components.Web.RenderMode
@@ -671,7 +671,7 @@ The approach described in this subsection is used by the Blazor Web App project 
 
 An area (folder) of the app contains the components that must adopt static SSR and only run on the server. The components in the folder share the same route path prefix. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder and share the root path prefix `/account`.
 
-The app also contains an `_Imports.razor` file automatically applied to static SSR components in the `Components` folder, which applies a custom layout.
+The app also contains an imports file (`_Imports.razor`) automatically applied to static SSR components in the `Components` folder, which applies a custom layout.
 
 `Components/Account/_Imports.razor`:
 
@@ -713,7 +713,7 @@ else
 ```
 
 > [!NOTE]
-> In the Blazor Web App project template for authentication scenarios, there's a second layout file (`ManageLayout.razor` in the `Components/Account/Shared` folder) for Identity components in the `Components/Account/Pages/Manage` folder. The `Manage` folder has its own `_Imports.razor` file to apply to the `ManageLayout` to components in the folder. In your own apps, using nested `_Imports.razor` files is a useful approach for applying custom layouts to groups of pages.
+> In the Blazor Web App project template for authentication scenarios, there's a second layout file (`ManageLayout.razor` in the `Components/Account/Shared` folder) for Identity components in the `Components/Account/Pages/Manage` folder. The `Manage` folder has its own imports file to apply to the `ManageLayout` to components in the folder. In your own apps, using nested imports files is a useful approach for applying custom layouts to groups of pages.
 
 In the `App` component, any request for a component in the `Account` folder applies a `null` render mode, which enforces static SSR. Other component requests receive a global application of the interactive SSR render mode (`InteractiveServer`).
 
@@ -742,7 +742,7 @@ In the `App` component, any request for a component in the `Account` folder appl
 
 In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the rest of the application should adopt global <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
 
-The components that must adopt static SSR in the `Account` folder aren't required to set the layout, which is applied via the `_Imports.razor` file. The components don't set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
+The components that must adopt static SSR in the `Account` folder aren't required to set the layout, which is applied via the imports file (`_Imports.razor`). The components don't set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
 
 ### Static SSR components spread out across the app
 
@@ -834,7 +834,7 @@ Normally, a component uses the following `@rendermode` directive to [disable pre
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 ```
 
-However, consider the following example that creates a shorthand interactive server-side render mode without prerendering via the app's `_Imports` file (`Components/_Imports.razor`):
+However, consider the following example that creates a shorthand interactive server-side render mode without prerendering via the app's imports file (`Components/_Imports.razor`):
 
 ```csharp
 public static IComponentRenderMode InteractiveServerWithoutPrerendering { get; } = 

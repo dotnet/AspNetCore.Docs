@@ -248,7 +248,7 @@ The Minimal API framework is optimized for receiving and returning JSON payloads
 * Imposes compatibility requirements for JSON and Native AOT.
 * Requires the use of the [`System.Text.Json` source generator](/dotnet/standard/serialization/system-text-json/source-generation).
 
-All types that are transmitted as part of the HTTP body or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
+All types that are transmitted as part of the HTTP body or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core's dependency injection:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-99":::
 

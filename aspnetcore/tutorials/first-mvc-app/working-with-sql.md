@@ -20,7 +20,7 @@ uid: tutorials/first-mvc-app/working-with-sql
 
 This part of the tutorial series focuses on working with a SQL database in your ASP.NET Core MVC application.
 
-You’ll learn how to:
+You'll learn how to:
 
 - Register and configure the Entity Framework Core database context for your ASP.NET Core MVC app.
 - Work with database connection strings for local development.

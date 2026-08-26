@@ -148,9 +148,9 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 The following examples demonstrate multiple file upload in a component. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.GetMultipleFiles%2A?displayProperty=nameWithType> allows reading multiple files. Specify the maximum number of files to prevent a malicious user from uploading a larger number of files than the app expects. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.File?displayProperty=nameWithType> allows reading the first and only file if the file upload doesn't support multiple files.
 
-<xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's `_Imports.razor` file. When the namespace is present in the `_Imports.razor` file, it provides API member access to the app's components.
+<xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's imports file (`_Imports.razor`). When the namespace is present in the imports file, it provides API member access to the app's components.
 
-Namespaces in the `_Imports.razor` file aren't applied to C# files (`.cs`). C# files require an explicit [`using`](/dotnet/csharp/language-reference/language-specification/namespaces#using-directives) directive at the top of the class file:
+Namespaces in the imports file aren't applied to C# files (`.cs`). C# files require an explicit [`using`](/dotnet/csharp/language-reference/language-specification/namespaces#using-directives) directive at the top of the class file:
 
 ```razor
 using Microsoft.AspNetCore.Components.Forms;
@@ -526,7 +526,7 @@ public class UploadResult
 ```
 
 > [!NOTE]
-> The preceding `UploadResult` class can be shared between client- and server-based projects. When client and server projects share the class, add an import to each project's `_Imports.razor` file for the shared project. For example:
+> The preceding `UploadResult` class can be shared between client- and server-based projects. When client and server projects share the class, add an import to each project's imports file (`_Imports.razor`) for the shared project. For example:
 >
 > ```razor
 > @using BlazorSample.Shared
