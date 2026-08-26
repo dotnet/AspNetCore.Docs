@@ -137,7 +137,7 @@ Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeat
 
 ## Create custom metrics
 
-You create metrics by using APIs in the <xref:System.Diagnostics.Metrics> namespace. For information on creating custom metrics, see [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric).
+You create metrics by using APIs in the <xref:System.Diagnostics.Metrics> namespace. For information, see [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric).
 
 ### Creating metrics in ASP.NET Core apps with `IMeterFactory`
 
