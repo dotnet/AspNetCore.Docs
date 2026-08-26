@@ -550,6 +550,7 @@ CSP violations are avoided because `Virtualize` components:
 
 * Render calculated spacer and placeholder heights as numeric values in `data-blazor-virtualize-reserved-height` attributes.
 * When required, render the trailing spacer's vertical offset as a numeric value in a `data-blazor-virtualize-loop-breaker-transform` attribute to hide the spacer.
+
 A JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) validates the attribute values and applies them via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) as pixel-based `height` and `transform` styles.
 
 :::moniker-end
