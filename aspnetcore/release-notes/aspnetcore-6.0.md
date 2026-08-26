@@ -60,12 +60,12 @@ Many changes were made to reduce allocations and improve performance across the 
 * Reduce allocations by removing logging delegates in generic types. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/issues/31340).
 * Faster GET access (about 50%) to commonly-used features such as  <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature>, <xref:Microsoft.AspNetCore.Http.Features.IRouteValuesFeature>, and <xref:Microsoft.AspNetCore.Http.Features.IEndpointFeature>. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31322).
 * Use single instance strings for known header names, even if they aren't in the preserved header block. Using single instance string helps prevent multiple duplicates of the same string in long lived connections, for example, in <xref:Microsoft.AspNetCore.WebSockets>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/31305).
-* Reuse [HttpProtocol CancellationTokenSource](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs#L401-L409) in Kestrel. Use the new [CancellationTokenSource.TryReset](xref:System.Threading.CancellationTokenSource.TryReset%2A) method on `CancellationTokenSource` to reuse tokens if they haven’t been canceled. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/48492) and this [video](https://www.youtube.com/watch?v=vNPybpatlUU&t=1h38m28s).
+* Reuse [HttpProtocol CancellationTokenSource](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs#L401-L409) in Kestrel. Use the new [CancellationTokenSource.TryReset](xref:System.Threading.CancellationTokenSource.TryReset%2A) method on `CancellationTokenSource` to reuse tokens if they haven't been canceled. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/48492) and this [video](https://www.youtube.com/watch?v=vNPybpatlUU&t=1h38m28s).
 * Implement and use an [AdaptiveCapacityDictionary](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Http/Http/src/Internal/RequestCookieCollection.cs#L24) in <xref:Microsoft.AspNetCore.Http> [RequestCookieCollection](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Internal/RequestCookieCollection.cs) for more efficient access to dictionaries. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31360).
 
 ### Reduced memory footprint for idle TLS connections
 
-For long running TLS connections where data is only occasionally sent back and forth, we’ve significantly reduced the memory footprint of ASP.NET Core apps in .NET 6. This should help improve the scalability of scenarios such as WebSocket servers. This was possible due to numerous improvements in <xref:System.IO.Pipelines>, <xref:System.Net.Security.SslStream>, and Kestrel. The following sections detail some of the improvements that have contributed to the reduced memory footprint:
+For long running TLS connections where data is only occasionally sent back and forth, we've significantly reduced the memory footprint of ASP.NET Core apps in .NET 6. This should help improve the scalability of scenarios such as WebSocket servers. This was possible due to numerous improvements in <xref:System.IO.Pipelines>, <xref:System.Net.Security.SslStream>, and Kestrel. The following sections detail some of the improvements that have contributed to the reduced memory footprint:
 
 #### Reduce the size of `System.IO.Pipelines.Pipe`
 
@@ -82,7 +82,7 @@ By shrinking the size of <xref:System.IO.Pipelines.Pipe?displayProperty=fullName
 
 #### Zero bytes reads with SslStream
 
-Bufferless reads are a technique employed in ASP.NET Core to avoid renting memory from the memory pool if there’s no data available on the socket. Prior to this change, our WebSocket server with 5000 idle connections required ~200 MB without TLS compared to ~800 MB with TLS. Some of these allocations (4k per connection) were from Kestrel having to hold on to an <xref:System.Buffers.ArrayPool%601> buffer while waiting for the reads on <xref:System.Net.Security.SslStream> to complete. Given that these connections were idle, none of reads completed and returned their buffers to the `ArrayPool`, forcing the `ArrayPool` to allocate more memory. The remaining allocations were in `SslStream` itself: 4k buffer for TLS handshakes and 32k buffer for normal reads. In .NET 6, when the user performs a zero byte read on `SslStream` and it has no data available, `SslStream` internally performs a zero-byte read on the underlying wrapped stream. In the best case (idle connection), these changes result in a savings of 40 Kb per connection while still allowing the consumer (Kestrel) to be notified when data is available without holding on to any unused buffers.
+Bufferless reads are a technique employed in ASP.NET Core to avoid renting memory from the memory pool if there's no data available on the socket. Prior to this change, our WebSocket server with 5000 idle connections required ~200 MB without TLS compared to ~800 MB with TLS. Some of these allocations (4k per connection) were from Kestrel having to hold on to an <xref:System.Buffers.ArrayPool%601> buffer while waiting for the reads on <xref:System.Net.Security.SslStream> to complete. Given that these connections were idle, none of reads completed and returned their buffers to the `ArrayPool`, forcing the `ArrayPool` to allocate more memory. The remaining allocations were in `SslStream` itself: 4k buffer for TLS handshakes and 32k buffer for normal reads. In .NET 6, when the user performs a zero byte read on `SslStream` and it has no data available, `SslStream` internally performs a zero-byte read on the underlying wrapped stream. In the best case (idle connection), these changes result in a savings of 40 Kb per connection while still allowing the consumer (Kestrel) to be notified when data is available without holding on to any unused buffers.
 
 #### Zero byte reads with PipeReader
 
@@ -127,7 +127,7 @@ Consider a controller that creates and uses a <xref:System.Text.Json.Utf8JsonWri
 
 ### Vcpkg port for SignalR C++ client
 
-[Vcpkg](https://github.com/microsoft/vcpkg) is a cross-platform command-line package manager for C and C++ libraries. We’ve recently added a port to `vcpkg` to add `CMake` native support for the SignalR C++ client. `vcpkg` also works with MSBuild.
+[Vcpkg](https://github.com/microsoft/vcpkg) is a cross-platform command-line package manager for C and C++ libraries. We've recently added a port to `vcpkg` to add `CMake` native support for the SignalR C++ client. `vcpkg` also works with MSBuild.
 
 The SignalR client can be added to a CMake project with the following snippet when the vcpkg is included in the toolchain file:
 
@@ -520,7 +520,7 @@ The resulting logs now resemble the sample output show below:
 
 The IIS server previously only buffered 64 KiB of unconsumed request bodies. The 64 KiB buffering resulted in reads being constrained to that maximum size, which impacts the performance with large incoming bodies such as uploads. In .NET 6 , the default buffer size changes from 64 KiB to 1 MiB which should improve throughput for large uploads. In our tests, a 700 MiB upload that used to take 9 seconds now only takes 2.5 seconds.
 
-The downside of a larger buffer size is an increased per-request memory consumption when the app isn’t quickly reading from the request body. So, in addition to changing the default buffer size, the buffer size configurable, allowing apps to configure the buffer size based on workload.
+The downside of a larger buffer size is an increased per-request memory consumption when the app isn't quickly reading from the request body. So, in addition to changing the default buffer size, the buffer size configurable, allowing apps to configure the buffer size based on workload.
 
 ### View Components Tag Helpers
 
@@ -671,7 +671,7 @@ For more information, see [StackExchange.Redis Profiling](https://stackexchange.
 
 ### Shadow copying in IIS
 
-An experimental feature has been added to the <xref:host-and-deploy/aspnet-core-module> to add support for [shadow copying application assemblies](/dotnet/framework/app-domains/shadow-copy-assemblies). Currently .NET locks application binaries when running on Windows making it impossible to replace binaries when the app is running. While our recommendation remains to use an [app offline file](xref:host-and-deploy/iis/app-offline), we recognize there are certain scenarios (for example FTP deployments) where it isn’t possible to do so.
+An experimental feature has been added to the <xref:host-and-deploy/aspnet-core-module> to add support for [shadow copying application assemblies](/dotnet/framework/app-domains/shadow-copy-assemblies). Currently .NET locks application binaries when running on Windows making it impossible to replace binaries when the app is running. While our recommendation remains to use an [app offline file](xref:host-and-deploy/iis/app-offline), we recognize there are certain scenarios (for example FTP deployments) where it isn't possible to do so.
 
 In such scenarios, enable shadow copying by customizing the ASP.NET Core module handler settings. In most cases, ASP.NET Core apps do not have a `web.config` checked into source control that you can modify. In ASP.NET Core, `web.config` is ordinarily generated by the SDK. The following sample `web.config` can be used to get started:
 

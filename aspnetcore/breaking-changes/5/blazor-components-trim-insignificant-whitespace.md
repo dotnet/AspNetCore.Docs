@@ -66,8 +66,8 @@ A goal for Blazor in ASP.NET Core 5.0 is to improve the performance of rendering
 
 In most cases, the visual layout of the rendered component is unaffected. However, the whitespace removal might affect the rendered output when using a CSS rule like `white-space: pre`. To disable this performance optimization and preserve the whitespace, take one of the following actions:
 
-* Add the `@preservewhitespace true` directive at the top of the *.razor* file to apply the preference to a specific component.
-* Add the `@preservewhitespace true` directive inside an *_Imports.razor* file to apply the preference to an entire subdirectory or the entire project.
+* Add the `@preservewhitespace true` directive at the top of the `.razor` file to apply the preference to a specific component.
+* Add the `@preservewhitespace true` directive inside an imports file (`_Imports.razor`) to apply the preference to an entire subdirectory or the entire project.
 
 In most cases, no action is required, as applications will typically continue to behave normally (but faster). If the whitespace stripping causes any problems for a particular component, use `@preservewhitespace true` in that component to disable this optimization.
 

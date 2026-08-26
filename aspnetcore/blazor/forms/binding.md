@@ -124,7 +124,7 @@ Binding supports:
 
 You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemberAttribute) and [`[IgnoreDataMember]`](xref:System.Runtime.Serialization.IgnoreDataMemberAttribute) attributes to customize model binding. Use these attributes to rename properties, ignore properties, and mark properties as required.
 
-When binding a type with constructor parameters, if a constructor parameter matches a property by name, the constructor parameter takes precedence. The mapper uses the property’s explicit `DataMember.Name`, if present, as the form field name, but otherwise ignores the property’s mapping attributes. Constructor parameters are always required.
+When binding a type with constructor parameters, if a constructor parameter matches a property by name, the constructor parameter takes precedence. The mapper uses the property's explicit `DataMember.Name`, if present, as the form field name, but otherwise ignores the property's mapping attributes. Constructor parameters are always required.
 
 ## Additional binding options
 

@@ -190,7 +190,7 @@ The static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) class r
 
 When multiple `IResult` return types are needed, returning [`Results<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) is preferred over returning `IResult`. Returning `Results<TResult1, TResultN>` is preferred because generic union types automatically retain the endpoint metadata.
 
-The `Results<TResult1, TResultN>` union types implement implicit cast operators so that the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` results in a compilation error.
+The `Results<TResult1, TResultN>` union types implement implicit cast operators so that the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<>` results in a compilation error.
 
 Consider the following code:
 

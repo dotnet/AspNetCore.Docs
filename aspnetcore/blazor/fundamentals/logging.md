@@ -31,7 +31,7 @@ At default log levels and without configuring additional logging providers:
 
 :::moniker range=">= aspnetcore-6.0"
 
-When the app is configured in the project file to use implicit namespaces (`<ImplicitUsings>enable</ImplicitUsings>`), a `using` directive for <xref:Microsoft.Extensions.Logging> or any API in the <xref:Microsoft.Extensions.Logging.LoggerExtensions> class isn't required to support API [Visual Studio IntelliSense](/visualstudio/ide/using-intellisense) completions or building apps. If implicit namespaces aren't enabled, Razor components must explicitly define [`@using` directives](xref:mvc/views/razor#using) for logging namespaces that aren't imported via the `_Imports.razor` file.
+When the app is configured in the project file to use implicit namespaces (`<ImplicitUsings>enable</ImplicitUsings>`), a `using` directive for <xref:Microsoft.Extensions.Logging> or any API in the <xref:Microsoft.Extensions.Logging.LoggerExtensions> class isn't required to support API [Visual Studio IntelliSense](/visualstudio/ide/using-intellisense) completions or building apps. If implicit namespaces aren't enabled, Razor components must explicitly define [`@using` directives](xref:mvc/views/razor#using) for logging namespaces that aren't imported via the imports file (`_Imports.razor`).
 
 :::moniker-end
 
