@@ -81,6 +81,6 @@ Summarize the breaking change.
 - Add the new doc to the [TOC file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/toc.yml).
 - Add an entry to the index file (for example, https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/breaking-changes/11/overview.md for .NET 11 breaking changes).
 - Create a pull request:
-  - In the description, include: `Fixes #<issue-number>` (replace with the correct number).
+  - In the description, **NEVER** include `Fixes #<issue-number>`.
   - Request review on the pull request from the person who opened the issue.
 - Also check the relevant API docs, if applicable, and update them in the https://github.com/dotnet/dotnet-api-docs repo to reflect the breaking change.
