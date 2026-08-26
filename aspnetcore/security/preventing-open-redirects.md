@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: ardalis
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
 ms.author: tdykstra
-ms.date: 08/25/2026
+ms.date: 08/26/2026
 uid: security/preventing-open-redirects
 ---
 # Prevent open redirect attacks in ASP.NET Core
@@ -36,7 +36,7 @@ In addition to login pages, some sites provide redirect pages or endpoints. Imag
 
 ## Protecting against open redirect attacks
 
-When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL, ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).
+When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).
 
 ### LocalRedirect
 

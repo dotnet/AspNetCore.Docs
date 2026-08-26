@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to render globalized and localized content to users in different cultures and languages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/25/2026
+ms.date: 08/26/2026
 uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
@@ -277,6 +277,8 @@ Optionally, add a menu item to the navigation in the `NavMenu` component (`NavMe
 
 ## Dynamically set the culture from the `Accept-Language` header
 
+*This section applies to server-side and client-side Blazor apps.*
+
 Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
 The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Costa Rican Spanish with a preference for United States English or English:
@@ -371,6 +373,18 @@ When the culture is Costa Rican Spanish (`es-CR`), the rendered component uses d
 
 ## Statically set the client-side culture
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section applies to Blazor WebAssembly apps and Blazor Web App components that adopt the Interactive WebAssembly render mode.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+*This section applies to Blazor WebAssembly apps.*
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-5.0"
 
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
@@ -391,7 +405,7 @@ The Intermediate Language (IL) Linker configuration for client-side rendering st
 
 The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` Blazor start option. The following example configures the app to launch using the United States English (`en-US`) culture.
 
-Prevent Blazor autostart by adding `autostart="false"` to [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script):
+Prevent Blazor autostart by adding `autostart="false"` to the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script):
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -399,7 +413,7 @@ Prevent Blazor autostart by adding `autostart="false"` to [Blazor's `<script>` t
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
-Add the following `<script>` block after [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) and before the closing `</body>` tag:
+Add the following `<script>` block after the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) and before the closing `</body>` tag:
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
@@ -467,6 +481,18 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Statically set the server-side culture
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section applies to Blazor Web App components that adopt the Interactive Server render mode and Blazor Server apps.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+*This section applies to Blazor Server apps.*
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
@@ -529,6 +555,18 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Dynamically set the client-side culture by user preference
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section applies to Blazor WebAssembly apps and Blazor Web App components that adopt the Interactive WebAssembly render mode.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+*This section applies to Blazor WebAssembly apps.*
+
+:::moniker-end
+
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
 
 Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
@@ -549,7 +587,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the pr
 
 The app's culture for client-side rendering is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
-Provide JS functions after [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) to get and set the user's culture selection with browser local storage:
+Provide JS functions after the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) to get and set the user's culture selection with browser local storage:
 
 ```html
 <script>
@@ -721,12 +759,10 @@ The following `CultureSelector` component shows how to perform the following act
 > [!NOTE]
 > For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
 
-Inside the closing tag of the `</main>` element in the `MainLayout` component (`MainLayout.razor`), add the `CultureSelector` component:
+In the header markup of the `MainLayout` component (`MainLayout.razor`), add the `CultureSelector` component:
 
 ```razor
-<article class="bottom-row px-4">
-    <CultureSelector />
-</article>
+<CultureSelector />
 ```
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how the preceding example works.
@@ -794,7 +830,7 @@ The following namespaces are required for the `App` component:
 * <xref:System.Globalization?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName>
 
-Add the following to the top of the `App` component file (`Components/App.razor`):
+Add the <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName> namespaces to the top of the `App` component file (`Components/App.razor`):
 
 ```razor
 @using System.Globalization
@@ -829,7 +865,7 @@ Modifications to the `Pages/_Host.cshtml` file require the following namespaces:
 * <xref:System.Globalization?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName>
 
-Add the following to the file:
+Add the following Razor markup to the file:
 
 ```cshtml
 @using System.Globalization
@@ -858,7 +894,7 @@ At the top of the `Program` file, add the following `using` statement for the re
 using Microsoft.AspNetCore.Localization;
 ```
 
-In the request processing pipeline of the app's `Program` file:
+In the request processing pipeline of the app's `Program` file after the call to <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>:
 
 ```csharp
 app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
@@ -1082,7 +1118,7 @@ The preceding example assumes that the app adopts ***global*** interactivity by 
 <Routes @rendermode="InteractiveServer" />
 ```
 
-If the app adopts ***per-page/component*** interactivity, make the following changes:
+If the app adopts ***per-page/component*** interactivity and only server-side components provide culture selection UI, make the following changes:
 
 * Add the Interactive Server render mode to the top of the `CultureExample1` component file (`Components/Pages/CultureExample1.razor`):
 
@@ -1417,12 +1453,7 @@ app.UseRequestLocalization(localizationOptions);
 
 The following example shows how to set the current culture in a cookie that can be read by the localization middleware.
 
-The following namespaces are required for the `App` component:
-
-* <xref:System.Globalization?displayProperty=fullName>
-* <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName>
-
-Add the following to the top of the `App` component file (`Components/App.razor`):
+Add the <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName> namespaces to the top of the `App` component (`Components/App.razor`):
 
 ```razor
 @using System.Globalization
@@ -1431,7 +1462,7 @@ Add the following to the top of the `App` component file (`Components/App.razor`
 
 The app's culture for client-side rendering is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage for CSR components.
 
-After the [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script), provide JS functions to get and set the user's culture selection with browser local storage:
+After the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script), provide JS functions to get and set the user's culture selection with browser local storage:
 
 ```html
 <script>
@@ -1472,7 +1503,7 @@ At the top of the `Program` file, add the following `using` statement for the re
 using Microsoft.AspNetCore.Localization;
 ```
 
-In the request processing pipeline of the app's `Program` file:
+In the request processing pipeline of the app's `Program` file after the call to <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>:
 
 ```csharp
 app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
