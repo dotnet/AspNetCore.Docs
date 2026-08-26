@@ -95,7 +95,7 @@ The choice depends on which browser storage location you wish to use. In the fol
 
 :::moniker-end
 
-The `@using` directive can be placed in the app's `_Imports.razor` file instead of in the component. Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.
+The `@using` directive can be placed in the app's imports file (`_Imports.razor`) instead of in the component. Use of the imports file makes the namespace available to larger segments of the app or the whole app.
 
 To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 

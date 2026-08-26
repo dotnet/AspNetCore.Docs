@@ -354,7 +354,7 @@ The default layout (`MainLayout` component) is specified in the `Routes` compone
 <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
 ```
 
-Individual components are free to set their own non-default layout, and a layout can be applied to whole folder of components via an `_Imports.razor` file in the same folder. These features are covered in detail in the Blazor documentation.
+Individual components are free to set their own non-default layout, and a layout can be applied to whole folder of components via an imports file (`_Imports.razor`) in the same folder. These features are covered in detail in the Blazor documentation.
 
 ## Create, Read, Update, Delete (CRUD) components
 

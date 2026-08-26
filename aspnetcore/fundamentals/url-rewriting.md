@@ -375,7 +375,7 @@ Try:
 
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
 | ---- | ------------------------------- | -------------------------------------- |
-| Rewrite path into querystring | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
+| Rewrite path into query string | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Strip trailing slash | `^path2/(.*)/$`<br>`/path2/xyz/` | `$1`<br>`/path2/xyz` |
 | Enforce trailing slash | `^path3/(.*[^/])$`<br>`/path3/xyz` | `$1/`<br>`/path3/xyz/` |
 | Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or <br> `^(?!.*\.axd$)(.*)$`<br>Yes: `/path4/resource.htm`<br>No: `/path4/resource.axd` | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
@@ -735,7 +735,7 @@ Original Request: `/image.jpg`
 
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
 | ---- | ------------------------------- | -------------------------------------- |
-| Rewrite path into querystring | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
+| Rewrite path into query string | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Strip trailing slash | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |
 | Enforce trailing slash | `(.*[^/])$`<br>`/path` | `$1/`<br>`/path/` |
 | Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or `^(?!.*\.axd$)(.*)$`<br>Yes: `/resource.htm`<br>No: `/resource.axd` | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
@@ -1089,7 +1089,7 @@ Original Request: `/image.jpg`
 
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
 | ---- | ------------------------------- | -------------------------------------- |
-| Rewrite path into querystring | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
+| Rewrite path into query string | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Strip trailing slash | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |
 | Enforce trailing slash | `(.*[^/])$`<br>`/path` | `$1/`<br>`/path/` |
 | Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or `^(?!.*\.axd$)(.*)$`<br>Yes: `/resource.htm`<br>No: `/resource.axd` | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |

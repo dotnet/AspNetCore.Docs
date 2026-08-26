@@ -373,7 +373,7 @@ Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache en
 
 ## Background cache update
 
-Use a [background service](xref:fundamentals/host/hosted-services) such as <xref:Microsoft.Extensions.Hosting.IHostedService> to update the cache. The background service can recompute the entries and then assign them to the cache only when they’re ready.
+Use a [background service](xref:fundamentals/host/hosted-services) such as <xref:Microsoft.Extensions.Hosting.IHostedService> to update the cache. The background service can recompute the entries and then assign them to the cache only when they're ready.
 
 ## Additional resources
 

@@ -724,7 +724,7 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
-If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the `_Imports.razor` file. In the following example, the project's namespace is `BlazorSample.Client`:
+If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the imports file (`_Imports.razor`). In the following example, the project's namespace is `BlazorSample.Client`:
 
 ```razor
 @using BlazorSample.Client.Layout
@@ -829,7 +829,7 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
-If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the `_Imports.razor` file. In the following example, the project's namespace is `BlazorSample.Client`:
+If you didn't already have a `Layout` folder in the `.Client` project, add the namespace for the `Layout` folder to the imports file (`_Imports.razor`). In the following example, the project's namespace is `BlazorSample.Client`:
 
 ```razor
 @using BlazorSample.Client.Layout

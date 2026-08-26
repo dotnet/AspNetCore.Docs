@@ -1795,6 +1795,18 @@ items:
         uid: diagnostics/asp0027
       - name: ASP0028
         uid: diagnostics/asp0028
+      - name: ASP0033
+        uid: diagnostics/asp0033
+      - name: ASP0034
+        uid: diagnostics/asp0034
+      - name: ASP0035
+        uid: diagnostics/asp0035
+      - name: ASP0036
+        uid: diagnostics/asp0036
+      - name: ASP0037
+        uid: diagnostics/asp0037
+      - name: ASP0038
+        uid: diagnostics/asp0038
       - name: BL0001
         uid: diagnostics/bl0001
       - name: BL0002
