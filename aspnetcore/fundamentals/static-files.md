@@ -1118,7 +1118,7 @@ app.UseDirectoryBrowser(new DirectoryBrowserOptions
 
 For more information, see [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
-## Nonstandard content types
+## Non-standard content types
 
 The static file middleware recognizes almost 400 known file content types. If the user requests a file with an unknown file type, the static file middleware passes the request to the next middleware in the pipeline. If no middleware handles the request, the server returns a *404 Not Found* response. If directory browsing is enabled, the server displays a link to the file in a directory listing.
 
