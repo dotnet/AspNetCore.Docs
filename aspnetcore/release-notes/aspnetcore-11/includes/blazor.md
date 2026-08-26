@@ -177,8 +177,8 @@ For more information, see the following resources:
 
   Now, CSP violations are avoided because `Virtualize` components:
 
-  * Render CSS styles in a `data-blazor-style` attribute instead of a `style` attribute.
-  * Use a JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) to read the attribute's value and apply each declaration via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model): `element.style.setProperty(name, value)`.
+  * Render calculated spacer and placeholder heights as numeric values in `data-blazor-virtualize-reserved-height` attributes.
+  * When required, render the trailing spacer's vertical offset as a numeric value in a `data-blazor-virtualize-loop-breaker-transform` attribute to hide the spacer.
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
