@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/30/2026
+ms.date: 08/26/2026
 ms.reviewer: wpickett
 uid: fundamentals/static-files
 ---
@@ -438,6 +438,31 @@ Because `MapStaticAssets` only serves assets listed in the manifest, files that 
 * Excluded from the manifest with the `StaticWebAssetEndpointExclusionPattern` MSBuild property (see the [Large collection of assets](#large-collection-of-assets) section).
 
 To serve files that aren't in the manifest, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, which serves files directly from the web root at runtime. This is also why serving [default documents](#serve-default-documents) with `MapStaticAssets` requires a call to `UseStaticFiles`.
+
+## Integrate build-generated files into static web assets
+
+Build tools, such as TypeScript compilers and JavaScript bundlers, often produce files during the build. To serve these generated files with the fingerprinting, compression, and caching that <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> provides, the files must be discovered as static web assets during the build. Generated files are usually kept outside of the [web root](xref:fundamentals/index#web-root) (`wwwroot`) and excluded from source control, so they aren't discovered as static web assets by default. Only files present in `wwwroot` when static web assets are resolved during the build are added to the [static assets manifest](#static-assets-manifest) and served by `MapStaticAssets`.
+
+To include build-generated files as static web assets, use either of the following approaches.
+
+### Link generated files into the web root
+
+Add a [`<Content>` item](/visualstudio/msbuild/common-msbuild-project-items#content) with a `Link` that places each generated file under `wwwroot`. A file that's linked into `wwwroot` is discovered by the static web assets pipeline and served by `MapStaticAssets` with fingerprinting, compression, and caching, even though the source file is stored outside of `wwwroot`.
+
+In the following example, a build step generates `main.js` in a `generated` folder, and the `<Content>` item links the file into `wwwroot`:
+
+```xml
+<ItemGroup>
+  <Content Include="generated\main.js" Link="wwwroot\main.js"
+    CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
+The generated file must exist when static web assets are resolved during the build. If a build step generates the file, run that step before the static web assets are resolved.
+
+### Use a JavaScript project for complex build pipelines
+
+For a complex JavaScript or TypeScript client build, use a separate JavaScript project that builds the client assets with the [JavaScript project system](/visualstudio/javascript/javascript-project-system-msbuild-reference) (the `Microsoft.VisualStudio.JavaScript.Sdk` MSBuild SDK and an `.esproj` project file). Reference the JavaScript project from the ASP.NET Core app so that its output is consumed as static web assets. For an example, see the [`Microsoft.FluentUI.AspNetCore.Components.Assets.esproj` project file (`microsoft/fluentui-blazor` GitHub repository)](https://github.com/microsoft/fluentui-blazor/blob/dev/src/Core.Assets/Microsoft.FluentUI.AspNetCore.Components.Assets.esproj).
 
 :::moniker-end
 
