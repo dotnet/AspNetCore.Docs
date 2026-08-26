@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
-ms.date: 08/18/2026
+ms.date: 08/26/2026
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -548,8 +548,9 @@ In the preceding example, the document root is used as the scroll container, so 
 
 CSP violations are avoided because `Virtualize` components:
 
-* Render CSS styles in a `data-blazor-style` attribute instead of a `style` attribute.
-* Use a JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) to read the attribute's value and apply each declaration via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model): `element.style.setProperty(name, value)`.
+* Render calculated spacer and placeholder heights as numeric values in `data-blazor-virtualize-reserved-height` attributes.
+* When required, render the trailing spacer's vertical offset as a numeric value in a `data-blazor-virtualize-loop-breaker-transform` attribute to hide the spacer.
+A JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) validates the attribute values and applies them via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) as pixel-based `height` and `transform` styles.
 
 :::moniker-end
 
