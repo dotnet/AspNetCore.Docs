@@ -1,5 +1,6 @@
 ---
 title: Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
+ai-usage: ai-assisted
 author: tdykstra
 description: Part 6 of Razor Pages and Entity Framework tutorial series.
 ms.author: tdykstra
@@ -219,7 +220,7 @@ The following code executes when an instructor is selected, that is, `id != null
 
 The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from the selected instructor's `Courses` navigation property.
 
-The `Where` method returns a collection. In this case, the filter select a single entity, so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `Course` navigation property.
+The `Where` method returns a collection. In this case, the filter selects a single entity, so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `Course` navigation property.
 
 The <xref:System.Linq.Enumerable.Single%2A> method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is <xref:System.Linq.Enumerable.SingleOrDefault%2A>, which returns a default value if the collection is empty. For this query, `null` in the default returned.
 
