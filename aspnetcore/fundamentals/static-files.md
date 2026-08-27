@@ -458,7 +458,7 @@ In the following example, a build step generates `main.js` in a `generated` fold
 </ItemGroup>
 ```
 
-The generated file must exist when the build process resolves static web assets. If a build step generates the file, run that step before the build process resolves static web assets.
+The generated file must exist when the build process resolves static web assets.
 
 ### Use a JavaScript project for complex build pipelines
 
