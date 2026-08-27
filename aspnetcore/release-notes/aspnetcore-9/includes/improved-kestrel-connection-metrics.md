@@ -11,7 +11,7 @@ Here is a small sample of the `error.type` values:
 
 Previously, diagnosing Kestrel connection issues required a server to record detailed, low-level logging. However, logs can be expensive to generate and store, and it can be difficult to find the right information among the noise.
 
-Metrics are a much cheaper alternative that can be left on in a production environment with minimal impact. Collected metrics can [drive dashboards and alerts](/aspnet/core/metrics/overview#show-metrics-on-a-grafana-dashboard). Once a problem is identified at a high-level with metrics, further investigation using logging and other tooling can begin.
+Metrics are a much cheaper alternative that can be left on in a production environment with minimal impact. Collected metrics can [drive dashboards and alerts](xref:metrics/overview#show-metrics-on-a-grafana-dashboard). Once a problem is identified at a high-level with metrics, further investigation using logging and other tooling can begin.
 
 We expect improved connection metrics to be useful in many scenarios:
 
