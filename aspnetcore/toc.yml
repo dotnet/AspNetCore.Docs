@@ -1667,7 +1667,7 @@ items:
             - name: Diagnosing proxy issues
               displayName: yarp
               uid: fundamentals/servers/yarp/diagnosing-yarp-issues
-  - name: Built-in metrics
+  - name: Metrics
     items:
       - name: Overview
         uid: metrics/overview

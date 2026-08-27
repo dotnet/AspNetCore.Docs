@@ -19,4 +19,4 @@ We expect improved connection metrics to be useful in many scenarios:
 * Observing ongoing external attacks on Kestrel that impact performance and stability.
 * Recording attempted external attacks on Kestrel that Kestrel's built-in security hardening prevented.
 
-For more information, see [ASP.NET Core metrics](/aspnet/core/metrics/overview).
+For more information, see <xref:metrics/overview>.
