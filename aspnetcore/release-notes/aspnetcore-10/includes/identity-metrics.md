@@ -22,4 +22,4 @@ The new metrics are in the `Microsoft.AspNetCore.Identity` meter:
 * `aspnetcore.identity.sign_in.two_factor_clients_remembered`
 * `aspnetcore.identity.sign_in.two_factor_clients_forgotten`
 
-For more information about using metrics in ASP.NET Core, see <xref:log-mon/metrics/metrics>.
+For more information about using metrics in ASP.NET Core, see <xref:metrics/overview>.

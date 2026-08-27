@@ -673,8 +673,8 @@ Beyond rejection-specific signals, Kestrel emits a set of built-in metrics under
 
 These metrics integrate with OpenTelemetry, `dotnet-counters`, Prometheus exporters, and Azure Monitor. For full setup guidance, see:
 
-- [ASP.NET Core metrics overview](xref:log-mon/metrics/metrics)
-- [Kestrel built-in metrics reference](xref:log-mon/metrics/built-in-http#microsoftaspnetcoreserverkestrel)
+- [ASP.NET Core metrics overview](xref:metrics/overview)
+- [Kestrel built-in metrics reference](xref:metrics/http#microsoftaspnetcoreserverkestrel)
 
 ### TLS-over-HTTP detection
 
