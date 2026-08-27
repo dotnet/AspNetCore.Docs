@@ -5,6 +5,7 @@ author: tdykstra
 description: Part 6 of Razor Pages and Entity Framework tutorial series.
 ms.author: tdykstra
 ms.date: 09/28/2019
+ms.reviewer: tdykstra
 uid: data/ef-rp/read-related-data
 ---
 
@@ -26,9 +27,9 @@ The following illustrations show the completed pages for this tutorial:
 
 ## Eager, explicit, and lazy loading
 
-There are several ways that EF Core can load related data into the navigation properties of an entity:
+EF Core can load related data into the navigation properties of an entity in several ways:
 
-* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When an entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a large single query. Eager loading is specified with the <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include%2A> and <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ThenInclude%2A> methods.
+* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When you read an entity, EF Core retrieves its related data. This approach typically results in a single join query that retrieves all of the data you need. EF Core issues multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a large single query. Specify eager loading with the <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include%2A> and <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ThenInclude%2A> methods.
 
   ![Eager loading example](read-related-data/_static/eager-loading.png)
 
@@ -37,17 +38,17 @@ There are several ways that EF Core can load related data into the navigation pr
   * One query for the main query 
   * One query for each collection "edge" in the load tree.
 
-* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "Fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
+* Separate queries with `Load`: You can retrieve the data in separate queries, and EF Core "fixes up" the navigation properties. "Fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
 
-  **Note:** EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
+  **Note:** EF Core automatically fixes up navigation properties to any other entities that it previously loaded into the context instance. Even if you don't explicitly include the data for a navigation property, the property might still be populated if some or all of the related entities were previously loaded.
 
-* [Explicit loading](/ef/core/querying/related-data#explicit-loading). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the database. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
+* [Explicit loading](/ef/core/querying/related-data#explicit-loading). When you first read the entity, EF Core doesn't retrieve related data. You must write code to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the database. With explicit loading, you specify the navigation properties to load. Use the `Load` method to do explicit loading. For example:
 
   ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
-* [Lazy loading](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time. Lazy loading can hurt performance, for example when developers use [N+1 queries](https://www.bing.com/search?q=N%2B1+queries). N+1 queries load a parent and enumerate through children.
+* [Lazy loading](/ef/core/querying/related-data#lazy-loading). When you first read the entity, EF Core doesn't retrieve related data. The first time you access a navigation property, EF Core automatically retrieves the data required for that navigation property. EF Core sends a query to the database each time you access a navigation property for the first time. Lazy loading can hurt performance, for example when developers use [N+1 queries](https://www.bing.com/search?q=N%2B1+queries). N+1 queries load a parent and enumerate through children.
 
 ## Create Course pages
 
@@ -303,7 +304,7 @@ The following illustrations show the completed pages for this tutorial:
 
 ## Eager, explicit, and lazy loading
 
-There are several ways that EF Core can load related data into the navigation properties of an entity:
+EF Core can load related data into the navigation properties of an entity in several ways:
 
 * [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When an entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a giant single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
@@ -314,13 +315,13 @@ There are several ways that EF Core can load related data into the navigation pr
   * One query for the main query 
   * One query for each collection "edge" in the load tree.
 
-* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "Fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
+* Separate queries with `Load`: You can retrieve the data in separate queries, and EF Core "fixes up" the navigation properties. "Fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
 
-  **Note:** EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
+  **Note:** EF Core automatically fixes up navigation properties to any other entities that it previously loaded into the context instance. Even if you don't explicitly include the data for a navigation property, the property might still be populated if some or all of the related entities were previously loaded.
 
-* [Explicit loading](/ef/core/querying/related-data#explicit-loading). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the database. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
+* [Explicit loading](/ef/core/querying/related-data#explicit-loading). When you first read the entity, EF Core doesn't retrieve related data. You must write code to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the database. With explicit loading, you specify the navigation properties to load. Use the `Load` method to do explicit loading. For example:
 
   ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
@@ -616,7 +617,7 @@ The following illustrations show the completed pages for this tutorial:
 
 ## Eager, explicit, and lazy Loading of related data
 
-There are several ways that EF Core can load related data into the navigation properties of an entity:
+EF Core can load related data into the navigation properties of an entity in several ways:
 
 * [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than was the case for some queries in EF6 where there was a single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
