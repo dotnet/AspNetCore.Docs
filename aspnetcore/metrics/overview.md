@@ -20,7 +20,7 @@ Metrics are numerical measurements reported over time. Use them to monitor the h
 
 Report these metrics to a monitoring system at regular intervals. Set up dashboards to view metrics and create alerts to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
-The comprehensive list of all instruments together with their attributes are described in <xref:metrics/built-in>.
+The comprehensive list of all instruments together with their attributes is described in <xref:metrics/built-in>.
 
 ## Use metrics
 
