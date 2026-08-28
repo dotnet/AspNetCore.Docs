@@ -13,7 +13,7 @@ uid: blazor/hybrid/tutorials/index
 
 The following tutorials provide a basic working experience for building a Blazor Hybrid app:
 
-* <xref:blazor/hybrid/tutorials/maui>
+* [Build your first app](/dotnet/maui/get-started/first-app)
 
 :::moniker range=">= aspnetcore-8.0"
 

@@ -27,7 +27,7 @@ The sample:
 
 ## Prerequisites and preliminary steps
 
-For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>. We recommend using the MAUI Blazor Hybrid tutorial to set up your local system for MAUI development before using the guidance in this article and the sample app.
+For prerequisites and preliminary steps, see the [Build your first app](/dotnet/maui/get-started/first-app) tutorial. We recommend using the MAUI Blazor Hybrid tutorial to set up your local system for MAUI development before using the guidance in this article and the sample app.
 
 ## Sample app
 
