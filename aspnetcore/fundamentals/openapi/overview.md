@@ -6,7 +6,7 @@ description: Learn how to integrate OpenAPI in ASP.NET Core API apps. Discover f
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.date: 03/20/2026
+ms.date: 08/28/2026
 uid: fundamentals/openapi/overview
 ---
 # OpenAPI support in ASP.NET Core API apps
