@@ -217,6 +217,7 @@ In the preceding example:
 Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
 
 :::moniker-end
+
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
 
 1. The ASP.NET Core metric APIs record measurements from the example app.
