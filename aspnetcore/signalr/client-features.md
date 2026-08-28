@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR clients
 author: wadepickett
 description: Learn which features are supported by the various ASP.NET Core SignalR clients.
 ms.author: wpickett
-ms.date: 11/12/2019
+ms.date: 08/25/2026
 uid: signalr/client-features
 ---
 # ASP.NET Core SignalR clients
@@ -40,6 +40,7 @@ The table below shows the features and support for the clients that offer real-t
 | JSON Hub Protocol |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
 | MessagePack Hub Protocol |2.1.0|1.0.0|1.0.0|5.0.0|1.0.0-preview.1|
 | Client Results |7.0.0|7.0.0|7.0.0|7.0.0|1.0.0-preview.1|
+| [Authentication Refresh](xref:signalr/authn-and-authz#authentication-refresh) |11.0.0|11.0.0|11.0.0|❌|❌|
 
 Support for enabling additional client features is tracked in [our issue tracker](https://github.com/dotnet/AspNetCore/issues).
 
