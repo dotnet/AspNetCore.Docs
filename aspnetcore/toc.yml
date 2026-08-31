@@ -1671,6 +1671,7 @@ items:
   - name: Metrics
     items:
       - name: Overview
+        displayName: logging, monitoring
         uid: metrics/overview
       - name: Built-in metrics
         uid: metrics/built-in
