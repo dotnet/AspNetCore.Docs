@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core Blazor Hybrid routing and navigation
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to manage request routing and navigation in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 08/31/2026
 uid: blazor/hybrid/routing
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
@@ -169,7 +170,7 @@ The .NET MAUI Blazor hybrid project template isn't a [Shell-based app](/dotnet/m
 
 In the following example:
 
-* The namespace of the app is `MauiBlazor`, which matches the suggested project name of the <xref:blazor/hybrid/tutorials/maui> tutorial.
+* The namespace of the app is `MauiApp1`, which matches the suggested project name of the [Build your first app](/dotnet/maui/get-started/first-app) tutorial.
 * A <xref:Microsoft.Maui.Controls.ContentPage> is placed in a new folder added to the app named `Views`.
 
 In `App.xaml.cs`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.NavigationPage> by making the following change:
@@ -184,8 +185,8 @@ In `App.xaml.cs`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.Navig
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MauiBlazor"
-             x:Class="MauiBlazor.Views.NavigationExample"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.Views.NavigationExample"
              Title="Navigation Example"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <StackLayout>
@@ -205,7 +206,7 @@ In the following `NavigationExample` code file, the `CloseButton_Clicked` event 
 `Views/NavigationExample.xaml.cs`:
 
 ```csharp
-namespace MauiBlazor.Views;
+namespace MauiApp1.Views;
 
 public partial class NavigationExample : ContentPage
 {
@@ -223,7 +224,7 @@ public partial class NavigationExample : ContentPage
 
 In a Razor component:
 
-* Add the namespace for the app's content pages. In the following example, the namespace is `MauiBlazor.Views`.
+* Add the namespace for the app's content pages. In the following example, the namespace is `MauiApp1.Views`.
 * Add an HTML `button` element with an [`@onclick` event handler](xref:blazor/components/event-handling) to open the content page. The event handler method is named `OpenPage`.
 * In the event handler, call <xref:Microsoft.Maui.Controls.INavigation.PushAsync%2A> to push the <xref:Microsoft.Maui.Controls.ContentPage>, `NavigationExample`, onto the navigation stack.
 
@@ -233,7 +234,7 @@ The following example is based on the `Index` component in the .NET MAUI Blazor 
 
 ```razor
 @page "/"
-@using MauiBlazor.Views
+@using MauiApp1.Views
 
 <h1>Hello, world!</h1>
 
