@@ -1720,6 +1720,36 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/log-mon/metrics/metrics.md",
+            "redirect_url": "/aspnet/core/metrics/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/log-mon/metrics/built-in.md",
+            "redirect_url": "/aspnet/core/metrics/built-in",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/log-mon/metrics/built-in-components.md",
+            "redirect_url": "/aspnet/core/metrics/blazor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/log-mon/metrics/built-in-diagnostics.md",
+            "redirect_url": "/aspnet/core/metrics/diagnostics",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/log-mon/metrics/built-in-http.md",
+            "redirect_url": "/aspnet/core/metrics/http",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/log-mon/metrics/built-in-security.md",
+            "redirect_url": "/aspnet/core/metrics/security",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/blazor/hybrid/tutorials/maui.md",
             "redirect_url": "/dotnet/maui/get-started/first-app",
             "redirect_document_id": false

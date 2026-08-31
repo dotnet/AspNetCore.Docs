@@ -211,7 +211,7 @@ For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identi
 
 ASP.NET Core Identity metrics provide monitoring capabilities for user management and authentication processes. These metrics help you detect unusual sign-in patterns that might indicate security threats, track the performance of identity operations, and understand how users interact with authentication features, such as two-factor authentication. This observability is particularly valuable for apps with strict security requirements or those experiencing high authentication traffic.
 
-For complete details on available metrics and how to use them, see <xref:log-mon/metrics/metrics#aspnet-core-identity-metrics>.
+For complete details on available metrics and how to use them, see <xref:metrics/overview#aspnet-core-identity-metrics>.
 
 :::moniker-end
 

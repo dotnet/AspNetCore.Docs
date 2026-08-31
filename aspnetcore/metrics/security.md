@@ -7,13 +7,13 @@ monikerRange: '>= aspnetcore-10.0'
 ms.author: wpickett
 ms.date: 08/05/2026
 ms.topic: reference
-uid: log-mon/metrics/built-in-security
+uid: metrics/security
 ---
 # ASP.NET Core built-in authentication and authorization metrics
 
 This article describes the built-in authentication and authorization metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics cover authorization attempts and authentication operations. They're available in ASP.NET Core 10.0 or later.
 
-For an overview of all built-in metrics reference pages and how to read this reference, see <xref:log-mon/metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
+For an overview of all built-in metrics reference pages and how to read this reference, see <xref:metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:metrics/overview>.
 
 ## `Microsoft.AspNetCore.Authorization`
 
@@ -100,10 +100,10 @@ Attribute | Type | Description | Examples | Presence
 `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies` | `Conditionally Required` if the request did not end with an error.
 `error.type` | string | The full name of the exception type. | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error.
 
-## See also
+## Additional resources
 
-* <xref:log-mon/metrics/built-in>
-* <xref:log-mon/metrics/built-in-http>
-* <xref:log-mon/metrics/built-in-diagnostics>
-* <xref:log-mon/metrics/built-in-components>
-* <xref:log-mon/metrics/metrics>
+* <xref:metrics/built-in>
+* <xref:metrics/http>
+* <xref:metrics/diagnostics>
+* <xref:metrics/blazor>
+* <xref:metrics/overview>
