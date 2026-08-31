@@ -551,6 +551,7 @@ items:
             displayName: logging, monitoring
             uid: host-and-deploy/health-checks
           - name: Metrics
+            displayName: logging, monitoring
             uid: metrics/overview
       - name: HttpContext
         uid: fundamentals/use-httpcontext
