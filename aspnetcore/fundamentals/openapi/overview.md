@@ -6,7 +6,7 @@ description: Learn how to integrate OpenAPI in ASP.NET Core API apps. Discover f
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.date: 03/20/2026
+ms.date: 08/28/2026
 uid: fundamentals/openapi/overview
 ---
 # OpenAPI support in ASP.NET Core API apps
@@ -53,7 +53,7 @@ To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundam
 The [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server/) package supports generating OpenAPI documents at build time and serializing them.
 
 To use `Microsoft.Extensions.ApiDescription.Server`, add it as a PackageReference to a project file.
-Enable document generation at build time by setting the `OpenApiGenerateDocuments` property.
+Enable document generation at build time by setting the `OpenApiGenerateDocumentsOnBuild` property to `true`.
 By default, the generated OpenAPI document is saved to the `obj` directory, but you can customize
 the output directory by setting the `OpenApiDocumentsDirectory` property.
 

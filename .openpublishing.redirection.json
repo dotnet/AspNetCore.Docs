@@ -1748,6 +1748,11 @@
             "source_path": "aspnetcore/log-mon/metrics/built-in-security.md",
             "redirect_url": "/aspnet/core/metrics/security",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/hybrid/tutorials/maui.md",
+            "redirect_url": "/dotnet/maui/get-started/first-app",
+            "redirect_document_id": false
         }
     ]
 }

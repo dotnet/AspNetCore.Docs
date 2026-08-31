@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/29/2026
+ms.date: 08/25/2026
 uid: signalr/authn-and-authz
 ---
 
@@ -44,6 +44,16 @@ To enforce updated authorization on an active connection, take one of the follow
 
 * Close affected connections so that clients reconnect and reauthenticate. For bearer token authentication, the [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) option closes connections when the authentication token expires.
 * Perform authorization checks in hub methods against current data, such as the user's current roles or claims from a data store, instead of relying only on the cached principal.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+In .NET 11 and later, a client can refresh the credentials for an active connection without reconnecting. When the client presents an updated token, the server re-authenticates it and replaces the cached `Context.User` in place, so later hub method invocations authorize against the refreshed roles and claims. The refreshed principal must map to the same SignalR user, so a refresh updates roles and claims but doesn't change the connection's user identity or routing. For more information, see [Authentication refresh](#authentication-refresh).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ### Cookie authentication
 
@@ -103,6 +113,170 @@ When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostC
 Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> method):
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Authentication refresh
+
+A SignalR connection can outlive the access token that established it. When [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) is enabled, the server closes the connection after the token expires, and the client must reconnect to continue. Messages sent during the gap are missed, and group and user routing are disrupted until the client reconnects.
+
+Authentication refresh, available in .NET 11 and later, lets a client update the credentials for an active connection without reconnecting. The server re-authenticates the refresh request through the normal endpoint authorization pipeline and replaces the connection's <xref:System.Security.Claims.ClaimsPrincipal> in place, as long as the refreshed principal maps to the same SignalR user.
+
+#### Enable authentication refresh on the server
+
+Enable authentication refresh in the hub's `MapHub` options by setting `EnableAuthenticationRefresh` to `true`. Enable it together with `CloseOnAuthenticationExpiration` so that a connection whose token expires without being refreshed in time is closed, rather than left open with stale credentials:
+
+```csharp
+app.MapHub<ChatHub>("/chat", options =>
+{
+    options.CloseOnAuthenticationExpiration = true;
+    options.EnableAuthenticationRefresh = true;
+});
+```
+
+When authentication refresh is enabled and the authentication ticket has an expiration, the negotiate response reports the remaining token lifetime so the client can schedule refreshes.
+
+To inspect or reject a refresh, set the `OnAuthenticationRefresh` callback. It runs after the refresh request is authenticated but before the connection's user is replaced. Return `false` to reject the refresh, in which case the endpoint responds with an HTTP 403 status code and the connection keeps its current user. The callback is an additional check on top of the built-in verification that the refreshed principal maps to the same SignalR user. It can reject a refresh, but it can't approve one that fails the built-in check:
+
+```csharp
+app.MapHub<ChatHub>("/chat", options =>
+{
+    options.CloseOnAuthenticationExpiration = true;
+    options.EnableAuthenticationRefresh = true;
+    options.OnAuthenticationRefresh = context =>
+    {
+        if (!context.NewUser.HasClaim("tenant", "contoso"))
+        {
+            return Task.FromResult(false);
+        }
+
+        return Task.FromResult(true);
+    };
+});
+```
+
+The refreshed principal must map to the same SignalR user as the connection. If it maps to a different user ID, the refresh is rejected: the endpoint responds with an HTTP 403 status code, and the connection keeps its current user and stays connected. A refresh never changes the connection's `Context.UserIdentifier` or reroutes messages sent with `Clients.User`, even for a successful refresh. The routing identifier is fixed when the connection starts. To change it, reconnect the client.
+
+To bound how far a refresh can extend a connection's authentication expiration, set `MaximumAuthenticationExpiration`. The refreshed expiration is capped to at most this amount of time from the current time, even when the token reports a longer lifetime. This cap applies whenever authentication refresh is enabled, including when the token doesn't set an expiration of its own. In that case, the cap gives the connection a known expiration, so the negotiate response reports a token lifetime and the client can schedule automatic refreshes. The value must be greater than zero and doesn't apply to Windows authentication, which is never tracked or refreshed.
+
+#### Refresh authentication from the .NET client
+
+The .NET client refreshes credentials using the `AccessTokenProvider` configured on the connection. Each refresh calls `AccessTokenProvider` to fetch a fresh access token rather than reusing the token cached when the connection started.
+
+To refresh explicitly, call `RefreshAuthenticationAsync`, which returns the new token lifetime reported by the server:
+
+```csharp
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://example.com/chat", options =>
+    {
+        options.AccessTokenProvider = GetAccessTokenAsync;
+    })
+    .Build();
+
+await connection.StartAsync();
+
+TimeSpan? newLifetime = await connection.RefreshAuthenticationAsync();
+```
+
+To refresh automatically before the token expires, call `WithAuthenticationRefresh` and configure `AuthenticationRefreshOptions`:
+
+```csharp
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://example.com/chat", options =>
+    {
+        options.AccessTokenProvider = GetAccessTokenAsync;
+    })
+    .WithAuthenticationRefresh(options =>
+    {
+        options.RefreshBeforeExpiration = TimeSpan.FromMinutes(2);
+    })
+    .Build();
+```
+
+`AuthenticationRefreshOptions` provides the following settings:
+
+* `EnableAutoRefresh`: Enables automatic refresh before the token expires. Defaults to `true`. The client only schedules a refresh when the server reports a token lifetime. If the server doesn't report a lifetime, no automatic refresh is scheduled, and `RefreshAuthenticationAsync` can still be called manually.
+* `RefreshBeforeExpiration`: How far ahead of the reported expiration to refresh. Defaults to five minutes.
+
+To observe refreshes, handle the `AuthenticationRefreshed` and `AuthenticationRefreshFailed` events on the connection. Both automatic and manual refreshes raise these events:
+
+```csharp
+connection.AuthenticationRefreshed += context =>
+{
+    Console.WriteLine(
+        $"Authentication refreshed. New lifetime: {context.NewTokenLifetime}");
+    return Task.CompletedTask;
+};
+
+connection.AuthenticationRefreshFailed += context =>
+{
+    Console.WriteLine(
+        $"Authentication refresh failed: {context.Exception}");
+    return Task.CompletedTask;
+};
+```
+
+#### Refresh authentication from the JavaScript client
+
+The JavaScript client refreshes credentials using the `accessTokenFactory` configured on the connection. Each refresh calls `accessTokenFactory` to fetch a fresh access token.
+
+To refresh explicitly, call `refreshAuthentication`, which resolves with the new token lifetime in seconds reported by the server:
+
+```javascript
+const newLifetimeInSeconds = await connection.refreshAuthentication();
+```
+
+To refresh automatically before the token expires, call `withAuthenticationRefresh` and optionally configure `IAuthenticationRefreshOptions`. Handle refresh results with `onAuthenticationRefreshed` and `onAuthenticationRefreshFailed`:
+
+```javascript
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/chat", {
+        accessTokenFactory: () => getAccessToken()
+    })
+    .withAuthenticationRefresh({
+        refreshBeforeExpirationInMilliseconds: 120000
+    })
+    .build();
+
+connection.onAuthenticationRefreshed(context => {
+    console.log(
+        `Authentication refreshed. New lifetime: ${context.newTokenLifetimeInSeconds}`);
+});
+
+connection.onAuthenticationRefreshFailed(context => {
+    console.log(`Authentication refresh failed: ${context.error}`);
+});
+```
+
+`IAuthenticationRefreshOptions` provides the following settings:
+
+* `enableAutoRefresh`: Enables automatic refresh before the token expires. Defaults to `true`. As with the .NET client, automatic refresh is only scheduled when the server reports a token lifetime.
+* `refreshBeforeExpirationInMilliseconds`: How far ahead of the reported expiration to refresh, in milliseconds. Defaults to 300,000 (five minutes).
+
+#### React to a refresh in the hub
+
+Override `OnAuthenticationRefreshedAsync` in the hub to run code after the refreshed principal is applied to the connection. `Context.User` reflects the refreshed principal. As described earlier, `Context.UserIdentifier` and SignalR user routing don't change on a refresh:
+
+```csharp
+public class ChatHub : Hub
+{
+    public override Task OnAuthenticationRefreshedAsync()
+    {
+        return Clients.Caller.SendAsync(
+            "AuthenticationRefreshed", Context.UserIdentifier);
+    }
+}
+```
+
+A hub method that's already running keeps the `Context.User` it started with. Later invocations observe the refreshed `Context.User`. For more information about how SignalR caches the authenticated user, see [User and role changes during the connection lifetime](#user-and-role-changes-during-the-connection-lifetime).
+
+Authentication refresh requires a connection that negotiated protocol version 1 or later. Automatic refresh is scheduled only when the server reports a token lifetime, which typically comes from an authentication scheme that sets an expiration, such as bearer tokens. Windows authentication doesn't report an expiration and isn't tracked or refreshed by this feature.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ### Cookies versus bearer tokens
 
