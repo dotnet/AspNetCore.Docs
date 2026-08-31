@@ -1718,6 +1718,11 @@
             "source_path": "aspnetcore/validation/overview.md",
             "redirect_url": "/aspnet/core/fundamentals/validation",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/hybrid/tutorials/maui.md",
+            "redirect_url": "/dotnet/maui/get-started/first-app",
+            "redirect_document_id": false
         }
     ]
 }
