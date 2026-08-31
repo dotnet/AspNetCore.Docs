@@ -59,6 +59,33 @@ All include files go in:
 
 ## Content rules
 
+### Content fidelity — preserve information; do not condense
+
+The What's New article is a **faithful, cumulative** rendering of the source
+release notes. Reformat and de-duplicate, but do not summarize away information.
+
+* **Default to preserving all substantive content** from the source section:
+  every code example, every explanatory sentence, and the reasoning that
+  connects prose to code. Transfer them into the include file.
+* **Never drop one of a set of parallel examples.** If the source shows a
+  pattern more than once (for example, an attribute-based example *and* an
+  object-based example), keep **all** of them. Dropping one often removes the
+  context that makes the others understandable.
+* **Keep "why," not just "what."** If the source explains the rationale for a
+  code construct (for example, why a synchronous method throws), preserve that
+  explanation next to the code. A code sample must never be left in a state
+  where it looks contradictory or pointless without its original explanation.
+* **Self-containment check:** after writing each include, re-read it in
+  isolation. If any code sample would look counterintuitive or unexplained to a
+  reader who has not seen the source notes, restore the missing explanation or
+  example from the source.
+* **You MAY combine overlapping content across previews** so the cumulative
+  article doesn't repeat itself, but only remove text that is genuinely
+  redundant — never text that carries unique information or reasoning.
+* **When in doubt, keep it.** Prefer transferring the source wording over
+  rewriting it more tersely. Condensing is only acceptable when it removes
+  literal duplication.
+
 ### Heading level
 
 * Use `###` (H3) headings — never `#` or `##`. Include files are embedded inside
@@ -149,6 +176,11 @@ Before completing, verify:
 - [ ] Community contributor acknowledgments are preserved.
 - [ ] Breaking Change designations are preserved in headings.
 - [ ] No preview-specific language, such as a preview number, appears in include file content.
+- [ ] Every code example from the source section is present (none dropped).
+- [ ] All parallel/paired examples from the source are retained together.
+- [ ] The rationale ("why") for any non-obvious code construct is preserved next to the code.
+- [ ] Each include reads correctly in isolation — no code sample looks counterintuitive without the source.
+- [ ] Content removed relative to the source is limited to genuine cross-preview duplication.
 
 ---
 
