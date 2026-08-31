@@ -1,9 +1,10 @@
 ---
 title: What's new in ASP.NET Core in .NET 8
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: tdykstra
-ms.date: 07/29/2026
+ms.date: 08/31/2026
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
