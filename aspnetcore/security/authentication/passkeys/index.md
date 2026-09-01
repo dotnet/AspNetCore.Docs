@@ -5,7 +5,7 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/31/2026
+ms.date: 09/01/2026
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -597,18 +597,9 @@ After the authenticator creates the credential, the browser must send the creden
 :::moniker range=">= aspnetcore-11.0"
 
 ```javascript
-async function createCredential(signal) {
-  // Step 6: The credential is returned from navigator.credentials.create()
-  // and is serialized to JSON for submission to the server
-  const optionsResponse = 
-    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
-    {
-      method: 'POST',
-      signal,
-    });
-  const optionsJson = await optionsResponse.json();
-  const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
-  return await navigator.credentials.create({ publicKey: options, signal });
+async function createCredentialJson(signal) {
+  const credential = await createCredential(signal);
+  return JSON.stringify(credential);
 }
 ```
 
@@ -617,19 +608,9 @@ async function createCredential(signal) {
 :::moniker range="< aspnetcore-11.0"
 
 ```javascript
-async function createCredential(headers, signal) {
-  // Step 6: The credential is returned from navigator.credentials.create()
-  // and is serialized to JSON for submission to the server
-  const optionsResponse = 
-    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
-    {
-      method: 'POST',
-      headers,
-      signal,
-    });
-  const optionsJson = await optionsResponse.json();
-  const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
-  return await navigator.credentials.create({ publicKey: options, signal });
+async function createCredentialJson(headers, signal) {
+  const credential = await createCredential(headers, signal);
+  return JSON.stringify(credential);
 }
 ```
 
@@ -719,7 +700,7 @@ The browser requests authentication options from the server to begin the authent
 async function requestCredential(email, mediation, signal) {
   // Step 2: Request authentication options from the server
   const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
     {
       method: 'POST',
       signal,
@@ -738,7 +719,7 @@ async function requestCredential(email, mediation, signal) {
 async function requestCredential(email, mediation, headers, signal) {
   // Step 2: Request authentication options from the server
   const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
     {
       method: 'POST',
       headers,
@@ -783,7 +764,7 @@ The client-side JavaScript passes the authentication options to the WebAuthn API
 async function requestCredential(email, mediation, signal) {
   // Step 4: Parse the options and request an assertion from the authenticator
   const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
     {
       method: 'POST',
       signal,
@@ -802,7 +783,7 @@ async function requestCredential(email, mediation, signal) {
 async function requestCredential(email, mediation, headers, signal) {
   // Step 4: Parse the options and request an assertion from the authenticator
   const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
     {
       method: 'POST',
       headers,
@@ -829,18 +810,9 @@ After the authenticator creates the signed assertion, the browser serializes it 
 :::moniker range=">= aspnetcore-11.0"
 
 ```javascript
-async function requestCredential(email, mediation, signal) {
-  // Step 6: The assertion is returned from navigator.credentials.get()
-  // and is serialized to JSON for submission to the server
-  const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
-    {
-      method: 'POST',
-      signal,
-    });
-  const optionsJson = await optionsResponse.json();
-  const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
-  return await navigator.credentials.get({ publicKey: options, mediation, signal });
+async function requestCredentialJson(email, mediation, signal) {
+  const credential = await requestCredential(email, mediation, signal);
+  return JSON.stringify(credential);
 }
 ```
 
@@ -849,19 +821,9 @@ async function requestCredential(email, mediation, signal) {
 :::moniker range="< aspnetcore-11.0"
 
 ```javascript
-async function requestCredential(email, mediation, headers, signal) {
-  // Step 6: The assertion is returned from navigator.credentials.get()
-  // and is serialized to JSON for submission to the server
-  const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
-    {
-      method: 'POST',
-      headers,
-      signal,
-    });
-  const optionsJson = await optionsResponse.json();
-  const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
-  return await navigator.credentials.get({ publicKey: options, mediation, signal });
+async function requestCredentialJson(email, mediation, headers, signal) {
+  const credential = await requestCredential(email, mediation, headers, signal);
+  return JSON.stringify(credential);
 }
 ```
 

@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to implement passkeys authentication in ASP.NET Core Blazor Web Apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/31/2026
+ms.date: 09/01/2026
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
