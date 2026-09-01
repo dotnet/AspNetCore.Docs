@@ -5,7 +5,7 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/07/2026
+ms.date: 09/01/2026
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -107,6 +107,16 @@ For example:
 All passkey operations require HTTPS. The implementation stores authentication data in encrypted and signed cookies that could be intercepted over unencrypted connections.
 
 **Requirement**: Always use HTTPS in production. Configure [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) to prevent protocol downgrade attacks.
+
+:::moniker range=">= aspnetcore-12.0"
+
+### Require identity confirmation before adding a passkey
+
+A passkey is a permanent credential. Before adding one to an existing account, require the user to confirm their identity with a credential that the account already holds. This requirement doesn't apply when the passkey is the account's initial credential.
+
+The XML documentation for [`SignInManager<TUser>.MakePasskeyCreationOptionsAsync`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/SignInManager.cs#L521-L531) also calls out this requirement.
+
+:::moniker-end
 
 ### Account recovery
 
@@ -211,14 +221,96 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
+:::moniker range=">= aspnetcore-12.0"
+
+## Advertise passkey endpoints
+
+Credential managers can discover where users create and manage passkeys from a JSON document served at `/.well-known/passkey-endpoints`.
+
+<!-- TODO: convert to <xref:> once API docs publish -->
+
+Call [`AddPasskeyEndpoints`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyEndpointsServiceCollectionExtensions.cs#L58) to configure a [`PasskeyEndpointsOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyEndpointsOptions.cs#L52) instance, and then call [`MapWellKnownPasskeyEndpoints`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyEndpointsEndpointRouteBuilderExtensions.cs#L93) to serve the document:
+
+```csharp
+builder.Services.AddPasskeyEndpoints(options =>
+{
+    options.Enroll = "/Account/Manage/Passkeys/Create";
+    options.Manage = "/Account/Manage/Passkeys";
+    options.PrfUsageDetails = "/Help/Passkeys";
+});
+
+var app = builder.Build();
+
+app.MapWellKnownPasskeyEndpoints();
+```
+
+The configuration members advertise the following locations:
+
+* [`Enroll`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyEndpointsOptions.cs#L71): The page where a user creates a passkey.
+* [`Manage`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyEndpointsOptions.cs#L90): The page where a user manages existing passkeys.
+* [`PrfUsageDetails`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyEndpointsOptions.cs#L117): A page that explains how the app uses the WebAuthn pseudo-random function (PRF) extension and what deleting the passkey means for data protected by the extension.
+
+Members left `null` are omitted from the document. Relative values are resolved against the request scheme, host, and path base. Apps behind a reverse proxy should configure [forwarded headers](xref:host-and-deploy/proxy-load-balancer) so that the document contains the public scheme and host.
+
+The mapped endpoint allows anonymous `GET` and `HEAD` requests. Map it directly on the app. Mapping it under a route group prefix logs an error and doesn't throw. Throwing while endpoint conventions run would prevent endpoint enumeration for unrelated routes. The document is still served under the prefix, but credential managers only look for it at the root of the origin.
+
+> [!IMPORTANT]
+> These APIs are experimental and may change before release. `ASP0039` is a compile error, not a warning. The project doesn't build until the diagnostic is suppressed.
+
+To suppress `ASP0039` for the project, add it to `NoWarn`:
+
+```xml
+<PropertyGroup>
+  <NoWarn>$(NoWarn);ASP0039</NoWarn>
+</PropertyGroup>
+```
+
+To suppress the diagnostic around specific calls, use `#pragma` directives:
+
+```csharp
+#pragma warning disable ASP0039
+
+builder.Services.AddPasskeyEndpoints(options => options.Enroll = "/Account/Manage/Passkeys");
+app.MapWellKnownPasskeyEndpoints();
+
+#pragma warning restore ASP0039
+```
+
+To suppress the diagnostic in `.editorconfig`, set its severity to `none`:
+
+```ini
+[*.cs]
+dotnet_diagnostic.ASP0039.severity = none
+```
+
+:::moniker-end
+
 ## Customize the passkey handler
 
-<xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601> is the service that generates passkey options and performs attestation and assertion. ASP.NET Core Identity registers <xref:Microsoft.AspNetCore.Identity.PasskeyHandler%601> as the default implementation, and <xref:Microsoft.AspNetCore.Identity.SignInManager%601> calls into it. The interface has four methods:
+<xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601> is the service that generates passkey options and performs attestation and assertion. ASP.NET Core Identity registers <xref:Microsoft.AspNetCore.Identity.PasskeyHandler%601> as the default implementation, and <xref:Microsoft.AspNetCore.Identity.SignInManager%601> calls into it.
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-12.0"
+
+The interface has four methods:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-12.0"
+
+The interface has four ceremony methods:
+
+:::moniker-end
 
 * <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeCreationOptionsAsync%2A>: Generates the creation options and the attestation state for registering a passkey.
 * <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.MakeRequestOptionsAsync%2A>: Generates the request options and the assertion state for authenticating with an existing passkey.
 * <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAttestationAsync%2A>: Validates the credential that the browser returns during registration.
 * <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601.PerformAssertionAsync%2A>: Validates the credential that the browser returns during authentication.
+
+:::moniker range=">= aspnetcore-12.0"
+
+The interface also has an optional support property and three default methods for the browser signal APIs. For more information, see [Signal passkey changes to the browser](#signal-passkey-changes-to-the-browser).
+
+:::moniker-end
 
 Most apps should use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> methods shown in the [Registration flow](#registration-flow) and [Authentication flow](#authentication-flow) sections instead of calling the handler directly. Those methods manage the temporary state that the two-request registration and authentication ceremonies require, and they protect that state on the app's behalf.
 
@@ -416,6 +508,28 @@ builder.Services.AddIdentityCore<ApplicationUser>()
 builder.Services
     .AddScoped<IPasskeyHandler<ApplicationUser>, CustomPasskeyHandler>();
 ```
+
+:::moniker range=">= aspnetcore-12.0"
+
+## Signal passkey changes to the browser
+
+Passkey providers can retain credentials and user details that are no longer current on the server. ASP.NET Core Identity provides methods that generate JSON options for the WebAuthn browser signal APIs.
+
+<!-- TODO: convert to <xref:> once API docs publish -->
+
+* [`SignInManager<TUser>.MakeAllAcceptedCredentialsSignalOptionsAsync`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/SignInManager.cs#L603-L610) tells the browser which credentials are still registered for the signed-in user. The browser treats this list as authoritative. An incomplete list can permanently delete working passkeys that were omitted.
+* [`SignInManager<TUser>.MakeCurrentUserDetailsSignalOptionsAsync`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/SignInManager.cs#L649-L657) tells the browser the signed-in user's current username and display name.
+* [`SignInManager<TUser>.MakeUnknownCredentialSignalOptionsAsync`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/SignInManager.cs#L682-L689) tells the browser that a credential presented during authentication isn't registered to any user on the server.
+
+Check [`SignInManager<TUser>.SupportsPasskeySignalOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/SignInManager.cs#L555-L564) before calling either method for a signed-in user. The two signed-in methods throw <xref:System.NotSupportedException> when the registered handler doesn't support signal options. The [default handler reports support](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/PasskeyHandler.cs#L38) when the user store supports passkeys.
+
+The browser's `PublicKeyCredential.signalUnknownCredential` method permanently deletes the passkey from the browser's passkey provider. For this reason, `MakeUnknownCredentialSignalOptionsAsync` returns `null` unless the handler can conclusively determine that the credential is unknown. The default handler returns `null` when the user store doesn't support passkeys, the credential JSON is malformed or invalid, or the credential is still registered. A custom handler must also return `null` for an inconclusive lookup. Store lookup exceptions propagate, and a `null` or empty `credentialJson` argument throws <xref:System.ArgumentException>. When the method returns `null`, don't signal the browser.
+
+Complete an unknown-credential signal before starting conditional autofill. Otherwise, conditional autofill can offer the credential while the browser is processing its removal.
+
+Existing <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler%601> implementations continue to compile. The interface shipped in .NET 10, so the support property and signal methods are default interface members. To opt in to the signed-in signals, override the two signed-in methods and return `true` from [`IPasskeyHandler<TUser>.SupportsPasskeySignalOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IPasskeyHandler.cs#L16-L24). Override [`IPasskeyHandler<TUser>.MakeUnknownCredentialSignalOptionsAsync`](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IPasskeyHandler.cs#L88-L109) only when the handler can conclusively determine that a credential isn't registered to any user.
+
+:::moniker-end
 
 ## Registration flow
 
