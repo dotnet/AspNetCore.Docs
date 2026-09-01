@@ -28,7 +28,7 @@ After Kestrel picks up the request from the module, the request is forwarded int
 
 For ASP.NET Core Module configuration guidance, see <xref:host-and-deploy/aspnet-core-module>.
 
-For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
+For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/overview#host).
 
 ## Application configuration
 

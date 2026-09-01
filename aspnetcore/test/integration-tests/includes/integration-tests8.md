@@ -2,7 +2,7 @@
 
 This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Testing in .NET](/dotnet/core/testing/) article and its linked content.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/8.x/IntegrationTestsSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/8.x/IntegrationTestsSample) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 
@@ -247,7 +247,7 @@ Set the [environment](xref:fundamentals/environments) in the custom application 
 
 ## How the test infrastructure infers the app content root path
 
-The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute> on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
+The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/overview#content-root) path by searching for a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute> on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
 ## Disable shadow copying
 

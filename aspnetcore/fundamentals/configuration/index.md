@@ -52,7 +52,7 @@ Technical Contact: @Config["TechnicalContactEmail"]
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. Host configuration key-value pairs are included in the app's configuration. Although you can perform some app configuration with host configuration providers, we only recommend performing configuration that's necessary for the host in host configuration.
 
-App configuration is the highest priority. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
+App configuration is the highest priority. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/overview#host>.
 
 ## Default app configuration sources
 
@@ -142,8 +142,8 @@ The following variables are set early in host builder initialization and can't b
 
 * [Application name](xref:fundamentals/minimal-apis#change-the-content-root-application-name-and-environment).
 * [Environment name](xref:fundamentals/environments).
-* [Content root](xref:fundamentals/index#content-root).
-* [Web root](xref:fundamentals/index#web-root).
+* [Content root](xref:fundamentals/overview#content-root).
+* [Web root](xref:fundamentals/overview#web-root).
 * Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
 * Variables read by app and library code from <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration%2A?displayProperty=nameWithType> in <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A?displayProperty=nameWithType> callbacks.
 
@@ -1645,5 +1645,5 @@ The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8/run
 
 * <xref:blazor/fundamentals/configuration>
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
 * <xref:fundamentals/configuration/options>

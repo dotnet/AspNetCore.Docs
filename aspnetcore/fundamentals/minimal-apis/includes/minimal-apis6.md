@@ -157,7 +157,7 @@ The following code sets the content root, application name, and environment:
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
-For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/overview?view=aspnetcore-6.0>
 
 ### Change the content root, app name, and environment by environment variables or command line
 

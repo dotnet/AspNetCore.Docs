@@ -383,7 +383,7 @@ For configuration guidance, see the following resources:
 
 ### Content root
 
-The `--contentroot` argument sets the absolute path to the directory that contains the app's content files ([content root](xref:fundamentals/index#content-root)). In the following examples, `/content-root-path` is the app's content root path.
+The `--contentroot` argument sets the absolute path to the directory that contains the app's content files ([content root](xref:fundamentals/overview#content-root)). In the following examples, `/content-root-path` is the app's content root path.
 
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 

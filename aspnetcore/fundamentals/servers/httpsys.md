@@ -39,7 +39,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -374,7 +374,7 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* [The host](xref:fundamentals/index#host)
+* [The host](xref:fundamentals/overview#host)
 * <xref:test/troubleshoot>
 
 :::moniker-end

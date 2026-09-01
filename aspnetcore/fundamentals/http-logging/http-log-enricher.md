@@ -78,7 +78,7 @@ HTTP log enrichers differ from general-purpose log enrichers (<xref:Microsoft.Ex
 
 ## See also
 
-- [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/httplogging/httplogenricher) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+- [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/httplogging/httplogenricher) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
 - [HTTP logging in ASP.NET Core](~/fundamentals/http-logging/index.md)
 
 :::moniker-end

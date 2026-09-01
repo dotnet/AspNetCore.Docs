@@ -40,7 +40,7 @@ The `CreateDefaultBuilder` method performs the following tasks:
 
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server by using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
+* Sets the [content root](xref:fundamentals/overview#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
 
 * Loads the [host configuration](#set-web-host-configuration-values) from the following sources:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`)
@@ -59,7 +59,7 @@ The `CreateDefaultBuilder` method performs the following tasks:
 
 * Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
 
-The [content root](xref:fundamentals/index#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
+The [content root](xref:fundamentals/overview#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
 For more information on app configuration, see <xref:fundamentals/configuration/index>.
 
@@ -164,7 +164,7 @@ Determines where ASP.NET Core begins searching for content files.
 **Set using**: `UseContentRoot`  
 **Environment variable**: `ASPNETCORE_CONTENTROOT`
 
-The content root is also used as the base path for the [web root](xref:fundamentals/index#web-root). If the content root path doesn't exist, the host fails to start.
+The content root is also used as the base path for the [web root](xref:fundamentals/overview#web-root). If the content root path doesn't exist, the host fails to start.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -173,7 +173,7 @@ WebHost.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [Fundamentals: Content root](xref:fundamentals/overview#content-root)
 * [Web root](#web-root)
 
 ### Detailed errors
@@ -375,7 +375,7 @@ WebHost.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [Fundamentals: Web root](xref:fundamentals/overview#web-root)
 * [Content root](#content-root)
 
 ## Override the Web Host configuration

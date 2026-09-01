@@ -35,7 +35,7 @@ A *host* is an object that encapsulates an application's resources, such as:
 * Configuration
 * `IHostedService` implementations
 
-When a host starts, it calls the <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> method on each <xref:Microsoft.Extensions.Hosting.IHostedService> instance registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers).
+When a host starts, it calls the <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> method on each <xref:Microsoft.Extensions.Hosting.IHostedService> instance registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/overview#servers).
 
 By including all of the app's interdependent resources in a single object, the host enables control of application startup and graceful shutdown.
 
@@ -118,7 +118,7 @@ If the app uses Entity Framework Core, don't change the name or signature of the
 
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method performs the following tasks:
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
+* Sets the [content root](xref:fundamentals/overview#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
 
 * Loads the host configuration from the following sources:
   * Environment variables prefixed with `DOTNET_`
@@ -292,7 +292,7 @@ Host.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [Fundamentals: Content root](xref:fundamentals/overview#content-root)
 * [Web root](#web-root)
 
 ### Environment name
@@ -695,7 +695,7 @@ webBuilder.UseWebRoot("public");
 
 For more information, see:
 
-* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [Fundamentals: Web root](xref:fundamentals/overview#web-root)
 * [Content root](#content-root)
 
 ## Manage the host lifetime

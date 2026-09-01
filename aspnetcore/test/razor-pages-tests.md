@@ -24,7 +24,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -207,7 +207,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
