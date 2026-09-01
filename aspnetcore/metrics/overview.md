@@ -8,9 +8,8 @@ ms.author: tdykstra
 ms.date: 08/24/2026
 ms.reviewer: tdykstra
 ms.topic: concept-article
-uid: log-mon/metrics/metrics
+uid: metrics/overview
 ---
-
 # ASP.NET Core metrics
 
 Metrics are numerical measurements reported over time. Use them to monitor the health of an app and generate alerts. For example, a web service might track how many:
@@ -21,7 +20,7 @@ Metrics are numerical measurements reported over time. Use them to monitor the h
 
 Report these metrics to a monitoring system at regular intervals. Set up dashboards to view metrics and create alerts to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
-See [ASP.NET Core metrics](xref:log-mon/metrics/built-in) for a comprehensive list of all instruments together with their attributes.
+The comprehensive list of all instruments together with their attributes is described in <xref:metrics/built-in>.
 
 ## Use metrics
 
@@ -53,7 +52,7 @@ dotnet add package OpenTelemetry.Extensions.Hosting
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/web-metrics/Program.cs":::
+:::code language="csharp" source="~/metrics/samples/web-metrics/Program.cs":::
 
 ## View metrics with dotnet-counters
 
@@ -100,7 +99,7 @@ ASP.NET Core has many built-in metrics. The `http.server.request.duration` metri
 
 The `http.server.request.duration` metric supports tag enrichment by using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This feature is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/EnrichMetrics/Program.cs":::
+:::code language="csharp" source="~/metrics/samples/EnrichMetrics/Program.cs":::
 
 The preceding example:
 
@@ -124,14 +123,14 @@ You can exclude HTTP requests to an endpoint from metrics by adding metadata, wi
 * Add the [DisableHttpMetrics](xref:Microsoft.AspNetCore.Http.DisableHttpMetricsAttribute) attribute to the Web API controller, SignalR hub, or gRPC service.
 * Call [DisableHttpMetrics](xref:Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions.DisableHttpMetrics``1(``0)) when mapping endpoints in app startup:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/DisableMetrics/Program.cs" id="snippet_1" highlight="5":::
+:::code language="csharp" source="~/metrics/samples/DisableMetrics/Program.cs" id="snippet_1" highlight="5":::
 
 Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature.MetricsDisabled?displayProperty=nameWithType> property was added for:
 
 * Advanced scenarios where a request doesn't map to an endpoint.
 * Dynamically disabling metrics collection for specific HTTP requests.
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/DisableMetrics/Program.cs" id="snippet_2":::
+:::code language="csharp" source="~/metrics/samples/DisableMetrics/Program.cs" id="snippet_2":::
 
 :::moniker-end
 
@@ -147,15 +146,15 @@ ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in depend
 
 To use `IMeterFactory` in an app, create a type that uses `IMeterFactory` to create the app's custom metrics:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/ContosoMetrics.cs" id="snippet_ContosoMetrics":::
+:::code language="csharp" source="~/metrics/samples/custom-metrics/ContosoMetrics.cs" id="snippet_ContosoMetrics":::
 
 Register the metrics type with DI in `Program.cs`:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
+:::code language="csharp" source="~/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
 
 Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be used with MVC controllers, Minimal APIs, or any other type that is created by DI:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
+:::code language="csharp" source="~/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
 
 To monitor the "Contoso.Web" meter, use the following [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command.
 
@@ -188,7 +187,7 @@ Press p to pause, r to resume, q to quit.
 
 :::moniker range=">= aspnetcore-11.0"
 
-Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:log-mon/metrics/built-in-http>.
+Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:metrics/http>.
 
 Although the package is optional, it isn't a drop-in equivalent of the built-in instrumentation. The built-in instrumentation covers only the *required* parts of the semantic conventions. Consider the following differences before you remove the package:
 
@@ -218,6 +217,7 @@ In the preceding example:
 Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
 
 :::moniker-end
+
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
 
 1. The ASP.NET Core metric APIs record measurements from the example app.
@@ -241,7 +241,7 @@ Go to the sample app. The browser shows `Hello OpenTelemetry! ticks:<3digits>` w
 
 Append `/metrics` to the URL to view the metrics endpoint. The browser displays the metrics being collected:
 
-![metrics 2](~/log-mon/metrics/metrics/static/metrics.png)
+![metrics 2](~/metrics/static/metrics.png)
 
 ### Set up and configure Prometheus
 
@@ -249,7 +249,7 @@ Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/firs
 
 Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app exposes. Add the following highlighted text in the `scrape_configs` section:
 
-:::code language="yaml" source="~/log-mon/metrics/metrics/samples/web-metrics/prometheus.yml" highlight="31-99":::
+:::code language="yaml" source="~/metrics/samples/web-metrics/prometheus.yml" highlight="31-99":::
 
 In the preceding highlighted YAML, replace `5045` with the port number that the example app uses.
 
@@ -258,19 +258,19 @@ In the preceding highlighted YAML, replace `5045` with the port number that the 
 1. Reload the configuration or restart the Prometheus server.
 1. Confirm that OpenTelemetryTest is in the UP state in the **Status** > **Targets** page of the Prometheus web portal.
 
-![Prometheus status](~/log-mon/metrics/metrics/static/prometheus_status.png)
+![Prometheus status](~/metrics/static/prometheus_status.png)
 
 Select the **Open metric explorer** icon to see available metrics:
 
-![Prometheus open_metric_exp](~/log-mon/metrics/metrics/static/open_metric_exp.png)
+![Prometheus open_metric_exp](~/metrics/static/open_metric_exp.png)
 
 Enter a counter category such as `http_` in the **Expression** input box to see the available metrics:
 
-![available metrics](~/log-mon/metrics/metrics/static/metrics2.png)
+![available metrics](~/metrics/static/metrics2.png)
 
 Alternatively, enter a counter category such as `kestrel` in the **Expression** input box to see the available metrics:
 
-![Prometheus kestrel](~/log-mon/metrics/metrics/static/kestrel.png)
+![Prometheus kestrel](~/metrics/static/kestrel.png)
 
 ### Show metrics on a Grafana dashboard
 
@@ -278,13 +278,13 @@ Alternatively, enter a counter category such as `kestrel` in the **Expression** 
 
 * Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, pre-built dashboards for .NET metrics are available to download at [.NET team dashboards @ grafana.com](https://aka.ms/dotnet/grafana-dashboards). Downloaded dashboard JSON can be [imported into Grafana](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/#import-a-dashboard).
 
-![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
+![dashboard-screenshot2](~/metrics/static/dashboard-screenshot.png)
 
 ## Test metrics in ASP.NET Core apps
 
 You can test metrics in ASP.NET Core apps. One way to do this is to collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) by using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>.
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
+:::code language="csharp" source="~/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 
 The preceding test:
 

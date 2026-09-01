@@ -6,13 +6,13 @@ description: Learn about built-in HTTP metrics for ASP.NET Core apps, including 
 ms.author: wpickett
 ms.date: 08/05/2026
 ms.topic: reference
-uid: log-mon/metrics/built-in-http
+uid: metrics/http
 ---
 # ASP.NET Core built-in HTTP metrics
 
 This article describes the built-in HTTP-related metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics cover hosting, routing, rate limiting, header parsing, the Kestrel web server, and SignalR.
 
-For an overview of all built-in metrics reference pages and how to read this reference, see <xref:log-mon/metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
+For an overview of all built-in metrics reference pages and how to read this reference, see <xref:metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:metrics/overview>.
 
 ## `Microsoft.AspNetCore.Hosting`
 
@@ -356,10 +356,10 @@ Attribute | Type | Description | Examples | Presence
 `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Always
 `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Always
 
-## See also
+## Additional resources
 
-* <xref:log-mon/metrics/built-in>
-* <xref:log-mon/metrics/built-in-diagnostics>
-* <xref:log-mon/metrics/built-in-components>
-* <xref:log-mon/metrics/built-in-security>
-* <xref:log-mon/metrics/metrics>
+* <xref:metrics/built-in>
+* <xref:metrics/diagnostics>
+* <xref:metrics/blazor>
+* <xref:metrics/security>
+* <xref:metrics/overview>

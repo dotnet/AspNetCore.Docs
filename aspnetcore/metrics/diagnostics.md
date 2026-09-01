@@ -6,13 +6,13 @@ description: Learn about built-in diagnostics metrics for ASP.NET Core apps, rep
 ms.author: wpickett
 ms.date: 08/05/2026
 ms.topic: reference
-uid: log-mon/metrics/built-in-diagnostics
+uid: metrics/diagnostics
 ---
 # ASP.NET Core built-in diagnostics metrics
 
 This article describes the built-in diagnostics metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics report diagnostics information from the ASP.NET Core error handling middleware.
 
-For an overview of all built-in metrics reference pages and how to read this reference, see <xref:log-mon/metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:log-mon/metrics/metrics>.
+For an overview of all built-in metrics reference pages and how to read this reference, see <xref:metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:metrics/overview>.
 
 ## `Microsoft.AspNetCore.Diagnostics`
 
@@ -32,10 +32,10 @@ Attribute | Type | Description | Examples | Presence
 `aspnetcore.diagnostics.handler.type` | string | Full type name of the [`IExceptionHandler`](/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | If the exception was handled by this handler.
 `exception.type` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | Always
 
-## See also
+## Additional resources
 
-* <xref:log-mon/metrics/built-in>
-* <xref:log-mon/metrics/built-in-http>
-* <xref:log-mon/metrics/built-in-components>
-* <xref:log-mon/metrics/built-in-security>
-* <xref:log-mon/metrics/metrics>
+* <xref:metrics/built-in>
+* <xref:metrics/http>
+* <xref:metrics/blazor>
+* <xref:metrics/security>
+* <xref:metrics/overview>
