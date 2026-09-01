@@ -24,7 +24,7 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In ASP.NET Core 11 and later, the instruments under `Microsoft.AspNetCore.Hosting` are the framework's primary implementation of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). Register this meter directly with the OpenTelemetry SDK—for example, `builder.AddMeter("Microsoft.AspNetCore.Hosting")`—without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
+> In ASP.NET Core 11 and later, the instruments under `Microsoft.AspNetCore.Hosting` are the framework's primary implementation of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). Register this meter directly with the OpenTelemetry SDK (for example, call `AddMeter("Microsoft.AspNetCore.Hosting")` in your OpenTelemetry metrics pipeline) without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
 
 :::moniker-end
 
