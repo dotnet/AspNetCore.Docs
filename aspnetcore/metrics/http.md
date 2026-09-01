@@ -195,7 +195,7 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In ASP.NET Core 11 and later, the Kestrel meter conforms to the [OpenTelemetry semantic conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/). Register it directly with the OpenTelemetry SDK—for example, `builder.AddMeter("Microsoft.AspNetCore.Server.Kestrel")`—without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
+> In ASP.NET Core 11 and later, the Kestrel meter conforms to the [OpenTelemetry semantic conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/). Register it directly with the OpenTelemetry SDK (for example, call `AddMeter("Microsoft.AspNetCore.Server.Kestrel")` in your OpenTelemetry metrics pipeline) without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
 
 :::moniker-end
 
