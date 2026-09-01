@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in HTTP metrics for ASP.NET Core apps, including hosting, routing, rate limiting, header parsing, Kestrel, and SignalR.
 ms.author: wpickett
-ms.date: 08/05/2026
+ms.date: 09/01/2026
 ms.topic: reference
 uid: metrics/http
 ---
@@ -20,6 +20,13 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 
 * [`http.server.request.duration`](#metric-httpserverrequestduration)
 * [`http.server.active_requests`](#metric-httpserveractive_requests)
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> In ASP.NET Core 11 and later, the instruments under `Microsoft.AspNetCore.Hosting` are the framework's primary implementation of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). Register this meter directly with the OpenTelemetry SDK—for example, `builder.AddMeter("Microsoft.AspNetCore.Hosting")`—without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
+
+:::moniker-end
 
 ### Metric: `http.server.request.duration`
 
@@ -184,6 +191,13 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 * [`kestrel.upgraded_connections`](#metric-kestrelupgraded_connections)
 * [`kestrel.tls_handshake.duration`](#metric-kestreltls_handshakeduration)
 * [`kestrel.active_tls_handshakes`](#metric-kestrelactive_tls_handshakes)
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> In ASP.NET Core 11 and later, the Kestrel meter conforms to the [OpenTelemetry semantic conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/). Register it directly with the OpenTelemetry SDK—for example, `builder.AddMeter("Microsoft.AspNetCore.Server.Kestrel")`—without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
+
+:::moniker-end
 
 ### Metric: `kestrel.active_connections`
 
