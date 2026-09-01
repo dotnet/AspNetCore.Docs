@@ -100,7 +100,7 @@ The following example shows how to register an `IExceptionHandler` implementatio
 
 ### Configure `UseExceptionHandler` when using `IExceptionHandler`
 
-The exception handling middleware requires a fallback for exceptions that no `IExceptionHandler` handles. If none is configured, calling `app.UseExceptionHandler()` with no arguments throws at startup:
+The exception handling middleware requires a fallback for exceptions that no `IExceptionHandler` handles. If none is configured, calling `app.UseExceptionHandler()` with no arguments throws the following exception at startup:
 
 `System.InvalidOperationException: An error occurred when configuring the exception handler middleware. Either the 'ExceptionHandlingPath' or the 'ExceptionHandler' property must be set in 'UseExceptionHandler()'.`
 
