@@ -895,7 +895,7 @@ If all checks pass, the method signs in the user and returns a `SignInResult` in
 
 :::moniker range=">= aspnetcore-11.0"
 
-The method distinguishes between a recoverable user action and an app error. If the passkey session state is missing or expired, for example because the user took too long to respond to the authenticator, the method returns <xref:Microsoft.AspNetCore.Identity.SignInResult.Failed?displayProperty=nameWithType>. Calling the method without a preceding call to <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyRequestOptionsAsync%2A> throws an <xref:System.InvalidOperationException>, because that indicates a problem in the app rather than something the user can retry.
+The method distinguishes between a recoverable user action and an app error. If the passkey session state is missing or expired, for example because the user took too long to respond to the authenticator, the method returns <xref:Microsoft.AspNetCore.Identity.SignInResult.Failed?displayProperty=nameWithType>. Calling the method without a preceding call to <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyRequestOptionsAsync%2A> throws an <xref:System.InvalidOperationException> because that indicates a problem in the app rather than something the user can retry.
 
 :::moniker-end
 
