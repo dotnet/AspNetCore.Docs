@@ -17,7 +17,7 @@ For information on how to collect, report, enrich, and test with ASP.NET Core me
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> Starting in ASP.NET Core 11, the built-in HTTP server meters cataloged in these reference pages (most notably `Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) emit data compliant with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package is optional for HTTP server metrics—register these meters directly with the OpenTelemetry SDK. For setup, tradeoffs, and a tracing pitfall, see <xref:metrics/overview>.
+> Starting in .NET 11, the built-in HTTP server meters cataloged in these reference pages (most notably `Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) emit data compliant with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package is optional for HTTP server metrics—register these meters directly with the OpenTelemetry SDK. For more information, see <xref:metrics/overview>.
 
 :::moniker-end
 
