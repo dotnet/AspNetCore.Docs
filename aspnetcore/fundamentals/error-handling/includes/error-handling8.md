@@ -80,27 +80,70 @@ The following code uses a lambda for exception handling:
 
 <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> is an interface that gives the developer a callback for handling known exceptions in a central location.
 
-`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](/dotnet/api/microsoft.extensions.dependencyinjection.exceptionhandlerservicecollectionextensions.addexceptionhandler) [`IServiceCollection.AddExceptionHandler<T>`]. The lifetime of an `IExceptionHandler` instance is singleton. Multiple implementations can be added, and they're called in the order registered.
+`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](/dotnet/api/microsoft.extensions.dependencyinjection.exceptionhandlerservicecollectionextensions.addexceptionhandler). The lifetime of an `IExceptionHandler` instance is singleton. Multiple implementations can be added, and they're called in the order registered.
 
-If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware. Different metrics and logs are emitted for handled versus unhandled exceptions.
+> [!IMPORTANT]
+> Registering an `IExceptionHandler` implementation isn't sufficient on its own. Registered handlers are invoked by the exception handling middleware, so the app must also add that middleware by calling <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. If `UseExceptionHandler` isn't called, the registered `IExceptionHandler` implementations are never called.
+
+Exception handling middleware iterates through registered exception handlers in order until one returns `true` from `TryHandleAsync`, indicating that the exception has been handled. If an exception handler handles an exception, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
+
+> [!NOTE]
+> In .NET 8 and .NET 9, the exception handling middleware logs the exception and emits metrics even when an `IExceptionHandler` implementation returns `true` from `TryHandleAsync`. If the handler does its own logging, the exception is recorded twice: once under the `Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware` category and once under the handler's category. To log it only from the handler, filter out the middleware category in configuration:
+>
+> ```json
+> {
+>   "Logging": {
+>     "LogLevel": {
+>       "Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware": "None"
+>     }
+>   }
+> }
+> ```
+>
+> Starting in .NET 10, diagnostics are suppressed by default for handled exceptions. See [SuppressDiagnosticsCallback](xref:fundamentals/error-handling#suppressdiagnosticscallback).
 
 The following example shows an `IExceptionHandler` implementation:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/CustomExceptionHandler.cs":::
 
-The following example shows how to register an `IExceptionHandler` implementation for dependency injection:
+The following example shows how to register an `IExceptionHandler` implementation for dependency injection and add the exception handling middleware that calls it:
 
-:::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/Program.cs" id="snippet_RegisterIExceptionHandler" highlight="7":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/Program.cs" id="snippet_RegisterIExceptionHandler" highlight="7,13":::
+
+### Configure `UseExceptionHandler` when using `IExceptionHandler`
+
+The exception handling middleware requires a fallback for exceptions that no `IExceptionHandler` handles. If none is configured, calling `app.UseExceptionHandler()` with no arguments throws at startup:
+
+`System.InvalidOperationException: An error occurred when configuring the exception handler middleware. Either the 'ExceptionHandlingPath' or the 'ExceptionHandler' property must be set in 'UseExceptionHandler()'.`
+
+Use any one of the following to satisfy the requirement:
+
+* Specify an error path: `app.UseExceptionHandler("/Error");`
+* Enable problem details: call `builder.Services.AddProblemDetails();` and then `app.UseExceptionHandler();`
+* Supply a fallback handler: `app.UseExceptionHandler(exceptionHandlerApp => { ... });`
+
+The `IExceptionHandler` implementations still run first in all of these cases. The configured path, problem details response, or fallback handler is used only when every `TryHandleAsync` returns `false`.
+
+If an `IExceptionHandler` returns `true` without writing a response or setting a status code, the response ends up as `404 Not Found` and the middleware logs:
+
+`The exception handler configured on ExceptionHandlerOptions produced a 404 status response.`
+
+An `IExceptionHandler` that returns `true` should write the complete response, including the status code. For example, set `httpContext.Response.StatusCode` and write the body, or call `IProblemDetailsService.TryWriteAsync`. If a 404 response is intentional, set <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.AllowStatusCode404Response> to `true`.
 
 When the preceding code runs in the `Development` environment:
 
 * The `CustomExceptionHandler` is called first to handle an exception.
-* After logging the exception, the `TryHandleException` method returns `false`, so the [developer exception page](#developer-exception-page) is shown.
+* After logging the exception, the `TryHandleAsync` method returns `false`, so the [developer exception page](#developer-exception-page) is shown.
 
 In other environments:
 
 * The `CustomExceptionHandler` is called first to handle an exception.
-* After logging the exception, the `TryHandleException` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown.
+* After logging the exception, the `TryHandleAsync` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown.
+
+If `TryHandleAsync` returns `true` instead:
+
+* The remaining `IExceptionHandler` implementations aren't called.
+* The exception handler page, path, or lambda configured on `UseExceptionHandler` isn't used. The handler is responsible for writing the entire response.
 
 <!-- links to this in other docs require sestatuscodepages -->
 <a name="sestatuscodepages"></a>
