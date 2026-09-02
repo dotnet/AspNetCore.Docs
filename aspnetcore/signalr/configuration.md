@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core SignalR configuration
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to configure ASP.NET Core SignalR apps, including allowed transports, logging levels, timeout intervals, and serialization.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 08/25/2026
+ms.date: 09/02/2026
 uid: signalr/configuration
 
 # customer intent: As an ASP.NET developer, I want to configure ASP.NET Core SignalR, so I can specify my preferences for client and server options.
@@ -78,6 +79,7 @@ The following table describes options for configuring SignalR hubs.
 | `MaximumReceiveMessageSize` | 32 KB | The maximum size of a single incoming hub message. Increasing the value might increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/Denial_of_Service). |
 | `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. Note that this limit doesn't apply to streaming hub invocations. For more information, see <xref:signalr/hubs#limit-per-connection-streaming-invocations>.|
 | `DisableImplicitFromServicesParameters` | `false` | Hub method arguments are resolved from dependency injection, if possible. |
+| `StatefulReconnectBufferSize` | 100,000 bytes | The maximum number of bytes buffered per connection when stateful reconnect is enabled. This option has no effect unless `AllowStatefulReconnects` is enabled on the hub endpoint. For more information, see [Configure stateful reconnect](#configure-stateful-reconnect). |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in the _Program.cs_ file.
 
@@ -115,7 +117,9 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `LongPolling` | See [Configure Long Polling transport](#configure-long-polling-transport) | Options specific to the Long Polling transport. |
 | `WebSockets` | See [Configure WebSocket transport](#configure-websocket-transport) | Options specific to the WebSockets transport. |
 | `MinimumProtocolVersion` | 0 | The minimum version of the negotiation protocol. This value is used to limit clients to newer versions of the protocol. |
+| `TransportSendTimeout` | 10 seconds | The maximum amount of time the transport waits for a single send to a client to complete. If a send exceeds this timeout, the connection is closed. Increase this value for clients on slow or unreliable networks that would otherwise be disconnected while a large message is being sent. Setting the value to `TimeSpan.Zero` throws an <xref:System.ArgumentOutOfRangeException>. |
 | `CloseOnAuthenticationExpiration` | `false` | Controls authentication expiration tracking, which closes connections when a token expires. |
+| `AllowStatefulReconnects` | `false` | Allows a client that negotiates stateful reconnect to resume a connection with the same connection ID after a temporary network interruption. For more information, see [Configure stateful reconnect](#configure-stateful-reconnect). |
 
 :::moniker-end
 
@@ -435,6 +439,7 @@ You can configure other options in the `WithUrl` (`withUrl` in JavaScript) metho
 | `Proxy` | `null` | An HTTP proxy to use when sending HTTP requests. |
 | `UseDefaultCredentials` | `false` | Set this boolean to send the default credentials for HTTP and WebSockets requests. This option enables the use of Windows authentication. |
 | `WebSocketConfiguration` | `null` | A delegate that can be used to configure more WebSocket options. Receives an instance of <xref:System.Net.WebSockets.ClientWebSocketOptions> that can be used to configure the options. |
+| `WebSocketFactory` | `null` | A delegate that wraps or replaces the <xref:System.Net.WebSockets.WebSocket> used by the WebSockets transport. The delegate receives a `WebSocketConnectionContext`, which exposes the resolved connection `Uri` and the `HttpConnectionOptions`, plus a <xref:System.Threading.CancellationToken>, and it must return a connected `WebSocket`. <br><br>**Note**: <br> - When this delegate is set, it replaces the client's default socket creation, so the delegate is responsible for connecting the socket and for applying any options it needs, such as `WebSocketConfiguration`, `Headers`, and `Cookies`. <br> - Returning `null` from the delegate throws an <xref:System.InvalidOperationException>. |
 | `ApplicationMaxBufferSize` | 1 MB | The maximum number of bytes received from the server that the client buffers before applying backpressure. Increasing this value allows the client to receive larger messages faster without applying backpressure, but can increase memory consumption. |
 | `TransportMaxBufferSize` | 1 MB | The maximum number of bytes sent by the user application that the client buffers before observing backpressure. Increasing this value allows the client to buffer larger messages faster without awaiting backpressure, but can increase memory consumption. |
 
@@ -463,6 +468,7 @@ var connection = new HubConnectionBuilder()
 | `skipNegotiation` | `false` | Set this option to `true` to skip the negotiation step. <br><br>**Note**: This option is available only when the WebSockets transport is the only enabled transport. The setting can't be enabled when using the Azure SignalR Service. |
 | `withCredentials` | `true` | Specifies whether credentials are sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more information on CORS with SignalR, see <xref:signalr/security#cross-origin-resource-sharing>. |
 | `timeout` | `100,000` | The timeout value in milliseconds to apply to HTTP requests. <br><br>**Note**: This option doesn't apply to Long Polling poll requests, EventSource, or WebSockets. |
+| `httpClient` | `null` | An `HttpClient` used to make HTTP requests. Provide a custom implementation to inspect or customize the requests made during negotiation and by the Long Polling and Server-Sent Events transports. <br><br>**Note**: This setting isn't used for WebSocket connections. |
 
 In the JavaScript Client, these options can be provided in a JavaScript object provided to `withUrl`:
 
@@ -483,6 +489,7 @@ let connection = new signalR.HubConnectionBuilder()
 | `withAccessTokenProvider` | `null` | A function that returns a string, which is provided as a Bearer authentication token in HTTP requests. |
 | `shouldSkipNegotiate` | `false` | Set this option to `true` to skip the negotiation step. <br><br>**Note**: This option is available only when the WebSockets transport is the only enabled transport. The setting can't be enabled when using the Azure SignalR Service. |
 | `withHeader` `withHeaders` | Empty | A map of other HTTP headers to send with every HTTP request. |
+| `setHttpClientBuilderCallback` | `null` | A callback that receives the `OkHttpClient.Builder` used to construct the HTTP client. Use it for customization such as certificate validation, proxies, and cookies. By default, the client is built with a cookie jar and a read timeout for Long Polling. |
 
 In the Java client, these options can be configured with the methods on the `HttpHubConnectionBuilder` returned from the `HubConnectionBuilder.create("HUB URL")`:
 
