@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in metrics for ASP.NET Core apps.
 ms.author: wpickett
-ms.date: 08/05/2026
+ms.date: 09/01/2026
 ms.topic: reference
 uid: metrics/built-in
 ---
@@ -13,6 +13,13 @@ uid: metrics/built-in
 This article is the entry point for the built-in metrics that ASP.NET Core produces using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. The metrics reference is organized into focused pages by topic. Use the following pages to find the instruments, attributes, and usage guidance for each area. For a listing of metrics based on the older [EventCounters](/dotnet/core/diagnostics/event-counters) API, see [Available counters](/dotnet/core/diagnostics/available-counters).
 
 For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:metrics/overview>.
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> Starting in .NET 11, the built-in HTTP server meters cataloged in these reference pages (most notably `Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) emit data compliant with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package is optional for HTTP server metrics—register these meters directly with the OpenTelemetry SDK. For more information, see <xref:metrics/overview>.
+
+:::moniker-end
 
 ## Metrics reference pages
 
