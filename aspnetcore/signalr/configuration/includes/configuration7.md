@@ -96,7 +96,7 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
 | `MinimumProtocolVersion` | 0 | Specify the minimum version of the negotiate protocol. This is used to limit clients to newer versions. |
-| `TransportSendTimeout` | 10 seconds | The maximum amount of time the transport waits for a single send to a client to complete. If a send exceeds this timeout, the connection is closed. Set the value to <xref:System.Threading.Timeout.InfiniteTimeSpan> to disable the timeout. |
+| `TransportSendTimeout` | 10 seconds | The maximum amount of time the transport waits for a single send to a client to complete. If a send exceeds this timeout, the connection is closed. |
 | `CloseOnAuthenticationExpiration` | false | Set this option to enable authentication expiration tracking which will close connections when a token expires. |
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
