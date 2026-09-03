@@ -41,7 +41,21 @@ The following app startup code supports two app types:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+The following app startup code supports two app types:
+
+* [Blazor Web Apps](xref:blazor/index)
+* [Minimal APIs](xref:tutorials/min-web-api)
+
+[!code-csharp[](~/fundamentals/index/snapshot/Program10.cs)]
+
+> [!NOTE]
+> With additional configuration in the `Program` file, ASP.NET Core apps can support [Razor Pages](xref:tutorials/razor-pages/razor-pages-start), [MVC](xref:tutorials/first-mvc-app/start-mvc), and [web API with controllers](xref:tutorials/first-web-api).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 The following app startup code supports several app types:
 

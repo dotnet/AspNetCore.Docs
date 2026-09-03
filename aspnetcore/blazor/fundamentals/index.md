@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Blazor fundamentals
+ai-usage: ai-assisted
 author: guardrex
 description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
