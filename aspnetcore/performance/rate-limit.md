@@ -392,7 +392,7 @@ builder.Services.AddRateLimiter(options =>
 {
     options.AddPolicy("combined", httpContext =>
     {
-        // Partition on the authenticated identity. Each distinct key creates and
+        // Partition on the authenticated identity name when available. Each distinct key creates and
         // caches its own limiter, so partitioning on unbounded user-controlled
         // input can exhaust memory (a DoS risk).
         string partitionKey = httpContext.User.Identity?.Name ?? "anonymous";
