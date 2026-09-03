@@ -47,6 +47,5 @@ app.MapRazorComponents<App>()
 // Add antiforgery middleware
 app.UseAntiforgery();
 
-
 // Run the app
 app.Run();
