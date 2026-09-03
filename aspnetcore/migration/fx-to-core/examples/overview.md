@@ -96,7 +96,7 @@ Each controller endpoint can be tested, however, layout and styles are covered l
 
 ## Migrate static content
 
-In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/overview#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files).
+In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files).
 
 Copy the static content from the ASP.NET MVC *WebApp1* project to the `wwwroot` directory in the ASP.NET Core *WebApp1* project:
 

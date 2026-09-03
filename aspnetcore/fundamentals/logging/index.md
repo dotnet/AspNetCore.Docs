@@ -1542,4 +1542,4 @@ Static files
 * [Behind `[LogProperties]` and the new telemetry logging source generator](https://andrewlock.net/behind-logproperties-and-the-new-telemetry-logging-source-generator/)
 * [`Microsoft.Extensions.Logging` reference source (`dotnet/runtime`) GitHub repository](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Logging)
 * [High performance logging](/dotnet/core/extensions/high-performance-logging)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/logging) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/logging) ([how to download](xref:fundamentals/index#how-to-download-a-sample))

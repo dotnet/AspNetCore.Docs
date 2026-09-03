@@ -410,13 +410,13 @@ As an alternative to registering the `DomainRestricted` policy and referencing i
 
 * [Bearer token authentication in ASP.NET Core (blog)](https://devblogs.microsoft.com/dotnet/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based authorization](xref:security/authorization/resource-based)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:fundamentals/overview#how-to-download-a-sample)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:fundamentals/overview#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
 

@@ -28,6 +28,6 @@ uid: migration/fx-to-core/areas
 For complex migration scenarios not covered in these guides:
 
 * Review the [ASP.NET Core migration overview](xref:migration/fx-to-core/index)
-* Consult the [ASP.NET Core fundamentals documentation](xref:fundamentals/overview)
+* Consult the [ASP.NET Core fundamentals documentation](xref:fundamentals/index)
 * Engage with the community through [GitHub discussions](https://github.com/dotnet/aspnetcore/discussions)
 * Consider professional migration services for mission-critical applications

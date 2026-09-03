@@ -23,7 +23,7 @@ Transformations to the *web.config* file can be applied automatically when an ap
 These transformations occur for either of the following *web.config* generation scenarios:
 
 * Generated automatically by the `Microsoft.NET.Sdk.Web` SDK.
-* Provided by the developer in the [content root](xref:fundamentals/overview#content-root) of the app.
+* Provided by the developer in the [content root](xref:fundamentals/index#content-root) of the app.
 
 ## Build configuration
 

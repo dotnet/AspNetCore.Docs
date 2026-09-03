@@ -86,7 +86,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
-For more information, see <xref:fundamentals/overview>
+For more information, see <xref:fundamentals/index>
 
 #### Change the content root, app name, and environment by environment variables or command line
 

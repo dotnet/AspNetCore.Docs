@@ -23,7 +23,7 @@ For server-side caching that follows the HTTP 1.1 Caching specification, use [re
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## HTTP-based response caching
 
@@ -194,7 +194,7 @@ The following code applies the `[ResponseCache]` attribute at the controller lev
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 

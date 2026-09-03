@@ -80,20 +80,20 @@ The `Properties` folder of the server project holds [development environment con
 
 [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
-The `wwwroot` folder of the server project is the [Web Root](xref:fundamentals/overview#web-root) folder for the server project that holds the app's public static assets.
+The `wwwroot` folder of the server project is the [Web Root](xref:fundamentals/index#web-root) folder for the server project that holds the app's public static assets.
 
 The `Program.cs` file of the server project is the project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline:
 
 * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> adds services to support rendering Interactive Server components. <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A> adds services to support rendering Interactive WebAssembly components.
 * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures interactive server-side rendering (interactive SSR) for the app. <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A> configures the Interactive WebAssembly render mode for the app.
 
-The app settings files (`appsettings.Development.json`, `appsettings.json`) in either the server or `.Client` project provide [configuration settings](xref:blazor/fundamentals/configuration). In the server project, settings files are at the root of the project. In the `.Client` project, settings files are consumed from the [Web Root](xref:fundamentals/overview#web-root) folder, `wwwroot`. 
+The app settings files (`appsettings.Development.json`, `appsettings.json`) in either the server or `.Client` project provide [configuration settings](xref:blazor/fundamentals/configuration). In the server project, settings files are at the root of the project. In the `.Client` project, settings files are consumed from the [Web Root](xref:fundamentals/index#web-root) folder, `wwwroot`. 
 
 In the `.Client` project:
 
 * The `Pages` folder contains routable client-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
-* The `wwwroot` folder is the [Web Root](xref:fundamentals/overview#web-root) folder for the `.Client` project that holds the app's public static assets.
+* The `wwwroot` folder is the [Web Root](xref:fundamentals/index#web-root) folder for the `.Client` project that holds the app's public static assets.
 
 * The `Program.cs` file is the project's entry point that sets up the WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
 
@@ -142,7 +142,7 @@ Project structure:
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -190,7 +190,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -237,7 +237,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -284,7 +284,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -357,7 +357,7 @@ Project structure:
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -401,7 +401,7 @@ Project structure:
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`) (*ASP.NET Core in .NET 7 or earlier*): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -459,7 +459,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -513,7 +513,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -565,7 +565,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/overview#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `app` DOM element (`<app>Loading...</app>`).
 

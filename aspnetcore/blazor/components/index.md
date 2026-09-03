@@ -1791,7 +1791,7 @@ When the Razor delegate must return more than one HTML element, wrap the result 
 
 ## Static assets
 
-Blazor follows the convention of ASP.NET Core apps for static assets. Static assets are located in the project's [`web root` (`wwwroot`) folder](xref:fundamentals/overview#web-root) or folders under the `wwwroot` folder.
+Blazor follows the convention of ASP.NET Core apps for static assets. Static assets are located in the project's [`web root` (`wwwroot`) folder](xref:fundamentals/index#web-root) or folders under the `wwwroot` folder.
 
 Use a base-relative path (`/`) to refer to the web root for a static asset. In the following example, `logo.png` is physically located in the `{PROJECT ROOT}/wwwroot/images` folder. `{PROJECT ROOT}` is the app's project root.
 

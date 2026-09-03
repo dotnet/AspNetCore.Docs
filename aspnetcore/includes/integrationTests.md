@@ -48,7 +48,7 @@ Infrastructure components, such as the test web host and in-memory test server (
 The `Microsoft.AspNetCore.Mvc.Testing` package handles the following tasks:
 
 * Copies the dependencies file (`.deps`) from the SUT into the test project's `bin` directory.
-* Sets the [content root](xref:fundamentals/overview#content-root) to the SUT's project root so that static files and pages/views are found when the tests are executed.
+* Sets the [content root](xref:fundamentals/index#content-root) to the SUT's project root so that static files and pages/views are found when the tests are executed.
 * Provides the [WebApplicationFactory](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601) class to streamline bootstrapping the SUT with `TestServer`.
 
 The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) documentation describes how to set up a test project and test runner, along with detailed instructions on how to run tests and recommendations for how to name tests and test classes.

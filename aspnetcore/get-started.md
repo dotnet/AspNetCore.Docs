@@ -250,7 +250,7 @@ In this tutorial, you learned how to:
 To learn more about the fundamentals of ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
-> <xref:fundamentals/overview>
+> <xref:fundamentals/index>
 
 ## Additional tutorials
 

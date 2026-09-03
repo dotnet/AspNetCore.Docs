@@ -87,7 +87,7 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/host/index.md",
-            "redirect_url": "/aspnet/core/fundamentals/overview#host",
+            "redirect_url": "/aspnet/core/fundamentals/index#host",
             "redirect_document_id": false
         },
         {
@@ -1752,11 +1752,6 @@
         {
             "source_path": "aspnetcore/blazor/hybrid/tutorials/maui.md",
             "redirect_url": "/dotnet/maui/get-started/first-app",
-            "redirect_document_id": false
-        },
-        {
-            "source_path": "aspnetcore/fundamentals/index.md",
-            "redirect_url": "/aspnet/core/fundamentals/overview",
             "redirect_document_id": false
         }
     ]

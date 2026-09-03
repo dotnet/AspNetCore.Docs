@@ -11,7 +11,7 @@ The following app startup code supports:
 
 [!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
 
-For more information on application startup, see <xref:fundamentals/overview>.
+For more information on application startup, see <xref:fundamentals/index>.
 
 ## Extend Startup with startup filters
 
@@ -73,7 +73,7 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/overview#host) is built. The `Startup` class is typically specified by calling the [`WebHostBuilderExtensions.UseStartup`/`<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [`WebHostBuilderExtensions.UseStartup`/`<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 [!code-csharp[](~/fundamentals/startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 
@@ -93,7 +93,7 @@ Most services are not available until the `Configure` method is called.
 
 When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the `Development` environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
-See [The host](xref:fundamentals/overview#host) for more information on the host. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
+See [The host](xref:fundamentals/index#host) for more information on the host. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
 ## The ConfigureServices method
 
@@ -103,7 +103,7 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> method 
 * Called by the host before the `Configure` method to configure the app's services.
 * Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
 
-The host may configure some services before `Startup` methods are called. For more information, see [The host](xref:fundamentals/overview#host).
+The host may configure some services before `Startup` methods are called. For more information, see [The host](xref:fundamentals/index#host).
 
 For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. For example, **Add**DbContext, **Add**DefaultIdentity, **Add**EntityFrameworkStores, and **Add**RazorPages:
 
@@ -183,7 +183,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Additional resources
 
-* [The host](xref:fundamentals/overview#host)
+* [The host](xref:fundamentals/index#host)
 * <xref:fundamentals/environments>
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/logging/index>

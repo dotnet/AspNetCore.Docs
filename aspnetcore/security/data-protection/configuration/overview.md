@@ -196,7 +196,7 @@ To configure the system to use a key lifetime of 14 days instead of the default 
 
 ## Set the application name (`SetApplicationName`)
 
-By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/overview#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
+By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
 
 To share protected payloads among apps:
 
@@ -558,7 +558,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Set the application name (`SetApplicationName`)
 
-By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/overview#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
+By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
 
 To share protected payloads among apps:
 

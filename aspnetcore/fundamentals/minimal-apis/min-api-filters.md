@@ -127,7 +127,7 @@ In some scenarios, it might be necessary to apply the same filter logic for both
 
 ## Related content
 
-* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([How to download](xref:fundamentals/overview#how-to-download-a-sample))
+* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([How to download](xref:fundamentals/index#how-to-download-a-sample))
 * [ValidationFilterRouteHandlerBuilderExtensions (Validation extension methods)](https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/src/MinimalApis.Extensions/Filters/ValidationFilterRouteHandlerBuilderExtensions.cs)
 * [Tutorial: Create a Minimal API with ASP.NET Core](xref:tutorials/min-web-api)
 * [Authentication and authorization in Minimal APIs](xref:fundamentals/minimal-apis/security)

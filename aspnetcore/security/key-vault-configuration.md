@@ -35,9 +35,9 @@ The sample app runs in either of two modes determined by the `#define` preproces
 
 * `Managed`: Demonstrates how to use [Managed identities for Azure resources](/entra/identity/managed-identities-azure-resources/overview). The managed identity authenticates the app to Key Vault with Managed identities for Azure resources without storing credentials in the application code or configuration. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
-For more information about configuring a sample app by using `#define`, see [Preprocessor directives in sample code](xref:fundamentals/overview#preprocessor-directives-in-sample-code).
+For more information about configuring a sample app by using `#define`, see [Preprocessor directives in sample code](xref:fundamentals/index#preprocessor-directives-in-sample-code).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Secret storage in the Development environment
 
@@ -53,13 +53,13 @@ Secret Manager requires a `<UserSecretsId>` property in the application project 
 
 Secrets are created as name-value pairs. Hierarchical values (configuration sections) use colons (`:`) as separators in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
 
-Secret Manager is used in a command shell (or terminal) opened to the project's [content root](xref:fundamentals/overview#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+Secret Manager is used in a command shell (or terminal) opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
 ```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Run the following commands in a command shell from the project's [content root](xref:fundamentals/overview#content-root). The commands set the secrets for the sample app:
+Run the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root). The commands set the secrets for the sample app:
 
 ```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
@@ -400,7 +400,7 @@ The following conditions can prevent configuration from loading:
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>
 * [Azure Key Vault documentation](/azure/key-vault/)
 * [Import HSM-protected keys to Azure Key Vault](/azure/key-vault/keys/hsm-protected-keys)
@@ -433,7 +433,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Secret storage in the `Development` environment
 
@@ -449,13 +449,13 @@ Secret Manager requires a `<UserSecretsId>` property in the app's project file. 
 
 Secrets are created as name-value pairs. Hierarchical values (configuration sections) use a `:` (colon) as a separator in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
 
-Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/overview#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
 ```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Execute the following commands in a command shell from the project's [content root](xref:fundamentals/overview#content-root) to set the secrets for the sample app:
+Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root) to set the secrets for the sample app:
 
 ```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
@@ -787,7 +787,7 @@ When the app fails to load configuration using the provider, an error message is
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/overview#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault Documentation](/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)

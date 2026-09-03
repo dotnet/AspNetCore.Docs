@@ -585,7 +585,7 @@ To precompile views, see [Razor view compilation](xref:mvc/views/view-compilatio
 
 ### Specify that Razor Pages are at the content root
 
-By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot%2A> to specify that your Razor Pages are at the [content root](xref:fundamentals/overview#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
+By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot%2A> to specify that your Razor Pages are at the [content root](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
 
 [!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_cr&highlight=5-9)]
 
