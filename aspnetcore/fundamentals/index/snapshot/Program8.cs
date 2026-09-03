@@ -31,6 +31,9 @@ app.UseStaticFiles();
 // Use authorization middleware
 app.UseAuthorization();
 
+// Add antiforgery middleware
+app.UseAntiforgery();
+
 // Map a Minimal API endpoint for requests to '/hi'
 app.MapGet("/hi", () => "Hello!");
 
@@ -43,9 +46,6 @@ app.MapRazorPages();
 // Add endpoints for Blazor
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
-// Add antiforgery middleware
-app.UseAntiforgery();
 
 // Run the app
 app.Run();

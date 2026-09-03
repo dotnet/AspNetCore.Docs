@@ -144,7 +144,7 @@ The DI framework provides instances of requested services at run time. In Blazor
 }
 ```
 
-Another way to resolve a service from DI is using constructor injection. In the following example, the [primary constructor (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors) takes parameters of the types `AppDbContext` and `ILogger<Program>` and resolves them at run time into the `db` and `logger` variables (the instances of the database and logging abstractions). The database context instance is used to process all of the orders where the `IsProcessed` field is `false` in the database, and each processed order is logged as information with its order ID (`OrderId`) using the logger instance:
+Another way to resolve a service from DI is using constructor injection. In the following example, the [primary constructor (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors) takes parameters of the types `AppDbContext` and `ILogger<OrderProcessor>` and resolves them at run time into the `context` and `logger` variables (the instances of the database and logging abstractions). The database context instance is used to process all of the orders where the `IsProcessed` field is `false` in the database, and each processed order is logged as information with its order ID (`OrderId`) using the logger instance:
 
 ```csharp
 public class OrderProcessor(AppDbContext context, ILogger<OrderProcessor> logger)
@@ -166,7 +166,7 @@ public class OrderProcessor(AppDbContext context, ILogger<OrderProcessor> logger
 }
 ```
 
-You can also inject dependencies directly into the lambda parameters of [Minimal API](xref:tutorials/min-web-api) endpoints. In the following example, a list of todo items is returned from the `/todo` endpoint. A logger instance for `ILogger<Program>` logs information that the code is executed, and the database instance for `AppDbContext` is used to obtain the list of todo items from the database to return them in the response:
+You can also inject dependencies directly into the lambda parameters of [Minimal API](xref:tutorials/min-web-api) endpoints. In the following example, a list of todo items is returned from the `/todos` endpoint. A logger instance for `ILogger<Program>` logs information that the code is executed, and the database instance for `AppDbContext` is used to obtain the list of todo items from the database to return them in the response:
 
 ```csharp
 app.MapGet("/todos", async (AppDbContext context, ILogger<Program> logger) =>
@@ -452,7 +452,7 @@ For more information, including routing guidance for Razor Pages and MVC apps, s
 
 Routing in ASP.NET Core is a mechanism that maps incoming requests to specific endpoints in an app. It enables you to define URL patterns that correspond to different components, such as Razor components, Razor pages, MVC controller actions, or middleware.
 
-The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> method adds routing middleware to the request pipeline. This middleware processes the routing information and determines the appropriate endpoint for each request. Since the release of .NET 9, `UseRouting` isn't explicitly called in developer code unless you want to change the order in which middleware is processed.
+The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> method adds routing middleware to the request pipeline. This middleware processes the routing information and determines the appropriate endpoint for each request. In apps using the minimal hosting model (introduced in .NET 6), `UseRouting` isn't explicitly called in developer code unless you want to change the order in which middleware is processed.
 
 For more information, see the following resources:
 

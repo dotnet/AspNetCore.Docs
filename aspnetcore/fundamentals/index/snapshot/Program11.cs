@@ -23,7 +23,10 @@ app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages:
 // redirect requests from HTTP to HTTPS
 app.UseHttpsRedirection();
 
-// Use map static assets middleware
+// Add antiforgery middleware
+app.UseAntiforgery();
+
+// Map static assets endpoints
 app.MapStaticAssets();
 
 // Map a Minimal API endpoint for requests to '/hi'
