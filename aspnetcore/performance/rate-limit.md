@@ -420,6 +420,8 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
+var app = builder.Build();
+
 app.MapGet("/api/resource", () => "This endpoint uses multiple limiters")
    .RequireRateLimiting("combined");
 ```
