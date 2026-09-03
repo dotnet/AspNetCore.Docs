@@ -389,6 +389,8 @@ For more information, see the [CreateChained source code](https://github.com/dot
 The following `"combined"` policy chains a token bucket limiter and a concurrency limiter with `RateLimiter.CreateChained`, then applies the policy to a single endpoint with <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A>:
 
 ```csharp
+var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddRateLimiter(options =>
 {
     options.AddPolicy("combined", httpContext =>
