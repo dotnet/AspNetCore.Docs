@@ -1,10 +1,11 @@
 ---
 title: Rate limiting middleware in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
-ms.date: 11/26/2025
+ms.date: 09/03/2026
 uid: performance/rate-limit
 ---
 
@@ -372,13 +373,62 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpC
 
 ### Create chained limiters
 
-The <xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A> API allows passing in multiple <xref:System.Threading.RateLimiting.PartitionedRateLimiter> which are combined into one `PartitionedRateLimiter`. The combined limiter runs all the input limiters in sequence.
+The <xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A> API allows passing in multiple <xref:System.Threading.RateLimiting.PartitionedRateLimiter> which are combined into one `PartitionedRateLimiter`. The combined limiter runs all the input limiters in sequence. Because the result is a `PartitionedRateLimiter` assigned to `GlobalLimiter`, the chain applies to every endpoint. To chain limiters for a specific endpoint instead, use a named policy, as shown in [Chain limiters in a named policy](#chain-limiters-in-a-named-policy).
 
 The following code uses `CreateChained`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_3" highlight="19,20,33":::
 
 For more information, see the [CreateChained source code](https://github.com/dotnet/runtime/blob/79874806d246670ee5fe76e73ce566578fe675c0/src/libraries/System.Threading.RateLimiting/src/System/Threading/RateLimiting/PartitionedRateLimiter.cs#L52-L64)
+
+### Chain limiters in a named policy
+
+<xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A> chains *global* limiters that apply to every endpoint. To combine multiple limiter types and scope them to specific endpoints, chain the limiters inside a named policy with <xref:System.Threading.RateLimiting.RateLimiter.CreateChained%2A>. This overload returns a single <xref:System.Threading.RateLimiting.RateLimiter> that runs each limiter in sequence, which is the return type a named policy's partition factory requires.
+
+The following `"combined"` policy chains a token bucket limiter and a concurrency limiter with `RateLimiter.CreateChained`, then applies the policy to a single endpoint with <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A>:
+
+```csharp
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("combined", httpContext =>
+    {
+        // Partition on the authenticated identity. Each distinct key creates and
+        // caches its own limiter, so partitioning on unbounded user-controlled
+        // input can exhaust memory (a DoS risk).
+        string partitionKey = httpContext.User.Identity?.Name ?? "anonymous";
+
+        return RateLimitPartition.Get(partitionKey, _ =>
+            RateLimiter.CreateChained(
+                new TokenBucketRateLimiter(new TokenBucketRateLimiterOptions
+                {
+                    TokenLimit = 100,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = 5,
+                    ReplenishmentPeriod = TimeSpan.FromSeconds(10),
+                    TokensPerPeriod = 10,
+                    AutoReplenishment = true
+                }),
+                new ConcurrencyLimiter(new ConcurrencyLimiterOptions
+                {
+                    PermitLimit = 5,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = 2
+                })));
+    });
+});
+
+app.MapGet("/api/resource", () => "This endpoint uses multiple limiters")
+   .RequireRateLimiting("combined");
+```
+
+A request must acquire a lease from every limiter in the chain to proceed, and the limiters run in the order passed to `RateLimiter.CreateChained`. If a limiter rejects the request, the request is rejected and the leases already acquired from earlier limiters in the chain are disposed in reverse order.
+
+When chaining limiters in a named policy, keep the following in mind:
+
+* Disposing a lease returns the permit for a concurrency limiter. The time-based limiters (token bucket, fixed window, and sliding window) don't return a permit that was already acquired when a later limiter in the chain rejects the request, so take this into account when ordering the limiters in the chain.
+* Constructing a `TokenBucketRateLimiter` directly with `AutoReplenishment` set to `true` gives each limiter instance its own timer. The `AddTokenBucketLimiter` and `RateLimitPartition.GetTokenBucketLimiter` helpers instead set `AutoReplenishment` to `false` and replenish all of their limiters from a single shared timer.
+* `RateLimiter.CreateChained` doesn't dispose the limiters passed to it. In the preceding example, the partition caches the chained limiter and the framework manages its lifetime. If you create chained limiters outside of a partition, dispose the inner limiters when they're no longer in use.
+* Prefer the global `PartitionedRateLimiter.CreateChained` approach when the chain should apply to every endpoint. Use a named policy with `RateLimiter.CreateChained` only when the chain must be scoped to specific endpoints.
 
 ## Choosing what happens when a request is rate limited
 
