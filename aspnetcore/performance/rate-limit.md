@@ -33,7 +33,7 @@ Rate limiting can be used for managing the flow of incoming requests to an app. 
 
 Implementing rate limiting in an ASP.NET Core app can help maintain stability, security, and performance. It ensures a reliable and efficient service for all users.
 
-## Preventing DDoS Attacks
+## Prevent DDoS attacks
 
 While rate limiting can help mitigate the risk of Denial of Service (DoS) attacks by limiting the rate at which requests are processed, it's not a comprehensive solution for Distributed Denial of Service (DDoS) attacks. DDoS attacks involve multiple systems overwhelming an app with a flood of requests, making it difficult to handle with rate limiting alone.
 
