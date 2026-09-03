@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
-description: Learn how limit requests in ASP.NET Core apps
+description: Learn how to limit requests in ASP.NET Core apps
 ms.date: 09/03/2026
 uid: performance/rate-limit
 ---
