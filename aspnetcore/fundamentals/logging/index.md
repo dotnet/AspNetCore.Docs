@@ -625,8 +625,8 @@ The following table describes the logging levels from lowest to highest severity
 
 `LogLevel` | Value | Method | Description
 --- | --- | --- | ---
-<xref:Microsoft.Extensions.Logging.LogLevel.Trace> | 0 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogTrace%2A> | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production.
-<xref:Microsoft.Extensions.Logging.LogLevel.Debug> | 1 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogDebug%2A> | For debugging and development. Use with caution in production due to the high volume of messages logged.
+<xref:Microsoft.Extensions.Logging.LogLevel.Trace> | 0 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogTrace%2A> | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and must ***not*** be enabled in production.
+<xref:Microsoft.Extensions.Logging.LogLevel.Debug> | 1 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogDebug%2A> | For debugging and development. These must **not** be enabled in production.
 <xref:Microsoft.Extensions.Logging.LogLevel.Information> | 2 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> | Tracks the general flow of the app.
 <xref:Microsoft.Extensions.Logging.LogLevel.Warning> | 3 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.
 <xref:Microsoft.Extensions.Logging.LogLevel.Error> | 4 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A> | Typically used for unhandled errors and exceptions. These messages indicate a failure in the current operation or request, not an app-wide failure.
