@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
-ms.date: 08/26/2026
+ms.date: 09/04/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -68,6 +68,8 @@ This section describes new features for OpenAPI.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-3-2-default-preview-6.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-server-sent-events-preview-7.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-generation-environment-preview-7.md)]
 
 ## Authentication and authorization
 

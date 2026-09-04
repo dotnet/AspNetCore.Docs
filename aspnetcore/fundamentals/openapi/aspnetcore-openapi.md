@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 08/19/2026
+ms.date: 09/04/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -293,6 +293,18 @@ Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI
   <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
+
+#### Select the app environment
+
+Starting in .NET 11, set the `OpenApiGenerationEnvironment` property to select the app environment used during build-time OpenAPI document generation. The property sets the host's environment for the generation process, equivalent to setting the `ASPNETCORE_ENVIRONMENT` or `DOTNET_ENVIRONMENT` environment variable:
+
+```xml
+<PropertyGroup>
+  <OpenApiGenerationEnvironment>Development</OpenApiGenerationEnvironment>
+</PropertyGroup>
+```
+
+Selecting the environment enables environment-specific configuration, such as settings from `appsettings.Development.json`, and environment-dependent document transformations to affect the generated document. The property doesn't change the environment used when the app runs normally.
 
 ### Customize runtime behavior during build-time document generation
 
