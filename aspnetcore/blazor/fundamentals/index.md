@@ -5,7 +5,7 @@ author: guardrex
 description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/03/2026
+ms.date: 09/04/2026
 uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
