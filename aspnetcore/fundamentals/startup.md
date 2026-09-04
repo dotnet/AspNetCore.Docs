@@ -177,6 +177,8 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 
 You can't extend the ASP.NET Core app when you override `Configure`. For more information, see [WebApplicationFactory Client returns NotFound for all requests with Overriding Configure method (`dotnet/aspnetcore` #45372)](https://github.com/dotnet/aspnetcore/issues/45372).
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
