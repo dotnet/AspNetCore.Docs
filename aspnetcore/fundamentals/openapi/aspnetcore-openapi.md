@@ -294,6 +294,10 @@ Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI
 </PropertyGroup>
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 #### Select the app environment
 
 Starting in .NET 11, set the `OpenApiGenerationEnvironment` property to select the app environment used during build-time OpenAPI document generation. The property sets the host's environment for the generation process, equivalent to setting the `ASPNETCORE_ENVIRONMENT` or `DOTNET_ENVIRONMENT` environment variable:
@@ -305,6 +309,10 @@ Starting in .NET 11, set the `OpenApiGenerationEnvironment` property to select t
 ```
 
 Selecting the environment enables environment-specific configuration, such as settings from `appsettings.Development.json`, and environment-dependent document transformations to affect the generated document. The property doesn't change the environment used when the app runs normally.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### Customize runtime behavior during build-time document generation
 
