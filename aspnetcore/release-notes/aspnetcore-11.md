@@ -69,7 +69,7 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-server-sent-events-preview-7.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-generation-environment-preview-7.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-generation-environment.md)]
 
 ## Authentication and authorization
 
