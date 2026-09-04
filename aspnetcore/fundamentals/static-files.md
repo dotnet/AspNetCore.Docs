@@ -428,7 +428,7 @@ app.MapStaticAssets();
 
 ## Static assets manifest
 
-<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> serves assets from a *static assets manifest* rather than by scanning the [web root](xref:fundamentals/index#web-root) at runtime. The build and publish process generates the manifest and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations ([Gzip](https://tools.ietf.org/html/rfc1952) and [Brotli](https://tools.ietf.org/html/rfc7932)). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> serves assets from a *static assets manifest* rather than by scanning the [web root](xref:fundamentals/index#web-root) at runtime. The manifest is generated at build and publish time and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations ([Gzip](https://tools.ietf.org/html/rfc1952) and [Brotli](https://tools.ietf.org/html/rfc7932)). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
 
 The build process generates the manifest in the build output directory. Its file name is based on the project's assembly name (for example, `{ASSEMBLY NAME}.staticwebassets.endpoints.json`, where the `{ASSEMBLY NAME}` placeholder is the app's MSBuild `AssemblyName` value). To provide a manifest from a different location, see the [Provide a custom static files manifest](#provide-a-custom-static-files-manifest) section.
 
@@ -1160,8 +1160,8 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
   1. Select **StaticFileModule** in the list.
   1. Click **Remove** in the **Actions** sidebar.
 
-> [!WARNING]
-> If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This condition occurs, for example, if the `web.config` file isn't deployed.
+  > [!WARNING]
+  > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This condition occurs, for example, if the `web.config` file isn't deployed.
 
 * Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). This configuration creates a logical separation between the app's client-side content and server-based code. This separation prevents server-side code from being leaked.
 

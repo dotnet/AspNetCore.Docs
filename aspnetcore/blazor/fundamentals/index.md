@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core Blazor fundamentals
+ai-usage: ai-assisted
 author: guardrex
 description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 09/04/2026
 uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
@@ -150,15 +151,6 @@ The preceding information on render modes is all that you need to know to unders
 
 :::moniker-end
 
-## Document Object Model (DOM)
-
-References to the *Document Object Model* use the abbreviation *DOM*.
-
-For more information, see the following resources:
-
-* [Introduction to the DOM (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)
-* [Level 1 Document Object Model Specification (W3C)](https://www.w3.org/TR/WD-DOM/)
-
 ## Subset of .NET APIs for Blazor WebAssembly apps
 
 A curated list of specific .NET APIs that are supported on the browser for Blazor WebAssembly isn't available. However, you can manually <!--keep--> [search for a list of .NET APIs annotated with `[UnsupportedOSPlatform("browser")]`](https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/Runtime/Versioning/PlatformAttributes.cs,34041602e232c616,references) to discover .NET APIs that aren't supported in WebAssembly.
@@ -233,37 +225,6 @@ The ASP.NET Core repository's Basic Test App is also a helpful set of samples fo
 [`BasicTestApp` in ASP.NET Core reference source (`dotnet/aspnetcore`)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-## Byte multiples
-
-.NET byte sizes use metric prefixes for non-decimal multiples of bytes based on powers of 1024.
-
-| Name (abbreviation) | Size                    | Example                    |
-| ------------------- | ----------------------- | -------------------------- |
-| Kilobyte (KB)       | 1,024 bytes             | 1 KB = 1,024 bytes         |
-| Megabyte (MB)       | 1,024<sup>2</sup> bytes | 1 MB = 1,048,576 bytes     |
-| Gigabyte (GB)       | 1,024<sup>3</sup> bytes | 1 GB = 1,073,741,824 bytes |
-
-## Support requests
-
-Only documentation-related issues are appropriate for the `dotnet/AspNetCore.Docs` repository. ***For product support, don't open a documentation issue.*** Seek assistance through one or more of the following support channels:
-
-* [Stack Overflow (tagged: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-* [General ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
-* [Blazor Gitter](https://gitter.im/aspnet/Blazor)
-
-For a potential bug in the framework or product feedback, open an issue for the ASP.NET Core product unit at [`dotnet/aspnetcore` issues](https://github.com/dotnet/aspnetcore/issues). Bug reports usually ***require*** the following:
-
-* **Clear explanation of the problem**: Follow the instructions in the GitHub issue template provided by the product unit when opening the issue.
-* **Minimal repro project**: Place a project on GitHub for the product unit engineers to download and run. Cross-link the project into the issue's opening comment.
-
-For a potential problem with a Blazor article, open a documentation issue. To open a documentation issue, use the **Open a documentation issue** feedback link at the bottom of the article. Metadata added to your issue provides tracking data and automatically pings the author of the article. If the subject was discussed with the product unit prior to opening the documentation issue, place a cross-link to the engineering issue in the documentation issue's opening comment.
-
-For problems or feedback on Visual Studio, use the [**Report a Problem**](/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](/visualstudio/ide/suggest-a-feature) gestures from within Visual Studio, which open internal issues for Visual Studio. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home).
-
-For problems with Visual Studio Code, ask for support on community support forums. For bug reports and product feedback, open an issue on the [`microsoft/vscode` GitHub repo](https://github.com/microsoft/vscode/issues).
-
-GitHub issues for Blazor documentation are automatically marked for triage on the [`Blazor.Docs` project (`dotnet/AspNetCore.Docs` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs/projects/35). Please wait a short while for a response, especially over weekends and holidays. Usually, documentation authors respond within 24 hours on weekdays.
 
 ## Community links to Blazor resources
 
