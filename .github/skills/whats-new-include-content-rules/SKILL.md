@@ -25,23 +25,25 @@ All include files go in:
 
 * Lowercase, hyphenated, descriptive names using whole words only.
 * Each word and number must be separated by a hyphen. Do not combine words or abbreviate them, and do not combine numbers with words.
-  - **Wrong**: `infer-pk-display-name-preview2.md` (`pk` is an abbreviation, and `preview2` combines a word with a number)
-  - **Correct**: `infer-passkey-display-name-preview-2.md` (whole words, number separated by hyphen)
-* Append the preview number suffix to each filename: `-preview-{N}` (where `{N}` is the preview number, e.g., `-preview-2`).
-  **CRITICAL**: Every new file MUST include the preview suffix. This was a mistake
-  in the initial automation — a file was created without the suffix and had to be
-  corrected.
+  - **Wrong**: `infer-pk-display-name.md` (`pk` is an abbreviation)
+  - **Correct**: `infer-passkey-display-name.md` (whole words)
+* Do NOT append a preview number suffix to the filename.
+  **CRITICAL**: Never add a `-preview-{N}` suffix. Preview version suffixes cause
+  confusion when the same feature is updated for a later preview release, and they
+  aren't needed. Name each file for its feature only (for example,
+  `async-validation-minimal-apis.md`), and update that same file in place across
+  preview releases.
 * Examples:
-  - `native-otel-tracing-preview-2.md`
-  - `openapi-3-2-support-preview-2.md`
-  - `infer-passkey-display-name-preview-2.md`
-  - `performance-improvements-preview-2.md`
+  - `native-otel-tracing.md`
+  - `openapi-3-2-support.md`
+  - `infer-passkey-display-name.md`
+  - `performance-improvements.md`
 
 ### One file per feature
 
 * Create one include file per feature or section.
 * **Exception — Performance**: Combine all performance improvements into a
-  single `performance-improvements-preview-{N}.md` file.
+  single `performance-improvements.md` file.
 
 ### Exclusions — do NOT create include files for
 
@@ -163,7 +165,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
 
 Before completing, verify:
 
-- [ ] Every new include filename ends with `-preview-{N}`.
+- [ ] No include filename has a `-preview-{N}` suffix.
 - [ ] Every word and number in filenames is separated by a hyphen (no abbreviations, no combined word-numbers).
 - [ ] No Blazor content was included.
 - [ ] No bug-fix-only content was included.
