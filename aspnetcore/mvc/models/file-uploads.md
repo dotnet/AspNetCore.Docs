@@ -750,19 +750,68 @@ Other Kestrel limits might apply for apps hosted by Kestrel:
 
 ### IIS
 
-The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit in the `web.config` file. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+When hosted on IIS in-process, request size limits can exist at both the IIS request filtering module layer and the ASP.NET Core server layer:
 
-```xml
-<system.webServer>
-  <security>
-    <requestFiltering>
-      <requestLimits maxAllowedContentLength="52428800" />
-    </requestFiltering>
-  </security>
-</system.webServer>
+* **IIS request filtering (`maxAllowedContentLength`)**: The default IIS request limit is 30,000,000 bytes (~28.6 MB). Customize this limit in the `web.config` file. IIS inspects incoming requests and rejects any request exceeding this limit with HTTP 404.13 before it reaches the ASP.NET Core application:
+
+  ```xml
+  <system.webServer>
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="52428800" />
+      </requestFiltering>
+    </security>
+  </system.webServer>
+  ```
+
+  For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+
+* **ASP.NET Core IIS server options (`IISServerOptions.MaxRequestBodySize`)**: ASP.NET Core also enforces a default request body size limit of 30,000,000 bytes (~28.6 MB) when hosted in-process. Customize this limit in `Program.cs`:
+
+  ```csharp
+  builder.Services.Configure<IISServerOptions>(options =>
+  {
+      options.MaxRequestBodySize = 52428800; // 50 MB
+  });
+  ```
+
+> [!NOTE]
+> When hosted in-process on IIS, both limits apply. If `maxAllowedContentLength` is smaller than `IISServerOptions.MaxRequestBodySize`, IIS rejects requests exceeding `maxAllowedContentLength` before ASP.NET Core processes them. To support larger uploads on IIS, increase both `maxAllowedContentLength` in `web.config` and `IISServerOptions.MaxRequestBodySize` (or apply <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute>).
+
+### Per-request request body size configuration
+
+To dynamically adjust or remove the request body size limit for a specific request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature> feature in middleware or an endpoint:
+
+```csharp
+app.MapPost("/upload", async (HttpContext context) =>
+{
+    var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+
+    if (maxRequestBodySizeFeature is { IsReadOnly: false })
+    {
+        // Set a 100 MB limit for this request, or set to null for unlimited
+        maxRequestBodySizeFeature.MaxRequestBodySize = 104857600;
+    }
+
+    // Process file upload stream
+});
 ```
 
-The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+* Setting `MaxRequestBodySize` to `null` disables the ASP.NET Core server-side limit for that request.
+* The limit must be configured **before** the app begins reading the request body. If `IsReadOnly` is `true`, the request body has already been read and attempting to set `MaxRequestBodySize` throws an <xref:System.InvalidOperationException>.
+* Changing `IHttpMaxRequestBodySizeFeature.MaxRequestBodySize` or applying <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> only overrides ASP.NET Core server limits (Kestrel or `IISServerOptions`). It does **not** bypass the IIS module-level `maxAllowedContentLength` limit configured in `web.config`.
+
+### Request body size limits summary
+
+The following table summarizes the request body size limit mechanisms in ASP.NET Core:
+
+| Setting / Mechanism | Scope / Layer | How to configure | Default | Notes |
+| --- | --- | --- | --- | --- |
+| `maxAllowedContentLength` | IIS Module (IIS level) | `web.config` (`<requestLimits>`) | 30,000,000 bytes (~28.6 MB) | Checked by IIS before request reaches ASP.NET Core. Rejects with HTTP 404.13. |
+| `IISServerOptions.MaxRequestBodySize` | ASP.NET Core IIS server | `builder.Services.Configure<IISServerOptions>` | 30,000,000 bytes (~28.6 MB) | Enforced by ASP.NET Core IIS in-process server handler. |
+| `KestrelServerOptions.Limits.MaxRequestBodySize` | ASP.NET Core Kestrel server | `builder.WebHost.ConfigureKestrel` | 30,000,000 bytes (~28.6 MB) | Enforced by Kestrel server. |
+| <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> | Action or Razor Page | `[RequestSizeLimit(bytes)]` or `@attribute` | N/A | Overrides ASP.NET Core server limit per action/page. Cannot bypass IIS `maxAllowedContentLength`. |
+| <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature> | Single HTTP Request | `context.Features.Get<IHttpMaxRequestBodySizeFeature>()` | N/A | Dynamically changes or disables (`null`) ASP.NET Core server limit before request body is read. |
 
 ## Troubleshoot
 
