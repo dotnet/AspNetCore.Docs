@@ -651,7 +651,7 @@ Blazor static server-side rendering (static SSR) forms now get instant, in-brows
 
 The feature is enabled by default for all static SSR forms that include the `DataAnnotationsValidator` component. Both enhanced and non-enhanced forms are supported.
 
-Complete feature coverage is available in <xref:blazor/forms/validation?view=aspnetcore-11.0#client-side-validation-in-static-ssr-forms>.
+Complete feature coverage is available in <xref:blazor/forms/validation-client-side?view=aspnetcore-11.0>.
 
 For more information, see the following resources:
 
@@ -662,12 +662,14 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 ### Asynchronous form validation support
 
-Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation now properly awaits async validators end-to-end. In interactive modes, validator components can register per-field async validation via `EditContext.RegisterAsyncFieldValidator`. The framework tracks them, cancels superseded validations, and exposes progress status via `IsValidationPending(field)` and `IsValidationFaulted(field)`.
+Blazor forms receive support for async validation rules, such as database lookups or remote API calls. In any rendering mode, `EditForm` submit validation awaits async validators end-to-end.
 
 The built-in `DataAnnotationsValidator` component runs the asynchronous `DataAnnotations` APIs (`AsyncValidationAttribute` and `IAsyncValidatableObject`), so asynchronous rules declared on the model work without additional configuration.
 
+Validator components register asynchronous work with `ValidationRequestedEventArgs.AddAsyncValidator` for the whole form and `EditContext.RegisterAsyncFieldValidator` for a single field. The framework owns the cancellation token source, cancels superseded validations, and exposes progress with `IsValidationPending(field)` and `IsValidationFaulted(field)`.
+
 ```razor
-<EditForm EditContext="editContext" OnSubmit="HandleSubmit">
+<EditForm EditContext="editContext" OnValidSubmit="HandleSubmit">
     <InputText @bind-Value="model.Username" />
     @if (editContext.IsValidationPending(() => model.Username))
     {
@@ -708,72 +710,13 @@ The built-in `DataAnnotationsValidator` component runs the asynchronous `DataAnn
         editContext.NotifyValidationStateChanged();
     }
 
-    private async Task HandleSubmit() => await editContext.ValidateAsync();
+    private Task HandleSubmit() => RegisterAsync();
 }
 ```
 
-Complete feature coverage is available in <xref:blazor/forms/validation?view=aspnetcore-11.0#asynchronous-validation>.
+Complete feature coverage is available in <xref:blazor/forms/validation-advanced?view=aspnetcore-11.0#asynchronous-validation>.
 
 For more information, see [Add built-in support for async form validation in Blazor (`dotnet/aspnetcore` #66526)](https://github.com/dotnet/aspnetcore/pull/66526).
-
-Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
-
-### Blazor and Minimal APIs support error localization
-
-Validation of Blazor forms and Minimal API endpoints receives first-class support for localization of error messages and property names. Localization activates automatically once an `IStringLocalizerFactory` is available. By default, localization registered by `AddLocalization` uses language-specific RESX files deployed as part of the assembly.
-
-```csharp
-builder.Services.AddLocalization();
-builder.Services.AddValidation();
-```
-
-```csharp
-[ValidatableType]
-public class ContactModel
-{
-    // Values of ErrorMessage are used as localization keys.
-    [Required(ErrorMessage = "RequiredError")]
-    [EmailAddress(ErrorMessage = "EmailError")]
-    [Display(Name = "ContactEmail")]
-    public string? Email { get; set; }
-}
-```
-
-Apps can also register custom `IStringLocalizerFactory` implementations to read the localized strings from other sources, such as databases or JSON files. A user registered type takes precedence over the default RESX localization.
-
-```csharp
-builder.Services.AddSingleton<IStringLocalizerFactory, DbStringLocalizerFactory>();
-builder.Services.AddValidation();
-```
-
-To resolve keys from a shared resource file instead of the validated type's own resources, set `ValidationOptions.LocalizerProvider`:
-
-```csharp
-builder.Services.AddValidation(options =>
-{
-    options.LocalizerProvider = (_, factory) => factory.Create(typeof(ValidationMessages));
-});
-```
-
-When an attribute doesn't set `ErrorMessage`, conventional lookup keys are tried from most to least specific, removing the need to specify localization keys on every validation attribute:
-
-```csharp
-[ValidatableType]
-public class ContactModel
-{
-    // Looks up 'ContactModel_Username_RequiredAttribute_Error', then
-    // 'ContactModel_RequiredAttribute_Error', then 'RequiredAttribute_Error'.
-    [Required]
-    public string? Username { get; set; }
-}
-```
-
-Complete feature coverage is available in the following articles:
-
-* <xref:fundamentals/localization/make-content-localizable?view=aspnetcore-11.0#dataannotations-localization-in-minimal-apis-and-blazor>
-* <xref:fundamentals/minimal-apis?view=aspnetcore-11.0#localizing-validation-messages>
-
-For more information, see [Add localization support to Microsoft.Extensions.Validation (`dotnet/aspnetcore` #66646)](https://github.com/dotnet/aspnetcore/pull/66646).
 
 Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
 
@@ -865,15 +808,6 @@ The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.Q
 * `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
 
 For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
-
-### `ValidatableTypeAttribute` and `SkipValidationAttribute` are no longer experimental
-
-The <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> attributes from the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer experimental.
-
-For more information, see the following resources:
-
-* <xref:blazor/forms/validation?view=aspnetcore-11.0#nested-objects-and-collection-types>
-* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
 
 ### Cache rendered output of a component subtree during static SSR
 
