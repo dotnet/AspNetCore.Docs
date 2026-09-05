@@ -220,7 +220,18 @@ Using this approach (and additional conventions if required), API visibility is 
 
 ### Custom API description providers with `IApiDescriptionProvider`
 
-ASP.NET Core uses <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> implementations to discover endpoints and generate <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> metadata during app startup. OpenAPI and Swagger generators inspect these `ApiDescription` instances when producing API documentation.
+:::moniker range=">= aspnetcore-9.0"
+
+Starting with .NET 9, ASP.NET Core includes built-in OpenAPI document generation in the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package. To programmatically inspect or modify the generated OpenAPI output, use document, operation, and schema transformers rather than implementing <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> directly. For more information, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> is an advanced extensibility point intended for framework and library authors. Most apps don't need to implement it. Starting with .NET 9, use the built-in OpenAPI document, operation, and schema transformers to customize generated API documentation. For more information, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+
+ASP.NET Core uses <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> implementations to discover endpoints and generate <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> metadata. Tools such as Swashbuckle and NSwag inspect these `ApiDescription` instances when producing API documentation.
 
 Implement <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> to programmatically inspect or modify `ApiDescription` instances produced by the framework:
 
@@ -267,3 +278,5 @@ builder.Services.TryAddEnumerable(
 
 var app = builder.Build();
 ```
+
+:::moniker-end
