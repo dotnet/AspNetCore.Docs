@@ -217,3 +217,53 @@ The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModel
 [!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/EnableApiExplorerApplicationConvention.cs)]
 
 Using this approach (and additional conventions if required), API visibility is enabled or disabled at any level within an app.
+
+### Custom API description providers with `IApiDescriptionProvider`
+
+ASP.NET Core uses <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> implementations to discover endpoints and generate <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> metadata during app startup. OpenAPI and Swagger generators inspect these `ApiDescription` instances when producing API documentation.
+
+Implement <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> to programmatically inspect or modify `ApiDescription` instances produced by the framework:
+
+* <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.OnProvidersExecuting%2A>: Executes in ascending order of the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order> property to construct `ApiDescription` metadata for discovered endpoints.
+* <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.OnProvidersExecuted%2A>: Executes in reverse order after all providers have executed, allowing customization or enrichment of generated `ApiDescription` instances.
+
+The following example demonstrates a custom `IApiDescriptionProvider` that adds custom metadata properties to discovered API descriptions:
+
+```csharp
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+
+public class CustomApiDescriptionProvider : IApiDescriptionProvider
+{
+    // Execute after the framework's default ApiDescriptionProvider (Order = -1000)
+    public int Order => 0;
+
+    public void OnProvidersExecuting(ApiDescriptionProviderContext context)
+    {
+        // No action required during initial execution phase
+    }
+
+    public void OnProvidersExecuted(ApiDescriptionProviderContext context)
+    {
+        foreach (var apiDescription in context.Results)
+        {
+            // Enrich or modify ApiDescription metadata
+            apiDescription.Properties["CustomMetadata"] = "CustomValue";
+        }
+    }
+}
+```
+
+Register the custom provider with dependency injection using <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable%2A> in `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.TryAddEnumerable(
+    ServiceDescriptor.Transient<IApiDescriptionProvider, CustomApiDescriptionProvider>());
+
+var app = builder.Build();
+```
