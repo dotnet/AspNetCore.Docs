@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 01/22/2026
+ms.date: 09/06/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
 ---
