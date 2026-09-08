@@ -2,50 +2,104 @@
 title: App startup in ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
+description: Learn how ASP.NET Core apps start up and how to configure services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/04/2026
+ms.date: 09/08/2026
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-7.0"
-
-ASP.NET Core apps created with the web templates contain the application startup code in the app's `Program` file (`Program.cs`).
+This article describes how ASP.NET Core apps start up and how to configure services and the app's request pipeline.
 
 For Blazor startup guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/startup>.
 
-The following app startup code supports several app types:
+:::moniker range=">= aspnetcore-6.0"
 
-* [Blazor Web Apps](xref:blazor/index#build-a-full-stack-web-app-with-blazor)
-* [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
-* [Web API with controllers](xref:tutorials/first-web-api)
-* [Minimal APIs](xref:tutorials/min-web-api)
+## The `Program` file
 
-[!code-csharp[](~/fundamentals/startup/9.0_samples/WebAll/Program.cs?name=snippet)]
+ASP.NET Core apps initialize and configure startup in the app's `Program` file (`Program.cs`).
 
-Apps that use the <xref:System.Diagnostics.Tracing.EventSource> can measure the startup time to understand and optimize startup performance. The <!--keep-->[ServerReady](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
+The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults:
 
-:::moniker-end
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+```
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+Properties of the web app builder include:
 
-ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
+* [`builder.Configuration`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration): A collection of configuration providers for the app to compose. This is useful for adding new configuration sources and providers. The framework automatically chains multiple configuration sources together. If a setting exists in multiple places, the last setting is used. For more information, see <xref:fundamentals/configuration/index>.
+* [`builder.Environment`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment): Provides information about the web hosting environment an app is running. For more information, see <xref:fundamentals/environments>.
+* [`builder.Host`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Host): An <xref:Microsoft.Extensions.Hosting.IHostBuilder> for configuring host specific properties, but not building the host. For more information, see <xref:fundamentals/host/generic-host>.
+* [`builder.Logging`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging): A collection of logging providers for the app to compose. For more information, see <xref:fundamentals/logging/index>.
+* [`builder.Metrics`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Metrics) (.NET 8 or later): Allows enabling metrics and directing their output. For more information, see <xref:metrics/overview>.
+* [`builder.Services`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services): A collection of dependency injection (DI) services for the app to compose for [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion). This is useful for adding user provided or framework provided services. For more information, see <xref:fundamentals/dependency-injection>.
+* [`builder.WebHost`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost): An <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> for configuring server specific properties, but not building.
 
-The following app startup code supports:
+The app is built by calling <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A?displayProperty=nameWithType>, which returns the built <xref:Microsoft.AspNetCore.Builder.WebApplication>:
 
-* [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
-* [Web API with controllers](xref:tutorials/first-web-api)
-* [Minimal APIs](xref:tutorials/min-web-api)
+```csharp
+var app = builder.Build();
+```
 
-[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
+The next part of the `Program` file focuses on establishing the request handling pipeline as a series of [middleware components](xref:fundamentals/middleware/index). Each middleware performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request. By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." For more information, see <xref:fundamentals/middleware/index>. The following example demonstrates service registrations for [Blazor](xref:blazor/index) services, [localization](xref:fundamentals/localization), a weather forecast service, and a product repository:
 
-For more information on application startup, see <xref:fundamentals/index>.
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+builder.Services.AddLocalization();
+builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+```
+
+The <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> method runs the app and blocks the calling thread until the host is shut down:
+
+```csharp
+app.Run();
+```
+
+The built and configured app transition to an active, running process:
+
+1. The middleware pipeline is built.
+
+   When `builder.Build` is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When `app.Run` executes, the framework permanently seals the HTTP middleware pipeline. All the middleware methods declared, such as `app.UseHttpsRedirection()`, `app.UseAuthorization()`, and endpoint mappings are compiled them into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
+
+2. The web server (Kestrel by default) is started.
+
+   The host looks inside its dependency container, locates the registered server implementation (usually Kestrel), and triggers its startup cycle. Kestrel then: 
+   
+   * Looks up the defined hosting URLs and ports from `launchSettings.json`, environment variables, or CLI arguments.
+   * Opens and allocates the physical network sockets on your machine.
+   * Binds to those ports and begins listening for incoming traffic.
+
+   For more information, see <xref:fundamentals/host/generic-host>, <xref:fundamentals/servers/index>, and <xref:fundamentals/servers/kestrel>.
+
+3. Application started lifetime events are triggered.
+
+   The <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> service fires its <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStarted> token. Any background workers (<xref:Microsoft.Extensions.Hosting.BackgroundService> or [hosted services](xref:fundamentals/host/hosted-services)), database seeders, or custom event listeners that are wired up to wait for app startup are triggered to start processing.
+
+4. The main execution thread is blocked.
+
+   <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> (`app.Run()`) is intentionally *synchronous* to the main thread. It creates an active wait loop using an internal <xref:System.Threading.Tasks.TaskCompletionSource> or synchronization context. It pauses code execution, preventing the `Program` file from ending, which would otherwise terminate the app.
+
+5. The app transitions to listening for requests.
+
+   At this point, the command shell usually logs hosting diagnostics:
+
+   ```text
+   info: Microsoft.Hosting.Lifetime[14]
+         Now listening on: https://localhost:7123
+   info: Microsoft.Hosting.Lifetime[14]
+         Now listening on: http://localhost:5123
+   info: Microsoft.Hosting.Lifetime[0]
+         Application started. Press Ctrl+C to shut down.
+   ```
+
+  The app remains in this state indefinitely, passing incoming web traffic down the middleware pipeline and sending responses.
+
+When a shutdown signal is intercepted (for example, <kbd>Ctrl</kbd>+<kbd>c</kbd> is detected in the command shell running the app or a container orchestration tool sends a SIGTERM event), `app.Run()` unblocks. `ApplicationStopping` tokens are triggered, giving active HTTP requests a brief window to gracefully finish processing. The Kestrel server is shut down. Finally, console execution gracefully exits with an exit code of 0.
 
 :::moniker-end
 
@@ -64,9 +118,9 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 [!code-csharp[](~/fundamentals/startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
-The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
+The preceding example is for [Razor Pages](xref:razor-pages/index); MVC startup code is similar.
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [`WebHostBuilderExtensions.UseStartup`/`<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A?displayName=nameWithType> on the host builder:
 
 [!code-csharp[](~/fundamentals/startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 
@@ -138,119 +192,74 @@ To configure services and the request processing pipeline without using a `Start
 
 ## Startup filters
 
-:::moniker range=">= aspnetcore-7.0"
+While an app typically creates an explicit middleware execution pipeline in its `Program` file, a startup filter (<xref:Microsoft.AspNetCore.Hosting.IStartupFilter>) is useful for:
 
-Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
-
-* To configure middleware at the beginning or end of an app's middleware pipeline without an explicit call to `Use{Middleware}`. Use `IStartupFilter` to add defaults to the beginning of the pipeline without explicitly registering the default middleware. `IStartupFilter` allows a different component to call `Use{Middleware}` on behalf of the app author.
-* To create a pipeline of `Configure` methods. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A) can set a middleware to run before or after middleware added by libraries.
+* Creating a shared library/NuGet package that loads a custom middleware automatically without requiring the app to explicitly call `app.Use{MIDDLEWARE}`, where the `{MIDDLEWARE}` placeholder represents the custom middleware name (for example, `app.UseImageProcessingMiddleware`).
+* Guaranteeing a piece of middleware executes before or after other middleware, regardless of how a developer modifies the app's `Program` file.
 
 An `IStartupFilter` implementation provides a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method that receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-Each `IStartupFilter` implementation can add one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
+Each `IStartupFilter` implementation can add one or more middlewares in the request pipeline. The filters are invoked in the order they're added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the pipeline.
 
-The following example demonstrates how to register a middleware with `IStartupFilter`. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
+The following example demonstrates how to register a middleware with <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter.
 
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Middleware/RequestSetOptionsMiddleware.cs?name=snippet1)]
+`CustomResponseHeaderFilter.cs`:
 
-The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
+```csharp
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Middleware/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
+public class CustomResponseHeaderFilter : IStartupFilter
+{
+    public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
+    {
+        return builder =>
+        {
+            // 1. Add middleware that runs BEFORE subsequent middlewares
+            builder.Use(async (context, nextMiddleware) =>
+            {
+                context.Response.Headers.Append("X-Custom-Header", "VALUE");
+                await nextMiddleware();
+            });
 
-The `IStartupFilter` implementation is registered in the _Program.cs_ file:
+            // 2. Call the rest of the application's configuration pipeline
+            next(builder);
 
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Program.cs?highlight=6-7)]
+            // 3. (Optional) Add middleware that runs AFTER the rest of the pipeline
+        };
+    }
+}
+```
 
-When a query string parameter for `option` is provided, the middleware processes the value assignment before the ASP.NET Core middleware renders the response:
+:::moniker range=">= aspnetcore-6.0"
 
-[!code-cshtml[](~/fundamentals/startup/7/WebStartup/Pages/Privacy.cshtml?highlight=9)]
+The startup filter implementation is registered in the `Program` file:
 
-Middleware execution order is set by the order of `IStartupFilter` registrations:
-
-* Multiple `IStartupFilter` implementations might interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
-
-* Libraries can add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`:
-
-  * Position the service registration before the library is added to the service container.
-
-  * To invoke afterward, position the service registration after the library is added.
-
-You can't extend the ASP.NET Core app when you override `Configure`. For more information, see [WebApplicationFactory Client returns NotFound for all requests with Overriding Configure method (`dotnet/aspnetcore` #45372)](https://github.com/dotnet/aspnetcore/issues/45372).
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
-
-* To configure middleware at the beginning or end of an app's middleware pipeline without an explicit call to `Use{Middleware}`. Use `IStartupFilter` to add defaults to the beginning of the pipeline without explicitly registering the default middleware. `IStartupFilter` allows a different component to call `Use{Middleware}` on behalf of the app author.
-* To create a pipeline of `Configure` methods. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A) can set a middleware to run before or after middleware added by libraries.
-
-`IStartupFilter` implements <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A>, which receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
-
-Each `IStartupFilter` can add one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
-
-The following example demonstrates how to register a middleware with `IStartupFilter`. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
-
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Middleware/RequestSetOptionsMiddleware.cs?name=snippet1)]
-
-The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
-
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Middleware/RequestSetOptionsStartupFilter.cs?name=snippet1?name=snippet1&highlight=7)]
-
-The `IStartupFilter` is registered in `Program.cs`:
-
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Program.cs?highlight=6-7)]
-
-When a query string parameter for `option` is provided, the middleware processes the value assignment before the ASP.NET Core middleware renders the response:
-
-[!code-cshtml[](~/fundamentals/startup/7/WebStartup/Pages/Privacy.cshtml?highlight=9)]
-
-Middleware execution order is set by the order of `IStartupFilter` registrations:
-
-* Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
-* Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`:
-
-  * Position the service registration before the library is added to the service container.
-  * To invoke afterward, position the service registration after the library is added.
-
-Note: You can't extend the ASP.NET Core app when you override `Configure`. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/45372).
+```csharp
+builder.Services.AddTransient<IStartupFilter, CustomResponseHeaderFilter>();
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
+The startup filter implementation is registered in the service container in `Startup.ConfigureServices`:
 
-* To configure middleware at the beginning or end of an app's [Configure](#the-configure-method) middleware pipeline without an explicit call to `Use{Middleware}`. `IStartupFilter` is used by ASP.NET Core to add defaults to the beginning of the pipeline without having to make the app author explicitly register the default middleware. `IStartupFilter` allows a different component to call `Use{Middleware}` on behalf of the app author.
-* To create a pipeline of `Configure` methods. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A) can set a middleware to run before or after middleware added by libraries.
+```csharp
+services.AddTransient<IStartupFilter, CustomResponseHeaderFilter>();
+```
 
-`IStartupFilter` implements <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A>, which receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
+:::moniker-end
 
-Each `IStartupFilter` can add one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
+Middleware execution order is set by the order of startup filter registrations:
 
-The following example demonstrates how to register a middleware with `IStartupFilter`. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
-
-[!code-csharp[](~/fundamentals/startup/3.0_samples/StartupFilterSample/RequestSetOptionsMiddleware.cs?name=snippet1)]
-
-The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
-
-[!code-csharp[](~/fundamentals/startup/3.0_samples/StartupFilterSample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
-
-The `IStartupFilter` is registered in the service container in <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*>.
-
-[!code-csharp[](~/fundamentals/startup/3.0_samples/StartupFilterSample/Program.cs?name=snippet&highlight=19-20)]
-
-When a query string parameter for `option` is provided, the middleware processes the value assignment before the ASP.NET Core middleware renders the response.
-
-Middleware execution order is set by the order of `IStartupFilter` registrations:
-
-* Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
-* Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`:
+* Multiple `IStartupFilter` implementations might interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
+* Libraries can add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`:
   * Position the service registration before the library is added to the service container.
   * To invoke afterward, position the service registration after the library is added.
 
-:::moniker-end
+You can't extend the ASP.NET Core app when you override `Configure`. For more information, see [WebApplicationFactory Client returns NotFound for all requests with Overriding Configure method (`dotnet/aspnetcore` #45372)](https://github.com/dotnet/aspnetcore/issues/45372).
 
 ## Add configuration at startup from an external assembly
 
@@ -264,3 +273,11 @@ For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.Conf
 
 * [Use a `Startup` class with the minimal hosting model](xref:migration/50-to-60#use-a-startup-class-with-the-new-minimal-hosting-model)
 * [The `Startup` class (.NET 5 version of this article)](?view=aspnetcore-5.0&preserve-view=true#the-startup-class)
+
+:::moniker range=">= aspnetcore-7.0"
+
+## Measure startup performance
+
+Apps using the <xref:System.Diagnostics.Tracing.EventSource> logging provider can measure the startup time to understand and optimize startup performance. For more information, see <xref:fundamentals/logging/index#eventsource>.
+
+:::moniker-end

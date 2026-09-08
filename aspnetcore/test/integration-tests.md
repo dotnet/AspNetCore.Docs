@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 03/10/2026
+ms.date: 09/08/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
 ---
@@ -178,7 +178,7 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
 
 The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the ***[SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing***.
 
-See [Extend Startup with startup filters](xref:fundamentals/startup#startup-filters) which shows how to configure middleware using <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>, which is useful when a test requires a custom service or middleware.
+When a test requires a custom service or middleware, you can use an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. For more information, see <xref:fundamentals/startup#startup-filters>.
 
 ## Customize the `WebApplicationFactory` with test configurations
 
