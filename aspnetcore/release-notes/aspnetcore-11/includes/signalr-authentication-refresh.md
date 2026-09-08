@@ -1,18 +1,31 @@
 ### SignalR authentication refresh
 
-SignalR connections can refresh authentication without dropping the connection when the access token expires. The server exposes a `/refresh` endpoint alongside `/negotiate` and reports the token lifetime in the negotiate response. The .NET client re-authenticates before the token expires, so a hub connection that previously closed when its bearer token aged out can stay open. This feature is implemented for the .NET client; the JavaScript/TypeScript client and Azure SignalR Service support are in progress.
+SignalR connections can refresh authentication without dropping the connection when the access token expires. The server exposes a `/refresh` endpoint alongside `/negotiate` and reports the token lifetime in the negotiate response. A client re-authenticates before the token expires, so a hub connection that previously closed when its bearer token aged out can stay open.
 
-<!-- TODO: Update `EnableAuthenticationRefresh`, `OnAuthenticationRefresh`, `OnAuthenticationRefreshedAsync`, and `WithAuthenticationRefresh` to <xref:> once API docs are published. -->
+<!-- TODO: Update `EnableAuthenticationRefresh`, `CloseOnAuthenticationExpiration`, `OnAuthenticationRefresh`, `OnAuthenticationRefreshedAsync`, `WithAuthenticationRefresh`, `AuthenticationRefreshed`, `AuthenticationRefreshFailed`, and `RefreshAuthenticationAsync` to <xref:> once API docs are published. -->
 
-Enable the feature per hub on the server:
+Enable the feature per hub on the server. The server can inspect or reject a refreshed identity by returning a value from `OnAuthenticationRefresh`:
 
 ```csharp
+using System.Security.Claims;
+
 app.MapHub<ChatHub>("/chat", options =>
 {
     options.EnableAuthenticationRefresh = true;
+    options.CloseOnAuthenticationExpiration = true;
 
-    // Optional: decide whether a given connection can refresh.
-    options.OnAuthenticationRefresh = context => ValueTask.FromResult(true);
+    // Optional: inspect the refreshed identity and decide whether to accept it.
+    options.OnAuthenticationRefresh = context =>
+    {
+        var previousSubject = context.PreviousUser.FindFirstValue("sub")
+            ?? context.PreviousUser.FindFirstValue(ClaimTypes.NameIdentifier);
+        var newSubject = context.NewUser.FindFirstValue("sub")
+            ?? context.NewUser.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        return Task.FromResult(
+            previousSubject is not null &&
+            string.Equals(previousSubject, newSubject, StringComparison.Ordinal));
+    };
 });
 ```
 
@@ -29,17 +42,23 @@ public class ChatHub : Hub
 }
 ```
 
-Automatic refresh is on by default in the .NET client and is configurable with `WithAuthenticationRefresh`:
+Automatic refresh is on by default in the .NET client and is configurable with `WithAuthenticationRefresh`. Refresh notifications are events on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>, and `RefreshAuthenticationAsync` requests an immediate refresh after the app obtains new claims:
 
 ```csharp
-var connection = new HubConnectionBuilder()
+await using var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chat")
     .WithAuthenticationRefresh(options =>
     {
         // EnableAutoRefresh is true by default.
         options.RefreshBeforeExpiration = TimeSpan.FromMinutes(1);
-        options.OnAuthenticationRefreshed = context => Task.CompletedTask;
-        options.OnAuthenticationRefreshFailed = context => Task.CompletedTask;
     })
     .Build();
+
+connection.AuthenticationRefreshed += context => Task.CompletedTask;
+connection.AuthenticationRefreshFailed += context => Task.CompletedTask;
+
+await connection.StartAsync();
+
+// Refresh immediately after acquiring a token with updated claims.
+await connection.RefreshAuthenticationAsync();
 ```

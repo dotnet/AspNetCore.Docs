@@ -590,35 +590,33 @@ Hosted services are started when the app starts and stopped when it shuts down, 
 
 ### Configure Blazor client behavior from the server
 
-<!-- UPDATE 11.0 - We need reference article coverage for this. 
-                   I'll open an issue and try to resolve it by
-                   EOD. -->
+<!-- UPDATE 11.0 - We need reference article coverage for this. I'll get to it soon! -->
 
 Blazor apps can now configure client-side startup behavior from the server in C# when mapping Razor components instead of hand-writing `Blazor.start` JavaScript. `WithBrowserOptions` sets options that the server serializes into the rendered page and the Blazor script applies in the browser, across the Server, WebAssembly, and Auto render modes. The options cover the client log level, interactive Server reconnection, whether enhanced navigation preserves the DOM, and a WebAssembly runtime's environment name, culture, and environment variables:
 
 ```csharp
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
     .WithBrowserOptions(options =>
     {
         options.LogLevel = LogLevel.Warning;
-        options.Server.ReconnectionMaxRetries = 10;
-        options.Server.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
-        options.Ssr.PreserveDom = true;
-        options.WebAssembly.EnvironmentName = "Staging";
-        options.WebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] = 
+        options.InteractiveServer.ReconnectionMaxRetries = 10;
+        options.InteractiveServer.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
+        options.StaticServer.PreserveDom = true;
+        options.InteractiveWebAssembly.EnvironmentName = "Staging";
+        options.InteractiveWebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] = 
             "https://localhost:4318";
     });
 ```
 
 You can also set the options from a component with `<ConfigureBrowser>` or read the resolved options from `HttpContext` with `GetBrowserOptions()`.
 
-The API was introduced in Preview 4 and reshaped in Preview 6 to follow options conventions. If you adopted the earlier shape, `WithBrowserConfiguration` is now `WithBrowserOptions`, `BrowserConfiguration` is now `BrowserOptions`, `ServerBrowserOptions` is now `InteractiveServerBrowserOptions`, `SsrBrowserOptions.DisableDomPreservation` is now `PreserveDom` (with the opposite meaning), and `CircuitInactivityTimeoutMs` is now `CircuitInactivityTimeout` (a `TimeSpan`).
-
 For more information, see the following resources:
 
 * [API Proposal: BrowserOptions for server-to-client configuration (`dotnet/aspnetcore` #66393)](https://github.com/dotnet/aspnetcore/issues/66393)
 * [Reshape BrowserConfiguration API per review (BrowserOptions) while preserving the JS wire format (`dotnet/aspnetcore` #67337)](https://github.com/dotnet/aspnetcore/pull/67337)
+* [Reshape BrowserOptions server-to-client configuration API per review (`dotnet/aspnetcore` #67918)](https://github.com/dotnet/aspnetcore/pull/67918)
 
 Please don't comment on closed issues and PRs. Open a new issue to provide feedback on this API.
 
@@ -888,3 +886,16 @@ The new `CacheView` component caches the rendered output of a Razor component su
 ```
 
 For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
+
+### Blazor Server circuits update after authentication refresh
+
+Interactive Server components can now receive the refreshed `ClaimsPrincipal` without reconnecting the circuit. The Blazor component hub and client enable authentication refresh automatically, so no additional configuration is required.
+
+After the connection refreshes its authentication, Blazor updates the authentication state and raises `AuthenticationStateChanged`. Components that consume `AuthenticationStateProvider`, including `AuthorizeView`, rerender using the refreshed identity and claims. This behavior is useful when a user's roles or permissions change during an active circuit or when a component should reload user-specific content after claims are refreshed. The UI can reflect the new authentication state without forcing the user to reconnect or reload the page.
+
+For more information, see the following resources:
+
+* [[Blazor] Propagate SignalR authentication refresh to server circuits (`dotnet/aspnetcore` #68221)](https://github.com/dotnet/aspnetcore/pull/68221)
+* [[release/11.0-rc1] Harden SignalR authentication refresh (`dotnet/aspnetcore` #68593)](https://github.com/dotnet/aspnetcore/pull/68593)
+
+Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.

@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn about the new features in ASP.NET Core in .NET 11.
 ms.author: wpickett
-ms.date: 09/04/2026
+ms.date: 09/08/2026
 uid: aspnetcore-11
 ---
 # What's new in ASP.NET Core in .NET 11
@@ -34,6 +34,8 @@ This section describes new features for SignalR.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-cancel-hub-invocations.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-auth-refresh-redirects.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-typescript-authentication-refresh.md)]
 
 ## Minimal APIs
 
@@ -71,6 +73,8 @@ This section describes new features for OpenAPI.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-generation-environment.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/openapi-obsolete-apis.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
@@ -82,6 +86,10 @@ This section describes new features for authentication and authorization.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/user-jwts-file-based-apps.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/consistent-authorization-metadata.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/negotiate-tls-channel-binding.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-11/includes/device-bound-sessions.md)]
 
 ## Miscellaneous
 
