@@ -19,7 +19,7 @@ public class CustomerModel
 }
 ```
 
-An explicit `ErrorMessage` value, such as `NameRequired` above, is the first resource key that localization tries. When an attribute doesn't specify `ErrorMessage`, localization instead tries built-in resource-name conventions from most to least specific:
+An explicit `ErrorMessage` value, such as `NameRequired` in the preceding example, is the first resource key that localization tries. When an attribute doesn't specify `ErrorMessage`, localization instead tries built-in resource-name conventions from most to least specific:
 
 1. `{DeclaringType}_{MemberName}_{AttributeType}_Error`
 1. `{DeclaringType}_{AttributeType}_Error`

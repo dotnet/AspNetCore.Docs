@@ -1,8 +1,8 @@
 ### SignalR TypeScript client supports authentication refresh
 
-The SignalR TypeScript client supports refreshing an access token without reconnecting. It can schedule a refresh from the token lifetime reported by the server or refresh immediately after the app obtains updated claims.
+The SignalR TypeScript client supports refreshing an access token without reconnecting. It can schedule a refresh based on the token lifetime that the server reports or refresh immediately after the app obtains updated claims.
 
-Configure automatic refresh with `withAuthenticationRefresh`, register success and failure handlers on the built connection, and call `refreshAuthentication` to request a manual refresh:
+Configure automatic refresh by using `withAuthenticationRefresh`. Register success and failure handlers on the built connection, and call `refreshAuthentication` to request a manual refresh:
 
 ```typescript
 const connection = new signalR.HubConnectionBuilder()

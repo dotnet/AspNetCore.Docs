@@ -29,7 +29,7 @@ public sealed record LegacyCatalogItem(
 #pragma warning restore CS0618
 ```
 
-The legacy operation, its response schema, and the `Sku` property are marked deprecated in the generated document:
+The generated document marks the legacy operation, its response schema, and the `Sku` property as deprecated:
 
 ```json
 {
@@ -57,4 +57,4 @@ The legacy operation, its response schema, and the `Sku` property are marked dep
 
 An <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer> or <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer> can override the generated value for a specific API.
 
-Thank you [@fickleEfrit](https://github.com/fickleEfrit), for this contribution!
+Thank you [@fickleEfrit](https://github.com/fickleEfrit) for this contribution!
