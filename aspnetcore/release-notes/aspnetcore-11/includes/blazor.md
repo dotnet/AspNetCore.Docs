@@ -887,7 +887,7 @@ The new `CacheView` component caches the rendered output of a Razor component su
 
 For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
 
-## Blazor Server circuits update after authentication refresh
+### Blazor Server circuits update after authentication refresh
 
 Interactive Server components can now receive the refreshed `ClaimsPrincipal` without reconnecting the circuit. The Blazor component hub and client enable authentication refresh automatically, so no additional configuration is required.
 
