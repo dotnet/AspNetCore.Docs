@@ -121,8 +121,6 @@ This section describes miscellaneous new features in .NET 11.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/tls-channel-binding-token.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/direct-tls-transport.md)]
-
 ## Breaking changes
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
