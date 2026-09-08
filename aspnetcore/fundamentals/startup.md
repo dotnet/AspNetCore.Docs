@@ -22,7 +22,7 @@ For Blazor startup guidance, which adds to or supersedes the guidance in this ar
 
 ASP.NET Core apps initialize and configure startup in the app's `Program` file (`Program.cs`).
 
-The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults:
+The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults before the app is started:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -44,15 +44,7 @@ The app is built by calling <xref:Microsoft.AspNetCore.Builder.WebApplicationBui
 var app = builder.Build();
 ```
 
-The next part of the `Program` file focuses on establishing the request handling pipeline as a series of [middleware components](xref:fundamentals/middleware/index). Each middleware performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request. By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." For more information, see <xref:fundamentals/middleware/index>. The following example demonstrates service registrations for [Blazor](xref:blazor/index) services, [localization](xref:fundamentals/localization), a weather forecast service, and a product repository:
-
-```csharp
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-builder.Services.AddLocalization();
-builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-```
+The next part of the `Program` file focuses on establishing the HTTP request handling pipeline as a series of [middleware components](xref:fundamentals/middleware/index) before that app is started. Each middleware performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request. By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." For more information, see <xref:fundamentals/middleware/index>.
 
 The <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> method runs the app and blocks the calling thread until the host is shut down:
 
@@ -60,11 +52,11 @@ The <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> method runs the ap
 app.Run();
 ```
 
-The built and configured app transition to an active, running process:
+The configured and built app transitions to an active, running process:
 
 1. The middleware pipeline is built.
 
-   When `builder.Build` is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When `app.Run` executes, the framework permanently seals the HTTP middleware pipeline. All the middleware methods declared, such as `app.UseHttpsRedirection()`, `app.UseAuthorization()`, and endpoint mappings are compiled them into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
+   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled them into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
 
 2. The web server (Kestrel by default) is started.
 
@@ -99,7 +91,12 @@ The built and configured app transition to an active, running process:
 
   The app remains in this state indefinitely, passing incoming web traffic down the middleware pipeline and sending responses.
 
-When a shutdown signal is intercepted (for example, <kbd>Ctrl</kbd>+<kbd>c</kbd> is detected in the command shell running the app or a container orchestration tool sends a SIGTERM event), `app.Run()` unblocks. `ApplicationStopping` tokens are triggered, giving active HTTP requests a brief window to gracefully finish processing. The Kestrel server is shut down. Finally, console execution gracefully exits with an exit code of 0.
+When a shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is detected in the command shell running the app or a container orchestration tool sends a SIGTERM event, <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> unblocks and the following actions take place:
+
+1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping> tokens are triggered, which allows the app to run logic before the shutdown process begins.
+2. The Kestrel server is shut down, which disables new connections. The server waits for requests on existing connections to complete for as long as the shutdown timeout allows. The server sends the connection close header for further requests on existing connections.
+3. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers are triggered, which allows the app to run logic after the app has shutdown.
+4. Console execution gracefully exits with an exit code of 0.
 
 :::moniker-end
 
