@@ -42,7 +42,7 @@ public class ChatHub : Hub
 }
 ```
 
-Automatic refresh is on by default in the .NET client and is configurable with `WithAuthenticationRefresh`. Refresh notifications are events on `HubConnection`, and `RefreshAuthenticationAsync` requests an immediate refresh after the app obtains new claims:
+Automatic refresh is on by default in the .NET client and is configurable with `WithAuthenticationRefresh`. Refresh notifications are events on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>, and `RefreshAuthenticationAsync` requests an immediate refresh after the app obtains new claims:
 
 ```csharp
 await using var connection = new HubConnectionBuilder()
