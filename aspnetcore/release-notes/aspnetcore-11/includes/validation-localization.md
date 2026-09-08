@@ -19,7 +19,13 @@ public class CustomerModel
 }
 ```
 
-Keys resolve against the model's own resources, and a miss falls back to the attribute's built-in message. Use `ValidationOptions.LocalizerProvider` to resolve keys from a shared resource file instead:
+An explicit `ErrorMessage` value, such as `NameRequired` above, is the first resource key that localization tries. When an attribute doesn't specify `ErrorMessage`, localization instead tries built-in resource-name conventions from most to least specific:
+
+1. `{DeclaringType}_{MemberName}_{AttributeType}_Error`
+1. `{DeclaringType}_{AttributeType}_Error`
+1. `{AttributeType}_Error`
+
+For example, a `[Required]` attribute on `CustomerModel.Name` resolves against `CustomerModel_Name_RequiredAttribute_Error`, `CustomerModel_RequiredAttribute_Error`, or the shared `RequiredAttribute_Error` resource. If no resource resolves, validation falls back to the attribute's built-in message. Use `ValidationOptions.LocalizerProvider` to resolve keys from a shared resource file instead:
 
 ```csharp
 builder.Services.AddValidation(options =>
