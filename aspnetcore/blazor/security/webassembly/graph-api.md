@@ -1,10 +1,11 @@
 ---
 title: Use Graph API with ASP.NET Core Blazor WebAssembly
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 09/09/2026
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -46,7 +47,7 @@ The examples in this article take advantage of new .NET/C# features. When using 
 
 :::zone pivot="graph-sdk-5"
 
-*The following guidance applies to Microsoft Graph v5.*
+*The following guidance applies to Microsoft Graph v5 or later.*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
@@ -66,6 +67,9 @@ The Graph SDK examples require the following package references in the standalon
 * [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+> [!NOTE]
+> The [`Microsoft.Authentication.WebAssembly.Msal` package](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -433,7 +437,10 @@ When testing with the Graph SDK locally, we recommend using a new InPrivate/inco
 
 :::zone pivot="graph-sdk-4"
 
-*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/main/docs/upgrade-to-v5.md).*
+*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5 or later, see the following resources:*
+
+* *[Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/main/docs/upgrade-to-v5.md)*
+* *[Microsoft Graph .NET SDK releases (`microsoftgraph/msgraph-sdk-dotnet` GitHub repository)](https://github.com/microsoftgraph/msgraph-sdk-dotnet/releases) (see the 6.0.0 breaking changes remarks)*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
