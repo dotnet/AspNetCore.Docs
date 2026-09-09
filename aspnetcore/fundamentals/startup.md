@@ -56,7 +56,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
 1. The middleware pipeline is built.
 
-   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled them into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
+   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
 
 1. The web server ([Kestrel](xref:fundamentals/servers/kestrel) by default) is started.
 
@@ -418,5 +418,5 @@ Apps using the <xref:System.Diagnostics.Tracing.EventSource> logging provider ca
 
 ## Additional resources
 
-* [Host guidance](<xref:fundamentals/index#host)
+* [Host guidance](xref:fundamentals/index#host)
 * [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling)
