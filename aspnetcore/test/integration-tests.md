@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 09/08/2026
+ms.date: 09/09/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
 ---
