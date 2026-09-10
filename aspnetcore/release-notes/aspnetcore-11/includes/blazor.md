@@ -188,10 +188,7 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway) is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly apps during development and production.
 
-<!-- UPDATE 11.0 - Update the word "preview" in the following remark at RC
-                   to "release candidate." Remove entirely at GA. -->
-
-To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the preview `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
+To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -590,27 +587,50 @@ Hosted services are started when the app starts and stopped when it shuts down, 
 
 ### Configure Blazor client behavior from the server
 
-<!-- UPDATE 11.0 - We need reference article coverage for this. I'll get to it soon! -->
+<!-- UPDATE 11.0 - We need reference article coverage for this, but we'll wait
+                   for the API to completely stabilize at RC2 and possibly
+                   for content from the PU to arrive. -->
 
 Blazor apps can now configure client-side startup behavior from the server in C# when mapping Razor components instead of hand-writing `Blazor.start` JavaScript. `WithBrowserOptions` sets options that the server serializes into the rendered page and the Blazor script applies in the browser, across the Server, WebAssembly, and Auto render modes. The options cover the client log level, interactive Server reconnection, whether enhanced navigation preserves the DOM, and a WebAssembly runtime's environment name, culture, and environment variables:
 
 ```csharp
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode()
     .WithBrowserOptions(options =>
     {
-        options.LogLevel = LogLevel.Warning;
+        options.InteractiveServer.ReconnectionDialogId = "reconnect-dialog";
         options.InteractiveServer.ReconnectionMaxRetries = 10;
         options.InteractiveServer.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
-        options.StaticServer.PreserveDom = true;
-        options.InteractiveWebAssembly.EnvironmentName = "Staging";
-        options.InteractiveWebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] = 
+        options.InteractiveWebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] =
             "https://localhost:4318";
+        options.StaticServer.CircuitInactivityTimeout = TimeSpan.FromSeconds(1.5);
+        options.StaticServer.PreserveDom = true;
+        options.InteractiveWebAssembly.ApplicationCulture = "en-ca";
+        options.InteractiveWebAssembly.EnvironmentName = "Staging";
+        options.LogLevel = LogLevel.Warning;
     });
 ```
 
-You can also set the options from a component with `<ConfigureBrowser>` or read the resolved options from `HttpContext` with `GetBrowserOptions()`.
+You can also set the options in a Razor component with the `ConfigureBrowser` component:
+
+```razor
+<ConfigureBrowser Options="RequestBrowserOptions" />
+
+...
+    
+@code {
+    private BrowserOptions RequestBrowserOptions => new()
+    {
+        LogLevel = LogLevel.Trace,
+        StaticServer = { PreserveDom = true }
+    };
+}
+```
+
+Read the resolved options from `HttpContext` with `GetBrowserOptions()`:
+
+```razor
+@BrowserOptions.GetBrowserOptions(HttpContext).LogLevel
+```
 
 For more information, see the following resources:
 
@@ -808,12 +828,10 @@ General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 ### Blazor Virtualize can scroll to an item
 
-<!-- UPDATE 11.0 - Cross-link to ref content -->
-
 The `Virtualize<TItem>` component can now open at a specific item and scroll to any item on demand. Two new public APIs make this possible:
 
 * `InitialItemIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
-* `ScrollToIndexAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
+* `ScrollToItemAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
 
 ```razor
 <Virtualize TItem="Product" Items="products" InitialItemIndex="500" @ref="list">
@@ -826,13 +844,16 @@ The `Virtualize<TItem>` component can now open at a specific item and scroll to 
     private Virtualize<Product> list = default!;
     private List<Product> products = ProductCatalog.All;
 
-    private async Task GoToTop() => await list.ScrollToIndexAsync(0);
+    private async Task GoToTop() => await list.ScrollToItemAsync(0);
 }
 ```
 
-Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialItemIndex` to set the starting position instead.
+Out-of-range indexes are clamped to the valid range. If a second `ScrollToItemAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToItemAsync` before the first interactive render throws `InvalidOperationException`; use `InitialItemIndex` to set the starting position instead.
 
-For more information, see [Add `InitialIndex` (sic) parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
+For more information, see the following resources:
+
+* <xref:blazor/components/virtualization#scroll-to-a-specific-item>
+* [Add `InitialIndex` (sic&dagger;) parameter and `ScrollToIndexAsync` (sic&dagger;) API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs. *sic*&dagger;: API naming was changed without updating the title of the PR.)
 
 ### Automatic circuit pause on tab inactivity
 
