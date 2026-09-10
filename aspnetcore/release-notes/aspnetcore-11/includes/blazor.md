@@ -1149,7 +1149,7 @@ For a MAF agent, the server decides which functions require approval, and AG-UI 
 
 #### Display activities
 
-An activity is an app-defined progress item that updates in place while an agent performs longer-running work. For example, a research agent can show that's searching sources, comparing results, and completing the research without adding a separate message for every update.
+An activity is an app-defined progress item that updates in place while an agent performs longer-running work. For example, a research agent can show that it's searching sources, comparing results, and completing the research without adding a separate message for every update.
 
 `ActivityHandler<TBlock>` is a protocol-neutral extension point that maps provider- or app-specific progress updates into a mutable `ActivityContentBlock` ([[Blazor] Add agentic generative UI state rendering (`dotnet/aspnetcore` #68333)](https://github.com/dotnet/aspnetcore/pull/68333)). `TryCreateBlock` initializes and emits the block for the first matching update. `TryUpdateBlock` mutates the same block as later updates arrive and indicates when the activity is complete. Register the handler with `UIAgentOptions.AddBlockHandler`, then provide a `BlockRenderer` for the app-specific block. Activities don't have a default visual representation.
 
