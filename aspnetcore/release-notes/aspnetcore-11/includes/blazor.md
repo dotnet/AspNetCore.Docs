@@ -919,6 +919,16 @@ Add the package to a Blazor app:
 dotnet add package Microsoft.AspNetCore.Components.AI --version 0.1.0-preview.1.26459.102
 ```
 
+Add the [`AGUI.Abstractions`](https://www.nuget.org/packages/AGUI.Abstractions) and [`AGUI.Client`](https://www.nuget.org/packages/AGUI.Client) NuGet packages ...
+
+```dotnetcli
+dotnet add package AGUI.Abstractions
+```
+
+```dotnetcli
+dotnet add package AGUI.Client
+```
+
 Basic chat and the Components.AI block model work with any `IChatClient`. To connect the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com), register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's `IChatClient`:
 
 ```csharp
@@ -1093,7 +1103,7 @@ Place a `BlockRenderer<UIActionBlock>` in `MessageListContent` to handle the fun
 <ChatPage Agent="agent">
     <MessageListContent>
         <BlockRenderer TBlock="UIActionBlock"
-                       When='action => action.ToolName == "set_accent_color"'
+                       When='@(action => action.ToolName == "set_accent_color")'
                        Context="action">
             <AutoInvokeAction Action="action" />
         </BlockRenderer>
@@ -1157,6 +1167,7 @@ AG-UI's `ACTIVITY_SNAPSHOT` and `ACTIVITY_DELTA` events are one possible source 
 
 ```csharp
 using System.Text.Json;
+using Microsoft.AspNetCore.Components.AI;
 using AGUI.Abstractions;
 
 public sealed class ResearchActivityBlock : ActivityContentBlock
