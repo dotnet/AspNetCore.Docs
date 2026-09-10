@@ -904,7 +904,7 @@ Please don't comment on closed issues and PRs. If you have feedback on this feat
 
 Modern AI apps increasingly provide rich interactions with agents. A complete agentic user interface may need to stream ongoing work, visualize agent reasoning and progress, request approval before tools act, accept multimodal input, and synchronize state between the app and the agent. The Blazor AI components are designed to provide building blocks for creating these experiences using Blazor's component model.
 
-The new [`Microsoft.AspNetCore.Components.AI` NuGet package](https://nuget.org/packages/microsoft.aspnetcore.components.ai) includes an initial set of Blazor AI components for streaming chat, rich-text and tool rendering, human approval flows, and typed, shared, and predictive UI state.
+The new [`Microsoft.AspNetCore.Components.AI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.AI) includes an initial set of Blazor AI components for streaming chat, rich-text and tool rendering, human approval flows, and typed, shared, and predictive UI state.
 
 #### Get started
 
@@ -919,7 +919,7 @@ Add the package to a Blazor app:
 dotnet add package Microsoft.AspNetCore.Components.AI --version 0.1.0-preview.1.26459.102
 ```
 
-Add the [`AGUI.Abstractions`](https://www.nuget.org/packages/AGUI.Abstractions) and [`AGUI.Client`](https://www.nuget.org/packages/AGUI.Client) NuGet packages ...
+Add the [`AGUI.Abstractions`](https://www.nuget.org/packages/AGUI.Abstractions) and [`AGUI.Client`](https://www.nuget.org/packages/AGUI.Client) NuGet packages to enable AG-UI connectivity:
 
 ```dotnetcli
 dotnet add package AGUI.Abstractions
@@ -1151,7 +1151,7 @@ An app can require the user to approve a consequential tool call, such as schedu
 </BlockRenderer>
 ```
 
-Approving allows the tool run and resumes the conversation. Rejecting returns that decision to the agent without running the tool.
+Approving allows the tool to run and resumes the conversation. Rejecting returns that decision to the agent without running the tool.
 
 ![A tool call waiting for human approval](~/release-notes/aspnetcore-11/static/blazor-ai-tool-approval.png)
 
@@ -1250,7 +1250,7 @@ For the corresponding MAF server configuration, including mapping tool results t
 
 #### Show predictive UI state
 
-Predictive state permits an app render an agent's proposed state change while the model is still generating it without replacing the committed state. For example, as an agent generates the complete contents of an edited document in a tool argument, the UI can progressively display the proposed document and a diff. When generation finishes, the user can accept the completed proposal or reject it and restore the committed document.
+Predictive state permits an app to render an agent's proposed state change while the model is still generating it without replacing the committed state. For example, as an agent generates the complete contents of an edited document in a tool argument, the UI can progressively display the proposed document and a diff. When generation finishes, the user can accept the completed proposal or reject it and restore the committed document.
 
 An AG-UI server integration can map streamed arguments for a state-writing tool to provisional state events. The completed tool-call arguments are the authoritative proposal. When creating the `UIAgent<TState>`, configure its state mapper to deserialize those events and call `SetPredictiveState`. `AgentState<TState>` then retains the prior committed value for rollback ([[Blazor] Add predictive state updates (`dotnet/aspnetcore` #68335)](https://github.com/dotnet/aspnetcore/pull/68335)):
 
