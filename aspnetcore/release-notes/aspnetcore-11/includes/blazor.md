@@ -803,7 +803,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Antiforgery middleware (`app.UseAntiforgery()`) optional in Blazor Web Apps
 
-[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is redundant, unless required in specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
+[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
 
 For more information, see the following resources:
 
