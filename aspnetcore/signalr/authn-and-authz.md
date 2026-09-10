@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/25/2026
+ms.date: 09/10/2026
 uid: signalr/authn-and-authz
 ---
 
@@ -93,7 +93,9 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > The access token function is called before **every** HTTP request made by SignalR. If the token needs to be renewed in order to keep the connection active, do the renewal from within this function and return the updated token. The token might need to be renewed so it doesn't expire during the connection.
 
-In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when some transports are used. When WebSockets and Server-Sent Events are used, the token is transmitted as a query string parameter.
+In standard web APIs, bearer tokens are sent in an HTTP header. However, browsers can't set custom headers, such as `Authorization`, on the WebSocket and Server-Sent Events APIs. Because of this browser limitation, SignalR sends the token as a query string parameter for those transports when the client runs in a browser.
+
+The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](xref:signalr/dotnet-client), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
 
 #### Built-in JWT authentication
 
@@ -475,7 +477,9 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > The access token function you provide is called before **every** HTTP request made by SignalR. If you need to renew the token in order to keep the connection active (because it may expire during the connection), do so from within this function and return the updated token.
 
-In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when using some transports. When using WebSockets and Server-Sent Events, the token is transmitted as a query string parameter. 
+In standard web APIs, bearer tokens are sent in an HTTP header. However, browsers can't set custom headers, such as `Authorization`, on the WebSocket and Server-Sent Events APIs. Because of this browser limitation, SignalR sends the token as a query string parameter for those transports when the client runs in a browser.
+
+The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](xref:signalr/dotnet-client), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
 
 #### Built-in JWT authentication
 
