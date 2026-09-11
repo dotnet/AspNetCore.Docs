@@ -919,11 +919,7 @@ Add the package to a Blazor app:
 dotnet add package Microsoft.AspNetCore.Components.AI --version 0.1.0-preview.1.26459.102
 ```
 
-Add the [`AGUI.Abstractions`](https://www.nuget.org/packages/AGUI.Abstractions) and [`AGUI.Client`](https://www.nuget.org/packages/AGUI.Client) NuGet packages to enable AG-UI connectivity:
-
-```dotnetcli
-dotnet add package AGUI.Abstractions
-```
+Add the [`AGUI.Client` NuGet package](https://www.nuget.org/packages/AGUI.Client) to enable AG-UI connectivity:
 
 ```dotnetcli
 dotnet add package AGUI.Client
