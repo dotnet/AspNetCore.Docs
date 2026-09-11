@@ -5,7 +5,7 @@ author: tdykstra
 description: Learn how to use the ASP.NET Core logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 01/23/2026
+ms.date: 09/09/2026
 uid: fundamentals/logging/index
 ---
 # Logging in .NET and ASP.NET Core
@@ -866,7 +866,15 @@ On Linux, the `Debug` provider log location is distribution-dependent and may be
 
 ### `EventSource`
 
-The `EventSource` provider writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
+The <xref:Microsoft.Extensions.Logging.EventSource> provider writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
+
+:::moniker range=">= aspnetcore-7.0"
+
+#### `ServerReady` event to measure startup time
+
+Apps using the <xref:System.Diagnostics.Tracing.EventSource> provider can measure the startup time to understand and optimize startup performance. The <!--keep-->[`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
+
+:::moniker-end
 
 #### `dotnet-trace` tooling
 

@@ -13,7 +13,7 @@ uid: migration/50-to-60-samples
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
  -->
 
-This article provides samples of code migrated to ASP.NET Core in .NET 6. ASP.NET Core in .NET 6 uses a new minimal hosting model. For more information, see [New hosting model](xref:migration/50-to-60#nhm).
+This article provides samples of code migrated to ASP.NET Core in .NET 6. ASP.NET Core in .NET 6 uses a new minimal hosting model. For more information, see [New hosting model](xref:migration/50-to-60#new-hosting-model).
 
 ## Middleware
 

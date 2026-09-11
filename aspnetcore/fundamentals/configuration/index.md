@@ -1625,9 +1625,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-::: moniker-end
+For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#configure-services-without-a-startup-class).
 
-For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
+::: moniker-end
 
 ## Add configuration from an external assembly
 
