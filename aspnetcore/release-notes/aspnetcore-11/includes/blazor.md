@@ -1088,6 +1088,11 @@ var setAccentColor = AIFunctionFactory.Create(
     },
     name: "set_accent_color");
 
+        await InvokeAsync(() =>
+        {
+            accentColor = color;
+            StateHasChanged();
+        });
 var agent = new UIAgent(
     chatClient,
     options => options.RegisterUIAction(setAccentColor));
@@ -1144,11 +1149,15 @@ An app can require the user to approve a consequential tool call, such as schedu
     <p>Allow <code>@approval.ToolName</code> to run?</p>
     <button @onclick="approval.Approve">Approve</button>
     <button @onclick="() => approval.Reject()">Reject</button>
-</BlockRenderer>
-```
-
-Approving allows the tool to run and resumes the conversation. Rejecting returns that decision to the agent without running the tool.
-
+<ChatPage Agent="agent">
+    <MessageListContent>
+        <BlockRenderer TBlock="FunctionApprovalBlock" Context="approval">
+            <p>Allow <code>@approval.ToolName</code> to run?</p>
+            <button @onclick="approval.Approve">Approve</button>
+            <button @onclick="() => approval.Reject()">Reject</button>
+        </BlockRenderer>
+    </MessageListContent>
+</ChatPage>
 ![A tool call waiting for human approval](~/release-notes/aspnetcore-11/static/blazor-ai-tool-approval.png)
 
 For a MAF agent, the server decides which functions require approval, and AG-UI transports the request and decision. See [Human-in-the-loop with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/human-in-the-loop).
@@ -1226,15 +1235,17 @@ using System.Text.Json;
 using AGUI.Abstractions;
 
 var agent = new UIAgent<RecipeState>(chatClient, options =>
+using System.Text.Json;
+using AGUI.Abstractions;
+using Microsoft.AspNetCore.Components.AI;
+
+var agent = new UIAgent<RecipeState>(chatClient, options =>
 {
     options.StateMapper = context =>
     {
         if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
-            snapshot.Snapshot.Deserialize<RecipeState>() is { } state)
-        {
-            context.SetState(state);
-        }
-    };
+            snapshot.Snapshot.Deserialize<RecipeState>(
+                JsonSerializerOptions.Web) is { } state)
 });
 ```
 
@@ -1255,12 +1266,17 @@ var agent = new UIAgent<DocumentState>(chatClient, options =>
 {
     options.StateMapper = context =>
     {
+using System.Text.Json;
+using AGUI.Abstractions;
+using Microsoft.AspNetCore.Components.AI;
+
+var agent = new UIAgent<DocumentState>(chatClient, options =>
+{
+    options.StateMapper = context =>
+    {
         if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
-            snapshot.Snapshot.Deserialize<DocumentState>() is { } predictedState)
-        {
-            context.SetPredictiveState(predictedState);
-        }
-    };
+            snapshot.Snapshot.Deserialize<DocumentState>(
+                JsonSerializerOptions.Web) is { } predictedState)
 
     options.RegisterUIAction(AIFunctionFactory.Create(
         ConfirmChanges,
