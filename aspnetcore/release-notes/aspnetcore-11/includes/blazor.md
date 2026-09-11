@@ -919,13 +919,13 @@ Add the package to a Blazor app:
 dotnet add package Microsoft.AspNetCore.Components.AI --version 0.1.0-preview.1.26459.102
 ```
 
-Add the [`AGUI.Client` NuGet package](https://www.nuget.org/packages/AGUI.Client) to enable AG-UI connectivity:
+Basic chat and the Components.AI block model work with any `IChatClient`. To connect the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com), install the `AGUI.Client` package:
 
 ```dotnetcli
 dotnet add package AGUI.Client
 ```
 
-Basic chat and the Components.AI block model work with any `IChatClient`. To connect the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com), register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's `IChatClient`:
+`AGUI.Client` includes a transitive reference to `AGUI.Abstractions`, which provides the AG-UI event types used in later examples. Register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's `IChatClient`:
 
 ```csharp
 using AGUI.Client;
@@ -1083,19 +1083,18 @@ Frontend tools run in the client app rather than on the agent server. For exampl
 var setAccentColor = AIFunctionFactory.Create(
     async (string color) =>
     {
-        await InvokeAsync(() => accentColor = color);
-        return $"Changed the accent color to {color}.";
-    },
-    name: "set_accent_color");
-
         await InvokeAsync(() =>
         {
             accentColor = color;
             StateHasChanged();
         });
+        return $"Changed the accent color to {color}.";
+    },
+    name: "set_accent_color");
+
 var agent = new UIAgent(
     chatClient,
-    options => options.RegisterUIAction(setAccentColor));
+    options => options.RegisterUIAction(setAccentColor))
 ```
 
 Place a `BlockRenderer<UIActionBlock>` in `MessageListContent` to handle the function call requested by the agent. For example, the renderer can use a component that automatically invokes the function and displays its progress:
@@ -1145,10 +1144,6 @@ Calling `InvokeAsync` executes the registered function with the arguments suppli
 An app can require the user to approve a consequential tool call, such as scheduling a meeting, before the agent proceeds. Tool approval requests become `FunctionApprovalBlock` instances. The conversation pauses until the UI calls `Approve` or `Reject` ([[Blazor] Add Components.AI human approval flows (`dotnet/aspnetcore` #68329)](https://github.com/dotnet/aspnetcore/pull/68329)):
 
 ```razor
-<BlockRenderer TBlock="FunctionApprovalBlock" Context="approval">
-    <p>Allow <code>@approval.ToolName</code> to run?</p>
-    <button @onclick="approval.Approve">Approve</button>
-    <button @onclick="() => approval.Reject()">Reject</button>
 <ChatPage Agent="agent">
     <MessageListContent>
         <BlockRenderer TBlock="FunctionApprovalBlock" Context="approval">
@@ -1234,8 +1229,8 @@ The app configures a state mapper for the `ChatResponseUpdate` values produced b
 
 ```csharp
 using System.Text.Json;
-using Microsoft.AspNetCore.Components.AI;
 using AGUI.Abstractions;
+using Microsoft.AspNetCore.Components.AI;
 
 var agent = new UIAgent<RecipeState>(chatClient, options =>
 {
@@ -1244,6 +1239,10 @@ var agent = new UIAgent<RecipeState>(chatClient, options =>
         if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
             snapshot.Snapshot.Deserialize<RecipeState>(
                 JsonSerializerOptions.Web) is { } state)
+        {
+            context.SetState(state);
+        }
+    };
 });
 ```
 
@@ -1261,8 +1260,8 @@ An AG-UI server integration can map streamed arguments for a state-writing tool 
 
 ```csharp
 using System.Text.Json;
-using Microsoft.AspNetCore.Components.AI;
 using AGUI.Abstractions;
+using Microsoft.AspNetCore.Components.AI;
 
 var agent = new UIAgent<DocumentState>(chatClient, options =>
 {
@@ -1271,6 +1270,10 @@ var agent = new UIAgent<DocumentState>(chatClient, options =>
         if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
             snapshot.Snapshot.Deserialize<DocumentState>(
                 JsonSerializerOptions.Web) is { } predictedState)
+        {
+            context.SetPredictiveState(predictedState);
+        }
+    };
 
     options.RegisterUIAction(AIFunctionFactory.Create(
         ConfirmChanges,
