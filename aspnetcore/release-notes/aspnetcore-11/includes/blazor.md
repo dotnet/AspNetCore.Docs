@@ -1158,6 +1158,8 @@ An app can require the user to approve a consequential tool call, such as schedu
         </BlockRenderer>
     </MessageListContent>
 </ChatPage>
+```
+
 ![A tool call waiting for human approval](~/release-notes/aspnetcore-11/static/blazor-ai-tool-approval.png)
 
 For a MAF agent, the server decides which functions require approval, and AG-UI transports the request and decision. See [Human-in-the-loop with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/human-in-the-loop).
@@ -1232,12 +1234,8 @@ The app configures a state mapper for the `ChatResponseUpdate` values produced b
 
 ```csharp
 using System.Text.Json;
-using AGUI.Abstractions;
-
-var agent = new UIAgent<RecipeState>(chatClient, options =>
-using System.Text.Json;
-using AGUI.Abstractions;
 using Microsoft.AspNetCore.Components.AI;
+using AGUI.Abstractions;
 
 var agent = new UIAgent<RecipeState>(chatClient, options =>
 {
@@ -1262,13 +1260,9 @@ Predictive state permits an app to render an agent's proposed state change while
 An AG-UI server integration can map streamed arguments for a state-writing tool to provisional state events. The completed tool-call arguments are the authoritative proposal. When creating the `UIAgent<TState>`, configure its state mapper to deserialize those events and call `SetPredictiveState`. `AgentState<TState>` then retains the prior committed value for rollback ([[Blazor] Add predictive state updates (`dotnet/aspnetcore` #68335)](https://github.com/dotnet/aspnetcore/pull/68335)):
 
 ```csharp
-var agent = new UIAgent<DocumentState>(chatClient, options =>
-{
-    options.StateMapper = context =>
-    {
 using System.Text.Json;
-using AGUI.Abstractions;
 using Microsoft.AspNetCore.Components.AI;
+using AGUI.Abstractions;
 
 var agent = new UIAgent<DocumentState>(chatClient, options =>
 {
