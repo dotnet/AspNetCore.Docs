@@ -775,6 +775,20 @@ Next, the **accepted values** can be used to expand the route template. The rout
   * If any route parameter to the right of a missing optional parameter has a value, the operation fails.
   * <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
 
+> [!NOTE]
+> For endpoints created by controllers and Razor Pages, `controller`, `action`, `page`, and `area` are part of the endpoint's **required values**, so they're always present in the accepted values. As a result:
+>
+> * They aren't invalidated by a change to a route value that appears to their left, such as a `culture` parameter.
+> * Inline default values in the route template, such as `{controller=DefaultController}`, aren't applied, because default values are used only when the accepted values are *missing* a value.
+>
+> For example, with the template `{culture}/api1/{controller=DefaultController}/{action=DefaultAction}/{id?}` and a current request of `/en/api1/MyController/Index/111`, the call `Url.RouteUrl("ApiRoute1", new { culture = "ar" })` generates `/ar/api1/MyController/Index`, not `/ar/api1/DefaultController/DefaultAction`. The `id` value isn't used because it has no required value and is to the right of a changed value. To use the template's default values, specify them explicitly:
+>
+> ```csharp
+> Url.RouteUrl("ApiRoute1", new { culture = "ar", controller = "DefaultController", action = "DefaultAction" })
+> ```
+>
+> For a related limitation, see [Problems with route value invalidation](#problems-with-route-value-invalidation).
+
 Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 
 | Ambient Values                     | Explicit Values                        | Result                  |
@@ -791,6 +805,8 @@ Optional route parameters must come after all required route parameters. In the 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/OptionalParams/Controllers/MyController.cs" highlight="10":::
 
 ### Problems with route value invalidation
+
+For related information about how required values, such as `controller` and `action`, affect route value invalidation and template default values, see the note in [URL generation process](#url-generation-process).
 
 The following code shows an example of a URL generation scheme that's not supported by routing:
 
@@ -1792,6 +1808,20 @@ Next, the **accepted values** can be used to expand the route template. The rout
   * If any route parameter to the right of a missing optional parameter has a value, the operation fails.
   * <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
 
+> [!NOTE]
+> For endpoints created by controllers and Razor Pages, `controller`, `action`, `page`, and `area` are part of the endpoint's **required values**, so they're always present in the accepted values. As a result:
+>
+> * They aren't invalidated by a change to a route value that appears to their left, such as a `culture` parameter.
+> * Inline default values in the route template, such as `{controller=DefaultController}`, aren't applied, because default values are used only when the accepted values are *missing* a value.
+>
+> For example, with the template `{culture}/api1/{controller=DefaultController}/{action=DefaultAction}/{id?}` and a current request of `/en/api1/MyController/Index/111`, the call `Url.RouteUrl("ApiRoute1", new { culture = "ar" })` generates `/ar/api1/MyController/Index`, not `/ar/api1/DefaultController/DefaultAction`. The `id` value isn't used because it has no required value and is to the right of a changed value. To use the template's default values, specify them explicitly:
+>
+> ```csharp
+> Url.RouteUrl("ApiRoute1", new { culture = "ar", controller = "DefaultController", action = "DefaultAction" })
+> ```
+>
+> For a related limitation, see [Problems with route value invalidation](#problems-with-route-value-invalidation).
+
 Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 
 | Ambient Values                     | Explicit Values                        | Result                  |
@@ -1802,6 +1832,8 @@ Values explicitly provided that don't match a segment of the route are added to 
 | controller = "Home"                | action = "About", color = "Red"        | `/Home/About?color=Red` |
 
 ### Problems with route value invalidation
+
+For related information about how required values, such as `controller` and `action`, affect route value invalidation and template default values, see the note in [URL generation process](#url-generation-process).
 
 The following code shows an example of a URL generation scheme that's not supported by routing:
 
@@ -2795,6 +2827,20 @@ Next, the **accepted values** can be used to expand the route template. The rout
   * If any route parameter to the right of a missing optional parameter has a value, the operation fails.
   * <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
 
+> [!NOTE]
+> For endpoints created by controllers and Razor Pages, `controller`, `action`, `page`, and `area` are part of the endpoint's **required values**, so they're always present in the accepted values. As a result:
+>
+> * They aren't invalidated by a change to a route value that appears to their left, such as a `culture` parameter.
+> * Inline default values in the route template, such as `{controller=DefaultController}`, aren't applied, because default values are used only when the accepted values are *missing* a value.
+>
+> For example, with the template `{culture}/api1/{controller=DefaultController}/{action=DefaultAction}/{id?}` and a current request of `/en/api1/MyController/Index/111`, the call `Url.RouteUrl("ApiRoute1", new { culture = "ar" })` generates `/ar/api1/MyController/Index`, not `/ar/api1/DefaultController/DefaultAction`. The `id` value isn't used because it has no required value and is to the right of a changed value. To use the template's default values, specify them explicitly:
+>
+> ```csharp
+> Url.RouteUrl("ApiRoute1", new { culture = "ar", controller = "DefaultController", action = "DefaultAction" })
+> ```
+>
+> For a related limitation, see [Problems with route value invalidation](#problems-with-route-value-invalidation).
+
 Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 
 | Ambient Values                     | Explicit Values                        | Result                  |
@@ -2805,6 +2851,8 @@ Values explicitly provided that don't match a segment of the route are added to 
 | controller = "Home"                | action = "About", color = "Red"        | `/Home/About?color=Red` |
 
 ### Problems with route value invalidation
+
+For related information about how required values, such as `controller` and `action`, affect route value invalidation and template default values, see the note in [URL generation process](#url-generation-process).
 
 As of ASP.NET Core 3.0, some URL generation schemes used in earlier ASP.NET Core versions don't work well with URL generation. The ASP.NET Core team plans to add features to address these needs in a future release. For now the best solution is to use legacy routing.
 
