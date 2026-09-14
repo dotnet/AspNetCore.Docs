@@ -117,14 +117,13 @@ Eliminate duplicate report content that may arise from running the analysis more
 **Type:** [New paragraph / Note block / Code example / Replacement]
 
 **Current content (lines 123-125):**
-```markdown
+
 [Current text that will be replaced or followed]
-```
 
 **Suggested direction:**
-```markdown
+
 [Proposed documentation text here]
-```
+
 
 ### Potential Code Sample Updates (if applicable)
 **File:** [`sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
@@ -132,14 +131,14 @@ Eliminate duplicate report content that may arise from running the analysis more
 **Change:** [Add/Modify/Remove]
 
 **Current code:**
-```csharp
+
 // Current code at specified lines
-```
+
 
 **Suggested direction:**
-```csharp
+
 // Proposed code changes
-```
+
 
 ## 🎯 Suggested Action Plan
 > *For documentation team review*
