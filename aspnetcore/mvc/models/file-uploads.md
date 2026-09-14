@@ -804,7 +804,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-The feature is implemented by the Kestrel, IIS HTTP Server (in-process hosting), and HTTP.sys servers. For apps hosted out-of-process behind IIS, Kestrel's limit is disabled, so setting the feature has no effect and only the IIS `maxAllowedContentLength` setting applies.
+The feature is implemented by Kestrel, the IIS HTTP Server (in-process hosting), and HTTP.sys. For apps hosted out-of-process behind IIS, Kestrel's limit is disabled, so setting the feature has no effect and only the IIS `maxAllowedContentLength` setting applies.
 
 For MVC and Razor Pages apps, <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> and <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> use this feature to apply per-endpoint limits.
 
