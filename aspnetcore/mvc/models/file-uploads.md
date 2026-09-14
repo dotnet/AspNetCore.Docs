@@ -1,10 +1,11 @@
 ---
 title: Upload files in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 04/28/2026
+ms.date: 09/14/2026
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -763,6 +764,49 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 ```
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+
+For apps hosted [in-process](xref:host-and-deploy/iis/in-process-hosting), the IIS HTTP Server applies a second limit, <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize%2A?displayProperty=nameWithType>, which also defaults to 30,000,000 bytes (approximately 28.6 MB). IIS evaluates `maxAllowedContentLength` before `MaxRequestBodySize`, and changing one setting doesn't change the other. To upload files larger than the default limit, raise both settings. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+
+```csharp
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 52428800;
+});
+```
+
+Set `MaxRequestBodySize` to `null` to disable the IIS HTTP Server limit, in which case only `maxAllowedContentLength` limits the request body size. For more information, see [Application configuration](xref:host-and-deploy/iis/in-process-hosting#application-configuration).
+
+For apps hosted [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting), IIS sets the limit and Kestrel's request body size limit is disabled, so only `maxAllowedContentLength` applies.
+
+### Maximum request body size for a specific request
+
+<xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature> sets the maximum request body size for an individual request. The feature is useful when only a few endpoints accept large uploads and the global server limit should remain low for all other requests. Setting <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize%2A> to `null` disables the limit for the request.
+
+The limit can only be set before the app starts reading the request body. An exception is thrown if the app attempts to set the limit after reading the request body starts. Check <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.IsReadOnly%2A> to determine if it's safe to set `MaxRequestBodySize`:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/api/largefiles"))
+    {
+        var maxRequestBodySizeFeature =
+            context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+
+        if (maxRequestBodySizeFeature is not null &&
+            !maxRequestBodySizeFeature.IsReadOnly)
+        {
+            // Handle requests up to 100 MB for this endpoint
+            maxRequestBodySizeFeature.MaxRequestBodySize = 104857600;
+        }
+    }
+
+    await next(context);
+});
+```
+
+The feature is implemented by the Kestrel, IIS HTTP Server (in-process hosting), and HTTP.sys servers. For apps hosted out-of-process behind IIS, Kestrel's limit is disabled, so setting the feature has no effect and only the IIS `maxAllowedContentLength` setting applies.
+
+For MVC and Razor Pages apps, <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> and <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> use this feature to apply per-endpoint limits.
 
 ## Troubleshoot
 
