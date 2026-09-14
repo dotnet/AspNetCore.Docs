@@ -321,10 +321,10 @@ In the following example, the first `QuickGrid` uses the default query parameter
 In the following query string:
 
 * The `page=2&sort=Name&direction=asc` portion applies to the first `QuickGrid` component.
-* The `cities_page=3&cities_sort=Country&cities_direction=desc` portion applies to the second `QuickGrid` component.
+* The `cities_page=3&cities_sort=Population&cities_direction=desc` portion applies to the second `QuickGrid` component.
 
 ```
-?page=2&sort=Name&direction=asc&cities_page=3&cities_sort=Country&cities_direction=desc
+?page=2&sort=Name&direction=asc&cities_page=3&cities_sort=Population&cities_direction=desc
 ```
 
 :::moniker-end

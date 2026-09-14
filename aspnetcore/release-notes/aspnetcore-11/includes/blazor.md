@@ -338,7 +338,7 @@ With the release of .NET 11, the following `QuickGrid` components require unique
 Example query string for the preceding `QuickGrid` components:
 
 ```
-?page=2&sort=Name&direction=asc&cities_page=3&cities_sort=Country&cities_direction=desc
+?page=2&sort=Name&direction=asc&cities_page=3&cities_sort=Population&cities_direction=desc
 ```
 
 #### Sort by column
