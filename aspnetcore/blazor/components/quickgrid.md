@@ -5,7 +5,7 @@ author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 08/10/2026
+ms.date: 09/14/2026
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -36,6 +36,8 @@ To implement a `QuickGrid` component:
 <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ScrollToItemAsync%2A>
 <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.AnchorMode%2A>
 <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemComparer%2A>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.QueryParameterNameOptions%2A>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QueryParameterNameOptions>
 
 -->
 
@@ -43,7 +45,7 @@ To implement a `QuickGrid` component:
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
-* `QueryParameterNamePrefix`: The parameter from which the page and sorting URL parameters are derived. The default value is an empty string, which results in query parameters named "`page`", "`sort`", and "`order`". Setting a prefix for the preceding query string parameters allows the use of multiple `QuickGrid` components on the same page without their URL parameters conflicting with each other. For more information, see the [Pagination modes](#pagination-modes) and [Multiple grids on the same page](#multiple-grids-on-the-same-page) sections. 
+* `QueryParameterNameOptions`: Controls the names of the query string parameters that persist the grid's sort column, sort direction, and page number in the URL. The default value is an instance that results in query parameters named "`sort`", "`direction`", and "`page`". Assigning unique names to these query string parameters allows the use of multiple `QuickGrid` components on the same page without their URL parameters conflicting with each other. For more information, see the [Pagination modes](#pagination-modes), [Query parameter names](#query-parameter-names), and [Multiple grids on the same page](#multiple-grids-on-the-same-page) sections.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
@@ -204,7 +206,7 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
 
 :::moniker range=">= aspnetcore-11.0"
 
-`QuickGrid` supports *URL-based navigation* with pagination and sort state persisted by the URL's query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&order=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
+`QuickGrid` supports *URL-based navigation* with pagination and sort state persisted by the URL's query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&direction=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
 
 Sortable column headers and [paginator controls](#page-items-with-a-paginator-component) render as `<a>` elements with `href` attributes. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
 
@@ -212,7 +214,9 @@ Query string parameters:
 
 * `page`: One-based page number. The first page omits the parameter for clean URLs.
 * `sort`: Column title for sorting the grid.
-* `order`: Ascending (`asc`) or descending (`desc`).
+* `direction`: Ascending (`asc`) or descending (`desc`).
+
+Rename the preceding query string parameters with the `QueryParameterNameOptions` parameter. For more information, see the [Query parameter names](#query-parameter-names) section.
 
 The `sort` column is identified by the column's `Title` property. Columns without a `Title` render a non-clickable `<div>` header.
 
@@ -247,15 +251,57 @@ The switch only controls the rendered HTML element (`<a>` versus `<button>`). Ev
 
 :::moniker range=">= aspnetcore-11.0"
 
+## Query parameter names
+
+<!-- UPDATE 11.0 - API Browser cross-links -->
+
+The `QueryParameterNameOptions` parameter of the `QuickGrid` component controls the names of the query string parameters that persist grid state in the URL. The `QueryParameterNameOptions` class has three settable properties:
+
+* `Sort`: Name of the query string parameter that holds the sort column. The default value is `sort`.
+* `Direction`: Name of the query string parameter that holds the sort direction. The default value is `direction`.
+* `Page`: Name of the query string parameter that holds the page number. The default value is `page`.
+
+The parameter is never `null`. If the parameter isn't set, the `QuickGrid` component uses an instance created by the parameterless constructor, which results in the default names of the preceding list.
+
+The constructor takes an optional prefix argument that's prepended to all three default names. The prefix must include any separator character that you want to appear between the prefix and the name. In the following example, the query string parameters are named `products_sort`, `products_direction`, and `products_page`:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid ... 
+    QueryParameterNameOptions="@(new QueryParameterNameOptions("products_"))">
+    ...
+</QuickGrid>
+```
+
+To control the names individually, set the properties of the class. Properties set explicitly take precedence over a prefix passed to the constructor, so the two approaches can be combined. The following example names the query string parameters `orderBy`, `orderDir`, and `p`:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid ... QueryParameterNameOptions="@queryParameterNames">
+    ...
+</QuickGrid>
+
+@code {
+    private QueryParameterNameOptions queryParameterNames = new()
+    {
+        Sort = "orderBy",
+        Direction = "orderDir",
+        Page = "p"
+    };
+}
+```
+
+The page query parameter name is applied to the `PaginationState` instance assigned to the grid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A> parameter, so a linked `Paginator` component reads and writes the same parameter name automatically.
+
 ## Multiple grids on the same page
 
-<!-- UPDATE 11.0 - API Browser cross-link -->
+Multiple `QuickGrid` components on the same page require unique query parameter names to avoid query string conflicts. Assign a `QueryParameterNameOptions` parameter to all but one of the grids. For more information, see the [Query parameter names](#query-parameter-names) section.
 
-Multiple `QuickGrid` components on the same page require unique `QueryParameterNamePrefix` values to avoid query string conflicts. The default prefix is an empty string, producing parameters named `page`, `sort`, `order`. For example, setting the prefix to "`cities`" produces `cities_page`, `cities_sort`, and `cities_order`.
+Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they use different query parameter names&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
 
-Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they have different prefixes&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
-
-In the following example, each `QuickGrid` requires a unique `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
+In the following example, the first `QuickGrid` uses the default query parameter names, while the second one uses a `cities_` prefix:
 
 ```razor
 <QuickGrid ... Pagination="@pagination1">
@@ -264,7 +310,8 @@ In the following example, each `QuickGrid` requires a unique `QueryParameterName
 
 <Paginator State="pagination1" />
 
-<QuickGrid ... Pagination="@pagination2" QueryParameterNamePrefix="cities">
+<QuickGrid ... Pagination="@pagination2" 
+    QueryParameterNameOptions="@(new QueryParameterNameOptions("cities_"))">
     ...
 </QuickGrid>
 
@@ -273,11 +320,11 @@ In the following example, each `QuickGrid` requires a unique `QueryParameterName
 
 In the following query string:
 
-* The `page=2&sort=Name&order=asc` portion applies to the first `QuickGrid` component.
-* The `cities_sort=Country&cities_order=desc` portion applies to the second `QuickGrid` component.
+* The `page=2&sort=Name&direction=asc` portion applies to the first `QuickGrid` component.
+* The `cities_page=3&cities_sort=Country&cities_direction=desc` portion applies to the second `QuickGrid` component.
 
 ```
-?page=2&sort=Name&order=asc&cities_page=3&cities_sort=Country&cities_order=desc
+?page=2&sort=Name&direction=asc&cities_page=3&cities_sort=Country&cities_direction=desc
 ```
 
 :::moniker-end
@@ -323,7 +370,7 @@ The feature includes built-in CSS styling that applies a pointer cursor to click
 
 :::moniker range=">= aspnetcore-11.0"
 
-The `QuickGrid` component can sort items by columns. Selecting a header navigates to a URL with updated `sort` and `order` parameters. `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
+The `QuickGrid` component can sort items by columns. Selecting a header navigates to a URL with updated `sort` and `direction` parameters. `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
 
 :::moniker-end
 
@@ -343,7 +390,7 @@ In the running app, sort the QuickGrid column by selecting the rendered column t
 
 :::moniker range=">= aspnetcore-11.0"
 
-Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&order=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
+Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&direction=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
 
 Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared URLs containing the old title in the `sort` parameter stop matching, and the grid silently falls back to the default sort instead of sorting by the intended column. For `PropertyColumn`, the `Title` defaults to the property name (example: `Property="@(p => p.FirstName)"` produces `Title="First Name"`), so renaming the property or explicitly changing the `Title` parameter both break existing URLs.
 
@@ -456,12 +503,13 @@ The `SciFiCharacters` component:
 }
 ```
 
-If the `QuickGrid` component sets `QueryParameterNamePrefix`, set the query string parameter key for the results page in the `Details` component to `{PREFIX}_page`, where the `{PREFIX}` placeholder is the query parameter prefix. In the following example, the `QueryParameterNamePrefix` of the `QuickGrid` component is set to `scifi-characters-quickgrid`.
+If the `QuickGrid` component sets `QueryParameterNameOptions`, set the query string parameter key for the results page in the `Details` component to match the `Page` property of the options. In the following example, the `QuickGrid` component is assigned a `QueryParameterNameOptions` instance with a `scifi-characters-quickgrid_` prefix, which results in a page query string parameter named `scifi-characters-quickgrid_page`.
 
 In `Characters.razor`:
 
 ```razor
-<QuickGrid ... QueryParameterNamePrefix="scifi-characters-quickgrid">
+<QuickGrid ... 
+    QueryParameterNameOptions="@(new QueryParameterNameOptions("scifi-characters-quickgrid_"))">
 ```
 
 In `Details.razor`:
