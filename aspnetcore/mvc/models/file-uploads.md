@@ -753,7 +753,7 @@ Other Kestrel limits might apply for apps hosted by Kestrel:
 
 When hosted on IIS in-process, request size limits can exist at both the IIS request filtering module layer and the ASP.NET Core server layer:
 
-* **IIS request filtering (`maxAllowedContentLength`)**: The default IIS request limit is 30,000,000 bytes (~28.6 MB). Customize this limit in the `web.config` file. IIS inspects incoming requests and rejects any request exceeding this limit with HTTP 404.13 before it reaches the ASP.NET Core application:
+* **IIS request filtering (`maxAllowedContentLength`)**: The default IIS request limit is 30,000,000 bytes (~28.6 MB). Customize this limit in the `web.config` file. IIS inspects incoming requests and rejects any request that exceeds this limit with HTTP 404.13 before the request reaches the ASP.NET Core app:
 
   ```xml
   <system.webServer>
