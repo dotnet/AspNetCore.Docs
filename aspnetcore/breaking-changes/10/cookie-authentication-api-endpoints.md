@@ -145,6 +145,8 @@ builder.Services.AddAuthentication()
 * <xref:Microsoft.AspNetCore.Http.AllowCookieRedirectAttribute?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.DisableCookieRedirect*?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.AllowCookieRedirect*?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.RedirectToLogin*?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.RedirectToAccessDenied*?displayProperty=fullName>
 
 ## See also
 
