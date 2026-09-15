@@ -41,9 +41,6 @@ By default, ASP.NET Core applies cookie authentication logic based on the endpoi
 > only checks whether the request is an XHR. Signing out from an API endpoint redirects with a 302
 > whenever a redirect URI is supplied and the request isn't an XHR, exactly as it did before .NET 10.
 
-> [!NOTE]
-> Endpoint metadata only affects the challenge (401) and forbid (403) paths. Sign-out redirects and return URL redirects aren't affected because <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogout> and <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToReturnUrl> only check whether the request is an XHR. Signing out from an API endpoint still results in a 302 redirect.
-
 ## Configure the behavior for specific endpoints
 
 Call <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.DisableCookieRedirect*> to return 401 and 403 status codes for endpoints that aren't detected automatically:
