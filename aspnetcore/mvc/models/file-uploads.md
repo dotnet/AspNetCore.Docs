@@ -767,7 +767,7 @@ When hosted on IIS in-process, request size limits can exist at both the IIS req
 
   For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-* **ASP.NET Core IIS server options (`IISServerOptions.MaxRequestBodySize`)**: ASP.NET Core also enforces a default request body size limit of 30,000,000 bytes (~28.6 MB) when hosted in-process. Customize this limit in `Startup.ConfigureServices`:
+* **ASP.NET Core IIS server options (`IISServerOptions.MaxRequestBodySize`)**: ASP.NET Core also enforces a default request body size limit of 30,000,000 bytes (~28.6 MB) when hosted in-process. Customize this limit in `Program.cs`:
 
   ```csharp
   services.Configure<IISServerOptions>(options =>
