@@ -220,7 +220,7 @@ Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
 For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
 
-Configuring the gRPC client to use authentication depends on the authentication mechanism you're using. The previous bearer token and client certificate examples show a couple of ways you can configure the gRPC client to send authentication metadata with gRPC calls:
+Configuring the gRPC client to use authentication depends on the authentication mechanism you're using. The previous bearer token example shows how to send authentication metadata with gRPC calls, while the client certificate example shows how to configure TLS client authentication:
 
 * Strongly typed gRPC clients use `HttpClient` internally. Configure authentication on <xref:System.Net.Http.HttpClientHandler>, or add custom <xref:System.Net.Http.HttpMessageHandler> instances to the `HttpClient`.
 * Each gRPC call has an optional `CallOptions` argument. Send custom headers by using the option's headers collection.
