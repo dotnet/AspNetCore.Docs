@@ -779,7 +779,7 @@ When hosted on IIS in-process, request size limits can exist at both the IIS req
 > [!NOTE]
 > When hosted in-process on IIS, both limits apply. If `maxAllowedContentLength` is smaller than `IISServerOptions.MaxRequestBodySize`, IIS rejects requests exceeding `maxAllowedContentLength` before ASP.NET Core processes them. To support larger uploads on IIS, increase both `maxAllowedContentLength` in `web.config` and `IISServerOptions.MaxRequestBodySize` (or apply <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute>).
 
-### Per-request request body size configuration
+### Per-request body size limits
 
 To dynamically adjust or remove the request body size limit for a specific request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature> feature in middleware or an endpoint:
 
