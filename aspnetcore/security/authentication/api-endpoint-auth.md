@@ -19,10 +19,10 @@ When using cookie authentication, API endpoints return the appropriate HTTP stat
 
 ASP.NET Core adds <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirectMetadata> to the endpoints that it recognizes as API endpoints, including:
 
-* Controllers decorated with the `[ApiController]` attribute
-* Minimal API endpoints that read JSON request bodies or write JSON responses
-* Endpoints using <xref:Microsoft.AspNetCore.Http.TypedResults> return types
-* SignalR hubs and endpoints
+* Controllers decorated with the `[ApiController]` attribute.
+* Minimal API endpoints that read JSON request bodies or write JSON responses.
+* Endpoints using <xref:Microsoft.AspNetCore.Http.TypedResults> return types.
+* SignalR hubs and endpoints.
 
 Detection is based on metadata that's inferred when the app builds its endpoints. It isn't based on the `Accept` header of an incoming request, and it isn't based on which `Map{Verb}` method registered the route. A minimal API handler whose declared return type is `void`, `string`, or the <xref:Microsoft.AspNetCore.Http.IResult> interface doesn't contribute the metadata through its return type, although the concrete `TypedResults` types such as `Ok<TValue>` do. For example, `app.MapGet("/hello", () => "Hello")` writes a `text/plain` response and takes no JSON request body, so unauthenticated requests to it still redirect to the login page.
 
@@ -30,8 +30,8 @@ Detection is based on metadata that's inferred when the app builds its endpoints
 
 By default, ASP.NET Core applies cookie authentication logic based on the endpoint type:
 
-* **Web pages**: Redirect to the login or access denied page with a 302 status code
-* **API endpoints**: Return 401 or 403 status codes instead of a 302 redirect
+* **Web pages**: Redirect to the login or access-denied page with a 302 status code.
+* **API endpoints**: Return 401 or 403 status codes instead of a 302 redirect.
 
 [XMLHttpRequests (XHRs)](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) receive 401 and 403 responses regardless of the endpoint they target. That behavior predates .NET 10 and is unchanged.
 
@@ -99,7 +99,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 ## Breaking change considerations
 
-The change introduced in .NET 10 is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change). An app that combines cookie authentication with endpoints that ASP.NET Core detects as API endpoints returns 401 and 403 responses where it previously returned a 302 redirect to the login or access denied page. For the full breaking change notice, see [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints).
+The change introduced in .NET 10 is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change). An app that combines cookie authentication with endpoints that ASP.NET Core detects as API endpoints returns 401 and 403 responses where it previously returned a 302 redirect to the login or access-denied page. For the full breaking change notice, see [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints).
 
 Consider the impact on each kind of app:
 
