@@ -67,7 +67,8 @@ var builder = WebApplication.CreateBuilder(args);
 To restore redirects for individual endpoints instead, call <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.AllowCookieRedirect*> or apply the <xref:Microsoft.AspNetCore.Http.AllowCookieRedirectAttribute> to an action method or controller class:
 
 ```csharp
-app.MapGet("/reports/summary", () => new ReportSummary(1000))
+app.MapGet("/reports/summary", () => new { Total = 1000 })
+   .RequireAuthorization()
    .AllowCookieRedirect();
 ```
 
