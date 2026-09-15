@@ -84,8 +84,8 @@ When no expiration is specified, entries expire after 30 seconds.
 `ExpiresSliding` doesn't keep an entry alive indefinitely. Every entry also carries an absolute expiration in the following order:
 
 1. `ExpiresOn`, if set.
-2. `ExpiresAfter`, if set.
-3. The 30-second default.
+1. `ExpiresAfter`, if set.
+1. The 30-second default.
 
 An entry expires when either the sliding window elapses without access or the absolute expiration is reached, whichever comes first.
 
