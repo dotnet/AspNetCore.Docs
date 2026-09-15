@@ -843,7 +843,7 @@ The examples in this article rely upon <xref:System.IO.MemoryStream> to hold the
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
