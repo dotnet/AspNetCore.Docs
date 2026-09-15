@@ -1,10 +1,11 @@
 ---
-title: Authentication and authorization in gRPC for ASP.NET Core
+title: Authentication and Authorization in gRPC for ASP.NET Core
 author: jamesnk
-description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
+description: Learn how to configure authentication and authorization in gRPC for ASP.NET Core with bearer tokens, client certificates, and policies. Secure your services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 07/16/2024
+ms.reviewer: wpickett
+ms.date: 09/14/2026
 uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
@@ -18,9 +19,9 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 ## Authenticate users calling a gRPC service
 
-gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
+Use gRPC with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
 
-The following is an example of `Program.cs` which uses gRPC and ASP.NET Core authentication:
+The following example of `Program.cs` uses gRPC and ASP.NET Core authentication:
 
 ```csharp
 app.UseRouting();
@@ -34,9 +35,9 @@ app.MapGrpcService<GreeterService>();
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
 
-The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Program.cs` and will be different depending upon the authentication mechanism your app uses.
+Configure the authentication mechanism your app uses during a call. Add authentication configuration in `Program.cs`. The configuration differs depending on the authentication mechanism your app uses.
 
-Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
+After you set up authentication, access the user in gRPC service methods through the `ServerCallContext`.
 
 ```csharp
 public override Task<BuyTicketsResponse> BuyTickets(
@@ -51,11 +52,11 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 ### Bearer token authentication
 
-The client can provide an access token for authentication. The server validates the token and uses it to identify the user.
+The client provides an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
+On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
 
-In the .NET gRPC client, the token can be sent with calls by using the `Metadata` collection. Entries in the `Metadata` collection are sent with a gRPC call as HTTP headers:
+In the .NET gRPC client, send the token with calls by using the `Metadata` collection. Send entries in the `Metadata` collection with a gRPC call as HTTP headers:
 
 ```csharp
 public bool DoAuthenticatedCall(
@@ -77,7 +78,7 @@ Configuring `ChannelCredentials` on a channel is an alternative way to send the 
 
 Benefits of using `CallCredentials`:
 
-* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* Authentication is centrally configured on the channel. You don't need to manually provide the token to the gRPC call.
 * The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
@@ -104,9 +105,9 @@ private static GrpcChannel CreateAuthenticatedChannel(ITokenProvder tokenProvide
 
 #### Bearer token with gRPC client factory
 
-gRPC client factory can create clients that send a bearer token using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
+gRPC client factory can create clients that send a bearer token by using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
 
-The delegate passed to `AddCallCredentials` is executed for each gRPC call:
+The delegate that you pass to `AddCallCredentials` runs for each gRPC call:
 
 ```csharp
 builder.Services
@@ -128,7 +129,7 @@ Dependency injection (DI) can be combined with `AddCallCredentials`. An overload
 
 Consider an app that has:
 
-* A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
+* A user-defined `ITokenProvider` for getting a bearer token. Register `ITokenProvider` in DI with a scoped lifetime.
 * gRPC client factory is configured to create clients that are injected into gRPC services and Web API controllers.
 * gRPC calls should use `ITokenProvider` to get a bearer token.
 
@@ -175,7 +176,7 @@ The preceding code:
 * Defines `ITokenProvider` and `AppTokenProvider`. These types handle resolving the authentication token for gRPC calls.
 * Registers the `AppTokenProvider` type with DI in a scoped lifetime. `AppTokenProvider` caches the token so that only the first call in the scope is required to calculate it.
 * Registers the `GreeterClient` type with client factory.
-* Configures `AddCallCredentials` for this client. The delegate is executed each time a call is made and adds the token returned by `ITokenProvider` to the metadata.
+* Configures `AddCallCredentials` for this client. The delegate runs each time a call is made and adds the token returned by `ITokenProvider` to the metadata.
 
 ### Client certificate authentication
 
@@ -184,7 +185,7 @@ A client could alternatively provide a client certificate for authentication. [C
 > [!NOTE]
 > Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see <xref:security/authentication/certauth#configure-your-server-to-require-certificates>.
 
-In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
+In the .NET gRPC client, add the client certificate to `HttpClientHandler` and use it to create the gRPC client:
 
 ```csharp
 public Ticketer.TicketerClient CreateClientWithCert(
@@ -219,17 +220,17 @@ Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
 For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
 
-Configuring the gRPC client to use authentication will depend on the authentication mechanism you are using. The previous bearer token and client certificate examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
+Configuring the gRPC client to use authentication depends on the authentication mechanism you're using. The previous bearer token and client certificate examples show a couple of ways you can configure the gRPC client to send authentication metadata with gRPC calls:
 
-* Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on <xref:System.Net.Http.HttpClientHandler>, or by adding custom <xref:System.Net.Http.HttpMessageHandler> instances to the `HttpClient`.
-* Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
+* Strongly typed gRPC clients use `HttpClient` internally. Configure authentication on <xref:System.Net.Http.HttpClientHandler>, or add custom <xref:System.Net.Http.HttpMessageHandler> instances to the `HttpClient`.
+* Each gRPC call has an optional `CallOptions` argument. Send custom headers by using the option's headers collection.
 
 > [!NOTE]
-> Windows Authentication (NTLM/Kerberos/Negotiate) can't be used with gRPC. gRPC requires HTTP/2, and HTTP/2 doesn't support Windows Authentication.
+> You can't use Windows Authentication (NTLM/Kerberos/Negotiate) with gRPC. gRPC requires HTTP/2, and HTTP/2 doesn't support Windows Authentication.
 
 ## Authorize users to access services and service methods
 
-By default, all methods in a service can be called by unauthenticated users. To require authentication, apply the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
+By default, unauthenticated users can call all methods in a service. To require authentication, apply the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
 
 ```csharp
 [Authorize]
@@ -238,7 +239,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service using the following code:
+Use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service by using the following code:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
@@ -247,7 +248,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-Individual service methods can have the `[Authorize]` attribute applied as well. If the current user doesn't match the policies applied to **both** the method and the class, an error is returned to the caller:
+You can also apply the `[Authorize]` attribute to individual service methods. If the current user doesn't match the policies applied to **both** the method and the class, the caller receives an error:
 
 ```csharp
 [Authorize]
@@ -281,9 +282,9 @@ public class TicketerService : Ticketer.TicketerBase
 
 ## Authenticate users calling a gRPC service
 
-gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
+Use gRPC with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
 
-The following is an example of `Startup.Configure` which uses gRPC and ASP.NET Core authentication:
+The following example shows `Startup.Configure` that uses gRPC and ASP.NET Core authentication:
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -305,7 +306,7 @@ public void Configure(IApplicationBuilder app)
 
 The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Startup.ConfigureServices` and will be different depending upon the authentication mechanism your app uses.
 
-Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
+After you set up authentication, access the user in gRPC service methods through the `ServerCallContext`.
 
 ```csharp
 public override Task<BuyTicketsResponse> BuyTickets(
@@ -320,11 +321,11 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 ### Bearer token authentication
 
-The client can provide an access token for authentication. The server validates the token and uses it to identify the user.
+The client provides an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
+On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
 
-In the .NET gRPC client, the token can be sent with calls by using the `Metadata` collection. Entries in the `Metadata` collection are sent with a gRPC call as HTTP headers:
+In the .NET gRPC client, send the token with calls by using the `Metadata` collection. Send entries in the `Metadata` collection with a gRPC call as HTTP headers:
 
 ```csharp
 public bool DoAuthenticatedCall(
@@ -346,7 +347,7 @@ Configuring `ChannelCredentials` on a channel is an alternative way to send the 
 
 Benefits of using `CallCredentials`:
 
-* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* Authentication is centrally configured on the channel. You don't need to manually provide the token to the gRPC call.
 * The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
@@ -373,9 +374,9 @@ private static GrpcChannel CreateAuthenticatedChannel(ITokenProvder tokenProvide
 
 #### Bearer token with gRPC client factory
 
-gRPC client factory can create clients that send a bearer token using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
+gRPC client factory can create clients that send a bearer token by using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
 
-The delegate passed to `AddCallCredentials` is executed for each gRPC call:
+The delegate that you pass to `AddCallCredentials` runs for each gRPC call:
 
 ```csharp
 services
@@ -397,7 +398,7 @@ Dependency injection (DI) can be combined with `AddCallCredentials`. An overload
 
 Consider an app that has:
 
-* A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
+* A user-defined `ITokenProvider` for getting a bearer token. Register `ITokenProvider` in DI with a scoped lifetime.
 * gRPC client factory is configured to create clients that are injected into gRPC services and Web API controllers.
 * gRPC calls should use `ITokenProvider` to get a bearer token.
 
@@ -444,7 +445,7 @@ The preceding code:
 * Defines `ITokenProvider` and `AppTokenProvider`. These types handle resolving the authentication token for gRPC calls.
 * Registers the `AppTokenProvider` type with DI in a scoped lifetime. `AppTokenProvider` caches the token so that only the first call in the scope is required to calculate it.
 * Registers the `GreeterClient` type with client factory.
-* Configures `AddCallCredentials` for this client. The delegate is executed each time a call is made and adds the token returned by `ITokenProvider` to the metadata.
+* Configures `AddCallCredentials` for this client. The delegate runs each time a call is made and adds the token returned by `ITokenProvider` to the metadata.
 
 ### Client certificate authentication
 
@@ -453,7 +454,7 @@ A client could alternatively provide a client certificate for authentication. [C
 > [!NOTE]
 > Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see <xref:security/authentication/certauth#configure-your-server-to-require-certificates>.
 
-In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
+In the .NET gRPC client, add the client certificate to `HttpClientHandler` and use it to create the gRPC client:
 
 ```csharp
 public Ticketer.TicketerClient CreateClientWithCert(
@@ -488,17 +489,17 @@ Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
 For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
 
-Configuring the gRPC client to use authentication will depend on the authentication mechanism you are using. The previous bearer token and client certificate examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
+Configuring the gRPC client to use authentication depends on the authentication mechanism you're using. The previous bearer token and client certificate examples show a couple of ways you can configure the gRPC client to send authentication metadata with gRPC calls:
 
-* Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on <xref:System.Net.Http.HttpClientHandler>, or by adding custom <xref:System.Net.Http.HttpMessageHandler> instances to the `HttpClient`.
-* Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
+* Strongly typed gRPC clients use `HttpClient` internally. Configure authentication on <xref:System.Net.Http.HttpClientHandler>, or add custom <xref:System.Net.Http.HttpMessageHandler> instances to the `HttpClient`.
+* Each gRPC call has an optional `CallOptions` argument. Send custom headers by using the option's headers collection.
 
 > [!NOTE]
-> Windows Authentication (NTLM/Kerberos/Negotiate) can't be used with gRPC. gRPC requires HTTP/2, and HTTP/2 doesn't support Windows Authentication.
+> You can't use Windows Authentication (NTLM/Kerberos/Negotiate) with gRPC. gRPC requires HTTP/2, and HTTP/2 doesn't support Windows Authentication.
 
 ## Authorize users to access services and service methods
 
-By default, all methods in a service can be called by unauthenticated users. To require authentication, apply the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
+By default, unauthenticated users can call all methods in a service. To require authentication, apply the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
 
 ```csharp
 [Authorize]
@@ -507,7 +508,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service using the following code:
+Use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service by using the following code:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
@@ -516,7 +517,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-Individual service methods can have the `[Authorize]` attribute applied as well. If the current user doesn't match the policies applied to **both** the method and the class, an error is returned to the caller:
+You can also apply the `[Authorize]` attribute to individual service methods. If the current user doesn't match the policies applied to **both** the method and the class, the caller receives an error:
 
 ```csharp
 [Authorize]
@@ -539,7 +540,7 @@ public class TicketerService : Ticketer.TicketerBase
 
 ### Authorization extension methods
 
-Authorizaton can also be controlled using standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
+You can also control authorization by using standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
