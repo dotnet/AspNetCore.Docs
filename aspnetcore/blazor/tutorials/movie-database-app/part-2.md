@@ -5,7 +5,7 @@ author: guardrex
 description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold the database and UI from the movie class.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 09/15/2026
 uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling
 ---
@@ -402,13 +402,15 @@ If the `MoviePages` folder and assets aren't present after scaffolding, return t
 
 :::zone-end
 
-ASP.NET Core is built with dependency injection, which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with dependency injection during application startup. These services are injected into Razor components for use by the components.
+ASP.NET Core is built with dependency injection (DI), which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with DI during application startup. These services are injected into Razor components for use by the components.
 
 The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a Razor component for efficiently displaying data in tabular form. The scaffolder places a `QuickGrid` component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for QuickGrid to recognize EF Core-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency.
 
 In combination with <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>, <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> captures database-related exceptions that can be resolved by using Entity Framework migrations. When these exceptions occur, an HTML response is generated with details about possible actions to resolve the issue.
 
-The following code is added to the `Program` file by the scaffolder:
+:::zone pivot="vs"
+
+The following code is added to the `Program` file by the scaffolder if the database provider is SQL Server. The first statement of the following code registers a database context factory in the DI container to create database context instances on demand. A database context is used to perform database operations, such as reading and updating database records.
 
 ```csharp
 builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
@@ -421,6 +423,46 @@ builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 ```
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+The following code is added to the `Program` file by the scaffolder if the database provider is SQLite. The first two statements of the following code register a database context factory in the DI container to create database context instances on demand. A database context is used to perform database operations, such as reading and updating database records.
+
+```csharp
+var connectionString = 
+    builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+    throw new InvalidOperationException(
+        "Connection string 'BlazorWebAppMoviesContext' not found.");
+
+builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options => options.UseSqlite(connectionString));
+
+builder.Services.AddQuickGridEntityFrameworkAdapter();
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+```
+
+:::zone-end
+
+:::zone pivot="cli"
+
+The following code is added to the `Program` file by the scaffolder if the database provider is SQLite. The first two statements of the following code register a database context factory in the DI container to create database context instances on demand. A database context is used to perform database operations, such as reading and updating database records.
+
+```csharp
+var connectionString = 
+    builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+    throw new InvalidOperationException(
+        "Connection string 'BlazorWebAppMoviesContext' not found.");
+
+builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options => options.UseSqlite(connectionString));
+
+builder.Services.AddQuickGridEntityFrameworkAdapter();
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+```
+
+:::zone-end
 
 ## Create the initial database schema using EF Core's migration feature
 
