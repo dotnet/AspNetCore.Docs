@@ -26,7 +26,7 @@ ASP.NET Core adds <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirec
 
 Detection is based on metadata that's inferred when the app builds its endpoints. It isn't based on the `Accept` header of an incoming request, and it isn't based on which `Map{Verb}` method registered the route.
 
-A minimal API handler whose declared return type is `void`, `string`, or the <xref:Microsoft.AspNetCore.Http.IResult> interface doesn't contribute the metadata through its return type, although the concrete `TypedResults` types such as `Ok<TValue>` do. For example, `app.MapGet("/hello", () => "Hello")` writes a `text/plain` response and takes no JSON request body, so unauthenticated requests to it still redirect to the login page.
+A minimal API handler whose declared return type is `void`, `string`, or the <xref:Microsoft.AspNetCore.Http.IResult> interface doesn't contribute the metadata through its return type, although the concrete `TypedResults` types such as `Ok<TValue>` do. For example, `app.MapGet("/hello", () => "Hello").RequireAuthorization()` writes a `text/plain` response and takes no JSON request body, so unauthenticated requests to it still redirect to the login page.
 
 ## Default behavior
 
