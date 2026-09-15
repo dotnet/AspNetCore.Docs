@@ -390,11 +390,13 @@ protected override void OnInitialized()
 }
 ```
 
+The preceding example would assign a per-page/component render mode at the top of the Razor component file (for example, `@rendermode InteractiveServer`).
+
 The Not Found response and 404 status code aren't applied outside of prerendering, so if prerendering is disabled or the <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> call is made after prerendering, the component should indicate to the user in the component's UI that a resource isn't found.
 
 In cases where <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called in the middle of a method, end the control flow with a `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. In the following movie database update method, a concurrency exception results in checking for the presence of a movie in the database to determine if a Not Found response is appropriate. The `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> ensures that the handler selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>:
 
-```razor
+```csharp
 private async Task UpdateMovie()
 {
     using var context = DbFactory.CreateDbContext();
