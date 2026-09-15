@@ -1,5 +1,5 @@
 ---
-title: Authentication and Authorization in gRPC for ASP.NET Core
+title: Authentication and authorization in gRPC for ASP.NET Core
 author: jamesnk
 description: Learn how to configure authentication and authorization in gRPC for ASP.NET Core with bearer tokens, client certificates, and policies. Secure your services.
 monikerRange: '>= aspnetcore-3.0'
