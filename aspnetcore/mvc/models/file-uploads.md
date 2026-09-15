@@ -12,7 +12,7 @@ uid: mvc/models/file-uploads
 
 By [Rutger Storm](https://github.com/rutix)
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
