@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about environments in Blazor, including how to set the environment.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 09/15/2026
 uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
@@ -115,11 +115,7 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 For app's running locally in development, the app defaults to the `Development` environment. Publishing the app defaults the environment to `Production`.
 
-:::moniker range="< aspnetcore-5.0"
-
-For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/environments>. For server-side app configuration with static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:fundamentals/static-files#static-files-in-non-development-environments>.
-
-:::moniker-end
+For general guidance on ASP.NET Core environments, see <xref:fundamentals/environments>. For server-side app configuration to serve static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:fundamentals/static-files#static-files-in-non-development-environments>.
 
 ## Set the client-side environment via Blazor startup configuration
 
