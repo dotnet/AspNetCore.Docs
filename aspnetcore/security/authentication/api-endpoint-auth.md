@@ -45,13 +45,15 @@ Call <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderE
 ```csharp
 var api = app.MapGroup("/api").DisableCookieRedirect();
 
-api.MapGet("/status", () => "Ready");
+api.MapGet("/status", () => "Ready")
+   .RequireAuthorization();
 ```
 
 Call <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.AllowCookieRedirect*> to keep login redirects for endpoints that are detected as API endpoints:
 
 ```csharp
-app.MapGet("/reports/summary", () => new ReportSummary(1000))
+app.MapGet("/reports/summary", () => new { Total = 1000 })
+   .RequireAuthorization()
    .AllowCookieRedirect();
 ```
 
@@ -59,12 +61,13 @@ For controllers, apply the <xref:Microsoft.AspNetCore.Http.AllowCookieRedirectAt
 
 ```csharp
 [ApiController]
+[Authorize]
 [AllowCookieRedirect]
 [Route("[controller]")]
 public class ReportsController : ControllerBase
 {
     [HttpGet("summary")]
-    public ReportSummary GetSummary() => new(1000);
+    public object GetSummary() => new { Total = 1000 };
 }
 ```
 
