@@ -140,14 +140,12 @@ builder.Services.AddAuthentication()
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirectMetadata?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Http.Metadata.IAllowCookieRedirectMetadata?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Http.AllowCookieRedirectAttribute?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.DisableCookieRedirect*?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.AllowCookieRedirect*?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.RedirectToLogin*?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.RedirectToAccessDenied*?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirectMetadata?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Http.Metadata.IAllowCookieRedirectMetadata?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Http.AllowCookieRedirectAttribute?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.DisableCookieRedirect*?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Builder.CookieRedirectEndpointConventionBuilderExtensions.AllowCookieRedirect*?displayProperty=fullName>
 
 ## See also
 
-- [API endpoint authentication behavior in ASP.NET Core](/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0&preserve-view=true)
+* [API endpoint authentication behavior in ASP.NET Core](/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0&preserve-view=true)
