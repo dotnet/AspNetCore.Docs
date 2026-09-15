@@ -36,7 +36,10 @@ By default, ASP.NET Core applies cookie authentication logic based on the endpoi
 [XMLHttpRequests (XHRs)](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) receive 401 and 403 responses regardless of the endpoint they target. That behavior predates .NET 10 and is unchanged.
 
 > [!NOTE]
-> A 401 or 403 response still includes a `Location` header holding the login or access denied URI. The cookie authentication handler sets `Location` and then sets the status code, so only the status code differs from the redirect case. Don't test for this behavior by asserting that `Location` is absent.
+> Endpoint metadata only affects the challenge (401) and forbid (403) paths. Sign-out and return URL
+> redirects aren't affected, because <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToReturnUrl>
+> only checks whether the request is an XHR. Signing out from an API endpoint redirects with a 302
+> whenever a redirect URI is supplied and the request isn't an XHR, exactly as it did before .NET 10.
 
 > [!NOTE]
 > Endpoint metadata only affects the challenge (401) and forbid (403) paths. Sign-out redirects and return URL redirects aren't affected because <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogout> and <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToReturnUrl> only check whether the request is an XHR. Signing out from an API endpoint still results in a 302 redirect.
