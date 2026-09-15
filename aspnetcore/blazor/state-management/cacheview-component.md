@@ -81,11 +81,11 @@ When no expiration is specified, entries expire after 30 seconds.
 
 ### Sliding expiration is bounded by an absolute expiration
 
-`ExpiresSliding` doesn't keep an entry alive indefinitely. Every entry also carries an absolute expiration:
+`ExpiresSliding` doesn't keep an entry alive indefinitely. Every entry also carries an absolute expiration in the following order:
 
-* `ExpiresOn`, if set.
-* Otherwise, `ExpiresAfter`, if set.
-* Otherwise, the 30-second default.
+1. `ExpiresOn`, if set.
+2. `ExpiresAfter`, if set.
+3. The 30-second default.
 
 An entry expires when either the sliding window elapses without access or the absolute expiration is reached, whichever comes first.
 
@@ -93,7 +93,7 @@ For example, consider `ExpiresSliding` set to 10 seconds with `ExpiresAfter` set
 
 Now consider `ExpiresSliding` set to 10 seconds without `ExpiresAfter` or `ExpiresOn`. The 30-second default absolute expiration applies, so repeated access within the 10-second window only keeps the entry alive until it's 30 seconds old. A gap longer than 10 seconds expires the entry earlier.
 
-When you measure this behavior, report the configured expiration options together with the observed expiry, because the sliding window alone doesn't determine when an entry is evicted.
+When you measure this behavior, report the configured expiration options together with the observed expiry because the sliding window alone doesn't determine when an entry is evicted.
 
 The default store is an in-memory cache with a 100 MB size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents new entries from being cached.
 
