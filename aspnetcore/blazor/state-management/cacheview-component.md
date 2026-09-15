@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
 ms.author: wpickett
-ms.date: 08/14/2026
+ms.date: 09/15/2026
 uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
@@ -78,6 +78,22 @@ Without a matching vary-by parameter, requests with different values share the s
 * `ExpiresSliding` expires an entry after a period without access.
 
 When no expiration is specified, entries expire after 30 seconds.
+
+### Sliding expiration is bounded by an absolute expiration
+
+`ExpiresSliding` doesn't keep an entry alive indefinitely. Every entry also carries an absolute expiration in the following order:
+
+1. `ExpiresOn`, if set.
+1. `ExpiresAfter`, if set.
+1. The 30-second default.
+
+An entry expires when either the sliding window elapses without access or the absolute expiration is reached, whichever comes first.
+
+For example, consider `ExpiresSliding` set to 10 seconds with `ExpiresAfter` set to two minutes. Requests spaced less than 10 seconds apart reuse the cached output, and each access restarts the sliding window. A gap longer than 10 seconds expires the entry, so the next request creates a new entry. No matter how often the entry is accessed, it's never served more than two minutes after it's created.
+
+Now consider `ExpiresSliding` set to 10 seconds without `ExpiresAfter` or `ExpiresOn`. The 30-second default absolute expiration applies, so repeated access within the 10-second window only keeps the entry alive until it's 30 seconds old. A gap longer than 10 seconds expires the entry earlier.
+
+When you measure this behavior, report the configured expiration options together with the observed expiry because the sliding window alone doesn't determine when an entry is evicted.
 
 The default store is an in-memory cache with a 100 MB size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents new entries from being cached.
 
