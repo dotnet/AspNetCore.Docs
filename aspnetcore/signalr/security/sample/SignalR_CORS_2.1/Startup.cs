@@ -29,7 +29,7 @@ namespace SignalR_CORS
             {
                 builder.WithOrigins("https://example.com")
                     .AllowAnyHeader()
-                    .WithMethods("GET", "POST")
+                    .WithMethods("GET", "POST", "DELETE")
                     .AllowCredentials();
             });
 
