@@ -1,5 +1,6 @@
 ---
 title: Build a Blazor movie database app (Part 4 - Work with a database)
+ai-usage: ai-assisted
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 monikerRange: '>= aspnetcore-8.0'

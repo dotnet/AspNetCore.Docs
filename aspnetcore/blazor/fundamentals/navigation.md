@@ -408,7 +408,7 @@ private async Task UpdateMovie()
     {
         if (!MovieExists(Movie!.Id))
         {
-            NavigationManager.NotFound();
+            Navigation.NotFound();
 
             return;
         }
@@ -418,9 +418,14 @@ private async Task UpdateMovie()
         }
     }
 
-    NavigationManager.NavigateTo("/movies");
+    Navigation.NavigateTo("/movies");
 }
 ```
+
+Services not shown in the preceding example:
+
+* `NavigationManager` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> (`@inject NavigationManager Navigation`).
+* `DbFactory` is an injected <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> (`@inject IDbContextFactory<{CONTEXT}> DbFactory`, where the `{CONTEXT}` placeholder is a <xref:Microsoft.EntityFrameworkCore.DbContext>).
 
 Use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is invoked. The event is only fired when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>/<xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A>.
 
