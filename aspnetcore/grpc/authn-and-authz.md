@@ -4,8 +4,8 @@ author: jamesnk
 description: Learn how to configure authentication and authorization in gRPC for ASP.NET Core with bearer tokens, client certificates, and policies. Secure your services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
+ms.date: 09/15/2026
 ms.reviewer: wpickett
-ms.date: 09/14/2026
 uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
