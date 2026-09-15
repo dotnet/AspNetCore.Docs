@@ -428,7 +428,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 :::zone pivot="vsc"
 
-The following code is added to the `Program` file by the scaffolder if the database provider is SQLite. The first two statements of the following code register a database context factory in the DI container to create database context instances on demand. A database context is used to perform database operations, such as reading and updating database records.
+The first statement reads and validates the connection string, and the second registers a database context factory in the DI container. A database context is used to perform database operations, such as reading and updating database records.
 
 ```csharp
 var connectionString = 
