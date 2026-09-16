@@ -36,6 +36,8 @@ Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) wh
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
 
+For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
+
 ## The Context object
 
 The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A> property that contains the following properties with information about the connection:
