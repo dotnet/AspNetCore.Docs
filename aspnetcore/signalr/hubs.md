@@ -38,6 +38,8 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
