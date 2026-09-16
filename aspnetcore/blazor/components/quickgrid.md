@@ -5,7 +5,7 @@ author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 09/14/2026
+ms.date: 09/16/2026
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -208,13 +208,15 @@ QuickGrid renders additional empty rows to fill in the final page of data when u
 
 `QuickGrid` supports *URL-based navigation* with pagination and sort state persisted by the URL's query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&direction=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
 
-Sortable column headers and [paginator controls](#page-items-with-a-paginator-component) render as `<a>` elements with `href` attributes. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
+Sortable column headers and [paginator controls](#page-items-with-a-paginator-component) render as `<a>` elements with `href` attributes. The links support standard browser behavior, such as opening a page in a new tab or window. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
 
 Query string parameters:
 
 * `page`: One-based page number. The first page omits the parameter for clean URLs.
 * `sort`: Column title for sorting the grid.
 * `direction`: Ascending (`asc`) or descending (`desc`).
+
+If the `page` value is malformed, zero, or negative, `QuickGrid` displays the first page. If the value is greater than the number of available pages, `QuickGrid` displays the last page. This behavior applies when the grid receives data from either `Items` or `ItemsProvider`. An `ItemsProvider` must return an accurate total item count for `QuickGrid` to resolve the last page correctly.
 
 Rename the preceding query string parameters with the `QueryParameterNameOptions` parameter. For more information, see the [Query parameter names](#query-parameter-names) section.
 
@@ -223,7 +225,7 @@ The `sort` column is identified by the column's `Title` property. Columns withou
 `QuickGrid` reads the URL on initialization and subscribes to `NavigationManager.LocationChanged`, so browser back/forward and direct URL entry work. When sort parameters are removed from the URL, it falls back to the default sort column/direction.
 
 > [!NOTE]
-> Disabled [paginator links](#page-items-with-a-paginator-component) use `aria-disabled="true"` and `pointer-events: none` instead of the HTML `disabled` attribute, which doesn't exist on `<a>` elements.
+> Disabled [paginator links](#page-items-with-a-paginator-component) are marked with `aria-disabled="true"`, removed from the tab order with `tabindex="-1"`, and made non-interactive with `pointer-events: none`.
 
 :::moniker-end
 
