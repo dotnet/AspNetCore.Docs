@@ -1,10 +1,11 @@
 ---
 title: .NET Hot Reload support for ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Use .NET Hot Reload to apply code changes to a running app without restarting the app and without losing app state.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tdykstra
-ms.date: 05/05/2026
+ms.date: 09/16/2026
 uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
@@ -117,6 +118,34 @@ The following setting in `Properties/launchSettings.json` disables Hot Reload:
 ```json
 "hotReloadEnabled" : false
 ```
+
+:::moniker range=">= aspnetcore-10.0"
+
+## WebAssembly Hot Reload (`WasmEnableHotReload`)
+
+The `WasmEnableHotReload` MSBuild property controls whether Hot Reload infrastructure is included in the build output for .NET WebAssembly apps, including both Blazor WebAssembly apps and non-Blazor WebAssembly Browser App (`wasmbrowser` template) projects. The property is set to `true` by default for the `Debug` configuration.
+
+Setting the property to `false` removes Hot Reload dependencies from the `dotnet build` output, which is useful when producing bundler-compatible artifacts, for example for use with webpack or Vite.
+
+To disable Hot Reload for WebAssembly apps, set the property to `false` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>false</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+To enable Hot Reload for a custom (non-`Debug`) configuration, set the property to `true`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableHotReload>true</WasmEnableHotReload>
+</PropertyGroup>
+```
+
+For more information on controlling Hot Reload in Blazor WebAssembly apps, see <xref:blazor/debug#control-hot-reload>.
+
+:::moniker-end
 
 ## Additional resources
 
