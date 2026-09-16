@@ -12,10 +12,10 @@ By default, unauthenticated and unauthorized requests made to known API endpoint
 
 Known API [endpoints](/aspnet/core/fundamentals/routing) are identified using the new <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirectMetadata> interface, and metadata implementing the new interface has been added automatically to the following:
 
-- [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) endpoints.
-- Minimal API endpoints that read JSON request bodies or write JSON responses.
-- Endpoints using <xref:Microsoft.AspNetCore.Http.TypedResults> return types.
-- SignalR endpoints.
+* [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) endpoints.
+* Minimal API endpoints that read JSON request bodies or write JSON responses.
+* Endpoints using <xref:Microsoft.AspNetCore.Http.TypedResults> return types.
+* SignalR endpoints.
 
 The companion <xref:Microsoft.AspNetCore.Http.Metadata.IAllowCookieRedirectMetadata> interface opts an endpoint back in to redirects. It overrides `IDisableCookieRedirectMetadata` no matter the order in which the metadata is added.
 
