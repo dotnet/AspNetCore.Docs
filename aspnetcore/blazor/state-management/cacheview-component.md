@@ -204,7 +204,7 @@ Built-in components use these policies:
 | Component | Behavior inside `CacheView` |
 |---|---|
 | `AuthorizeView` | Requires `VaryByUser="true"` or throws. |
-| `QuickGrid` | Requires `VaryByQuery` or throws. Include every query parameter that affects sorting, filtering, and paging, including the actual names configured with `QueryParameterNameOptions`, or use `VaryByQuery="*"`. |
+| `QuickGrid` | Requires `VaryByQuery` or throws. |
 | `Virtualize` | Always throws. |
 | Antiforgery tokens, `HeadOutlet`, interactive render mode boundaries, and streaming children | Render fresh on every request while surrounding content remains cached. |
 
