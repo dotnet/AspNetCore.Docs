@@ -66,7 +66,7 @@ The sample app showcases the following technologies:
 
 Components from an RCL can be simultaneously shared by web and native client apps built using Blazor. The guidance in <xref:blazor/components/class-libraries> explains how to share Razor components using a Razor class library (RCL). The same guidance applies to reusing Razor components from an RCL in a Blazor Hybrid app.
 
-Component namespaces are derived from the RCL's package ID or assembly name and the component's folder path within the RCL. For more information, see <xref:blazor/components/index#class-name-and-namespace>. [`@using`](xref:mvc/views/razor#using) directives can be placed in `_Imports.razor` files for components and code, as the following example demonstrates for an RCL named `SharedLibrary` with a `Shared` folder of shared Razor components and a `Data` folder of shared data classes:
+Component namespaces are derived from the RCL's package ID or assembly name and the component's folder path within the RCL. For more information, see <xref:blazor/components/index#class-name-and-namespace>. [`@using`](xref:mvc/views/razor#using) directives can be placed in imports files (`_Imports.razor`) for components and code, as the following example demonstrates for an RCL named `SharedLibrary` with a `Shared` folder of shared Razor components and a `Data` folder of shared data classes:
 
 ```razor
 @using SharedLibrary
@@ -143,7 +143,7 @@ public interface IWeatherForecastService
 }
 ```
 
-The `_Imports.razor` file in the RCL includes the following added namespaces:
+The imports file (`_Imports.razor`) in the RCL includes the following added namespaces:
 
 ```razor
 @using SharedLibrary.Data

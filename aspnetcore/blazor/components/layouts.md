@@ -105,7 +105,7 @@ In apps that target .NET 10 or earlier, you can adopt the following approach in 
 
 Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](xref:blazor/components/sections) that can receive content from a child component.
 
-In the `_Imports.razor` file, add an [`@using`](xref:mvc/views/razor#using) directive for sections (<xref:Microsoft.AspNetCore.Components.Sections?displayProperty=fullName>):
+In the imports file (`_Imports.razor`), add an [`@using`](xref:mvc/views/razor#using) directive for sections (<xref:Microsoft.AspNetCore.Components.Sections?displayProperty=fullName>):
 
 ```razor
 @using Microsoft.AspNetCore.Components.Sections
@@ -174,7 +174,7 @@ Other components around the app can also wrap content in the `InteractiveWrapper
 
 Layout file locations and namespaces changed over time for the Blazor framework. Depending on the version of Blazor and type of Blazor app that you're building, you may need to indicate the layout's namespace when using it. When referencing a layout implementation and the layout isn't found without indicating the layout's namespace, take any of the following approaches:
 
-* Add an `@using` directive to the `_Imports.razor` file for the location of the layouts. In the following example, a folder of layouts with the name `Layout` is inside a `Components` folder, and the app's namespace is `BlazorSample`:
+* Add an `@using` directive to the imports file (`_Imports.razor`) for the location of the layouts. In the following example, a folder of layouts with the name `Layout` is inside a `Components` folder, and the app's namespace is `BlazorSample`:
 
   ```razor
   @using BlazorSample.Components.Layout
@@ -260,12 +260,12 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
 
 Specifying the layout directly in a component overrides a *default layout*:
 
-* Set by an `@layout` directive imported from an `_Imports.razor` file, as described in the following [Apply a layout to a folder of components](#apply-a-layout-to-a-folder-of-components) section.
+* Set by an `@layout` directive imported from an imports file (`_Imports.razor`), as described in the following [Apply a layout to a folder of components](#apply-a-layout-to-a-folder-of-components) section.
 * Set as the app's default layout, as described in the [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section later in this article.
 
 ### Apply a layout to a folder of components
 
-Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Razor components (`.razor`) within the folder and subfolders.
+Every folder of an app can optionally contain an imports file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an imports file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Razor components (`.razor`) within the folder and subfolders.
 
 `_Imports.razor`:
 
@@ -274,14 +274,14 @@ Every folder of an app can optionally contain a template file named `_Imports.ra
 ...
 ```
 
-The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
+The imports file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
 
-Specifying a layout in `_Imports.razor` overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
+Specifying a layout in the imports file overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
 
 > [!WARNING]
-> Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
+> Do **not** add a Razor `@layout` directive to the root imports file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
 > 
-> The same condition results when using an `_Imports.razor` file to apply a layout to a folder of components with the `@layout` directive and the layout component itself is in the same folder or folder hierarchy of the `_Imports.razor` file. An infinite loop of applying the layout occurs because the `@layout` directive is also applied to the layout component. To avoid recursion problems, we recommend storing layout components in their own folder (for example, `Layouts`), away from where `_Imports.razor` files are applying them.
+> The same condition results when using an imports file to apply a layout to a folder of components with the `@layout` directive and the layout component itself is in the same folder or folder hierarchy of the imports file. An infinite loop of applying the layout occurs because the `@layout` directive is also applied to the layout component. To avoid recursion problems, we recommend storing layout components in their own folder (for example, `Layouts`), away from where imports files are applying them.
 
 > [!NOTE]
 > The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.

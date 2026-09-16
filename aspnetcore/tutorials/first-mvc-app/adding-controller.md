@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 01/22/2026
+ms.date: 09/06/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
 ---
@@ -22,7 +22,7 @@ MVC-based apps contain:
 * **V**iews: Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
 * **C**ontrollers: Classes that:
   * Handle browser requests.
-  * Retrieve model data.
+  * Invoke model logic to retrieve or modify data.
   * Call view templates that return a response.
 
 In an MVC app, the view only displays information. The controller handles and responds to user input and interaction. For example, the controller handles URL segments and query-string values, and passes these values to the model. The model might use these values to query the database. For example:

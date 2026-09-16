@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("http://example.com");
-                          policy.WithMethods("GET", "POST");
+                          policy.WithMethods("GET", "POST", "DELETE");
                           policy.AllowCredentials();
                       });
 });

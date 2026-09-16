@@ -1,10 +1,11 @@
 ---
 title: WebSockets support in ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 10/13/2025
+ms.date: 08/19/2026
 uid: fundamentals/websockets
 ---
 # WebSockets support in ASP.NET Core
@@ -76,6 +77,7 @@ Add the WebSockets middleware in `Program.cs`:
 The following settings can be configured:
 
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveTimeout%2A> - How long to wait for a "pong" frame from the client after sending a "ping" frame. If the timeout is exceeded, the WebSocket connection is aborted and `WebSocket.ReceiveAsync` throws an exception. The default is `Timeout.InfiniteTimeSpan` (disabled). For more information, see [Handle client disconnects](#handle-client-disconnects) in this article.
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
@@ -154,6 +156,25 @@ When accepting the WebSocket connection before beginning the loop, the middlewar
 The server isn't automatically informed when the client disconnects due to loss of connectivity. The server receives a disconnect message only if the client sends it, which can't be done if the internet connection is lost. If you want to take some action when that happens, set a timeout after nothing is received from the client within a certain time window.
 
 If the client isn't always sending messages and you don't want to time out just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message hasn't arrived within 2\*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
+
+### Keep-alive timeout
+
+The WebSockets middleware can be configured with a keep-alive timeout. The keep-alive timeout aborts the WebSocket connection and throws an exception from `WebSocket.ReceiveAsync` if both of the following conditions are met:
+
+* The server sends a ping frame using the WebSocket protocol.
+* The client doesn't reply with a pong frame within the specified timeout.
+
+The server automatically sends the ping frame and configures its frequency with <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A>.
+
+The keep-alive timeout setting is useful for detecting connections that might be slow or ungracefully disconnected. The default is `Timeout.InfiniteTimeSpan`, which disables the timeout.
+
+The keep-alive timeout can be configured globally for the WebSocket middleware:
+
+:::code language="csharp" source="~/fundamentals/websockets/samples/9.x/WebSocketsSample/Program.cs" id="snippet_WebSocket_KeepAliveTimeout_Global":::
+
+Or configured per accepted WebSocket:
+
+:::code language="csharp" source="~/fundamentals/websockets/samples/9.x/WebSocketsSample/Program.cs" id="snippet_KeepAliveTimeout_Per_Accepted_WebSocket":::
 
 ## WebSocket origin restriction
 

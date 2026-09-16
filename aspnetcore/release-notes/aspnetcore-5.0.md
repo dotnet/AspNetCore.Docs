@@ -261,7 +261,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 ### Kestrel endpoint-specific options via configuration
 
-Support has been added for configuring Kestrel’s endpoint-specific options via [configuration](xref:fundamentals/configuration/index). The endpoint-specific configurations includes the:
+Support has been added for configuring Kestrel's endpoint-specific options via [configuration](xref:fundamentals/configuration/index). The endpoint-specific configurations includes the:
 
 * HTTP protocols used
 * TLS protocols used
@@ -404,7 +404,7 @@ public IActionResult Post([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)
 
 ## Miscellaneous improvements
 
-We’ve started applying [nullable annotations](/dotnet/csharp/nullable-references#attributes-describe-apis) to ASP.NET Core assemblies. We plan to annotate most of the common public API surface of the .NET 5 framework. <!-- Review: what's the impact of this? How does it work? Need more info.  Check the link I added -->
+We've started applying [nullable annotations](/dotnet/csharp/nullable-references#attributes-describe-apis) to ASP.NET Core assemblies. We plan to annotate most of the common public API surface of the .NET 5 framework. <!-- Review: what's the impact of this? How does it work? Need more info.  Check the link I added -->
 
 ### Control Startup class activation
 
@@ -442,7 +442,7 @@ Improvements have been made to the console log provider in the `Microsoft.Extens
 
 ### JSON Console Logger
 
-In addition to support for custom formatters, we’ve also added a built-in JSON formatter that emits structured JSON logs to the console. The following code shows how to switch from the default logger to JSON:
+In addition to support for custom formatters, we've also added a built-in JSON formatter that emits structured JSON logs to the console. The following code shows how to switch from the default logger to JSON:
 
 [!code-csharp[](~/release-notes/sample/ProgramJsonLog.cs?name=snippet)]
 

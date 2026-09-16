@@ -39,7 +39,7 @@ To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundam
 The [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server/) package provides support for generating OpenAPI documents at build time and serializing them.
 
 To use `Microsoft.Extensions.ApiDescription.Server`, add it as a PackageReference to a project file.
-Document generation at build time is enabled by setting the `OpenApiGenerateDocuments` property.
+Document generation at build time is enabled by setting the `OpenApiGenerateDocumentsOnBuild` property to `true`.
 By default, the generated OpenAPI document is saved to the `obj` directory, but you can customize
 the output directory by setting the `OpenApiDocumentsDirectory` property.
 

@@ -5,7 +5,7 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+		<OpenApiGenerateDocumentsOnBuild>true</OpenApiGenerateDocumentsOnBuild>
 		<!-- Configure build-time OpenAPI generation to produce an OpenAPI 3.1 document. -->
 		<OpenApiGenerateDocumentsOptions>--openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
 	</PropertyGroup>

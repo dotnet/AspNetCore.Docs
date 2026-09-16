@@ -1,9 +1,10 @@
 ---
 title: What's new in ASP.NET Core in .NET 8
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.author: tdykstra
-ms.date: 07/29/2026
+ms.date: 08/31/2026
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
@@ -337,7 +338,7 @@ For more information, see [Support for multiple Blazor Web apps per server proje
 The following articles document changes for Blazor Hybrid in .NET 8:
 
 * <xref:blazor/hybrid/troubleshoot?view=aspnetcore-8.0&preserve-view=true>: A new article explains how to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging.
-* <xref:blazor/hybrid/tutorials/maui?view=aspnetcore-8.0&preserve-view=true>: The project template name **:::no-loc text=".NET MAUI Blazor":::** has changed to **:::no-loc text=".NET MAUI Blazor Hybrid":::**.
+* [Build your first app](/dotnet/maui/get-started/first-app) tutorial: The project template name **:::no-loc text=".NET MAUI Blazor":::** has changed to **:::no-loc text=".NET MAUI Blazor Hybrid":::**.
 * <xref:blazor/hybrid/index?view=aspnetcore-8.0&preserve-view=true#access-scoped-services-from-native-ui>: `BlazorWebView` gains a `TryDispatchAsync` method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as `NavigationManager`.
 * <xref:blazor/hybrid/routing?view=aspnetcore-8.0&preserve-view=true&pivots=maui#get-or-set-a-path-for-initial-navigation>: Use the `BlazorWebView.StartPath` property to get or set the path for initial navigation within the Blazor navigation context when the Razor component is finished loading.
 
@@ -607,7 +608,7 @@ For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/nat
 
 There's another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> factory method for building small apps that only contain necessary features: `WebApplication.CreateEmptyBuilder(WebApplicationOptions options)`. This `WebApplicationBuilder` is created with no built-in behavior. The app it builds contains only the services and middleware that are explicitly configured.
 
-Here’s an example of using this API to create a small web application:
+Here's an example of using this API to create a small web application:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
 
@@ -706,7 +707,7 @@ For more information about this feature and how to use .NET and gRPC to create a
 
 ### Performance improvements to named pipes transport
 
-We’ve improved named pipe connection performance. Kestrel’s named pipe transport now accepts connections in parallel, and reuses <xref:System.IO.Pipes.NamedPipeServerStream> instances.
+We've improved named pipe connection performance. Kestrel's named pipe transport now accepts connections in parallel, and reuses <xref:System.IO.Pipes.NamedPipeServerStream> instances.
 
 Time to create 100,000 connections:
 

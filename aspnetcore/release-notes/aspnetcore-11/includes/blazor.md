@@ -177,8 +177,8 @@ For more information, see the following resources:
 
   Now, CSP violations are avoided because `Virtualize` components:
 
-  * Render CSS styles in a `data-blazor-style` attribute instead of a `style` attribute.
-  * Use a JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) to read the attribute's value and apply each declaration via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model): `element.style.setProperty(name, value)`.
+  * Render calculated spacer and placeholder heights as numeric values in `data-blazor-virtualize-reserved-height` attributes.
+  * When required, render the trailing spacer's vertical offset as a numeric value in a `data-blazor-virtualize-loop-breaker-transform` attribute to hide the spacer.
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
@@ -188,10 +188,7 @@ The `blazor-wasm-servicedefaults` project template creates a service defaults li
 
 [`Microsoft.AspNetCore.Components.Gateway`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Gateway) is a lightweight ASP.NET Core host that replaces [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer) for serving standalone Blazor WebAssembly apps during development and production.
 
-<!-- UPDATE 11.0 - Update the word "preview" in the following remark at RC
-                   to "release candidate." Remove entirely at GA. -->
-
-To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the preview `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
+To adopt the Gateway in an existing standalone Blazor WebAssembly app, reference the `Microsoft.AspNetCore.Components.Gateway` package in the app's project file.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -253,7 +250,7 @@ Prior to the release of .NET 11, pagination and sort state is managed in memory 
 
 With the release of .NET 11, `QuickGrid` supports *URL-based navigation*.
 
-Pagination and sort state is persisted in the URL query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&order=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
+Pagination and sort state is persisted in the URL query string. When users paginate or sort, the URL updates (example: `?page=2&sort=Name&direction=asc`). This enables link sharing, browser back/forward, and static SSR without interactivity.
 
 Sortable column headers and paginator controls render as `<a>` elements with `href` attributes. The `StaticHtmlRenderer` renders these anchors. On each request, the server reads the query string to determine current page and sort state&mdash;no JavaScript runtime required.
 
@@ -261,7 +258,7 @@ Query string parameters:
 
 * `page`: One-based page number. The first page omits the parameter for clean URLs.
 * `sort`: Column title for sorting the grid.
-* `order`: Ascending (`asc`) or descending (`desc`).
+* `direction`: Ascending (`asc`) or descending (`desc`).
 
 The `sort` column is identified by the column's `Title` property. Columns without a `Title` render a non-clickable `<div>` header.
 
@@ -269,11 +266,49 @@ The `sort` column is identified by the column's `Title` property. Columns withou
 
 Disabled paginator links use `aria-disabled="true"` and `pointer-events: none` instead of the HTML `disabled` attribute, which doesn't exist on `<a>` elements.
 
+#### Query parameter names
+
+The new `QueryParameterNameOptions` parameter of the `QuickGrid` component controls the names of the query string parameters that persist grid state in the URL. The `QueryParameterNameOptions` class has three settable properties:
+
+* `Sort`: Name of the query string parameter that holds the sort column. The default value is `sort`.
+* `Direction`: Name of the query string parameter that holds the sort direction. The default value is `direction`.
+* `Page`: Name of the query string parameter that holds the page number. The default value is `page`.
+
+The constructor takes an optional prefix argument that's prepended to all three default names. The prefix must include any separator character that you want to appear between the prefix and the name. In the following example, the query string parameters are named `products_sort`, `products_direction`, and `products_page`:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid ... 
+    QueryParameterNameOptions="@(new QueryParameterNameOptions("products_"))">
+    ...
+</QuickGrid>
+```
+
+To control the names individually, set the properties of the class. Properties set explicitly take precedence over a prefix passed to the constructor, so the two approaches can be combined:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<QuickGrid ... QueryParameterNameOptions="@queryParameterNames">
+    ...
+</QuickGrid>
+
+@code {
+    private QueryParameterNameOptions queryParameterNames = new()
+    {
+        Sort = "orderBy",
+        Direction = "orderDir",
+        Page = "p"
+    };
+}
+```
+
 #### Multiple grids on the same page
 
-Multiple `QuickGrid` components on the same page require unique `QueryParameterNamePrefix` values to avoid query string conflicts. The default prefix is an empty string, producing parameters named `page`, `sort`, `order`. For example, setting the prefix to "`cities`" produces `cities_page`, `cities_sort`, and `cities_order`.
+Multiple `QuickGrid` components on the same page require unique query parameter names to avoid query string conflicts. Assign a `QueryParameterNameOptions` parameter to all but one of the grids.
 
-Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they have different prefixes&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
+Each `QuickGrid` must have its own `PaginationState` instance. Multiple grids must not share a `PaginationState` if they use different query parameter names&mdash;the last grid to render overwrites the query parameter name on the shared state, causing the `Paginator` to read from the wrong parameter.
 
 In releases prior to .NET 11, the following `QuickGrid` components worked implicitly:
 
@@ -287,14 +322,15 @@ In releases prior to .NET 11, the following `QuickGrid` components worked implic
 </QuickGrid>
 ```
 
-With the release of .NET 11, the following `QuickGrid` components require a unique `QueryParameterNamePrefix`. The first `QuickGrid` uses the default empty string prefix, while the second one sets `cities` as the prefix:
+With the release of .NET 11, the following `QuickGrid` components require unique query parameter names. The first `QuickGrid` uses the default names, while the second one uses a `cities_` prefix:
 
 ```razor
 <QuickGrid ... Pagination="@pagination1">
     ...
 </QuickGrid>
 
-<QuickGrid ... Pagination="@pagination2" QueryParameterNamePrefix="cities">
+<QuickGrid ... Pagination="@pagination2" 
+    QueryParameterNameOptions="@(new QueryParameterNameOptions("cities_"))">
     ...
 </QuickGrid>
 ```
@@ -302,16 +338,16 @@ With the release of .NET 11, the following `QuickGrid` components require a uniq
 Example query string for the preceding `QuickGrid` components:
 
 ```
-?page=2&sort=Name&order=asc&cities_page=3&cities_sort=Country&cities_order=desc
+?page=2&sort=Name&direction=asc&cities_page=3&cities_sort=Population&cities_direction=desc
 ```
 
 #### Sort by column
 
-Add `Sortable="true"` to a `PropertyColumn`. With URL-based navigation, selecting a header navigates to a URL with updated `sort` and `order` parameters. With inner-state navigation, selecting a header triggers `@onclick`, which calls `SortByColumnAsync`. In both cases, `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
+Add `Sortable="true"` to a `PropertyColumn`. With URL-based navigation, selecting a header navigates to a URL with updated `sort` and `direction` parameters. With inner-state navigation, selecting a header triggers `@onclick`, which calls `SortByColumnAsync`. In both cases, `SortByColumnAsync` navigates via `NavigationManager.NavigateTo(GetSortQueryStringUrl(...))`, so the URL always reflects the sort state.
 
 #### Title-based sort identification
 
-Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&order=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
+Sort state in the URL uses the column's `Title` property as the identifier. The `sort` query parameter is set to `column.Title` (example for column title `Name`: `?sort=Name&direction=asc`). On a URL change, `QuickGrid` matches the `sort` value back to a column by executing `_columns.FirstOrDefault(c => c.Title == sort.ColumnTitle)`. If no column title matches, the sort is ignored and the grid falls back to its default sort.
 
 Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared URLs containing the old title in the `sort` parameter stop matching, and the grid silently falls back to the default sort instead of sorting by the intended column. For `PropertyColumn`, the `Title` defaults to the property name (example: `Property="@(p => p.FirstName)"` produces `Title="First Name"`), so renaming the property or explicitly changing the `Title` parameter both break existing URLs.
 
@@ -590,35 +626,56 @@ Hosted services are started when the app starts and stopped when it shuts down, 
 
 ### Configure Blazor client behavior from the server
 
-<!-- UPDATE 11.0 - We need reference article coverage for this. 
-                   I'll open an issue and try to resolve it by
-                   EOD. -->
+<!-- UPDATE 11.0 - We need reference article coverage for this, but we'll wait
+                   for the API to completely stabilize at RC2 and possibly
+                   for content from the PU to arrive. -->
 
 Blazor apps can now configure client-side startup behavior from the server in C# when mapping Razor components instead of hand-writing `Blazor.start` JavaScript. `WithBrowserOptions` sets options that the server serializes into the rendered page and the Blazor script applies in the browser, across the Server, WebAssembly, and Auto render modes. The options cover the client log level, interactive Server reconnection, whether enhanced navigation preserves the DOM, and a WebAssembly runtime's environment name, culture, and environment variables:
 
 ```csharp
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
     .WithBrowserOptions(options =>
     {
-        options.LogLevel = LogLevel.Warning;
-        options.Server.ReconnectionMaxRetries = 10;
-        options.Server.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
-        options.Ssr.PreserveDom = true;
-        options.WebAssembly.EnvironmentName = "Staging";
-        options.WebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] = 
+        options.InteractiveServer.ReconnectionDialogId = "reconnect-dialog";
+        options.InteractiveServer.ReconnectionMaxRetries = 10;
+        options.InteractiveServer.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
+        options.InteractiveWebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] =
             "https://localhost:4318";
+        options.StaticServer.CircuitInactivityTimeout = TimeSpan.FromSeconds(1.5);
+        options.StaticServer.PreserveDom = true;
+        options.InteractiveWebAssembly.ApplicationCulture = "en-ca";
+        options.InteractiveWebAssembly.EnvironmentName = "Staging";
+        options.LogLevel = LogLevel.Warning;
     });
 ```
 
-You can also set the options from a component with `<ConfigureBrowser>` or read the resolved options from `HttpContext` with `GetBrowserOptions()`.
+You can also set the options in a Razor component with the `ConfigureBrowser` component:
 
-The API was introduced in Preview 4 and reshaped in Preview 6 to follow options conventions. If you adopted the earlier shape, `WithBrowserConfiguration` is now `WithBrowserOptions`, `BrowserConfiguration` is now `BrowserOptions`, `ServerBrowserOptions` is now `InteractiveServerBrowserOptions`, `SsrBrowserOptions.DisableDomPreservation` is now `PreserveDom` (with the opposite meaning), and `CircuitInactivityTimeoutMs` is now `CircuitInactivityTimeout` (a `TimeSpan`).
+```razor
+<ConfigureBrowser Options="RequestBrowserOptions" />
+
+...
+    
+@code {
+    private BrowserOptions RequestBrowserOptions => new()
+    {
+        LogLevel = LogLevel.Trace,
+        StaticServer = { PreserveDom = true }
+    };
+}
+```
+
+Read the resolved options from `HttpContext` with `GetBrowserOptions()`:
+
+```razor
+@BrowserOptions.GetBrowserOptions(HttpContext).LogLevel
+```
 
 For more information, see the following resources:
 
 * [API Proposal: BrowserOptions for server-to-client configuration (`dotnet/aspnetcore` #66393)](https://github.com/dotnet/aspnetcore/issues/66393)
 * [Reshape BrowserConfiguration API per review (BrowserOptions) while preserving the JS wire format (`dotnet/aspnetcore` #67337)](https://github.com/dotnet/aspnetcore/pull/67337)
+* [Reshape BrowserOptions server-to-client configuration API per review (`dotnet/aspnetcore` #67918)](https://github.com/dotnet/aspnetcore/pull/67918)
 
 Please don't comment on closed issues and PRs. Open a new issue to provide feedback on this API.
 
@@ -785,17 +842,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Antiforgery middleware (`app.UseAntiforgery()`) optional in Blazor Web Apps
 
-<!-- HOLD FOR PREVIEW 7 language changes ...
-
-    Redundant `app.UseAntiforgery()` removed from Blazor Web App templates
-
-    Next paragraph: ... has been removed.
-
-    Next paragraph: Remove the last sentence.
-    
--->
-
-[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so the explicit `app.UseAntiforgery()` call in Blazor Web App templates is optional, unless required in specific use cases. In a future preview release, the middleware will be removed from the request processing pipeline for apps created from the Blazor Web App project template.
+[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
 
 For more information, see the following resources:
 
@@ -810,12 +857,10 @@ General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 ### Blazor Virtualize can scroll to an item
 
-<!-- UPDATE 11.0 - Cross-link to ref content -->
-
 The `Virtualize<TItem>` component can now open at a specific item and scroll to any item on demand. Two new public APIs make this possible:
 
 * `InitialItemIndex` positions the list at a given item on the first interactive render, so the list opens at that item without a flash of the first item.
-* `ScrollToIndexAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
+* `ScrollToItemAsync(int itemIndex, CancellationToken cancellationToken = default)` scrolls to an item at any time after the first render and returns a `Task` that completes when the target is aligned to the top of the viewport.
 
 ```razor
 <Virtualize TItem="Product" Items="products" InitialItemIndex="500" @ref="list">
@@ -828,13 +873,16 @@ The `Virtualize<TItem>` component can now open at a specific item and scroll to 
     private Virtualize<Product> list = default!;
     private List<Product> products = ProductCatalog.All;
 
-    private async Task GoToTop() => await list.ScrollToIndexAsync(0);
+    private async Task GoToTop() => await list.ScrollToItemAsync(0);
 }
 ```
 
-Out-of-range indexes are clamped to the valid range. If a second `ScrollToIndexAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToIndexAsync` before the first interactive render throws `InvalidOperationException`; use `InitialItemIndex` to set the starting position instead.
+Out-of-range indexes are clamped to the valid range. If a second `ScrollToItemAsync` call starts while one is still in flight, the last call wins. Calling `ScrollToItemAsync` before the first interactive render throws `InvalidOperationException`; use `InitialItemIndex` to set the starting position instead.
 
-For more information, see [Add `InitialIndex` (sic) parameter and `ScrollToIndexAsync` API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs.)
+For more information, see the following resources:
+
+* <xref:blazor/components/virtualization#scroll-to-a-specific-item>
+* [Add `InitialIndex` (sic&dagger;) parameter and `ScrollToIndexAsync` (sic&dagger;) API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs. *sic*&dagger;: API naming was changed without updating the title of the PR.)
 
 ### Automatic circuit pause on tab inactivity
 
@@ -888,3 +936,438 @@ The new `CacheView` component caches the rendered output of a Razor component su
 ```
 
 For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
+
+### Blazor Server circuits update after authentication refresh
+
+Interactive Server components can now receive the refreshed `ClaimsPrincipal` without reconnecting the circuit. The Blazor component hub and client enable authentication refresh automatically, so no additional configuration is required.
+
+After the connection refreshes its authentication, Blazor updates the authentication state and raises `AuthenticationStateChanged`. Components that consume `AuthenticationStateProvider`, including `AuthorizeView`, rerender using the refreshed identity and claims. This behavior is useful when a user's roles or permissions change during an active circuit or when a component should reload user-specific content after claims are refreshed. The UI can reflect the new authentication state without forcing the user to reconnect or reload the page.
+
+For more information, see the following resources:
+
+* [[Blazor] Propagate SignalR authentication refresh to server circuits (`dotnet/aspnetcore` #68221)](https://github.com/dotnet/aspnetcore/pull/68221)
+* [[release/11.0-rc1] Harden SignalR authentication refresh (`dotnet/aspnetcore` #68593)](https://github.com/dotnet/aspnetcore/pull/68593)
+
+Please don't comment on closed issues and PRs. If you have feedback on this feature, please open a new issue on the `dotnet/aspnetcore` GitHub repository.
+
+### Experimental Blazor AI components for agentic user interfaces
+
+Modern AI apps increasingly provide rich interactions with agents. A complete agentic user interface may need to stream ongoing work, visualize agent reasoning and progress, request approval before tools act, accept multimodal input, and synchronize state between the app and the agent. The Blazor AI components are designed to provide building blocks for creating these experiences using Blazor's component model.
+
+The new [`Microsoft.AspNetCore.Components.AI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.AI) includes an initial set of Blazor AI components for streaming chat, rich-text and tool rendering, human approval flows, and typed, shared, and predictive UI state.
+
+#### Get started
+
+<!-- UPDATE 11.0 - Update the package reference. -->
+
+> [!IMPORTANT]
+> The `Microsoft.AspNetCore.Components.AI` package is a prerelease, experimental package throughout .NET 11.
+
+Add the package to a Blazor app:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.Components.AI --prerelease
+```
+
+Basic chat and the Components.AI block model work with any `IChatClient`. To connect the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com), install the `AGUI.Client` package:
+
+```dotnetcli
+dotnet add package AGUI.Client
+```
+
+`AGUI.Client` includes a transitive reference to `AGUI.Abstractions`, which provides the AG-UI event types used in later examples. Register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's `IChatClient`:
+
+```csharp
+using AGUI.Client;
+using Microsoft.Extensions.AI;
+
+builder.Services.AddHttpClient<IChatClient>(httpClient =>
+    new AGUIChatClient(new(httpClient, "https://api.example.com/agent")));
+```
+
+`AGUIChatClient` streams AG-UI events as `ChatResponseUpdate` values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any `IChatClient`, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
+
+Microsoft Agent Framework (MAF) can expose an `AIAgent` through an ASP.NET Core AG-UI endpoint. For the server-side setup, see [AG-UI integration with Agent Framework](/agent-framework/integrations/by-component/ui/ag-ui/) and its [.NET getting-started guide](/agent-framework/integrations/by-component/ui/ag-ui/getting-started).
+
+#### Build a basic streaming conversation
+
+The first step in an agentic UI is often a basic conversation that streams responses and retains message history across turns. The [initial chat support](https://github.com/dotnet/aspnetcore/pull/68323) is provider- and protocol-neutral. Apps supply an `IChatClient` from `Microsoft.Extensions.AI`, and `UIAgent` converts its streaming responses into observable content blocks.
+
+`ChatPage` is a complete chat shell that combines three lower-level components:
+
+* `AgentBoundary` creates and cascades the conversation state.
+* `MessageList` renders each turn as it streams and provides default typing, error, and retry UI.
+* `MessageInput` sends messages from a text area and disables input while a response is streaming.
+
+The following component creates a `UIAgent` over an app-provided `IChatClient` and renders the conversation with `ChatPage`:
+
+```razor
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.AI
+@using Microsoft.Extensions.AI
+@implements IDisposable
+@inject IChatClient ChatClient
+
+<ChatPage Agent="agent" Placeholder="Type a message...">
+    <WelcomeContent>
+        <p>Ask the agent a question.</p>
+    </WelcomeContent>
+</ChatPage>
+
+@code {
+    private UIAgent agent = default!;
+
+    protected override void OnInitialized()
+    {
+        agent = new UIAgent(ChatClient);
+    }
+
+    public void Dispose() => agent.Dispose();
+}
+```
+
+`Placeholder` sets the hint shown in the empty message input. `WelcomeContent` supplies the content shown before the first message is sent.
+
+Include the component styles in the `App` component (`Components/App.razor`):
+
+```razor
+<link rel="stylesheet" href="@Assets["_content/Microsoft.AspNetCore.Components.AI/ai-chat.css"]" />
+```
+
+![Blazor AI chat interface showing a conversation with a travel planning agent](~/release-notes/aspnetcore-11/static/blazor-ai-chat.png)
+
+#### Render content blocks
+
+An `IChatClient` streams model-facing content, such as `TextContent`, `RichTextContent`, and `FunctionCallContent`, in `ChatResponseUpdate` values. `UIAgent` maps this response content into UI-facing `ContentBlock` objects that retain rendering state and can update in place while the response streams. For example, both plain-text fragments and structured rich-text snapshots map to a `RichContentBlock`.
+
+The built-in block types include:
+
+* `RichContentBlock` for streamed text and structured rich content.
+* `FunctionInvocationContentBlock` for a server function call and its eventual result.
+* `UIActionBlock` for a function that runs in the Blazor app.
+* `FunctionApprovalBlock` for a function call that is waiting for user approval.
+* `ActivityContentBlock` for application-defined progress that updates in place.
+
+`ChatPage` and `MessageList` include default rendering for `RichContentBlock` and `FunctionApprovalBlock`. Add a `BlockRenderer<TBlock>` to `ChatPage.MessageListContent` to replace this default rendering or render another block type. Its child content receives the matching block as `context`, including its current properties as they change during streaming.
+
+The following example replaces the default rendering for conversational content:
+
+```razor
+<ChatPage Agent="agent">
+    <MessageListContent>
+        <BlockRenderer TBlock="RichContentBlock" Context="block">
+            <div class="agent-response">@block.RawText</div>
+        </BlockRenderer>
+    </MessageListContent>
+</ChatPage>
+```
+
+Use the renderer's `When` predicate to only handle selected blocks of a type. If multiple renderers match, the most recently registered renderer takes precedence. Apps can also define custom `ContentBlock` types and map response content to them with a `ContentBlockHandler<TState>`.
+
+#### Render structured rich text
+
+The [rich-text support](https://github.com/dotnet/aspnetcore/pull/68324) permits an agent to return a structured presentation model instead of plain text. `RichTextContent` is response content that contains both plain text and `RichTextNode` values for headings, paragraphs, emphasis, links, lists, code blocks, tables, and other presentation elements. `UIAgent` maps it to the same `RichContentBlock` used for plain `TextContent` but uses the supplied node tree instead of creating simple paragraphs.
+
+Apps can produce `RichTextContent` directly or use `IChatClient` middleware to transform streamed `TextContent`, such as by parsing markdown into `RichTextNode` values. The package doesn't require or include a particular markdown implementation. Each `RichTextContent` is a complete snapshot, so it atomically replaces the previous content for the same message as streaming progresses. `ChatPage` and `MessageList` then render the structured content without requiring a custom `BlockRenderer`.
+
+#### Render server tool calls
+
+An agent can call a tool that runs on its server while the Blazor app renders the operation using app-specific UI. For example, the agent can call a weather tool, and the app can show the requested location immediately, followed by a weather card when the server returns the result.
+
+Server tool calls become `FunctionInvocationContentBlock` instances, which pair the `FunctionCallContent` with its eventual `FunctionResultContent` and expose the tool name, arguments, and completion state.
+
+The package's source generator creates a strongly typed block handler from a class annotated with `ToolBlock`, `ToolParameter`, and `ToolResult` ([[Blazor] Add Components.AI server tool rendering (`dotnet/aspnetcore` #68327)](https://github.com/dotnet/aspnetcore/pull/68327)):
+
+```csharp
+[ToolBlock("get_weather")]
+public partial class WeatherToolBlock : FunctionInvocationContentBlock
+{
+    [ToolParameter(Name = "location")]
+    public string? Location { get; set; }
+
+    [ToolResult]
+    public WeatherInfo? Weather { get; set; }
+}
+```
+
+Register the generated handlers when constructing the `UIAgent`:
+
+```csharp
+var agent = new UIAgent(
+    chatClient,
+    options => options.AddGeneratedToolBlocks());
+```
+
+Render the generated block in `MessageListContent`:
+
+```razor
+<ChatPage Agent="agent">
+    <MessageListContent>
+        <BlockRenderer TBlock="WeatherToolBlock">
+            @if (context.HasResult)
+            {
+                <p>@context.Location: @context.Weather?.Temperature&deg;C</p>
+            }
+            else
+            {
+                <p>Checking the weather for @context.Location...</p>
+            }
+        </BlockRenderer>
+    </MessageListContent>
+</ChatPage>
+```
+
+As the call arguments stream, the generated handler updates `Location` while `HasResult` remains `false`. When the result arrives, it populates `Weather`, sets `HasResult` to `true`, and rerenders the same block as the completed weather card.
+
+![A generated typed tool block rendering a weather result](~/release-notes/aspnetcore-11/static/blazor-ai-tool-block.png)
+
+When MAF hosts the remote agent, backend tools use its normal tool pipeline and AG-UI transports the call and result to the client. See [Backend tool rendering with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/backend-tool-rendering).
+
+#### Run frontend tools
+
+Frontend tools run in the client app rather than on the agent server. For example, a Blazor app can expose a tool that changes UI state, reads a local preference, or asks the user for input. Create the tool with `AIFunctionFactory` from `Microsoft.Extensions.AI`, then register it with `UIAgentOptions.RegisterUIAction` ([[Blazor] Add Components.AI client tool rendering (`dotnet/aspnetcore` #68325)](https://github.com/dotnet/aspnetcore/pull/68325)).
+
+`RegisterUIAction` advertises the `AIFunction` to the agent. When the agent requests it, `UIAgent` creates a `UIActionBlock` instead of executing the function immediately:
+
+```csharp
+var setAccentColor = AIFunctionFactory.Create(
+    async (string color) =>
+    {
+        await InvokeAsync(() =>
+        {
+            accentColor = color;
+            StateHasChanged();
+        });
+        return $"Changed the accent color to {color}.";
+    },
+    name: "set_accent_color");
+
+var agent = new UIAgent(
+    chatClient,
+    options => options.RegisterUIAction(setAccentColor))
+```
+
+Place a `BlockRenderer<UIActionBlock>` in `MessageListContent` to handle the function call requested by the agent. For example, the renderer can use a component that automatically invokes the function and displays its progress:
+
+```razor
+<ChatPage Agent="agent">
+    <MessageListContent>
+        <BlockRenderer TBlock="UIActionBlock"
+                       When='@(action => action.ToolName == "set_accent_color")'
+                       Context="action">
+            <AutoInvokeAction Action="action" />
+        </BlockRenderer>
+    </MessageListContent>
+</ChatPage>
+```
+
+The `AutoInvokeAction` component calls `InvokeAsync` when it receives the block:
+
+```razor
+@if (Action.IsComplete)
+{
+    <span>Accent color updated</span>
+}
+else
+{
+    <span>Updating accent color...</span>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public UIActionBlock Action { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!Action.IsComplete)
+        {
+            await Action.InvokeAsync();
+        }
+    }
+}
+```
+
+Calling `InvokeAsync` executes the registered function with the arguments supplied by the agent. The function runs wherever the Blazor UI runs: in the server-side circuit for Blazor Server or in the browser for WebAssembly. When the function completes, `UIAgent` sends its result back to the agent and continues the conversation. Use the renderer's `When` predicate to provide different handling for each `action.ToolName`. A renderer can invoke the action automatically, as shown here, or present UI that collects input or confirmation first.
+
+#### Require approval before tools run
+
+An app can require the user to approve a consequential tool call, such as scheduling a meeting, before the agent proceeds. Tool approval requests become `FunctionApprovalBlock` instances. The conversation pauses until the UI calls `Approve` or `Reject` ([[Blazor] Add Components.AI human approval flows (`dotnet/aspnetcore` #68329)](https://github.com/dotnet/aspnetcore/pull/68329)):
+
+```razor
+<ChatPage Agent="agent">
+    <MessageListContent>
+        <BlockRenderer TBlock="FunctionApprovalBlock" Context="approval">
+            <p>Allow <code>@approval.ToolName</code> to run?</p>
+            <button @onclick="approval.Approve">Approve</button>
+            <button @onclick="() => approval.Reject()">Reject</button>
+        </BlockRenderer>
+    </MessageListContent>
+</ChatPage>
+```
+
+![A tool call waiting for human approval](~/release-notes/aspnetcore-11/static/blazor-ai-tool-approval.png)
+
+For a MAF agent, the server decides which functions require approval, and AG-UI transports the request and decision. See [Human-in-the-loop with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/human-in-the-loop).
+
+#### Display activities
+
+An activity is an app-defined progress item that updates in place while an agent performs longer-running work. For example, a research agent can show that it's searching sources, comparing results, and completing the research without adding a separate message for every update.
+
+`ActivityHandler<TBlock>` is a protocol-neutral extension point that maps provider- or app-specific progress updates into a mutable `ActivityContentBlock` ([[Blazor] Add agentic generative UI state rendering (`dotnet/aspnetcore` #68333)](https://github.com/dotnet/aspnetcore/pull/68333)). `TryCreateBlock` initializes and emits the block for the first matching update. `TryUpdateBlock` mutates the same block as later updates arrive and indicates when the activity is complete. Register the handler with `UIAgentOptions.AddBlockHandler`, then provide a `BlockRenderer` for the app-specific block. Activities don't have a default visual representation.
+
+AG-UI's `ACTIVITY_SNAPSHOT` and `ACTIVITY_DELTA` events are one possible source of these updates. `AGUIChatClient` exposes the original event through `ChatResponseUpdate.RawRepresentation`. For example, an app can handle replacing snapshots whose payload includes an app-defined `complete` property:
+
+```csharp
+using System.Text.Json;
+using Microsoft.AspNetCore.Components.AI;
+using AGUI.Abstractions;
+
+public sealed class ResearchActivityBlock : ActivityContentBlock
+{
+    public string ActivityMessageId { get; set; } = "";
+}
+
+public sealed class ResearchActivityHandler
+    : ActivityHandler<ResearchActivityBlock>
+{
+    protected override bool TryCreateBlock(
+        BlockMappingContext context,
+        ResearchActivityBlock state)
+        => TryApplySnapshot(context, state, out _);
+
+    protected override bool TryUpdateBlock(
+        BlockMappingContext context,
+        ResearchActivityBlock state,
+        out bool isCompleted)
+        => TryApplySnapshot(context, state, out isCompleted);
+
+    private static bool TryApplySnapshot(
+        BlockMappingContext context,
+        ResearchActivityBlock state,
+        out bool isCompleted)
+    {
+        isCompleted = false;
+
+        if (context.Update.RawRepresentation is not ActivitySnapshotEvent snapshot ||
+            (state.ActivityMessageId.Length > 0 &&
+             (state.ActivityMessageId != snapshot.MessageId ||
+              snapshot.Replace == false)))
+        {
+            return false;
+        }
+
+        state.ActivityMessageId = snapshot.MessageId;
+        state.ActivityType = snapshot.ActivityType;
+        state.Content = snapshot.Content;
+        isCompleted =
+            snapshot.Content.ValueKind == JsonValueKind.Object &&
+            snapshot.Content.TryGetProperty("complete", out var complete) &&
+            complete.ValueKind == JsonValueKind.True;
+        context.MarkUpdateHandled();
+        return true;
+    }
+}
+```
+
+The handler stores the AG-UI message ID on the block to correlate later snapshots. Apps that consume `ActivityDeltaEvent` instead apply its RFC 6902 JSON Patch operations to the current `Content` before returning from `TryUpdateBlock`. The app defines the activity payload and completion semantics; Components.AI doesn't include an AG-UI-specific activity handler or JSON Patch implementation.
+
+#### Shared state
+
+Agentic UIs often show a shared workspace alongside the conversation, such as a recipe, document, form, or plan that the agent can update. `UIAgent<TState>` exposes this data as typed, observable UI state separately from conversational content ([[Blazor] Add agentic generative UI state rendering (`dotnet/aspnetcore` #68333)](https://github.com/dotnet/aspnetcore/pull/68333)).
+
+The app configures a state mapper for the `ChatResponseUpdate` values produced by its `IChatClient`. In an AG-UI integration, the agent server explicitly maps selected tool results to `STATE_SNAPSHOT` or `STATE_DELTA` events. `AGUIChatClient` then exposes those events through `ChatResponseUpdate.RawRepresentation`, where the Blazor app can deserialize them and call `SetState`:
+
+```csharp
+using System.Text.Json;
+using AGUI.Abstractions;
+using Microsoft.AspNetCore.Components.AI;
+
+var agent = new UIAgent<RecipeState>(chatClient, options =>
+{
+    options.StateMapper = context =>
+    {
+        if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
+            snapshot.Snapshot.Deserialize<RecipeState>(
+                JsonSerializerOptions.Web) is { } state)
+        {
+            context.SetState(state);
+        }
+    };
+});
+```
+
+Read the current value from `agent.State.Value` and subscribe to `agent.State.OnChanged` when the surrounding component needs to rerender. State mappers can also handle app-specific `AIContent` from other `IChatClient` implementations.
+
+![Typed agent state rendered as a recipe card](~/release-notes/aspnetcore-11/static/blazor-ai-shared-state.png)
+
+For the corresponding MAF server configuration, including mapping tool results to state snapshots and deltas, see [State management with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/state-management).
+
+#### Show predictive UI state
+
+Predictive state permits an app to render an agent's proposed state change while the model is still generating it without replacing the committed state. For example, as an agent generates the complete contents of an edited document in a tool argument, the UI can progressively display the proposed document and a diff. When generation finishes, the user can accept the completed proposal or reject it and restore the committed document.
+
+An AG-UI server integration can map streamed arguments for a state-writing tool to provisional state events. The completed tool-call arguments are the authoritative proposal. When creating the `UIAgent<TState>`, configure its state mapper to deserialize those events and call `SetPredictiveState`. `AgentState<TState>` then retains the prior committed value for rollback ([[Blazor] Add predictive state updates (`dotnet/aspnetcore` #68335)](https://github.com/dotnet/aspnetcore/pull/68335)):
+
+```csharp
+using System.Text.Json;
+using AGUI.Abstractions;
+using Microsoft.AspNetCore.Components.AI;
+
+var agent = new UIAgent<DocumentState>(chatClient, options =>
+{
+    options.StateMapper = context =>
+    {
+        if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
+            snapshot.Snapshot.Deserialize<DocumentState>(
+                JsonSerializerOptions.Web) is { } predictedState)
+        {
+            context.SetPredictiveState(predictedState);
+        }
+    };
+
+    options.RegisterUIAction(AIFunctionFactory.Create(
+        ConfirmChanges,
+        name: "confirm_changes",
+        description: "Confirm the proposed document changes."));
+});
+```
+
+The example also registers a `confirm_changes` frontend action. When the action appears, a custom block renderer displays the accept and reject controls. The renderer adds the user's choice as the `accepted` argument and calls `UIActionBlock.InvokeAsync`, which runs the registered callback:
+
+```csharp
+private string ConfirmChanges(bool accepted)
+{
+    if (accepted)
+    {
+        agent.State.AcceptPredictiveState();
+    }
+    else
+    {
+        agent.State.RejectPredictiveState();
+    }
+
+    return accepted
+        ? "The user accepted the changes."
+        : "The user rejected the changes.";
+}
+```
+
+The provisional value is immediately available from `agent.State.Value`, and `HasPendingPredictiveState` indicates that it isn't committed. The callback commits the completed proposal or restores the baseline, and its return value reports the decision to the agent in a follow-up run. If generation fails, is canceled, or ends without a decision, the provisional value is automatically rolled back. The server-side extraction and mapping of streamed tool arguments must be configured explicitly; see [State management with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/state-management).
+
+![An express shipping proposal with accept and reject actions](~/release-notes/aspnetcore-11/static/blazor-ai-predictive-state.png)
+
+#### Persist and restore conversations
+
+An `IConversationThread` stores completed turns so a UI can rebuild its conversation after the component or app restarts. A thread can also retain protocol metadata, such as the `threadId` and previous `runId` used to continue a server-owned AG-UI conversation.
+
+Pass the thread when constructing `UIAgent`, then call `UIAgent.RestoreAsync` or `AgentContext.RestoreAsync` to explicitly replay the stored updates into content blocks and typed state ([[Blazor] Add shared agent and UI state (`dotnet/aspnetcore` #68334)](https://github.com/dotnet/aspnetcore/pull/68334)):
+
+```csharp
+var agent = new UIAgent(
+    chatClient,
+    options => options.Thread = conversationThread);
+
+var restoredBlocks = await agent.RestoreAsync();
+```
+
+Passing a thread to `UIAgent` enables new completed turns to be persisted but doesn't automatically restore earlier turns. For MAF-hosted AG-UI agents, see [AG-UI conversation continuity](/agent-framework/integrations/by-component/ui/ag-ui/getting-started#conversation-continuity).

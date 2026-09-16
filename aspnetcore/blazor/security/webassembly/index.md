@@ -1,11 +1,12 @@
 ---
 title: Secure ASP.NET Core Blazor WebAssembly
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to secure Blazor WebAssembly apps as single-page applications (SPAs).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 11/11/2025
+ms.date: 08/26/2026
 uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
@@ -170,9 +171,11 @@ The following authentication scenarios are covered in the <xref:blazor/security/
 
 :::moniker-end
 
-## Require authorization for the entire app
+## Blazor WebAssembly authorization patterns
 
-Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to each Razor component of the app using ***one*** of the following approaches:
+*For patterns that apply to server-side Blazor apps (Blazor Web Apps, Blazor Server apps), see <xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns>.*
+
+Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
 
 * In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
 
@@ -198,9 +201,6 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
   @using Microsoft.AspNetCore.Authorization
   @attribute [Authorize]
   ```
-
-> [!NOTE]
-> Setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> is **not** supported.
 
 ## Use one identity provider app registration per app
 

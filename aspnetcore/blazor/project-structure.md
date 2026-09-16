@@ -74,7 +74,7 @@ The `NotFound` component (`NotFound.razor`) implements a Not Found page to displ
 
 The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag. The root component is the first component that the app loads.
 
-An `_Imports.razor` file in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+An imports file (`_Imports.razor`) in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 The `Properties` folder of the server project holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 

@@ -1,11 +1,11 @@
 ---
 title: Model Binding in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 06/24/2026
-ai-usage: ai-assisted
+ms.date: 08/10/2026
 uid: mvc/models/model-binding
 ---
 <!-- Note the use of inline moniker tags at the end of the file. -->
@@ -275,6 +275,8 @@ The following controller action uses the `DateRangeTP` class to bind a date rang
 ## Complex types
 
 A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor.
+
+Structs and other value types, including `record struct` types, aren't supported as complex type binding targets. Reflection doesn't report an implicit parameterless constructor for a struct, so model binding can't create the model instance. Value types also have copy-by-value semantics, which prevents the binder from setting properties on an instance after it's created. Binding a struct as a complex type throws an <xref:System.InvalidOperationException>. Use a class or a `record` class instead. A struct can still be bound as a [simple type](#simple-types) if it has a type converter or implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1), which is how types such as <xref:System.Guid> and <xref:System.DateTime> are bound.
 
 For each property of the complex type, [model binding looks through the sources for the name pattern](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.Core/src/ModelBinding/ParameterBinder.cs#L115-L130) *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix. The decision to use the prefix isn't made per property. For example, with a query containing `?Instructor.Id=100&Name=foo`, bound to method `OnGet(Instructor instructor)`, the resulting object of type `Instructor` contains:
 

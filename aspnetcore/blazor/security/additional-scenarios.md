@@ -1,13 +1,14 @@
 ---
-title: ASP.NET Core server-side and Blazor Web App additional security scenarios
+title: ASP.NET Core Blazor additional server-side security scenarios
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 08/26/2026
 uid: blazor/security/additional-scenarios
 ---
-# ASP.NET Core server-side and Blazor Web App additional security scenarios
+# ASP.NET Core Blazor additional server-side security scenarios
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -1369,3 +1370,208 @@ The preceding example's placeholders:
 In [Duende IdentityServer](https://duendesoftware.com/products/identityserver), tokens are revoked automatically by setting the `CoordinateLifetimeWithUserSession` client configuration property to `true`, which automatically cleans up associated tokens when a session ends. For more information, see [Session Cleanup and Logout (Duende documentation)](https://docs.duendesoftware.com/identityserver/ui/logout/session-cleanup/).
 
 Built-in opaque access token support is under consideration for a future release of .NET. For more information, see [Opaque - reference token validation (`dotnet/aspnetcore` #46026)](https://github.com/dotnet/aspnetcore/issues/46026).
+
+## Server-side Blazor app authorization patterns
+
+*For patterns that apply to Blazor WebAssembly apps, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.*
+
+Server-side Blazor apps (Blazor Web Apps, Blazor Server apps) usually adopt **either** of the following approaches to require authorization:
+
+* The app sets an authorization fallback policy that requires authorization globally across the app and applies the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to resources (for example, Razor components, static assets) that don't require an authenticated user. For more information, see the [Global authorization via a fallback authorization policy](#global-authorization-via-a-fallback-authorization-policy) section.
+* Instead of requiring global authorization for resources, the app applies the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) to resources that require an authorized user. For more information, see the [Local authorization via `[Authorize]` attributes](#local-authorization-via-authorize-attributes) section.
+
+### Global authorization via a fallback authorization policy
+
+The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)).
+
+Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>, which only applies when there are no authorization attributes or explicit policies set for a given resource:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+```
+
+:::moniker-end
+
+The framework's <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> requires an authenticated user. Unless the app uses a [custom policy provider](xref:security/authorization/custom-authorization-policy-providers) with a custom default policy, assigning the framework's default policy (`options.DefaultPolicy`), as shown in the preceding example, is equivalent to using the following code:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+```
+
+:::moniker-end
+
+The app requires an authenticated user for any resource where no specific policy is set.
+
+:::moniker range=">= aspnetcore-9.0"
+
+If the app's security specification doesn't call for protecting static assets, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A?displayProperty=nameWithType> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>:
+
+```csharp
+app.MapStaticAssets().AllowAnonymous();
+```
+
+To alternatively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add%2A?displayProperty=nameWithType>.
+
+> [!IMPORTANT]
+> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
+
+Place static assets for anonymous access into a single folder. In the following example, endpoint routes with the `/public/` path segment are served anonymously:
+
+```csharp
+app.MapStaticAssets()
+    .Add(endpointBuilder => 
+    {
+        if (endpointBuilder is RouteEndpointBuilder routeBuilder &&
+            routeBuilder.RoutePattern.RawText?.Contains(
+            "/public/", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            routeBuilder.Metadata.Add(new AllowAnonymousAttribute());
+        }
+    });
+```
+
+The next example demonstrates anonymously serving the uncompressed Blazor script (`_framework/blazor.web.{FINGERPRINT}.js`, where the `{FINGERPRINT}` placeholder is the file's fingerprint):
+
+```csharp
+// using System.Text.RegularExpressions;
+
+var regex = new Regex(
+    @"^_framework/blazor\.web\.[a-z0-9]{10}\.js$", RegexOptions.Compiled);
+
+app.MapStaticAssets()
+    .Add(endpointBuilder =>
+    {
+        if (endpointBuilder is RouteEndpointBuilder routeBuilder &&
+            regex.IsMatch(routeBuilder.RoutePattern.RawText ?? string.Empty))
+        {
+            routeBuilder.Metadata.Add(new AllowAnonymousAttribute());
+        }
+    });
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+If the app's security specification doesn't call for protecting static assets, place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>:
+
+```csharp
+app.UseStaticFiles();
+
+app.UseAuthentication();
+app.UseAuthorization();
+```
+
+To alternatively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> after authorization pipeline processing only serves other static assets if the user is authorized.
+
+> [!IMPORTANT]
+> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
+
+In the following example, static assets in the app's `wwwroot/public` folder are served anonymously:
+
+```csharp
+app.UseStaticFiles(new StaticFileOptions {
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+        System.IO.Path.Combine(builder.Environment.WebRootPath, "public")),
+    RequestPath = "/public"
+});
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseStaticFiles();
+```
+
+:::moniker-end
+
+Use an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to permit anonymous access to individual components. In the following example, the `Home` component sets the attribute.
+
+At the top of `Components/Pages/Home.razor`:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
+```
+
+Often, it's convenient to apply authorization to an entire folder of components. In the following example, a user account pages' imports file sets the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute), so users can anonymously reach the app's sign-in, sign-out, access denied, and invalid user pages in the `Components/Account/Pages` folder.
+
+In `Components/Account/Pages/_Imports.razor`:
+
+```razor
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
+```
+
+:::moniker range=">= aspnetcore-5.0"
+
+If the app uses one or more endpoint convention builder instances to provide additional endpoints, such as for Identity components, the endpoint builder's method call chains a call to <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A?displayProperty=nameWithType>. The following example maps additional Identity endpoints by calling `MapAdditionalIdentityEndpoints`, which returns an <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder>: 
+
+```csharp
+app.MapAdditionalIdentityEndpoints().AllowAnonymous();
+```
+
+> [!NOTE]
+> For an example of the preceding `MapAdditionalIdentityEndpoints` method, see [`IdentityComponentsEndpointRouteBuilderExtensions`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/security/authorization/BlazorWebAppAuthorization/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs) in the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization).
+
+:::moniker-end
+
+### Local authorization via `[Authorize]` attributes
+
+Apply [`[Authorize]` attributes](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***either*** of the following approaches:
+
+* In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
+
+  `_Imports.razor`:
+
+  ```razor
+  @using Microsoft.AspNetCore.Authorization
+  @attribute [Authorize]
+  ```
+
+  Imports files can be applied at any level of a folder hierarchy to apply an [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) for that folder's components and its subfolders.
+
+* Add the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) to each Razor component that requires authorization under the [`@page`](xref:mvc/views/razor#page) directive with an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace:
+
+  ```razor
+  @using Microsoft.AspNetCore.Authorization
+  @attribute [Authorize]
+  ```
+
+  The [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace in the preceding example can be applied broadly to the app's components by placing it into the app's imports file (`_Imports.razor`) instead of in individual components.

@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wpickett
-ms.date: 07/14/2026
+ms.date: 09/10/2026
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -279,7 +279,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 ## Scroll to a specific item
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialItemIndex` for the first render and `ScrollToIndexAsync` for programmatic scrolling after the component is rendered.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component provides two ways to control scroll position: `InitialItemIndex` for the first render and `ScrollToItemAsync` for programmatic scrolling after the component is rendered.
 
 ### `InitialItemIndex` parameter
 
@@ -293,7 +293,7 @@ Set `InitialItemIndex` to open the list at a specific item index on the first in
 
 ### `ScrollToItemAsync` method
 
-Call `ScrollToIndexAsync` to programmatically scroll to an item after the first render. The scroll is instant (no animation). The method returns a <xref:System.Threading.Tasks.Task> that completes when the target item is aligned to the top of the viewport. Cancellation is supported via a <xref:System.Threading.CancellationToken>.
+Call `ScrollToItemAsync` to programmatically scroll to an item after the first render. The scroll is instant (no animation). The method returns a <xref:System.Threading.Tasks.Task> that completes when the target item is aligned to the top of the viewport. Cancellation is supported via a <xref:System.Threading.CancellationToken>.
 
 If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before the first interactive render throws an <xref:System.InvalidOperationException>.
 
@@ -311,7 +311,7 @@ If multiple calls occur, the last call wins—earlier calls complete normally bu
     {
         if (virtualizeComponent is not null)
         {
-            await virtualizeComponent.ScrollToIndexAsync(200);
+            await virtualizeComponent.ScrollToItemAsync(200);
         }
     }
 }
@@ -542,18 +542,33 @@ In the preceding example, the document root is used as the scroll container, so 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
-
 ## Content Security Policy (CSP) compliance
 
-The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction.
+:::moniker range=">= aspnetcore-11.0"
 
-To avoid CSP violations, render CSS height in a `data-blazor-virtualize-reserved-height` attribute instead of a `style` attribute, which makes the rendered component compatible with strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) configurations.
+CSP violations are avoided because `Virtualize` components:
+
+* Render calculated spacer and placeholder heights as numeric values in `data-blazor-virtualize-reserved-height` attributes.
+* When required, render the trailing spacer's vertical offset as a numeric value in a `data-blazor-virtualize-loop-breaker-transform` attribute to hide the spacer.
+
+A JS [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) validates the attribute values and applies them via the [CSS Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) as pixel-based `height` and `transform` styles.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-11.0"
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. To avoid CSP violations, render CSS height in a `data-blazor-virtualize-reserved-height` attribute instead of a `style` attribute, which makes the rendered component compatible with strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) configurations.
 
 In the following example, the height is set to 3,400 pixels:
 
 ```razor
 <div data-blazor-virtualize-reserved-height="3400" aria-hidden="true"></div>
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+The `Virtualize` component renders dynamic inline `style` attributes on its spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. Apps are required to relax `style-src` with `'unsafe-inline'` to allow inline styles for the component to function.
 
 :::moniker-end

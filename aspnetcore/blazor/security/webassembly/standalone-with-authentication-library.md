@@ -191,7 +191,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### Imports file
 
-The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace is made available throughout the app via the `_Imports.razor` file:
+The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace is made available throughout the app via the imports file (`_Imports.razor`):
 
 ```razor
 ...

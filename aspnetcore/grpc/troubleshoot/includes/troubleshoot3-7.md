@@ -326,7 +326,7 @@ For more information about using `Grpc.Tools` with unsupported architectures, se
 
 ## gRPC call timeout from `HttpClient.Timeout`
 
-<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don’t complete within the timeout limit.
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don't complete within the timeout limit.
 
 ```output
 System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
@@ -575,7 +575,7 @@ Alternatively, a client factory can be configured with `SubdirectoryHandler` by 
 
 ## gRPC call timeout from `HttpClient.Timeout`
 
-<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don’t complete within the timeout limit.
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don't complete within the timeout limit.
 
 ```output
 System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
@@ -824,7 +824,7 @@ Alternatively, a client factory can be configured with `SubdirectoryHandler` by 
 
 ## gRPC call timeout from `HttpClient.Timeout`
 
-<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don’t complete within the timeout limit.
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don't complete within the timeout limit.
 
 ```output
 System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.

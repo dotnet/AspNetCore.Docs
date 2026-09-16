@@ -153,7 +153,7 @@ In Blazor WebAssembly apps, [local storage](https://developer.mozilla.org/docs/W
 
 If the app doesn't already have a `Shared` folder for shared components, add a `Shared` folder to the app.
 
-Add the namespace for shared components to the `_Imports.razor` file. In the following example, the app's namespace is `BlazorSample`, and the shared folder's namespace is `BlazorSample.Shared`:
+Add the namespace for shared components to the imports file (`_Imports.razor`). In the following example, the app's namespace is `BlazorSample`, and the shared folder's namespace is `BlazorSample.Shared`:
 
 ```razor
 @using BlazorSample.Shared

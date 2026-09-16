@@ -116,7 +116,7 @@ Note that because there are differences between ASP.NET Identity and ASP.NET Cor
 * <xref:host-and-deploy/web-farm>
 * [A primer on OWIN cookie authentication middleware for the ASP.NET developer](https://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/) by [Brock Allen](https://brockallen.com/)
 * [OWIN authentication middleware Architecture](https://brockallen.com/2013/08/07/owin-authentication-middleware-architecture/) by [Brock Allen](https://brockallen.com/)
-* [Posts from the ‘OWIN / Katana’ Category](https://brockallen.com/category/owin-katana/) by [Brock Allen](https://brockallen.com/)
+* [Posts from the 'OWIN / Katana' Category](https://brockallen.com/category/owin-katana/) by [Brock Allen](https://brockallen.com/)
 
 :::moniker-end
 

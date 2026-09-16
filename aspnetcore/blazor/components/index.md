@@ -129,14 +129,14 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorSample.Components.Pages`.
 * The fully qualified type name of the component is `BlazorSample.Components.Pages.Counter`.
 
-For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `AdminComponents` folder available:
+For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's imports file (`_Imports.razor`). The following example makes components in the `AdminComponents` folder available:
 
 ```razor
 @using BlazorSample.AdminComponents
 ```
 
 > [!NOTE]
-> [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`).
+> [`@using`][2] directives in the imports file (`_Imports.razor`) are only applied to Razor files (`.razor`), not C# files (`.cs`).
 
 Aliased [`using`](/dotnet/csharp/language-reference/keywords/using-directive) statements are supported. In the following example, the public `WeatherForecast` class of the `GridRendering` component is made available as `WeatherForecast` in a component elsewhere in the app:
 
@@ -188,14 +188,14 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorSample.Pages`.
 * The fully qualified type name of the component is `BlazorSample.Pages.Counter`.
 
-For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `AdminComponents` folder available:
+For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's imports file (`_Imports.razor`). The following example makes components in the `AdminComponents` folder available:
 
 ```razor
 @using BlazorSample.AdminComponents
 ```
 
 > [!NOTE]
-> [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`).
+> [`@using`][2] directives in the imports file (`_Imports.razor`) are only applied to Razor files (`.razor`), not C# files (`.cs`).
 
 Aliased [`using`](/dotnet/csharp/language-reference/keywords/using-directive) statements are supported. In the following example, the public `WeatherForecast` class of the `GridRendering` component is made available as `WeatherForecast` in a component elsewhere in the app:
 
@@ -369,7 +369,7 @@ namespace BlazorSample.Pages
 
 :::moniker-end
 
-[`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`). Add namespaces to a partial class file as needed.
+[`@using`][2] directives in the imports file (`_Imports.razor`) are only applied to Razor files (`.razor`), not C# files (`.cs`). Add namespaces to a partial class file as needed.
 
 Typical namespaces used by components:
 
@@ -1880,7 +1880,7 @@ Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) dire
 Whitespace removal might affect the rendered output when using a CSS rule, such as `white-space: pre`. To disable this performance optimization and preserve the whitespace, take one of the following actions:
 
 * Add the `@preservewhitespace true` directive at the top of the Razor file (`.razor`) to apply the preference to a specific component.
-* Add the `@preservewhitespace true` directive inside an `_Imports.razor` file to apply the preference to a subdirectory or to the entire project.
+* Add the `@preservewhitespace true` directive inside an imports file (`_Imports.razor`) to apply the preference to a subdirectory or to the entire project.
 
 In most cases, no action is required, as apps typically continue to behave normally (but faster). If stripping whitespace causes a rendering problem for a particular component, use `@preservewhitespace true` in that component to disable this optimization.
 

@@ -5,7 +5,7 @@ author: tdykstra
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 08/05/2026
+ms.date: 09/02/2026
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server in ASP.NET Core
@@ -25,7 +25,7 @@ Kestrel's features include:
 * **Lightweight:** Optimized for running in resource-constrained environments, such as containers and edge devices.
 * **Security hardened:** Kestrel supports HTTPS and is hardened against web server vulnerabilities.
 * **Wide protocol support:** Kestrel supports common web protocols, including:
-  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3)
+  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3). Starting in .NET 11, HTTP/3 uses [early request processing](xref:fundamentals/servers/kestrel/http3#early-request-processing) to reduce first-request latency.
   * [WebSockets](xref:fundamentals/websockets)
 * **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
 * **Flexible workloads**: Kestrel supports many workloads:

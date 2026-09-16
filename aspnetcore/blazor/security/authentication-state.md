@@ -198,7 +198,7 @@ builder.Services.AddSingleton<AuthenticationStateProvider, CustomAuthStateProvid
 
 :::zone-end
 
-If it isn't present, add an [`@using`](xref:mvc/views/razor#using) statement to the `_Imports.razor` file to make the <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace available across components:
+If it isn't present, add an [`@using`](xref:mvc/views/razor#using) statement to the imports file (`_Imports.razor`) to make the <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace available across components:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization;

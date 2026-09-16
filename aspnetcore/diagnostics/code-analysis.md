@@ -4,7 +4,7 @@ author: tdykstra
 description: Review the list of diagnostic codes for ASP.NET Core and get details for specific diagnostic identifiers (IDs), such as ASP0007, BL0001, and MVC1006.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 04/22/2026
+ms.date: 08/25/2026
 uid: diagnostics/code-analysis
 
 # customer intent: As an ASP.NET developer, I want to get details for specific diagnostic codes in ASP.NET Core, so I can understand the diagnostic messages in my apps.
@@ -53,6 +53,12 @@ The following table lists the diagnostics available for ASP.NET Core application
 | **[ASP0026](xref:diagnostics/asp0026)** | `[Authorize]` is overridden by `[AllowAnonymous]` from "farther away" |
 | **[ASP0027](xref:diagnostics/asp0027)** | Unnecessary `public Program` class declaration |
 | **[ASP0028](xref:diagnostics/asp0028)** | Consider using `IPAddress.IPv6Any` instead of `IPAddress.Any` |
+| **[ASP0033](xref:diagnostics/asp0033)** | `[ValidatableType]` is applied to an inaccessible type |
+| **[ASP0034](xref:diagnostics/asp0034)** | Endpoint parameter type is inaccessible from generated code |
+| **[ASP0035](xref:diagnostics/asp0035)** | Validatable property or its type on a `[ValidatableType]` is not accessible |
+| **[ASP0036](xref:diagnostics/asp0036)** | Validatable property or its type on an endpoint parameter type is not accessible |
+| **[ASP0037](xref:diagnostics/asp0037)** | `[ValidatableType]` cannot be used in generated code |
+| **[ASP0038](xref:diagnostics/asp0038)** | `[ValidatableType]` should not be used without a call to `AddValidation` |
 | **[BL0001](xref:diagnostics/bl0001)**   | Component parameter should have public setters |
 | **[BL0002](xref:diagnostics/bl0002)**   | Component has multiple `CaptureUnmatchedValues` parameters |
 | **[BL0003](xref:diagnostics/bl0003)**   | Component parameter with `CaptureUnmatchedValues` has the wrong type |

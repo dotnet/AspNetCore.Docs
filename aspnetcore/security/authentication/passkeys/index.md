@@ -5,7 +5,7 @@ author: guardrex
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 08/07/2026
+ms.date: 09/01/2026
 uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
@@ -453,6 +453,27 @@ After registration is initiated, the browser must obtain creation options from t
 
 From the browser's perspective, this step involves making an HTTP request to the server:
 
+:::moniker range=">= aspnetcore-11.0"
+
+```javascript
+async function createCredential(signal) {
+  // Step 2: Request creation options from the server
+  const optionsResponse = 
+    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
+    {
+      method: 'POST',
+      signal,
+    });
+  const optionsJson = await optionsResponse.json();
+  const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
+  return await navigator.credentials.create({ publicKey: options, signal });
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```javascript
 async function createCredential(headers, signal) {
   // Step 2: Request creation options from the server
@@ -468,6 +489,8 @@ async function createCredential(headers, signal) {
   return await navigator.credentials.create({ publicKey: options, signal });
 }
 ```
+
+:::moniker-end
 
 The application should define an endpoint that generates these options:
 
@@ -522,6 +545,27 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationR
 
 With the creation options available, the client-side JavaScript passes the options to the WebAuthn API to create a new credential:
 
+:::moniker range=">= aspnetcore-11.0"
+
+```javascript
+async function createCredential(signal) {
+  // Step 4: Parse the options and request a new credential from the authenticator
+  const optionsResponse = 
+    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
+    {
+      method: 'POST',
+      signal,
+    });
+  const optionsJson = await optionsResponse.json();
+  const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
+  return await navigator.credentials.create({ publicKey: options, signal });
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```javascript
 async function createCredential(headers, signal) {
   // Step 4: Parse the options and request a new credential from the authenticator
@@ -538,6 +582,8 @@ async function createCredential(headers, signal) {
 }
 ```
 
+:::moniker-end
+
 The `parseCreationOptionsFromJSON` function converts the JSON response into the format expected by the WebAuthn API, and `navigator.credentials.create()` initiates the credential creation process with the authenticator.
 
 ### Step 5: Authenticator interaction
@@ -548,22 +594,27 @@ At this point, the browser communicates with the authenticator to create the cre
 
 After the authenticator creates the credential, the browser must send the credential back to the server for verification and storage. The credential must be serialized to JSON before submission:
 
+:::moniker range=">= aspnetcore-11.0"
+
 ```javascript
-async function createCredential(headers, signal) {
-  // Step 6: The credential is returned from navigator.credentials.create()
-  // and is serialized to JSON for submission to the server
-  const optionsResponse = 
-    await fetchWithErrorHandling('/Account/PasskeyCreationOptions', 
-    {
-      method: 'POST',
-      headers,
-      signal,
-    });
-  const optionsJson = await optionsResponse.json();
-  const options = PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson);
-  return await navigator.credentials.create({ publicKey: options, signal });
+async function createCredentialJson(signal) {
+  const credential = await createCredential(signal);
+  return JSON.stringify(credential);
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+```javascript
+async function createCredentialJson(headers, signal) {
+  const credential = await createCredential(headers, signal);
+  return JSON.stringify(credential);
+}
+```
+
+:::moniker-end
 
 In the Blazor Web App template, the returned credential is automatically serialized and submitted through a form, but the exact submission mechanism varies by application.
 
@@ -643,11 +694,32 @@ Users typically initiate passkey authentication through a dedicated button or li
 
 The browser requests authentication options from the server to begin the authentication process. These options include a list of acceptable credentials and a new challenge to be signed:
 
+:::moniker range=">= aspnetcore-11.0"
+
+```javascript
+async function requestCredential(email, mediation, signal) {
+  // Step 2: Request authentication options from the server
+  const optionsResponse = 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
+    {
+      method: 'POST',
+      signal,
+    });
+  const optionsJson = await optionsResponse.json();
+  const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
+  return await navigator.credentials.get({ publicKey: options, mediation, signal });
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```javascript
 async function requestCredential(email, mediation, headers, signal) {
   // Step 2: Request authentication options from the server
   const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
     {
       method: 'POST',
       headers,
@@ -658,6 +730,8 @@ async function requestCredential(email, mediation, headers, signal) {
   return await navigator.credentials.get({ publicKey: options, mediation, signal });
 }
 ```
+
+:::moniker-end
 
 The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyRequestOptionsAsync%2A> method generates these options. When you provide a specific user, it includes only that user's credentials in the allow list. When called without a user, it generates options suitable for conditional UI or username-less authentication:
 
@@ -684,11 +758,32 @@ The server generates authentication options using the same <xref:Microsoft.AspNe
 
 The client-side JavaScript passes the authentication options to the WebAuthn API to request an assertion from the authenticator:
 
+:::moniker range=">= aspnetcore-11.0"
+
+```javascript
+async function requestCredential(email, mediation, signal) {
+  // Step 4: Parse the options and request an assertion from the authenticator
+  const optionsResponse = 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
+    {
+      method: 'POST',
+      signal,
+    });
+  const optionsJson = await optionsResponse.json();
+  const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
+  return await navigator.credentials.get({ publicKey: options, mediation, signal });
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```javascript
 async function requestCredential(email, mediation, headers, signal) {
   // Step 4: Parse the options and request an assertion from the authenticator
   const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
+    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${encodeURIComponent(email)}`,
     {
       method: 'POST',
       headers,
@@ -699,6 +794,8 @@ async function requestCredential(email, mediation, headers, signal) {
   return await navigator.credentials.get({ publicKey: options, mediation, signal });
 }
 ```
+
+:::moniker-end
 
 The `navigator.credentials.get()` call initiates the authentication process with the authenticator, which prompts the user for verification.
 
@@ -710,22 +807,27 @@ The authenticator verifies the user's identity and signs the challenge with the 
 
 After the authenticator creates the signed assertion, the browser serializes it to JSON and submits it to the server:
 
+:::moniker range=">= aspnetcore-11.0"
+
 ```javascript
-async function requestCredential(email, mediation, headers, signal) {
-  // Step 6: The assertion is returned from navigator.credentials.get()
-  // and is serialized to JSON for submission to the server
-  const optionsResponse = 
-    await fetchWithErrorHandling(`/Account/PasskeyRequestOptions?username=${email}`, 
-    {
-      method: 'POST',
-      headers,
-      signal,
-    });
-  const optionsJson = await optionsResponse.json();
-  const options = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson);
-  return await navigator.credentials.get({ publicKey: options, mediation, signal });
+async function requestCredentialJson(email, mediation, signal) {
+  const credential = await requestCredential(email, mediation, signal);
+  return JSON.stringify(credential);
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+```javascript
+async function requestCredentialJson(email, mediation, headers, signal) {
+  const credential = await requestCredential(email, mediation, headers, signal);
+  return JSON.stringify(credential);
+}
+```
+
+:::moniker-end
 
 The submission mechanism varies by app but typically involves either a form submission or an API call.
 
@@ -752,6 +854,12 @@ The <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A>
 * Update the signature counter to prevent replay attacks.
 
 If all checks pass, the method signs in the user and returns a `SignInResult` indicating success.
+
+:::moniker range=">= aspnetcore-11.0"
+
+The method distinguishes between a recoverable user action and an app error. If the passkey session state is missing or expired, for example because the user took too long to respond to the authenticator, the method returns <xref:Microsoft.AspNetCore.Identity.SignInResult.Failed?displayProperty=nameWithType>. Calling the method without a preceding call to <xref:Microsoft.AspNetCore.Identity.SignInManager%601.MakePasskeyRequestOptionsAsync%2A> throws an <xref:System.InvalidOperationException> because that indicates a problem in the app rather than something the user can retry.
+
+:::moniker-end
 
 For scenarios requiring more control, you can use <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PerformPasskeyAssertionAsync%2A> directly to validate the assertion without immediately signing in the user:
 

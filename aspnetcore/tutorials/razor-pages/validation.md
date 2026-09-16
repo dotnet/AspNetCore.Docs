@@ -1,9 +1,10 @@
 ---
 title: Part 8, add validation
+ai-usage: ai-assisted
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 01/09/2026
+ms.date: 08/23/2026
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -258,6 +259,9 @@ CREATE TABLE [dbo].[Movie] (
     CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 ```
+
+> [!NOTE]
+> The preceding `Up` method and schema show SQL Server output. If you're using SQLite instead of SQL Server, the generated migration and schema differ. SQLite has a minimal type system that maps `string` properties to `TEXT` and doesn't apply the `[StringLength]` maximum length to the schema. Columns such as `Title`, `Genre`, and `Rating` are created as `TEXT` with no length. The maximum length is still enforced by ASP.NET Core model validation, not by the database schema. For more information, see [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations).
 
 ### Publish to Azure
 

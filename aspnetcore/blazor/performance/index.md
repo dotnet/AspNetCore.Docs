@@ -51,7 +51,7 @@ builder.Services.ConfigureOpenTelemetryTracerProvider(tracerProvider =>
 
 ### Performance meters
 
-For more information on the following performance meters, see <xref:log-mon/metrics/built-in>.
+For more information on the following performance meters, see <xref:metrics/built-in>.
 
 `Microsoft.AspNetCore.Components` meter:
 
@@ -74,7 +74,7 @@ In server-side Blazor apps, additional circuit-specific metrics include:
 
 ### Blazor tracing
 
-For more information on the following tracing activities, see <xref:log-mon/metrics/built-in>.
+For more information on the following tracing activities, see <xref:metrics/built-in>.
 
 The new activity tracing capabilities use the `Microsoft.AspNetCore.Components` activity source and provide three main types of tracing activities: circuit lifecycle, navigation, and event handling.
 

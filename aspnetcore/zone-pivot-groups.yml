@@ -45,7 +45,7 @@ groups:
     - id: graph-sdk-4
       title: Graph SDK v4
     - id: graph-sdk-5
-      title: Graph SDK v5
+      title: Graph SDK v5 or later
     - id: named-client-graph-api
       title: Named HttpClient with Graph API
 - id: blazor-multiple-hosted-wasm-apps

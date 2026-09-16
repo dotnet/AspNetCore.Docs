@@ -76,7 +76,7 @@ public class DesignTimeApplicationDbContextFactory
 ```
 
 > [!NOTE]
-> You cannot access `options.Stores.MaxLengthForKeys` directly inside `OnModelCreating` because dependency injection isn’t available at design time. Instead, specify the configured value directly (such as `HasMaxLength(256)`), or use a design-time mechanism to pass settings if needed.
+> You cannot access `options.Stores.MaxLengthForKeys` directly inside `OnModelCreating` because dependency injection isn't available at design time. Instead, specify the configured value directly (such as `HasMaxLength(256)`), or use a design-time mechanism to pass settings if needed.
 > For more details, see <xref:security/authentication/identity-configuration>.
 
 > [!TIP]

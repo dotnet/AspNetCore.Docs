@@ -1,0 +1,27 @@
+name: 'OPS build reporter'
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  ops_build_reporter_job:
+    name: Add preview links and annotate files
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: read
+      checks: write
+      pull-requests: write
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+        with:
+          egress-policy: audit
+
+      - uses: dotnet/docs-tools/actions/ops-build-reporter@main
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          annotate_file_warnings: true

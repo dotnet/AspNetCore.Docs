@@ -25,7 +25,7 @@ This automatic eviction feature reduces overall memory usage and helps applicati
 
 The default memory pool used by the ASP.NET Core server implementations includes metrics, which can be used to monitor and analyze memory usage patterns. The metrics are under the name `"Microsoft.AspNetCore.MemoryPool"`.
 
-For information about metrics and how to use them, see <xref:log-mon/metrics/metrics>.
+For information about metrics and how to use them, see <xref:metrics/overview>.
 
 ## Manage memory pools
 

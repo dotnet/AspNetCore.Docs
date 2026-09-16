@@ -244,7 +244,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:
 
 To discover routable components from additional assemblies for static server-side rendering (static SSR), even if the router later becomes interactive for interactive rendering, the assemblies must be disclosed to the Blazor framework. Call the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method with the additional assemblies chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the server project's `Program` file.
 
-The following example includes the routable components in the `BlazorSample.Client` project's assembly using the project's `_Imports.razor` file:
+The following example includes the routable components in the `BlazorSample.Client` project's assembly using the project's imports file (`_Imports.razor`):
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -262,7 +262,7 @@ Internal navigation for interactive routing doesn't involve requesting new page 
 
 If the `Routes` component is defined in the server project, the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component should include the `.Client` project's assembly. This allows the router to work correctly when rendered interactively.
 
-In the following example, the `Routes` component is in the server project, and the `_Imports.razor` file of the `BlazorSample.Client` project indicates the assembly to search for routable components:
+In the following example, the `Routes` component is in the server project, and the imports file (`_Imports.razor`) of the `BlazorSample.Client` project indicates the assembly to search for routable components:
 
 ```razor
 <Router

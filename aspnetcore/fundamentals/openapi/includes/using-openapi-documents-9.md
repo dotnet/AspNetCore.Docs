@@ -54,7 +54,7 @@ Enable document generation at build time by setting the following properties in 
 ```xml
 <PropertyGroup>
     <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)</OpenApiDocumentsDirectory>
-    <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+    <OpenApiGenerateDocumentsOnBuild>true</OpenApiGenerateDocumentsOnBuild>
 </PropertyGroup>
 ```
 

@@ -32,7 +32,7 @@ You can only see this if you're signed in.
 > [!IMPORTANT]
 > Only use the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `@page` components reached via the Blazor router. Authorization is only performed as an aspect of routing and *not* for child components rendered within a page. To authorize the display of specific parts within a page, use an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component instead, which is described in <xref:blazor/security/index#authorizeview-component>.
 
-The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can also be applied to all of the Razor components in a Blazor app or a subset of Razor components in a folder using an `_Imports` file (`_Imports.razor`). Add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute):
+The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can also be applied to all of the Razor components in a Blazor app or a subset of Razor components in a folder using an imports file (`_Imports.razor`). Add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization

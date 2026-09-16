@@ -9,12 +9,25 @@
     "DefaultParentNode": 403735,
     "WorkItemTags": [
         {
-            "Label": "9.0",
+            "Label": "11.0",
             "Tag": "new feature"
         },
         {
             "Label": "okr-curation",
             "Tag": "content-curation"
+        },
+        {
+            "Label": "Highlight",
+            "Tag": "Highlight-$FullMonthText$"
+        },
+        {
+            "Label": "AISDLC",
+            "Tag": "SP-AISDLC"
+        },
+        {
+            "Label": "AIPlatform",
+            "Tag": "SP-AIPlatform"
         }
+
     ]
 }

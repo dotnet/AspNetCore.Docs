@@ -1,10 +1,11 @@
 ---
 title: Implement passkeys in ASP.NET Core Blazor Web Apps
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to implement passkeys authentication in ASP.NET Core Blazor Web Apps.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 10/30/2025
+ms.date: 09/01/2026
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
@@ -189,7 +190,14 @@ dotnet ef database update
 Add the following model classes to the project in the `Components/Account` folder and update the `BlazorWebCSharp._1.Components.Account` namespace to match the app (for example: `Contoso.Components.Account`):
 
 * [`Components/Account/PasskeyInputModel.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyInputModel.cs): Holds the JSON passkey credential for passkey sign-in operations (`Login` component) and adding passkeys (`Passkeys` component).
+
 * [`Components/Account/PasskeyOperation.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyOperation.cs): Defines the authentication action to be performed (`PassKeySubmit` component), either registering a new passkey (`Create`/0) or authenticating with an existing passkey (`Request`/1).
+
+:::moniker range=">= aspnetcore-11.0"
+
+* [`Components/Account/PasskeyAuthenticators.cs`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/PasskeyAuthenticators.cs): Maps Authenticator Attestation GUIDs (AAGUIDs) to friendly display names, so a new passkey from a known authenticator is named automatically instead of prompting the user.
+
+:::moniker-end
 
 ## Create the `PasskeySubmit` component
 
@@ -207,25 +215,13 @@ Add the following JavaScript file to handle WebAuthn API interactions:
 
 Update the `IdentityComponentsEndpointRouteBuilderExtensions.cs` file (or create the file if it doesn't exist and call `MapAdditionalIdentityEndpoints` in the [`Program` file](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Program.cs#L129-L130)) to include the passkey-specific endpoints:
 
-[`/PasskeyCreationOptions` and `/PasskeyRequestOptions` endpoints](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs#L53-L90)
+[`/PasskeyCreationOptions` and `/PasskeyRequestOptions` endpoints](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs#L80-L132)
 
 ## Update the Login page
 
 Replace the existing `Login` component with the following component and update the `BlazorWebCSharp._1.Data` namespace to match the app (for example: `Contoso.Components.Account.Data`):
 
 [`Components/Account/Pages/Login.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Login.razor)
-
-## Add a redirect method to the `IdentityRedirectManager` class
-
-Add the following method to the `IdentityRedirectManager` class in `Components/Account/IdentityRedirectManager.cs`:
-
-```csharp
-public void RedirectToInvalidUser(
-    UserManager<ApplicationUser> userManager, HttpContext context) =>
-        RedirectToWithStatus("Account/InvalidUser",
-            $"Error: Unable to load user with ID '{userManager.GetUserId(context.User)}'.",
-            context);
-```
 
 ## Create passkey management pages for adding and renaming passkeys
 
@@ -254,13 +250,13 @@ In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink`
 In the `App` component (`Components/App.razor`), locate the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) tag:
 
 ```razor
-<script src="_framework/blazor.web.js"></script>
+<script src="@Assets["_framework/blazor.web.js"]"></script>
 ```
 
 Immediately after the Blazor script tag, add a reference to the `PasskeySubmit` JavaScript module:
 
 ```razor
-<script src="Components/Account/Shared/PasskeySubmit.razor.js" type="module"></script>
+<script src="@Assets["Components/Account/Shared/PasskeySubmit.razor.js"]" type="module"></script>
 ```
 
 :::zone-end
@@ -282,7 +278,7 @@ After a passkey is registered:
 1. Sign out of the app.
 1. On the login page, enter your email address.
 1. Select **Log in with a passkey**.
-4. Follow the browser's prompts to authenticate with your passkey.
+1. Follow the browser's prompts to authenticate with your passkey.
 1. Navigate to `Account/Manage/Passkeys` to add, rename, or delete passkeys.
 1. If the passkey supports passkey autofill (conditional UI) for login, test the passkey autofill feature by selecting the email input field when you have saved passkeys.
 
