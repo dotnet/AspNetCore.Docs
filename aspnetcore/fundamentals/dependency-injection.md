@@ -88,7 +88,7 @@ The consuming class creates and directly depends on the `MyDependency` class. Ta
 
 * To replace `MyDependency` with a different implementation while retaining `MyDependency` in the app, the consuming class must be modified. This situation is made worse when `MyDependency` is also a direct dependency of several other classes: All of the direct dependencies on `MyDependency` in the app must be changed.
 * If `MyDependency` has dependencies, they must also be configured by the consuming class. In a large project with multiple classes depending on `MyDependency`, the configuration code becomes scattered around the app.
-* The implementation is difficult to [unit test](/dotnet/core/testing/#unit-tests) because custom services for testing code, for example using a custom testing database or a different database provider, aren't easily changed for the app's unit tests.
+* The consuming class is difficult to [unit test](/dotnet/core/testing/#unit-tests) because it directly creates `MyDependency`, making it difficult to substitute a custom service for testing, such as an in-memory database or a different database provider.
 
 DI addresses these problems through:
 
