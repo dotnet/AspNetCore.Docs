@@ -10,69 +10,79 @@ uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
 
-<xref:Microsoft.Extensions.Validation?displayProperty=fullName> supports complex model validation in Blazor and Minimal API projects.
+<xref:Microsoft.Extensions.Validation?displayProperty=fullName> provides model validation for Blazor and Minimal API projects.
 
-Validation rules are declared the same way in both frameworks, using [data annotations attributes](xref:System.ComponentModel.DataAnnotations) on a model type, and this article describes the behavior that both frameworks share:
+Validation rules are declared the same way in both frameworks, using [data annotations attributes](xref:System.ComponentModel.DataAnnotations) and <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. This article describes the validation behavior that both frameworks share:
 
-* Minimal APIs validate a request before the endpoint handler runs. For how validation is surfaced in an endpoint, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
-* Blazor validates a form model through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For how validation is surfaced in a form, see <xref:blazor/forms/validation>.
+:::moniker range=">= aspnetcore-11.0"
+
+Asynchronous validation attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject> are also supported.
+
+:::moniker-end
+
+* Minimal APIs use the service to validate a request before the endpoint handler runs. For how validation is surfaced in an endpoint, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
+* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For how validation is surfaced in a form, see <xref:blazor/forms/validation>.
 
 While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
 
-## Enable validation
+## Register validation services
 
-To enable validation, call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services%2A?displayProperty=nameWithType> in the app's `Program` file:
+Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services%2A?displayProperty=nameWithType> in the app's `Program` file:
 
 ```csharp
 builder.Services.AddValidation();
 ```
 
-For Minimal APIs, the implementation automatically discovers types that are defined in handlers or as base types of the types defined in handlers. An endpoint filter performs validation on these types and is added for each endpoint.
+For Minimal APIs, this enables automatic validation of supported parameters before the endpoint handler runs.
 
-Validation uses a source generator that only discovers validatable types in the assembly where `AddValidation` is called. If Minimal API endpoints are defined in a referenced assembly rather than the assembly where `AddValidation` is called, register validation as shown in the [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps) section.
-
-### Validation when `AddValidation` isn't called
-
-The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>, or of calling it but not having a type discovered by the source generator, differs by framework:
+Blazor forms can perform basic top-level DataAnnotations validation without calling `AddValidation`. Registering the service enables nested object and collection validation when the form model is discovered by the validation source generator.
 
 :::moniker range=">= aspnetcore-11.0"
 
-| Framework | Behavior without `Microsoft.Extensions.Validation` |
+Generated validation metadata also enables message localization.
+
+:::moniker-end
+
+Validation uses a source generator that creates metadata for validatable types in the assembly where `AddValidation` is called. For types declared in another assembly, see [Register validation across assemblies](#register-validation-across-assemblies).
+
+### Behavior without generated validation metadata
+
+The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>, or of calling it without the required type being discovered by the source generator, differs by framework:
+
+:::moniker range=">= aspnetcore-11.0"
+
+| Framework | Behavior without generated validation metadata |
 |---|---|
-| Minimal APIs | No validation runs. Invalid requests reach the endpoint handler and return a `200 - OK` response instead of `400 - Bad Request`. |
-| Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects, collection items, and [localized messages](#localize-validation-messages) aren't supported on the fallback path. |
+| Minimal APIs | No automatic validation runs. Invalid input reaches the endpoint handler instead of being rejected before the handler executes. |
+| Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects, collection items, and the [`Microsoft.Extensions.Validation` message-localization pipeline](#localize-validation-messages) aren't supported on the fallback path. |
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
-| Framework | Behavior without `Microsoft.Extensions.Validation` |
+| Framework | Behavior without generated validation metadata |
 |---|---|
-| Minimal APIs | No validation runs. Invalid requests reach the endpoint handler and return a `200 - OK` response instead of `400 - Bad Request`. |
+| Minimal APIs | No automatic validation runs. Invalid input reaches the endpoint handler instead of being rejected before the handler executes. |
 | Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects and collection items aren't validated on the fallback path. |
 
 :::moniker-end
 
-In both cases there's no build error, exception, or log entry indicating that a type isn't validated. If validation appears to be skipped, confirm all of the following:
+Missing metadata doesn't produce a runtime exception or log entry. Build analyzers report many unsupported configurations, but other missing-metadata cases might not produce a diagnostic. For checks to perform when expected validation is missing, see [Troubleshoot generated validation metadata](#troubleshoot-generated-validation-metadata).
 
-* <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called from the assembly that declares the validatable types. See [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps).
-* The model type is declared in a C# file (`.cs`), not in a Razor component file (`.razor`). See [Nested objects and collections](#nested-objects-and-collections).
-* The root type is annotated with <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> when the source generator can't reach it from an endpoint handler signature. See [Force-generate validatable type information](#force-generate-validatable-type-information).
+<a id="validatable-entities"></a>
 
-## Validatable entities
+## How validation runs
 
-Three types of entities can be validated:
+Minimal APIs begin with endpoint parameter validation. Blazor begins with validation of the form's model. Both frameworks then use the same model validation order and object-graph traversal.
 
-* [Parameters](#parameter-validation) (specific to Minimal API endpoint parameters)
-* [Types](#type-validation)
-* [Properties](#property-validation)
+<a id="parameter-validation"></a>
 
-### Parameter validation
+### Minimal API parameter validation
 
-Parameter validation is the first step in the validation pipeline for Minimal API endpoints. It involves the following steps:
+For each supported endpoint parameter:
 
-1. Validate <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> instances applied to the Minimal API parameter.
-1. If the parameter type is `IEnumerable`, validate the type for all non-`null` elements. Otherwise, validate the type for the value.
+1. Validate <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> instances applied directly to the parameter.
+1. If the parameter value is an `IEnumerable`, validate each non-`null` element. Otherwise, validate the parameter value itself.
 
 :::moniker range="< aspnetcore-11.0"
 
@@ -81,20 +91,75 @@ Parameter validation is the first step in the validation pipeline for Minimal AP
 
 :::moniker-end
 
-### Type validation
+<a id="type-validation"></a>
+<a id="property-validation"></a>
 
-Type validation is the next step after parameter validation (and is the first step in Blazor). It involves the following steps:
+### Model validation order
 
-1. Validate properties on the type. If any errors are found, the validation process stops.
-1. Validate type-level <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> instances. If any errors are found, the validation process stops.
-1. Validate <xref:System.ComponentModel.DataAnnotations.IValidatableObject> implementations.
+When validating a model:
 
-### Property validation
+1. Validate the attributes on each property, then validate the property's value. If the value is an `IEnumerable`, validate each non-`null` element. If property validation produces an error, the remaining steps are skipped.
+1. Validate attributes applied to the model type. If type-level validation produces an error, the remaining step is skipped.
+1. Run <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> if the model implements <xref:System.ComponentModel.DataAnnotations.IValidatableObject>.
 
-Property validation happens as part of the type validation as explained in the previous section. It involves the following steps:
+### Nested objects and collections
 
-1. Validate <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> instances applied to the property.
-1. If the property value is `IEnumerable`, perform type validation for all non-`null` elements. Otherwise, perform a single type validation for the value.
+Validation recurses into nested objects and collection items, so a rule declared on a nested property is enforced when the root model is validated. Without generated validation metadata, Blazor only validates the top-level properties of a form model.
+
+To validate a nested object graph:
+
+1. Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> in the `Program` file where services are registered.
+1. Declare model types in C# files (`.cs`), not in Razor component files (`.razor`).
+1. Annotate the root model type with <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> (`[ValidatableType]`). Types reachable from the root are discovered automatically.
+
+In the following example, only the root `Order` type is annotated. The other model types are reachable from `Order` and are included in its validation graph.
+
+`Order.cs`:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Validation;
+
+[ValidatableType]
+public class Order
+{
+    public Customer Customer { get; set; } = new();
+    public List<OrderItem> OrderItems { get; set; } = [];
+}
+
+public class Customer
+{
+    [Required(ErrorMessage = "Name is required.")]
+    public string? FullName { get; set; }
+
+    public ShippingAddress ShippingAddress { get; set; } = new();
+}
+
+public class ShippingAddress
+{
+    [Required(ErrorMessage = "Street is required.")]
+    public string? Street { get; set; }
+}
+
+public class OrderItem
+{
+    [Required(ErrorMessage = "Description is required.")]
+    public string? Description { get; set; }
+
+    [Range(1, 1000)]
+    public int Quantity { get; set; }
+}
+```
+
+Errors from nested members use paths such as `Customer.ShippingAddress.Street` or `OrderItems[0].Description`.
+
+For model types defined in another assembly or in a Blazor Web App's `.Client` project, see [Register validation across assemblies](#register-validation-across-assemblies).
+
+<a id="explicit-validation-skipping"></a>
+
+### Skip validation
+
+Apply <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> to a parameter, type, or property that shouldn't be validated.
 
 ## Write custom validation rules
 
@@ -182,23 +247,20 @@ For rules that require I/O, such as a database or web API call, see the [Asynchr
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
 > [!NOTE]
 > In a Blazor form that uses static server-side rendering (static SSR), custom attributes aren't enforced by the browser unless the attribute also supplies a client-side rule. For more information, see <xref:blazor/forms/validation-client-side>.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
-
-<!-- UPDATE 11.0 - API cross-links for the following section ...
-
-                   <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>
-                   <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>
-
--->
 
 ## Asynchronous validation support
 
 <xref:Microsoft.Extensions.Validation?displayProperty=fullName> supports asynchronous validation. Apply custom implementations of `AsyncValidationAttribute` to parameters, types, or properties, and they're called asynchronously. In addition, types can implement `IAsyncValidatableObject` as well.
 
-When validating properties on a type, all validation tasks are started concurrently. Similarly, elements of `IEnumerable` collections are validated concurrently.
+Asynchronous validation operations can run in parallel, and their execution and completion order isn't guaranteed. Validation rules must not depend on a particular order.
 
 `IAsyncValidatableObject` and `AsyncValidationAttribute` require synchronous **and** asynchronous validation logic. For example, the `Validate` and `ValidateAsync` methods of `IAsyncValidatableObject` must be implemented for objects that use the interface. However, validation never calls both methods. If validation is called through an asynchronous code path, only `ValidateAsync` is called. If validation is called through a synchronous code path, only `Validate` is called.
 
@@ -208,12 +270,13 @@ Blazor form validation calls the asynchronous path for per-field validation and 
 
 If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
 
-The following example demonstrates a validation class that implements the `IAsyncValidatableObject` interface. In the following scenario, validation requires an asynchronous call path to check a database for a valid email username via a hypothetical `IUserService` service. Because validation requires an asynchronous database call in this scenario, the synchronous `Validate` method, which is required by the interface's contract, shouldn't be called by developer code elsewhere and throws <xref:System.InvalidOperationException> if it ever is called.
+The following example shows object-level asynchronous validation with `IAsyncValidatableObject`. It uses a hypothetical `IUserService` to check a database for an existing email address. Because the rule requires asynchronous I/O, the required synchronous `Validate` implementation throws <xref:System.InvalidOperationException>.
 
 ```csharp
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -250,71 +313,6 @@ public class ValidateUser : IAsyncValidatableObject
 
 :::moniker-end
 
-## Nested objects and collections
-
-Validation recurses into nested objects and collection items, so a rule declared on a property of a nested type is enforced when the root model is validated. This is one of the main reasons to adopt <xref:Microsoft.Extensions.Validation?displayProperty=fullName>: without it, only the top-level properties of a model are validated.
-
-To validate a nested object graph:
-
-1. Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> in the `Program` file where services are registered.
-1. Declare the model types in C# files (`.cs`), not in Razor component files (`.razor`).
-1. Annotate the root model type with <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> (`[ValidatableType]`). Types reachable from the root are discovered automatically.
-
-In the following example, only the root `Order` type is annotated. The `Customer`, `ShippingAddress`, and `OrderItem` types are discovered from it, and their validation attributes are enforced when an `Order` is validated.
-
-`Order.cs`:
-
-```csharp
-using System.ComponentModel.DataAnnotations;
-using Microsoft.Extensions.Validation;
-
-[ValidatableType]
-public class Order
-{
-    public Customer Customer { get; set; } = new();
-    public List<OrderItem> OrderItems { get; set; } = [];
-}
-
-public class Customer
-{
-    [Required(ErrorMessage = "Name is required.")]
-    public string? FullName { get; set; }
-
-    [Required(ErrorMessage = "Email is required.")]
-    public string? Email { get; set; }
-
-    public ShippingAddress ShippingAddress { get; set; } = new();
-}
-
-public class ShippingAddress
-{
-    [Required(ErrorMessage = "Street is required.")]
-    public string? Street { get; set; }
-
-    [Required(ErrorMessage = "City is required.")]
-    public string? City { get; set; }
-}
-
-public class OrderItem
-{
-    [Required(ErrorMessage = "Description is required.")]
-    public string? Description { get; set; }
-
-    [Range(1, 1000, ErrorMessage = "Quantity must be between 1 and 1,000.")]
-    public int Quantity { get; set; }
-}
-```
-
-Errors from nested members are reported with a path that identifies the member, such as `Customer.ShippingAddress.Street` or `OrderItems[0].Description`.
-
-### Model types can't be declared in Razor component files
-
-The requirement to declare model types outside of Razor components (`.razor`) exists because both the validation feature and the Razor compiler use source generators. Currently, the output of one source generator can't be used as the input to another source generator, so a type declared in a `.razor` file isn't discovered.
-
-A model declared in a `.razor` file doesn't produce a build error. In a Blazor app, the form silently validates only the top-level properties of the model. For more information, see [Validation when `AddValidation` isn't called](#validation-when-addvalidation-isnt-called).
-
-For model types defined in a class library or in the `.Client` project of a Blazor Web App, see [Register validation in multi-assembly apps](#register-validation-in-multi-assembly-apps).
-
 :::moniker range=">= aspnetcore-11.0"
 
 ## Localize validation messages
@@ -330,7 +328,10 @@ builder.Services.AddLocalization();
 builder.Services.AddValidation();
 ```
 
-There's no separate package or additional opt-in call. The validation source generator emits the localization lookup into the app's assembly.
+There's no separate package or additional opt-in call.
+
+> [!IMPORTANT]
+> `AddLocalization` registers localization services but doesn't select the culture for a request or circuit. Validation resource lookup uses <xref:System.Globalization.CultureInfo.CurrentUICulture>. For request culture providers, including query string, cookie, and `Accept-Language` header selection, see <xref:fundamentals/localization/select-language-culture>. For configuring culture selection across Blazor render modes, see <xref:blazor/globalization-localization>.
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -389,6 +390,8 @@ builder.Services.AddValidation();
 
 Under the configured `ResourcesPath`, the type's full name minus the project's root namespace is used as a dotted path. For example, in a project whose root namespace is `Contoso`, French messages for `Contoso.Models.Customer` are read from *Resources/Models/Customer.fr.resx* (equivalently *Resources/Models.Customer.fr.resx*). For a full description of the conventions, see <xref:fundamentals/localization/provide-resources>.
 
+For per-type lookup, place the resource files in the project that declares the validated type. For example, if a Blazor Web App's form models are declared in its `.Client` project, place their per-type resources in that project. The model assembly's root namespace and the configured `ResourcesPath` determine the resource name.
+
 ### Use a shared resource file
 
 To resolve keys from one resource file for every validated type instead of per-type resources, set `ValidationOptions.LocalizerProvider`:
@@ -400,17 +403,9 @@ builder.Services.AddValidation(options =>
 });
 ```
 
-The delegate also receives the validated type, so an app can select a different resource file per type:
+The delegate also receives the validated type, so an app can select different resources for different model types.
 
-```csharp
-builder.Services.AddValidation(options =>
-{
-    options.LocalizerProvider = (type, factory) =>
-        type?.Namespace?.StartsWith("Contoso.Admin") == true
-            ? factory.Create(typeof(AdminValidationMessages))
-            : factory.Create(typeof(ValidationMessages));
-});
-```
+The marker type passed to `factory.Create` identifies both the resource name and the assembly containing the resource. This makes a shared resource in the host project an alternative to placing per-type resources in a referenced model assembly.
 
 ### Localize from a source other than resource files
 
@@ -423,7 +418,7 @@ builder.Services.AddValidation();
 
 ### Attributes that localize themselves
 
-Attributes that already perform their own resource lookup bypass this pipeline entirely, because they're localized before validation reports the message. This applies to <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType> and to <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType%2A?displayProperty=nameWithType>.
+Attributes configured with <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType> or <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType%2A?displayProperty=nameWithType> perform their own resource lookup and aren't processed by the `Microsoft.Extensions.Validation` localizer.
 
 ### Format a custom attribute's message
 
@@ -445,25 +440,35 @@ public sealed class DivisibleByAttribute : ValidationAttribute, IValidationMessa
 ```
 
 > [!NOTE]
-> Localization requires <xref:Microsoft.Extensions.Validation?displayProperty=fullName>. A Blazor form whose model isn't discovered by the validation source generator falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which reports the attribute's raw `ErrorMessage` without localizing it. For more information, see [Validation when `AddValidation` isn't called](#validation-when-addvalidation-isnt-called).
+> This localization pipeline requires <xref:Microsoft.Extensions.Validation?displayProperty=fullName>. A Blazor form whose model isn't discovered by the validation source generator falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>. Attributes configured to localize themselves with `ErrorMessageResourceType` continue to do so, but the generated lookup conventions and `ValidationOptions.LocalizerProvider` aren't available. For more information, see [Behavior without generated validation metadata](#behavior-without-generated-validation-metadata).
 
 :::moniker-end
 
-## Explicit validation skipping
+## Configure generated validation metadata
 
-When needed, you can skip validation for a specific parameter, type, or property by applying the <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>.
+<xref:Microsoft.Extensions.Validation?displayProperty=fullName> uses a Roslyn source generator to create validation metadata at build time. Minimal API parameter types are discovered from endpoint handler signatures. Blazor form model types are included by applying <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute>.
 
-## Force-generate validatable type information
+<a id="force-generate-validatable-type-information"></a>
 
-<xref:Microsoft.Extensions.Validation?displayProperty=fullName> works via a Roslyn source generator that detects the object graph and types for Minimal API endpoint parameters.
+### Include root model types
 
-In some cases, not all of the types that are part of the object graph can be determined at compile time. In these cases, you can force the source generator to consider a type for validation by applying <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> to the type.
+Apply `[ValidatableType]` to a Blazor form's root model type and to any other root type that the source generator can't discover from a Minimal API endpoint signature. Types reachable from the root are included automatically.
 
-## Register validation in multi-assembly apps
+### Model types can't be declared in Razor component files
 
-The validation source generator only discovers validatable types in the assembly where <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called. Types declared in a referenced assembly, such as a class library or the `.Client` project of a Blazor Web App, aren't validated when `AddValidation` is only called from the host app.
+The Razor compiler and the validation feature both use source generators. A source generator can't inspect another generator's output, so the validation generator can't include model types declared in Razor component files (`.razor`). Declare model types in regular C# files (`.cs`) instead.
 
-There's no error or log entry when this happens. In a Minimal API, invalid requests return a `200 - OK` response instead of `400 - Bad Request`. In Blazor, the form doesn't honor the validation attributes of the models.
+:::moniker range=">= aspnetcore-11.0"
+
+Applying `[ValidatableType]` to a type in generated code produces warning ASP0037.
+
+:::moniker-end
+
+<a id="register-validation-in-multi-assembly-apps"></a>
+
+### Register validation across assemblies
+
+The source generator creates metadata only for the assembly where <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called. Calling `AddValidation` only from the host app doesn't generate metadata for types declared in a referenced assembly, such as a class library or the `.Client` project of a Blazor Web App.
 
 To validate types from separate assemblies:
 
@@ -496,21 +501,33 @@ To validate types from separate assemblies:
 
 The preceding approach validates the types from both assemblies.
 
-Two framework-specific notes:
+For a Blazor Web App whose form models are declared in the `.Client` project, create the validation-registration extension method in that project and call it from the server project's `Program` file.
 
-* **Minimal APIs:** when endpoints are mapped from the referenced assembly, define the endpoint-mapping extension method (`MapApi` in the following example) alongside the validation extension method so both are registered from the same assembly:
+For Minimal API endpoints and models defined in referenced assemblies, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
 
-  ```csharp
-  builder.Services.AddApiValidation();
+### Troubleshoot generated validation metadata
 
-  ...
+Missing generated validation metadata doesn't produce a runtime exception or log entry. If expected validation behavior is missing, confirm all of the following:
 
-  var app = builder.Build();
+* `AddValidation` is called from the assembly that declares the validatable types.
+* Blazor root form models and other roots not discovered from Minimal API signatures have `[ValidatableType]`.
+* Model types are declared in `.cs` files.
+* Validated types and properties are accessible to generated code.
 
-  app.MapApi();
-  ```
+:::moniker range=">= aspnetcore-11.0"
 
-* **Blazor Web Apps:** form model types are commonly declared in the `.Client` project. Create the extension method there and call it from the server project's `Program` file.
+Build analyzers report common unsupported configurations:
+
+* ASP0033 and ASP0034 report inaccessible validatable types and endpoint parameter types.
+* ASP0035 and ASP0036 report inaccessible validated properties or property types.
+* ASP0037 reports `[ValidatableType]` applied to generated code.
+* ASP0038 reports `[ValidatableType]` used without a matching `AddValidation` call.
+
+Other missing-metadata cases might not produce a diagnostic.
+
+:::moniker-end
+
+For the runtime behavior when metadata isn't available, see [Behavior without generated validation metadata](#behavior-without-generated-validation-metadata).
 
 :::moniker range="= aspnetcore-10.0"
 
@@ -589,4 +606,3 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 * <xref:mvc/models/validation>
 
 :::moniker-end
-
