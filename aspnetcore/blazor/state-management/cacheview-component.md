@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
 ms.author: wpickett
-ms.date: 09/15/2026
+ms.date: 09/16/2026
 uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
@@ -108,15 +108,20 @@ If a `HybridCache` service is registered, `CacheView` uses it automatically. `Ra
 
 Concurrent requests for the same key are coalesced so that only one request creates the cache entry.
 
-## Components that render on every request
+## Declare component cache compatibility
 
 Some components contain per-request content that must not be baked into shared cached markup. Component authors can apply `CacheBehaviorAttribute` and `CacheConditionAttribute` to control how their component behaves inside a `CacheView`.
 
-These attributes allow component authors to declare that a component:
+The following table describes how the attributes work together:
 
-* Must never be included in cached output but can render live by using `CacheBehavior.Rerender`.
-* Must not be used inside a `CacheView` by using `CacheBehavior.Throw` without a cache condition.
-* Can only be included in cached output when the enclosing `CacheView` varies by specific request dimensions by combining `CacheBehavior.Throw` with `CacheConditionAttribute`.
+| Attributes | Condition isn't satisfied | Condition is satisfied |
+|---|---|---|
+| No attributes | The component is included in cached output. | Not applicable. |
+| `[CacheBehavior(CacheBehavior.Rerender)]` | The component renders live on every request. | Not applicable. |
+| `[CacheBehavior(CacheBehavior.Throw)]` | The component throws an `InvalidOperationException`. | Not applicable. |
+| `[CacheCondition(...)]` | The component renders live on every request using the default `CacheBehavior.Rerender` behavior. | The component is included in cached output. |
+| `[CacheBehavior(CacheBehavior.Rerender)]` with `[CacheCondition(...)]` | The component renders live on every request. | The component is included in cached output. |
+| `[CacheBehavior(CacheBehavior.Throw)]` with `[CacheCondition(...)]` | The component throws an `InvalidOperationException`. | The component is included in cached output. |
 
 ```csharp
 [CacheBehavior(CacheBehavior.Rerender)]
@@ -129,7 +134,22 @@ public sealed class CurrentRequestTime : ComponentBase
 
 `CacheBehavior.Throw` rejects use inside a `CacheView` unless a matching `CacheConditionAttribute` is satisfied.
 
-Component authors can use `CacheBehavior.Throw` for components that are never safe to cache, or combine it with `CacheConditionAttribute` for components that are cacheable only in specific cases.
+Component authors can use `CacheBehavior.Throw` for components that are never safe to cache:
+
+```razor
+@attribute [CacheBehavior(CacheBehavior.Throw)]
+
+<span class="user-badge">User: @UserName</span>
+
+@code {
+    [Parameter]
+    public string? UserName { get; set; }
+}
+```
+
+Adding vary-by parameters to the enclosing `CacheView` doesn't make this component cacheable because the component doesn't declare a cache condition. Move the component outside the cache boundary.
+
+Combine `CacheBehavior.Throw` with `CacheConditionAttribute` for components that are cacheable only when the enclosing `CacheView` varies by specific request dimensions:
 
 ```csharp
 [CacheBehavior(CacheBehavior.Throw)]
@@ -141,14 +161,54 @@ public sealed class UserSpecificComponent : ComponentBase
 
 In this example, the component can be included in cached output only when the enclosing `CacheView` sets `VaryByUser="true"`. Otherwise, rendering throws an `InvalidOperationException`.
 
+Combine `CacheBehavior.Rerender` with `CacheConditionAttribute` when a component can render live if a required vary-by dimension isn't active and can be included in cached output when the dimension is active:
+
+```razor
+@using Microsoft.AspNetCore.Http
+@attribute [CacheBehavior(CacheBehavior.Rerender)]
+@attribute [CacheCondition(CacheVaryBy.Cookie)]
+
+<p>Price selection: @PriceSelection</p>
+
+@code {
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+
+    private string PriceSelection =>
+        HttpContext?.Request.Cookies["price-selection"] ?? "standard";
+}
+```
+
+Without `VaryByCookie`, this component runs on every request. The following cache boundary satisfies the condition, so the component is included in cached output:
+
+```razor
+<CacheView VaryByCookie="price-selection">
+    <PricePanel />
+</CacheView>
+```
+
+`CacheConditionAttribute` checks vary-by dimensions, not individual query parameter, route parameter, header, or cookie names. For example, `[CacheCondition(CacheVaryBy.Cookie)]` is satisfied when `VaryByCookie` contains any value. It doesn't verify that `VaryByCookie` contains the correct cookie names. A component author must document every name that affects the component's output, and the consumer must include those exact names in the corresponding `CacheView` parameter. In the preceding example, specifying a cookie other than `price-selection` satisfies the declared condition but results in an unsafe cache key.
+
+`CacheVaryBy` is a flags enum in which each value represents a request dimension. Combine dimensions with the `|` operator:
+
+```csharp
+[CacheCondition(CacheVaryBy.User | CacheVaryBy.Query)]
+```
+
+In this example, both user variation and query string variation must be active for the condition to be satisfied.
+
+Only one `CacheConditionAttribute` can be applied to a component. Conditions don't have an evaluation order.
+
 Built-in components use these policies:
 
 | Component | Behavior inside `CacheView` |
 |---|---|
 | `AuthorizeView` | Requires `VaryByUser="true"` or throws. |
-| `QuickGrid` | Requires `VaryByQuery` or throws. |
+| `QuickGrid` | Requires `VaryByQuery` or throws. Include every query parameter that affects sorting, filtering, and paging, including the actual names configured with `QueryParameterNameOptions`, or use `VaryByQuery="*"`. |
 | `Virtualize` | Always throws. |
 | Antiforgery tokens, `HeadOutlet`, interactive render mode boundaries, and streaming children | Render fresh on every request while surrounding content remains cached. |
+
+When `CacheBehavior.Throw` rejects a component, the exception identifies the component and either lists the required vary-by dimensions or directs the developer to move the component outside the `CacheView`.
 
 ## Limitations
 
