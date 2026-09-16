@@ -107,7 +107,7 @@ Consider the impact on each kind of app:
 
 * **Web applications**: Page endpoints continue to redirect to the login page.
 * **Mixed applications**: API endpoints return status codes while web pages get redirects, so browser code that followed the redirect must handle 401 and 403 instead.
-* **API-only applications**: Return proper HTTP status codes without additional configuration.
+* **API-only applications**: Detected API endpoints return proper HTTP status codes without additional configuration.
 
 To keep the previous behavior, call `AllowCookieRedirect` on the affected endpoints, apply `[AllowCookieRedirect]` to the affected controllers, or enable the `Microsoft.AspNetCore.Authentication.Cookies.IgnoreRedirectMetadata` switch for the whole app.
 
