@@ -1,10 +1,11 @@
 ---
 title: Use hubs in ASP.NET Core SignalR
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to work with hubs in ASP.NET Core SignalR, create and use hubs, send messages to clients, and handle results from connected clients on the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 06/24/2026
+ms.date: 09/16/2026
 uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
@@ -37,12 +38,19 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
 
-> [!NOTE]
-> Hubs are [transient](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient):
->
-> * Don't store state in a property of the hub class. Each hub method call is executed on a new hub instance.
-> * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application, use an [IHubContext](xref:signalr/hubcontext).
-> * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, if you call a method such as  `Clients.All.SendAsync(...)` without using `await`, the call can fail and the hub method completes before `SendAsync` finishes.
+## Hub services (dependency injection)
+
+Hubs are [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient), so a new hub instance is created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+
+Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
+
+Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
+
+Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
+
+<!-- NOTE: The double-space at the end of the next line to generates a bare return. -->
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
 
 :::moniker-end
 

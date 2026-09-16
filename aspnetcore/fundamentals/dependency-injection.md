@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: tdykstra
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: tdykstra
-ms.date: 03/06/2026
+ms.date: 09/16/2026
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -547,6 +547,8 @@ public class MyHub2 : Hub
     }
 }
 ```
+
+For more information on DI with SignalR hubs, see <xref:signalr/hubs#hub-services-dependency-injection>.
 
 Middleware supports keyed services in both the middleware's constructor and its `Invoke`/`InvokeAsync` method:
 
@@ -1114,6 +1116,7 @@ Service type | Lifetime
 ## Additional resources
 
 * <xref:blazor/fundamentals/dependency-injection>
+* [SignalR hub services](xref:signalr/hubs#hub-services-dependency-injection)
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
