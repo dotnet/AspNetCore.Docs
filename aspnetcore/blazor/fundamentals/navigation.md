@@ -291,11 +291,11 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> handles scenarios where a requested resource isn't found:
 
-* **Static server-side rendering (static SSR)**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> sets the HTTP status code to 404.
+* **Static server-side rendering (static SSR)**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> sets the HTTP status code to 404. If Not Found content is configured through `Router.NotFoundPage` or `NotFoundEventArgs.Path`, the router renders Not Found content.
 
 * **Global interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
 
-* **Per-page/component interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content ***only during prerendering on the server***.
+* **Per-page/component interactive rendering**: Behaves the same as static server-side rendering (static SSR) during prerendering on the server, while interactive Not Found behavior no-ops.
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
@@ -333,7 +333,7 @@ When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetC
 To provide Not Found content for global interactive rendering or for per-page/component interactive rendering *during prerendering*, use a Not Found page (Razor component).
 
 > [!NOTE]
-> The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, making it possible to handle missing routes with a consistent user experience.
+> The Blazor project template includes a `NotFound.razor` page and configures it as the router's `NotFoundPage`. This page renders when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called un a supported context, making it possible to handle missing routes with a consistent user experience.
 
 `Pages/NotFound.razor`:
 
@@ -358,7 +358,7 @@ In the following example, the preceding `NotFound` component is present in the a
 </Router>
 ```
 
-When a component is rendered with a global interactive render mode, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> signals the Blazor router to render the `NotFound` component (<xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>):
+When a component is rendered with a global interactive render mode, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> signals the Blazor router to render the `NotFound` component:
 
 ```razor
 @page "/render-not-found-interactive"
@@ -394,7 +394,7 @@ The preceding example would assign a per-page/component render mode at the top o
 
 The Not Found response and 404 status code aren't applied outside of prerendering, so if prerendering is disabled or the <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> call is made after prerendering, the component should indicate to the user in the component's UI that a resource isn't found.
 
-In cases where <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called in the middle of a method, end the control flow with a `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. In the following movie database update method, a concurrency exception results in checking for the presence of a movie in the database to determine if a Not Found response is appropriate. The `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> ensures that the handler selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>:
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> doesn't terminate the method. If <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> should end the control flow, add a `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. In the following movie database update method, a concurrency exception results in checking for the presence of a movie in the database to determine if a Not Found response is appropriate. The `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> ensures that the handler selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>:
 
 ```csharp
 private async Task UpdateMovie()
