@@ -45,7 +45,7 @@ Don't instantiate a hub directly via DI. To send messages to a client from elsew
 
 Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
 
-<!-- NOTE: The double-space at the end of the next line to generates a bare return. -->
+<!-- NOTE: The double-space at the end of the next line generates a bare return. -->
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
 
