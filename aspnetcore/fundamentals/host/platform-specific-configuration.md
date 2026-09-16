@@ -1,10 +1,11 @@
 ---
 title: Use hosting startup assemblies in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 09/04/2025
+ms.date: 09/16/2026
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -235,12 +236,15 @@ When multiple hosting startup assembles are present, their <xref:Microsoft.AspNe
 
 Options for hosting startup activation are:
 
-* [Runtime store](#runtime-store): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
+* [Runtime store](#runtime-store) (**deprecated**): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup. The [runtime package store](/dotnet/core/deploying/runtime-store) is deprecated, so we recommend the compile-time reference options that follow.
 * Compile-time reference required for activation
   * [NuGet package](#nuget-package)
   * [Project bin folder](#project-bin-folder)
 
 ### Runtime store
+
+> [!WARNING]
+> The runtime package store is deprecated. It's no longer supported or under active development, and the `dotnet store` command has known issues with .NET 6 and later versions. Use a [NuGet package](#nuget-package) or the [project bin folder](#project-bin-folder) for hosting startup activation instead. For more information, see [Runtime package store](/dotnet/core/deploying/runtime-store).
 
 The hosting startup implementation is placed in the [runtime store](/dotnet/core/deploying/runtime-store). A compile-time reference to the assembly isn't required by the enhanced app.
 
@@ -624,12 +628,15 @@ When multiple hosting startup assembles are present, their <xref:Microsoft.AspNe
 
 Options for hosting startup activation are:
 
-* [Runtime store](#runtime-store): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
+* [Runtime store](#runtime-store) (**deprecated**): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup. The [runtime package store](/dotnet/core/deploying/runtime-store) is deprecated, so we recommend the compile-time reference options that follow.
 * Compile-time reference required for activation
   * [NuGet package](#nuget-package)
   * [Project bin folder](#project-bin-folder)
 
 ### Runtime store
+
+> [!WARNING]
+> The runtime package store is deprecated. It's no longer supported or under active development, and the `dotnet store` command has known issues with .NET 6 and later versions. Use a [NuGet package](#nuget-package) or the [project bin folder](#project-bin-folder) for hosting startup activation instead. For more information, see [Runtime package store](/dotnet/core/deploying/runtime-store).
 
 The hosting startup implementation is placed in the [runtime store](/dotnet/core/deploying/runtime-store). A compile-time reference to the assembly isn't required by the enhanced app.
 
