@@ -47,6 +47,8 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
 ## Hub services (dependency injection)
 
 Hubs are [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient), so a new hub instance is created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
@@ -62,8 +64,6 @@ Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) wh
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
 
 For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
-
-:::moniker range=">= aspnetcore-8.0"
 
 ## Use 'Context' object properties and methods
 
