@@ -61,8 +61,6 @@ Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) wh
 
 For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
 
-:::moniker-end
-
 :::moniker range=">= aspnetcore-8.0"
 
 ## Use 'Context' object properties and methods
