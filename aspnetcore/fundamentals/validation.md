@@ -176,7 +176,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class EvenNumberAttribute : ValidationAttribute
 {
-    protected override ValidationResult? IsValid(object? value, 
+    protected override ValidationResult? IsValid(object? value,
         ValidationContext validationContext)
     {
         if (value is int number && number % 2 != 0)
@@ -206,7 +206,7 @@ public class Order
 A validation attribute obtains services from dependency injection (DI) through the validation context, which makes rules that require a database lookup or a configured option possible:
 
 ```csharp
-protected override ValidationResult? IsValid(object? value, 
+protected override ValidationResult? IsValid(object? value,
     ValidationContext validationContext)
 {
     var catalog = validationContext.GetService<IProductCatalog>();
@@ -234,7 +234,7 @@ public class DateRange : IValidatableObject
         if (End < Start)
         {
             yield return new ValidationResult(
-                "End date must fall on or after the start date.", 
+                "End date must fall on or after the start date.",
                 [ nameof(End) ]);
         }
     }
