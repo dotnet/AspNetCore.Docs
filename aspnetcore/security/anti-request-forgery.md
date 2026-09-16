@@ -201,7 +201,7 @@ app.MapPost("/widgets", ([FromForm] Widget w) => Results.Created($"/widgets/{w.I
 > [!WARNING]
 > `AllowAnyOrigin` is intentionally **not** honored as a CSRF trust signal, regardless of `.AllowCredentials()`. `AllowAnyOrigin` means "any browser can read this resource," which is a different concern than "any origin may mutate state on the user's behalf." Treating `AllowAnyOrigin` as trusted would turn this middleware into a no-op for cross-origin writes. Apps that need a public-read CORS policy combined with CSRF-protected writes should list trusted write origins explicitly with `WithOrigins` or [opt write endpoints out](#opting-an-endpoint-out) if they don't rely on cookie-based authentication.
 >
-> A policy that lists specific origins with `WithOrigins` but omits `.AllowCredentials()` isn't honored for CSRF trust either. Add `.AllowCredentials()` to any policy that's meant to authorize cross-origin, cookie-authenticated form posts. For the formal breaking-change notice, see [Automatic CSRF protection requires CORS `AllowCredentials` for cross-origin trust](/aspnet/core/breaking-changes/11/csrf-cors-allowcredentials-required).
+> A policy that lists specific origins with `WithOrigins` but omits `.AllowCredentials()` isn't honored for CSRF trust either. Add `.AllowCredentials()` to any policy that's meant to authorize cross-origin, cookie-authenticated form posts.
 
 `[DisableCors]` on an endpoint isn't a CSRF opt-out. It skips the CORS-derived trust step, and the request still has to satisfy the `Sec-Fetch-Site` and Origin-vs-Host rules. To opt out of CSRF protection, see [Opting an endpoint out](#opting-an-endpoint-out).
 

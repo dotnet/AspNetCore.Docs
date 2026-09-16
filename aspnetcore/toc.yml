@@ -15,8 +15,6 @@ items:
             items:
               - name: Overview
                 href: breaking-changes/11/overview.md
-              - name: Automatic CSRF protection requires CORS AllowCredentials for cross-origin trust
-                href: breaking-changes/11/csrf-cors-allowcredentials-required.md
               - name: Blazor custom event registration throws when name matches a browser event
                 href: breaking-changes/11/blazor-custom-event-name-collision.md
               - name: Blazor enhanced navigation no longer preloads resources
