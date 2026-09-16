@@ -2,7 +2,7 @@
 title: Breaking changes in ASP.NET Core 11
 ai-usage: ai-assisted
 description: Navigate to the breaking changes in ASP.NET Core 11.
-ms.date: 06/25/2026
+ms.date: 09/16/2026
 no-loc: [Blazor, Kestrel, SignalR]
 titleSuffix: ""
 ---
@@ -14,6 +14,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 
 | Title | Type of change    |
 |-------|-------------------|
+| [Automatic CSRF protection requires CORS AllowCredentials for cross-origin trust](csrf-cors-allowcredentials-required.md) | Behavioral change |
 | [Blazor custom event registration throws when name matches a browser event](blazor-custom-event-name-collision.md) | Behavioral change |
 | [Blazor enhanced navigation no longer preloads resources](blazor-enhanced-nav-preloading-disabled.md) | Behavioral change |
 | [Blazor server-side rendering defers antiforgery validation to middleware](blazor-server-side-rendering-deferred-cross-site-request-forgery-protection.md) | Behavioral change |
