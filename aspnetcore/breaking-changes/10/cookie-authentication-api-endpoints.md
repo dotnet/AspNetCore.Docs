@@ -3,7 +3,7 @@ title: "Cookie login redirects are disabled for known API endpoints"
 ai-usage: ai-assisted
 description: "Learn about the breaking change in ASP.NET Core 10 where cookie authentication no longer redirects to login or access denied URIs for known API endpoints."
 ms.custom: https://github.com/aspnet/Announcements/issues/525
-ms.date: 09/15/2026
+ms.date: 09/16/2026
 ---
 
 # Cookie login redirects are disabled for known API endpoints
