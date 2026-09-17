@@ -155,15 +155,15 @@ With automatic startup, an app-specific validator script can instead be loaded i
 <script src="@Assets["js/custom-validation.js"]"></script>
 ```
 
-The second script can call `Blazor.formValidation.addValidator` directly. With manual startup, place the same registration calls in the promise continuation:
+The second script can call `Blazor.formValidation.addValidator` directly.
 
-```javascript
-Blazor.start().then(() => {
-    registerCustomValidators(Blazor);
-});
-```
+With manual startup, define the registration in an app script:
 
-In the preceding example, `registerCustomValidators` contains the app's `addValidator` calls.
+:::code language="javascript" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/wwwroot/js/custom-validation.js":::
+
+Load the scripts with automatic startup disabled, and register the validators after `Blazor.start()` completes:
+
+:::code language="razor" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/Components/AppManualStartup.razor":::
 
 > [!IMPORTANT]
 > Register validators from app startup code, not from a page or form component. A component script can run before Blazor starts, and scripts added by enhanced navigation aren't executed. Static SSR components also can't use `IJSRuntime` because they don't have an interactive .NET runtime.

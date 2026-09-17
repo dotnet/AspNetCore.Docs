@@ -249,6 +249,16 @@ If the model is declared in the `.Client` project, register its generated valida
 
 The endpoint adds a private business rule and returns errors keyed by model member name:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+:::code language="csharp" source="~/../blazor-samples/11.0/BlazorWebAppRemoteValidation/BlazorWebAppRemoteValidation/Program.cs" id="snippet_ValidationEndpoint":::
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-10.0"
+
 ```csharp
 app.MapPost("/api/starships/validate", (StarshipModel model) =>
 {
@@ -269,6 +279,10 @@ app.MapPost("/api/starships/validate", (StarshipModel model) =>
     return Results.NoContent();
 });
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 Automatic validation rejects invalid data annotations before the handler runs. <xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A> returns `400 Bad Request` with an `errors` property containing field-keyed messages. Successful validation returns `204 No Content`.
 
@@ -314,12 +328,30 @@ Register and map controllers in the server project. The controller returns `400 
 
 Register an `HttpClient` in the WebAssembly project with the app's base address:
 
+:::moniker range=">= aspnetcore-11.0"
+
+:::code language="csharp" source="~/../blazor-samples/11.0/BlazorWebAppRemoteValidation/BlazorWebAppRemoteValidation.Client/Program.cs" id="snippet_HttpClient":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
 ```csharp
 builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
+:::moniker-end
+
 Place the `CustomValidation` component from [Build a validator component](#build-a-validator-component) in the form:
+
+:::moniker range=">= aspnetcore-11.0"
+
+:::code language="razor" source="~/../blazor-samples/11.0/BlazorWebAppRemoteValidation/BlazorWebAppRemoteValidation.Client/Pages/Home.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
 
 ```razor
 @using System.Net
@@ -372,6 +404,8 @@ Place the `CustomValidation` component from [Build a validator component](#build
     }
 }
 ```
+
+:::moniker-end
 
 The validator component clears a remote field error when that field changes, so the user can correct the value and submit again. Protect the endpoint according to the application's security requirements; authentication and authorization are outside the scope of this validation example.
 
