@@ -1,4 +1,3 @@
-
 :::moniker range="= aspnetcore-7.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
