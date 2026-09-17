@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how ASP.NET Core apps start up and how to configure services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/09/2026
+ms.date: 09/17/2026
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
@@ -211,14 +211,21 @@ For features that require substantial setup, there are `Add{Service}` extension 
 * **:::no-loc text="Add":::**:::no-loc text="RazorPages"::::
 
 ```csharp
-public class Startup(IConfiguration configuration)
+public class Startup()
 {
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+
     public void ConfigureServices(IServiceCollection services)
     {
 
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection")));
+                Configuration.GetConnectionString("DefaultConnection")));
         services.AddDefaultIdentity<IdentityUser>(
             options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>();
