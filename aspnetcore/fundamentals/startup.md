@@ -58,18 +58,15 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
    When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
 
-1. <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A?displayProperty=nameWithType> of [hosted services](xref:fundamentals/host/hosted-services) starts background tasks. `StartAsync` is called *before*:
+1. Hosted services start.
 
-   * The app's request processing pipeline is configured.
-   * The server is started and <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted%2A?displayProperty=nameWithType> is triggered.
-
-   For more information, see <xref:fundamentals/host/hosted-services#startasync>.
+   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. These instances run sequentially in the order of their registrations before the web server, also an <xref:Microsoft.Extensions.Hosting.IHostedService>, starts. For more information, see <xref:fundamentals/host/hosted-services#startasync>.
 
 1. The web server ([Kestrel](xref:fundamentals/servers/kestrel) by default) is started.
 
    The host looks inside its dependency container, locates the registered server implementation (usually Kestrel), and triggers its startup cycle. Kestrel then: 
    
-   * Looks up the defined hosting URLs and ports from the launch settings file (`launchSettings.json`), environment variables, and CLI arguments.
+   * Looks up the defined hosting URLs and ports from configuration, environment variables, or command-line arguments.
    * Opens and allocates physical network sockets.
    * Binds ports and begins listening for incoming traffic.
 
@@ -341,7 +338,7 @@ While an app typically creates an explicit middleware execution pipeline, a star
 * Creating a shared library/NuGet package that automatically loads custom middleware without requiring the app to explicitly call the middleware's "`Use`" method. For example, the library's consumer isn't required to make an `app.UseImageProcessingMiddleware` call for an image-processing middleware in the app's request processing pipeline.
 * Guaranteeing a piece of middleware executes before or after other middleware, regardless of how a developer modifies the app's request processing pipeline.
 
-A startup filter implementation provides an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A?displayProperty=nameWithType> method that receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
+A startup filter implementation provides an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A?displayProperty=nameWithType> method that receives and returns an `Action<IApplicationBuilder>`. The <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> interface is used to configure the app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
 Each startup filter implementation can add one or more middlewares to the request pipeline. The filters are invoked in the order they're added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the pipeline.
 
