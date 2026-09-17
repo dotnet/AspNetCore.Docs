@@ -24,7 +24,7 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 ## Inject services into a hub
 
-SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlives the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
 Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
 
