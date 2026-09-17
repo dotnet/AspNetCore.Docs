@@ -70,7 +70,7 @@ public class ChatHub : Hub
 For database operations and other scoped services, adopting the factory pattern is preferred for long-lived connections:
 
 * If you keep a connection open or call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
-* If the app is a server-side Blazor app, the factory pattern is the mandatory pattern to prevent context sharing bugs.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
 
 Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
 

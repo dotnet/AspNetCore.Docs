@@ -72,10 +72,10 @@ public class ChatHub : Hub
 
 If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly (for example, the app targets .NET 3.1 or earlier), the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-For database operations and other scoped services, adopting the factory pattern is preferred for long-lived connections:
+For database operations (.NET 5 or later) and other scoped services, adopting the factory pattern is preferred for long-lived connections:
 
 * If you keep a connection open or call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
-* If the app is a server-side Blazor app, the factory pattern is the mandatory pattern to prevent context sharing bugs.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
 
 Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
 
