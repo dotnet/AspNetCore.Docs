@@ -56,7 +56,7 @@ In `Startup.ConfigureServices` using SQL Server as the example database provider
 
 ```csharp
 var connectionString = 
-    builder.Configuration.GetConnectionString("DefaultConnection");
+    Configuration.GetConnectionString("DefaultConnection");
 
 services.AddDbContextFactory<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
