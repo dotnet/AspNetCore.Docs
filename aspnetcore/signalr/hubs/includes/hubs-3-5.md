@@ -55,8 +55,7 @@ Hub constructor service injection is supported with the factory pattern for crea
 In `Startup.ConfigureServices` using SQL Server as the example database provider and a connection string from configuration:
 
 ```csharp
-var connectionString = 
-    Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
 services.AddDbContextFactory<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
