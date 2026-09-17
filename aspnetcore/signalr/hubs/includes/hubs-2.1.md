@@ -40,7 +40,7 @@ Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/cor
 
 Hub constructor service injection is supported. The framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called. 
+In the following example, <xref:Microsoft.EntityFrameworkCore.DbContext> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called. 
 
 ```csharp
 public class ChatHub : Hub

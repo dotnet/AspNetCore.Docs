@@ -26,7 +26,7 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor service injection is supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called:
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called:
 
 ```csharp
 public class ChatHub : Hub
