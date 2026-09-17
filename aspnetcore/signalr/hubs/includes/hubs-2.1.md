@@ -40,7 +40,7 @@ SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and c
 
 Hub constructor service injection is supported. The framework automatically creates a DI scope for the hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-In the following example, <xref:Microsoft.EntityFrameworkCore.DbContext> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.i
+In the following example, <xref:Microsoft.EntityFrameworkCore.DbContext> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
 
 In `Startup.ConfigureServices` using SQL Server as the example database provider and a connection string from configuration:
 
