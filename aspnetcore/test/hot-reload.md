@@ -125,7 +125,7 @@ The following setting in `Properties/launchSettings.json` disables Hot Reload:
 
 In .NET 10 and later, the `WasmEnableHotReload` MSBuild property controls whether Hot Reload infrastructure is included in the build output for .NET WebAssembly apps, including both Blazor WebAssembly apps and non-Blazor WebAssembly Browser App (`wasmbrowser` template) projects. The property is set to `true` by default for the `Debug` configuration.
 
-Setting the property to `false` removes Hot Reload dependencies from the `dotnet build` output, which is useful when producing bundler-compatible artifacts, for example for use with webpack or Vite.
+Setting the property to `false` removes Hot Reload dependencies from the `dotnet build` output, which is useful when producing bundler-compatible artifacts, for example, for use with webpack or Vite.
 
 To disable Hot Reload for WebAssembly apps, set the property to `false` in the app's project file (`.csproj`):
 
