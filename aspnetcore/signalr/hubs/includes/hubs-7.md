@@ -258,7 +258,7 @@ In the following hub method, only `IDatabaseService` is resolved from DI:
 ```csharp
 public class ChatHub : Hub
 {
-    public Task SendMessage(string user, string message,
+    public async Task SendMessage(string user, string message,
         SomeCustomType type,
         [FromServices] IDatabaseService dbService)
     {
