@@ -216,7 +216,19 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 Treat SignalR hubs as [transient services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called:
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called.
+
+In the app's `Program` file using SQL Server as the example database provider and a connection string from configuration:
+
+```csharp
+var connectionString = 
+    builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+```
+
+An example hub class:
 
 ```csharp
 public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : Hub
@@ -251,7 +263,7 @@ public class ChatHub : Hub
 }
 ```
 
-To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)). Specify the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on the hub method parameters that should be resolved from dependency injection.
+To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)). Specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from dependency injection.
 
 In the app's `Program` file:
 
@@ -264,23 +276,24 @@ builder.Services.AddSignalR(options =>
 });
 ```
 
-In a hub method:
+In the following hub method, only `IDatabaseService` is resolved from DI:
 
 ```csharp
 public class ChatHub : Hub
 {
     public Task SendMessage(string user, string message,
+        SomeCustomType type,
         [FromServices] IDatabaseService dbService)
     {
-        ...
+        // ...
     }
 }
 ```
 
 > [!NOTE]
-> Method injection makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
+> Implicit parameter inference makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
 
-For database operations and other scoped services, adopting the factory pattern is preferred for long-lived connections:
+For database operations, adopting the factory pattern is preferred for long-lived connections:
 
 * If you call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
 * For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.

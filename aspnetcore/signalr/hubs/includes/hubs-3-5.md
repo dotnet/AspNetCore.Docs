@@ -50,7 +50,19 @@ Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/cor
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Hub constructor service injection is supported with the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called:
+Hub constructor service injection is supported with the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
+
+In `Startup.ConfigureServices` using SQL Server as the example database provider and a connection string from configuration:
+
+```csharp
+var connectionString = 
+    builder.Configuration.GetConnectionString("DefaultConnection");
+
+services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+```
+
+An example hub class:
 
 ```csharp
 public class ChatHub : Hub
@@ -85,7 +97,7 @@ When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the fram
 > [!NOTE]
 > Upgrade the app to target .NET 5 or later to use the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>.
 >
-> For scoped services, adopting the factory pattern is preferred for long-lived connections:
+> For database operations, adopting the factory pattern is preferred for long-lived connections:
 >
 > * If you call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
 > * For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
