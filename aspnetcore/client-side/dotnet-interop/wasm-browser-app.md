@@ -99,7 +99,7 @@ The following is an example project file (`.csproj`) after configuration. The `{
 :::moniker range=">= aspnetcore-10.0"
 
 > [!NOTE]
->In .NET 10 and later, the `WasmEnableHotReload` MSBuild property controls whether [Hot Reload](xref:test/hot-reload) infrastructure is included in the build output. The property is set to `true` by default for the `Debug` configuration. Set the property to `false` to produce bundler-compatible build output, for example for use with webpack or Vite, without Hot Reload dependencies when building the app with `dotnet build`:
+> In .NET 10 and later, the `WasmEnableHotReload` MSBuild property controls whether [Hot Reload](xref:test/hot-reload) infrastructure is included in the build output. The property is set to `true` by default for the `Debug` configuration. Set the property to `false` to produce bundler-compatible build output, for example for use with webpack or Vite, without Hot Reload dependencies when building the app with `dotnet build`:
 >
 > ```xml
 > <PropertyGroup>
