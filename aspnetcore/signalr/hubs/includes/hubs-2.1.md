@@ -38,7 +38,7 @@ You can specify a return type and parameters, including complex types and arrays
 
 SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor service injection is supported. The framework automatically creates a DI scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+Hub constructor service injection is supported. The framework automatically creates a DI scope for the hub method invocation. The framework disposes the context as soon as the invocation completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
 In the following example, <xref:Microsoft.EntityFrameworkCore.DbContext> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
 
