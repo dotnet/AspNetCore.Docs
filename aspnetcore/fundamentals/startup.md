@@ -58,6 +58,13 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
    When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
 
+1. <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A?displayProperty=nameWithType> of [hosted services](xref:fundamentals/host/hosted-services) starts background tasks. `StartAsync` is called *before*:
+
+   * The app's request processing pipeline is configured.
+   * The server is started and <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted%2A?displayProperty=nameWithType> is triggered.
+
+   For more information, see <xref:fundamentals/host/hosted-services#startasync>.
+
 1. The web server ([Kestrel](xref:fundamentals/servers/kestrel) by default) is started.
 
    The host looks inside its dependency container, locates the registered server implementation (usually Kestrel), and triggers its startup cycle. Kestrel then: 
@@ -70,7 +77,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
 1. Application started lifetime events are triggered.
 
-   The <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> service fires its <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStarted> token. Any background workers (<xref:Microsoft.Extensions.Hosting.BackgroundService> or [hosted services](xref:fundamentals/host/hosted-services)), database seeders, or custom event listeners that are wired up to wait for app startup are triggered to start processing.
+   The <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> service fires its <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStarted> token, which invokes callbacks registered on the token. Any background workers (<xref:Microsoft.Extensions.Hosting.BackgroundService>), database seeders, or custom event listeners that are wired up to wait for the token to fire are triggered to start processing.
 
 1. The main execution thread is blocked.
 
@@ -329,12 +336,12 @@ public class Program
 
 ## Startup filters
 
-While an app typically creates an explicit middleware execution pipeline in its `Program` file, a startup filter (<xref:Microsoft.AspNetCore.Hosting.IStartupFilter>) is useful for:
+While an app typically creates an explicit middleware execution pipeline, a startup filter (<xref:Microsoft.AspNetCore.Hosting.IStartupFilter>) is useful for:
 
-* Creating a shared library/NuGet package that automatically loads custom middleware without requiring the app to explicitly call the middleware's "`Use`" method. For example, the library's consumer isn't required to place an `app.UseImageProcessingMiddleware` call for an image-processing middleware in the app's `Program` file.
-* Guaranteeing a piece of middleware executes before or after other middleware, regardless of how a developer modifies the app's `Program` file.
+* Creating a shared library/NuGet package that automatically loads custom middleware without requiring the app to explicitly call the middleware's "`Use`" method. For example, the library's consumer isn't required to make an `app.UseImageProcessingMiddleware` call for an image-processing middleware in the app's request processing pipeline.
+* Guaranteeing a piece of middleware executes before or after other middleware, regardless of how a developer modifies the app's request processing pipeline.
 
-A startup filter implementation provides a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method that receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
+A startup filter implementation provides an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A?displayProperty=nameWithType> method that receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
 Each startup filter implementation can add one or more middlewares to the request pipeline. The filters are invoked in the order they're added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the pipeline.
 
@@ -398,7 +405,7 @@ Middleware execution order is set by the order of startup filter registrations:
   * To invoke afterward, position the service registration after the library is added.
 
 > [!NOTE]
-> You can't extend the ASP.NET Core app with startup filters when you override the `Startup.Configure` method. For more information, see [WebApplicationFactory Client returns NotFound for all requests with Overriding Configure method (`dotnet/aspnetcore` #45372)](https://github.com/dotnet/aspnetcore/issues/45372).
+> You can't extend the ASP.NET Core app with startup filters when you override the `Configure` delegate. For more information, see [WebApplicationFactory Client returns NotFound for all requests with Overriding Configure method (`dotnet/aspnetcore` #45372)](https://github.com/dotnet/aspnetcore/issues/45372).
 
 ## Add configuration at startup from an external assembly
 
@@ -417,7 +424,7 @@ For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.Conf
 
 ## Measure startup performance
 
-Apps using the <xref:System.Diagnostics.Tracing.EventSource> logging provider can measure the app's startup time while trying to optimize startup performance. For more information, see <xref:fundamentals/logging/index#eventsource>.
+<xref:Microsoft.Extensions.Logging.EventSource.EventSourceLoggerProvider> can measure the app's startup time while trying to optimize startup performance. For more information, see <xref:fundamentals/logging/index#eventsource>.
 
 :::moniker-end
 
