@@ -227,9 +227,9 @@ To explicitly specify which parameters are resolved from dependency injection in
 In the app's `Program` file:
 
 ```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+builder.Services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
 
-services.AddSignalR(options =>
+builder.Services.AddSignalR(options =>
 {
     options.DisableImplicitFromServicesParameters = true;
 });

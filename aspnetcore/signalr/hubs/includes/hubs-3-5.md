@@ -64,7 +64,7 @@ public class ChatHub : Hub
 
     public async Task SendMessage(string user, string message)
     {
-        using var context = await contextFactory.CreateDbContextAsync();
+        using var context = contextFactory.CreateDbContext();
 
         context.Messages.Add(new Message { User = user, Content = message });
         await context.SaveChangesAsync();
