@@ -51,9 +51,9 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 ## Hub services (dependency injection)
 
-Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor and method service injection is supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called:
+Hub constructor service injection is supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called:
 
 ```csharp
 public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : Hub
@@ -73,7 +73,7 @@ public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : H
 
 If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) is only injected into the specific method that requires it:
+Hub method service injection is also supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) only used for a quick write operation is injected into the specific method that requires it:
 
 ```csharp
 public class ChatHub : Hub
