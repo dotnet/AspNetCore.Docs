@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 07/29/2026
+ms.date: 09/17/2026
 uid: security/enforcing-ssl
 
 # customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
@@ -291,93 +291,67 @@ dotnet linux-dev-certs install
 
 For more information or to report issues, see the [linux-dev-certs GitHub repository](https://github.com/tmds/linux-dev-certs).
 
-#### SUSE Linux Enterprise Server (SLES Linux)
+### Trust the certificate on SUSE Linux Enterprise Server (SLES) and openSUSE
 
-If your configuration includes SUSE Linux Enterprise Server, see [GitHub dotnet/aspnetcore.docs issue #28292](https://github.com/dotnet/AspNetCore.Docs/issues/28292) - _Trust HTTPS certificate on SLES_.
-
-<!-- Instructions for development purposes only --
+`dotnet dev-certs https --trust` isn't officially supported on SLES. Use the following steps to export the development certificate and trust it in Chromium-based browsers, Firefox, and command-line tools. The steps were verified on SLES 15 SP7 and openSUSE Leap 15.6.
 
 > [!WARNING]
-> The following instructions are intended for development purposes only.
-> Do not use the certificates generated in these instructions for a production environment.
+> The following instructions are intended for development purposes only. Don't use the development certificate in a production environment.
 
-These instructions use Mozilla's *legacy* tool [certutil](https://firefox-source-docs.mozilla.org/security/nss/legacy/tools/nss_tools_certutil/index.html). Instructions may be updated as modern utilities and practices are discovered.
+> [!NOTE]
+> Adding the certificate to the system trust store (`/etc/pki/trust/anchors/` followed by `update-ca-certificates`) doesn't work for the development certificate. The certificate isn't a certificate authority (`CA:FALSE`), so `p11-kit` lists it as an anchor but doesn't include it in the generated bundles, and OpenSSL continues to reject it. Trust it per application as shown below instead.
 
-> [!CAUTION]
-> Improper use of TLS certificates could lead to spoofing.
+#### Install dependencies
 
-> [!TIP]
-> Instructions for valid production certificates can be found in the RHEL Documentation.
-> [RHEL8 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
-> [RHEL9 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
-> [RHEL9 Certificate System](https://access.redhat.com/documentation/en-us/red_hat_certificate_system/9)
-
-### Install Dependencies
+The `certutil` tool used to manage browser certificate stores is provided by the `mozilla-nss-tools` package:
 
 ```sh
-dnf install nss-tools
+sudo zypper install mozilla-nss-tools openssl
 ```
 
-### Export The ASP.NET Core Development Certificate
+#### Export the development certificate
 
-> [!IMPORTANT]
-> Replace `${ProjectDirectory}` with your projects directory.
-> Replace `${CertificateName}` with a name you'll be able to identify in the future.
+Replace `${CertificateDirectory}` with a directory outside your source repositories, for example `$HOME/.aspnet/https`:
 
 ```sh
-cd ${ProjectDirectory}
-dotnet dev-certs https -ep ${ProjectDirectory}/${CertificateName}.crt --format PEM
+mkdir -p ${CertificateDirectory}
+dotnet dev-certs https -ep ${CertificateDirectory}/aspnetcore.crt --format PEM --no-password
 ```
 
-> [!CAUTION]
-> If using git, add your certificate to your `${ProjectDirectory}/.gitignore` or `${ProjectDirectory}/.git/info/exclude`.
-> View the [git documentation](https://git-scm.com/docs/gitignore) for information about these files.
-
-> [!TIP]
-> You can move your exported certificate outside of your Git repository and replace the occurrences of `${ProjectDirectory}`, in the following instructions, with the new location.
-
-### Import The ASP.NET Core Development Certificate
-
-> [!IMPORTANT]
-> Replace `${UserProfile}` with the profile you intend to use.
-> Do not replace `$HOME`, it is the environment variable to your user directory.
-
-#### Chromium-based Browsers
+#### Trust the certificate in Chromium-based browsers (Microsoft Edge, Chrome, Chromium)
 
 ```sh
-certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n aspnetcore -i ${CertificateDirectory}/aspnetcore.crt
 ```
 
-#### Mozilla Firefox
+If `$HOME/.pki/nssdb` doesn't exist yet, create it first with `certutil -d sql:$HOME/.pki/nssdb -N --empty-password`. Restart the browser after importing.
+
+#### Trust the certificate in Firefox
+
+Replace `${UserProfile}` with the name of your Firefox profile directory (see `about:profiles` in Firefox):
 
 ```sh
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n aspnetcore -i ${CertificateDirectory}/aspnetcore.crt
 ```
 
-#### Create An Alias To Test With Curl
+#### Trust the certificate in curl and other OpenSSL clients
 
-> [!IMPORTANT]
->
-> Don't delete the exported certificate if you plan to test with curl.
-> You'll need to create an alias referencing it in your `$SHELL`'s profile
+Pass the exported certificate explicitly:
 
 ```sh
-alias curl="curl --cacert ${ProjectDirectory}/${CertificateName}.crt"
+curl --cacert ${CertificateDirectory}/aspnetcore.crt https://localhost:5001
 ```
 
-### Cleaning up the Development Certificates
+Alternatively, point `SSL_CERT_DIR` at a directory that contains the certificate as described in [OpenSSL trust](#openssl-trust).
+
+#### Remove the development certificate
 
 ```sh
-certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n ${CertificateName}
-rm ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.pki/nssdb -D -n aspnetcore
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n aspnetcore
+rm ${CertificateDirectory}/aspnetcore.crt
 dotnet dev-certs https --clean
 ```
-
->[!NOTE]
-> Remove the curl alias you created earlier
-
--->
 
 ## Troubleshoot certificate problems (certificate not trusted)
 
