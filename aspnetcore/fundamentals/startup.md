@@ -54,13 +54,13 @@ app.Run();
 
 When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app transitions to an active, running process:
 
-1. The middleware pipeline is built.
-
-   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
-
 1. Hosted services start.
 
    The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. These instances run sequentially in the order of their registrations before the web server, also an <xref:Microsoft.Extensions.Hosting.IHostedService>, starts. For more information, see <xref:fundamentals/host/hosted-services#startasync>.
+
+1. The middleware pipeline is built.
+
+   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
 
 1. The web server ([Kestrel](xref:fundamentals/servers/kestrel) by default) is started.
 

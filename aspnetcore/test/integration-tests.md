@@ -178,7 +178,9 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
 
 The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the ***[SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing***.
 
-When a test requires a custom service or middleware, you can use an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. For more information, see <xref:fundamentals/startup#startup-filters>.
+When a test requires a custom middleware, you can use an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. For more information, see <xref:fundamentals/startup#startup-filters>.
+
+When a test requires a custom service, see the [Inject mock services](#inject-mock-services) section.
 
 ## Customize the `WebApplicationFactory` with test configurations
 
