@@ -872,7 +872,7 @@ On Linux, the `Debug` provider log location is distribution-dependent and may be
 
 #### `ServerReady` event to measure startup time
 
-Apps using the <xref:System.Diagnostics.Tracing.EventSource> provider can measure the startup time to understand and optimize startup performance. The <!--keep-->[`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
+The ASP.NET Core hosting <xref:System.Diagnostics.Tracing.EventSource> emits the <!--keep-->[`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName>, which represents the point where the server is ready to respond to requests and can be used to measure startup time.
 
 :::moniker-end
 
