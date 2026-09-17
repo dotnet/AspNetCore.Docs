@@ -285,17 +285,18 @@ public class ChatHub : Hub
         SomeCustomType type,
         [FromServices] IDatabaseService dbService)
     {
-        // ...
+        await dbService.SaveMessageAsync(user, message, type);
+        await Clients.All.SendAsync("ReceiveMessage", user, message, type);
     }
 }
 ```
 
 > [!NOTE]
-> Implicit parameter inference makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
+> Implicit parameter inference makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods using implicit parameter inference isn't supported.
 
-For database operations, adopting the factory pattern is preferred for long-lived connections:
+For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
 
-* For overlapping operations within one invocation, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+* A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
 * For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
 
 Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.

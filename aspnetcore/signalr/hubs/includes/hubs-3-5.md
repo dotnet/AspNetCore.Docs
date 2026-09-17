@@ -96,9 +96,9 @@ When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the fram
 > [!NOTE]
 > Upgrade the app to target .NET 5 or later to use the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>.
 >
-> For database operations, adopting the factory pattern is preferred for long-lived connections:
+> For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
 >
-> * For overlapping operations within one invocation, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+> * A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
 > * For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
 
 :::moniker-end
