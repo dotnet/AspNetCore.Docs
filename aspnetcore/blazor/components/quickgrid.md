@@ -5,7 +5,7 @@ author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 09/16/2026
+ms.date: 09/17/2026
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -364,7 +364,28 @@ The `QuickGrid` component supports row click events through the <xref:Microsoft.
 }
 ```
 
-The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the row-clickable CSS class, providing clear visual feedback to users.
+The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the `row-clickable` CSS class, providing clear visual feedback to users. The class is applied to the `tr` element of every data row when <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> is set, and it's combined with any class returned by the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.RowClass%2A> parameter.
+
+##### Event propagation from interactive cell content
+
+The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A>. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](xref:blazor/components/event-handling#stop-event-propagation):
+
+```razor
+<QuickGrid Items="@people.AsQueryable()" 
+    OnRowClick="@((Person args) => HandleRowClick(args))">
+    <PropertyColumn Property="@(p => p.Name)" />
+    <TemplateColumn Title="Actions">
+        <button @onclick="@(() => Delete(context))" 
+            @onclick:stopPropagation="true">
+            Delete
+        </button>
+    </TemplateColumn>
+</QuickGrid>
+```
+
+##### Accessibility
+
+Rows aren't focusable and don't respond to keyboard input when <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> is set. Don't make row clicks the only way to reach an action. Provide a keyboard-accessible alternative in a cell, such as a button or a link, for any action that a row click performs.
 
 :::moniker-end
 
