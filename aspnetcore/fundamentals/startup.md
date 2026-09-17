@@ -424,7 +424,7 @@ For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.Conf
 
 ## Measure startup performance
 
-<xref:Microsoft.Extensions.Logging.EventSource.EventSourceLoggerProvider> can measure the app's startup time while trying to optimize startup performance. For more information, see <xref:fundamentals/logging/index#eventsource>.
+The ASP.NET Core hosting <xref:System.Diagnostics.Tracing.EventSource> emits the `ServerReady` event, which represents the point where the server is ready to respond to requests and can be used to measure startup time. For more information, see <xref:fundamentals/logging/index#eventsource>.
 
 :::moniker-end
 
