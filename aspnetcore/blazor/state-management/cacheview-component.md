@@ -112,16 +112,16 @@ Concurrent requests for the same key are coalesced so that only one request crea
 
 Some components contain per-request content that must not be baked into shared cached markup. Component authors can apply `CacheBehaviorAttribute` and `CacheConditionAttribute` to control how their component behaves inside a `CacheView`.
 
-The following table describes how the attributes work together:
+The following table describes how the attributes work together.
 
-| Attributes | Condition isn't satisfied | Condition is satisfied |
-|---|---|---|
-| No attributes | The component is included in cached output. | Not applicable. |
-| `[CacheBehavior(CacheBehavior.Rerender)]` | The component renders live on every request. | Not applicable. |
-| `[CacheBehavior(CacheBehavior.Throw)]` | The component throws an `InvalidOperationException`. | Not applicable. |
-| `[CacheCondition(...)]` | The component renders live on every request using the default `CacheBehavior.Rerender` behavior. | The component is included in cached output. |
-| `[CacheBehavior(CacheBehavior.Rerender)]` with `[CacheCondition(...)]` | The component renders live on every request. | The component is included in cached output. |
-| `[CacheBehavior(CacheBehavior.Throw)]` with `[CacheCondition(...)]` | The component throws an `InvalidOperationException`. | The component is included in cached output. |
+Attributes | Condition isn't satisfied | Condition is satisfied
+--- | --- | ---
+No attributes | The component is included in cached output. | Not applicable.
+`[CacheBehavior(CacheBehavior.Rerender)]` | The component renders live on every request. | Not applicable.
+`[CacheBehavior(CacheBehavior.Throw)]` | The component throws an `InvalidOperationException`. | Not applicable.
+`[CacheCondition(...)]` | The component renders live on every request using the default `CacheBehavior.Rerender` behavior. | The component is included in cached output.
+`[CacheBehavior(CacheBehavior.Rerender)]` with `[CacheCondition(...)]` | The component renders live on every request. | The component is included in cached output.
+`[CacheBehavior(CacheBehavior.Throw)]` with `[CacheCondition(...)]` | The component throws an `InvalidOperationException`. | The component is included in cached output.
 
 ```csharp
 [CacheBehavior(CacheBehavior.Rerender)]
@@ -189,15 +189,15 @@ Without `VaryByCookie`, this component runs on every request. The following cach
 
 `CacheConditionAttribute` checks vary-by dimensions, not individual query parameter, route parameter, header, or cookie names. For example, `[CacheCondition(CacheVaryBy.Cookie)]` is satisfied when `VaryByCookie` contains any value. It doesn't verify that `VaryByCookie` contains the correct cookie names. A component author must document every name that affects the component's output, and the consumer must include those exact names in the corresponding `CacheView` parameter. In the preceding example, specifying a cookie other than `price-selection` satisfies the declared condition but results in an unsafe cache key.
 
-`CacheVaryBy` is a flags enum in which each value represents a request dimension. Combine dimensions with the `|` operator:
+`CacheVaryBy` is a flags enum in which each value represents a request dimension. Combine dimensions with the logical OR operator (`|`):
 
 ```csharp
 [CacheCondition(CacheVaryBy.User | CacheVaryBy.Query)]
 ```
 
-In this example, both user variation and query string variation must be active for the condition to be satisfied.
+In this example, both user variation and query string variation must be active to satisfy the condition.
 
-Only one `CacheConditionAttribute` can be applied to a component. Conditions don't have an evaluation order.
+You can only apply one `CacheConditionAttribute` to a component. Conditions don't have an evaluation order.
 
 Built-in components use these policies:
 
