@@ -97,7 +97,7 @@ When shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is dete
 
 1. The Kestrel server is shut down, which disables new connections. The server waits for requests on existing connections to complete for as long as the shutdown timeout allows. The server sends the connection close header for further requests on existing connections.
 
-1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers are triggered, which allows the app to run logic after the app has shutdown.
+1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers are triggered, which allows the app to run logic after the app has shut down.
 
 1. Console execution gracefully exits with an exit code of 0.
 
@@ -131,7 +131,7 @@ public class Startup
 }
 ```
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A?displayName=nameWithType> on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A?displayProperty=nameWithType> on the host builder:
 
 ```csharp
 public class Program
@@ -211,7 +211,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 * **:::no-loc text="Add":::**:::no-loc text="RazorPages"::::
 
 ```csharp
-public class Startup()
+public class Startup
 {
     public Startup(IConfiguration configuration)
     {
@@ -236,9 +236,6 @@ public class Startup()
 ```
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices%2A>.
-
-> [!NOTE]
-> The preceding example adopts *primary constructors*, which are available for C# 12 or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
 ## The `Configure` method
 
@@ -341,7 +338,7 @@ A startup filter implementation provides a <xref:Microsoft.AspNetCore.Hosting.St
 
 Each startup filter implementation can add one or more middlewares to the request pipeline. The filters are invoked in the order they're added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the pipeline.
 
-The following example demonstrates how to register a middleware with <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. The `CustomResponseHeaderFilter` middleware appends a custom header (`X-Custom-Header`) to all of the app's responses before other middlewares execute.
+The following example demonstrates how to register a middleware with <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. The `CustomResponseHeaderFilter` startup filter uses middleware to append a custom header (`X-Custom-Header`) to all of the app's responses before other middlewares execute.
 
 `CustomResponseHeaderFilter.cs`:
 

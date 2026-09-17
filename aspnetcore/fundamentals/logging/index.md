@@ -866,7 +866,7 @@ On Linux, the `Debug` provider log location is distribution-dependent and may be
 
 ### `EventSource`
 
-The <xref:Microsoft.Extensions.Logging.EventSource> provider writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
+<xref:Microsoft.Extensions.Logging.EventSource.EventSourceLoggerProvider> writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
 
 :::moniker range=">= aspnetcore-7.0"
 
