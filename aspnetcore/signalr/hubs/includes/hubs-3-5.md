@@ -85,13 +85,13 @@ public class ChatHub : Hub
 }
 ```
 
-If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
 > [!NOTE]
 > Upgrade the app to target .NET 5 or later to use the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>.
