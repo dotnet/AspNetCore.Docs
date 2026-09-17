@@ -187,17 +187,23 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 Treat SignalR hubs as [transient services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called:
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor to save messages to a database when `SendMessage` is called:
 
 ```csharp
-public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : Hub
+public class ChatHub : Hub
 {
+    private readonly IDbContextFactory<ApplicationDbContext> contextFactory;
+
+    public ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory)
+    {
+        this.contextFactory = contextFactory;
+    }
+
     public async Task SendMessage(string user, string message)
     {
         using var context = await contextFactory.CreateDbContextAsync();
 
-        var msgEntity = new Message { User = user, Content = message };
-        context.Messages.Add(msgEntity);
+        context.Messages.Add(new Message { User = user, Content = message });
         await context.SaveChangesAsync();
 
         await Clients.All.SendAsync("ReceiveMessage", user, message);
