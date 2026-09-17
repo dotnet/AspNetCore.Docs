@@ -225,6 +225,7 @@ public class Startup(IConfiguration configuration)
 
         services.AddRazorPages();
     }
+}
 ```
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices%2A>.
@@ -316,7 +317,6 @@ public class Program
                 {
                     ...
                 });
-            });
         });
 }
 ```
@@ -342,6 +342,7 @@ The following example demonstrates how to register a middleware with <xref:Micro
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 public class CustomResponseHeaderFilter : IStartupFilter
 {
