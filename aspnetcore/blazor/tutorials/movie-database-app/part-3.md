@@ -850,7 +850,7 @@ If there's a concurrency exception and the movie entity no longer exists at the 
 -->
 
 > [!NOTE]
-> Later, you're instructed to make a minor modification the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of <xref:blazor/tutorials/movie-database-app/part-4>, which is the next article in this tutorial.
+> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of <xref:blazor/tutorials/movie-database-app/part-4>, which is the next article in this tutorial.
 
 :::moniker-end
 

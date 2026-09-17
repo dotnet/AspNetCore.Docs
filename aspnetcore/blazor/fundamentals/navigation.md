@@ -333,7 +333,7 @@ When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetC
 To provide Not Found content for global interactive rendering or for per-page/component interactive rendering *during prerendering*, use a Not Found page (Razor component).
 
 > [!NOTE]
-> The Blazor project template includes a `NotFound.razor` page and configures it as the router's `NotFoundPage`. This page renders when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called un a supported context, making it possible to handle missing routes with a consistent user experience.
+> The Blazor project template includes a `NotFound.razor` page and configures it as the router's `NotFoundPage`. This page renders when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called in a supported context, making it possible to handle missing routes with a consistent user experience.
 
 `Pages/NotFound.razor`:
 
