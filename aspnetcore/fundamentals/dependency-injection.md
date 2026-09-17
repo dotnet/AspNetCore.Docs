@@ -548,7 +548,7 @@ public class MyHub2 : Hub
 }
 ```
 
-For more information on DI with SignalR hubs, see <xref:signalr/hubs#hub-services-dependency-injection>.
+For more information on DI with SignalR hubs, see <xref:signalr/hubs#inject-services-into-a-hub>.
 
 Middleware supports keyed services in both the middleware's constructor and its `Invoke`/`InvokeAsync` method:
 
@@ -1116,7 +1116,7 @@ Service type | Lifetime
 ## Additional resources
 
 * <xref:blazor/fundamentals/dependency-injection>
-* [SignalR hub services](xref:signalr/hubs#hub-services-dependency-injection)
+* [Inject services into a SignalR hub](xref:signalr/hubs#inject-services-into-a-hub)
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>

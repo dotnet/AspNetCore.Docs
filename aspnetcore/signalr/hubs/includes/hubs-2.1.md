@@ -34,7 +34,7 @@ public class ChatHub : Hub
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
-## Hub services (dependency injection)
+## Inject services into a hub
 
 Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 

@@ -49,62 +49,6 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Hub services (dependency injection)
-
-Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
-
-Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called:
-
-```csharp
-public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : Hub
-{
-    public async Task SendMessage(string user, string message)
-    {
-        using var context = await contextFactory.CreateDbContextAsync();
-
-        var msgEntity = new Message { User = user, Content = message };
-        context.Messages.Add(msgEntity);
-        await context.SaveChangesAsync();
-
-        await Clients.All.SendAsync("ReceiveMessage", user, message);
-    }
-}
-```
-
-If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
-
-Hub method service injection is also supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) only used for a quick write operation is injected into the specific method that requires it:
-
-```csharp
-public class ChatHub : Hub
-{
-    public async Task SendMessage(string user, string message, ApplicationDbContext context)
-    {
-        context.Messages.Add(new Message { User = user, Content = message });
-        await context.SaveChangesAsync();
-
-        await Clients.All.SendAsync("ReceiveMessage", user, message);
-    }
-}
-```
-
-For database operations and other scoped services, adopting the factory pattern is preferred for long-lived connections:
-
-* If you keep a connection open or call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
-* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
-
-Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
-
-Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
-
-Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
-
-<!-- NOTE: The double-space at the end of the next line generates a bare return. -->
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
-<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
-
-For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
-
 ## Use 'Context' object properties and methods
 
 The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A> property that contains the following properties with information about the connection:
@@ -270,51 +214,88 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 ## Inject services into a hub
 
-Hub constructors can accept services from dependency injection as parameters, which can be stored in properties on the class for use in a hub method.
+Treat SignalR hubs as [transient services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-When you inject multiple services for different hub methods or as an alternative way of writing code, hub methods can also accept services from dependency injection. By default, hub method parameters are inspected and resolved from dependency injection if possible.
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called:
 
 ```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
-
-// ...
-
-public class ChatHub : Hub
+public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : Hub
 {
-    public Task SendMessage(string user, string message, IDatabaseService dbService)
+    public async Task SendMessage(string user, string message)
     {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+        using var context = await contextFactory.CreateDbContextAsync();
+
+        var msgEntity = new Message { User = user, Content = message };
+        context.Messages.Add(msgEntity);
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
     }
 }
 ```
 
-If implicit resolution of parameters from services isn't desired, you can disable the behavior with the [DisableImplicitFromServicesParameters](xref:signalr/configuration#configure-server-options) server option.
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property. Specify the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on the hub method parameters that should be resolved from dependency injection.
+Hub method service injection is also supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) only used for a quick write operation is injected into the specific method that requires it:
+
+```csharp
+public class ChatHub : Hub
+{
+    public async Task SendMessage(string user, string message, ApplicationDbContext context)
+    {
+        context.Messages.Add(new Message { User = user, Content = message });
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
+    }
+}
+```
+
+To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)). Specify the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on the hub method parameters that should be resolved from dependency injection.
+
+In the app's `Program` file:
 
 ```csharp
 services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+
 services.AddSignalR(options =>
 {
     options.DisableImplicitFromServicesParameters = true;
 });
+```
 
-// ...
+In a hub method:
 
+```csharp
 public class ChatHub : Hub
 {
     public Task SendMessage(string user, string message,
         [FromServices] IDatabaseService dbService)
     {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+        ...
     }
 }
 ```
 
 > [!NOTE]
-> This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in dependency injection configurations. If the application dependency injection container doesn't support this feature, injecting services into hub methods isn't supported.
+> Method injection makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
+
+For database operations and other scoped services, adopting the factory pattern is preferred for long-lived connections:
+
+* If you call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+
+Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
+
+Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
+
+Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
+
+<!-- NOTE: The double-space at the end of the next line generates a bare return. -->
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
+
+For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
 
 ### Keyed services support in dependency injection
 

@@ -42,11 +42,15 @@ public class ChatHub : Hub
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
-## Hub services (dependency injection)
+## Inject services into a hub
 
 Treat SignalR hubs as [transient dependency injection (DI) services](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient) with a new hub instance created for each invocation. As expected, injected singleton services outlive a hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor service injection is supported. In .NET 5 or later, a factory pattern is supported for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>. In the following example for apps that target .NET 5 or later, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+Hub constructor service injection is supported with the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called:
 
 ```csharp
 public class ChatHub : Hub
@@ -70,12 +74,25 @@ public class ChatHub : Hub
 }
 ```
 
-If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly (for example, the app targets .NET 3.1 or earlier), the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-For database operations (.NET 5 or later) and other scoped services, adopting the factory pattern is preferred for long-lived connections:
+:::moniker-end
 
-* If you keep a connection open or call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
-* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the framework automatically creates a DI scope for the context for each hub method invocation. The framework disposes the context as soon as the hub method completes execution. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+
+> [!NOTE]
+> Upgrade the app to target .NET 5 or later to use the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>.
+>
+> For scoped services, adopting the factory pattern is preferred for long-lived connections:
+>
+> * If you call multiple asynchronous methods that overlap, a direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+> * For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
 
