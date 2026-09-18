@@ -21,7 +21,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: dotnet/docs-tools/actions/ops-build-reporter@main
+      - uses: dotnet/docs-actions/ops-build-reporter@cdb3719bab6025f7621b04044094048f597b1ae0 # main
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           annotate_file_warnings: true
