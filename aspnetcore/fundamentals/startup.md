@@ -410,6 +410,8 @@ Middleware execution order is set by the order of startup filter registrations:
 
 An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Program` file or `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
+:::moniker range=">= aspnetcore-6.0"
+
 ## The `Startup` class (`ConfigureServices` and `Configure` methods)
 
 *Although supported in ASP.NET Core apps that target .NET 6 or later, using a `Startup` class isn't recommended. For more information, see <xref:migration/50-to-60#new-hosting-model>.*
@@ -418,6 +420,8 @@ For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.Conf
 
 * [Use a `Startup` class with the minimal hosting model](xref:migration/50-to-60#use-a-startup-class-with-the-new-minimal-hosting-model)
 * [The `Startup` class (.NET 5 version of this article)](?view=aspnetcore-5.0&preserve-view=true#the-startup-class)
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
