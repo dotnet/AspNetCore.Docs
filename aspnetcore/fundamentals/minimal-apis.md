@@ -134,19 +134,25 @@ For more information on customizing validation error responses with `IProblemDet
 
 ### Localizing validation messages
 
-Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is registered. Register the standard ASP.NET Core localization services and the validation pipeline in the `Program` file:
+Validation error messages and the display names of validated parameters and properties are localized by <xref:Microsoft.Extensions.Validation?displayProperty=fullName>.
+
+Register the standard ASP.NET Core localization services together with the validation pipeline in the `Program` file:
 
 ```csharp
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddValidation();
+```
+
+By default, lookup keys are resolved against the resources of the type that declares the validated member. Top-level parameters on Minimal API endpoints don't have a containing type, so use `ValidationOptions.LocalizerProvider` to resolve messages for them from a shared resource file:
+
+```csharp
 builder.Services.AddValidation(options =>
 {
     options.LocalizerProvider = (_, factory) => factory.Create(typeof(ValidationResources));
 });
 ```
 
-Set `ValidationOptions.LocalizerProvider` for Minimal APIs. Top-level parameters on Minimal API endpoints don't have a containing type, so the default per-type resource lookup has no type to key on&mdash;the provider supplies one explicitly. A shared resource file resolves messages and display names against one `.resx` file (for example, `Resources/ValidationResources.fr.resx`).
-
-For the full set of options, including loading messages from sources other than resource files, see <xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor>.
+For the message lookup key conventions, custom message formatting, and loading messages from sources other than resource files, see <xref:fundamentals/validation#localize-validation-messages>.
 
 :::moniker-end
 
