@@ -540,6 +540,8 @@ Unsubscribe from `OnValidationStateChanged` when the component is disposed.
 
 Use `IsValidationPending(field)` and `IsValidationFaulted(field)` for asynchronous field validation. The parameterless methods describe form-level `ValidateAsync` passes and don't aggregate the state of every field.
 
+These states also include asynchronous work performed by <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. An `AsyncValidationAttribute` applied to a property uses field state during field validation, including the default `pending` and `faulted` CSS classes. During `ValidateAsync`, asynchronous attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject> contribute to the form-level state reported by the parameterless methods.
+
 Live pending indicators require an interactive render mode. During a static SSR form post, server-side validation completes before the response is rendered.
 
 :::moniker-end
