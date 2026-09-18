@@ -214,7 +214,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 * **:::no-loc text="Add":::**:::no-loc text="DbContext":::
 * **:::no-loc text="Add":::**:::no-loc text="DefaultIdentity":::
 * **:::no-loc text="Add":::**:::no-loc text="EntityFrameworkStores":::
-* **:::no-loc text="Add":::**:::no-loc text="RazorPages"::::
+* **:::no-loc text="Add":::**:::no-loc text="RazorPages":::
 
 ```csharp
 public class Startup
