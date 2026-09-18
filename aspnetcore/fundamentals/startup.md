@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how ASP.NET Core apps start up and how to configure services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/17/2026
+ms.date: 09/18/2026
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
@@ -56,7 +56,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
 1. Hosted services start.
 
-   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. These instances run sequentially in the order of their registrations before the web server, also an <xref:Microsoft.Extensions.Hosting.IHostedService>, starts. For more information, see <xref:fundamentals/host/hosted-services#startasync>.
+   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. Unless the app opts into concurrent hosted service startup (.NET 8 or later), hosted services start sequentially in the order of their registrations. For more information, see <xref:fundamentals/host/hosted-services>.
 
 1. The middleware pipeline is built.
 
@@ -74,11 +74,11 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
 1. Application started lifetime events are triggered.
 
-   The <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> service fires its <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStarted> token, which invokes callbacks registered on the token. Any background workers (<xref:Microsoft.Extensions.Hosting.BackgroundService>), database seeders, or custom event listeners that are wired up to wait for the token to fire are triggered to start processing.
+   The <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> service fires its <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStarted> token, which invokes callbacks registered on the token. Any callbacks, database seeders, or other custom event listeners that are wired up to wait for the token to fire are triggered to start processing.
 
-1. The main execution thread is blocked.
+1. The main execution thread is blocked while the app runs.
 
-   <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> (`app.Run()`) is intentionally *synchronous* to the main thread. It creates an active wait loop using an internal <xref:System.Threading.Tasks.TaskCompletionSource> or synchronization context. It pauses code execution, preventing the `Program` file from ending, which would otherwise terminate the app.
+   <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> (`app.Run()`) synchronously waits until shutdown.
 
 1. The app transitions to listening for requests.
 
