@@ -10,7 +10,7 @@ uid: blazor/forms/validation-client-side
 ---
 # ASP.NET Core Blazor client-side form validation in static SSR
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-ga-yet.md)]
 
 This article explains how Blazor adds live client-side validation to forms that use [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr). The browser validates individual fields as the user edits them and validates the full form before it's submitted. If the client-side check passes, the form is submitted and validated again on the server.
 
