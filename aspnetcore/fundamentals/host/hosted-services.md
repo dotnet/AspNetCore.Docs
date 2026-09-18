@@ -56,7 +56,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 
 `StartAsync` should be limited to short running tasks because hosted services are run sequentially, and no further services are started until `StartAsync` runs to completion.
 
-Hosted service instances start in the order that they're registered in the `Program` file unless the app opts into concurrent startup by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStartConcurrently> to `true`:
+Hosted service instances start in the order that they're registered in the dependency injection container unless the app opts into concurrent startup by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStartConcurrently> to `true`:
 
 ```csharp
 builder.Services.Configure<HostOptions>(options =>
@@ -85,7 +85,7 @@ To extend the default 30 second shutdown timeout, set:
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
-Hosted service instances stop in the reverse order that they're registered in the `Program` file unless the app opts into concurrent shutdown behavior by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStopConcurrently> to `true`:
+Hosted service instances stop in the reverse order that they're registered in the dependency injection container unless the app opts into concurrent shutdown behavior by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStopConcurrently> to `true`:
 
 ```csharp
 builder.Services.Configure<HostOptions>(options =>
