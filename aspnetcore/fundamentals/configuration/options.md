@@ -5,7 +5,7 @@ author: tdykstra
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 03/18/2026
+ms.date: 09/17/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -1535,6 +1535,82 @@ builder.Services.AddOptions<KeyOptions>()
     .ValidateDataAnnotations()
     .ValidateOnStart();
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Asynchronous options validation
+
+In ASP.NET Core 11.0 or later, options validation supports asynchronous validation during app startup. Use asynchronous validation for rules that require I/O, such as checking whether a configured endpoint or resource is available. Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> so asynchronous validators run during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A> before the app starts.
+
+Register an asynchronous validation delegate with an overload of <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Validate%2A> that returns `Task<bool>`:
+
+```csharp
+builder.Services.AddOptions<RemoteServiceOptions>()
+    .Bind(builder.Configuration.GetSection(RemoteServiceOptions.SectionName))
+    .Validate<IEndpointHealthCheck>(
+        async (options, healthCheck, cancellationToken) =>
+            await healthCheck.IsAvailableAsync(options.Endpoint, cancellationToken),
+        "The configured endpoint isn't available.")
+    .ValidateOnStart();
+```
+
+The `Validate` overloads for asynchronous validation support up to five service dependencies from dependency injection.
+
+In .NET 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements asynchronous options validation. When `ValidateDataAnnotations` is used with `ValidateOnStart`, data annotations validation participates in startup validation and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>.
+
+To move asynchronous validation logic into a dedicated class, implement <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601>. `IAsyncValidateOptions<TOptions>` inherits from <xref:Microsoft.Extensions.Options.IValidateOptions%601>, so implement the synchronous <xref:Microsoft.Extensions.Options.IValidateOptions%601.Validate%2A> method as a fail-fast result for matching options:
+
+```csharp
+public sealed class RemoteServiceOptionsValidator(
+    IEndpointHealthCheck healthCheck) : IAsyncValidateOptions<RemoteServiceOptions>
+{
+    public ValidateOptionsResult Validate(
+        string? name, RemoteServiceOptions options) =>
+        ValidateOptionsResult.Fail(
+            $"Asynchronous validation is required for {nameof(RemoteServiceOptions)}.");
+
+    public async Task<ValidateOptionsResult> ValidateAsync(
+        string? name,
+        RemoteServiceOptions options,
+        CancellationToken cancellationToken = default)
+    {
+        return await healthCheck.IsAvailableAsync(options.Endpoint, cancellationToken)
+            ? ValidateOptionsResult.Success
+            : ValidateOptionsResult.Fail(
+                "The configured endpoint isn't available.");
+    }
+}
+```
+
+Register the validator as an `IValidateOptions<TOptions>` service, and use `ValidateOnStart` for the options:
+
+```csharp
+builder.Services.AddOptions<RemoteServiceOptions>()
+    .Bind(builder.Configuration.GetSection(RemoteServiceOptions.SectionName))
+    .ValidateOnStart();
+
+builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
+    RemoteServiceOptionsValidator>();
+```
+
+The <xref:Microsoft.Extensions.Options.OptionsValidatorAttribute> source generator emits a `ValidateAsync` method when the partial validator type implements `IAsyncValidateOptions<TOptions>`:
+
+```csharp
+[OptionsValidator]
+public partial class ValidateRemoteServiceOptions :
+    IAsyncValidateOptions<RemoteServiceOptions>
+{
+}
+```
+
+Generated asynchronous validators also call <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> when an options type implements <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>.
+
+The options infrastructure uses <xref:Microsoft.Extensions.Options.IAsyncStartupValidator> to run asynchronous startup validation. For custom host-level startup validation outside of options, implement `IAsyncStartupValidator`.
+
+> [!NOTE]
+> Asynchronous options validation runs during app startup. `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads with `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators.
 
 :::moniker-end
 
