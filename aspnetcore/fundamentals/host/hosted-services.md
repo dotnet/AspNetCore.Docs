@@ -59,7 +59,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 Hosted service instances start in the order that they're registered in the `Program` file unless the app opts into concurrent startup by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStartConcurrently> to `true`:
 
 ```csharp
-builder.Host.ConfigureHostOptions(options =>
+builder.Services.Configure<HostOptions>(options =>
 {
     options.ServicesStartConcurrently = true;
 });
@@ -88,7 +88,7 @@ The hosted service is activated once at app startup and gracefully shut down at 
 Hosted service instances stop in the reverse order that they're registered in the `Program` file unless the app opts into concurrent shutdown behavior by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStopConcurrently> to `true`:
 
 ```csharp
-builder.Host.ConfigureHostOptions(options =>
+builder.Services.Configure<HostOptions>(options =>
 {
     options.ServicesStopConcurrently = true;
 });

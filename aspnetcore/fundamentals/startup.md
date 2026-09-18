@@ -56,7 +56,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
 1. Hosted services start.
 
-   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. Unless the app opts into concurrent hosted service startup (.NET 8 or later), hosted services start sequentially in the order of their registrations. For more information, see <xref:fundamentals/host/hosted-services>.
+   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. Unless the app opts into concurrent hosted service startup (.NET 8 or later), hosted services start sequentially in the order of their DI container registrations. For more information, see <xref:fundamentals/host/hosted-services>.
 
 1. The middleware pipeline is built.
 
@@ -80,7 +80,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
    <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> (`app.Run()`) synchronously waits until shutdown.
 
-1. The app transitions to listening for requests.
+1. The app is ready to process requests.
 
    At this point, the command shell logs hosting diagnostics:
 
@@ -100,6 +100,8 @@ When shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is dete
 1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping> tokens are triggered, which allows the app to run logic before the shutdown process begins.
 
 1. The Kestrel server is shut down, which disables new connections. The server waits for requests on existing connections to complete for as long as the shutdown timeout allows. The server sends the connection close header for further requests on existing connections.
+
+1. The host shuts down registered hosted services. Unless the app opts into stopping hosted services concurrently (.NET 8 or later), hosted services stop sequentially in the reverse order of their DI container registrations. For more information, see <xref:fundamentals/host/hosted-services>.
 
 1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers are triggered, which allows the app to run logic after the app has shut down.
 
