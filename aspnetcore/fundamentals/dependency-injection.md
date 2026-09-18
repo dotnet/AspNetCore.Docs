@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: tdykstra
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: tdykstra
-ms.date: 03/06/2026
+ms.date: 09/16/2026
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -86,9 +86,9 @@ public class IndexModel : PageModel
 
 The consuming class creates and directly depends on the `MyDependency` class. Taking a direct dependency, such as in the previous example, is problematic and should be avoided for the following reasons:
 
-* To replace `MyDependency` with a different implementation, the consuming class must be modified.
+* To replace `MyDependency` with a different implementation while retaining `MyDependency` in the app, the consuming class must be modified. This situation is made worse when `MyDependency` is also a direct dependency of several other classes: All of the direct dependencies on `MyDependency` in the app must be changed.
 * If `MyDependency` has dependencies, they must also be configured by the consuming class. In a large project with multiple classes depending on `MyDependency`, the configuration code becomes scattered around the app.
-* The implementation is difficult to [unit test](/dotnet/core/testing/#unit-tests).
+* The consuming class is difficult to [unit test](/dotnet/core/testing/#unit-tests) because it directly creates `MyDependency`, making it difficult to substitute a custom service for testing, such as an in-memory database or a different database provider.
 
 DI addresses these problems through:
 
