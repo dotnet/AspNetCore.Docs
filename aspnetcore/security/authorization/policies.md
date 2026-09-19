@@ -96,11 +96,12 @@ The authorization middleware combines the authorization metadata for an endpoint
 | Authorization metadata | Policy or behavior |
 | --- | --- |
 | None | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> is used, if it's configured. By default, the fallback policy is `null`, so authorization isn't required. |
-| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> is used. By default, the default policy requires an authenticated user. |
+| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> is used unless the endpoint also has an explicit `AuthorizationPolicy` instance. By default, the default policy requires an authenticated user. |
 | `[Authorize(Policy = "{POLICY NAME}")]` or `RequireAuthorization("{POLICY NAME}")` | The named policy is used. |
-| An authorization declaration that specifies roles or a policy instance | A policy is built from the specified authorization data. |
-| `[Authorize(AuthenticationSchemes = "{SCHEME}")]` without a policy name or roles | The default policy is combined with the specified authentication scheme. |
-| Multiple `[Authorize]` attributes or policy-selecting `RequireAuthorization(...)` calls | The selected policies and authorization data are combined. All requirements in the combined policy must succeed. The fallback policy isn't used. |
+| `[Authorize(Roles = "{ROLES}")]` | A policy is built with the specified roles. The default policy isn't added for this authorization declaration. |
+| `RequireAuthorization(policy)` with an `AuthorizationPolicy` instance | The explicit policy is used. If explicit policy metadata is present, bare authorization data and authentication-scheme-only authorization data don't add the default policy. |
+| `[Authorize(AuthenticationSchemes = "{SCHEME}")]` without a policy name or roles | The specified authentication scheme is used. The default policy is also used unless the endpoint has an explicit `AuthorizationPolicy` instance. |
+| Multiple `[Authorize]` attributes or policy-selecting `RequireAuthorization(...)` calls | The selected named policies, roles, authentication schemes, and explicit policies are combined. Bare authorization data adds the default policy only when no explicit `AuthorizationPolicy` instance is present. All requirements in the combined policy must succeed. The fallback policy isn't used. |
 | `[AllowAnonymous]` or `AllowAnonymous()` | The authorization middleware doesn't enforce an authorization failure for the endpoint. Authentication can still run and populate <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>. |
 
 The fallback policy isn't combined with a named or default policy. For the declarations shown in the preceding table, it's selected only when no authorization policy is produced from the endpoint's authorization metadata. For example, `[Authorize]` uses the default policy instead of the fallback policy, and `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy instead of the fallback policy.
