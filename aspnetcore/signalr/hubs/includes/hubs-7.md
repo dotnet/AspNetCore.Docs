@@ -1,4 +1,3 @@
-
 :::moniker range="= aspnetcore-7.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
@@ -22,13 +21,6 @@ To configure SignalR endpoints, call <xref:Microsoft.AspNetCore.Builder.HubEndpo
 Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.SignalR.Hub>. Add `public` methods to the class to make them callable from clients:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
-
-> [!NOTE]
-> Hubs are [transient](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient):
->
-> * Don't store state in a property of the hub class. Each hub method call is executed on a new hub instance.
-> * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application use an [`IHubContext`](xref:signalr/hubcontext).
-> * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, a method such as `Clients.All.SendAsync(...)` can fail if it's called without `await` and the hub method completes before `SendAsync` finishes.
 
 ## The Context object
 
@@ -193,51 +185,109 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 ## Inject services into a hub
 
-Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method.
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-When injecting multiple services for different hub methods or as an alternative way of writing code, hub methods can also accept services from DI.
-By default, hub method parameters are inspected and resolved from DI if possible.
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor to save messages to a database when `SendMessage` is called.
+
+In the app's `Program` file using SQL Server as the example database provider and a connection string from configuration:
 
 ```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+var connectionString = 
+    builder.Configuration.GetConnectionString("DefaultConnection");
 
-// ...
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+```
 
+An example hub class:
+
+```csharp
 public class ChatHub : Hub
 {
-    public Task SendMessage(string user, string message, IDatabaseService dbService)
+    private readonly IDbContextFactory<ApplicationDbContext> contextFactory;
+
+    public ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory)
     {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+        this.contextFactory = contextFactory;
+    }
+
+    public async Task SendMessage(string user, string message)
+    {
+        using var context = await contextFactory.CreateDbContextAsync();
+
+        context.Messages.Add(new Message { User = user, Content = message });
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
     }
 }
 ```
 
-If implicit resolution of parameters from services isn't desired, disable it with [DisableImplicitFromServicesParameters](xref:signalr/configuration#configure-server-options).
-To explicitly specify which parameters are resolved from DI in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) option and use the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on the hub method parameters that should be resolved from DI.
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+
+Hub method service injection is also supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) only used for a quick write operation is injected into the specific method that requires it:
 
 ```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
-services.AddSignalR(options =>
+public class ChatHub : Hub
+{
+    public async Task SendMessage(string user, string message, 
+        ApplicationDbContext context)
+    {
+        context.Messages.Add(new Message { User = user, Content = message });
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
+    }
+}
+```
+
+To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)). Specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from dependency injection.
+
+In the app's `Program` file:
+
+```csharp
+builder.Services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+
+builder.Services.AddSignalR(options =>
 {
     options.DisableImplicitFromServicesParameters = true;
 });
+```
 
-// ...
+In the following hub method, only `IDatabaseService` is resolved from DI:
 
+```csharp
 public class ChatHub : Hub
 {
-    public Task SendMessage(string user, string message,
+    public async Task SendMessage(string user, string message,
+        SomeCustomType type,
         [FromServices] IDatabaseService dbService)
     {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+        await dbService.SaveMessageAsync(user, message, type);
+        await Clients.All.SendAsync("ReceiveMessage", user, message, type);
     }
 }
 ```
 
 > [!NOTE]
-> This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented by DI implementations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
+> Implicit parameter inference makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods using implicit parameter inference isn't supported.
+
+For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
+
+* A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+
+Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
+
+Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
+
+Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
+
+<!-- NOTE: The double-space at the end of the next line generates a bare return. -->
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
+
+For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
 
 ## Handle events for a connection
 
