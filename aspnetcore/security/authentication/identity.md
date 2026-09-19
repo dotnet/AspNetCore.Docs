@@ -5,7 +5,7 @@ author: wadepickett
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 11/10/2025
+ms.date: 09/18/2026
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -19,7 +19,7 @@ ASP.NET Core Identity:
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
 
-For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+For information on how to require authentication for all app users, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
 The [Identity source code](https://github.com/dotnet/AspNetCore/tree/main/src/Identity) is available on GitHub. [Scaffold Identity](xref:security/authentication/scaffold-identity) and view the generated files to review the template interaction with Identity.
 

@@ -1,10 +1,11 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to create an ASP.NET Core web app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: tdykstra
 ms.custom: sfi-image-nochange
-ms.date: 05/11/2026
+ms.date: 09/18/2026
 ms.sfi.ropc: t
 uid: security/authorization/secure-data
 
@@ -119,23 +120,21 @@ Set the fallback authorization policy to require users to be authenticated:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet2&highlight=15-99)]
 
-The preceding highlighted code sets the [fallback authorization policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authorization policy requires ***all*** users to be authenticated, except for Razor Pages, controllers, or action methods with an authorization attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authorization attribute rather than the fallback authorization policy.
+The preceding highlighted code sets the fallback authorization policy to require an authenticated user. The fallback policy is selected when the authorization middleware can't build a policy from authorization metadata. An endpoint with `[Authorize]` uses the default policy, and an endpoint with `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy. Apply `[AllowAnonymous]` to an endpoint that is intentionally public.
 
 The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method adds the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> class to the current instance, which enforces that the current user is authenticated.
 
-The fallback authorization policy applies to all requests that don't explicitly specify an authorization policy. For requests served by endpoint routing, the policy applies to any endpoint that doesn't specify an authorization attribute. For requests served by other middleware after the authorization middleware, such as [static files](xref:fundamentals/static-files), the policy applies to all requests.
+The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
 
 Setting the fallback authorization policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authorization required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> class also contains the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> property. The `DefaultPolicy` is the policy used with the `[Authorize]` attribute when no policy is specified. `[Authorize]` doesn't contain a named policy, unlike `[Authorize(PolicyName="MyPolicy")]`.
-
-For more information on policies, see <xref:security/authorization/policies>.
+For a comparison of named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 As an alternate approach, MVC controllers and Razor Pages can add an authorization filter to require all users be authenticated:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet3&highlight=21-27)]
 
-The preceding code uses an authorization filter, setting the fallback policy uses endpoint routing. Setting the fallback policy is the preferred way to require all users be authenticated.
+The preceding code uses an authorization filter. Setting a fallback policy is the preferred way to require all users to be authenticated.
 
 Add the [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute to the `Index` and `Privacy` pages so anonymous users can get information about the site before they register:
 
@@ -483,29 +482,25 @@ Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> to add R
 
 ### Require authenticated users
 
-Set the fallback authentication policy to require users to be authenticated:
+Set the fallback authorization policy to require users to be authenticated:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-The preceding highlighted code sets the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authentication policy requires ***all*** users to be authenticated, except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
+The preceding highlighted code sets the fallback authorization policy to require an authenticated user. The fallback policy is selected when the authorization middleware can't build a policy from authorization metadata. An endpoint with `[Authorize]` uses the default policy, and an endpoint with `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy. Apply `[AllowAnonymous]` to an endpoint that is intentionally public.
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
-The fallback authentication policy:
+The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
 
-* Is applied to all requests that do not explicitly specify an authentication policy. For requests served by endpoint routing, this would include any endpoint that does not specify an authorization attribute. For requests served by other middleware after the authorization middleware, such as [static files](xref:fundamentals/static-files), this would apply the policy to all requests.
+Setting the fallback authorization policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authorization required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
-Setting the fallback authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
-
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> class also contains <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType>. The `DefaultPolicy` is the policy used with the `[Authorize]` attribute when no policy is specified. `[Authorize]` doesn't contain a named policy, unlike `[Authorize(PolicyName="MyPolicy")]`.
-
-For more information on policies, see <xref:security/authorization/policies>.
+For a comparison of named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 An alternative way for MVC controllers and Razor Pages to require all users be authenticated is adding an authorization filter:
 
 [!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=14-99)]
 
-The preceding code uses an authorization filter, setting the fallback policy uses endpoint routing. Setting the fallback policy is the preferred way to require all users be authenticated.
+The preceding code uses an authorization filter. Setting a fallback policy is the preferred way to require all users to be authenticated.
 
 Add [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to the `Index` and `Privacy` pages so anonymous users can get information about the site before they register:
 

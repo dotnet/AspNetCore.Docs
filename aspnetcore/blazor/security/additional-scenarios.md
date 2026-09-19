@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/26/2026
+ms.date: 09/18/2026
 uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core Blazor additional server-side security scenarios
@@ -1384,7 +1384,7 @@ Server-side Blazor apps (Blazor Web Apps, Blazor Server apps) usually adopt **ei
 
 The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)).
 
-Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>, which only applies when there are no authorization attributes or explicit policies set for a given resource:
+Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>. The fallback policy is selected when no policy is produced from authorization metadata. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 :::moniker range=">= aspnetcore-6.0"
 
