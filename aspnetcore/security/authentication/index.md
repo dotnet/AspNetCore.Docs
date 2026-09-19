@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: tdykstra
-ms.date: 02/26/2026
+ms.date: 09/18/2026
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -17,6 +17,8 @@ Authentication is the process of determining a user's identity. [Authorization](
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
+
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
 
 The registered authentication handlers and their configuration options are called "schemes".
 
@@ -161,7 +163,7 @@ Finbuckle.MultiTenant:
 * <xref:security/authorization/authorize-with-a-specific-scheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
+* [Globally require authenticated users](xref:security/authorization/policies#require-global-user-authentication)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -174,6 +176,8 @@ Authentication is the process of determining a user's identity. [Authorization](
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
+
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
 
 The registered authentication handlers and their configuration options are called "schemes".
 
@@ -301,7 +305,7 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 * <xref:security/authorization/authorize-with-a-specific-scheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
+* [Globally require authenticated users](xref:security/authorization/policies#require-global-user-authentication)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -314,6 +318,8 @@ Authentication is the process of determining a user's identity. [Authorization](
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
+
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
 
 The registered authentication handlers and their configuration options are called "schemes".
 
@@ -439,7 +445,7 @@ ASP.NET Core framework doesn't have a built-in solution for multi-tenant authent
 * <xref:security/authorization/authorize-with-a-specific-scheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
+* [Globally require authenticated users](xref:security/authorization/policies#require-global-user-authentication)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end

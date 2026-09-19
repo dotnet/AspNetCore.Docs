@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core MVC apps.
 ms.author: tdykstra
-ms.date: 03/05/2026
+ms.date: 09/18/2026
 uid: mvc/security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core MVC
@@ -75,7 +75,7 @@ Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.A
 > * Any authorization requirements from `[Authorize]` attributes on the same controller or action methods on the controller are ignored.
 > * Authentication middleware isn't short-circuited but doesn't need to succeed.
 
-For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+For information on how to require authentication for all app users, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
 ## Additional resources
 
