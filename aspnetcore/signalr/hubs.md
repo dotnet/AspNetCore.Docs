@@ -398,7 +398,14 @@ public class ChatHub : Hub
 }
 ```
 
-The method runs only for hubs that enable authentication refresh. A refresh doesn't change `Context.UserIdentifier` or reroute messages sent with `Clients.User`. For the full feature, including how to enable it and how clients request a refresh, see <xref:signalr/authn-and-authz#authentication-refresh>.
+The method runs only for hubs that enable authentication refresh. A refresh doesn't change `Context.UserIdentifier` or reroute messages sent with `Clients.User`.
+
+Two behaviors differ from the other connection events:
+
+* [Client results](xref:signalr/hubs#request-client-results) aren't supported from this method, the same as in `OnConnectedAsync`. Send messages with `SendAsync` instead of requesting a result with `InvokeAsync`.
+* An exception thrown by this method is logged and then discarded. The connection stays open, the client isn't notified, and the refresh isn't rejected.
+
+For the full feature, including how to enable it and how clients request a refresh, see <xref:signalr/authn-and-authz#authentication-refresh>.
 
 :::moniker-end
 
