@@ -5,7 +5,7 @@ author: damienbod
 description: JWT bearer tokens protect ASP.NET Core APIs from unauthorized calls. See how to add AddJwtBearer, set validation parameters, and support multiple issuer schemes.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 08/23/2026
+ms.date: 09/18/2026
 ms.reviewer: tdykstra
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
@@ -179,18 +179,20 @@ APIs often need to accommodate access tokens from various issuers. You can suppo
 * **Separate APIs**: Create distinct APIs with dedicated authentication schemes for each issuer.
 * [AddPolicyScheme](xref:security/authentication/policyschemes): Define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties, such as the issuer or claims. This approach offers greater flexibility within a single API.
 
-### Forcing the bearer authentication
+### Require authentication for all API endpoints
 
-Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> to require authentication for all requests, including requests to endpoints without an `[Authorize]` attribute. Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> to configure the policy for endpoints with the `[Authorize]` attribute; it defaults to requiring authenticated users. For more information, see [require authenticated users documentation](/aspnet/core/security/authorization/secure-data#require-authenticated-users).
+Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> to require an authenticated user for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata:
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
-	.RequireAuthenticatedUser()
-	.Build();
+    .RequireAuthenticatedUser()
+    .Build();
 
 builder.Services.AddAuthorizationBuilder()
-	.SetFallbackPolicy(requireAuthPolicy);
+    .SetFallbackPolicy(requireAuthPolicy);
 ```
+
+The default policy applies to `[Authorize]` without a policy name and requires an authenticated user unless the app changes it. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 You can also use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to force authentication. If you use multiple schemes, set the bearer scheme as the default authentication scheme or specify it by using `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
 
