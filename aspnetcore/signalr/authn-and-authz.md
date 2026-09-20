@@ -148,7 +148,10 @@ The endpoint behaves as follows:
 * The client identifies its connection with the connection token in the `id` query string, the same way that send, poll, and delete requests do.
 * The request is authenticated by the app's normal authentication and authorization middleware before it reaches the endpoint, and the hub's authorization metadata applies to it.
 * A successful refresh returns a 200 status code with a JSON body. When the refreshed ticket has an expiration, the body contains a `tokenLifetimeSeconds` property that the client uses to reschedule automatic refreshes.
-* A rejected or invalid refresh returns a JSON body with an `error` property. A refresh rejected by the connection's identity check or by `OnAuthenticationRefresh` returns a 403 status code. A request for an unknown connection returns a 404 status code, and a request that omits the connection token returns a 400 status code.
+* A rejected or invalid refresh returns a JSON body with an `error` property. The status code indicates the reason:
+  * 403: The connection's identity check or `OnAuthenticationRefresh` rejected the refresh.
+  * 404: The connection token doesn't match a known connection.
+  * 400: The request omits the connection token, the connection negotiated protocol version 0, or either the connection's current user or the refreshed principal is a Windows identity.
 
 Include the `/refresh` route when configuring a reverse proxy, firewall, or web application firewall in front of the app, and when writing route-scoped authorization or CORS policies. A proxy that forwards `/negotiate` but blocks `/refresh` causes every refresh attempt to fail, and connections close when their tokens expire if `CloseOnAuthenticationExpiration` is enabled.
 
