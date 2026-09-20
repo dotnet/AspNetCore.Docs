@@ -347,7 +347,7 @@ In the preceding code:
 
 ## Refresh authentication without reconnecting
 
-When the server enables authentication refresh, a client can replace the credentials on an open connection instead of letting the connection close when its access token expires. Call `withAuthenticationRefresh` to schedule an automatic refresh ahead of the expiration that the server reports:
+In .NET 11 and later, a client can replace the credentials on an open connection instead of letting the connection close when its access token expires. The server must enable authentication refresh for the hub. Call `withAuthenticationRefresh` to schedule an automatic refresh ahead of the expiration that the server reports:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
