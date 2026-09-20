@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/14/2026
+ms.date: 09/20/2026
 uid: signalr/authn-and-authz
 ---
 
@@ -140,6 +140,18 @@ app.MapHub<ChatHub>("/chat", options =>
 
 When authentication refresh is enabled and the authentication ticket has an expiration, the negotiate response reports the remaining token lifetime so the client can schedule refreshes.
 
+Setting `EnableAuthenticationRefresh` to `true` adds a `/refresh` endpoint to the app's route table, alongside the hub's existing `/negotiate` endpoint. For a hub mapped at `/chat`, the endpoint is `/chat/refresh`. The endpoint isn't registered when `EnableAuthenticationRefresh` is `false`, so it only appears in the route table for hubs that opt in.
+
+The endpoint behaves as follows:
+
+* It accepts `POST` only. Any other HTTP method returns a 405 status code.
+* The client identifies its connection with the connection token in the `id` query string, the same way that send, poll, and delete requests do.
+* The request is authenticated by the app's normal authentication and authorization middleware before it reaches the endpoint, and the hub's authorization metadata applies to it.
+* A successful refresh returns a 200 status code with a JSON body. When the refreshed ticket has an expiration, the body contains a `tokenLifetimeSeconds` property that the client uses to reschedule automatic refreshes.
+* A rejected or invalid refresh returns a JSON body with an `error` property. A refresh rejected by the connection's identity check or by `OnAuthenticationRefresh` returns a 403 status code. A request for an unknown connection returns a 404 status code, and a request that omits the connection token returns a 400 status code.
+
+Include the `/refresh` route when configuring a reverse proxy, firewall, or web application firewall in front of the app, and when writing route-scoped authorization or CORS policies. A proxy that forwards `/negotiate` but blocks `/refresh` causes every refresh attempt to fail, and connections close when their tokens expire if `CloseOnAuthenticationExpiration` is enabled.
+
 To inspect or reject a refresh, set the `OnAuthenticationRefresh` callback. It runs after the refresh request is authenticated but before the connection's user is replaced. Return `false` to reject the refresh, in which case the endpoint responds with an HTTP 403 status code and the connection keeps its current user. The callback is an additional check on top of the built-in verification that the refreshed principal maps to the same SignalR user. It can reject a refresh, but it can't approve one that fails the built-in check:
 
 ```csharp
@@ -158,6 +170,16 @@ app.MapHub<ChatHub>("/chat", options =>
     };
 });
 ```
+
+The callback receives an `AuthenticationRefreshContext` with the following properties:
+
+* `PreviousUser`: The <xref:System.Security.Claims.ClaimsPrincipal> currently associated with the connection. Compare it with `NewUser` to detect claim changes, such as a change of tenant or scope.
+* `NewUser`: The principal produced by authenticating the refresh request. This principal replaces `PreviousUser` only if the callback returns `true` and the built-in identity check passes.
+* `NewExpiration`: The expiration that the refreshed authentication ticket takes if the refresh is accepted, or `null` when the ticket doesn't set one. `MaximumAuthenticationExpiration` is applied before the callback runs.
+* `ConnectionId`: The ID of the connection being refreshed.
+* `HttpContext`: The <xref:Microsoft.AspNetCore.Http.HttpContext> of the refresh request.
+
+An exception thrown by the callback isn't caught by SignalR. The exception propagates out of the refresh request, and the connection keeps its current user.
 
 The refreshed principal must map to the same SignalR user as the connection. If it maps to a different user ID, the refresh is rejected: the endpoint responds with an HTTP 403 status code, and the connection keeps its current user and stays connected. A refresh never changes the connection's `Context.UserIdentifier` or reroutes messages sent with `Clients.User`, even for a successful refresh. The routing identifier is fixed when the connection starts. To change it, reconnect the client.
 
@@ -182,7 +204,7 @@ await connection.StartAsync();
 TimeSpan? newLifetime = await connection.RefreshAuthenticationAsync();
 ```
 
-To refresh automatically before the token expires, call `WithAuthenticationRefresh` and configure `AuthenticationRefreshOptions`:
+Automatic refresh is enabled by default. The client schedules a refresh ahead of the reported expiration whenever the server reports a token lifetime. To change the timing or to turn automatic refresh off, call `WithAuthenticationRefresh` and configure `AuthenticationRefreshOptions`:
 
 ```csharp
 var connection = new HubConnectionBuilder()

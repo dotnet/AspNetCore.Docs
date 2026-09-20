@@ -1,10 +1,11 @@
 ---
 title: Use hubs in ASP.NET Core SignalR
+ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to work with hubs in ASP.NET Core SignalR, create and use hubs, send messages to clients, and handle results from connected clients on the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 06/24/2026
+ms.date: 09/20/2026
 uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
@@ -379,6 +380,29 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnDisconnectedAsync":::
 
 The <xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> method doesn't need to be called within the <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> method because it's handled automatically.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+A third virtual method, `OnAuthenticationRefreshedAsync`, runs when a connected client refreshes its authentication without reconnecting. Override it to perform actions after the refreshed principal is applied to the connection. `Context.User` reflects the refreshed principal when the method runs:
+
+```csharp
+public class ChatHub : Hub
+{
+    public override Task OnAuthenticationRefreshedAsync()
+    {
+        return Clients.Caller.SendAsync(
+            "AuthenticationRefreshed", Context.UserIdentifier);
+    }
+}
+```
+
+The method runs only for hubs that enable authentication refresh. A refresh doesn't change `Context.UserIdentifier` or reroute messages sent with `Clients.User`. For the full feature, including how to enable it and how clients request a refresh, see <xref:signalr/authn-and-authz#authentication-refresh>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Handle errors
 
