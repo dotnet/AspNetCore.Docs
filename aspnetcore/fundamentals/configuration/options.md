@@ -1656,7 +1656,7 @@ builder.Services.AddSingleton<IAsyncStartupValidator, CustomStartupValidator>();
 The host runs every registered `IAsyncStartupValidator` during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>, alongside the built-in validator that `ValidateOnStart` registers for options validation.
 
 > [!NOTE]
-> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
+> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>.`OptionsFactory.Create()`, `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
 
 :::moniker-end
 
