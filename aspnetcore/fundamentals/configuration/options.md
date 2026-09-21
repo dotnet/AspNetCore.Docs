@@ -1558,7 +1558,7 @@ builder.Services.AddOptions<RemoteServiceOptions>()
 
 The asynchronous `Validate` overloads support up to five service dependencies from dependency injection, the same as the synchronous overloads.
 
-To move asynchronous validation logic into a dedicated class, implement <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601>. `IAsyncValidateOptions<TOptions>` inherits from <xref:Microsoft.Extensions.Options.IValidateOptions%601>, so the class must implement both the synchronous <xref:Microsoft.Extensions.Options.IValidateOptions%601.Validate%2A> method and the asynchronous `ValidateAsync` method. Because the validation rule requires asynchronous I/O, the synchronous `Validate` method can't perform the check without blocking on the async call (sync-over-async), so it fails explicitly instead:
+To move asynchronous validation logic into a dedicated class, implement <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601>. `IAsyncValidateOptions<TOptions>` inherits from <xref:Microsoft.Extensions.Options.IValidateOptions%601>, so the class must implement both the synchronous <xref:Microsoft.Extensions.Options.IValidateOptions%601.Validate%2A> method and the asynchronous `ValidateAsync` method. Because the validation rule requires asynchronous I/O, the synchronous `Validate` method can't perform the check without blocking on the async call (sync-over-async). The following validator handles only the default-named options instance, returns `ValidateOptionsResult.Skip` for other names, and fails explicitly for matching options when synchronous validation is requested:
 
 ```csharp
 public sealed class RemoteServiceOptionsValidator(
@@ -1585,7 +1585,7 @@ public sealed class RemoteServiceOptionsValidator(
 }
 ```
 
-The preceding validator handles only the default-named options instance. Both `Validate` and `ValidateAsync` return `ValidateOptionsResult.Skip` for any other name, so the validator doesn't interfere with named options it isn't designed to validate.
+Both `Validate` and `ValidateAsync` return `ValidateOptionsResult.Skip` for non-default names, so the validator doesn't interfere with named options it isn't designed to validate.
 
 Register the validator as an `IValidateOptions<TOptions>` service, and call `ValidateOnStart` for the options:
 
