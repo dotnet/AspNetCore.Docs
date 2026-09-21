@@ -1585,8 +1585,6 @@ public sealed class RemoteServiceOptionsValidator(
 }
 ```
 
-Both `Validate` and `ValidateAsync` return `ValidateOptionsResult.Skip` for non-default names, so the validator doesn't interfere with named options it isn't designed to validate.
-
 Register the validator as an `IValidateOptions<TOptions>` service, and call `ValidateOnStart` for the options:
 
 ```csharp
@@ -1598,7 +1596,8 @@ builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
     RemoteServiceOptionsValidator>();
 ```
 
-Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. Ordinary access to <xref:Microsoft.Extensions.Options.IOptions%601.Value>, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, and configuration reloads observed through <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
+> [!NOTE]
+> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. Ordinary access to <xref:Microsoft.Extensions.Options.IOptions%601.Value>, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, and configuration reloads observed through <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
 
 #### Asynchronous validation with DataAnnotations
 
@@ -1612,7 +1611,8 @@ The <xref:Microsoft.Extensions.Options.OptionsValidatorAttribute> source generat
 
 ```csharp
 [OptionsValidator]
-public partial class GeneratedRemoteServiceOptionsValidator : IAsyncValidateOptions<RemoteServiceOptions>
+public partial class GeneratedRemoteServiceOptionsValidator :
+    IAsyncValidateOptions<RemoteServiceOptions>
 {
 }
 ```
