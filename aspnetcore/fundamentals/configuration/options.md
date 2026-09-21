@@ -1606,7 +1606,7 @@ In ASP.NET Core 11 or later, <xref:Microsoft.Extensions.DependencyInjection.Opti
 
 #### Source-generated asynchronous validation with `[OptionsValidator]`
 
-The <xref:Microsoft.Extensions.Options.OptionsValidatorAttribute> source generator emits an asynchronous `ValidateAsync` method, in addition to the synchronous `Validate` method, when the partial validator type implements `IAsyncValidateOptions<TOptions>`:
+The `[OptionsValidator]` attribute (<xref:Microsoft.Extensions.Options.OptionsValidatorAttribute>) source generator emits an asynchronous `ValidateAsync` method, in addition to the synchronous `Validate` method, when the partial validator type implements `IAsyncValidateOptions<TOptions>`:
 
 ```csharp
 [OptionsValidator]
