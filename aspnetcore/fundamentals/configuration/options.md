@@ -1542,7 +1542,7 @@ builder.Services.AddOptions<KeyOptions>()
 
 ### Asynchronous options validation
 
-In ASP.NET Core 11.0 or later, options validation supports asynchronous validation during app startup. Use asynchronous validation for rules that require I/O, such as checking whether a configured endpoint or resource is available. Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> so asynchronous validators run through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A> before the app starts.
+In ASP.NET Core 11.0 or later, options validation supports asynchronous validation during app startup. Use asynchronous validation for rules that require I/O, such as checking whether a configured endpoint or resource is available. Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> so asynchronous validators run during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A> before the app starts.
 
 Register an asynchronous validation delegate with an overload of <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Validate%2A> that accepts a <xref:System.Threading.CancellationToken> and returns `Task<bool>`:
 
@@ -1604,7 +1604,7 @@ Asynchronous validation runs during host startup through <xref:Microsoft.Extensi
 
 In ASP.NET Core 11.0 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, DataAnnotations validation participates in startup validation.
 
-The asynchronous path evaluates <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier. Without `ValidateOnStart`, runtime options access triggers only synchronous validation.
+The asynchronous path evaluates <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier.
 
 #### Source-generated asynchronous validation
 
