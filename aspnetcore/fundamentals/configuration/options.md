@@ -1602,13 +1602,13 @@ Asynchronous validation runs during host startup through <xref:Microsoft.Extensi
 
 #### Asynchronous validation with DataAnnotations
 
-In ASP.NET Core 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, DataAnnotations validation participates in startup validation.
+In ASP.NET Core 11.0 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, DataAnnotations validation participates in startup validation.
 
 The asynchronous path evaluates <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier. Without `ValidateOnStart`, runtime options access triggers only synchronous validation.
 
-#### Source-generated asynchronous validation with `[OptionsValidator]`
+#### Source-generated asynchronous validation
 
-The `[OptionsValidator]` attribute (<xref:Microsoft.Extensions.Options.OptionsValidatorAttribute>) source generator emits an asynchronous `ValidateAsync` method, in addition to the synchronous `Validate` method, when the partial validator type implements `IAsyncValidateOptions<TOptions>`:
+The <xref:Microsoft.Extensions.Options.OptionsValidatorAttribute> source generator emits an asynchronous `ValidateAsync` method, in addition to the synchronous `Validate` method, when the partial validator type implements `IAsyncValidateOptions<TOptions>`:
 
 ```csharp
 [OptionsValidator]
@@ -1621,7 +1621,30 @@ The generated `ValidateAsync` method evaluates asynchronous DataAnnotations rule
 
 #### Custom asynchronous startup validators
 
-To run custom asynchronous startup validation that isn't tied to a specific options type, implement <xref:Microsoft.Extensions.Options.IAsyncStartupValidator> and register it in dependency injection:
+To run custom asynchronous startup validation that isn't tied to a specific options type, implement <xref:Microsoft.Extensions.Options.IAsyncStartupValidator>:
+
+```csharp
+public sealed class CustomStartupValidator : IAsyncStartupValidator
+{
+    public async Task ValidateAsync(CancellationToken cancellationToken = default)
+    {
+        if (!await IsStartupDependencyAvailableAsync(cancellationToken))
+        {
+            throw new InvalidOperationException(
+                "The startup dependency isn't available.");
+        }
+    }
+
+    private static Task<bool> IsStartupDependencyAvailableAsync(
+        CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return Task.FromResult(true);
+    }
+}
+```
+
+Register the validator in dependency injection:
 
 ```csharp
 builder.Services.AddSingleton<IAsyncStartupValidator, CustomStartupValidator>();
