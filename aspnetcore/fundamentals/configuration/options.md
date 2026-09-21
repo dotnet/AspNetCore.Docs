@@ -1596,9 +1596,6 @@ builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
     RemoteServiceOptionsValidator>();
 ```
 
-> [!NOTE]
-> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
-
 #### Asynchronous validation with data annotations
 
 In ASP.NET Core 11.0 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
@@ -1658,6 +1655,9 @@ builder.Services.AddSingleton<IAsyncStartupValidator, CustomStartupValidator>();
 ```
 
 The host runs every registered `IAsyncStartupValidator` during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>, alongside the built-in validator that `ValidateOnStart` registers for options validation.
+
+> [!NOTE]
+> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
 
 :::moniker-end
 
