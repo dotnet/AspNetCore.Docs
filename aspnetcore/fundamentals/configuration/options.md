@@ -1577,7 +1577,6 @@ public sealed class RemoteServiceOptionsValidator(
         {
             return ValidateOptionsResult.Skip;
         }
-    {
         return await healthCheck.IsAvailableAsync(options.Endpoint, cancellationToken)
             ? ValidateOptionsResult.Success
             : ValidateOptionsResult.Fail("The configured endpoint isn't available.");
@@ -1600,7 +1599,7 @@ builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
 
 In ASP.NET Core 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
 
-The asynchronous path uses <xref:System.ComponentModel.DataAnnotations.Validator.TryValidateObjectAsync%2A>, which evaluates synchronous validation attributes before <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes. It also calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier.
+The asynchronous path uses <xref:System.ComponentModel.DataAnnotations.Validator.TryValidateObjectAsync%2A>, which evaluates synchronous validation attributes before <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes. It calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> when an options type implements <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>; otherwise, it falls back to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier.
 
 `TryValidateObjectAsync` validates one object and doesn't recursively validate its property values. The options validator adds recursive validation for properties marked with <xref:Microsoft.Extensions.Options.ValidateObjectMembersAttribute> and items in properties marked with <xref:Microsoft.Extensions.Options.ValidateEnumeratedItemsAttribute>. The startup cancellation token is passed through to the asynchronous validation rules.
 
@@ -1616,7 +1615,7 @@ public partial class GeneratedRemoteServiceOptionsValidator :
 }
 ```
 
-The generated `ValidateAsync` method evaluates asynchronous data annotations validation rules, including <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for validated types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. If the partial class already declares a `Validate` or `ValidateAsync` method, the generator skips generating that method and uses the hand-written implementation instead.
+The generated `ValidateAsync` method evaluates asynchronous data annotations validation rules, including <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for validated types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. A matching hand-written `Validate` or `ValidateAsync` method produces diagnostic `SYSLIB1205` or `SYSLIB1219`, respectively.
 
 Register the generated validator as an `IValidateOptions<TOptions>` service:
 
