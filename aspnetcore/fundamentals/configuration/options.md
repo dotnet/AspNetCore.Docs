@@ -1600,7 +1600,9 @@ builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
 
 In ASP.NET Core 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
 
-The asynchronous path evaluates <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier.
+The asynchronous path uses <xref:System.ComponentModel.DataAnnotations.Validator.TryValidateObjectAsync%2A>, which evaluates synchronous validation attributes before <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes. It also calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier.
+
+`TryValidateObjectAsync` validates one object and doesn't recursively validate its property values. The options validator adds recursive validation for properties marked with <xref:Microsoft.Extensions.Options.ValidateObjectMembersAttribute> and items in properties marked with <xref:Microsoft.Extensions.Options.ValidateEnumeratedItemsAttribute>. The startup cancellation token is passed through to the asynchronous validation rules.
 
 #### Source-generated asynchronous validation
 
@@ -1656,7 +1658,7 @@ builder.Services.AddSingleton<IAsyncStartupValidator, CustomStartupValidator>();
 The host runs every registered `IAsyncStartupValidator` during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>, alongside the built-in validator that `ValidateOnStart` registers for options validation.
 
 > [!NOTE]
-> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>.`OptionsFactory.Create()`, `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
+> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. `OptionsFactory.Create()`, `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
 
 :::moniker-end
 
