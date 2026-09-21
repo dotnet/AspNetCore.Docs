@@ -5,7 +5,7 @@ author: tdykstra
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 09/17/2026
+ms.date: 09/21/2026
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -1557,8 +1557,6 @@ builder.Services.AddOptions<RemoteServiceOptions>()
 ```
 
 The asynchronous `Validate` overloads support up to five service dependencies from dependency injection, the same as the synchronous overloads.
-
-In .NET 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements asynchronous options validation. When `ValidateDataAnnotations` is used with `ValidateOnStart`, data annotations validation participates in startup validation and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>.
 
 To move asynchronous validation logic into a dedicated class, implement <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601>. `IAsyncValidateOptions<TOptions>` inherits from <xref:Microsoft.Extensions.Options.IValidateOptions%601>, so the class must implement both the synchronous <xref:Microsoft.Extensions.Options.IValidateOptions%601.Validate%2A> method and the asynchronous `ValidateAsync` method. Because the validation rule requires asynchronous I/O, the synchronous `Validate` method can't perform the check without blocking on the async call (sync-over-async). The following validator handles only the default-named options instance, returns `ValidateOptionsResult.Skip` for other names, and fails explicitly for matching options when synchronous validation is requested:
 
