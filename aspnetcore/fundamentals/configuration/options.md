@@ -1601,7 +1601,7 @@ builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
 
 #### Asynchronous validation with data annotations
 
-In ASP.NET Core 11.0 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
+<xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> in addition to <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
 
 The asynchronous path evaluates <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for options types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>, in addition to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject) described earlier.
 
@@ -1618,6 +1618,13 @@ public partial class GeneratedRemoteServiceOptionsValidator :
 ```
 
 The generated `ValidateAsync` method evaluates asynchronous data annotations rules, including <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute>-derived attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for validated types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. If the partial class already declares a `Validate` or `ValidateAsync` method, the generator skips generating that method and uses the hand-written implementation instead.
+
+Register the generated validator as an `IValidateOptions<TOptions>` service:
+
+```csharp
+builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
+    GeneratedRemoteServiceOptionsValidator>();
+```
 
 #### Custom asynchronous startup validators
 
