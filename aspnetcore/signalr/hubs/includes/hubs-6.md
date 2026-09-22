@@ -22,12 +22,64 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
 
-> [!NOTE]
-> Hubs are [transient](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient):
->
-> * Don't store state in a property of the hub class. Each hub method call is executed on a new hub instance.
-> * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application use an [`IHubContext`](xref:signalr/hubcontext).
-> * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, a method such as `Clients.All.SendAsync(...)` can fail if it's called without `await` and the hub method completes before `SendAsync` finishes.
+## Inject services into a hub
+
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
+
+In the app's `Program` file using SQL Server as the example database provider and a connection string from configuration:
+
+```csharp
+var connectionString = 
+    builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+```
+
+An example hub class:
+
+```csharp
+public class ChatHub : Hub
+{
+    private readonly IDbContextFactory<ApplicationDbContext> contextFactory;
+
+    public ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory)
+    {
+        this.contextFactory = contextFactory;
+    }
+
+    public async Task SendMessage(string user, string message)
+    {
+        using var context = await contextFactory.CreateDbContextAsync();
+
+        context.Messages.Add(new Message { User = user, Content = message });
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
+    }
+}
+```
+
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a dependency injection (DI) scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+
+For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
+
+* A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+
+Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
+
+Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
+
+Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
+
+<!-- NOTE: The double-space at the end of the next line generates a bare return. -->
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
+
+For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
 
 ## The Context object
 
