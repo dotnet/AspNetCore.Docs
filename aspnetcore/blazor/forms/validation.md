@@ -342,7 +342,7 @@ Static SSR doesn't provide live .NET field validation between requests.
                    <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A>
 -->
 
-For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `RegisterAsyncFieldValidator%2A` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
+For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `RegisterAsyncFieldValidator` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
 
 For model-based asynchronous validation attributes, see <xref:fundamentals/validation#asynchronous-validation-support>. For a complete reusable validator component, see <xref:blazor/forms/validation-advanced>.
 
