@@ -6,7 +6,7 @@ content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 09/16/2026
+ms.date: 09/12/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -159,7 +159,7 @@ The most common scenario that requires action is a browser-based client that sub
 
 The CSRF middleware doesn't introduce its own trust list. It reuses the same CORS policy that the [CORS middleware](xref:security/cors) resolves for the endpoint: if that policy allows the request's `Origin` *and* the policy has `.AllowCredentials()` configured, the CSRF middleware records an allowed verdict for the request.
 
-A CORS policy that only calls `WithOrigins` (without `.AllowCredentials()`) means "this origin can call me anonymously," not "this origin can act as the signed-in user." Because CSRF protection is specifically about authenticated, cookie-bearing requests being triggered from another origin, only a policy that also opts in to credentials is actually claiming the trust relationship CSRF protection cares about. A CORS-allowed origin whose policy doesn't call `.AllowCredentials()` doesn't gain CSRF trust; the request falls through to the `Sec-Fetch-Site` and Origin-vs-Host rules instead.
+Allowing an origin with `WithOrigins` does not, by itself, permit browser JavaScript at that origin to read responses to credentialed requests. `.AllowCredentials()` grants that permission. Omitting it does not guarantee that requests arrive without credentials, so CORS alone is not a defense against CSRF. The CSRF middleware requires both an allowed origin and `.AllowCredentials()` as an explicit trust signal. Otherwise, the request falls through to the remaining `Sec-Fetch-Site` and Origin-vs-Host checks.
 
 The policy is picked per-endpoint in this order:
 
@@ -199,9 +199,9 @@ app.MapPost("/widgets", ([FromForm] Widget w) => Results.Created($"/widgets/{w.I
 ```
 
 > [!WARNING]
-> `AllowAnyOrigin` is intentionally **not** honored as a CSRF trust signal, regardless of `.AllowCredentials()`. `AllowAnyOrigin` means "any browser can read this resource," which is a different concern than "any origin may mutate state on the user's behalf." Treating `AllowAnyOrigin` as trusted would turn this middleware into a no-op for cross-origin writes. Apps that need a public-read CORS policy combined with CSRF-protected writes should list trusted write origins explicitly with `WithOrigins` or [opt write endpoints out](#opting-an-endpoint-out) if they don't rely on cookie-based authentication.
+> `AllowAnyOrigin` is intentionally **not** honored as a CSRF trust signal. (In ASP.NET Core CORS, combining `AllowAnyOrigin` with `.AllowCredentials()` is invalid and insecure.) `AllowAnyOrigin` means "any browser can read this resource," which is a different concern than "any origin may mutate state on the user's behalf." Treating `AllowAnyOrigin` as trusted would turn this middleware into a no-op for cross-origin writes. Apps that need a public-read CORS policy combined with CSRF-protected writes should list trusted write origins explicitly with `WithOrigins` or [opt write endpoints out](#opting-an-endpoint-out) if they don't rely on cookie-based authentication.
 >
-> A policy that lists specific origins with `WithOrigins` but omits `.AllowCredentials()` isn't honored for CSRF trust either. Add `.AllowCredentials()` to any policy that's meant to authorize cross-origin, cookie-authenticated form posts.
+> A policy that lists specific origins with `WithOrigins` but omits `.AllowCredentials()` isn't honored for CSRF trust either. Add `.AllowCredentials()` to any policy that's meant to mark cross-origin, cookie-authenticated form posts as CSRF-trusted.
 
 `[DisableCors]` on an endpoint isn't a CSRF opt-out. It skips the CORS-derived trust step, and the request still has to satisfy the `Sec-Fetch-Site` and Origin-vs-Host rules. To opt out of CSRF protection, see [Opting an endpoint out](#opting-an-endpoint-out).
 
