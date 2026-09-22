@@ -264,7 +264,7 @@ public class ChatHub : Hub
 }
 ```
 
-To specify which parameters are resolved from DI in hub methods, specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from DI.
+To explicitly specify which parameters are resolved from DI in hub methods, specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from DI.
 
 Set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)) in case some parameters might come from DI and you instead want them to come from the client.
 
