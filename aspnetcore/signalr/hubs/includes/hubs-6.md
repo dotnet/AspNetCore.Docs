@@ -62,7 +62,7 @@ public class ChatHub : Hub
 }
 ```
 
-If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a dependency injection (DI) scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
 For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
 

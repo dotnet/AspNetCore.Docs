@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to work with hubs in ASP.NET Core SignalR, create and use hubs, send messages to clients, and handle results from connected clients on the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 09/17/2026
+ms.date: 09/22/2026
 uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
@@ -246,7 +246,7 @@ public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : H
 }
 ```
 
-If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a DI scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a dependency injection (DI) scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
 Hub method service injection is also supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) only used for a quick write operation is injected into the specific method that requires it:
 
@@ -264,11 +264,14 @@ public class ChatHub : Hub
 }
 ```
 
-To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)). Specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from dependency injection.
+To specify which parameters are resolved from DI in hub methods, specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from DI.
+
+Set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)) in case some parameters might come from DI and you instead want them to come from the client.
 
 In the app's `Program` file:
 
 ```csharp
+builder.Services.AddSingleton<SomeCustomType>();
 builder.Services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
 
 builder.Services.AddSignalR(options =>
