@@ -5,7 +5,7 @@ author: Youssef1313
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: ygerges
-ms.date: 08/17/2026
+ms.date: 09/22/2026
 uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
@@ -20,8 +20,8 @@ Asynchronous validation attributes and <xref:System.ComponentModel.DataAnnotatio
 
 :::moniker-end
 
-* Minimal APIs use the service to validate a request before the endpoint handler runs. For how validation is surfaced in an endpoint, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
-* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For how validation is surfaced in a form, see <xref:blazor/forms/validation>.
+* Minimal APIs use the service to validate a request before the endpoint handler runs. For guidance on how validation is surfaced in an endpoint, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
+* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For guidance on how validation is surfaced in a form, see <xref:blazor/forms/validation>.
 
 While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
 
@@ -47,23 +47,23 @@ Validation uses a source generator that creates metadata for validatable types i
 
 ### Behavior without generated validation metadata
 
-The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>, or of calling it without the required type being discovered by the source generator, differs by framework:
+The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>, or of calling it without the required type being discovered by the source generator, differs by framework, as shown in the following table.
 
 :::moniker range=">= aspnetcore-11.0"
 
-| Framework | Behavior without generated validation metadata |
-|---|---|
-| Minimal APIs | No automatic validation runs. Invalid input reaches the endpoint handler instead of being rejected before the handler executes. |
-| Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects, collection items, and the [`Microsoft.Extensions.Validation` message-localization pipeline](#localize-validation-messages) aren't supported on the fallback path. |
+Framework | Behavior without generated validation metadata
+--- | ---
+Minimal APIs | No automatic validation runs. Invalid input reaches the endpoint handler instead of being rejected before the handler executes.
+Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects, collection items, and the [`Microsoft.Extensions.Validation` message-localization pipeline](#localize-validation-messages) aren't supported on the fallback path.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
-| Framework | Behavior without generated validation metadata |
-|---|---|
-| Minimal APIs | No automatic validation runs. Invalid input reaches the endpoint handler instead of being rejected before the handler executes. |
-| Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects and collection items aren't validated on the fallback path. |
+Framework | Behavior without generated validation metadata
+--- | ---
+Minimal APIs | No automatic validation runs. Invalid input reaches the endpoint handler instead of being rejected before the handler executes.
+Blazor | The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component falls back to <xref:System.ComponentModel.DataAnnotations.Validator?displayProperty=nameWithType>, which validates top-level properties only. Nested objects and collection items aren't validated on the fallback path.
 
 :::moniker-end
 
@@ -159,7 +159,7 @@ For model types defined in another assembly or in a Blazor Web App's `.Client` p
 
 ### Skip validation
 
-Apply <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> to a parameter, type, or property that shouldn't be validated.
+Apply <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> to a property or parameter to skip validation for that property or parameter. Apply it to a type to skip validation for all properties and parameters of that type, including nested properties when the type is complex.
 
 ## Write custom validation rules
 
@@ -211,7 +211,7 @@ protected override ValidationResult? IsValid(object? value,
 {
     var catalog = validationContext.GetService<IProductCatalog>();
 
-    ...
+    // ...
 }
 ```
 
@@ -219,7 +219,7 @@ For a service that must be resolved, use <xref:Microsoft.Extensions.DependencyIn
 
 ### Class-level validation with `IValidatableObject`
 
-Implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> for a rule that spans several properties, because an attribute applied to one property can't reliably observe the others. Class-level validation runs after property validation and only if property validation succeeds:
+Implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> for a rule that spans several properties because an attribute applied to one property can't reliably observe the others. Class-level validation runs after property validation and only if property validation succeeds:
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -266,7 +266,7 @@ Asynchronous validation operations can run in parallel, and their execution and 
 
 For Minimal API validation, <xref:Microsoft.Extensions.Validation?displayProperty=fullName> always calls the asynchronous path and never the synchronous path.
 
-Blazor form validation calls the asynchronous path for per-field validation and when the form is validated with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A?displayProperty=nameWithType>, which is what <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses on submit. The synchronous path is only reached through the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> method, which is obsolete as of .NET 11. Asynchronous rules therefore work in Blazor forms without additional configuration.
+Blazor form validation calls the asynchronous path for per-field validation and when the form is validated with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A?displayProperty=nameWithType>, which is what <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses on submit. The synchronous path is only reached through the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> method, which is obsolete in .NET 11 or later. Asynchronous rules therefore work in Blazor forms without additional configuration.
 
 If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
 
@@ -360,7 +360,7 @@ When `ErrorMessage` isn't set, conventional keys are tried in order from most to
 1. `{DeclaringType}_{AttributeType}_Error`
 1. `{AttributeType}_Error`
 
-For example, a <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> on the `Name` property of `CustomerModel` is looked up as `CustomerModel_Name_RequiredAttribute_Error`, then `CustomerModel_RequiredAttribute_Error`, then `RequiredAttribute_Error`. If none resolve, the attribute's built-in message is used.
+For example, a <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> on the `Name` property of `CustomerModel` is looked up in this order: `CustomerModel_Name_RequiredAttribute_Error`, `CustomerModel_RequiredAttribute_Error`, and `RequiredAttribute_Error`. If none resolve, the attribute's built-in message is used.
 
 This makes it possible to translate or override the default message of an attribute across an entire app without setting `ErrorMessage` on every attribute instance:
 
@@ -381,14 +381,14 @@ Two details affect key construction:
 
 ### Where resource files are located
 
-Keys are resolved from *.resx* files through ASP.NET Core's standard <xref:Microsoft.Extensions.Localization.IStringLocalizer> infrastructure, so the usual naming and placement conventions apply. Per-type resolution is the default and needs no configuration beyond the resources path:
+Keys are resolved from `.resx` files through ASP.NET Core's standard <xref:Microsoft.Extensions.Localization.IStringLocalizer> infrastructure, so the usual naming and placement conventions apply. Per-type resolution is the default and needs no configuration beyond the resources path:
 
 ```csharp
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddValidation();
 ```
 
-Under the configured `ResourcesPath`, the type's full name minus the project's root namespace is used as a dotted path. For example, in a project whose root namespace is `Contoso`, French messages for `Contoso.Models.Customer` are read from *Resources/Models/Customer.fr.resx* (equivalently *Resources/Models.Customer.fr.resx*). For a full description of the conventions, see <xref:fundamentals/localization/provide-resources>.
+Under the configured `ResourcesPath`, the type's full name minus the project's root namespace is used as a dotted path. For a project root namespace of `Contoso`, French messages for `Contoso.Models.Customer` are read from `Resources/Models/Customer.fr.resx` (equivalently `Resources/Models.Customer.fr.resx`). For a full description of the conventions, see <xref:fundamentals/localization/provide-resources>.
 
 For per-type lookup, place the resource files in the project that declares the validated type. For example, if a Blazor Web App's form models are declared in its `.Client` project, place their per-type resources in that project. The model assembly's root namespace and the configured `ResourcesPath` determine the resource name.
 
@@ -518,10 +518,10 @@ Missing generated validation metadata doesn't produce a runtime exception or log
 
 Build analyzers report common unsupported configurations:
 
-* ASP0033 and ASP0034 report inaccessible validatable types and endpoint parameter types.
-* ASP0035 and ASP0036 report inaccessible validated properties or property types.
-* ASP0037 reports `[ValidatableType]` applied to generated code.
-* ASP0038 reports `[ValidatableType]` used without a matching `AddValidation` call.
+* <xref:diagnostics/asp0033> and <xref:diagnostics/asp0034> report inaccessible validatable types and endpoint parameter types.
+* <xref:diagnostics/asp0035> and <xref:diagnostics/asp0036> report inaccessible validated properties or property types.
+* <xref:diagnostics/asp0037> reports `[ValidatableType]` applied to generated code.
+* <xref:diagnostics/asp0038> reports `[ValidatableType]` used without a matching `AddValidation` call.
 
 Other missing-metadata cases might not produce a diagnostic.
 
@@ -529,7 +529,7 @@ Other missing-metadata cases might not produce a diagnostic.
 
 For the runtime behavior when metadata isn't available, see [Behavior without generated validation metadata](#behavior-without-generated-validation-metadata).
 
-:::moniker range="= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 ## Experimental API in apps that target .NET 10
 

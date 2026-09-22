@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use binding in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/24/2026
+ms.date: 09/22/2026
 uid: blazor/forms/binding
 ---
 # ASP.NET Core Blazor forms binding
@@ -465,10 +465,6 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
     }
 }
 ```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship11.razor":::
--->
 
 :::moniker-end
 

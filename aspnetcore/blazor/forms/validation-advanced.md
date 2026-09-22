@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to implement validator components and remote validation for Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/17/2026
+ms.date: 09/22/2026
 uid: blazor/forms/validation-advanced
 ---
 # ASP.NET Core Blazor advanced form validation
@@ -26,10 +26,10 @@ For browser validation in static server-side rendering (static SSR), see <xref:b
 
 :::moniker-end
 
-<a id="validator-components"></a>
-<a id="business-logic-validation-with-a-validator-component"></a>
-<a id="validate-with-editcontext-and-validationmessagestore"></a>
-<a id="manual-validation-using-the-onvalidationrequested-event"></a>
+<span id="validator-components"></span>
+<span id="business-logic-validation-with-a-validator-component"></span>
+<span id="validate-with-editcontext-and-validationmessagestore"></span>
+<span id="manual-validation-using-the-onvalidationrequested-event"></span>
 
 ## Build a validator component
 
@@ -53,7 +53,7 @@ The component:
     [CascadingParameter]
     private EditContext? CurrentEditContext { get; set; }
 
-    private ValidationMessageStore _messages = default!;
+    private ValidationMessageStore messages = default!;
 
     protected override void OnInitialized()
     {
@@ -63,7 +63,7 @@ The component:
                 "CustomValidation requires a cascading EditContext.");
         }
 
-        _messages = new ValidationMessageStore(CurrentEditContext);
+        messages = new ValidationMessageStore(CurrentEditContext);
         CurrentEditContext.OnValidationRequested +=
             HandleValidationRequested;
         CurrentEditContext.OnFieldChanged += HandleFieldChanged;
@@ -73,7 +73,7 @@ The component:
     {
         foreach (var error in errors)
         {
-            _messages.Add(
+            messages.Add(
                 CurrentEditContext!.Field(error.Key),
                 error.Value);
         }
@@ -83,7 +83,7 @@ The component:
 
     public void ClearErrors()
     {
-        _messages.Clear();
+        messages.Clear();
         CurrentEditContext!.NotifyValidationStateChanged();
     }
 
@@ -94,7 +94,7 @@ The component:
     private void HandleFieldChanged(
         object? sender, FieldChangedEventArgs e)
     {
-        _messages.Clear(e.FieldIdentifier);
+        messages.Clear(e.FieldIdentifier);
         CurrentEditContext!.NotifyValidationStateChanged();
     }
 
@@ -110,25 +110,25 @@ The component:
 }
 ```
 
-Place the component inside an `EditForm` and capture a component reference when the form or a service needs to display errors:
+Place the component inside an `EditForm` and capture a component reference when the form or a service should display errors:
 
 ```razor
 <EditForm Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
-    <CustomValidation @ref="_customValidation" />
+    <CustomValidation @ref="customValidation" />
     <ValidationSummary />
 
     ...
 </EditForm>
 
 @code {
-    private CustomValidation? _customValidation;
+    private CustomValidation? customValidation;
 }
 ```
 
 The component can be used alongside `DataAnnotationsValidator`. Each validator has its own message store associated with the same `EditContext`, and `ValidationMessage` and `ValidationSummary` display messages from both validators.
 
-To implement a business rule inside the validator component instead of accepting external errors, run the rule from `HandleValidationRequested` or `HandleFieldChanged` and add its messages to `_messages`. For a smaller example that performs this directly in a form component, see <xref:blazor/forms/validation#add-validation-through-editcontext>.
+To implement a business rule inside the validator component instead of accepting external errors, run the rule from `HandleValidationRequested` or `HandleFieldChanged` and add its messages to `messages`. For a smaller example that performs this directly in a form component, see <xref:blazor/forms/validation#add-validation-through-editcontext>.
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -151,7 +151,7 @@ private void HandleValidationRequested(
 private async Task ValidateAsync(CancellationToken cancellationToken)
 {
     var field = CurrentEditContext!.Field(nameof(Model.Username));
-    _messages.Clear(field);
+    messages.Clear(field);
 
     var available = await Http.GetFromJsonAsync<bool>(
         $"api/usernames/available?value={Uri.EscapeDataString(Model.Username)}",
@@ -159,7 +159,7 @@ private async Task ValidateAsync(CancellationToken cancellationToken)
 
     if (!available)
     {
-        _messages.Add(field, "The username is already taken.");
+        messages.Add(field, "The username is already taken.");
     }
 
     CurrentEditContext.NotifyValidationStateChanged();
@@ -190,7 +190,7 @@ For asynchronous validation attributes on the model, see <xref:fundamentals/vali
 
 :::moniker-end
 
-Validator component code runs where the component runs. In Interactive WebAssembly it runs in the browser, and in Interactive Server it runs on the server over the circuit.
+Validator component code runs where the component runs. In Interactive WebAssembly, it runs in the browser, while it runs on the server over the circuit in Interactive Server.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -203,7 +203,7 @@ In static SSR, validator component code runs on the server during the form post 
 
 ## Remote validation from Interactive WebAssembly
 
-Remote validation sends form data from an Interactive WebAssembly component to a server endpoint and adds returned field errors to the form's `EditContext`. It is useful when a rule requires private server data, an external service, or other logic that shouldn't run in the browser.
+Remote validation sends form data from an Interactive WebAssembly component to a server endpoint and adds returned field errors to the form's `EditContext`. It's useful when a rule requires private server data, an external service, or other logic that shouldn't run in the browser.
 
 The form:
 
@@ -239,7 +239,7 @@ Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionE
 
 :::moniker range="= aspnetcore-10.0"
 
-The `Microsoft.Extensions.Validation` APIs used for generated validation metadata are experimental in .NET 10. For details, see <xref:fundamentals/validation#experimental-api-in-apps-that-target-net-10>.
+The <xref:Microsoft.Extensions.Validation?displayProperty=fullName> APIs used for generated validation metadata are experimental in .NET 10. For details, see <xref:fundamentals/validation#experimental-api-in-apps-that-target-net-10>.
 
 :::moniker-end
 
@@ -360,7 +360,7 @@ Place the `CustomValidation` component from [Build a validator component](#build
 
 <EditForm Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
-    <CustomValidation @ref="_remoteErrors" />
+    <CustomValidation @ref="remoteErrors" />
     <ValidationSummary />
 
     ...
@@ -368,7 +368,7 @@ Place the `CustomValidation` component from [Build a validator component](#build
 
 @code {
     private StarshipModel Model { get; } = new StarshipModel();
-    private CustomValidation? _remoteErrors;
+    private CustomValidation? remoteErrors;
 
     private async Task Submit()
     {
@@ -388,7 +388,7 @@ Place the `CustomValidation` component from [Build a validator component](#build
 
             if (problem is not null)
             {
-                _remoteErrors!.DisplayErrors(problem.Errors);
+                remoteErrors!.DisplayErrors(problem.Errors);
             }
 
             return;
@@ -421,23 +421,27 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 :::moniker-end
 
-<a id="customize-validation-css-classes"></a>
-
-Validation CSS class customization is covered in <xref:blazor/forms/validation#customize-validation-appearance>.
-
 ## Additional resources
 
+:::moniker range=">= aspnetcore-11.0"
+
 * <xref:blazor/forms/validation>
-
-:::moniker range=">= aspnetcore-10.0"
-
+* <xref:blazor/forms/validation-client-side>
 * <xref:fundamentals/validation>
 * <xref:fundamentals/minimal-apis>
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-11.0"
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
-* <xref:blazor/forms/validation-client-side>
+* <xref:blazor/forms/validation>
+* <xref:fundamentals/validation>
+* <xref:fundamentals/minimal-apis>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-10.0"
+
+<xref:blazor/forms/validation>
 
 :::moniker-end

@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/17/2026
+ms.date: 09/22/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -26,7 +26,7 @@ Related articles provide more detail:
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 * For writing and configuring model-based validation rules and nested object validation, see <xref:fundamentals/validation>.
 * For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
@@ -163,7 +163,7 @@ The `AddValidation` call registers the package's validation services and activat
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-10.0"
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 | Configuration | Behavior |
 |---|---|
@@ -260,7 +260,7 @@ The following interactive-form pattern adds a form-level business rule alongside
 ```razor
 @implements IDisposable
 
-<EditForm EditContext="_editContext" OnValidSubmit="Submit">
+<EditForm EditContext="editContext" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -269,23 +269,23 @@ The following interactive-form pattern adds a form-level business rule alongside
 
 @code {
     private Starship Model { get; } = new Starship();
-    private EditContext _editContext = default!;
-    private ValidationMessageStore _messages = default!;
+    private EditContext editContext = default!;
+    private ValidationMessageStore messages = default!;
 
     protected override void OnInitialized()
     {
-        _editContext = new EditContext(Model);
-        _messages = new ValidationMessageStore(_editContext);
-        _editContext.OnValidationRequested += ValidateBusinessRules;
-        _editContext.OnFieldChanged += ValidateChangedField;
+        editContext = new EditContext(Model);
+        messages = new ValidationMessageStore(editContext);
+        editContext.OnValidationRequested += ValidateBusinessRules;
+        editContext.OnFieldChanged += ValidateChangedField;
     }
 
     private void ValidateBusinessRules(
         object? sender, ValidationRequestedEventArgs e)
     {
-        _messages.Clear();
+        messages.Clear();
         ValidateIdentifier();
-        _editContext.NotifyValidationStateChanged();
+        editContext.NotifyValidationStateChanged();
     }
 
     private void ValidateChangedField(
@@ -297,10 +297,10 @@ The following interactive-form pattern adds a form-level business rule alongside
             return;
         }
 
-        _messages.Clear(
-            _editContext.Field(nameof(Starship.Identifier)));
+        messages.Clear(
+            editContext.Field(nameof(Starship.Identifier)));
         ValidateIdentifier();
-        _editContext.NotifyValidationStateChanged();
+        editContext.NotifyValidationStateChanged();
     }
 
     private void ValidateIdentifier()
@@ -308,8 +308,8 @@ The following interactive-form pattern adds a form-level business rule alongside
         if (Model.MaximumAccommodation == 1 &&
             string.IsNullOrWhiteSpace(Model.Identifier))
         {
-            _messages.Add(
-                _editContext.Field(nameof(Starship.Identifier)),
+            messages.Add(
+                editContext.Field(nameof(Starship.Identifier)),
                 "An identifier is required for a single-occupant ship.");
         }
     }
@@ -321,8 +321,8 @@ The following interactive-form pattern adds a form-level business rule alongside
 
     public void Dispose()
     {
-        _editContext.OnValidationRequested -= ValidateBusinessRules;
-        _editContext.OnFieldChanged -= ValidateChangedField;
+        editContext.OnValidationRequested -= ValidateBusinessRules;
+        editContext.OnFieldChanged -= ValidateChangedField;
     }
 }
 ```
@@ -370,9 +370,9 @@ Assign the summary's `Model` parameter to restrict it to messages associated wit
 To inspect current messages in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages%2A>:
 
 ```csharp
-var allMessages = _editContext.GetValidationMessages();
-var fieldMessages = _editContext.GetValidationMessages(
-    _editContext.Field(nameof(Starship.Identifier)));
+var allMessages = editContext.GetValidationMessages();
+var fieldMessages = editContext.GetValidationMessages(
+    editContext.Field(nameof(Starship.Identifier)));
 ```
 
 These methods read the current validation state. They don't initiate validation.
@@ -463,7 +463,7 @@ A custom `FieldCssClassProvider` determines the complete class value for each fi
 Assign the provider to the form's `EditContext`:
 
 ```csharp
-_editContext.SetFieldCssClassProvider(
+editContext.SetFieldCssClassProvider(
     new BootstrapFieldCssClassProvider());
 ```
 
@@ -498,11 +498,11 @@ The following example displays custom UI only after a field is modified and inva
 
 ```razor
 @{
-    var identifier = _editContext.Field(nameof(Starship.Identifier));
+    var identifier = editContext.Field(nameof(Starship.Identifier));
 }
 
-@if (_editContext.IsModified(identifier) &&
-    !_editContext.IsValid(identifier))
+@if (editContext.IsModified(identifier) &&
+    !editContext.IsValid(identifier))
 {
     <p>Correct the identifier before continuing.</p>
 }
@@ -514,11 +514,11 @@ The following example displays custom UI only after a field is modified and inva
 
 ```razor
 @{
-    var identifier = _editContext.Field(nameof(Starship.Identifier));
+    var identifier = editContext.Field(nameof(Starship.Identifier));
 }
 
-@if (_editContext.IsModified(identifier) &&
-    _editContext.GetValidationMessages(identifier).Any())
+@if (editContext.IsModified(identifier) &&
+    editContext.GetValidationMessages(identifier).Any())
 {
     <p>Correct the identifier before continuing.</p>
 }
@@ -563,7 +563,7 @@ Live pending indicators require an interactive render mode. During a static SSR 
 `EditForm` uses <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A> before invoking `OnValidSubmit` or `OnInvalidSubmit`, so it awaits synchronous and asynchronous validators. When handling `OnSubmit`, call `ValidateAsync` before processing the form:
 
 ```razor
-<EditForm EditContext="_editContext" OnSubmit="HandleSubmit">
+<EditForm EditContext="editContext" OnSubmit="HandleSubmit">
     ...
 </EditForm>
 
@@ -583,7 +583,7 @@ The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate
 For interactive forms, the form-level pending state can be used to disable submission while `ValidateAsync` is running:
 
 ```razor
-<button type="submit" disabled="@_editContext.IsValidationPending()">
+<button type="submit" disabled="@editContext.IsValidationPending()">
     Save
 </button>
 ```
@@ -595,7 +595,7 @@ For interactive forms, the form-level pending state can be used to disable submi
 When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> before processing the form:
 
 ```razor
-<EditForm EditContext="_editContext" OnSubmit="HandleSubmit">
+<EditForm EditContext="editContext" OnSubmit="HandleSubmit">
     ...
 </EditForm>
 
