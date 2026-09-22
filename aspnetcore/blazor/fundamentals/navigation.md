@@ -5,7 +5,7 @@ author: guardrex
 description: Learn about navigation in Blazor, including how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 06/24/2026
+ms.date: 09/15/2026
 uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
@@ -289,11 +289,13 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 
 ## Not Found responses
 
-<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> handles scenarios where a requested resource isn't found during static server-side rendering (static SSR) or global interactive rendering:
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> handles scenarios where a requested resource isn't found:
 
-* **Static SSR**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> sets the HTTP status code to 404.
+* **Static server-side rendering (static SSR)**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> sets the HTTP status code to 404. If Not Found content is configured through `Router.NotFoundPage` or `NotFoundEventArgs.Path`, the router renders Not Found content.
 
-* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+* **Global interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+
+* **Per-page/component interactive rendering**: Behaves the same as static server-side rendering (static SSR) during prerendering on the server, while interactive Not Found behavior no-ops.
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
@@ -328,10 +330,10 @@ When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetC
 }
 ```
 
-To provide Not Found content for global interactive rendering, use a Not Found page (Razor component).
+To provide Not Found content for global interactive rendering or for per-page/component interactive rendering *during prerendering*, use a Not Found page (Razor component).
 
 > [!NOTE]
-> The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, making it possible to handle missing routes with a consistent user experience.
+> The Blazor project template includes a `NotFound.razor` page and configures it as the router's `NotFoundPage`. This page renders when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called in a supported context, making it possible to handle missing routes with a consistent user experience.
 
 `Pages/NotFound.razor`:
 
@@ -374,6 +376,58 @@ When a component is rendered with a global interactive render mode, calling <xre
     }
 }
 ```
+
+When a component is rendered with a per-page/component interactive render mode, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> signals the Blazor router to render the `NotFound` component ***only during prerendering*** (<xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>):
+
+```csharp
+protected override void OnInitialized()
+{
+    // Where your initialization code must lead to a Not Found response:
+    if (!RendererInfo.IsInteractive)
+    {
+        Navigation.NotFound();
+    }
+}
+```
+
+The preceding example would assign a per-page/component render mode at the top of the Razor component file (for example, `@rendermode InteractiveServer`).
+
+The Not Found response and 404 status code aren't applied outside of prerendering, so if prerendering is disabled or the <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> call is made after prerendering, the component should indicate to the user in the component's UI that a resource isn't found.
+
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> doesn't terminate the method. If <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> should end the control flow, add a `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. In the following movie database update method, a concurrency exception results in checking for the presence of a movie in the database to determine if a Not Found response is appropriate. The `return` statement after calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> ensures that the handler selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>:
+
+```csharp
+private async Task UpdateMovie()
+{
+    using var context = DbFactory.CreateDbContext();
+    context.Attach(Movie!).State = EntityState.Modified;
+
+    try
+    {
+        await context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!MovieExists(Movie!.Id))
+        {
+            Navigation.NotFound();
+
+            return;
+        }
+        else
+        {
+            throw;
+        }
+    }
+
+    Navigation.NavigateTo("/movies");
+}
+```
+
+Services not shown in the preceding example:
+
+* `NavigationManager` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> (`@inject NavigationManager Navigation`).
+* `DbFactory` is an injected <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> (`@inject IDbContextFactory<{CONTEXT}> DbFactory`, where the `{CONTEXT}` placeholder is a <xref:Microsoft.EntityFrameworkCore.DbContext>).
 
 Use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is invoked. The event is only fired when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, not for any 404 response. For example, setting `HttpContextAccessor.HttpContext.Response.StatusCode` to `404` doesn't trigger <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>/<xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound%2A>.
 
