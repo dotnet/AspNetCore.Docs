@@ -144,7 +144,7 @@ The same component pattern supports asynchronous work:
 -->
 
 * In an `OnValidationRequested` handler, call `e.AddAsyncValidator` to register form-level work. `EditForm` awaits it before invoking `OnValidSubmit` or `OnInvalidSubmit`.
-* In an `OnFieldChanged` handler, call `RegisterAsyncFieldValidator` to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
+* In an `OnFieldChanged` handler, call `EditContext.RegisterAsyncFieldValidator` to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
 
 For form-level asynchronous validation:
 
