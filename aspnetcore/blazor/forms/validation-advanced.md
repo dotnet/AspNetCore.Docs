@@ -138,8 +138,13 @@ To implement a business rule inside the validator component instead of accepting
 
 The same component pattern supports asynchronous work:
 
+<!-- UPDATE 11.0 - API Browser cross-ref
+
+                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A>
+-->
+
 * In an `OnValidationRequested` handler, call `e.AddAsyncValidator` to register form-level work. `EditForm` awaits it before invoking `OnValidSubmit` or `OnInvalidSubmit`.
-* In an `OnFieldChanged` handler, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A> to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
+* In an `OnFieldChanged` handler, call `EditContext.RegisterAsyncFieldValidator` to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
 
 For form-level asynchronous validation:
 
