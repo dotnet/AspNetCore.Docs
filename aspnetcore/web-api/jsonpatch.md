@@ -5,7 +5,7 @@ description: "JSON Patch in ASP.NET Core web API: Learn how to handle JSON Patch
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.date: 05/27/2026
+ms.date: 09/23/2026
 uid: web-api/jsonpatch
 ---
 # JSON Patch support in ASP.NET Core web API
@@ -260,12 +260,12 @@ to the test value 'Jane'.
 }
 ```
 
-## Construct a JSON Patch document using strongly typed lambda expressions
+### Example: Construct a JSON Patch document using strongly-typed lambda expressions
 
-In addition to specifying paths as string literals (such as `"/FirstName"`), <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> supports defining patch operations using strongly typed lambda expressions. Strongly typed lambda expressions:
+In addition to specifying paths as string literals, <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> supports defining patch operations using strongly-typed lambda expressions. Strongly-typed lambda expressions:
 
 * Provide compile-time verification that property paths and value types match the model.
-* Eliminate runtime typos and casing errors that can occur with string-based JSON Pointer paths.
+* Eliminate runtime typographical errors, such a casing error, that can occur with string-based JSON Pointer paths.
 * Automatically update property paths when renaming model properties during refactoring.
 
 The following example demonstrates building a patch document using lambda expressions:
@@ -290,7 +290,12 @@ patchDoc.Replace(p => p.Email, "janesmith@example.com");
 patchDoc.ApplyTo(person);
 
 Console.WriteLine($"{person.FirstName} {person.LastName} ({person.Email})");
-// Output: Jane Smith (janesmith@example.com)
+```
+
+The previous example results in the following output:
+
+```output
+Jane Smith (janesmith@example.com)
 ```
 
 ## Mitigating security risks
