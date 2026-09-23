@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use binding in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/24/2026
+ms.date: 09/22/2026
 uid: blazor/forms/binding
 ---
 # ASP.NET Core Blazor forms binding
@@ -400,6 +400,71 @@ When a component adopts static SSR, the [`OnInitialized{Async}` lifecycle method
 The framework instantiates and populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component) instantiates <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext>. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> with the attempted value and any mapping errors.
 
 Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly, as it's mainly a source of data for <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
+
+:::moniker-end
+
+## `InputText` based on the input event
+
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
+
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
+
+`CustomInputText.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/CustomInputText.razor":::
+
+The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following  component uses the shared `CustomInputText` component.
+
+`Starship11.razor`:
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```razor
+@page "/starship-11"
+@using System.ComponentModel.DataAnnotations
+@inject ILogger<Starship11> Logger
+
+<EditForm Model="Model" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <CustomInputText @bind-Value="Model!.Id" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+<div>
+    CurrentValue: @Model?.Id
+</div>
+
+@code {
+    public Starship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        Logger.LogInformation("Submit called: Processing the form");
+    }
+
+    public class Starship
+    {
+        [Required]
+        [StringLength(10, ErrorMessage = "Id is too long.")]
+        public string? Id { get; set; }
+    }
+}
+```
 
 :::moniker-end
 

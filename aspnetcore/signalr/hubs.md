@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to work with hubs in ASP.NET Core SignalR, create and use hubs, send messages to clients, and handle results from connected clients on the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 09/20/2026
+ms.date: 09/22/2026
 uid: signalr/hubs
 
 # customer intent: As an ASP.NET developer, I want to use hubs in ASP.NET Core SignalR, so I can enable real-time communication between connected clients and the server, and indirect client-to-client communication.
@@ -38,19 +38,12 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
 
-> [!NOTE]
-> Hubs are [transient](/dotnet/core/extensions/dependency-injection/service-lifetimes#transient):
->
-> * Don't store state in a property of the hub class. Each hub method call is executed on a new hub instance.
-> * Don't instantiate a hub directly via dependency injection. To send messages to a client from elsewhere in your application, use an [IHubContext](xref:signalr/hubcontext).
-> * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, if you call a method such as  `Clients.All.SendAsync(...)` without using `await`, the call can fail and the hub method completes before `SendAsync` finishes.
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/language-reference/builtin-types/union) only with the default `JsonHubProtocol`. The MessagePack and Newtonsoft.Json hub protocols don't support unions.
+> Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/language-reference/builtin-types/union) only with the default `JsonHubProtocol`. The MessagePack and `Newtonsoft.Json` hub protocols don't support unions.
 
 :::moniker-end
 
@@ -221,53 +214,108 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 ## Inject services into a hub
 
-Hub constructors can accept services from dependency injection as parameters, which can be stored in properties on the class for use in a hub method.
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-When you inject multiple services for different hub methods or as an alternative way of writing code, hub methods can also accept services from dependency injection. By default, hub method parameters are inspected and resolved from dependency injection if possible.
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called.
+
+In the app's `Program` file using SQL Server as the example database provider and a connection string from configuration:
 
 ```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+var connectionString = 
+    builder.Configuration.GetConnectionString("DefaultConnection");
 
-// ...
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+```
 
-public class ChatHub : Hub
+An example hub class:
+
+```csharp
+public class ChatHub(IDbContextFactory<ApplicationDbContext> contextFactory) : Hub
 {
-    public Task SendMessage(string user, string message, IDatabaseService dbService)
+    public async Task SendMessage(string user, string message)
     {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+        using var context = await contextFactory.CreateDbContextAsync();
+
+        var msgEntity = new Message { User = user, Content = message };
+        context.Messages.Add(msgEntity);
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
     }
 }
 ```
 
-If implicit resolution of parameters from services isn't desired, you can disable the behavior with the [DisableImplicitFromServicesParameters](xref:signalr/configuration#configure-server-options) server option.
+If you're unable to use a factory and must inject a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> directly, the framework automatically creates a dependency injection (DI) scope for the hub method invocation. The framework disposes the context as soon as the invocation/stream completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
-To explicitly specify which parameters are resolved from dependency injection in hub methods, use the [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) property. Specify the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on the hub method parameters that should be resolved from dependency injection.
+Hub method service injection is also supported. In the following example, a scoped <xref:Microsoft.EntityFrameworkCore.DbContext> (`ApplicationDbContext`) only used for a quick write operation is injected into the specific method that requires it:
 
 ```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
-services.AddSignalR(options =>
+public class ChatHub : Hub
+{
+    public async Task SendMessage(string user, string message, 
+        ApplicationDbContext context)
+    {
+        context.Messages.Add(new Message { User = user, Content = message });
+        await context.SaveChangesAsync();
+
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
+    }
+}
+```
+
+To explicitly specify which parameters are resolved from DI in hub methods, specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from DI.
+
+Set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)) in case some parameters might come from DI and you instead want them to come from the client.
+
+In the app's `Program` file:
+
+```csharp
+builder.Services.AddSingleton<SomeCustomType>();
+builder.Services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+
+builder.Services.AddSignalR(options =>
 {
     options.DisableImplicitFromServicesParameters = true;
 });
+```
 
-// ...
+In the following hub method, only `IDatabaseService` is resolved from DI:
 
+```csharp
 public class ChatHub : Hub
 {
-    public Task SendMessage(string user, string message,
+    public async Task SendMessage(string user, string message,
+        SomeCustomType type,
         [FromServices] IDatabaseService dbService)
     {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+        await dbService.SaveMessageAsync(user, message, type);
+        await Clients.All.SendAsync("ReceiveMessage", user, message, type);
     }
 }
 ```
 
 > [!NOTE]
-> This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in dependency injection configurations. If the application dependency injection container doesn't support this feature, injecting services into hub methods isn't supported.
+> Implicit parameter inference makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented in DI configurations. If the app's DI container doesn't support this feature, injecting services into hub methods using implicit parameter inference isn't supported.
 
-### Keyed services support in dependency injection
+For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
+
+* A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+
+Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
+
+Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
+
+Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
+
+<!-- NOTE: The double-space at the end of the next line generates a bare return. -->
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
+
+For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
+
+## Keyed services support in dependency injection
 
 The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
 

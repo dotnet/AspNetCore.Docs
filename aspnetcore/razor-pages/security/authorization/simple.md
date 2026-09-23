@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core Razor Pages apps.
 ms.author: tdykstra
-ms.date: 03/05/2026
+ms.date: 09/18/2026
 uid: razor-pages/security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core Razor Pages
@@ -59,7 +59,7 @@ Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.A
 [AllowAnonymous]
 ```
 
-For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+For information on how to require authentication for all app users, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
 ## `[Authorize]` attribute in Razor Pages apps
 

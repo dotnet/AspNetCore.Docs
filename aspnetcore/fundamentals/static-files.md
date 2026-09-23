@@ -1,11 +1,11 @@
 ---
-title: Serve Static Files in ASP.NET Core Apps
+title: Serve static files in ASP.NET Core apps
 ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/26/2026
+ms.date: 09/23/2026
 ms.reviewer: wpickett
 uid: fundamentals/static-files
 ---
@@ -470,7 +470,7 @@ For a complex JavaScript or TypeScript client build, use a separate JavaScript p
 
 :::moniker range=">= aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), it requires authorization for all requests that don't explicitly specify an authorization policy. This requirement includes requests for static files after authorization middleware processes requests. To allow anonymous access to static files, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder for static files:
+When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
 
 ```csharp
 app.MapStaticAssets().Add(endpointBuilder => 
@@ -481,7 +481,7 @@ app.MapStaticAssets().Add(endpointBuilder =>
 
 :::moniker range="< aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/secure-data#require-authenticated-users), authorization is required for all requests that don't explicitly specify an authorization policy, including requests for static files after authorization middleware processes requests. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
+When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
 
 * No authorization checks are performed on the static files.
 * Static files served by the static file middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
@@ -560,7 +560,7 @@ app.UseStaticFiles(new StaticFileOptions
 
 :::moniker-end
 
-In the preceding code, the fallback authorization policy requires authenticated users. Endpoints, such as controllers and Razor Pages, that specify their own authorization requirements don't use the fallback authorization policy. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authorization attribute rather than the fallback authorization policy.
+In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
@@ -1175,7 +1175,8 @@ Property | Description
 --- | ---
 `EnableDefaultCompressedItems` | Enables default compression include and exclude patterns.
 `CompressionIncludePatterns` | Semicolon-separated list of file patterns to include for compression.
-`CompressionExcludePatterns` | Semicolon-separated list of file patterns to exclude from compression.
+`CompressionExcludePatterns` | Semicolon-separated list of file patterns to exclude from compression. See the example below.
+`CompressionEnabled` | Completely disables static asset compression when set to `false`. See the example below.
 `EnableDefaultCompressionFormats` | Enables default compression formats (Gzip and Brotli).
 `BuildCompressionFormats` | Compression formats to use during build.
 `PublishCompressionFormats` | Compression formats to use during publish.
@@ -1184,6 +1185,22 @@ Property | Description
 `BrotliCompressionLevel` | Compression level for the Brotli algorithm.
 `StaticWebAssetBuildCompressAllAssets` | Compresses all assets during build, not just assets discovered or computed during a build.
 `StaticWebAssetPublishCompressAllAssets` | Compresses all assets during publish, not just assets discovered or computed during a build.
+
+The following example excludes JavaScript files from compression:
+
+```xml
+<PropertyGroup>
+  <CompressionExcludePatterns>$(CompressionExcludePatterns);**\*.js</CompressionExcludePatterns>
+</PropertyGroup>
+```
+
+To completely disable static asset compression:
+
+```xml
+<PropertyGroup>
+  <CompressionEnabled>false</CompressionEnabled>
+</PropertyGroup>
+```
 
 Property | Description
 --- | ---

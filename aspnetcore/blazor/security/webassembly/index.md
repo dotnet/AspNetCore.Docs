@@ -6,7 +6,7 @@ description: Learn how to secure Blazor WebAssembly apps as single-page applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: sfi-ropc-nochange
-ms.date: 08/26/2026
+ms.date: 09/18/2026
 uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
@@ -175,7 +175,7 @@ The following authentication scenarios are covered in the <xref:blazor/security/
 
 *For patterns that apply to server-side Blazor apps (Blazor Web Apps, Blazor Server apps), see <xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns>.*
 
-Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
+Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>. The [server-side fallback policy](xref:security/authorization/policies#default-and-fallback-policies) is enforced by authorization middleware and isn't a client-side authorization mechanism. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
 
 * In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
 

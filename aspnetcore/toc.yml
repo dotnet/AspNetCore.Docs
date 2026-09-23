@@ -862,6 +862,10 @@ items:
                 uid: blazor/forms/binding
               - name: Validation
                 uid: blazor/forms/validation
+              - name: Advanced validation
+                uid: blazor/forms/validation-advanced
+              - name: Client-side validation (static SSR)
+                uid: blazor/forms/validation-client-side
               - name: Troubleshoot
                 uid: blazor/forms/troubleshoot
           - name: File uploads
@@ -2159,6 +2163,8 @@ items:
             uid: security/authorization/secure-data
           - name: Simple authorization
             uid: security/authorization/simple
+          - name: Require authenticated users by default
+            href: security/authorization/policies.md#require-global-user-authentication
           - name: Custom authorization with IAuthorizationRequirementData
             uid: security/authorization/iard
           - name: Role-based authorization

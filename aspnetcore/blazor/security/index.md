@@ -5,7 +5,7 @@ author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/26/2026
+ms.date: 09/18/2026
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -563,7 +563,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
 
 :::moniker-end
 
-* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
+* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication). After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
 
 ### User state management
 

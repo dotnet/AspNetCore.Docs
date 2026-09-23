@@ -2,24 +2,26 @@
 title: Policy-based authorization in ASP.NET Core
 ai-usage: ai-assisted
 author: wadepickett
-description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
+description: Learn how to require authenticated users by default and create, select, and use authorization policies in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 07/21/2026
+ms.date: 09/18/2026
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
 
-An ASP.NET Core authorization policy is a named set of one or more authorization requirements that the framework evaluates to decide whether a user is allowed to access a resource.
+An ASP.NET Core authorization policy is a set of one or more authorization requirements that the framework evaluates to decide whether a user is allowed to access a resource. A policy can be registered with a name and applied to resources that require it.
 
 This article explains:
 
+* How to require authenticated users by default.
 * How to create requirements.
 * How to register and apply policies.
+* How named, default, and fallback policies are selected.
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
-In practice, a policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/custom-authorization-policy-providers> documentation) generates policies dynamically instead of registering them at app startup.
+A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/custom-authorization-policy-providers> documentation) generates policies dynamically instead of registering them at app startup.
 
 [Role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 
@@ -29,6 +31,92 @@ This article uses Razor component examples and focuses on [Blazor](xref:blazor/i
 * <xref:mvc/security/authorization/policies>
 
 Some examples in this article (ASP.NET Core 8.0 or later) use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+
+## Require global user authentication
+
+For a server-side app where most or all endpoints require authentication, set a fallback policy that requires an authenticated user. This secure-by-default approach protects newly added endpoints that don't specify authorization metadata.
+
+The fallback policy, not the default policy, applies to endpoints that don't specify authorization metadata. The default policy applies when an endpoint selects it with `[Authorize]` or `RequireAuthorization()` without a policy name. For complete policy selection rules, see the [Default and fallback policies](#default-and-fallback-policies) section.
+
+:::moniker range=">= aspnetcore-7.0"
+
+```csharp
+var requireAuthPolicy = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
+
+builder.Services.AddAuthorizationBuilder()
+    .SetFallbackPolicy(requireAuthPolicy);
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In `Startup.ConfigureServices`:
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+```
+
+:::moniker-end
+
+Apply `[AllowAnonymous]` or call `AllowAnonymous()` for endpoints that are intentionally public.
+
+The fallback policy applies to requests processed by the authorization middleware. For example:
+
+* A request that doesn't match an endpoint uses the fallback policy if the authorization middleware runs for the request.
+* Static files served by static file middleware before the authorization middleware aren't protected by the fallback policy.
+* Public endpoints can depend on static assets that must also allow anonymous access.
+
+For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files#static-file-authorization) and [Server-side Blazor app authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns). Blazor WebAssembly apps don't support a server-side fallback authorization policy. For Blazor WebAssembly authorization patterns, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.
+
+## Default and fallback policies
+
+The authorization middleware combines the authorization metadata for an endpoint into a policy. The following table describes how the metadata determines which policy is used:
+
+| Authorization metadata | Policy or behavior |
+| --- | --- |
+| None | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> is used, if it's configured. By default, the fallback policy is `null`, so authorization isn't required. |
+| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> is used unless the endpoint also has an explicit `AuthorizationPolicy` instance. By default, the default policy requires an authenticated user. |
+| `[Authorize(Policy = "{POLICY NAME}")]` or `RequireAuthorization("{POLICY NAME}")` | The named policy is used. |
+| `[Authorize(Roles = "{ROLES}")]` | A policy is built with the specified roles. The default policy isn't added for this authorization declaration. |
+| `RequireAuthorization(policy)` with an `AuthorizationPolicy` instance | The explicit policy is used. If explicit policy metadata is present, bare authorization data and authentication-scheme-only authorization data don't add the default policy. |
+| `[Authorize(AuthenticationSchemes = "{SCHEME}")]` without a policy name or roles | The specified authentication scheme is used. The default policy is also used unless the endpoint has an explicit `AuthorizationPolicy` instance. |
+| Multiple `[Authorize]` attributes or policy-selecting `RequireAuthorization(...)` calls | The selected named policies, roles, authentication schemes, and explicit policies are combined. Bare authorization data adds the default policy only when no explicit `AuthorizationPolicy` instance is present. All requirements in the combined policy must succeed. The fallback policy isn't used. |
+| `[AllowAnonymous]` or `AllowAnonymous()` | The authorization middleware doesn't enforce an authorization failure for the endpoint. Authentication can still run and populate <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>. |
+
+The fallback policy isn't combined with a named or default policy. For the declarations shown in the preceding table, it's selected only when no authorization policy is produced from the endpoint's authorization metadata. For example, `[Authorize]` uses the default policy instead of the fallback policy, and `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy instead of the fallback policy.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Requirements supplied as endpoint metadata through <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> are added after policy selection. If no other authorization metadata produces a policy, these requirements are combined with the fallback policy when a fallback policy is configured.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
+In ASP.NET Core 8.0 through 10.0, attributes that implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> are only enforced on Minimal API and routed endpoints. For version and hosting model support, see <xref:security/authorization/iard>.
+
+:::moniker-end
 
 ## Requirements and policy registration
 
@@ -300,10 +388,6 @@ There are situations where fulfilling a policy is simple to express in code with
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/3.0PoliciesAuthApp1/Startup.cs" range="42-43,47-53":::
 
 :::moniker-end
-
-## Require global user authentication
-
-For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
 
 :::moniker range=">= aspnetcore-6.0"
 
