@@ -476,7 +476,7 @@ editContext.SetFieldCssClassProvider(
 
 For custom input markup, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.FieldCssClass%2A> to obtain the class selected by the current provider.
 
-When an `EditForm` is assigned a model, its child content receives the generated `EditContext`. Capture the context through the  `Context` parameter and call `FieldCssClass` to apply the field's classes to surrounding markup:
+When an `EditForm` is assigned a model, its child content receives the generated `EditContext`. Capture the context through the `Context` parameter and call `FieldCssClass` to apply the field's classes to surrounding markup:
 
 ```razor
 <EditForm Model="Model" Context="editContext">
