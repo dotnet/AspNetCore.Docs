@@ -260,6 +260,39 @@ to the test value 'Jane'.
 }
 ```
 
+## Construct a JSON Patch document using strongly typed lambda expressions
+
+In addition to specifying paths as string literals (such as `"/FirstName"`), <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> supports defining patch operations using strongly typed lambda expressions. Strongly typed lambda expressions:
+
+* Provide compile-time verification that property paths and value types match the model.
+* Eliminate runtime typos and casing errors that can occur with string-based JSON Pointer paths.
+* Automatically update property paths when renaming model properties during refactoring.
+
+The following example demonstrates building a patch document using lambda expressions:
+
+```csharp
+var person = new Person
+{
+    FirstName = "John",
+    LastName = "Doe",
+    Email = "johndoe@example.com"
+};
+
+// Create a strongly typed JSON Patch document
+var patchDoc = new JsonPatchDocument<Person>();
+
+// Add operations using lambda expressions
+patchDoc.Replace(p => p.FirstName, "Jane");
+patchDoc.Replace(p => p.LastName, "Smith");
+patchDoc.Replace(p => p.Email, "janesmith@example.com");
+
+// Apply the patch document to the target object
+patchDoc.ApplyTo(person);
+
+Console.WriteLine($"{person.FirstName} {person.LastName} ({person.Email})");
+// Output: Jane Smith (janesmith@example.com)
+```
+
 ## Mitigating security risks
 
 When using the `Microsoft.AspNetCore.JsonPatch.SystemTextJson` package, it's critical to understand and mitigate potential security risks. The following sections outline the identified security risks associated with JSON Patch and provide recommended mitigations to ensure secure usage of the package.
