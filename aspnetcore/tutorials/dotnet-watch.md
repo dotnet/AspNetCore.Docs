@@ -235,7 +235,7 @@ When running `dotnet watch` on Linux or in Docker containers, you may encounter 
 
 `The configured user limit (128) on the number of inotify instances has been reached, or the per-process limit on the number of open file descriptors has been reached.`
 
-This happens because the operating system limits the number of file watchers that a single user can create. To resolve this issue, increase the `fs.inotify.max_user_instances` and `fs.inotify.max_user_watches` system limits.
+If the inotify instance limit is exhausted, increase `fs.inotify.max_user_instances`. If the process has reached its open-file-descriptor limit, increase that limit instead. The separate `fs.inotify.max_user_watches` setting applies when the inotify watch limit is exhausted.
 
 To temporarily increase these limits, run the following commands:
 
