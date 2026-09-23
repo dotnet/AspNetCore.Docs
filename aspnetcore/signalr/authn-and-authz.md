@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/14/2026
+ms.date: 09/20/2026
 uid: signalr/authn-and-authz
 ---
 
@@ -256,6 +256,16 @@ connection.onAuthenticationRefreshFailed(context => {
 
 * `enableAutoRefresh`: Enables automatic refresh before the token expires. Defaults to `true`. As with the .NET client, automatic refresh is only scheduled when the server reports a token lifetime.
 * `refreshBeforeExpirationInMilliseconds`: How far ahead of the reported expiration to refresh, in milliseconds. Defaults to 300,000 (five minutes).
+
+The context passed to `onAuthenticationRefreshed` provides:
+
+* `connection`: The `HubConnection` that was refreshed.
+* `newTokenLifetimeInSeconds`: The new token lifetime reported by the server, or `undefined` when the server doesn't report one.
+* `refreshedAt`: The time the refresh completed.
+
+The context passed to `onAuthenticationRefreshFailed` provides `connection` and `error`. Both automatic and manual refreshes invoke these handlers, and a failed call to `refreshAuthentication` also rejects with the same error.
+
+A refresh fails when the server responds with any status code other than 200. That includes the HTTP 403 status code returned when the refreshed principal maps to a different SignalR user or when `OnAuthenticationRefresh` rejects the refresh, which is a policy decision rather than a transient error. A failed refresh doesn't close the connection on its own and isn't retried automatically. The connection continues with its existing credentials until the token expires, and is then closed if `CloseOnAuthenticationExpiration` is enabled. Handle `onAuthenticationRefreshFailed` to prompt the user to sign in again, and call `refreshAuthentication` after the app obtains new credentials.
 
 #### React to a refresh in the hub
 
