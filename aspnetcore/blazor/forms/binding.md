@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use binding in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/22/2026
+ms.date: 09/23/2026
 uid: blazor/forms/binding
 ---
 # ASP.NET Core Blazor forms binding
@@ -57,6 +57,8 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 > Most of this article's form model examples bind forms to C# *properties*, but C# field binding is also supported.
 
 :::moniker-end
+
+When a different object instance is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> parameter of `EditForm`, the form creates a new `EditContext`. The new context starts with no modified fields or validation messages. When an `EditContext` is supplied explicitly, create and assign a new context to reset the state.
 
 ## Context binding
 
