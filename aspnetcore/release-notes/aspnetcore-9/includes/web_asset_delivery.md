@@ -110,6 +110,8 @@ To completely disable compression:
 </PropertyGroup>
 ```
 
+For more information, see <xref:fundamentals/static-files?view=aspnetcore-9.0#msbuild-properties>.
+
 ### Enabling dynamic compression on the server vs using `MapStaticAssets`
 
 `MapStaticAssets` has the following advantages over dynamic compression on the server:
