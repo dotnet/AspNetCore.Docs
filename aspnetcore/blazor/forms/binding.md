@@ -58,7 +58,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 
 :::moniker-end
 
-When a different object instance is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> parameter of `EditForm`, the form creates a new `EditContext`. The new context starts with no modified fields or validation messages. When an `EditContext` is supplied explicitly, create and assign a new context to reset the state.
+When a different object instance is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> parameter of `EditForm`, the form creates a new `EditContext`. The new context starts with no modified fields or validation messages.
 
 ## Context binding
 
