@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/18/2026
+ms.date: 09/23/2026
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -509,6 +509,22 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Data can be stored temporarily or permanently in server-side scenarios.
 
+### Supported property types for temporary data and session
+
+The `[SupplyParameterFromTempData]` and `[SupplyParameterFromSession]` attributes support the same stored-value types for component properties during static server-side rendering:
+
+| Type | Supported values |
+| --- | --- |
+| Scalar | `string`, `int`, `bool`, `Guid`, `DateTime`, and enums with an `int` underlying type |
+| Nullable scalar | Nullable forms of the supported value types, such as `int?` |
+| Collection | One-dimensional arrays (`T[]`), `List<T>`, `HashSet<T>`, and `Collection<T>`, where `T` is a supported scalar or nullable scalar type |
+| Dictionary | `Dictionary<string, T>`, where `T` is a supported scalar or nullable scalar type |
+| Object array | `object[]`, whose elements are serialized individually and must have supported types |
+
+Null values are supported. An empty collection remains distinct from a null collection after a round trip. A nullable property explicitly set to null and one never set both read back as null; this alone doesn't establish whether a storage key was present.
+
+Arbitrary JSON-serializable types aren't supported. For example, a user-defined class, a list of user-defined classes, or an enum backed by `byte` isn't supported. The supported types are determined by the stored-data serializer, not by whether <xref:System.Text.Json> can serialize the type.
+
 ### Temporary data persistence
 
 <!-- UPDATE 11.0 - API cross-links -->
@@ -522,7 +538,7 @@ To persist temporary data between HTTP requests during static server-side render
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
 * Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
-* Supports primitives, <xref:System.DateTime>, <xref:System.Guid>, enums, and collections (arrays, <xref:System.Collections.Generic.List%601>, <xref:System.Collections.Generic.Dictionary%602>).
+* Supports the [stored-value types listed above](#supported-property-types-for-temporary-data-and-session).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
 * Uses case-insensitive keys, so `TempData["message"]` and `TempData["Message"]` retrieve the same value.
 
@@ -552,7 +568,7 @@ The `ITempData` interface provides the following methods for controlling value l
 
 Data stored in `TempData` is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
 
-The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption.
+The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](xref:security/data-protection/configuration/overview) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
 
 Call `AddCookieTempDataValueProvider` on the service collection in the app's `Program` file passing `CookieTempDataProviderOptions` to change the cookie's parameters in the following table.
 
@@ -560,8 +576,8 @@ Parameter | API | Notes
 --- | --- | ---
 Name | `Name` | The default value is `.AspNetCore.Components.TempData`.
 [HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | The default value is `true`.
-[SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | <xref:Microsoft.AspNetCore.Http.SameSiteMode.Strict?displayProperty=nameWithType>
-[Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set. Since mixing secure and insecure endpoints is a common scenario in apps, the framework relaxes the restriction on secure policy on some cookies by setting them to 'None'. Cookies related to authentication or authorization use a stronger policy than 'None'. The default value is [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+[SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | The default value is `SameSiteMode.Lax`.
+[Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | The default value is `CookieSecurePolicy.SameAsRequest`, which marks the cookie as secure when the request uses HTTPS.
 
 Example (sets default values):
 
@@ -570,14 +586,14 @@ builder.Services.AddRazorComponents(options =>
 {
     options.TempDataCookie.Name = ".AspNetCore.Components.TempData";
     options.TempDataCookie.HttpOnly = true;
-    options.TempDataCookie.SameSite = SameSiteMode.Strict;
-    options.TempDataCookie.SecurePolicy = CookieSecurePolicy.None;
+    options.TempDataCookie.SameSite = SameSiteMode.Lax;
+    options.TempDataCookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 ```
 
 > [!NOTE]
 
-Only JSON-serializable primitives and collections are supported. User-defined classes and custom object serialization aren't supported. Blazor WebAssembly and Blazor Server aren't supported.
+Unsupported non-null `TempData` values fail when the response is persisted, which can occur after the component has rendered. Blazor WebAssembly and interactive server rendering aren't supported.
 
 Browsers enforce a 4 KB cookie size limit. `TempData` automatically uses <xref:Microsoft.AspNetCore.Authentication.Cookies.ChunkingCookieManager> to split cookies across multiple cookie headers, but developers storing a large amount of data must switch to session storage, which introduces session affinity requirements.
 
@@ -698,6 +714,8 @@ public string? FlashMessage { get; set; }
 ```
 
 A key (string) is useful to distinguish multiple parameters because properties can't share a session value.
+
+The [supported property types](#supported-property-types-for-temporary-data-and-session) are the same as for `[SupplyParameterFromTempData]`. For an unsupported concrete property type, `[SupplyParameterFromSession]` throws when the component subscribes to the session value. The exception identifies the property, component, attribute, and property type. This differs from the later `TempData` persistence failure, which identifies the unsupported value type.
 
 Call `AddSession` on the service collection in the app's `Program` file passing `SessionOptions` to change the cookie's parameters.
 
