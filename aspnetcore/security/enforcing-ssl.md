@@ -353,6 +353,68 @@ rm ${CertificateDirectory}/aspnetcore.crt
 dotnet dev-certs https --clean
 ```
 
+### Trust the certificate on Red Hat Enterprise Linux (RHEL)
+
+`dotnet dev-certs https --trust` isn't officially supported on RHEL. The following steps mirror the SLES instructions above, adapted for RHEL package names.
+
+> [!WARNING]
+> The following instructions are intended for development purposes only. Don't use the development certificate in a production environment.
+
+> [!NOTE]
+> As on SLES, adding the certificate to the system trust store (`/etc/pki/ca-trust/source/anchors/` followed by `update-ca-trust`) doesn't work for the development certificate. The certificate isn't a certificate authority (`CA:FALSE`), so trust it per application as shown below instead.
+
+#### Install dependencies
+
+The `certutil` tool used to manage browser certificate stores is provided by the `nss-tools` package:
+
+```sh
+sudo dnf install nss-tools openssl
+```
+
+#### Export the development certificate
+
+Replace `${CertificateDirectory}` with a directory outside your source repositories, for example `$HOME/.aspnet/https`:
+
+```sh
+mkdir -p ${CertificateDirectory}
+dotnet dev-certs https -ep ${CertificateDirectory}/aspnetcore.crt --format PEM --no-password
+```
+
+#### Trust the certificate in Chromium-based browsers (Microsoft Edge, Chrome, Chromium)
+
+```sh
+certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n aspnetcore -i ${CertificateDirectory}/aspnetcore.crt
+```
+
+If `$HOME/.pki/nssdb` doesn't exist yet, create it first with `certutil -d sql:$HOME/.pki/nssdb -N --empty-password`. Restart the browser after importing.
+
+#### Trust the certificate in Firefox
+
+Replace `${UserProfile}` with the name of your Firefox profile directory (see `about:profiles` in Firefox):
+
+```sh
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n aspnetcore -i ${CertificateDirectory}/aspnetcore.crt
+```
+
+#### Trust the certificate in curl and other OpenSSL clients
+
+Pass the exported certificate explicitly:
+
+```sh
+curl --cacert ${CertificateDirectory}/aspnetcore.crt https://localhost:5001
+```
+
+Alternatively, point `SSL_CERT_DIR` at a directory that contains the certificate as described in [OpenSSL trust](#openssl-trust).
+
+#### Remove the development certificate
+
+```sh
+certutil -d sql:$HOME/.pki/nssdb -D -n aspnetcore
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n aspnetcore
+rm ${CertificateDirectory}/aspnetcore.crt
+dotnet dev-certs https --clean
+```
+
 ## Troubleshoot certificate problems (certificate not trusted)
 
 Sometimes when an ASP.NET Core HTTPS development certificate is [installed and trusted](#trust), the browser warns that the certificate is untrusted. The following sections provide help for troubleshooting this issue.
