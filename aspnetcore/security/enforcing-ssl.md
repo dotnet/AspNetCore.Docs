@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 09/17/2026
+ms.date: 09/24/2026
 uid: security/enforcing-ssl
 
 # customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
@@ -404,7 +404,14 @@ Pass the exported certificate explicitly:
 curl --cacert ${CertificateDirectory}/aspnetcore.crt https://localhost:5001
 ```
 
-Alternatively, point `SSL_CERT_DIR` at a directory that contains the certificate as described in [OpenSSL trust](#openssl-trust).
+Alternatively, create an OpenSSL hashed certificate directory and point `SSL_CERT_DIR` at it:
+
+```sh
+mkdir -p ${CertificateDirectory}/certs
+cp ${CertificateDirectory}/aspnetcore.crt ${CertificateDirectory}/certs/
+openssl rehash ${CertificateDirectory}/certs
+export SSL_CERT_DIR=${CertificateDirectory}/certs
+```
 
 #### Remove the development certificate
 
