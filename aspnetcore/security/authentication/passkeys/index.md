@@ -88,7 +88,7 @@ When implementing passkeys in ASP.NET Core Identity, ensure the app meets the se
 
 The implementation infers the Relying Party ID from the host header when <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> isn't explicitly configured. The hosting environment must validate host headers to prevent credential-scoping attacks, which involve using compromised or stolen user credentials (usernames, passwords, tokens) to gain unauthorized access.
 
-**Mitigation**: Either explicitly configure <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> in <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> or ensure that the hosting environment (Kestrel, IIS, reverse proxy) validates host headers. For configuration details, see your hosting platform's documentation. In addition to that, if you use the forwarded headers middleware, explicitly configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts>.
+**Mitigation**: Either explicitly configure <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain%2A> in <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> or ensure that the hosting environment (Kestrel, IIS, reverse proxy) validates host headers. For configuration details, see your hosting platform's documentation. In addition to that, if you use forwarded headers middleware, explicitly configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts>.
 
 ### Subdomain security
 
