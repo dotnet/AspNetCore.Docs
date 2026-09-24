@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/22/2026
+ms.date: 09/23/2026
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -246,7 +246,7 @@ Custom attributes can resolve registered services through <xref:System.Component
 
 ## Add validation through `EditContext`
 
-`EditForm` creates an `EditContext` automatically when its `Model` parameter is assigned. To use validation APIs directly, create the `EditContext` yourself and assign it to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A>. Don't assign both `Model` and `EditContext` to the same form.
+`EditForm` creates an `EditContext` automatically when its `Model` parameter is assigned. To use validation APIs directly, create the context yourself and assign it to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> parameter of `EditForm`. Don't assign both `Model` and `EditContext` to the same form.
 
 Custom validation commonly uses:
 
@@ -359,6 +359,8 @@ Use <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> to displa
 ```razor
 <ValidationMessage For="() => Model.Identifier" />
 ```
+
+The `For` expression identifies the field by its model instance and property. Blazor represents this identity with a <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier>, so properties with the same name on different model instances are treated as different fields. Using an expression instead of a string also allows refactoring tools to update the property reference.
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> to display messages for the form:
 
@@ -473,6 +475,20 @@ editContext.SetFieldCssClassProvider(
 ```
 
 For custom input markup, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.FieldCssClass%2A> to obtain the class selected by the current provider.
+
+When an `EditForm` is assigned a model, its child content receives the generated `EditContext`. Capture the context through the `Context` parameter and call `FieldCssClass` to apply the field's classes to surrounding markup:
+
+```razor
+<EditForm Model="Model" Context="editContext">
+    <DataAnnotationsValidator />
+
+    <div class="@editContext.FieldCssClass(
+        () => Model.Identifier)">
+        <InputText @bind-Value="Model.Identifier" />
+        <ValidationMessage For="() => Model.Identifier" />
+    </div>
+</EditForm>
+```
 
 :::moniker-end
 

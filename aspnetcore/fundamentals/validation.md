@@ -5,7 +5,7 @@ author: Youssef1313
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
 ms.author: ygerges
-ms.date: 09/22/2026
+ms.date: 09/23/2026
 uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
@@ -269,6 +269,55 @@ For Minimal API validation, <xref:Microsoft.Extensions.Validation?displayPropert
 Blazor form validation calls the asynchronous path for per-field validation and when the form is validated with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A?displayProperty=nameWithType>, which is what <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses on submit. The synchronous path is only reached through the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> method, which is obsolete in .NET 11 or later. Asynchronous rules therefore work in Blazor forms without additional configuration.
 
 If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
+
+The following example performs property-level asynchronous validation with a custom `AsyncValidationAttribute`. The attribute uses a hypothetical `IUserService` to check whether an email address is already registered. Empty values are left to <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>, and the cancellation token is passed to the asynchronous operation:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.DependencyInjection;
+
+public sealed class UniqueEmailAttribute : AsyncValidationAttribute
+{
+    public UniqueEmailAttribute()
+    {
+        ErrorMessage = "Email is already registered.";
+    }
+
+    protected override async Task<ValidationResult?> IsValidAsync(
+        object? value,
+        ValidationContext validationContext,
+        CancellationToken cancellationToken)
+    {
+        if (value is not string email || string.IsNullOrWhiteSpace(email))
+        {
+            return ValidationResult.Success;
+        }
+
+        var userService =
+            validationContext.GetRequiredService<IUserService>();
+
+        return await userService.IsEmailExistsAsync(
+            email, cancellationToken)
+                ? new ValidationResult(
+                    FormatErrorMessage(validationContext.DisplayName),
+                    [validationContext.MemberName!])
+                : ValidationResult.Success;
+    }
+
+    protected override ValidationResult? IsValid(
+        object? value, ValidationContext validationContext)
+    {
+        throw new InvalidOperationException(
+            "Synchronous validation isn't supported.");
+    }
+}
+
+public class RegistrationModel
+{
+    [Required, EmailAddress, UniqueEmail]
+    public string Email { get; set; } = string.Empty;
+}
+```
 
 The following example shows object-level asynchronous validation with `IAsyncValidatableObject`. It uses a hypothetical `IUserService` to check a database for an existing email address. Because the rule requires asynchronous I/O, the required synchronous `Validate` implementation throws <xref:System.InvalidOperationException>.
 
