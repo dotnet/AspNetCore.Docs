@@ -87,6 +87,31 @@ For more information on the new file delivery features, see the following resour
 * <xref:fundamentals/static-files?view=aspnetcore-9.0>
 * <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>
 
+### Customize build-time compression with MSBuild properties
+
+Several MSBuild properties can be used to customize or disable build-time compression behavior:
+
+* `CompressionEnabled`: Completely disables compression when set to `false`.
+* `CompressionExcludePatterns`: Semicolon-delimited list of glob patterns (for example, `**\*.js`) to exclude specific files from being considered for compression.
+
+The following example excludes JavaScript files from compression:
+
+```xml
+<PropertyGroup>
+  <CompressionExcludePatterns>$(CompressionExcludePatterns);**\*.js</CompressionExcludePatterns>
+</PropertyGroup>
+```
+
+To completely disable compression:
+
+```xml
+<PropertyGroup>
+  <CompressionEnabled>false</CompressionEnabled>
+</PropertyGroup>
+```
+
+For more information, see <xref:fundamentals/static-files?view=aspnetcore-9.0#msbuild-properties>.
+
 ### Enabling dynamic compression on the server vs using `MapStaticAssets`
 
 `MapStaticAssets` has the following advantages over dynamic compression on the server:

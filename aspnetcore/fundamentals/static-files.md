@@ -5,7 +5,7 @@ author: wadepickett
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/18/2026
+ms.date: 09/23/2026
 ms.reviewer: wpickett
 uid: fundamentals/static-files
 ---
@@ -1175,7 +1175,8 @@ Property | Description
 --- | ---
 `EnableDefaultCompressedItems` | Enables default compression include and exclude patterns.
 `CompressionIncludePatterns` | Semicolon-separated list of file patterns to include for compression.
-`CompressionExcludePatterns` | Semicolon-separated list of file patterns to exclude from compression.
+`CompressionExcludePatterns` | Semicolon-separated list of file patterns to exclude from compression. See the example below.
+`CompressionEnabled` | Completely disables static asset compression when set to `false`. See the example below.
 `EnableDefaultCompressionFormats` | Enables default compression formats (Gzip and Brotli).
 `BuildCompressionFormats` | Compression formats to use during build.
 `PublishCompressionFormats` | Compression formats to use during publish.
@@ -1184,6 +1185,22 @@ Property | Description
 `BrotliCompressionLevel` | Compression level for the Brotli algorithm.
 `StaticWebAssetBuildCompressAllAssets` | Compresses all assets during build, not just assets discovered or computed during a build.
 `StaticWebAssetPublishCompressAllAssets` | Compresses all assets during publish, not just assets discovered or computed during a build.
+
+The following example excludes JavaScript files from compression:
+
+```xml
+<PropertyGroup>
+  <CompressionExcludePatterns>$(CompressionExcludePatterns);**\*.js</CompressionExcludePatterns>
+</PropertyGroup>
+```
+
+To completely disable static asset compression:
+
+```xml
+<PropertyGroup>
+  <CompressionEnabled>false</CompressionEnabled>
+</PropertyGroup>
+```
 
 Property | Description
 --- | ---

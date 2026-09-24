@@ -1,10 +1,11 @@
 ---
 title: Background tasks with hosted services in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 05/28/2025
+ms.date: 09/18/2026
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -55,6 +56,15 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 
 `StartAsync` should be limited to short running tasks because hosted services are run sequentially, and no further services are started until `StartAsync` runs to completion.
 
+Hosted service instances start in the order that they're registered in the dependency injection container unless the app opts into concurrent startup by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStartConcurrently> to `true`:
+
+```csharp
+builder.Services.Configure<HostOptions>(options =>
+{
+    options.ServicesStartConcurrently = true;
+});
+```
+
 ### `StopAsync`
 
 * [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync%2A) is triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task. Implement <xref:System.IDisposable> and [finalizers (destructors)](/dotnet/csharp/programming-guide/classes-and-structs/destructors) to dispose of any unmanaged resources.
@@ -74,6 +84,15 @@ To extend the default 30 second shutdown timeout, set:
 * Shutdown timeout host configuration setting when using Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
+
+Hosted service instances stop in the reverse order that they're registered in the dependency injection container unless the app opts into concurrent shutdown behavior by setting <xref:Microsoft.Extensions.Hosting.HostOptions.ServicesStopConcurrently> to `true`:
+
+```csharp
+builder.Services.Configure<HostOptions>(options =>
+{
+    options.ServicesStopConcurrently = true;
+});
+```
 
 ## BackgroundService base class
 

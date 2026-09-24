@@ -429,6 +429,36 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 The <xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> method doesn't need to be called within the <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> method because it's handled automatically.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+A third virtual method, `OnAuthenticationRefreshedAsync`, runs when a connected client refreshes its authentication without reconnecting. Override it to perform actions after the refreshed principal is applied to the connection. `Context.User` reflects the refreshed principal when the method runs:
+
+```csharp
+public class ChatHub : Hub
+{
+    public override Task OnAuthenticationRefreshedAsync()
+    {
+        return Clients.Caller.SendAsync(
+            "AuthenticationRefreshed", Context.UserIdentifier);
+    }
+}
+```
+
+The method runs only for hubs that enable authentication refresh. A refresh doesn't change `Context.UserIdentifier` or reroute messages sent with `Clients.User`.
+
+Two behaviors differ from the other connection events:
+
+* [Client results](xref:signalr/hubs#request-client-results) aren't supported from this method, the same as in `OnConnectedAsync`. Send messages with `SendAsync` instead of requesting a result with `InvokeAsync`.
+* An exception thrown by this method is logged and then discarded. The connection stays open, the client isn't notified, and the refresh isn't rejected.
+
+For the full feature, including how to enable it and how clients request a refresh, see <xref:signalr/authn-and-authz#authentication-refresh>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
 ## Handle errors
 
 Exceptions thrown in hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript 'Promise' object](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Clients can attach a `catch` handler to the returned promise or use `try`/`catch` with `async`/`await` to handle exceptions:
