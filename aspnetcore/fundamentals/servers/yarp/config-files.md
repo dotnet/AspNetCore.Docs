@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/config-files
 title: YARP Configuration Files
 description: Explore how to work with YARP configuration files, examine the file structure and properties, define routes, clusters, and sources, and load proxy configuration. 
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 04/24/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution

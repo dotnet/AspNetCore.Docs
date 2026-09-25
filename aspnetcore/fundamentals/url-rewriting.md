@@ -1,10 +1,10 @@
 ---
 title: URL rewriting middleware in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn about URL rewriting and redirecting with URL rewriting middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.custom: sfi-image-nochange
 ms.date: 09/18/2026
 uid: fundamentals/url-rewriting

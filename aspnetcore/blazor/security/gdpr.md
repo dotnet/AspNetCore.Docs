@@ -3,7 +3,7 @@ title: EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blaz
 author: guardrex
 description: Learn how to implement EU General Data Protection Regulation (GDPR) support in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/security/gdpr
 zone_pivot_groups: blazor-app-models

@@ -1,9 +1,9 @@
 ---
 title: Compatibility version for ASP.NET Core MVC
-author: tdykstra
+author: guardrex
 description: Discover how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 08/05/2026
 uid: mvc/compatibility-version
 ---

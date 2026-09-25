@@ -3,7 +3,7 @@ title: Overview of ASP.NET Core Authentication
 ai-usage: ai-assisted
 author: mjrousos
 description: Learn about authentication in ASP.NET Core.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: security/authentication/index
 ---

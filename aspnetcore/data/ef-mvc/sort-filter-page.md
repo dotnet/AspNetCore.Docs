@@ -1,8 +1,8 @@
 ---
 title: Add Sort, Filter, Paging - ASP.NET MVC with EF Core
 description: Add sorting, filtering, and paging functionality to the Students Index page, and create a page for simple grouping. This article is part of a tutorial series.
-author: tdykstra
-ms.author: tdykstra
+author: guardrex
+ms.author: wiwagn
 ms.date: 04/20/2026
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page

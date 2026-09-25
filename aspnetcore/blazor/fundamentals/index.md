@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/04/2026
 uid: blazor/fundamentals/index
 ---

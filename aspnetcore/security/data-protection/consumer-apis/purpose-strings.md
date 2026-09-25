@@ -1,8 +1,8 @@
 ---
 title: Purpose strings in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn how purpose strings are used in the ASP.NET Core Data Protection APIs.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 10/14/2016
 uid: security/data-protection/consumer-apis/purpose-strings
 ---

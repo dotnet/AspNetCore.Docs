@@ -1,10 +1,10 @@
 ---
 title: ASP.NET Core SignalR .NET client
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/20/2026
 uid: signalr/dotnet-client
 

@@ -1,10 +1,10 @@
 ---
 title: Use hubs in ASP.NET Core SignalR
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to work with hubs in ASP.NET Core SignalR, create and use hubs, send messages to clients, and handle results from connected clients on the server.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/22/2026
 uid: signalr/hubs
 

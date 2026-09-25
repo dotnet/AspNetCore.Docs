@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Discover how components can be included in Blazor apps from an external Razor class library (RCL).
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 07/02/2026
 uid: blazor/components/class-libraries
 ---

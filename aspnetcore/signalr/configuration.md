@@ -1,10 +1,10 @@
 ---
 title: ASP.NET Core SignalR configuration
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to configure ASP.NET Core SignalR apps, including allowed transports, logging levels, timeout intervals, and serialization.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/02/2026
 uid: signalr/configuration
 

@@ -1,8 +1,8 @@
 ---
 title: Develop ASP.NET Core apps using a file watcher
-author: tdykstra
+author: guardrex
 description: This tutorial demonstrates how to install and use the .NET CLI's file watcher (dotnet watch) tool in an ASP.NET Core app.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/23/2026
 uid: tutorials/dotnet-watch
 ---

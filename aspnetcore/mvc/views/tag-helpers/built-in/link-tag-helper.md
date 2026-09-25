@@ -1,7 +1,7 @@
 ---
 title: Link Tag Helper in ASP.NET Core
-author: tdykstra
-ms.author: tdykstra
+author: guardrex
+ms.author: wiwagn
 description: Discover the ASP.NET Core Link Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Link tag.
 ms.date: 09/24/2019
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper

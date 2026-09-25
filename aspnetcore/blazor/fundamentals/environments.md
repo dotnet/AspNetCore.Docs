@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor environments
 author: guardrex
 description: Learn about environments in Blazor, including how to set the environment.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/15/2026
 uid: blazor/fundamentals/environments
 ---

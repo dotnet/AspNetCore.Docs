@@ -1,8 +1,8 @@
 ---
 title: Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
-author: tdykstra
+author: guardrex
 description: Part 7 of Razor Pages and Entity Framework tutorial series.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 07/22/2019
 uid: data/ef-rp/update-related-data
 ---

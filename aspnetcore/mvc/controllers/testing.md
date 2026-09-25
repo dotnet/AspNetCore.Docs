@@ -1,9 +1,9 @@
 ---
 title: Test controller logic in ASP.NET Core
-author: ardalis
+author: guardrex
 description: Learn how to test controller logic in ASP.NET Core with Moq and xUnit.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 7/22/2020
 uid: mvc/controllers/testing
 ---

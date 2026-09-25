@@ -1,9 +1,9 @@
 ---
 title: Localization Extensibility
-author: wadepickett
+author: guardrex
 description: Learn how to extend the localization APIs in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/03/2019
 uid: fundamentals/localization-extensibility
 ---

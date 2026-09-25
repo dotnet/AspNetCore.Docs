@@ -1,9 +1,9 @@
 ---
 title: Learn to upgrade from ASP.NET MVC, Web API, and Web Forms to ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to upgrade ASP.NET Framework MVC, Web API, or Web Forms projects to ASP.NET Core using migration tooling.
-ms.author: wpickett
+ms.author: wiwagn
 ms.collection: ce-skilling-ai-copilot
 ms.date: 07/07/2026
 uid: migration/fx-to-core/tooling

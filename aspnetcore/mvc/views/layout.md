@@ -1,8 +1,8 @@
 ---
 title: Layout in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn how to use common layouts, share directives, and run common code before rendering views in an ASP.NET Core app.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 04/29/2026
 uid: mvc/views/layout
 ---

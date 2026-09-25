@@ -1,10 +1,10 @@
 ---
 title: Use the generated OpenAPI documents
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/28/2026
 uid: fundamentals/openapi/using-openapi-documents
 ---

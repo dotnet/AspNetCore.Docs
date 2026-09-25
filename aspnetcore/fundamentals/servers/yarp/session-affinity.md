@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/session-affinity
 title: YARP Session Affinity
 description: YARP Session Affinity
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

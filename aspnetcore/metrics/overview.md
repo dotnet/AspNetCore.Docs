@@ -1,12 +1,11 @@
 ---
 title: ASP.NET Core metrics
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: Learn how ASP.NET Core metrics work, from instrumentation to alerting. Explore built-in instruments, custom meters, and testing metrics in integration tests.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 08/24/2026
-ms.reviewer: tdykstra
 ms.topic: concept-article
 uid: metrics/overview
 ---

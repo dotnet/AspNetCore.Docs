@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn how to manage request routing and navigation in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/31/2026
 uid: blazor/hybrid/routing
 zone_pivot_groups: blazor-hybrid-frameworks

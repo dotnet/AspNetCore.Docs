@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor performance best practices
 author: guardrex
 description: Guidance on ASP.NET Core Blazor metrics and tracing, improving app performance, and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/performance/index
 ---

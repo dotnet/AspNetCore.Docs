@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: pavelsavara
 description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop in a WebAssembly Browser App project.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/16/2026
 uid: client-side/dotnet-interop/wasm-browser-app
 ---

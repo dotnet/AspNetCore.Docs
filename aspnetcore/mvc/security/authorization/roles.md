@@ -1,10 +1,10 @@
 ---
 title: Role-based authorization in ASP.NET Core MVC
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to restrict ASP.NET Core MVC controller and action access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 03/24/2026
 uid: mvc/security/authorization/roles
 ---

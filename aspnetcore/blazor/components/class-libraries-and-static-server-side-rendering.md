@@ -3,7 +3,7 @@ title: ASP.NET Core Razor class libraries (RCLs) with static server-side renderi
 author: guardrex
 description: Learn how component authors can support static server-side rendering (static SSR) in ASP.NET Core Razor class libraries (RCLs).
 monikerRange: '>= aspnetcore-8.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/components/class-libraries-with-static-ssr
 ---

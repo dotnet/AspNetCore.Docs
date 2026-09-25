@@ -1,7 +1,7 @@
 ---
 title: Rate limiting middleware samples
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
 ms.date: 03/05/2025

@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wtgodbe
 description: "HTTP/3 support in Kestrel: Discover how to configure ASP.NET Core for HTTP/3, improve performance, and optimize your web server setup."
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 04/14/2026
 uid: fundamentals/servers/kestrel/http3
 ---

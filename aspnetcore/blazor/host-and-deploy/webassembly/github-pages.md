@@ -3,7 +3,7 @@ title: Host and deploy ASP.NET Core standalone Blazor WebAssembly with GitHub Pa
 author: guardrex
 description: Learn how to host and deploy standalone Blazor WebAssembly using GitHub Pages.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/github-pages
 ---

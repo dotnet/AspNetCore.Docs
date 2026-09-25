@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.reviewer: midenn
 ms.topic: tutorial
 content_well_notification: AI-contribution
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 05/13/2025
 uid: fundamentals/native-aot-tutorial
 ai-usage: ai-assisted

@@ -1,8 +1,8 @@
 ---
 title: Part 7, add a new field
-author: wadepickett
+author: guardrex
 description: Part 7 of tutorial series on Razor Pages.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 05/11/2026
 uid: tutorials/razor-pages/new-field
 ---

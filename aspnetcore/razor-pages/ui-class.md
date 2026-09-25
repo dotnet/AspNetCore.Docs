@@ -1,8 +1,8 @@
 ---
 title: Reusable Razor UI in class libraries with ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 11/19/2023
 uid: razor-pages/ui-class
 ---

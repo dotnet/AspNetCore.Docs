@@ -3,7 +3,7 @@ title: ASP.NET Core built-in Razor components
 author: guardrex
 description: Find information on Razor components provided by the Blazor framework.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/14/2026
 uid: blazor/components/built-in-components
 ---

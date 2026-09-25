@@ -1,9 +1,9 @@
 ---
 title: Troubleshoot ASP.NET Core on Azure App Service and IIS
-author: tdykstra
+author: guardrex
 description: Learn how to diagnose problems with Azure App Service and Internet Information Services (IIS) deployments of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 11/13/2025
 uid: test/troubleshoot-azure-iis
 ---

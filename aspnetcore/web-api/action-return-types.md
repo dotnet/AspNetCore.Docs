@@ -1,10 +1,10 @@
 ---
 title: Controller action return types in ASP.NET Core web API
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: ActionResult vs IActionResult
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 02/26/2026
 uid: web-api/action-return-types
 ---

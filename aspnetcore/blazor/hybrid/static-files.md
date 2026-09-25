@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor Hybrid static files
 author: guardrex
 description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/hybrid/static-files
 ---

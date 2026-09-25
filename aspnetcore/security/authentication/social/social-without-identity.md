@@ -1,9 +1,9 @@
 ---
 title: Facebook, Google, and external provider authentication without ASP.NET Core Identity
-author: serpent5
+author: guardrex
 description: Use Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 04/09/2026
 uid: security/authentication/social/social-without-identity
 ---

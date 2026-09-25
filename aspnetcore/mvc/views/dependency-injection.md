@@ -1,8 +1,8 @@
 ---
 title: Dependency injection into views in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn how ASP.NET Core supports dependency injection into MVC views.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 10/14/2016
 uid: mvc/views/dependency-injection
 ---

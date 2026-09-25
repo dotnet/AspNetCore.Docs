@@ -2,7 +2,7 @@
 title: Create responses in Minimal API applications
 author: brunolins16
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
-ms.author: wpickett
+ms.author: wiwagn
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 06/16/2026

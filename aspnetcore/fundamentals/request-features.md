@@ -1,8 +1,8 @@
 ---
 title: Request Features in ASP.NET Core
-author: wadepickett
+author: guardrex
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 10/11/2021
 uid: fundamentals/request-features
 ---

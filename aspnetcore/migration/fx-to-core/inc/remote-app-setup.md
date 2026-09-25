@@ -1,10 +1,10 @@
 ---
 title: Remote app setup
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Remote app setup
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 01/26/2026
 ms.topic: concept-article
 uid: migration/fx-to-core/inc/remote-app-setup

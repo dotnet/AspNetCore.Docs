@@ -3,7 +3,7 @@ title: Configure the Trimmer for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Trimmer when building a Blazor app.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/configure-trimmer
 ---

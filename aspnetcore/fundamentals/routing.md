@@ -1,11 +1,11 @@
 ---
 title: Routing in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 content_well_notification: AI-contribution
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: fundamentals/routing
 ---

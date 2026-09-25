@@ -1,10 +1,10 @@
 ---
 title: API endpoint authentication behavior in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how ASP.NET Core 10 and later handles authentication failures for API endpoints using cookie authentication.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/16/2026
 uid: security/authentication/api-endpoint-auth
 ---

@@ -1,8 +1,8 @@
 ---
 title: ASP.NET to ASP.NET Core session state migration
 description: ASP.NET to ASP.NET Core session state migration
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: concept-article

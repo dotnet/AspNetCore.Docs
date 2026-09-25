@@ -1,7 +1,7 @@
 ---
 title: Using DisplayTemplates and EditorTemplates
-author: tdykstra
-ms.author: tdykstra
+author: guardrex
+ms.author: wiwagn
 description: How to use DisplayTemplates and EditorTemplates in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/22/2022

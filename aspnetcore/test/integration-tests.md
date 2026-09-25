@@ -1,10 +1,10 @@
 ---
 title: Integration tests in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework

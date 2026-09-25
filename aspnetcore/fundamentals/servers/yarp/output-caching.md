@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/output-caching
 title: YARP Output Caching
 description: YARP Output Caching
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

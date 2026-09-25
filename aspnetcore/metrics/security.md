@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in authentication and authorization metrics for ASP.NET Core apps.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/05/2026
 ms.topic: reference
 uid: metrics/security

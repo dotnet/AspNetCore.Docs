@@ -3,7 +3,7 @@ title: Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps
 author: guardrex
 description: Learn how to enable hosted Blazor WebAssembly deployments in environments that block the download and execution of dynamic-link library (DLL) files.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/deployment-layout
 ---

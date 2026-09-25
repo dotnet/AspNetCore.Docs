@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Core SignalR clients
-author: wadepickett
+author: guardrex
 description: Learn which features are supported by the various ASP.NET Core SignalR clients.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/25/2026
 uid: signalr/client-features
 ---

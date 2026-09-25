@@ -1,7 +1,7 @@
 ---
 ms.topic: include
-author: tdykstra
-ms.author: tdykstra
+author: guardrex
+ms.author: wiwagn
 ms.date: 10/07/2024
 ---
 ### Templates updated to latest Bootstrap, jQuery, and jQuery Validation versions

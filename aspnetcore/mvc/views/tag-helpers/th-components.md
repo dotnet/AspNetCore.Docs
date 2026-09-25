@@ -1,9 +1,9 @@
 ---
 title: Tag Helper Components in ASP.NET Core
-author: wadepickett
+author: guardrex
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 06/12/2019
 uid: mvc/views/tag-helpers/th-components
 ---

@@ -1,8 +1,8 @@
 ---
 title: Provide localized resources for languages and cultures in an ASP.NET Core app
-author: wadepickett
+author: guardrex
 description: Learn how to provide localized resources for localizing content of an ASP.NET Core app into different languages and cultures.
-ms.author: wpickett
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 06/20/2025
 uid: fundamentals/localization/provide-resources

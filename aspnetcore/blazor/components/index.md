@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 07/14/2026
 uid: blazor/components/index
 ---

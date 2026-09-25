@@ -2,7 +2,7 @@
 title: Technical differences between ASP.NET Framework and ASP.NET Core
 author: twsouthwick
 description: Important technical differences to understand when migrating from ASP.NET Framework to ASP.NET Core.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 07/17/2025
 ms.reviewer: tasou
 uid: migration/fx-to-core/areas/misc

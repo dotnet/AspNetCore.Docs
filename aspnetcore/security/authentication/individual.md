@@ -1,11 +1,10 @@
 ---
 title: Articles based on ASP.NET Core projects created with individual accounts
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: ASP.NET Core individual accounts let you scaffold Identity UI, sign-in pages, and authentication code. Explore the authentication options and related articles.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 08/23/2026
-ms.reviewer: tdykstra
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual accounts

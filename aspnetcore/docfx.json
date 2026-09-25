@@ -51,10 +51,10 @@
     },
     "fileMetadata": {
       "author": {
-        "breaking-changes/**/**.{md,yml}": "wadepickett"
+        "breaking-changes/**/**.{md,yml}": "guardrex"
       },
       "ms.author": {
-        "breaking-changes/**/**.{md,yml}": "wpickett"
+        "breaking-changes/**/**.{md,yml}": "wiwagn"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",

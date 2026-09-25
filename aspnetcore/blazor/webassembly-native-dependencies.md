@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor WebAssembly native dependencies
 author: guardrex
 description: Learn how to build Blazor WebAssembly apps with native dependencies built to run on WebAssembly in the browser.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 07/06/2026
 uid: blazor/webassembly-native-dependencies
 ---

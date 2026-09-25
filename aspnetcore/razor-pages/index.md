@@ -1,9 +1,9 @@
 ---
 title: Razor Pages architecture and concepts in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn the architecture, concepts, and patterns of Razor Pages in ASP.NET Core for building page-focused web applications.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 08/27/2025
 uid: razor-pages/index
 ---

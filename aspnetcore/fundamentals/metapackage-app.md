@@ -1,9 +1,9 @@
 ---
 title: Microsoft.AspNetCore.App metapackage for ASP.NET Core
-author: wadepickett
+author: guardrex
 description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/24/2019
 uid: fundamentals/metapackage-app
 ---

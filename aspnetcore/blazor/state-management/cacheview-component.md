@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/16/2026
 uid: blazor/state-management/cacheview-component
 ---
