@@ -231,10 +231,6 @@ When the model property for the ship's classification (`Classification`) is set,
 }
 ```
 
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship3.razor":::
--->
-
 :::moniker-end
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding example creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned `Starship` instance (`Model="..."`) and handles a valid form. The next example demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form and validate when the form is submitted.
@@ -313,10 +309,6 @@ In the following example:
     }
 }
 ```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship4.razor":::
--->
 
 :::moniker-end
 
@@ -408,10 +400,6 @@ In the following example, the user must select at least two starship classificat
     private enum Classification { None, Exploration, Diplomacy, Defense, Research }
 }
 ```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship5.razor":::
--->
 
 :::moniker-end
 
