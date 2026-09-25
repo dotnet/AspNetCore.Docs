@@ -6,7 +6,6 @@ description: OpenAPI XML documentation comments in ASP.NET Core enrich generated
 monikerRange: '>= aspnetcore-10.0'
 ms.author: wiwagn
 ms.date: 08/19/2026
-ms.reviewer: wpickett
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 # OpenAPI XML documentation comment support in ASP.NET Core

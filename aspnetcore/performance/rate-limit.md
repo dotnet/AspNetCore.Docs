@@ -5,7 +5,6 @@ author: guardrex
 description: Rate limiting middleware in ASP.NET Core protects APIs from abuse and overload. Learn to configure fixed window, sliding window, token bucket, and concurrency limiters.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: wiwagn
-ms.reviewer: wpickett
 ms.date: 09/03/2026
 uid: performance/rate-limit
 ---

@@ -6,7 +6,6 @@ description: Discover how to enable QR code generation for time-based one-time p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wiwagn
 ms.date: 05/15/2026
-ms.reviewer: wpickett
 uid: security/authentication/identity-enable-qrcodes
 
 # customer intent: As an ASP.NET developer, I want to enable QR code generation for TOTP authenticator apps, so I can support two-factor authentication.
