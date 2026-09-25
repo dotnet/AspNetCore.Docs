@@ -1,10 +1,10 @@
 ---
 title: Introduction to Identity on ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: security/authentication/identity
 ---

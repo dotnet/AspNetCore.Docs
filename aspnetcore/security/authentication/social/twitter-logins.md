@@ -1,8 +1,8 @@
 ---
 title: Twitter external sign-in setup with ASP.NET Core
-author: wadepickett
+author: guardrex
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/twitter-logins

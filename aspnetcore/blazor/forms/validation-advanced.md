@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn how to implement validator components and remote validation for Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/22/2026
 uid: blazor/forms/validation-advanced
 ---

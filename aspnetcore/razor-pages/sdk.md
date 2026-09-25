@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core Razor SDK
-author: tdykstra
+author: guardrex
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 03/26/2020
 uid: razor-pages/sdk
 ---

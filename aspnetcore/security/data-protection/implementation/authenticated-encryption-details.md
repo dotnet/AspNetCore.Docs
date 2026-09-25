@@ -1,8 +1,8 @@
 ---
 title: Authenticated encryption details in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn implementation details of ASP.NET Core Data Protection authenticated encryption.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 10/14/2016
 uid: security/data-protection/implementation/authenticated-encryption-details
 ---

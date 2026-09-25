@@ -1,10 +1,10 @@
 ---
 title: Logging in .NET and ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: Learn how to use the ASP.NET Core logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: fundamentals/logging/index
 ---

@@ -4,8 +4,7 @@ description: Learn how to enrich incoming HTTP request logs with custom data usi
 ai-usage: ai-assisted
 author: mariamaziz
 monikerRange: '>= aspnetcore-8.0'
-ms.author: tdykstra
-ms.reviewer: tdykstra
+ms.author: wiwagn
 ms.date: 06/08/2026
 uid: fundamentals/http-logging/http-log-enricher
 ---

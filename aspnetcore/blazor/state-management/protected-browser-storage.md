@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor state management using protected browser storage
 author: guardrex
 description: Learn how to persist user data (state) in Blazor apps using browser storage.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/state-management/protected-browser-storage
 ---

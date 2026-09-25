@@ -1,9 +1,9 @@
 ---
 title: Introduction to authorization in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: security/authorization/introduction
 ---

@@ -1,8 +1,8 @@
 ---
 title: What's new in ASP.NET Core in .NET 9
-author: wadepickett
+author: guardrex
 description: Learn about the new features in ASP.NET Core in .NET 9.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/23/2026
 uid: aspnetcore-9
 ---

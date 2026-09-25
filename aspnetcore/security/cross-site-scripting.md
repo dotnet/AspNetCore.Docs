@@ -1,8 +1,8 @@
 ---
 title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
-ms.author: tdykstra
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/13/2026
 uid: security/cross-site-scripting

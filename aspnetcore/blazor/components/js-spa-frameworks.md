@@ -3,7 +3,7 @@ title: Use Razor components in JavaScript apps and SPA frameworks
 author: guardrex
 description: Learn how to create and use Razor components in JavaScript apps and SPA frameworks.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/components/js-spa-frameworks
 ---

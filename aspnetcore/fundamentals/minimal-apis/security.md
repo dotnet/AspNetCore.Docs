@@ -1,8 +1,8 @@
 ---
 title: Authentication and authorization in Minimal APIs
-author: wadepickett
+author: guardrex
 description: Learn how to configure authentication and authorization in Minimal API apps, explore concepts, define policies, and run development tests.
-ms.author: wpickett
+ms.author: wiwagn
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 04/28/2026

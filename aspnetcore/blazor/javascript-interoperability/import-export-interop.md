@@ -3,7 +3,7 @@ title: JavaScript JSImport/JSExport interop with ASP.NET Core Blazor
 author: guardrex
 description: Learn how to interact with JavaScript in client-side components using JavaScript `[JSImport]`/`[JSExport]` interop.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/js-interop/import-export-interop
 ---

@@ -1,9 +1,9 @@
 ---
 title: Scaffold Identity in ASP.NET Core projects
-author: wadepickett
+author: guardrex
 description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 05/19/2026
 uid: security/authentication/scaffold-identity
 

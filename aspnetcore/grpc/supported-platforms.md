@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: jamesnk
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/05/2026
 uid: grpc/supported-platforms
 ---

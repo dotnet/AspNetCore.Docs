@@ -3,7 +3,7 @@ title: Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft E
 author: guardrex
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.custom: devx-track-csharp, sfi-ropc-nochange
 ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-microsoft-entra-id

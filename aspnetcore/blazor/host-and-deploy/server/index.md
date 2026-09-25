@@ -3,7 +3,7 @@ title: Host and deploy ASP.NET Core server-side Blazor apps
 author: guardrex
 description: Learn how to host and deploy server-side Blazor apps (Blazor Web Apps and Blazor Server apps) using ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.custom: linux-related-content
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/server/index

@@ -3,7 +3,7 @@ title: Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authent
 author: guardrex
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/security/webassembly/standalone-with-authentication-library
 ---

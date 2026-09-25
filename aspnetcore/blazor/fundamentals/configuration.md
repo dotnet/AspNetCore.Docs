@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor configuration
 author: guardrex
 description: Learn about Blazor app configuration, including app settings, authentication, and logging configuration.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/fundamentals/configuration
 ---

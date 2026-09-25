@@ -2,7 +2,7 @@
 title: Scaling ASP.NET Core Apps on Azure
 author: alexwolfmsft
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
-ms.author: wpickett
+ms.author: wiwagn
 uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
 ms.date: 7/25/2025
 ---

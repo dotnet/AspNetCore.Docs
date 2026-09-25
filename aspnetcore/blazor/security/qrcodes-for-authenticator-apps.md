@@ -2,7 +2,7 @@
 title: Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App
 author: guardrex
 description: Discover how to enable QR code generation for TOTP authenticator apps that work with ASP.NET Core Blazor Web App two-factor authentication.
-ms.author: wpickett
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
 uid: blazor/security/qrcodes-for-authenticator-apps

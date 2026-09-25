@@ -1,9 +1,9 @@
 ---
 title: Debug .NET and ASP.NET Core source code with Visual Studio
-author: wadepickett
+author: guardrex
 description: Debug .NET and ASP.NET Core source code with Visual Studio
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 3/5/2022
 uid: test/debug-aspnetcore-source
 ---

@@ -1,9 +1,9 @@
 ---
 title: Advanced configuration
-author: tdykstra
+author: guardrex
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-5.0'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.custom: sfi-image-nochange
 ms.date: 04/21/2026
 uid: host-and-deploy/iis/advanced

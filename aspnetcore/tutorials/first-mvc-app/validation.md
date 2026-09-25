@@ -1,10 +1,10 @@
 ---
 title: Part 9, add validation to an ASP.NET Core MVC app
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 03/26/2026
 uid: tutorials/first-mvc-app/validation
 ---

@@ -1,8 +1,8 @@
 ---
 title: Part 3, scaffolded Razor Pages
-author: wadepickett
+author: guardrex
 description: Part 3 of tutorial series on Razor Pages.
-ms.author: wpickett
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/08/2026
 uid: tutorials/razor-pages/page

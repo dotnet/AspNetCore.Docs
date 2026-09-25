@@ -1,10 +1,10 @@
 ---
 title: Code samples migrated to the new minimal hosting model in 6.0
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to migrate ASP.NET Core samples to the new minimal hosting model in 6.0.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: migration/50-to-60-samples
 ---

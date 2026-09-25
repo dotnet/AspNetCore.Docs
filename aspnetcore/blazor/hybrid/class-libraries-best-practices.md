@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: This guide demonstrates the recommended pattern for creating Razor class libraries (RCLs) that combine .NET MAUI and Razor functionality.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 01/05/2026
 uid: blazor/hybrid/class-libraries-best-practices
 ---

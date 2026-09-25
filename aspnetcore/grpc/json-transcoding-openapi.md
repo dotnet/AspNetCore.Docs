@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: jamesnk
 description: The `Microsoft.AspNetCore.Grpc.Swagger` package has been deprecated.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/16/2026
 uid: grpc/json-transcoding-openapi
 ---

@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/ab-testing
 title: YARP A/B Testing and Rolling Upgrades
 description: YARP A/B Testing and Rolling Upgrades
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

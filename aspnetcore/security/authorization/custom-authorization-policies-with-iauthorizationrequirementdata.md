@@ -1,10 +1,10 @@
 ---
 title: Custom authorization policies with `IAuthorizationRequirementData`
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 07/29/2026
 uid: security/authorization/iard
 ---

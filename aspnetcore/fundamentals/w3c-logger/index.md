@@ -3,7 +3,7 @@ title: W3CLogger in .NET and ASP.NET Core
 author: wtgodbe
 description: Learn how to create server logs in the W3C standard format.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/15/2022
 ms.reviewer: wigodbe
 uid: fundamentals/w3c-logger/index

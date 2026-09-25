@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor JavaScript interoperability (JS interop)
 author: guardrex
 description: Learn how to interact with JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/js-interop/index
 ---

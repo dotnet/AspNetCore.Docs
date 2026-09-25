@@ -3,7 +3,7 @@ title: Host and deploy ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to host and deploy Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.custom: linux-related-content
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/index

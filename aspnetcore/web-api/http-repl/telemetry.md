@@ -1,9 +1,9 @@
 ---
 title: HttpRepl telemetry
-author: tdykstra
+author: guardrex
 description: Learn about the telemetry collected by the HttpRepl.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 11/11/2020
 uid: web-api/http-repl/telemetry
 ---

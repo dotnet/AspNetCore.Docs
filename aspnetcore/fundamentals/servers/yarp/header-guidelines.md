@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/header-guidelines
 title: YARP HTTP header guidelines
 description: Learn about YARP HTTP header guidelines.
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 09/18/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution

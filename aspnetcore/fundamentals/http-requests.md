@@ -3,7 +3,7 @@ title: HTTP requests with IHttpClientFactory - ASP.NET Core
 author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 04/27/2026
 uid: fundamentals/http-requests
 

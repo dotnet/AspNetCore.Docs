@@ -3,7 +3,7 @@ title: ASP.NET Core built-in metrics
 ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in metrics for ASP.NET Core apps.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/01/2026
 ms.topic: reference
 uid: metrics/built-in

@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: security/authentication/identity-configuration
 ---

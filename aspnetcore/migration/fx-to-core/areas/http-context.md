@@ -2,7 +2,7 @@
 title: Migrate ASP.NET Framework HttpContext to ASP.NET Core
 description: Learn how to migrate from System.Web.HttpContext to Microsoft.AspNetCore.Http.HttpContext
 author: twsouthwick
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 07/17/2025
 ms.reviewer: tasou
 uid: migration/fx-to-core/areas/http-context

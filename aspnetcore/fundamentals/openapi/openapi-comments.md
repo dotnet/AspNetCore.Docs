@@ -1,12 +1,11 @@
 ---
 title: ASP.NET Core OpenAPI XML documentation comment support in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: OpenAPI XML documentation comments in ASP.NET Core enrich generated API documents automatically. Learn how to enable, customize, and disable XML comment support.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/19/2026
-ms.reviewer: wpickett
 uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 # OpenAPI XML documentation comment support in ASP.NET Core

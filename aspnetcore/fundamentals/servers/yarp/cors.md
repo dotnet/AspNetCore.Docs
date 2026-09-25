@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/cors
 title: YARP Cross-Origin Requests (CORS)
 description: YARP Cross-Origin Requests (CORS)
-author: tdykstra
-ms.author: tdykstra
+author: guardrex
+ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

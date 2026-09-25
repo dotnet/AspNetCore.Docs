@@ -1,8 +1,8 @@
 ---
 title: What's new in ASP.NET Core 2.1
-author: wadepickett
+author: guardrex
 description: Learn about the new features in ASP.NET Core 2.1.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 02/06/2023
 uid: aspnetcore-2.1
 ---

@@ -1,8 +1,8 @@
 ---
 title: Get started with incremental ASP.NET to ASP.NET Core migration
 description: Get started with incremental ASP.NET to ASP.NET Core migration
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/04/2025
 ms.topic: concept-article

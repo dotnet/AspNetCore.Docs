@@ -1,10 +1,10 @@
 ---
 title: Security considerations in ASP.NET Core SignalR
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn about security in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/15/2026
 uid: signalr/security
 ---

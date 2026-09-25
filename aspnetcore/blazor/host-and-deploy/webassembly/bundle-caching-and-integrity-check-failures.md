@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor WebAssembly caching and integrity check failures
 author: guardrex
 description: Learn about asset caching for Blazor WebAssembly and how to resolve integrity check failures in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
 ---

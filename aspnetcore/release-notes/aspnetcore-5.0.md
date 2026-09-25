@@ -1,8 +1,8 @@
 ---
 title: What's new in ASP.NET Core in .NET 5
-author: wadepickett
+author: guardrex
 description: Learn about the new features in ASP.NET Core in .NET 5.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 07/21/2026
 uid: aspnetcore-5.0
 ---

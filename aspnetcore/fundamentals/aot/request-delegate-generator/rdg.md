@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Core Request Delegate Generator (RDG) for Native AOT
 description: Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator (RDG) for Native AOT.
-author: tdykstra
-ms.author: tdykstra
+author: guardrex
+ms.author: wiwagn
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: concept-article

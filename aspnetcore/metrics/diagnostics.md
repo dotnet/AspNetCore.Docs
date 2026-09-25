@@ -3,7 +3,7 @@ title: ASP.NET Core built-in diagnostics metrics
 ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in diagnostics metrics for ASP.NET Core apps, reported by the error handling middleware.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/05/2026
 ms.topic: reference
 uid: metrics/diagnostics

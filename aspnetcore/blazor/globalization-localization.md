@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: guardrex
 description: Learn how to render globalized and localized content to users in different cultures and languages.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/26/2026
 uid: blazor/globalization-localization
 ---

@@ -1,10 +1,10 @@
 ---
 title: Policy-based authorization in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Learn how to require authenticated users by default and create, select, and use authorization policies in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/18/2026
 uid: security/authorization/policies
 ---

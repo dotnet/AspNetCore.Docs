@@ -1,10 +1,10 @@
 ---
 title: Options pattern in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 09/21/2026
 uid: fundamentals/configuration/options
 --- 

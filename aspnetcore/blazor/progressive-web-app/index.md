@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor Progressive Web Application (PWA)
 author: guardrex
 description: Learn how to build a Blazor Progressive Web Application (PWA) that use modern browser features to behave like a desktop app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/progressive-web-app/index
 ---

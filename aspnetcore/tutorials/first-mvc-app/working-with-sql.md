@@ -1,10 +1,10 @@
 ---
 title: Part 5, work with a database in an ASP.NET Core MVC app
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.custom: sfi-ropc-nochange
 ms.date: 04/03/2026
 uid: tutorials/first-mvc-app/working-with-sql

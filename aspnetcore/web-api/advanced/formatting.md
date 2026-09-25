@@ -1,10 +1,10 @@
 ---
 title: Format response data in ASP.NET Core Web API
 ai-usage: ai-assisted
-author: tdykstra
+author: guardrex
 description: Learn how to format response data in ASP.NET Core Web API.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 03/22/2026
 uid: web-api/advanced/formatting
 ---

@@ -1,8 +1,8 @@
 ---
 title: Key management in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn implementation details of the ASP.NET Core Data Protection key management APIs.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 10/14/2016
 uid: security/data-protection/implementation/key-management
 ---

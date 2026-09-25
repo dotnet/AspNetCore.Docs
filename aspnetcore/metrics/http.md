@@ -3,7 +3,7 @@ title: ASP.NET Core built-in HTTP metrics
 ai-usage: ai-assisted
 author: guardrex
 description: Learn about built-in HTTP metrics for ASP.NET Core apps, including hosting, routing, rate limiting, header parsing, Kestrel, and SignalR.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 09/01/2026
 ms.topic: reference
 uid: metrics/http

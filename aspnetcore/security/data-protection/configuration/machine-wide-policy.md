@@ -1,8 +1,8 @@
 ---
 title: Data Protection machine-wide policy support in ASP.NET Core
-author: tdykstra
+author: guardrex
 description: Learn about support for setting a default machine-wide policy for all apps that consume ASP.NET Core Data Protection.
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 10/14/2016
 uid: security/data-protection/configuration/machine-wide-policy
 ---

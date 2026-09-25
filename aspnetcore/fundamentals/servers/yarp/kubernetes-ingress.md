@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/kubernetes-ingress
 title: YARP Kubernetes Ingress Controller
 description: YARP Kubernetes Ingress Controller
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 04/03/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

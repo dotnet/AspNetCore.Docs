@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/middleware
 title: YARP middleware
 description: YARP middleware
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 04/04/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

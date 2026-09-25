@@ -3,7 +3,7 @@ title: Enforce a Content Security Policy for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against Cross-Site Scripting (XSS) attacks.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 08/18/2026
 uid: blazor/security/content-security-policy
 ---

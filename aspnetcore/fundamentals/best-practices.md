@@ -3,7 +3,7 @@ title: ASP.NET Core Best Practices
 author: mjrousos
 description: Tips for maximizing performance and reliability in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: wiwagn
 ms.date: 12/29/2025
 uid: fundamentals/best-practices
 ---

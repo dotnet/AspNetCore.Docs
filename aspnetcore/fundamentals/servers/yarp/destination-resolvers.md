@@ -2,8 +2,8 @@
 uid: fundamentals/servers/yarp/destination-resolvers
 title: YARP Extensibility Destination Resolvers
 description: YARP Extensibility Destination Resolvers
-author: wadepickett
-ms.author: wpickett
+author: guardrex
+ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

@@ -3,7 +3,7 @@ title: OWIN integration in ASP.NET Core
 description: How to use OWIN middleware in ASP.NET Core applications during migration from ASP.NET Framework
 ai-usage: ai-assisted
 author: twsouthwick
-ms.author: wpickett
+ms.author: wiwagn
 ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/10/2025

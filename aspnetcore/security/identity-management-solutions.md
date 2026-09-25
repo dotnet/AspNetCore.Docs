@@ -2,7 +2,7 @@
 title: Identity management solutions for .NET web apps
 author: guardrex
 description: A list of available products, packages, and services that enable identity management, including authentication and authorization, for ASP.NET Core web apps.
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 12/22/2025
 uid: security/identity-management-solutions
 ---

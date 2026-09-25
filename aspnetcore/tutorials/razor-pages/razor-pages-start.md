@@ -1,10 +1,10 @@
 ---
 title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 ai-usage: ai-assisted
-author: wadepickett
+author: guardrex
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
+ms.author: wiwagn
 ms.date: 01/07/2026
 uid: tutorials/razor-pages/razor-pages-start
 ---
