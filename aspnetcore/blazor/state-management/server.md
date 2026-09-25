@@ -570,7 +570,7 @@ Data stored in `TempData` is automatically removed after the data is read unless
 
 The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](xref:security/data-protection/configuration/overview) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
 
-Call `AddCookieTempDataValueProvider` on the service collection in the app's `Program` file passing `CookieTempDataProviderOptions` to change the cookie's parameters in the following table.
+To change the Blazor `TempData` cookie settings in the following table, configure `TempDataCookie` when calling `AddRazorComponents` in the app's `Program` file.
 
 Parameter | API | Notes
 --- | --- | ---
