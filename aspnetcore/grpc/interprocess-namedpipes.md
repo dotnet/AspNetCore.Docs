@@ -5,7 +5,7 @@ author: jamesnk
 description: Learn how to use gRPC for inter-process communication with Named pipes.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
-ms.date: 08/14/2026
+ms.date: 09/24/2026
 uid: grpc/interprocess-namedpipes
 ---
 # Inter-process communication with gRPC and Named pipes
@@ -59,17 +59,29 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
 using System.IO.Pipes;
 using System.Security.AccessControl;
+using System.Security.Principal;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure PipeSecurity
 builder.WebHost.UseNamedPipes(options =>
 {
+    using var serverIdentity = WindowsIdentity.GetCurrent();
     var pipeSecurity = new PipeSecurity();
-    // Grant read/write and CreateNewInstance access to the Users group
+
+    // Grant the account the server runs as the rights to create each instance
+    // of the pipe that Kestrel listens on.
     pipeSecurity.AddAccessRule(new PipeAccessRule(
-        "Users",
+        serverIdentity.User!,
         PipeAccessRights.ReadWrite | PipeAccessRights.CreateNewInstance,
+        AccessControlType.Allow));
+
+    // Grant client accounts read/write access only. Replace {CLIENT GROUP}
+    // with a security group containing only the accounts allowed to call
+    // the service.
+    pipeSecurity.AddAccessRule(new PipeAccessRule(
+        "{CLIENT GROUP}",
+        PipeAccessRights.ReadWrite,
         AccessControlType.Allow));
     // Add additional rules as needed
 
@@ -90,13 +102,22 @@ The preceding example:
 * Calls `UseNamedPipes` on the <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> to access and configure <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions>.
 * Sets <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions.CurrentUserOnly> to `false`, which is required when providing a custom <xref:System.IO.Pipes.PipeSecurity> object.
 * Sets the <xref:System.IO.Pipes.PipeSecurity> property to control which users or groups can connect to the named pipe.
-* Grants read/write and `CreateNewInstance` access to the `Users` group. The `CreateNewInstance` permission is needed to allow the server process to create the pipe. Additional security rules can be added as needed for the scenario.
+* Grants the account the server runs as read/write and `CreateNewInstance` access. Kestrel creates several instances of the pipe to accept connections in parallel, and Windows requires `CreateNewInstance` to create each instance after the first.
+* Grants the client security group read/write access only, where the `{CLIENT GROUP}` placeholder is a group containing the accounts allowed to call the service. Additional security rules can be added as needed for the scenario.
 
 > [!IMPORTANT]
-> When setting a custom `PipeSecurity`, set `CurrentUserOnly` to `false`. Leaving `CurrentUserOnly` at its default value of `true` while also setting `PipeSecurity` throws an `ArgumentException`.
+> Unless the app also configures authentication and authorization, the pipe's security descriptor is the only thing that prevents other accounts from calling the server. Grant access to the narrowest principal the scenario requires. Avoid broad groups such as `Users`, which resolves to `BUILTIN\Users` and includes every authenticated and interactive account on the machine, plus `Domain Users` on a domain-joined machine. For information about authenticating callers, see <xref:grpc/authn-and-authz>.
+
+> [!WARNING]
+> Don't grant `PipeAccessRights.CreateNewInstance` to client accounts or to groups that contain untrusted users. `CreateNewInstance` corresponds to the Windows `FILE_CREATE_PIPE_INSTANCE` right, which authorizes a grantee to create *additional server instances* under the same pipe name. Windows distributes incoming client connections across all instances of a pipe, so a process holding that right can accept genuine client connections and impersonate the service. Grant `CreateNewInstance` only to the account the server runs as.
+
+Inspecting the connected pipe's owner SID from the client doesn't detect an impostor created this way. Every instance of a named pipe shares the security descriptor supplied when the first instance was created, so an instance added by another process reports the same owner as the genuine server. To let clients verify which server they're talking to, authenticate the channel itself. For example, enable HTTPS on the endpoint and validate the server certificate, or require a secret that only the genuine server can present. For more information, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+
+> [!IMPORTANT]
+> `CurrentUserOnly` defaults to `true`, which restricts the pipe to the account the server runs as. Setting a custom `PipeSecurity` requires `CurrentUserOnly` to be `false`, otherwise an `ArgumentException` is thrown. Setting it to `false` replaces that built-in restriction, so the supplied `PipeSecurity` becomes the only access control on the pipe.
 
 > [!NOTE]
-> Account names such as `Users` are resolved to security identifiers (SIDs) when the access rule is added. On a domain-joined machine that can't reach a domain controller, resolution can fail. Use a well-known SID (for example, <xref:System.Security.Principal.WellKnownSidType.BuiltinUsersSid>) to avoid a network round-trip.
+> Account names are resolved to security identifiers (SIDs) when the access rule is added. Resolution is locale-dependent and can fail on a localized installation of Windows or on a domain-joined machine that can't reach a domain controller. Constructing a <xref:System.Security.Principal.SecurityIdentifier> directly from the group's SID avoids both problems.
 
 ### Customize Kestrel named pipe endpoints
 
@@ -105,6 +126,10 @@ Kestrel's named pipe support enables advanced customization, allowing you to con
 An example of where this is useful is a Kestrel app that requires two pipe endpoints with different access security. The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
 
 ```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
+using System.IO.Pipes;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 var builder = WebApplication.CreateBuilder();
 builder.WebHost.ConfigureKestrel(options =>
@@ -115,16 +140,47 @@ builder.WebHost.ConfigureKestrel(options =>
 
 builder.WebHost.UseNamedPipes(options =>
 {
+    options.CurrentUserOnly = false;
     options.CreateNamedPipeServerStream = (context) =>
     {
-        var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndpoint.PipeName);
+        var pipeSecurity = CreatePipeSecurity(context.NamedPipeEndPoint.PipeName);
 
-        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndpoint.PipeName, PipeDirection.InOut,
+        return NamedPipeServerStreamAcl.Create(context.NamedPipeEndPoint.PipeName, PipeDirection.InOut,
             NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Byte,
             context.PipeOptions, inBufferSize: 0, outBufferSize: 0, pipeSecurity);
     };
 });
+
+static PipeSecurity CreatePipeSecurity(string pipeName)
+{
+    using var serverIdentity = WindowsIdentity.GetCurrent();
+    var pipeSecurity = new PipeSecurity();
+
+    // The server account creates every instance of both pipes.
+    pipeSecurity.AddAccessRule(new PipeAccessRule(
+        serverIdentity.User!,
+        PipeAccessRights.ReadWrite | PipeAccessRights.CreateNewInstance,
+        AccessControlType.Allow));
+
+    // pipe1 and pipe2 allow different client groups to connect. Replace the
+    // placeholders with groups containing the accounts allowed to connect.
+    var clientGroup = pipeName == "pipe1"
+        ? "{PIPE1 CLIENT GROUP}"
+        : "{PIPE2 CLIENT GROUP}";
+
+    pipeSecurity.AddAccessRule(new PipeAccessRule(
+        clientGroup,
+        PipeAccessRights.ReadWrite,
+        AccessControlType.Allow));
+
+    return pipeSecurity;
+}
 ```
+
+The preceding example applies the same principle per endpoint: only the server's own account is granted `CreateNewInstance`, and each pipe grants read/write access to a different set of callers. `CurrentUserOnly` is set to `false` because `context.PipeOptions` is passed to <xref:System.IO.Pipes.NamedPipeServerStreamAcl.Create%2A> along with a `PipeSecurity` object.
+
+> [!WARNING]
+> A pipe's security descriptor controls which accounts can *connect* to that pipe. It doesn't control which services a connected caller can invoke. Every endpoint mapped in the app is served on every named pipe endpoint, so a caller that connects to any pipe can call every mapped service. Don't rely on per-pipe access control to restrict access to individual services. Use authentication and authorization instead, or host the restricted services in a separate process with its own pipe. For more information, see <xref:grpc/authn-and-authz>.
 
 ## Client configuration
 

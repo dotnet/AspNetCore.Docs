@@ -1,10 +1,11 @@
 ---
 title: Configure endpoints for Kestrel web server
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
-ms.date: 07/29/2026
+ms.date: 09/24/2026
 uid: fundamentals/servers/kestrel/endpoints
 ---
 # Configure endpoints for the ASP.NET Core Kestrel web server
@@ -577,7 +578,15 @@ Kestrel's named pipe support includes advanced customization options. The [Creat
 
 This approach is useful in a Kestrel app that requires two pipe endpoints with different [access security](/windows/win32/ipc/named-pipe-security-and-access-rights). The `CreateNamedPipeServerStream` option can be used to create pipes with custom security settings, depending on the pipe name.
 
-:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" highlight="15-33" id="snippet_1":::
+:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/samples/KestrelNamedEP/Program.cs" highlight="16-36,39-59" id="snippet_1":::
+
+In the preceding example, only the account the server runs as is granted `CreateNewInstance` access. Kestrel creates several instances of each pipe to accept connections in parallel, and Windows requires that right to create each instance after the first. Callers are granted read/write access only.
+
+> [!WARNING]
+> Don't grant `PipeAccessRights.CreateNewInstance` to callers, and avoid `PipeAccessRights.FullControl`, which includes it along with `ChangePermissions` and `TakeOwnership`. `CreateNewInstance` corresponds to the Windows `FILE_CREATE_PIPE_INSTANCE` right, which authorizes a grantee to create additional server instances under the same pipe name. Windows distributes incoming connections across all instances of a pipe, so a process holding that right can accept genuine client connections and impersonate the server.
+
+> [!NOTE]
+> A pipe's security descriptor controls which accounts can connect to that pipe. It doesn't control which endpoints a connected caller can reach, because every endpoint mapped in the app is served on every named pipe endpoint. Use authentication and authorization to restrict individual endpoints.
 
 :::moniker-end
 
