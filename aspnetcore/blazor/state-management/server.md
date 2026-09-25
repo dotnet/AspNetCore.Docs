@@ -513,13 +513,13 @@ Data can be stored temporarily or permanently in server-side scenarios.
 
 The `[SupplyParameterFromTempData]` and `[SupplyParameterFromSession]` attributes support the same stored-value types for component properties during static server-side rendering:
 
-| Type | Supported values |
-| --- | --- |
-| Scalar | `string`, `int`, `bool`, `Guid`, `DateTime`, and enums with an `int` underlying type |
-| Nullable scalar | Nullable forms of the supported value types, such as `int?` |
-| Collection | One-dimensional arrays (`T[]`), `List<T>`, `HashSet<T>`, and `Collection<T>`, where `T` is a supported scalar or nullable scalar type |
-| Dictionary | `Dictionary<string, T>`, where `T` is a supported scalar or nullable scalar type |
-| Object array | `object[]`, whose elements are serialized individually and must have supported types |
+Type | Supported values
+--- | ---
+Scalar | `string`, `int`, `bool`, `Guid`, `DateTime`, and enums with an `int` underlying type
+Nullable scalar | Nullable forms of the supported value types, such as `int?`
+Collection | One-dimensional arrays (`T[]`), `List<T>`, `HashSet<T>`, and `Collection<T>`, where `T` is a supported scalar or nullable scalar type
+Dictionary | `Dictionary<string, T>`, where `T` is a supported scalar or nullable scalar type
+Object array | `object[]`, whose elements are serialized individually and must have supported types
 
 Null values are supported. An empty collection remains distinct from a null collection after a round trip. A nullable property explicitly set to null and one never set both read back as null; this alone doesn't establish whether a storage key was present.
 
@@ -538,7 +538,7 @@ To persist temporary data between HTTP requests during static server-side render
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
 * Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
-* Supports the [stored-value types listed above](#supported-property-types-for-temporary-data-and-session).
+* Supports the [stored-value types listed earlier](#supported-property-types-for-temporary-data-and-session).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
 * Uses case-insensitive keys, so `TempData["message"]` and `TempData["Message"]` retrieve the same value.
 
@@ -576,8 +576,8 @@ Parameter | API | Notes
 --- | --- | ---
 Name | `Name` | The default value is `.AspNetCore.Components.TempData`.
 [HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | The default value is `true`.
-[SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | The default value is `SameSiteMode.Lax`.
-[Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | The default value is `CookieSecurePolicy.SameAsRequest`, which marks the cookie as secure when the request uses HTTPS.
+[SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | The default value is <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType>.
+[Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | The default value is <xref:Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest?displayProperty=nameWithType>, which marks the cookie as secure when the request uses HTTPS.
 
 Example (sets default values):
 
