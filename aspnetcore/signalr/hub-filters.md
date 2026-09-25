@@ -1,6 +1,6 @@
 ---
 title: Use hub filters in ASP.NET Core SignalR
-author: brecon
+author: BrennanConroy
 description: Learn how to use hub filters in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: wiwagn
