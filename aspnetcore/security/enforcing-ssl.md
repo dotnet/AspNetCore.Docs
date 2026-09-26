@@ -355,7 +355,7 @@ dotnet dev-certs https --clean
 
 ### Trust the certificate on Red Hat Enterprise Linux (RHEL)
 
-`dotnet dev-certs https --trust` isn't officially supported on RHEL. The following steps mirror the SLES instructions above, adapted for RHEL package names.
+`dotnet dev-certs https --trust` isn't officially supported on RHEL. The following steps mirror the [SLES instructions](#trust-the-certificate-on-suse-linux-enterprise-server-sles-and-opensuse), adapted for RHEL package names.
 
 > [!WARNING]
 > The following instructions are intended for development purposes only. Don't use the development certificate in a production environment.
