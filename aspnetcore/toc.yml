@@ -45,6 +45,8 @@ items:
                 href: breaking-changes/11/openapi-version-default-3-2.md
               - name: Passkey sign-in enforces email/phone confirmation and lockout
                 href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
+              - name: QuickGrid sorting and pagination controls render as links
+                href: breaking-changes/11/quickgrid-controls-render-as-links.md
               - name: Response compression always emits Vary, Accept-Encoding
                 href: breaking-changes/11/response-compression-always-vary.md
               - name: SqlClient Active Directory authentication moved to a separate package
