@@ -51,7 +51,7 @@
     },
     "fileMetadata": {
       "author": {
-        "**/**.{md,yml}": "guardrex",
+        "**/*.{md,yml}": "guardrex",
         "client-side/dotnet-interop/index.{md,yml}": "pavelsavara",
         "client-side/dotnet-interop/wasm-browser-app.{md,yml}": "pavelsavara",
         "diagnostics/asp0027.{md,yml}": "benhopkinstech",
@@ -119,29 +119,29 @@
         "release-notes/aspnetcore-9/includes/hybrid-cache.{md,yml}": "mgravell"
       },
       "ms.author": {
-        "**/**.{md,yml}": "wiwagn"
+        "**/*.{md,yml}": "wiwagn"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",
-        "**/client-side/**/**.md": "client-side",
-        "**/data/**/**.md": "data-access",
-        "**/fundamentals/**/**.md": "fundamentals",
-        "**/getting-started/**/**.md": "get-started",
-        "**/grpc/**/**.md": "grpc",
-        "**/host-and-deploy/**/**.md": "hosting-deployment",
-        "**/migration/**/**.md": "migration",
-        "**/mobile/**/**.md": "mobile",
-        "**/mvc/**/**.md": "mvc",
-        "**/performance/**/**.md": "performance",
-        "**/razor-pages/**/**.md": "razor-pages",
-        "**/release-notes/**/**.md": "release-notes",
-        "**/security/**/**.md": "security",
-        "**/signalr/**/**.md": "aspnetcore-signalr",
-        "**/test/**/**.md": "testing",
-        "**/tutorials/**/**.md": "tutorials",
-        "**/web-api/**/**.md": "web-api",
-        "**/blazor/**/**.md": "blazor",
-        "**/blazor/hybrid/**/**.md": "blazor-hybrid",
+        "**/client-side/**/*.md": "client-side",
+        "**/data/**/*.md": "data-access",
+        "**/fundamentals/**/*.md": "fundamentals",
+        "**/getting-started/**/*.md": "get-started",
+        "**/grpc/**/*.md": "grpc",
+        "**/host-and-deploy/**/*.md": "hosting-deployment",
+        "**/migration/**/*.md": "migration",
+        "**/mobile/**/*.md": "mobile",
+        "**/mvc/**/*.md": "mvc",
+        "**/performance/**/*.md": "performance",
+        "**/razor-pages/**/*.md": "razor-pages",
+        "**/release-notes/**/*.md": "release-notes",
+        "**/security/**/*.md": "security",
+        "**/signalr/**/*.md": "aspnetcore-signalr",
+        "**/test/**/*.md": "testing",
+        "**/tutorials/**/*.md": "tutorials",
+        "**/web-api/**/*.md": "web-api",
+        "**/blazor/**/*.md": "blazor",
+        "**/blazor/hybrid/**/*.md": "blazor-hybrid",
         "**/client-side/dotnet-interop/index.md": "blazor",
         "**/client-side/dotnet-interop/wasm-browser-app.md": "blazor",
         "**/client-side/dotnet-interop/dotnet-interop.md": "blazor",
@@ -149,14 +149,14 @@
         "**/mvc/views/tag-helpers/built-in/persist-component-state.md": "blazor"
       },
       "ms.topic": {
-        "**/getting-started/**/**.md": "tutorial",
-        "**/tutorials/**/**.md": "tutorial"
+        "**/getting-started/**/*.md": "tutorial",
+        "**/tutorials/**/*.md": "tutorial"
       },
       "ms.update-cycle": {
-        "**/**.{md,yml}": "365-days"
+        "**/*.{md,yml}": "365-days"
       },
       "no-loc": {
-        "**/**.md": [ "Bearer", "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "Cookies", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "JWT", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
+        "**/*.md": [ "Bearer", "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "Blazor Web App", "BREACH", "cookie", "Cookie", "Cookies", "CRIME", "EF Core", "Home" , "global.json", "Identity", "JS", "JWT", "Kestrel", "Aspire", ".NET MAUI", ".NET Multi-platform App UI", "Privacy", "QuickGrid", "Razor", "REST", "SignalR", "Web View"  ]
       }
     },
     "template": [],
