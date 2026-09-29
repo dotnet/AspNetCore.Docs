@@ -586,7 +586,7 @@ In the preceding example, only the account the server runs as is granted `Create
 > Don't grant `PipeAccessRights.CreateNewInstance` to callers, and avoid `PipeAccessRights.FullControl`, which includes it along with `ChangePermissions` and `TakeOwnership`. `CreateNewInstance` corresponds to the Windows `FILE_CREATE_PIPE_INSTANCE` right, which authorizes a grantee to create additional server instances under the same pipe name. Windows distributes incoming connections across all instances of a pipe, so a process holding that right can accept genuine client connections and impersonate the server.
 
 > [!NOTE]
-> A pipe's security descriptor controls which accounts can connect to that pipe. It doesn't control which endpoints a connected caller can reach, because every endpoint mapped in the app is served on every named pipe endpoint. Use authentication and authorization to restrict individual endpoints.
+> A pipe's security descriptor controls which accounts can connect to that pipe. It doesn't control which endpoints a connected caller can reach because every endpoint mapped in the app is served on every named pipe endpoint. Use authentication and authorization to restrict individual endpoints.
 
 :::moniker-end
 
