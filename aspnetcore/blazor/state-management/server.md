@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 09/23/2026
+ms.date: 09/29/2026
 uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
@@ -687,6 +687,12 @@ Similar to the preceding example but when only simple read/write of a single val
 }
 ```
 
+#### Streaming server-side rendering
+
+During streaming server-side rendering (streaming SSR), cookie-backed `TempData` values can't be saved after the response starts because the provider must write a cookie to the response headers. Setting a value before an `await` doesn't avoid this limitation if the response is flushed before `TempData` is persisted. To persist values during streaming SSR, use the session-storage provider.
+
+Configure session services and middleware as described in [Session data persistence](#session-data-persistence). A new session needs its session cookie issued before the first response flush. After the session is established, session-backed values can be persisted during streaming SSR.
+
 ### Session data persistence
 
 <!-- UPDATE 11.0 - API Browser cross-links -->
@@ -702,6 +708,8 @@ Session storage:
 * Has no practical size limits (within session constraints).
 * Serializes values with <xref:System.Text.Json> with <xref:System.Text.Json.JsonSerializerDefaults?displayProperty=nameWithType>.
 * Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see <xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting>.
+
+For streaming SSR, establish a new session before the first response flush. Place a `[SupplyParameterFromSession]` parameter on a component rendered before that flush or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values won't persist to the next request.
 
 When supplied to a parameter, use the `[SupplyParameterFromSession]` attribute without or with a key (string):
 
