@@ -2,7 +2,7 @@
 title: Breaking changes in ASP.NET Core 11
 ai-usage: ai-assisted
 description: Navigate to the breaking changes in ASP.NET Core 11.
-ms.date: 06/25/2026
+ms.date: 09/29/2026
 no-loc: [Blazor, Kestrel, SignalR]
 titleSuffix: ""
 ---
@@ -30,6 +30,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 | [OpenAPI server URL no longer has a trailing slash when PathBase is empty](openapi-server-url-trailing-slash.md) | Behavioral change |
 | [OpenApiVersion defaults to OpenApi3_2](openapi-version-default-3-2.md) | Behavioral change |
 | [Passkey sign-in enforces email/phone confirmation and lockout](passkey-signin-enforces-confirmation-lockout.md) | Behavioral change |
+| [QuickGrid sorting and pagination controls render as links](quickgrid-controls-render-as-links.md) | Behavioral change |
 | [Response compression always emits Vary: Accept-Encoding](response-compression-always-vary.md) | Behavioral change |
 | [SqlClient Active Directory authentication moved to a separate package](sqlclient-azure-extensions-required.md) | Behavioral change |
 | [WebAssemblyHostBuilder loads environment variables into IConfiguration](wasm-env-vars-in-configuration.md) | Behavioral change |
