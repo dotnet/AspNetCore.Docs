@@ -709,7 +709,7 @@ Session storage:
 * Serializes values with <xref:System.Text.Json> with <xref:System.Text.Json.JsonSerializerDefaults?displayProperty=nameWithType>.
 * Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see <xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting>.
 
-For streaming SSR, establish a new session before the first response flush. Place a `[SupplyParameterFromSession]` parameter on a component rendered before that flush, or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values won't persist to the next request.
+For streaming SSR, establish a new session before the first response flush. Place a `[SupplyParameterFromSession]` parameter on a component rendered before that flush or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values won't persist to the next request.
 
 When supplied to a parameter, use the `[SupplyParameterFromSession]` attribute without or with a key (string):
 
