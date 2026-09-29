@@ -37,4 +37,9 @@ After the initial handshake WebSockets function the same way over both HTTP vers
 
 [Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](xref:fundamentals/servers/yarp/timeouts).
 
-The cluster's `ActivityTimeout` (100 seconds by default) still applies after the handshake. If no data or WebSocket keep-alive frames are sent in either direction for that duration, YARP closes the connection. To keep idle connections open, have the client or the destination server send WebSocket keep-alives at an interval shorter than `ActivityTimeout`, or increase `ActivityTimeout` for the cluster. Browser clients don't send keep-alives on their own, so they depend on the destination server's interval. In ASP.NET Core, <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> defaults to two minutes, which is longer than the default `ActivityTimeout`. For more information, see [Timeouts](xref:fundamentals/servers/yarp/timeouts#websockets).
+The cluster's [`ActivityTimeout`](xref:fundamentals/servers/yarp/http-client-config#HttpRequest) (100 seconds by default) still applies after the handshake. If no data or WebSocket keep-alive frames are sent in either direction for that duration, YARP closes the connection. To keep idle connections open, use *either* of the following approaches:
+
+* Send WebSocket keep-alives at an interval shorter than `ActivityTimeout` from the client or the destination server.
+* Increase the `ActivityTimeout` for the cluster.
+
+Browser clients don't send keep-alives on their own, so they depend on the destination server's interval. In ASP.NET Core, <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> defaults to two minutes, which is longer than the default `ActivityTimeout`. For more information, see [YARP Request Timeouts](xref:fundamentals/servers/yarp/timeouts#websockets).
