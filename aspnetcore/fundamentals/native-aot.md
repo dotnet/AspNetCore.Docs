@@ -5,8 +5,6 @@ content_well_notification: AI-contribution
 ms.date: 06/02/2026
 uid: fundamentals/native-aot
 ai-usage: ai-assisted
-
-# # customer intent: As an ASP.NET developer, I want to explore ASP.NET Core support for Native AOT, so I can publish and deploy my Native AOT app.
 ---
 # ASP.NET Core support for Native AOT
 

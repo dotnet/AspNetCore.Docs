@@ -83,7 +83,8 @@ The following code applies the `AddHeader` attribute:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Movies/Test.cshtml.cs)]
 
-Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `
+Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `author: Rick` is displayed.
+
 See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-default-order) for instructions on overriding the order.
 
 See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellation-and-short-circuiting) for instructions to short-circuit the filter pipeline from a filter.

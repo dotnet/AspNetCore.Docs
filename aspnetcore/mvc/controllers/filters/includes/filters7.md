@@ -631,7 +631,8 @@ Attributes allow filters to accept arguments, as shown in the preceding example.
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Controllers/SampleController.cs" id="snippet_AddHeader" highlight="1":::
 
-Use a tool such as the [browser developer tools](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) to examine the headers. Under **Response Headers**, `
+Use a tool such as the [browser developer tools](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) to examine the headers. Under **Response Headers**, `author: Rick Anderson` is displayed.
+
 The following code implements an `ActionFilterAttribute` that:
 
 * Reads the title and name from the configuration system. Unlike the previous sample, the following code doesn't require filter parameters to be added to the code.
@@ -658,7 +659,8 @@ The following code applies the `MyActionFilterAttribute` to the `Index2` method:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Controllers/SampleController.cs" id="snippet2" highlight="9":::
 
-Under **Response Headers**, `
+Under **Response Headers**, `author: Rick Anderson`, and `Editor: Joe Smith` is displayed when the `Sample/Index2` endpoint is called.
+
 The following code applies the `MyActionFilterAttribute` and the `AddHeaderAttribute` to the Razor Page:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Pages/Movies/Index.cshtml.cs" id="snippet":::
