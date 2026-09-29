@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/httpsys-delegation
 title: YARP HTTP.sys Delegation
 description: YARP HTTP.sys Delegation
-author: guardrex
-ms.author: wiwagn
 ms.date: 04/03/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

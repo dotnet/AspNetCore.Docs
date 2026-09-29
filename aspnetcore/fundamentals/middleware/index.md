@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core middleware
 ai-usage: ai-assisted
-author: guardrex
 description: ASP.NET Core middleware handles requests and responses through a configurable pipeline. Learn how to use Run, Map, and Use delegates, branch pipelines, and order middleware correctly.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wiwagn
 ms.date: 08/19/2026
 uid: fundamentals/middleware/index
 ---

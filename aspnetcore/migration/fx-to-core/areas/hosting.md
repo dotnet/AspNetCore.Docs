@@ -2,8 +2,6 @@
 title: .NET Generic Host in ASP.NET Framework
 description: How to take advantage of the .NET generic hosting pattern in ASP.NET Framework applications
 ai-usage: ai-assisted
-author: twsouthwick
-ms.author: wiwagn
 ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/10/2025

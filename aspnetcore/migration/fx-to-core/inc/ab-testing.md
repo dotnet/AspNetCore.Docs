@@ -1,8 +1,6 @@
 ---
 title: A/B Testing Migrated Endpoints
 description: A/B Testing Migrated Endpoints
-author: twsouthwick
-ms.author: wiwagn
 ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025

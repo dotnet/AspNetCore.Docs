@@ -1,10 +1,8 @@
 ---
 title: Serve static files in ASP.NET Core apps
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 09/23/2026
 uid: fundamentals/static-files
 ---

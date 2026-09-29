@@ -1,10 +1,8 @@
 ---
 title: Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to issue push notifications in Blazor Progressive Web Applications (PWAs).
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 11/11/2025
 uid: blazor/progressive-web-app/push-notifications
 ---

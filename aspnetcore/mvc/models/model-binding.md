@@ -1,10 +1,8 @@
 ---
 title: Model Binding in ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 08/10/2026
 uid: mvc/models/model-binding
 ---

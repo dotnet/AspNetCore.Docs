@@ -29,8 +29,7 @@
 	};
 	var defaultOptions = _defaultOptions;
 
-	// Author: KennyTM @ StackOverflow
-	function unionArrays (x, y) {
+	// 	function unionArrays (x, y) {
 		var obj = {};
 		for (var i = x.length - 1; i >= 0; -- i) obj[x[i]] = x[i];
 		for (var i = y.length - 1; i >= 0; -- i) obj[y[i]] = y[i];

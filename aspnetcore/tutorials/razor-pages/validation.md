@@ -1,9 +1,7 @@
 ---
 title: Part 8, add validation
 ai-usage: ai-assisted
-author: guardrex
 description: Part 8 of tutorial series on Razor Pages.
-ms.author: wiwagn
 ms.date: 08/23/2026
 uid: tutorials/razor-pages/validation
 ---

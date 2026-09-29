@@ -1,9 +1,7 @@
 ---
 title: Code-first gRPC services and clients with .NET
-author: jamesnk
 description: Learn the basic concepts when writing code-first gRPC with .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wiwagn
 ms.date: 02/23/2022
 uid: grpc/code-first
 ---

@@ -1,8 +1,6 @@
 ---
 title: Part 2, add a model
-author: guardrex
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
-ms.author: wiwagn
 ms.date: 01/07/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/razor-pages/model

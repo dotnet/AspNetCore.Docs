@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/https-tls
 title: YARP HTTPS & TLS
 description: YARP HTTPS & TLS
-author: guardrex
-ms.author: wiwagn
 ms.date: 02/14/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

@@ -1,10 +1,8 @@
 ---
 title: View-based authorization in ASP.NET Core MVC
 ai-usage: ai-assisted
-author: guardrex
 description: This document demonstrates how to inject and utilize the authorization service inside of an ASP.NET Core Razor view.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 07/22/2026
 uid: mvc/security/authorization/views
 ---

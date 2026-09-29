@@ -1,8 +1,6 @@
 ---
 title: Filters in Minimal API apps
-author: guardrex
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
-ms.author: wiwagn
 ms.date: 04/28/2026
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters

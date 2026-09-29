@@ -1,8 +1,6 @@
 ---
 title: Part 5, update the generated pages
-author: guardrex
 description: Part 5 of tutorial series on Razor Pages.
-ms.author: wiwagn
 ms.date: 01/08/2026
 uid: tutorials/razor-pages/da1
 ---

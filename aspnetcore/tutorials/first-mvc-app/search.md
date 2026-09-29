@@ -1,9 +1,7 @@
 ---
 title: Part 7, add search to an ASP.NET Core MVC app
-author: guardrex
 description: Part 7 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/search
 ---

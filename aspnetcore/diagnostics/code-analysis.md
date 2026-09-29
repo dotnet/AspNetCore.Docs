@@ -1,9 +1,7 @@
 ---
 title: Diagnostic Code Analysis in ASP.NET Core Apps
-author: guardrex
 description: Review the list of diagnostic codes for ASP.NET Core and get details for specific diagnostic identifiers (IDs), such as ASP0007, BL0001, and MVC1006.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 08/25/2026
 uid: diagnostics/code-analysis
 

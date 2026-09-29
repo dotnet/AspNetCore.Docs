@@ -1,9 +1,7 @@
 ---
 title: Part 6, controller methods and views in ASP.NET Core
-author: guardrex
 description: Part 6, add a model to an ASP.NET Core MVC app
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/controller-methods-views
 ---

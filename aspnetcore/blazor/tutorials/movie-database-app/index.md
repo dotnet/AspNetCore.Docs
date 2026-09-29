@@ -1,8 +1,6 @@
 ---
 title: Build a Blazor movie database app (Overview)
-author: guardrex
 description: This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
-ms.author: wiwagn
 ms.date: 11/11/2025
 monikerRange: '>= aspnetcore-8.0'
 uid: blazor/tutorials/movie-database-app/index

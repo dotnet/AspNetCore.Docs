@@ -1,10 +1,8 @@
 ---
 title: Inter-process communication with gRPC
 ai-usage: ai-assisted
-author: jamesnk
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: wiwagn
 ms.date: 07/07/2026
 uid: grpc/interprocess
 ---

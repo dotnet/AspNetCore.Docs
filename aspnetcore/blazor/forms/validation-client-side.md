@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor client-side form validation in static SSR
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how Blazor validates static server-side rendered forms in the browser before they're submitted.
 monikerRange: '>= aspnetcore-11.0'
-ms.author: wiwagn
 ms.date: 09/22/2026
 uid: blazor/forms/validation-client-side
 ---

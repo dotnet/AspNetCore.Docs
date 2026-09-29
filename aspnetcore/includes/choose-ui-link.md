@@ -1,6 +1,4 @@
 ---
-author: guardrex
-ms.author: wiwagn
 ms.date: 08/10/2021
 ms.topic: include
 ---

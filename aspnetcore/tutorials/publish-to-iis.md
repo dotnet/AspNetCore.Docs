@@ -1,10 +1,8 @@
 ---
 title: Publish an ASP.NET Core app to IIS
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to host an ASP.NET Core app on an IIS server.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: wiwagn
 ms.date: 02/23/2026
 uid: tutorials/publish-to-iis
 ---

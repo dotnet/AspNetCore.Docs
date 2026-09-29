@@ -1,9 +1,7 @@
 ---
 title: Migrate from ASP.NET Framework to ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
 description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
-ms.author: wiwagn
 ms.date: 07/03/2026
 uid: migration/fx-to-core/index
 ---

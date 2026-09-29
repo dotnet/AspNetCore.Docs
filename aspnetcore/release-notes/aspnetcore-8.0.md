@@ -1,9 +1,7 @@
 ---
 title: What's new in ASP.NET Core in .NET 8
 ai-usage: ai-assisted
-author: guardrex
 description: Learn about the new features in ASP.NET Core in .NET 8.
-ms.author: wiwagn
 ms.date: 08/31/2026
 uid: aspnetcore-8
 ---

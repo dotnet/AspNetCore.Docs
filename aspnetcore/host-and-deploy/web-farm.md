@@ -1,9 +1,7 @@
 ---
 title: Host ASP.NET Core in a web farm
-author: guardrex
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wiwagn
 ms.date: 01/13/2020
 uid: host-and-deploy/web-farm
 ---

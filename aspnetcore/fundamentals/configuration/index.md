@@ -1,10 +1,8 @@
 ---
 title: Configuration in ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 09/18/2026
 uid: fundamentals/configuration/index
 ---

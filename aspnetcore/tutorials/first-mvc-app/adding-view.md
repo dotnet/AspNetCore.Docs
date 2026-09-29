@@ -1,8 +1,6 @@
 ---
 title: Part 3, add a view to an ASP.NET Core MVC app
-author: guardrex
 description: Part 3 of tutorial series on ASP.NET Core MVC.
-ms.author: wiwagn
 ms.date: 01/22/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view

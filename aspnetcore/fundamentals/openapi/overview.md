@@ -1,10 +1,8 @@
 ---
 title: Overview of OpenAPI support in ASP.NET Core API apps
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to integrate OpenAPI in ASP.NET Core API apps. Discover features, tools, and packages for generating and customizing OpenAPI documents.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wiwagn
 ms.date: 08/28/2026
 uid: fundamentals/openapi/overview
 ---

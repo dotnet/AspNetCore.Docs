@@ -1,8 +1,6 @@
 ---
 title: ASP.NET Core Web SDK
-author: guardrex
 description: Overview of Microsoft.NET.Sdk.Web.
-ms.author: wiwagn
 ms.date: 01/25/2023
 uid: razor-pages/web-sdk
 ---

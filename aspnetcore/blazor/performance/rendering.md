@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor rendering performance best practices
 ai-usage: ai-assisted
-author: guardrex
 description: Tips for improving the rendering performance of ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 04/28/2026
 uid: blazor/performance/rendering
 ---

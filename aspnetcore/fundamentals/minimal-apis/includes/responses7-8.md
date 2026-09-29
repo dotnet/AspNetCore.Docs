@@ -1,6 +1,4 @@
 ---
-author: guardrex
-ms.author: wiwagn
 ms.date: 08/07/2024
 ---
 

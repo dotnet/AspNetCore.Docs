@@ -1,8 +1,6 @@
 ---
 title: What's new in ASP.NET Core in .NET 7
-author: guardrex
 description: Learn about the new features in ASP.NET Core in .NET 7.
-ms.author: wiwagn
 ms.date: 11/07/2022
 uid: aspnetcore-7
 ---

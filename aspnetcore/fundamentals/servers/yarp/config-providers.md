@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/config-providers
 title: YARP Extensibility Configuration Providers
 description: YARP Extensibility Configuration Providers
-author: guardrex
-ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

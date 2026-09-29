@@ -1,8 +1,6 @@
 ---
 title: ASP.NET Core Data Protection implementation
-author: guardrex
 description: Discover the various ASP.NET Core Data Protection implementation topics.
-ms.author: wiwagn
 ms.date: 10/14/2016
 uid: security/data-protection/implementation/index
 ---

@@ -1,9 +1,7 @@
 ---
 title: ASP.NET Core runtime environments
-author: guardrex
 description: Learn how to set and control app behavior across runtime environments in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 05/29/2026
 uid: fundamentals/environments
 ---

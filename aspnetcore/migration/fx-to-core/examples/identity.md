@@ -1,8 +1,6 @@
 ---
 title: Migrate Authentication and Identity to ASP.NET Core
-author: guardrex
 description: Learn how to migrate authentication and identity from an ASP.NET MVC project to an ASP.NET Core MVC project.
-ms.author: wiwagn
 ms.date: 10/29/2024
 uid: migration/fx-to-core/examples/identity
 ---

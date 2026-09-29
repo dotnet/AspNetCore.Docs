@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/diagnosing-yarp-issues
 title: YARP Diagnosing YARP-based proxies
 description: YARP Diagnosing YARP-based proxies
-author: guardrex
-ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

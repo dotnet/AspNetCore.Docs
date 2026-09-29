@@ -1,10 +1,8 @@
 ---
 title: Enable QR code generation for TOTP authentication
 ai-usage: ai-assisted
-author: guardrex
 description: Discover how to enable QR code generation for time-based one-time password (TOTP) authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wiwagn
 ms.date: 05/15/2026
 uid: security/authentication/identity-enable-qrcodes
 

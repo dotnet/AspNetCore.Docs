@@ -1,9 +1,7 @@
 ---
 title: What's new in ASP.NET Core in .NET 10
 ai-usage: ai-assisted
-author: guardrex
 description: Learn about the new features in ASP.NET Core in .NET 10.
-ms.author: wiwagn
 ms.date: 04/22/2026
 uid: aspnetcore-10
 ---

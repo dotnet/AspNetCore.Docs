@@ -1,9 +1,7 @@
 ---
 title: Customize OpenAPI documents
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
-ms.author: wiwagn
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 08/19/2026
 uid: fundamentals/openapi/customize-openapi

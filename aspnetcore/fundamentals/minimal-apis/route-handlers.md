@@ -1,8 +1,6 @@
 ---
 title: Route handlers in Minimal API apps
-author: guardrex
 description: Learn how to handle route requests in Minimal API apps, define preferred methods, bind route parameters, and process the request response.
-ms.author: wiwagn
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 04/28/2026
 uid: fundamentals/minimal-apis/route-handlers

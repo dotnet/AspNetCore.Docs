@@ -1,8 +1,6 @@
 ---
 title: Compatibility in ASP.NET Core
-author: guardrex
 description: This document serves as a table of contents for various ASP.NET Core data protection compatibility topics.
-ms.author: wiwagn
 ms.date: 10/14/2016
 uid: security/data-protection/compatibility/index
 ---

@@ -1,10 +1,8 @@
 ---
 title: Authorize with a specific scheme in ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 08/11/2026
 uid: security/authorization/authorize-with-a-specific-scheme
 ---

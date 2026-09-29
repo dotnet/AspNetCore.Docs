@@ -1,8 +1,6 @@
 ---
 title: Parameter binding in Minimal API applications
-author: guardrex
 description: Learn how parameters are populated before invoking minimal route handlers.
-ms.author: wiwagn
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 07/16/2026
 uid: fundamentals/minimal-apis/parameter-binding

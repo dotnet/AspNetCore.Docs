@@ -1,8 +1,6 @@
 ---
 title: Session in ASP.NET Core
-author: guardrex
 description: Discover approaches to preserve session between requests.
-ms.author: wiwagn
 ms.date: 04/24/2025
 uid: fundamentals/app-state
 ---

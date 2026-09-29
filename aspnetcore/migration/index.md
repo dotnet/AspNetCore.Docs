@@ -1,9 +1,7 @@
 ---
 title: Migrate an ASP.NET Core app
 ai-usage: ai-assisted
-author: guardrex
 description: Migrate ASP.NET Core apps efficiently using expert guidance. Learn how to upgrade .NET versions and move from ASP.NET Framework. Get started now.
-ms.author: wiwagn
 ms.reviewer: tsouthwick
 ms.date: 07/03/2026
 uid: migration/index

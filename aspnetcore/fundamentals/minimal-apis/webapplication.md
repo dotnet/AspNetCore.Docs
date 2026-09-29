@@ -1,10 +1,8 @@
 ---
 title: WebApplication and WebApplicationBuilder in ASP.NET Core apps
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to use WebApplication and WebApplicationBuilder in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: wiwagn
 ms.date: 08/18/2026
 uid: fundamentals/minimal-apis/webapplication
 ---

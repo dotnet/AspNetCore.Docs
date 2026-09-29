@@ -1,9 +1,7 @@
 ---
 title: Filter methods for Razor Pages in ASP.NET Core
-author: guardrex
 description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wiwagn
 ms.date: 2/18/2020
 uid: razor-pages/filter
 ---
@@ -85,8 +83,7 @@ The following code applies the `AddHeader` attribute:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Movies/Test.cshtml.cs)]
 
-Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `author: Rick` is displayed.
-
+Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `
 See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-default-order) for instructions on overriding the order.
 
 See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellation-and-short-circuiting) for instructions to short-circuit the filter pipeline from a filter.

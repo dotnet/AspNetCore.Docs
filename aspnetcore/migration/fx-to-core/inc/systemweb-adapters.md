@@ -1,8 +1,6 @@
 ---
 title: System.Web adapters
 description: System.Web adapters
-author: guardrex
-ms.author: wiwagn
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: concept-article

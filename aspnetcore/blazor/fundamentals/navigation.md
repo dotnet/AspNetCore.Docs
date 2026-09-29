@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor navigation
 ai-usage: ai-assisted
-author: guardrex
 description: Learn about navigation in Blazor, including how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 09/15/2026
 uid: blazor/fundamentals/navigation
 ---

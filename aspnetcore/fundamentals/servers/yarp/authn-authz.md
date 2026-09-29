@@ -1,10 +1,8 @@
 ---
 title: YARP authentication and authorization
 ai-usage: ai-assisted
-author: guardrex
 content_well_notification: AI-contribution
 description: Learn how to configure authentication and authorization for YARP routes.
-ms.author: wiwagn
 ms.date: 09/18/2026
 ms.topic: concept-article
 uid: fundamentals/servers/yarp/authn-authz

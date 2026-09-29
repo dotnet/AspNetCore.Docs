@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/rate-limiting
 title: YARP Rate Limiting
 description: YARP Rate Limiting
-author: guardrex
-ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

@@ -1,8 +1,6 @@
 ---
 title: Author Tag Helpers in ASP.NET Core
-author: guardrex
 description: Learn how to author Tag Helpers in ASP.NET Core.
-ms.author: wiwagn
 ms.date: 12/05/2019
 uid: mvc/views/tag-helpers/authoring
 ---

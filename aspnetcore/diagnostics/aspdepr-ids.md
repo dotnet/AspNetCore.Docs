@@ -1,10 +1,8 @@
 ---
 title: ASPDEPR diagnostics overview
 ai-usage: ai-assisted
-author: guardrex
 description: Overview of ASPDEPR deprecation diagnostics in ASP.NET Core.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: wiwagn
 ms.date: 03/03/2026
 uid: diagnostics/aspdepr-ids
 ---

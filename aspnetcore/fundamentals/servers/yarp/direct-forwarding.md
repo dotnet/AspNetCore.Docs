@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/direct-forwarding
 title: YARP Direct Forwarding
 description: YARP Direct Forwarding
-author: guardrex
-ms.author: wiwagn
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

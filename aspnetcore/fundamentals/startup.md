@@ -1,10 +1,8 @@
 ---
 title: App startup in ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how ASP.NET Core apps start up and how to configure services and the app's request pipeline.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 09/18/2026
 uid: fundamentals/startup
 ---

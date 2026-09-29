@@ -1,10 +1,8 @@
 ---
 title: .NET Hot Reload support for ASP.NET Core
 ai-usage: ai-assisted
-author: guardrex
 description: Use .NET Hot Reload to apply code changes to a running app without restarting the app and without losing app state.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wiwagn
 ms.date: 09/16/2026
 uid: test/hot-reload
 ---

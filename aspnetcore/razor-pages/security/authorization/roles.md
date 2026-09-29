@@ -1,10 +1,8 @@
 ---
 title: Role-based authorization in ASP.NET Core Razor Pages
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to restrict ASP.NET Core Razor Pages page access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 03/24/2026
 uid: razor-pages/security/authorization/roles
 ---

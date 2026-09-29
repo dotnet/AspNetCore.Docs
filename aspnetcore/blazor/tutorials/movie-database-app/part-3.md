@@ -1,10 +1,8 @@
 ---
 title: Build a Blazor movie database app (Part 3 - Learn about Razor components)
 ai-usage: ai-assisted
-author: guardrex
 description: This part of the Blazor movie database app tutorial explains the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: wiwagn
 ms.date: 09/15/2026
 uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling

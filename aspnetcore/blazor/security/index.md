@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor authentication and authorization
 ai-usage: ai-assisted
-author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wiwagn
 ms.date: 09/18/2026
 uid: blazor/security/index
 ---
