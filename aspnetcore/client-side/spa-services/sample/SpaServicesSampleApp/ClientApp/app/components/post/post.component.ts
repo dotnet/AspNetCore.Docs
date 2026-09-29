@@ -21,5 +21,5 @@ export class PostComponent {
 interface Post {
     postId: number;
     title: string;
-        link: string;
+    link: string;
 }
