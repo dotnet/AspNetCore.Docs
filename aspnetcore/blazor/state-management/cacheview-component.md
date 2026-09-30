@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor CacheView component
 ai-usage: ai-assisted
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
-ms.date: 09/16/2026
+ms.date: 09/30/2026
 uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
@@ -64,6 +64,16 @@ The following parameters add request-specific values to the cache key:
 | `VaryByUser` | The authenticated user identity. |
 | `VaryByCulture` | The current culture and UI culture. |
 | `VaryBy` | An application-defined string value. |
+
+`VaryByUser="true"` separates authenticated identities, but it doesn't automatically vary by every claim or permission. When a nonempty name identifier claim is present, other claims aren't included in the user portion of the key. If cached content depends on claims or permissions, also set `VaryBy` to an application-defined string that reflects all relevant values and changes when they do:
+
+```razor
+<CacheView VaryByUser="true" VaryBy="@currentPermission">
+    <PermissionSensitiveContent />
+</CacheView>
+```
+
+Here, `currentPermission` is the current permission value used by the child content. Authorization logic inside cached child content isn't rerun on a cache hit. Move content that must recheck authorization on every request outside the `CacheView`.
 
 Without a matching vary-by parameter, requests with different values share the same cached output.
 
