@@ -10,23 +10,19 @@ public interface IBackgroundTaskQueue
         CancellationToken cancellationToken);
 }
 
-public class BackgroundTaskQueue : IBackgroundTaskQueue
+public class BackgroundTaskQueue(int capacity) : IBackgroundTaskQueue
 {
-    private readonly Channel<Func<CancellationToken, ValueTask>> _queue;
-
-    public BackgroundTaskQueue(int capacity)
-    {
-        // Capacity should be set based on the expected application load and
-        // number of concurrent threads accessing the queue.
-        // BoundedChannelFullMode.Wait will cause calls to WriteAsync() to return a task,
-        // which completes only when space became available. This leads to backpressure,
-        // in case too many publishers/calls start accumulating.
-        var options = new BoundedChannelOptions(capacity)
+    // Capacity should be set based on the expected application load and
+    // number of concurrent threads accessing the queue.
+    // BoundedChannelFullMode.Wait causes calls to WriteAsync() to return a task,
+    // which only completes when space becomes available. In the event that many
+    // publishers/calls start accumulating, using BoundedChannelFullMode.Wait can
+    // lead to backpressure.
+    private readonly Channel<Func<CancellationToken, ValueTask>> _queue =
+        Channel.CreateBounded<Func<CancellationToken, ValueTask>>(new BoundedChannelOptions(capacity)
         {
             FullMode = BoundedChannelFullMode.Wait
-        };
-        _queue = Channel.CreateBounded<Func<CancellationToken, ValueTask>>(options);
-    }
+        });
 
     public async ValueTask QueueBackgroundWorkItemAsync(
         Func<CancellationToken, ValueTask> workItem)

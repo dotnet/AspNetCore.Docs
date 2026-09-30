@@ -1,21 +1,14 @@
 namespace BackgroundTasksWebSample.Services;
 
-public class QueuedHostedService : BackgroundService
+public class QueuedHostedService(
+    IBackgroundTaskQueue taskQueue,
+    ILogger<QueuedHostedService> logger) : BackgroundService
 {
-    private readonly ILogger<QueuedHostedService> _logger;
-
-    public QueuedHostedService(IBackgroundTaskQueue taskQueue,
-        ILogger<QueuedHostedService> logger)
-    {
-        TaskQueue = taskQueue;
-        _logger = logger;
-    }
-
-    public IBackgroundTaskQueue TaskQueue { get; }
+    public IBackgroundTaskQueue TaskQueue { get; } = taskQueue;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation(
+        logger.LogInformation(
             "Queued Hosted Service is running. " +
             "Send a POST request to /queue to add a work item to the background queue.");
 
@@ -35,7 +28,7 @@ public class QueuedHostedService : BackgroundService
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex,
+                logger.LogError(ex,
                     "Error occurred executing {WorkItem}.", nameof(workItem));
             }
         }
@@ -43,7 +36,7 @@ public class QueuedHostedService : BackgroundService
 
     public override async Task StopAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("Queued Hosted Service is stopping.");
+        logger.LogInformation("Queued Hosted Service is stopping.");
 
         await base.StopAsync(stoppingToken);
     }
