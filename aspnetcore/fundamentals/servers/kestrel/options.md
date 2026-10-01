@@ -92,8 +92,13 @@ This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 :::moniker range=">= aspnetcore-11.0"
 
-> [!NOTE]
-> **Behavior change:** In .NET 11 and later, `RequestHeadersTimeout` also bounds **trailing headers** (trailers) on HTTP/2 and HTTP/3 requests. If a client begins a trailer `HEADERS` frame but doesn't finish it within the timeout, Kestrel resets the request. In earlier versions the timeout applied only to a request's initial headers, so a stalled or partial trailer frame wasn't bounded by it.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> applies to trailing headers (trailers) on HTTP/2 and HTTP/3 requests. If a client begins a trailer `HEADERS` frame but doesn't finish it within the timeout, Kestrel resets the request. 
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-11.0"
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> only applies to a request's initial headers, so a stalled or partial trailer frame isn't restricted by it.
 
 :::moniker-end
 
