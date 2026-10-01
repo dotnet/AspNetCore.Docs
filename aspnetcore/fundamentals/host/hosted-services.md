@@ -138,13 +138,13 @@ For more information, see the [BackgroundService](https://github.com/dotnet/runt
 
 A timed background task makes use of the [System.Threading.Timer](xref:System.Threading.Timer) class. The timer triggers the task's `DoWork` method. The timer is disabled on `StopAsync` and disposed when the service container is disposed on `Dispose`:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/TimedHostedService.cs" id="snippet1" highlight="16-17,34,41":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/TimedHostedService.cs" id="snippet1" highlight="10-11,28,35":::
 
 The <xref:System.Threading.Timer> doesn't wait for previous executions of `DoWork` to finish, so the approach shown might not be suitable for every scenario. [Interlocked.Increment](xref:System.Threading.Interlocked.Increment%2A) is used to increment the execution counter as an atomic operation, which ensures that multiple threads don't update `executionCount` concurrently.
 
 The service is registered in the `Program` file with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet1":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet1":::
 
 ## Consuming a scoped service in a background task
 
@@ -155,21 +155,21 @@ The scoped background task service contains the background task's logic. In the 
 * The service is asynchronous. The `DoWork` method returns a `Task`. For demonstration purposes, a delay of ten seconds is awaited in the `DoWork` method.
 * An <xref:Microsoft.Extensions.Logging.ILogger> is injected into the service.
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/ScopedProcessingService.cs" id="snippet1":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/ScopedProcessingService.cs" id="snippet1":::
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method. `DoWork` returns a `Task`, which is awaited in `ExecuteAsync`:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs" id="snippet1" highlight="19,22-35":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs" id="snippet1" highlight="12,15-28":::
 
 The services are registered in the `Program` file. The hosted service is registered with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet2":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet2":::
 
 ## Queued background tasks
 
 A background task queue is based on the .NET Framework 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem%2A>:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/BackgroundTaskQueue.cs" id="snippet1":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/BackgroundTaskQueue.cs" id="snippet1":::
 
 In the following `QueueHostedService` example:
 
@@ -177,7 +177,7 @@ In the following `QueueHostedService` example:
 * Background tasks in the queue are dequeued and executed in `BackgroundProcessing`.
 * Work items are awaited before the service stops in `StopAsync`.
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/QueuedHostedService.cs" id="snippet1" highlight="28-29,33":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/QueuedHostedService.cs" id="snippet1" highlight="21-22,26":::
 
 A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever the `w` key is selected on an input device:
 
@@ -187,15 +187,15 @@ A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever 
   * Three 5-second delays are executed (`Task.Delay`).
   * A `try-catch` statement traps <xref:System.OperationCanceledException> if the task is cancelled.
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/MonitorLoop.cs" id="snippet_Monitor" highlight="7,33":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/MonitorLoop.cs" id="snippet_Monitor" highlight="2,25":::
 
 The services are registered in the `Program` file. The hosted service is registered with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet3":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet3":::
 
 `MonitorLoop` is started in the `Program` file:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet4":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet4":::
 
 In a web app, an endpoint can queue work items instead of a console input loop. For an example, see the [Hosted services in a web app](#hosted-services-in-a-web-app) section.
 
