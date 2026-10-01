@@ -1,10 +1,11 @@
 ---
 title: Configure options for the ASP.NET Core Kestrel web server
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: tdykstra
-ms.date: 08/25/2025
+ms.date: 10/01/2026
 uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
@@ -86,6 +87,17 @@ Server-wide rate limits configured via <xref:Microsoft.AspNetCore.Server.Kestrel
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsRequestHeadersTimeout" highlight="3":::
 
 This timeout is not enforced when a debugger is attached to the Kestrel process.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> **Behavior change:** In .NET 11 and later, `RequestHeadersTimeout` also bounds **trailing headers** (trailers) on HTTP/2 and HTTP/3 requests. If a client begins a trailer `HEADERS` frame but doesn't finish it within the timeout, Kestrel resets the request. In earlier versions the timeout applied only to a request's initial headers, so a stalled or partial trailer frame wasn't bounded by it.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## HTTP/2 limits
 
