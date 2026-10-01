@@ -179,9 +179,9 @@ In the java client, `char` objects will be serialized as one-character `String` 
 
 ### Android device support for the Java client
 
-The MessagePack integration for the Java client might increase the minimum Android API version required depending on the .NET release an app targets, which affects which version of Android the client can run on. This can result in the app crashing on Android devices running on earlier operating systems. In cases where this occurs and you wish to continue supporting older Android devices, you can adopt either of the following approaches:
+The MessagePack integration for the Java client might increase the Android API minimum required version depending on the MessagePack version that the .NET release targets, which affects which version of Android the client can run on. This can result in the app crashing on Android devices running on earlier operating systems. In cases where this occurs and you wish to continue supporting older Android devices, you can adopt either of the following approaches:
 
-* Manually downgrade transitive dependencies (force `jackson-dataformat-msgpack` back to an earlier version).
+* Manually downgrade transitive dependencies by forcing `jackson-dataformat-msgpack` back to an earlier version.
 * Remove MessagePack integration from the app and use the default JSON protocol.
 
 For more information, see the following resources:
