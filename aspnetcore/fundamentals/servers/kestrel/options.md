@@ -308,6 +308,8 @@ Gets or sets the maximum amount of time the server spends receiving request head
 
 :::code language="csharp" source="samples/5.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="21-22":::
 
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> only applies to a request's initial headers, so a stalled or partial trailer frame isn't restricted by it.
+
 ## HTTP/2 limits
 
 The limits in this section are set on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2?displayProperty=nameWithType>.
