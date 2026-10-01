@@ -96,7 +96,7 @@ This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-11.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-11.0"
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> only applies to a request's initial headers, so a stalled or partial trailer frame isn't restricted by it.
 
