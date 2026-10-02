@@ -180,12 +180,7 @@ In the java client, `char` objects will be serialized as one-character `String` 
 
 ### Android device support for the Java client
 
-The MessagePack integration for the Java client can increase the minimum Android API level, depending on the MessagePack version targeted by the .NET release. Apps running on earlier Android versions can crash. If you need to support older Android devices, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. As a temporary workaround, you can force `jackson-dataformat-msgpack` to an earlier version, but first review the selected version's known vulnerabilities and compatibility with your SignalR and Jackson dependencies. This workaround might not be compatible with future SignalR updates.
-
-For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. For more information, see the following resources:
-
-* For Jackson's Android API compatibility by release family, see [`FasterXML/jackson-databind` GitHub repository: Compatibility: Android](https://github.com/FasterXML/jackson-databind#android).
-* For a detailed explanation that applies to SignalR apps targeting .NET 8 and .NET 9, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
+The MessagePack integration for the Java client can increase the minimum Android API level, depending on the MessagePack version targeted by the .NET release. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
 
 ## Additional resources
 
