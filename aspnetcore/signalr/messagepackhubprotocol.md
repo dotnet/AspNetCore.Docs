@@ -5,7 +5,7 @@ author: wadepickett
 description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 10/01/2026
+ms.date: 10/02/2026
 uid: signalr/messagepackhubprotocol
 ---
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
@@ -178,9 +178,9 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 
 In the java client, `char` objects will be serialized as one-character `String` objects. This is in contrast with the C# and JavaScript client, which serialize them as `short` objects. The MessagePack spec itself does not define behavior for `char` objects, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
 
-### Android device support for the Java client
+### Android device support
 
-The MessagePack integration for the Java client can increase the minimum Android API level, depending on the MessagePack version targeted by the .NET release. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
+Depending on the MessagePack version targeted by the .NET release, the MessagePack integration can increase the minimum Android API level. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
 
 ## Additional resources
 
