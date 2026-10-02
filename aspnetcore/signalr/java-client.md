@@ -72,7 +72,7 @@ This can safely be ignored.
 
 ## Android development notes
 
-With regards to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
+With regard to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
 
 * The SignalR Java client runs on Android API Level 16 or later.
 * Connecting through the Azure SignalR Service requires Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
