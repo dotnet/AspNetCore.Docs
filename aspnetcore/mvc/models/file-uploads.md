@@ -5,7 +5,7 @@ author: tdykstra
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 09/15/2026
+ms.date: 10/03/2026
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -647,34 +647,38 @@ Use a matching name for the parameter of the C# method (`battlePlans`):
 
 ### Multipart body length limit
 
-<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> sets the limit for the length of each multipart body. Form sections that exceed this limit throw an <xref:System.IO.InvalidDataException> when parsed. The default is 134,217,728 (128 MB). Customize the limit using the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> setting in `Startup.ConfigureServices`:
+<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> sets the limit for the length of each multipart body. Form sections that exceed this limit throw an <xref:System.IO.InvalidDataException> when parsed. The default is 134,217,728 (128 MB). Customize the limit using the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> setting in `Program.cs`:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<FormOptions>(options =>
 {
-    services.Configure<FormOptions>(options =>
-    {
-        // Set the limit to 256 MB
-        options.MultipartBodyLengthLimit = 268435456;
-    });
-}
+    // Set the limit to 256 MB
+    options.MultipartBodyLengthLimit = 268435456;
+});
 ```
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Program.cs`:
 
 ```csharp
-services.AddRazorPages(options =>
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages(options =>
 {
     options.Conventions
         .AddPageApplicationModelConvention("/FileUploadPage",
-            model.Filters.Add(
-                new RequestFormLimitsAttribute()
-                {
-                    // Set the limit to 256 MB
-                    MultipartBodyLengthLimit = 268435456
-                });
+            model =>
+            {
+                // Set the limit to 256 MB
+                model.Filters.Add(
+                    new RequestFormLimitsAttribute()
+                    {
+                        MultipartBodyLengthLimit = 268435456
+                    });
+            });
 });
 ```
 
@@ -694,25 +698,23 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) Kestrel server option:
 
 ```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.ConfigureKestrel((context, options) =>
-            {
-                // Handle requests up to 50 MB
-                options.Limits.MaxRequestBodySize = 52428800;
-            })
-            .UseStartup<Startup>();
-        });
+var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // Handle requests up to 50 MB
+    options.Limits.MaxRequestBodySize = 52428800;
+});
 ```
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Program.cs`:
 
 ```csharp
-services.AddRazorPages(options =>
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages(options =>
 {
     options.Conventions
         .AddPageApplicationModelConvention("/FileUploadPage",
