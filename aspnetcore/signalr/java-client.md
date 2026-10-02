@@ -2,7 +2,7 @@
 title: ASP.NET Core SignalR Java client
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
-ms.date: 11/12/2019
+ms.date: 10/02/2026
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
@@ -70,10 +70,11 @@ This can safely be ignored.
 
 ## Android development notes
 
-With regards to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
+With regard to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
 
-* The SignalR Java Client will run on Android API Level 16 or later.
-* Connecting through the Azure SignalR Service will require Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
+* The SignalR Java client runs on Android API Level 16 or later.
+* Connecting through the Azure SignalR Service requires Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
+* When using [MessagePack](xref:signalr/messagepackhubprotocol) for the Java client, see [MessagePack considerations: Android device support](xref:signalr/messagepackhubprotocol#android-device-support).
 
 ## Configure bearer token authentication
 
