@@ -1,9 +1,7 @@
 ---
 title: Part 8, add validation
 ai-usage: ai-assisted
-author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
-ms.author: wpickett
 ms.date: 08/23/2026
 uid: tutorials/razor-pages/validation
 ---

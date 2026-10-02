@@ -1,8 +1,6 @@
 ---
 title: Purpose hierarchy and multi-tenancy in ASP.NET Core
-author: wadepickett
 description: Learn about purpose string hierarchy and multi-tenancy as it relates to the ASP.NET Core Data Protection APIs.
-ms.author: wpickett
 ms.date: 10/14/2016
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
 ---

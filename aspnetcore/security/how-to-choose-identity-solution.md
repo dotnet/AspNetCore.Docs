@@ -1,8 +1,6 @@
 ---
 title: Choose an identity management solution
 description: A guide to help choose the right identity management solution for a secure .NET web app.
-author: JeremyLikness
-ms.author: wpickett
 ms.reviewer: jeliknes
 ms.topic: how-to
 ms.date: 07/21/2026

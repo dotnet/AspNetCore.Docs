@@ -1,11 +1,8 @@
 ---
 title: Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 ai-usage: ai-assisted
-author: tdykstra
 description: Part 6 of Razor Pages and Entity Framework tutorial series.
-ms.author: tdykstra
 ms.date: 08/27/2026
-ms.reviewer: tdykstra
 uid: data/ef-rp/read-related-data
 ---
 

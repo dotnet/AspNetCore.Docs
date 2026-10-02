@@ -1,9 +1,7 @@
 ---
 title: Security considerations in gRPC for ASP.NET Core
-author: jamesnk
 description: Learn about security considerations for gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
 ms.date: 07/07/2019
 uid: grpc/security
 ---

@@ -1,9 +1,7 @@
 ---
 title: Model validation in ASP.NET Core MVC
-author: tdykstra
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
 ms.date: 04/28/2026
 uid: mvc/models/validation
 ---
