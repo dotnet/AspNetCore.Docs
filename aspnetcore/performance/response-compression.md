@@ -262,7 +262,7 @@ The response compression middleware adds `Vary: Accept-Encoding` even to respons
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-11.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-11.0"
 
 The `Vary: Accept-Encoding` header is only added when the response is compressed. This behavior changes for apps targeting .NET 11 or later. For more information, see [Response compression always emits Vary: Accept-Encoding](../breaking-changes/11/response-compression-always-vary.md).
 
