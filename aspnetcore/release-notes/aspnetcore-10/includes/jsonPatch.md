@@ -131,7 +131,7 @@ JSON Patch also supports the `test` operation. The `test` operation checks if a 
 The following example demonstrates how to handle these errors gracefully.
 
 > [!IMPORTANT]
-> The object passed to the `ApplyTo` method is modified in place. It is the caller's responsiblity to discard these changes if any operation fails.
+> The object passed to the `ApplyTo` method is modified in place. It is the caller's responsibility to discard these changes if any operation fails.
 
 ```csharp
 // Original object
