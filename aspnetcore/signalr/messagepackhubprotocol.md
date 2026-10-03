@@ -1,14 +1,15 @@
 ---
 title: Use MessagePack Hub Protocol in SignalR for ASP.NET Core
+ai-usage: ai-assisted
 author: wadepickett
 description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 01/08/2025
+ms.date: 10/02/2026
 uid: signalr/messagepackhubprotocol
 ---
-
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
+
 :::moniker range=">= aspnetcore-6.0"
 
 This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
@@ -176,6 +177,10 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 ### Chars and Strings in Java
 
 In the java client, `char` objects will be serialized as one-character `String` objects. This is in contrast with the C# and JavaScript client, which serialize them as `short` objects. The MessagePack spec itself does not define behavior for `char` objects, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
+
+### Android device support
+
+Depending on the MessagePack version targeted by the .NET release, the MessagePack integration can increase the minimum Android API level. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
 
 ## Additional resources
 
@@ -368,6 +373,10 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 
 In the java client, `char` objects will be serialized as one-character `String` objects. This is in contrast with the C# and JavaScript client, which serialize them as `short` objects. The MessagePack spec itself does not define behavior for `char` objects, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
 
+### Android device support
+
+Depending on the MessagePack version targeted by the .NET release, the MessagePack integration can increase the minimum Android API level. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
+
 ## Additional resources
 
 * <xref:signalr/dotnet-client>
@@ -547,6 +556,10 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
 
+### Android device support
+
+Depending on the MessagePack version targeted by the .NET release, the MessagePack integration can increase the minimum Android API level. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
+
 ## Additional resources
 
 * <xref:signalr/dotnet-client>
@@ -725,6 +738,10 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 ```
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
+
+### Android device support
+
+Depending on the MessagePack version targeted by the .NET release, the MessagePack integration can increase the minimum Android API level. For example, `signalr-messagepack` 8.0.24 resolves `jackson-databind` 2.18, raising the minimum Android API level from 21 to 26. If you need to support older Android devices than a given MessagePack integration permits, use the default JSON protocol, which doesn't have this MessagePack dependency constraint. For more information, see [[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release (`dotnet/aspnetcore` #68893)](https://github.com/dotnet/aspnetcore/issues/68893).
 
 ## Additional resources
 
