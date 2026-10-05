@@ -1,11 +1,12 @@
 ---
 title: Enforce HTTPS in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 09/24/2026
+ms.date: 10/05/2026
 uid: security/enforcing-ssl
 
 # customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
@@ -277,6 +278,26 @@ If you store the certificates you want OpenSSL to trust in a specific directory,
 As on other platforms, development certificates are stored and trusted separately for each user. 
 
 If you run `dotnet dev-certs` as a different user (for example, by using `sudo`), then _that_ specific user (for example `root`) trusts the development certificate.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Trust the certificate from Windows Subsystem for Linux
+
+Run the normal trust command from the WSL distribution:
+
+```dotnetcli
+dotnet dev-certs https --trust
+```
+
+When WSL interop is enabled, the command trusts the ASP.NET Core HTTPS development certificate in the Linux trust locations described in this section and also adds the public certificate to the Windows Current User Root certificate store. You no longer need to export a PFX from Windows and import it into WSL for the common development setup.
+
+If Windows trust isn't established, confirm that WSL interop is enabled and rerun the command. The Linux trust steps are still per-user and can require the OpenSSL, NSS, or browser-specific configuration described in this article.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
