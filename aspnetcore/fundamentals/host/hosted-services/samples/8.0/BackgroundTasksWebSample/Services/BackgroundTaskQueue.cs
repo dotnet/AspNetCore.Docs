@@ -4,7 +4,9 @@ namespace BackgroundTasksWebSample.Services;
 
 public interface IBackgroundTaskQueue
 {
-    ValueTask QueueBackgroundWorkItemAsync(Func<CancellationToken, ValueTask> workItem);
+    ValueTask QueueBackgroundWorkItemAsync(
+        Func<CancellationToken, ValueTask> workItem,
+        CancellationToken cancellationToken);
 
     ValueTask<Func<CancellationToken, ValueTask>> DequeueAsync(
         CancellationToken cancellationToken);
@@ -25,11 +27,12 @@ public class BackgroundTaskQueue(int capacity) : IBackgroundTaskQueue
         });
 
     public async ValueTask QueueBackgroundWorkItemAsync(
-        Func<CancellationToken, ValueTask> workItem)
+        Func<CancellationToken, ValueTask> workItem,
+        CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(workItem);
 
-        await _queue.Writer.WriteAsync(workItem);
+        await _queue.Writer.WriteAsync(workItem, cancellationToken);
     }
 
     public async ValueTask<Func<CancellationToken, ValueTask>> DequeueAsync(

@@ -15,7 +15,10 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hosted service is running in the background.");
 
-app.MapPost("/queue", async (IBackgroundTaskQueue taskQueue, ILogger<Program> logger) =>
+app.MapPost("/queue", async (
+    IBackgroundTaskQueue taskQueue,
+    ILogger<Program> logger,
+    CancellationToken cancellationToken) =>
 {
     await taskQueue.QueueBackgroundWorkItemAsync(async token =>
     {
@@ -35,7 +38,7 @@ app.MapPost("/queue", async (IBackgroundTaskQueue taskQueue, ILogger<Program> lo
         }
 
         logger.LogInformation("Queued Background Task {Guid} is complete.", guid);
-    });
+    }, cancellationToken);
 
     return Results.Accepted();
 });
