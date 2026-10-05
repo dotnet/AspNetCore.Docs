@@ -91,7 +91,7 @@ For more information, see [Use EventPipe to trace your .NET application](/dotnet
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
-## How to observe metrics emmited by a WebAssembly app
+## How to observe metrics emitted by a WebAssembly app
 
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 

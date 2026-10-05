@@ -3,7 +3,7 @@ title: Response compression in ASP.NET Core
 description: Learn about response compression and how to use response compression middleware in ASP.NET Core apps.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 07/02/2026
+ms.date: 10/02/2026
 uid: performance/response-compression
 
 # customer intent: As an ASP.NET developer, I want to configure response compression middleware in ASP.NET Core, so I use response compression in my apps.
@@ -251,6 +251,22 @@ Replace or append MIME types with the [ResponseCompressionOptions.MimeTypes](xre
 When responses are compressed based on the [Accept-Encoding request header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Accept-Encoding), there can be uncompressed and multiple compressed versions of the response. To instruct client and proxy caches that multiple versions exist and should be stored, the `Vary` header is added with an `Accept-Encoding` value. The response middleware [adds the 'Vary' header](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionBody.cs#L198-L241) in the _ResponseCompressionBody.cs_ file automatically when the response is compressed.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+The response compression middleware adds `Vary: Accept-Encoding` even to responses whose body it doesn't compress—for example, when the content type isn't configured for compression or the client didn't request a supported encoding. The broader behavior gives shared caches and CDNs a correct cache key so a stored compressed response isn't served to a client that didn't request that encoding. If the response already lists `Accept-Encoding` in its `Vary` header, the middleware doesn't add a duplicate. For details and mitigation, see [Response compression always emits Vary: Accept-Encoding](../breaking-changes/11/response-compression-always-vary.md).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-11.0"
+
+The `Vary: Accept-Encoding` header is only added when the response is compressed. This behavior changes for apps targeting .NET 11 or later. For more information, see [Response compression always emits Vary: Accept-Encoding](../breaking-changes/11/response-compression-always-vary.md).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Issues with Nginx reverse proxy
 

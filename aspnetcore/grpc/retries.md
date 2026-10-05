@@ -89,7 +89,7 @@ Calls are retried when:
 
 * The failing status code matches a value in `RetryableStatusCodes`.
 * The previous number of attempts is less than `MaxAttempts`.
-* The call hasn't been commited.
+* The call hasn't been committed.
 * The deadline hasn't been exceeded.
 
 A gRPC call becomes committed in two scenarios:

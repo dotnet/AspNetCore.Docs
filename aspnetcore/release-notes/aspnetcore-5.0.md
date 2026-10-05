@@ -197,7 +197,7 @@ Globalization support is available for Blazor WebAssembly based on International
 
 ## gRPC
 
-Many preformance improvements have been made in [gRPC](https://grpc.io/). For more information, see [gRPC performance improvements in .NET 5](https://devblogs.microsoft.com/aspnet/grpc-performance-improvements-in-net-5/).
+Many performance improvements have been made in [gRPC](https://grpc.io/). For more information, see [gRPC performance improvements in .NET 5](https://devblogs.microsoft.com/aspnet/grpc-performance-improvements-in-net-5/).
 
 For more gRPC information, see <xref:grpc/index>.
 

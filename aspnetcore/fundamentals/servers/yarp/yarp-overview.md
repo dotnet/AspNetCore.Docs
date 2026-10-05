@@ -21,7 +21,7 @@ A reverse proxy is a server that sits between client devices and backend servers
 * Load Balancing: Distributes incoming traffic across multiple backend servers to prevent overloading a specific server. Distribution increases performance and reliability.
 * Scalability: By distributing traffic across multiple servers, a reverse proxy helps scale apps to handle more users and higher loads. Backend servers scaled (added or removed) without impacting the client.
 * [SSL/TLS Termination](/azure/application-gateway/ssl-overview): Offloads the TLS encryption and decryption processes from backend servers, reducing their workload.
-* Connection abstraction, decoupling and control over URL-space: Inbound requests from external clients and outbound responses from the backend are independent. This independence allows for differnt:
+* Connection abstraction, decoupling and control over URL-space: Inbound requests from external clients and outbound responses from the backend are independent. This independence allows for different:
   * Versions of HTTP, ie, HTTP/1.1, HTTP/2, HTTP/3. The proxy can upgrade or downgrade HTTP versions.
   * Connection lifetimes, which enables having long-lived connections on the backend while maintaining short client connections.
   * Control Over URL-Space: Incoming URLs can be transformed before forwarding to the backend. This abstracts the external URLs from how they are mapped to internal services. Internal service endpoints can change without affecting external URLs.
