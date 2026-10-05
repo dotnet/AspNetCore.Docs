@@ -62,7 +62,7 @@ The [gRPC client factory](xref:grpc/clientfactory) allows calls without a truste
 
 ## Call insecure gRPC services with .NET client
 
-The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
+The .NET gRPC client can call insecure gRPC services by specifying `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
