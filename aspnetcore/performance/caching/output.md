@@ -1,10 +1,11 @@
 ---
 title: Output caching middleware in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to configure and use output caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
-ms.date: 06/09/2026
+ms.date: 10/05/2026
 uid: performance/caching/output
 
 # customer intent: As an ASP.NET developer, I want to configure output caching middleware in ASP.NET Core, so I can use output caching in my apps.
@@ -75,6 +76,35 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/Expire20Controller.cs" id="snippet_selectpolicy":::
 
 For Razor Pages apps, apply the attribute to the Razor page class.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Resolve policies dynamically with `IOutputCachePolicyProvider`
+
+Implement the .NET 11 <xref:Microsoft.AspNetCore.OutputCaching.IOutputCachePolicyProvider> interface when named or base policies must be resolved dynamically, such as from external configuration, a database, or tenant-specific rules. `GetBasePolicies` returns the base policies to apply to requests, and `GetPolicyAsync` resolves a named policy. Return `null` when a named policy isn't found.
+
+The interface defines the policy provider contract:
+
+```csharp
+public interface IOutputCachePolicyProvider
+{
+    IReadOnlyList<IOutputCachePolicy> GetBasePolicies();
+    ValueTask<IOutputCachePolicy?> GetPolicyAsync(string policyName);
+}
+```
+
+The default provider uses policies configured with `AddPolicy` and `AddBasePolicy`. To replace it, register a custom provider after calling `AddOutputCache`:
+
+```csharp
+builder.Services.AddOutputCache();
+builder.Services.AddTransient<IOutputCachePolicyProvider, TenantOutputCachePolicyProvider>();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Work with the default output caching policy
 
