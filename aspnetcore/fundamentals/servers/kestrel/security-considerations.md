@@ -5,7 +5,7 @@ author: BrennanConroy
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: brecon
-ms.date: 07/29/2026
+ms.date: 10/05/2026
 uid: fundamentals/servers/kestrel/security-considerations
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
@@ -241,6 +241,25 @@ The `HandshakeTimeout` defaults to **10 seconds**. This limits how long a client
 - **`OnAuthenticate`**: A callback providing direct access to `SslServerAuthenticationOptions` per connection for advanced scenarios (cipher suite selection, ALPN negotiation, etc.).
 - **`UseTlsClientHelloListener`** (.NET 11+): A connection middleware (on `ListenOptions`) that inspects the raw TLS Client Hello bytes before the handshake begins. This enables custom logic based on the client's TLS capabilities (e.g., SNI-based routing, fingerprinting). It must be called **before** `UseHttps()` in the middleware pipeline. It has its own timeout (default 8 seconds), which is **additive** with the TLS handshake timeout—consider reducing each timeout to keep the total bounded (e.g., 5s + 5s instead of 8s + 10s).
 - **`TlsClientHelloBytesCallback`** (.NET 10): A property on `HttpsConnectionAdapterOptions` and `TlsHandshakeCallbackOptions` that provides raw Client Hello inspection. In .NET 11 this property is obsolete in favor of `UseTlsClientHelloListener`.
+- **`ITlsHandshakeFeature.Exception`** (.NET 11+): The <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> feature exposes an `Exception` property holding the exception thrown during a **failed** TLS handshake (`null` when the handshake succeeded or hasn't completed). Connection middleware and logging can record *why* a connection failed instead of seeing only a bare `IOException` higher in the stack. Kestrel snapshots the relevant fields off the underlying `SslStream` before it's disposed, so the value is still readable after the failure. Read it from connection middleware registered with `ListenOptions.Use`:
+
+  ```csharp
+  listenOptions.Use(next => async context =>
+  {
+      try
+      {
+          await next(context);
+      }
+      finally
+      {
+          var handshake = context.Features.Get<ITlsHandshakeFeature>();
+          if (handshake?.Exception is { } ex)
+          {
+              // Log ex.GetType().Name and ex.Message to diagnose the failed handshake.
+          }
+      }
+  });
+  ```
 
 ## HTTP/1.1 request parsing and validation
 
