@@ -83,7 +83,7 @@ For Razor Pages apps, apply the attribute to the Razor page class.
 
 ### Resolve policies dynamically with `IOutputCachePolicyProvider`
 
-Implement the .NET 11 <xref:Microsoft.AspNetCore.OutputCaching.IOutputCachePolicyProvider> interface when named or base policies must be resolved dynamically, such as from external configuration, a database, or tenant-specific rules. `GetBasePolicies` returns the base policies to apply to requests, and `GetPolicyAsync` resolves a named policy. Return `null` when a named policy isn't found.
+Implement <xref:Microsoft.AspNetCore.OutputCaching.IOutputCachePolicyProvider> interface when named or base policies must be resolved dynamically, such as from external configuration, a database, or tenant-specific rules. `GetBasePolicies` returns the base policies to apply to requests, and `GetPolicyAsync` resolves a named policy. Return `null` when a named policy isn't found.
 
 The interface defines the policy provider contract:
 
