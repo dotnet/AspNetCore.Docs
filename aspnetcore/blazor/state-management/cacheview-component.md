@@ -5,7 +5,7 @@ author: guardrex
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
 ms.author: wpickett
-ms.date: 10/02/2026
+ms.date: 10/06/2026
 uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
@@ -105,8 +105,8 @@ Now consider `ExpiresSliding` set to 10 seconds without `ExpiresAfter` or `Expir
 
 When you measure this behavior, report the configured expiration options together with the observed expiry because the sliding window alone doesn't determine when an entry is evicted.
 
-The default in-memory store has a 100 MB cache size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents entries from being cached. If automatic eviction policy is disabled in cache stores, the content will still render anyway, but will not be saved in cache.
-
+ The default in-memory store has a 100 MB cache size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents entries from being cached. When the limit is reached, no new entries are cached until existing entries expire. The content still renders, but it isn't saved in the cache.
+ 
 ```csharp
 builder.Services.AddRazorComponents(options =>
 {
