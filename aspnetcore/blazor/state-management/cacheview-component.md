@@ -105,8 +105,8 @@ Now consider `ExpiresSliding` set to 10 seconds without `ExpiresAfter` or `Expir
 
 When you measure this behavior, report the configured expiration options together with the observed expiry because the sliding window alone doesn't determine when an entry is evicted.
 
- The default in-memory store has a 100 MB cache size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents entries from being cached. When the limit is reached, no new entries are cached until existing entries expire. The content still renders, but it isn't saved in the cache.
- 
+The default in-memory store has a 100 MB cache size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents entries from being cached. When the limit is reached, no new entries are cached until existing entries expire. The content still renders, but it isn't saved in the cache.
+
 ```csharp
 builder.Services.AddRazorComponents(options =>
 {
@@ -114,7 +114,7 @@ builder.Services.AddRazorComponents(options =>
 });
 ```
 
-If a `HybridCache` service is registered in dependency injection, `CacheView` uses it automatically. For example, register it in `Program.cs`:
+If a `HybridCache` service is registered in dependency injection, `CacheView` uses it automatically. For example, register it in the `Program` file:
 
 ```csharp
 builder.Services.AddHybridCache();
