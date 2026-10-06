@@ -1,13 +1,13 @@
 ---
 title: HybridCache library in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
 ms.custom: sfi-ropc-nochange
-ms.date: 10/01/2026
+ms.date: 10/06/2026
 uid: performance/caching/hybrid
-ms.ai: assisted
 ---
 # HybridCache library in ASP.NET Core
 
@@ -198,7 +198,7 @@ By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCa
 > When invalidating cache entries by key or by tags, they're invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
 
 > [!NOTE]
-> `HybridCache` doesn't use the `IDistributedCache` implementation registered by <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> as its secondary cache. That implementation stores entries in the same process, so it would only duplicate the primary cache. If it's the only `IDistributedCache` registered, `HybridCache` caches in-process only, and cache entries aren't shared between servers. To share cache entries between servers, register an out-of-process implementation, such as Redis.
+> When the primary cache is the default <xref:Microsoft.Extensions.Caching.Memory.MemoryCache>, `HybridCache` doesn't use the `IDistributedCache` implementation registered by <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> as its secondary cache. That implementation stores entries in the same process, so it would only duplicate the primary cache. If it's the only `IDistributedCache` registered, `HybridCache` caches in-process only, and cache entries aren't shared between servers. To share cache entries between servers, register an out-of-process implementation, such as Redis.
 
 ## Optimize performance
 
