@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 03/23/2026
+ms.date: 10/06/2026
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -79,7 +79,9 @@ After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Ext
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetActivateAPIs":::
 
-By default, both cookies and proprietary tokens are activated. Cookies and tokens are issued at login if the `useCookies` query string parameter in the login endpoint is `true`.
+By default, both cookies and proprietary tokens are activated. Cookies are
+issued at login if either the `useCookies` or `useSessionCookies` query string
+parameter in the login endpoint is `true`.
 
 ## Map Identity routes
 
@@ -208,7 +210,13 @@ A custom token (one that is proprietary to the ASP.NET Core identity platform) i
 
 The tokens aren't standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option isn't intended to be a full-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-To use token-based authentication, set the `useCookies` query string parameter to `false` when calling the `/login` endpoint. Tokens use the _bearer_ authentication scheme. Using the token returned from the call to `/login`, subsequent calls to protected endpoints should add the header `Authorization: Bearer <token>` where `<token>` is the access token. For more information, see [Use the `POST /login` endpoint](#use-the-post-login-endpoint) later in this article.
+To use token-based authentication, set `useCookies` and `useSessionCookies` to
+`false` (or omit them) when calling the `/login` endpoint. Tokens use the
+_bearer_ authentication scheme. Using the token returned from the call to
+`/login`, subsequent calls to protected endpoints should add the header
+`Authorization: Bearer <token>` where `<token>` is the access token. For more
+information, see [Use the `POST /login` endpoint](#use-the-post-login-endpoint)
+later in this article.
 
 ## Log out
 
@@ -299,15 +307,24 @@ Here are request body examples with 2FA enabled:
   }
   ```
 
-The endpoint expects a query string parameter:
+The endpoint supports the following query string parameters:
 
-* `useCookies` - Set to `true` for cookie-based authentication. Set to `false` or omit for token-based authentication.
+* `useCookies`: Set to `true` to issue a persistent authentication cookie.
+  Set to `false` or omit for token-based authentication.
+* `useSessionCookies`: Set to `true` to issue a session (non-persistent)
+  authentication cookie.
 
-For more information about cookie-based authentication, see [Test login](#test-login) earlier in this article.
+If both `useCookies` and `useSessionCookies` are set to `true`, a session
+cookie is issued.
+
+For more information about cookie-based authentication, see
+[Test login](#test-login) earlier in this article.
 
 ### Token-based authentication
 
-If `useCookies` is `false` or omitted, token-based authentication is enabled. The response body includes the following properties:
+If both `useCookies` and `useSessionCookies` are `false` or omitted, token-based
+authentication is enabled. The response body includes the following
+properties:
 
 ```json
 {
