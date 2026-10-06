@@ -3,7 +3,7 @@ title: Background tasks with hosted services in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/05/2026
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -14,7 +14,7 @@ By [Jeow Li Huan](https://github.com/huan086)
 
 :::moniker range=">= aspnetcore-8.0"
 
-In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. This article provides three hosted service examples:
+In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. Hosted services can be used in Worker Service apps and in web apps. This article provides three hosted service examples:
 
 * Background task that runs on a timer.
 * Hosted service that activates a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use [dependency injection (DI)](xref:fundamentals/dependency-injection).
@@ -34,9 +34,25 @@ To use the template as a basis for a hosted services app:
 
 ## Package
 
-An app based on the Worker Service template uses the `Microsoft.NET.Sdk.Worker` SDK and has an explicit package reference to the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package. For example, see the sample app's project file (`BackgroundTasksSample.csproj`).
+An app based on the Worker Service template uses the `Microsoft.NET.Sdk.Worker` SDK and has an explicit package reference to the [`Microsoft.Extensions.Hosting` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting). For example, see the Worker Service sample app's project file (`BackgroundTasksSample.csproj`).
 
-For web apps that use the `Microsoft.NET.Sdk.Web` SDK, the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package is referenced implicitly from the shared framework. An explicit package reference in the app's project file isn't required.
+For web apps that use the `Microsoft.NET.Sdk.Web` SDK, the [`Microsoft.Extensions.Hosting` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) is referenced implicitly from the shared framework. An explicit package reference in the app's project file isn't required.
+
+## Hosted services in a web app
+
+Hosted services aren't limited to Worker Service apps. A web app that uses the `Microsoft.NET.Sdk.Web` SDK registers hosted services in the `Program` file by calling the same <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services?displayProperty=nameWithType>. The host automatically starts and stops registered hosted services, as described in the [`IHostedService` interface](#ihostedservice-interface) section.
+
+The following `Program` file is from the web sample app (`BackgroundTasksWebSample`). It registers the three hosted services that are described in the rest of this article, maps a root endpoint that returns a status message, and adds an endpoint that queues a work item for one of them:
+
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksWebSample/Program.cs" highlight="5,7,10":::
+
+In the preceding code:
+
+* `TimedHostedService`, `ConsumeScopedServiceHostedService`, and `QueuedHostedService` are registered with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method.
+* A hosted service is registered as a singleton, so it can't receive [scoped services](xref:fundamentals/dependency-injection#service-lifetimes), such as an Entity Framework Core `DbContext`, by constructor injection. `IScopedProcessingService` is registered as a scoped service, and `ConsumeScopedServiceHostedService` creates a scope to resolve it. For more information, see the [Consuming a scoped service in a background task](#consuming-a-scoped-service-in-a-background-task) section.
+* The `IBackgroundTaskQueue` singleton is consumed by the `/queue` endpoint and `QueuedHostedService`. A `POST` request to `/queue` returns a `202 Accepted` response once the work item is enqueued without waiting for it to execute. If the bounded queue is full, the request waits until space is available to enqueue the work item. `QueuedHostedService` runs the queued work items in the background. For more information, see the [Queued background tasks](#queued-background-tasks) section.
+
+The following service registration snippets are from the Worker Service sample app (`BackgroundTasksSample`), where `services` is the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> parameter passed to `ConfigureServices`. In a web app, use `builder.Services` instead of `services`.
 
 ## IHostedService interface
 
@@ -120,13 +136,13 @@ For more information, see the [BackgroundService](https://github.com/dotnet/runt
 
 A timed background task makes use of the [System.Threading.Timer](xref:System.Threading.Timer) class. The timer triggers the task's `DoWork` method. The timer is disabled on `StopAsync` and disposed when the service container is disposed on `Dispose`:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/TimedHostedService.cs" id="snippet1" highlight="16-17,34,41":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/TimedHostedService.cs" id="snippet1" highlight="10-11,28,35":::
 
 The <xref:System.Threading.Timer> doesn't wait for previous executions of `DoWork` to finish, so the approach shown might not be suitable for every scenario. [Interlocked.Increment](xref:System.Threading.Interlocked.Increment%2A) is used to increment the execution counter as an atomic operation, which ensures that multiple threads don't update `executionCount` concurrently.
 
-The service is registered in `IHostBuilder.ConfigureServices` (`Program.cs`) with the `AddHostedService` extension method:
+The service is registered in the `Program` file with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet1":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet1":::
 
 ## Consuming a scoped service in a background task
 
@@ -137,21 +153,21 @@ The scoped background task service contains the background task's logic. In the 
 * The service is asynchronous. The `DoWork` method returns a `Task`. For demonstration purposes, a delay of ten seconds is awaited in the `DoWork` method.
 * An <xref:Microsoft.Extensions.Logging.ILogger> is injected into the service.
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/ScopedProcessingService.cs" id="snippet1":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/ScopedProcessingService.cs" id="snippet1":::
 
 The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method. `DoWork` returns a `Task`, which is awaited in `ExecuteAsync`:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs" id="snippet1" highlight="19,22-35":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs" id="snippet1" highlight="12,15-28":::
 
-The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). The hosted service is registered with the `AddHostedService` extension method:
+The services are registered in the `Program` file. The hosted service is registered with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/3.x/BackgroundTasksSample/Program.cs" id="snippet2":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet2":::
 
 ## Queued background tasks
 
 A background task queue is based on the .NET Framework 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem%2A>:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/BackgroundTaskQueue.cs" id="snippet1":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/BackgroundTaskQueue.cs" id="snippet1":::
 
 In the following `QueueHostedService` example:
 
@@ -159,7 +175,7 @@ In the following `QueueHostedService` example:
 * Background tasks in the queue are dequeued and executed in `BackgroundProcessing`.
 * Work items are awaited before the service stops in `StopAsync`.
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/QueuedHostedService.cs" id="snippet1" highlight="28-29,33":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/QueuedHostedService.cs" id="snippet1" highlight="21-22,26":::
 
 A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever the `w` key is selected on an input device:
 
@@ -169,15 +185,17 @@ A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever 
   * Three 5-second delays are executed (`Task.Delay`).
   * A `try-catch` statement traps <xref:System.OperationCanceledException> if the task is cancelled.
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Services/MonitorLoop.cs" id="snippet_Monitor" highlight="7,33":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Services/MonitorLoop.cs" id="snippet_Monitor" highlight="2,25":::
 
-The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). The hosted service is registered with the `AddHostedService` extension method:
+The services are registered in the `Program` file. The hosted service is registered with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService%2A> extension method:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet3":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet3":::
 
-`MonitorLoop` is started in `Program.cs`:
+`MonitorLoop` is started in the `Program` file:
 
-:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet4":::
+:::code language="csharp" source="~/fundamentals/host/hosted-services/samples/8.0/BackgroundTasksSample/Program.cs" id="snippet4":::
+
+In a web app, an endpoint can queue work items instead of a console input loop. For an example, see the [Hosted services in a web app](#hosted-services-in-a-web-app) section.
 
 ## Asynchronous timed background task
 

@@ -15,10 +15,12 @@ Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by 
 
 Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in a backend API to add JSON API endpoints for registering and logging in users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
 
+In the following examples, `httpClient` is an instance of <xref:System.Net.Http.HttpClient>. For more information, see <xref:blazor/call-web-api>.
+
 On the client, call the `/register` endpoint to register a user with their email address and password:
 
 ```csharp
-using var result = await _httpClient.PostAsJsonAsync(
+using var result = await httpClient.PostAsJsonAsync(
     "register", new
     {
         email,
@@ -29,7 +31,7 @@ using var result = await _httpClient.PostAsJsonAsync(
 On the client, log in a user with cookie authentication using the `/login` endpoint with `useCookies` query string set to `true`:
 
 ```csharp
-using var result = await _httpClient.PostAsJsonAsync(
+using var result = await httpClient.PostAsJsonAsync(
     "login?useCookies=true", new
     {
         email,

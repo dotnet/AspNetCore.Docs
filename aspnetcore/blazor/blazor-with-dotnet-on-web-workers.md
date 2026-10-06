@@ -406,16 +406,16 @@ using System.Runtime.Versioning;
 [SupportedOSPlatform("browser")]
 public partial class Client
 {
-    private static bool _workerStarted;
+    private static bool workerStarted;
 
     public static async Task InitClient()
     {
-        if (_workerStarted)
+        if (workerStarted)
         {
             return;
         }
 
-        _workerStarted = true;
+        workerStarted = true;
 
         await JSHost.ImportAsync(
             moduleName: nameof(Client), 
