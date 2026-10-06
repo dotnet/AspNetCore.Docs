@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor CacheView component
 ai-usage: ai-assisted
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
-ms.date: 09/30/2026
+ms.date: 10/06/2026
 uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
@@ -103,7 +103,7 @@ Now consider `ExpiresSliding` set to 10 seconds without `ExpiresAfter` or `Expir
 
 When you measure this behavior, report the configured expiration options together with the observed expiry because the sliding window alone doesn't determine when an entry is evicted.
 
-The default store is an in-memory cache with a 100 MB size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents new entries from being cached.
+The default in-memory store has a 100 MB cache size limit. Configure the limit with `RazorComponentsServiceOptions.CacheViewSizeLimit`. A value of `0` prevents entries from being cached. When the limit is reached, no new entries are cached until existing entries expire. The content still renders, but it isn't saved in the cache.
 
 ```csharp
 builder.Services.AddRazorComponents(options =>
@@ -112,7 +112,13 @@ builder.Services.AddRazorComponents(options =>
 });
 ```
 
-If a `HybridCache` service is registered, `CacheView` uses it automatically. `RazorComponentsServiceOptions.CacheViewHybridCache` can select a specific `HybridCache` instance instead. Sliding expiration isn't supported with `HybridCache`; use `ExpiresAfter` or `ExpiresOn`.
+If a `HybridCache` service is registered in dependency injection, `CacheView` uses it automatically. For example, register it in the `Program` file:
+
+```csharp
+builder.Services.AddHybridCache();
+```
+
+To use a specific `HybridCache` instance for `CacheView` without registering it in dependency injection, create the instance and assign it to `RazorComponentsServiceOptions.CacheViewHybridCache`. `CacheViewSizeLimit` applies only to the default in-memory store; a configured `HybridCache` uses its own backing-store limits and eviction behavior. Sliding expiration isn't supported with `HybridCache`; use `ExpiresAfter` or `ExpiresOn`.
 
 Concurrent requests for the same key are coalesced so that only one request creates the cache entry.
 
@@ -222,7 +228,7 @@ When `CacheBehavior.Throw` rejects a component, the exception identifies the com
 
 ### Request and streaming rendering restrictions
 
-`CacheView` only caches static SSR output for `GET` requests. Caching is skipped for other HTTP methods.
+`CacheView` only caches static SSR output for `GET` requests. Caching is skipped for other HTTP methods or interactive renders.
 
 A `CacheView` rendered inside a streaming rendering subtree also isn't cached. However, a streaming child inside a `CacheView` is supported: the streaming child renders fresh on each request while the surrounding content is cached.
 

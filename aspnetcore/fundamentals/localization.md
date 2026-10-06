@@ -57,6 +57,7 @@ Move mini TOC from ## Additional resources to here
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
 
 :::moniker-end
 
