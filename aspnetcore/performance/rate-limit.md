@@ -482,7 +482,7 @@ The example requires `using System.Globalization;` and `using System.Threading.R
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In .NET 11 or later, <xref:System.Threading.RateLimiting.FixedWindowRateLimiter> reports `MetadataName.RetryAfter` based on the next fixed-window boundary. Apps that copy this metadata to the `Retry-After` response header in `OnRejected` return an accurate retry interval automatically. Limiters that can't estimate when permits are available, such as <xref:System.Threading.RateLimiting.ConcurrencyLimiter>, don't provide `RetryAfter` metadata.
+> <xref:System.Threading.RateLimiting.FixedWindowRateLimiter> reports `MetadataName.RetryAfter` based on the next fixed-window boundary. Apps that copy this metadata to the `Retry-After` response header in `OnRejected` return an accurate retry interval automatically. Limiters that can't estimate when permits are available, such as <xref:System.Threading.RateLimiting.ConcurrencyLimiter>, don't provide `RetryAfter` metadata.
 
 :::moniker-end
 
