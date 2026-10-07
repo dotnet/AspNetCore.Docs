@@ -5,7 +5,7 @@ author: tdykstra
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 09/18/2026
+ms.date: 10/07/2026
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -560,6 +560,9 @@ Comments in `appsettings.json` and `appsettings.{ENVIRONMENT}.json` files are su
 The preceding setting indicates to VS Code that app settings files, including environmental-based files, are associated with the [JSONC ("JSON with Comments") file format](https://jsonc.org/), which supports comments.
 
 For other IDEs, check the IDE's documentation and product support channels to determine how to silence errors or warnings about comments in JSON files.
+
+> [!NOTE]
+> Service managers such as SCM, `launchd`, or `systemd` may, if not configured properly, set the application's working directory to a location outside the directory that contains the configuration files, commonly the root directory on Unix systems or a drive root such as `C:\` on Windows. In this case, the file system watcher configured for `reloadOnChange` might monitor an excessively large portion of the file system. This can lead to unintended side effects, including permission errors when accessing files outside the application directory and unnecessary performance overhead due to the volume of files being observed. To avoid these issues, configure the hosting environment or service manager to set the working directory to the directory containing the application and its configuration files.
 
 ## Environment Variables Configuration Provider
 
