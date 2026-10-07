@@ -84,9 +84,9 @@ To render a portion of a file as a snippet by using line numbers:
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50)]
 ```
 
-For C# snippets, prefer named snippet comment tags (`// <snippet_name>` and `// </snippet_name>`) rather than line numbers or C# regions. Line numbers in a code file tend to change and become out of sync with references in Markdown. Named snippet comment tags don't interfere with IDE code folding or compiler preprocessor directives.
+For C# snippets, prefer named snippet comment tags (`// <snippet_name>` and `// </snippet_name>`) rather than line numbers or C# regions. Line numbers in a code file tend to change and become out of sync with references in markdown. Named snippet comment tags don't interfere with IDE code folding or compiler preprocessor directives.
 
-[C# `#region`](https://learn.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) directives are also supported. C# regions and snippet tags can be nested. If referencing the outer snippet, inner snippet tags and directives aren't rendered in the snippet.
+[C# `#region`](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) directives are also supported. C# regions and snippet tags can be nested. If referencing the outer snippet, inner snippet tags and directives aren't rendered in the snippet.
 
 To render a snippet named `snippet_Example`:
 
