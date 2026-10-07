@@ -427,13 +427,14 @@ The token-based antiforgery system described in the rest of this article predate
 
 Antiforgery *services* are registered in the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
+* <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>
 
 > [!NOTE]
-> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. MVC and Razor Pages validate tokens with built-in filters, so they don't require the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in `Program.cs`, which is present by default in the Blazor Web App project template. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#afwma).
+> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in `Program.cs` to add the middleware to the request processing pipeline (present by default in the Blazor Web App project template). MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#afwma).
 
 For more information, see [Antiforgery with Minimal APIs](#afwma).
 
@@ -798,6 +799,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 
 Antiforgery *services* are registered in the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
+* <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>
@@ -1082,8 +1084,9 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
 
-Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
+* <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>
@@ -1348,8 +1351,9 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
 
-Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
+Antiforgery *services* are registered in the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
 
+* <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>
