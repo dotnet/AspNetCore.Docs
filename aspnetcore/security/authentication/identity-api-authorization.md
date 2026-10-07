@@ -209,7 +209,7 @@ A custom token (one that is proprietary to the ASP.NET Core identity platform) i
 
 The tokens aren't standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option isn't intended to be a full-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-To use token-based authentication, set `useCookies` and `useSessionCookies` to `false` (or omit them) when calling the `/login` endpoint. Tokens use the _bearer_ authentication scheme. Using the token returned from the call to `/login`, subsequent calls to protected endpoints should add the header `Authorization: Bearer <token>` where `<token>` is the access token. For more information, see [Use the `POST /login` endpoint](#use-the-post-login-endpoint) later in this article.
+To use token-based authentication, set `useCookies` and `useSessionCookies` to `false` (or omit them) when calling the `/login` endpoint. Tokens use the *Bearer* authentication scheme. Using the token returned from the call to `/login`, subsequent calls to protected endpoints should add the header `Authorization: Bearer {TOKEN}`, where the `{TOKEN}` placeholder is the access token. For more information, see the [Use the `POST /login` endpoint](#use-the-post-login-endpoint) section.
 
 
 ## Log out
