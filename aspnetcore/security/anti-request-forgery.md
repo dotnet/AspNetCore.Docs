@@ -167,6 +167,9 @@ The policy is picked per-endpoint in this order:
 1. No CORS metadata on the endpoint → the default policy registered with `AddDefaultPolicy`.
 1. No matching policy (named policy not registered, no default policy, or `services.AddCors()` never called) → no CORS-derived trust. The middleware falls through to the `Sec-Fetch-Site` and Origin-vs-Host rules.
 
+> [!NOTE]
+> The CSRF middleware trusts whatever `IsOriginAllowed` returns for the resolved CORS policy, so this includes custom predicates configured with `SetIsOriginAllowed` and wildcard-subdomain matching configured with `SetIsOriginAllowedToAllowWildcardSubdomains`. When such a policy also has `.AllowCredentials()` configured, every origin the predicate accepts is treated as CSRF-trusted. Use custom or wildcard origin matching only when every origin the predicate can match is controlled and trusted for cookie-authenticated operations, and avoid broad wildcard credentialed policies when subdomains are user-controlled, third-party-hosted, or otherwise susceptible to takeover.
+
 A minimal example using a default policy and a Minimal API endpoint:
 
 ```csharp
