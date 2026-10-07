@@ -3,7 +3,7 @@ title: YARP Request and Response Transforms
 ai-usage: ai-assisted
 author: tdykstra
 content_well_notification: AI-contribution
-description: YARP Request and Response Transforms
+description: Learn how to use YARP Request and Response Transforms to modify parts of the request or response to adapt to the destination server's requirements or to flow additional data such as the client's original IP address.
 ms.author: tdykstra
 ms.date: 10/06/2026
 ms.topic: concept-article

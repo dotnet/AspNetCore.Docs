@@ -3,7 +3,7 @@ title: YARP Direct Forwarding
 ai-usage: ai-assisted
 author: tdykstra
 content_well_notification: AI-contribution
-description: YARP Direct Forwarding
+description: Learn how to use YARP Direct Forwarding to take a specific request and forward it to a specific destination.
 ms.author: tdykstra
 ms.date: 10/06/2026
 ms.topic: concept-article
@@ -151,11 +151,11 @@ Re-using a client for requests to the same destination is recommended for perfor
 
 ### Transforms
 
-The request and response can be modified by providing a derived [HttpTransformer](xref:Yarp.ReverseProxy.Forwarder.HttpTransformer) as a parameter to the [`SendAsync`](xref:Yarp.ReverseProxy.Forwarder.IHttpForwarder) method, as shown in the preceding example.
+The request and response can be modified by providing a derived <xref:Yarp.ReverseProxy.Forwarder.HttpTransformer> as a parameter to the <xref:Yarp.ReverseProxy.Forwarder.IHttpForwarderExtensions.SendAsync%2A> method, as shown in the preceding example.
 
 To use the [built-in transforms](xref:fundamentals/servers/yarp/transforms) with direct forwarding, resolve `ITransformBuilder` from dependency injection and call its `Create` method. `AddHttpForwarder` registers `ITransformBuilder`, so `AddReverseProxy` isn't required.
 
-Ensure that `Program.cs` imports the following namespaces:
+Ensure that the `Program` file imports the following namespaces:
 
 :::code language="csharp" source="direct-forwarding/snippets/10.0/Program.cs" id="snippet_imports":::
 
