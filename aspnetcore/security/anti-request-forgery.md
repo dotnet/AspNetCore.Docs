@@ -6,7 +6,7 @@ content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 09/12/2026
+ms.date: 10/07/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
