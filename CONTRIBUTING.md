@@ -84,16 +84,9 @@ To render a portion of a file as a snippet by using line numbers:
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50)]
 ```
 
-For C# snippets, prefer named snippet comment tags (`// <snippet_name>` and
-`// </snippet_name>`) rather than line numbers or C# regions. Line numbers in a
-code file tend to change and become out of sync with references in Markdown.
-Named snippet comment tags don't interfere with IDE code folding or compiler
-preprocessor directives.
+For C# snippets, prefer named snippet comment tags (`// <snippet_name>` and `// </snippet_name>`) rather than line numbers or C# regions. Line numbers in a code file tend to change and become out of sync with references in Markdown. Named snippet comment tags don't interfere with IDE code folding or compiler preprocessor directives.
 
-[C# `#region`](https://learn.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region)
-directives are also supported. C# regions and snippet tags can be nested. If
-referencing the outer snippet, inner snippet tags and directives aren't rendered
-in the snippet.
+[C# `#region`](https://learn.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) directives are also supported. C# regions and snippet tags can be nested. If referencing the outer snippet, inner snippet tags and directives aren't rendered in the snippet.
 
 To render a snippet named `snippet_Example`:
 
@@ -101,8 +94,7 @@ To render a snippet named `snippet_Example`:
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example)]
 ```
 
-To highlight selected lines in a rendered snippet (usually renders with a yellow
-background):
+To highlight selected lines in a rendered snippet (usually renders with a yellow background):
 
 ```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
@@ -111,12 +103,9 @@ background):
 [!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3)]
 ```
 
-When highlighting lines within named snippets, use line numbers (or a range of
-line numbers) relative to the snippet's start tag, as seen in the following
-example.
+When highlighting lines within named snippets, use line numbers (or a range of line numbers) relative to the snippet's start tag, as seen in the following example.
 
-The following partial C# code (`Movie.cs`) example includes a snippet named
-`FinalSnippet` with three `using` statements:
+The following partial C# code (`Movie.cs`) example includes a snippet named `snippet_FinalSnippet` with three `using` statements:
 
 ```csharp
         ...
@@ -145,8 +134,7 @@ namespace MvcMovie.Models
 #endif
 ```
 
-To highlight the three `using` statements from the preceding example, specify a
-`highlight` property in the query string with a value of `1-3`.
+To highlight the three `using` statements from the preceding example, specify a `highlight` property in the query string with a value of `1-3`.
 
 Markdown:
 
