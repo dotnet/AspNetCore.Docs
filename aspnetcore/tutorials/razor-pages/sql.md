@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 01/09/2026
+ms.date: 10/07/2026
 uid: tutorials/razor-pages/sql
 ---
 
@@ -129,9 +129,10 @@ Update `Program.cs` with the following highlighted code:
 
 In the preceding code, you modify `Program.cs` to do the following steps:
 
-* Get a database context instance from the dependency injection (DI) container.
-* Call the `seedData.Initialize` method, passing the database context instance.
-* Dispose the context when the seed method completes. The [using statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
+* Create a service scope with `app.Services.CreateScope()`.
+* Obtain the service provider (<xref:System.IServiceProvider>) from the scope.
+* Call the `SeedData.Initialize` method, passing the service provider.
+* Dispose the service scope when the seed method completes. The [using statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the scope is disposed.
 
 The following exception occurs when you don't run `Update-Database`:
 
