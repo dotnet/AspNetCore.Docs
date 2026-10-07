@@ -1,13 +1,13 @@
 ---
-uid: fundamentals/servers/yarp/direct-forwarding
 title: YARP Direct Forwarding
-description: YARP Direct Forwarding
-author: tdykstra
-ms.author: tdykstra
-ms.date: 2/6/2025
-ms.topic: concept-article
-content_well_notification: AI-contribution
 ai-usage: ai-assisted
+author: tdykstra
+content_well_notification: AI-contribution
+description: Learn how to use YARP Direct Forwarding to take a specific request and forward it to a specific destination.
+ms.author: tdykstra
+ms.date: 10/07/2026
+ms.topic: concept-article
+uid: fundamentals/servers/yarp/direct-forwarding
 ---
 # YARP Direct Forwarding
 
@@ -151,7 +151,21 @@ Re-using a client for requests to the same destination is recommended for perfor
 
 ### Transforms
 
-The request and response can be modified by providing a derived [HttpTransformer](xref:Yarp.ReverseProxy.Forwarder.HttpTransformer) as a parameter to [`SendAsync`](xref:Yarp.ReverseProxy.Forwarder.IHttpForwarder) method.
+The request and response can be modified by providing a derived <xref:Yarp.ReverseProxy.Forwarder.HttpTransformer> as a parameter to the <xref:Yarp.ReverseProxy.Forwarder.IHttpForwarderExtensions.SendAsync%2A> method, as shown in the [Update `Program.cs`](#update-programcs) section's example.
+
+To use the [built-in transforms](xref:fundamentals/servers/yarp/transforms) with direct forwarding, resolve `ITransformBuilder` from dependency injection and call its `Create` method. `AddHttpForwarder` registers `ITransformBuilder`, so `AddReverseProxy` isn't required.
+
+Ensure that the `Program` file imports the following namespaces:
+
+:::code language="csharp" source="direct-forwarding/snippets/10.0/Program.cs" id="snippet_imports":::
+
+Replace the `transformer` initialization in the preceding example with the following code:
+
+:::code language="csharp" source="direct-forwarding/snippets/10.0/Program.cs" id="snippet_create_transformer":::
+
+The callback configures a `TransformBuilderContext` using the same extension methods available to `AddTransforms`. The transforms remove the `param1` query parameter and set `area` to `xx2`. A request for `/test/orders?param1=value&area=old&sort=name` is forwarded as `/test/orders?area=xx2&sort=name`.
+
+Pass the resulting `HttpTransformer` to `SendAsync` or `MapForwarder`, as shown earlier. Create the transformer once and reuse it across requests. By default, the created transformer also suppresses the incoming `Host` header and adds the `X-Forwarded` headers described in <xref:fundamentals/servers/yarp/transforms#defaults>.
 
 ### Error handling
 

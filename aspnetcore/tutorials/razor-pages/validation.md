@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 08/23/2026
+ms.date: 10/06/2026
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -141,7 +141,7 @@ When you need to change validation logic, change it only in the model. By defini
 
 Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/MovieDateRatingDA.cs?highlight=2,7&name=snippet2)]
 
 The `[DataType]` attributes provide:
 
