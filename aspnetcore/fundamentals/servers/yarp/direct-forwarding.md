@@ -151,7 +151,7 @@ Re-using a client for requests to the same destination is recommended for perfor
 
 ### Transforms
 
-The request and response can be modified by providing a derived <xref:Yarp.ReverseProxy.Forwarder.HttpTransformer> as a parameter to the <xref:Yarp.ReverseProxy.Forwarder.IHttpForwarderExtensions.SendAsync%2A> method, as shown in the preceding example.
+The request and response can be modified by providing a derived <xref:Yarp.ReverseProxy.Forwarder.HttpTransformer> as a parameter to the <xref:Yarp.ReverseProxy.Forwarder.IHttpForwarderExtensions.SendAsync%2A> method, as shown in the [Update `Program.cs`](#update-programcs) section's example.
 
 To use the [built-in transforms](xref:fundamentals/servers/yarp/transforms) with direct forwarding, resolve `ITransformBuilder` from dependency injection and call its `Create` method. `AddHttpForwarder` registers `ITransformBuilder`, so `AddReverseProxy` isn't required.
 
