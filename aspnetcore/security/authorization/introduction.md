@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 ms.author: wpickett
-ms.date: 08/26/2026
+ms.date: 09/18/2026
 uid: security/authorization/introduction
 ---
 # Introduction to authorization in ASP.NET Core
@@ -12,6 +12,8 @@ uid: security/authorization/introduction
 Authorization refers to the process that determines what a user is able to do. For example, an administrative user is allowed to create a document library, add documents, edit documents, and delete them. A nonadministrative user working with the library is only authorized to read the documents.
 
 Authorization is separate and distinct from authentication. However, authorization relies on an authentication mechanism. Authentication is the process of verifying a user's identity, which might result in the creation of one or more identity objects for the user.
+
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy. For information about how authorization metadata selects named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 For more information about authentication in ASP.NET Core, see <xref:security/authentication/index>.
 

@@ -1016,12 +1016,12 @@ app.UseAuthorization(new AuthorizationPolicy() { ... });
 app.MapMyFramework(...).RequireAuthorization();
 ```
 
-As an example of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you to pass in a fallback policy. <!-- shown where?  (shown here) --> The fallback policy, if specified, applies to both:
+As an example of this guideline, consider the authorization middleware. A configured fallback policy applies when the middleware can't produce a policy from authorization metadata, including:
 
-* Endpoints without a specified policy.
+* Endpoints without authorization metadata that produces a policy.
 * Requests that don't match an endpoint.
 
-This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
+This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
@@ -2037,12 +2037,12 @@ app.UseAuthorization(new AuthorizationPolicy() { ... });
 app.MapMyFramework(...).RequireAuthorization();
 ```
 
-As an example of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you to pass in a fallback policy. <!-- shown where?  (shown here) --> The fallback policy, if specified, applies to both:
+As an example of this guideline, consider the authorization middleware. A configured fallback policy applies when the middleware can't produce a policy from authorization metadata, including:
 
-* Endpoints without a specified policy.
+* Endpoints without authorization metadata that produces a policy.
 * Requests that don't match an endpoint.
 
-This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
+This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
@@ -3029,12 +3029,12 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-As an example of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you to pass in a fallback policy. <!-- shown where?  (shown here) --> The fallback policy, if specified, applies to both:
+As an example of this guideline, consider the authorization middleware. A configured fallback policy applies when the middleware can't produce a policy from authorization metadata, including:
 
-* Endpoints without a specified policy.
+* Endpoints without authorization metadata that produces a policy.
 * Requests that don't match an endpoint.
 
-This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
+This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

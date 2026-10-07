@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 author: mjrousos
 description: Learn how to use a custom authorization policy provider (IAuthorizationPolicyProvider) in an ASP.NET Core app to dynamically generate authorization policies.
 ms.author: wpickett
-ms.date: 08/11/2026
+ms.date: 09/18/2026
 uid: security/authorization/custom-authorization-policy-providers
 ---
 # Custom authorization policy providers in ASP.NET Core
@@ -46,8 +46,10 @@ For example, consider a minimum age naming scheme in the format `MinimumAge{AGE}
 The developer customizes how authorization policies are provided by implementing the following APIs in the custom policy provider:
 
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync%2A> method returns an authorization policy for a given name.
-* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> method returns the default authorization policy. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> applies whenever authorization is required, but no specific policy is set. If an `[Authorize]` attribute is present without a policy name, the default policy is used instead of the fallback policy. This behavior ensures that endpoints explicitly requesting authorization (via `[Authorize]` or `RequireAuthorization()`) default to a secure policy.
-* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method returns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=fullName> when no authorization metadata (for example, no `[Authorize]` attribute or `RequireAuthorization()`) is explicitly provided for a resource. The fallback policy only applies when there are no authorization attributes or explicit policies set. If a resource has an `[Authorize]` attribute (even without a policy name), the default policy is used instead of the fallback policy. This means fallback policy is mainly relevant for middleware-based authorization flows where no per-endpoint authorization is specified. By default, fallback policy is `null`, meaning it has no effect unless explicitly set.
+* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> method returns the default authorization policy, which is selected when authorization is required but no specific policy is set.
+* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method returns the fallback authorization policy, which is selected when no policy is produced from authorization metadata. By default, the fallback policy is `null`.
+
+For complete named, default, and fallback policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 The general format of a custom policy provider that either returns a policy for a given matching name (represented by the `{IDENTIFY POLICY BY NAME}` placeholder) or returns `null` when no policy name matches is similar to the following.
 

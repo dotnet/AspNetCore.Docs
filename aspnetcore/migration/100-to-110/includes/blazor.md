@@ -54,8 +54,8 @@ If the app has a [Content Security Policy (CSP)](xref:blazor/security/content-se
 ```
 
 ### QuickGrid adopts URL-based pagination and sorting
- 
-`QuickGrid` component persists pagination and sort state in the URL query string (for example, `?page=2&sort=Name&order=asc`), which enables link sharing, browser back/forward navigation, and operation under static server-side rendering (static SSR). This behavior is enabled by default.
+
+The `QuickGrid` component persists pagination and sort state in the URL query string (for example, `?page=2&sort=Name&direction=asc`), which enables link sharing, browser back/forward navigation, and operation under static server-side rendering (static SSR). This behavior is enabled by default.
 
 To work without a JavaScript runtime, sortable column headers and paginator controls now render as `<a>` (link) elements instead of `<button>` elements. Update any custom CSS that targets the previous markup:
 
@@ -68,11 +68,11 @@ To work without a JavaScript runtime, sortable column headers and paginator cont
 
 Disabled paginator links use `aria-disabled="true"` instead of the HTML `disabled` attribute, which isn't valid on `<a>` elements. The built-in QuickGrid CSS already covers both markup styles.
 
-When more than one QuickGrid is rendered on the same page, set a unique `QueryParameterNamePrefix` on each grid (and give each its own `PaginationState`) to prevent the grids from sharing the page, sort, and order query parameters:
+When more than one `QuickGrid` is rendered on the same page, set unique query parameter names with `QueryParameterNameOptions` on all but one grid (and give each its own `PaginationState`) to prevent the grids from sharing the page, sort, and direction query parameters:
 
 ```diff
 - <QuickGrid Items="@cities" Pagination="@pagination2">...</QuickGrid>
-+ <QuickGrid Items="@cities" Pagination="@pagination2" QueryParameterNamePrefix="cities">...</QuickGrid>
++ <QuickGrid Items="@cities" Pagination="@pagination2" QueryParameterNameOptions="@(new QueryParameterNameOptions("cities_"))">...</QuickGrid>
 ```
 
 To revert to the previous `<button>`-based markup, which requires an interactive render mode, set the following AppContext switch to false:
@@ -84,3 +84,5 @@ AppContext.SetSwitch(
 ```
 
 The switch only controls the rendered HTML element; sort and page state is read from and written to the URL query string regardless of the setting.
+
+For more information, see [QuickGrid sorting and pagination controls render as links](/aspnet/core/breaking-changes/11/quickgrid-controls-render-as-links).

@@ -19,19 +19,26 @@ public class CustomerModel
 }
 ```
 
-An explicit `ErrorMessage` value, such as `NameRequired` in the preceding example, is the first resource key that localization tries. When an attribute doesn't specify `ErrorMessage`, localization instead tries built-in resource-name conventions from most to least specific:
+By default, keys resolve against the resources of the type that declares the validated member. An explicit `ErrorMessage` value, such as `NameRequired` in the preceding example, is the first resource key that localization tries. When an attribute doesn't specify `ErrorMessage`, localization instead tries built-in resource-name conventions from most to least specific:
 
 1. `{DeclaringType}_{MemberName}_{AttributeType}_Error`
 1. `{DeclaringType}_{AttributeType}_Error`
 1. `{AttributeType}_Error`
 
-For example, a `[Required]` attribute on `CustomerModel.Name` resolves against `CustomerModel_Name_RequiredAttribute_Error`, `CustomerModel_RequiredAttribute_Error`, or the shared `RequiredAttribute_Error` resource. If no resource resolves, validation falls back to the attribute's built-in message. Use `ValidationOptions.LocalizerProvider` to resolve keys from a shared resource file instead:
+For example, a `[Required]` attribute on `CustomerModel.Name` resolves against `CustomerModel_Name_RequiredAttribute_Error`, `CustomerModel_RequiredAttribute_Error`, or the shared `RequiredAttribute_Error` resource. This allows the default message of an attribute to be translated once for the whole app. If no resource resolves, validation falls back to the attribute's built-in message. Use `ValidationOptions.LocalizerProvider` to resolve keys from a shared resource file instead:
 
 ```csharp
 builder.Services.AddValidation(options =>
 {
     options.LocalizerProvider = (_, factory) => factory.Create(typeof(ValidationMessages));
 });
+```
+
+Localized strings don't have to come from resource files. Registering a custom `IStringLocalizerFactory` switches validation messages to that factory's backing store, such as a database or JSON files. A user-registered factory takes precedence over the default resource file implementation:
+
+```csharp
+builder.Services.AddSingleton<IStringLocalizerFactory, DbStringLocalizerFactory>();
+builder.Services.AddValidation();
 ```
 
 Attributes that already localize themselves (`ErrorMessageResourceType`, `[Display(ResourceType = ...)]`) bypass the pipeline entirely. A custom attribute that needs to substitute its own values into the message template can implement `IValidationMessageFormatter`:
@@ -47,3 +54,10 @@ public sealed class DivisibleByAttribute : ValidationAttribute, IValidationMessa
 ```
 
 The same localization rules apply to validation for minimal APIs and Blazor, so a message localizes identically wherever the model is used.
+
+Complete feature coverage is available in the following articles:
+
+* <xref:fundamentals/validation?view=aspnetcore-11.0#localize-validation-messages>
+* <xref:fundamentals/minimal-apis?view=aspnetcore-11.0#localizing-validation-messages>
+
+For more information, see [Add localization support to Microsoft.Extensions.Validation (`dotnet/aspnetcore` #66646)](https://github.com/dotnet/aspnetcore/pull/66646).

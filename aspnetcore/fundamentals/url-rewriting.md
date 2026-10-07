@@ -6,7 +6,7 @@ description: Learn about URL rewriting and redirecting with URL rewriting middle
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: sfi-image-nochange
-ms.date: 08/17/2026
+ms.date: 09/18/2026
 uid: fundamentals/url-rewriting
 ---
 # URL rewriting middleware in ASP.NET Core
@@ -146,6 +146,28 @@ The part of the expression contained within parentheses is called a [capture gro
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in the regular expression. There's only one captured group in the redirect rule regular expression in `redirect-rule/(.*)`, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
 Try `/redirect-rule/1234/5678` with the browser tools on the network tab.
+
+#### Redirect rule safety
+
+The middleware expands capture groups and variables in a replacement string and then interprets the result as the redirect destination. A broad capture such as `(.*)` isn't inherently unsafe when a trusted local prefix constrains the destination. A rule is unsafe when request-derived text can control the complete destination, construct the `scheme://` prefix, or determine the authority (host) of an absolute URI.
+
+```csharp
+// Unsafe: $1 can supply a complete redirect destination.
+options.AddRedirect("legacy/(.*)", "$1");
+
+// Safe: The trusted prefix keeps the destination within the app.
+options.AddRedirect("legacy/(.*)", "/archive/$1");
+
+// Safe: The scheme and authority are fixed.
+options.AddRedirect("legacy/(.*)", "https://example.com/$1");
+
+// Unsafe unless $1 is validated against an allow list of hosts.
+options.AddRedirect("go/(.*)", "https://$1/path");
+```
+
+Use a fixed local prefix when redirecting within the app. For external redirects, use a fixed host or validate the host against an allow list. Imported IIS URL Rewrite and Apache `mod_rewrite` rules also expand back-references and variables. Importing a rule doesn't validate its resulting substitution, so review imported rules by the same criteria.
+
+Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see <xref:security/preventing-open-redirects>.
 
 ### URL redirect to a secure endpoint
 

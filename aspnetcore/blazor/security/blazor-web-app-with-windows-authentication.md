@@ -1,10 +1,11 @@
 ---
 title: Secure an ASP.NET Core Blazor Web App with Windows Authentication
+ai-usage: ai-assisted
 author: guardrex
 description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: wpickett
-ms.date: 11/11/2025
+ms.date: 09/18/2026
 uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
@@ -45,7 +46,7 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization%2A> adds authorization policy services. <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> sets the fallback authorization policy, which is set to the default policy (<xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>). The default policy requires an authenticated user to access the app:
+<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization%2A> adds authorization policy services. The following code assigns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>, which requires an authenticated user, to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType>. This configuration requires authentication when no policy is produced from authorization metadata:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -53,6 +54,8 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = options.DefaultPolicy;
 });
 ```
+
+For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> adds cascading authentication state to the service collection. This is equivalent to placing a `CascadingAuthenticationState` component at the root of the app's component hierarchy:
 

@@ -137,7 +137,7 @@ When logging from other places in the app, changing the default level to `Debug`
 
 ## Tracing in SignalR
 
-SignalR hub server and the SignalR client provide information about SignalR connections and messages using <xref:System.Diagnostics.DiagnosticSource> and <xref:System.Diagnostics.Activity>. SignalR has an ActivitySource for both the hub server and client, avaialble starting with .NET 9.
+SignalR hub server and the SignalR client provide information about SignalR connections and messages using <xref:System.Diagnostics.DiagnosticSource> and <xref:System.Diagnostics.Activity>. SignalR has an ActivitySource for both the hub server and client, available starting with .NET 9.
 
 An ActivitySource is a component used in distributed tracing to create and manage activities (or spans) that represent operations in your application. These activities can be used to:
 

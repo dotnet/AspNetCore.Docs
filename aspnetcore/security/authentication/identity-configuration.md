@@ -3,9 +3,9 @@ title: Configure ASP.NET Core Identity
 ai-usage: ai-assisted
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
-ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 02/24/2026
+ms.author: tdykstra
+ms.date: 09/18/2026
 uid: security/authentication/identity-configuration
 ---
 # Configure ASP.NET Core Identity
@@ -147,7 +147,7 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
 
 ## Globally require all users to be authenticated
 
-For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+For guidance, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
 <a name="iss6"></a>
 
@@ -295,6 +295,6 @@ services.Configure<PasswordHasherOptions>(option =>
 
 ## Globally require all users to be authenticated
 
-For information on how to require authentication for all app users, see <xref:security/authorization/secure-data#require-authenticated-users>.
+For guidance, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
 :::moniker-end

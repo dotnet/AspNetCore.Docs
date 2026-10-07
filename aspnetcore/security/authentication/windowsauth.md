@@ -4,10 +4,10 @@ ai-usage: ai-assisted
 author: wadepickett
 description: Learn how to configure Windows Authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 04/30/2026
-uid: security/authentication/windowsauth
 ms.ai: assisted
+ms.author: wpickett
+ms.date: 09/18/2026
+uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
 
@@ -188,6 +188,8 @@ Highlighted lines:
 * 8–11: <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> with a fallback policy enforces authenticated users by default.
 * 26: <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> executes authentication handlers for each request and populates <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
 * 27: <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> evaluates authorization policies, including the fallback policy.
+
+For the rules that determine when the fallback policy is selected instead of a named or default policy, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 > [!NOTE]
 > Calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> registers and configures the Negotiate handler; it does not run authentication per request. The Authentication middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) invokes the handler and populates <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>, and must appear before <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> for policy evaluation to work.

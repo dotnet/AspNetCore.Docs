@@ -45,6 +45,8 @@ items:
                 href: breaking-changes/11/openapi-version-default-3-2.md
               - name: Passkey sign-in enforces email/phone confirmation and lockout
                 href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
+              - name: QuickGrid sorting and pagination controls render as links
+                href: breaking-changes/11/quickgrid-controls-render-as-links.md
               - name: Response compression always emits Vary, Accept-Encoding
                 href: breaking-changes/11/response-compression-always-vary.md
               - name: SqlClient Active Directory authentication moved to a separate package
@@ -862,6 +864,10 @@ items:
                 uid: blazor/forms/binding
               - name: Validation
                 uid: blazor/forms/validation
+              - name: Advanced validation
+                uid: blazor/forms/validation-advanced
+              - name: Client-side validation (static SSR)
+                uid: blazor/forms/validation-client-side
               - name: Troubleshoot
                 uid: blazor/forms/troubleshoot
           - name: File uploads
@@ -2159,6 +2165,8 @@ items:
             uid: security/authorization/secure-data
           - name: Simple authorization
             uid: security/authorization/simple
+          - name: Require authenticated users by default
+            href: security/authorization/policies.md#require-global-user-authentication
           - name: Custom authorization with IAuthorizationRequirementData
             uid: security/authorization/iard
           - name: Role-based authorization

@@ -1,16 +1,16 @@
 ---
-uid: fundamentals/servers/yarp/authn-authz
-title: YARP Authentication and Authorization
-description: YARP Authentication and Authorization
-author: wadepickett
-ms.author: wpickett
-ms.date: 2/6/2025
-ms.topic: concept-article
-content_well_notification: AI-contribution
+title: YARP authentication and authorization
 ai-usage: ai-assisted
+author: wadepickett
+content_well_notification: AI-contribution
+description: Learn how to configure authentication and authorization for YARP routes.
+ms.author: wpickett
+ms.date: 09/18/2026
+ms.topic: concept-article
+uid: fundamentals/servers/yarp/authn-authz
 ---
 
-# YARP Authentication and Authorization
+# YARP authentication and authorization
 
 ## Introduction
 The reverse proxy can be used to authenticate and authorize requests before they are proxied to the destination servers. This can reduce load on the destination servers, add a layer of protection, and ensure consistent policies are implemented across your applications.
@@ -69,23 +69,23 @@ app.UseAuthorization();
 app.MapReverseProxy();
 ```
 
-See the [Authentication](/aspnet/core/security/authentication/) docs for setting up your preferred kind of authentication.
+See <xref:security/authentication/index> for setting up your preferred type of authentication.
 
-### Special values:
+### Special values
 
-In addition to custom policy names, there are two special values that can be specified in a route's authorization parameter: `default` and `anonymous`. ASP.NET Core also has a FallbackPolicy setting that applies to routes that do not specify a policy.
+In addition to custom policy names, YARP supports two special values for a route's authorization parameter: `default` and `anonymous`. When a route doesn't specify the parameter, ASP.NET Core uses the fallback policy if one is configured.
 
-#### DefaultPolicy
+#### `default`
 
-Specifying the value `default` in a route's authorization parameter means that route will use the policy defined in [AuthorizationOptions.DefaultPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.defaultpolicy?#Microsoft_AspNetCore_Authorization_AuthorizationOptions_DefaultPolicy). That policy is pre-configured to require authenticated users.
+The `default` value uses the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>. By default, this policy requires an authenticated user.
 
-#### Anonymous
+#### `anonymous`
 
-Specifying the value `anonymous` in a route's authorization parameter means that route will not require authorization regardless of any other configuration in the application such as the FallbackPolicy.
+The `anonymous` value allows anonymous access to the route regardless of the configured fallback policy.
 
-#### FallbackPolicy
+#### Fallback policy
 
-[AuthorizationOptions.FallbackPolicy](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.fallbackpolicy) is the policy that will be used for any request or route that was not configured with a policy. FallbackPolicy does not have a value by default, any request will be allowed.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> is used for a route that doesn't specify an authorization parameter. By default, the fallback policy is `null`, so such a route doesn't require authorization. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 ## Flowing Credentials
 

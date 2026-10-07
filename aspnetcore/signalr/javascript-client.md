@@ -1,11 +1,12 @@
 ---
 title: ASP.NET Core SignalR JavaScript client
+ai-usage: ai-assisted
 author: wadepickett
 description: Work with the ASP.NET Core SignalR JavaScript client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: devx-track-js
-ms.date: 05/21/2026
+ms.date: 09/20/2026
 uid: signalr/javascript-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR JavaScript client, so I can connect to a SignalR hub and use hub and client methods in JavaScript.
@@ -339,6 +340,29 @@ In the preceding code:
 * Web Locks are experimental. The conditional check confirms the browser supports Web Locks.
 * The JavaScript promise resolver (`lockResolver`) is stored so the lock can be released when it's acceptable for the tab to sleep.
 * When the connection is closing, the lock is released by calling `lockResolver()`. When the lock is released, the tab is allowed to sleep.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Refresh authentication without reconnecting
+
+In .NET 11 and later, a client can replace the credentials on an open connection instead of letting the connection close when its access token expires. The server must enable authentication refresh for the hub. Call `withAuthenticationRefresh` to schedule an automatic refresh ahead of the expiration that the server reports:
+
+```javascript
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/chathub", { accessTokenFactory: () => getAccessToken() })
+    .withAuthenticationRefresh()
+    .build();
+```
+
+Each refresh calls `accessTokenFactory` again to obtain a new token. To refresh immediately, for example after the app obtains updated claims, call `connection.refreshAuthentication()`.
+
+For the refresh options, the success and failure handlers, and the server configuration that enables the feature, see <xref:signalr/authn-and-authz#authentication-refresh>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Related content
 

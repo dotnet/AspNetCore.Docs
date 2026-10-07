@@ -1,10 +1,11 @@
 ---
 title: Configure OpenID Connect Web (UI) authentication in ASP.NET Core
+ai-usage: ai-assisted
 author: damienbod
 description: Learn how to set up OpenID Connect authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 01/22/2026
+ms.date: 09/18/2026
 uid: security/authentication/configure-oidc-web-authentication
 ---
 # Configure OpenID Connect Web (UI) authentication in ASP.NET Core
@@ -156,6 +157,8 @@ var requireAuthPolicy = new AuthorizationPolicyBuilder()
 builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(requireAuthPolicy);
 ```
+
+The fallback policy requires authentication for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 Opt out of authorization at public endpoints by applying the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to the public endpoints. For examples, see the [Add a new `Logout.cshtml` and `SignedOut.cshtml` Razor pages to the project](#add-a-new-logoutcshtml-and-signedoutcshtml-razor-pages-to-the-project) and [Implement `Login` page](#implement-login-page) sections.
 

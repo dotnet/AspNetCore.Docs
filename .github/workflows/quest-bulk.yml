@@ -33,7 +33,7 @@ jobs:
 
       - name: Azure OpenID Connect
         id: azure-oidc-auth
-        uses: dotnet/docs-tools/.github/actions/oidc-auth-flow@main
+        uses: dotnet/docs-tools/.github/actions/azure-oidc-auth@a92cd3283e8a81d00b7c5daa6cc604dd2f9abc53 # main
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
@@ -41,7 +41,7 @@ jobs:
 
       - name: Azure DevOps OpenID Connect
         id: azure-devops-oidc-auth
-        uses: dotnet/docs-tools/.github/actions/oidc-auth-flow@main
+        uses: dotnet/docs-tools/.github/actions/azure-oidc-auth@a92cd3283e8a81d00b7c5daa6cc604dd2f9abc53 # main
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
@@ -49,7 +49,7 @@ jobs:
 
       - name: bulk-sequester
         id: bulk-sequester
-        uses: dotnet/docs-tools/actions/sequester@main
+        uses: dotnet/docs-tools/.github/actions/sequester@a92cd3283e8a81d00b7c5daa6cc604dd2f9abc53 # main
         env:
           ImportOptions__ApiKeys__GitHubToken: ${{ secrets.GITHUB_TOKEN }}
           ImportOptions__ApiKeys__QuestAccessToken: ${{ steps.azure-devops-oidc-auth.outputs.access-token }}
@@ -61,4 +61,4 @@ jobs:
           repo: ${{ github.repository }}
           issue: '-1'
           duration: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.duration || github.event.schedule == '30 12 6 * *' && -1 || 5 }}
-          
+

@@ -131,7 +131,7 @@ The following example hosts the app at a root URL (no sub-app path):
 </VirtualHost>
 ```
 
-To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following entires is the sub-app path:
+To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following entries is the sub-app path:
 
 ```
 <VirtualHost *:*>

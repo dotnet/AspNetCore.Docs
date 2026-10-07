@@ -1,10 +1,11 @@
 ---
 title: ASP.NET Core SignalR .NET client
+ai-usage: ai-assisted
 author: wadepickett
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
-ms.date: 05/21/2026
+ms.date: 09/20/2026
 uid: signalr/dotnet-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR .NET client, so I can connect to a SignalR hub and use hub and client methods.
@@ -254,6 +255,14 @@ The preceding code in `connection.On` runs when server-side code calls it by usi
 Handle errors with a `try...catch` statement. Inspect the `Exception` object to determine the proper action to take after an error occurs:
 
 [!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Refresh authentication without reconnecting
+
+When the server enables authentication refresh, the .NET client can replace the credentials on an open connection instead of letting the connection close when its access token expires. Automatic refresh is enabled by default, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> exposes a `RefreshAuthenticationAsync` method that requests an immediate refresh. To change the refresh timing or turn automatic refresh off, call `WithAuthenticationRefresh` when building the connection. For the client options, the refresh events, and the server options that enable the feature, see <xref:signalr/authn-and-authz#authentication-refresh>.
+
+:::moniker-end
 
 ## Related content
 

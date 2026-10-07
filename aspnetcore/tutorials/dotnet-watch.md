@@ -3,7 +3,7 @@ title: Develop ASP.NET Core apps using a file watcher
 author: tdykstra
 description: This tutorial demonstrates how to install and use the .NET CLI's file watcher (dotnet watch) tool in an ASP.NET Core app.
 ms.author: tdykstra
-ms.date: 05/31/2018
+ms.date: 09/23/2026
 uid: tutorials/dotnet-watch
 ---
 # Develop ASP.NET Core apps using a file watcher
@@ -227,3 +227,29 @@ Visual Studio 17.2 or later includes the .NET SDK 6.0.300 or later. With the .NE
 
 * Configure the `DOTNET_WATCH_SUPPRESS_EMOJIS=1` environment variable to suppress emitting these values.
 * Switch to a different terminal, such as https://github.com/microsoft/terminal, that  supports rendering non-ASCII characters.
+
+
+## File watcher limits in Linux
+
+When running `dotnet watch` on Linux or in Docker containers, you may encounter an error indicating that the configured user limit on the number of inotify instances has been reached:
+
+`The configured user limit (128) on the number of inotify instances has been reached, or the per-process limit on the number of open file descriptors has been reached.`
+
+If the inotify instance limit is exhausted, increase `fs.inotify.max_user_instances`. If the process has reached its open-file-descriptor limit, increase that limit instead. The separate `fs.inotify.max_user_watches` setting applies when the inotify watch limit is exhausted.
+
+To temporarily increase these limits, run the following commands:
+
+```console
+sudo sysctl fs.inotify.max_user_instances=524288
+sudo sysctl fs.inotify.max_user_watches=524288
+```
+
+To make this change permanent, add the following lines to the `/etc/sysctl.conf` file:
+
+```ini
+fs.inotify.max_user_instances=524288
+fs.inotify.max_user_watches=524288
+```
+
+> [!NOTE]
+> For Docker containers, these limits are inherited from the host operating system. You must configure the `sysctl` settings on the host machine, rather than inside the container.

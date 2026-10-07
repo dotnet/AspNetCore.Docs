@@ -64,7 +64,14 @@ When the data protection system initializes, it reads the key ring from the unde
 
 The data protection system exposes an interface `IKeyManager` that can be used to inspect and make changes to the key ring. The DI system that provided the instance of `IDataProtectionProvider` can also provide an instance of `IKeyManager` for your consumption. Alternatively, you can pull the `IKeyManager` straight from the `IServiceProvider` as in the example below.
 
-Any operation which modifies the key ring (creating a new key explicitly or performing a revocation) will invalidate the in-memory cache. The next call to `Protect` or `Unprotect` will cause the data protection system to reread the key ring and recreate the cache.
+Any operation which modifies the key ring (creating a new key explicitly or performing a revocation) will invalidate the in-memory cache in the process performing that operation. It doesn't automatically invalidate caches in other processes sharing the repository. The next call to `Protect` or `Unprotect` will cause the data protection system to reread the key ring and recreate the cache.
+
+> [!IMPORTANT]
+> In a multi-instance deployment, Data Protection key-ring caches are maintained independently by each process. Revoking a key in one instance updates the shared key repository and invalidates that instance's cache, but it doesn't immediately invalidate caches in other running instances.
+>
+> Other instances normally observe the revocation during their next key-ring refresh or another local refresh event. Until then, a warmed instance might continue to unprotect data created with the revoked key or use that key for new protection operations.
+>
+> If revocation must take effect immediately across the deployment, persist the revocation and then restart or recycle every application instance, or use an application-specific mechanism that causes every instance to reload its key ring. Verify that all instances have refreshed before considering revocation complete. Plan for the availability impact of coordinated restarts.
 
 The sample below demonstrates using the `IKeyManager` interface to inspect and manipulate the key ring, including revoking existing keys and generating a new key manually.
 

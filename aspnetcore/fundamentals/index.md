@@ -177,7 +177,7 @@ public class OrderProcessor(AppDbContext context, ILogger<OrderProcessor> logger
 }
 ```
 
-You can also inject dependencies directly into the lambda parameters of [Minimal API](xref:tutorials/min-web-api) endpoints. In the following example, a list of todo items is returned from the `/todos` endpoint. A logger instance for `ILogger<Program>` logs information, and the database instance for `AppDbContext` is used to obtain the list of todo items from the database to in the response:
+You can also inject dependencies directly into the lambda parameters of [Minimal API](xref:tutorials/min-web-api) endpoints. In the following example, a list of todo items is returned from the `/todos` endpoint. A logger instance for `ILogger<Program>` logs information, and the database instance for `AppDbContext` is used to obtain the list of todo items from the database to include in the response:
 
 ```csharp
 app.MapGet("/todos", async (AppDbContext context, ILogger<Program> logger) =>

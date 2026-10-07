@@ -1,10 +1,11 @@
 ---
 title: JavaScript `[JSImport]`/`[JSExport]` interop with a WebAssembly Browser App project
+ai-usage: ai-assisted
 author: pavelsavara
 description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop in a WebAssembly Browser App project.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: wpickett
-ms.date: 07/25/2024
+ms.date: 09/16/2026
 uid: client-side/dotnet-interop/wasm-browser-app
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with a WebAssembly Browser App project
@@ -92,6 +93,19 @@ The following is an example project file (`.csproj`) after configuration. The `{
 
 </Project>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+> [!NOTE]
+> In .NET 10 and later, the `WasmEnableHotReload` MSBuild property controls whether [Hot Reload](xref:test/hot-reload) infrastructure is included in the build output. The property is set to `true` by default for the `Debug` configuration. Set the property to `false` to produce bundler-compatible build output, for example for use with webpack or Vite, without Hot Reload dependencies when building the app with `dotnet build`:
+>
+> ```xml
+> <PropertyGroup>
+>   <WasmEnableHotReload>false</WasmEnableHotReload>
+> </PropertyGroup>
+> ```
 
 :::moniker-end
 
