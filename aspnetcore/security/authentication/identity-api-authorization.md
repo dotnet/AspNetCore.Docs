@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 10/06/2026
+ms.date: 10/07/2026
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -303,10 +303,10 @@ Here are request body examples with 2FA enabled:
 
 The endpoint supports the following query string parameters:
 
-* `useCookies`: Set to `true` to issue a persistent authentication cookie. Set to `false` or omit for token-based authentication.
+* `useCookies`: Set to `true` to issue a persistent authentication cookie when `useSessionCookies` isn't `true`.
 * `useSessionCookies`: Set to `true` to issue a session (non-persistent) authentication cookie.
 
-If both `useCookies` and `useSessionCookies` are set to `true`, a session cookie is issued.
+If both `useCookies` and `useSessionCookies` are set to `true`, a session cookie is issued. If both parameters are `false` or omitted, token-based authentication is used.
 
 For more information about cookie-based authentication, see [Test login](#test-login) earlier in this article.
 
