@@ -170,7 +170,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 For a complete list of configuration options, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>. For the most up-to-date browser defaults, see the [W3C WebAuthn specification](https://www.w3.org/TR/webauthn-3/).
 
 > [!NOTE]
-> Documentation links to .NET reference source usually load the repository's default branch, which represents the current development for the next preview release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list. For more information, see [How to select a version tag of ASP.NET Core source code (`dotnet/AspNetCore.Docs` #26205)](https://github.com/dotnet/AspNetCore.Docs/discussions/26205).
+> Documentation links to .NET reference source usually load the repository's default branch, which represents the current development for the next preview release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
 
 ## Custom attestation statement validation
 
