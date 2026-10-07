@@ -44,9 +44,7 @@ A call to `send` invokes a hub method. Pass the hub method name and any argument
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
 > [!NOTE]
-> Calling hub methods from a client is only supported when using the
-> Azure SignalR Service in *Default* mode. For more information, see
-> [Frequently Asked Questions](/azure/azure-signalr/signalr-resource-faq).
+> Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions](/azure/azure-signalr/signalr-resource-faq).
 
 ## Call client methods from hub
 
