@@ -483,13 +483,8 @@ Customizing the ANCM handler settings in `web.config` enables shadow copying:
 
 The following handler settings configure shadow copying:
 
-* `enableShadowCopy`: When set to `true`, enables shadow copying of app
-  assemblies.
-* `shadowCopyDirectory`: Specifies the directory where assemblies are shadow
-  copied. Ensure that the IIS ApplicationPool identity has read and write
-  permissions to this directory.
-* `cleanShadowCopyDirectory`: Optional. When set to `true`, cleans the shadow
-  copy directory before copying assemblies on startup. The default value is
-  `false`.
+* `enableShadowCopy`: When set to `true`, enables shadow copying of app assemblies.
+* `shadowCopyDirectory`: Specifies the directory where assemblies are shadow copied. Ensure that the IIS `ApplicationPool` identity has read and write permissions to this directory.
+* `cleanShadowCopyDirectory`: Optional. When set to `true`, cleans the shadow copy directory before copying assemblies on startup. The default value is `false`.
 
 :::moniker-end
