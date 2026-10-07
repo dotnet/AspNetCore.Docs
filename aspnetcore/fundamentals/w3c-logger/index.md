@@ -4,7 +4,7 @@ author: wtgodbe
 description: Learn how to create server logs in the W3C standard format.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wpickett
-ms.date: 08/15/2022
+ms.date: 10/07/2026
 ms.reviewer: wigodbe
 uid: fundamentals/w3c-logger/index
 ---
@@ -36,9 +36,16 @@ W3CLogger ***can reduce the performance of an app***. Consider the performance i
 
 ## Enable W3CLogger
 
-Enable W3CLogger with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A>, which adds the W3CLogger middleware:
+To enable W3CLogger:
+
+1. Call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> to add the W3CLogger services to the dependency injection container.
+1. Call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline:
+
+:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
 
 :::code language="csharp" source="samples/6.x/Program.cs" id="snippet_UseW3CLogging" highlight="3":::
+
+By default, log files are written to a `logs` directory in the application's content root directory (`./logs/`), with the file name prefix `w3clog-` (for example, `./logs/w3clog-20210929.0000.txt`).
 
 By default, W3CLogger logs common properties such as path, status-code, date, time, and protocol. All information about a single request/response pair is written to the same line.
 
@@ -53,9 +60,18 @@ By default, W3CLogger logs common properties such as path, status-code, date, ti
 
 ## W3CLogger options
 
-To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> in `Program.cs`:
+To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> and configure <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions> in `Program.cs`:
 
-:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
+:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging" highlight="3-13":::
+
+<xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions> supports the following properties:
+
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileName%2A>: The log file name prefix. Defaults to `w3clog-`.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileSizeLimit%2A>: The maximum log file size in bytes before a new file is created. Defaults to 10 MiB (`10 * 1024 * 1024`).
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FlushInterval%2A>: The period after which logs are flushed to disk. Defaults to 1 second.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LogDirectory%2A>: The directory where log files are written. Defaults to `./logs/` relative to the app's content root directory.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.RetainedFileCountLimit%2A>: The maximum number of retained log files. Defaults to 4.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A>: A bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. Defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
 
 ### `LoggingFields`
 
@@ -86,9 +102,16 @@ W3CLogger ***can reduce the performance of an app***. Consider the performance i
 
 ## Enable W3CLogger
 
-Enable W3CLogger with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A>, which adds the W3CLogger middleware:
+To enable W3CLogger:
 
-:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_UseW3CLogging" highlight="3":::
+1. Call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> to add the W3CLogger services to the dependency injection container.
+1. Call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline:
+
+:::code language="csharp" source="samples/7.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
+
+:::code language="csharp" source="samples/7.x/Program.cs" id="snippet_UseW3CLogging" highlight="3":::
+
+By default, log files are written to a `logs` directory in the application's content root directory (`./logs/`), with the file name prefix `w3clog-` (for example, `./logs/w3clog-20210929.0000.txt`).
 
 By default, W3CLogger logs common properties such as path, status-code, date, time, and protocol. All information about a single request/response pair is written to the same line.
 
@@ -103,9 +126,19 @@ By default, W3CLogger logs common properties such as path, status-code, date, ti
 
 ## W3CLogger options
 
-To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> in `Program.cs`:
+To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> and configure <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions> in `Program.cs`:
 
-:::code language="csharp" source="samples/7.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
+:::code language="csharp" source="samples/7.x/Program.cs" id="snippet_AddW3CLogging" highlight="3-15":::
+
+<xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions> supports the following properties:
+
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.AdditionalRequestHeaders%2A>: Additional request headers to include in the log file.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileName%2A>: The log file name prefix. Defaults to `w3clog-`.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileSizeLimit%2A>: The maximum log file size in bytes before a new file is created. Defaults to 10 MiB (`10 * 1024 * 1024`).
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FlushInterval%2A>: The period after which logs are flushed to disk. Defaults to 1 second.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LogDirectory%2A>: The directory where log files are written. Defaults to `./logs/` relative to the app's content root directory.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.RetainedFileCountLimit%2A>: The maximum number of retained log files. Defaults to 4.
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A>: A bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. Defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
 
 ### `LoggingFields`
 
