@@ -6,7 +6,7 @@ description: Rate limiting middleware in ASP.NET Core protects APIs from abuse a
 monikerRange: '>= aspnetcore-7.0'
 ms.author: wpickett
 ms.reviewer: wpickett
-ms.date: 10/02/2026
+ms.date: 10/07/2026
 uid: performance/rate-limit
 ---
 
@@ -463,7 +463,7 @@ builder.Services.AddRateLimiter(options =>
         if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
         {
             context.HttpContext.Response.Headers.RetryAfter =
-                ((int)retryAfter.TotalSeconds).ToString(NumberFormatInfo.InvariantInfo);
+                ((long)Math.Ceiling(retryAfter.TotalSeconds)).ToString(NumberFormatInfo.InvariantInfo);
         }
 
         await context.HttpContext.Response.WriteAsync("Rate limit exceeded. Please try again later.", cancellationToken);
