@@ -56,7 +56,7 @@ The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface 
 
 ### Store objects other than byte arrays
 
-`IDistributedCache` stores values as `byte[]` arrays. To cache other types, serialize them first. The following extension methods use `System.Text.Json` to store any serializable type as UTF-8 JSON:
+<xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> stores values as `byte[]` arrays. To cache other types, serialize them first. The following extension methods use <xref:System.Text.Json?displayProperty=fullName> to store any serializable type as UTF-8 JSON:
 
 ```csharp
 using System.Text.Json;
@@ -80,7 +80,7 @@ public static class DistributedCacheExtensions
 `GetAsync<T>` returns the type's default value, such as `null`, when the key isn't in the cache.
 
 > [!TIP]
-> The [`HybridCache` library](xref:performance/caching/hybrid) serializes values for you, and adds an in-process primary cache and stampede protection on top of the distributed cache.
+> The [`HybridCache` library](xref:performance/caching/hybrid) serializes values for you and adds an in-process primary cache and stampede protection on top of the distributed cache.
 
 ## Establish distributed caching services
 
