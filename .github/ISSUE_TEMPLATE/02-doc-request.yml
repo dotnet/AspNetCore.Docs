@@ -1,0 +1,70 @@
+name: "New article request"
+description: Request a new article on a topic or concept that you can't find in our current docs.
+title: "[New article]: "
+labels: ["doc-idea"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Request a new article"
+  - type: markdown
+    attributes:
+      value: "Describe the proposed new article for us."
+  - type: input
+    id: topic
+    attributes:
+      label: Proposed topic or title
+      description: Write a short title or description of the topic
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: >
+        "Propose a location for the article. Use the `/` character to
+        define 'sub-folders' in the table of contents. Start with a top-level
+        guide, and follow through to the parent folder for the new article."
+  - type: input
+    id: toc-item
+    attributes:
+      label: Location in table of contents.
+      description: Give some indication for the location in the table of contents.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: >
+        "Explain why the article is needed. What will readers learn? Why is
+        it important? What are the consequences if readers don't learn the topic?"
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Reason for the article
+      description: Tell us why this article is needed.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: >
+        "Write an opening paragraph or abstract to explain what readers
+        will learn from reading this article."
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Article abstract
+      description: Write a *brief* abstract for the article.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: >
+        "Tell us about searches you did looking for this information. This helps us
+        in two important ways. First, if the information exists, we can improve
+        the findability of the article for those search ideas. If the article
+        doesn't exist, this will help us make sure readers find it once it's written."
+  - type: textarea
+    id: searches
+    attributes:
+      label: Relevant searches
+      description: >
+        What search terms did you use to look for this information?
+    validations:
+      required: false

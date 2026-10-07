@@ -1,0 +1,13 @@
+name: "General feedback"
+description: Provide general feedback about the .NET docs or a specific article.
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping us improve the docs!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the issue or suggestion
+      description: "Note: If your issue is about a specific article, it's best to submit your feedback by clicking the 'Open a documentation issue' link in the '.NET feedback' box at the end of the article."
+    validations:
+      required: true
