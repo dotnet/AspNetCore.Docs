@@ -6,7 +6,7 @@ description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SU
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: linux-related-content, sfi-ropc-nochange
-ms.date: 11/10/2025
+ms.date: 10/07/2026
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -259,7 +259,7 @@ ExecStart=/usr/bin/dotnet /var/www/helloapp/helloapp.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
-KillSignal=SIGINT
+KillSignal=SIGTERM
 SyslogIdentifier=dotnet-example
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
@@ -271,7 +271,9 @@ WantedBy=multi-user.target
 
 In the preceding example, the user that manages the service is specified by the `User` option. The user (`www-data`) must exist and have proper ownership of the app's files.
 
-Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial interrupt signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (`systemd-system.conf`, `system.conf.d`, `systemd-user.conf`, `user.conf.d`). The default timeout for most distributions is 90 seconds.
+Setting `KillSignal=SIGTERM` (which is also systemd's default `KillSignal`) allows .NET apps to perform a graceful shutdown and clean up resources properly. Avoid setting `KillSignal=SIGINT`, as .NET lifetime integrations listen for `SIGTERM` to initiate graceful shutdown, and other signals might result in abrupt termination.
+
+Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial stop signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (`systemd-system.conf`, `system.conf.d`, `systemd-user.conf`, `user.conf.d`). The default timeout for most distributions is 90 seconds.
 
 ```text
 # The default value is 90 seconds for most distributions.
