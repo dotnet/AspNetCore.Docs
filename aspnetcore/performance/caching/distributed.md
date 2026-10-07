@@ -1,12 +1,13 @@
 ---
 title: Distributed caching in ASP.NET Core
+ai-usage: ai-assisted
 author: tdykstra
 description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 05/05/2026
-uid: performance/caching/distributed
+ms.date: 10/07/2026
 ms.sfi.ropc: t
+uid: performance/caching/distributed
 
 # customer intent: As an ASP.NET developer, I want to use an ASP.NET Core distributed cache, so I can improve app performance and scalability.
 ---
@@ -52,6 +53,34 @@ The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface 
 * <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache.Set*>, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache.SetAsync*>: Adds an item (as `byte[]` array) to the cache by using a string key.
 * <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache.Refresh*>, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache.RefreshAsync*>: Refreshes an item in the cache based on its key, resetting its sliding expiration timeout (if any).
 * <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache.Remove*>, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache.RemoveAsync*>: Removes a cache item based on its string key.
+
+### Store objects other than byte arrays
+
+<xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> stores values as `byte[]` arrays. To cache other types, serialize them first. The following extension methods use <xref:System.Text.Json?displayProperty=fullName> to store any serializable type as UTF-8 JSON:
+
+```csharp
+using System.Text.Json;
+using Microsoft.Extensions.Caching.Distributed;
+
+public static class DistributedCacheExtensions
+{
+    public static Task SetAsync<T>(this IDistributedCache cache, string key, T value,
+        DistributedCacheEntryOptions options, CancellationToken token = default) =>
+        cache.SetAsync(key, JsonSerializer.SerializeToUtf8Bytes(value), options, token);
+
+    public static async Task<T?> GetAsync<T>(this IDistributedCache cache, string key,
+        CancellationToken token = default)
+    {
+        var bytes = await cache.GetAsync(key, token);
+        return bytes is null ? default : JsonSerializer.Deserialize<T>(bytes);
+    }
+}
+```
+
+`GetAsync<T>` returns the type's default value, such as `null`, when the key isn't in the cache.
+
+> [!TIP]
+> The [`HybridCache` library](xref:performance/caching/hybrid) serializes values for you and adds an in-process primary cache and stampede protection on top of the distributed cache.
 
 ## Establish distributed caching services
 
