@@ -119,7 +119,7 @@
         "release-notes/aspnetcore-9/includes/hybrid-cache.{md,yml}": "mgravell"
       },
       "ms.author": {
-        "**/*.{md,yml}": "wiwagn"
+        "**/*.{md,yml}": "daroth"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",
