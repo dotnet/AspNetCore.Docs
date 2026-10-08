@@ -2,8 +2,4 @@
 
 # Order is important. The last matching pattern has the most precedence.
 
-/aspnetcore/blazor/ @guardrex
-/client-side/dotnet-interop/index.md @guardrex
-/client-side/dotnet-interop/wasm-browser-app.md @guardrex
-/mvc/views/tag-helpers/built-in/component-tag-helper.md @guardrex
-/mvc/views/tag-helpers/built-in/persist-component-state.md @guardrex
+/aspnetcore/ @guardrex
