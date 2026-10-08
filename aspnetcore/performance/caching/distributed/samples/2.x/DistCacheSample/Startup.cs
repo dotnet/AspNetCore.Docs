@@ -1,7 +1,7 @@
 // To configure the app to use a distributed Redis cache,
 // change the preprocessor directive to 'Redis'.
-// For more information, see: 
-// https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
+// For more information, see:
+// https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 #define  SQLServer // Redis
 
 using System;
@@ -40,7 +40,7 @@ namespace SampleApp
                 #region snippet_AddDistributedSqlServerCache
                 services.AddDistributedSqlServerCache(options =>
                 {
-                    options.ConnectionString = 
+                    options.ConnectionString =
                         _config["DistCache_ConnectionString"];
                     options.SchemaName = "dbo";
                     options.TableName = "TestCache";
@@ -61,7 +61,7 @@ namespace SampleApp
         }
 
         #region snippet_Configure
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             IApplicationLifetime lifetime, IDistributedCache cache)
         {
             lifetime.ApplicationStarted.Register(() =>
