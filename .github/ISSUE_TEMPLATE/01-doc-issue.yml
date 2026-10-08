@@ -1,5 +1,5 @@
 name: "General feedback"
-description: Provide general feedback about the .NET docs or a specific article.
+description: Provide general feedback about the ASP.NET Core docs or a specific ASP.NET Core article.
 body:
   - type: markdown
     attributes:

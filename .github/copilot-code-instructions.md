@@ -26,7 +26,7 @@ This document contains code-specific instructions for GitHub Copilot when assist
   * [ ] **Use file-relative paths** for snippets located in the same file as the articles that refer to it.
 
     ```markdown
-    :::code language="csharp" source="../snippets/my-doc/Program.cs":::
+    :::code language="csharp" source="my-doc/snippets/Program.cs":::
     ```
 
   * [ ] **Use repository root-relative paths** for shared snippets:
@@ -84,7 +84,7 @@ This document contains code-specific instructions for GitHub Copilot when assist
   * [ ] Rely on markdown prose before/after code snippets for explanations instead of inline comments
   * [ ] Only keep comments that are essential to the code's functionality
 * [ ] Common Syntax Errors to Avoid:
-  * [ ] Using `range="5-10"` instead of `id="snippet_name"`
+  * [ ] Using `range="5-10"` when the intended selection is the named snippet marker `id="snippet_name"`
   * [ ] Using `name="snippet_name"` instead of `id="snippet_name"`
   * [ ] Mixing old [!code-csharp[]] syntax with new triple-colon syntax.  Use triple-colon syntax.
   * [ ] Using absolute line numbers in highlight="" instead of relative to snippet

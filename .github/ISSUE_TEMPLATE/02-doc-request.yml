@@ -19,9 +19,9 @@ body:
   - type: markdown
     attributes:
       value: >
-        "Propose a location for the article. Use the `/` character to
+        Propose a location for the article. Use the `/` character to
         define 'sub-folders' in the table of contents. Start with a top-level
-        guide, and follow through to the parent folder for the new article."
+        guide, and follow through to the parent folder for the new article.
   - type: input
     id: toc-item
     attributes:
@@ -32,8 +32,8 @@ body:
   - type: markdown
     attributes:
       value: >
-        "Explain why the article is needed. What will readers learn? Why is
-        it important? What are the consequences if readers don't learn the topic?"
+        Explain why the article is needed. What will readers learn? Why is
+        it important? What are the consequences if readers don't learn the topic?
   - type: textarea
     id: motivation
     attributes:
