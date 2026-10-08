@@ -1,10 +1,8 @@
 ---
 title: Role-based authorization in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
 description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 04/07/2026
 uid: security/authorization/roles
 ---

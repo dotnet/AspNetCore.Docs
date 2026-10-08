@@ -1,9 +1,7 @@
 ---
 title: Redis backplane for ASP.NET Core SignalR scale-out
-author: wadepickett
 description: Learn how to set up a Redis backplane to enable scale-out for an ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
 ms.date: 07/06/2026
 uid: signalr/redis-backplane
 ---

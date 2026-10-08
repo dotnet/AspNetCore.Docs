@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/websockets
 title: YARP Proxying WebSockets and SPDY
 description: YARP Proxying WebSockets and SPDY
-author: wadepickett
-ms.author: wpickett
 ms.date: 9/28/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution

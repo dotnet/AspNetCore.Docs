@@ -1,7 +1,7 @@
 #define Certificate // Managed
 // Change to 'Managed' to run the sample in Managed Identity configuration.
 // For details, see the Azure Key Vault Configuration Provider topic:
-// https://docs.microsoft.com/aspnet/core/security/key-vault-configuration
+// https://learn.microsoft.com/aspnet/core/security/key-vault-configuration
 
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
