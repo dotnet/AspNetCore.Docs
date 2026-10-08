@@ -8,7 +8,7 @@ where:
 configuration:
   resourceManagementConfiguration:
     eventResponderTasks:
-      - description: Modify PRs that touch certain files
+      - description: Request review from guardrex for PRs that touch certain files
         triggerOnOwnActions: false
         if:
           - payloadType: Pull_Request
