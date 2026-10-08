@@ -1,8 +1,6 @@
 ---
 title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
-author: tdykstra
 description: Shows how to create a Razor Pages app using Entity Framework Core
-ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/23/2025
 uid: data/ef-rp/intro

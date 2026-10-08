@@ -1,0 +1,5 @@
+# Lines starting with '#' are comments.
+
+# Order is important. The last matching pattern has the most precedence.
+
+/aspnetcore/ @guardrex

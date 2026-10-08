@@ -1,10 +1,8 @@
 ---
 title: YARP Direct Forwarding
 ai-usage: ai-assisted
-author: tdykstra
 content_well_notification: AI-contribution
 description: Learn how to use YARP Direct Forwarding to take a specific request and forward it to a specific destination.
-ms.author: tdykstra
 ms.date: 10/07/2026
 ms.topic: concept-article
 uid: fundamentals/servers/yarp/direct-forwarding

@@ -1,9 +1,7 @@
 ---
 title: Partial Tag Helper in ASP.NET Core
-author: wadepickett
 description: Discover the ASP.NET Core Partial Tag Helper and the role each of its attributes play in rendering a partial view.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
 ms.date: 04/06/2019
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---

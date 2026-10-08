@@ -1,9 +1,7 @@
 ---
 title: Get started with ASP.NET Core MVC
-author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/start-mvc
 ---

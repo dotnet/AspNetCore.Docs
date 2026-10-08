@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor `QuickGrid` component
 ai-usage: ai-assisted
-author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: wpickett
 ms.date: 09/17/2026
 uid: blazor/components/quickgrid
 ---

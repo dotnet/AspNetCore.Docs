@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/transforms-request
 title: YARP Request Transforms
 description: YARP Request Transforms
-author: tdykstra
-ms.author: tdykstra
 ms.date: 2/6/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution
