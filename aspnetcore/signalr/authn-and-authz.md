@@ -358,7 +358,7 @@ The sample code demonstrates how to use claims to select the user's email addres
 
 [!code-csharp[Email provider](authn-and-authz/6.0sample/SignalRAuthenticationSample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
-The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
+The account registration adds a claim with type `ClaimTypes.Email` to the ASP.NET identity database.
 
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/6.0sample/SignalRAuthenticationSample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=AddEmailClaim&highlight=14)]
 
@@ -618,7 +618,7 @@ The sample code demonstrates how you would use claims to select the user's email
 
 [!code-csharp[Email provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
-The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
+The account registration adds a claim with type `ClaimTypes.Email` to the ASP.NET identity database.
 
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
 
