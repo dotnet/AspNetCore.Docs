@@ -3,7 +3,7 @@ title: Advanced configuration
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: sfi-image-nochange
-ms.date: 04/21/2026
+ms.date: 10/06/2026
 uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
@@ -472,10 +472,17 @@ Customizing the ANCM handler settings in `web.config` enables shadow copying:
         <handlerSetting name="enableShadowCopy" value="true" />
         <!-- Ensure that the IIS ApplicationPool identity has permission to this directory -->
         <handlerSetting name="shadowCopyDirectory" value="../ShadowCopyDirectory/" />
+        <handlerSetting name="cleanShadowCopyDirectory" value="true" />
       </handlerSettings>
     </aspNetCore>
   </system.webServer>
 </configuration>
 ```
+
+The following handler settings configure shadow copying:
+
+* `enableShadowCopy`: When set to `true`, enables shadow copying of app assemblies.
+* `shadowCopyDirectory`: Specifies the directory where assemblies are shadow copied. Ensure that the IIS `ApplicationPool` identity has read, write, and delete permissions (such as **Modify** permissions) to this directory.
+* `cleanShadowCopyDirectory`: Optional. When set to `true`, cleans the shadow copy directory before copying assemblies on startup. The default value is `false`.
 
 :::moniker-end
