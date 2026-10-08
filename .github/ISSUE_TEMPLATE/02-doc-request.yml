@@ -44,8 +44,8 @@ body:
   - type: markdown
     attributes:
       value: >
-        "Write an opening paragraph or abstract to explain what readers
-        will learn from reading this article."
+        Write an opening paragraph or abstract to explain what readers
+        will learn from reading this article.
   - type: textarea
     id: abstract
     attributes:
@@ -56,10 +56,10 @@ body:
   - type: markdown
     attributes:
       value: >
-        "Tell us about searches you did looking for this information. This helps us
+        Tell us about searches you did looking for this information. This helps us
         in two important ways. First, if the information exists, we can improve
         the findability of the article for those search ideas. If the article
-        doesn't exist, this will help us make sure readers find it once it's written."
+        doesn't exist, this will help us make sure readers find it once it's written.
   - type: textarea
     id: searches
     attributes:
