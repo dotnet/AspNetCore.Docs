@@ -1737,7 +1737,7 @@ For .NET 5 or earlier Kestrel does not support renegotiating after the start of 
 
 Leave questions, comments, and other feedback on optional client certificates in the discussion thread for [GitHub issue #18720](https://github.com/dotnet/AspNetCore.Docs/issues/18720).
 
-## Related content
+## Additional resources
 
 - [Overview of ASP.NET Core authentication](xref:security/authentication/index)
 - [Introduction to authorization in ASP.NET Core](xref:security/authorization/introduction)

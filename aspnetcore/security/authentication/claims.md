@@ -250,7 +250,7 @@ Refer to the following document:
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 - <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation>
 - <xref:System.Security.Claims.ClaimsPrincipal>

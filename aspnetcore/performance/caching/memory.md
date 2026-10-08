@@ -197,7 +197,7 @@ The following notes apply to in-memory caching:
 
 Use a [background service](xref:fundamentals/host/hosted-services) such as the <xref:Microsoft.Extensions.Hosting.IHostedService> interface to update the cache. The background service can recompute the entries and assign them to the cache only after they're ready.
 
-## Related content
+## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [Detect changes with change tokens in ASP.NET Core](xref:fundamentals/change-tokens)

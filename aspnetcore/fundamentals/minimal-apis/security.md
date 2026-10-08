@@ -149,7 +149,7 @@ The generated token can then be sent as part of the header in the testing tool o
 curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/hello
 ```
 
-## Related content
+## Additional resources
 
 - [The authentication service (IAuthenticationService)](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice)
 - [The authorization service (IAuthorizationService)](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice)

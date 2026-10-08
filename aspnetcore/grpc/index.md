@@ -152,7 +152,7 @@ A gRPC client is created by using a channel, which represents a long-lived conne
 
 For more information on creating clients, and calling different service methods, see [Call gRPC services with the .NET client](xref:grpc/client).
 
-## Related content
+## Additional resources
 
 * [gRPC services with ASP.NET Core](xref:grpc/aspnetcore)
 * [gRPC client factory integration in .NET](xref:grpc/clientfactory)
@@ -272,7 +272,7 @@ A gRPC client is created using a channel, which represents a long-lived connecti
 
 For more information on creating clients, and calling different service methods, see <xref:grpc/client>.
 
-## Related content
+## Additional resources
 
 * <xref:grpc/basics>
 * <xref:grpc/aspnetcore>

@@ -262,7 +262,7 @@ When the server enables authentication refresh, the .NET client can replace the 
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)

@@ -590,7 +590,7 @@ In the preceding example, only the account the server runs as is granted `Create
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Related content
+## Additional resources
 
 * [Kestrel web server in ASP.NET Core](xref:fundamentals/servers/kestrel)
 * [Configure options for the ASP.NET Core Kestrel web server](xref:fundamentals/servers/kestrel/options)

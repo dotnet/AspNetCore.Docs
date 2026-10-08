@@ -770,7 +770,7 @@ public class Program
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 * <xref:fundamentals/host/hosted-services>
 * [Generic Host source on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/Host.cs)

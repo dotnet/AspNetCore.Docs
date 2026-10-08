@@ -32,7 +32,7 @@ This article describes how to use route handlers, including examples, parameters
 
 <xref:fundamentals/minimal-apis/responses> describes in detail how values returned from route handlers are converted into responses.
 
-## Related content
+## Additional resources
 
 - [Routing in ASP.NET Core](xref:fundamentals/routing)
 - [Parameter Binding in Minimal API apps](xref:fundamentals/minimal-apis/parameter-binding)

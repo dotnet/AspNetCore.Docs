@@ -747,7 +747,7 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 * [Tutorial: Build an ASP.NET Core and Azure SQL Database app in Azure App Service](/azure/app-service/tutorial-dotnetcore-sqldb-app)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop) (extended details on security features)

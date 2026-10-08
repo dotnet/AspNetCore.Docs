@@ -778,7 +778,7 @@ WebHost.CreateDefaultBuilder(args)
     })
 ```
 
-## Related content
+## Additional resources
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>

@@ -513,7 +513,7 @@ The OAuth and OIDC authentication handlers <xref:Microsoft.AspNetCore.Authentica
 
 :::code language="csharp" source="~/security/authentication/mfa/samples9/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
 
-## Related content
+## Additional resources
 
 * [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
 * [Authentication methods in Microsoft Entra ID - passkeys (FIDO2)](/entra/identity/authentication/concept-authentication-passkeys-fido2)

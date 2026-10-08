@@ -82,7 +82,7 @@ For more information, see [Distributed Cache Tag Helper in ASP.NET Core](xref:mv
 [!INCLUDE[](~/performance/caching/overview/includes/overview7-8.md)]
 [!INCLUDE[](~/performance/caching/overview/includes/overview6.md)]
 
-## Related content
+## Additional resources
 
 * [Cache in-memory in ASP.NET Core](xref:performance/caching/memory)
 * [Distributed caching in ASP.NET Core](xref:performance/caching/distributed)

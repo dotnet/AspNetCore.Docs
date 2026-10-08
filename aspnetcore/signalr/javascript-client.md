@@ -362,7 +362,7 @@ For the refresh options, the success and failure handlers, and the server config
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Related content
+## Additional resources
 
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)

@@ -27,7 +27,7 @@ For more information, see [JavaScript and TypeScript in Visual Studio](/visualst
 
 [!INCLUDE [spa-templates-new-vs-old](../../includes/spa-templates-new-vs-old.md)]
 
-## Related content
+## Additional resources
 
 - [Developing Single Page Apps](/aspnet/core/client-side/spa/intro?view=aspnetcore-7.0&preserve-view=true#developing-single-page-apps)
 

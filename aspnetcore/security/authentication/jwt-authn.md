@@ -157,7 +157,7 @@ The preceding token can be used to test the `/secret2` endpoint in the following
 
 :::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_2" highlight="11-12":::
 
-## Related content
+## Additional resources
 
 - [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer)
 - [JSON Web Tokens](https://www.jwt.io/introduction#what-is-json-web-token)

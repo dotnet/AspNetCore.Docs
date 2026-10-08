@@ -458,7 +458,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 * [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
 * [Authentication](xref:security/authentication/identity)

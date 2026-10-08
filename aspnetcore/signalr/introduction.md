@@ -63,7 +63,7 @@ SignalR supports two built-in hub protocols:
 
 Hubs call client-side code by sending messages that contain the name and parameters of the client-side method. The configured protocol deserializes objects sent as method parameters. The client tries to match the name to a method in the client-side code. When the client finds a match, it calls the method and passes the deserialized parameter data.
 
-## Related content
+## Additional resources
 
 * <xref:tutorials/signalr>
 * <xref:signalr/supported-platforms>

@@ -83,7 +83,7 @@ For information on other cloud providers, see:
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
-## Related content
+## Additional resources
 
 * <xref:security/authentication/identity>
 * <xref:security/authentication/identity-enable-qrcodes>

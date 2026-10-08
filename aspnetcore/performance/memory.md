@@ -424,7 +424,7 @@ Applying the same load as the nonpooled version results in the following chart:
 
 The main difference is allocated bytes, and as a consequence, fewer Gen 0 collections.
 
-## Related content
+## Additional resources
 
 * [ASP.NET Core Blazor performance best practices](xref:blazor/performance/index)
 * [Garbage collection](/dotnet/standard/garbage-collection/)

@@ -396,7 +396,7 @@ The following conditions can prevent configuration from loading:
 * The app has the wrong key vault name (`KeyVaultName`), Microsoft Entra ID Application ID (`AzureADApplicationId`), Microsoft Entra ID certificate thumbprint (`AzureADCertThumbprint`), or Microsoft Entra ID Directory ID (`AzureADDirectoryId`).
 * When the Key Vault access policy is added for the app, the policy is successfully created, but the user didn't select **Save** in the **Access policies** dialog.
 
-## Related content
+## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>

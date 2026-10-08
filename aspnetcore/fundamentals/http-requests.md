@@ -1524,7 +1524,7 @@ Header propagation is a community supported middleware to propagate HTTP headers
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 :::moniker range=">= aspnetcore-6.0"
 

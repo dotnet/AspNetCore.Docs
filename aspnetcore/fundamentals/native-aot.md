@@ -296,7 +296,7 @@ A parameter on the delegate that isn't bound to the body **doesn't** need to be 
 
 To report or review issues with Native AOT support in ASP.NET Core, see [GitHub /dotnet/core/issues #8288)](https://github.com/dotnet/core/issues/8288).
 
-## Related content
+## Additional resources
 
 * [Publish an ASP.NET Core app with Native AOT](xref:fundamentals/native-aot-tutorial)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)

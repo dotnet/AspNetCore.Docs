@@ -83,7 +83,7 @@ By default, server and client assets are generated for each _.proto_ file includ
 
 Similarly, the attribute is set to `Client` in client projects.
 
-## Related content
+## Additional resources
 
 * [Overview for gRPC on .NET](xref:grpc/index)
 * [Create a .NET gRPC client and server in ASP.NET Core](xref:tutorials/grpc/grpc-start)
@@ -160,7 +160,7 @@ By default, server and client assets are generated for each `.proto` file includ
 
 Similarly, the attribute is set to `Client` in client projects.
 
-## Related content
+## Additional resources
 
 * <xref:grpc/index>
 * <xref:tutorials/grpc/grpc-start>

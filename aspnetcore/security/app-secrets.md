@@ -344,7 +344,7 @@ class Program
 }
 ```
 
-## Related content
+## Additional resources
 
 * [GitHub dotnet/aspnetcore.docs issue #30378 (Debugging under Internet Information Services (IIS))](https://github.com/dotnet/AspNetCore.Docs/issues/30378)
 * [GitHub dotnet/aspnetcore.docs issue #16328 (Running in IIS)](https://github.com/dotnet/AspNetCore.Docs/issues/16328)

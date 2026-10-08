@@ -73,6 +73,6 @@ The following table lists the diagnostics available for ASP.NET Core application
 | **[MVC1005](xref:diagnostics/mvc1005)** | Can't use `UseMvc` with Endpoint Routing |
 | **[MVC1006](xref:diagnostics/mvc1006)** | Methods containing Tag Helpers (`TagHelpers`) must be async and return `Task` |
 
-## Related content
+## Additional resources
 
 - [Overview of .NET source code analysis](/dotnet/fundamentals/code-analysis/overview)

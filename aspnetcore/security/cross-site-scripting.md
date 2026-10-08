@@ -296,7 +296,7 @@ Validation is more complicated when HTML is accepted in user input. Parsing HTML
 
 Never rely on validation alone. Always encode untrusted input before output, no matter what validation or sanitization is performed.
 
-## Related content
+## Additional resources
 
 - <xref:fundamentals/dependency-injection>
 - [Unicode 17.0 Character Code Charts](https://www.unicode.org/charts/index.html)

@@ -106,7 +106,7 @@ To run your new YARP project:
 
 - **Visual Studio**: Start the app by selecting **Run** on the main menubar.
 
-## Related content
+## Additional resources
 
 - [Basic YARP sample on GitHub](https://github.com/dotnet/yarp/tree/release/latest/samples/BasicYarpSample)
 - [YARP Configuration Files](xref:fundamentals/servers/yarp/config-files)

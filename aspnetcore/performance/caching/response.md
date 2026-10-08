@@ -180,7 +180,7 @@ The following code applies the `[ResponseCache]` attribute at the controller lev
 
 [!code-csharp[](response/samples/6.x/WebRC/Controllers/TimeController.cs?name=snippet4&highlight=2,17)]
 
-## Related content
+## Additional resources
 
 * [Storing Responses in Caches - RFC 9111: HTTP Caching (Section 3)](https://www.rfc-editor.org/rfc/rfc9111.html#name-storing-responses-in-caches)
 * [Cache-Control - RFC 9111: HTTP Caching (Section 5.2)](https://www.rfc-editor.org/rfc/rfc9111.html#field.cache-control)

@@ -313,7 +313,7 @@ For most apps, a Redis cache provides higher throughput and lower latency than a
 
 If SQL Server is the distributed cache backing store, and the cache and app data storage/retrieval use the same database, performance can be reduced. The recommended approach is to use a dedicated SQL Server instance for the distributed cache backing store.
 
-## Related content
+## Additional resources
 
 * [Redis Cache on Azure](/azure/azure-cache-for-redis/)
 * [SQL Database on Azure](/azure/sql-database/)

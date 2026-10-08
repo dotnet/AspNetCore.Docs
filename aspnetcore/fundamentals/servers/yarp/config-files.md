@@ -252,7 +252,7 @@ The following JSON example shows all properties available for the YARP proxy con
 }
 ```
 
-## Related content
+## Additional resources
 
 - [Logging configuration](diagnosing-yarp-issues.md#logging)
 - [HTTP client configuration](xref:fundamentals/servers/yarp/http-client-config)

@@ -543,7 +543,7 @@ To fix problems with the IIS Express certificate, select **Repair** in the Visua
 
 In some cases, group policy can prevent self-signed certificates from being trusted. For more information, see [GitHub dotnet/aspnetcore issue #21173](https://github.com/dotnet/aspnetcore/issues/21173) - _Error trusting HTTPS developer certificate_.
 
-## Related content
+## Additional resources
 
 * <xref:host-and-deploy/proxy-load-balancer>
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)

@@ -250,7 +250,7 @@ The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface 
 
 The recommended approach is to use the built-in support for Redis or create a custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementation by using direct dependencies on the underlying storage mechanism.
 
-## Related content
+## Additional resources
 
 * [Overview of caching in ASP.NET Core](xref:performance/caching/overview)
 * [ASP.NET Core middleware](xref:fundamentals/middleware/index)

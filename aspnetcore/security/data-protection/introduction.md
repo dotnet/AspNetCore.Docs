@@ -100,7 +100,7 @@ The data protection stack consists of five packages:
 
 * [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine. It's convenient for systems that must handle user passwords securely. For more information, see <xref:security/data-protection/consumer-apis/password-hashing>.
 
-## Related content
+## Additional resources
 
 * <xref:security/data-protection/using-data-protection>
 * <xref:host-and-deploy/web-farm>

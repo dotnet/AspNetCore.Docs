@@ -43,7 +43,7 @@ For a real-world use case of the ASP.NET Core Identity `PasswordHasher` type, se
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-## Related content
+## Additional resources
 
 - [Exploring the ASP.NET Core Identity 'PasswordHasher' type](https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/)
 - [KeyDerivation.Pbkdf2](/dotnet/api/microsoft.aspnetcore.cryptography.keyderivation.keyderivation.pbkdf2)

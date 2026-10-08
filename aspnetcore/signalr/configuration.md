@@ -501,7 +501,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ---
 
-## Related content
+## Additional resources
 
 * <xref:tutorials/signalr>
 * <xref:signalr/hubs>

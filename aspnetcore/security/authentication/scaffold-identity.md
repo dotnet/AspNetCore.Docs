@@ -952,7 +952,7 @@ To prevent publishing static Identity assets to the web root, see <xref:security
 
 :::moniker-end
 
-## Related content
+## Additional resources
 
 - [ASP.NET Core Identity](xref:security/authentication/identity)
 - [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) 

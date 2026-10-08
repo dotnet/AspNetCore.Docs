@@ -192,7 +192,7 @@ The following non-Microsoft providers also offer SignalR backplane:
 * [Rebus](https://github.com/rebus-org/Rebus.SignalR)
 * [SQL Server](https://github.com/IntelliTect/IntelliTect.AspNetCore.SignalR.SqlServer)
 
-## Related content
+## Additional resources
 
 * [Azure SignalR Service documentation](/azure/azure-signalr/signalr-overview)
 * [Set up a Redis backplane](xref:signalr/redis-backplane)
