@@ -269,7 +269,7 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/servers/kestrel>
 * <xref:host-and-deploy/aspnet-core-module>

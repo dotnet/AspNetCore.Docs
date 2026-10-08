@@ -72,7 +72,7 @@ For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-inte
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/hybrid/class-libraries-best-practices>
 * eShop Reference Application (AdventureWorks): The .NET MAUI Blazor Hybrid app is in the `src/HybridApp` folder.

@@ -279,7 +279,7 @@ For example, to add the web API client:
 </Project>
 ```
 
-## Additional resources
+## Related content
 
 * <xref:razor-pages/ui-class>
 * <xref:blazor/components/class-libraries>

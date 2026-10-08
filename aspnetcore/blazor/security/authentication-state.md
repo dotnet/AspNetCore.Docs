@@ -464,7 +464,7 @@ The following component's `SignIn` method creates a claims principal for the use
 > [!NOTE]
 > The preceding code that creates a new <xref:System.Security.Claims.ClaimsIdentity> uses simplified collection initialization introduced with C# 12 (.NET 8). For more information, see [Collection expressions - C# language reference](/dotnet/csharp/language-reference/operators/collection-expressions).
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-8.0"
 

@@ -286,7 +286,7 @@ public void Validate(JsonPatchDocument patch)
   * Protect endpoints accepting JSON Patch requests with proper authentication and authorization mechanisms.
   * Restrict access to trusted clients or users with appropriate permissions.
 
-## Additional resources
+## Related content
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)

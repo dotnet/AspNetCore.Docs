@@ -1804,7 +1804,7 @@ PII refers any information relating to an identified or identifiable natural per
   * Cultural
   * Social identity
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-6.0"
 

@@ -76,10 +76,6 @@ When you start your ASP.NET Core app, it won't launch a CRA server. The instance
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
-## Additional resources
-
-* <xref:security/authentication/identity/spa>
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -176,8 +172,8 @@ When you start your ASP.NET Core app, it won't launch a CRA server. The instance
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
-## Additional resources
-
-* <xref:security/authentication/identity/spa>
-
 :::moniker-end
+
+## Related content
+
+<xref:security/authentication/identity/spa>

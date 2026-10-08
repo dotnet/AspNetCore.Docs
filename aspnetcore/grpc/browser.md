@@ -38,7 +38,7 @@ gRPC JSON transcoding allows browser apps to call gRPC services as if they were 
 > [!NOTE]
 > gRPC JSON transcoding requires .NET 7 or later.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/grpcweb>
 * <xref:grpc/json-transcoding>

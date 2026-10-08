@@ -258,7 +258,7 @@ The contents of the response can be modified from outside of the controller usin
 
 ---
 
-## Additional resources
+## Related content
 
 * [How to Use ModelState Validation in ASP.NET Core Web API](https://code-maze.com/aspnetcore-modelstate-validation-web-api/)
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/middleware/problem-details-service)

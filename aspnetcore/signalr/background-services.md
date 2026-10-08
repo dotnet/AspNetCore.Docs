@@ -204,7 +204,7 @@ During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Get started](xref:tutorials/signalr)
 * [Hubs](xref:signalr/hubs)

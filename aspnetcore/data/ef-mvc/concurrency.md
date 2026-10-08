@@ -282,7 +282,7 @@ Replace the code in `Views/Departments/Create.cshtml` to add a Select option to 
 
 [Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## Additional resources
+## Related content
 
  For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](/ef/core/saving/concurrency).
 

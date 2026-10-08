@@ -912,7 +912,7 @@ Test the app. From a users perspective, the app behaves identically to the previ
 
 The next tutorial shows how to update related data.
 
-## Additional resources
+## Related content
 
 * [YouTube version of this tutorial (part1)](https://www.youtube.com/watch?v=PzKimUDmrvE)
 * [YouTube version of this tutorial (part2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)

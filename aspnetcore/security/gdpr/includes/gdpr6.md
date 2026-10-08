@@ -41,7 +41,7 @@ For databases that don't provide built-in encryption at rest, you may be able to
   * [eCryptfs](https://launchpad.net/ecryptfs)
   * [EncFS](https://github.com/vgough/encfs).
 
-## Additional resources
+## Related content
 
 * [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)
 

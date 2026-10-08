@@ -555,7 +555,7 @@ Use a tool like [Fiddler](https://www.telerik.com/fiddler) or [Firefox Browser D
 * The request must not include the `Content-Range` header.
 * The request must use insecure protocol (http), unless secure protocol (https) is configured in the response compression middleware options. *Note the danger [described above](#risk) when enabling secure content compression.*
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>

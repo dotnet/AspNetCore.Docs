@@ -133,7 +133,7 @@ For more information, see the following resources:
 * [Configuring and hosting .NET WebAssembly applications: EH - Exception handling](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#eh---exception-handling)
 * [Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md)
 
-## Additional resources
+## Related content
 
 * <xref:blazor/performance/webassembly-runtime-performance>
 * <xref:blazor/webassembly-native-dependencies>

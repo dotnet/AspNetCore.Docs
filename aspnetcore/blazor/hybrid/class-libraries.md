@@ -457,7 +457,7 @@ var message = customService.GetMessage();
 
 -->
 
-## Additional resources
+## Related content
 
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>

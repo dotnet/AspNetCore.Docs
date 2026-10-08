@@ -421,7 +421,7 @@ If the app is running, shut the app down by closing the browser's window and pre
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additional resources
+## Related content
 
 * Configuration articles:
   * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)

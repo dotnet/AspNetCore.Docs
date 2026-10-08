@@ -323,7 +323,7 @@ Secure protocol bindings allow specifying a certificate to use when responding t
 
 If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
 
-## Additional resources
+## Related content
 
 * [App Service overview](/azure/app-service/app-service-web-overview)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)

@@ -178,7 +178,7 @@ else
 }
 ```
 
-## Additional resources
+## Related content
 
 * <xref:security/authentication/windowsauth>
 * [Security identifiers (Windows Server documentation)](/windows-server/identity/ad-ds/manage/understand-security-identifiers)

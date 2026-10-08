@@ -1065,7 +1065,7 @@ The files can be found by searching for *aspnetcore* in the *applicationHost.con
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>

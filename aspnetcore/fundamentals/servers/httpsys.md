@@ -367,7 +367,7 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 [!INCLUDE[](includes/memory-eviction2.md)]
 
-## Additional resources
+## Related content
 
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)

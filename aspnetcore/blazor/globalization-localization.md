@@ -1905,7 +1905,7 @@ When using the location override using the **Sensors** pane in Google Chrome or 
 
 For more information, see [Blazor Localization does not work with InteractiveServer (`dotnet/aspnetcore` #53707)](https://github.com/dotnet/aspnetcore/issues/53707).
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-11.0"
 

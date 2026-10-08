@@ -164,7 +164,7 @@ Meanwhile, gRPC JSON transcoding runs inside an ASP.NET Core app. It deserialize
 
 For installation and usage of grpc-gateway, see the [grpc-gateway README](https://github.com/grpc-ecosystem/grpc-gateway/#grpc-gateway).
 
-## Additional resources
+## Related content
 
 * <xref:grpc/json-transcoding-binding>
 * <xref:grpc/browser>

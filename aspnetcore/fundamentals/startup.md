@@ -429,7 +429,7 @@ The ASP.NET Core hosting <xref:System.Diagnostics.Tracing.EventSource> emits the
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Host guidance](xref:fundamentals/index#host)
 * [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling)

@@ -12,7 +12,7 @@ zone_pivot_groups: blazor-hybrid-frameworks
 
 This article describes ASP.NET Core's support for the configuration and management of security and ASP.NET Core Identity in Blazor Hybrid apps.
 
-::: moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0"
 
 Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
 
@@ -540,21 +540,9 @@ When implementing authentication:
   * Intercept the outgoing network request in code.
   * Replace the temporary token with the real token and confirm that the destination of the request is valid.
 
-## Additional resources
-
-* <xref:blazor/security/index>
-* <xref:blazor/hybrid/security/security-considerations>
-* Entra ID documentation for .NET MAUI
-  * [Tutorial: Register and configure .NET MAUI mobile app in an external tenant](/entra/external-id/customers/tutorial-mobile-app-maui-sign-in-prepare-tenant)
-  * [Sign in users in a sample .NET MAUI Android application](/entra/external-id/customers/how-to-mobile-app-maui-sample-sign-in)
-  * [Sign in users in a sample .NET MAUI desktop application](/entra/external-id/customers/how-to-desktop-app-maui-sample-sign-in)
-* Azure documentation for .NET MAUI
-  * [Add authentication to your .NET MAUI app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/maui/authentication)
-  * [MAUI mobile or desktop application using Microsoft Entra ID for authentication](https://github.com/Azure-Samples/ms-identity-dotnetcore-maui)
-
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+::: moniker range="< aspnetcore-7.0"
 
 Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
 
@@ -1082,9 +1070,27 @@ When implementing authentication:
   * Intercept the outgoing network request in code.
   * Replace the temporary token with the real token and confirm that the destination of the request is valid.
 
-## Additional resources
+::: moniker-end
+
+## Related content
+
+:::moniker range=">= aspnetcore-7.0"
+
+* <xref:blazor/security/index>
+* <xref:blazor/hybrid/security/security-considerations>
+* Entra ID documentation for .NET MAUI
+  * [Tutorial: Register and configure .NET MAUI mobile app in an external tenant](/entra/external-id/customers/tutorial-mobile-app-maui-sign-in-prepare-tenant)
+  * [Sign in users in a sample .NET MAUI Android application](/entra/external-id/customers/how-to-mobile-app-maui-sample-sign-in)
+  * [Sign in users in a sample .NET MAUI desktop application](/entra/external-id/customers/how-to-desktop-app-maui-sample-sign-in)
+* Azure documentation for .NET MAUI
+  * [Add authentication to your .NET MAUI app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/maui/authentication)
+  * [MAUI mobile or desktop application using Microsoft Entra ID for authentication](https://github.com/Azure-Samples/ms-identity-dotnetcore-maui)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
 
 * <xref:blazor/security/index>
 * <xref:blazor/hybrid/security/security-considerations>
 
-::: moniker-end
+:::moniker-end

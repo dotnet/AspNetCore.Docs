@@ -500,7 +500,7 @@ An approach similar to the preceding example for retrieving SID group claims can
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>

@@ -191,7 +191,7 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/working-with-forms>
 * <xref:fundamentals/localization>

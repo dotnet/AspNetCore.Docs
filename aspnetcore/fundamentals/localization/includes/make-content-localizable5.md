@@ -123,7 +123,7 @@ Localizing an app also involves the following tasks:
 * [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
 * [Implement a strategy to select the language/culture for each request](xref:fundamentals/localization/select-language-culture)
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/localization>
 * <xref:fundamentals/localization/provide-resources>

@@ -58,7 +58,7 @@ We recommend not deleting data protection keys.
 
 :::code language="csharp" source="~/security/data-protection/configuration/samples/9.x/deleteKeys/Program.cs":::
 
-## Additional resources
+## Related content
 
 * <xref:security/data-protection/extensibility/key-management>
 * <xref:host-and-deploy/web-farm>

@@ -1223,7 +1223,7 @@ For more information, see [Access tokens in the Microsoft identity platform: Tok
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
 
-## Additional resources
+## Related content
 
 * [Call a web API from an ASP.NET Core Blazor app: Microsoft identity platform for web API calls](xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls)
 * [Microsoft identity platform documentation](/entra/identity-platform/)

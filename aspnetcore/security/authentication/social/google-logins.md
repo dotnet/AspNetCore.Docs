@@ -127,6 +127,6 @@ The user is now logged in using Google credentials.
 * After the app is deployed to Azure, reset the `ClientSecret` in the Google API console.
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as app settings in the Azure portal. The configuration system is set up to read keys from the environment variables.
 
-## Additional resources
+## Related content
 
 [Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

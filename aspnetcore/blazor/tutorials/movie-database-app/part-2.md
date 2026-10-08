@@ -642,7 +642,7 @@ Stop the app using the following approach:
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additional resources
+## Related content
 
 EF Core documentation:
 

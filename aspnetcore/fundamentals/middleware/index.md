@@ -1174,7 +1174,7 @@ All |
 [Blazor WebAssembly Debugging](xref:blazor/debug) | Debugs Blazor Web Apps that use client-side rendering (CSR) inside Chromium developer tools. | BWA | At the beginning of the middleware pipeline.
 [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | All | Before middleware that are required to accept WebSocket requests.
 
-## Additional resources
+## Related content
 
 * [Lifetime and registration options (includes middleware sample)](xref:fundamentals/dependency-injection#lifetime-and-registration-options)
 * <xref:fundamentals/middleware/write>

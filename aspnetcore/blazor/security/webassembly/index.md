@@ -368,7 +368,7 @@ For more information, see the following resources:
 * [Microsoft identity platform and implicit grant flow: Prefer the auth code flow](/entra/identity-platform/v2-oauth2-implicit-grant-flow#prefer-the-auth-code-flow)
 * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
 
-## Additional resources
+## Related content
 
 * Microsoft identity platform documentation
   * [General documentation](/entra/identity-platform/)

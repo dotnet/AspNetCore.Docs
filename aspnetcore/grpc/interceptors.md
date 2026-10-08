@@ -290,7 +290,7 @@ gRPC Interceptor differences from ASP.NET Core middleware:
   * Operates on the underlying HTTP/2 messages.
   * Can only access bytes from the request and response streams.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/index>
 * <xref:grpc/services>

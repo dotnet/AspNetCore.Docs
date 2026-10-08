@@ -345,7 +345,7 @@ The default <xref:System.Security.Claims.ClaimsIdentity> provided by the .NET ru
 
 In practice, this distinction rarely matters for role authorization because the role claim type is set once during identity creation and matched consistently. Always use consistent casing for role names and claim types to avoid subtle issues.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/authentication-state>

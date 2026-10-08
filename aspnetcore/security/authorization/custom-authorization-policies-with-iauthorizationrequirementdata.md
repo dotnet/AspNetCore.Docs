@@ -211,6 +211,6 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::
 
-## Additional resources
+## Related content
 
 <xref:mvc/security/authorization/iard>

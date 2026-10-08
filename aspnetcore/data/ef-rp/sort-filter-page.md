@@ -525,7 +525,7 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ![About page](sort-filter-page/_static/about.png)
 
-## Additional resources
+## Related content
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)

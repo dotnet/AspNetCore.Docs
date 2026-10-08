@@ -221,7 +221,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

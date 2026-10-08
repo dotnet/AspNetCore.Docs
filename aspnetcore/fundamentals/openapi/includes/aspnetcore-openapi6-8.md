@@ -196,7 +196,7 @@ Minimal APIs support API versioning via the [Asp.Versioning.Http package](https:
 * [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
 * [`OpenApiGenerator`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/Services/OpenApiGenerator.cs)
 
-## Additional Resources
+## Related content
 
 * <xref:fundamentals/minimal-apis/security>
 

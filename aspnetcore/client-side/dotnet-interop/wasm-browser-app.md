@@ -475,7 +475,7 @@ node bin/$(Configuration)/{TARGET FRAMEWORK}/{PATH}/main.mjs
 
 In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks), and the `{PATH}` placeholder is the path to the `main.mjs` file.
 
-## Additional resources
+## Related content
 
 * <xref:client-side/dotnet-interop/index>
 * <xref:blazor/js-interop/import-export-interop>

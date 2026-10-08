@@ -352,7 +352,7 @@ public void Validate(JsonPatchDocument<T> patch)
 
 To test the sample, run the app and send HTTP requests by using the included `.http` file.
 
-## Additional resources
+## Related content
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)

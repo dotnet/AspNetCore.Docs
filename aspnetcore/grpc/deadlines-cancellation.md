@@ -76,7 +76,7 @@ gRPC services that can be cancelled should:
 * Pass `ServerCallContext.CancellationToken` to async methods. Canceling async methods allows the call on the server to complete quickly.
 * Propagate the cancellation token to child calls. Propagating the cancellation token ensures that child calls are canceled with their parent. [gRPC client factory](xref:grpc/clientfactory) and `EnableCallContextPropagation()` automatically propagates the cancellation token.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/client>
 * <xref:grpc/clientfactory>

@@ -386,6 +386,6 @@ gRPC and HTTP/2 can be effectively load balanced using either an application loa
   * Additional client configuration is required.
   * High-performance, load balanced gRPC calls eliminate the need for a proxy.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/client>

@@ -110,7 +110,7 @@ In the preceding example:
 * The `Microsoft.AspNetCore.Mvc.ApiExplorer.ApiConventionNameMatchBehavior.Prefix` option applied to the method indicates that the convention matches any action prefixed with "Find". Examples of matching actions include `Find`, `FindPet`, and `FindById`.
 * The `Microsoft.AspNetCore.Mvc.ApiExplorer.ApiConventionNameMatchBehavior.Suffix` applied to the parameter indicates that the convention matches methods with exactly one parameter ending in the suffix identifier. Examples include parameters such as `id` or `petId`. `ApiConventionTypeMatch` can be similarly applied to types to constrain the parameter type. A `params[]` argument indicates remaining parameters that don't need to be explicitly matched.
 
-## Additional resources
+## Related content
 
 * [Video: Create metadata for NSwagClient](/shows/beginners-series-to-web-apis/generating-api-clients-17-of-18--beginners-series-to-web-apis)
 * [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/)

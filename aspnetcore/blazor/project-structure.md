@@ -729,7 +729,7 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-7.0"
 

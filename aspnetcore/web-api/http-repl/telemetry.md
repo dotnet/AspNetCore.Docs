@@ -59,7 +59,7 @@ The telemetry feature collects the following data.
 | >=5.0        | For the `connect` command, whether a special case for `dotnet new webapi` was used and, whether it was bypassed via preference. |
 | >=5.0        | For all HTTP commands (for example, GET, POST, PUT), whether each of the options was specified. The values of the options aren't collected. |
 
-## Additional resources
+## Related content
 
 * [.NET SDK telemetry](/dotnet/core/tools/telemetry)
 * [.NET CLI telemetry data](https://dotnet.microsoft.com/platform/telemetry)

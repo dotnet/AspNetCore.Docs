@@ -64,7 +64,7 @@ For more information on Azure data storage options, see the following:
 * [Azure Databases](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage Documentation](/azure/storage/)
 
-## Additional resources
+## Related content
 
 * [State management using the URL](xref:blazor/state-management/index#url)
 * [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)

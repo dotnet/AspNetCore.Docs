@@ -41,7 +41,7 @@ A reverse proxy:
 > [!WARNING]
 > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
 
-## Additional resources
+## Related content
 
 <xref:host-and-deploy/proxy-load-balancer>
 

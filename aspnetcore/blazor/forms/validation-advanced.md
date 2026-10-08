@@ -424,7 +424,7 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-11.0"
 

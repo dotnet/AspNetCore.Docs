@@ -16,7 +16,7 @@ By [Patrick Goode](https://github.com/attrib75)
 
 [Entity Framework Core](/ef/) should be used for new development. The [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/entity-framework-6/3.xsample) uses [Entity Framework 6 (EF6)](/ef/ef6), which can be used to migrate existing apps to ASP.NET Core.
 
-## Additional resources
+## Related content
 
 * [Entity Framework - Code-Based Configuration](/ef/ef6/fundamentals/configuring/code-based)
 

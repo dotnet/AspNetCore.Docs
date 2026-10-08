@@ -127,6 +127,6 @@ For more information on configuration options supported by Facebook authenticati
 
 * Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
 
-## Additional resources
+## Related content
 
 [Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

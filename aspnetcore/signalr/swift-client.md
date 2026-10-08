@@ -230,7 +230,7 @@ let connection = HubConnectionBuilder()
     .build()
 ```
 
-## Additional resources
+## Related content
 
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)

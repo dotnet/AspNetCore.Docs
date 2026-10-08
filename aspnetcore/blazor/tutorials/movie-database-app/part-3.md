@@ -873,7 +873,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additional resources
+## Related content
 
 * [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component)
 * <xref:blazor/components/layouts>

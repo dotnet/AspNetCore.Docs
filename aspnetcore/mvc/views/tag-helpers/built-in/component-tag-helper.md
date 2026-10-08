@@ -325,7 +325,7 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-8.0"
 

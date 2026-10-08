@@ -117,7 +117,7 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 > [!div class="nextstepaction"]
 > <xref:host-and-deploy/iis/index>
 
-## Additional resources
+## Related content
 
 ### Articles in the ASP.NET Core documentation set
 

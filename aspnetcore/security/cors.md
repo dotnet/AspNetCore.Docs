@@ -615,7 +615,7 @@ The following `TodoItems2Controller` provides similar endpoints, but includes ex
 
 The preceding code can be tested by deploying the sample to Azure. In the **Controller** drop down list, select **Preflight** and then **Set Controller**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
 
-## Additional resources
+## Related content
 
 * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
 * [IIS CORS module Configuration Reference](/iis/extensions/cors-module/cors-module-configuration-reference)

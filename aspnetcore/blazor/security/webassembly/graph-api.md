@@ -1281,7 +1281,7 @@ The examples in this article pertain to using the Graph SDK or a named <xref:Sys
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 ### General guidance
 

@@ -266,16 +266,7 @@ Requirements to run gRPC with HTTP.sys:
 
 [!INCLUDE[](~/includes/reset.md)]
 
-## Additional resources
-
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](/windows/win32/http/http-api-start-page)
-* [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* [The host](xref:fundamentals/index#host)
-* <xref:test/troubleshoot>
-
 :::moniker-end
-
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -538,12 +529,12 @@ Requirements to run gRPC with HTTP.sys:
 
 [!INCLUDE[](~/includes/reset.md)]
 
-## Additional resources
+:::moniker-end
+
+## Related content
 
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
-
-:::moniker-end

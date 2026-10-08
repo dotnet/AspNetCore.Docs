@@ -575,7 +575,7 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)

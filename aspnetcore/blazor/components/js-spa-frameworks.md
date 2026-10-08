@@ -482,6 +482,6 @@ Generate JavaScript (JS) components from Razor components for JavaScript technol
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
 
-## Additional resources
+## Related content
 
 <xref:blazor/host-and-deploy/index>

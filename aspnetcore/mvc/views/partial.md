@@ -328,7 +328,7 @@ The second partial view renders the article's sections:
 >
 > But, in a larger sense, we can not dedicate ...
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-2.1"
 

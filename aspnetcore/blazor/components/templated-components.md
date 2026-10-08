@@ -324,7 +324,7 @@ This demonstration allows you to:
 
 Without using the `@key` directive attribute in the `TableTemplate` component, the page's focus remains on the same index position (row) of the table, causing the focus to shift each time a pet is added. To demonstrate this, remove the `@key` directive attribute and value, restart the app, and attempt to modify a field value as items are added.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/performance/rendering#define-reusable-renderfragments-in-code>
 * <xref:blazor/components/key>

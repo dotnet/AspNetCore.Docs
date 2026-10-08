@@ -361,7 +361,7 @@ When incorporating OWIN middleware into your ASP.NET Core application:
 1. **Gradual conversion**: Plan to migrate OWIN middleware to native ASP.NET Core middleware over time
 1. **Monitor compatibility**: Ensure OWIN middleware behavior matches expectations during migration
 
-## Additional resources
+## Related content
 
 * <xref:migration/fx-to-core/areas/authentication>
 * <xref:fundamentals/middleware/index>
