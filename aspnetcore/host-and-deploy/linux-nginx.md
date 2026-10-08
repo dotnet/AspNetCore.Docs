@@ -271,9 +271,9 @@ WantedBy=multi-user.target
 
 In the preceding example, the user that manages the service is specified by the `User` option. The user (`www-data`) must exist and have proper ownership of the app's files.
 
-Setting `KillSignal=SIGTERM` (which is also systemd's default `KillSignal`) allows .NET apps to perform a graceful shutdown and clean up resources properly. Avoid setting `KillSignal=SIGINT`, as .NET lifetime integrations listen for `SIGTERM` to initiate graceful shutdown, and other signals might result in abrupt termination.
+Setting `KillSignal=SIGTERM`, which is also `systemd`'s default `KillSignal`, allows .NET apps to perform a graceful shutdown and clean up resources properly. Avoid setting `KillSignal=SIGINT`, as .NET lifetime integrations listen for `SIGTERM` to initiate graceful shutdown, and other signals might result in abrupt termination.
 
-Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial stop signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (`systemd-system.conf`, `system.conf.d`, `systemd-user.conf`, `user.conf.d`). The default timeout for most distributions is 90 seconds.
+Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial stop signal. If the app doesn't shut down in this period, `SIGKILL` is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or infinity (`infinity`) to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (`systemd-system.conf`, `system.conf.d`, `systemd-user.conf`, `user.conf.d`). The default timeout for most distributions is 90 seconds.
 
 ```text
 # The default value is 90 seconds for most distributions.
