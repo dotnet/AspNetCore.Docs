@@ -14,7 +14,7 @@ Provides troubleshooting advice for apps deployed to IIS or running on IIS Expre
 [Clear package caches](#clear-package-caches)  
 Explains what to do when incoherent packages break an app when performing major upgrades or changing package versions.
 
-[Additional resources](#additional-resources)  
+[Related content](#related-content)  
 Lists additional troubleshooting topics.
 
 ## App startup errors

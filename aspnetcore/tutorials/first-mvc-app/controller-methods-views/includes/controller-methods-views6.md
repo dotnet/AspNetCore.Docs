@@ -36,7 +36,7 @@ Recall the format for [routing](xref:mvc/controllers/routing) set in the `Progra
 
 ASP.NET Core translates `https://localhost:5001/Movies/Edit/4` into a request to the `Edit` action method of the `Movies` controller with the parameter `Id` of 4. (Controller methods are also known as action methods.)
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) are a popular feature in ASP.NET Core. For more information about them, see [Additional resources](#additional-resources).
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) are a popular feature in ASP.NET Core. For more information about them, see [Related content](#related-content).
 
 <a name="get-post"></a>
 

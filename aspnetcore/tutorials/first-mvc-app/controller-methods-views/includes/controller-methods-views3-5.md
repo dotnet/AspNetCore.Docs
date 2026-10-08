@@ -36,7 +36,7 @@ Recall the format for [routing](xref:mvc/controllers/routing) set in the `Startu
 
 ASP.NET Core translates `https://localhost:5001/Movies/Edit/4` into a request to the `Edit` action method of the `Movies` controller with the parameter `Id` of 4. (Controller methods are also known as action methods.)
 
-For more information about [Tag Helpers](xref:mvc/views/tag-helpers/intro), see [Additional resources](#additional-resources).
+For more information about [Tag Helpers](xref:mvc/views/tag-helpers/intro), see [Related content](#related-content).
 
 <a name="get-post"></a>
 
