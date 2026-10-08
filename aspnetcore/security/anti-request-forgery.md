@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/07/2026
+ms.date: 10/08/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -433,10 +433,23 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>
 
-> [!NOTE]
-> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in `Program.cs` to add the middleware to the request processing pipeline (present by default in the Blazor Web App project template). MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#afwma).
+:::moniker-end
 
-For more information, see [Antiforgery with Minimal APIs](#afwma).
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in `Program.cs` to add the middleware to the request processing pipeline. MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#antiforgery-with-minimal-apis).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
+> [!NOTE]
+> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in `Program.cs` to add the middleware to the request processing pipeline (present by default in the Blazor Web App project template). MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#antiforgery-with-minimal-apis).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
@@ -617,8 +630,6 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 > [!NOTE]
 > When the antiforgery token is provided in both the request header and in the form payload, only the token in the header is validated.
-
-<a name="afwma"></a>
 
 ## Antiforgery with Minimal APIs
 
