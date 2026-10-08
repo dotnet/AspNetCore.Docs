@@ -1,8 +1,6 @@
 ---
 title: Handle requests with controllers in ASP.NET Core MVC
-author: ardalis
 description: Learn how ASP.NET Core MVC controllers and Actions handle requests and return responses.
-ms.author: tdykstra
 ms.date: 04/27/2026
 uid: mvc/controllers/actions
 ---

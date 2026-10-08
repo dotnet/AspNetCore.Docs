@@ -1,10 +1,8 @@
 ---
 title: Handle errors in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
 ms.date: 08/10/2026
 uid: fundamentals/error-handling
 ---

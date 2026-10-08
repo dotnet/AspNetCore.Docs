@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/distributed-tracing
 title: YARP Distributed tracing
 description: YARP Distributed tracing
-author: tdykstra
-ms.author: tdykstra
 ms.date: 05/15/2026
 ms.topic: concept-article
 content_well_notification: AI-contribution

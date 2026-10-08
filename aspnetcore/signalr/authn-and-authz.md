@@ -1,10 +1,8 @@
 ---
 title: SignalR authentication and authorization
 ai-usage: ai-assisted
-author: wadepickett
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 09/20/2026
 uid: signalr/authn-and-authz
 ---

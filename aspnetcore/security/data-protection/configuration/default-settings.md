@@ -1,8 +1,6 @@
 ---
 title: Data Protection key management and lifetime in ASP.NET Core
-author: tdykstra
 description: Learn about Data Protection key management and lifetime in ASP.NET Core.
-ms.author: tdykstra
 ms.date: 10/14/2016
 uid: security/data-protection/configuration/default-settings
 ---

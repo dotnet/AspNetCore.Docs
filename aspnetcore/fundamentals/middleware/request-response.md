@@ -1,9 +1,7 @@
 ---
 title: Request and Response operations in ASP.NET Core
-author: tdykstra
 description: Learn how to read the request body and write the response body in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: tdykstra
 ms.date: 04/24/2025
 uid: fundamentals/middleware/request-response
 ---
