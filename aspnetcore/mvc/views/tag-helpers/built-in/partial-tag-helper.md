@@ -2,7 +2,7 @@
 title: Partial Tag Helper in ASP.NET Core
 description: Discover the ASP.NET Core Partial Tag Helper and the role each of its attributes play in rendering a partial view.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 04/06/2019
+ms.date: 10/08/2026
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---
 # Partial Tag Helper in ASP.NET Core
@@ -57,6 +57,8 @@ The partial view is bound to the associated page model's `Product` property:
 ## model
 
 The `model` attribute assigns a model instance to pass to the partial view. The `model` attribute can't be used with the [for](#for) attribute.
+
+When neither `for` nor `model` is specified, the Partial Tag Helper falls back to passing the calling view's model (`ViewContext.ViewData.Model`) to the partial view.
 
 In the following markup, a new `Product` object is instantiated and passed to the `model` attribute for binding:
 
