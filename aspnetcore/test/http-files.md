@@ -1,9 +1,7 @@
 ---
 title: Use .http files in Visual Studio 2022
-author: tdykstra
 description: Learn how to use .http files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: tdykstra
 ms.date: 09/18/2025
 ms.topic: how-to
 uid: test/http-files

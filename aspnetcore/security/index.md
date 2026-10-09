@@ -1,8 +1,6 @@
 ---
 title: ASP.NET Core security topics
-author: tdykstra
 description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
-ms.author: tdykstra
 ms.custom: sfi-ropc-nochange
 ms.date: 05/13/2026
 uid: security/index

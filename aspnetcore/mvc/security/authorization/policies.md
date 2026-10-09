@@ -1,10 +1,8 @@
 ---
 title: Policy-based authorization in ASP.NET Core MVC
 ai-usage: ai-assisted
-author: wadepickett
 description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core MVC app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 07/21/2026
 uid: mvc/security/authorization/policies
 ---

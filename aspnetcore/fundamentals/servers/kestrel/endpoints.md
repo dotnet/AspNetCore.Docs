@@ -1,10 +1,8 @@
 ---
 title: Configure endpoints for Kestrel web server
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: tdykstra
 ms.date: 09/24/2026
 uid: fundamentals/servers/kestrel/endpoints
 ---
@@ -177,7 +175,7 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ListenUnixSocket":::
 
-* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`, where `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A>. In the code exmaple, the name is `kestrel-test.sock`.
+* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`, where `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A>. In the code example, the name is `kestrel-test.sock`.
 * Ensure the socket is writeable by Nginx. (You can set the write permissions on the socket with the `chmod go+w /tmp/kestrel-test.sock` command).
 
 #### Configure endpoint defaults

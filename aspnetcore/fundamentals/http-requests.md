@@ -1,10 +1,8 @@
 ---
 title: HTTP requests with IHttpClientFactory - ASP.NET Core
-author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
-ms.date: 04/27/2026
+ms.date: 10/08/2026
 uid: fundamentals/http-requests
 
 # customer intent: As an ASP.NET developer, I want to use the IHttpClientFactory interface in ASP.NET Core, so I can manage logical HttpClient instances.
@@ -195,7 +193,7 @@ More than one handler can be added to the configuration for an `HttpClient` inst
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpMessageHandler":::
 
-In the code snippet, the `ValidateHeaderHandler` is registered with DI. After registration, the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
+In the code snippet, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. After registration, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -610,7 +608,7 @@ More than one handler can be added to the configuration for an `HttpClient` with
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
-In the preceding code, the `ValidateHeaderHandler` is registered with DI. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
+In the preceding code, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -1024,7 +1022,7 @@ More than one handler can be added to the configuration for an `HttpClient` with
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
-In the preceding code, the `ValidateHeaderHandler` is registered with DI. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
+In the preceding code, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 

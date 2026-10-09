@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core SignalR Java client
-author: mikaelm12
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: wpickett
-ms.date: 11/12/2019
+ms.date: 10/02/2026
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
@@ -44,7 +42,7 @@ A call to `send` invokes a hub method. Pass the hub method name and any argument
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
 > [!NOTE]
-> Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
+> Calling hub methods from a client is only supported when using the Azure SignalR Service in [*Default* mode](/azure/azure-signalr/concept-service-mode#default-mode).
 
 ## Call client methods from hub
 
@@ -72,10 +70,11 @@ This can safely be ignored.
 
 ## Android development notes
 
-With regards to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
+With regard to Android SDK compatibility for the SignalR client features, consider the following items when specifying your target Android SDK version:
 
-* The SignalR Java Client will run on Android API Level 16 or later.
-* Connecting through the Azure SignalR Service will require Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
+* The SignalR Java client runs on Android API Level 16 or later.
+* Connecting through the Azure SignalR Service requires Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
+* When using [MessagePack](xref:signalr/messagepackhubprotocol) for the Java client, see [MessagePack considerations: Android device support](xref:signalr/messagepackhubprotocol#android-device-support).
 
 ## Configure bearer token authentication
 

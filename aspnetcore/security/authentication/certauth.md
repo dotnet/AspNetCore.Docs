@@ -1,10 +1,8 @@
 ---
 title: Configure certificate authentication in ASP.NET Core
 ai-usage: ai-assisted
-author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 08/07/2026
 ms.reviewer: shalter
 uid: security/authentication/certauth

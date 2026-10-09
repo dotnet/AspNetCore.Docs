@@ -1,9 +1,7 @@
 ---
 title: Host and deploy ASP.NET Core Blazor WebAssembly with Apache
-author: guardrex
 description: Learn how to host and deploy Blazor WebAssembly using Apache.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.custom: linux-related-content
 ms.date: 11/11/2025
 uid: blazor/host-and-deploy/webassembly/apache
@@ -131,7 +129,7 @@ The following example hosts the app at a root URL (no sub-app path):
 </VirtualHost>
 ```
 
-To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following entires is the sub-app path:
+To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following entries is the sub-app path:
 
 ```
 <VirtualHost *:*>
