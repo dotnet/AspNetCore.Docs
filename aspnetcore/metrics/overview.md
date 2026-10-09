@@ -34,7 +34,7 @@ Instrumented code can record numeric measurements, but to create useful metrics 
 * Populating metrics in [Grafana](https://grafana.com/) with [OpenTelemetry](https://opentelemetry.io/) and [Prometheus](https://prometheus.io/).
 * Viewing metrics in real time with [`dotnet-counters`](/dotnet/core/diagnostics/dotnet-counters).
 
-For another visualization option, see the [.NET Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview).
+For another visualization option, see the [.NET Aspire dashboard overview](https://aspire.dev/dashboard/overview/).
 
 You can also associate measurements with key-value pairs called tags that allow you to categorize data for analysis. For more information, see [Multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics).
 
@@ -346,6 +346,6 @@ For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotn
 
 ## Additional resources
 
-* [.NET Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
+* [.NET Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 * [Explore .NET Aspire telemetry](/dotnet/aspire/fundamentals/telemetry)
 * <xref:metrics/built-in>
