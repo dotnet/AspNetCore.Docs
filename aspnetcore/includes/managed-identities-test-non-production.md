@@ -1,6 +1,4 @@
 ---
-author: wpickett
-ms.author: wpickett
 ms.date: 08/22/2024
 ms.topic: include
 ---

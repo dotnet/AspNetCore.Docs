@@ -1,9 +1,7 @@
 ---
 title: File Providers in ASP.NET Core
-author: tdykstra
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
 ms.date: 04/06/2020
 uid: fundamentals/file-providers
 ---

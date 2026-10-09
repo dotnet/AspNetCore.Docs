@@ -1,10 +1,7 @@
 ---
 title: JsonPatch in ASP.NET Core web API
-author: wadepickett
 description: "JSON Patch in ASP.NET Core web API: Learn how to handle JSON Patch requests, apply partial updates, and improve API efficiency with System.Text.Json."
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.reviewer: wpickett
 ms.date: 09/23/2026
 uid: web-api/jsonpatch
 ---

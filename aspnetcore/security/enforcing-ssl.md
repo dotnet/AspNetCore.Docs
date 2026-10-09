@@ -1,15 +1,11 @@
 ---
 title: Enforce HTTPS in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
-ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 10/05/2026
+ms.date: 10/09/2026
 uid: security/enforcing-ssl
-
-# customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
 ---
 # Enforce HTTPS in ASP.NET Core
 

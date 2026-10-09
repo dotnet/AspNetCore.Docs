@@ -1,8 +1,6 @@
 ---
 title: Work with SameSite cookies in ASP.NET Core
-author: tdykstra
 description: Learn how to use to SameSite cookies in ASP.NET Core
-ms.author: tdykstra
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 5/20/2022
 uid: security/samesite
