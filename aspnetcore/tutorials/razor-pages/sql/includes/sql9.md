@@ -115,9 +115,10 @@ Update the `Program.cs` with the following highlighted code:
 
 In the previous code, `Program.cs` has been modified to do the following:
 
-* Get a database context instance from the dependency injection (DI) container.
-* Call the `seedData.Initialize` method, passing to it the database context instance.
-* Dispose the context when the seed method completes. The [using statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
+* Create a service scope with `app.Services.CreateScope()`.
+* Obtain the service provider (<xref:System.IServiceProvider>) from the scope.
+* Call the `SeedData.Initialize` method, passing to it the service provider.
+* Dispose the service scope when the seed method completes. The [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the scope is disposed.
 
 The following exception occurs when `Update-Database` has not been run:
 
