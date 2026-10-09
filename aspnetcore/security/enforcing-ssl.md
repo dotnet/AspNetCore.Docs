@@ -287,7 +287,7 @@ Run the normal trust command from the WSL distribution:
 dotnet dev-certs https --trust
 ```
 
-When WSL interop is enabled, the command trusts the ASP.NET Core HTTPS development certificate in the Linux trust locations described in this section and also adds the public certificate to the Windows Current User Root certificate store. You no longer need to export a PFX from Windows and import it into WSL for the common development setup.
+When WSL interop is enabled, the command attempts to trust the ASP.NET Core HTTPS development certificate in the Linux trust locations described in this section and also attempts to add the public certificate to the Windows Current User Root certificate store. You no longer need to export a PFX from Windows and import it into WSL for the common development setup.
 
 If Windows trust isn't established, confirm that WSL interop is enabled and rerun the command. The Linux trust steps are still per-user and can require the OpenSSL, NSS, or browser-specific configuration described in this article.
 
