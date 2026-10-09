@@ -1,8 +1,6 @@
 ---
 title: Part 3, Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging
-author: tdykstra
 description: Part 3 of Razor Pages and Entity Framework tutorial series.
-ms.author: tdykstra
 ms.date: 3/3/2021
 uid: data/ef-rp/sort-filter-page
 ---

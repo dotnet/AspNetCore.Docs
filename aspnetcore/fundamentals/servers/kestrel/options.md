@@ -1,11 +1,9 @@
 ---
 title: Configure options for the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: tdykstra
-ms.date: 10/01/2026
+ms.date: 10/09/2026
 uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server

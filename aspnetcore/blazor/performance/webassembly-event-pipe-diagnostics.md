@@ -1,9 +1,7 @@
 ---
 title: ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
-author: guardrex
 description: Learn about Event Pipe diagnostics and how to get a Garbage Collector heap dump in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: wpickett
 ms.date: 11/11/2025
 uid: blazor/performance/webassembly-event-pipe
 ---
@@ -93,7 +91,7 @@ For more information, see [Use EventPipe to trace your .NET application](/dotnet
 
 The [`Timing-Allow-Origin` HTTP header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Timing-Allow-Origin) allows for more precise time measurements.
 
-## How to observe metrics emmited by a WebAssembly app
+## How to observe metrics emitted by a WebAssembly app
 
 In the app's project file (`.csproj`), add following properties for the duration of the investigation:
 

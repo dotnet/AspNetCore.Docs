@@ -1,9 +1,7 @@
 ---
 title: HTTP logging in .NET and ASP.NET Core
-author: tdykstra
 description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: tdykstra
 ms.date: 04/25/2025
 uid: fundamentals/http-logging/index
 ---
