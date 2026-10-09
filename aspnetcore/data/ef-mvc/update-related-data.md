@@ -1,11 +1,10 @@
 ---
 title: "Tutorial: Update related data - ASP.NET MVC with EF Core"
 description: In this tutorial you update related data by updating foreign key fields and navigation properties.
-ms.date: 03/27/2019
+ms.date: 10/09/2026
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
 ---
-
 # Tutorial: Update related data - ASP.NET MVC with EF Core
 
 In the previous tutorial you displayed related data; in this tutorial you'll update related data by updating foreign key fields and navigation properties.
