@@ -1,5 +1,6 @@
 ---
 title: Using DisplayTemplates and EditorTemplates
+ai-usage: ai-assisted
 description: How to use DisplayTemplates and EditorTemplates in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/22/2022
@@ -12,7 +13,7 @@ By [Alexander Wicht](https://github.com/Ducki/)
 
 Display and Editor templates specify the user interface layout of custom types. Consider the following `Address` model:
 
-[!code-csharp[](display-templates/sample/Address.cs)]
+[!code-csharp[](display-templates/samples/Address.cs)]
 
 A project that [scaffolds](xref:tutorials/razor-pages/model#scaffold-the-movie-model) the `Address` model displays the `Address` in the following form:
 
@@ -37,21 +38,21 @@ A `DisplayTemplate` is a [Razor](xref:mvc/views/razor) file placed in the`Displa
 
 By convention, the `DisplayTemplate` file is named after the type to be displayed. The `Address.cshtml` template used in this sample:
 
-[!code-cshtml[](display-templates/sample/Pages/Shared/DisplayTemplates/Address.cshtml)]
+[!code-cshtml[](display-templates/samples/Pages/Shared/DisplayTemplates/Address.cshtml)]
 
 The view engine automatically looks for a file in the `DisplayTemplates` folder that matches the name of the type. If it doesn't find a matching template, it falls back to the built in templates.
 
 The following code shows the Details view of the scaffolded project:
 
-[!code-cshtml[](display-templates/sample/Pages/Adr/Details.cshtml)]
+[!code-cshtml[](display-templates/samples/Pages/Adr/Details.cshtml)]
 
 The following code shows the Details view using the Address Display Template:
 
-[!code-cshtml[](display-templates/sample/Pages/Adr2/Details.cshtml?highlight=15)]
+[!code-cshtml[](display-templates/samples/Pages/Adr2/Details.cshtml?highlight=15)]
 
 To reference a template whose name doesn't match the type name, use the `templateName` parameter in the <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor%2A> method. For example, the following markup displays the `Address` model with the `AddressShort` template:
 
-[!code-cshtml[](display-templates/sample/Pages/Adr2/DetailsCC.cshtml?highlight=15)]
+[!code-cshtml[](display-templates/samples/Pages/Adr2/DetailsCC.cshtml?highlight=15)]
 
 Use one of the available [DisplayFor overloads](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor*#overloads) that expose the `additionalViewData` parameter to pass additional view data that is merged into the [View Data Dictionary](xref:mvc/views/overview#viewdata) instance created for the template.
 
@@ -66,11 +67,11 @@ An `EditorTemplate` is a [Razor](xref:mvc/views/razor) file placed in the`Editor
 
 The following markup shows the `Pages/Shared/EditorTemplates/Address.cshtml` used in the sample:
 
-[!code-cshtml[](display-templates/sample/Pages/Shared/EditorTemplates/Address.cshtml)]
+[!code-cshtml[](display-templates/samples/Pages/Shared/EditorTemplates/Address.cshtml)]
 
 The following markup shows the *Edit.cshtml* page which uses the `Pages/Shared/EditorTemplates/Address.cshtml` template:
 
-[!code-cshtml[](display-templates/sample/Pages/Adr2/Edit.cshtml?highlight=17)]
+[!code-cshtml[](display-templates/samples/Pages/Adr2/Edit.cshtml?highlight=17)]
 
 ## Additional resources
 

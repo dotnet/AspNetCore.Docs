@@ -1,5 +1,6 @@
 ---
 title: Write custom ASP.NET Core middleware
+ai-usage: ai-assisted
 description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 06/21/2025
@@ -21,7 +22,7 @@ This topic describes how to write *convention-based* middleware. For an approach
 
 Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following inline middleware, which sets the culture for the current request from a query string:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first" highlight="8-21":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/Program.cs" id="snippet_first" highlight="8-21":::
 
 The preceding highlighted inline middleware is used to demonstrate creating a middleware component by calling <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A?displayProperty=fullName>. The preceding `Use` extension method adds a middleware [delegate](/dotnet/csharp/programming-guide/delegates/) defined in-line to the application's request pipeline.
 
@@ -40,7 +41,7 @@ For ASP.NET Core's built-in localization support, see <xref:fundamentals/localiz
 
 The following code moves the middleware delegate to a class:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_1":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_1":::
 
 The middleware class must include:
 
@@ -53,11 +54,11 @@ Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populat
 
 Typically, an extension method is created to expose the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_all" highlight="30-99":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_all" highlight="30-99":::
 
 The following code calls the middleware from `Program.cs`:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_2" highlight="9":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/Program.cs" id="snippet_2" highlight="9":::
 
 ## Middleware dependencies
 
@@ -70,17 +71,17 @@ Middleware components can resolve their dependencies from [dependency injection 
 Middleware is constructed at app startup and therefore has application life
 time. [Scoped lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) services used by middleware constructors aren't shared with other dependency-injected types during each request. To share a *scoped* service between middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/MyCustomMiddleware.cs":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/MyCustomMiddleware.cs":::
 
 [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
 
 The following code is used to test the preceding middleware:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_3" highlight="4,10":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/Program.cs" id="snippet_3" highlight="4,10":::
 
 The `IMessageWriter` interface and implementation:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/IMessageWriter.cs":::
+:::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/IMessageWriter.cs":::
 
 ## Additional resources
 

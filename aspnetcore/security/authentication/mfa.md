@@ -1,5 +1,6 @@
 ---
 title: Multi-factor authentication in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/07/2026
@@ -511,7 +512,7 @@ Alternatively, when the user signs in by using OTP with Identity, the `amr` clai
 
 The OAuth and OIDC authentication handlers <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.AdditionalAuthorizationParameters> option allows customization of authorization message parameters that are commonly included as part of the redirect query string:
 
-:::code language="csharp" source="~/security/authentication/mfa/samples9/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
+:::code language="csharp" source="~/security/authentication/mfa/samples/9/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
 
 ## Related content
 

@@ -1,5 +1,6 @@
 ---
 title: Map, customize, transform claims in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to map claims, perform claims transformations, and customize claims in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/15/2026
@@ -25,13 +26,13 @@ This article describes how to configure and map claims by using an [OpenID Conne
 
 The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When you use the `id_token` for claims, no extra claims mapping is required.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet1&highlight=8-26)]
+[!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/Program.cs?name=snippet1&highlight=8-26)]
 
 The preceding code requires the [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) NuGet package.
 
 Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client app uses the `GetClaimsFromUserInfoEndpoint` property to do the configuration. In this scenario, you must explicitly specify the required claims by using the `MapUniqueJsonKey` method. Otherwise, only the `name`, `given_name`, and `email` standard claims are available in the client app. The claims included in the `id_token` are mapped per default.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=26-29)]
+[!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/Program.cs?name=snippet2&highlight=26-29)]
 
 :::moniker-end
 
@@ -54,7 +55,7 @@ The **name** claim and **role** claim are mapped to default properties in the AS
 
 If the `User.Identity.Name` property has no value, or the roles are missing, check the values in the returned claims and set the `NameClaimType` and the `RoleClaimType` values. The returned claims from the client authentication can be viewed in the HTTP context.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_name&highlight=10-14)]
+[!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/Program.cs?name=snippet_name&highlight=10-14)]
 
 ## Claims namespaces, default namespaces
 
@@ -64,12 +65,12 @@ ASP.NET Core adds default namespaces to some known claims. The default claims mi
 
 :::moniker range=">= aspnetcore-8.0"
 
-[!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
+[!code-csharp[](~/security/authentication/claims/samples/8/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
 
 :::moniker-end
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
+[!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
 
 :::moniker-end
 
@@ -77,13 +78,13 @@ ASP.NET Core adds default namespaces to some known claims. The default claims mi
 
 If you need to disable the namespaces per scheme and not globally, you can use the `MapInboundClaims = false` option.
 
-[!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS8&highlight=20)]
+[!code-csharp[](~/security/authentication/claims/samples/8/WebRPmapClaims/Program.cs?name=snippet_NS8&highlight=20)]
 
 ## Extend or add custom claims using 'IClaimsTransformation'
 
 The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method, <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>. This method might be called multiple times. Only add a new claim if it doesn't already exist in the `ClaimsPrincipal`. A `ClaimsIdentity` object is created to add the new claims and it can be added to the `ClaimsPrincipal`.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/MyClaimsTransformation.cs)]
+[!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/MyClaimsTransformation.cs)]
 
 The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface and the `MyClaimsTransformation` class can be registered as a service:
 

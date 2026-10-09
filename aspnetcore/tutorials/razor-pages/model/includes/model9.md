@@ -12,7 +12,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -34,7 +34,7 @@ Build the project to verify there are no compilation errors.
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -133,10 +133,10 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
 
 ---
 
@@ -216,7 +216,7 @@ The data context `RazorPagesMovieContext`:
 
 The `RazorPagesMovieContext` class in the generated file `Data/RazorPagesMovieContext.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -255,16 +255,16 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 The scaffolding tool automatically created a database context and registered it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_all&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Program.cs?name=snippet_all&highlight=8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_all_sl&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-9/Program.cs?name=snippet_all_sl&highlight=8-9)]
 
 ---
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie90) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Next steps
 

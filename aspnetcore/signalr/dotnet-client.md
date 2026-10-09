@@ -40,7 +40,7 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client
 
 To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `Build`. Start the connection with `StartAsync`.
 
-[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
+[!code-csharp[Build hub connection](dotnet-client/samples/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
 
 ## Handle lost connection
@@ -220,13 +220,13 @@ The main reason for the async support is so you can restart the connection. Star
 
 In a `Closed` handler that restarts the connection, consider waiting for some random delay to prevent overloading the server, as shown in the following example:
 
-[!code-csharp[Use Closed event handler to automate reconnection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ClosedRestart)]
+[!code-csharp[Use Closed event handler to automate reconnection](dotnet-client/samples/signalrchatclient/MainWindow.xaml.cs?name=snippet_ClosedRestart)]
 
 ## Call hub methods from client
 
 `InvokeAsync` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `InvokeAsync`. SignalR is asynchronous, so use `async` and `await` when making the calls.
 
-[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
+[!code-csharp[InvokeAsync method](dotnet-client/samples/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
 
 The `InvokeAsync` method returns a `Task` that completes when the server method returns. The return value, if any, is provided as the result of the `Task`. Any exceptions thrown by the method on the server produce a faulted `Task`. Use `await` syntax to wait for the server method to complete and `try...catch` syntax to handle errors.
 
@@ -239,11 +239,11 @@ The `SendAsync` method returns a `Task` that completes when the message is sent 
 
 Define the methods that the hub calls by using `connection.On` after building, but before starting the connection:
 
-[!code-csharp[Define client methods](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ConnectionOn)]
+[!code-csharp[Define client methods](dotnet-client/samples/signalrchatclient/MainWindow.xaml.cs?name=snippet_ConnectionOn)]
 
 The preceding code in `connection.On` runs when server-side code calls it by using the `SendAsync` method:
 
-[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
+[!code-csharp[Call client method](dotnet-client/samples/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
 
 > [!NOTE]
 > While the hub side of the connection supports strongly typed messaging, the client must register by using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On%2A?displayProperty=nameWithType> with the method name. For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
@@ -252,7 +252,7 @@ The preceding code in `connection.On` runs when server-side code calls it by usi
 
 Handle errors with a `try...catch` statement. Inspect the `Exception` object to determine the proper action to take after an error occurs:
 
-[!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
+[!code-csharp[Logging](dotnet-client/samples/signalrchatclient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
 
 :::moniker range=">= aspnetcore-11.0"
 

@@ -1,5 +1,6 @@
 ---
 title: Link Tag Helper in ASP.NET Core
+ai-usage: ai-assisted
 description: Discover the ASP.NET Core Link Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Link tag.
 ms.date: 09/24/2019
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
@@ -16,11 +17,11 @@ The Link Tag Helper allows you to specify a CDN for the CSS file and a fallback 
 
 The following Razor markup shows the `head` element of a layout file created with the ASP.NET Core web app template:
 
-[!code-cshtml[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
+[!code-cshtml[](link-tag-helper/samples/_Layout.cshtml?name=snippet)]
 
 The following is rendered HTML from the preceding code (in a non-`Development` environment):
 
-[!code-html[](link-tag-helper/sample/HtmlPage1.html)]
+[!code-html[](link-tag-helper/samples/HtmlPage1.html)]
 
 In the preceding code, the Link Tag Helper generated the `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` element and the following JavaScript which is used to verify the requested `bootstrap.css` file is available on the CDN. In this case, the CSS file was available so the Tag Helper generated the `<link />` element with the CDN CSS file.
 

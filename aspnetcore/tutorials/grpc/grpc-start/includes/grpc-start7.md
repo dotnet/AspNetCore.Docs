@@ -224,7 +224,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Update the gRPC client `Program.cs` file with the following code.
 
-  [!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample7/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
+  [!code-csharp[](~/tutorials/grpc/grpc-start/samples/7/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
 
 * In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in `Properties/launchSettings.json` within the `GrpcGreeter` service project.
 
@@ -235,17 +235,17 @@ The Greeter client is created by:
 * Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
 * Using the `GrpcChannel` to construct the Greeter client:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample7/GrpcGreeterClient/Program.cs?name=snippet&highlight=1-3)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/samples/7/GrpcGreeterClient/Program.cs?name=snippet&highlight=1-3)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample7/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-7)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/samples/7/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-7)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
 Update the `appsettings.Development.json` file by adding the following highlighted lines:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/samples/8/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -287,7 +287,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\sample\GrpcGreeter
+      Content root path: C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\samples\GrpcGreeter
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
       Request starting HTTP/2 POST https://localhost:<port>/Greet.Greeter/SayHello application/grpc
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
@@ -303,7 +303,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### Next steps
 
-* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample/sample6) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/samples/sample6) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/migration>

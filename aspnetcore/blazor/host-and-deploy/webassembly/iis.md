@@ -1,5 +1,6 @@
 ---
 title: Host and deploy ASP.NET Core Blazor WebAssembly with IIS
+ai-usage: ai-assisted
 description: Learn how to host and deploy Blazor WebAssembly using Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
@@ -136,7 +137,7 @@ Configure the app's base path by following the guidance in <xref:blazor/host-and
 
 :::moniker-end
 
-IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets for standalone Blazor WebAssembly apps. For an example configuration file, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
+IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets for standalone Blazor WebAssembly apps. For an example configuration file, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/samples/web.config?raw=true).
 
 Additional configuration of the example `web.config` file might be required in the following scenarios:
 

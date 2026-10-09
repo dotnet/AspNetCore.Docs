@@ -21,19 +21,19 @@ The `MvcMovieContext` object handles the task of connecting to the database and 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
 
 ---
 
@@ -82,7 +82,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -99,7 +99,7 @@ if (context.Movie.Any())
 
 Replace the contents of `Program.cs` with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Program.cs)]
 
 Test the app.
 

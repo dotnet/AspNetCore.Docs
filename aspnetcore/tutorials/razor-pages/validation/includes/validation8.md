@@ -24,7 +24,7 @@ The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
 Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
@@ -95,7 +95,7 @@ The following code shows a portion of the `Create.cshtml` page scaffolded earlie
 * Display the initial form.
 * Redisplay the form in the event of an error.
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
 
@@ -107,7 +107,7 @@ When validation logic needs to change, it's done only in the model. Validation i
 
 Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 The `[DataType]` attributes provide:
 
@@ -154,7 +154,7 @@ It's a best practice to avoid compiling hard dates in models, so using the `[Ran
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
@@ -162,7 +162,7 @@ The following code shows combining attributes on one line:
 
 The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet11)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet11)]
 
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
@@ -210,7 +210,7 @@ dotnet ef database update
 
 Examine the `Up` method:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
 
 The updated `Movie` table has the following schema:
 

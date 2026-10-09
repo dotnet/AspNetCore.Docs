@@ -1,5 +1,6 @@
 ---
 title: Filters in Minimal API apps
+ai-usage: ai-assisted
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
 ms.date: 04/28/2026
 monikerRange: '>= aspnetcore-7.0'
@@ -32,7 +33,7 @@ This article describes how to use filters in your Minimal API apps, such as for 
 
 Filters are registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [EndpointFilterInvocationContext](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/EndpointFilterInvocationContext.cs) and returns a [EndpointFilterDelegate](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/EndpointFilterDelegate.cs). The `EndpointFilterInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list. The list specifies the arguments passed to the handler in the order in which they appear in the declaration of the handler.
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/Filters/Program.cs?name=snippet1)]
 
 The preceding code:
 
@@ -46,7 +47,7 @@ The filter runs before the endpoint handler. When multiple `AddEndpointFilter` i
 * The execution order of filter code called _before_ the call to `EndpointFilterDelegate` (`next`) is First In, First Out (FIFO).
 * The execution order of filter code called _after_ the call to `EndpointFilterDelegate` (`next`) is First In, Last Out (FILO).
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_xyz)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/Filters/Program.cs?name=snippet_xyz)]
 
 In the preceding code, the filters and endpoint log the following output:
 
@@ -62,7 +63,7 @@ After first filter
 
 The following code uses filters that implement the `IEndpointFilter` interface:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/Filters/Program.cs?name=snippet_abc)]
 
 In the preceding code, the logs for the filters and handlers show the run order:
 
@@ -78,13 +79,13 @@ AEndpointFilter After next
 
 Filters that implement the `IEndpointFilter` interface are shown in the following example:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/EndpointFilters/AbcEndpointFilters.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/Filters/EndpointFilters/AbcEndpointFilters.cs)]
 
 ## Validate an object with a filter
 
 Consider a filter that validates a `Todo` object:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filter1)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/Program.cs?name=snippet_filter1)]
 
 In the preceding code:
 
@@ -93,23 +94,23 @@ In the preceding code:
 
 In addition to being passed as delegates, filters can be registered by implementing the `IEndpointFilter` interface. The following code shows the preceding filter encapsulated in a class that implements `IEndpointFilter`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
 
 Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection (DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves **can't** be resolved from DI.
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt&highlight=13,21)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/Program.cs?name=snippet_2flt&highlight=13,21)]
 
 The following filter validates the `Todo` object and modifies the `Name` property:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
 
 ## Register a filter by using an endpoint filter factory
 
 In some scenarios, it might be necessary to cache some of the information provided in the [MethodInfo](/dotnet/api/system.reflection.methodinfo) in a filter. Suppose you want to verify that the handler attached to an endpoint filter has a first parameter that evaluates to a `Todo` type.
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filterfactory1)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/Program.cs?name=snippet_filterfactory1)]
 
 In the preceding code:
 
@@ -121,7 +122,7 @@ In the preceding code:
 
 In some scenarios, it might be necessary to apply the same filter logic for both route-handler based endpoints and controller actions. For this scenario, you can invoke `AddEndpointFilter` on `ControllerActionEndpointConventionBuilder` to support executing the same filter logic on actions and endpoints.
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_action_endpoint_filters)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/Filters/Program.cs?name=snippet_action_endpoint_filters)]
 
 ## Related content
 

@@ -26,7 +26,7 @@ Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Nam
 
 Update the `Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Models/Movie.cs)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -87,7 +87,7 @@ Create a *Data* folder.
 
 Add a `Data/MvcMovieContext.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -108,11 +108,11 @@ Add the following highlighted code in `Startup.ConfigureServices`:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
 
 ---
 
@@ -126,11 +126,11 @@ Add a connection string to the `appsettings.json` file:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-13)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/appsettings.json?highlight=10-13)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-13)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/appsettings_SQLite.json?highlight=10-13)]
 
 ---
 
@@ -254,7 +254,7 @@ dotnet ef database update
 
 Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
 The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method reverts the schema changes made by the `Up` migration.
 
@@ -296,13 +296,13 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
@@ -310,7 +310,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
 
 ---
 <!-- end of tabs --->
@@ -326,7 +326,7 @@ MVC also provides the ability to pass strongly typed model objects to a view. Th
 
 Examine the generated `Details` method in the `Controllers/MoviesController.cs` file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
 The `id` parameter is generally passed as route data. For example `https://localhost:5001/movies/details/1` sets:
 
@@ -355,7 +355,7 @@ return View(movie);
 
 Examine the contents of the `Views/Movies/Details.cshtml` file:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
 The `@model` statement at the top of the view file specifies the type of object that the view expects. When the movie controller was created, the following `@model` statement was included:
 
@@ -367,17 +367,17 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
 The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the `Index.cshtml` view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code.
 

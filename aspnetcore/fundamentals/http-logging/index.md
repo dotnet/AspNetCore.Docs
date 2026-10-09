@@ -1,5 +1,6 @@
 ---
 title: HTTP logging in .NET and ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 04/25/2025
@@ -209,7 +210,7 @@ The following list shows the order of precedence for logging configuration:
 
 Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction%2A>:
 
-[!code-csharp[](~/fundamentals/http-logging/samples-snapshot/9.x/Program.cs?name=snippet7&highlight=9)]
+[!code-csharp[](~/fundamentals/http-logging/samples/snapshot/9.x/Program.cs?name=snippet7&highlight=9)]
 
 For more information about .NET's data redaction library, see [Data redaction in .NET](/dotnet/core/extensions/data-redaction).
 

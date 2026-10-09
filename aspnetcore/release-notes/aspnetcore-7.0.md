@@ -1,5 +1,6 @@
 ---
 title: What's new in ASP.NET Core in .NET 7
+ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.date: 11/07/2022
 uid: aspnetcore-7
@@ -34,7 +35,7 @@ The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system
 
 In ASP.NET Core versions earlier than 7, the cookie consent validation uses the cookie value `yes` to indicate consent. Now you can specify the value that represents consent. For example, you could use `true` instead of `yes`:
 
-[!code-csharp[Main](~/security/gdpr/sample/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
+[!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
 
 For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
 
@@ -94,7 +95,7 @@ For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
 
 In ASP.NET 7, binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues) is supported:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bqs2pa)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bqs2pa)]
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
 
@@ -115,7 +116,7 @@ For more information, see [Bind the request body as a `Stream` or `PipeReader`](
 
 We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads to accommodate scenarios that need access to the underlying HTTP response stream without buffering. These overloads also improve cases where an API streams data to the HTTP response stream, like from Azure Blob Storage. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
 
 For more information, see [Stream examples](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#stream7)
 
@@ -125,7 +126,7 @@ In .NET 6, the <xref:Microsoft.AspNetCore.Http.IResult> interface was introduced
 
 In .NET 7 the types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
-[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/misc/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 ### Improved unit testability for minimal route handlers
 
@@ -158,13 +159,13 @@ For more information, see [IHttpResult interfaces](xref:fundamentals/minimal-api
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package allows interactions with OpenAPI specifications for endpoints. The package acts as a link between the OpenAPI models that are defined in the `Microsoft.AspNetCore.OpenApi` package and the endpoints that are defined in Minimal APIs. The package provides an API that examines an endpoint's parameters, responses, and metadata to construct an OpenAPI annotation type that is used to describe an endpoint.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
 
 #### Call `WithOpenApi` with parameters
 
 The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L49) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
 #### Provide endpoint descriptions and summaries
 
@@ -176,7 +177,7 @@ For more information, see [OpenAPI in Minimal API apps](xref:fundamentals/openap
 
 Minimal APIs now support file upload with `IFormFile` and `IFormFileCollection`. The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
 
@@ -559,7 +560,7 @@ This release:
 
 The following example shows how to use an SNI callback to resolve TLS options:
 
-:::code language="csharp" source="~/release-notes/sample/Program7.cs" id="snippet_1":::
+:::code language="csharp" source="~/release-notes/samples/Program7.cs" id="snippet_1":::
 
 Significant work was done in .NET 7 to reduce HTTP/3 allocations. You can see some of those improvements in the following GitHub PR's:
 

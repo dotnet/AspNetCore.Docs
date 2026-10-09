@@ -202,7 +202,7 @@ public static bool TryParse (string? s, IFormatProvider? provider, out TSelf res
 
 The following `DateRange` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRange.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Models/DateRange.cs" id="snippet":::
 
 The preceding code:
 
@@ -211,21 +211,21 @@ The preceding code:
 
 The following controller action uses the `DateRange` class to bind a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_2":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_2":::
 
 The following `Locale` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding to `CultureInfo`:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
 
 The following controller action uses the `Locale` class to bind a `CultureInfo` string:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
 
 The following controller action uses the `DateRange` and `Locale` classes to bind a date range with `CultureInfo`:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
 
-The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) shows the preceding sample for an API controller.
+The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse) shows the preceding sample for an API controller.
 
 ### Bind with `TryParse`
 
@@ -240,11 +240,11 @@ public static bool TryParse(string value, IFormatProvider provider, T out result
 
 The following `DateRangeTP` class implements `TryParse`:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRangeTP.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Models/DateRangeTP.cs" id="snippet":::
 
 The following controller action uses the `DateRangeTP` class to bind a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_22":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_22":::
 
 ## Complex types
 
@@ -1877,8 +1877,8 @@ To make the ASP.NET Core route value provider and query string value provider un
 * Replace the [culture value](https://github.com/dotnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30) passed to the value provider constructor with [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture)
 * Replace the default value provider factory in MVC options with your new one:
 
-:::code language="csharp" source="~/mvc/models/model-binding/samples_snapshot/3.x/Startup.cs" id="snippet":::
-:::code language="csharp" source="~/mvc/models/model-binding/samples_snapshot/3.x/Startup.cs" id="snippet1":::
+:::code language="csharp" source="~/mvc/models/model-binding/samples/snapshot/3.x/Startup.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/models/model-binding/samples/snapshot/3.x/Startup.cs" id="snippet1":::
 
 ## Special data types
 

@@ -19,7 +19,7 @@ SignalR can be used with [ASP.NET Core authentication](xref:security/authenticat
 
 The following code is an example that uses SignalR and ASP.NET Core authentication:
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet1)]
+[!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet1)]
 
 > [!NOTE]
 > If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvents` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set the [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) option.
@@ -75,7 +75,7 @@ The client can provide an access token instead of using a cookie. The server val
 
 In the JavaScript client, the token can be provided by using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
 
-[!code-typescript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=52-55)]
+[!code-typescript[Configure Access Token](authn-and-authz/samples/wwwroot/js/chat.ts?range=52-55)]
 
 In the .NET client, there's a similar [AccessTokenProvider](xref:signalr/configuration#configure-bearer-authentication) property that can be used to configure the token:
 
@@ -99,7 +99,7 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet2&highlight=25-60)]
+[!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet2&highlight=25-60)]
 
 > [!NOTE]
 > The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When you use HTTPS, the TLS connection secures the query string values. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR uses headers to transmit tokens in environments that support them, such as the .NET and Java clients.
@@ -108,11 +108,11 @@ On the server, bearer token authentication is configured by using the [JSON web 
 
 When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/ConfigureJwtBearerOptions.cs)]
+[!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/ConfigureJwtBearerOptions.cs)]
 
 Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> method):
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
+[!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
 
 :::moniker-end
 
@@ -323,7 +323,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user for use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
-[!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
+[!code-csharp[Name based provider](authn-and-authz/samples/nameuseridprovider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Windows SID identifier, and so on.
 
@@ -332,7 +332,7 @@ Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Window
 
 Register this component in the `Program.cs` file:
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
+[!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
 In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
 
@@ -356,11 +356,11 @@ The sample code demonstrates how to use claims to select the user's email addres
 > [!NOTE]
 > The specified value must be unique among all the users in the system. Otherwise, a message intended for one user might end up reaching a different user.
 
-[!code-csharp[Email provider](authn-and-authz/6.0sample/SignalRAuthenticationSample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
+[!code-csharp[Email provider](authn-and-authz/samples/6.0/SignalRAuthenticationSample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
 The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
 
-[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/6.0sample/SignalRAuthenticationSample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=AddEmailClaim&highlight=14)]
+[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=AddEmailClaim&highlight=14)]
 
 Register this component in the `Program.cs` file:
 
@@ -372,11 +372,11 @@ builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 
 By default, an unauthenticated user can call all methods in a hub. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
 
-[!code-csharp[Restrict a hub to only authorized users](authn-and-authz/sample/Hubs/ChatHub.cs?range=8-10,32)]
+[!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
 
 The constructor arguments and properties of the `[Authorize]` attribute can be used to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, with the custom authorization policy called `MyAuthorizationPolicy`, only users matching that policy can access the hub by using the following code:
 
-[!code-csharp[Restrict a hub to only authorized users](authn-and-authz/6.0sample/SignalRAuthenticationSample/Hubs/ChatPolicyHub.cs?name=snippet&highlight=1)]
+[!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Hubs/ChatPolicyHub.cs?name=snippet&highlight=1)]
 
 The `[Authorize]` attribute can be applied to individual hub methods. If the current user doesn't match the policy applied to the method, an error is returned to the caller:
 
@@ -423,11 +423,11 @@ public class ChatHub : Hub
 }
 ```
 
-[!code-csharp[Restrict a hub only DomainRestrictedRequirement users](authn-and-authz/6.0sample/SignalRAuthenticationSample/DomainRestrictedRequirement.cs)]
+[!code-csharp[Restrict a hub only DomainRestrictedRequirement users](authn-and-authz/samples/6.0/SignalRAuthenticationSample/DomainRestrictedRequirement.cs)]
 
 In the `Program.cs` file, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy:
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_drr&highlight=19-25)]
+[!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_drr&highlight=19-25)]
 
 In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. The approach in this example provides the benefit of not having to inject the `AuthorizationHandler` during startup because the requirement and the handler are the same thing.
 
@@ -445,13 +445,13 @@ As an alternative to registering the `DomainRestricted` policy and referencing i
 
 * [Bearer token authentication in ASP.NET Core (blog)](https://devblogs.microsoft.com/dotnet/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based authorization](xref:security/authorization/resource-based)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
 
@@ -494,7 +494,7 @@ The client can provide an access token instead of using a cookie. The server val
 
 In the JavaScript client, the token can be provided using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
 
-[!code-typescript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=52-55)]
+[!code-typescript[Configure Access Token](authn-and-authz/samples/wwwroot/js/chat.ts?range=52-55)]
 
 In the .NET client, there's a similar [AccessTokenProvider](xref:signalr/configuration#configure-bearer-authentication) property that can be used to configure the token:
 
@@ -518,7 +518,7 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
 
-[!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
+[!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/samples/Startup.cs?name=snippet)]
 
 > [!NOTE]
 > The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When using HTTPS, query string values are secured by the TLS connection. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR uses headers to transmit tokens in environments which support them (such as the .NET and Java clients).
@@ -575,7 +575,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
-[!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
+[!code-csharp[Name based provider](authn-and-authz/samples/nameuseridprovider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, and so on).
 
@@ -616,11 +616,11 @@ The sample code demonstrates how you would use claims to select the user's email
 > [!NOTE]
 > The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
 
-[!code-csharp[Email provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
+[!code-csharp[Email provider](authn-and-authz/samples/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
 The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
 
-[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
+[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/samples/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
 
 Register this component in your `Startup.ConfigureServices`.
 
@@ -632,7 +632,7 @@ services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 
 By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
 
-[!code-csharp[Restrict a hub to only authorized users](authn-and-authz/sample/Hubs/ChatHub.cs?range=8-10,32)]
+[!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
 
 You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the hub using the following code:
 

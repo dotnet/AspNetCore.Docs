@@ -1,5 +1,6 @@
 ---
 title: Tag Helpers in forms in ASP.NET Core
+ai-usage: ai-assisted
 description: Describes the built-in Tag Helpers used with Forms.
 ms.date: 05/05/2026
 uid: mvc/views/working-with-forms
@@ -28,7 +29,7 @@ The [Form Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper):
 
 Sample:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Demo/RegisterFormOnly.cshtml)]
 
 The previous Form Tag Helper generates the following HTML:
 
@@ -45,7 +46,7 @@ The MVC runtime generates the `action` attribute value from the Form Tag Helper 
 
 The `asp-route` Tag Helper attribute can also generate markup for the HTML `action` attribute. An app with a [route](../../fundamentals/routing.md)  named `register` could use the following markup for the registration page:
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Demo/RegisterRoute.cshtml)]
 
 Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual Accounts*) contain the [asp-route-returnurl](xref:mvc/views/working-with-forms) attribute:
 
@@ -210,9 +211,9 @@ The following table shows some common [data annotations](xref:Microsoft.AspNetCo
 
 Sample:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Demo/RegisterInput.cshtml)]
 
 The preceding code generates the following HTML:
 
@@ -319,13 +320,13 @@ When ASP.NET Core MVC calculates the value of `ModelExpression`, it inspects sev
 
 You can also navigate to child properties using the property path of the view model. Consider a more complex model class that contains a child `Address` property.
 
-[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/AddressViewModel.cs?highlight=1,2,3,4&range=5-8)]
+[!code-csharp[](../../mvc/views/working-with-forms/samples/final/ViewModels/AddressViewModel.cs?highlight=1,2,3,4&range=5-8)]
 
-[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/RegisterAddressViewModel.cs?highlight=8&range=5-13)]
+[!code-csharp[](../../mvc/views/working-with-forms/samples/final/ViewModels/RegisterAddressViewModel.cs?highlight=8&range=5-13)]
 
 In the view, we bind to `Address.AddressLine1`:
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
 
 The following HTML is generated for `Address.AddressLine1`:
 
@@ -337,7 +338,7 @@ The following HTML is generated for `Address.AddressLine1`:
 
 Sample, a model containing an array of `Colors`:
 
-[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/Person.cs?highlight=3&range=5-10)]
+[!code-csharp[](../../mvc/views/working-with-forms/samples/final/ViewModels/Person.cs?highlight=3&range=5-10)]
 
 The action method:
 
@@ -351,23 +352,23 @@ public IActionResult Edit(int id, int colorIndex)
 
 The following Razor shows how you access a specific `Color` element:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Demo/EditColor.cshtml)]
 
 The `Views/Shared/EditorTemplates/String.cshtml` template:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Shared/EditorTemplates/String.cshtml)]
 
 Sample using `List<T>`:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/ToDoItem.cs?range=3-8)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/ToDoItem.cs?range=3-8)]
 
 The following Razor shows how to iterate over a collection:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Demo/Edit.cshtml)]
 
 The `Views/Shared/EditorTemplates/ToDoItem.cshtml` template:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
 `foreach` should be used if possible when the value is going to be used in an `asp-for` or `Html.DisplayFor` equivalent context. In general, `for` is better than `foreach` (if the scenario allows it) because it doesn't need to allocate an enumerator; however, evaluating an indexer in a LINQ expression can be expensive and should be minimized.
 
@@ -388,9 +389,9 @@ The `Textarea Tag Helper` tag helper is  similar to the Input Tag Helper.
 
 Sample:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/DescriptionViewModel.cs)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/DescriptionViewModel.cs)]
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
 
 The following HTML is generated:
 
@@ -424,9 +425,9 @@ The `Label Tag Helper`  provides the following benefits over a pure HTML label e
 
 Sample:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/SimpleViewModel.cs)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/SimpleViewModel.cs)]
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
 
 The following HTML is generated for the `<label>` element:
 
@@ -494,9 +495,9 @@ The `Validation Summary Tag Helper`  is used to display a summary of validation 
 
 In the following example, the data model has `DataAnnotation` attributes, which generates validation error messages on the `<input>` element. When a validation error occurs, the Validation Tag Helper displays the error message:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
 
 The generated HTML (when the model is valid):
 
@@ -525,23 +526,23 @@ The generated HTML (when the model is valid):
 
 The `Select Tag Helper` `asp-for` specifies the model property  name for the [select](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/select) element  and `asp-items` specifies the [option](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/option) elements. For example:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Home/Index.cshtml?range=4)]
 
 Sample:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryViewModel.cs)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/CountryViewModel.cs)]
 
 The `Index` method initializes the `CountryViewModel`, sets the selected country, and passes it to the `Index` view.
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=8-13)]
+[!code-csharp[](working-with-forms/samples/final/Controllers/HomeController.cs?range=8-13)]
 
 The HTTP POST `Index` method displays the selection:
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=15-27)]
+[!code-csharp[](working-with-forms/samples/final/Controllers/HomeController.cs?range=15-27)]
 
 The `Index` view:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Home/Index.cshtml?highlight=4)]
 
 Which generates the following HTML (with "CA" selected):
 
@@ -562,7 +563,7 @@ Which generates the following HTML (with "CA" selected):
 
 The `asp-for` attribute value is a special case and doesn't require a `Model` prefix. The other Tag Helper attributes do (such as `asp-items`).
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Home/Index.cshtml?range=4)]
 
 ### Enum binding
 
@@ -570,17 +571,17 @@ It's often convenient to use `<select>` with an `enum` property and generate the
 
 Sample:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnumViewModel.cs?range=3-6)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/CountryEnumViewModel.cs?range=3-6)]
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnum.cs)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/CountryEnum.cs)]
 
 The `GetEnumSelectList` method generates a `SelectList` object for an enum.
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Home/IndexEnum.cshtml?highlight=5)]
 
 You can mark your enumerator list with the `Display` attribute to get a richer UI:
 
-[!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnum.cs?highlight=7,9)]
+[!code-csharp[](working-with-forms/samples/final/ViewModels/CountryEnum.cs?highlight=7,9)]
 
 The following HTML is generated:
 
@@ -606,7 +607,7 @@ The HTML  [\<optgroup>](https://developer.mozilla.org/docs/Web/HTML/Reference/El
 
 The `CountryViewModelGroup` groups the `SelectListItem` elements into the "North America" and "Europe" groups:
 
-[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/CountryViewModelGroup.cs?highlight=5,6,14,20,26,32,38,44&range=6-56)]
+[!code-csharp[](../../mvc/views/working-with-forms/samples/final/ViewModels/CountryViewModelGroup.cs?highlight=5,6,14,20,26,32,38,44&range=6-56)]
 
 The two groups are shown as follows:
 
@@ -637,11 +638,11 @@ The generated HTML:
 
 The Select Tag Helper  will automatically generate the [multiple = "multiple"](https://w3c.github.io/html-reference/select.html)  attribute if the property specified in the `asp-for` attribute is an `IEnumerable`. For example, given the following model:
 
-[!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/CountryViewModelIEnumerable.cs?highlight=8)]
+[!code-csharp[](../../mvc/views/working-with-forms/samples/final/ViewModels/CountryViewModelIEnumerable.cs?highlight=8)]
 
 With the following view:
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
 
 Generates the following HTML:
 
@@ -665,21 +666,21 @@ Generates the following HTML:
 
 If you find yourself using the "not specified" option in multiple pages, you can create a template to eliminate repeating the HTML:
 
-[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=4)]
 
 The `Views/Shared/EditorTemplates/CountryViewModel.cshtml` template:
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 
 Adding HTML [\<option>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/option) elements isn't limited to the *No selection* case. For example, the following view and action method will generate HTML similar to the preceding code:
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
+[!code-csharp[](working-with-forms/samples/final/Controllers/HomeController.cs?name=snippetNone)]
 
-[!code-cshtml[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
+[!code-cshtml[](working-with-forms/samples/final/Views/Home/IndexOption.cshtml)]
 
 The correct `<option>` element will be selected (contain the `selected="selected"` attribute) depending on the current `Country` value.
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+[!code-csharp[](working-with-forms/samples/final/Controllers/HomeController.cs?range=114-119)]
 
 ```html
  <form method="post" action="/Home/IndexEmpty">
@@ -702,4 +703,4 @@ The correct `<option>` element will be selected (contain the `selected="selected
 * <xref:mvc/models/model-binding>
 * <xref:mvc/models/validation>
 * [IAttributeAdapter Interface](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
-* [Code snippets for this document](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/working-with-forms/sample/final)
+* [Code snippets for this document](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/working-with-forms/samples/final)

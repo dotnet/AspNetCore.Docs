@@ -36,7 +36,7 @@ The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.I
 
 `dotnet new angular -au Individual` generates the following `Program.cs` file:
 
-[!code-csharp[](~/security/authentication/identity-api-authorization/6samples/Program.cs)]
+[!code-csharp[](~/security/authentication/identity-api-authorization/samples/6/Program.cs)]
 
 The preceding code configures:
 

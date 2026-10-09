@@ -143,7 +143,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   [!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+   [!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/3.x/Program.cs?highlight=7)]
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
@@ -415,7 +415,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   [!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+   [!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/3.x/Program.cs?highlight=7)]
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 

@@ -226,7 +226,7 @@ public static bool TryParse (string? s, IFormatProvider? provider, out TSelf res
 
 The following `DateRange` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRange.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Models/DateRange.cs" id="snippet":::
 
 The preceding code:
 
@@ -235,21 +235,21 @@ The preceding code:
 
 The following controller action uses the `DateRange` class to bind a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_2":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_2":::
 
 The following `Locale` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding to `CultureInfo`:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
 
 The following controller action uses the `Locale` class to bind a `CultureInfo` string:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
 
 The following controller action uses the `DateRange` and `Locale` classes to bind a date range with `CultureInfo`:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
 
-The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) shows the preceding sample for an API controller.
+The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse) shows the preceding sample for an API controller.
 
 ### Bind with `TryParse`
 
@@ -264,11 +264,11 @@ public static bool TryParse(string value, IFormatProvider provider, T out result
 
 The following `DateRangeTP` class implements `TryParse`:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRangeTP.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Models/DateRangeTP.cs" id="snippet":::
 
 The following controller action uses the `DateRangeTP` class to bind a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_22":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/samples/7.0/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_22":::
 
 ## Complex types
 

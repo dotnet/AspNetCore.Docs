@@ -1,5 +1,6 @@
 ---
 title: gRPC JSON transcoding in ASP.NET Core gRPC apps
+ai-usage: ai-assisted
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 05/10/2023
@@ -38,11 +39,11 @@ gRPC can still be used to call services.
 1. Register transcoding in server startup code by adding `AddJsonTranscoding`: In the `Program.cs` file, change `builder.Services.AddGrpc();` to `builder.Services.AddGrpc().AddJsonTranscoding();`.
 1. Add `<IncludeHttpRuleProtos>true</IncludeHttpRuleProtos>` to the property group in the project file (`.csproj`):
 
-   [!code-json[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/GrpcServiceTranscoding.csproj?highlight=8&range=1-9)]
+   [!code-json[](~/grpc/json-transcoding/samples/8/GrpcServiceTranscoding/GrpcServiceTranscoding.csproj?highlight=8&range=1-9)]
 
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-   [!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=4,11-13)]
+   [!code-protobuf[](~/grpc/json-transcoding/samples/8/GrpcServiceTranscoding/protos/greet.proto?highlight=4,11-13)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
@@ -68,7 +69,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
 
-[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=3-5&range=9-15)]
+[!code-protobuf[](~/grpc/json-transcoding/samples/8/GrpcServiceTranscoding/protos/greet.proto?highlight=3-5&range=9-15)]
 
 The proceeding example:
 

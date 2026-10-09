@@ -599,7 +599,7 @@ When the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribut
 
 By default, the `ValidationProblemDetails` response returned when the `Value` property is invalid uses an error key of `Value`, as shown in the following example:
 
-:::code language="csharp" source="formatting/samples_snapshot/7.x/ValidationProblemDetailsDefault.json" highlight="7":::
+:::code language="csharp" source="formatting/samples/snapshot/7.x/ValidationProblemDetailsDefault.json" highlight="7":::
 
 To format the property names used as error keys, add an implementation of <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider> to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders%2A?displayProperty=nameWithType> collection. The following example adds a `System.Text.Json`-based implementation, `SystemTextJsonValidationMetadataProvider`, which formats property names as camelCase by default:
 
@@ -613,7 +613,7 @@ To set a custom name for a property within a model, use the [[JsonPropertyName]]
 
 The `ValidationProblemDetails` response returned for the preceding model when the `Value` property is invalid uses an error key of `sampleValue`, as shown in the following example:
 
-:::code language="csharp" source="formatting/samples_snapshot/7.x/ValidationProblemDetailsCustom.json" highlight="7":::
+:::code language="csharp" source="formatting/samples/snapshot/7.x/ValidationProblemDetailsCustom.json" highlight="7":::
 
 To format the `ValidationProblemDetails` response using `Newtonsoft.Json`, use `NewtonsoftJsonValidationMetadataProvider`:
 

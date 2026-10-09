@@ -1,5 +1,6 @@
 ---
 title: Publish an ASP.NET Core app to Azure with Visual Studio
+ai-usage: ai-assisted
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 monikerRange: '>= aspnetcore-7.0'
 ms.custom: devx-track-csharp, sfi-image-nochange
@@ -165,7 +166,7 @@ The app is opened in a browser. Register a new user and log in as the new user t
 
 * Edit the `Pages/Index.cshtml` Razor page and change its contents, then save the changes. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
 
-    [!code-html[Index](publish-to-azure-webapp-using-vs/sample/index.cshtml?highlight=10&range=1-12)]
+    [!code-html[Index](publish-to-azure-webapp-using-vs/samples/index.cshtml?highlight=10&range=1-12)]
 
 * Select **Publish** from the **Publish Profile summary** page again.
 

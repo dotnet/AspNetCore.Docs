@@ -1,5 +1,6 @@
 ---
 title: Filter methods for Razor Pages in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 2/18/2020
@@ -45,31 +46,31 @@ Implement **either** the synchronous or the async version of a filter interface,
 
 The following code implements `IAsyncPageFilter`:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
 
 In the preceding code, `ProcessUserAgent.Write` is user supplied code that works with the user agent string.
 
 The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Startup.cs?name=snippet2)]
 
 The following code calls <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> to apply the `SampleAsyncPageFilter` to only pages in */Movies*:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Startup2.cs?name=snippet2)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Startup2.cs?name=snippet2)]
 
 The following code implements the synchronous `IPageFilter`:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
 
 The following code enables the `SamplePageFilter`:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/StartupSync.cs?name=snippet2)]
 
 ## Implement Razor Page filters by overriding filter methods
 
 The following code overrides the asynchronous Razor Page filters:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
 
 <a name="ifa"></a>
 
@@ -77,11 +78,11 @@ The following code overrides the asynchronous Razor Page filters:
 
 The built-in attribute-based filter <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> filter can be subclassed. The following filter adds a header to the response:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Filters/AddHeaderAttribute.cs)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Filters/AddHeaderAttribute.cs)]
 
 The following code applies the `AddHeader` attribute:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Movies/Test.cshtml.cs)]
+[!code-csharp[Main](filter/samples/3.1/PageFilter/Pages/Movies/Test.cshtml.cs)]
 
 Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `author: Rick` is displayed.
 
@@ -95,7 +96,7 @@ See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellatio
 
 The [Authorize](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute can be applied to a `PageModel`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
+[!code-csharp[Main](filter/samples/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
 :::moniker-end
 
@@ -115,7 +116,7 @@ Razor Page filters:
 
 Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext%2A>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/filter/sample/PageFilter) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/filter/samples/PageFilter) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 Razor Page filters provide the following methods, which can be applied globally or at the page level:
 
@@ -137,35 +138,35 @@ Razor Page filters provide the following methods, which can be applied globally 
 
 The following code implements `IAsyncPageFilter`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
+[!code-csharp[Main](filter/samples/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
 
 In the preceding code, <xref:Microsoft.Extensions.Logging.ILogger> is not required. It's used in the sample to provide trace information for the application.
 
 The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/samples/PageFilter/Startup.cs?name=snippet2&highlight=11)]
 
 The following code shows the complete `Startup` class:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet1)]
+[!code-csharp[Main](filter/samples/PageFilter/Startup.cs?name=snippet1)]
 
 The following code calls `AddFolderApplicationModelConvention` to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup2.cs?name=snippet2)]
+[!code-csharp[Main](filter/samples/PageFilter/Startup2.cs?name=snippet2)]
 
 The following code implements the synchronous `IPageFilter`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
+[!code-csharp[Main](filter/samples/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
 
 The following code enables the `SamplePageFilter`:
 
-[!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/samples/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
 ## Implement Razor Page filters by overriding filter methods
 
 The following code overrides the synchronous Razor Page filters:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/Index.cshtml.cs)]
+[!code-csharp[Main](filter/samples/PageFilter/Pages/Index.cshtml.cs)]
 
 <a name="ifa"></a>
 
@@ -173,11 +174,11 @@ The following code overrides the synchronous Razor Page filters:
 
 The built-in attribute-based filter <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync%2A> filter can be subclassed. The following filter adds a header to the response:
 
-[!code-csharp[Main](filter/sample/PageFilter/Filters/AddHeaderAttribute.cs)]
+[!code-csharp[Main](filter/samples/PageFilter/Filters/AddHeaderAttribute.cs)]
 
 The following code applies the `AddHeader` attribute:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/Contact.cshtml.cs?name=snippet1)]
+[!code-csharp[Main](filter/samples/PageFilter/Pages/Contact.cshtml.cs?name=snippet1)]
 
 See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-default-order) for instructions on overriding the order.
 
@@ -189,6 +190,6 @@ See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellatio
 
 The [Authorize](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute can be applied to a `PageModel`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
+[!code-csharp[Main](filter/samples/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
 :::moniker-end

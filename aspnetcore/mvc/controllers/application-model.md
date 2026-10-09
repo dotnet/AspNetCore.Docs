@@ -1,5 +1,6 @@
 ---
 title: Work with the application model in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.date: 09/06/2026
 uid: mvc/controllers/application-model
@@ -81,45 +82,45 @@ Conventions are applied by adding them to MVC options or by implementing attribu
 
 The following convention is used to add a property to the application model:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/ApplicationDescription.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/ApplicationDescription.cs)]
 
 Application model conventions are applied as options when MVC is added in `Startup.ConfigureServices`:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=5)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=5)]
 
 Properties are accessible from the <xref:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Properties?displayProperty=nameWithType> collection within controller actions:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/AppModelController.cs?name=AppModelController)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Controllers/AppModelController.cs?name=AppModelController)]
 
 ## Modify the `ControllerModel` description
 
 The controller model can also include custom properties. Custom properties override existing properties with the same name specified in the application model. The following convention attribute adds a description at the controller level:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/ControllerDescriptionAttribute.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/ControllerDescriptionAttribute.cs)]
 
 This convention is applied as an attribute on a controller:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=ControllerDescription&highlight=1)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=ControllerDescription&highlight=1)]
 
 ## Modify the `ActionModel` description
 
 A separate attribute convention can be applied to individual actions, overriding behavior already applied at the application or controller level:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/ActionDescriptionAttribute.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/ActionDescriptionAttribute.cs)]
 
 Applying this to an action within the controller demonstrates how it overrides the controller-level convention:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=DescriptionAttributesController&highlight=9)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=DescriptionAttributesController&highlight=9)]
 
 ## Modify the `ParameterModel`
 
 The following convention can be applied to action parameters to modify their <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo>. The following convention requires that the parameter be a route parameter. Other potential binding sources, such as query string values, are ignored:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/MustBeInRouteParameterModelConvention.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/MustBeInRouteParameterModelConvention.cs)]
 
 The attribute may be applied to any action parameter:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/ParameterModelController.cs?name=ParameterModelController&highlight=5)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Controllers/ParameterModelController.cs?name=ParameterModelController&highlight=5)]
 
 To apply the convention to all action parameters, add the `MustBeInRouteParameterModelConvention` to <xref:Microsoft.AspNetCore.Mvc.MvcOptions> in `Startup.ConfigureServices`:
 
@@ -131,11 +132,11 @@ options.Conventions.Add(new MustBeInRouteParameterModelConvention());
 
 The following convention modifies the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel> to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it affects the route used to reach this action method:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/CustomActionNameAttribute.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/CustomActionNameAttribute.cs)]
 
 This attribute is applied to an action method in the `HomeController`:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/HomeController.cs?name=ActionModelConvention&highlight=2)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Controllers/HomeController.cs?name=ActionModelConvention&highlight=2)]
 
 Even though the method name is `SomeName`, the attribute overrides the MVC convention of using the method name and replaces the action name with `MyCoolAction`. Thus, the route used to reach this action is `/Home/MyCoolAction`.
 
@@ -146,11 +147,11 @@ Even though the method name is `SomeName`, the attribute overrides the MVC conve
 
 Use an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelConvention> to customize how routing works. For example, the following convention incorporates controllers' namespaces into their routes, replacing `.` in the namespace with `/` in the route:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/NamespaceRoutingConvention.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/NamespaceRoutingConvention.cs)]
 
 The convention is added as an option in `Startup.ConfigureServices`:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=6)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=6)]
 
 > [!TIP]
 > Add conventions to [middleware](xref:fundamentals/middleware/index) via <xref:Microsoft.AspNetCore.Mvc.MvcOptions> using the following approach. The `{CONVENTION}` placeholder is the convention to add:
@@ -161,7 +162,7 @@ The convention is added as an option in `Startup.ConfigureServices`:
 
 The following example applies a convention to routes that aren't using attribute routing where the controller has  `Namespace` in its name:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/NamespaceRoutingController.cs?highlight=7-8)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Controllers/NamespaceRoutingController.cs?highlight=7-8)]
 
 :::moniker range="<= aspnetcore-2.2"
 
@@ -212,7 +213,7 @@ In addition to a set of conventions, the compatibility package includes a <xref:
 
 The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel> property at each level that can be used to traverse the app's structure. This can be used to [generate help pages for web APIs using tools like Swagger](xref:tutorials/web-api-help-pages-using-swagger). The `ApiExplorer` property exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible> property that can be set to specify which parts of the app's model should be exposed. Configure this setting using a convention:
 
-[!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/EnableApiExplorerApplicationConvention.cs)]
+[!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/EnableApiExplorerApplicationConvention.cs)]
 
 Using this approach (and additional conventions if required), API visibility is enabled or disabled at any level within an app.
 
