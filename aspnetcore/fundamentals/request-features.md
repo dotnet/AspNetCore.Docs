@@ -2,7 +2,7 @@
 title: Request Features in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
-ms.date: 10/09/2021
+ms.date: 10/09/2026
 uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core
