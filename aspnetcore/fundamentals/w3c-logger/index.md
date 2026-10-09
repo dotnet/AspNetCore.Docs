@@ -75,10 +75,6 @@ To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.Dependenc
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.RetainedFileCountLimit%2A>: The maximum number of retained log files. Defaults to 4.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A>: A bit flag enumeration that configures specific parts of the request and response to log and other information about the connection. Defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
 
-### `LoggingFields`
-
-<xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A?displayProperty=nameWithType> is a bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
-
 ::: moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
@@ -147,9 +143,5 @@ To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.Dependenc
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LogDirectory%2A>: The directory where log files are written. Defaults to `./logs/` relative to the app's content root directory.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.RetainedFileCountLimit%2A>: The maximum number of retained log files. Defaults to 4.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A>: A bit flag enumeration that configures specific parts of the request and response to log and other information about the connection. Defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
-
-### `LoggingFields`
-
-<xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A?displayProperty=nameWithType> is a bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
 
 ::: moniker-end
