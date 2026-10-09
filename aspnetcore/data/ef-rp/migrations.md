@@ -1,8 +1,6 @@
 ---
 title: Part 4, Razor Pages with EF Core in ASP.NET Core - Migrations
-author: tdykstra
 description: Part 4 of Razor Pages and Entity Framework tutorial series.
-ms.author: tdykstra
 ms.date: 07/22/2019
 uid: data/ef-rp/migrations
 ---
