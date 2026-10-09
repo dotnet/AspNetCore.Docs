@@ -1,0 +1,74 @@
+version: 2
+updates:
+  # Updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    groups:
+      github-actions:
+        patterns: ["*"]
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 3
+  # NuGet updates for ASP.NET Core samples
+  - package-ecosystem: "nuget"
+    directories:
+      - "aspnetcore/fundamentals/**/samples/**/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      nuget:
+        patterns: ["*"]
+        group-by: dependency-name
+  - package-ecosystem: "nuget"
+    directories:
+      - "aspnetcore/tutorials/**/samples/**/*"
+      - "aspnetcore/security/**/samples/**/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      nuget:
+        patterns: ["*"]
+        group-by: dependency-name
+  - package-ecosystem: "nuget"
+    directories:
+      - "aspnetcore/mvc/**/samples/**/*"
+      - "aspnetcore/performance/**/samples/**/*"
+      - "aspnetcore/data/**/samples/**/*"
+      - "aspnetcore/web-api/**/samples/**/*"
+      - "aspnetcore/client-side/**/samples/**/*"
+      - "aspnetcore/common/**/samples/**/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      nuget:
+        patterns: ["*"]
+        group-by: dependency-name
+  - package-ecosystem: "nuget"
+    directories:
+      - "aspnetcore/signalr/**/samples/**/*"
+      - "aspnetcore/migration/**/samples/**/*"
+      - "aspnetcore/release-notes/**/samples/**/*"
+      - "aspnetcore/host-and-deploy/**/samples/**/*"
+      - "aspnetcore/grpc/**/samples/**/*"
+      - "aspnetcore/test/**/samples/**/*"
+      - "aspnetcore/razor-pages/**/samples/**/*"
+      - "aspnetcore/metrics/**/samples/**/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      nuget:
+        patterns: ["*"]
+        group-by: dependency-name
