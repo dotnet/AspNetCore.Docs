@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor server-side state management
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 09/29/2026
 uid: blazor/state-management/server
 ---

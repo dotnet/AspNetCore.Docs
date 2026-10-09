@@ -16,7 +16,7 @@ For code-specific guidelines, including code snippets, version targeting, and la
 ### 1. Issue Handling
 When creating a PR for an issue:
 * [ ] Read the full issue and all linked references
-* [ ] Study code samples from linked PRs that demonstrate features in the latest .NET pre-release version (e.g., .NET 10 Preview) to ensure that guidance and documentation reflect the latest upcoming changes and best practices.
+* [ ] Study code samples from linked PRs that demonstrate features in the latest .NET pre-release version (e.g., .NET 11 Preview) to ensure that guidance and documentation reflect the latest upcoming changes and best practices.
 * [ ] For labeled issues that have the following labels, follow these guidelines:
   * [ ] **new-feature:** State which version introduced the feature
   * [ ] **bug:** Focus on correcting technical inaccuracies
@@ -36,7 +36,7 @@ When working on an issue:
 * [ ] If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
 ### 4. API References and Verification
-  * [ ] Use `<xref:api-doc-ID>` for API cross-references. 
+  * [ ] Use `<xref:api-doc-ID>` for API cross-references.
   * [ ] The API documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs, never just infer API documentation IDs by looking for similar patterns.
   * [ ] If you cannot verify, state that explicitly in your output.
 
@@ -55,7 +55,7 @@ When working on an issue:
 * [ ] For external links to non-Microsoft sites (MDN, W3C, etc.):
   * [ ] Use absolute URLs
   * [ ] Remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.)
-  * [ ] Example (MDN):  
+  * [ ] Example (MDN):
     * [ ] Original: `https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event`
     * [ ] Correct: `https://developer.mozilla.org/docs/Web/API/Element/click_event`
 
@@ -90,19 +90,17 @@ When working on an issue:
   * [ ] For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
     * [ ] Metadata `ai-usage: ai-assisted` if any AI assistance was used
     * [ ] Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
-    * [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it to today's date if more than 50 characters are changed in the file.
-      
+    * [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it only if the article was significantly changed.
 
 ### 1. Metadata and Date Requirements
 * [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format. Do not infer the date based on existing dates in files.  Use today's date.
 * [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
 * [ ] Place title metadata first, followed by remaining metadata in alphabetical order
-* [ ] Update ms.date if more than 50 characters are changed in existing files
-  * [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY. Examples:
-    * [ ] MM: Two digits, leading zero if needed (01-12)
-    * [ ] DD: Two digits, leading zero if needed (01-31)
-    * [ ] YYYY: Four digits (2025)
-    * [ ] Example: `ms.date: 08/07/2025`
+* [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY. Examples:
+  * [ ] MM: Two digits, leading zero if needed (01-12)
+  * [ ] DD: Two digits, leading zero if needed (01-31)
+  * [ ] YYYY: Four digits (2025)
+  * [ ] Example: `ms.date: 08/07/2025`
 ### 2. Version Targeting Common Range Patterns
 * [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 * [ ] Open Upper Bound: `>= aspnetcore-7.0`
@@ -110,7 +108,7 @@ When working on an issue:
 * [ ] Specific Version: `== aspnetcore-9.0`
 
 ### 3. Handling File Redirections
-* [ ] When a Markdown (.md) article file (this does not apply to includes) is deleted in a PR, create a redirection entry.
+* [ ] When a Markdown (.md) article file (this does not apply to includes) is deleted or renamed in a PR, create a redirection entry.
 * [ ] Redirections ensure users following existing links aren't left with broken links
 * [ ] To add a redirection:
      * [ ] Update the `.openpublishing.redirection.json` file at the repository root
@@ -130,7 +128,7 @@ When working on an issue:
      * [ ] Maintain alphabetical order of the `source_path` entries for better organization
      * [ ] Ensure proper JSON formatting with correct commas between entries
 * [ ] When selecting a redirect target, choose the most relevant existing content that would serve the user's original intent
-* [ ] If no direct replacement exists, redirect to a parent category page or related topic  
+* [ ] If no direct replacement exists, redirect to a parent category page or related topic
 
 ### 4. ASP.NET Core Specific Guidelines
 * [ ] Use the latest supported version for examples unless otherwise specified

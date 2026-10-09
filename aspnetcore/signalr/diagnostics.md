@@ -1,11 +1,9 @@
 ---
 title: Logging and diagnostics in ASP.NET Core SignalR
-author: wadepickett
 description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
 ms.custom: devx-track-csharp, signalr, linux-related-content
-ms.date: 07/06/2026
+ms.date: 10/07/2026
 uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
@@ -215,11 +213,9 @@ Replace `[interface]` with the network interface you wish to capture on. Usually
 
 This method only works for browser-based apps.
 
-Most browser developer tools consoles have a "Network" tab that allows network activity to be captured between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. When using those transports, using a tool like Fiddler or TcpDump is a better approach, as described later in this article.
+Most browser developer tools consoles have a "Network" tab that allows network activity to be captured between the browser and the server. In modern browsers, you can inspect WebSocket messages by selecting the connection under the **WS** filter and opening the messages tab. For Server-Sent Events, select the request and inspect the event stream tab. However, exported HAR files might not include full WebSocket message frames depending on browser support. When full payload capture of those transports is needed, using a tool like Fiddler or tcpdump is recommended.
 
-### Microsoft Edge and Internet Explorer
-
-(The instructions are the same for both Microsoft Edge and Internet Explorer)
+### Microsoft Edge
 
 1. Open the Dev Tools by pressing F12
 1. Select the Network Tab

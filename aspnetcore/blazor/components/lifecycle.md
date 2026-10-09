@@ -1,9 +1,7 @@
 ---
 title: ASP.NET Core Razor component lifecycle
-author: guardrex
 description: Learn about the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 11/11/2025
 uid: blazor/components/lifecycle
 ---

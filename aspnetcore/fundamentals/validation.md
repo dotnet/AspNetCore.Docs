@@ -1,10 +1,8 @@
 ---
 title: Validation in ASP.NET Core
 ai-usage: ai-assisted
-author: Youssef1313
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: ygerges
 ms.date: 09/23/2026
 uid: fundamentals/validation
 ---

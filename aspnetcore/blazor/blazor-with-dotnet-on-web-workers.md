@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor with .NET on Web Workers
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a Blazor WebAssembly app.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: wpickett
 ms.date: 04/07/2026
 uid: blazor/blazor-web-workers
 ---
@@ -408,16 +406,16 @@ using System.Runtime.Versioning;
 [SupportedOSPlatform("browser")]
 public partial class Client
 {
-    private static bool _workerStarted;
+    private static bool workerStarted;
 
     public static async Task InitClient()
     {
-        if (_workerStarted)
+        if (workerStarted)
         {
             return;
         }
 
-        _workerStarted = true;
+        workerStarted = true;
 
         await JSHost.ImportAsync(
             moduleName: nameof(Client), 

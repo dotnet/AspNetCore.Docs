@@ -2,8 +2,6 @@
 uid: fundamentals/servers/yarp/dests-health-checks
 title: YARP Destination health checks
 description: YARP Destination health checks
-author: tdykstra
-ms.author: tdykstra
 ms.date: 04/06/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution

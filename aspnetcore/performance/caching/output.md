@@ -1,14 +1,10 @@
 ---
 title: Output caching middleware in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn how to configure and use output caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: tdykstra
-ms.date: 10/05/2026
+ms.date: 10/09/2026
 uid: performance/caching/output
-
-# customer intent: As an ASP.NET developer, I want to configure output caching middleware in ASP.NET Core, so I can use output caching in my apps.
 ---
 # Output caching middleware in ASP.NET Core
 

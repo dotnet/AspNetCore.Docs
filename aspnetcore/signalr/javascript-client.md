@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core SignalR JavaScript client
 ai-usage: ai-assisted
-author: wadepickett
 description: Work with the ASP.NET Core SignalR JavaScript client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.custom: devx-track-js
 ms.date: 09/20/2026
 uid: signalr/javascript-client
@@ -111,7 +109,7 @@ In the following highlighted code, the method name on the hub is `SendMessage`. 
 
 [!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=2&name=snippet_Invoke)]
 
-Calling hub methods from a client is supported only when using the **Azure SignalR Service in Default** mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
+Calling hub methods from a client is supported only when using the Azure SignalR Service in [*Default* mode](/azure/azure-signalr/concept-service-mode#default-mode).
 
 The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) object. The `Promise` object is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` object is rejected with the error message. To handle these cases, use `async` and `await` or the `Promise` object's `then` and `catch` methods.
 
@@ -448,7 +446,7 @@ In the following example, the method name on the hub is `SendMessage`. The secon
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke&highlight=2)]
 
 > [!NOTE]
-> Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
+> Calling hub methods from a client is only supported when using the Azure SignalR Service in [*Default* mode](/azure/azure-signalr/concept-service-mode#default-mode).
 
 The `invoke` method returns a JavaScript [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 

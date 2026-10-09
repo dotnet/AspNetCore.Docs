@@ -1,10 +1,8 @@
 ---
 title: Memory management in Kestrel
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn about memory management in Kestrel, including automatic eviction from memory pools and using memory pool metrics.
 monikerRange: '>= aspnetcore-10.0'
-ms.author: tdykstra
 ms.date: 01/29/2026
 uid: fundamentals/servers/kestrel/memory-management
 ---
