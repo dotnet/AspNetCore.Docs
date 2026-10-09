@@ -213,6 +213,15 @@ In the preceding example:
 
 Alternatively, call `AddAspNetCoreInstrumentation()` from the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package, which registers the source for you.
 
+To prevent ASP.NET Core from adding OpenTelemetry HTTP semantic-convention attributes to the built-in request activity, set the `Microsoft.AspNetCore.Hosting.SuppressActivityOpenTelemetryData` <xref:System.AppContext> switch to `true` early in app startup:
+
+```csharp
+AppContext.SetSwitch(
+    "Microsoft.AspNetCore.Hosting.SuppressActivityOpenTelemetryData", true);
+```
+
+The switch only suppresses the OpenTelemetry attributes that ASP.NET Core adds to the activity. It doesn't disable activity creation, tracing propagation, or metrics collection.
+
 :::moniker-end
 
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
