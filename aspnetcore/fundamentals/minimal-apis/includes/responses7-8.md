@@ -1,6 +1,4 @@
 ---
-author: tdykstra
-ms.author: tdykstra
 ms.date: 08/07/2024
 ---
 

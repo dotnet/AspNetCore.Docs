@@ -1,8 +1,6 @@
 ---
 title: Part 6, add search
-author: wadepickett
 description: Part 6 of tutorial series on Razor Pages.
-ms.author: wpickett
 ms.date: 01/08/2026
 uid: tutorials/razor-pages/search
 ---

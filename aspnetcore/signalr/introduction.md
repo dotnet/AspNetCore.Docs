@@ -1,11 +1,8 @@
 ---
 title: Overview of ASP.NET Core SignalR
 ai-usage: ai-assisted
-author: wadepickett
 description: Explore ASP.NET Core SignalR, where you can add real-time capabilities to your apps with automatic connection management and scalable messaging solutions.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
-ms.reviewer: wpickett
 ms.date: 05/20/2026
 uid: signalr/introduction
 

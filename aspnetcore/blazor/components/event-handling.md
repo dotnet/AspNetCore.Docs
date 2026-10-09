@@ -1,9 +1,7 @@
 ---
 title: ASP.NET Core Blazor event handling
-author: guardrex
 description: Learn about Blazor's event handling features, including event argument types, event callbacks, and managing default browser events.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 07/02/2026
 uid: blazor/components/event-handling
 ---

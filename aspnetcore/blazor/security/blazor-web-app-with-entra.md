@@ -1,10 +1,8 @@
 ---
 title: Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
-ms.author: wpickett
 ms.custom: sfi-ropc-nochange
 ms.date: 07/06/2026
 uid: blazor/security/blazor-web-app-entra
