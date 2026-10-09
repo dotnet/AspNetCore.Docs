@@ -1,9 +1,7 @@
 ---
 title: Part 4, work with a database
-author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.date: 10/07/2026
+ms.date: 10/09/2026
 uid: tutorials/razor-pages/sql
 ---
 

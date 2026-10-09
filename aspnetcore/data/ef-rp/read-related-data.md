@@ -1,11 +1,8 @@
 ---
 title: Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 ai-usage: ai-assisted
-author: tdykstra
 description: Part 6 of Razor Pages and Entity Framework tutorial series.
-ms.author: tdykstra
-ms.date: 08/27/2026
-ms.reviewer: tdykstra
+ms.date: 10/08/2026
 uid: data/ef-rp/read-related-data
 ---
 
@@ -133,6 +130,9 @@ Run the app and select the **Courses** tab to see the list with department names
 ### Loading related data with Select
 
 The `OnGetAsync` method loads related data with the `Include` method. The `Select` method is an alternative that loads only the related data needed. For single items, like the `Department.Name` it uses a `SQL INNER JOIN`. For collections, it uses another database access, but so does the `Include` operator on collections.
+
+> [!NOTE]
+> The `Select` method used here is a LINQ **projection** operator. It transforms each element in the source sequence into a new form—in this case, a `CourseViewModel`. Because the query projects into a non-entity type, EF Core generates a SQL query that retrieves only the columns needed for the projection, and no entity tracking is performed.
 
 The following code loads related data with the `Select` method:
 
@@ -405,6 +405,9 @@ Run the app and select the **Courses** tab to see the list with department names
 ### Loading related data with Select
 
 The `OnGetAsync` method loads related data with the `Include` method. The `Select` method is an alternative that loads only the related data needed. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections, it uses another database access, but so does the `Include` operator on collections.
+
+> [!NOTE]
+> The `Select` method used here is a LINQ **projection** operator. It transforms each element in the source sequence into a new form—in this case, a `CourseViewModel`. Because the query projects into a non-entity type, EF Core generates a SQL query that retrieves only the columns needed for the projection, and no entity tracking is performed.
 
 The following code loads related data with the `Select` method:
 

@@ -1,9 +1,7 @@
 ---
 title: Views in ASP.NET Core MVC
-author: tdykstra
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
 ms.date: 04/29/2026
 uid: mvc/views/overview
 ---

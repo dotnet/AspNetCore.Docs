@@ -1,8 +1,6 @@
 ---
 title: Migrate from static ClaimsPrincipal access
-author: mjrousos
 description: Learn how to migrate away from static ClaimsPrincipal access to retrieve the current authenticated user's identity and claims in ASP.NET Core.
-ms.author: wpickett
 ms.date: 07/17/2025
 uid: migration/fx-to-core/areas/claimsprincipal-current
 ---

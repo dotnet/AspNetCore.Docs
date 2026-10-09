@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor Hybrid tutorials
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to build Blazor Hybrid apps with the tutorials listed in this article.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
 ms.date: 08/31/2026
 uid: blazor/hybrid/tutorials/index
 ---

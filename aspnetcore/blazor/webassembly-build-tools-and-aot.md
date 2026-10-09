@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation
 ai-usage: ai-assisted
-author: guardrex
 description: Learn about the WebAssembly build tools and how to compile a Blazor WebAssembly app ahead of deployment with ahead-of-time (AOT) compilation.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
 ms.date: 11/11/2025
 uid: blazor/tooling/webassembly
 ---
