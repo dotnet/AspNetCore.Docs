@@ -36,9 +36,9 @@ Examples in this article use *primary constructors*, available in C# 12 (.NET 8)
 
 ## Service manager working directory configuration
 
-Service managers, such as macOS `launchd`, Linux `systemd`, or Windows Service Control Manager (SCM), may set the app's working directory to a location outside of the directory that contains the app's configuration files. For example, the service manager on a Unix system might set the working directory to the system's root directory (`/`). On Windows, the service manager might set the directory to the root of the primary storage drive (`C:\`).
+Service managers, such as macOS `launchd` or Linux `systemd`, may set the app's working directory to a location outside of the directory that contains the app's configuration files. For example, a service manager on a Unix system might set the working directory to the system's root directory (`/`).
 
-If the working directory is broader than the app's directory, the file system watcher for configuration providers using reload-on-change behavior, where configuration is automatically reloaded when configuration files update, might monitor an excessively large portion of the file system. This can lead to unintended side effects, including permission errors when accessing files outside the app's directory and unnecessary performance overhead due to the volume of observed files. To avoid these issues, configure the hosting environment or service manager to set the working directory to the directory containing the app and its configuration files.
+If the host uses a working directory broader than the app's directory as its content root, the file system watcher for configuration providers using reload-on-change behavior, where configuration is automatically reloaded when configuration files update, might monitor an excessively large portion of the file system. This can lead to unintended side effects, including permission errors when accessing files outside the app's directory and unnecessary performance overhead due to the volume of observed files. To avoid these issues, configure the service manager to use the directory containing the app and its configuration files as its working directory, or explicitly set that directory as the host's content root.
 
 ## Read configuration values
 
