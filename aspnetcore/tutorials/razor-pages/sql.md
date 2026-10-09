@@ -132,7 +132,7 @@ In the preceding code, you modify `Program.cs` to do the following steps:
 * Create a service scope with `app.Services.CreateScope()`.
 * Obtain the service provider (<xref:System.IServiceProvider>) from the scope.
 * Call the `SeedData.Initialize` method, passing the service provider.
-* Dispose the service scope when the seed method completes. The [using statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the scope is disposed.
+* Dispose the service scope when the seed method completes. The [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the scope is disposed.
 
 The following exception occurs when you don't run `Update-Database`:
 
