@@ -165,7 +165,7 @@ For more information, see [Resetting all migrations](/ef/core/managing-schemas/m
 
 ---
 
-## Additional resources
+## Related content
 
 * [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)

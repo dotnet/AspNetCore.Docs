@@ -442,7 +442,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
-## Additional resources
+## Related content
 
 * [Configure an app's publisher domain](/entra/identity-platform/howto-configure-publisher-domain)
 * [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/reference-app-manifest#identifieruris-attribute)

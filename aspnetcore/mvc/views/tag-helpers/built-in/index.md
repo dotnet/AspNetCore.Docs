@@ -14,7 +14,7 @@ There are built-in Tag Helpers which aren't listed in this document. The unliste
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/th-components>

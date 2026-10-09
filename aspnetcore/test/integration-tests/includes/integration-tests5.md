@@ -325,7 +325,7 @@ The SUT's database context is registered in its `Startup.ConfigureServices` meth
 
 For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
 
-## Additional resources
+## Related content
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * <xref:test/razor-pages-tests>

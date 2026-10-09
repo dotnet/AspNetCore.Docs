@@ -10,7 +10,7 @@ uid: security/authorization/claims
 
 When an identity is created for an app user upon signing into an app, the identity provider may assign one or more [claims](xref:System.Security.Claims.Claim#remarks) to the user's identity. A claim is a name value pair that represents what the subject (a user, an app or service, or a device/computer) is, not what the subject can do. A claim can be evaluated by the app to determine access rights to data and other secured resources during the process of authorization and can also be used to make or express authentication decisions about a subject. An identity can contain multiple claims with multiple values and can contain multiple claims of the same type. This article explains how to add claims checks for authorization in an ASP.NET Core app.
 
-This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Additional resources](#additional-resources) section. For Razor Pages and MVC guidance, see the following resources:
+This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Related content](#related-content) section. For Razor Pages and MVC guidance, see the following resources:
 
 * <xref:razor-pages/security/authorization/claims>
 * <xref:mvc/security/authorization/claims>
@@ -345,7 +345,7 @@ The default <xref:System.Security.Claims.ClaimsIdentity> provided by the .NET ru
 
 In practice, this distinction rarely matters for role authorization because the role claim type is set once during identity creation and matched consistently. Always use consistent casing for role names and claim types to avoid subtle issues.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/authentication-state>

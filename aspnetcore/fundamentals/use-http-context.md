@@ -216,6 +216,6 @@ The application also includes `PeriodicBranchesLoggerService`, which logs the op
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
 
-## Additional resources
+## Related content
 
 For more information about accessing `HttpContext`, see <xref:fundamentals/httpcontext>.

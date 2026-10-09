@@ -402,6 +402,6 @@ When working with .NET on Web Workers, consider these key optimization strategie
 
 See the [sample app](#sample-app) for a demonstration of the preceding concepts.
 
-## Additional resources
+## Related content
 
 <xref:blazor/blazor-web-workers>

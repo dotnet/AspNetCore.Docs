@@ -426,7 +426,7 @@ To troubleshoot problems with user claims, the following `UserClaims` component 
 }
 ```
 
-## Additional resources
+## Related content
 
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
 * [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)

@@ -931,6 +931,6 @@ Refer to the preceding examples for guidance on adding navigation properties to 
 
 [!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
-## Additional resources
+## Related content
 
 * <xref:security/authentication/scaffold-identity>

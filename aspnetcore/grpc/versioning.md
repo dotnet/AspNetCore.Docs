@@ -102,6 +102,6 @@ Publishing multiple versions of a service duplicates it. To reduce duplication, 
 
 Services and messages generated with different package names are **different .NET types**. Moving business logic to a centralized location requires mapping messages to common types.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/protobuf>

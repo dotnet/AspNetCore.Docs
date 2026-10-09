@@ -559,7 +559,7 @@ The following options are available for the `libman cache` command:
       (empty)
   ```
 
-## Additional resources
+## Related content
 
 * [Install a Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
 * <xref:client-side/libman/libman-vs>

@@ -1887,7 +1887,7 @@ For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during
 
 For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (`dotnet/AspNetCore` GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/{VERSION}`, where the `{VERSION}` placeholder is the release version), use the **Switch branches or tags** dropdown list to select the branch. For a branch that no longer exists, use the **Tags** tab to find the API (for example, `v7.0.0`).

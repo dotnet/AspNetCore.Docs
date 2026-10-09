@@ -1781,7 +1781,7 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [ASP.NET Core Blazor configuration: Options configuration](xref:blazor/fundamentals/configuration#options-configuration)
 * [View or download sample code (Razor Pages)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))

@@ -14,7 +14,7 @@ Provides troubleshooting advice for apps deployed to IIS or running on IIS Expre
 [Clear package caches](#clear-package-caches)  
 Explains what to do when incoherent packages break an app when performing major upgrades or changing package versions.
 
-[Additional resources](#additional-resources)  
+[Related content](#related-content)  
 Lists additional troubleshooting topics.
 
 ## App startup errors
@@ -568,7 +568,7 @@ A functioning app may fail immediately after upgrading either the .NET SDK on th
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-## Additional resources
+## Related content
 
 * <xref:test/debug-aspnetcore-source>
 * <xref:test/troubleshoot>

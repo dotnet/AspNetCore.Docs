@@ -56,6 +56,6 @@ In contrast to the `include` attribute, the content of the `<environment>` tag i
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/environments>

@@ -104,7 +104,7 @@ The `EnableAuthenticator` component (`Components/Account/Pages/Manage/EnableAuth
 
 TOTP authentication depends on accurate time keeping on the TOTP authenticator app device and the app's host. TOTP tokens are only valid for 30 seconds. If logins are failing due to rejected TOTP codes, confirm accurate time is maintained, preferably synchronized to an accurate NTP service.
 
-## Additional resources
+## Related content
 
 * [Using a different QR code library](xref:security/authentication/identity-enable-qrcodes#using-a-different-qr-code-library)
 * [TOTP client and server time skew](xref:security/authentication/identity-enable-qrcodes#totp-client-and-server-time-skew)

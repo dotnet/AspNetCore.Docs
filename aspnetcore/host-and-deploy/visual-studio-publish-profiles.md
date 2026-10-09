@@ -391,7 +391,7 @@ To view the files in an Azure App Service web app deployment, use the [Kudu serv
 
 Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console) menu item to view, edit, delete, or add files.
 
-## Additional resources
+## Related content
 
 * [Web SDK README file](https://github.com/dotnet/sdk/tree/main/src/WebSdk)
 * [Web SDK GitHub repository](https://github.com/dotnet/websdk/issues): File issues and request features for deployment.

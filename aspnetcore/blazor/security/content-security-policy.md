@@ -653,7 +653,7 @@ Test and update an app's policy every release.
   * How to modify the policy to allow for a blocked item.
 * A policy is only completely effective when the client's browser supports all of the included directives. For a current browser support matrix, see [Can I use: Content-Security-Policy](https://caniuse.com/#search=Content-Security-Policy).
 
-## Additional resources
+## Related content
 
 * [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
 * [MDN web docs: Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP)

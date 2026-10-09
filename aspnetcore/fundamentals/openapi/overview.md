@@ -65,7 +65,7 @@ the output directory by setting the `OpenApiDocumentsDirectory` property.
 * [OpenApiDocumentService](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/Services/OpenApiDocumentService.cs)
 * [OpenApiOptions](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/Services/OpenApiOptions.cs)
 
-## Additional Resources
+## Related content
 
 * <xref:fundamentals/minimal-apis/security>
 

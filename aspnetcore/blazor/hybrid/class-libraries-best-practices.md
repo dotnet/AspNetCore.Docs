@@ -416,7 +416,7 @@ builder.Services.AddSingleton<IPermissionsService, MauiPermissionsService>();
 builder.Services.AddSingleton<IDeviceInfoService, MauiDeviceInfoService>();
 ```
 
-## Additional Resources
+## Related content
 
 * <xref:blazor/components/class-libraries>
 * [.NET MAUI Class Libraries](/dotnet/maui/platform-integration/)

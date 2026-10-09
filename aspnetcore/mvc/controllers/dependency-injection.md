@@ -90,7 +90,7 @@ Registering controllers as services enables:
 > [!NOTE]
 > Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
 
-## Additional resources
+## Related content
 
 * See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)

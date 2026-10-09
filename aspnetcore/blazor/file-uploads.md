@@ -1289,7 +1289,7 @@ Possible causes:
 
 * Using server-side rendering and calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> on multiple files before reading them to completion. To resolve the issue, use the `LazyBrowserFileStream` class and approach described in the [Upload files to a server with server-side rendering](#upload-files-to-a-server-with-server-side-rendering) section of this article.
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-6.0"
 

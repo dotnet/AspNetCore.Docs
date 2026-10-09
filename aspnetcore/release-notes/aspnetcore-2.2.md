@@ -110,6 +110,6 @@ For more information, see [the pull request that made this improvement](https://
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
-## Additional resources
+## Related content
 
 For the complete list of changes, see the [ASP.NET Core 2.2 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.2.0).

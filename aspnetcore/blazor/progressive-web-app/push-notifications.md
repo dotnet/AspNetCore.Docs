@@ -344,7 +344,7 @@ self.addEventListener('notificationclick', event => {
 
 If the PWA is installed on the device, the PWA is shown on the device. If the PWA isn't installed, the user is taken to the app's page in their browser.
 
-## Additional resources
+## Related content
 
 * [Push API (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Push_API)
 * [Message Encryption for Web Push (draft-ietf-webpush-encryption-08)](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08)

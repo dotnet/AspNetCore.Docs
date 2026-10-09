@@ -703,7 +703,7 @@ Shadow copying in IIS is an experimental feature that is not guaranteed to be pa
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
-## Additional resources
+## Related content
 
 * <xref:migration/50-to-60-samples>
 * [What's new in .NET 6](/dotnet/core/whats-new/dotnet-6)

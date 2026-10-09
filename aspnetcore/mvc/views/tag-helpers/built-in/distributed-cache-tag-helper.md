@@ -60,7 +60,7 @@ There are no tag attributes specifically associated with using any implementatio
 
 For more information, see <xref:performance/caching/distributed>.
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:fundamentals/dependency-injection>

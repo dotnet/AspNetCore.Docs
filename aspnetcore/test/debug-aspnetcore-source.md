@@ -42,7 +42,7 @@ If you have debugged an app before with the previous version of .NET, delete the
 * [Debugging .NET Core on Unix over SSH](https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/)
 * [Debugging ASP Core on Linux with Visual Studio 2017](https://devblogs.microsoft.com/premier-developer/debugging-asp-core-on-linux-with-visual-studio-2017/)
 
-## Additional resources
+## Related content
 
 * [JIT Optimization and Debugging](/visualstudio/debugger/jit-optimization-and-debugging)
 * [Limitations of the 'Suppress JIT optimization' option](/visualstudio/debugger/jit-optimization-and-debugging#limitations-of-the-suppress-jit-optimization-option) To set `COMPlus_ReadyToRun` to `0`

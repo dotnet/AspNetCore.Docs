@@ -1510,7 +1510,7 @@ We also recommend using a shared [Data Protection](xref:security/data-protection
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
 
-## Additional resources
+## Related content
 
 <!-- UPDATE 11.0 The PU has scheduled dotnet/aspnetcore #55213
                  for investigation/resolution. It might be

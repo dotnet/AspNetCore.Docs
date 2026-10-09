@@ -479,7 +479,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/startup>

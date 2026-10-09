@@ -110,6 +110,6 @@ Collation information is included to make APIs such as <xref:System.StringCompar
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)

@@ -300,6 +300,6 @@ The MSBuild target is invoked when running:
 dotnet publish -c Release
 ```
 
-## Additional resources
+## Related content
 
 * [Angular Docs](https://angular.dev/docs)

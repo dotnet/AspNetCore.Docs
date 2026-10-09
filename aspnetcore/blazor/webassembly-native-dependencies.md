@@ -147,7 +147,7 @@ Add a `SKCanvasView` component to the app with the following:
 
 Build the app, which might take several minutes. Run the app and navigate to the `NativeDependencyExample` component at `/native-dependency-example`.
 
-## Additional resources
+## Related content
 
 * [.NET WebAssembly build tools](xref:blazor/tooling/webassembly)
 * [Mono/WebAssembly MSBuild properties and targets (`WasmApp.targets`, `dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.Common.targets)

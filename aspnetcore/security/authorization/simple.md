@@ -79,7 +79,7 @@ Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.A
 
 For server-side apps where most endpoints require authentication, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
-## Additional resources
+## Related content
 
 * <xref:razor-pages/security/authorization/simple>
 * <xref:mvc/security/authorization/simple>

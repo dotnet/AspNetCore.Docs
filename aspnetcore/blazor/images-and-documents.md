@@ -187,7 +187,7 @@ The following `ShowFile` component loads either a text file (`files/quote.txt`) 
 
 In the preceding example, the `using` statement for the `response` variable doesn't dispose of the <xref:System.Net.Http.HttpResponseMessage> instance until the scope of `ShowFileAsync` ends. The open stream is maintained long enough to transfer the file data to the `setSource` function via JavaScript interop. For general guidance on the importance of disposing of <xref:System.Net.Http.HttpResponseMessage> instances, see <xref:blazor/call-web-api#disposal-of-httprequestmessage-httpresponsemessage-and-httpclient>.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/file-uploads>
 * [File uploads: Upload image preview](xref:blazor/file-uploads#upload-image-preview)

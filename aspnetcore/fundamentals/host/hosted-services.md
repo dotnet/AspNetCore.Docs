@@ -248,7 +248,7 @@ The AOT option adds `<PublishAot>true</PublishAot>` to the project file:
 </Project>
 ```
 
-## Additional resources
+## Related content
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))

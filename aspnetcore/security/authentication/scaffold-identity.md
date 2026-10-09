@@ -946,7 +946,7 @@ A similar approach can be followed for production scenarios.
 
 To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
 
-## Additional resources
+## Related content
 
 [Changes to authentication code to ASP.NET Core 2.1 or later](xref:migration/20-to-21#changes-to-authentication-code)
 

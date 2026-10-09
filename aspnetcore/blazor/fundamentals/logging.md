@@ -795,7 +795,7 @@ Use ***either*** of the following approaches:
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/logging/index>
 * [`Loglevel` Enum (API documentation)](xref:Microsoft.Extensions.Logging.LogLevel)

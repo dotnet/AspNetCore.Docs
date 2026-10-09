@@ -375,7 +375,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
         .build();
 ```
 
-## Additional resources
+## Related content
 
 * <xref:tutorials/signalr>
 * <xref:signalr/hubs>

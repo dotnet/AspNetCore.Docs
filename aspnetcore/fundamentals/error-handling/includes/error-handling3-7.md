@@ -311,12 +311,6 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 
 An alternative approach to generate problem details is to use the third-party NuGet package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
 
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-
 :::moniker-end
 
 :::moniker range="= aspnetcore-6.0"
@@ -517,12 +511,6 @@ Exception filters are useful for trapping exceptions that occur within MVC actio
 ## Model state errors
 
 For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
-
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
 
 :::moniker-end
 
@@ -776,11 +764,6 @@ Exception filters are useful for trapping exceptions that occur within MVC actio
 
 For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
 
-## Additional resources
-
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
@@ -993,7 +976,19 @@ In MVC apps, exception filters can be configured globally or on a per-controller
 
 For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
 
-## Additional resources
+:::moniker-end
+
+## Related content
+
+:::moniker range="= aspnetcore-7.0"
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>

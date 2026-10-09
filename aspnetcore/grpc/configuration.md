@@ -95,7 +95,7 @@ For more information about the different handlers and their configuration option
 * <xref:System.Net.Http.SocketsHttpHandler?displayProperty=fullName>
 * <xref:System.Net.Http.WinHttpHandler?displayProperty=fullName>
 
-## Additional resources
+## Related content
 
 * <xref:grpc/aspnetcore>
 * <xref:grpc/client>

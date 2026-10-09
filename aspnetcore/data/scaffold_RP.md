@@ -87,7 +87,7 @@ Run the app:
     1. **Create New** to create a new app.
     1. Try the **Edit**, **Details**, and **Delete** links.
 
-## Additional resources
+## Related content
 
 * [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
 * [How to manage .NET tools](/dotnet/core/tools/global-tools)

@@ -29,17 +29,6 @@ Globalizing and localizing an app involves the following tasks:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-## Additional resources
-
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/localization/select-language-culture>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-5.0"
@@ -400,7 +389,24 @@ Terms:
 
 [!INCLUDE[](~/includes/localization/unsupported-culture-log-level.md)]
 
-## Additional resources
+:::moniker-end
+
+## Related content
+
+:::moniker range="= aspnetcore-5.0"
+
+* <xref:fundamentals/localization/make-content-localizable>
+* <xref:fundamentals/localization/provide-resources>
+* <xref:fundamentals/localization/select-language-culture>
+* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
+* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.1 < aspnetcore-5.0"
 
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.

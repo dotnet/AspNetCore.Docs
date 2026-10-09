@@ -158,7 +158,7 @@ The following actions take place at each step of the test:
 > [!NOTE]
 > The `MarkupMatches` assert method differs from a regular string comparison assertion (for example, `Assert.Equal("Current count: 1", paraElmText);`). `MarkupMatches` performs a semantic comparison of the input and expected HTML markup. A semantic comparison is aware of HTML semantics, meaning things like insignificant whitespace is ignored. This results in more stable tests. For more information, see [Customizing the Semantic HTML Comparison](https://bunit.egilhansen.com/docs/verification/semantic-html-comparison).
 
-## Additional resources
+## Related content
 
 * [Getting Started with bUnit](https://bunit.dev/docs/getting-started/): bUnit instructions include guidance on creating a test project, referencing testing framework packages, and building and running tests.
 * [Blazor Testing from A to Z - Egil Hansen - NDC London 2025](https://www.youtube.com/watch?v=p-H5fEMCB8s) ([NDC London](https://ndclondon.com/))

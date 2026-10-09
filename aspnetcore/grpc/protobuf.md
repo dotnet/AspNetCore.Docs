@@ -435,7 +435,7 @@ var json = JsonFormatter.Default.Format(status.Data);
 var document = JsonDocument.Parse(json);
 ```
 
-## Additional resources
+## Related content
 
 * [Protobuf language guide](https://developers.google.com/protocol-buffers/docs/proto3#simple)
 * <xref:grpc/versioning>

@@ -103,7 +103,7 @@ The middleware is registered in the request processing pipeline in `Startup.Conf
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Middleware](xref:fundamentals/middleware/index)
 * [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)

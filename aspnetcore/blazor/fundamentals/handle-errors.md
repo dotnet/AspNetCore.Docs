@@ -984,7 +984,7 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-10.0"
 

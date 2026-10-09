@@ -257,6 +257,6 @@ If you set up serialization and trimming correctly, `HybridCache` behaves the sa
 
 The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
 
-## Additional resources
+## Related content
 
 For more information, see [the `HybridCache` source code](https://source.dot.net/#Microsoft.Extensions.Caching.Abstractions/Hybrid/HybridCache.cs)

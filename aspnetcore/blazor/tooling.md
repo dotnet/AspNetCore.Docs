@@ -643,7 +643,7 @@ builder.AddBlazorClientServiceDefaults();
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-6.0"
 

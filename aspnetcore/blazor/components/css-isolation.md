@@ -293,7 +293,7 @@ For more information on RCLs, see the following articles:
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Additional resources
+## Related content
 
 * [Razor Pages CSS isolation](xref:razor-pages/index#css-isolation)
 * [MVC CSS isolation](xref:mvc/views/overview#css-isolation)

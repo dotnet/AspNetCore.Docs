@@ -166,7 +166,7 @@ ASP.NET Core apps are configured using other configuration providers. For more i
 
 If you need to transform `web.config` on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
 
-## Additional resources
+## Related content
 
 * [IIS \<system.webServer>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/iis/modules>

@@ -72,7 +72,7 @@ The following markup shows the *Edit.cshtml* page which uses the `Pages/Shared/E
 
 [!code-cshtml[](display-templates/sample/Pages/Adr2/Edit.cshtml?highlight=17)]
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)

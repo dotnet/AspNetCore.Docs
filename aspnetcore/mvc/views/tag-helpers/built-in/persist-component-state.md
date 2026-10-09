@@ -72,7 +72,7 @@ For more information and examples, see <xref:blazor/components/integration#persi
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-8.0"
 

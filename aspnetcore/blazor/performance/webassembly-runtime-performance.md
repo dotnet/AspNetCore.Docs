@@ -91,7 +91,7 @@ For more information, see [Configuring and hosting .NET WebAssembly applications
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/performance/webassembly-browser-developer-tools>
 * <xref:blazor/performance/webassembly-event-pipe>

@@ -149,7 +149,7 @@ Your code should yield to main browser loop often to allow the trace to be colle
 > [!CAUTION]
 > Enabling profilers and diagnostic tools has negative size and performance impacts, so don't publish an app for production with profilers enabled.
 
-## Additional resources
+## Related content
 
 * [EventPipe](/dotnet/core/diagnostics/eventpipe) is a runtime component used to collect tracing data, similar to [ETW](/windows/win32/etw/event-tracing-portal) and [perf_events](https://wikipedia.org/wiki/Perf_%28Linux%29).
 * [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)

@@ -244,7 +244,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * [Core Cloud Services - Set up CORS for your website and storage assets (Learn module)](/training/modules/set-up-cors-website-storage/)
 * [IIS CORS module Configuration Reference (IIS documentation)](/iis/extensions/cors-module/cors-module-configuration-reference)
 
-## Additional resources
+## Related content
 
 * <xref:blazor/fundamentals/static-files>
 * <xref:blazor/js-interop/index>

@@ -955,7 +955,7 @@ const credentialJson = JSON.stringify({
 
 The preceding workaround is only required until the password manager is updated to implement the `PublicKeyCredential.toJSON` method correctly. We recommend tracking your password manager's release notes and reverting the preceding changes after the password manager is updated.
 
-## Additional resources
+## Related content
 
 * [Web Authentication API (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API)
 * [Get started with phishing-resistant passwordless authentication deployment in Microsoft Entra ID](/entra/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication)

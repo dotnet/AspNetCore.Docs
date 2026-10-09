@@ -1541,7 +1541,7 @@ Static files
 * `Microsoft.AspNetCore.StaticFiles`: Logs from the static files middleware, including file serving and cache operations.
 * `Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware`: Logs related to static file middleware execution and file response handling.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/fundamentals/logging>
 * [Improving logging performance with source generators](https://andrewlock.net/exploring-dotnet-6-part-8-improving-logging-performance-with-source-generators/)

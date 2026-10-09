@@ -302,7 +302,7 @@ class Program
 }
 ```
 
-## Additional resources
+## Related content
 
 * See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/30378) and [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
 * <xref:fundamentals/configuration/index>

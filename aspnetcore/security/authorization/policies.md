@@ -524,7 +524,7 @@ Transfer-Encoding: chunked
 
 ---
 
-## Additional resources
+## Related content
 
 * [Quickstart: Configure an application to expose a web API](/entra/identity-platform/quickstart-configure-app-expose-web-apis)
 * [Authorization via an external service sample (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthorizationExternalService)

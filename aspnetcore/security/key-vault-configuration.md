@@ -783,7 +783,7 @@ When the app fails to load configuration using the provider, an error message is
 * The app has the wrong Key Vault name (`KeyVaultName`), Microsoft Entra ID Application ID (`AzureADApplicationId`), or Microsoft Entra ID certificate thumbprint (`AzureADCertThumbprint`), or Microsoft Entra ID Directory ID (`AzureADDirectoryId`).
 * When adding the Key Vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>

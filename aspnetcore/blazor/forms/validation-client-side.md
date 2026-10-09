@@ -198,7 +198,7 @@ Method | Description
 * Only the attributes listed in [Supported validation attributes](#supported-validation-attributes) have built-in client-side implementations. For example, a <xref:System.ComponentModel.DataAnnotations.RangeAttribute> with a non-numeric operand type is only enforced on the server. Other attributes require a [custom client-side validation rule](#custom-client-side-validation-rules).
 * Custom JavaScript validators are synchronous. Rules that require a network call or other asynchronous work must run on the server or use asynchronous validation with an interactive render mode. For more information, see <xref:blazor/forms/validation-advanced>.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/forms/validation>
 * <xref:blazor/forms/validation-advanced>

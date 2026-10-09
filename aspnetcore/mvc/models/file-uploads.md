@@ -2308,7 +2308,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range="< aspnetcore-5.0"
 

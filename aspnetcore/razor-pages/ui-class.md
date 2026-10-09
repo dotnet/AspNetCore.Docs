@@ -158,7 +158,7 @@ When the RCL is built, a manifest is produced that describes the static web asse
 
 When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{PACKAGE ID}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}` when examining the `wwwroot` folder for the published assets.
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 

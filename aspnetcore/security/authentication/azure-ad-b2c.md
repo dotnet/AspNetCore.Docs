@@ -48,7 +48,7 @@ After completing identity provider setup using the Entra or Azure AD B2C documen
 
 1. **Add configuration:** Add the `AzureADB2C` section in `appsettings.json` with values that match your tenant and app registration. See [Configure authentication in a sample ASP.NET Core web app](/azure/active-directory-b2c/configure-authentication-sample-web-app) for the complete schema and sample.
 
-## Additional resources
+## Related content
 
 * [Microsoft Entra External ID for customers overview](/entra/external-id/customers/overview-customers-ciam)
 * [Azure AD B2C documentation](/azure/active-directory-b2c/)

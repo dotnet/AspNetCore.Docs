@@ -169,7 +169,7 @@ public class IndexModel : PageModel
 
 There are no plans to support the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on Razor Page handlers.
 
-## Additional resources
+## Related content
 
 * <xref:security/authorization/simple>
 * <xref:mvc/security/authorization/simple>

@@ -140,20 +140,6 @@ Login failed for user 'user name'.
 
 The solution may be to run `dotnet ef database update` at a command prompt.
 
-### Additional resources
-
-* [EF Core CLI](/ef/core/miscellaneous/cli/dotnet).
-* [dotnet ef migrations CLI commands](/ef/core/miscellaneous/cli/dotnet)
-* [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
-
-## Next steps
-
-The next tutorial builds out the data model, adding entity properties and new entities.
-
-> [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/sort-filter-page)
-> [Next tutorial](xref:data/ef-rp/complex-data-model)
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
@@ -309,16 +295,30 @@ Login failed for user 'user name'.
 
 Solution: Run `dotnet ef database update`
 
-### Additional resources
+:::moniker-end
+
+### Related content
+
+:::moniker range=">= aspnetcore-3.0"
+
+* [EF Core CLI](/ef/core/miscellaneous/cli/dotnet).
+* [dotnet ef migrations CLI commands](/ef/core/miscellaneous/cli/dotnet)
+* [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
 
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
 * [.NET CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
+:::moniker-end
 
+## Next steps
+
+The next tutorial builds out the data model, adding entity properties and new entities.
 
 > [!div class="step-by-step"]
-> [Previous](xref:data/ef-rp/sort-filter-page)
-> [Next](xref:data/ef-rp/complex-data-model)
-
-:::moniker-end
+> [Previous tutorial](xref:data/ef-rp/sort-filter-page)
+> [Next tutorial](xref:data/ef-rp/complex-data-model)

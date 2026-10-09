@@ -94,7 +94,7 @@ public async Task Invoke(HttpContext context)
 
 `HttpContext` has significantly changed in ASP.NET Core. For detailed information on how to translate the most commonly used properties of `System.Web.HttpContext` to the new `Microsoft.AspNetCore.Http.HttpContext`, see [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md).
 
-## Additional resources
+## Related content
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Application Startup](xref:fundamentals/startup)

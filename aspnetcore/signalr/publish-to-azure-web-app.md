@@ -73,7 +73,7 @@ For apps hosted without the Azure SignalR Service, enable:
 
 WebSockets and other transports are limited based on the App Service Plan selected. For more information, see the *Azure Cloud Services limits* and *App Service limits* sections of the [Azure subscription and service limits, quotas, and constraints](/azure/azure-subscription-service-limits#app-service-limits) article.
 
-## Additional resources
+## Related content
 
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/introduction>

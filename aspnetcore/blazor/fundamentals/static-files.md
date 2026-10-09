@@ -561,7 +561,7 @@ Run the app.
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-8.0"
 

@@ -267,7 +267,7 @@ Create a sidebar navigation entry in the `NavMenu` component (`Shared/NavMenu.ra
 </div>
 ```
 
-## Additional resources
+## Related content
 
 * [Host a Blazor web app in a .NET MAUI app using BlazorWebView](/dotnet/maui/user-interface/controls/blazorwebview)
 * [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding)

@@ -140,7 +140,7 @@ The following code creates an asynchronous timed background task:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/host/TimedBackgroundTasks/TimedHostedService.cs":::
 
-## Additional resources
+## Related content
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))

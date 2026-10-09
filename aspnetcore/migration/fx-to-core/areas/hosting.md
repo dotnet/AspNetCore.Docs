@@ -265,7 +265,7 @@ While migrating to this setup, small incremental changes will help ensure a succ
 1. Start using the options pattern to convert configuration into POCO that can be passed to consuming services using the integrated DI system
 1. Move your settings from `web.config` to `appsettings.json`
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/host/generic-host>
 * <xref:fundamentals/dependency-injection>

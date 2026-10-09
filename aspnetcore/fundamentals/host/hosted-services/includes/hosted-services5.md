@@ -158,7 +158,7 @@ The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). 
 
 :::code language="csharp" source="~/fundamentals/host/hosted-services/samples/3.x/BackgroundTasksSample/Program.cs" id="snippet4":::
 
-## Additional resources
+## Related content
 
 * [Implement background tasks in microservices with IHostedService and the BackgroundService class](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
 * [Run background tasks with WebJobs in Azure App Service](/azure/app-service/webjobs-create)

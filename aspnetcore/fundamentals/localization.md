@@ -43,10 +43,10 @@ Globalizing and localizing an app involves the following tasks:
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 <!-- 
-Move mini TOC from ## Additional resources to here
+Move mini TOC from ## Related content to here
 ## Additional globalization and localization topics
 -->
-## Additional resources
+## Related content
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
