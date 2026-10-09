@@ -34,6 +34,12 @@ For more information on migrating app configuration from earlier versions of ASP
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
+## Service manager working directory configuration
+
+Service managers, such as macOS `launchd`, Linux `systemd`, or Windows Service Control Manager (SCM), may set the app's working directory to a location outside of the directory that contains the app's configuration files. For example, the service manager on a Unix system might set the working directory to the system's root directory (`/`). On Windows, the service manager might set the directory to the root of the primary storage drive (`C:\`).
+
+If the working directory is broader than the app's directory, the file system watcher for configuration providers using reload-on-change behavior, where configuration is automatically reloaded when configuration files update, might monitor an excessively large portion of the file system. This can lead to unintended side effects, including permission errors when accessing files outside the app's directory and unnecessary performance overhead due to the volume of observed files. To avoid these issues, configure the hosting environment or service manager to set the working directory to the directory containing the app and its configuration files.
+
 ## Read configuration values
 
 Configuration is typically read by resolving the <xref:Microsoft.Extensions.Configuration.IConfiguration> service (<xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace) and using the key of configuration key-value pairs to obtain a configuration value.
@@ -558,9 +564,6 @@ Comments in `appsettings.json` and `appsettings.{ENVIRONMENT}.json` files are su
 The preceding setting indicates to VS Code that app settings files, including environmental-based files, are associated with the [JSONC ("JSON with Comments") file format](https://jsonc.org/), which supports comments.
 
 For other IDEs, check the IDE's documentation and product support channels to determine how to silence errors or warnings about comments in JSON files.
-
-> [!NOTE]
-> Service managers such as SCM, `launchd`, or `systemd` may, if not configured properly, set the application's working directory to a location outside the directory that contains the configuration files, commonly the root directory on Unix systems or a drive root such as `C:\` on Windows. In this case, the file system watcher configured for `reloadOnChange` might monitor an excessively large portion of the file system. This can lead to unintended side effects, including permission errors when accessing files outside the application directory and unnecessary performance overhead due to the volume of files being observed. To avoid these issues, configure the hosting environment or service manager to set the working directory to the directory containing the application and its configuration files.
 
 ## Environment Variables Configuration Provider
 
