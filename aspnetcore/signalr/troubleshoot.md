@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core SignalR connection troubleshooting
 ai-usage: ai-assisted
-author: wadepickett
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: wpickett
 ms.date: 03/25/2026
 uid: signalr/troubleshoot
 ---

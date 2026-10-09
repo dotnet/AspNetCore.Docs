@@ -7,20 +7,14 @@ using Microsoft.Extensions.Logging;
 namespace BackgroundTasksSample.Services
 {
     #region snippet1
-    public class TimedHostedService : IHostedService, IDisposable
+    public class TimedHostedService(ILogger<TimedHostedService> logger) : IHostedService, IDisposable
     {
         private int executionCount = 0;
-        private readonly ILogger<TimedHostedService> _logger;
         private Timer? _timer = null;
-
-        public TimedHostedService(ILogger<TimedHostedService> logger)
-        {
-            _logger = logger;
-        }
 
         public Task StartAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Timed Hosted Service running.");
+            logger.LogInformation("Timed Hosted Service running.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
                 TimeSpan.FromSeconds(5));
@@ -32,13 +26,13 @@ namespace BackgroundTasksSample.Services
         {
             var count = Interlocked.Increment(ref executionCount);
 
-            _logger.LogInformation(
+            logger.LogInformation(
                 "Timed Hosted Service is working. Count: {Count}", count);
         }
 
         public Task StopAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Timed Hosted Service is stopping.");
+            logger.LogInformation("Timed Hosted Service is stopping.");
 
             _timer?.Change(Timeout.Infinite, 0);
 

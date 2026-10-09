@@ -1,9 +1,7 @@
 ---
 title: ASP.NET Core Razor component virtualization
-author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: wpickett
 ms.date: 09/10/2026
 uid: blazor/components/virtualization
 ---

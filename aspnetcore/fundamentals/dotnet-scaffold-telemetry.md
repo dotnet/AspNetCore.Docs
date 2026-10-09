@@ -1,9 +1,7 @@
 ---
 title: dotnet-scaffold telemetry
-author: tdykstra
 description: Learn about the telemetry collected by the dotnet-scaffold CLI tool.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: tdykstra
 ms.date: 11/12/2024
 uid: fundamentals/dotnet-scaffold-telemetry
 ---

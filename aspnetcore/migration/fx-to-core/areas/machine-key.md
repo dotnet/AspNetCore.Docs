@@ -1,10 +1,8 @@
 ---
 title: ASP.NET machineKey to ASP.NET Core migration
 ai-usage: ai-assisted
-author: twsouthwick
 description: Migrate ASP.NET machineKey-based cryptography to ASP.NET Core data protection in incremental and full migrations.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
 ms.date: 12/10/2025
 ms.reviewer: tasou
 ms.topic: concept-article

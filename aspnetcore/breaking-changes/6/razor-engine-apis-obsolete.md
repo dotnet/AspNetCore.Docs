@@ -2,7 +2,6 @@
 title: "Breaking change: Razor: RazorEngine APIs marked obsolete"
 description: "Learn about the breaking change in ASP.NET Core 6.0 titled Razor: RazorEngine APIs marked obsolete"
 no-loc: [ Razor ]
-ms.author: wpickett
 ms.date: 02/09/2021
 ms.custom: https://github.com/aspnet/Announcements/issues/446
 ---

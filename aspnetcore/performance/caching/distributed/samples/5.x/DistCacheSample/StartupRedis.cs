@@ -1,6 +1,6 @@
 // Use this startup in Program.cs to use a distributed Redis cache,
-// For more information, see: 
-// https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
+// For more information, see:
+// https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

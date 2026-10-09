@@ -1,11 +1,9 @@
 ---
 title: Security considerations for the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
-author: BrennanConroy
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: brecon
-ms.date: 10/05/2026
+ms.date: 10/09/2026
 uid: fundamentals/servers/kestrel/security-considerations
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
