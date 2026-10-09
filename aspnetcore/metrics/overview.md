@@ -3,7 +3,7 @@ title: ASP.NET Core metrics
 ai-usage: ai-assisted
 description: Learn how ASP.NET Core metrics work, from instrumentation to alerting. Explore built-in instruments, custom meters, and testing metrics in integration tests.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 08/24/2026
+ms.date: 10/09/2026
 ms.topic: concept-article
 uid: metrics/overview
 ---
@@ -25,14 +25,16 @@ Using metrics involves the following:
 
 * **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name. .NET and ASP.NET Core include many built-in metrics.
 * **Collection and storage:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools might perform configuration outside the app by using configuration files or a UI tool.
-* **Visualization:** A tool that can display the metrics in a human-readable format. For example, [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/).
+* **Visualization:** A tool that can display the metrics in a human-readable format. For example, the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview), [Grafana](https://grafana.com/), and [Prometheus](https://prometheus.io/).
 * **Alerting:** A tool that provides notifications when a metric exceeds a threshold. For example, if the average response time for a web service exceeds 400 ms, an alert can be sent to the operations staff.
 * **Analysis:** A tool that can analyze the metrics over time. This tool is often a web-based dashboard that can be customized to show the most important metrics for a specific app.
 
 Instrumented code can record numeric measurements, but to create useful metrics for monitoring, you need to aggregate, transmit, and store the measurements. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting and displaying metrics:
 
 * Populating metrics in [Grafana](https://grafana.com/) with [OpenTelemetry](https://opentelemetry.io/) and [Prometheus](https://prometheus.io/).
-* Viewing metrics in real time with [`dotnet-counters`](/dotnet/core/diagnostics/dotnet-counters)
+* Viewing metrics in real time with [`dotnet-counters`](/dotnet/core/diagnostics/dotnet-counters).
+
+For another visualization option, see the [.NET Aspire dashboard overview](https://aspire.dev/dashboard/overview/).
 
 You can also associate measurements with key-value pairs called tags that allow you to categorize data for analysis. For more information, see [Multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics).
 
@@ -341,3 +343,9 @@ dotnet-counters monitor -n YourAppName --counters Microsoft.AspNetCore.Identity
 ## ASP.NET Core meters and counters
 
 For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore). In ASP.NET Core 11 and later, the built-in HTTP server meters (for example, `Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) emit data that conforms to the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). You can consume these meters with the OpenTelemetry SDK without the `OpenTelemetry.Instrumentation.AspNetCore` package.
+
+## Additional resources
+
+* [.NET Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
+* [Explore .NET Aspire telemetry](/dotnet/aspire/fundamentals/telemetry)
+* <xref:metrics/built-in>
