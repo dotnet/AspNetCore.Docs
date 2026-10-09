@@ -1,10 +1,8 @@
 ---
 title: .NET OpenAPI tool command reference and installation
 ai-usage: ai-assisted
-author: ryanbrandenburg
 description: Command reference for the `Microsoft.dotnet-openapi` tool, which adds and manages OpenAPI references that generate clients to consume OpenAPI documents.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 07/30/2026
 uid: fundamentals/openapi/openapi-tools
 ---

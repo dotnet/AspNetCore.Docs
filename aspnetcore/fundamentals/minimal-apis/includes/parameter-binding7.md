@@ -203,7 +203,7 @@ The following code binds to the header key `X-Todo-Id` and returns the `Todo` it
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_getHeader)]
 
 > [!NOTE]
-> When binding a `string[]` from a query string, the absence of any matching query string value will result in an empty array instead of a null value.
+> When binding a non-nullable `string[]` from a query string, the absence of any matching query string value results in an empty array instead of `null`. If the parameter is declared as nullable (for example, `string[]?`) or has a default value of `null` (for example, `[FromQuery] string[]? names = null`), omitting the query parameter results in `null`.
 
 <a name="asparam7"></a>
 

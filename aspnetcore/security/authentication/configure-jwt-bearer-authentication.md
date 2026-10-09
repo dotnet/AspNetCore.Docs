@@ -1,12 +1,9 @@
 ---
 title: Configure JWT bearer authentication in ASP.NET Core
 ai-usage: ai-assisted
-author: damienbod
 description: JWT bearer tokens protect ASP.NET Core APIs from unauthorized calls. See how to add AddJwtBearer, set validation parameters, and support multiple issuer schemes.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: tdykstra
 ms.date: 09/18/2026
-ms.reviewer: tdykstra
 uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core

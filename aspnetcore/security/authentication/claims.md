@@ -1,9 +1,7 @@
 ---
 title: Map, customize, transform claims in ASP.NET Core
-author: damienbod
 description: Learn how to map claims, perform claims transformations, and customize claims in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 05/15/2026
 uid: security/authentication/claims
 

@@ -1,10 +1,8 @@
 ---
 title: Return Razor component HTML from a web API in ASP.NET Core Blazor
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to return HTML (as a string) from a web API (Minimal API) using the RazorComponentResult class.
 monikerRange: '>= aspnetcore-8.0'
-ms.author: wpickett
 ms.date: 07/31/2026
 uid: blazor/components/return-component-html-from-a-web-api
 ---

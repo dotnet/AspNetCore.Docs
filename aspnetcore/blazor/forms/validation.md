@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor forms validation
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 09/23/2026
 uid: blazor/forms/validation
 ---

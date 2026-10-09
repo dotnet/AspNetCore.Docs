@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core SignalR JavaScript client
 ai-usage: ai-assisted
-author: wadepickett
 description: Work with the ASP.NET Core SignalR JavaScript client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.custom: devx-track-js
 ms.date: 09/20/2026
 uid: signalr/javascript-client

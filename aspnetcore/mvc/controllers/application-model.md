@@ -1,8 +1,6 @@
 ---
 title: Work with the application model in ASP.NET Core
-author: tdykstra
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
-ms.author: tdykstra
 ms.date: 09/06/2026
 uid: mvc/controllers/application-model
 ---

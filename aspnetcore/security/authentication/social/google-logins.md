@@ -1,9 +1,7 @@
 ---
 title: Google external login setup in ASP.NET Core
-author: wadepickett
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
-ms.author: wpickett
-ms.date: 04/09/2026
+ms.date: 10/08/2026
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -72,7 +70,7 @@ Manage API credentials and usage in the [API Console](https://console.developers
 
 :::moniker range=">= aspnetcore-6.0"
 
-Add the [`Google.Apis.Auth.AspNetCore3` NuGet package](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) to the app:
+To use Google authentication with OpenID Connect, add the [`Google.Apis.Auth.AspNetCore3` NuGet package](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) to the app:
 
 ```dotnetcli
 dotnet add package Google.Apis.Auth.AspNetCore3
@@ -81,6 +79,22 @@ dotnet add package Google.Apis.Auth.AspNetCore3
 Add the authentication service to the `Program` file:
 
 :::code language="csharp" source="~/security/authentication/social/social-code/6.x/ProgramGoogle.cs" id="snippet1":::
+
+Alternatively, to use Google OAuth authentication with `AddGoogle`, add the [`Microsoft.AspNetCore.Authentication.Google` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) to the app:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.Authentication.Google
+```
+
+Add the authentication service to the `Program` file:
+
+```csharp
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});
+```
 
 :::moniker-end
 

@@ -1,11 +1,9 @@
 ---
 title: Handle errors in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.date: 08/10/2026
+ms.date: 10/08/2026
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -238,6 +236,8 @@ The URL template must start with `/` and may include a placeholder `{0}` for the
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
+
+Similar to `UseExceptionHandler`, only the request path is modified, and the route data is cleared. Request data such as headers (including the referrer), HTTP method, and items are reused as-is on `HttpContext.Request`. Original path and query string details can be retrieved using <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature>.
 
 Since this middleware can re-execute the request pipeline:
 

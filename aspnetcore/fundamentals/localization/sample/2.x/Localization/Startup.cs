@@ -71,7 +71,7 @@ namespace Localization
                 app.UseExceptionHandler("/Home/Error");
 
                 // For more information on applying migrations at runtime, see:
-                // https://docs.microsoft.com/ef/core/managing-schemas/migrations/applying#apply-migrations-at-runtime
+                // https://learn.microsoft.com/ef/core/managing-schemas/migrations/applying#apply-migrations-at-runtime
                 try
                 {
                     using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
@@ -101,7 +101,7 @@ namespace Localization
             });
 
             app.UseStaticFiles();
-            // To configure external authentication, 
+            // To configure external authentication,
             // see: http://go.microsoft.com/fwlink/?LinkID=532715
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();

@@ -227,6 +227,8 @@ The endpoint that processes the error can get the original URL that generated th
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
 
+Similar to `UseExceptionHandler`, only the request path is modified, and the route data is cleared. Request data such as headers (including the referrer), HTTP method, and items are reused as-is on `HttpContext.Request`. Original path and query string details can be retrieved using <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature>.
+
 Since this middleware can re-execute the request pipeline:
 
 * Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.

@@ -8,7 +8,7 @@ where:
 configuration:
   resourceManagementConfiguration:
     eventResponderTasks:
-      - description: Close an issue created with the learn template that has an empty body.
+      - description: Close an issue created with the Learn template that has an empty body.
         if:
           - payloadType: Issues
           - bodyContains:
@@ -18,7 +18,7 @@ configuration:
           - addLabel: 'needs-more-info'
           - removeLabel: ':watch: Not Triaged'
           - closeIssue
-          
+
         triggerOnOwnActions: false
 
 onFailure:
