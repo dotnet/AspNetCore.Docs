@@ -41,7 +41,7 @@ builder.Services.AddW3CLogging(logging =>
 });
 ```
 
-Next, call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline.
+Next, call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline:
 
 ```csharp
 app.UseW3CLogging();
@@ -113,7 +113,7 @@ builder.Services.AddW3CLogging(logging =>
 });
 ```
 
-Next, call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline.
+Next, call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline:
 
 ```csharp
 app.UseW3CLogging();
