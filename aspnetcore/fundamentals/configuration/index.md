@@ -3,7 +3,7 @@ title: Configuration in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/09/2026
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -33,6 +33,12 @@ For more information on migrating app configuration from earlier versions of ASP
 [!INCLUDE[](~/includes/managed-identities-conn-strings.md)]
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+
+## Service manager working directory configuration
+
+Service managers, such as macOS `launchd` or Linux `systemd`, may set the app's working directory to a location outside of the directory that contains the app's configuration files. For example, a service manager on a Unix system might set the working directory to the system's root directory (`/`).
+
+If the host uses a working directory broader than the app's directory as its content root, the file system watcher for configuration providers using reload-on-change behavior, where configuration is automatically reloaded when configuration files update, might monitor an excessively large portion of the file system. This can lead to unintended side effects, including permission errors when accessing files outside the app's directory and unnecessary performance overhead due to the volume of observed files. To avoid these issues, configure the service manager to use the directory containing the app and its configuration files as its working directory, or explicitly set that directory as the host's content root.
 
 ## Read configuration values
 
