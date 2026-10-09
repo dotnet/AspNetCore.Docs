@@ -32,14 +32,20 @@ W3CLogger ***can reduce the performance of an app***. Consider the performance i
 
 ## Enable W3CLogger
 
-To enable W3CLogger:
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> to add the W3CLogger services to the dependency injection container:
 
-1. Call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> to add the W3CLogger services to the dependency injection container.
-1. Call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline.
+```csharp
+builder.Services.AddW3CLogging(logging =>
+{
+   // Set logging properties here
+});
+```
 
-:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
+Next, call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline.
 
-:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_UseW3CLogging" highlight="3":::
+```csharp
+app.UseW3CLogging();
+```
 
 By default, log files are written to a `logs` directory in the app's content root directory (`./logs/`) with the file name prefix `w3clog-` (for example, `./logs/w3clog-20210929.0000.txt`).
 
@@ -98,14 +104,20 @@ W3CLogger ***can reduce the performance of an app***. Consider the performance i
 
 ## Enable W3CLogger
 
-To enable W3CLogger:
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> to add the W3CLogger services to the dependency injection container:
 
-1. Call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> to add the W3CLogger services to the dependency injection container.
-1. Call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline.
+```csharp
+builder.Services.AddW3CLogging(logging =>
+{
+   // Set logging properties here
+});
+```
 
-:::code language="csharp" source="samples/7.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
+Next, call <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> to add the W3CLogger middleware to the request processing pipeline.
 
-:::code language="csharp" source="samples/7.x/Program.cs" id="snippet_UseW3CLogging" highlight="3":::
+```csharp
+app.UseW3CLogging();
+```
 
 By default, log files are written to a `logs` directory in the app's content root directory (`./logs/`) with the file name prefix `w3clog-` (for example, `./logs/w3clog-20210929.0000.txt`).
 
