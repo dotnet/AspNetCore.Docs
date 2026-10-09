@@ -1,10 +1,8 @@
 ---
 title: Use hosting startup assemblies in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
 ms.date: 09/16/2026
 uid: fundamentals/configuration/platform-specific-configuration
 ---

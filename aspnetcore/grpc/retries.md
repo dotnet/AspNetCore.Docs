@@ -1,9 +1,7 @@
 ---
 title: Transient fault handling with gRPC retries
-author: jamesnk
 description: Learn how to make resilient, fault tolerant gRPC calls with retries in .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
 ms.date: 03/18/2021
 uid: grpc/retries
 ---

@@ -1,6 +1,6 @@
 ﻿// Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
-// https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
+// https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 //
 // SuppressApiControllerBehavior - disable settings that are enabled when using [ApiController].
 

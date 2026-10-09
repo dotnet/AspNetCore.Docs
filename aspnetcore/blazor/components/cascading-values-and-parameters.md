@@ -1,9 +1,7 @@
 ---
 title: ASP.NET Core Blazor cascading values and parameters
-author: guardrex
 description: Learn how to flow data from an ancestor Razor component to descendent components.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 11/11/2025
 uid: blazor/components/cascading-values-and-parameters
 ---
@@ -483,7 +481,7 @@ Similar to a regular component parameter, components accepting a cascading param
 ```razor
 <main>
     <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
     </div>
 
     <CascadingValue Value="theme">

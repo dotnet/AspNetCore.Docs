@@ -1,10 +1,8 @@
 ---
 title: ASP.NET Core Blazor static files
 ai-usage: ai-assisted
-author: guardrex
 description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 08/24/2026
 uid: blazor/fundamentals/static-files
 ---

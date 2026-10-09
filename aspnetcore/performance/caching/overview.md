@@ -1,9 +1,7 @@
 ---
 title: Overview of caching in ASP.NET Core
-author: tdykstra
 description: Explore caching in ASP.NET Core, including in-memory, distributed, hybrid, response, and output caching.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
 ms.date: 05/01/2026
 uid: performance/caching/overview
 

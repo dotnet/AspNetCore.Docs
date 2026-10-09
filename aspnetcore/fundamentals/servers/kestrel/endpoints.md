@@ -1,10 +1,8 @@
 ---
 title: Configure endpoints for Kestrel web server
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: tdykstra
 ms.date: 09/24/2026
 uid: fundamentals/servers/kestrel/endpoints
 ---

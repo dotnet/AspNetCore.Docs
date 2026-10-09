@@ -1,10 +1,8 @@
 ---
 title: Claim-based authorization in ASP.NET Core MVC
 ai-usage: ai-assisted
-author: wadepickett
 description: Learn how to add claims checks for authorization in an ASP.NET Core MVC app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
 ms.date: 04/07/2026
 uid: mvc/security/authorization/claims
 ---

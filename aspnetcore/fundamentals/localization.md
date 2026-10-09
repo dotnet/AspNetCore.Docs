@@ -1,8 +1,6 @@
 ---
 title: Globalization and localization in ASP.NET Core
-author: wadepickett
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 06/20/2025
 uid: fundamentals/localization
@@ -59,6 +57,7 @@ Move mini TOC from ## Additional resources to here
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
 
 :::moniker-end
 

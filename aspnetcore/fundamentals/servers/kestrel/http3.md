@@ -1,10 +1,8 @@
 ---
 title: Use HTTP/3 with the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
-author: wtgodbe
 description: "HTTP/3 support in Kestrel: Discover how to configure ASP.NET Core for HTTP/3, improve performance, and optimize your web server setup."
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wpickett
 ms.date: 04/14/2026
 uid: fundamentals/servers/kestrel/http3
 ---
