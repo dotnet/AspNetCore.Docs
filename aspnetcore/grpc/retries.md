@@ -1,9 +1,7 @@
 ---
 title: Transient fault handling with gRPC retries
-author: jamesnk
 description: Learn how to make resilient, fault tolerant gRPC calls with retries in .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: wpickett
 ms.date: 03/18/2021
 uid: grpc/retries
 ---
@@ -91,7 +89,7 @@ Calls are retried when:
 
 * The failing status code matches a value in `RetryableStatusCodes`.
 * The previous number of attempts is less than `MaxAttempts`.
-* The call hasn't been commited.
+* The call hasn't been committed.
 * The deadline hasn't been exceeded.
 
 A gRPC call becomes committed in two scenarios:

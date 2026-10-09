@@ -1,11 +1,8 @@
 ---
 title: Rate limiting middleware in ASP.NET Core
 ai-usage: ai-assisted
-author: wadepickett
 description: Rate limiting middleware in ASP.NET Core protects APIs from abuse and overload. Learn to configure fixed window, sliding window, token bucket, and concurrency limiters.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: wpickett
-ms.reviewer: wpickett
 ms.date: 09/03/2026
 uid: performance/rate-limit
 ---
@@ -26,8 +23,6 @@ Rate limiting can be used for managing the flow of incoming requests to an app. 
 
 * **Preventing Abuse**: Rate limiting helps protect an app from abuse by limiting the number of requests a user or client can make in a given time period. This protection is particularly important for public APIs.
 * **Ensuring Fair Usage**: By setting limits that prevent users from monopolizing the system, you ensure that all users have fair access to resources.
-* 
- 
 * **Protecting Resources**: Rate limiting helps prevent server overload by controlling the number of requests that can be processed. It protects the backend resources from being overwhelmed.
 * **Enhancing Security**: It can mitigate the risk of Denial of Service (DoS) attacks by limiting the rate at which requests are processed. It makes it harder for attackers to flood a system.
 * **Improving Performance**: By controlling the rate of incoming requests, you can maintain optimal performance and responsiveness of an app, ensuring a better user experience.

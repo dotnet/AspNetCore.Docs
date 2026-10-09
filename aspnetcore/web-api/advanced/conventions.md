@@ -1,9 +1,7 @@
 ---
 title: Use web API conventions
-author: tdykstra
 description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
 ms.date: 07/06/2026
 uid: web-api/advanced/conventions
 ---

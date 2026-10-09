@@ -1,8 +1,6 @@
 ---
 title: External OAuth authentication providers
-author: tdykstra
 description: Discover External OAuth authentication providers that work with ASP.NET Core apps.
-ms.author: tdykstra
 ms.date: 11/11/2018
 uid: security/authentication/otherlogins
 ---

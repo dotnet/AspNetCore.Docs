@@ -84,15 +84,17 @@ To render a portion of a file as a snippet by using line numbers:
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50)]
 ```
 
-For C# snippets, reference a [C# region](https://learn.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Whenever possible, use regions rather than line numbers because line numbers in a code file tend to change and become out of sync with line number references in Markdown. C# regions can be nested. If referencing the outer region, the inner `#region` and `#endregion` directives aren't rendered in a snippet. 
+For C# snippets, prefer named snippet comment tags (`// <snippet_name>` and `// </snippet_name>`) rather than line numbers or C# regions. Line numbers in a code file tend to change and become out of sync with references in markdown. Named snippet comment tags don't interfere with IDE code folding or compiler preprocessor directives.
 
-To render a C# region named "snippet_Example":
+[C# `#region`](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) directives are also supported. C# regions and snippet tags can be nested. If referencing the outer snippet, inner snippet tags and directives aren't rendered in the snippet.
+
+To render a snippet named `snippet_Example`:
 
 ```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example)]
 ```
 
-To highlight selected lines in a rendered snippet (usually renders as yellow background color):
+To highlight selected lines in a rendered snippet (usually renders with a yellow background):
 
 ```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
@@ -101,20 +103,20 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 [!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3)]
 ```
 
-When highlighting lines within regions, use line numbers (or a range of line numbers) relative to the snippet's `#region` directive, as seen in the following example.
+When highlighting lines within named snippets, use line numbers (or a range of line numbers) relative to the snippet's start tag, as seen in the following example.
 
-The following partial C# code (`Movie.cs`) example includes a region named `FinalSnippet` with three `using` statements:
+The following partial C# code (`Movie.cs`) example includes a snippet named `snippet_FinalSnippet` with three `using` statements:
 
 ```csharp
         ...
         public decimal Price { get; set; }
-        public string? Rating {  get; set; }
+        public string? Rating { get; set; }
     }
 }
-#endregion
+// </snippet_Previous>
 #endif
 #if Final
-#region FinalSnippet
+// <snippet_FinalSnippet>
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -128,7 +130,7 @@ namespace MvcMovie.Models
         ...
     }
 }
-#endregion
+// </snippet_FinalSnippet>
 #endif
 ```
 
@@ -137,7 +139,7 @@ To highlight the three `using` statements from the preceding example, specify a 
 Markdown:
 
 ```md
-[!code-csharp[](sample/MvcMovie60/Models/Movie.cs?name=FinalSnippet&highlight=1-3)]
+[!code-csharp[](sample/MvcMovie60/Models/Movie.cs?name=snippet_FinalSnippet&highlight=1-3)]
 ```
 
 ## Test changes with DocFX

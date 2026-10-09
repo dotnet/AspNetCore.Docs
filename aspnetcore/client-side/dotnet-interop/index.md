@@ -1,9 +1,7 @@
 ---
 title: JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
-author: pavelsavara
 description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: wpickett
 ms.date: 12/19/2025
 uid: client-side/dotnet-interop/index
 ---

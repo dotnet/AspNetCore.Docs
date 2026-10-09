@@ -7,24 +7,16 @@ using Microsoft.Extensions.Logging;
 namespace BackgroundTasksSample.Services
 {
     #region snippet_Monitor
-    public class MonitorLoop
+    public class MonitorLoop(
+        IBackgroundTaskQueue taskQueue,
+        ILogger<MonitorLoop> logger,
+        IHostApplicationLifetime applicationLifetime)
     {
-        private readonly IBackgroundTaskQueue _taskQueue;
-        private readonly ILogger _logger;
-        private readonly CancellationToken _cancellationToken;
-
-        public MonitorLoop(IBackgroundTaskQueue taskQueue,
-            ILogger<MonitorLoop> logger,
-            IHostApplicationLifetime applicationLifetime)
-        {
-            _taskQueue = taskQueue;
-            _logger = logger;
-            _cancellationToken = applicationLifetime.ApplicationStopping;
-        }
+        private readonly CancellationToken _cancellationToken = applicationLifetime.ApplicationStopping;
 
         public void StartMonitorLoop()
         {
-            _logger.LogInformation("MonitorAsync Loop is starting.");
+            logger.LogInformation("MonitorAsync Loop is starting.");
 
             // Run a console user input loop in a background thread
             Task.Run(async () => await MonitorAsync());
@@ -39,7 +31,7 @@ namespace BackgroundTasksSample.Services
                 if (keyStroke.Key == ConsoleKey.W)
                 {
                     // Enqueue a background work item
-                    await _taskQueue.QueueBackgroundWorkItemAsync(BuildWorkItem);
+                    await taskQueue.QueueBackgroundWorkItemAsync(BuildWorkItem);
                 }
             }
         }
@@ -52,7 +44,7 @@ namespace BackgroundTasksSample.Services
             int delayLoop = 0;
             var guid = Guid.NewGuid().ToString();
 
-            _logger.LogInformation("Queued Background Task {Guid} is starting.", guid);
+            logger.LogInformation("Queued Background Task {Guid} is starting.", guid);
 
             while (!token.IsCancellationRequested && delayLoop < 3)
             {
@@ -67,17 +59,17 @@ namespace BackgroundTasksSample.Services
 
                 delayLoop++;
 
-                _logger.LogInformation("Queued Background Task {Guid} is running. "
+                logger.LogInformation("Queued Background Task {Guid} is running. "
                                        + "{DelayLoop}/3", guid, delayLoop);
             }
 
             if (delayLoop == 3)
             {
-                _logger.LogInformation("Queued Background Task {Guid} is complete.", guid);
+                logger.LogInformation("Queued Background Task {Guid} is complete.", guid);
             }
             else
             {
-                _logger.LogInformation("Queued Background Task {Guid} was cancelled.", guid);
+                logger.LogInformation("Queued Background Task {Guid} was cancelled.", guid);
             }
         }
     }

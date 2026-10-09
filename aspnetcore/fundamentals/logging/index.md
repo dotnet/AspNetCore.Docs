@@ -1,10 +1,8 @@
 ---
 title: Logging in .NET and ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 description: Learn how to use the ASP.NET Core logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
 ms.date: 09/18/2026
 uid: fundamentals/logging/index
 ---
@@ -1494,7 +1492,7 @@ HTTP
 
 HTTPS
 
-* `Microsoft.AspNetCore.HttpsPolicy`: Logs from HTTPS redirection middleware, policy enforcement and and HTTP Strict-Transport-Security (HSTS).
+* `Microsoft.AspNetCore.HttpsPolicy`: Logs from HTTPS redirection middleware, policy enforcement and HTTP Strict-Transport-Security (HSTS).
 * `Microsoft.AspNetCore.HttpsPolicy.HstsMiddleware`: Logs specific to HTTP Strict-Transport-Security (HSTS) middleware processing.
 * `Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware`: Logs related to HTTPS redirection middleware execution.
 * `Microsoft.AspNetCore.HttpsPolicy.HstsOptions`: Logs concerning HSTS policy configuration and enforcement.

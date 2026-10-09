@@ -1,8 +1,6 @@
 ---
 title: Overview of ASP.NET Core
-author: tdykstra
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
-ms.author: tdykstra
 ms.date: 07/28/2025
 uid: index
 ---

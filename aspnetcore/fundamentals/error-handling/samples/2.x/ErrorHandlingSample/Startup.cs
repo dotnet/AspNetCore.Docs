@@ -1,6 +1,6 @@
 // Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
-//  https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
+//  https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 //
 // StatusCodePages
 // StatusCodePagesWithLambda
@@ -61,7 +61,7 @@ namespace ErrorHandlingSample
         {
 #if ProdEnvironment
             env.EnvironmentName = "Production";
-#endif            
+#endif
 #if DevEnvironment
             env.EnvironmentName = "Development";
 #endif
@@ -96,7 +96,7 @@ namespace ErrorHandlingSample
                         await context.Response.WriteAsync("<html lang=\"en\"><body>\r\n");
                         await context.Response.WriteAsync("ERROR!<br><br>\r\n");
 
-                        var exceptionHandlerPathFeature = 
+                        var exceptionHandlerPathFeature =
                             context.Features.Get<IExceptionHandlerPathFeature>();
 
                         if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
@@ -122,7 +122,7 @@ namespace ErrorHandlingSample
 #if StatusCodePagesWithFormatString
             // <snippet_StatusCodePagesFormatString>
             app.UseStatusCodePages(
-                "text/plain", "Status code page, status code: {0}");            
+                "text/plain", "Status code page, status code: {0}");
             // </snippet_StatusCodePagesFormatString>
 #endif
 #if StatusCodePagesWithLambda
@@ -132,7 +132,7 @@ namespace ErrorHandlingSample
                 context.HttpContext.Response.ContentType = "text/plain";
 
                 await context.HttpContext.Response.WriteAsync(
-                    "Status code page, status code: " + 
+                    "Status code page, status code: " +
                     context.HttpContext.Response.StatusCode);
             });
             // </snippet_StatusCodePagesLambda>

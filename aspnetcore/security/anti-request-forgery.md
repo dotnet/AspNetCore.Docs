@@ -1,12 +1,10 @@
 ---
 title: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 ai-usage: ai-assisted
-author: tdykstra
 content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.date: 09/12/2026
+ms.date: 10/07/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -166,6 +164,9 @@ The policy is picked per-endpoint in this order:
 1. `[EnableCors("api")]` (MVC) or `.RequireCors("api")` (Minimal API) → the named policy `"api"`.
 1. No CORS metadata on the endpoint → the default policy registered with `AddDefaultPolicy`.
 1. No matching policy (named policy not registered, no default policy, or `services.AddCors()` never called) → no CORS-derived trust. The middleware falls through to the `Sec-Fetch-Site` and Origin-vs-Host rules.
+
+> [!NOTE]
+> The CSRF middleware trusts whatever `IsOriginAllowed` returns for the resolved CORS policy, so this includes custom predicates configured with `SetIsOriginAllowed` and wildcard-subdomain matching configured with `SetIsOriginAllowedToAllowWildcardSubdomains`. When such a policy also has `.AllowCredentials()` configured, every origin the predicate accepts is treated as CSRF-trusted. Use custom or wildcard origin matching only when every origin the predicate can match is controlled and trusted for cookie-authenticated operations, and avoid broad wildcard credentialed policies when subdomains are user-controlled, third-party-hosted, or otherwise susceptible to takeover.
 
 A minimal example using a default policy and a Minimal API endpoint:
 
