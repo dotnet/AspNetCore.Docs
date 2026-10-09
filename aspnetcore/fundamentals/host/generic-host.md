@@ -1,5 +1,6 @@
 ---
 title: .NET Generic Host in ASP.NET Core
+ai-usage: ai-assisted
 description: Use .NET Generic Host in ASP.NET Core apps. Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/29/2026
@@ -182,7 +183,7 @@ The following example is an `IHostedService` implementation that registers `IHos
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs" id="snippet_LifetimeEvents":::
+:::code language="csharp" source="generic-host/samples/snapshot/3.x/LifetimeEventsHostedService.cs" id="snippet_LifetimeEvents":::
 
 :::moniker-end
 
@@ -227,7 +228,7 @@ The following example creates host configuration:
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples-snapshot/3.x/Program.cs" id="snippet_HostConfig":::
+:::code language="csharp" source="generic-host/samples/snapshot/3.x/Program.cs" id="snippet_HostConfig":::
 
 :::moniker-end
 
@@ -348,7 +349,7 @@ The following example sets the timeout to 20 seconds:
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples-snapshot/3.x/Program.cs" id="snippet_HostOptions":::
+:::code language="csharp" source="generic-host/samples/snapshot/3.x/Program.cs" id="snippet_HostOptions":::
 
 :::moniker-end
 

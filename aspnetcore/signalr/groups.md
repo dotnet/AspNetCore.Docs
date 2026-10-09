@@ -1,5 +1,6 @@
 ---
 title: Manage users and groups in SignalR
+ai-usage: ai-assisted
 description: Overview of ASP.NET Core SignalR User and Group management.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/04/2024
@@ -12,7 +13,7 @@ By [Brennan Conroy](https://github.com/BrennanConroy)
 
 SignalR allows messages to be sent to all connections associated with a specific user and to named groups of connections.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Users in SignalR
 
@@ -25,7 +26,7 @@ Send a message to a specific user by passing the user identifier to the `User` f
 > [!NOTE]
 > The user identifier is case-sensitive.
 
-[!code-csharp[Configure service](groups/sample/Hubs/ChatHub.cs?range=29-32)]
+[!code-csharp[Configure service](groups/samples/Hubs/ChatHub.cs?range=29-32)]
 
 ## Groups in SignalR
 
@@ -35,7 +36,7 @@ A group is a collection of connections associated with a name. Messages can be s
 
 Connections are added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods:
 
-[!code-csharp[Hub methods](groups/sample/Hubs/ChatHub.cs?range=15-27)]
+[!code-csharp[Hub methods](groups/samples/Hubs/ChatHub.cs?range=15-27)]
 
 It's safe to add a user to a group multiple times, no exception is thrown in the case that the user already exists in the group.
 

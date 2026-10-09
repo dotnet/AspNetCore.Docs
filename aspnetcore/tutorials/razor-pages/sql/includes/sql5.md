@@ -1,16 +1,16 @@
 :::moniker range="= aspnetcore-5.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in `Startup.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 ---
 
@@ -20,11 +20,11 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The generated connection string is similar to the following JSON:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings.json?highlight=10-12)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/appsettings.json?highlight=10-12)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/appsettings_SQLite.json?highlight=10-12)]
 
 ---
 
@@ -87,7 +87,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -104,7 +104,7 @@ if (context.Movie.Any())
 
 Replace the contents of the `Program.cs` with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Program.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/Program.cs)]
 
 In the previous code, the `Main` method has been modified to do the following:
 

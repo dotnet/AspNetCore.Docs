@@ -1,5 +1,6 @@
 ---
 title: Account confirmation and password recovery
+ai-usage: ai-assisted
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 ms.custom: sfi-image-nochange
 monikerRange: '>= aspnetcore-3.1'
@@ -74,7 +75,7 @@ The SendGrid account might require [adding a Sender](https://sendgrid.com/docs/u
 
 Create a class to fetch the secure email key. For this sample, create the _Services/AuthMessageSenderOptions.cs_ file:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
 
 #### Configure SendGrid user secrets
 
@@ -128,7 +129,7 @@ To register for a free SendGrid account, [start sending with a free SendGrid Ema
 
 To implement the `IEmailSender` interface, create the _Services/EmailSender.cs_ file with code similar to the following example:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Services/EmailSender.cs)]
 
 ### Configure the app to support email
 
@@ -137,7 +138,7 @@ Add the following code to the _Program.cs_ file, which performs the following ta
 * Adds the `EmailSender` instance as a transient service.
 * Registers the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,18-19)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,18-19)]
 
 [!INCLUDE[Disable default account verification for scaffolded RegisterConfirmation](~/includes/disableVer6.md)]
 
@@ -179,13 +180,13 @@ This section describes the code that supports the email confirmation process and
 
 The default inactivity timeout is 14 days. The following code sets the inactivity timeout to five days:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_timeout&highlight=21-24)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet_timeout&highlight=21-24)]
 
 ### Change all data protection token lifespans
 
 The following code changes the timeout period for all data protection tokens to three hours:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_dpt&highlight=21-22)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet_dpt&highlight=21-22)]
 
 The built-in Identity user tokens (see the [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) source) have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
@@ -197,11 +198,11 @@ The following code shows how to change the email token lifespan.
 
 Add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> class and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> class:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
 Add the custom provider to the service container:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_etl&highlight=18-24)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet_etl&highlight=18-24)]
 
 ### Debug email
 
@@ -292,7 +293,7 @@ The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/
 
 Create a class to fetch the secure email key. For this sample, create `Services/AuthMessageSenderOptions.cs`:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
 
 #### Configure SendGrid user secrets
 
@@ -346,7 +347,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 To Implement `IEmailSender`, create `Services/EmailSender.cs` with code similar to the following:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Services/EmailSender.cs)]
 
 ### Configure startup to support email
 
@@ -355,7 +356,7 @@ Add the following code to the `ConfigureServices` method in the `Startup.cs` fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,19-20)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,19-20)]
 
 ## Scaffold RegisterConfirmation
 
@@ -394,13 +395,13 @@ In .NET 5 or later, select the **Resend email confirmation** link on the **Login
 
 The default inactivity timeout is 14 days. The following code sets the inactivity timeout to 5 days:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAppCookie.cs?name=snippet1)]
+[!code-csharp[](accconfirm/samples/WebPWrecover30/StartupAppCookie.cs?name=snippet1)]
 
 ### Change all data protection token lifespans
 
 The following code changes all data protection tokens timeout period to 3 hours:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
+[!code-csharp[](accconfirm/samples/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
 
 The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
@@ -410,11 +411,11 @@ The default token lifespan of [the Identity user tokens](https://github.com/dotn
 
 Add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
+[!code-csharp[](accconfirm/samples/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
 Add the custom provider to the service container:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
+[!code-csharp[](accconfirm/samples/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
 
 <a name="debug"></a>
 

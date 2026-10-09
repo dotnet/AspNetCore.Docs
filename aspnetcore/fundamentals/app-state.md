@@ -1,5 +1,6 @@
 ---
 title: Session in ASP.NET Core
+ai-usage: ai-assisted
 description: Discover approaches to preserve session between requests.
 ms.date: 04/24/2025
 uid: fundamentals/app-state
@@ -85,7 +86,7 @@ Middleware for managing session state is included in the framework. To enable th
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_2&highlight=6,8-13,30)]
+[!code-csharp[](app-state/samples/6.0/RazorPagesContacts/Program.cs?name=snippet_2&highlight=6,8-13,30)]
 
 The preceding code sets a short timeout to simplify testing.
 
@@ -117,7 +118,7 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 To override cookie session defaults, use <xref:Microsoft.AspNetCore.Builder.SessionOptions>:
 
-[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_or&highlight=8-13)]
+[!code-csharp[](app-state/samples/6.0/RazorPagesContacts/Program.cs?name=snippet_or&highlight=8-13)]
 
 The app uses the <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> property to determine how long a session can be idle before its contents in the server's cache are abandoned. This property is independent of the cookie expiration. Each request that passes through the [session middleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) resets the timeout.
 
@@ -151,21 +152,21 @@ Name: @HttpContext.Session.GetString(IndexModel.SessionKeyName)
 
 The following example shows how to set and get an integer and a string:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index.cshtml.cs?name=snippet1)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
 The following markup displays the session values on a Razor Page:
 
-[!code-cshtml[](app-state/6.0samples/SessionSample/Pages/Privacy.cshtml)]
+[!code-cshtml[](app-state/samples/6.0/SessionSample/Pages/Privacy.cshtml)]
 
 All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of <xref:Microsoft.AspNetCore.Http.ISession>. Complex types must be serialized by the user using another mechanism, such as JSON.
 
 Use the following sample code to serialize objects:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
 The following example shows how to set and get a serializable object with the `SessionExtensions` class:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index6.cshtml.cs)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Pages/Index6.cshtml.cs)]
 
 > [!WARNING]
 > Storing a live object in the session should be used with caution, as there are many problems that can occur with serialized objects. For more information, see [Sessions should be allowed to store objects (dotnet/aspnetcore #18159)](https://github.com/dotnet/aspnetcore/issues/18159).
@@ -181,23 +182,23 @@ ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.Ra
 
 Consider the following page that creates a customer:
 
-[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
+[!code-csharp[](app-state/samples/3.0/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
 The following page displays `TempData["Message"]`:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
+[!code-cshtml[](app-state/samples/3.0/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
 In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays the contents of `TempData["Message"]`.
 
 The following markup is similar to the preceding code, but uses `Keep` to preserve the data at the end of the request:
 
-[!code-cshtml[](app-state/6.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
+[!code-cshtml[](app-state/samples/6.0/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
 Navigating between the *IndexPeek* and *IndexKeep* pages won't delete `TempData["Message"]`.
 
 The following code displays `TempData["Message"]`, but at the end of the request, `TempData["Message"]` is deleted:
 
-[!code-cshtml[](app-state/6.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
+[!code-cshtml[](app-state/samples/6.0/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
 ### TempData providers
 
@@ -221,7 +222,7 @@ The cookie-based TempData provider is enabled by default.
 
 To enable the session-based TempData provider, use the <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> extension method. Only one call to `AddSessionStateTempDataProvider` is required:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Program.cs?name=snippet&highlight=4,6,8,25)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Program.cs?name=snippet&highlight=4,6,8,25)]
 
 ## Query strings
 
@@ -239,15 +240,15 @@ The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithTy
 
 In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Program.cs?name=snippet_hci)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Program.cs?name=snippet_hci)]
 
 For middleware that's only used in a single app, it's unlikely that using a fixed `string` key would cause a key collision. However, to avoid the possibility of a key collision altogether, an `object` can be used as an item key. This approach is particularly useful for middleware that's shared between apps and also has the advantage of eliminating the use of key strings in the code. The following example shows how to use an `object` key defined in a middleware class:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
 Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
 
 ## Cache
 
@@ -458,23 +459,23 @@ ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.Ra
 
 Consider the following page that creates a customer:
 
-[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
+[!code-csharp[](app-state/samples/3.0/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
 The following page displays `TempData["Message"]`:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
+[!code-cshtml[](app-state/samples/3.0/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
 In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays the contents of `TempData["Message"]`.
 
 The following markup is similar to the preceding code, but uses `Keep` to preserve the data at the end of the request:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
+[!code-cshtml[](app-state/samples/3.0/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
 Navigating between the *IndexPeek* and *IndexKeep* pages won't delete `TempData["Message"]`.
 
 The following code displays `TempData["Message"]`, but at the end of the request, `TempData["Message"]` is deleted:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
+[!code-cshtml[](app-state/samples/3.0/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
 ### TempData providers
 

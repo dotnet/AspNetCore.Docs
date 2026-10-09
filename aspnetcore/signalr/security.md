@@ -33,7 +33,7 @@ The option to not use credentials should only be used when you know 100% that cr
 
 For example, the following highlighted CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
-[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS6-8/Program.cs?name=snippet_AddCors&highlight=7-16)]
+[!code-csharp[Main](~/signalr/security/samples/SignalR_CORS6-8/Program.cs?name=snippet_AddCors&highlight=7-16)]
 
 In the previous example, the CORS policy is customized to allow specific origins, methods, and credentials. For more information on customizing CORS policies and middleware in ASP.NET Core, see [CORS middleware: CORS with named policy and middleware](xref:security/cors#cors-with-named-policy-and-middleware).
 

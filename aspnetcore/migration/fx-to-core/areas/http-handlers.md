@@ -1,5 +1,6 @@
 ---
 title: Migrate HTTP handlers to ASP.NET Core middleware
+ai-usage: ai-assisted
 description: Migrate HTTP handlers to ASP.NET Core middleware
 ms.date: 07/17/2025
 ms.reviewer: tasou
@@ -54,11 +55,11 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP handler
 
 An HTTP handler looks something like this:
 
-[!code-csharp[](./sample/Asp.Net4/Asp.Net4/HttpHandlers/ReportHandler.cs?highlight=5,7,13,14,15,16)]
+[!code-csharp[](./samples/Asp.Net4/Asp.Net4/HttpHandlers/ReportHandler.cs?highlight=5,7,13,14,15,16)]
 
 In your ASP.NET Core project, you would translate this to a middleware similar to this:
 
-[!code-csharp[](./sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
+[!code-csharp[](./samples/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
 
 This middleware is very similar to the middleware corresponding to modules. The only real difference is that here there's no call to `_next.Invoke(context)`. That makes sense, because the handler is at the end of the request pipeline, so there will be no next middleware to invoke.
 
@@ -66,13 +67,13 @@ This middleware is very similar to the middleware corresponding to modules. The 
 
 Configuring an HTTP handler is done in *Web.config* and looks something like this:
 
-[!code-xml[](./sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32,46-48,50,101)]
+[!code-xml[](./samples/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32,46-48,50,101)]
 
 You could convert this by adding your new handler middleware to the request pipeline in your `Startup` class, similar to middleware converted from modules. The problem with that approach is that it would send all requests to your new handler middleware. However, you only want requests with a given extension to reach your middleware. That would give you the same functionality you had with your HTTP handler.
 
 One solution is to branch the pipeline for requests with a given extension, using the `MapWhen` extension method. You do this in the same `Configure` method where you add the other middleware:
 
-[!code-csharp[](./sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
+[!code-csharp[](./samples/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
 `MapWhen` takes these parameters:
 

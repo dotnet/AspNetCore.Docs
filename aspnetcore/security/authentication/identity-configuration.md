@@ -32,13 +32,13 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the op
 
 Lockout is set in the [PasswordSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync(System.String,System.String,System.Boolean,System.Boolean)) method:
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
+[!code-csharp[](identity-configuration/samples/6/RPauth/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
 
 The preceding code is based on the [`Login` Identity template](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V5/Account/Login.cshtml.cs#L131-L132).
 
 Lockout options are set in `Program.cs`:
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_lock&highlight=17-23)]
+[!code-csharp[](identity-configuration/samples/6/RPauth/Program.cs?name=snippet_lock&highlight=17-23)]
 
 The preceding code sets the <xref:Microsoft.AspNetCore.Identity.IdentityOptions> <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with default values.
 
@@ -63,7 +63,7 @@ Passwords are configured with:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_pw&highlight=17-26)]
+[!code-csharp[](identity-configuration/samples/6/RPauth/Program.cs?name=snippet_pw&highlight=17-26)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
@@ -80,7 +80,7 @@ Passwords are configured with:
 
 The following code sets `SignIn` settings (to default values):
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_si)]
+[!code-csharp[](identity-configuration/samples/6/RPauth/Program.cs?name=snippet_si)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.SignIn?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.SignInOptions> with the properties shown in the table.
 
@@ -104,7 +104,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### User
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_user)]
+[!code-csharp[](identity-configuration/samples/6/RPauth/Program.cs?name=snippet_user)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.User%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.UserOptions> with the properties shown in the table.
 
@@ -119,7 +119,7 @@ The following code sets `SignIn` settings (to default values):
 
 Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentityCore`, `AddIdentity`, or `AddDefaultIdentity`.
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_cookie)]
+[!code-csharp[](identity-configuration/samples/6/RPauth/Program.cs?name=snippet_cookie)]
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>.
 
@@ -182,13 +182,13 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the op
 
 Lockout is set in the [PasswordSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync(System.String,System.String,System.Boolean,System.Boolean)) method:
 
-[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](identity-configuration/samples/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
 
 The preceding code is based on the `Login` Identity template. 
 
 Lockout options are set in `StartUp.ConfigureServices`:
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
+[!code-csharp[](identity-configuration/samples/Startup.cs?name=snippet_lock)]
 
 The preceding code sets the <xref:Microsoft.AspNetCore.Identity.IdentityOptions> <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with default values.
 
@@ -213,7 +213,7 @@ Passwords are configured with:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
+[!code-csharp[](identity-configuration/samples/Startup.cs?name=snippet_pw)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
@@ -230,7 +230,7 @@ Passwords are configured with:
 
 The following code sets `SignIn` settings (to default values):
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_si)]
+[!code-csharp[](identity-configuration/samples/Startup.cs?name=snippet_si)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.SignIn?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.SignInOptions> with the properties shown in the table.
 
@@ -254,7 +254,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### User
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_user)]
+[!code-csharp[](identity-configuration/samples/Startup.cs?name=snippet_user)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.User%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.UserOptions> with the properties shown in the table.
 
@@ -267,7 +267,7 @@ The following code sets `SignIn` settings (to default values):
 
 Configure the app's cookie in `Startup.ConfigureServices`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentityCore`, `AddIdentity`, or `AddDefaultIdentity`.
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
+[!code-csharp[](identity-configuration/samples/Startup.cs?name=snippet_cookie)]
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>.
 

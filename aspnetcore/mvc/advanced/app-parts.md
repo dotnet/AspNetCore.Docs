@@ -1,5 +1,6 @@
 ---
 title: Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core
+ai-usage: ai-assisted
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.date: 11/11/2019
 uid: mvc/extensibility/app-parts
@@ -23,13 +24,13 @@ ASP.NET Core apps load features from <xref:Microsoft.AspNetCore.Mvc.ApplicationP
 
 Use the <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> and <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
-[!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup.cs?name=snippet)]
+[!code-csharp[](./app-parts/samples/3.0-1/WebAppParts/Startup.cs?name=snippet)]
 
 The following code provides an alternative approach to configuring `ApplicationPartManager` using `AssemblyPart`:
 
-[!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup2.cs?name=snippet)]
+[!code-csharp[](./app-parts/samples/3.0-1/WebAppParts/Startup2.cs?name=snippet)]
 
-The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the app's project. See the [WebAppParts solution](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts/3.0sample1/WebAppParts) sample download.
+The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the app's project. See the [WebAppParts solution](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts/samples/3.0-1/WebAppParts) sample download.
 
 ### Include views
 
@@ -65,7 +66,7 @@ Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.I
 
 The features available to an app can be enumerated by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md):
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
+[!code-csharp[](./app-parts/samples/2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
 
 The [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts/sample2) uses the preceding code to display the app features:
 
@@ -113,13 +114,13 @@ ASP.NET Core apps load features from <xref:Microsoft.AspNetCore.Mvc.ApplicationP
 
 Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
-[!code-csharp[](./app-parts/sample1/WebAppParts/Startup.cs?name=snippet)]
+[!code-csharp[](./app-parts/samples/1/WebAppParts/Startup.cs?name=snippet)]
 
 The following code provides an alternative approach to configuring `ApplicationPartManager` using `AssemblyPart`:
 
-[!code-csharp[](./app-parts/sample1/WebAppParts/Startup2.cs?name=snippet)]
+[!code-csharp[](./app-parts/samples/1/WebAppParts/Startup2.cs?name=snippet)]
 
-The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the application's project. See the [WebAppParts solution](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts/sample1/WebAppParts) sample download.
+The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the application's project. See the [WebAppParts solution](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts/samples/1/WebAppParts) sample download.
 
 ### Include views
 
@@ -130,7 +131,7 @@ Use a [Razor class library](xref:razor-pages/ui-class) to include views in the a
 Application parts can be used to *avoid* loading resources in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Call `Remove` on the `ApplicationParts` collection to remove a resource.
 
 The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MyDependentLibrary` from the app:
-[!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
+[!code-csharp[](./app-parts/samples/1/WebAppParts/StartupRm.cs?name=snippet)]
 
 The `ApplicationPartManager` includes parts for:
 
@@ -152,7 +153,7 @@ Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.I
 
 The features available to an app can be enumerated by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md):
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
+[!code-csharp[](./app-parts/samples/2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
 
 The [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts/sample2) uses the preceding code to display the app features:
 

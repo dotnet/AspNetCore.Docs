@@ -106,7 +106,7 @@ implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
 
 When using Maven, add the following lines inside the `<dependencies>` element of the `pom.xml` file:
 
-[!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
+[!code-xml[pom.xml dependency element messagePack](java-client/samples/pom.xml?name=snippet_dependencyElement_messagePack)]
 
 Call `withHubProtocol(new MessagePackHubProtocol())` on `HubConnectionBuilder`.
 
@@ -289,7 +289,7 @@ implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
 
 When using Maven, add the following lines inside the `<dependencies>` element of the `pom.xml` file:
 
-[!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
+[!code-xml[pom.xml dependency element messagePack](java-client/samples/pom.xml?name=snippet_dependencyElement_messagePack)]
 
 Call `withHubProtocol(new MessagePackHubProtocol())` on `HubConnectionBuilder`.
 

@@ -12,7 +12,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -34,7 +34,7 @@ Build the project to verify there are no compilation errors.
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -68,7 +68,7 @@ In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *
 
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -216,9 +216,9 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
 
 ---
 
@@ -313,7 +313,7 @@ The data context `RazorPagesMovieContext`:
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -353,16 +353,16 @@ The scaffolding tool automatically created a database context and registered it 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=9-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=7-8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=7-8)]
 
 ---
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie70) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Next steps
 

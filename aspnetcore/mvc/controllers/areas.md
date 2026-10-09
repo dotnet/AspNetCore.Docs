@@ -1,5 +1,6 @@
 ---
 title: Areas in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.date: 3/21/2022
 uid: mvc/controllers/areas
@@ -33,11 +34,11 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 * An [Area folder structure](#area-folder-structure).
 * Controllers with the [`[Area]`](#attribute) attribute to associate the controller with the area:
 
-  [!code-csharp[](areas/60samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
+  [!code-csharp[](areas/samples/6.0/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
 
 * The [area route added to `Program.cs`](#add-area-route):
 
-  [!code-csharp[](areas/60samples/MVCareas/Program.cs?name=snippet1&highlight=20-22)]
+  [!code-csharp[](areas/samples/6.0/MVCareas/Program.cs?name=snippet1&highlight=20-22)]
 
 ### Area folder structure
 
@@ -77,7 +78,7 @@ While the preceding layout is typical when using Areas, only the view files are 
 
 Area controllers are designated with the [`[Area]`](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
 
-[!code-csharp[](areas/60samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=6&name=snippet)]
+[!code-csharp[](areas/samples/6.0/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=6&name=snippet)]
 
 ### Add Area route
 
@@ -85,7 +86,7 @@ Area routes typically use  [conventional routing](xref:mvc/controllers/routing#c
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
-[!code-csharp[](areas/60samples/MVCareas/Program.cs?name=snippet1&highlight=20-22)]
+[!code-csharp[](areas/samples/6.0/MVCareas/Program.cs?name=snippet1&highlight=20-22)]
 
 In the preceding code, `exists` applies a constraint that the route must match an area. Using `{area:...}` with `MapControllerRoute`:
 
@@ -94,7 +95,7 @@ In the preceding code, `exists` applies a constraint that the route must match a
 
 The following code uses <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> to create two named area routes:
 
-[!code-csharp[](areas/60samples/MVCareas/Program.cs?name=snippet_2named&highlight=20-28)]
+[!code-csharp[](areas/samples/6.0/MVCareas/Program.cs?name=snippet_2named&highlight=20-28)]
 
 For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
@@ -102,7 +103,7 @@ For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples) shows link generation with the area specified:
 
-[!code-cshtml[](areas/60samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
+[!code-cshtml[](areas/samples/6.0/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains:
 
@@ -142,7 +143,7 @@ The *_ViewImports.cshtml* file typically contains [Tag Helpers](xref:mvc/views/t
 
 The following code changes the default area folder from `"Areas"` to `"MyAreas"`:
 
-[!code-csharp[](areas/60samples/MVCareas/Program.cs?name=snippet_default_area&highlight=5-11)]
+[!code-csharp[](areas/samples/6.0/MVCareas/Program.cs?name=snippet_default_area&highlight=5-11)]
 
 <a name="arp"></a>
 
@@ -165,21 +166,21 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
 
 ### Link generation with Razor Pages and areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/6.0/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
-[!code-cshtml[](areas/60samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
+[!code-cshtml[](areas/samples/6.0/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 
 When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
 
-[!code-cshtml[](areas/60samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
+[!code-cshtml[](areas/samples/6.0/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
 
 For the preceding code:
 
 * The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
 * The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
-* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples/RPareas).
+* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/6.0/RPareas).
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
@@ -187,7 +188,7 @@ A *_ViewImports.cshtml* file can be added to each area *Pages* folder to import 
 
 Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports.cshtml* file. The following markup shows the */Services/Manage/About* Razor Page:
 
-[!code-cshtml[](areas/60samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
+[!code-cshtml[](areas/samples/6.0/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
 In the preceding markup:
 
@@ -196,11 +197,11 @@ In the preceding markup:
 
 In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
 
-[!code-cshtml[](areas/60samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
+[!code-cshtml[](areas/samples/6.0/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
 The following markup shows the */Products/About* Razor Page:
 
-[!code-cshtml[](areas/60samples/RPareas/Areas/Products/Pages/About.cshtml)]
+[!code-cshtml[](areas/samples/6.0/RPareas/Areas/Products/Pages/About.cshtml)]
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
 
@@ -252,11 +253,11 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 * An [Area folder structure](#area-folder-structure).
 * Controllers with the [`[Area]`](#attribute) attribute to associate the controller with the area:
 
-  [!code-csharp[](areas/31samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
+  [!code-csharp[](areas/samples/3.1/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
 
 * The [area route added to startup](#add-area-route):
 
-  [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
+  [!code-csharp[](areas/samples/3.1/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### Area folder structure
 
@@ -296,7 +297,7 @@ While the preceding layout is typical when using Areas, only the view files are 
 
 Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
 
-[!code-csharp[](areas/31samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
+[!code-csharp[](areas/samples/3.1/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
 
 ### Add Area route
 
@@ -304,7 +305,7 @@ Area routes typically use  [conventional routing](xref:mvc/controllers/routing#c
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
-[!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet&highlight=21-23)]
+[!code-csharp[](areas/samples/3.1/MVCareas/Startup.cs?name=snippet&highlight=21-23)]
 
 In the preceding code, `exists` applies a constraint that the route must match an area. Using `{area:...}` with `MapControllerRoute`:
 
@@ -313,7 +314,7 @@ In the preceding code, `exists` applies a constraint that the route must match a
 
 The following code uses <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> to create two named area routes:
 
-[!code-csharp[](areas/31samples/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=21-29)]
+[!code-csharp[](areas/samples/3.1/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=21-29)]
 
 For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
@@ -321,7 +322,7 @@ For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) shows link generation with the area specified:
 
-[!code-cshtml[](areas/31samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
+[!code-cshtml[](areas/samples/3.1/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains:
 
@@ -359,7 +360,7 @@ The `_ViewImports.cshtml` file typically contains [Tag Helpers](xref:mvc/views/t
 
 The following code changes the default area folder from `"Areas"` to `"MyAreas"`:
 
-[!code-csharp[](areas/31samples/MVCareas/Startup2.cs?name=snippet)]
+[!code-csharp[](areas/samples/3.1/MVCareas/Startup2.cs?name=snippet)]
 
 <a name="arp"></a>
 
@@ -384,19 +385,19 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
-[!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
+[!code-cshtml[](areas/samples/3.1/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 
 When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
 
-[!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
+[!code-cshtml[](areas/samples/3.1/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
 
 For the preceding code:
 
 * The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
 * The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
-* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples/RPareas).
+* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/3.1/RPareas).
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
@@ -404,7 +405,7 @@ A `_ViewImports.cshtml` file can be added to each area *Pages* folder to import 
 
 Consider the *Services* area of the sample code, which doesn't contain a `_ViewImports.cshtml` file. The following markup shows the */Services/Manage/About* Razor Page:
 
-[!code-cshtml[](areas/31samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
+[!code-cshtml[](areas/samples/3.1/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
 In the preceding markup:
 
@@ -413,11 +414,11 @@ In the preceding markup:
 
 In the sample download, the Products area contains the following `_ViewImports.cshtml` file:
 
-[!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
+[!code-cshtml[](areas/samples/3.1/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
 The following markup shows the */Products/About* Razor Page:
 
-[!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/About.cshtml)]
+[!code-cshtml[](areas/samples/3.1/RPareas/Areas/Products/Pages/About.cshtml)]
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 

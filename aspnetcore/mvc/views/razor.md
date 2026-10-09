@@ -1,5 +1,6 @@
 ---
 title: Razor syntax reference for ASP.NET Core
+ai-usage: ai-assisted
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.date: 04/30/2026
 uid: mvc/views/razor
@@ -102,7 +103,7 @@ Any content within the `@()` parenthesis is evaluated and rendered to the output
 
 Implicit expressions, described in the previous section, generally can't contain spaces. In the following code, one week isn't subtracted from the current time:
 
-[!code-cshtml[](razor/sample/Views/Home/Contact.cshtml?range=17)]
+[!code-cshtml[](razor/samples/Views/Home/Contact.cshtml?range=17)]
 
 The code renders the following HTML:
 
@@ -433,7 +434,7 @@ In C#, a `using` statement is used to ensure an object is disposed. In Razor, th
 
 Exception handling is similar to C#:
 
-[!code-cshtml[](razor/sample/Views/Home/Contact7.cshtml)]
+[!code-cshtml[](razor/samples/Views/Home/Contact7.cshtml)]
 
 ### `@lock`
 
@@ -482,7 +483,7 @@ Razor directives are represented by implicit expressions with reserved keywords 
 
 Understanding how Razor generates code for a view makes it easier to understand how directives work.
 
-[!code-cshtml[](razor/sample/Views/Home/Contact8.cshtml)]
+[!code-cshtml[](razor/samples/Views/Home/Contact8.cshtml)]
 
 The code generates a class similar to the following:
 
@@ -545,7 +546,7 @@ In [Razor components](xref:blazor/components/index), use `@code` over `@function
 
 For example:
 
-[!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
+[!code-cshtml[](razor/samples/Views/Home/Contact6.cshtml)]
 
 The code generates the following HTML markup:
 
@@ -555,7 +556,7 @@ The code generates the following HTML markup:
 
 The following code is the generated Razor C# class:
 
-[!code-csharp[](razor/sample/Classes/Views_Home_Test_cshtml.cs?range=1-19)]
+[!code-csharp[](razor/samples/Classes/Views_Home_Test_cshtml.cs?range=1-19)]
 
 `@functions` methods serve as templating methods when they have markup:
 
@@ -610,11 +611,11 @@ The `@inherits` directive provides full control of the class the view inherits:
 
 The following code is a custom Razor page type:
 
-[!code-csharp[](razor/sample/Classes/CustomRazorPage.cs)]
+[!code-csharp[](razor/samples/Classes/CustomRazorPage.cs)]
 
 The `CustomText` is displayed in a view:
 
-[!code-cshtml[](razor/sample/Views/Home/Contact10.cshtml)]
+[!code-cshtml[](razor/samples/Views/Home/Contact10.cshtml)]
 
 The code renders the following HTML:
 
@@ -627,11 +628,11 @@ The code renders the following HTML:
 
  `@model` and `@inherits` can be used in the same view. `@inherits` can be in a `_ViewImports.cshtml` file that the view imports:
 
-[!code-cshtml[](razor/sample/Views/_ViewImportsModel.cshtml)]
+[!code-cshtml[](razor/samples/Views/_ViewImportsModel.cshtml)]
 
 The following code is an example of a strongly-typed view:
 
-[!code-cshtml[](razor/sample/Views/Home/Login1.cshtml)]
+[!code-cshtml[](razor/samples/Views/Home/Login1.cshtml)]
 
 If "rick@contoso.com" is passed in the model, the view generates the following HTML markup:
 
@@ -815,7 +816,7 @@ For more information, see the following articles:
 
 The `@using` directive adds the C# `using` directive to the generated view:
 
-[!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
+[!code-cshtml[](razor/samples/Views/Home/Contact9.cshtml)]
 
 In [Razor components](xref:blazor/components/index), `@using` also controls which components are in scope.
 

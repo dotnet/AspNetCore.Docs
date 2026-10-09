@@ -22,7 +22,7 @@ An example of a CSRF attack:
 
    The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
-   :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
+   :::code language="html" source="anti-request-forgery/samples/snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 
@@ -731,7 +731,7 @@ An example of a CSRF attack:
 
    The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
-   :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
+   :::code language="html" source="anti-request-forgery/samples/snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 
@@ -1021,7 +1021,7 @@ An example of a CSRF attack:
 
    The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
-   :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
+   :::code language="html" source="anti-request-forgery/samples/snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 
@@ -1287,7 +1287,7 @@ An example of a CSRF attack:
 
    The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
-   :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
+   :::code language="html" source="anti-request-forgery/samples/snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 

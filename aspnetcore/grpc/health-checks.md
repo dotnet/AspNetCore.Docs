@@ -1,5 +1,6 @@
 ---
 title: gRPC health checks in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to use gRPC health checks in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/27/2024
@@ -33,7 +34,7 @@ To set up gRPC health checks in an app:
   * `MapGrpcHealthChecksService` to add a health checks service endpoint.
 * Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> method.
 
-[!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet&highlight=2,7-8,13)]
+[!code-csharp[](~/grpc/health-checks/samples/6/GrpcServiceHC/Program.cs?name=snippet&highlight=2,7-8,13)]
 
 When health checks is set up:
 
@@ -60,12 +61,12 @@ app.MapGrpcHealthChecksService().AllowAnonymous();
 
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
-[!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet2&highlight=4-7)]
+[!code-csharp[](~/grpc/health-checks/samples/6/GrpcServiceHC/Program.cs?name=snippet2&highlight=4-7)]
 The preceding code overrides the default service (`""`) to only use health results with the "public" tag.
 
 gRPC health checks supports the client specifying a service name argument when checking health. Multiple services are supported by providing a service name to `MapService`:
 
-[!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet3&highlight=4-8)]
+[!code-csharp[](~/grpc/health-checks/samples/6/GrpcServiceHC/Program.cs?name=snippet3&highlight=4-8)]
 
 The service name specified by the client is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents the client using arbitrary values to check app health.
 

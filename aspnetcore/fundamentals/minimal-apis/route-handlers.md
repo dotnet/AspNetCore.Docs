@@ -1,5 +1,6 @@
 ---
 title: Route handlers in Minimal API apps
+ai-usage: ai-assisted
 description: Learn how to handle route requests in Minimal API apps, define preferred methods, bind route parameters, and process the request response.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 04/28/2026
@@ -14,7 +15,7 @@ uid: fundamentals/minimal-apis/route-handlers
 
 A configured `WebApplication` supports `Map{Verb}` and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>, where `{Verb}` is a Pascal-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
 
-[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+[!code-csharp[](samples/7.0/WebMinAPIs/Program.cs?name=snippet_r1)]
 
 The <xref:System.Delegate> arguments passed to these methods are called _route handlers_.
 

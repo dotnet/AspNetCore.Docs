@@ -14,7 +14,7 @@ Supported binding sources:
 
 The following GET route handler uses some of these parameter binding sources:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_pbg" highlight="8-11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs" id="snippet_pbg" highlight="8-11":::
 
 ### Key parameter binding features
 

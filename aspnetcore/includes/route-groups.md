@@ -2,13 +2,13 @@ The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2
 
 For example, the following code creates two similar groups of endpoints:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/todo-group/Program.cs" id="snippet_MapGroup":::
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
 
 In this scenario, you can use a relative address for the `Location` header in the `201 Created` result:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_create":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/todo-group/TodoEndpoints.cs" id="snippet_create":::
 
 The first group of endpoints matches only requests prefixed with `/public/todos` and are accessible without any authentication. The second group of endpoints matches only requests prefixed with `/private/todos` and require authentication.
 
@@ -18,11 +18,11 @@ Route groups also support nested groups and complex prefix patterns with route p
 
 The prefix can also be empty. This approach can be useful for adding endpoint metadata or filters to a group of endpoints without changing the route pattern.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_NestedMapGroup1":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/todo-group/Program.cs" id="snippet_NestedMapGroup1":::
 
 Adding filters or metadata to a group results in the same behavior as adding them individually to each endpoint (before adding extra filters or metadata that might exist in an inner group or specific endpoint).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_NestedMapGroup2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/todo-group/Program.cs" id="snippet_NestedMapGroup2":::
 
 In the preceding example, the outer filter logs the incoming request before the inner filter even though the outer filter is added second. Because the filters are applied to different groups, the order that they're added relative to each other doesn't matter. The order in which filters are added matters when applied to the same group or specific endpoint.
 

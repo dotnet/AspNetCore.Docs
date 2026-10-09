@@ -1,5 +1,6 @@
 ---
 title: Partial views in ASP.NET Core
+ai-usage: ai-assisted
 description: Discover how to use partial views to break up large markup files and reduce the duplication of common markup across web pages in ASP.NET Core apps.
 ms.date: 04/30/2026
 uid: mvc/views/partial
@@ -82,7 +83,7 @@ public IActionResult OnGetPartial() =>
 
 In ASP.NET Core 2.2 or later, a handler method can alternatively call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial%2A> method to produce a `PartialViewResult` object:
 
-[!code-csharp[](partial/sample/PartialViewsSample/Pages/DiscoveryRP.cshtml.cs?name=snippet_OnGetPartial)]
+[!code-csharp[](partial/samples/PartialViewsSample/Pages/DiscoveryRP.cshtml.cs?name=snippet_OnGetPartial)]
 
 :::moniker-end
 
@@ -194,7 +195,7 @@ The following example references a partial view with a relative path:
 
 Alternatively, you can render a partial view with <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync%2A>. This method doesn't return an <xref:Microsoft.AspNetCore.Html.IHtmlContent>. It streams the rendered output directly to the response. Because the method doesn't return a result, it must be called within a Razor code block:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
 
 Since `RenderPartialAsync` streams rendered content, it provides better performance in some scenarios. In performance-critical situations, benchmark the page using both approaches and use the approach that generates a faster response.
 
@@ -281,15 +282,15 @@ You can pass a model into a partial view. The model can be a custom object. You 
 
 The following markup in the sample app is from the `Pages/ArticlesRP/ReadRP.cshtml` page. The page contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. The `ViewDataDictionary` constructor overload is used to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-20)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-20)]
 
 `Pages/Shared/_AuthorPartialRP.cshtml` is the first partial view referenced by the `ReadRP.cshtml` markup file:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Pages/Shared/_AuthorPartialRP.cshtml)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Pages/Shared/_AuthorPartialRP.cshtml)]
 
 `Pages/ArticlesRP/_ArticleSectionRP.cshtml` is the second partial view referenced by the `ReadRP.cshtml` markup file:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/_ArticleSectionRP.cshtml)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Pages/ArticlesRP/_ArticleSectionRP.cshtml)]
 
 **MVC**
 
@@ -297,15 +298,15 @@ The following markup in the sample app is from the `Pages/ArticlesRP/ReadRP.csht
 
 The following markup in the sample app shows the `Views/Articles/Read.cshtml` view. The view contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. The `ViewDataDictionary` constructor overload is used to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-20)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-20)]
 
 `Views/Shared/_AuthorPartial.cshtml` is the first partial view referenced by the `Read.cshtml` markup file:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Shared/_AuthorPartial.cshtml)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Views/Shared/_AuthorPartial.cshtml)]
 
 `Views/Articles/_ArticleSection.cshtml` is the second partial view referenced by the `Read.cshtml` markup file:
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/_ArticleSection.cshtml)]
+[!code-cshtml[](partial/samples/PartialViewsSample/Views/Articles/_ArticleSection.cshtml)]
 
 At runtime, the partials are rendered into the parent markup file's rendered output, which itself is rendered within the shared `_Layout.cshtml`. The first partial view renders the article author's name and publication date:
 

@@ -14,7 +14,7 @@ Binding from form values is ***not*** natively supported in .NET 6 and 7.
 
 The following `GET` route handler uses some of these parameter binding sources:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
 
 The following table shows the relationship between the parameters used in the preceding example and the associated binding sources.
 
@@ -29,18 +29,18 @@ The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind fr
 
 The following example POST route handler uses a binding source of body (as JSON) for the `person` parameter:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
 
 The parameters in the preceding examples are all bound from request data automatically. To demonstrate the convenience that parameter binding provides, the following route handlers show how to read request data directly from the request:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
 
 ### Explicit Parameter Binding
 
 Attributes can be used to explicitly declare where parameters are bound from.
 
 <!-- TODO - finish Service  -->
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_epb)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_epb)]
 
 | Parameter | Binding Source |
 | --------- | -------------- |
@@ -65,7 +65,7 @@ Parameters declared in route handlers are treated as required:
 * If a request matches the route, the route handler only runs if all required parameters are provided in the request.
 * Failure to provide all required parameters results in an error.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_op1)]
 
 | URI | result |
 | --------- | -------------- |
@@ -75,7 +75,7 @@ Parameters declared in route handlers are treated as required:
 
 To make `pageNumber` optional, define the type as optional or provide a default value:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_op2)]
 
 | URI | result |
 | --------- | -------------- |
@@ -85,13 +85,13 @@ To make `pageNumber` optional, define the type as optional or provide a default 
 
 The preceding nullable and default value applies to all sources:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_op3)]
 
 The preceding code calls the method with a null product if no request body is sent.
 
 **NOTE**: If invalid data is provided and the parameter is nullable, the route handler is ***not*** run.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_op4)]
 
 | URI | result |
 | --------- | -------------- |
@@ -145,15 +145,15 @@ For example, the data might be enqueued to [Azure Queue storage](/azure/storage/
 
 The following code implements a background queue:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/7.0/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
 
 The following code binds the request body to a `Stream`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/7.0/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
 
 The following code shows the complete `Program.cs` file:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/7.0/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
 
 * When reading data, the `Stream` is the same object as `HttpRequest.Body`.
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
@@ -164,7 +164,7 @@ The following code shows the complete `Program.cs` file:
 
 The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
 
@@ -176,31 +176,31 @@ There is no built-in support for [antiforgery](/aspnet/core/security/anti-reques
 
 The following code demonstrates binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues):
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bqs2pa)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bqs2pa)]
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. The following code binds to a string array and returns all the items with the specified tags:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bind_str_array)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bind_str_array)]
 
 The following code shows the model and the required `TryParse` implementation:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_model)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_model)]
 
 The following code binds to an `int` array:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_iaray)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_iaray)]
 
 To test the preceding code, add the following endpoint to populate the database with `Todo` items:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_batch)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_batch)]
 
 Use an API testing tool like [`HttpRepl`](xref:web-api/http-repl) to pass the following data to the previous endpoint:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=batch_post_payload)]
 
 The following code binds to the header key `X-Todo-Id` and returns the `Todo` items with matching `Id` values:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_getHeader)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_getHeader)]
 
 > [!NOTE]
 > When binding a `string[]` from a query string, the absence of any matching query string value will result in an empty array instead of a null value.
@@ -266,7 +266,7 @@ public static bool TryParse(string value, IFormatProvider provider, out T result
 
 The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10.1`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cb)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cb)]
 
 #### BindAsync
 
@@ -279,7 +279,7 @@ public static ValueTask<T?> BindAsync(HttpContext context);
 
 The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ba)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_ba)]
 
 <a name="bf"></a>
 
@@ -297,17 +297,17 @@ public interface IBindableFromHttpContext<TSelf>
 
 By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface, you can create custom types that handle their own binding logic from the HttpContext. When a route handler includes a parameter of this type, the framework automatically calls the static BindAsync method to create the instance:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
 
 The following is an example implementation of a custom parameter that binds from an HTTP header:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/CustomBindingExample/CustomBoundParameters.cs":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/CustomBindingExample/CustomBoundParameters.cs":::
 
 You can also implement validation within your custom binding logic:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/CustomBindingExample/Program.cs" id="snippet_Validation":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/CustomBindingExample/Program.cs" id="snippet_Validation":::
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/7.0-samples/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/7.0/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
 
 ### Binding failures
 
@@ -357,7 +357,7 @@ The body binding source uses <xref:System.Text.Json?displayProperty=fullName> fo
 
 Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
 Since the sample code configures both serialization and deserialization, it can read `NameField` and include `NameField` in the output JSON.
 
@@ -365,7 +365,7 @@ Since the sample code configures both serialization and deserialization, it can 
 
 <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. The following example includes public fields and formats JSON output.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="5-8,12":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="5-8,12":::
 
 Since the preceding code applies the customized options only to deserialization, the output JSON excludes `NameField`.
 
@@ -373,7 +373,7 @@ Since the preceding code applies the customized options only to deserialization,
 
 Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_fileupload)]
 
 The preceding code:
 

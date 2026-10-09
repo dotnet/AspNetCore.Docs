@@ -1,5 +1,6 @@
 ---
 title: What's new in ASP.NET Core in .NET 5
+ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.date: 07/21/2026
 uid: aspnetcore-5.0
@@ -84,7 +85,7 @@ All `.csproj` files created for web API projects contain the [Swashbuckle.AspNet
 
 The template generated code contains code in `Startup.ConfigureServices` that activates OpenAPI document generation:
 
-[!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet)]
+[!code-csharp[](~/release-notes/samples/StartupSwagger.cs?name=snippet)]
 
 The `Startup.Configure` method adds the Swashbuckle middleware, which enables the:
 
@@ -93,7 +94,7 @@ The `Startup.Configure` method adds the Swashbuckle middleware, which enables th
 
 The template generated code won't accidentally expose the API's description when publishing to production.
 
-[!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet2)]
+[!code-csharp[](~/release-notes/samples/StartupSwagger.cs?name=snippet2)]
 
 #### Azure API Management Import
 
@@ -213,7 +214,7 @@ For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr
 
 ASP.NET Core SignalR is now capable of handling parallel hub invocations. The default behavior can be changed to allow clients to invoke more than one hub method at a time:
 
-[!code-csharp[](~/release-notes/sample/StartupSignalRhubs.cs?name=snippet)]
+[!code-csharp[](~/release-notes/samples/StartupSignalRhubs.cs?name=snippet)]
 
 ### Added Messagepack support in SignalR Java client
 
@@ -350,7 +351,7 @@ The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.W
 
 The `AllowAnonymous` extension method allows anonymous access to an endpoint:
 
-[!code-csharp[](~/release-notes/sample/StartupAnonEndpoint.cs?name=snippet)]
+[!code-csharp[](~/release-notes/samples/StartupAnonEndpoint.cs?name=snippet)]
 
 ### Custom handling of authorization failures
 
@@ -442,7 +443,7 @@ Improvements have been made to the console log provider in the `Microsoft.Extens
 
 In addition to support for custom formatters, we've also added a built-in JSON formatter that emits structured JSON logs to the console. The following code shows how to switch from the default logger to JSON:
 
-[!code-csharp[](~/release-notes/sample/ProgramJsonLog.cs?name=snippet)]
+[!code-csharp[](~/release-notes/samples/ProgramJsonLog.cs?name=snippet)]
 
 Log messages emitted to the console are JSON formatted:
 
