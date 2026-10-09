@@ -69,7 +69,7 @@ To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.Dependenc
 <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions> supports the following properties:
 
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileName%2A>: The log file name prefix. Defaults to `w3clog-`.
-* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileSizeLimit%2A>: The maximum log file size in bytes before a new file is created. Defaults to 10 MB (`10 * 1024 * 1024`).
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileSizeLimit%2A>: Gets or sets a strictly positive value representing the maximum log size in bytes or null for no limit. Once the log is full, no more messages will be appended. Defaults to 10MB (10 * 1024 * 1024).
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FlushInterval%2A>: The period after which logs are flushed to disk. Defaults to 1 second.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LogDirectory%2A>: The directory where log files are written. Defaults to `./logs/` relative to the app's content root directory.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.RetainedFileCountLimit%2A>: The maximum number of retained log files. Defaults to 4.
@@ -138,7 +138,7 @@ To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.Dependenc
 
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.AdditionalRequestHeaders%2A>: Additional request headers to include in the log file.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileName%2A>: The log file name prefix. Defaults to `w3clog-`.
-* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileSizeLimit%2A>: The maximum log file size in bytes before a new file is created. Defaults to 10 MB (`10 * 1024 * 1024`).
+* <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FileSizeLimit%2A>: Gets or sets a strictly positive value representing the maximum log size in bytes or null for no limit. Once the log is full, no more messages will be appended. Defaults to 10MB (10 * 1024 * 1024).
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.FlushInterval%2A>: The period after which logs are flushed to disk. Defaults to 1 second.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LogDirectory%2A>: The directory where log files are written. Defaults to `./logs/` relative to the app's content root directory.
 * <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.RetainedFileCountLimit%2A>: The maximum number of retained log files. Defaults to 4.
