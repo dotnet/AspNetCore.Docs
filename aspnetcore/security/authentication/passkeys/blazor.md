@@ -3,7 +3,7 @@ title: Implement passkeys in ASP.NET Core Blazor Web Apps
 ai-usage: ai-assisted
 description: Learn how to implement passkeys authentication in ASP.NET Core Blazor Web Apps.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 09/01/2026
+ms.date: 10/05/2026
 uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
@@ -215,6 +215,24 @@ Update the `IdentityComponentsEndpointRouteBuilderExtensions.cs` file (or create
 
 [`/PasskeyCreationOptions` and `/PasskeyRequestOptions` endpoints](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs#L80-L132)
 
+:::moniker range=">= aspnetcore-12.0"
+
+The template also includes an anonymous `/PasskeyRegistrationOptions` endpoint that generates passkey creation options for a visitor who doesn't have an account yet. The endpoint requires a valid email address, runs the app's configured user validators before returning options, and never looks up an existing account. The `/PasskeyCreationOptions` endpoint remains available only to authenticated users who have reauthenticated.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-12.0"
+
+## Update the Register page
+
+To let users create an account with a passkey and no password, replace the existing `Register` component with the template's version:
+
+[`Components/Account/Pages/Register.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/Pages/Register.razor)
+
+The component adds a **Sign up with a passkey** button that uses the `PasskeySubmit` component with `PasskeyOperation.Register`. The `PasskeyOperation` enum (`Components/Account/PasskeyOperation.cs`) and the `PasskeySubmit.razor.js` file must include the `Register` operation.
+
+:::moniker-end
+
 ## Update the Login page
 
 Replace the existing `Login` component with the following component and update the `BlazorWebCSharp._1.Data` namespace to match the app (for example: `Contoso.Components.Account.Data`):
@@ -268,6 +286,19 @@ To test passkey functionality:
 1. Select **Passkeys** from the navigation menu.
 1. Select **Add a new passkey**
 1. Follow the browser's prompts to create a passkey using your device's authenticator.
+
+:::moniker range=">= aspnetcore-12.0"
+
+## Create an account with a passkey
+
+In an app based on the Blazor Web App project template, a user can create an account without a password:
+
+1. Navigate to the **Register** page.
+1. Enter an email address.
+1. Select **Sign up with a passkey**.
+1. Follow the browser's prompts to create a passkey using your device's authenticator.
+
+:::moniker-end
 
 ## Sign in with a passkey
 
