@@ -3,7 +3,7 @@ title: Rate limiting middleware in ASP.NET Core
 ai-usage: ai-assisted
 description: Rate limiting middleware in ASP.NET Core protects APIs from abuse and overload. Learn to configure fixed window, sliding window, token bucket, and concurrency limiters.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 09/03/2026
+ms.date: 10/09/2026
 uid: performance/rate-limit
 ---
 
@@ -455,9 +455,13 @@ builder.Services.AddRateLimiter(options =>
     
     options.OnRejected = async (context, cancellationToken) =>
     {
-        // Custom rejection handling logic
         context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
-        context.HttpContext.Response.Headers["Retry-After"] = "60";
+
+        if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+        {
+            context.HttpContext.Response.Headers.RetryAfter =
+                ((long)Math.Ceiling(retryAfter.TotalSeconds)).ToString(NumberFormatInfo.InvariantInfo);
+        }
 
         await context.HttpContext.Response.WriteAsync("Rate limit exceeded. Please try again later.", cancellationToken);
 
@@ -467,6 +471,20 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 ```
+
+The example requires `using System.Globalization;` and `using System.Threading.RateLimiting;`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> <xref:System.Threading.RateLimiting.FixedWindowRateLimiter> reports `MetadataName.RetryAfter` based on the next fixed-window boundary. Apps that copy this metadata to the `Retry-After` response header in `OnRejected` return an accurate retry interval automatically. Limiters that can't estimate when permits are available, such as <xref:System.Threading.RateLimiting.ConcurrencyLimiter>, don't provide `RetryAfter` metadata.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
 Another option is to queue the request:
 
 ### Request queuing
