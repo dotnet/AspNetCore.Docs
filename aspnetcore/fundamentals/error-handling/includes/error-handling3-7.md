@@ -975,20 +975,3 @@ In MVC apps, exception filters can be configured globally or on a per-controller
 For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
 
 :::moniker-end
-
-## Related content
-
-:::moniker range="= aspnetcore-7.0"
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-
-:::moniker-end

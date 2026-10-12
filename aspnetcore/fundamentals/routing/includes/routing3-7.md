@@ -3031,11 +3031,3 @@ This behavior makes the authorization middleware useful outside of routing and f
 [!INCLUDE[](~/includes/dbg-route.md)]
 
 :::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-## Related content
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-
-::: moniker-end
