@@ -55,7 +55,7 @@ By default, the [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapp
 
 In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in ASP.NET Core apps](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samplesMinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
 
 ### Configure authentication strategy
 
@@ -99,7 +99,7 @@ In the _Program.cs_ file, two JWT bearer-based authentication strategies are reg
 
 The scheme name is used to uniquely identify an authentication strategy. The name is also used as the lookup key when resolving authentication options from config, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samplesMinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
 ## Configure authorization policies in minimal apps
 
@@ -122,7 +122,7 @@ The code creates a new authorization policy named `admin_greetings` that encapsu
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samplesMinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
 
 ## Use 'dotnet user-jwts' for development testing
 
