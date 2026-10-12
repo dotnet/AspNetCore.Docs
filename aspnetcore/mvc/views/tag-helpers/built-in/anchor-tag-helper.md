@@ -309,7 +309,7 @@ The generated HTML:
 <a href="/Attendee?attendeeid=12&handler=Profile">Attendee Profile</a>
 ```
 
-## Additional resources
+## Related content
 
 * <xref:mvc/controllers/areas>
 * <xref:razor-pages/index>

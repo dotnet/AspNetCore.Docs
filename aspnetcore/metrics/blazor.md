@@ -126,7 +126,7 @@ Usage:
 * How many sessions processed?
 * How long do users keep the session/tab open?
 
-## Additional resources
+## Related content
 
 * <xref:metrics/built-in>
 * <xref:metrics/http>

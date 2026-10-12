@@ -107,7 +107,7 @@ In the following example, profiled methods are filtered to the app's namespace `
 <WasmProfilers>browser:callspec=N:SampleApp,interval=50</WasmProfilers>
 ```
 
-## Additional resources
+## Related content
 
 * [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)

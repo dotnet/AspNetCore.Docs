@@ -1061,7 +1061,7 @@ For more information, see [IProblemDetailsService fallback](xref:fundamentals/er
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
-## Additional resources
+## Related content
 
 * [Announcing ASP.NET Core in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/announcing-asp-net-core-in-dotnet-8/)
 * [ASP.NET Core announcements and breaking changes (`aspnet/Announcements` GitHub repository)](https://github.com/aspnet/Announcements/issues)

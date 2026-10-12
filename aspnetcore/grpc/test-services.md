@@ -99,7 +99,7 @@ The preceding integration test:
 * Calls the `SayHelloUnary` method using the gRPC client.
 * Asserts the expected reply message based on the mock `IGreeter` instance.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/test-tools>
 * <xref:grpc/test-client>

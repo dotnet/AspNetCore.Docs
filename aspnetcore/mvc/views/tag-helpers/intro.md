@@ -293,7 +293,7 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 
-## Additional resources
+## Related content
 
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Working with Forms](xref:mvc/views/working-with-forms)

@@ -1639,7 +1639,7 @@ The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8/run
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/fundamentals/configuration>
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)

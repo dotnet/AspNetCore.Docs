@@ -222,7 +222,7 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:host-and-deploy/linux-nginx>
 * Nginx documentation:

@@ -715,7 +715,7 @@ The following table shows the key differences between the MVC JSON options and g
 
 ---
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)

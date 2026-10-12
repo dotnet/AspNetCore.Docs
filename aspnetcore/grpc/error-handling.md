@@ -209,7 +209,7 @@ The preceding code:
 * Calls `GetRpcStatus()` to attempt to get the rich error model from the exception.
 * Calls `GetDetail<BadRequest>()` to attempt to get a `BadRequest` payload from the rich error.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/services>
 * <xref:grpc/client>

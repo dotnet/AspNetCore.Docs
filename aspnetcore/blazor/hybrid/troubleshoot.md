@@ -61,7 +61,7 @@ services.AddLogging(logging =>
 
 When the app is run from Visual Studio with debugging enabled, the debug output appears in Visual Studio's **Output** window.
 
-## Additional resources
+## Related content
 
 * [Logging in C# and .NET](/dotnet/core/extensions/logging)
 * <xref:fundamentals/logging/index#debug>

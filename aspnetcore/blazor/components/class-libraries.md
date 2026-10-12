@@ -423,7 +423,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 *Jeep* and *Jeep YJ* are registered trademarks of [FCA US LLC (Stellantis NV)](https://www.stellantis.com).
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-5.0"
 

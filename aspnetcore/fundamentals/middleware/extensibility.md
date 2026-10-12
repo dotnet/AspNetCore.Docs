@@ -61,12 +61,6 @@ Both middleware are registered in the request processing pipeline, also in `Prog
 
 The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>, is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:fundamentals/middleware/index>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
@@ -124,11 +118,6 @@ Both middleware are registered in the request processing pipeline in `Startup.Co
 <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> provides methods to create middleware. The middleware factory implementation is registered in the container as a scoped service.
 
 The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>, is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
-
-## Additional resources
-
-* <xref:fundamentals/middleware/index>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
 
 :::moniker-end
 
@@ -188,7 +177,19 @@ Both middleware are registered in the request processing pipeline in `Startup.Co
 
 The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>, is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
-## Additional resources
+:::moniker-end
+
+## Related content
+
+:::moniker range=">= aspnetcore-6.0"
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* <xref:fundamentals/middleware/index>
+* <xref:fundamentals/middleware/extensibility-third-party-container>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/middleware/extensibility-third-party-container>

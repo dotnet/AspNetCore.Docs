@@ -245,7 +245,7 @@ Check the connection string. If you have manually deleted the database file, cha
 
 [Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## Additional resources
+## Related content
 
 For more information about EF Core, see the [Entity Framework Core documentation](/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 

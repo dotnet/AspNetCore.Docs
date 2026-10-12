@@ -219,7 +219,7 @@ To downgrade to an older library version, manually edit the `libman.json` file. 
 * Removes redundant files from the previous version.
 * Adds new and updated files from the new version.
 
-## Additional resources
+## Related content
 
 * <xref:client-side/libman/libman-cli>
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)

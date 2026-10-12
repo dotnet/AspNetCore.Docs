@@ -136,7 +136,7 @@ This convention is necessary because we can not retrieve complete information ab
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Java API reference](/java/api/com.microsoft.signalr?view=aspnet-signalr-java&preserve-view=true)
 * <xref:signalr/hubs>

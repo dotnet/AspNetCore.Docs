@@ -80,7 +80,7 @@ The following table shows the authentication options available when creating a n
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
-## Additional resources
+## Related content
 
 The following articles show how to use the code generated in ASP.NET Core templates that use individual accounts:
 

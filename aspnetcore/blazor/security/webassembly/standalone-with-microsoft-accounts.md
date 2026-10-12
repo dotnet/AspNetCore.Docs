@@ -206,7 +206,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)

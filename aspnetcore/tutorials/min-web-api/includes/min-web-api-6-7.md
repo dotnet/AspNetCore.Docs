@@ -879,7 +879,7 @@ For an example of testing a Minimal API app, see [this GitHub sample](https://gi
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/minimal-apis>
 

@@ -412,7 +412,7 @@ The [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) sample app de
 * `LocalVehiclesStore` (`Client/Data/LocalVehiclesStore.cs`)
 * `LoginStatus` component (`Client/Shared/LoginStatus.razor`)
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-10.0"
 

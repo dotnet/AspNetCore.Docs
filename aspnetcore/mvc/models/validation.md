@@ -421,7 +421,7 @@ The preceding approach won't prevent client-side validation of ASP.NET Core Iden
 
 [!INCLUDE[](~/includes/problem-details-service.md)]
 
-## Additional resources
+## Related content
 
 * <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName>
 * [Model Binding](xref:mvc/models/model-binding)
