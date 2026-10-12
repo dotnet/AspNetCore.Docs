@@ -623,7 +623,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
 
 The preceding output was enabled with the following `appsettings.Development.json` file:
 
-[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.development.json?highlight=6)]
+[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.Development.json?highlight=6)]
 
 HTTP logging provides logs of:
 
