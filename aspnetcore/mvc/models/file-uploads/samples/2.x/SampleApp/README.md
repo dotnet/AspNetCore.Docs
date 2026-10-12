@@ -1,9 +1,3 @@
----
-title: Upload files sample app
-ai-usage: ai-assisted
-ms.date: 10/12/2026
----
-
 # Upload Files Sample App
 
 This sample app demonstrates concepts described in the [Upload files in ASP.NET Core](https://learn.microsoft.com/aspnet/core/mvc/models/file-uploads) topic.
