@@ -6,5 +6,8 @@
     "#-",
     "?view",
     "ms-settings:"
+  ],
+  "excludeDirectories": [
+    ".github"
   ]
 }
