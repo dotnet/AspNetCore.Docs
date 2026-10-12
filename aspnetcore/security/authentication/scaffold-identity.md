@@ -1,5 +1,6 @@
 ---
 title: Scaffold Identity in ASP.NET Core projects
+ai-usage: ai-assisted
 description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/19/2026
@@ -212,7 +213,7 @@ before dotnet ef database update
 
 Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/3.1/StartupRP.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)] -->
 
@@ -220,7 +221,7 @@ Update the `Startup` class with code similar to the following:
 
 As an option, you can add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
+[!code-cshtml[](scaffold-identity/samples/6.0/_Layout.cshtml?highlight=29)]
 
 ## Scaffold Identity into a Razor project with authorization
 
@@ -261,13 +262,13 @@ dotnet ef database update
 
 Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.cshtml` file:
 
-[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
+[!code-cshtml[](scaffold-identity/samples/6.0/_Layout.cshtml?highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 Add `MapRazorPages` to the _Program.cs_ file as shown in the following highlighted code:
 
-[!code-csharp[](scaffold-identity/6.0sample/ProgramMRP.cs?highlight=39)]
+[!code-csharp[](scaffold-identity/samples/6.0/ProgramMRP.cs?highlight=39)]
 
 ## Scaffold Identity into an MVC project with authorization
 
@@ -318,11 +319,11 @@ To disable user registration:
 
 1. Update the _Areas/Identity/Pages/Account/Register.cshtml.cs_ file so users can't register from this endpoint:
 
-   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
+   [!code-csharp[](scaffold-identity/samples/Register.cshtml.cs?name=snippet)]
 
 1. Update the _Areas/Identity/Pages/Account/Register.cshtml_ file to be consistent with the preceding changes:
 
-   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
+   [!code-cshtml[](scaffold-identity/samples/Register.cshtml)]
 
 1. Comment out or remove the registration link from the _Areas/Identity/Pages/Account/Login.cshtml_ file:
 
@@ -435,7 +436,7 @@ before dotnet ef database update
 
 Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/3.1/StartupRP.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)] -->
 
@@ -443,7 +444,7 @@ Update the `Startup` class with code similar to the following:
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
+[!code-cshtml[](scaffold-identity/samples/6.0/_Layout.cshtml?highlight=29)]
 
 ## Scaffold Identity into a Razor project with authorization
 
@@ -484,13 +485,13 @@ dotnet ef database update
 
 Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.cshtml` file:
 
-[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
+[!code-cshtml[](scaffold-identity/samples/6.0/_Layout.cshtml?highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 Add `MapRazorPages` to `Program.cs` as shown in the following highlighted code:
 
-[!code-cshtml[](scaffold-identity/6.0sample/ProgramMRP.cs?highlight=39)]
+[!code-cshtml[](scaffold-identity/samples/6.0/ProgramMRP.cs?highlight=39)]
 
 ## Scaffold Identity into an MVC project with authorization
 
@@ -588,11 +589,11 @@ To disable user registration:
 
 * Update `Areas/Identity/Pages/Account/Register.cshtml.cs` so users can't register from this endpoint:
 
-  [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
+  [!code-csharp[](scaffold-identity/samples/Register.cshtml.cs?name=snippet)]
 
 * Update `Areas/Identity/Pages/Account/Register.cshtml` to be consistent with the preceding changes:
 
-  [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
+  [!code-cshtml[](scaffold-identity/samples/Register.cshtml)]
 
 * Comment out or remove the registration link from `Areas/Identity/Pages/Account/Login.cshtml`
 
@@ -667,7 +668,7 @@ When scaffolding Identity with a new data context into a project with existing i
 
 For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/3.1/StartupRemove.cs?name=snippet)]
 
 The preceding code comments out the code that is duplicated in `Areas/Identity/IdentityHostingStartup.cs`
 
@@ -679,7 +680,7 @@ Typically, apps created with individual accounts should ***not*** create a new d
 
 Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/3.1/StartupMVC.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -724,7 +725,7 @@ Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more i
 
 Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/3.1/StartupRP.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -732,7 +733,7 @@ Update the `Startup` class with code similar to the following:
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
+[!code-cshtml[](scaffold-identity/samples/3.1/_Layout.cshtml?highlight=20)]
 
 ## Scaffold Identity into a Razor project with authorization
 
@@ -771,7 +772,7 @@ dotnet ef database update
 
 Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.cshtml` file:
 
-[!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
+[!code-cshtml[](scaffold-identity/samples/3.1/_Layout.cshtml?highlight=20)]
 
 Move the `Pages/Shared/_LoginPartial.cshtml` file to `Views/Shared/_LoginPartial.cshtml`.
 
@@ -781,7 +782,7 @@ Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more i
 
 Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/3.1/StartupMVC.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -842,21 +843,21 @@ To maintain full control of the Identity UI, run the Identity scaffolder and sel
 
 The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
 
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
+[!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
 The default Identity is replaced in the following code:
 
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
+[!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet2)]
 
 The following code sets the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LoginPath%2A>, <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LogoutPath%2A>, and <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.AccessDeniedPath%2A>):
 
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
+[!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet3)]
 
 Register an `IEmailSender` implementation, for example:
 
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
+[!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet4)]
 
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet)]
 
 <!--
 uld option: Use Local DB, not SQLite
@@ -888,11 +889,11 @@ To disable user registration:
 
 * Update `Areas/Identity/Pages/Account/Register.cshtml.cs` so users can't register from this endpoint:
 
-  [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
+  [!code-csharp[](scaffold-identity/samples/Register.cshtml.cs?name=snippet)]
 
 * Update `Areas/Identity/Pages/Account/Register.cshtml` to be consistent with the preceding changes:
 
-  [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
+  [!code-cshtml[](scaffold-identity/samples/Register.cshtml)]
 
 * Comment out or remove the registration link from `Areas/Identity/Pages/Account/Login.cshtml`
 
