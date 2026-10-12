@@ -1,0 +1,9 @@
+{
+  "excludeStartingWith": [
+    "xref:",
+    "~/",
+    "/",
+    "#-",
+    "ms-settings:"
+  ]
+}
