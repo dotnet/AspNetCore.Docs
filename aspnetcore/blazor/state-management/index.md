@@ -2,7 +2,8 @@
 title: ASP.NET Core Blazor state management overview
 description: Learn how to persist user data (state) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/11/2025
+ai-usage: ai-assisted
+ms.date: 10/13/2026
 uid: blazor/state-management/index
 ---
 # ASP.NET Core Blazor state management overview
@@ -173,6 +174,50 @@ Use [cascading values and parameters](xref:blazor/components/cascading-values-an
 :::moniker range=">= aspnetcore-8.0"
 
 Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-12.0"
+
+## Browser Web Storage with typed APIs
+
+The `Microsoft.AspNetCore.Components.Platform` package provides strongly typed access to browser APIs, starting with [Web Storage](https://developer.mozilla.org/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API), instead of string-based <xref:Microsoft.JSInterop.IJSRuntime> calls. Use it to persist state in the browser's `localStorage` or `sessionStorage` from Blazor components. The package is in preview.
+
+Register the services by calling `AddBrowserPlatform` on the app's service collection:
+
+```csharp
+builder.Services.AddBrowserPlatform();
+```
+
+Inject `IBrowserPlatform` and use its `Window` property. The `LocalStorage` and `SessionStorage` properties are extension properties on `Window` that are available when the `Microsoft.AspNetCore.Components.Platform` namespace is imported:
+
+```razor
+@using Microsoft.AspNetCore.Components.Platform
+@inject IBrowserPlatform Platform
+
+@code {
+    private async Task SaveAsync()
+    {
+        await Platform.Window.LocalStorage.SetItemAsync("theme", "dark");
+        var theme = await Platform.Window.LocalStorage.GetItemAsync("theme");
+    }
+}
+```
+
+The `Storage` type exposes the following asynchronous methods:
+
+* `GetLengthAsync`: Gets the number of stored items.
+* `KeyAsync`: Gets the key at the specified zero-based index, or `null` if none exists.
+* `GetItemAsync`: Gets the value for a key, or `null` if the key doesn't exist.
+* `SetItemAsync`: Sets the value for a key, replacing any existing value.
+* `RemoveItemAsync`: Removes the value for a key.
+* `ClearAsync`: Removes all stored values.
+
+Keys and values are strings. `GetItemAsync`, `SetItemAsync`, and `RemoveItemAsync` throw an <xref:System.ArgumentNullException> for a `null` key, and `SetItemAsync` also throws for a `null` value.
+
+Don't dispose `Window` or `Storage` instances. The dependency injection scope manages their lifetime.
+
+Browser storage is only available once the app is interactive. Call these APIs after the component has rendered interactively, for example in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, not during prerendering.
 
 :::moniker-end
 
