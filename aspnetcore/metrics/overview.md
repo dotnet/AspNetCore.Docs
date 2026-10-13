@@ -346,6 +346,6 @@ For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotn
 
 ## Additional resources
 
-* [.NET Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
+* [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 * [Explore Aspire telemetry](https://aspire.dev/fundamentals/telemetry/)
 * <xref:metrics/built-in>
