@@ -3,7 +3,7 @@ title: Output caching middleware in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to configure and use output caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/09/2026
+ms.date: 10/13/2026
 uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
@@ -79,7 +79,7 @@ For Razor Pages apps, apply the attribute to the Razor page class.
 
 ### Resolve policies dynamically with `IOutputCachePolicyProvider`
 
-Implement the <xref:Microsoft.AspNetCore.OutputCaching.IOutputCachePolicyProvider> interface when named or base policies must be resolved dynamically, such as from external configuration, a database, or tenant-specific rules. `GetBasePolicies` returns the base policies to apply to requests, and `GetPolicyAsync` resolves a named policy. Return `null` when a named policy isn't found.
+Implement the <xref:Microsoft.AspNetCore.OutputCaching.IOutputCachePolicyProvider> interface when named or base policies must be resolved dynamically, such as from external configuration, a database, or tenant-specific rules. `GetBasePolicies` returns the base policies to apply to requests, and `GetPolicyAsync` resolves a named policy. Return `null` when a named policy isn't found. For tenant-specific responses, ensure the cache key varies by tenant so that one tenant's cached response isn't served to another tenant.
 
 The interface defines the policy provider contract:
 
