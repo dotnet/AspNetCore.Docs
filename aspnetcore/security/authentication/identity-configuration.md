@@ -3,7 +3,7 @@ title: Configure ASP.NET Core Identity
 ai-usage: ai-assisted
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/13/2026
 uid: security/authentication/identity-configuration
 ---
 # Configure ASP.NET Core Identity
@@ -163,7 +163,7 @@ Changing the validation interval is shown in the following highlighted code:
 
 ## Test time-dependent Identity behavior with `TimeProvider`
 
-ASP.NET Core Identity uses <xref:System.TimeProvider> for all time-related operations, including token expiration, lockout durations, and security stamp validation. To write deterministic tests for these behaviors, register a fake `TimeProvider` in the dependency injection container before adding Identity. The `FakeTimeProvider` type is provided by the `Microsoft.Extensions.TimeProvider.Testing` package. Use `fakeTimeProvider.Advance` in tests to move time forward without waiting.
+ASP.NET Core Identity uses <xref:System.TimeProvider> for all time-related operations, including token expiration, lockout durations, and security stamp validation. To write deterministic tests for these behaviors, register a fake <xref:System.TimeProvider> in the dependency injection container before adding Identity. The <xref:Microsoft.Extensions.Time.Testing.FakeTimeProvider> type is provided by the [`Microsoft.Extensions.TimeProvider.Testing` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.TimeProvider.Testing). Set <xref:Microsoft.Extensions.Time.Testing.FakeTimeProvider.Advance%2A?displayProperty=nameWithType> in tests to move time forward without waiting.
 
 ```csharp
 // In a test project that references Microsoft.Extensions.TimeProvider.Testing.
