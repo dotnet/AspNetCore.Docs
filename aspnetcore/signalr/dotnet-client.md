@@ -235,6 +235,53 @@ The `SendAsync` method returns a `Task` that completes when the message is sent 
 > [!NOTE]
 > Calling hub methods from a client is supported only when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions](/azure/azure-signalr/signalr-resource-faq).
 
+:::moniker range=">= aspnetcore-11.0"
+
+### Cancel a hub method invocation
+
+Pass a <xref:System.Threading.CancellationToken> to `InvokeAsync` to cancel a long-running hub method. Canceling the token sends a cancellation message to the server, which triggers the `CancellationToken` parameter of the running hub method:
+
+```csharp
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
+try
+{
+    var report = await hubConnection.InvokeAsync<Report>(
+        "GenerateReport", reportId, cts.Token);
+}
+catch (OperationCanceledException)
+{
+    // The invocation was canceled.
+}
+```
+
+The hub method must declare a `CancellationToken` parameter to observe the cancellation. The server supplies that parameter; don't pass an argument for it from the client:
+
+```csharp
+public class ReportHub : Hub
+{
+    public async Task<Report> GenerateReport(
+        int reportId, CancellationToken cancellationToken)
+    {
+        // Pass cancellationToken to the work being performed.
+    }
+}
+```
+
+Note the following about cancellation:
+
+* Cancellation is cooperative. The server requests cancellation, but the hub method decides whether and how quickly to stop. The server sends a completion message for the invocation either way.
+* If the hub method allows an <xref:System.OperationCanceledException> to propagate, the invocation completes with an error rather than as a canceled invocation.
+* The `CancellationToken` supplied to the hub method is also canceled when the connection closes, so it isn't only triggered by an explicit client cancellation.
+* The caller's `Task` is canceled on the client as soon as the cancellation message is sent. It doesn't wait for the hub method to stop.
+* Cancellation applies to `InvokeAsync`, which tracks an invocation ID. `SendAsync` doesn't wait for the hub method, so there's nothing for it to cancel.
+
+Before ASP.NET Core 11.0, a `CancellationToken` passed to a non-streaming `InvokeAsync` only canceled the wait on the client. The hub method ran to completion on the server. Only streaming invocations could be canceled. This is also the behavior against a server running an earlier version of ASP.NET Core.
+
+Canceling a non-streaming invocation is supported by the .NET client only. The JavaScript, Java, and Swift clients can cancel streaming invocations, but their `invoke` equivalents don't accept a cancellation argument. See <xref:signalr/client-features>.
+
+:::moniker-end
+
 ## Call client methods from hub
 
 Define the methods that the hub calls by using `connection.On` after building, but before starting the connection:
