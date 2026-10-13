@@ -159,6 +159,29 @@ Changing the validation interval is shown in the following highlighted code:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Test time-dependent Identity behavior with `TimeProvider`
+
+ASP.NET Core Identity uses <xref:System.TimeProvider> for all time-related operations, including token expiration, lockout durations, and security stamp validation. To write deterministic tests for these behaviors, register a fake `TimeProvider` in the dependency injection container before adding Identity. The `FakeTimeProvider` type is provided by the `Microsoft.Extensions.TimeProvider.Testing` package. Use `fakeTimeProvider.Advance` in tests to move time forward without waiting.
+
+```csharp
+// In a test project that references Microsoft.Extensions.TimeProvider.Testing.
+// using System;
+// using Microsoft.AspNetCore.Identity;
+// using Microsoft.Extensions.DependencyInjection;
+// using Microsoft.Extensions.Time.Testing;
+
+var fakeTimeProvider = new FakeTimeProvider(
+    new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero));
+
+var services = new ServiceCollection();
+services.AddSingleton<TimeProvider>(fakeTimeProvider);
+services.AddIdentity<IdentityUser, IdentityRole>();
+```
+
+:::moniker-end
+
 :::moniker range="< aspnetcore-6.0"
 
 ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden in the `Startup` class.
