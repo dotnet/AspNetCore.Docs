@@ -49,6 +49,33 @@ The following code shows how to access keyed services from the DI container by u
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceController/Program.cs" :::
 
+## Property injection with `FromServices`
+
+The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> can also be applied to public properties on an MVC controller. The runtime resolves and populates these properties from the DI container when activating the controller:
+
+```csharp
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
+{
+    [FromServices]
+    public required ILogger<WeatherForecastController> Logger { get; set; }
+
+    [FromServices]
+    public required IWeatherService WeatherService { get; set; }
+
+    [HttpGet]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        Logger.LogInformation("Fetching weather forecast");
+        return WeatherService.GetForecast();
+    }
+}
+```
+
+> [!NOTE]
+> Property injection using `[FromServices]` is supported on controller properties with public setters. It isn't supported for services resolved generally through the dependency injection container.
+
 ## Access settings from a controller
 
 Accessing app or configuration settings from within a controller is a common pattern. The *options pattern* described in <xref:fundamentals/configuration/options> is the preferred approach to manage settings. Generally, don't directly inject <xref:Microsoft.Extensions.Configuration.IConfiguration> into a controller.
