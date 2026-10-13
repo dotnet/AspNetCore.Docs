@@ -430,6 +430,8 @@ When binding fails, the framework logs a debug message and returns various statu
 | Failure to deserialize JSON body |doesn't matter|body|400|
 | Wrong content type (not `application/json`) |doesn't matter|body|415|
 
+Endpoints that have a filter pipeline run their filters after a binding failure, so a filter can observe the status code in the preceding table and replace the response body. For more information, see [Filters and parameter binding failures](xref:fundamentals/minimal-apis/min-api-filters#filters-and-parameter-binding-failures).
+
 ## Binding Precedence
 
 The rules for determining a binding source from a parameter:
