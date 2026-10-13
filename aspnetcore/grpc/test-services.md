@@ -1,5 +1,6 @@
 ---
 title: Test gRPC services in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to test gRPC services in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/01/2022
@@ -29,7 +30,7 @@ To demonstrate service tests, review the following service in the sample app.
 
 The `TesterService` returns greetings using gRPC's four method types.
 
-[!code-csharp[](test-services/sample/Server/Services/TesterService.cs?name=snippet_TesterService)]
+[!code-csharp[](test-services/samples/Server/Services/TesterService.cs?name=snippet_TesterService)]
 
 The preceding gRPC service:
 
@@ -41,7 +42,7 @@ The preceding gRPC service:
 
 A unit test library can directly test gRPC services by calling its methods. Unit tests test a gRPC service in isolation.
 
-[!code-csharp[](test-services/sample/Tests/Server/UnitTests/GreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
+[!code-csharp[](test-services/samples/Tests/Server/UnitTests/GreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding unit test:
 
@@ -77,7 +78,7 @@ The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore
   * The `GrpcTestFixture<TStartup>` class configures the ASP.NET Core host and starts the gRPC app in an in-memory test server.
   * The `IntegrationTestBase` class is the base type that integration tests inherit from. It contains the fixture state and APIs for creating a gRPC client to call the gRPC app.
 
-[!code-csharp[](test-services/sample/Tests/Server/IntegrationTests/GreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
+[!code-csharp[](test-services/samples/Tests/Server/IntegrationTests/GreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding integration test:
 
@@ -89,7 +90,7 @@ The preceding integration test:
 
 Use `ConfigureWebHost` on the fixture to override dependencies. Overriding dependencies is useful when an external dependency is unavailable in the test environment. For example, an app that uses an external payment gateway shouldn't call the external dependency when executing tests. Instead, use a mock gateway for the test.
 
-[!code-csharp[](test-services/sample/Tests/Server/IntegrationTests/MockedGreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
+[!code-csharp[](test-services/samples/Tests/Server/IntegrationTests/MockedGreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding integration test:
 

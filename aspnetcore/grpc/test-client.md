@@ -1,5 +1,6 @@
 ---
 title: Mock gRPC client in tests
+ai-usage: ai-assisted
 description: Learn how to mock gRPC client in .NET tests.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/02/2022
@@ -21,7 +22,7 @@ To demonstrate client app tests, review the following type in the sample app.
 
 The `Worker` is a [BackgroundService](xref:Microsoft.Extensions.Hosting.BackgroundService) that makes calls to a gRPC server.
 
-[!code-csharp[](test-services/sample/Client/Worker.cs?name=snippet_Worker)]
+[!code-csharp[](test-services/samples/Client/Worker.cs?name=snippet_Worker)]
 
 The preceding type:
 
@@ -38,7 +39,7 @@ gRPC clients are concrete client types that are [generated from `.proto` files](
 
 A mocking framework can mock a gRPC client type. When a mocked client is passed to the type, the test uses the mocked method instead of sending a gRPC call to a server.
 
-[!code-csharp[](test-services/sample/Tests/Client/WorkerTests.cs?name=snippet_Test)]
+[!code-csharp[](test-services/samples/Tests/Client/WorkerTests.cs?name=snippet_Test)]
 
 The preceding unit test:
 

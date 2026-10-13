@@ -1,5 +1,6 @@
 ---
 title: SignalR HubContext
+ai-usage: ai-assisted
 description: Learn how to use the ASP.NET Core SignalR HubContext service for sending notifications to clients from outside a hub.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/20/2023
@@ -12,7 +13,7 @@ The SignalR hub is the core abstraction for sending messages to clients connecte
 > [!NOTE]
 > The `IHubContext` is for sending notifications to clients, it is not used to call methods on the `Hub`.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 ## Get an instance of `IHubContext`
 
@@ -22,11 +23,11 @@ In ASP.NET Core SignalR, you can access an instance of `IHubContext` via depende
 
 You can inject an instance of `IHubContext` into a controller by adding it to your constructor:
 
-[!code-csharp[](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
+[!code-csharp[](hubcontext/samples/Controllers/HomeController.cs?range=12-19,57)]
 
 With access to an instance of `IHubContext`, call client methods as if you were in the hub itself:
 
-[!code-csharp[](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
+[!code-csharp[](hubcontext/samples/Controllers/HomeController.cs?range=21-25)]
 
 ### Get an instance of `IHubContext` in middleware
 

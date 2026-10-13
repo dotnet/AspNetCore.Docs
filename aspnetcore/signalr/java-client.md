@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core SignalR Java client
+ai-usage: ai-assisted
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 10/02/2026
@@ -27,19 +28,19 @@ implementation 'com.microsoft.signalr:signalr:7.0.0'
 
 If using Maven, add the following lines inside the `<dependencies>` element of your `pom.xml` file:
 
-[!code-xml[pom.xml dependency element](java-client/sample/pom.xml?name=snippet_dependencyElement)]
+[!code-xml[pom.xml dependency element](java-client/samples/pom.xml?name=snippet_dependencyElement)]
 
 ## Connect to a hub
 
 To establish a `HubConnection`, the `HubConnectionBuilder` should be used. The hub URL and log level can be configured while building a connection. Configure any required options by calling any of the `HubConnectionBuilder` methods before `build`. Start the connection with `start`.
 
-[!code-java[Build hub connection](java-client/sample/src/main/java/Chat.java?range=16-17)]
+[!code-java[Build hub connection](java-client/samples/src/main/java/Chat.java?range=16-17)]
 
 ## Call hub methods from client
 
 A call to `send` invokes a hub method. Pass the hub method name and any arguments defined in the hub method to `send`.
 
-[!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
+[!code-java[send method](java-client/samples/src/main/java/Chat.java?range=28)]
 
 > [!NOTE]
 > Calling hub methods from a client is only supported when using the Azure SignalR Service in [*Default* mode](/azure/azure-signalr/concept-service-mode#default-mode).
@@ -48,7 +49,7 @@ A call to `send` invokes a hub method. Pass the hub method name and any argument
 
 Use `hubConnection.on` to define methods on the client that the hub can call. Define the methods after building but before starting the connection.
 
-[!code-java[Define client methods](java-client/sample/src/main/java/Chat.java?range=19-21)]
+[!code-java[Define client methods](java-client/samples/src/main/java/Chat.java?range=19-21)]
 
 ## Add logging
 

@@ -42,7 +42,7 @@ In `Startup.cs`:
 * gRPC is enabled with the `AddGrpc` method.
 * Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample3-5/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/samples/3-5/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
 
 ASP.NET Core middleware and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
 
@@ -82,11 +82,11 @@ Kestrel endpoints used for gRPC should be secured with TLS. In development, an e
 
 In production, TLS must be explicitly configured. In the following `appsettings.json` example, an HTTP/2 endpoint secured with TLS is provided:
 
-[!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
+[!code-json[](~/grpc/aspnetcore/samples/appsettings.json?highlight=4)]
 
 Alternatively, Kestrel endpoints can be configured in `Program.cs`:
 
-[!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/samples/Program.cs?highlight=7&name=snippet)]
 
 For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#listenoptionsusehttps).
 
@@ -144,11 +144,11 @@ By default, the gRPC service implementation can resolve other DI services with a
 
 The gRPC API provides access to some HTTP/2 message data, such as the method, host, header, and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
 
-[!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService.cs?highlight=3-4&name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/samples/GrcpService/GreeterService.cs?highlight=3-4&name=snippet)]
 
 `ServerCallContext` doesn't provide full access to `HttpContext` in all ASP.NET APIs. The `GetHttpContext` extension method provides full access to the `HttpContext` representing the underlying HTTP/2 message in ASP.NET APIs:
 
-[!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/samples/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
 ## Additional resources
 

@@ -1,5 +1,6 @@
 ---
 title: Versioning gRPC services
+ai-usage: ai-assisted
 description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 01/09/2020
@@ -70,7 +71,7 @@ Services should strive to remain backwards compatible with old clients. Eventual
 
 gRPC supports an optional [package](https://developers.google.com/protocol-buffers/docs/proto3#packages) specifier, which functions much like a .NET namespace. In fact, the `package` will be used as the .NET namespace for generated .NET types if `option csharp_namespace` is not set in the `.proto` file. The package can be used to specify a version number for your service and its messages:
 
-[!code-protobuf[](versioning/sample/greet.v1.proto?highlight=3)]
+[!code-protobuf[](versioning/samples/greet.v1.proto?highlight=3)]
 
 The package name is combined with the service name to identify a service address. A service address allows multiple versions of a service to be hosted side-by-side:
 
@@ -98,7 +99,7 @@ Including a version number in the package name gives you the opportunity to publ
 
 Publishing multiple versions of a service duplicates it. To reduce duplication, consider moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
 
-[!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
+[!code-csharp[](versioning/samples/GreeterServiceV1.cs?highlight=10,19)]
 
 Services and messages generated with different package names are **different .NET types**. Moving business logic to a centralized location requires mapping messages to common types.
 

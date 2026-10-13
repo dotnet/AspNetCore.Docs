@@ -1,5 +1,6 @@
 ---
 title: gRPC for .NET configuration
+ai-usage: ai-assisted
 description: Learn how to configure gRPC for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 11/23/2020
@@ -28,15 +29,15 @@ The following table describes options for configuring gRPC services.
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`:
 
-[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup.cs?name=snippet)]
+[!code-csharp[](~/grpc/configuration/samples/GrcpService/Startup.cs?name=snippet)]
 
 Options for a single service override the global options provided in `AddGrpc` and can be configured using `AddServiceOptions<TService>`:
 
-[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
+[!code-csharp[](~/grpc/configuration/samples/GrcpService/Startup2.cs?name=snippet)]
 
 Service interceptors have a per-request lifetime by default. Registering the interceptor type with DI overrides how an interceptor is created and its lifetime.
 
-[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup3.cs?name=snippet)]
+[!code-csharp[](~/grpc/configuration/samples/GrcpService/Startup3.cs?name=snippet)]
 
 ### ASP.NET Core server options
 
@@ -78,11 +79,11 @@ The following code:
 * Sets the maximum send and receive message size on the channel.
 * Creates a client.
 
-[!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-8)]
+[!code-csharp[](~/grpc/configuration/samples/Program.cs?name=snippet&highlight=3-8)]
 
 Note that client interceptors aren't configured with `GrpcChannelOptions`. Instead, client interceptors are configured using the `Intercept` extension method with a channel. This extension method is in the `Grpc.Core.Interceptors` namespace.
 
-[!code-csharp[](~/grpc/configuration/sample/Program2.cs?name=snippet&highlight=4)]
+[!code-csharp[](~/grpc/configuration/samples/Program2.cs?name=snippet&highlight=4)]
 
 ### System.Net handler options
 

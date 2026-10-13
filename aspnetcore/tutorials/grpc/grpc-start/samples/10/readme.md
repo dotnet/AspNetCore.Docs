@@ -1,4 +1,5 @@
 ---
+ai-usage: ai-assisted
 page_type: sample
 description: "Sample projects for a gRPC Service and gRPC client on ASP.NET Core."
 languages:
