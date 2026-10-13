@@ -3,7 +3,7 @@ title: Custom authorization policies with `IAuthorizationRequirementData`
 ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 07/29/2026
+ms.date: 10/13/2026
 uid: security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
