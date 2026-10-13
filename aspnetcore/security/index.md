@@ -19,6 +19,7 @@ ASP.NET Core enables developers to configure and manage security. The following 
 * [XSRF/CSRF prevention](xref:security/anti-request-forgery)
 * [Cross Origin Resource Sharing (CORS)](xref:security/cors)
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
+* [Package and supply chain security](/nuget/concepts/security-best-practices#knowing-what-is-in-your-environment)
 
 These security features allow you to build robust and secure ASP.NET Core apps.
 
@@ -42,6 +43,7 @@ ASP.NET Core and Entity Framework contain features that help you secure your app
 * [SQL queries > SQL injection attacks](/ef/core/querying/sql-queries#passing-parameters)
 * [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery)
 * [Open redirect attacks](xref:security/preventing-open-redirects)
+* [Software supply chain vulnerabilities (NuGet security best practices)](/nuget/concepts/security-best-practices#knowing-what-is-in-your-environment)
 
 There are more vulnerabilities that you should be aware of. For more information, see the other articles in the **Security and Identity** section of the table of contents.
 
