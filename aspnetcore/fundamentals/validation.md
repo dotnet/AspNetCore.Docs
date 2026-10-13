@@ -632,6 +632,22 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+## Upgrading from the experimental API in .NET 10
+
+<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> were published as *experimental* in .NET 10. As of .NET 11, they aren't experimental. Referencing them from any project, including a plain class library that uses the `Microsoft.NET.Sdk` SDK, no longer produces the `ASP0029` code analysis warning.
+
+Apps upgrading from .NET 10 can remove the workarounds that warning required:
+
+* Delete `#pragma warning disable ASP0029` and `#pragma warning restore ASP0029` directives around uses of the attributes.
+* Remove `ASP0029` from any `<NoWarn>` property in the project file.
+* Replace any locally declared `Microsoft.Extensions.Validation.Embedded.ValidatableType` or `Microsoft.Extensions.Validation.Embedded.SkipValidation` attribute with the real <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>, and remove the `global using Microsoft.Extensions.Validation.Embedded;` statement or the `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item that made it visible.
+
+Leaving the suppressions in place is harmless, so an upgraded app doesn't fail because of them. Removing them keeps the project free of suppressions that no longer correspond to a diagnostic.
+
+:::moniker-end
+
 ## Related content
 
 :::moniker range=">= aspnetcore-11.0"
