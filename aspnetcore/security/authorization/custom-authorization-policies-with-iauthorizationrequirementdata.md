@@ -18,7 +18,7 @@ You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement
 
 <!-- UPDATE 11.0 - Add API xref for CombineAsync when its API reference is published. -->
 
-MVC filters, SignalR hub methods, and Blazor apply all three forms of authorization metadata—`IAuthorizeData` attributes such as `[Authorize]`, `AuthorizationPolicy` instances, and `IAuthorizationRequirementData` attributes—through one shared implementation, the `AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider, IEnumerable<object>)` overload. Frameworks and middleware that need to compute the effective policy for a set of metadata outside the authorization middleware can call the same overload.
+MVC filters, SignalR hub methods, and Blazor apply all three forms of authorization metadata—`IAuthorizeData` attributes such as `[Authorize]`, `AuthorizationPolicy` instances, and `IAuthorizationRequirementData` attributes—through one shared implementation, the `AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider, IEnumerable<object>)` overload. Frameworks and middleware that are required to compute the effective policy for a set of metadata outside the authorization middleware can call the same overload.
 
 :::moniker-end
 
