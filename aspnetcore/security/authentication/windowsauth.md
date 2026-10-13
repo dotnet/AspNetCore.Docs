@@ -215,7 +215,7 @@ The [`Microsoft.AspNetCore.Authentication.Negotiate` API](https://www.nuget.org/
 
 #### Kerberos vs NTLM
 
-The Negotiate package on Kestrel for ASP.NET Core attempts to use Kerberos, which is a more secure and peformant authentication scheme than [NTLM](/troubleshoot/windows-server/windows-security/ntlm-user-authentication):
+The Negotiate package on Kestrel for ASP.NET Core attempts to use Kerberos, which is a more secure and performant authentication scheme than [NTLM](/troubleshoot/windows-server/windows-security/ntlm-user-authentication):
 
 [!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet11&highlight=5-6)]
 
