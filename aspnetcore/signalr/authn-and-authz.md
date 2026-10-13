@@ -323,7 +323,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user for use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
-[!code-csharp[Name based provider](authn-and-authz/samples/NameUserIdProvider.cs?name=NameUserIdProvider)]
+[!code-csharp[Name based provider](authn-and-authz/sample/NameUserIdProvider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Windows SID identifier, and so on.
 

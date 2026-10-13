@@ -243,7 +243,7 @@ Define the methods that the hub calls by using `connection.On` after building, b
 
 The preceding code in `connection.On` runs when server-side code calls it by using the `SendAsync` method:
 
-[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
+[!code-csharp[Call client method](dotnet-client/sample/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 
 > [!NOTE]
 > While the hub side of the connection supports strongly typed messaging, the client must register by using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On%2A?displayProperty=nameWithType> with the method name. For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
