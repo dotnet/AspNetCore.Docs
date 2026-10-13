@@ -13,7 +13,7 @@ uid: blazor/security/webassembly/index
 
 Blazor WebAssembly apps are secured in the same manner as single-page applications (SPAs). There are several approaches for authenticating users to SPAs, but the most common and comprehensive approach is to use an implementation based on the [OAuth 2.0 protocol](https://oauth.net/), such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/).
 
-The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Additional resources* section](xref:blazor/security/index#additional-resources).
+The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Related content* section](xref:blazor/security/index#related-content).
 
 ## Client-side/SPA security of sensitive data and credentials
 
@@ -368,7 +368,7 @@ For more information, see the following resources:
 * [Microsoft identity platform and implicit grant flow: Prefer the auth code flow](/entra/identity-platform/v2-oauth2-implicit-grant-flow#prefer-the-auth-code-flow)
 * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
 
-## Additional resources
+## Related content
 
 * Microsoft identity platform documentation
   * [General documentation](/entra/identity-platform/)

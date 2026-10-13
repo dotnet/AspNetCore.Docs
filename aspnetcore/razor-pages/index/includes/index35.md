@@ -587,7 +587,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 
 [!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/StartupWithRazorPagesRoot.cs?name=snippet)]
 
-## Additional resources
+## Related content
 
 * See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
 * [`[Authorize]` attribute in Razor Pages apps](xref:razor-pages/security/authorization/simple#authorize-attribute-in-razor-pages-apps)

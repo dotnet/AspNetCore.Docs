@@ -119,7 +119,7 @@ message TestMessage {
 
 Transcoding doesn't support advanced JSON customization. Apps requiring precise JSON structure control should consider using [ASP.NET Core Web API](xref:web-api/index).
 
-## Additional resources
+## Related content
 
 * <xref:grpc/json-transcoding>
 * [HttpRule specification](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)

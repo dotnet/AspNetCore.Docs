@@ -9,7 +9,7 @@ The user is redirected to the `/Identity/Account/RegisterConfirmation` page wher
 
 To require a confirmed account and prevent immediate sign in at registration, set `DisplayConfirmAccountLink = false` in the scaffolded _/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs_ file:
 
-[!code-csharp[](~/security/authentication/accconfirm/sample/RegisterConfirmation.cshtml.cs?highlight=63)]
+[!code-csharp[](~/security/authentication/accconfirm/samples/RegisterConfirmation.cshtml.cs?highlight=63)]
 
 This step is necessary only when `Account.RegisterConfirmation` is scaffolded.
 

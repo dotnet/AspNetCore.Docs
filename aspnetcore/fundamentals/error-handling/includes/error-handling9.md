@@ -368,11 +368,4 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 
 An alternative approach to generate problem details is to use the third-party NuGet package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
 
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-* <xref:fundamentals/error-handling-api>
-
 :::moniker-end

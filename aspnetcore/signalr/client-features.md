@@ -44,7 +44,7 @@ Support for enabling additional client features is tracked in [our issue tracker
 
 [!INCLUDE[](~/includes/SignalR/es6.md)]
 
-## Additional resources
+## Related content
 
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Supported platforms](xref:signalr/supported-platforms)

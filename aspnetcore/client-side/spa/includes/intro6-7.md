@@ -120,7 +120,7 @@ SPA frameworks typically have a shorter release cycle than .NET. Because of the 
 
 The ASP.NET Core SPA templates can be updated in a patch release to a new SPA framework version to keep the templates in a supported and safe state.
 
-## Additional resources
+## Related content
 
 * <xref:security/authentication/identity/spa>
 * <xref:spa/angular>

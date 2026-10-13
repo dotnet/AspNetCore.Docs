@@ -82,20 +82,6 @@ The `IMessageWriter` interface and implementation:
 
 :::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/IMessageWriter.cs":::
 
-## Additional resources
-
-* [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/6sample)
-* [UseExtensions source on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/Extensions/UseExtensions.cs)
-* [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
-* [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
-* <xref:fundamentals/middleware/index>
-* <xref:test/middleware>
-* <xref:migration/fx-to-core/areas/http-modules>
-* <xref:fundamentals/startup>
-* <xref:fundamentals/request-features>
-* <xref:fundamentals/middleware/extensibility>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -171,7 +157,27 @@ The following code calls the middleware from `Startup.Configure`:
 
 :::code language="csharp" source="write/snapshot/Startup.cs" highlight="5":::
 
-## Additional resources
+:::moniker-end
+
+## Related content
+
+:::moniker range=">= aspnetcore-6.0"
+
+* [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/6sample)
+* [UseExtensions source on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/Extensions/UseExtensions.cs)
+* [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
+* [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
+* <xref:fundamentals/middleware/index>
+* <xref:test/middleware>
+* <xref:migration/fx-to-core/areas/http-modules>
+* <xref:fundamentals/startup>
+* <xref:fundamentals/request-features>
+* <xref:fundamentals/middleware/extensibility>
+* <xref:fundamentals/middleware/extensibility-third-party-container>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/index>

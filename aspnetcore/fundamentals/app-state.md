@@ -278,12 +278,6 @@ The session middleware can fail to persist a session if the backing store isn't 
 
 The recommended approach to check for errors is to call `await feature.Session.CommitAsync` when the app is done writing to the session. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> throws under the same conditions when the data store is unavailable.
 
-## Additional resources
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-
-<xref:host-and-deploy/web-farm>
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -551,7 +545,19 @@ The session middleware can fail to persist a session if the backing store isn't 
 
 The recommended approach to check for errors is to call `await feature.Session.CommitAsync` when the app is done writing to the session. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> throws under the same conditions when the data store is unavailable.
 
-## Additional resources
+:::moniker-end
+
+## Related content
+
+:::moniker range=">= aspnetcore-6.0"
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* <xref:host-and-deploy/web-farm>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 
 <xref:host-and-deploy/web-farm>
+
 :::moniker-end

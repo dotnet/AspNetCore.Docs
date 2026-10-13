@@ -376,7 +376,7 @@ if (builder.HostEnvironment.IsEnvironment("Custom"))
 
 The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> property can be used during startup when the <xref:Microsoft.AspNetCore.Components.NavigationManager> service isn't available.
 
-## Additional resources
+## Related content
 
 * <xref:blazor/fundamentals/startup>
 * <xref:fundamentals/environments>

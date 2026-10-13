@@ -104,7 +104,7 @@ Example:
 </cache>
 ```
 
-The `priority` attribute doesn't guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` doesn't guarantee that cached items are always retained. See the topics in the [Additional Resources](#additional-resources) section for more information.
+The `priority` attribute doesn't guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` doesn't guarantee that cached items are always retained. See the topics in the [Related content](#related-content) section for more information.
 
 The Cache Tag Helper is dependent on the [memory cache service](xref:performance/caching/memory). The Cache Tag Helper adds the service if it hasn't been added.
 
@@ -247,7 +247,7 @@ The following example monitors the current logged in user to trigger a cache ref
 
 Using this attribute maintains the contents in cache through a sign-in and sign-out cycle. When the value is `true`, an authentication cycle invalidates the cache for the authenticated user. The cache is invalidated because a new unique cookie value is generated when a user is authenticated. Cache is maintained for the anonymous state when no cookie is present or the cookie has expired. If the user is **not** authenticated, the cache is maintained.
 
-## Additional resources
+## Related content
 
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>

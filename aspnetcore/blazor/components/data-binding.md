@@ -1181,7 +1181,7 @@ The following `ChildParameterExpression` component identifies the `Year` express
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms/index>

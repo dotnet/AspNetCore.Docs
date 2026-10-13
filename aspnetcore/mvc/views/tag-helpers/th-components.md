@@ -147,7 +147,7 @@ For example, the `if` statement evaluates to true when processing the following 
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_AddressPrintable)]
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/dependency-injection>
 * <xref:mvc/views/dependency-injection>

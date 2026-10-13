@@ -98,7 +98,7 @@ Attribute | Type | Description | Examples | Presence
 `aspnetcore.authentication.scheme` | string | The name of the authentication scheme. | `Bearer`; `Cookies` | `Conditionally Required` if the request did not end with an error.
 `error.type` | string | The full name of the exception type. | `System.InvalidOperationException`; `Contoso.MyException` | `Conditionally Required` if the request has ended with an error.
 
-## Additional resources
+## Related content
 
 * <xref:metrics/built-in>
 * <xref:metrics/http>

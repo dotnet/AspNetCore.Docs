@@ -862,7 +862,7 @@ At the moment, the shorthand render mode approach is probably only useful for re
 
 
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-9.0"
 

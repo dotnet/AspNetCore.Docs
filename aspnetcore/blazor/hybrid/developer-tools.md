@@ -129,7 +129,7 @@ To use Safari developer tools with a macOS app:
 
 :::zone-end
 
-## Additional resources
+## Related content
 
 * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
 * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)

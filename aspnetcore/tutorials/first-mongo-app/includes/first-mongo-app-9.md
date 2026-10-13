@@ -508,7 +508,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/9.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:web-api/index>

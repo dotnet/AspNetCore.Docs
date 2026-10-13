@@ -229,7 +229,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
-## Additional resources
+## Related content
 
 * [Identity and account types for single- and multitenant apps](/security/zero-trust/develop/identity-supported-account-types)
 * <xref:blazor/security/webassembly/additional-scenarios>

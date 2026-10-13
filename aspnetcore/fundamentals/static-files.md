@@ -1244,7 +1244,7 @@ Configuration key | Description
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/fundamentals/static-files>
 * <xref:fundamentals/middleware/index>

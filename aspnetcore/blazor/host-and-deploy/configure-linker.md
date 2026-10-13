@@ -114,7 +114,7 @@ Use a comma to separate multiple values (for example, `mideast,west`).
 
 For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/main/mcs/class/I18N).
 
-## Additional resources
+## Related content
 
 * <xref:blazor/performance/app-download-size#intermediate-language-il-linking>
 * [IL trimmer concepts and related tools (`dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/tree/main/docs/tools/illink)

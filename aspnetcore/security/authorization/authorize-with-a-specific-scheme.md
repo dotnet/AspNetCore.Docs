@@ -349,7 +349,7 @@ The result of using the preceding API is that protected endpoints in the app req
 
 For guidance on how to use the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme%2A> method with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector> property to dynamically select an authentication scheme for each request, see <xref:security/authentication/policyschemes>.
 
-## Additional resources
+## Related content
 
 * <xref:security/authentication/mfa>
 * [Protect section with MFA (`dotnet/AspNetCore.Docs` #15791)](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)
