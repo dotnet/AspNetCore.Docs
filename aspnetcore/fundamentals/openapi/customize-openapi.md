@@ -26,6 +26,17 @@ Transformers fall into three categories:
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 * Schema transformers apply to each schema in the document. These can be used to modify the schema of request or response bodies, or any nested schemas.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!IMPORTANT]
+> .NET 11 upgrades `Microsoft.AspNetCore.OpenApi` from `Microsoft.OpenApi` 2.x to 3.x. The transformer interfaces are unchanged, but the shape of the `OpenApiDocument`, `OpenApiOperation`, and `OpenApiSchema` objects they receive has changed. Transformer code that sets extension values, walks nested schemas, or constructs new schemas usually needs to be updated. For migration guidance, see [Microsoft.OpenApi upgraded to 3.x](/aspnet/core/breaking-changes/11/microsoft-openapi-3x).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 Transformers can be registered onto the document by calling the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer%2A> method on the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> object. The following snippet shows different ways to register transformers onto the document:
 
 * Register a document transformer using a delegate.
