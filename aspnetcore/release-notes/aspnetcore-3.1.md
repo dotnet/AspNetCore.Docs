@@ -1,5 +1,6 @@
 ---
 title: What's new in ASP.NET Core 3.1
+ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core 3.1.
 ms.date: 02/12/2020
 uid: aspnetcore-3.1
@@ -37,7 +38,7 @@ For more information, see [Integrate components into Razor Pages and MVC apps](x
 
 [HTTP.sys](xref:fundamentals/servers/httpsys) supports creating anonymous request queues. In ASP.NET Core 3.1, we've added the ability to create or attach to an existing named HTTP.sys request queue. Creating or attaching to an existing named HTTP.sys request queue enables scenarios where the HTTP.sys controller process that owns the queue is independent of the listener process. This independence makes it possible to preserve existing connections and enqueued requests between listener process restarts:
 
-[!code-csharp[](sample/Program.cs?name=snippet)]
+[!code-csharp[](samples/Program.cs?name=snippet)]
 
 ## Breaking changes for SameSite cookies
 
