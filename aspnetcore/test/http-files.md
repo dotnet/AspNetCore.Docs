@@ -526,8 +526,6 @@ Here are some sample values that the preceding examples generate:
 }
 ```
 
-Some of the preceding examples use the free open-source website <httpbin.org>. This is a third-party website not affiliated with Microsoft. In these examples it returns a response body with the headers that were sent in the request. For information about other ways to use this resource for API testing, see the [httpbin.org site's home page](https://httpbin.org).
-
 ## GUIDs
 
 To generate a random GUID, use `$guid`:
@@ -536,6 +534,8 @@ To generate a random GUID, use `$guid`:
 GET https://httpbin.org/headers
 X-CorrelationId: {{$guid}}
 ```
+
+Some of the preceding examples use the free open-source website <httpbin.org>. This is a third-party website not affiliated with Microsoft. In these examples it returns a response body with the headers that were sent in the request. For information about other ways to use this resource for API testing, see the [httpbin.org site's home page](https://httpbin.org).
 
 ## Unsupported syntax
 
