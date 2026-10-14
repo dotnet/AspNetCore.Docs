@@ -289,7 +289,7 @@ The `[StringLength(10)]` attribute generates `data-val-length-max="10"` on the r
 
 Consider the following `Movie` model:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 

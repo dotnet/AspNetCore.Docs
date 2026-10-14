@@ -1,5 +1,6 @@
 ---
 title: Part 3, scaffolded Razor Pages
+ai-usage: ai-assisted
 description: Part 3 of tutorial series on Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/08/2026
@@ -20,13 +21,13 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 Examine the `Pages/Movies/Index.cshtml.cs` Page Model:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Index.cshtml.cs?name=snippetFullFirstGenerated)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml.cs?name=snippetFullFirstGenerated)]
 
 Razor Pages derive from <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>. By convention, the `PageModel` derived class is named `PageNameModel`. For example, the Index page is named `IndexModel`.
 
 The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `RazorPagesMovieContext` to the page:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Index.cshtml.cs?name=snippet2FirstGenerated)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml.cs?name=snippet2FirstGenerated)]
 
 For more information on asynchronous programming with Entity Framework, see [Asynchronous code](xref:data/ef-rp/intro#asynchronous-code).
 
@@ -34,15 +35,15 @@ When a `GET` request is made for the page, the `OnGetAsync` method returns a lis
 
 When `OnGet` returns `void` or `OnGetAsync` returns `Task`, don't use a return statement. For example, examine the Privacy Page:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Privacy.cshtml.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Privacy.cshtml.cs)]
 
 When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, you must provide a return statement. For example, the `Pages/Movies/Create.cshtml.cs OnPostAsync` method:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
 Examine the `Pages/Movies/Index.cshtml` Razor Page:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Index.cshtml)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml)]
 
 Razor can transition from HTML into C# or into Razor-specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords), it transitions into Razor-specific markup. Otherwise, it transitions into C#.
 
@@ -52,7 +53,7 @@ The `@page` Razor directive makes the file an MVC action, which means that it ca
 
 ### The @model directive
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
 The `@model` directive specifies the type of the model passed to the Razor Page. In the preceding example, the `@model` line makes the `PageModel` derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayFor` [HTML Helpers](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
@@ -81,7 +82,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-
 
 Consider the following markup from the `Pages/Movies/Index.cshtml` file:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
 The preceding highlighted markup is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
@@ -90,13 +91,13 @@ The `PageModel` base class contains a `ViewData` dictionary property that you ca
 The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The following markup shows the first few lines of the `_Layout.cshtml` file.
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Shared/_Layout.cshtml?highlight=6&range=1-9)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Shared/_Layout.cshtml?highlight=6&range=1-9)]
 
 
 ### Update the layout
 
 1. Change the `<title>` element in the `Pages/Shared/_Layout.cshtml` file to display **Movie** rather than **RazorPagesMovie**.
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie10/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
 1. Find the following anchor element in the `Pages/Shared/_Layout.cshtml` file.
 
@@ -112,7 +113,7 @@ The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The foll
 
    The preceding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). The `asp-page="/Movies/Index"` Tag Helper attribute and value creates a link to the `/Movies/Index` Razor Page. The `asp-area` attribute value is empty, so the area isn't used in the link. See [Areas](xref:mvc/controllers/areas) for more information.
 
-1. Save the changes and test the app by selecting the **RpMovie** link. See the [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie10/Pages/Shared/_Layout.cshtml) file in GitHub if you have any problems.
+1. Save the changes and test the app by selecting the **RpMovie** link. See the [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/Shared/_Layout.cshtml) file in GitHub if you have any problems.
 
 1. Test the **Home**, **RpMovie**, **Create**, **Edit**, and **Delete** links. Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark.
 
@@ -121,7 +122,7 @@ The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The foll
 
 The `Layout` property is set in the `Pages/_ViewStart.cshtml` file:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie10/Pages/_ViewStart.cshtml)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/_ViewStart.cshtml)]
 
 The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
 
@@ -129,7 +130,7 @@ The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for a
 
 Examine the `Pages/Movies/Create.cshtml.cs` page model:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the `Create.cshtml` page.
 
@@ -137,7 +138,7 @@ The `Movie` property uses the [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.Bin
 
 The `OnPostAsync` method runs when the page posts form data:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors are caught on the client before the form is posted. An example of a model error is posting a value for the date field that can't be converted to a date. Client-side validation and model validation are discussed later in the tutorial.
 
@@ -150,7 +151,7 @@ If there are no model errors:
 
 Examine the `Pages/Movies/Create.cshtml` Razor Page file:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Create.cshtml)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Create.cshtml)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -170,7 +171,7 @@ The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working
 
 The scaffolding engine creates Razor markup for each field in the model, except the ID, similar to the following code:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Pages/Movies/Create.cshtml?range=15-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Create.cshtml?range=15-20)]
 
 The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` and `<span asp-validation-for`) display validation errors. Validation is covered in more detail later in this series.
 
