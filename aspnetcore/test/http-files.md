@@ -29,6 +29,10 @@ The `.http` file format and editor was inspired by the Visual Studio Code [REST 
 
 * [Visual Studio 2022 version 17.8 or later](https://visualstudio.microsoft.com/vs/) with the **ASP.NET and web development** workload installed.
 
+## API testing with `httpbin.org`
+
+For API testing, examples in this article use the free website `httpbin.org`, provided by <a href="https://kennethreitz.org/">Kenneth Reitz</a>. The website returns a response body with the headers that were sent in the request. `httpbin.org` isn't owned or maintained by Microsoft. Avoid passing sensitive data to the website while testing. For information, see the <a href="https://httpbin.org">`httpbin.org` site's home page</a>.
+
 ## `.http` file syntax
 
 The following sections explain `.http` file syntax.
@@ -534,8 +538,6 @@ To generate a random GUID, use `$guid`:
 GET https://httpbin.org/headers
 X-CorrelationId: {{$guid}}
 ```
-
-Some of the preceding examples use the free open-source website <httpbin.org>. This is a third-party website not affiliated with Microsoft. In these examples it returns a response body with the headers that were sent in the request. For information about other ways to use this resource for API testing, see the [httpbin.org site's home page](https://httpbin.org).
 
 ## Unsupported syntax
 
