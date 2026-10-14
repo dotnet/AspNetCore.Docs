@@ -146,7 +146,7 @@ By customizing the security descriptor, you can allow or deny specific users or 
 
 For example, the following code allows all authenticated users but denies guests:
 
-[!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/10.x/HttpSysConfig/Program.cs)]
+[!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/10.x/HttpSysConfig/Program.cs)]
 
 The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues.
 

@@ -14,7 +14,7 @@ Minimal endpoints support the following types of return values:
 
 Consider the following route handler, which returns a `Hello world` text. 
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_01":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_01":::
 
 The `200` status code is returned with `text/plain` Content-Type header and the following content.
 
@@ -30,7 +30,7 @@ Hello World
 
 Consider the following route handler, which returns an anonymous type containing a `Message` string property.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_02":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_02":::
 
 The `200` status code is returned with `application/json` Content-Type header and the following content.
 
@@ -100,11 +100,11 @@ This has the added benefit of providing compile-time checking that a route handl
 
 Consider the following endpoint, for which a `400 BadRequest` status code is returned when the `orderId` is greater than `999`. Otherwise, it produces a `200 OK` with the expected content.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_03":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_03":::
 
 In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you can return the `Results<T1, Tn>` union type instead, as shown in the following code.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_04":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_04":::
 
 <a name="binr7"></a>
 
@@ -116,55 +116,55 @@ The following sections demonstrate the usage of the common result helpers.
 
 #### JSON
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_05":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_05":::
 
 <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
 
 #### Custom Status Code
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_06":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_06":::
 
 #### Internal Server Error
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_07":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_07":::
 
 The preceding example returns a 500 status code.
 
 #### Problem and ValidationProblem
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_12":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_12":::
 
 #### Text
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_08":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_08":::
 
 <a name="stream7"></a>
 
 #### Stream
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_stream)]
 
 [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
 
 The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
 The following example streams a video from an Azure Blob:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_video)]
 
 #### Redirect
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_09":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_09":::
 
 #### File
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_10":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_10":::
 
 <a name="httpresultinterfaces7"></a>
 
@@ -181,7 +181,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 
 Here's an example of a filter that uses one of these interfaces:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/HttpResultInterfaces/Program.cs" id="snippet_filter":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
 For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters) and [IResult implementation types](xref:fundamentals/minimal-apis/test-min-api#iresult-implementation-types).
 
@@ -205,23 +205,23 @@ app.MapGet("/", (HttpContext context) => {
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/ResultsExtensions.cs)]
 
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
 Also, a custom `IResult` type can provide its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation to the preceding `HtmlResult` type that describes the response produced by the endpoint.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
 
 The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that defines the produced response content type `text/html` and the status code `200 OK`.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
 
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_11":::
 
 ## Configure JSON serialization options
 
@@ -231,7 +231,7 @@ By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization
 
 Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
 Since fields are included, the preceding code reads `NameField` and includes it in the output JSON.
 
@@ -239,11 +239,11 @@ Since fields are included, the preceding code reads `NameField` and includes it 
 
 To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json%2A?displayProperty=nameWithType> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions" highlight="5-6,9":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions" highlight="5-6,9":::
 
 As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
 
 ## Additional Resources
 
