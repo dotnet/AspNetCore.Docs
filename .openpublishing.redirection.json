@@ -432,12 +432,12 @@
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/environment-tag-helper/",
+            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/built-in/environment-tag-helper",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/ImageTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/image-tag-helper/",
+            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/built-in/image-tag-helper",
             "redirect_document_id": false
         },
         {
@@ -477,7 +477,7 @@
         },
         {
             "source_path": "aspnetcore/publishing/azure-continuous-deployment.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/azure-apps/azure-continuous-deployment",
+            "redirect_url": "/azure/app-service/deploy-continuous-deployment",
             "redirect_document_id": false
         },
         {
@@ -667,7 +667,7 @@
         },
         {
             "source_path": "aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md",
-            "redirect_url": "/aspnet/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-19-processing-orders-with-windows-workflow",
+            "redirect_url": "/shows/asp-net-site-videos/aspnet-mvc-storefront-part-19a-windows-workflow-followup",
             "redirect_document_id": false
         },
         {
@@ -677,7 +677,7 @@
         },
         {
             "source_path": "aspnetcore/getting-started-1.1.md",
-            "redirect_url": "/aspnet/getting-started",
+            "redirect_url": "/aspnet/core/get-started",
             "redirect_document_id": false
         },
         {
@@ -992,7 +992,7 @@
         },
         {
             "source_path": "aspnetcore/migration/proper-to-2x/mvc2.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/areas/mvc/",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/tooling",
             "redirect_document_id": false
         },
         {
@@ -1012,17 +1012,17 @@
         },
         {
             "source_path": "aspnetcore/migration/inc/adapters.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/systemweb-adapters",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/systemweb-adapters",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/inc/unit-testing.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/systemweb-adapters",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/systemweb-adapters",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/fx-to-core/inc/unit-testing.md",
-            "redirect_url": "/aspnet/core/migration/fx-to-core/systemweb-adapters",
+            "redirect_url": "/aspnet/core/migration/fx-to-core/inc/systemweb-adapters",
             "redirect_document_id": false
         },
         {
@@ -1326,7 +1326,7 @@
         },
         {
             "source_path": "aspnetcore/azure/devops/tool-and-downloads.md",
-            "redirect_url": "/dotnet/architecture/devops-for-aspnet-developers/tool-and-downloads"
+            "redirect_url": "/dotnet/architecture/devops-for-aspnet-developers"
         },
         {
             "source_path": "aspnetcore/azure/devops/cicd.md",
@@ -1631,7 +1631,7 @@
         },
         {
             "source_path": "aspnetcore/blazor/state-management.md",
-            "redirect_url": "/aspnet/core/state-management/",
+            "redirect_url": "/aspnet/core/blazor/state-management/",
             "redirect_document_id": false
         },
         {
