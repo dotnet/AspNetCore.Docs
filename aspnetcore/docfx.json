@@ -35,7 +35,7 @@
       "feedback_system": "OpenSource",
       "feedback_github_repo": "dotnet/AspNetCore.Docs",
       "open_source_feedback_contributorGuideUrl": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute",
-      "open_source_feedback_issueUrl": "https://github.com/dotnet/aspnetcore.docs/issues/new?template=customer-feedback.yml",
+      "open_source_feedback_issueUrl": "https://github.com/dotnet/aspnetcore.docs/issues/new?template=z-customer-feedback.yml",
       "open_source_feedback_productName": "ASP.NET Core",
       "open_source_feedback_issueTitle": "",
       "open_source_feedback_issueLabels": "Source - Docs.ms,:watch: Not Triaged",
@@ -122,7 +122,6 @@
         "**/*.{md,yml}": "daroth"
       },
       "ms.subservice": {
-        "introduction-to-aspnet-core.md": "index-page",
         "**/client-side/**/*.md": "client-side",
         "**/data/**/*.md": "data-access",
         "**/fundamentals/**/*.md": "fundamentals",
