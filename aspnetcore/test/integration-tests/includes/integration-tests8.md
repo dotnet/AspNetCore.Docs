@@ -4,6 +4,9 @@ This article assumes a basic understanding of unit tests. If unfamiliar with tes
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/8.x/IntegrationTestsSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
+> [!NOTE]
+> The downloadable sample project is implemented using [xUnit](https://xunit.net/). If you choose **MSTest** or **NUnit** using the test framework selector above, the corresponding test patterns and syntax are demonstrated in the article's code examples.
+
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 
 * [Introduction to Razor Pages](xref:razor-pages/index)
