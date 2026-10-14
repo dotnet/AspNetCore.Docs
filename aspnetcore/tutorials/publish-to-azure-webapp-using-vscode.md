@@ -151,7 +151,7 @@ If you don't have an existing Azure Web App resource to publish to, you must cre
 
 * [Create your first Azure DevOps pipeline](/azure/devops/pipelines/create-first-pipeline)
 
-## Additional resources
+## Related content
 
 * [Azure App Service](/azure/app-service/app-service-web-overview)
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)

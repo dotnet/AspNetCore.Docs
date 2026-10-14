@@ -135,7 +135,7 @@ A gRPC server can be hosted to non-ASP.NET Core projects by adding `<FrameworkRe
 
 For more information, see [Host gRPC in non-ASP.NET Core projects](xref:grpc/aspnetcore#host-grpc-in-non-aspnet-core-projects).
 
-## Additional resources
+## Related content
 
 * <xref:grpc/index>
 * <xref:grpc/basics>

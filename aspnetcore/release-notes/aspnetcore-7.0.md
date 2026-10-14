@@ -1,5 +1,6 @@
 ---
 title: What's new in ASP.NET Core in .NET 7
+ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.date: 11/07/2022
 uid: aspnetcore-7
@@ -34,7 +35,7 @@ The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system
 
 In ASP.NET Core versions earlier than 7, the cookie consent validation uses the cookie value `yes` to indicate consent. Now you can specify the value that represents consent. For example, you could use `true` instead of `yes`:
 
-[!code-csharp[Main](~/security/gdpr/sample/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
+[!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
 
 For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
 

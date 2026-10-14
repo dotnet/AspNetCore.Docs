@@ -1097,10 +1097,10 @@ This behavior makes the authorization middleware useful outside of routing and f
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/routing/includes/routing3-7.md)]
+
+## Related content
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))

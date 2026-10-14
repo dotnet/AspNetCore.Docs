@@ -242,7 +242,7 @@ else
 }
 ```
 
-## Additional resources
+## Related content
 
 * [EF Core documentation](/ef/)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)

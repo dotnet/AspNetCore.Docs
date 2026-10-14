@@ -208,7 +208,7 @@ To end the stream, call `stream.onComplete()`.
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)

@@ -12,7 +12,7 @@ When a user's identity is created after authentication, the user may belong to o
 
 While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
-This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Additional resources](#additional-resources) section. For Razor Pages and MVC guidance, see the following resources:
+This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Related content](#related-content) section. For Razor Pages and MVC guidance, see the following resources:
 
 * <xref:razor-pages/security/authorization/roles>
 * <xref:mvc/security/authorization/roles>
@@ -500,7 +500,7 @@ An approach similar to the preceding example for retrieving SID group claims can
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>

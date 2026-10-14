@@ -22,11 +22,11 @@ To get started, follow the [Create an ASP.NET Core app with React](/visualstudio
 For more information, see [JavaScript and TypeScript in Visual Studio](/visualstudio/javascript/javascript-in-visual-studio)
 
 [!INCLUDE [spa-templates-new-vs-old](../../includes/spa-templates-new-vs-old.md)]
- 
-## Related content
-
-- [Overview of Single Page Apps (SPAs) in ASP.NET Core](./intro.md)
 
 :::moniker-end
 
 [!INCLUDE[](~/client-side/spa/includes/react3-7.md)]
+
+## Related content
+
+<xref:security/authentication/identity/spa>

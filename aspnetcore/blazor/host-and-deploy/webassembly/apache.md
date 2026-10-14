@@ -171,7 +171,7 @@ For an app that responds to requests at `/blazor`:
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:

@@ -240,7 +240,7 @@ Confirm that the app works with the following steps:
 * [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
 * [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
 
-## Additional resources
+## Related content
 
 * <xref:signalr/javascript-client>
 * <xref:signalr/hubs>

@@ -161,7 +161,7 @@ When you've finished testing the app, go to the [Azure portal](https://portal.az
 
 1. Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
 
-## Additional resources
+## Related content
 
 * [Azure API Management](/azure/api-management/api-management-key-concepts)
 * [Azure App Service](/azure/app-service/app-service-web-overview)

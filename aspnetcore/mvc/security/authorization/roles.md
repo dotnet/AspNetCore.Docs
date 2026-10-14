@@ -360,7 +360,7 @@ An approach similar to the preceding example for retrieving SID group claims can
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:security/authorization/roles>
 * <xref:blazor/security/index>

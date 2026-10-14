@@ -694,7 +694,7 @@ The correct `<option>` element will be selected (contain the `selected="selected
  </form>
  ```
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/tag-helpers/intro>
 * [HTML Form element](https://www.w3.org/TR/html401/interact/forms.html)

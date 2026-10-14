@@ -141,7 +141,7 @@ This is useful when:
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [SignalR assemblies in shared framework](xref:migration/22-to-30#signalr-assemblies-in-shared-framework)
 * <xref:tutorials/signalr>

@@ -96,7 +96,7 @@ An alternative option for .NET Framework has been to use [gRPC C# core-library](
 * In maintenance mode and will be [deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/).
 * Not recommended for new apps.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/client>
 * <xref:grpc/browser>

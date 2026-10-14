@@ -82,7 +82,7 @@ For more information on Data Protection configuration for web farm deployments, 
 
 If the web farm apps are capable of responding to requests, obtain request, connection, and additional data from the apps using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
 
-## Additional resources
+## Related content
 
 * [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows): Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
 * <xref:host-and-deploy/proxy-load-balancer>
