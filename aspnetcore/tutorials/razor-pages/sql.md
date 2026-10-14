@@ -1,5 +1,6 @@
 ---
 title: Part 4, work with a database
+ai-usage: ai-assisted
 description: Part 4 of tutorial series on Razor Pages.
 ms.date: 01/09/2026
 uid: tutorials/razor-pages/sql
@@ -17,11 +18,11 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_di&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_di&highlight=8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_di_sl&highlight=7-8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_di_sl&highlight=7-8)]
 
 ---
 
@@ -31,11 +32,11 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The generated connection string is similar to the following JSON:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/appsettings.json?highlight=9-11)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/appsettings.json?highlight=9-11)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/appsettings_SQLite.json?highlight=9-11)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/appsettings_SQLite.json?highlight=9-11)]
 
 ---
 
@@ -98,7 +99,7 @@ You can download many third-party tools to manage and view a SQLite database. Th
 <!-- Next version put it in the Data folder -->
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Models/SeedData.cs?name=snippet_1)]
 
 If the database contains any movies, the seed initializer returns and doesn't add any movies.
 
@@ -117,11 +118,11 @@ Update `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
 
 ---
 
