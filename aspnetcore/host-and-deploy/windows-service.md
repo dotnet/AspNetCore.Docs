@@ -1,5 +1,6 @@
 ---
 title: Host ASP.NET Core in a Windows Service
+ai-usage: ai-assisted
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/27/2026
@@ -237,7 +238,7 @@ The app's default settings files, `appsettings.json` and `appsettings.{Environme
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
-:::code language="csharp" source="windows-service/samples_snapshot/CustomSettingsExample.cs" highlight="13":::
+:::code language="csharp" source="windows-service/samples/snapshot/CustomSettingsExample.cs" highlight="13":::
 
 Don't attempt to use <xref:System.IO.Directory.GetCurrentDirectory%2A> to obtain a resource path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder as its current directory.
 
@@ -561,7 +562,7 @@ The app's default settings files, `appsettings.json` and `appsettings.{Environme
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
-:::code language="csharp" source="windows-service/samples_snapshot/CustomSettingsExample.cs" highlight="13":::
+:::code language="csharp" source="windows-service/samples/snapshot/CustomSettingsExample.cs" highlight="13":::
 
 Don't attempt to use <xref:System.IO.Directory.GetCurrentDirectory%2A> to obtain a resource path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder as its current directory.
 
@@ -884,7 +885,7 @@ The app's default settings files, `appsettings.json` and `appsettings.{Environme
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
-:::code language="csharp" source="windows-service/samples_snapshot/CustomSettingsExample.cs" highlight="13":::
+:::code language="csharp" source="windows-service/samples/snapshot/CustomSettingsExample.cs" highlight="13":::
 
 Don't attempt to use <xref:System.IO.Directory.GetCurrentDirectory%2A> to obtain a resource path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder as its current directory.
 
@@ -1207,7 +1208,7 @@ The app's default settings files, `appsettings.json` and `appsettings.{Environme
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
-:::code language="csharp" source="windows-service/samples_snapshot/CustomSettingsExample.cs" highlight="13":::
+:::code language="csharp" source="windows-service/samples/snapshot/CustomSettingsExample.cs" highlight="13":::
 
 Don't attempt to use <xref:System.IO.Directory.GetCurrentDirectory%2A> to obtain a resource path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder as its current directory.
 
