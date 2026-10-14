@@ -1013,9 +1013,7 @@ info: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware[5]
 
 :::moniker range=">= aspnetcore-11.0"
 
-### Short-circuit an endpoint with an attribute
-
-Apply <xref:Microsoft.AspNetCore.Routing.ShortCircuitAttribute> to short-circuit an endpoint declaratively instead of calling `ShortCircuit()` on the endpoint builder. The attribute is in the `Microsoft.AspNetCore.Routing` namespace and has the same effect as the extension method: routing invokes the endpoint in `UseRouting` and ends the request without running the remaining middleware.
+Instead of calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> on the endpoint builder, you can apply the <xref:Microsoft.AspNetCore.Routing.ShortCircuitAttribute> to short-circuit an endpoint declaratively. The attribute is in the <xref:Microsoft.AspNetCore.Routing?displayProperty=fullName> namespace and has the same effect as the extension method: routing invokes the endpoint in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and ends the request without running the remaining middleware.
 
 The attribute is valid on a method or a class. It isn't inherited, and it can't be applied more than once to the same target.
 
@@ -1046,10 +1044,10 @@ Pass a status code to return that status without executing the endpoint:
 public IActionResult Robots() => Ok();
 ```
 
-When no status code is supplied, `ShortCircuitAttribute.StatusCode` is `null` and the endpoint runs normally before the request ends. The attribute implements <xref:Microsoft.AspNetCore.Routing.IShortCircuitMetadata>, so custom endpoint conventions and metadata inspection can detect short-circuited endpoints through that interface.
+When a status code isn't supplied, <xref:Microsoft.AspNetCore.Routing.ShortCircuitAttribute.StatusCode?displayProperty=nameWithType> is `null` and the endpoint runs normally before the request ends. The attribute implements <xref:Microsoft.AspNetCore.Routing.IShortCircuitMetadata>, so custom endpoint conventions and metadata inspection can detect short-circuited endpoints through that interface.
 
 > [!WARNING]
-> The same restriction that applies to the `ShortCircuit` and `MapShortCircuit` methods applies to the attribute. An endpoint that's short-circuited and also has `[Authorize]` or `[RequireCors]` metadata fails with an `InvalidOperationException`. Because `[ShortCircuit]` can be applied to a class, take particular care when placing it on an MVC controller that carries an `[Authorize]` attribute, including one applied through a base class or a global filter.
+> The same restriction that applies to the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> and <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.MapShortCircuit*> methods applies to the attribute. An endpoint that's short-circuited and also has `[Authorize]` or `[RequireCors]` metadata fails with an <xref:System.InvalidOperationException>. Because `[ShortCircuit]` can be applied to a class, take particular care when placing it on an MVC controller that carries an `[Authorize]` attribute, including one applied through a base class or a global filter.
 
 :::moniker-end
 
