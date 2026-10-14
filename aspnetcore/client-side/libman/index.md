@@ -20,7 +20,7 @@ LibMan offers the following benefits:
 
 LibMan isn't a package management system. If you're already using a package manager, such as npm or [yarn](https://yarnpkg.com), continue doing so. LibMan wasn't developed to replace those tools.
 
-## Additional resources
+## Related content
 
 * <xref:client-side/libman/libman-vs>
 * <xref:client-side/libman/libman-cli>

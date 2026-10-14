@@ -223,7 +223,7 @@ builder.Services.AddOpenApi(options =>
 > [!NOTE]
 > Starting with .NET 10, relative JSON schema references (`$ref`) within the root schema document are resolved correctly during OpenAPI document generation.
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)

@@ -1,5 +1,6 @@
 ---
 title: Reusable Razor UI in class libraries with ASP.NET Core
+ai-usage: ai-assisted
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 ms.date: 11/19/2023
 uid: razor-pages/ui-class
@@ -60,7 +61,7 @@ Copy the `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml` partial 
 
 If the RCL uses Razor Pages, enable the Razor Pages services and endpoints in the hosting app:
 
-[!code-csharp[](~/razor-pages/ui-class/7samples/MvcProgram.cs?highlight=4,25)]
+[!code-csharp[](~/razor-pages/ui-class/samples/7/MvcProgram.cs?highlight=4,25)]
 
 <a name="rcl-lay"></a>
 
@@ -137,11 +138,11 @@ The files included in the `wwwroot` folder of the RCL are exposed to either the 
 
 The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in:
 
-[!code-csharp[](~/razor-pages/ui-class/7samples/MvcProgram.cs?highlight=15)]
+[!code-csharp[](~/razor-pages/ui-class/samples/7/MvcProgram.cs?highlight=15)]
 
 When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
 
-[!code-csharp[](~/razor-pages/ui-class/7samples/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
+[!code-csharp[](~/razor-pages/ui-class/samples/7/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
 
 Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`).
 
@@ -158,7 +159,7 @@ When the RCL is built, a manifest is produced that describes the static web asse
 
 When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{PACKAGE ID}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}` when examining the `wwwroot` folder for the published assets.
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 

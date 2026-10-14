@@ -220,7 +220,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples_snapshot/3.x/SampleApp/Startup.ConfigureServices.AddDbSettings.cs" highlight="3-8":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/snapshot/3.x/SampleApp/Startup.ConfigureServices.AddDbSettings.cs" highlight="3-8":::
 
    In the preceding code:
 
@@ -242,7 +242,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples_snapshot/3.x/SampleApp/Startup.ConfigureServices.AddSingletonService.cs" highlight="9":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/snapshot/3.x/SampleApp/Startup.ConfigureServices.AddSingletonService.cs" highlight="9":::
 
    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 

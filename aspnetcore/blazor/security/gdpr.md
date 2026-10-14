@@ -242,7 +242,7 @@ Within `<main>` Razor markup of the `MainLayout` component (`Layout/MainLayout.r
 
 :::zone-end
 
-## Additional resources
+## Related content
 
 * [Microsoft Trust Center: Safeguard individual privacy with cloud services from Microsoft: GDPR](https://www.microsoft.com/trust-center/privacy/gdpr-overview)
 * [European Commission: Data protection explained](https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_en)

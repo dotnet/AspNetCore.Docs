@@ -187,7 +187,7 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additional resources
+## Related content
 
 * [LINQ documentation](/dotnet/csharp/programming-guide/concepts/linq/)
 * [Write C# LINQ queries to query data (C# documentation)](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)

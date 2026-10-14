@@ -145,7 +145,7 @@ For more information on controlling Hot Reload in Blazor WebAssembly apps, see <
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 For more information, see the following resources in the Visual Studio documentation:
 

@@ -184,7 +184,7 @@ The following table describes options for configuring gRPC hedging policies.
 | `HedgingDelay` | The first call is sent immediately, subsequent hedging calls are delayed by this value. When the delay is set to zero or `null`, all hedged calls are sent immediately. `HedgingDelay` is optional and defaults to zero. A value must be zero or greater. |
 | `NonFatalStatusCodes` | A collection of status codes which indicate other hedge calls may still succeed. If a non-fatal status code is returned by the server, hedged calls will continue. Otherwise, outstanding requests will be canceled and the error returned to the app. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). |
 
-## Additional resources
+## Related content
 
 * <xref:grpc/client>
 * [Retry general guidance - Best practices for cloud applications](/azure/architecture/best-practices/transient-faults)

@@ -119,7 +119,7 @@ Using `Grpc.Net.Client` with gRPC-Web requires additional configuration. For mor
 > [!IMPORTANT]
 > gRPC-Web requires the client ***and*** server to support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](xref:grpc/grpcweb#configure-grpc-web-in-aspnet-core). Other gRPC server implementations require a proxy to support gRPC-Web.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/netstandard>
 * [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/)

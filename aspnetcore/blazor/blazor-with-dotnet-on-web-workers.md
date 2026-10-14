@@ -520,6 +520,6 @@ public partial class Home : ComponentBase
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 <xref:client-side/dotnet-on-webworkers>

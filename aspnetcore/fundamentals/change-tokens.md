@@ -405,7 +405,7 @@ var compositeChangeToken =
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>

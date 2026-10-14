@@ -2,7 +2,7 @@
 
 We'd like to thank [Joe DeCock](https://github.com/josephdecock) from [Duende Software](https://github.com/DuendeSoftware) for adding Pushed Authorization Requests (PAR) to ASP.NET Core's [OpenIdConnectHandler](/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnecthandler). Joe described the background and motivation for enabling PAR in [his API proposal](https://github.com/dotnet/aspnetcore/issues/51686) as follows:
 
-> Pushed Authorization Requests (PAR) is a relatively new [OAuth standard](https://datatracker.ietf.org/doc/html/rfc9126) that improves the security of OAuth and OIDC flows by moving authorization parameters from the front channel to the back channel. Thats is, moving authorization parameters from redirect URLs in the browser to direct machine to machine http calls on the back end.
+> Pushed Authorization Requests (PAR) is a relatively new [OAuth standard](https://datatracker.ietf.org/doc/html/rfc9126) that improves the security of OAuth and OIDC flows by moving authorization parameters from the front channel to the back channel. That is, moving authorization parameters from redirect URLs in the browser to direct machine to machine http calls on the back end.
 >
 > This prevents a cyberattacker in the browser from:
 >

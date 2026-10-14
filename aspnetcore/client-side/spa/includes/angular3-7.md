@@ -90,10 +90,6 @@ When you start your ASP.NET Core app, it won't launch an Angular CLI server. The
 When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORTS`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
-
-## Additional resources
-
-* <xref:security/authentication/identity/spa>
     
 :::moniker-end
 
@@ -235,8 +231,8 @@ if (typeof window !== 'undefined') {
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
-## Additional resources
-
-* <xref:security/authentication/identity/spa>
-
 :::moniker-end
+
+## Related content
+
+<xref:security/authentication/identity/spa>

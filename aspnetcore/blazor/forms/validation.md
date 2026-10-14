@@ -631,7 +631,7 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/forms/index>
 * <xref:blazor/forms/binding>
