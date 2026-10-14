@@ -133,6 +133,11 @@ It's not immediately apparent why the search requests are failing. The browser t
 
     In the steps ahead, this issue is resolved by centralizing the data protection keys in an Azure storage service and protecting them with Key Vault.
 
+    > [!TIP]
+    > **Alternative: Azure Container Apps built-in Data Protection**
+    >
+    > Azure Container Apps provides a built-in feature to manage data protection keys across replicas without requiring separate Azure Blob Storage and Azure Key Vault resources. In Azure Container Apps, navigate to the **Development Stack** section, select **.NET**, and enable **ASP.NET Core Data Protection** (or set `properties.configuration.runtime.dotnet.autoConfigureDataProtection: true` in ARM or Bicep templates). When enabled, Azure Container Apps creates a shared key volume mount and injects the `DOTNET_ReadOnlyDataProtectionKeyDirectory` environment variable pointing to the mounted key directory so instances share encryption keys automatically.
+
 ## Create the Azure Services
 
 To resolve the preceding errors,  the following services are created and connected to the app:
