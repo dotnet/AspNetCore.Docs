@@ -66,6 +66,21 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
 
+### SameSite cookies
+
+Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
+
+* `SameSiteMode.Strict`: The cookie is sent only in a first-party context (when the site in the URL matches the cookie's domain). The browser never includes the cookie in cross-site requests, including ordinary link navigations. This provides the highest CSRF protection.
+* `SameSiteMode.Lax`: The cookie is withheld on cross-site subrequests (such as cross-site form POSTs, images, or frames), but sent when a user navigates to the origin site (for example, following a link). This is the default in modern browsers and in ASP.NET Core cookie authentication.
+* `SameSiteMode.None`: The cookie is sent with both same-site and cross-site requests. The cookie must also be marked `Secure`.
+
+While `SameSite` cookies mitigate many CSRF attacks, they should be used as part of a defense-in-depth strategy:
+* Older browsers or non-browser HTTP clients may not enforce the `SameSite` attribute.
+* `SameSite=Lax` cookies are still sent with top-level `GET` requests, meaning any state-changing `GET` endpoints remain vulnerable.
+* Subdomains sharing cookies under the same parent domain can still impact cookie trust boundaries.
+
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or automatic CSRF protection provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+
 ### Token-based authentication
 
 When a user is authenticated, they're issued a token (not an antiforgery token). The token contains user information in the form of [claims](/dotnet/framework/security/claims-based-identity-model) or a reference token that points the app to user state maintained in the app. When a user attempts to access a resource that requires authentication, the token is sent to the app with an extra authorization header in the form of a Bearer token. This approach makes the app stateless. In each subsequent request, the token is passed in the request for server-side validation. This token isn't *encrypted*; it's *encoded*. On the server, the token is decoded to access its information. To send the token on subsequent requests, store the token in the browser's local storage. Placing a token in the browser local storage and retrieving it and using it as a bearer token provides protection against CSRF attacks. However, should the app be vulnerable to script injection via XSS or a compromised external JavaScript file, a cyberattacker could retrieve any value from local storage and send it to themselves. ASP.NET Core encodes all server side output from variables by default, reducing the risk of XSS. If you override this behavior by using [Html.Raw](xref:System.Web.Mvc.HtmlHelper.Raw%2A) or custom code with untrusted input then you may increase the risk of XSS.
