@@ -149,7 +149,7 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 ## Areas with Razor Pages
 
-Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples):
+Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/3.1):
 
 * Project name
   * Areas
@@ -242,7 +242,7 @@ Consider using Areas in a project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/3.1) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 
@@ -366,7 +366,7 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 ## Areas with Razor Pages
 
-Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples):
+Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/3.1):
 
 * Project name
   * Areas
