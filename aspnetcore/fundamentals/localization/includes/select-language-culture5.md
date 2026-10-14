@@ -156,7 +156,7 @@ Localizing an app also involves the following tasks:
 * [Make the app's content localizable](xref:fundamentals/localization/make-content-localizable).
 * [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/localization>
 * <xref:fundamentals/localization/make-content-localizable>

@@ -49,7 +49,7 @@ To protect access to resources while using groups, use [authentication and autho
 > [!NOTE]
 > Group names are case-sensitive.
 
-## Additional resources
+## Related content
 
 * <xref:tutorials/signalr>
 * <xref:signalr/hubs>

@@ -539,7 +539,7 @@ The following example shows the markup for a Jeep image (`jeep-yj.png`) in the `
 <img alt="Jeep Wrangler YJ" src="_content/ComponentLibrary/vehicle/jeep-yj.png" />
 ```
 
-## Additional resources
+## Related content
 
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>

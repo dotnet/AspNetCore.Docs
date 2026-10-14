@@ -607,7 +607,7 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 > <xref:signalr/introduction>
 > <xref:blazor/index>
 
-## Additional resources
+## Related content
 
 * [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)
 * [Secure a SignalR hub in Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)

@@ -335,7 +335,7 @@ For a valid session `id`, the final test confirms that:
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:test/integration-tests>
 * [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code)

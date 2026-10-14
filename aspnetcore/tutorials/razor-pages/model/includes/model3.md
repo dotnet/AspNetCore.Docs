@@ -6,7 +6,7 @@ In this section, classes are added for managing movies. The app's model classes 
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 [!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
 
@@ -20,7 +20,7 @@ Right-click the `Models` folder. Select **Add** > **Class**. Name the class **Mo
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -39,7 +39,7 @@ The `Movie` class contains:
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -62,7 +62,7 @@ The `Movie` class contains:
 * In the *RazorPagesMovie* project, create a new folder named *Data*.
 * Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
-  [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
+  [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
 
@@ -72,7 +72,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the `appsettings.json` file as shown in the following highlighted code:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
 
 <a name="reg"></a>
 
@@ -87,7 +87,7 @@ using Microsoft.EntityFrameworkCore;
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -101,7 +101,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -326,11 +326,11 @@ The scaffolding tool automatically created a database context and registered it 
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 

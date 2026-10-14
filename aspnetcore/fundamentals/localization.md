@@ -42,11 +42,13 @@ Globalizing and localizing an app involves the following tasks:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-<!-- 
-Move mini TOC from ## Additional resources to here
-## Additional globalization and localization topics
--->
-## Additional resources
+:::moniker-end
+
+[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
+
+## Related content
+
+:::moniker range="> aspnetcore-5.0"
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
@@ -61,4 +63,27 @@ Move mini TOC from ## Additional resources to here
 
 :::moniker-end
 
-[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
+:::moniker range="= aspnetcore-5.0"
+
+* <xref:fundamentals/localization/make-content-localizable>
+* <xref:fundamentals/localization/provide-resources>
+* <xref:fundamentals/localization/select-language-culture>
+* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
+* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
+* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
+
+:::moniker-end

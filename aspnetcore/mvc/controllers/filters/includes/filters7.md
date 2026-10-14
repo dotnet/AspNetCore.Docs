@@ -533,7 +533,7 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 When passing an *instance* of a filter into `Add`, instead of its `Type`, the filter is a singleton and is **not** thread-safe.
 
-## Additional resources
+## Related content
 
 * [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 * <xref:razor-pages/filter>

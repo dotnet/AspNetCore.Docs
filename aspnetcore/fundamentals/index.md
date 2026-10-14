@@ -624,7 +624,7 @@ For problems or feedback on Visual Studio, use the [**Report a Problem**](/visua
 
 For problems with Visual Studio Code, ask for support on community support forums. For bug reports and product feedback, open an issue on the [`microsoft/vscode` GitHub repo](https://github.com/microsoft/vscode/issues).
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-8.0"
 

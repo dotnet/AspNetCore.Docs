@@ -236,7 +236,7 @@ app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () =>
     "This endpoint requires a 21-year-old birthdate claim.");
 ```
 
-## Additional resources
+## Related content
 
 * [Complete custom 'IAuthorizationPolicyProvider' sample (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider)
 * <xref:security/authorization/policies>

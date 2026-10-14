@@ -157,7 +157,7 @@ The URI Caching Module (`UriCacheModule`) allows IIS to cache website configurat
 
 The HTTP Caching Module (`HttpCacheModule`) implements the IIS output cache and also the logic for caching items in the HTTP.sys cache. Without this module, content is no longer cached in kernel mode, and cache profiles are ignored. Removing the HTTP Caching Module usually has adverse effects on performance and resource usage. *Although the HTTP Caching Module isn't strictly required for a hosted ASP.NET Core app to run, we recommend that the HTTP Caching Module be enabled for all ASP.NET Core deployments.*
 
-## Additional resources
+## Related content
 
 * [Introduction to IIS Architectures: Modules in IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
 * [IIS Modules Overview](/iis/get-started/introduction-to-iis/iis-modules-overview)

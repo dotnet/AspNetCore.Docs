@@ -162,7 +162,7 @@ dotnet-grpc list [options]
 |-|-|-|
 | -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/index>
 * <xref:grpc/basics>

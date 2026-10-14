@@ -109,7 +109,7 @@ dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]
       Remote IpAddress: ::1
 ```
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/middleware/index>
 * [Action filters](xref:mvc/controllers/filters#action-filters)

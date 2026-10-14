@@ -25,7 +25,7 @@ Authorization components, including the [`[Authorize]` attribute](xref:Microsoft
 
 For more information, see <xref:security/authorization/simple>.
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/minimal-apis/security>
 * <xref:blazor/security/index>

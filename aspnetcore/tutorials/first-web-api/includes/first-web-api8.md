@@ -476,7 +476,7 @@ See [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
-## Additional resources
+## Related content
 
 [View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:fundamentals/index#how-to-download-a-sample).
 

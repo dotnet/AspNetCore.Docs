@@ -143,7 +143,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   [!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+   [!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/3.x/Program.cs?highlight=7)]
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
@@ -266,16 +266,7 @@ Requirements to run gRPC with HTTP.sys:
 
 [!INCLUDE[](~/includes/reset.md)]
 
-## Additional resources
-
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](/windows/win32/http/http-api-start-page)
-* [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* [The host](xref:fundamentals/index#host)
-* <xref:test/troubleshoot>
-
 :::moniker-end
-
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -415,7 +406,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   [!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+   [!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/3.x/Program.cs?highlight=7)]
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
@@ -537,13 +528,5 @@ Requirements to run gRPC with HTTP.sys:
 ### Reset
 
 [!INCLUDE[](~/includes/reset.md)]
-
-## Additional resources
-
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](/windows/win32/http/http-api-start-page)
-* [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* [The host](xref:fundamentals/index#host)
-* <xref:test/troubleshoot>
 
 :::moniker-end

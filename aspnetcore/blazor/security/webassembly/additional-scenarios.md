@@ -1624,7 +1624,7 @@ The preceding example sets redirect URIs with regular string literals. The follo
   }
   ```
 
-## Additional resources
+## Related content
 
 * <xref:blazor/security/webassembly/graph-api>
 * [Cookie-based request credentials (*Call web API* article)](xref:blazor/call-web-api#cookie-based-request-credentials)

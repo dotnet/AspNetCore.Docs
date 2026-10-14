@@ -231,7 +231,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar UI for interacting with the app. The Scalar UI includes summaries and descriptions on various elements sourced from XML documentation comments.
 
-## Additional resources
+## Related content
 
 * [Source generator implementation notes](https://github.com/captainsafia/aspnet-openapi-xml#implementation-notes)
 * The source generator implementation can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).

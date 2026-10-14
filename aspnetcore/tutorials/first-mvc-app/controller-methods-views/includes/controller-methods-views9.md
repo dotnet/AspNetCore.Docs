@@ -40,7 +40,7 @@ Recall the format for [routing](xref:mvc/controllers/routing) set in the `Progra
 
 ASP.NET Core translates `https://localhost:5001/Movies/Edit/4` into a request to the `Edit` action method of the `Movies` controller with the parameter `Id` of 4. (Controller methods are also known as action methods.)
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) are one of the most popular new features in ASP.NET Core. For more information, see [Additional resources](#additional-resources).
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) are one of the most popular new features in ASP.NET Core. For more information, see [Related content](#related-content).
 
 <a name="get-post"></a>
 
@@ -100,7 +100,7 @@ Before the form is posted to the server, client-side validation checks any valid
 
 All the `HttpGet` methods in the movie controller follow a similar pattern. They get a movie object (or list of objects, in the case of `Index`), and pass the object (model) to the view. The `Create` method passes an empty movie object to the `Create` view. All the methods that create, edit, delete, or otherwise modify data do so in the `[HttpPost]` overload of the method. Modifying data in an `HTTP GET` method is a security risk. Modifying data in an `HTTP GET` method also violates HTTP best practices and the architectural [REST](http://rest.elkstein.org/) pattern, which specifies that GET requests shouldn't change the state of your application. In other words, performing a GET operation should be a safe operation that has no side effects and doesn't modify your persisted data.
 
-## Additional resources
+## Related content
 
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
