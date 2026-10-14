@@ -307,7 +307,7 @@
         },
         {
             "source_path": "aspnetcore/mvc/web-api/json-patch.md",
-            "redirect_url": "/aspnet/core/web-api/"
+            "redirect_url": "/aspnet/core/web-api/jsonpatch"
         },
         {
             "source_path": "aspnetcore/mvc/views/custom-view-engine.md",
