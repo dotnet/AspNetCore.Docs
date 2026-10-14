@@ -53,9 +53,9 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 Route handlers support the following types of return values:
 
-1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`
-1. `string` - This includes `Task<string>` and `ValueTask<string>`
-1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`
+1. `IResult` based - This includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`
+1. `string` - This includes `Task<string>`, `ValueTask<string>`, and F# `Async<string>`
+1. `T` (Any other type) - This includes `Task<T>`, `ValueTask<T>`, and F# `Async<'T>`
 
 |Return value|Behavior|Content-Type|
 |--|--|--|
