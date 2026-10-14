@@ -2,7 +2,7 @@
     "redirections": [
         {
             "source_path": "aspnetcore/web-api/microsoft.dotnet-openapi.md",
-            "redirect_url": "/aspnet/core/fundamentals/openapi/tools",
+            "redirect_url": "/aspnet/core/fundamentals/openapi/openapi-tools",
             "redirect_document_id": false
         },
         {
@@ -32,7 +32,7 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/aot/request-delegate-generator/rgd_ids.md",
-            "redirect_url": "/aspnet/core/fundamentals/aot/request-delegate-generator/rdg_ids",
+            "redirect_url": "/aspnet/core/fundamentals/aot/request-delegate-generator/rdg-ids",
             "redirect_document_id": false
         },
         {
@@ -322,7 +322,7 @@
         },
         {
             "source_path": "aspnetcore/security/data-protection/consumer-apis/index.md",
-            "redirect_url": "/aspnet/core/security/data-protection/consumer-apis/introduction",
+            "redirect_url": "/aspnet/core/security/data-protection/consumer-apis/overview",
             "redirect_document_id": false
         },
         {
@@ -342,7 +342,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/publish-to-azure-webapp-using-cli.md",
-            "redirect_url": "/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb",
+            "redirect_url": "/azure/app-service/tutorial-dotnetcore-sqldb-app",
             "redirect_document_id": false
         },
         {
@@ -382,7 +382,7 @@
         },
         {
             "source_path": "aspnetcore/mvc/web-api/json-patch.md",
-            "redirect_url": "/aspnet/core/mvc/web-api/",
+            "redirect_url": "/aspnet/core/web-api/jsonpatch",
             "redirect_document_id": false
         },
         {
@@ -417,17 +417,17 @@
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/AnchorTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
+            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/CacheTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/cache-tag-helper/",
+            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/built-in/cache-tag-helper",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper/",
+            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/built-in/distributed-cache-tag-helper",
             "redirect_document_id": false
         },
         {

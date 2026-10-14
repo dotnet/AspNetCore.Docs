@@ -167,7 +167,7 @@ The app is opened in a browser. Register a new user and log in as the new user t
 
 * Edit the `Pages/Index.cshtml` Razor page and change its contents, then save the changes. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
 
-  [!code-html[Index](publish-to-azure-webapp-using-vs/samples/index.cshtml?highlight=10&range=1-12)]
+  [!code-html[Index](publish-to-azure-webapp-using-vs/samples/Index.cshtml?highlight=10&range=1-12)]
 
 * Select **Publish** from the **Publish Profile summary** page again.
 
