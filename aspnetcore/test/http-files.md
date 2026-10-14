@@ -29,10 +29,6 @@ The `.http` file format and editor was inspired by the Visual Studio Code [REST 
 
 * [Visual Studio 2022 version 17.8 or later](https://visualstudio.microsoft.com/vs/) with the **ASP.NET and web development** workload installed.
 
-## API testing with `httpbin.org`
-
-For API testing, examples in this article use the free website `httpbin.org`, provided by [Kenneth Reitz](https://kennethreitz.org). The website returns a response body with the headers that were sent in the request. `httpbin.org` isn't owned or maintained by Microsoft. Avoid passing sensitive data to the website. For more information, see the [`httpbin.org` site's home page](https://httpbin.org).
-
 ## `.http` file syntax
 
 The following sections explain `.http` file syntax.
@@ -473,7 +469,7 @@ To generate a random integer, use `$randomInt`. The syntax is `{{$randomInt [min
 The `[format]` option is one of `rfc1123`, `iso8601`, or a custom format in quotation marks. For example:
 
 ```http
-GET https://httpbin.org/headers
+GET https://localhost:7220/weatherforecast
 X-CUSTOM: {{$datetime "dd-MM-yyyy"}}
 X-ISO8601: {{$datetime iso8601}}
 X-ISO8601L: {{$localDatetime iso8601}}
@@ -513,7 +509,7 @@ The `[offset option]` syntax is in the form `number` `unit` where `number` is an
 For example:
 
 ```http
-GET https://httpbin.org/headers
+GET https://localhost:7220/weatherforecast
 X-Custom-Minus-1-Year: {{$datetime "dd-MM-yyyy" -1 y}}
 X-RFC1123-Plus-1-Day: {{$datetime rfc1123 1 d}} 
 X-Timestamp-Plus-1-Year: {{$timestamp 1 y}}
@@ -535,7 +531,7 @@ Here are some sample values that the preceding examples generate:
 To generate a random GUID, use `$guid`:
 
 ```http
-GET https://httpbin.org/headers
+GET https://localhost:7220/weatherforecast
 X-CorrelationId: {{$guid}}
 ```
 
