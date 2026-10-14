@@ -122,7 +122,6 @@
         "**/*.{md,yml}": "daroth"
       },
       "ms.subservice": {
-        "overview.md": "index-page",
         "**/client-side/**/*.md": "client-side",
         "**/data/**/*.md": "data-access",
         "**/fundamentals/**/*.md": "fundamentals",
