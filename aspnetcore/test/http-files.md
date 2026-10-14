@@ -31,7 +31,7 @@ The `.http` file format and editor was inspired by the Visual Studio Code [REST 
 
 ## API testing with `httpbin.org`
 
-For API testing, examples in this article use the free website `httpbin.org`, provided by <a href="https://kennethreitz.org/">Kenneth Reitz</a>. The website returns a response body with the headers that were sent in the request. `httpbin.org` isn't owned or maintained by Microsoft. Avoid passing sensitive data to the website while testing. For information, see the <a href="https://httpbin.org">`httpbin.org` site's home page</a>.
+For API testing, examples in this article use the free website `httpbin.org`, provided by [Kenneth Reitz](https://kennethreitz.org). The website returns a response body with the headers that were sent in the request. `httpbin.org` isn't owned or maintained by Microsoft. Avoid passing sensitive data to the website. For more information, see the [`httpbin.org` site's home page](https://httpbin.org).
 
 ## `.http` file syntax
 
