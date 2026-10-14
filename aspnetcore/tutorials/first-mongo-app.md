@@ -1,5 +1,6 @@
 ---
 title: Create a web API with ASP.NET Core and MongoDB
+ai-usage: ai-assisted
 description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
@@ -178,7 +179,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="first-mongo-app/samples_snapshot/10.x/Book.cs":::
+   :::code language="csharp" source="first-mongo-app/samples/snapshot/10.x/Book.cs":::
 
    In the preceding class, the `Id` property is:
 

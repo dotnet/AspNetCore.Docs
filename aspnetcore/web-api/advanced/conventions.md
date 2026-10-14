@@ -1,5 +1,6 @@
 ---
 title: Use web API conventions
+ai-usage: ai-assisted
 description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/06/2026
@@ -39,7 +40,7 @@ Conventions don't compose; each action may be associated with exactly one conven
 
     In the following example, the default convention type's `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` convention method is applied to the `Update` action:
 
-    [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionMethod&highlight=3)]
+    [!code-csharp[](conventions/samples/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionMethod&highlight=3)]
 
     The `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` convention method applies the following attributes to the action:
 
@@ -56,13 +57,13 @@ Conventions don't compose; each action may be associated with exactly one conven
 
     In the following example, the default set of conventions is applied to all actions in *ContactsConventionController*:
 
-    [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionTypeAttribute&highlight=2)]
+    [!code-csharp[](conventions/samples/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionTypeAttribute&highlight=2)]
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to an assembly &mdash; Applies the specified convention type to all controllers in the current assembly. As a recommendation, apply assembly-level attributes in the `Startup.cs` file.
 
     In the following example, the default set of conventions is applied to all controllers in the assembly:
 
-    [!code-csharp[](conventions/sample/Startup.cs?name=snippet_ApiConventionTypeAttribute&highlight=1)]
+    [!code-csharp[](conventions/samples/Startup.cs?name=snippet_ApiConventionTypeAttribute&highlight=1)]
 
 ## Create web API conventions
 
