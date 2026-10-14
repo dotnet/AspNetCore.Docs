@@ -37,6 +37,16 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
 
+You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A> to validate a specific property or a child complex object explicitly. For example, to manually validate a nested object such as `Movie.Genre` against validation attributes declared on the `Genre` class:
+
+```csharp
+ModelState.ClearValidationState(nameof(Movie.Genre));
+if (!TryValidateModel(Movie.Genre, nameof(Movie.Genre)))
+{
+    return Page();
+}
+```
+
 ## Validation attributes
 
 Validation attributes let you specify validation rules for model properties. The following example from the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built in. Not shown is `[ClassicMovieWithClientValidator]`, which shows an alternative way to implement a custom attribute.
