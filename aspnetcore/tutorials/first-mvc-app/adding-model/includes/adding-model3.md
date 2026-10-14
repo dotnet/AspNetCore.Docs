@@ -381,7 +381,7 @@ The `@model` directive allows you to access the list of movies that the controll
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code.
 
-## Additional resources
+## Related content
 
 * [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)

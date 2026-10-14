@@ -317,7 +317,7 @@ To satisfy the preceding requirements, make the following changes:
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/6.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:web-api/index>

@@ -22,8 +22,8 @@ This article describes the support for authentication and authorization in Minim
 
 Authentication is the process of determining a user's identity while authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core.
 
-- The authentication service, [IAuthenticationService](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice), handles all authentication and is used by authentication [middleware](./middleware.md). 
-- The authorization service, [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice), manages all authorization and is used by the authorization middleware.
+* The authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, handles all authentication and is used by authentication [middleware](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
+* The authorization service, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, manages all authorization and is used by the authorization middleware.
 
 ### Authentication service
 
@@ -33,9 +33,9 @@ The authentication service uses registered authentication handlers to complete a
 
 In the authorization layer, there are two strategies for determining user access to resources:
 
-- **Role-based strategies** determine a user's access based on their assigned role, such as `Administrator` or `User`. For more information on role-based authorization, see [role-based authorization documentation](../../security/authorization/roles.md).
+* **Role-based strategies** determine a user's access based on their assigned role, such as `Administrator` or `User`. For more information, see <xref:security/authorization/roles>.
 
-- **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information on claim-based authorization, see [claim-based authorization documentation](../../security/authorization/claims.md).
+* **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information, see <xref:security/authorization/claims>.
 
 In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service uses authorization handlers to determine whether or not a particular user meets the authorization requirements for a resource. 
 
@@ -151,7 +151,7 @@ curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/hello
 
 ## Related content
 
-- [The authentication service (IAuthenticationService)](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice)
-- [The authorization service (IAuthorizationService)](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice)
-- [ASP.NET Core middleware](xref:fundamentals/middleware/index)
-- [Manage JSON Web Tokens with the dotnet user-jwts tool](../../security/authentication/jwt-authn.md)
+* [The authentication service (`IAuthenticationService`)](xref:Microsoft.AspNetCore.Authentication.IAuthenticationService)
+* [The authorization service (`IAuthorizationService`)](xref:Microsoft.AspNetCore.Authorization.IAuthorizationService)
+* <xref:fundamentals/middleware/index>
+* <xref:security/authentication/jwt>

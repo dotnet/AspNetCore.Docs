@@ -623,7 +623,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
 
 The preceding output was enabled with the following `appsettings.Development.json` file:
 
-[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.development.json?highlight=6)]
+[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.Development.json?highlight=6)]
 
 HTTP logging provides logs of:
 
@@ -703,7 +703,7 @@ Shadow copying in IIS is an experimental feature that is not guaranteed to be pa
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
-## Additional resources
+## Related content
 
 * <xref:migration/50-to-60-samples>
 * [What's new in .NET 6](/dotnet/core/whats-new/dotnet-6)

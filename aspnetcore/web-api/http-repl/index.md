@@ -1108,7 +1108,7 @@ After running the preceding command, the command shell contains only the followi
 https://localhost:5001/>
 ```
 
-## Additional resources
+## Related content
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [HttpRepl GitHub repository](https://github.com/dotnet/HttpRepl)

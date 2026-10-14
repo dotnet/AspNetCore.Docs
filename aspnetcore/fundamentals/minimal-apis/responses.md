@@ -401,7 +401,7 @@ As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpRespon
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
 
-## Additional Resources
+## Related content
 
 * <xref:fundamentals/minimal-apis/security>
 

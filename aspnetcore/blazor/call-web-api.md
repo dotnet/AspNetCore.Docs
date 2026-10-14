@@ -1452,7 +1452,7 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 ### General
 

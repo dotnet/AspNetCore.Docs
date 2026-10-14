@@ -225,7 +225,7 @@ Because modules and applications in ASP.NET Framework were assigned to a request
 :::code language="csharp" source="sample8/Snippets/HttpModulePoolingSnippet.cs" id="snippet_ObjectPool" :::
 
 
-## Additional resources
+## Related content
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)

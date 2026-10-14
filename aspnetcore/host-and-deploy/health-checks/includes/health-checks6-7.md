@@ -313,7 +313,7 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
   * Is used to differentiate between different aspects of the app's health or apply specific configurations to subsets of health checks.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs)
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 

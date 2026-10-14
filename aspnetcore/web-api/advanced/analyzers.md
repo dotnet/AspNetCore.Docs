@@ -49,7 +49,7 @@ The preceding action documents the HTTP 200 success return type but doesn't docu
 
 Analyzers don't work with library projects or projects referencing `Sdk="Microsoft.NET.Sdk"`.
 
-## Additional resources
+## Related content
 
 * <xref:web-api/advanced/conventions>
 * <xref:tutorials/web-api-help-pages-using-swagger>

@@ -147,7 +147,7 @@ Right-click the Person table, and then click **Show Table Data** to see the disc
 
 [Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## Additional resources
+## Related content
 
 For more information about inheritance in Entity Framework Core, see [Inheritance](/ef/core/modeling/inheritance).
 

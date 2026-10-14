@@ -136,7 +136,7 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
    
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/servers/index>
 * <xref:fundamentals/middleware/index>

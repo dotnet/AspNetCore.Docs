@@ -104,7 +104,7 @@ The following code shows combining attributes on one line:
 
 In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
-## Additional resources
+## Related content
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)

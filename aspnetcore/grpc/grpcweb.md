@@ -160,7 +160,7 @@ builder.Services
 
 For more information, see <xref:grpc/clientfactory>.
 
-## Additional resources
+## Related content
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>

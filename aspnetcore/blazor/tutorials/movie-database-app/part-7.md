@@ -364,7 +364,7 @@ After deleting all of the records, run the app. The initializer reseeds the data
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additional resources
+## Related content
 
 * [Migrations (EF Core documentation)](/ef/core/managing-schemas/migrations/)
 * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)

@@ -347,7 +347,7 @@ module = await JS.InvokeAsync<IJSObjectReference>("import",
 
 *Jeep* and *Jeep YJ* are registered trademarks of [FCA US LLC (Stellantis NV)](https://www.stellantis.com).
 
-## Additional resources
+## Related content
 
 * <xref:System.Resources.ResourceManager>
 * [Create resource files for .NET apps (.NET Fundamentals documentation)](/dotnet/core/extensions/create-resource-files)

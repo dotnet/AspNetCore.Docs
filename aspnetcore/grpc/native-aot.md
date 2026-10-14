@@ -58,7 +58,7 @@ Apps published with Native AOT have:
 
 For more information and examples of the benefits that Native AOT provides, see [Benefits of using Native AOT with ASP.NET Core](xref:fundamentals/native-aot#benefits-of-using-native-aot-with-aspnet-core).
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/native-aot>
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)

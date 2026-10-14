@@ -279,7 +279,7 @@ The [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md) prov
 
 For more information about System.Web adapters, see the [System.Web adapters documentation](~/migration/fx-to-core/inc/systemweb-adapters.md).
 
-## Additional resources
+## Related content
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
 * [HttpContext in ASP.NET Core](xref:fundamentals/httpcontext)

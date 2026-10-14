@@ -169,6 +169,6 @@ See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
 
-## Additional resources
+## Related content
 
 For the complete list of changes, see the [ASP.NET Core 2.1 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.1.0).

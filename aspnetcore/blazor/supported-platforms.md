@@ -62,7 +62,7 @@ For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the l
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/hosting-models>
 * <xref:signalr/supported-platforms>

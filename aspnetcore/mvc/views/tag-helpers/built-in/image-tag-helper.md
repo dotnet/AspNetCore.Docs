@@ -51,6 +51,6 @@ The value assigned to the parameter `v` is the hash value of the `asplogo.png` f
 
 The Image Tag Helper uses the cache provider on the local web server to store the calculated `Sha512` hash of a given file. If the file is requested multiple times, the hash isn't recalculated. The cache is invalidated by a file watcher that's attached to the file when the file's `Sha512` hash is calculated. When the file changes on disk, a new hash is calculated and cached.
 
-## Additional resources
+## Related content
 
 * <xref:performance/caching/memory>

@@ -288,7 +288,7 @@ Some password managers don't implement the [`PublicKeyCredential.toJSON` method]
 
 For guidance on mitigating this error, see <xref:security/authentication/passkeys/index#mitigate-publickeycredentialtojson-error-typeerror-illegal-invocation>.
 
-## Additional resources
+## Related content
 
 * [Web Authentication API (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API)
 * [Get started with phishing-resistant passwordless authentication deployment in Microsoft Entra ID](/entra/identity/authentication/how-to-plan-prerequisites-phishing-resistant-passwordless-authentication)

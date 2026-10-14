@@ -131,7 +131,7 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Use multiple environments](xref:fundamentals/environments)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
