@@ -323,7 +323,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user for use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
-[!code-csharp[Name based provider](authn-and-authz/samples/nameuseridprovider.cs?name=NameUserIdProvider)]
+[!code-csharp[Name based provider](authn-and-authz/samples/NameUserIdProvider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Windows SID identifier, and so on.
 
@@ -575,7 +575,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
-[!code-csharp[Name based provider](authn-and-authz/samples/nameuseridprovider.cs?name=NameUserIdProvider)]
+[!code-csharp[Name based provider](authn-and-authz/samples/NameUserIdProvider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, and so on).
 
@@ -620,7 +620,7 @@ The sample code demonstrates how you would use claims to select the user's email
 
 The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
 
-[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/samples/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
+[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/samples/Pages/Account/Register.cshtml.cs?name=AddEmailClaim)]
 
 Register this component in your `Startup.ConfigureServices`.
 
