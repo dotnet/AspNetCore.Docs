@@ -136,7 +136,7 @@ For more information, see [Resetting all migrations](/ef/core/managing-schemas/m
 
 In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
-## Additional resources
+## Related content
 
 * [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)

@@ -652,7 +652,7 @@ For a working demonstration of the preceding example, see the [`DynamicComponent
 
 Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocketlabusa.com/) SpaceX is a registered trademark of [Space Exploration Technologies Corp.](https://www.spacex.com/) United Launch Alliance and ULA are registered trademarks of [United Launch Alliance, LLC](https://www.ulalaunch.com/). Virgin Galactic is a registered trademark of [Galactic Enterprises, LLC](https://www.virgingalactic.com/).
 
-## Additional resources
+## Related content
 
 * <xref:blazor/components/event-handling#eventcallback>
 * <xref:Microsoft.AspNetCore.Components.DynamicComponent>

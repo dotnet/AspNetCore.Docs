@@ -73,7 +73,7 @@ A comma-separated list of globbed file patterns of JavaScript scripts to load. T
 
 Boolean value that determines if an integrity hash will be compared with the asp-fallback-src value.
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/controllers/areas>

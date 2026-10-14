@@ -1118,7 +1118,7 @@ Original Request: `/image.jpg`
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [`RewriteMiddleware` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/RewriteMiddleware.cs)

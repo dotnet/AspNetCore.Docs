@@ -377,7 +377,7 @@ The resulting header applied to the Cache4 page response by the `Default30` cach
 Cache-Control: public,max-age=30
 ```
 
-## Additional resources
+## Related content
 
 * [Storing Responses in Caches](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches)
 * [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control)

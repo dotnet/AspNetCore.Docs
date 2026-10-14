@@ -440,6 +440,6 @@ In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This 
 
 <a name="additional-resources"></a>
 
-## Additional resources
+## Related content
 
 For more information, see the [Discussion for Auth 2.0](https://github.com/aspnet/Security/issues/1338) issue on GitHub.

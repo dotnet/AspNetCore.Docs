@@ -517,7 +517,7 @@ jQuery validation isn't supported in Razor components. We recommend any of the f
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-8.0"
 

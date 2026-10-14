@@ -761,7 +761,7 @@ Multiple role tests are supported:
 
 Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>. By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
 
-## Additional resources
+## Related content
 
 * [Role template IDs (Entra documentation)](/entra/identity/role-based-access-control/permissions-reference)
 * [`groupMembershipClaims` attribute (Entra documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)

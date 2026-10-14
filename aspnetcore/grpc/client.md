@@ -283,7 +283,7 @@ Configure `CallOptions.Deadline` to set a deadline for a gRPC call:
 
 For more information, see <xref:grpc/deadlines-cancellation#deadlines>.
 
-## Additional resources
+## Related content
 
 * <xref:grpc/clientfactory>
 * <xref:grpc/deadlines-cancellation>

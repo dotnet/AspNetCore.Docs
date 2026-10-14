@@ -719,7 +719,7 @@ The POST endpoint will be used to add data to the app.
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post resonse pane](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
+  ![Swagger with Post response pane](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
@@ -879,7 +879,7 @@ For an example of testing a Minimal API app, see [this GitHub sample](https://gi
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
-## Additional resources
+## Related content
 
 * <xref:fundamentals/minimal-apis>
 

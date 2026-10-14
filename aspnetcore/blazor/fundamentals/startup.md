@@ -1079,7 +1079,7 @@ To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navi
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr)

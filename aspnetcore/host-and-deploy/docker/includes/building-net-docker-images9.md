@@ -148,7 +148,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
-## Additional resources
+## Related content
 
 * [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container)
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)

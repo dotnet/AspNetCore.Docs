@@ -455,7 +455,7 @@ To control the content in a layout from a child Razor component, see <xref:blazo
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/layout>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

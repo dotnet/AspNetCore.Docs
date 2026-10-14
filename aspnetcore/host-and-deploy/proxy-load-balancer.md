@@ -1,5 +1,6 @@
 ---
 title: Configure ASP.NET Core to work with proxy servers and load balancers
+ai-usage: ai-assisted
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
@@ -68,11 +69,11 @@ Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeader
 
 [Forwarded headers middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HttpOverrides/src/ForwardedHeadersOptions.cs) should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded headers middleware can run after diagnostics and error handling, but it must be run before calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet1&highlight=6-10,17,23)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet1&highlight=6-10,17,23)]
 
 Alternatively, call `UseForwardedHeaders` before diagnostics:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet2&highlight=6-10,14)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet2&highlight=6-10,14)]
 
 > [!NOTE]
 > If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified or applied directly to the extension method with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>, the default headers to forward are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders). The <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders> property must be configured with the headers to forward.
@@ -93,7 +94,7 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 * Adds a known proxy address of `127.0.10.1`.
 * Changes the forwarded header name from the default `X-Forwarded-For` to `X-Forwarded-For-My-Custom-Header-Name`.
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_fmho&highlight=6-11)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_fmho&highlight=6-11)]
 
 | Option | Description |
 | ------ | ----------- |
@@ -116,11 +117,11 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 In some cases, it might not be possible to add forwarded headers to the requests proxied to the app. If the proxy is enforcing that all public external requests are HTTPS, the scheme can be manually set before using any type of middleware:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https&highlight=14-18)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_https&highlight=14-18)]
 
 This code can be disabled with an environment variable or other configuration setting in a development or staging environment:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https2&highlight=14-21)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_https2&highlight=14-21)]
 
 ### Work with path base and proxies that change the request path
 
@@ -167,7 +168,7 @@ app.Use((context, next) =>
 
 If the proxy doesn't use headers named `X-Forwarded-For` and `X-Forwarded-Proto` to forward the proxy address/port and originating scheme information, set the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> and <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedProtoHeaderName> options to match the header names used by the proxy:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_dh&highlight=4-8)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_dh&highlight=4-8)]
 
 ## Forward the scheme for Linux and non-IIS reverse proxies
 
@@ -184,7 +185,7 @@ To configure Azure App Service for certificate forwarding, see [Configure TLS mu
 * Configure [certificate-forwarding middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HttpOverrides/src/CertificateForwardingMiddleware.cs) to specify the header name that Azure uses. Add the following code to configure the header from which the middleware builds a certificate.
 * Call <xref:Microsoft.AspNetCore.Builder.CertificateForwardingBuilderExtensions.UseCertificateForwarding%2A> before the call to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>.
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_az&highlight=4-5,9,17,21)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_az&highlight=4-5,9,17,21)]
 
 ### Other web proxies
 
@@ -193,10 +194,10 @@ If a proxy is used that isn't IIS or Azure App Service's Application Request Rou
 * Configure [certificate-forwarding middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HttpOverrides/src/CertificateForwardingMiddleware.cs) to specify the header name. Add the following code to configure the header from which the middleware builds a certificate.
 * Call <xref:Microsoft.AspNetCore.Builder.CertificateForwardingBuilderExtensions.UseCertificateForwarding%2A> before the call to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>.
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp&highlight=4-5,9,17,21)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_owp&highlight=4-5,9,17,21)]
 
 If the proxy isn't base64-encoding the certificate, as is the case with Nginx, set the `HeaderConverter` option. Consider the following example:
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp2&highlight=4-13,17,25)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_owp2&highlight=4-13,17,25)]
 
 ## Troubleshoot
 
@@ -207,14 +208,14 @@ When headers aren't forwarded as expected, enable `debug` level [logging](xref:f
 
 To write the headers to the app's response, place the following terminal inline middleware after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb3&highlight=16-42)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_trb3&highlight=16-42)]
 
 You can write to logs instead of the response body. Writing to logs allows the site to function normally while debugging.
 
 To write logs rather than to the response body, place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 END of COMMENTED OUT -->
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb22&highlight=8-11,21-31)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_trb22&highlight=8-11,21-31)]
 
 If there are multiple values in a given header, forwarded headers middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
@@ -226,11 +227,11 @@ September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
 
 In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies`, or add a trusted network to `KnownNetworks`. For more information, see the [forwarded headers middleware options](#forwarded-headers-middleware-options) section.
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_kp&highlight=11)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_kp&highlight=11)]
 
 To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to the `appsettings.Development.json` file:
 
-[!code-json[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/appsettings.Development.json?highlight=7)]
+[!code-json[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/appsettings.Development.json?highlight=7)]
 
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
@@ -297,11 +298,11 @@ Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeader
 
 Forwarded headers middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded headers middleware can run after diagnostics and error handling, but it must be run before calling `UseHsts`:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/3.1samples/Startup.cs?name=snippet&highlight=13-17,25,30)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/3.1/Startup.cs?name=snippet&highlight=13-17,25,30)]
 
 Alternatively, call `UseForwardedHeaders` before diagnostics:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/3.1samples/Startup2.cs?name=snippet)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/3.1/Startup2.cs?name=snippet)]
 
 > [!NOTE]
 > If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified in `Startup.ConfigureServices` or directly to the extension method with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>, the default headers to forward are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders). The <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders> property must be configured with the headers to forward.

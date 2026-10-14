@@ -169,7 +169,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="~/tutorials/first-mongo-app/samples_snapshot/7.x/Book.cs":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/snapshot/7.x/Book.cs":::
 
    In the preceding class, the `Id` property is:
 
@@ -318,7 +318,7 @@ To satisfy the preceding requirements, make the following changes:
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/7.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:web-api/index>

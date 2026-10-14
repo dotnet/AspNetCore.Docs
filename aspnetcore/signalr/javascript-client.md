@@ -666,7 +666,7 @@ For the preceding code example:
 * The promise resolver (`lockResolver`) is stored so that the lock can be released when it's acceptable for the tab to sleep.
 * When closing the connection, the lock is released by calling `lockResolver()`. When the lock is released, the tab is allowed to sleep.
 
-## Additional resources
+## Related content
 
 * [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)

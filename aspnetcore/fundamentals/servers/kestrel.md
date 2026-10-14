@@ -44,7 +44,7 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
 
-## Additional resources
+## Related content
 
 <a name="endpoint-configuration"></a>
 * <xref:fundamentals/servers/kestrel/endpoints>

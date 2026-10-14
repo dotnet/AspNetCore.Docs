@@ -274,7 +274,7 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Introduction to .NET](/dotnet/core/introduction)
 * [Visual Studio](https://visualstudio.microsoft.com/)
