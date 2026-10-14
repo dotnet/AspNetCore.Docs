@@ -146,13 +146,13 @@ app.MapGet("/products/{id}", (Guid id) => TypedResults.Ok(id))
 
 Test the status code with `>=` rather than `== 400`. That's the same comparison the framework uses to decide whether to skip the handler, and a filter that runs earlier in the pipeline can set a different code.
 
-Because the handler never ran, the values in `EndpointFilterInvocationContext.Arguments` are the parameters' default values, not bound request data. A filter that inspects arguments should check the status code first.
+Because the handler doesn't run, the values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> are the parameters' default values, not bound request data. A filter that inspects arguments should check the status code first.
 
 ## Observe binding failures in the Development environment
 
-<xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> controls whether the framework throws <xref:Microsoft.AspNetCore.Http.BadHttpRequestException> in addition to writing a `Debug`-level log when it handles an invalid request. It defaults to the value of <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsDevelopment%2A>, so it's `true` in the `Development` environment and `false` everywhere else.
+<xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> controls whether the framework throws <xref:Microsoft.AspNetCore.Http.BadHttpRequestException> in addition to writing a `Debug`-level log entry when it handles an invalid request. It defaults to the value of <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsDevelopment*>, so it's `true` in the `Development` environment and `false` in other environments.
 
-In `Development`, that default means the exception reaches the developer exception page before a filter can respond. Set the option to `false` to get the `400` the filter can observe:
+In the `Development` environment with the default value of `true`, the exception reaches the developer exception page before a filter can respond. Set <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> to `false` to receive the `400` response that the filter can observe:
 
 ```csharp
 builder.Services.Configure<RouteHandlerOptions>(options =>
@@ -168,7 +168,7 @@ No change is needed in other environments, where `false` is already the default.
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In .NET 11 or later, an endpoint whose filter factories all return `next` unchanged — so that no filter pipeline is actually built — no longer runs its route handler after a parameter-binding failure. In earlier releases, that configuration set the `400` status code and then invoked the handler anyway with unbound argument values. For more information, see [Refactor param binding failure handling in RequestDelegate (`dotnet/aspnetcore` #64539)](https://github.com/dotnet/aspnetcore/pull/64539). (Please don't comment on closed issues and PRs.)
+> An endpoint whose filter factories all return `next` unchanged—so that no filter pipeline is actually built—no longer runs its route handler after a parameter-binding failure. In earlier releases, that configuration set the `400` status code and then invoked the handler anyway with unbound argument values. For more information, see [Refactor param binding failure handling in RequestDelegate (`dotnet/aspnetcore` #64539)](https://github.com/dotnet/aspnetcore/pull/64539). (Please don't comment on closed issues and PRs.)
 
 :::moniker-end
 
