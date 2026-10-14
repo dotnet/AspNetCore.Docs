@@ -356,7 +356,7 @@ Add the following code to the `ConfigureServices` method in the `Startup.cs` fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,18-22)]
+[!code-csharp[](accconfirm/samples/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=18-19)]
 
 ## Scaffold RegisterConfirmation
 
