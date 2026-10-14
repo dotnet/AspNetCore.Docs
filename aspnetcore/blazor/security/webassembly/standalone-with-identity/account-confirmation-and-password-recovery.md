@@ -702,7 +702,7 @@ If you can't get email working:
 * Try another email alias on a different email provider, such as Microsoft, Yahoo, or Gmail.
 * Try sending to different email accounts.
 
-## Additional resources
+## Related content
 
 * [Mandrill.net (GitHub repository)](https://github.com/feinoujc/Mandrill.net)
 * [Mailchimp developer: Transactional API](https://mailchimp.com/developer/transactional/docs/fundamentals/)

@@ -62,7 +62,7 @@ The telemetry feature collects the following data.
 | >=8.0        | dotnet-scaffold aspnet scaffolder validation method name and whether they succeed. |
 | >=8.0        | dotnet-scaffold aspire scaffolder validation method name and whether they succeed. |
 
-## Additional resources
+## Related content
 
 * [.NET SDK telemetry](/dotnet/core/tools/telemetry)
 * [.NET CLI telemetry data](https://dotnet.microsoft.com/platform/telemetry)

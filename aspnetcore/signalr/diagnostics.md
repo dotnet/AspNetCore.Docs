@@ -285,7 +285,7 @@ Press p to pause, r to resume, q to quit.
     Total Connections Timed Out                 0
 ```
 
-## Additional resources
+## Related content
 
 * <xref:signalr/configuration>
 * <xref:signalr/javascript-client>

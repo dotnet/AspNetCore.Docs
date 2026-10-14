@@ -173,7 +173,7 @@ To prevent transformations of the *web.config* file, set the MSBuild property `$
 dotnet publish /p:IsWebConfigTransformDisabled=true
 ```
 
-## Additional resources
+## Related content
 
 * [Web.config Transformation Syntax for Web Application Project Deployment](/previous-versions/dd465326(v=vs.100))
 * [Web.config Transformation Syntax for Web Project Deployment Using Visual Studio](/previous-versions/aspnet/dd465326(v=vs.110))

@@ -220,7 +220,7 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/working-with-forms>
 * <xref:fundamentals/localization>

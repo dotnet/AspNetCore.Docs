@@ -162,7 +162,7 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
-## Additional resources
+## Related content
 
 * <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/index>

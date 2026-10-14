@@ -33,12 +33,6 @@ jobs:
               repo: context.repo.repo,
               labels: ["blazor-hybrid/subsvc"]
             })
-            await github.rest.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ["Blazor Hybrid"]
-            })
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,

@@ -234,7 +234,7 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app 
 
 Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
-## Additional resources
+## Related content
 
 * <xref:mvc/views/working-with-forms>
 * <xref:fundamentals/localization>

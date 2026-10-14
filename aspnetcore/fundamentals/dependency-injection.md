@@ -1111,7 +1111,7 @@ Service type | Lifetime
 <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton
 <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton
 
-## Additional resources
+## Related content
 
 * <xref:blazor/fundamentals/dependency-injection>
 * [Inject services into a SignalR hub](xref:signalr/hubs#inject-services-into-a-hub)

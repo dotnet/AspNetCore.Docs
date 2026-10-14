@@ -139,6 +139,6 @@ You're now logged in using your Microsoft credentials.
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 [Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

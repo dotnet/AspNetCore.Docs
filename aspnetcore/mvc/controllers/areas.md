@@ -218,7 +218,7 @@ All *.cshtml files and files within the *wwwroot* directory are published to out
 
 In Solution Explorer, right click the project and select **ADD > New Scaffolded Item**, then select **MVC Area**.
 
-## Additional resources
+## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 * [!INCLUDE[](~/includes/MyDisplayRouteInfoBoth.md)]

@@ -108,7 +108,7 @@ When `wasDispatchCalled` is `false`, consider what to do if the call wasn't disp
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * <xref:blazor/hybrid/tutorials/index>
 * [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui)

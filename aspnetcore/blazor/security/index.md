@@ -180,7 +180,7 @@ After choosing the server-side app template and configuring the project, select 
 
 * **None** (default): No authentication.
 * **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
-* **Microsoft identity platform**: For more information, see the links in the [Additional resources](#additional-resources) section.
+* **Microsoft identity platform**: For more information, see the links in the [Related content](#related-content) section.
 * **Windows**: Use Windows Authentication.
 
 :::moniker-end
@@ -1804,7 +1804,7 @@ PII refers any information relating to an identified or identifiable natural per
   * Cultural
   * Social identity
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-6.0"
 

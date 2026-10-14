@@ -151,7 +151,7 @@ For the previous example, the solution is to await the write task before exiting
 
 :::code language="csharp" source="~/grpc/services/PerformLongRunningWorkAsync.cs" id="snippet_StreamingFromServerWriteTask" :::
 
-## Additional resources
+## Related content
 
 * <xref:grpc/basics>
 * <xref:grpc/client>

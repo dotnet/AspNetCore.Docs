@@ -1,0 +1,13 @@
+{
+  "excludeStartingWith": [
+    "xref:",
+    "~/",
+    "/",
+    "#-",
+    "?view",
+    "ms-settings:"
+  ],
+  "excludeDirectories": [
+    ".github"
+  ]
+}

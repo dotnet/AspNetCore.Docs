@@ -1,5 +1,6 @@
 ---
 title: Facebook, Google, and external provider authentication without ASP.NET Core Identity
+ai-usage: ai-assisted
 description: Use Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/09/2026
@@ -94,7 +95,7 @@ This sample uses [Google authentication](xref:security/authentication/google-log
 
 In the `ConfigureServices` method, configure the app's authentication schemes with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>, and <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle%2A> methods:
 
-:::code language="csharp" source="social-without-identity/samples_snapshot/3.x/Startup.cs" id="snippet_ConfigureServices":::
+:::code language="csharp" source="social-without-identity/samples/snapshot/3.x/Startup.cs" id="snippet_ConfigureServices":::
 
 The call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> sets the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme>. The `DefaultScheme` is the default scheme used by the following `HttpContext` authentication extension methods:
 
@@ -108,7 +109,7 @@ Setting the app's `DefaultScheme` to <xref:Microsoft.AspNetCore.Authentication.C
 
 In `Startup.Configure`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> between calling <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property and runs the authorization middleware for requests:
 
-:::code language="csharp" source="social-without-identity/samples_snapshot/3.x/Startup.cs" id="snippet_UseAuthentication" highlight="3-4":::
+:::code language="csharp" source="social-without-identity/samples/snapshot/3.x/Startup.cs" id="snippet_UseAuthentication" highlight="3-4":::
 
 To learn more about authentication schemes, see [Authentication Concepts](xref:security/authentication/index#authentication-concepts). To learn more about cookie authentication, see <xref:security/authentication/cookie>.
 
@@ -116,13 +117,13 @@ To learn more about authentication schemes, see [Authentication Concepts](xref:s
 
 Test the app's authentication configuration by applying the [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 
-:::code language="csharp" source="social-without-identity/samples_snapshot/3.x/Pages/Privacy.cshtml.cs" id="snippet_Class" highlight="1":::
+:::code language="csharp" source="social-without-identity/samples/snapshot/3.x/Pages/Privacy.cshtml.cs" id="snippet_Class" highlight="1":::
 
 ## Sign out
 
 To sign out the current user and delete their cookie, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync%2A>. The following code adds a `Logout` page handler to the *Index* page:
 
-:::code language="csharp" source="social-without-identity/samples_snapshot/3.x/Pages/Index.cshtml.cs" id="snippet_Class" highlight="3-7":::
+:::code language="csharp" source="social-without-identity/samples/snapshot/3.x/Pages/Index.cshtml.cs" id="snippet_Class" highlight="3-7":::
 
 Notice that the call to `SignOutAsync` doesn't specify an authentication scheme. The app's `DefaultScheme` of `CookieAuthenticationDefaults.AuthenticationScheme` is used as a fallback.
 

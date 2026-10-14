@@ -1,5 +1,6 @@
 ---
 title: Custom storage providers for ASP.NET Core Identity
+ai-usage: ai-assisted
 description: Learn how to configure custom storage providers for ASP.NET Core Identity.
 ms.date: 01/29/2026
 uid: security/authentication/identity-custom-storage-providers
@@ -99,7 +100,7 @@ Stores and retrieves which roles are assigned to which users. [Example](xref:Mic
 
 In the data access classes, provide code to perform data operations for your persistence mechanism. For example, within a custom provider, you might have the following code to create a new user in the *store* class:
 
-[!code-csharp[](identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs?name=createuser&highlight=7)]
+[!code-csharp[](identity-custom-storage-providers/samples/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs?name=createuser&highlight=7)]
 
 The implementation logic for creating the user is in the `_usersTable.CreateAsync` method, shown below.
 
@@ -128,11 +129,11 @@ Create a `UserStore` class that provides the methods for all data operations on 
 * [IUserTwoFactorStore](xref:Microsoft.AspNetCore.Identity.IUserTwoFactorStore%601)
 * [IUserLockoutStore](xref:Microsoft.AspNetCore.Identity.IUserLockoutStore%601)
 
-The optional interfaces inherit from `IUserStore<TUser>`. You can see a partially implemented sample user store in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
+The optional interfaces inherit from `IUserStore<TUser>`. You can see a partially implemented sample user store in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/identity-custom-storage-providers/samples/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
 
 Within the `UserStore` class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the SQL Server with Dapper implementation, the `UserStore` class has the `CreateAsync` method which uses an instance of `DapperUsersTable` to insert a new record:
 
-[!code-csharp[](identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/DapperUsersTable.cs?name=createuser&highlight=7)]
+[!code-csharp[](identity-custom-storage-providers/samples/CustomIdentityProviderSample/CustomProvider/DapperUsersTable.cs?name=createuser&highlight=7)]
 
 ### Interfaces to implement when customizing user store
 
@@ -183,7 +184,7 @@ When implementing a role storage provider, you can create a custom role type. It
 
 The following is an example role class:
 
-[!code-csharp[](identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/ApplicationRole.cs)]
+[!code-csharp[](identity-custom-storage-providers/samples/CustomIdentityProviderSample/CustomProvider/ApplicationRole.cs)]
 
 ## Customize the role store
 
@@ -261,4 +262,4 @@ var app = builder.Build();
 * [Identity model customization](xref:security/authentication/customize_identity_model)
 * [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
 * [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/main/src/Identity): This repository includes links to community maintained store providers.
-* [View or download sample from GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample).
+* [View or download sample from GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity-custom-storage-providers/samples/CustomIdentityProviderSample).

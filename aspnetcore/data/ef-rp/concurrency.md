@@ -444,19 +444,6 @@ Delete the test department from the second tab. A concurrency error is display w
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
-## Additional resources
-
-* [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
-* [Handle concurrency in EF Core](/ef/core/saving/concurrency)
-* [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
-
-## Next steps
-
-This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](xref:data/ef-mvc/index).
-
-> [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/update-related-data)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
@@ -801,19 +788,6 @@ Delete the test department from the second tab. A concurrency error is display w
 
 [!INCLUDE[](~/includes/reliableWAP.md)]
 
-## Additional resources
-
-* [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
-* [Handle concurrency in EF Core](/ef/core/saving/concurrency)
-* [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
-
-## Next steps
-
-This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](xref:data/ef-mvc/index).
-
-> [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/update-related-data)
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
@@ -1103,7 +1077,19 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
-## Additional resources
+:::moniker-end
+
+## Related content
+
+:::moniker range=">= aspnetcore-3.0"
+
+* [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
+* [Handle concurrency in EF Core](/ef/core/saving/concurrency)
+* [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
@@ -1111,7 +1097,11 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=kcxERLnaGO0)
 * [YouTube version of this tutorial(Part 3)](https://www.youtube.com/watch?v=d4RbpfvELRs)
 
-> [!div class="step-by-step"]
-> [Previous](xref:data/ef-rp/update-related-data)
-
 :::moniker-end
+
+## Next steps
+
+This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](xref:data/ef-mvc/index).
+
+> [!div class="step-by-step"]
+> [Previous tutorial](xref:data/ef-rp/update-related-data)

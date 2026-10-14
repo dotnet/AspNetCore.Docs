@@ -216,7 +216,7 @@ As a workaround in .NET 8, you can add the `_ExtraTrimmerArgs` MSBuild property 
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
 * [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming)

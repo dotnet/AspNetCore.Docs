@@ -107,7 +107,7 @@ In order of precedence, the maximum request size for an endpoint is set by:
 > [!WARNING]
 > Disabling the request body size limit poses a security risk in regards to uncontrolled resource consumption, particularly if the request body is being buffered. Ensure that safeguards are in place to mitigate the risk of [denial-of-service](https://www.cisa.gov/uscert/ncas/tips/ST04-015) (DoS) attacks.
 
-## Additional Resources
+## Related content
 
 * <xref:fundamentals/middleware/index>
 * [Mozilla Developer Network: Content-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding)
