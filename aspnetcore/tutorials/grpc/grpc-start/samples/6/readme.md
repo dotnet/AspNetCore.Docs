@@ -1,4 +1,5 @@
 ---
+ai-usage: ai-assisted
 page_type: sample
 description: "Sample projects for a gRPC Service and gRPC client on ASP.NET Core."
 languages:
@@ -10,11 +11,11 @@ products:
 urlFragment: create-grpc-client
 ---
 
-# Create a gRPC client and server in ASP.NET Core 9
+# Create a gRPC client and server in ASP.NET Core in .NET 6
 
 This sample demonstrates a .NET [gRPC](https://grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
 
-For a tutorial on this sample see [Tutorial: Create a gRPC client and server in ASP.NET Core](https://learn.microsoft.com/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-9.0)
+For a tutorial on this sample see [Tutorial: Create a gRPC client and server in ASP.NET Core](https://learn.microsoft.com/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-6.0)
 
 ### Docs help & next steps for gRPC
 
