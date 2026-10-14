@@ -806,7 +806,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnet/mvc/overview/getting-started/introduction/sample/code-location.md",
+            "source_path": "aspnet/mvc/overview/getting-started/introduction/samples/code-location.md",
             "redirect_url": "/aspnet/mvc/overview/getting-started/introduction/",
             "redirect_document_id": false
         },
