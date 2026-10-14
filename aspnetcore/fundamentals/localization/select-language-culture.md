@@ -96,12 +96,49 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 
 ## Apply the RouteDataRequest CultureProvider
 
-The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` route value. See [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) for information on:
+The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` and `ui-culture` route values in the request URL.
 
-* Using the middleware as filters feature of ASP.NET Core.
-* How to use `RouteDataRequestCultureProvider` to set the culture of an app from the url.
+To configure `RouteDataRequestCultureProvider`, register the provider in <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> and define route patterns containing the `{culture}` route parameter:
 
-See [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/) for information on how to apply the `RouteDataRequestCultureProvider` globally.
+```csharp
+var supportedCultures = new[] { "en-US", "fr-FR", "ru" };
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("en-US")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+// Insert RouteDataRequestCultureProvider at the beginning so route data takes precedence
+localizationOptions.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider
+{
+    RouteDataStringKey = "culture",
+    UIRouteDataStringKey = "culture"
+});
+
+app.UseRequestLocalization(localizationOptions);
+```
+
+### Route templates with optional culture
+
+When using optional culture route parameters (such as `{culture?}`), requests that include a culture segment (such as `/ru/Home/Index` or `/ru/Index`) are processed by `RouteDataRequestCultureProvider`, while requests without the culture segment (such as `/Home/Index` or `/Index`) fall back to the next provider in the chain or to `DefaultRequestCulture`.
+
+**Controllers:**
+
+```csharp
+app.MapControllerRoute(
+    name: "localized",
+    pattern: "{culture=en-US}/{controller=Home}/{action=Index}/{id?}");
+```
+
+**Razor Pages:**
+
+In Razor Pages, you can configure route templates to accept an optional `{culture?}` prefix using the `@page` directive on individual pages:
+
+```razor
+@page "{culture?}"
+```
+
+For more information, see [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) and [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/).
 
 ## Use a custom provider
 
