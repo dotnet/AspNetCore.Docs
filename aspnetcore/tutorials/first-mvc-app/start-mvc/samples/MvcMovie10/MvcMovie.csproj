@@ -8,7 +8,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.Extensions.Validation" Version="10.0.0" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
