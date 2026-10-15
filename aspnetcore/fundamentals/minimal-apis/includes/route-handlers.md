@@ -1,3 +1,6 @@
+---
+ai-usage: ai-assisted
+---
 Route handlers are methods that execute when the route matches. Route handlers can be a lambda expression, a local function, an instance method, or a static method. Route handlers can be synchronous or asynchronous.
 
 The following sections provide examples of different route handlers.
@@ -79,7 +82,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/todos/{id:int}", (int id) => db.Todos.Find(id));
-app.MapGet("/todos/{text}", (string text) => db.Todos.Where(t => t.Text.Contains(text));
+app.MapGet("/todos/{text}", (string text) => db.Todos.Where(t => t.Text.Contains(text)));
 app.MapGet("/posts/{slug:regex(^[a-z0-9_-]+$)}", (string slug) => $"Post {slug}");
 
 app.Run();
