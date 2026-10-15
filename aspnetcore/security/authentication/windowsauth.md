@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to configure Windows Authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
 ms.ai: assisted
-ms.date: 09/18/2026
+ms.date: 10/13/2026
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -170,6 +170,16 @@ The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.
 
 > [!WARNING]
 > Credentials can be persisted across requests on a connection. *Negotiate authentication must not be used with proxies unless the proxy maintains a 1:1 connection affinity (a persistent connection) with Kestrel.*
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Negotiate authentication on Kestrel binds the authentication exchange to the connection using the [TLS endpoint channel binding token](xref:System.Security.Authentication.ExtendedProtection.ChannelBinding) for HTTPS connections. The handler supplies the token to the underlying Kerberos or NTLM exchange and retains it across multi-round authentication, which helps mitigate NTLM relay and man-in-the-middle attacks. No configuration is required. Non-HTTPS connections, and HTTPS connections where a channel binding token isn't available, continue to use the previous behavior.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it is enabled. If the server supports Windows Authentication but it is disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards authentication requests to it.
