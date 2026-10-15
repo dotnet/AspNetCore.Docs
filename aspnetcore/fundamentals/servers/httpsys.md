@@ -146,7 +146,7 @@ By customizing the security descriptor, you can allow or deny specific users or 
 
 For example, the following code allows all authenticated users but denies guests:
 
-[!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/10.x/HttpSysConfig/Program.cs)]
+[!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/10.x/HttpSysConfig/Program.cs)]
 
 The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues.
 
@@ -367,15 +367,15 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 [!INCLUDE[](includes/memory-eviction2.md)]
 
-## Additional resources
+:::moniker-end
+
+[!INCLUDE [httpsys5-7](~/fundamentals/servers/httpsys/includes/httpsys5-7.md)]
+[!INCLUDE [httpsys8-9](~/fundamentals/servers/httpsys/includes/httpsys8-9.md)]
+
+## Related content
 
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
-
-:::moniker-end
-
-[!INCLUDE [httpsys5-7](~/fundamentals/servers/httpsys/includes/httpsys5-7.md)]
-[!INCLUDE [httpsys8-9](~/fundamentals/servers/httpsys/includes/httpsys8-9.md)]

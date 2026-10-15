@@ -725,7 +725,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
-## Additional resources
+## Related content
 
 * [Deployment to Azure App Service](xref:security/authentication/identity/spa#deploy-to-production)
 * [Import a certificate from Key Vault (Azure documentation)](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)

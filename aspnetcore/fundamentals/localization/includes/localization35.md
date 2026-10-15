@@ -29,17 +29,6 @@ Globalizing and localizing an app involves the following tasks:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-## Additional resources
-
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/localization/select-language-culture>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-5.0"
@@ -191,17 +180,17 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
 
-### RootNamespaceAttribute 
+### RootNamespaceAttribute
 
-The <xref:Microsoft.Extensions.Localization.RootNamespaceAttribute> attribute provides the root namespace of an assembly when the root namespace of an assembly is different than the assembly name. 
+The <xref:Microsoft.Extensions.Localization.RootNamespaceAttribute> attribute provides the root namespace of an assembly when the root namespace of an assembly is different than the assembly name.
 
 > [!WARNING]
-> This can occur when a project's name is not a valid .NET identifier. For instance `my-project-name.csproj` will use the root namespace `my_project_name` and the assembly name `my-project-name` leading to this error. 
+> This can occur when a project's name is not a valid .NET identifier. For instance `my-project-name.csproj` will use the root namespace `my_project_name` and the assembly name `my-project-name` leading to this error.
 
 If the root namespace of an assembly is different than the assembly name:
 
 * Localization does not work by default.
-* Localization fails due to the way resources are searched for within the assembly. `RootNamespace` is a build-time value which is not available to the executing process. 
+* Localization fails due to the way resources are searched for within the assembly. `RootNamespace` is a build-time value which is not available to the executing process.
 
 If the `RootNamespace` is different from the `AssemblyName`, include the following in `AssemblyInfo.cs` (with parameter values replaced with the actual values):
 
@@ -345,7 +334,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 ```csharp
     app.UseRequestLocalization(options =>
     {
-        var questStringCultureProvider = options.RequestCultureProviders[0];    
+        var questStringCultureProvider = options.RequestCultureProviders[0];
         options.RequestCultureProviders.RemoveAt(0);
         options.RequestCultureProviders.Insert(1, questStringCultureProvider);
     });
@@ -399,13 +388,5 @@ Terms:
 [!INCLUDE[](~/includes/localization/currency.md)]
 
 [!INCLUDE[](~/includes/localization/unsupported-culture-log-level.md)]
-
-## Additional resources
-
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end

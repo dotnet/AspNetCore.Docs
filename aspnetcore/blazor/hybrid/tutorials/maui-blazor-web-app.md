@@ -811,7 +811,7 @@ If the solution also targets WebAssembly via a `.Web.Client` project, an impleme
 
 You can also use compiler preprocessor directives in your RCL to implement different UI depending on the device the app is running on. For this scenario, the app must multi-target the RCL just like the MAUI app does. For an example, see the [`BethMassi/BethTimeUntil` GitHub repository](https://github.com/BethMassi/BethTimeUntil).
 
-## Additional resources
+## Related content
 
 * <xref:blazor/hybrid/security/index?pivots=maui>
 * <xref:blazor/components/render-modes>

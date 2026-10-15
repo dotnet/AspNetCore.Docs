@@ -368,7 +368,7 @@ Attribute | Type | Description | Examples | Presence
 `signalr.connection.status` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | Always
 `signalr.transport` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | Always
 
-## Additional resources
+## Related content
 
 * <xref:metrics/built-in>
 * <xref:metrics/diagnostics>

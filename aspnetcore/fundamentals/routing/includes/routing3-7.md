@@ -1025,10 +1025,6 @@ This behavior makes the authorization middleware useful outside of routing and f
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-
 :::moniker-end
 
 :::moniker range="= aspnetcore-6.0"
@@ -2045,10 +2041,6 @@ As an example of this guideline, consider the authorization middleware. A config
 This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 [!INCLUDE[](~/includes/dbg-route.md)]
-
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 :::moniker-end
 

@@ -154,7 +154,7 @@ In the app's project file (`.csproj`), add the following after the existing `<Ma
            Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' And ('$(PlatformTarget)' == 'ARM64')" />
 ```
 
-## Additional resources
+## Related content
 
 * <xref:blazor/hybrid/security/index>
 * <xref:blazor/security/index>

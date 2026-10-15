@@ -75,7 +75,7 @@ Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.A
 
 For information on how to require authentication for all app users, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
 
-## Additional resources
+## Related content
 
 * <xref:security/authorization/simple>
 * <xref:razor-pages/security/authorization/simple>

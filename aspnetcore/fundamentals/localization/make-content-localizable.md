@@ -18,7 +18,7 @@ One task for localizing an app is to wrap localizable content with code that fac
 
 ## `IStringLocalizer`
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development.  
+<xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development.
 
 The following code example shows how to wrap the string "About Title" for localization.
 
@@ -136,7 +136,7 @@ The integration doesn't apply to MVC and Razor Pages apps. For those frameworks,
 
 Localization services are configured in `Program.cs`:
 
-[!code-csharp[](~/fundamentals/localization/samples/6.x/Localization/program.cs?name=snippet_LocalizationConfigurationServices)]
+[!code-csharp[](~/fundamentals/localization/samples/6.x/Localization/Program.cs?name=snippet_LocalizationConfigurationServices)]
 
 * <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
 
@@ -153,7 +153,7 @@ Localizing an app also involves the following tasks:
 * [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
 * [Implement a strategy to select the language/culture for each request](xref:fundamentals/localization/select-language-culture)
 
-## Additional resources
+## Related content
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)

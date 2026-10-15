@@ -632,7 +632,7 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 
 :::moniker-end
 
-## Additional resources
+## Related content
 
 :::moniker range=">= aspnetcore-11.0"
 

@@ -806,7 +806,7 @@ For more information on Azure data storage options, see the following:
 
 For more information, see <xref:blazor/state-management/protected-browser-storage>.
 
-## Additional resources
+## Related content
 
 * [State management using the URL](xref:blazor/state-management/index#url)
 * [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)

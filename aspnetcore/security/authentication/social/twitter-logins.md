@@ -104,6 +104,6 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 * Set the `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
 
-## Additional resources
+## Related content
 
 [Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)

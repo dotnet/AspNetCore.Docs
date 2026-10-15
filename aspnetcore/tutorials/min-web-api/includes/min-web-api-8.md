@@ -298,7 +298,7 @@ The POST endpoint will be used to add data to the app.
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post resonse](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
+  ![Swagger with Post response](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
