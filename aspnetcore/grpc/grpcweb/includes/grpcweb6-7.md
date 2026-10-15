@@ -24,7 +24,7 @@ To enable gRPC-Web with an ASP.NET Core gRPC service:
 * Add a reference to the [`Grpc.AspNetCore.Web`](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
 * Configure the app to use gRPC-Web by adding `UseGrpcWeb` and `EnableGrpcWeb` to `Program.cs`:
 
-:::code language="csharp" source="~/grpc/grpcweb/sample/7.x/GrpcGreeter/Program.cs" id="snippet_WebEnable" highlight="9,11":::
+:::code language="csharp" source="~/grpc/grpcweb/samples/7.x/GrpcGreeter/Program.cs" id="snippet_WebEnable" highlight="9,11":::
 
 The preceding code:
 
@@ -33,7 +33,7 @@ The preceding code:
 
 Alternatively, the gRPC-Web middleware can be configured so that all services support gRPC-Web by default and `EnableGrpcWeb` isn't required. Specify `new GrpcWebOptions { DefaultEnabled = true }` when the middleware is added.
 
-:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableAllServices" highlight="9":::
+:::code language="csharp" source="~/grpc/grpcweb/samples/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableAllServices" highlight="9":::
 
 > [!NOTE]
 > There is a known issue that causes gRPC-Web to fail when [hosted by HTTP.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
@@ -46,7 +46,7 @@ Browser security prevents a web page from making requests to a different domain 
 
 To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders%2A>.
 
-:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableCORS" highlight="7-13,18,21":::
+:::code language="csharp" source="~/grpc/grpcweb/samples/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableCORS" highlight="7-13,18,21":::
 
 The preceding code:
 
@@ -106,7 +106,7 @@ To use gRPC-Web:
 * Ensure the reference to [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) package is version 2.29.0 or later.
 * Configure the channel to use the `GrpcWebHandler`:
 
-:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeterClient/Program.cs" id="snippet_Handler":::
+:::code language="csharp" source="~/grpc/grpcweb/samples/8.x/GrpcGreeterClient/Program.cs" id="snippet_Handler":::
 
 The preceding code:
 

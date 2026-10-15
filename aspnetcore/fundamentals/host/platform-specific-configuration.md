@@ -26,7 +26,7 @@ The entry assembly or the assembly containing the `Startup` class is automatical
 
 In the following example, the namespace of the hosting startup assembly is `StartupEnhancement`. The class containing the hosting startup code is `StartupEnhancementHostingStartup`:
 
-[!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet1)]
+[!code-csharp[](platform-specific-configuration/samples/snapshot/3.x/StartupEnhancement.cs?name=snippet1)]
 
 The `HostingStartup` attribute is typically located in the hosting startup assembly's `IHostingStartup` implementation class file.
 
@@ -144,19 +144,19 @@ In the creation of a dynamic hosting startup:
 
 The console app references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
-[!code-xml[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.csproj)]
+[!code-xml[](platform-specific-configuration/samples/snapshot/3.x/StartupEnhancement.csproj)]
 
 A [HostingStartup](xref:Microsoft.AspNetCore.Hosting.HostingStartupAttribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the <xref:Microsoft.AspNetCore.Hosting.IWebHost>. In the following example, the namespace is `StartupEnhancement`, and the class is `StartupEnhancementHostingStartup`:
 
-[!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet1)]
+[!code-csharp[](platform-specific-configuration/samples/snapshot/3.x/StartupEnhancement.cs?name=snippet1)]
 
 A class implements `IHostingStartup`. The class's <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> method uses an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> to add enhancements to an app. `IHostingStartup.Configure` in the hosting startup assembly is called by the runtime before `Startup.Configure` in user code, which allows user code to overwrite any configuration provided by the hosting startup assembly.
 
-[!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
+[!code-csharp[](platform-specific-configuration/samples/snapshot/3.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
 When building an `IHostingStartup` project, the dependencies file (`.deps.json`) sets the `runtime` location of the assembly to the *bin* folder:
 
-[!code-json[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
+[!code-json[](platform-specific-configuration/samples/snapshot/3.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
 Only part of the file is shown. The assembly name in the example is `StartupEnhancement`.
 
@@ -462,7 +462,7 @@ The entry assembly or the assembly containing the `Startup` class is automatical
 
 In the following example, the namespace of the hosting startup assembly is `StartupEnhancement`. The class containing the hosting startup code is `StartupEnhancementHostingStartup`:
 
-[!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
+[!code-csharp[](platform-specific-configuration/samples/snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
 
 The `HostingStartup` attribute is typically located in the hosting startup assembly's `IHostingStartup` implementation class file.
 
@@ -550,19 +550,19 @@ In the creation of a dynamic hosting startup:
 
 The console app references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
-[!code-xml[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.csproj)]
+[!code-xml[](platform-specific-configuration/samples/snapshot/2.x/StartupEnhancement.csproj)]
 
 A [HostingStartup](xref:Microsoft.AspNetCore.Hosting.HostingStartupAttribute) attribute identifies a class as an implementation of `IHostingStartup` for loading and execution when building the <xref:Microsoft.AspNetCore.Hosting.IWebHost>. In the following example, the namespace is `StartupEnhancement`, and the class is `StartupEnhancementHostingStartup`:
 
-[!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
+[!code-csharp[](platform-specific-configuration/samples/snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
 
 A class implements `IHostingStartup`. The class's <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> method uses an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> to add enhancements to an app. `IHostingStartup.Configure` in the hosting startup assembly is called by the runtime before `Startup.Configure` in user code, which allows user code to overwrite any configuration provided by the hosting startup assembly.
 
-[!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
+[!code-csharp[](platform-specific-configuration/samples/snapshot/2.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
 When building an `IHostingStartup` project, the dependencies file (`.deps.json`) sets the `runtime` location of the assembly to the *bin* folder:
 
-[!code-json[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
+[!code-json[](platform-specific-configuration/samples/snapshot/2.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
 Only part of the file is shown. The assembly name in the example is `StartupEnhancement`.
 
