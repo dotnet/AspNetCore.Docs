@@ -225,7 +225,12 @@ public signOut() {
     withCredentials: true,
     observe: 'response',
     responseType: 'text'
+  });
+}
 ```
+
+> [!NOTE]
+> `SignInManager.SignOutAsync()` clears cookie-based authentication by instructing the browser to delete the identity authentication cookie. Calling `SignOutAsync()` does **not** invalidate stateless Bearer tokens on the server. When using token-based authentication (Bearer tokens), the client application must discard the access and refresh tokens from memory or client storage to complete sign-out. Issued Bearer tokens remain valid until their expiration (`BearerTokenExpiration`) unless custom server-side revocation or security stamp validation is implemented.
 
 ## SignOut everywhere
 
