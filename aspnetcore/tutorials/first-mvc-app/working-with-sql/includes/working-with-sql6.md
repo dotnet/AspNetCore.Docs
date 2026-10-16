@@ -106,7 +106,7 @@ Replace the contents of `Program.cs` with the following code. The new code is hi
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/Program.cs?name=SQLServerSeedData&highlight=4,16-21)]
 
-Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
+If the database already contains records, delete them so the seed initializer will run. You can do this with the delete links in the browser or from SSOX.
 
 Test the app. Force the app to initialize, calling the code in the `Program.cs` file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
 
@@ -116,7 +116,7 @@ Update `Program.cs` with the following highlighted code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/Program.cs?name=SQLiteSeedData&highlight=4,16-21)]
 
-Delete all the records in the database.
+If the database already contains records, delete them so the seed initializer will run.
 
 Test the app. Stop it and restart it so the `SeedData.Initialize` method runs and seeds the database.
 
