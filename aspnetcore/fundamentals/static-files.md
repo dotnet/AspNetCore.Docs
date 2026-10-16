@@ -558,7 +558,7 @@ In the `Program` file:
 
 Both endpoints validate stored file names with the following helper:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/static-files/9.0/StaticFileAuth/Program.cs" range="180-184":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/static-files/9.0/StaticFileAuth/Program.cs" range="3,180-184":::
 
 The upload endpoint uses buffered model binding. For large files, use streaming instead. For more information, see <xref:mvc/models/file-uploads#upload-large-files-with-streaming>.
 
