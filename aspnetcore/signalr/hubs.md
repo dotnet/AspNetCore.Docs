@@ -202,7 +202,7 @@ Using `Hub<IChatClient>` enables compile-time checking of the client methods. Th
 
 ## Request client results
 
-In addition to making calls to clients, the server can request a result from a client. In this scenario, the server uses the `ISingleClientProxy.InvokeAsync` method and the client returns a result from its `.On` handler.
+In addition to making calls to clients, the server can request a result from a client. In this scenario, the server uses the `ISingleClientProxy.InvokeAsync` method and the client returns a result from its `.On` handler. Pass a <xref:System.Threading.CancellationToken> that limits how long the server waits for a result. The following examples use a 30-second cancellation token.
 
 There are two ways to use the API on the server.
 
@@ -213,8 +213,11 @@ public class ChatHub : Hub
 {
     public async Task<string> WaitForMessage(string connectionId)
     {
+        using var cancellationTokenSource =
+            new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
         var message = await Clients.Client(connectionId).InvokeAsync<string>(
-            "GetMessage");
+            "GetMessage", cancellationTokenSource.Token);
         return message;
     }
 }
@@ -225,8 +228,11 @@ Or, you can call `Client(...)` on an instance of [IHubContext\<T>](xref:signalr/
 ```csharp
 async Task SomeMethod(IHubContext<MyHub> context)
 {
+    using var cancellationTokenSource =
+        new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
     string result = await context.Clients.Client(connectionID).InvokeAsync<string>(
-        "GetMessage");
+        "GetMessage", cancellationTokenSource.Token);
 }
 ```
 

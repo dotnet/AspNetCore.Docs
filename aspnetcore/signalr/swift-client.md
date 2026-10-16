@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core SignalR Swift client
+ai-usage: ai-assisted
 description: Overview of the ASP.NET Core SignalR Swift client library.
 ms.custom: devx-track-swift
 ms.date: 03/20/2025
@@ -126,7 +127,11 @@ public class ChatHub : Hub
 {
     public async Task TriggerClientResult()
     {
-        var message = await Clients.Client(connectionId).InvokeAsync<string>("ClientResult");
+        using var cancellationTokenSource =
+            new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
+        var message = await Clients.Client(connectionId).InvokeAsync<string>(
+            "ClientResult", cancellationTokenSource.Token);
     }
 }
 ```
