@@ -75,11 +75,7 @@ In this section, you scaffold the movie model. The scaffolding tool generates pa
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Create the *Pages/MoviePages* folder:
-   1. Right-click on the *Pages* folder > **Add** > **New Folder**.
-   1. Name the folder *MoviePages*.
-
-1. Right-click on the *Pages/MoviePages* folder > **Add** > **New Scaffolded Item**.
+1. Right-click on the **Pages** folder. Select **Add** > **New Scaffolded Item**.
 
   :::image type="content" source="~/tutorials/razor-pages/model/media/new-scaffolded-item-vs2026.png" alt-text="New Scaffolded Item.":::
 
