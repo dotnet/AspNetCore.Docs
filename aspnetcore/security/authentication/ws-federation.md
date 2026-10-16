@@ -20,6 +20,34 @@ By default, the new middleware:
 * Doesn't allow unsolicited logins. This feature of the WS-Federation protocol is vulnerable to XSRF attacks. However, it can be enabled with the `AllowUnsolicitedLogins` option.
 * Doesn't check every form post for sign-in messages. Only requests to the `CallbackPath` are checked for sign-ins. `CallbackPath` defaults to `/signin-wsfed` but can be changed via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions> class. This path can be shared with other authentication providers by enabling the <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.SkipUnrecognizedRequests%2A> option.
 
+## Remote sign-out
+
+The middleware processes a `wsignoutcleanup1.0` message received at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType> by signing out the local session. The cleanup message doesn't include a signature or session identifier, so the middleware can't verify that it came from the identity provider. By default, `RemoteSignOutPath` is `/signin-wsfed`; a request from any origin that reaches this path can trigger the sign-out.
+
+If the app doesn't need identity-provider-initiated sign-out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty%2A?displayProperty=nameWithType>:
+
+```csharp
+options.RemoteSignOutPath = PathString.Empty;
+```
+
+Microsoft Entra ID sends cleanup messages to a reply URL that isn't deterministic, so disabling remote sign-out is generally the practical choice when using Entra ID. If the app needs remote sign-out, use <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationEvents.OnRemoteSignOut%2A?displayProperty=nameWithType> to filter requests based on the headers your identity provider actually sends. For example:
+
+```csharp
+options.Events.OnRemoteSignOut = context =>
+{
+    var referer = context.Request.Headers["Referer"].ToString();
+    if (!referer.StartsWith("https://adfs.contoso.com/", StringComparison.OrdinalIgnoreCase))
+    {
+        // Reject missing Referer headers and requests from other origins.
+        context.HandleResponse();
+    }
+
+    return Task.CompletedTask;
+};
+```
+
+The missing `Referer` is rejected deliberately, and the trailing `/` prevents matching look-alike host names. This filter uses request metadata, not cryptographic authentication; non-browser clients can forge headers. Before enforcing a filter, check which headers the identity provider sends in an actual cleanup request, including `Referer`, `Sec-Fetch-Dest`, and `Sec-Fetch-Site`. For iframe- or image-based cleanup, the authentication cookie generally needs `SameSite=None` and `Secure` so the browser sends it.
+
 ## Register the app with Active Directory
 
 ### Active Directory Federation Services
