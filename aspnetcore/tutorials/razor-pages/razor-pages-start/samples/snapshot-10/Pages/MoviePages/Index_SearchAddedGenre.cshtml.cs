@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.PagePages.Movies
+namespace RazorPagesMovie.Pages.MoviePages
 {
     public class IndexModel : PageModel
     {
