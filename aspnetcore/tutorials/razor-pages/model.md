@@ -227,7 +227,7 @@ The name of the connection string is passed to the context by calling a method o
 
 ## Test the app
 
-1. Run the app and append `/MoviePages` to the URL in the browser (`http://localhost:port/movies`).
+1. Run the app and append `/MoviePages` to the URL in the browser (`http://localhost:<port>/MoviePages`).
 
    If you receive the following error:
 
