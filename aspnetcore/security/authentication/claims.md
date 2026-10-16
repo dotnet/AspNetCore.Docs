@@ -82,7 +82,7 @@ If you need to disable the namespaces per scheme and not globally, you can use t
 
 ## Extend or add custom claims using 'IClaimsTransformation'
 
-The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method, <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>. This method might be called multiple times. Only add a new claim if it doesn't already exist in the `ClaimsPrincipal`. A `ClaimsIdentity` object is created to add the new claims and it can be added to the `ClaimsPrincipal`.
+The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method, <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>.
 
 [!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/MyClaimsTransformation.cs)]
 
@@ -91,6 +91,11 @@ The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface a
 ```csharp
 builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
+
+> [!NOTE]
+> * **When it is called:** `IClaimsTransformation.TransformAsync` is called by the authentication service only after a successful authentication (`AuthenticateResult.Success`). If authentication fails or no user is authenticated, `TransformAsync` is not called.
+> * **Multiple invocations:** `TransformAsync` can be called multiple times for a single request when authentication is evaluated more than once (such as by authentication middleware, authorization checks, or calls to `AuthenticateAsync`). Ensure transformations are idempotent; always verify whether a claim already exists before adding it.
+> * **Single registration:** ASP.NET Core resolves only a single `IClaimsTransformation` implementation from the dependency injection container. Registering multiple implementations replaces prior registrations rather than chaining them.
 
 <!-- see https://github.com/dotnet/AspNetCore.Docs/issues/26032
 ## Extend or add custom claims in ASP.NET Core Identity
