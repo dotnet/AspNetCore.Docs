@@ -2,8 +2,8 @@
 title: Part 3, add a view to an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 3 of tutorial series on ASP.NET Core MVC.
-ms.date: 01/22/2026
 monikerRange: '>= aspnetcore-3.1'
+ms.date: 01/22/2026
 uid: tutorials/first-mvc-app/adding-view
 ---
 
@@ -91,7 +91,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 
 Replace the content of the `Views/Shared/_Layout.cshtml` file with the following markup. The changes are highlighted:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Views/Shared/_Layout.cshtml?highlight=6,15,41)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Views/Shared/_Layout.cshtml?highlight=6,15,41)]
 
 The preceding markup made the following changes:
 
@@ -173,7 +173,7 @@ In `HelloWorldController.cs`, change the `Welcome` method to add a `Message` and
 
 The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
 
 The `ViewData` dictionary object contains data that will be passed to the view.
 
