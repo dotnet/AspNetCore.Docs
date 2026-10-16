@@ -160,9 +160,9 @@ For the message lookup key conventions, custom message formatting, and loading m
 
 Route handlers support the following types of return values:
 
-* `IResult` based: Includes `Task<IResult>` and `ValueTask<IResult>`.
-* `string`: Includes `Task<string>` and `ValueTask<string>`.
-* `T` (Any other type): Includes `Task<T>` and `ValueTask<T>`.
+* `IResult` based: Includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`.
+* `string`: Includes `Task<string>`, `ValueTask<string>`, and F# `Async<string>`.
+* `T` (Any other type): Includes `Task<T>`, `ValueTask<T>`, and F# `Async<'T>`.
 
 Return value | Behavior | Content-Type
 --- | --- | ---
