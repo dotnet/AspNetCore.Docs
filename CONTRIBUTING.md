@@ -1,12 +1,3 @@
----
-title: Contribute to the ASP.NET Core documentation
-ai-usage: ai-assisted
-author: gewarren
-description: Learn how to contribute articles and code samples to the ASP.NET Core documentation.
-ms.author: gewarren
-ms.date: 10/15/2026
----
-
 # Contribute to the ASP.NET Core documentation
 
 This document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://learn.microsoft.com/aspnet/). Typo corrections and new articles are welcome contributions.
