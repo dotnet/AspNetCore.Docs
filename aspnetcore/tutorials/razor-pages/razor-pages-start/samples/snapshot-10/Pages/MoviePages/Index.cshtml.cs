@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.MoviePages
 {
     // <snippet2FirstGenerated>
     public class IndexModel : PageModel
@@ -44,7 +44,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.MoviePages
 {
     // <snippet_search_newProps>
     public class IndexModel : PageModel
@@ -103,7 +103,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.MoviePages
 {
     // <snippet2>
     public class IndexModel : PageModel
