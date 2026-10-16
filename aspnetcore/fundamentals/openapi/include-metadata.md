@@ -377,7 +377,7 @@ app.MapPost("/filecontentresult", () =>
 .Produces<FileContentResult>(contentType: MediaTypeNames.Application.Octet);
 ```
 
-This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type. The other file result types behave identically, each with a component schema named after the type — for example, `FileStreamHttpResult`.
+This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type. The other file result types behave identically, each with a component schema named after the type—for example, `FileStreamHttpResult`.
 
 The generated OpenAPI document describes the endpoint response as:
 
@@ -496,7 +496,7 @@ public IActionResult PostFileContentResult()
 }
 ```
 
-This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`. <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> behaves identically and produces a `FileStreamResult` component schema.
+This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses) with `FileContentResult` defined as `type: string` and `format: binary`. <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> behaves identically and produces a `FileStreamResult` component schema.
 
 ---
 

@@ -280,11 +280,7 @@ the CLR type of the content in the file result in order to get the desired OpenA
 
 In particular, there are three common schemas for file results:
 
-- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
-  The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
-  this type to the `binary` format in the OpenAPI schema. For a worked example that shows the
-  generated OpenAPI document for a binary response, see
-  [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
+- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
   <!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented -->
 - **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
 - **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
@@ -293,7 +289,7 @@ In particular, there are three common schemas for file results:
 
 :::moniker range=">= aspnetcore-11.0"
 
-Starting in .NET 11, the file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
+The file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
 
 ```csharp
 app.MapGet("/report", () => TypedResults.File(pdfStream, MediaTypeNames.Application.Pdf))
