@@ -788,7 +788,7 @@ The generated document marks the operation, its response schema, and the `Sku` p
 
 A deprecated property is marked even when its schema is emitted as a component and referenced with `$ref`.
 
-Because the marker is derived from `[Obsolete]`, an app that already uses the attribute sees `deprecated: true` appear in its generated document after upgrading, without any code change.
+Because the marker is derived from `[Obsolete]`, an app that already uses the attribute sees `deprecated: true` appear in its generated document after upgrading without any code change.
 
 To control the value for a specific API rather than deriving it, use a transformer: an <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer> can set or clear `operation.Deprecated`, and an <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer> can do the same for a schema. For more information, see [Use operation transformers](xref:fundamentals/openapi/customize-openapi#use-operation-transformers) and [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers).
 

@@ -109,7 +109,7 @@ Operation transformers can also be added to specific endpoint with the <xref:Mic
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> A transformer isn't needed just to mark an API deprecated. Applying <xref:System.ObsoleteAttribute> sets `deprecated: true` on the operation, and also on the response schema and any obsolete properties. Use an operation transformer when the OpenAPI value must differ from what `[Obsolete]` produces. For more information, see [Mark APIs as deprecated](xref:fundamentals/openapi/include-metadata#mark-apis-as-deprecated).
+> A transformer isn't needed just to mark an API deprecated. Applying <xref:System.ObsoleteAttribute> sets `deprecated: true` on the operation, the response schema, and any obsolete properties. Use an operation transformer when the OpenAPI value must differ from what `[Obsolete]` produces. For more information, see [Mark APIs as deprecated](xref:fundamentals/openapi/include-metadata#mark-apis-as-deprecated).
 
 :::moniker-end
 
