@@ -3,7 +3,7 @@ title: Validation in ASP.NET Core
 ai-usage: ai-assisted
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 09/23/2026
+ms.date: 10/16/2026
 uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
@@ -632,22 +632,6 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-11.0"
-
-## Upgrading from the experimental API in .NET 10
-
-<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> were published as *experimental* in .NET 10. As of .NET 11, they aren't experimental. Referencing them from any project, including a plain class library that uses the `Microsoft.NET.Sdk` SDK, no longer produces the `ASP0029` code analysis warning.
-
-Apps upgrading from .NET 10 can remove the workarounds that warning required:
-
-* Delete `#pragma warning disable ASP0029` and `#pragma warning restore ASP0029` directives around uses of the attributes.
-* Remove `ASP0029` from any `<NoWarn>` property in the project file.
-* Replace any locally declared `Microsoft.Extensions.Validation.Embedded.ValidatableType` or `Microsoft.Extensions.Validation.Embedded.SkipValidation` attribute with the real <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>, and remove the `global using Microsoft.Extensions.Validation.Embedded;` statement or the `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item that made it visible.
-
-Leaving the suppressions in place is harmless, so an upgraded app doesn't fail because of them. Removing them keeps the project free of suppressions that no longer correspond to a diagnostic.
-
-:::moniker-end
-
 ## Related content
 
 :::moniker range=">= aspnetcore-11.0"
@@ -655,6 +639,7 @@ Leaving the suppressions in place is harmless, so an upgraded app doesn't fail b
 * <xref:blazor/forms/validation>
   * <xref:blazor/forms/validation-client-side>
   * <xref:blazor/forms/validation-advanced>
+* [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
 * <xref:fundamentals/minimal-apis>
   * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
 * <xref:fundamentals/localization/make-content-localizable>
