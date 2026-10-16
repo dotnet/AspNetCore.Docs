@@ -15,9 +15,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In the following sections, you add the ability to search movies by *genre* or *name*.
 
-Add the following highlighted code to `Pages/Movies/Index.cshtml.cs`:
+Add the following highlighted code to `Pages/MoviePages/Index.cshtml.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml.cs?name=snippet_search_newProps&highlight=12-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index.cshtml.cs?name=snippet_search_newProps&highlight=12-18)]
 
 In the previous code:
 
@@ -28,19 +28,19 @@ In the previous code:
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-Update the `Movies/Index` page's `OnGetAsync` method with the following code:
+Update the `MoviePages/Index` page's `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml.cs?name=snippet_search_1stSearch)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index.cshtml.cs?name=snippet_search_1stSearch)]
 
 The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml.cs?name=snippet_search_linq)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index.cshtml.cs?name=snippet_search_linq)]
 
 The query is only ***defined*** at this point. It isn't run against the database.
 
 If the `SearchString` property isn't `null` or empty, the movies query is modified to filter on the search string:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index.cshtml.cs?name=snippet_search_SearchNull)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index.cshtml.cs?name=snippet_search_SearchNull)]
 
 The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains`. LINQ queries aren't executed when you define them or when you modify them by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called. For more information, see [Query Execution](/dotnet/csharp/linq/get-started/introduction-to-linq-queries#deferred).
 
@@ -51,11 +51,11 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 > * [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
 > * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
-Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:7247/Movies?searchString=Ghost`. The filtered movies are displayed.
+Navigate to the MoviePages page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:7247/MoviePages?searchString=Ghost`. The filtered movies are displayed.
 
 :::image type="content" source="~/tutorials/razor-pages/search/media/search-string-ghost.png" alt-text="Index view with the search string ghost in the URL and a returned movie list.":::
 
-If you add the following route template to the Index page, you can pass the search string as a URL segment. For example, `https://localhost:7247/Movies/Ghost`.
+If you add the following route template to the Index page, you can pass the search string as a URL segment. For example, `https://localhost:7247/MoviePages/Ghost`.
 
 ```cshtml
 @page "{searchString?}"
@@ -65,17 +65,17 @@ The preceding route constraint allows searching the title as route data (a URL s
 
 :::image type="content" source="~/tutorials/razor-pages/search/media/ghost-title-route-data.png" alt-text="Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2.":::
 
-The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:7247/Movies/Ghost`). Model binding isn't case sensitive.
+The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:7247/MoviePages/Ghost`). Model binding isn't case sensitive.
 
 However, users can't be expected to modify the URL to search for a movie. In this step, you add UI to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
-Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the following code:
+Open the `Pages/MoviePages/Index.cshtml` file, and add the markup highlighted in the following code:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index_SearchAddedTitle.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index_SearchAddedTitle.cshtml?highlight=14-19&range=1-22)]
 
 The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
 
-* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When you submit the form, it sends the filter string to the *Pages/Movies/Index* page through the query string.
+* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When you submit the form, it sends the filter string to the *Pages/MoviePages/Index* page through the query string.
 * [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 Save your changes and test the filter.
@@ -84,23 +84,23 @@ Save your changes and test the filter.
 
 ## Search by genre
 
-Update the `Movies/Index.cshtml.cs` page `OnGetAsync` method with the following code:
+Update the `MoviePages/Index.cshtml.cs` page `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?range=30-55)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index_SearchAddedGenre.cshtml.cs?range=30-55)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_linqQuery)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_linqQuery)]
 
 The `SelectList` of genres is created by projecting the distinct genres:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_selectList)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_selectList)]
 
 ### Add search by genre to the Razor Page
 
 Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Index_SearchAddedGenre.cshtml?highlight=16-18&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index_SearchAddedGenre.cshtml?highlight=16-18&range=1-22)]
 
 Test the app by searching by genre, by movie title, and by both:
 

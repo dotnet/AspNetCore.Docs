@@ -28,6 +28,6 @@ This series includes the following tutorials:
 
 At the end, you'll have an app that can display and manage a database of movies.
 
-:::image type="content" source="~/tutorials/razor-pages/search/media/search-string-ghost.png" alt-text="Sample page of sample app.":::
+:::image type="content" source="~/tutorials/razor-pages/search/media/search-string-ghost2.png" alt-text="Sample page of sample app.":::
 
 :::image type="content" source="~/tutorials/razor-pages/validation/media/validation-errors.png" alt-text="Sample edit validation of sample app.":::
