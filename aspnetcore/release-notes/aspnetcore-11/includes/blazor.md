@@ -1305,3 +1305,9 @@ var restoredBlocks = await agent.RestoreAsync();
 ```
 
 Passing a thread to `UIAgent` enables new completed turns to be persisted but doesn't automatically restore earlier turns. For MAF-hosted AG-UI agents, see [AG-UI conversation continuity](/agent-framework/integrations/by-component/ui/ag-ui/getting-started#conversation-continuity).
+
+### Validation attributes are no longer experimental
+
+<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> from the [`Microsoft.Extensions.Validation` package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer experimental. Referencing them no longer produces the `ASP0029` code analysis warning.
+
+For more information, see [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10).
