@@ -546,7 +546,7 @@ The preceding approach requires a page or endpoint per file.
 
 The following route endpoint example returns files for authenticated users.
 
-In the `Program` file:
+In the [`Program` file](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/static-files/9.0/StaticFileAuth/Program.cs#L129-L148):
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/static-files/9.0/StaticFileAuth/Program.cs" range="58-62,129-148":::
 
