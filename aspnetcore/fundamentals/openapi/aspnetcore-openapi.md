@@ -83,7 +83,7 @@ OpenAPI document generation applies the following behaviors:
 
 :::moniker range=">= aspnetcore-11.0"
 
-* HTTP methods that the OpenAPI specification doesn't define as fixed fields, including `QUERY` and app-defined custom verbs, are described in the generated document. For more information, see [Operations for HTTP QUERY and custom HTTP methods](#operations-for-http-query-and-custom-http-methods).
+* The `QUERY` method and app-defined custom HTTP methods are described in the generated document. For more information, see [Operations for HTTP QUERY and custom HTTP methods](#operations-for-http-query-and-custom-http-methods).
 * Endpoints whose HTTP method is missing or isn't a syntactically valid HTTP method token are excluded from the generated document.
 * Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
 
