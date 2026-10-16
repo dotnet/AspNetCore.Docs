@@ -16,7 +16,7 @@ For Blazor static files guidance, which adds to or supersedes the guidance in th
 
 :::moniker range=">= aspnetcore-9.0"
 
-To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*>. 
+To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*>.
 
 By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
@@ -46,7 +46,7 @@ Map Static Assets doesn't provide features for minification or other file transf
 
 :::moniker range="< aspnetcore-9.0"
 
-To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>. 
+To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>.
 
 By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
@@ -56,7 +56,7 @@ Static file middleware enables static file serving and is used by an app when <x
 
 :::moniker-end
 
-You can also serve static web assets from [referenced projects and packages](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl). 
+You can also serve static web assets from [referenced projects and packages](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl).
 
 ## Change the web root directory
 
@@ -110,7 +110,7 @@ app.UseStaticFiles();
 
 :::moniker-end
 
-Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). 
+Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root).
 
 To access an image at `wwwroot/images/favicon.png`:
 
@@ -470,7 +470,7 @@ For a complex JavaScript or TypeScript client build, use a separate JavaScript p
 When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
 
 ```csharp
-app.MapStaticAssets().Add(endpointBuilder => 
+app.MapStaticAssets().Add(endpointBuilder =>
     endpointBuilder.Metadata.Add(new AllowAnonymousAttribute()));
 ```
 
@@ -546,8 +546,6 @@ The preceding approach requires a page or endpoint per file.
 
 The following route endpoint example returns files for authenticated users.
 
-:::moniker range=">= aspnetcore-6.0"
-
 In the `Program` file:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/static-files/9.0/StaticFileAuth/Program.cs" range="58-62,129-148":::
@@ -563,77 +561,6 @@ Both endpoints validate stored file names with the following helper:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/static-files/9.0/StaticFileAuth/Program.cs" range="180-184":::
 
 The upload endpoint uses buffered model binding. For large files, use streaming instead. For more information, see <xref:mvc/models/file-uploads#upload-large-files-with-streaming>.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-In `Startup.ConfigureServices`:
-
-```csharp
-services.AddAuthorization(options =>
-{
-    options.AddPolicy("AuthenticatedUsers", b => b.RequireAuthenticatedUser());
-});
-```
-
-In `Startup.Configure`:
-
-```csharp
-app.MapGet("/files/{fileName}", IResult (string fileName) => 
-{
-    var filePath = GetOrCreateFilePath(fileName);
-
-    if (File.Exists(filePath))
-    {
-        return TypedResults.PhysicalFile(filePath, fileName);
-    }
-
-    return TypedResults.NotFound("No file found with the supplied file name");
-})
-.WithName("GetFileByName")
-.RequireAuthorization("AuthenticatedUsers");
-```
-
-The following code uploads files for authenticated users in the administrator role (`admin`).
-
-In `Startup.ConfigureServices`:
-
-```csharp
-services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminsOnly", b => b.RequireRole("admin"));
-});
-```
-
-In `Startup.Configure`:
-
-```csharp
-// IFormFile uses memory buffer for uploading. For handling large 
-// files, use streaming instead. See the *File uploads* article
-// in the ASP.NET Core documentation:
-// https://learn.microsoft.com/aspnet/core/mvc/models/file-uploads
-app.MapPost("/files", async (IFormFile file, LinkGenerator linker, 
-    HttpContext context) =>
-{
-    // Don't rely on the value in 'file.FileName', as it's only metadata that can 
-    // be manipulated by the end-user. Consider the 'Utilities.IsFileValid' method 
-    // that takes an 'IFormFile' and validates its signature within the 
-    // 'AllowedFileSignatures'.
-    
-    var fileSaveName = Guid.NewGuid().ToString("N") + 
-        Path.GetExtension(file.FileName);
-    await SaveFileWithCustomFileName(file, fileSaveName);
-    
-    context.Response.Headers.Append("Location", linker.GetPathByName(context, 
-        "GetFileByName", new { fileName = fileSaveName}));
-
-    return TypedResults.Ok("File Uploaded Successfully!");
-})
-.RequireAuthorization("AdminsOnly");
-```
-
-:::moniker-end
 
 ## Directory browsing
 
