@@ -41,6 +41,14 @@ If multiple schemes are used, authorization policies (or authorization attribute
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
+### Multiple calls to `AddAuthentication`
+
+If `AddAuthentication` is called multiple times (for example, once directly in application startup and once internally by ASP.NET Core Identity):
+
+* **Options configuration:** Each call to `AddAuthentication` registers an `Action<AuthenticationOptions>` configuration delegate with the options system. These delegates run in registration order, so the latest call overwrites properties such as `DefaultScheme` or `DefaultAuthenticateScheme` set by earlier calls.
+* **Service registration:** Core authentication services (such as <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService> and <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandlerProvider>) are registered using `TryAdd`, so subsequent calls do not duplicate or replace existing service registrations.
+* **Scheme registration:** Calling scheme registration methods like <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> or <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> adds named schemes to the authentication builder. Attempting to register the same scheme name twice throws an `InvalidOperationException` stating that the scheme already exists. However, additional options configuration delegates for an existing scheme can be registered using `builder.Services.Configure<CookieAuthenticationOptions>(schemeName, ...)` to modify properties on an already-registered scheme.
+
 The Authentication middleware is added in `Program.cs` by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. Calling `UseAuthentication` registers the middleware that uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated.
 
 ## Authentication concepts
