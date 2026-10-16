@@ -26,6 +26,9 @@ The implementation automatically discovers types that are defined in Minimal API
 > [!NOTE]
 > `AddValidation` uses a source generator that only discovers validatable types within the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a different assembly, call `AddValidation` from within that assembly. For more information, see <xref:fundamentals/validation#register-validation-in-multi-assembly-apps>.
 
+> [!NOTE]
+> `AddValidation` validates properties and objects using data annotations on bound parameters and request models. It does not validate or reject unmapped JSON properties. By default, `System.Text.Json` sets <xref:System.Text.Json.Serialization.JsonSerializerOptions.UnmappedMemberHandling> to <xref:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Skip>. To reject requests containing unexpected JSON properties, configure `JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow`.
+
 Validation can be disabled for specific endpoints by using the `DisableValidation` extension method, as in the following example:
 
 ```csharp

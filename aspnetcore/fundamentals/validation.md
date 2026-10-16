@@ -43,6 +43,9 @@ Generated validation metadata also enables message localization.
 
 Validation uses a source generator that creates metadata for validatable types in the assembly where `AddValidation` is called. For types declared in another assembly, see [Register validation across assemblies](#register-validation-across-assemblies).
 
+> [!NOTE]
+> `AddValidation` validates properties and objects using data annotations on bound models. It doesn't automatically validate or reject unmapped JSON properties. By default, `System.Text.Json` sets <xref:System.Text.Json.Serialization.JsonSerializerOptions.UnmappedMemberHandling> to <xref:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Skip>. To reject requests containing unmapped JSON payload properties, configure `JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow`.
+
 ### Behavior without generated validation metadata
 
 The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>, or of calling it without the required type being discovered by the source generator, differs by framework, as shown in the following table.
