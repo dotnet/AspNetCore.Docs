@@ -427,6 +427,8 @@ If an endpoint can return different response types in different scenarios, you c
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
+Multiple `Produces` calls can also target the *same* status code with different content types — for example, a `200` response available as both `application/json` and `text/plain`. Every declaration is preserved in the generated document: each content type gets its own entry, and when several declared types share one content type, the response schema is an `anyOf` composite of them. Earlier releases kept only the last declaration for each status code. For more information, see [OpenAPI document includes all ProducesResponseType entries per status code](/aspnet/core/breaking-changes/11/openapi-multiple-produces-per-status).
+
 #### [Controllers](#tab/controllers)
 
 In controller-based apps, ASP.NET Core can extract the response metadata from the action method signature, attributes, and conventions. 
@@ -700,6 +702,22 @@ public enum PizzaToppings {
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
+
+A `JsonStringEnumConverter` naming policy applies only to values that are serialized as JSON. Enum parameters bound from the query string, route, headers, or a form are parsed with <xref:System.Enum.TryParse%2A>, which accepts only the original C# member names. The generated schema reflects that difference: the `enum` values and the `default` value of a non-body parameter schema use the C# member names, even when a naming policy is configured.
+
+For example, with a kebab-case naming policy configured globally:
+
+```csharp
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(
+        new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower));
+});
+
+app.MapGet("/orders", (OrderStatus status) => Results.Ok(status));
+```
+
+The response body schema describes `OrderStatus.PendingReview` as `pending-review`, while the `status` query parameter schema describes the accepted value as `PendingReview`. Both are correct: they describe what the endpoint returns and what it accepts, respectively.
 
 [Set JSON options globally](#set-json-serialization-options-globally) shows how to set the `JsonStringEnumConverter` globally.
 

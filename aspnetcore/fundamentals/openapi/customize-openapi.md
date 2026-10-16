@@ -199,6 +199,24 @@ The details of this processing are complicated and might change in future versio
 Typically the name of the schema in `components.schemas` is the name of the class/record/struct type,
 but in some circumstances a different name must be used.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+An array type is one such circumstance. A component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. Starting in .NET 11, the reference ID for an array is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
+
+| C# type | Schema reference ID |
+|---|---|
+| `string[]` | `ArrayOfstring` |
+| `Todo[]` | `ArrayOfTodo` |
+| `string[][]` | `ArrayOfArrayOfstring` |
+
+The same composition applies inside generic result types — for example, `Ok<Todo[]>` produces `OkOfArrayOfTodo`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 ASP.NET Core lets you customize which schemas are replaced with a `$ref` to a schema in `components.schemas`
 using the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> property of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions>.
 This property is a delegate that takes a <xref:System.Text.Json.Serialization.Metadata.JsonTypeInfo> object and returns the name of the schema
