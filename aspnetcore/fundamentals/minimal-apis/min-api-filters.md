@@ -1,9 +1,10 @@
 ---
 title: Filters in Minimal API apps
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
-ms.date: 04/28/2026
+ms.date: 10/16/2026
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters
+ai-usage: ai-assisted
 
 # customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
 ---
@@ -167,8 +168,7 @@ No change is needed in other environments, where `false` is already the default.
 
 :::moniker range=">= aspnetcore-11.0"
 
-> [!NOTE]
-> An endpoint whose filter factories all return `next` unchanged—so that no filter pipeline is actually built—no longer runs its route handler after a parameter-binding failure. In earlier releases, that configuration set the `400` status code and then invoked the handler anyway with unbound argument values. For more information, see [Refactor param binding failure handling in RequestDelegate (`dotnet/aspnetcore` #64539)](https://github.com/dotnet/aspnetcore/pull/64539). (Please don't comment on closed issues and PRs.)
+An endpoint whose filter factories all return `next` unchanged—so that no filter pipeline is actually built—no longer runs its route handler after a parameter-binding failure. In earlier releases, that configuration set the `400` status code and then invoked the handler anyway with unbound argument values. For more information, see [Refactor param binding failure handling in RequestDelegate (`dotnet/aspnetcore` #64539)](https://github.com/dotnet/aspnetcore/pull/64539). (Please don't comment on closed issues and PRs.)
 
 :::moniker-end
 
