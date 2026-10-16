@@ -281,16 +281,23 @@ Certificate nodes can be configured to load certificates from various sources:
 * `Path`, `KeyPath`, and `Password`: Load _.pem_/_.crt_ and _.key_ files.
 * `Subject` and `Store`: Load from the certificate store.
 
-For example, the `Certificates:Default` certificate can be specified with the following JSON:
+For example, the `Certificates:Default` certificate can be specified from a certificate store with the following JSON:
 
 ```json
 "Default": {
-  "Subject": "<subject; required>",
-  "Store": "<cert store; required>",
-  "Location": "<location; defaults to CurrentUser>",
-  "AllowInvalid": "<true or false; defaults to false>"
+  "Subject": "contoso.com",
+  "Store": "My",
+  "Location": "LocalMachine",
+  "AllowInvalid": false
 }
 ```
+
+The certificate store configuration options include:
+
+* `Subject`: The host name or certificate subject to search for (for example, `contoso.com` or `CN=contoso.com`).
+* `Store`: The certificate store name to search. Common Windows store names correspond to <xref:System.Security.Cryptography.X509Certificates.StoreName>, such as `My` (Personal), `Root` (Trusted Root Certification Authorities), or `CertificateAuthority` (Intermediate Certification Authorities). Custom store names are also supported.
+* `Location`: The certificate store location. Supported values correspond to <xref:System.Security.Cryptography.X509Certificates.StoreLocation>: `CurrentUser` (the default if omitted) or `LocalMachine`.
+* `AllowInvalid`: A boolean flag (`true` or `false`, defaults to `false`). Setting this to `true` allows self-signed or untrusted certificates to be loaded (useful for development or testing).
 
 #### Configure client certificates in appsettings.json
 
