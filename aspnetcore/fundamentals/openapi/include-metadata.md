@@ -366,7 +366,7 @@ A class can be implemented to set the endpoint metadata and return it from the r
 
 ##### Describe binary file responses
 
-To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter to specify the response type and content type:
+To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with a file result type as the type parameter to specify the response type and content type. <xref:Microsoft.AspNetCore.Mvc.FileContentResult>, <xref:Microsoft.AspNetCore.Mvc.FileStreamResult>, <xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult>, and <xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult> all produce a binary schema. The following example uses `FileContentResult`:
 
 ```csharp
 app.MapPost("/filecontentresult", () =>
@@ -377,7 +377,7 @@ app.MapPost("/filecontentresult", () =>
 .Produces<FileContentResult>(contentType: MediaTypeNames.Application.Octet);
 ```
 
-This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type.
+This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type. The other file result types behave identically, each with a component schema named after the type—for example, `FileStreamHttpResult`.
 
 The generated OpenAPI document describes the endpoint response as:
 
@@ -400,6 +400,8 @@ components:
       type: string
       format: binary
 ```
+
+File results also support conditional requests and range requests, and `Stream` is an equally valid `TResponse` for a binary schema. For the full set of file result types and their behavior, see [File result return values](xref:fundamentals/minimal-apis/responses#file-result-return-values).
 
 ##### Set responses for `ProblemDetails`
 
@@ -494,7 +496,7 @@ public IActionResult PostFileContentResult()
 }
 ```
 
-This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`.
+This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses) with `FileContentResult` defined as `type: string` and `format: binary`. <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> behaves identically and produces a `FileStreamResult` component schema.
 
 ---
 
