@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/14/2026
+ms.date: 10/16/2026
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -1026,22 +1026,36 @@ app.MapGet("/health-probe", [ShortCircuit] () => Results.Ok());
 On an MVC action or an entire controller:
 
 ```csharp
-[ShortCircuit]
 [ApiController]
-[Route("[controller]")]
-public class ProbeController : ControllerBase
+[Route("robots.txt")]
+[ShortCircuit]
+public class RobotsController : ControllerBase
 {
     [HttpGet]
-    public IActionResult Get() => Ok();
+    public IActionResult Get() => Content("User-agent: *\nDisallow:", "text/plain");
 }
 ```
 
-Pass a status code to return that status without executing the endpoint:
+You can optionally specify a status code:
 
 ```csharp
-[ShortCircuit(StatusCodes.Status404NotFound)]
-[HttpGet("/robots.txt")]
-public IActionResult Robots() => Ok();
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
+{
+    [HttpGet]
+    [ShortCircuit(StatusCodes.Status200OK)]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        })
+        .ToArray();
+    }
+}
 ```
 
 When a status code isn't supplied, <xref:Microsoft.AspNetCore.Routing.ShortCircuitAttribute.StatusCode?displayProperty=nameWithType> is `null` and the endpoint runs normally before the request ends. The attribute implements <xref:Microsoft.AspNetCore.Routing.IShortCircuitMetadata>, so custom endpoint conventions and metadata inspection can detect short-circuited endpoints through that interface.
