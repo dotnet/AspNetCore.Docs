@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Migrations is used to:
@@ -14,7 +19,7 @@ When Entity Framework (EF) is used to automatically create a database from model
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
 
 Build the app
 
@@ -85,7 +90,7 @@ For this tutorial, Entity Framework Migrations is used.
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/9/pmc-VS22-17.11.0.png)
+  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/9/pmc-vs22-17.11.0.png)
 
 In the Package Manager Console, enter the following command:
 

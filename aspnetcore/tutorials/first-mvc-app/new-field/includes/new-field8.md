@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-8.0"
 
 In this section [Entity Framework Core migrations](/ef/core/managing-schemas/migrations/) is used to:
@@ -14,7 +19,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie80/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie80/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
 
 Build the app
 
