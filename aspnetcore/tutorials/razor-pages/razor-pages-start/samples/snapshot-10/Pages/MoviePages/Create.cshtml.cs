@@ -1,4 +1,5 @@
-﻿using System;
+﻿// <snippetALL>
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.MoviePages
 {
     public class CreateModel : PageModel
     {
@@ -28,6 +29,7 @@ namespace RazorPagesMovie.Pages.Movies
         public Movie Movie { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // <snippetPost>
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -40,5 +42,7 @@ namespace RazorPagesMovie.Pages.Movies
 
             return RedirectToPage("./Index");
         }
+        // </snippetPost>
     }
 }
+// </snippetALL>

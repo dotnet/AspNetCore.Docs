@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#define SEARCH_GENRE
+#if SEARCH_GENRE
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.MoviePages
 {
     public class IndexModel : PageModel
     {
@@ -27,10 +29,11 @@ namespace RazorPagesMovie.Pages.Movies
 
         public async Task OnGetAsync()
         {
-            // Use LINQ to get list of genres.
+            // <snippet_search_linqQuery>
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
+            // </snippet_search_linqQuery>
 
             var movies = from m in _context.Movie
                          select m;
@@ -44,10 +47,12 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 movies = movies.Where(x => x.Genre == MovieGenre);
             }
+
+            // <snippet_search_selectList>
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            // </snippet_search_selectList>
             Movie = await movies.ToListAsync();
         }
-
-
     }
 }
+#endif
