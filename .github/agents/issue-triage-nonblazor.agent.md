@@ -41,6 +41,7 @@ When examining source files:
 * **Include line number ranges** in GitHub URLs using `#L<start>-L<end>` format.
 * **Quote current content** from specific lines before proposing changes.
 * **Use permalinks with commit SHA** when referencing specific versions.
+* **Use Microsoft-approved styles** by conforming proposed changes to the Microsoft Writing Style Guide at https://learn.microsoft.com/en-us/style-guide/welcome/.
 
 Example format for file references: 
 * Single line: `https://github.com/owner/repo/blob/main/file.md#L123`.
