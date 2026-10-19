@@ -42,6 +42,27 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 [!code-csharp[Build hub connection](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
+## Stop and dispose a connection
+
+<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> implements <xref:System.IAsyncDisposable>. To gracefully stop and dispose a connection and release its underlying resources, timers, and active transport:
+
+* Call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.DisposeAsync%2A>:
+
+  ```csharp
+  await connection.DisposeAsync();
+  ```
+
+* Or scope the connection with `await using`:
+
+  ```csharp
+  await using var connection = new HubConnectionBuilder()
+      .WithUrl("https://example.com/chathub")
+      .Build();
+
+  await connection.StartAsync();
+  ```
+
+Calling `DisposeAsync` stops the connection if it's currently running, cancels pending hub invocations, stops any active reconnection timers, and cleans up socket or HTTP resources. It isn't necessary to call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.StopAsync%2A> separately before calling `DisposeAsync`.
 
 ## Handle lost connection
 
