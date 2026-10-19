@@ -92,7 +92,23 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 :::moniker-end
 
-<xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature>: Defines support for [HTTP Upgrades](https://www.rfc-editor.org/rfc/rfc9110#field.upgrade), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
+<xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature>: Defines support for [HTTP Upgrades](https://www.rfc-editor.org/rfc/rfc9110#field.upgrade), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols. To accept an HTTP upgrade request on the server, check <xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature.IsUpgradableRequest?displayProperty=nameWithType> and call <xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature.UpgradeAsync?displayProperty=nameWithType>, which sends an HTTP `101 Switching Protocols` response and returns the raw transport <xref:System.IO.Stream>:
+
+  ```csharp
+  app.Map("/upgrade", async (HttpContext context) =>
+  {
+      var upgradeFeature = context.Features.Get<IHttpUpgradeFeature>();
+      if (upgradeFeature != null && upgradeFeature.IsUpgradableRequest)
+      {
+          await using Stream stream = await upgradeFeature.UpgradeAsync();
+          // Read and write directly to the upgraded transport stream...
+      }
+      else
+      {
+          context.Response.StatusCode = StatusCodes.Status400BadRequest;
+      }
+  });
+  ```
 
 <xref:Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature>: Defines an API for supporting WebSockets.
 
