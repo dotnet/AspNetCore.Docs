@@ -1,5 +1,6 @@
 ---
 title: Part 2, add a model
+ai-usage: ai-assisted
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.date: 01/07/2026
 monikerRange: '>= aspnetcore-3.1'
@@ -23,7 +24,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -45,7 +46,7 @@ Build the project to verify there are no compilation errors.
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -74,11 +75,7 @@ In this section, you scaffold the movie model. The scaffolding tool generates pa
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Create the *Pages/Movies* folder:
-   1. Right-click on the *Pages* folder > **Add** > **New Folder**.
-   1. Name the folder *Movies*.
-
-1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
+1. Right-click on the **Pages** folder. Select **Add** > **New Scaffolded Item**.
 
   :::image type="content" source="~/tutorials/razor-pages/model/media/new-scaffolded-item-vs2026.png" alt-text="New Scaffolded Item.":::
 
@@ -102,7 +99,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries --databaseProvider sqlite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/MoviePages --referenceScriptLibraries --databaseProvider sqlite
   ```
 
 The following table details the ASP.NET Core code generator options.
@@ -133,7 +130,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 The scaffold process creates the following files:
 
-* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
+* *Pages/MoviePages*: Create, Delete, Details, Edit, and Index.
 * `Data/RazorPagesMovieContext.cs`
 
 The next tutorial explains the created files.
@@ -141,10 +138,10 @@ The next tutorial explains the created files.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
 
 ---
 
@@ -222,7 +219,7 @@ The data context `RazorPagesMovieContext`:
 
 The `RazorPagesMovieContext` class in the generated file `Data/RazorPagesMovieContext.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -230,7 +227,7 @@ The name of the connection string is passed to the context by calling a method o
 
 ## Test the app
 
-1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
+1. Run the app and append `/MoviePages` to the URL in the browser (`http://localhost:{PORT}/MoviePages`, where the `{PORT}` placeholder is the port).
 
    If you receive the following error:
 
@@ -259,16 +256,16 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 The scaffolding tool automatically creates a database context and registers it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_all&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all&highlight=8-9)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot-sample10/Program.cs?name=snippet_all_sl&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all_sl&highlight=8-9)]
 
 ---
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie10) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Next steps
 

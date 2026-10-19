@@ -1,8 +1,9 @@
 ---
 title: Generate tokens with dotnet user-jwts
+ai-usage: ai-assisted
 description: Learn how to generate and manage JSON Web Tokens in development with the dotnet user-jwts command.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 05/11/2026
+ms.date: 10/13/2026
 uid: security/authentication/jwt
 
 # customer intent: As an ASP.NET developer, I want to use the dotnet user-jwts command, so I can generate and manage JSON Web Tokens in development.
@@ -82,6 +83,27 @@ Usage: `dotnet user-jwts create [options]`
 | `--valid-for`     | The amount of time the JWT remains valid. When the time is reached, the JWT expires. Specify a number followed by the duration type (`d` days, `h` hours, `m` minutes, `s` seconds), such as `365d`. Don't use this option with the `--expires-on` option. |
 | `-o \| --output`  | The format to use for displaying output from the command: `default`, `token`, or `json`. |
 | `-h \| --help`    | Show help information for the command. |
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Use with file-based apps
+
+`dotnet user-jwts` works with file-based apps through the `--file` option. Point `--file` at the app's C# file (`.cs`).
+
+In the following example, the app is a file named `app.cs` without a project file, and the command is executed in a command shell from the app's root directory:
+
+```dotnetcli
+dotnet user-jwts create --file app.cs
+```
+
+The `--file` option applies to every `user-jwts` command (`create`, `clear`, `key`, `list`, `print`, and `remove`), the same way the `--project` option does. When neither `--file` nor `--project` is specified, the tool searches the current directory for an MSBuild project.
+
+Rules:
+
+* The path passed to `--file` must be a C# file with the `.cs` file extension.
+* The `--file` and `--project` options can't be used together.
+
+:::moniker-end
 
 ## Examples
 

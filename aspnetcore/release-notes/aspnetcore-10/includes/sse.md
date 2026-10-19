@@ -8,10 +8,10 @@ The [TypedResults](xref:Microsoft.AspNetCore.Http.TypedResults) class has a new 
 
 The following example illustrates how to use the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as JSON objects to the client:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs" id="snippet_json" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs" id="snippet_json" :::
 
 For more information, see:
 
 - [Server-Sent Events](https://developer.mozilla.org/docs/Web/API/Server-sent_events) on MDN.
-- [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
+- [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 - [Controller API sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples/10/ControllerSSE) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.

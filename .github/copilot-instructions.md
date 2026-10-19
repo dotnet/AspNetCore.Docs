@@ -1,7 +1,7 @@
 ---
 author: tdykstra
 ms.author: wpickett
-ms.date: 08/25/2026
+ms.date: 10/17/2026
 ---
 
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
@@ -86,17 +86,15 @@ When working on an issue:
   * [ ] Use placeholders with braces in the format `{PLACEHOLDER NAME}` when used in URIs, code examples, and other contexts where placeholders are used. Use uppercase letters with spaces between words for the placeholder name inside the braces.
     * [ ] Wrong: "Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document."
     * [ ] Correct: "Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to view the generated OpenAPI document, where the `{PORT}` placeholder is the port."
-  * [ ] For any new or updated .md file, ensure the standard frontmatter (metadata) is included as specified in [Metadata for Microsoft Learn documentation.](https://learn.microsoft.com/en-us/contribute/content/metadata)
-  * [ ] For any new or updated .md file added to the repository, ensure the following frontmatter (metadata) is included:
-    * [ ] Metadata `ai-usage: ai-assisted` if any AI assistance was used
-    * [ ] Place the title metadata first, followed by the remaining metadata lines in alphabetical order. Example: `title`, `author`, `description`, `monikerRange`, `ms.author`, `ms.custom`, `ms.date`, `uid`, `zone_pivot_groups`
-    * [ ] Metadata `ms.date: <today's date>` with a format of MM/DD/YYYY. If the file already has a `ms.date` metadata, update it only if the article was significantly changed.
+  * [ ] For new or updated articles published to Microsoft Learn, follow [Metadata for Microsoft Learn documentation](https://learn.microsoft.com/en-us/contribute/content/metadata) and the metadata and date requirements below. Don't add frontmatter to sample README files, includes, or GitHub-only documentation.
 
 ### 1. Metadata and Date Requirements
-* [ ] CRITICAL: Set ms.date to the actual current date in MM/DD/YYYY format. Do not infer the date based on existing dates in files.  Use today's date.
-* [ ] Add ai-usage: ai-assisted metadata if any AI assistance was used
+* [ ] These requirements apply to articles published to Microsoft Learn, not sample README files, includes, or GitHub-only documentation.
+* [ ] Set `ms.date` for new articles and update it for significant content changes. Leave it unchanged for minor or mechanical edits, such as typo fixes, formatting, link corrections, or sample directory renames.
+* [ ] When setting or updating `ms.date`, use the current date in MM/DD/YYYY format. However, accept an existing date within 14 days before or after the PR's opening date. Don't require it to match the day Copilot runs or refresh it solely because review or subsequent PR edits take place days or weeks later.
+* [ ] Add `ai-usage: ai-assisted` when AI creates or substantially rewrites article content. Don't add it solely for minor or mechanical edits, such as typo fixes, formatting, link corrections, or sample directory renames. Preserve existing `ai-usage` metadata.
 * [ ] Place title metadata first, followed by remaining metadata in alphabetical order
-* [ ] When updating ms.date always use <today's date> in the format MM/DD/YYYY. Examples:
+* [ ] Format `ms.date` as MM/DD/YYYY:
   * [ ] MM: Two digits, leading zero if needed (01-12)
   * [ ] DD: Two digits, leading zero if needed (01-31)
   * [ ] YYYY: Four digits (2025)
@@ -168,5 +166,4 @@ When working on an issue:
 ### 7. PR review guidelines (Copilot-assigned reviews)
 * [ ] Flag capitalization of middleware/feature names that use proper-noun casing and suggest lowercase per the "4. ASP.NET Core Specific Guidelines" section, except for code identifiers, proper adjectives (URL, HTTP), branded names, and words that begin a sentence, heading, or bullet.
 * [ ] Flag compound adjectives in feature names that risk adjective/name ambiguity and suggest hyphenation (example: "host-filtering middleware").
-* [ ] Verify sentence-case titles/headers and the metadata/ms.date rules already defined above.
-
+* [ ] Verify sentence-case titles/headers and the metadata/ms.date rules already defined above, including the PR-relative date tolerance and exceptions for minor edits and non-article files. Don't flag an accepted date merely because it isn't today's date, request `ai-usage` for mechanical edits, or request frontmatter for sample README files.
