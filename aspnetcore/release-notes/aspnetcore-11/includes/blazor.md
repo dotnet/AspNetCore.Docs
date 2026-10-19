@@ -1308,6 +1308,10 @@ Passing a thread to `UIAgent` enables new completed turns to be persisted but do
 
 ### Validation attributes are no longer experimental
 
-<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> from the [`Microsoft.Extensions.Validation` package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer experimental. Referencing them no longer produces the `ASP0029` code analysis warning.
+<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> from the [`Microsoft.Extensions.Validation` package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer marked experimental. If you suppressed `ASP0029` to use either attribute, remove the suppression.
 
-For more information, see [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10).
+For more information, see the following resources:
+
+* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
+* <xref:fundamentals/validation?view=aspnetcore-11.0#nested-objects-and-collections>
+* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
