@@ -169,6 +169,9 @@ builder.Services.AddAuthentication()
 });
 ```
 
+> [!NOTE]
+> Specifying a custom scheme name in `AddJwtBearer("some-scheme", ...)` registers the scheme within ASP.NET Core, but does not change the HTTP header format expected by the handler. By default, `JwtBearerHandler` expects the `Authorization: Bearer <token>` header format per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750). If clients send tokens using an alternative header prefix or custom header, configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually.
+
 ### JWT with multiple schemes
 
 APIs often need to accommodate access tokens from various issuers. You can support multiple token issuers in an API by using the following approaches:
