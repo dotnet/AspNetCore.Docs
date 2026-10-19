@@ -36,6 +36,19 @@ The following table shows the relationship between the parameters used in the pr
 | `customHeader` | header |
 | `service` | Provided by dependency injection |
 
+For example, given the following HTTP request:
+
+```http
+GET /42?page=3 HTTP/1.1
+Host: example.com
+X-CUSTOM-HEADER: hello
+```
+
+* `42` in `/42` matches `{id}` in the route template `/{id}` and binds to the `id` route parameter.
+* `page=3` in `?page=3` matches the query string key `page` and binds to the `page` parameter.
+* `X-CUSTOM-HEADER: hello` matches the `[FromHeader(Name = "X-CUSTOM-HEADER")]` header attribute and binds to `customHeader`.
+* `service` is resolved from the dependency injection (DI) container, rather than from the incoming HTTP request.
+
 The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind from body. To bind from body (as JSON) for these HTTP methods, [bind explicitly](#explicit-parameter-binding) with [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or read from the <xref:Microsoft.AspNetCore.Http.HttpRequest>.
 
 The following example POST route handler uses a binding source of body (as JSON) for the `person` parameter:
