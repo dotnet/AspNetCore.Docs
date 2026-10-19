@@ -35,6 +35,30 @@ To automatically launch the app at the Swagger UI URL using the `https` profile 
 "launchUrl": "swagger",
 ```
 
+### Enable authorization in interactive documentation
+
+To enable the **Authorize** button in Swagger UI or Scalar so users can enter a JWT bearer token for testing protected endpoints, register an `OpenApiSecurityScheme` via a document transformer:
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Components ??= new OpenApiComponents();
+        document.Components.SecuritySchemes.Add("Bearer", new OpenApiSecurityScheme
+        {
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT",
+            Description = "Enter JWT Bearer token"
+        });
+        return Task.CompletedTask;
+    });
+});
+```
+
+For more details on document transformers and applying security requirements per endpoint, see <xref:fundamentals/openapi/customize-openapi#use-document-transformers>.
+
 ## Use Scalar for interactive API documentation
 
 [Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core. To configure Scalar, install the `Scalar.AspNetCore` package.
