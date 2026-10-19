@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 08/19/2026
+ms.date: 10/19/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -25,17 +25,6 @@ Transformers fall into three categories:
 * Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 * Schema transformers apply to each schema in the document. These can be used to modify the schema of request or response bodies, or any nested schemas.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-11.0"
-
-> [!IMPORTANT]
-> .NET 11 upgrades `Microsoft.AspNetCore.OpenApi` from `Microsoft.OpenApi` 2.x to 3.x. The transformer interfaces are unchanged, but the shape of the `OpenApiDocument`, `OpenApiOperation`, and `OpenApiSchema` objects they receive has changed. Transformer code that sets extension values, walks nested schemas, or constructs new schemas usually needs to be updated. For migration guidance, see [Microsoft.OpenApi upgraded to 3.x](/aspnet/core/breaking-changes/11/microsoft-openapi-3x).
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-10.0"
 
 Transformers can be registered onto the document by calling the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer%2A> method on the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> object. The following snippet shows different ways to register transformers onto the document:
 
@@ -235,6 +224,15 @@ builder.Services.AddOpenApi(options =>
 > Starting with .NET 10, relative JSON schema references (`$ref`) within the root schema document are resolved correctly during OpenAPI document generation.
 
 ## Related content
+
+:::moniker range=">= aspnetcore-11.0"
+
+* [Microsoft.OpenApi upgraded to 3.x (ASP.NET Core 11.0 breaking change announcement)](/aspnet/core/breaking-changes/11/microsoft-openapi-3x)
+* [OpenAPI 3.x upgrade migration guidance](xref:migration/100-to-110#microsoftopenapi-upgraded-to-3x)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
