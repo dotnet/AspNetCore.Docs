@@ -113,7 +113,14 @@ In the previous code:
 
 ### Client-to-server streaming
 
-There are two ways to invoke a client-to-server streaming hub method from the .NET client. You can either pass in an `IAsyncEnumerable<T>` or a `ChannelReader` as an argument to `SendAsync`, `InvokeAsync`, or `StreamAsChannelAsync`, depending on the hub method invoked.
+There are two ways to invoke a client-to-server streaming hub method from the .NET client. You can pass either an `IAsyncEnumerable<T>` or a `ChannelReader<T>` as an argument to:
+
+* `SendAsync`: Use when the hub method returns `Task` or `void` without returning a response value.
+* `InvokeAsync`: Use when the hub method returns a single response value (such as `Task<TResult>`) upon completing stream processing.
+* `StreamAsync` or `StreamAsChannelAsync`: Use only when the hub method is bidirectional (both receiving a stream from the client and streaming data back to the client). Do not call `StreamAsync` on a client-to-server method that does not return a stream.
+
+> [!NOTE]
+> Streaming in SignalR is point-to-point between a single client connection and the server. Streams cannot be broadcast to all connected clients (there is no `Clients.All.StreamAsync` API). To broadcast recurring updates or live events to multiple clients, have the hub call `Clients.All.SendAsync(...)`.
 
 Whenever data is written to the `IAsyncEnumerable` or `ChannelWriter` object, the hub method on the server receives a new item with the data from the client.
 
