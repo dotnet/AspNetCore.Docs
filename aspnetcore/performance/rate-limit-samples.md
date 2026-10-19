@@ -56,3 +56,37 @@ The following sample:
 
 See [the samples repository for the complete `Program.cs`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs#L145,L281) file.
 
+## Chained limiters in a named policy
+
+To combine multiple limiters within a named policy (rather than globally), use <xref:System.Threading.RateLimiting.RateLimiter.CreateChained%2A> inside the policy's partition factory:
+
+```csharp
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("chained", httpContext =>
+    {
+        string partitionKey = httpContext.User.Identity?.Name ?? "anonymous";
+
+        return RateLimitPartition.Get(partitionKey, _ =>
+            RateLimiter.CreateChained(
+                new TokenBucketRateLimiter(new TokenBucketRateLimiterOptions
+                {
+                    TokenLimit = 60,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = 2,
+                    ReplenishmentPeriod = TimeSpan.FromSeconds(1),
+                    TokensPerPeriod = 1,
+                    AutoReplenishment = true
+                }),
+                new ConcurrencyLimiter(new ConcurrencyLimiterOptions
+                {
+                    PermitLimit = 10,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = 2
+                })));
+    });
+});
+```
+
+For more information, see [Chain limiters in a named policy](xref:performance/rate-limit#chain-limiters-in-a-named-policy).
+
