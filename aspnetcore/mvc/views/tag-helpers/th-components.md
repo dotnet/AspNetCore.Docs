@@ -147,6 +147,20 @@ For example, the `if` statement evaluates to true when processing the following 
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_AddressPrintable)]
 
+## Architecture and execution order
+
+To understand how Tag Helper Components work and interact with regular Tag Helpers, consider the underlying architecture:
+
+* **TagHelperComponentTagHelper**: A standard <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper> (such as the built-in <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper> or <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper>) that targets an HTML element (such as `<head>` or `<body>`). It derives from <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper>.
+* **ITagHelperComponentManager**: An injected service (<xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>) that manages the collection of registered <xref:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelperComponent> instances.
+* **TagHelperComponent**: Classes that implement <xref:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelperComponent> or inherit from <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. When a hosting `TagHelperComponentTagHelper` processes an element, it iterates through all registered components in `ITagHelperComponentManager` and invokes their `Init` and `ProcessAsync` methods.
+
+### Execution order
+
+* **TagHelper vs. TagHelperComponent**: A `TagHelperComponentTagHelper` executes as a standard Tag Helper. Its position relative to other tag helpers targeting the same HTML element is determined by its <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper.Order?displayProperty=nameWithType> property.
+* **Component Order**: The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order?displayProperty=nameWithType> property controls the relative execution order *among the components* managed by the hosting tag helper. Components with a lower `Order` value execute before components with a higher value.
+* **Nested elements**: Because the built-in `head` and `body` tag helpers enclose the document's content, tag helpers targeting child elements within the view (such as a custom tag helper on a `<form>` inside the `<body>`) execute during the evaluation of the body tag helper's child content.
+
 ## Related content
 
 * <xref:fundamentals/dependency-injection>
