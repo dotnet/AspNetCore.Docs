@@ -4,9 +4,9 @@ on:
   pull_request_target:
     types: [opened, synchronize, reopened]
 
- concurrency:
-   group: ops-build-reporter-${{ github.event.pull_request.number }}
-   cancel-in-progress: true
+concurrency:
+  group: ops-build-reporter-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
