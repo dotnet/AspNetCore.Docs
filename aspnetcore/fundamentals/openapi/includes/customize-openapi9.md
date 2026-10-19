@@ -90,6 +90,27 @@ For example, the following operation transformer adds `500` as a response status
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
+### Modify interface-typed properties
+
+Many OpenAPI.NET objects supplied to transformers are exposed through interfaces that have get-only properties (such as <xref:Microsoft.OpenApi.Models.IOpenApiParameter> or <xref:Microsoft.OpenApi.Models.IOpenApiSchema>). To mutate these properties, pattern match or cast the interface to its concrete implementation type (such as <xref:Microsoft.OpenApi.Models.OpenApiParameter>), which exposes property setters:
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    options.AddOperationTransformer((operation, context, cancellationToken) =>
+    {
+        foreach (var parameter in operation.Parameters ?? [])
+        {
+            if (parameter.Name == "sort" && parameter is OpenApiParameter concreteParam)
+            {
+                concreteParam.Description = "The sorting order for returned items.";
+            }
+        }
+        return Task.CompletedTask;
+    });
+});
+```
+
 ## Use schema transformers
 
 Schemas are the data models that are used in request and response bodies in an OpenAPI document. Schema transformers are useful when a modification:
