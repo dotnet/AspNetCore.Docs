@@ -75,11 +75,7 @@ In this section, you scaffold the movie model. The scaffolding tool generates pa
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Create the *Pages/Movies* folder:
-   1. Right-click on the *Pages* folder > **Add** > **New Folder**.
-   1. Name the folder *Movies*.
-
-1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
+1. Right-click on the **Pages** folder. Select **Add** > **New Scaffolded Item**.
 
   :::image type="content" source="~/tutorials/razor-pages/model/media/new-scaffolded-item-vs2026.png" alt-text="New Scaffolded Item.":::
 
@@ -103,7 +99,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries --databaseProvider sqlite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/MoviePages --referenceScriptLibraries --databaseProvider sqlite
   ```
 
 The following table details the ASP.NET Core code generator options.
@@ -134,7 +130,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 The scaffold process creates the following files:
 
-* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
+* *Pages/MoviePages*: Create, Delete, Details, Edit, and Index.
 * `Data/RazorPagesMovieContext.cs`
 
 The next tutorial explains the created files.
@@ -231,7 +227,7 @@ The name of the connection string is passed to the context by calling a method o
 
 ## Test the app
 
-1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
+1. Run the app and append `/MoviePages` to the URL in the browser (`http://localhost:{PORT}/MoviePages`, where the `{PORT}` placeholder is the port).
 
    If you receive the following error:
 

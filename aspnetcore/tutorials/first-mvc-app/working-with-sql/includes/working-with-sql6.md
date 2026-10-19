@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-6.0"
 
 ## Introduction
@@ -75,7 +80,7 @@ Right-click on the `Movie` table **> View Data**
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE[](~/includes/rp/sqlite.md)]
+[!INCLUDE[](~/includes/RP/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 ---
