@@ -1,11 +1,11 @@
 ---
 title: Create responses in Minimal API applications
+ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/19/2026
 uid: fundamentals/minimal-apis/responses
-ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
@@ -292,7 +292,7 @@ In particular, there are three common schemas for file results:
 The file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
 
 ```csharp
-app.MapGet("/report", () => TypedResults.File(pdfStream, MediaTypeNames.Application.Pdf))
+app.MapGet("/report", () => TypedResults.File(File.OpenRead("report.pdf"), MediaTypeNames.Application.Pdf))
    .Produces<FileStreamHttpResult>(contentType: MediaTypeNames.Application.Pdf);
 ```
 
@@ -314,6 +314,14 @@ that corresponds to the desired OpenAPI schema for your file result responses:
 :::moniker range=">= aspnetcore-11.0"
 
 * **binary content**: Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
+* **text content**: Use `string` to get a simple `type: string` schema.
+* **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**: Use `Stream` to get the `binary` format in the OpenAPI schema.
 * **text content**: Use `string` to get a simple `type: string` schema.
 * **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
 
