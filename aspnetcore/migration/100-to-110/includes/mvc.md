@@ -28,9 +28,11 @@ To upgrade an existing F# MVC project:
    </ItemGroup>
    ```
 
-1. Add `MvcBuilderExtensions.fs`. The namespace must match the application's root namespace:
+1. Add `MvcBuilderExtensions.fs`. The namespace must match the application's root namespace (for example, `Company.WebApplication1`):
 
    ```fsharp
+   namespace Company.WebApplication1
+
    open System
    open System.IO
    open System.Reflection
