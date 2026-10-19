@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 08/19/2026
+ms.date: 10/19/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -225,6 +225,8 @@ builder.Services.AddOpenApi(options =>
 
 ## Related content
 
+* [Microsoft.OpenApi upgraded to 3.x (ASP.NET Core 11.0 breaking change announcement)](/aspnet/core/breaking-changes/11/microsoft-openapi-3x)
+* [OpenAPI 3.x upgrade migration guidance](xref:migration/100-to-110#microsoftopenapi-upgraded-to-3x)
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
