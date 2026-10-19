@@ -253,6 +253,7 @@ namespace ContosoUniversity.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException /* ex */)
                 {
@@ -261,7 +262,6 @@ namespace ContosoUniversity.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(instructorToUpdate);
         }
@@ -297,6 +297,7 @@ namespace ContosoUniversity.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException /* ex */)
                 {
@@ -305,7 +306,6 @@ namespace ContosoUniversity.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction(nameof(Index));
             }
             UpdateInstructorCourses(selectedCourses, instructorToUpdate);
             PopulateAssignedCourseData(instructorToUpdate);

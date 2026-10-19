@@ -90,7 +90,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Add the highlighted property to the `package.json` file and save the file changes:
 
-    [!code-json[](~/tutorials/signalr-typescript-webpack/samples_snapshot/3.x/package1.json?highlight=4)]
+    [!code-json[](~/tutorials/signalr-typescript-webpack/samples/snapshot/3.x/package1.json?highlight=4)]
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
@@ -156,7 +156,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create `src/index.ts` with the following code:
 
-    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples_snapshot/3.x/index1.ts)]
+    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples/snapshot/3.x/index1.ts)]
 
     The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
 
@@ -183,7 +183,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create hub `Hubs/ChatHub.cs` with the following code:
 
-    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples_snapshot/3.x/ChatHub.cs)]
+    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/snapshot/3.x/ChatHub.cs)]
 
 1. Add the following `using` statement at the top of the `Startup.cs` file to resolve the `ChatHub` reference:
 
@@ -206,7 +206,7 @@ The app currently displays a basic form to send messages, but isn't yet function
 
 1. Add the highlighted code to the `src/index.ts` file:
 
-    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples_snapshot/3.x/index2.ts?highlight=2,9-23)]
+    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples/snapshot/3.x/index2.ts?highlight=2,9-23)]
 
     The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
@@ -348,7 +348,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Add the highlighted property to the `package.json` file:
 
-    [!code-json[](~/tutorials/signalr-typescript-webpack/samples_snapshot/2.x/package1.json?highlight=4)]
+    [!code-json[](~/tutorials/signalr-typescript-webpack/samples/snapshot/2.x/package1.json?highlight=4)]
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
@@ -414,7 +414,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create `src/index.ts` with the following code:
 
-    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples_snapshot/2.x/index1.ts)]
+    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples/snapshot/2.x/index1.ts)]
 
     The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
 
@@ -441,7 +441,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create hub `Hubs/ChatHub.cs` with the following code:
 
-    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples_snapshot/2.x/ChatHub.cs)]
+    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/snapshot/2.x/ChatHub.cs)]
 
 1. Add the following code at the top of the `Startup.cs` file to resolve the `ChatHub` reference:
 
@@ -461,7 +461,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
 1. Add the highlighted code to the `src/index.ts` file:
 
-    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples_snapshot/2.x/index2.ts?highlight=2,9-23)]
+    [!code-typescript[](~/tutorials/signalr-typescript-webpack/samples/snapshot/2.x/index2.ts?highlight=2,9-23)]
 
     The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
