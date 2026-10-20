@@ -203,15 +203,15 @@ but in some circumstances a different name must be used.
 
 :::moniker range=">= aspnetcore-11.0"
 
-An array type is one such circumstance. A component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. The reference ID for an array is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
+Schemas for standalone arrays remain inline by default. When an array type is used as a type argument in an enclosing generic type, a component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. The reference ID segment for an array argument is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
 
-C# type | Schema reference ID
+C# type | Reference ID segment
 --- | ---
 `string[]` | `ArrayOfstring`
 `Todo[]` | `ArrayOfTodo`
 `string[][]` | `ArrayOfArrayOfstring`
 
-The same composition applies inside generic result types—for example, `Ok<Todo[]>` produces `OkOfArrayOfTodo`.
+For example, generic result types apply this composition to produce schema reference IDs such as `OkOfArrayOfTodo` for `Ok<Todo[]>`.
 
 :::moniker-end
 

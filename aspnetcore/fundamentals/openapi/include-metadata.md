@@ -703,7 +703,7 @@ An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
-A <xref:System.Text.Json.Serialization.JsonStringEnumConverter> naming policy applies only to values that are serialized as JSON. Enum parameters bound from the query string, route, headers, or a form are parsed with <xref:System.Enum.TryParse*>, which accepts only the original C# member names. The generated schema reflects that difference: the `enum` values and the `default` value of a non-body parameter schema use the C# member names, even when a naming policy is configured.
+A <xref:System.Text.Json.Serialization.JsonStringEnumConverter> naming policy applies only to values that are serialized as JSON. Enum parameters bound from the query string, route, headers, or a form are parsed with <xref:System.Enum.TryParse*>, which does not apply JSON naming policies. The generated schema reflects that difference: the `enum` values and the `default` value of a non-body parameter schema use the original C# member names, even when a naming policy is configured.
 
 Consider the following kebab-case naming policy configured globally:
 
@@ -714,7 +714,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
         new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower));
 });
 
-app.MapGet("/orders", (OrderStatus status) => Results.Ok(status));
+app.MapGet("/orders", (OrderStatus status) => TypedResults.Ok(status));
 ```
 
 The response body schema describes `OrderStatus.PendingReview` as `pending-review`, while the `status` query parameter schema describes the accepted value as `PendingReview`. Both are correct: they describe what the endpoint returns and what it accepts, respectively.
