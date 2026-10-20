@@ -1,5 +1,6 @@
 ---
 title: Deploy ASP.NET Core apps to Azure App Service
+ai-usage: ai-assisted
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/27/2025
@@ -222,7 +223,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 
 If an ARM template is used to create and deploy apps, the `Microsoft.Web/sites/siteextensions` resource type can be used to add the site extension to a web app. In the following example, the .NET 5 (x64) Runtime site extension (`AspNetCoreRuntime.5.0.x64`) is added to the app:
 
-[!code-json[](index/sample/arm.json)]
+[!code-json[](index/samples/arm.json)]
 
 For the placeholder `{SITE NAME}`, use the app's name in Azure App Service (for example, `contoso`).
 

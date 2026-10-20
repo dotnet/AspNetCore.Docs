@@ -642,6 +642,7 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 * <xref:blazor/forms/validation>
   * <xref:blazor/forms/validation-client-side>
   * <xref:blazor/forms/validation-advanced>
+* [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
 * <xref:fundamentals/minimal-apis>
   * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
 * <xref:fundamentals/localization/make-content-localizable>
