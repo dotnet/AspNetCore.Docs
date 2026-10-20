@@ -20,7 +20,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.Configure<AuthMessageSenderOptions>(options =>
+{
+    options.SendGridKey = builder.Configuration["SendGridKey"];
+});
 
 var app = builder.Build();
 

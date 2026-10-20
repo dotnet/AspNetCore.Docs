@@ -1,4 +1,5 @@
 ---
+ai-usage: ai-assisted
 page_type: sample
 description: "Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI."
 languages:
@@ -120,7 +121,7 @@ services.AddSwaggerGen(c =>
 
 The Swagger UI displays the version's information:
 
-![Swagger UI with version information: description, author, and see more link](sample_images/custom-info.png)
+![Swagger UI with version information: description, author, and see more link](samples/images/custom-info.png)
 
 ### XML comments
 
@@ -250,7 +251,7 @@ public IActionResult Delete(long id)
 ```
 The Swagger UI displays the inner text of the preceding code's `<summary>` element:
 
-![Swagger UI showing XML comment 'Deletes a specific TodoItem.' for the DELETE method](sample_images/triple-slash-comments.png)
+![Swagger UI showing XML comment 'Deletes a specific TodoItem.' for the DELETE method](samples/images/triple-slash-comments.png)
 
 The UI is driven by the generated JSON schema:
 
@@ -314,7 +315,7 @@ public ActionResult<TodoItem> Create(TodoItem item)
 ```
 Notice the UI enhancements with these additional comments:
 
-![Swagger UI with additional comments shown](sample_images/xml-comments-extended.png)
+![Swagger UI with additional comments shown](samples/images/xml-comments-extended.png)
 
 ### Data annotations
 
@@ -379,7 +380,7 @@ public class TodoController : ControllerBase
 ```
 The **Response Content Type** drop-down selects this content type as the default for the controller's GET actions:
 
-![Swagger UI with default response content type](sample_images/json-response-content-type.png)
+![Swagger UI with default response content type](samples/images/json-response-content-type.png)
 
 As the usage of data annotations in the web API increases, the UI and API help pages become more descriptive and useful.
 
@@ -401,7 +402,7 @@ public ActionResult<TodoItem> Create(TodoItem item)
 
 The Swagger UI now clearly documents the expected HTTP response codes:
 
-![Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](sample_images/data-annotations-response-types.png)
+![Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](samples/images/data-annotations-response-types.png)
 
 In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](https://learn.microsoft.com/aspnet/core/web-api/advanced/conventions).
 

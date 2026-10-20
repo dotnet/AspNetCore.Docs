@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-7.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
@@ -119,7 +124,7 @@ You can debug the app by selecting the **https** button in the toolbar:
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-vs.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-VS.png)
 
 * Close the browser window.  Visual Studio will stop the application.
 
