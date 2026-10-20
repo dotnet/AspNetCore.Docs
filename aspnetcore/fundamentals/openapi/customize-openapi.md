@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 08/19/2026
+ms.date: 10/20/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -203,15 +203,15 @@ but in some circumstances a different name must be used.
 
 :::moniker range=">= aspnetcore-11.0"
 
-An array type is one such circumstance. A component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. Starting in .NET 11, the reference ID for an array is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
+An array type is one such circumstance. A component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. The reference ID for an array is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
 
-| C# type | Schema reference ID |
-|---|---|
-| `string[]` | `ArrayOfstring` |
-| `Todo[]` | `ArrayOfTodo` |
-| `string[][]` | `ArrayOfArrayOfstring` |
+C# type | Schema reference ID
+--- | ---
+`string[]` | `ArrayOfstring`
+`Todo[]` | `ArrayOfTodo`
+`string[][]` | `ArrayOfArrayOfstring`
 
-The same composition applies inside generic result types — for example, `Ok<Todo[]>` produces `OkOfArrayOfTodo`.
+The same composition applies inside generic result types—for example, `Ok<Todo[]>` produces `OkOfArrayOfTodo`.
 
 :::moniker-end
 
