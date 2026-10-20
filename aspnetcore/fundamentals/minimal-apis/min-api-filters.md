@@ -3,7 +3,7 @@ title: Filters in Minimal API apps
 ai-usage: ai-assisted
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/19/2026
+ms.date: 10/20/2026
 uid: fundamentals/minimal-apis/min-api-filters
 
 # customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
@@ -122,11 +122,13 @@ In the preceding code:
 
 ## Filters and parameter binding failures
 
-Endpoint filters run even when parameter binding fails. When a filter pipeline is built for an endpoint and a parameter can't be bound, the framework:
+Endpoint filters can run when a parameter-check failure occurs, such as a failed route, query, or header parse, or a missing required parameter. When a filter pipeline is built for an endpoint, `ThrowOnBadRequest` is `false`, and a parameter check fails, the framework:
 
 * Sets `HttpContext.Response.StatusCode` to `400`.
 * Invokes the filter pipeline.
 * Skips the route handler. The innermost step of the pipeline returns an empty result instead of calling the handler whenever the response status code is `400` or greater.
+
+Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported media types) or when an exception is thrown during parameter binding (such as from a custom `BindAsync` method); in those cases, the framework returns or throws before invoking the filter pipeline.
 
 A filter therefore sees the failed request and can replace the empty `400` with a response body of its own:
 
@@ -147,7 +149,7 @@ app.MapGet("/products/{id}", (Guid id) => TypedResults.Ok(id))
 
 Test the status code with `>=` rather than `== 400`. That's the same comparison the framework uses to decide whether to skip the handler, and a filter that runs earlier in the pipeline can set a different code.
 
-Because the handler doesn't run, the values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> are the parameters' default values, not bound request data. A filter that inspects arguments should check the status code first.
+Because the handler doesn't run, the values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> might only be partially bound. Parameters evaluated before the failure occurred might contain bound values, while failed or subsequent parameters retain default values. A filter that inspects arguments should check the status code first before relying on argument values.
 
 ## Observe binding failures in the Development environment
 

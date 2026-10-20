@@ -430,7 +430,7 @@ When binding fails, the framework logs a debug message and returns various statu
 | Failure to deserialize JSON body |doesn't matter|body|400|
 | Wrong content type (not `application/json`) |doesn't matter|body|415|
 
-Endpoints that have a filter pipeline run their filters after a binding failure, so a filter can observe the status code in the preceding table and replace the response body. For more information, see [Filters and parameter binding failures](xref:fundamentals/minimal-apis/min-api-filters#filters-and-parameter-binding-failures).
+When `ThrowOnBadRequest` is `false`, endpoints that have a filter pipeline run their filters after a parameter-check failure (such as failed route, query, or header parsing, or a missing required parameter), allowing a filter to observe the `400` status code and replace the response body. Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported content types) or for binding exceptions. For more information, see [Filters and parameter binding failures](xref:fundamentals/minimal-apis/min-api-filters#filters-and-parameter-binding-failures).
 
 ## Binding Precedence
 
