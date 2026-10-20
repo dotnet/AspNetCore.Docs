@@ -148,7 +148,7 @@ To enable runtime compilation only in the `Development` environment:
 
 In the following example, runtime compilation is enabled in the `Development` environment for the `IIS Express` and `RazorPagesApp` launch profiles:
 
-:::code language="json" source="view-compilation/samples_snapshot/3.x/launchSettings.json" highlight="15-16,24-25":::
+:::code language="json" source="view-compilation/samples/snapshot/3.x/launchSettings.json" highlight="15-16,24-25":::
 
 No code changes are needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
 
@@ -159,7 +159,7 @@ Consider a scenario in which a Razor Pages project references a [Razor class lib
 1. Enable runtime compilation with the instructions at [Conditionally enable runtime compilation in an existing project](#conditionally-enable-runtime-compilation-in-an-existing-project).
 1. Configure the runtime compilation options in `Startup.ConfigureServices`:
 
-    :::code language="csharp" source="view-compilation/samples_snapshot/3.x/Startup.cs" id="snippet_ConfigureServices" highlight="5-10":::
+    :::code language="csharp" source="view-compilation/samples/snapshot/3.x/Startup.cs" id="snippet_ConfigureServices" highlight="5-10":::
 
     In the preceding code, an absolute path to the *MyClassLib* RCL is constructed. The [PhysicalFileProvider API](xref:fundamentals/file-providers#physicalfileprovider) is used to locate directories and files at that absolute path. Finally, the `PhysicalFileProvider` instance is added to a file providers collection, which allows access to the RCL's `.cshtml` files.
 

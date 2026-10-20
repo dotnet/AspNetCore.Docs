@@ -1,0 +1,24 @@
+name: MSDocs build verifier
+on: pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: MSDocs build verifier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Validate
+        uses: dotnet/docs-actions/docs-verifier@0423860a660ff661db5dbfef394d3f6da721d4c0 # main
+        env:
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
