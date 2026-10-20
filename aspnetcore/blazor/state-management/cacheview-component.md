@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor CacheView component
 ai-usage: ai-assisted
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
-ms.date: 10/06/2026
+ms.date: 10/20/2026
 uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
@@ -53,6 +53,32 @@ The instances therefore resolve to the same key during the request, and `CacheVi
 
 Each iteration now creates and reuses an independent cache entry.
 
+> [!NOTE]
+> The default tree-position key is computed from the immediate parent component type and sequence number, not the full ancestor chain. When multiple `CacheView` instances have the same immediate parent component (such as `<ErrorBoundary>` or a custom wrapper component) and the same position in its render tree:
+>
+> * Within the same request (on the same page), `CacheView` throws an <xref:System.InvalidOperationException> (`Multiple CacheView components resolved to the same cache key`).
+> * Across different pages or requests, no exception is thrown, and the instances silently share the same cache entry unless you set `CacheKey` or `VaryBy` to distinguish between them.
+>
+> Page 1:
+>
+> ```razor
+> <ErrorBoundary>
+>     <CacheView>
+>         <p>Component One</p>
+>     </CacheView>
+> </ErrorBoundary>
+> ```
+>
+> Page 2:
+>
+> ```razor
+> <ErrorBoundary>
+>     <CacheView CacheKey="SecondComponent">
+>         <p>Component Two</p>
+>     </CacheView>
+> </ErrorBoundary>
+> ```
+
 The following parameters add request-specific values to the cache key:
 
 | Parameter | Cache varies by |
@@ -76,6 +102,9 @@ The following parameters add request-specific values to the cache key:
 Here, `currentPermission` is the current permission value used by the child content. Authorization logic inside cached child content isn't rerun on a cache hit. Move content that must recheck authorization on every request outside the `CacheView`.
 
 Without a matching vary-by parameter, requests with different values share the same cached output.
+
+> [!NOTE]
+> If a `<form>` or <xref:Microsoft.AspNetCore.Components.Forms.EditForm> without an explicit `action` attribute is rendered inside a `CacheView`, its [automatically generated `action` URL](xref:blazor/forms/index#handle-form-submission) is cached with the markup. Configure `VaryByQuery` (and `VaryByRoute` when route parameters apply) on the `CacheView` to prevent requests with different URLs from sharing a cached form `action`.
 
 ## Expiration and cache storage
 
