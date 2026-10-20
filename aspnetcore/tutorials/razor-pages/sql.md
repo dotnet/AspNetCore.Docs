@@ -118,11 +118,11 @@ Update `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all&highlight=13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all&highlight=2,13-18)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all_sl&highlight=13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all_sl&highlight=2,13-18)]
 
 ---
 
