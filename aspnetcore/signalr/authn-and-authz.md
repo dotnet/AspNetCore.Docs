@@ -309,6 +309,18 @@ A hub method that's already running keeps the `Context.User` it started with. La
 
 Authentication refresh requires a connection that negotiated protocol version 1 or later. Automatic refresh is scheduled only when the server reports a token lifetime, which typically comes from an authentication scheme that sets an expiration, such as bearer tokens. Windows authentication doesn't report an expiration and isn't tracked or refreshed by this feature.
 
+#### Refresh through a redirecting negotiate endpoint
+
+A negotiate endpoint can redirect a client to a different server, which is how Azure SignalR Service and similar services take over the connection. After a redirect, the .NET client holds two tokens:
+
+* The **app token** from the `AccessTokenProvider` configured on the connection. It authenticates requests to the app's own negotiate endpoint.
+* The **transport token** returned in the redirect response. It authenticates the transport connection to the redirect target.
+
+The .NET client uses the app token to authenticate refresh requests, so `AccessTokenProvider` continues to be called for each refresh after a redirect. The token lifetime reported by any negotiate response in the redirect chain is retained, so automatic refresh stays scheduled. If the refresh response returns a new transport token, the client adopts it for subsequent transport requests. A self-hosted SignalR server doesn't return one, because the transport token and the app token are the same.
+
+> [!IMPORTANT]
+> The redirect target must implement the refresh endpoint for any of this to take effect. As of .NET 11, Azure SignalR Service doesn't support authentication refresh. A connection through a service that doesn't report a token lifetime never schedules an automatic refresh, and `RefreshAuthenticationAsync` fails. Check the service's documentation before enabling authentication refresh in an app that runs behind it.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
