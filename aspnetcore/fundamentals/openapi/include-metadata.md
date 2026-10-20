@@ -3,7 +3,7 @@ title: Include OpenAPI metadata in an ASP.NET Core app
 ai-usage: ai-assisted
 description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 08/19/2026
+ms.date: 10/20/2026
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
@@ -744,7 +744,7 @@ A schema transformer can be used to override any default metadata or add additio
 Apply <xref:System.ObsoleteAttribute> to an endpoint, a type, or a property, and OpenAPI generation sets `deprecated: true` on the corresponding operation, component schema, or schema property. No OpenAPI transformer is required:
 
 ```csharp
-app.MapGet("/catalog/{id}", GetCatalogItem);
+app.MapGet("/catalog/{id}", (int id) => new CatalogItem(id, $"Product {id}", $"SKU-{id:D4}"));
 
 #pragma warning disable CS0618 // This example intentionally declares and maps obsolete APIs.
 app.MapGet("/catalog/legacy/{id}", GetLegacyCatalogItem);
@@ -753,6 +753,9 @@ app.MapGet("/catalog/legacy/{id}", GetLegacyCatalogItem);
 static LegacyCatalogItem GetLegacyCatalogItem(int id) =>
     new(id, $"Product {id}", $"SKU-{id:D4}");
 
+public sealed record CatalogItem(int Id, string Name, string StockKeepingUnit);
+
+[Obsolete("Use CatalogItem.")]
 public sealed record LegacyCatalogItem(
     int Id,
     string Name,
