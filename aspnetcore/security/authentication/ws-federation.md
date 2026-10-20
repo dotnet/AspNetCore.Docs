@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
-ms.date: 08/22/2026
+ms.date: 10/20/2026
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
