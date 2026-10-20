@@ -1,6 +1,7 @@
 #define DEFAULT // SQL server is default, SQL_Lite is other
 #if DEFAULT
 using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.");
 
@@ -38,6 +39,7 @@ app.MapRazorPages();
 app.Run();
 #elif SQL_Lite
 using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.");
 

@@ -126,12 +126,7 @@ For **Page Type**, confirm that **CRUD** is selected. Press <kbd>Enter</kbd>.
 
 If prompted to include prerelease packages, use the arrow keys to select **No**. Press <kbd>Enter</kbd>.
 
-Executing the `dotnet scaffold` command adds the following tools and packages to the app:
-
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
-* [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
-* Design time tools for EF Core.
-* The SQLite provider with the EF Core package as a dependency.
+The scaffolder adds the EF Core design-time and SQLite provider packages to the app.
 
 ---
 

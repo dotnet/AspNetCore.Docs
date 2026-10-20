@@ -3,6 +3,7 @@
 // <snippet_all>
 // <snippet_di>
 using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.");
 
@@ -44,6 +45,7 @@ app.Run();
 #elif SQL_Lite
 // <snippet_all_sl>
 using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.");
 
