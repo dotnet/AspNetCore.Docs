@@ -22,15 +22,15 @@ By default, the new middleware:
 
 ## Remote sign-out
 
-The middleware processes a `wsignoutcleanup1.0` message received at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType> by signing out the local session. The cleanup message doesn't include a signature or session identifier, so the middleware can't verify that it came from the identity provider. By default, `RemoteSignOutPath` is `/signin-wsfed`; a request from any origin that reaches this path can trigger the sign-out.
+The middleware processes a `wsignoutcleanup1.0` message received at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType> by signing out the local session. The cleanup message doesn't include a signature or session identifier, so the middleware can't verify that it came from the identity provider. By default, `RemoteSignOutPath` is `/signin-wsfed`; a request from any origin that reaches this path can trigger the user to sign out.
 
-If the app doesn't need identity-provider-initiated sign-out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty%2A?displayProperty=nameWithType>:
+If the app doesn't require the identity provider to initiate a process for users to sign out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty%2A?displayProperty=nameWithType>:
 
 ```csharp
 options.RemoteSignOutPath = PathString.Empty;
 ```
 
-Microsoft Entra ID sends cleanup messages to a reply URL that isn't deterministic, so disabling remote sign-out is generally the practical choice when using Entra ID. If the app needs remote sign-out, use <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationEvents.OnRemoteSignOut%2A?displayProperty=nameWithType> to filter requests based on the headers your identity provider actually sends. For example:
+Microsoft Entra ID sends cleanup messages to a reply URL that isn't deterministic, so disabling the feature is generally the practical choice when using Entra ID. If the app must remotely sign out users, use <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationEvents.OnRemoteSignOut%2A?displayProperty=nameWithType> to filter requests based on the headers your identity provider actually sends. For example:
 
 ```csharp
 options.Events.OnRemoteSignOut = context =>
@@ -46,7 +46,7 @@ options.Events.OnRemoteSignOut = context =>
 };
 ```
 
-The missing `Referer` is rejected deliberately, and the trailing `/` prevents matching look-alike host names. This filter uses request metadata, not cryptographic authentication; non-browser clients can forge headers. Before enforcing a filter, check which headers the identity provider sends in an actual cleanup request, including `Referer`, `Sec-Fetch-Dest`, and `Sec-Fetch-Site`. For iframe- or image-based cleanup, the authentication cookie generally needs `SameSite=None` and `Secure` so the browser sends it.
+The missing `Referer` is rejected deliberately, and the trailing `/` prevents matching look-alike host names. This filter uses request metadata, not cryptographic authentication; non-browser clients can forge headers. Before enforcing a filter, check which headers the identity provider sends in an actual cleanup request, including `Referer`, `Sec-Fetch-Dest`, and `Sec-Fetch-Site`. For iframe- or image-based cleanup, the authentication cookie generally requires `SameSite=None` and `Secure`, so the browser sends it.
 
 ## Register the app with Active Directory
 
