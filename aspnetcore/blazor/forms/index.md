@@ -247,8 +247,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 
 :::moniker range=">= aspnetcore-8.0"
 
-> [!NOTE]
-> During static server-side rendering (static SSR), when a `<form>` or <xref:Microsoft.AspNetCore.Components.Forms.EditForm> doesn't specify an explicit `action` attribute, Blazor automatically renders an `action` attribute set to the current request's root-relative path and query string (derived from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType>).
+During static server-side rendering (static SSR), when a `<form>` or <xref:Microsoft.AspNetCore.Components.Forms.EditForm> doesn't specify an explicit `action` attribute, Blazor automatically renders an `action` attribute set to the current request's root-relative path and query string, which is derived from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType>.
 
 :::moniker-end
 
