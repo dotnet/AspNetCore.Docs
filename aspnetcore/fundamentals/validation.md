@@ -3,7 +3,7 @@ title: Validation in ASP.NET Core
 ai-usage: ai-assisted
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 09/23/2026
+ms.date: 10/20/2026
 uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
@@ -44,7 +44,7 @@ Generated validation metadata also enables message localization.
 Validation uses a source generator that creates metadata for validatable types in the assembly where `AddValidation` is called. For types declared in another assembly, see [Register validation across assemblies](#register-validation-across-assemblies).
 
 > [!NOTE]
-> `AddValidation` validates properties and objects using data annotations on bound models. It doesn't automatically validate or reject unmapped JSON properties. By default, `System.Text.Json` sets <xref:System.Text.Json.Serialization.JsonSerializerOptions.UnmappedMemberHandling> to <xref:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Skip>. To reject requests containing unmapped JSON payload properties, configure `JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow`.
+> `AddValidation` validates properties and objects using data annotations on bound models. It doesn't automatically validate or reject unmapped JSON properties. By default, `System.Text.Json` sets <xref:System.Text.Json.JsonSerializerOptions.UnmappedMemberHandling> to <xref:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Skip>. To reject requests containing unmapped JSON payload properties, configure `JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow`.
 
 ### Behavior without generated validation metadata
 
