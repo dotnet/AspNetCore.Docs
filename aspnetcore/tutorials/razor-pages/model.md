@@ -2,7 +2,7 @@
 title: Part 2, add a model
 ai-usage: ai-assisted
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
-ms.date: 01/07/2026
+ms.date: 10/20/2026
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/razor-pages/model
 ---
@@ -61,7 +61,11 @@ The `Movie` class contains:
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-9.md)]
+To add the `dotnet scaffold` tool, execute the following .NET CLI command in a command shell opened to the project's root folder:
+
+```dotnetcli
+dotnet tool install --global Microsoft.dotnet-scaffold
+```
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
@@ -96,31 +100,38 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
-
-  ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/MoviePages --referenceScriptLibraries --databaseProvider sqlite
-  ```
-
-The following table details the ASP.NET Core code generator options.
-
-| Option | Description |
-| ----------------- | ------------ |
-| `-m` | The name of the model. |
-| `-dc` | The `DbContext` class to use including namespace. |
-| `-udl` | Use the default layout. |
-| `-outDir` | The relative output folder path to create the views. |
-| `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
-
-Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` command:
+In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorpage -h
+dotnet scaffold
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+When the initializing prompt appears, press <kbd>Enter</kbd> on the keyboard.
 
-[!INCLUDE[](~/includes/DevProdSQLite.md)]
+For the **Scaffolding Category**, use the arrow keys to select **Razor Pages**. Press <kbd>Enter</kbd>.
+
+For **Pick a scaffolding command**, use the arrow keys to select **Razor Pages with Entity Framework (CRUD) (dotnet-scaffold)**. Press <kbd>Enter</kbd>.
+
+*CRUD* is an acronym for Create, Read, Update, and Delete. The scaffolder produces create, edit, delete, details, and index pages for the app.
+
+For the **.NET project file**, press <kbd>Enter</kbd> to accept the app's project file (`RazorPagesMovie (RazorPagesMovie.csproj)`).
+
+For the **Model Name**, confirm that **Movie** (`Movie` class) is selected. Press <kbd>Enter</kbd>.
+
+For **Enter a new value for 'Data Context Class'**, type in `RazorPagesMovieContext`. Press <kbd>Enter</kbd>.
+
+For the **Database Provider**, use the arrow keys to select **sqlite-efcore**. Press <kbd>Enter</kbd>.
+
+For **Page Type**, confirm that **CRUD** is selected. Press <kbd>Enter</kbd>.
+
+If prompted to include prerelease packages, use the arrow keys to select **No**. Press <kbd>Enter</kbd>.
+
+Executing the `dotnet scaffold` command adds the following tools and packages to the app:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
+* [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
+* Design time tools for EF Core.
+* The SQLite provider with the EF Core package as a dependency.
 
 ---
 
@@ -131,17 +142,19 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 The scaffold process creates the following files:
 
 * *Pages/MoviePages*: Create, Delete, Details, Edit, and Index.
-* `Data/RazorPagesMovieContext.cs`
+* `RazorPagesMovieContext.cs`
 
 The next tutorial explains the created files.
 
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all&highlight=1,3-5)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all_sl&highlight=1,3-5)]
 
 ---
 
@@ -217,9 +230,9 @@ The data context `RazorPagesMovieContext`:
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as Create, Read, Update, and Delete, for the `Movie` model.
 
-The `RazorPagesMovieContext` class in the generated file `Data/RazorPagesMovieContext.cs`:
+The `RazorPagesMovieContext` class in the generated file `RazorPagesMovieContext.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -256,10 +269,12 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 The scaffolding tool automatically creates a database context and registers it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all&highlight=8-9)]
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all&highlight=5)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all_sl&highlight=8-9)]
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_all_sl&highlight=5)]
 
 ---
 

@@ -2,7 +2,7 @@
 title: Part 4, work with a database
 ai-usage: ai-assisted
 description: Part 4 of tutorial series on Razor Pages.
-ms.date: 10/09/2026
+ms.date: 10/20/2026
 uid: tutorials/razor-pages/sql
 ---
 
@@ -14,15 +14,15 @@ By [Joe Audette](https://twitter.com/joeaudette)
 
 :::moniker range=">= aspnetcore-10.0"
 
-The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. Register the database context with the [Dependency Injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
+The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_di&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_di&highlight=5)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_di_sl&highlight=7-8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program.cs?name=snippet_di_sl&highlight=5)]
 
 ---
 
@@ -118,11 +118,11 @@ Update `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all&highlight=12-17)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/ProgramSeed.cs?name=snippet_all_sl&highlight=12-17)]
 
 ---
 
