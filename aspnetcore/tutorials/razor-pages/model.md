@@ -59,13 +59,9 @@ The `Movie` class contains:
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
-### Add NuGet packages and EF tools
+### Add NuGet packages, EF tools, and .NET scaffolding tools
 
-To add the `dotnet scaffold` tool, execute the following .NET CLI command in a command shell opened to the project's root folder:
-
-```dotnetcli
-dotnet tool install --global Microsoft.dotnet-scaffold
-```
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-10.md)]
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
