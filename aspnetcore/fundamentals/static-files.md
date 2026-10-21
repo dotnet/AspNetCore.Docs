@@ -971,6 +971,9 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
 > [!WARNING]
 > <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> or <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*>. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
 
+> [!NOTE]
+> A file with an accessible 8.3 short-name alias can also be served through that alias. Static file middleware determines the content type from the requested path, not the resolved file name. If the alias has a recognized extension, a file whose long-name extension is unrecognized can be served even when `ServeUnknownFileTypes` is disabled. Don't rely on file extension filtering to protect private files. Keep them outside all directories served by static file middleware.
+
 * The URLs for content exposed through <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> follow the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
 
 * ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and doesn't handle requests.
