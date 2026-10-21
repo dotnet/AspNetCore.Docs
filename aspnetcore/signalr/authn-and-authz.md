@@ -318,7 +318,7 @@ A negotiate endpoint can redirect a client to a different server, which is how A
 
 The .NET client uses the app token to authenticate refresh requests, so `AccessTokenProvider` continues to be called for each refresh after a redirect. The token lifetime reported by any negotiate response in the redirect chain is retained, so automatic refresh stays scheduled. If the refresh response returns a new transport token, the client adopts it for subsequent transport requests. A self-hosted SignalR server doesn't return one because the transport token and the app token are the same.
 
-The original application endpoint must implement the authentication refresh endpoint for this processing to take effect. If a service in the redirect chain doesn't report a token lifetime, the client doesn't schedule automatic refresh, but `RefreshAuthenticationAsync` can still be called manually if the endpoint supports refresh. Azure SignalR Service doesn't support authentication refresh. Check the service's documentation before enabling authentication refresh in an app that runs behind it.
+The original application endpoint must implement the authentication refresh endpoint for this processing to take effect. If no negotiate response in the redirect chain reports a token lifetime, the client doesn't schedule automatic refresh, but `RefreshAuthenticationAsync` can still be called manually if the endpoint supports refresh. Azure SignalR Service doesn't support authentication refresh. Check the service's documentation before enabling authentication refresh in an app that runs behind it.
 
 :::moniker-end
 
