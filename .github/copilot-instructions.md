@@ -36,7 +36,7 @@ When working on an issue:
 * [ ] If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
 ### 4. API References and Verification
-  * [ ] Use `<xref:api-doc-ID>` for API cross-references, where `api-doc-ID` is the API documentation ID. For an encoded asterisk in the API documentation ID (%2A), use a plain text asterisk (*) instead. For an encoded backtick (%60), use plain text backtick (`) instead.
+  * [ ] Use `<xref:api-doc-ID>` for API cross-references, where `api-doc-ID` is the API documentation ID. For an encoded asterisk in the API documentation ID (%2A), use a plain text asterisk (*) instead. For an encoded backtick (%60), use a plain text backtick (`) instead.
   * [ ] The API documentation ID must be verified and sourced from the official XML documentation in dotnet-api-docs, never just infer API documentation IDs by looking for similar patterns.
   * [ ] If you cannot verify, state that explicitly in your output.
 
