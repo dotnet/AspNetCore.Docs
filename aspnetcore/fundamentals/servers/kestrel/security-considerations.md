@@ -241,6 +241,8 @@ The `HandshakeTimeout` defaults to **10 seconds**. This limits how long a client
 - **`TlsClientHelloBytesCallback`** (.NET 10): A property on `HttpsConnectionAdapterOptions` and `TlsHandshakeCallbackOptions` that provides raw Client Hello inspection. In .NET 11 this property is obsolete in favor of `UseTlsClientHelloListener`.
 - **`ITlsHandshakeFeature.Exception`** (.NET 11+): The <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> feature exposes an `Exception` property holding the exception thrown during a **failed** TLS handshake (`null` when the handshake succeeded or hasn't completed). Connection middleware and logging can record *why* a connection failed instead of seeing only a bare `IOException` higher in the stack. Kestrel snapshots the relevant fields off the underlying `SslStream` before it's disposed, so the value is still readable after the failure. Read it from connection middleware registered with `ListenOptions.Use`:
 
+  Register this middleware before `UseHttps` so it wraps the HTTPS middleware. Failed TLS handshakes don't reach middleware registered after `UseHttps`.
+
   ```csharp
   listenOptions.Use(next => async context =>
   {
@@ -257,6 +259,8 @@ The `HandshakeTimeout` defaults to **10 seconds**. This limits how long a client
           }
       }
   });
+
+  listenOptions.UseHttps();
   ```
 
 ## HTTP/1.1 request parsing and validation
