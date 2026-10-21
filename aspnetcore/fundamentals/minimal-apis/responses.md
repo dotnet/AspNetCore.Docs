@@ -202,6 +202,20 @@ The following example illustrates how to use the `TypedResults.ServerSentEvents`
 
 For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 
+Always return the stream through `TypedResults.ServerSentEvents`. A handler that returns `IAsyncEnumerable<SseItem<T>>` directly compiles and runs, but the result is serialized as JSON rather than sent as Server-Sent Events.
+
+The `SseItem<T>` overload doesn't take an `eventType` parameter, because each `SseItem<T>` carries its own event type. To apply a single event name to every message in the stream, pass a plain `IAsyncEnumerable<T>` and supply `eventType`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see <xref:fundamentals/openapi/include-metadata>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 #### Redirect
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_09":::
