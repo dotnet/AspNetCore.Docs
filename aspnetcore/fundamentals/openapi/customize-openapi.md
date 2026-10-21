@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 10/20/2026
+ms.date: 10/21/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -103,6 +103,17 @@ For example, the following operation transformer adds `500` as a response status
 Operation transformers can also be added to specific endpoint with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.AddOpenApiOperationTransformer%2A> API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> A transformer isn't needed just to mark an API deprecated. Applying <xref:System.ObsoleteAttribute> to an endpoint, a response type, or a property sets `deprecated: true` on the corresponding operation, component schema, or schema property. Applying `[Obsolete]` to an endpoint handler does not propagate to its response schema unless the response type itself is also marked obsolete. Use an operation transformer when the OpenAPI value must differ from what `[Obsolete]` produces. For more information, see [Mark APIs as deprecated](xref:fundamentals/openapi/include-metadata#mark-apis-as-deprecated).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### Conditionally applying security requirements
 
