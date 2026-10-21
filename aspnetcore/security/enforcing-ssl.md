@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 10/09/2026
+ms.date: 10/21/2026
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
