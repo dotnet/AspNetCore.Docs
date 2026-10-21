@@ -193,6 +193,16 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after `UseRouting` when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) attribute is used, `UseRateLimiter` must be called after `UseRouting`. When calling only global limiters, `UseRateLimiter` can be called before `UseRouting`.
 
+If the app calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A>, call it before `UseRouting` and `UseRateLimiter`. When the status code pages middleware re-executes a request, only the middleware registered after it runs again. If `UseRateLimiter` is called before `UseStatusCodePagesWithReExecute`, the rate limiter doesn't run for the re-executed endpoint, so that endpoint's rate limiting policy isn't applied, even when the policy has no permits remaining. The following order lets the rate limiter evaluate the re-executed endpoint:
+
+```csharp
+app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
+app.UseRouting();
+app.UseRateLimiter();
+```
+
+For more information, see the [`UseStatusCodePagesWithReExecute` section of the error handling article](xref:fundamentals/error-handling#usestatuscodepageswithreexecute).
+
 <a name="slide"></a>
 
 ### Sliding window limiter
