@@ -3,7 +3,7 @@ title: Filters in Minimal API apps
 ai-usage: ai-assisted
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/20/2026
+ms.date: 10/21/2026
 uid: fundamentals/minimal-apis/min-api-filters
 
 # customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
@@ -149,7 +149,7 @@ app.MapGet("/products/{id}", (Guid id) => TypedResults.Ok(id))
 
 Test the status code with `>=` rather than `== 400`. That's the same comparison the framework uses to decide whether to skip the handler, and a filter that runs earlier in the pipeline can set a different code.
 
-Because the handler doesn't run, the values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> might only be partially bound. Parameters evaluated before the failure occurred might contain bound values, while failed or subsequent parameters retain default values. A filter that inspects arguments should check the status code first before relying on argument values.
+Because parameter binding did not fully succeed, values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> might only be partially bound. A filter that inspects arguments should check the status code first before relying on argument values.
 
 ## Observe binding failures in the Development environment
 

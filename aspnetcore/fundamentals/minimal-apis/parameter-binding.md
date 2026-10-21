@@ -3,7 +3,7 @@ title: Parameter binding in Minimal API applications
 ai-usage: ai-assisted
 description: Learn how parameters are populated before invoking minimal route handlers.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/20/2026
+ms.date: 10/21/2026
 uid: fundamentals/minimal-apis/parameter-binding
 ---
 
