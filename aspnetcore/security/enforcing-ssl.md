@@ -277,19 +277,11 @@ If you run `dotnet dev-certs` as a different user (for example, by using `sudo`)
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-11.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ### Trust the certificate from Windows Subsystem for Linux
 
-Run the normal trust command from the WSL distribution:
-
-```dotnetcli
-dotnet dev-certs https --trust
-```
-
-When WSL interop is enabled, the command attempts to trust the ASP.NET Core HTTPS development certificate in the Linux trust locations described in this section and also attempts to add the public certificate to the Windows Current User Root certificate store. You no longer need to export a PFX from Windows and import it into WSL for the common development setup.
-
-If Windows trust isn't established, confirm that WSL interop is enabled and rerun the command. The Linux trust steps are still per-user and can require the OpenSSL, NSS, or browser-specific configuration described in this article.
+Run the trust command inside WSL. When WSL interop is enabled, it also attempts to add the public certificate to the Windows Current User Root certificate store. Check the command output for trust failures and any required Linux configuration.
 
 :::moniker-end
 
