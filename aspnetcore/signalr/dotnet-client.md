@@ -12,7 +12,7 @@ uid: signalr/dotnet-client
 
 The ASP.NET Core SignalR .NET client library lets you communicate with SignalR hubs from .NET apps. This article describes how to use the APIs to connect to a SignalR hub, and call the .NET hub and client methods. The code sample in this article is a Windows Presentation Foundation (WPF) app that uses the ASP.NET Core SignalR .NET client.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Install the SignalR .NET client package
 
@@ -40,7 +40,7 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client
 
 To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `Build`. Start the connection with `StartAsync`.
 
-[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
+[!code-csharp[Build hub connection](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
 
 ## Handle lost connection
@@ -220,13 +220,13 @@ The main reason for the async support is so you can restart the connection. Star
 
 In a `Closed` handler that restarts the connection, consider waiting for some random delay to prevent overloading the server, as shown in the following example:
 
-[!code-csharp[Use Closed event handler to automate reconnection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ClosedRestart)]
+[!code-csharp[Use Closed event handler to automate reconnection](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_ClosedRestart)]
 
 ## Call hub methods from client
 
 `InvokeAsync` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `InvokeAsync`. SignalR is asynchronous, so use `async` and `await` when making the calls.
 
-[!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
+[!code-csharp[InvokeAsync method](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
 
 The `InvokeAsync` method returns a `Task` that completes when the server method returns. The return value, if any, is provided as the result of the `Task`. Any exceptions thrown by the method on the server produce a faulted `Task`. Use `await` syntax to wait for the server method to complete and `try...catch` syntax to handle errors.
 
@@ -235,15 +235,62 @@ The `SendAsync` method returns a `Task` that completes when the message is sent 
 > [!NOTE]
 > Calling hub methods from a client is supported only when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions](/azure/azure-signalr/signalr-resource-faq).
 
+:::moniker range=">= aspnetcore-11.0"
+
+### Cancel a hub method invocation
+
+Pass a <xref:System.Threading.CancellationToken> to `InvokeAsync` to cancel a long-running hub method. Canceling the token sends a cancellation message to the server, which triggers the `CancellationToken` parameter of the running hub method:
+
+```csharp
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
+try
+{
+    var report = await hubConnection.InvokeAsync<Report>(
+        "GenerateReport", reportId, cts.Token);
+}
+catch (OperationCanceledException)
+{
+    // The invocation was canceled.
+}
+```
+
+The hub method must declare a `CancellationToken` parameter to observe the cancellation. The server supplies that parameter; don't pass an argument for it from the client:
+
+```csharp
+public class ReportHub : Hub
+{
+    public async Task<Report> GenerateReport(
+        int reportId, CancellationToken cancellationToken)
+    {
+        // Pass cancellationToken to the work being performed.
+    }
+}
+```
+
+Note the following about cancellation:
+
+* Cancellation is cooperative. The server requests cancellation, but the hub method decides whether and how quickly to stop. The server sends a completion message for the invocation either way.
+* If the hub method allows an <xref:System.OperationCanceledException> to propagate, the invocation completes with an error rather than as a canceled invocation.
+* The `CancellationToken` supplied to the hub method is also canceled when the connection closes, so it isn't only triggered by an explicit client cancellation.
+* The caller's `Task` is canceled on the client as soon as the cancellation message is sent. It doesn't wait for the hub method to stop.
+* Cancellation applies to `InvokeAsync`, which tracks an invocation ID. `SendAsync` doesn't wait for the hub method, so there's nothing for it to cancel.
+
+Before ASP.NET Core 11.0, a `CancellationToken` passed to a non-streaming `InvokeAsync` only canceled the wait on the client. The hub method ran to completion on the server. Only streaming invocations could be canceled. This is also the behavior against a server running an earlier version of ASP.NET Core.
+
+Canceling a non-streaming invocation is supported by the .NET client only. The JavaScript, Java, and Swift clients can cancel streaming invocations, but their `invoke` equivalents don't accept a cancellation argument. See <xref:signalr/client-features>.
+
+:::moniker-end
+
 ## Call client methods from hub
 
 Define the methods that the hub calls by using `connection.On` after building, but before starting the connection:
 
-[!code-csharp[Define client methods](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ConnectionOn)]
+[!code-csharp[Define client methods](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_ConnectionOn)]
 
 The preceding code in `connection.On` runs when server-side code calls it by using the `SendAsync` method:
 
-[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
+[!code-csharp[Call client method](dotnet-client/samples/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 
 > [!NOTE]
 > While the hub side of the connection supports strongly typed messaging, the client must register by using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On%2A?displayProperty=nameWithType> with the method name. For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
@@ -252,7 +299,7 @@ The preceding code in `connection.On` runs when server-side code calls it by usi
 
 Handle errors with a `try...catch` statement. Inspect the `Exception` object to determine the proper action to take after an error occurs:
 
-[!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
+[!code-csharp[Logging](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
 
 :::moniker range=">= aspnetcore-11.0"
 

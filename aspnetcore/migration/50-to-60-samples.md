@@ -30,7 +30,7 @@ public class Startup
 
 The following code adds the static file middleware to an ASP.NET Core in .NET 6 app:
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
 
@@ -54,7 +54,7 @@ public class Startup
 
 In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. The following code adds an endpoint to an ASP.NET Core in .NET 6 app:
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_rt)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_rt)]
 
 **Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
@@ -83,7 +83,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_root)]
 
 For more information, see <xref:fundamentals/index>
 
@@ -116,7 +116,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 
 For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
 
@@ -139,7 +139,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_log)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_log)]
 
 For more information, see  <xref:fundamentals/logging/index?view=aspnetcore-6.0#>.
 
@@ -163,7 +163,7 @@ public class Startup
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_svc)]
 
 For more information, see  <xref:fundamentals/dependency-injection?view=aspnetcore-6.0#>.
 
@@ -187,7 +187,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 #### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_hb)]
 
 ### Customize IWebHostBuilder
 
@@ -206,7 +206,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_whb)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_whb)]
 
 ## Change the web root
 
@@ -227,7 +227,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_wr)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_wr)]
 
 <a name="cdi"></a>
 
@@ -312,7 +312,7 @@ In ASP.NET Core in .NET 6:
 * There are a few common services available as top level properties on <xref:Microsoft.AspNetCore.Builder.WebApplication>.
 * Additional services need to be manually resolved from the `IServiceProvider` via [WebApplication.Services](xref:Microsoft.AspNetCore.Builder.WebApplication.Services).
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_af)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_af)]
 
 <a name="twa"></a>
 
@@ -433,7 +433,7 @@ class MockHelloService : IHelloService
 
 ### ASP.NET Core in .NET 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_test)]
+[!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_test)]
 
 #### Project file (.csproj)
 
