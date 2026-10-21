@@ -175,7 +175,7 @@ The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.
 
 :::moniker range=">= aspnetcore-11.0"
 
-Negotiate authentication on Kestrel binds the authentication exchange to the connection using the [TLS endpoint channel binding token](xref:System.Security.Authentication.ExtendedProtection.ChannelBinding) for HTTPS connections. The handler supplies the token to the underlying Kerberos or NTLM exchange and retains it across multi-round authentication, which helps mitigate NTLM relay and man-in-the-middle attacks. No configuration is required. Non-HTTPS connections, and HTTPS connections where a channel binding token isn't available, continue to use the previous behavior.
+Negotiate authentication on Kestrel binds the authentication exchange to the connection using the [TLS endpoint channel binding token](xref:System.Security.Authentication.ExtendedProtection.ChannelBinding) for HTTPS connections. The handler supplies the token to the underlying Kerberos or NTLM exchange and retains it across multi-round authentication, which helps mitigate NTLM relay and man-in-the-middle attacks. No configuration is required. Non-HTTPS connections, and HTTPS connections where a channel binding token isn't available, continue to use the previous behavior. Authentication can fail if a proxy terminates TLS and connects to Kestrel over HTTPS with a different certificate.
 
 :::moniker-end
 
