@@ -90,13 +90,13 @@ This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 :::moniker range=">= aspnetcore-11.0"
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> applies to initial request headers, HTTP/1.1 chunked trailers, and trailer headers on HTTP/2 and HTTP/3 requests. If a trailer header block remains incomplete when the timeout expires, Kestrel closes the HTTP/2 connection or aborts the affected HTTP/3 request stream.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> also applies while receiving HTTP/2 and HTTP/3 request trailers. It doesn't apply to HTTP/1.1 request trailers.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-11.0"
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> only applies to a request's initial headers, so a stalled or partial trailer frame isn't restricted by it.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> applies only to initial request headers, not request trailers.
 
 :::moniker-end
 
@@ -306,8 +306,7 @@ Gets or sets the maximum amount of time the server spends receiving request head
 
 :::code language="csharp" source="samples/5.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="21-22":::
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> only applies to a request's initial headers, so a stalled or partial trailer frame isn't restricted by it.
-
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> applies only to initial request headers, not request trailers.
 ## HTTP/2 limits
 
 The limits in this section are set on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2?displayProperty=nameWithType>.
