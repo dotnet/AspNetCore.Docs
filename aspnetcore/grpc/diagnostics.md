@@ -1,5 +1,6 @@
 ---
 title: Logging and diagnostics in gRPC on .NET
+ai-usage: ai-assisted
 description: Learn how to gather diagnostics from your gRPC app on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 06/20/2025
@@ -31,11 +32,11 @@ Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging
 
 gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in the `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
-[!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
+[!code-json[](diagnostics/samples/logging-config.json?highlight=7)]
 
 Logging can also be configured in `Program.cs` with `ConfigureLogging`:
 
-[!code-csharp[](diagnostics/sample/logging-config-code.cs?highlight=5)]
+[!code-csharp[](diagnostics/samples/logging-config-code.cs?highlight=5)]
 
 When not using JSON-based configuration, set the following configuration value in the configuration system:
 
@@ -85,13 +86,13 @@ If the app is deployed to another environment (for example, Docker, Kubernetes, 
 
 To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` property when the client's channel is created.  When calling a gRPC service from an ASP.NET Core app, the logger factory can be resolved from dependency injection (DI):
 
-[!code-csharp[](diagnostics/sample/net-client-dependency-injection.cs?highlight=7,16)]
+[!code-csharp[](diagnostics/samples/net-client-dependency-injection.cs?highlight=7,16)]
 
 An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
 If the app isn't using DI, then create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
-[!code-csharp[](diagnostics/sample/net-client-loggerfactory-create.cs?highlight=1,8)]
+[!code-csharp[](diagnostics/samples/net-client-loggerfactory-create.cs?highlight=1,8)]
 
 #### gRPC client log scopes
 
@@ -255,11 +256,11 @@ Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging
 
 gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in your `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
-[!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
+[!code-json[](diagnostics/samples/logging-config.json?highlight=7)]
 
 You can also configure this in `Startup.cs` with `ConfigureLogging`:
 
-[!code-csharp[](diagnostics/sample/logging-config-code.cs?highlight=5)]
+[!code-csharp[](diagnostics/samples/logging-config-code.cs?highlight=5)]
 
 If you aren't using JSON-based configuration, set the following configuration value in your configuration system:
 
@@ -309,13 +310,13 @@ If the app is deployed to another environment (for example, Docker, Kubernetes, 
 
 To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` property when the client's channel is created.  When calling a gRPC service from an ASP.NET Core app, the logger factory can be resolved from dependency injection (DI):
 
-[!code-csharp[](diagnostics/sample/net-client-dependency-injection.cs?highlight=7,16)]
+[!code-csharp[](diagnostics/samples/net-client-dependency-injection.cs?highlight=7,16)]
 
 An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
 If your app isn't using DI, then you can create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
-[!code-csharp[](diagnostics/sample/net-client-loggerfactory-create.cs?highlight=1,8)]
+[!code-csharp[](diagnostics/samples/net-client-loggerfactory-create.cs?highlight=1,8)]
 
 #### gRPC client log scopes
 
