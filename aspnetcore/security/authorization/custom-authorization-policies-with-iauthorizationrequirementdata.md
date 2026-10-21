@@ -16,7 +16,7 @@ This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint withi
 
 You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
-MVC filters, SignalR hub methods, and Blazor apply all three forms of authorization metadata—`IAuthorizeData` attributes such as `[Authorize]`, `AuthorizationPolicy` instances, and `IAuthorizationRequirementData` attributes—through one shared implementation, the [`AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider, IEnumerable<object>)`](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync%2A) overload. Frameworks and middleware that are required to compute the effective policy for a set of metadata outside the authorization middleware can call the same overload.
+Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync*> overload to combine mixed authorization metadata using the same rules as the authorization middleware.
 
 :::moniker-end
 
