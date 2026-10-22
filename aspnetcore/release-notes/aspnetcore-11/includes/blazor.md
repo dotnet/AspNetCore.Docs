@@ -915,8 +915,19 @@ dotnet add package AGUI.Client
 using AGUI.Client;
 using Microsoft.Extensions.AI;
 
-builder.Services.AddHttpClient<IChatClient>(httpClient =>
-    new AGUIChatClient(new(httpClient, "https://api.example.com/agent")));
+builder.Services.AddHttpClient("Agent", client =>
+{
+    client.Timeout = Timeout.InfiniteTimeSpan;
+});
+
+builder.Services.AddScoped<IChatClient>(services =>
+{
+    var httpClient = services.GetRequiredService<IHttpClientFactory>()
+        .CreateClient("Agent");
+
+    return new AGUIChatClient(
+        new AGUIChatClientOptions(httpClient, "https://api.example.com/agent"));
+});
 ```
 
 `AGUIChatClient` streams AG-UI events as `ChatResponseUpdate` values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any `IChatClient`, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
