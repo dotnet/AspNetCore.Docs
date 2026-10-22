@@ -1,5 +1,6 @@
 ---
 title: Publish an ASP.NET Core app to Azure with Visual Studio
+ai-usage: ai-assisted
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 monikerRange: '>= aspnetcore-7.0'
 ms.custom: devx-track-csharp, sfi-image-nochange
@@ -39,7 +40,7 @@ Visual Studio creates the solution.
 
 ## Run the app
 
-* Press F5 to run the project.
+Press <kbd>F5</kbd> to run the project.
 
 ![Web application open in Microsoft Edge on localhost](publish-to-azure-webapp-using-vs/_static/show.png)
 
@@ -47,10 +48,11 @@ Visual Studio creates the solution.
 
 * Select **Register** and register a new user. You can use a fictitious email address. When you submit, the page displays the following error:
 
-    *"A database operation failed while processing the request. Applying existing migrations may resolve this issue"*
+  *"A database operation failed while processing the request. Applying existing migrations may resolve this issue"*
+
 * Select **Apply Migrations** and, once the page updates, refresh the page.
 
-![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
+  ![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
 
 * A **Register confirmation** page is displayed. Select **Click here to confirm your account**.
 * A **Confirm email** page is displayed.
@@ -165,15 +167,15 @@ The app is opened in a browser. Register a new user and log in as the new user t
 
 * Edit the `Pages/Index.cshtml` Razor page and change its contents, then save the changes. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
 
-    [!code-html[Index](publish-to-azure-webapp-using-vs/sample/index.cshtml?highlight=10&range=1-12)]
+  [!code-html[Index](publish-to-azure-webapp-using-vs/samples/index.cshtml?highlight=10&range=1-12)]
 
 * Select **Publish** from the **Publish Profile summary** page again.
 
-![Publish profile summary page](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
+  ![Publish profile summary page](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
 * After the app is published, refresh the page and verify that the changes you made are available on Azure.
 
-![Verify task is complete](publish-to-azure-webapp-using-vs/_static/final.png)
+  ![Verify task is complete](publish-to-azure-webapp-using-vs/_static/final.png)
 
 ### Clean up
 
@@ -181,11 +183,11 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 * Select **Resource groups**, then select the resource group you created.
 
-![Azure portal: Resource Groups in sidebar menu](publish-to-azure-webapp-using-vs/_static/portalrg.png)
+  ![Azure portal: Resource Groups in sidebar menu](publish-to-azure-webapp-using-vs/_static/portalrg.png)
 
 * In the **Resource group** page, select **Delete resource group**.
 
-![Azure portal: Resource Groups page](publish-to-azure-webapp-using-vs/_static/rdg.png)
+  ![Azure portal: Resource Groups page](publish-to-azure-webapp-using-vs/_static/rdg.png)
 
 * Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
 

@@ -86,6 +86,25 @@ public class ChatHub : Hub
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values. Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/language-reference/builtin-types/union) only with the default `JsonHubProtocol`. The MessagePack and `Newtonsoft.Json` hub protocols don't support unions.
 
+### Accept cancellation in a hub method
+
+Any hub method can declare a <xref:System.Threading.CancellationToken>. The server supplies the token, so clients don't send an argument for it. The token is canceled when the client cancels the invocation or when the connection closes:
+
+```csharp
+public class ReportHub : Hub
+{
+    public async Task<Report> GenerateReport(
+        int reportId, CancellationToken cancellationToken)
+    {
+        // Pass cancellationToken to the work being performed.
+    }
+}
+```
+
+Cancellation is cooperative. The hub method decides whether and how quickly to stop, and SignalR sends a completion message for the invocation either way. Letting an <xref:System.OperationCanceledException> propagate out of the hub method completes the invocation with an error.
+
+A client can cancel any invocation that has an invocation ID. For how a client requests cancellation, see <xref:signalr/dotnet-client#cancel-a-hub-method-invocation>.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
@@ -202,7 +221,7 @@ Using `Hub<IChatClient>` enables compile-time checking of the client methods. Th
 
 ## Request client results
 
-In addition to making calls to clients, the server can request a result from a client. In this scenario, the server uses the `ISingleClientProxy.InvokeAsync` method and the client returns a result from its `.On` handler.
+In addition to making calls to clients, the server can request a result from a client. In this scenario, the server uses the `ISingleClientProxy.InvokeAsync` method and the client returns a result from its `.On` handler. Pass a <xref:System.Threading.CancellationToken> that limits how long the server waits for a result. The following examples use a 30-second cancellation token.
 
 There are two ways to use the API on the server.
 
@@ -213,8 +232,11 @@ public class ChatHub : Hub
 {
     public async Task<string> WaitForMessage(string connectionId)
     {
+        using var cancellationTokenSource =
+            new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
         var message = await Clients.Client(connectionId).InvokeAsync<string>(
-            "GetMessage");
+            "GetMessage", cancellationTokenSource.Token);
         return message;
     }
 }
@@ -225,8 +247,11 @@ Or, you can call `Client(...)` on an instance of [IHubContext\<T>](xref:signalr/
 ```csharp
 async Task SomeMethod(IHubContext<MyHub> context)
 {
+    using var cancellationTokenSource =
+        new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
     string result = await context.Clients.Client(connectionID).InvokeAsync<string>(
-        "GetMessage");
+        "GetMessage", cancellationTokenSource.Token);
 }
 ```
 

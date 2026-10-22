@@ -1,5 +1,6 @@
 ---
 title: Troubleshoot gRPC on .NET
+ai-usage: ai-assisted
 description: Troubleshoot errors when using gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
@@ -34,7 +35,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 The .NET client must use `https` in the server address to make calls with a secured connection:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
 
 All gRPC client implementations support TLS. gRPC clients from other languages typically require the channel configured with `SslCredentials`. `SslCredentials` specifies the certificate that the client will use, and it must be used instead of insecure credentials. For examples of configuring the different gRPC client implementations to use TLS, see [gRPC Authentication](https://www.grpc.io/docs/guides/auth/).
 
@@ -49,11 +50,11 @@ You may see this error if you are testing your app locally and the ASP.NET Core 
 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificate)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificate)]
 
 The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificateClientFactory)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificateClientFactory)]
 
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
@@ -133,11 +134,11 @@ The address path is ignored because gRPC has a standardized, prescriptive addres
 
 There are some scenarios when an app needs to include a path with gRPC calls. For example, when an ASP.NET Core gRPC app is hosted in an IIS directory and the directory needs to be included in the request. When a path is required, it can be added to the gRPC call using the custom `SubdirectoryHandler` specified below:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_SubdirectoryHandler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_SubdirectoryHandler)]
 
 `SubdirectoryHandler` is used when the gRPC channel is created.
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallSubdirectoryHandler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallSubdirectoryHandler)]
 
 The preceding code:
 
@@ -153,11 +154,11 @@ The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends a
 
 A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_Http3Handler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_Http3Handler)]
 
 `Http3Handler` is used when the gRPC channel is created. The following code creates a channel configured to use `Http3Handler`.
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallHttp3Handler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallHttp3Handler)]
 
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
@@ -215,11 +216,11 @@ System.OperationCanceledException: The request was canceled due to the configure
 
 There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=3)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=3)]
 
 Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
 
-[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=4)]
+[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=4)]
 
 :::moniker-end
 
