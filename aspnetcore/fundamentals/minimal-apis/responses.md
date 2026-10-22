@@ -1,11 +1,11 @@
 ---
 title: Create responses in Minimal API applications
+ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 06/16/2026
+ms.date: 10/21/2026
 uid: fundamentals/minimal-apis/responses
-ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
@@ -202,6 +202,20 @@ The following example illustrates how to use the `TypedResults.ServerSentEvents`
 
 For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 
+Always return the stream through `TypedResults.ServerSentEvents`. A handler that returns `IAsyncEnumerable<SseItem<T>>` directly compiles and runs, but the result is serialized as JSON rather than sent as Server-Sent Events.
+
+The `SseItem<T>` overload doesn't take an `eventType` parameter, because each `SseItem<T>` carries its own event type. To apply a single event name to every message in the stream, pass a plain `IAsyncEnumerable<T>` and supply `eventType`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see <xref:fundamentals/openapi/include-metadata>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 #### Redirect
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_09":::
@@ -280,12 +294,36 @@ the CLR type of the content in the file result in order to get the desired OpenA
 
 In particular, there are three common schemas for file results:
 
-- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
-  The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
-  this type to the `binary` format in the OpenAPI schema.
-  <!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented -->
-- **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
-- **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema.
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 12.0 - For the first bullet of the 11.0 or greater list, keep an eye on https://github.com/dotnet/aspnetcore/issues/67145 (IBinaryContent). -->
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+The file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
+
+```csharp
+app.MapGet("/report", () => TypedResults.File(File.OpenRead("report.pdf"), MediaTypeNames.Application.Pdf))
+   .Produces<FileStreamHttpResult>(contentType: MediaTypeNames.Application.Pdf);
+```
+
+<xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult>, <xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult>, <xref:Microsoft.AspNetCore.Mvc.FileContentResult>, and <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> all produce the binary schema. `Stream` continues to work and remains a good choice when the result type isn't known at the point where the metadata is declared.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
 
@@ -293,9 +331,26 @@ In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.
 
 As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
 that corresponds to the desired OpenAPI schema for your file result responses:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 * **binary content**: Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
 * **text content**: Use `string` to get a simple `type: string` schema.
 * **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**: Use `Stream` to get the `binary` format in the OpenAPI schema.
+* **text content**: Use `string` to get a simple `type: string` schema.
+* **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### File result support for conditional requests
 
