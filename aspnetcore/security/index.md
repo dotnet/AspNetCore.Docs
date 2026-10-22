@@ -2,7 +2,6 @@
 title: ASP.NET Core security topics
 description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
 ms.custom: sfi-ropc-nochange
-ai-usage: ai-assisted
 ms.date: 10/22/2026
 uid: security/index
 
