@@ -1,5 +1,6 @@
 ---
 title: Migrate from ASP.NET Web API to ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.date: 07/17/2025
 uid: migration/fx-to-core/areas/webapi
@@ -70,7 +71,7 @@ For more information, see <xref:fundamentals/startup>.
 
 The following shows the application startup code in the ASP.NET Core `Program.cs` file:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
+[!code-csharp[](webapi/samples/6.x/ProductsCore/Program.cs)]
 
 ## Copy the *Product* model
 
@@ -87,7 +88,7 @@ The following shows the application startup code in the ASP.NET Core `Program.cs
 
 ---
 
-   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs?highlight=6,7)]
+   [!code-csharp[](webapi/samples/6.x/ProductsCore/Models/Product.cs?highlight=6,7)]
 
 The preceding highlighted code changes the following:
 
@@ -115,7 +116,7 @@ ASP.NET Core in .NET 6 projects enable nullable reference types by default. For 
 
 ---
 
-   [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,26,32,33,40)]
+   [!code-csharp[](webapi/samples/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,26,32,33,40)]
 
 The preceding highlighted code changes the following, to migrate to ASP.NET Core:
 
@@ -148,7 +149,7 @@ ASP.NET Core provides a minimal hosting model in which the endpoint routing midd
 
 `UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs?highlight=15)]
+[!code-csharp[](webapi/samples/6.x/ProductsCore/Program.cs?highlight=15)]
 
 **Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
@@ -156,7 +157,7 @@ ASP.NET Core provides a minimal hosting model in which the endpoint routing midd
 
 The migrated `ProductsController` contains the following highlighted attributes:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7,26,32)]
+[!code-csharp[](webapi/samples/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7,26,32)]
 
 * The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern.
 * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
@@ -196,11 +197,11 @@ This article uses the *ProductsApp* project created in [Getting Started with ASP
 
 In `Global.asax.cs`, a call is made to `WebApiConfig.Register`:
 
-[!code-csharp[](webapi/sample/3.x/ProductsApp/Global.asax.cs?highlight=14)]
+[!code-csharp[](webapi/samples/3.x/ProductsApp/Global.asax.cs?highlight=14)]
 
 The `WebApiConfig` class is found in the *App_Start* folder and has a static `Register` method:
 
-[!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebApiConfig.cs)]
+[!code-csharp[](webapi/samples/3.x/ProductsApp/App_Start/WebApiConfig.cs)]
 
 The preceding class:
 
@@ -243,7 +244,7 @@ For more information, see <xref:fundamentals/startup>.
 
 The following code shows the `ProductsController` to be updated for ASP.NET Core:
 
-[!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
+[!code-csharp[](webapi/samples/3.x/ProductsApp/Controllers/ProductsController.cs)]
 
 Update the `ProductsController` for ASP.NET Core:
 
@@ -277,7 +278,7 @@ The following <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuild
 * Register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline.
 * Replace the *ProductsApp* project's `App_Start/WebApiConfig.cs` file.
 
-[!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14)]
+[!code-csharp[](webapi/samples/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14)]
 
 Configure routing as follows:
 
