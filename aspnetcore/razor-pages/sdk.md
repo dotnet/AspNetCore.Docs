@@ -1,5 +1,6 @@
 ---
 title: ASP.NET Core Razor SDK
+ai-usage: ai-assisted
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 03/26/2020
@@ -231,7 +232,7 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
   The preceding packages are included in `Microsoft.AspNetCore.Mvc`. The following markup shows a project file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
 
-  [!code-xml[](sdk/sample/RazorSDK.csproj)]
+  [!code-xml[](sdk/samples/RazorSDK.csproj)]
 
 > [!WARNING]
 > The `Microsoft.AspNetCore.Razor.Design` and `Microsoft.AspNetCore.Mvc.Razor.Extensions` packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). However, the version-less `Microsoft.AspNetCore.App` package reference provides a metapackage to the app that doesn't include the latest version of `Microsoft.AspNetCore.Razor.Design`. Projects must reference a consistent version of `Microsoft.AspNetCore.Razor.Design` (or `Microsoft.AspNetCore.Mvc`) so that the latest build-time fixes for Razor are included. For more information, see [this GitHub issue](https://github.com/aspnet/Razor/issues/2553).

@@ -3,7 +3,8 @@ title: Include OpenAPI metadata in an ASP.NET Core app
 ai-usage: ai-assisted
 description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 08/19/2026
+ms.date: 10/21/2026
+
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
@@ -366,7 +367,7 @@ A class can be implemented to set the endpoint metadata and return it from the r
 
 ##### Describe binary file responses
 
-To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with `FileContentResult` as the type parameter to specify the response type and content type:
+To describe endpoints that return binary file responses in the OpenAPI document, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method with a file result type as the type parameter to specify the response type and content type. <xref:Microsoft.AspNetCore.Mvc.FileContentResult>, <xref:Microsoft.AspNetCore.Mvc.FileStreamResult>, <xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult>, and <xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult> all produce a binary schema. The following example uses `FileContentResult`:
 
 ```csharp
 app.MapPost("/filecontentresult", () =>
@@ -377,7 +378,7 @@ app.MapPost("/filecontentresult", () =>
 .Produces<FileContentResult>(contentType: MediaTypeNames.Application.Octet);
 ```
 
-This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type.
+This generates an OpenAPI schema with `type: string` and `format: binary` for the `FileContentResult` type. The other file result types behave identically, each with a component schema named after the type—for example, `FileStreamHttpResult`.
 
 The generated OpenAPI document describes the endpoint response as:
 
@@ -400,6 +401,8 @@ components:
       type: string
       format: binary
 ```
+
+File results also support conditional requests and range requests, and `Stream` is an equally valid `TResponse` for a binary schema. For the full set of file result types and their behavior, see [File result return values](xref:fundamentals/minimal-apis/responses#file-result-return-values).
 
 ##### Set responses for `ProblemDetails`
 
@@ -426,6 +429,49 @@ If an endpoint can return different response types in different scenarios, you c
   The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> will contribute to the endpoint's metadata.
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
+
+##### Describe Server-Sent Events responses
+
+An endpoint that streams [Server-Sent Events](xref:fundamentals/minimal-apis/responses#server-sent-events-sse) returns `text/event-stream` rather than a single response body, so a single response schema can't describe it. OpenAPI 3.2 introduces `itemSchema`, which describes the shape of **one event** in the stream. ASP.NET Core emits `itemSchema` when an endpoint returns <xref:System.Net.ServerSentEvents.SseItem%601> through <xref:Microsoft.AspNetCore.Http.TypedResults.ServerSentEvents%2A>:
+
+```csharp
+app.MapGet("/todos/stream", (CancellationToken ct) =>
+    TypedResults.ServerSentEvents(GetTodosAsync(ct)))
+   .WithName("StreamTodos");
+
+static async IAsyncEnumerable<SseItem<Todo>> GetTodosAsync(
+    [EnumeratorCancellation] CancellationToken ct = default)
+{
+    foreach (var todo in Todos.All)
+    {
+        yield return new SseItem<Todo>(todo) { EventId = todo.Id.ToString() };
+        await Task.Delay(1000, ct);
+    }
+}
+```
+
+The generated document describes each event as an object whose `data` member references the payload's component schema, alongside the standard Server-Sent Events `event` and `id` fields:
+
+```yaml
+responses:
+  '200':
+    description: OK
+    content:
+      text/event-stream:
+        itemSchema:
+          type: object
+          required: [data]
+          properties:
+            data:
+              $ref: '#/components/schemas/Todo'
+            event: { type: string }
+            id: { type: string }
+```
+
+If the event payload is a discriminated union, the union's case names are also emitted as an `enum` on the `event` field.
+
+> [!IMPORTANT]
+> `itemSchema` is an OpenAPI 3.2 construct. Apps that target .NET 11 or later generate OpenAPI 3.2 documents by default, but an app that sets <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A> to an earlier version serializes the item schema as the `x-oai-itemSchema` extension instead. For more information, see [Customize the OpenAPI version of a generated document](xref:fundamentals/openapi/aspnetcore-openapi#customize-the-openapi-version-of-a-generated-document).
 
 #### [Controllers](#tab/controllers)
 
@@ -494,7 +540,7 @@ public IActionResult PostFileContentResult()
 }
 ```
 
-This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses), with `FileContentResult` defined as `type: string` and `format: binary`.
+This operation generates the same OpenAPI description as the [Minimal API binary file response example](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses) with `FileContentResult` defined as `type: string` and `format: binary`. <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> behaves identically and produces a `FileStreamResult` component schema.
 
 ---
 
@@ -738,6 +784,62 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 ### Add metadata with a schema transformer
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
+
+## Mark APIs as deprecated
+
+Apply <xref:System.ObsoleteAttribute> to an endpoint, a type, or a property, and OpenAPI generation sets `deprecated: true` on the corresponding operation, component schema, or schema property:
+
+```csharp
+app.MapGet("/catalog/{id}", (int id) => new CatalogItem(id, $"Product {id}", $"SKU-{id:D4}"));
+
+#pragma warning disable CS0618 // This example intentionally declares and maps obsolete APIs.
+app.MapGet("/catalog/legacy/{id}", GetLegacyCatalogItem);
+
+[Obsolete("Use /catalog/{id}.")]
+static LegacyCatalogItem GetLegacyCatalogItem(int id) =>
+    new(id, $"Product {id}", $"SKU-{id:D4}");
+
+public sealed record CatalogItem(int Id, string Name, string StockKeepingUnit);
+
+[Obsolete("Use CatalogItem.")]
+public sealed record LegacyCatalogItem(
+    int Id,
+    string Name,
+    [property: Obsolete("Use StockKeepingUnit.")] string Sku);
+#pragma warning restore CS0618
+```
+
+The generated document marks the operation, its response schema, and the `Sku` property:
+
+```json
+{
+  "paths": {
+    "/catalog/legacy/{id}": {
+      "get": {
+        "deprecated": true
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LegacyCatalogItem": {
+        "deprecated": true,
+        "properties": {
+          "sku": {
+            "deprecated": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+A deprecated property is marked even when its schema is emitted as a component and referenced with `$ref`.
+
+Because the marker is derived from `[Obsolete]`, an app that already uses the attribute sees `deprecated: true` appear in its generated document.
+
+To control the value for a specific API rather than deriving it, use a transformer: an <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer> can set or clear `operation.Deprecated`, and an <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer> can do the same for a schema. For more information, see [Use operation transformers](xref:fundamentals/openapi/customize-openapi#use-operation-transformers) and [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers).
 
 ## Set JSON serialization options globally
 
