@@ -7,7 +7,7 @@ Minimal endpoints support the following types of return values:
 1. `IResult` based - This includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`.
 
 > [!NOTE]
-> In ASP.NET Core 9.0 and later, F# `Async<'T>` is supported as an awaitable return type in minimal API endpoints. When `unit` is the generic type argument of a generic awaitable type (`Task<unit>`, `ValueTask<unit>`, or `Async<unit>`), the framework coerces it to `void`, returning an empty response body instead of the JSON `null` token.
+> F# `Async<'T>` is supported as an awaitable return type in minimal API endpoints. When `unit` is the generic type argument of a generic awaitable type (`Task<unit>`, `ValueTask<unit>`, or `Async<unit>`), the framework coerces it to `void`, returning an empty response body instead of the JSON `null` token.
 
 ## `string` return values
 
