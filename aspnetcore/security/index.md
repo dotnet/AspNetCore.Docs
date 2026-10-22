@@ -2,7 +2,8 @@
 title: ASP.NET Core security topics
 description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
 ms.custom: sfi-ropc-nochange
-ms.date: 05/13/2026
+ai-usage: ai-assisted
+ms.date: 10/22/2026
 uid: security/index
 
 # customer intent: As an ASP.NET developer, I want to find topics about working with security in ASP.NET, so I can add authentication and authorization features to my apps.
@@ -19,7 +20,6 @@ ASP.NET Core enables developers to configure and manage security. The following 
 * [XSRF/CSRF prevention](xref:security/anti-request-forgery)
 * [Cross Origin Resource Sharing (CORS)](xref:security/cors)
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
-* [Package and supply chain security](/nuget/concepts/security-best-practices#knowing-what-is-in-your-environment)
 
 These security features allow you to build robust and secure ASP.NET Core apps.
 
