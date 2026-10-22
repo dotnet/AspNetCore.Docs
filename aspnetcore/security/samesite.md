@@ -34,8 +34,8 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 The following sample can be downloaded and tested:
 
-| Sample               | Document |
-| ----------------- | ------------ |
+| Sample | Document |
+|--------|----------|
 | [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
 
 ## .NET support for the sameSite attribute
@@ -119,6 +119,7 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 
 > [!WARNING]
 > The following code is for demonstration only:
+>
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
@@ -160,9 +161,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -170,9 +171,8 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 * [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
 * [November 2019 Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
 
-
-| Sample               | Document |
-| ----------------- | ------------ |
+| Sample | Document |
+|--------|----------|
 | [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 :::moniker-end
@@ -269,6 +269,7 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 
 > [!WARNING]
 > The following code is for demonstration only:
+>
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
@@ -310,9 +311,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -446,9 +447,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
