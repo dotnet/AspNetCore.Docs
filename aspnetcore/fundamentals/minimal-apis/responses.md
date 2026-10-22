@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/21/2026
+ms.date: 10/22/2026
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -18,9 +18,12 @@ This article explains how to create responses for Minimal API endpoints in ASP.N
 
 Minimal endpoints support the following types of return values:
 
-1. `string` - This includes `Task<string>` and `ValueTask<string>`.
-1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`.
-1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`.
+1. `string` - This includes `Task<string>`, `ValueTask<string>`, and F# `Async<string>`.
+1. `T` (Any other type) - This includes `Task<T>`, `ValueTask<T>`, and F# `Async<'T>`.
+1. `IResult` based - This includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`.
+
+> [!NOTE]
+> F# `Async<'T>` is supported as an awaitable return type in minimal API endpoints. When `unit` is the generic type argument of a generic awaitable type (`Task<unit>`, `ValueTask<unit>`, or `Async<unit>`), the framework coerces it to `void`, returning an empty response body instead of the JSON `null` token.
 
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
 
