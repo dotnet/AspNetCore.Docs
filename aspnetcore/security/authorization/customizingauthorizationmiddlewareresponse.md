@@ -1,5 +1,6 @@
 ---
 title: Customize the behavior of AuthorizationMiddleware
+ai-usage: ai-assisted
 description: This article explains how to customize the result handling of AuthorizationMiddleware.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 07/21/2026
@@ -16,11 +17,11 @@ Apps can register an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMidd
 
 The following code shows an example implementation of `IAuthorizationMiddlewareResultHandler` that returns a custom response for specific authorization failures:
 
-:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/6.x/SampleAuthorizationMiddlewareResultHandler.cs":::
+:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples/snapshot/6.x/SampleAuthorizationMiddlewareResultHandler.cs":::
 
 Register this implementation of `IAuthorizationMiddlewareResultHandler` in `Program.cs`:
 
-:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/6.x/Program.cs" id="snippet_Register":::
+:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples/snapshot/6.x/Program.cs" id="snippet_Register":::
 
 :::moniker-end
 
@@ -33,10 +34,10 @@ Apps can register an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMidd
 
 The following code shows an example implementation of `IAuthorizationMiddlewareResultHandler` that returns a custom response for specific authorization failures:
 
-:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/5.x/MyAuthorizationMiddlewareResultHandler.cs":::
+:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples/snapshot/5.x/MyAuthorizationMiddlewareResultHandler.cs":::
 
 Register `MyAuthorizationMiddlewareResultHandler` in `Startup.ConfigureServices`:
 
-:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/5.x/Startup.cs" id="snippet_ConfigureServices":::
+:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples/snapshot/5.x/Startup.cs" id="snippet_ConfigureServices":::
 
 :::moniker-end

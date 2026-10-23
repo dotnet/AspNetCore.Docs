@@ -1,12 +1,11 @@
 ---
 title: Enforce HTTPS in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 09/24/2026
+ms.date: 10/21/2026
 uid: security/enforcing-ssl
-
-# customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
 ---
 # Enforce HTTPS in ASP.NET Core
 
@@ -65,7 +64,7 @@ For production ASP.NET Core web apps, the following approach is recommended:
 
 The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method in the _Program.cs_ file:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=13)]
+[!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=13)]
 
 The preceding highlighted code:
 
@@ -92,7 +91,7 @@ Specify the HTTPS port by using any of the following approaches:
    * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
    * By adding a top-level entry in the _appsettings.json_ file:
 
-      [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
+      [!code-json[](enforcing-ssl/samples/snapshot/6.x/appsettings.json?highlight=2)]
 
 * Indicate a port with the secure scheme by using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#server-urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * The ASP.NET Core web templates set an HTTPS URL in the _Properties/launchsettings.json_ file for both Kestrel and IIS Express. The _launchsettings.json_ file is used on the local machine only.
@@ -124,7 +123,7 @@ When deploying to Azure App Service, follow the guidance in [Enable HTTPS for a 
 
 The following highlighted code calls the <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection%2A> method to configure middleware options:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=16-20)]
+[!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program2.cs?highlight=16-20)]
 
 Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPort` or `RedirectStatusCode`.
 
@@ -139,7 +138,7 @@ The middleware defaults to sending a <xref:Microsoft.AspNetCore.Http.StatusCodes
 
 The following code shows configuration of services in the _Program.cs_ file:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
+[!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program3.cs?highlight=7-14)]
 
 ## HTTPS redirection middleware alternative approach
 
@@ -162,7 +161,7 @@ Because the client enforces [HSTS](https://developer.mozilla.org/docs/Web/HTTP/R
 
 ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=10)]
+[!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=10)]
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
@@ -170,7 +169,7 @@ For production environments that are implementing HTTPS for the first time, set 
 
 The following highlighted code:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=7-14)]
+[!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program2.cs?highlight=7-14)]
 
 * Sets the preload parameter of the `Strict-Transport-Security` header. Preload isn't part of the [RFC 6797 HSTS specification](https://datatracker.ietf.org/doc/html/rfc6797). Web browsers support preload of HSTS sites on fresh install. For more information, see [https://hstspreload.org/](https://hstspreload.org/).
 * Enables the `includeSubDomain` directive, which applies the HSTS policy to host subdomains. For more information, see [RFC 6797 HSTS specification (Section 6.1.2)](https://datatracker.ietf.org/doc/html/rfc6797#section-6.1.2).
@@ -275,6 +274,18 @@ If you store the certificates you want OpenSSL to trust in a specific directory,
 As on other platforms, development certificates are stored and trusted separately for each user. 
 
 If you run `dotnet dev-certs` as a different user (for example, by using `sudo`), then _that_ specific user (for example `root`) trusts the development certificate.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+### Trust the certificate from Windows Subsystem for Linux
+
+Run the trust command inside WSL. When WSL interop is enabled, it also attempts to add the public certificate to the Windows Current User Root certificate store. Check the command output for trust failures and any required Linux configuration.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
