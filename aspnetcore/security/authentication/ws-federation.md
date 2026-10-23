@@ -24,7 +24,7 @@ By default, the new middleware:
 
 The middleware processes a `wsignoutcleanup1.0` message received at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType> by signing out the local session. The cleanup message doesn't include a signature or session identifier, so the middleware can't verify that it came from the identity provider. By default, `RemoteSignOutPath` is `/signin-wsfed`; a request from any origin that reaches this path can trigger the user to sign out.
 
-If the app doesn't require the identity provider to initiate a process for users to sign out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty%2A?displayProperty=nameWithType>:
+If the app doesn't require the identity provider to initiate a process for users to sign out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty?displayProperty=nameWithType>:
 
 ```csharp
 options.RemoteSignOutPath = PathString.Empty;
