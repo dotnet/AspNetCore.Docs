@@ -97,6 +97,9 @@ For each target parameter or property, the sources are scanned in the order indi
 * Route data and query string values are used only for [simple](#simp-comp7) types.
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
+> [!NOTE]
+> For form fields, model binding matches form data keys against model properties or action parameters. In HTML forms, input data is submitted using the `name` attribute of each form control; an element with only an `id` attribute is not included in the HTTP form submission. When using [Tag Helpers](xref:mvc/views/tag-helpers/intro) such as the [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper) (`asp-for`), the rendered HTML element includes matching `name` and `id` attributes automatically.
+
 If the default source is not correct, use one of the following attributes to specify the source:
 
 * [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string. 
