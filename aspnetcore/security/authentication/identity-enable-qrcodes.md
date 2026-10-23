@@ -76,7 +76,12 @@ The following instructions use the _qrcode.js_ file from the [https://davidshimj
    }
    ```
 
-1. Delete the paragraph that links you to these instructions.
+1. In _EnableAuthenticator.cshtml_, locate the placeholder element that links to these instructions (for example, `<div class="alert alert-info">Learn how to <a href="...">enable QR code generation</a>.</div>`). Replace it with the `qrCode` and `qrCodeData` container elements required by _qr.js_:
+
+   ```cshtml
+   <div id="qrCode"></div>
+   <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
+   ```
 
 1. Run your app. Confirm you can scan the QR code and validate the code the authenticator provides.
 
