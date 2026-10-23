@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to configure Windows Authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
 ms.ai: assisted
-ms.date: 10/13/2026
+ms.date: 10/23/2026
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -212,6 +212,9 @@ Kerberos authentication on Linux or macOS doesn't provide any role information f
 Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the following highlighted options:
 
 [!code-csharp[](windowsauth/samples/6.0/WebRPwinAuth/Program.cs?name=snippet_ldap&highlight=11-17)]
+
+> [!NOTE]
+> On Linux, when providing a custom <xref:System.DirectoryServices.Protocols.LdapConnection> via `LdapSettings.LdapConnection`, use <xref:System.DirectoryServices.Protocols.AuthType.Basic> and set <xref:System.DirectoryServices.Protocols.LdapSessionOptions.ReferralChasing?displayProperty=nameWithType> to <xref:System.DirectoryServices.Protocols.ReferralChasingOptions.None?displayProperty=nameWithType> (`ldapConnection.SessionOptions.ReferralChasing = ReferralChasingOptions.None;`). Without disabling referral chasing, querying the domain controller for user groups on Linux can fail.
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
@@ -531,6 +534,9 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
 Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the following highlighted options:
 
 [!code-csharp[](windowsauth/samples/snapshot/StartupNegotiateDefaults.cs?name=snippet&highlight=15-20)]
+
+> [!NOTE]
+> On Linux, when providing a custom <xref:System.DirectoryServices.Protocols.LdapConnection> via `LdapSettings.LdapConnection`, use <xref:System.DirectoryServices.Protocols.AuthType.Basic> and set <xref:System.DirectoryServices.Protocols.LdapSessionOptions.ReferralChasing?displayProperty=nameWithType> to <xref:System.DirectoryServices.Protocols.ReferralChasingOptions.None?displayProperty=nameWithType> (`ldapConnection.SessionOptions.ReferralChasing = ReferralChasingOptions.None;`). Without disabling referral chasing, querying the domain controller for user groups on Linux can fail.
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
