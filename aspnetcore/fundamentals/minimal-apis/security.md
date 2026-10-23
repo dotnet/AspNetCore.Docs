@@ -101,6 +101,30 @@ The scheme name is used to uniquely identify an authentication strategy. The nam
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
+> [!NOTE]
+> Passing a custom scheme name such as `"LocalAuthIssuer"` to `AddJwtBearer` identifies the scheme internally within ASP.NET Core (for options resolution, policy schemes, and endpoint authorization). It does **not** change the HTTP `Authorization` header format expected by the handler. Per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750), `JwtBearerHandler` defaults to expecting the `Authorization: Bearer <token>` header format regardless of the registered scheme name.
+>
+> If clients send tokens using a custom header prefix (for example, `Authorization: LocalAuthIssuer <token>`), configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually:
+>
+> ```csharp
+> builder.Services.AddAuthentication()
+>     .AddJwtBearer("LocalAuthIssuer", options =>
+>     {
+>         options.Events = new JwtBearerEvents
+>         {
+>             OnMessageReceived = context =>
+>             {
+>                 var authHeader = context.Request.Headers.Authorization.ToString();
+>                 if (authHeader.StartsWith("LocalAuthIssuer ", StringComparison.OrdinalIgnoreCase))
+>                 {
+>                     context.Token = authHeader["LocalAuthIssuer ".Length..].Trim();
+>                 }
+>                 return Task.CompletedTask;
+>             }
+>         };
+>     });
+> ```
+
 ## Configure authorization policies in minimal apps
 
 Authentication identifies and validates the identity of users against an API. Authorization validates and verifies access to resources in an API. The `IAuthorizationService` service registered by the `AddAuthorization` extension method facilitates the authorization. In the following scenario, a `/hello` resource is added that requires a user to present an `admin` role claim with a `greetings_api` scope claim.
