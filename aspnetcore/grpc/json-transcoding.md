@@ -41,6 +41,9 @@ gRPC can still be used to call services.
 
    [!code-json[](~/grpc/json-transcoding/samples/8/GrpcServiceTranscoding/GrpcServiceTranscoding.csproj?highlight=8&range=1-9)]
 
+   > [!NOTE]
+   > Setting `<IncludeHttpRuleProtos>true</IncludeHttpRuleProtos>` supplies the `google/api/annotations.proto` and `google/api/http.proto` files during Protobuf compilation in projects that reference `Microsoft.AspNetCore.Grpc.JsonTranscoding`. If you compile `.proto` files in a shared class library or client project that doesn't reference `Microsoft.AspNetCore.Grpc.JsonTranscoding`, or if your C# code references types in the `Google.Api` namespace, add a package reference to [`Google.Api.CommonProtos`](https://www.nuget.org/packages/Google.Api.CommonProtos) to resolve the `CS0234: The type or namespace name 'Api' does not exist in the namespace 'Google'` compiler error.
+
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
    [!code-protobuf[](~/grpc/json-transcoding/samples/8/GrpcServiceTranscoding/Protos/greet.proto?highlight=4,11-13)]
