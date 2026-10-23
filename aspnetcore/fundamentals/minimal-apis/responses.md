@@ -1,11 +1,11 @@
 ---
 title: Create responses in Minimal API applications
+ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 06/16/2026
+ms.date: 10/21/2026
 uid: fundamentals/minimal-apis/responses
-ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
@@ -32,7 +32,7 @@ Minimal endpoints support the following types of return values:
 
 Consider the following route handler, which returns a `Hello world` text. 
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_01":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_01":::
 
 The `200` status code is returned with `text/plain` Content-Type header and the following content.
 
@@ -48,7 +48,7 @@ Hello World
 
 Consider the following route handler, which returns an anonymous type containing a `Message` string property.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_02":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_02":::
 
 The `200` status code is returned with `application/json` Content-Type header and the following content.
 
@@ -112,11 +112,11 @@ This has the added benefit of providing compile-time checking that a route handl
 
 Consider the following endpoint, for which a `400 BadRequest` status code is returned when the `orderId` is greater than `999`. Otherwise, it produces a `200 OK` with the expected content.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_03":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_03":::
 
 In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you can return the `Results<T1, Tn>` union type instead, as shown in the following code.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_04":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_04":::
 
 <a name="binr10"></a>
 
@@ -128,25 +128,25 @@ The following sections demonstrate the usage of the common result helpers.
 
 #### JSON
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_05":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_05":::
 
 <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
 
 #### Custom Status Code
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_06":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_06":::
 
 #### Internal Server Error
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_07":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_07":::
 
 The preceding example returns a 500 status code.
 
 #### Problem and ValidationProblem
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_12":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_12":::
 
 #### Customize validation error responses using IProblemDetailsService
 
@@ -160,33 +160,33 @@ To implement custom validation error responses:
 
 The following example shows how to register and configure the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> to customize validation error responses:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs" id="snippet_register_IProblemDetailsService_implementation" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/10.0/MinApiIproblemDetailsService/Program.cs" id="snippet_register_IProblemDetailsService_implementation" :::
 
 When a validation error occurs, the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> will be used to generate the error response, including any customizations added in the `CustomizeProblemDetails` callback.
 
-For a complete app example, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinApiIproblemDetailsService/Program.cs) demonstrating how to customize validation error responses using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> in ASP.NET Core Minimal APIs.
+For a complete app example, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinApiIproblemDetailsService/Program.cs) demonstrating how to customize validation error responses using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> in ASP.NET Core Minimal APIs.
 
 #### Text
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_08":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_08":::
 
 <a name="stream7"></a>
 
 #### Stream
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_stream)]
 
 [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
 
 The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
 The following example streams a video from an Azure Blob:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_video)]
 
 #### Server-Sent Events (SSE)
 
@@ -198,17 +198,31 @@ The [TypedResults](xref:Microsoft.AspNetCore.Http.TypedResults) class has a stat
 
 The following example illustrates how to use the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as JSON objects to the client:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs" id="snippet_item" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs" id="snippet_item" :::
 
-For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/10.0-samples/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
+For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
+
+Always return the stream through `TypedResults.ServerSentEvents`. A handler that returns `IAsyncEnumerable<SseItem<T>>` directly compiles and runs, but the result is serialized as JSON rather than sent as Server-Sent Events.
+
+The `SseItem<T>` overload doesn't take an `eventType` parameter, because each `SseItem<T>` carries its own event type. To apply a single event name to every message in the stream, pass a plain `IAsyncEnumerable<T>` and supply `eventType`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see <xref:fundamentals/openapi/include-metadata>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 #### Redirect
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_09":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_09":::
 
 #### File
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_10":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_10":::
 
 <a name="httpresultinterfaces7"></a>
 
@@ -225,7 +239,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 
 Here's an example of a filter that uses one of these interfaces:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/HttpResultInterfaces/Program.cs" id="snippet_filter":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
 For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters) and [IResult implementation types](xref:fundamentals/minimal-apis/test-min-api#iresult-implementation-types).
 
@@ -280,12 +294,36 @@ the CLR type of the content in the file result in order to get the desired OpenA
 
 In particular, there are three common schemas for file results:
 
-- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
-  The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
-  this type to the `binary` format in the OpenAPI schema.
-  <!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented -->
-- **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
-- **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema.
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 12.0 - For the first bullet of the 11.0 or greater list, keep an eye on https://github.com/dotnet/aspnetcore/issues/67145 (IBinaryContent). -->
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+The file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
+
+```csharp
+app.MapGet("/report", () => TypedResults.File(File.OpenRead("report.pdf"), MediaTypeNames.Application.Pdf))
+   .Produces<FileStreamHttpResult>(contentType: MediaTypeNames.Application.Pdf);
+```
+
+<xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult>, <xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult>, <xref:Microsoft.AspNetCore.Mvc.FileContentResult>, and <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> all produce the binary schema. `Stream` continues to work and remains a good choice when the result type isn't known at the point where the metadata is declared.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
 
@@ -293,9 +331,26 @@ In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.
 
 As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
 that corresponds to the desired OpenAPI schema for your file result responses:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 * **binary content**: Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
 * **text content**: Use `string` to get a simple `type: string` schema.
 * **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**: Use `Stream` to get the `binary` format in the OpenAPI schema.
+* **text content**: Use `string` to get a simple `type: string` schema.
+* **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### File result support for conditional requests
 
@@ -361,23 +416,23 @@ app.MapGet("/", (HttpContext context) => {
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/ResultsExtensions.cs)]
 
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
 Also, a custom `IResult` type can provide its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation to the preceding `HtmlResult` type that describes the response produced by the endpoint.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
 
 The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that defines the produced response content type `text/html` and the status code `200 OK`.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
 
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_11":::
 
 ## Configure JSON serialization options
 
@@ -387,7 +442,7 @@ By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization
 
 Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
 Since fields are included, the preceding code reads `NameField` and includes it in the output JSON.
 
@@ -395,11 +450,11 @@ Since fields are included, the preceding code reads `NameField` and includes it 
 
 To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json%2A?displayProperty=nameWithType> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions" highlight="5-6,9":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions" highlight="5-6,9":::
 
 As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
 
 ## Related content
 
