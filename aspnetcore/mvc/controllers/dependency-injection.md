@@ -2,7 +2,7 @@
 title: Dependency injection into controllers in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
-ms.date: 03/04/2026
+ms.date: 10/23/2026
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
@@ -51,7 +51,7 @@ The following code shows how to access keyed services from the DI container by u
 
 ## Property injection with `FromServices`
 
-The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> can also be applied to public properties on an MVC controller. The runtime resolves and populates these properties from the DI container when activating the controller:
+The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> can also be applied to public properties on an MVC controller. The runtime resolves and populates these properties from the DI container during model binding:
 
 ```csharp
 [ApiController]
