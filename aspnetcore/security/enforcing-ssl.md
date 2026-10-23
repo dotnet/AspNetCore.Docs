@@ -439,6 +439,31 @@ The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundame
 
 To repair the IIS Express certificate, see [Stack Overflow issue #20036984 / answer #20048613](https://stackoverflow.com/questions/20036984/how-do-i-restore-a-missing-iis-express-ssl-certificate/20048613#20048613) - _How do I restore a missing IIS Express SSL Certificate?_
 
+### Expired development certificate (`NET::ERR_CERT_DATE_INVALID`)
+
+ASP.NET Core development certificates are valid for a limited period (typically 12 months). When a development certificate expires, browsers and client tools report errors such as `NET::ERR_CERT_DATE_INVALID` or `SEC_ERROR_EXPIRED_CERTIFICATE`.
+
+To renew an expired development certificate:
+
+1. Remove the expired certificates and create a new trusted development certificate:
+
+   ```dotnetcli
+   dotnet dev-certs https --clean
+   dotnet dev-certs https --trust
+   ```
+
+1. If your development environment exports or mounts the certificate file to disk (such as in Docker containers, JavaScript Project System (JSPS) SPA projects, or Kestrel `Certificates:Default:Path` configurations):
+
+   * **Re-export the certificate**: Export the new certificate to the expected file location:
+
+     ```dotnetcli
+     dotnet dev-certs https -ep <path-to-cert.pfx> -p <password>
+     ```
+
+   * **Docker development**: Delete the expired certificate file in `%APPDATA%\ASP.NET\Https` (Windows) or `~/.aspnet/https` (Linux/macOS), regenerate the certificate using `dotnet dev-certs https -ep ...`, and restart the Docker container to mount the updated certificate.
+
+1. Completely close all browser windows and restart your IDE (such as Visual Studio or Visual Studio Code) to clear cached SSL/TLS sessions.
+
 ### All platforms - certificate not trusted
 
 For all platforms, try to resolve the untrusted certificate issues with the following steps:
