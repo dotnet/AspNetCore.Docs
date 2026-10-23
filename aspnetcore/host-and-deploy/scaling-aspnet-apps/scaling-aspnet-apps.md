@@ -2,7 +2,7 @@
 title: Scaling ASP.NET Core Apps on Azure
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
 uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
-ms.date: 7/25/2025
+ms.date: 10/23/2026
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
@@ -132,6 +132,13 @@ It's not immediately apparent why the search requests are failing. The browser t
     > The errors in the app are caused by the .NET data protection services. When multiple instances of the app are running, there is no guarantee that the HTTP POST request to submit the form is routed to the same container that initially loaded the page from the HTTP GET request. If the requests are handled by different instances, the antiforgery tokens aren't handled correctly and an exception occurs.
 
     In the steps ahead, this issue is resolved by centralizing the data protection keys in an Azure storage service and protecting them with Key Vault.
+
+    > [!TIP]
+    > **Alternative: Azure Container Apps built-in Data Protection**
+    >
+    > Azure Container Apps provides a built-in feature to manage data protection keys across replicas without requiring separate Azure Blob Storage and Azure Key Vault resources. This feature requires ASP.NET Core 8.0.4 or later (apps targeting earlier versions, such as the sample in this tutorial, must first update their target framework and container base images).
+    >
+    > In Azure Container Apps, navigate to the **Development Stack** section, select **.NET**, and enable **ASP.NET Core Data Protection** (or set `properties.configuration.runtime.dotnet.autoConfigureDataProtection: true` in ARM or Bicep templates). When enabled, Azure Container Apps creates a shared key volume mount and injects the `DOTNET_ReadOnlyDataProtectionKeyDirectory` environment variable pointing to the mounted key directory so replicas share encryption keys automatically.
 
 ## Create the Azure Services
 
