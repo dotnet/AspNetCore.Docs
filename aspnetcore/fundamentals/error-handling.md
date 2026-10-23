@@ -239,6 +239,9 @@ The endpoint that processes the error can get the original URL that generated th
 
 Similar to `UseExceptionHandler`, only the request path is modified, and the route data is cleared. Request data such as headers (including the referrer), HTTP method, and items are reused as-is on `HttpContext.Request`. Original path and query string details can be retrieved using <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature>.
 
+> [!IMPORTANT]
+> Because the request's original HTTP method is preserved during pipeline re-execution, an error occurring during an HTTP POST request re-executes the status code endpoint with the POST method. If the error-handling page or controller action only handles GET requests (for example, a Razor Page with only an `OnGet` handler), the endpoint returns `405 Method Not Allowed`. Ensure status code handling endpoints implement handlers for the HTTP methods used by the application (for example, implementing `OnPost` alongside `OnGet`), and apply `[IgnoreAntiforgeryToken]` if the error page should accept re-executed POST requests without requiring antiforgery token validation.
+
 Since this middleware can re-execute the request pipeline:
 
 * Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
