@@ -129,6 +129,22 @@ The following code configures the app to generate problem details:
 
 For more information on using `AddProblemDetails`, see [Problem Details](#problem-details)
 
+### Customize bad request handling with `RouteHandlerOptions.ThrowOnBadRequest`
+
+When minimal API parameter binding fails (such as when the request body contains malformed JSON), error handling is controlled by <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest%2A>:
+
+* In the `Development` environment, `ThrowOnBadRequest` defaults to `true`. Parameter binding failures throw a <xref:Microsoft.AspNetCore.Http.BadHttpRequestException>, which flows through exception handling middleware (`UseExceptionHandler`) and invokes registered <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> handlers to produce Problem Details responses.
+* In non-Development environments (such as `Production`), `ThrowOnBadRequest` defaults to `false`. Parameter binding failures write a `400 Bad Request` status code directly without throwing an exception, bypassing custom exception handlers.
+
+To ensure bad request binding failures throw an exception and trigger your configured exception handlers and problem details formatting across all environments, configure `ThrowOnBadRequest`:
+
+```csharp
+builder.Services.Configure<RouteHandlerOptions>(options =>
+{
+    options.ThrowOnBadRequest = true;
+});
+```
+
 ### IProblemDetailsService fallback
 
 In the following code, `httpContext.Response.WriteAsync("Fallback: An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
