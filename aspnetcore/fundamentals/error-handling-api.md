@@ -212,6 +212,35 @@ If you're migrating from controller-based APIs to Minimal APIs:
 3. **Replace exception filters** with exception handling middleware
 4. **Configure problem details** using `AddProblemDetails()` for consistent error responses
 
+### Returning multiple result types with TypedResults
+
+Endpoints often return different result types depending on the request outcome, such as returning a <xref:Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult> on error or a <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> on success. To preserve compile-time type safety and enable automatic OpenAPI metadata generation, use the union return type <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> with `TypedResults`:
+
+```csharp
+app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (string? provider) =>
+{
+    if (string.IsNullOrEmpty(provider))
+    {
+        return TypedResults.Problem(
+            title: "Provider not specified",
+            detail: "A login provider is required.",
+            statusCode: StatusCodes.Status400BadRequest);
+    }
+
+    if (!IsSupportedProvider(provider))
+    {
+        return TypedResults.Problem(
+            title: "Provider not supported",
+            detail: $"The provider '{provider}' is not supported.",
+            statusCode: StatusCodes.Status501NotImplemented);
+    }
+
+    return TypedResults.Redirect($"/auth/{provider}");
+});
+```
+
+Using `TypedResults` with `Results<T1, T2>` avoids throwing exceptions for expected business errors and provides strongly-typed response signatures for testability.
+
 ### When to use controller-based error handling
 
 Consider controller-based APIs if you need:
