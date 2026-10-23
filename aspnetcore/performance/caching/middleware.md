@@ -1,5 +1,6 @@
 ---
 title: Response caching middleware in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to configure and use response caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 1/1/2022
@@ -178,7 +179,7 @@ The sample app adds headers to control caching on subsequent requests:
 * [Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control): Caches cacheable responses for up to 10 seconds.
 * [Vary](https://www.rfc-editor.org/rfc/rfc9110#field.vary): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://www.rfc-editor.org/rfc/rfc9110#field.accept-encoding) header of subsequent requests matches that of the original request.
 
-[!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
+[!code-csharp[](middleware/samples/snippets/3.x/AddHeaders.cs)]
 
 The preceding headers are not written to the response and are overridden when a controller, action, or Razor Page:
 

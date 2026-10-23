@@ -3,7 +3,7 @@ title: Validation in ASP.NET Core
 ai-usage: ai-assisted
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 09/23/2026
+ms.date: 10/16/2026
 uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
@@ -639,6 +639,7 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 * <xref:blazor/forms/validation>
   * <xref:blazor/forms/validation-client-side>
   * <xref:blazor/forms/validation-advanced>
+* [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
 * <xref:fundamentals/minimal-apis>
   * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
 * <xref:fundamentals/localization/make-content-localizable>

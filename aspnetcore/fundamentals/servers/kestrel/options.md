@@ -1,8 +1,9 @@
 ---
 title: Configure options for the ASP.NET Core Kestrel web server
+ai-usage: ai-assisted
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 08/25/2025
+ms.date: 10/09/2026
 uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
@@ -84,6 +85,22 @@ Server-wide rate limits configured via <xref:Microsoft.AspNetCore.Server.Kestrel
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsRequestHeadersTimeout" highlight="3":::
 
 This timeout is not enforced when a debugger is attached to the Kestrel process.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> also applies while receiving HTTP/2 and HTTP/3 request trailers. It doesn't apply to HTTP/1.1 request trailers.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-11.0"
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> applies only to initial request headers, not request trailers.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## HTTP/2 limits
 
@@ -288,6 +305,8 @@ Server-wide rate limits configured via <xref:Microsoft.AspNetCore.Server.Kestrel
 Gets or sets the maximum amount of time the server spends receiving request headers. Defaults to 30 seconds.
 
 :::code language="csharp" source="samples/5.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="21-22":::
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> applies only to initial request headers, not request trailers.
 
 ## HTTP/2 limits
 
