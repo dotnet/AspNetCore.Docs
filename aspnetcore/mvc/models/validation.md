@@ -2,7 +2,7 @@
 title: Model validation in ASP.NET Core MVC
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/28/2026
+ms.date: 10/23/2026
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -36,6 +36,17 @@ Web API controllers don't have to check `ModelState.IsValid` if they have the [[
 Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState%2A?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
+
+You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*> to validate a specific property or a child complex object explicitly. For example, to manually validate a nested object such as `Movie.Genre` against validation attributes declared on the `Genre` class:
+
+```csharp
+ModelState.ClearValidationState(nameof(Movie.Genre));
+
+if (!TryValidateModel(Movie.Genre, nameof(Movie.Genre)))
+{
+    return Page();
+}
+```
 
 ## Validation attributes
 
