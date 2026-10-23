@@ -6,7 +6,7 @@ ms.date: 06/04/2026
 ---
 # Microsoft.OpenApi upgraded to 3.x
 
-`Microsoft.AspNetCore.OpenApi` in ASP.NET Core 11 takes a dependency on `Microsoft.OpenApi` 3.x (currently 3.6.0). The previous release (.NET 10) depended on `Microsoft.OpenApi` 2.x. This is a major-version bump of a transitive dependency, and several types that document and operation transformers receive have changed shape.
+`Microsoft.AspNetCore.OpenApi` in ASP.NET Core 11 takes a dependency on `Microsoft.OpenApi` 3.x. The previous release (.NET 10) depended on `Microsoft.OpenApi` 2.x. This is a major-version bump of a transitive dependency, and several types that document and operation transformers receive have changed shape.
 
 ## Version introduced
 
@@ -62,7 +62,7 @@ Update any custom document, operation, or schema transformer to compile against 
 - Update code that used the removed `ParseNode` parsing infrastructure to use the new visitor- and writer-based APIs.
 - Review use of `OpenApiReference`, which was reshaped to better distinguish between local and external references.
 
-For the canonical migration notes for the 3.0, 3.1, 3.2, and later releases, see the [OpenAPI.NET release notes](https://github.com/microsoft/OpenAPI.NET/releases).
+For step-by-step migration instructions, see the [Microsoft.OpenApi 3.x upgrade guide](https://github.com/microsoft/OpenAPI.NET/blob/main/docs/upgrade-guide-3.md). For the per-release notes covering the 3.0, 3.1, 3.2, and later releases, see the [OpenAPI.NET release notes](https://github.com/microsoft/OpenAPI.NET/releases).
 
 ## Affected APIs
 
