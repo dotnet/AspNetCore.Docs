@@ -1,5 +1,6 @@
 ---
 title: Host filtering with ASP.NET Core Kestrel web server
+ai-usage: ai-assisted
 description: Learn about using host filtering with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 05/04/2020
@@ -14,7 +15,7 @@ While Kestrel supports configuration based on prefixes such as `http://example.c
 
 As a workaround, use host-filtering middleware. The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering%2A>:
 
-[!code-csharp[](samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
+[!code-csharp[](samples/snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
 Host-filtering middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in `appsettings.json`/`appsettings.{Environment}.json`. The value is a semicolon-delimited list of host names without port numbers:
 

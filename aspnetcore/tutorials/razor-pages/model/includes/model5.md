@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-5.0"
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
@@ -6,7 +11,7 @@ In this section, classes are added for managing movies in a database. The app's 
 
 The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O**bjects") because they don't have a dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 ## Add a data model
 
@@ -16,7 +21,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -33,7 +38,7 @@ The `Movie` class contains:
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -60,7 +65,7 @@ The `Movie` class contains:
 
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -151,7 +156,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/5/arpMac.png)
+   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/5/arpmac.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -233,11 +238,11 @@ The scaffolding tool automatically created a database context and registered it 
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 

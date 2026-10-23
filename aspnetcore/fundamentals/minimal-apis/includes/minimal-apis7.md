@@ -37,7 +37,7 @@ The following sections cover request handling: routing, parameter binding, and r
 
 A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_r1)]
 
 The <xref:System.Delegate> arguments passed to these methods are called "route handlers".
 
@@ -97,7 +97,7 @@ app.MapGet("/hello", () => Results.Ok(new { Message = "Hello World" }));
 
 The following example uses the built-in result types to customize the response:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/todo/Program.cs?name=snippet_getCustom)]
 
 #### JSON
 
@@ -154,11 +154,11 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/ResultsExtensions.cs)]
 
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
 ### Typed results
 
@@ -166,7 +166,7 @@ The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values retu
 
 The types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
-[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/misc/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
 
@@ -180,31 +180,31 @@ See <xref:fundamentals/minimal-apis/min-api-filters>
 
 Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
 
 The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_auth2)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_auth2)]
 
 The following sample uses [policy-based authorization](xref:security/authorization/policies):
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
 
 ### Allow unauthenticated users to access an endpoint
 
 The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute)
 allows unauthenticated users to access endpoints:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_auth4)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_auth4)]
 
 ## CORS
 
 Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
 <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> method. The following samples enable CORS:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cors)]
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 

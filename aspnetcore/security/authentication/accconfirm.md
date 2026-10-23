@@ -138,7 +138,7 @@ Add the following code to the _Program.cs_ file, which performs the following ta
 * Adds the `EmailSender` instance as a transient service.
 * Registers the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,18-19)]
+[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,18-22)]
 
 [!INCLUDE[Disable default account verification for scaffolded RegisterConfirmation](~/includes/disableVer6.md)]
 
@@ -356,7 +356,7 @@ Add the following code to the `ConfigureServices` method in the `Startup.cs` fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/samples/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,19-20)]
+[!code-csharp[](accconfirm/samples/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=18-19)]
 
 ## Scaffold RegisterConfirmation
 
