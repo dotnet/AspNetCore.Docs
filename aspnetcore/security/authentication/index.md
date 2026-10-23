@@ -2,7 +2,7 @@
 title: Overview of ASP.NET Core Authentication
 ai-usage: ai-assisted
 description: Learn about authentication in ASP.NET Core.
-ms.date: 09/18/2026
+ms.date: 10/23/2026
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -45,7 +45,7 @@ In some cases, the call to `AddAuthentication` is automatically made by other ex
 
 If `AddAuthentication` is called multiple times (for example, once directly in application startup and once internally by ASP.NET Core Identity):
 
-* **Options configuration:** Each call to `AddAuthentication` registers an `Action<AuthenticationOptions>` configuration delegate with the options system. These delegates run in registration order, so the latest call overwrites properties such as `DefaultScheme` or `DefaultAuthenticateScheme` set by earlier calls.
+* **Options configuration:** Overloads of `AddAuthentication` that take a default scheme name or an `Action<AuthenticationOptions>` delegate register options configuration actions that execute in registration order. The parameterless `AddAuthentication()` overload does not register a configuration delegate. Each configuration delegate overwrites only the specific properties it assigns. For example, when ASP.NET Core Identity configures specific scheme properties (such as `DefaultAuthenticateScheme` and `DefaultChallengeScheme`), a subsequent call to `AddAuthentication(JwtBearerDefaults.AuthenticationScheme)` only sets `DefaultScheme` and leaves Identity's `DefaultAuthenticateScheme` and `DefaultChallengeScheme` in effect. To override defaults set by an earlier registration like Identity, explicitly configure the corresponding properties (for example, by setting `options.DefaultAuthenticateScheme` and `options.DefaultChallengeScheme` in `AddAuthentication(options => ...)`).
 * **Service registration:** Core authentication services (such as <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService> and <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandlerProvider>) are registered using `TryAdd`, so subsequent calls do not duplicate or replace existing service registrations.
 * **Scheme registration:** Calling scheme registration methods like <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> or <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> adds named schemes to the authentication builder. Attempting to register the same scheme name twice throws an `InvalidOperationException` stating that the scheme already exists. However, additional options configuration delegates for an existing scheme can be registered using `builder.Services.Configure<CookieAuthenticationOptions>(schemeName, ...)` to modify properties on an already-registered scheme.
 
