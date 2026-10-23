@@ -2,7 +2,7 @@
 title: Model validation in ASP.NET Core MVC
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/28/2026
+ms.date: 10/23/2026
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -37,10 +37,11 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
 
-You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A> to validate a specific property or a child complex object explicitly. For example, to manually validate a nested object such as `Movie.Genre` against validation attributes declared on the `Genre` class:
+You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*> to validate a specific property or a child complex object explicitly. For example, to manually validate a nested object such as `Movie.Genre` against validation attributes declared on the `Genre` class:
 
 ```csharp
 ModelState.ClearValidationState(nameof(Movie.Genre));
+
 if (!TryValidateModel(Movie.Genre, nameof(Movie.Genre)))
 {
     return Page();
