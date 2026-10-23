@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/08/2026
+ms.date: 10/23/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -65,8 +65,6 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 ### Cookie-based authentication
 
 When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
-
-### SameSite cookies
 
 Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
 
