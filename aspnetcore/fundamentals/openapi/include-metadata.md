@@ -3,8 +3,7 @@ title: Include OpenAPI metadata in an ASP.NET Core app
 ai-usage: ai-assisted
 description: Learn how to add OpenAPI metadata in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 10/21/2026
-
+ms.date: 10/22/2026
 uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
@@ -430,6 +429,8 @@ If an endpoint can return different response types in different scenarios, you c
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
+Multiple `Produces` calls can also target the *same* status code with different content types — for example, a `200` response available as both `application/json` and `text/plain`. Every declaration is preserved in the generated document: each content type gets its own entry, and when several declared types share one content type, the response schema is an `anyOf` composite of them. Earlier releases kept only the last declaration for each status code. For more information, see [OpenAPI document includes all ProducesResponseType entries per status code](/aspnet/core/breaking-changes/11/openapi-multiple-produces-per-status).
+
 ##### Describe Server-Sent Events responses
 
 An endpoint that streams [Server-Sent Events](xref:fundamentals/minimal-apis/responses#server-sent-events-sse) returns `text/event-stream` rather than a single response body, so a single response schema can't describe it. OpenAPI 3.2 introduces `itemSchema`, which describes the shape of **one event** in the stream. ASP.NET Core emits `itemSchema` when an endpoint returns <xref:System.Net.ServerSentEvents.SseItem%601> through <xref:Microsoft.AspNetCore.Http.TypedResults.ServerSentEvents%2A>:
@@ -472,6 +473,7 @@ If the event payload is a discriminated union, the union's case names are also e
 
 > [!IMPORTANT]
 > `itemSchema` is an OpenAPI 3.2 construct. Apps that target .NET 11 or later generate OpenAPI 3.2 documents by default, but an app that sets <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A> to an earlier version serializes the item schema as the `x-oai-itemSchema` extension instead. For more information, see [Customize the OpenAPI version of a generated document](xref:fundamentals/openapi/aspnetcore-openapi#customize-the-openapi-version-of-a-generated-document).
+
 
 #### [Controllers](#tab/controllers)
 
@@ -746,6 +748,22 @@ public enum PizzaToppings {
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
+
+A <xref:System.Text.Json.Serialization.JsonStringEnumConverter> naming policy applies only to values that are serialized as JSON. Enum parameters bound from the query string, route, headers, or a form are parsed with <xref:System.Enum.TryParse*>, which does not apply JSON naming policies. The generated schema reflects that difference: the `enum` values and the `default` value of a non-body parameter schema use the original C# member names, even when a naming policy is configured.
+
+Consider the following kebab-case naming policy configured globally:
+
+```csharp
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(
+        new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower));
+});
+
+app.MapGet("/orders", (OrderStatus status) => TypedResults.Ok(status));
+```
+
+The response body schema describes `OrderStatus.PendingReview` as `pending-review`, while the `status` query parameter schema describes the accepted value as `PendingReview`. Both are correct: they describe what the endpoint returns and what it accepts, respectively.
 
 [Set JSON options globally](#set-json-serialization-options-globally) shows how to set the `JsonStringEnumConverter` globally.
 

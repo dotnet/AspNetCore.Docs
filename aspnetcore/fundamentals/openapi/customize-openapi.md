@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 10/20/2026
+ms.date: 10/21/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -209,6 +209,24 @@ The details of this processing are complicated and might change in future versio
 
 Typically the name of the schema in `components.schemas` is the name of the class/record/struct type,
 but in some circumstances a different name must be used.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Schemas for standalone arrays remain inline by default. When an array type is used as a type argument in an enclosing generic type, a component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. The reference ID segment for an array argument is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
+
+C# type | Reference ID segment
+--- | ---
+`string[]` | `ArrayOfstring`
+`Todo[]` | `ArrayOfTodo`
+`string[][]` | `ArrayOfArrayOfstring`
+
+For example, generic result types apply this composition to produce schema reference IDs such as `OkOfArrayOfTodo` for `Ok<Todo[]>`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ASP.NET Core lets you customize which schemas are replaced with a `$ref` to a schema in `components.schemas`
 using the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> property of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions>.
