@@ -61,7 +61,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 :::moniker range="<= aspnetcore-2.2"
 
-[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/Startup.cs?name=snippet1)]
+[!code-csharp[Main](~/signalr/security/samples/SignalR_CORS_2.1/Startup.cs?name=snippet1)]
 
 :::moniker-end
 
@@ -86,7 +86,7 @@ However, browsers do send the `Origin` header when issuing WebSocket requests. A
 
 In ASP.NET Core 2.1 or later, header validation can be achieved using a custom middleware placed **before `UseSignalR`, and authentication middleware** in `Configure`:
 
-[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/Startup.cs?name=snippet2)]
+[!code-csharp[Main](~/signalr/security/samples/SignalR_CORS_2.1/Startup.cs?name=snippet2)]
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.

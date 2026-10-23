@@ -568,8 +568,6 @@ items:
         uid: fundamentals/static-files
       - name: Validation
         uid: fundamentals/validation
-      - name: dotnet-scaffold telemetry
-        uid: fundamentals/dotnet-scaffold-telemetry
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
