@@ -2,7 +2,7 @@
 title: Cache in-memory in ASP.NET Core
 description: Learn how to cache data in memory in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/01/2026
+ms.date: 10/23/2026
 content_well_notification: AI-contribution
 uid: performance/caching/memory
 ai-usage: ai-assisted
@@ -193,7 +193,7 @@ The following notes apply to in-memory caching:
   
   For apps that don't call one of the mentioned `Add{Service}` methods, you might need to call the <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache%2A> method in the _Program.cs_ file.
 
-* <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is thread-safe and can be used concurrently across multiple threads. Read and write operations take internal locks to coordinate concurrent updates.
+* <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is thread-safe and can be used concurrently across multiple threads.
 
 * Accessing the <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Count> property is computationally expensive under high concurrency because it requires aggregating items across internal partitions. Avoid accessing `Count` frequently in performance-sensitive request paths.
 
