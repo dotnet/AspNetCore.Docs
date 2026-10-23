@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/08/2026
+ms.date: 10/23/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -65,6 +65,19 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 ### Cookie-based authentication
 
 When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property.
+
+Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
+
+* `SameSiteMode.Strict`: The cookie is sent only in a first-party context (when the site in the URL matches the cookie's domain). The browser never includes the cookie in cross-site requests, including ordinary link navigations. This provides the highest CSRF protection.
+* `SameSiteMode.Lax`: The cookie is withheld on cross-site subrequests (such as cross-site form POSTs, images, or frames), but sent when a user navigates to the origin site (for example, following a link). This is the default in modern browsers and in ASP.NET Core cookie authentication.
+* `SameSiteMode.None`: The cookie is sent with both same-site and cross-site requests. The cookie must also be marked `Secure`.
+
+While `SameSite` cookies mitigate many CSRF attacks, they should be used as part of a defense-in-depth strategy:
+* Older browsers or non-browser HTTP clients may not enforce the `SameSite` attribute.
+* `SameSite=Lax` cookies are still sent with top-level `GET` requests, meaning any state-changing `GET` endpoints remain vulnerable.
+* Subdomains sharing cookies under the same parent domain can still impact cookie trust boundaries.
+
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or automatic CSRF protection provides the most comprehensive protection. For more information, see <xref:security/samesite>.
 
 ### Token-based authentication
 
