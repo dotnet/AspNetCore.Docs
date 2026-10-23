@@ -153,7 +153,7 @@ This section contains sample code using <xref:Microsoft.AspNetCore.Builder.WebAp
 
 The following code sets the content root, application name, and environment:
 
-[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
+[!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_root)]
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
@@ -182,7 +182,7 @@ var app = builder.Build();
 ```
 
 <!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
-[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
+[!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
 
 For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
@@ -211,7 +211,7 @@ The following code reads `HelloKey` from configuration and displays the value at
 
 ### Add services
 
-[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
+[!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_svc)]
 
 
 ### Customize the IHostBuilder

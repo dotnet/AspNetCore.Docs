@@ -1,9 +1,11 @@
 ---
 title: Work with SameSite cookies in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn how to use to SameSite cookies in ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 5/20/2022
 uid: security/samesite
+no-loc: Electron
 ---
 # Work with SameSite cookies in ASP.NET Core
 
@@ -33,21 +35,21 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 The following sample can be downloaded and tested:
 
-| Sample               | Document |
-| ----------------- | ------------ |
+| Sample | Document |
+|--------|----------|
 | [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
 
 ## .NET support for the sameSite attribute
 
 .NET supports the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to `Strict`, `Lax`, or `None` results in those values being written on the network with the cookie. Setting to `SameSiteMode.Unspecified` indicates no sameSite should be sent with the cookie.
 
-[!code-csharp[](samesite/sample6/WebSameSite/Pages/Privacy.cshtml.cs?name=snippet)]
+[!code-csharp[](samesite/samples/6/WebSameSite/Pages/Privacy.cshtml.cs?name=snippet)]
 
 ## API usage with SameSite
 
 [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) defaults to `Unspecified`, meaning no SameSite attribute added to the cookie and the client will use its default behavior (Lax for new browsers, None for old ones). The following code shows how to change the cookie SameSite value to `SameSiteMode.Lax`:
 
-[!code-csharp[](samesite/sample/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](samesite/samples/Pages/Index.cshtml.cs?name=snippet)]
 
 All ASP.NET Core components that emit cookies override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values haven't changed.
 
@@ -104,24 +106,25 @@ The 2016 SameSite standard mandated that unknown values must be treated as `Same
 
 In `Program.cs`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
 
-[!code-csharp[](samesite/sample6/WebSameSite/Program.cs?highlight=39-40)]
+[!code-csharp[](samesite/samples/6/WebSameSite/Program.cs?highlight=39-40)]
 
 In `Program.cs`, add code similar to the following highlighted code:
 
-[!code-csharp[](samesite/sample6/WebSameSite/Program.cs?highlight=3-22)]
+[!code-csharp[](samesite/samples/6/WebSameSite/Program.cs?highlight=3-22)]
 
 In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippet2)]
 
 The following code shows a sample `DisallowsSameSiteNone` method:
 
 > [!WARNING]
 > The following code is for demonstration only:
+>
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippetX)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippetX)]
 
 ## Test apps for SameSite problems
 
@@ -159,9 +162,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -169,9 +172,8 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 * [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
 * [November 2019 Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
 
-
-| Sample               | Document |
-| ----------------- | ------------ |
+| Sample | Document |
+|--------|----------|
 | [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 :::moniker-end
@@ -197,7 +199,7 @@ This new value indicates no sameSite should be sent with the cookie.
 
 [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) defaults to `Unspecified`, meaning no SameSite attribute added to the cookie and the client will use its default behavior (Lax for new browsers, None for old ones). The following code shows how to change the cookie SameSite value to `SameSiteMode.Lax`:
 
-[!code-csharp[](samesite/sample/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](samesite/samples/Pages/Index.cshtml.cs?name=snippet)]
 
 All ASP.NET Core components that emit cookies override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values haven't changed.
 
@@ -254,24 +256,25 @@ The 2016 SameSite standard mandated that unknown values must be treated as `Same
 
 In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
 
-[!code-csharp[](samesite/sample/Startup.cs?name=snippet5&highlight=18-19)]
+[!code-csharp[](samesite/samples/Startup.cs?name=snippet5&highlight=18-19)]
 
 In `Startup.ConfigureServices`, add code similar to the following:
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippet)]
 
 In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippet2)]
 
 The following code shows a sample `DisallowsSameSiteNone` method:
 
 > [!WARNING]
 > The following code is for demonstration only:
+>
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippetX)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippetX)]
 
 ## Test apps for SameSite problems
 
@@ -309,9 +312,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -345,7 +348,7 @@ The default SameSite value for forms authentication and session state cookies wa
 
 [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) defaults to `Unspecified`, meaning no SameSite attribute added to the cookie and the client will use its default behavior (Lax for new browsers, None for old ones). The following code shows how to change the cookie SameSite value to `SameSiteMode.Lax`:
 
-[!code-csharp[](samesite/sample/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](samesite/samples/Pages/Index.cshtml.cs?name=snippet)]
 
 All ASP.NET Core components that emit cookies override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values haven't changed.
 
@@ -390,15 +393,15 @@ The 2016 SameSite standard mandated that unknown values must be treated as `Same
 
 In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
 
-[!code-csharp[](samesite/sample/Startup.cs?name=snippet5&highlight=18-19)]
+[!code-csharp[](samesite/samples/Startup.cs?name=snippet5&highlight=18-19)]
 
 In `Startup.ConfigureServices`, add code similar to the following:
 
-[!code-csharp[](samesite/sample/Startup.cs?name=snippet)]
+[!code-csharp[](samesite/samples/Startup.cs?name=snippet)]
 
 In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippet2)]
 
 The following code shows a sample `DisallowsSameSiteNone` method:
 
@@ -407,7 +410,7 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippetX)]
+[!code-csharp[](samesite/samples/Startup31.cs?name=snippetX)]
 
 ## Test apps for SameSite problems
 
@@ -445,9 +448,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 

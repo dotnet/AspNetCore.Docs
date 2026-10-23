@@ -1,5 +1,6 @@
 ---
 title: Dev tunnels in Visual Studio 2022
+ai-usage: ai-assisted
 description: Learn how to use dev tunnels in Visual Studio with ASPNET Core apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 02/03/2023
@@ -129,7 +130,7 @@ Since MyWebApi is above MyWebApp, it's started before the MyWebApp project. When
 
 To illustrate, the following highlighted lines of code have been added to the *Program.cs* file in MyWebApp:
 
-:::code language="csharp" source="~/test/dev-tunnels/sample/DevTunnelsDemo/MyWebApp/Program.cs" id="snippet1" highlight="5-8":::
+:::code language="csharp" source="~/test/dev-tunnels/samples/DevTunnelsDemo/MyWebApp/Program.cs" id="snippet1" highlight="5-8":::
 
 When the web app is started the console output looks like the following example:
 
