@@ -1,8 +1,9 @@
 ---
 title: Use .http files in Visual Studio 2022
+ai-usage: ai-assisted
 description: Learn how to use .http files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/18/2025
+ms.date: 10/14/2026
 ms.topic: how-to
 uid: test/http-files
 ---
@@ -468,7 +469,7 @@ To generate a random integer, use `$randomInt`. The syntax is `{{$randomInt [min
 The `[format]` option is one of `rfc1123`, `iso8601`, or a custom format in quotation marks. For example:
 
 ```http
-GET https://httpbin.org/headers
+GET https://localhost:7220/weatherforecast
 X-CUSTOM: {{$datetime "dd-MM-yyyy"}}
 X-ISO8601: {{$datetime iso8601}}
 X-ISO8601L: {{$localDatetime iso8601}}
@@ -508,7 +509,7 @@ The `[offset option]` syntax is in the form `number` `unit` where `number` is an
 For example:
 
 ```http
-GET https://httpbin.org/headers
+GET https://localhost:7220/weatherforecast
 X-Custom-Minus-1-Year: {{$datetime "dd-MM-yyyy" -1 y}}
 X-RFC1123-Plus-1-Day: {{$datetime rfc1123 1 d}} 
 X-Timestamp-Plus-1-Year: {{$timestamp 1 y}}
@@ -525,7 +526,14 @@ Here are some sample values that the preceding examples generate:
 }
 ```
 
-Some of the preceding examples use the free open-source website <httpbin.org>. This is a third-party website not affiliated with Microsoft. In these examples it returns a response body with the headers that were sent in the request. For information about other ways to use this resource for API testing, see the [httpbin.org site's home page](https://httpbin.org).
+## GUIDs
+
+To generate a random GUID, use `$guid`:
+
+```http
+GET https://localhost:7220/weatherforecast
+X-CorrelationId: {{$guid}}
+```
 
 ## Unsupported syntax
 
