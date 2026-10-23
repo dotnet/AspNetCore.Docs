@@ -84,7 +84,10 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1). For complete setup instructions, see [OpenAPI in ASP.NET Core](/aspnet/core/fundamentals/openapi).
+
+> [!NOTE]
+> Extension methods such as `.Produces()` and `.Produces<T>()` require the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package and endpoint API exploration services (such as `builder.Services.AddEndpointsApiExplorer()`).
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
@@ -101,6 +104,9 @@ The following method does not compile, because `TypedResults.Ok` and `TypedResul
 To use `TypedResults`, the return type must be fully declared; when the method is asynchronous, the declaration requires wrapping the return type in a `Task<>`. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
+
+> [!NOTE]
+> When declaring an asynchronous endpoint method that returns `TypedResults` or union results (such as `Results<T1, T2>`), make sure the method signature explicitly declares the generic `Task<Results<...>>` (or `ValueTask<Results<...>>`) return type. Declaring non-generic `Task` or omitting the return type causes the returned result object to be ignored, resulting in missing response bodies and preventing OpenAPI tools from discovering response schemas.
 
 ### Results<TResult1, TResultN>
 
