@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core runtime environments
+ai-usage: ai-assisted
 description: Learn how to set and control app behavior across runtime environments in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/29/2026
+ms.date: 10/24/2026
 uid: fundamentals/environments
 ---
 # ASP.NET Core runtime environments
@@ -53,6 +54,12 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 * `ASPNETCORE_ENVIRONMENT`
 
 When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
+
+Scenario / app type | Recommended variable | Behavior and precedence
+--- | --- | ---
+ASP.NET Core web app (using <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>) | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap, but the framework respects either if only one is set.
+Worker services / console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
+Docker containers / CI/CD pipelines | `DOTNET_ENVIRONMENT` | Use `DOTNET_ENVIRONMENT` universally to simplify multi-project microservice architectures.
 
 :::moniker-end
 
@@ -158,10 +165,10 @@ For Blazor Web Apps that require the environment to control client-side renderin
 
 ## Set the environment in a command shell when the app is run (`dotnet run`)
 
-Use the [`-e|--environment` option](/dotnet/core/tools/dotnet-run#options) to set the environment:
+Use the [`-e|--environment` option](/dotnet/core/tools/dotnet-run#options) to set the environment. In the following example, the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Staging`:
 
 ```dotnetcli
-dotnet run -e Staging
+dotnet run -e ASPNETCORE_ENVIRONMENT=Staging
 ```
 
 ## Set the environment with the launch settings file (`launchSettings.json`)
