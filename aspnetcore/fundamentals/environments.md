@@ -57,9 +57,11 @@ When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIR
 
 Scenario / app type | Recommended variable | Behavior and precedence
 --- | --- | ---
-ASP.NET Core web apps | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap, but the framework respects either if only one is set. For web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, use `ASPNETCORE_ENVIRONMENT`.    
+ASP.NET Core web apps | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap&dagger;, but the framework respects either if only one is set. For web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, use `ASPNETCORE_ENVIRONMENT`.    
 Worker services and console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
-Containerized apps and CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. You can set both environment variables to the same value in your pipeline or container configuration.
+Containerized apps and CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. You can set both environment variables to the same value in your pipeline or container configuration to ensure stable environment behavior.
+
+&dagger;Before app configuration or logging is set up, the [.NET Generic Host](xref:fundamentals/host/generic-host) builds an internal host configuration dictionary and context. This phase uses environment variables prefixed with `DOTNET_`. Bootstrapping uses `DOTNET_ENVIRONMENT` to establish the initial environment in <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType>. If the `ASPNETCORE_ENVIRONMENT` environment variable is absent from the machine or container, the framework falls back to this baseline value. If both environment variables are missing, the environment defaults to `Production`.
 
 :::moniker-end
 
@@ -170,6 +172,8 @@ Use the [`-e|--environment` option](/dotnet/core/tools/dotnet-run#options) to se
 ```dotnetcli
 dotnet run -e ASPNETCORE_ENVIRONMENT=Staging
 ```
+
+The `-e|--environment` option requires .NET SDK 9.0.200 or later.
 
 ## Set the environment with the launch settings file (`launchSettings.json`)
 
