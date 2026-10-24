@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core runtime environments
+ai-usage: ai-assisted
 description: Learn how to set and control app behavior across runtime environments in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/29/2026
+ms.date: 10/24/2026
 uid: fundamentals/environments
 ---
 # ASP.NET Core runtime environments
@@ -52,7 +53,12 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 * [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 * `ASPNETCORE_ENVIRONMENT`
 
-When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
+App type | Recommended variable | Behavior and precedence
+--- | --- | ---
+ASP.NET Core web apps (<xref:Microsoft.AspNetCore.Builder.WebApplication>) | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT`, if present, is read during initial bootstrap and takes precedence over `ASPNETCORE_ENVIRONMENT`. Generally, set `ASPNETCORE_ENVIRONMENT` and don't set `DOTNET_ENVIRONMENT` for web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>. When using <xref:Microsoft.AspNetCore.WebHost> ([obsolete as of .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
+Worker services and console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
+
+For containerized apps and CI/CD pipelines, which environment variable to set depends on the app's host builder. Deployment doesn't change variable support or precedence for web apps. You can set both environment variables to the same value in your pipeline or container configuration to ensure stable environment behavior.
 
 :::moniker-end
 
@@ -158,11 +164,13 @@ For Blazor Web Apps that require the environment to control client-side renderin
 
 ## Set the environment in a command shell when the app is run (`dotnet run`)
 
-Use the [`-e|--environment` option](/dotnet/core/tools/dotnet-run#options) to set the environment:
+Use the [`-e|--environment` option](/dotnet/core/tools/dotnet-run#options) to set the environment. In the following example, the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Staging`:
 
 ```dotnetcli
-dotnet run -e Staging
+dotnet run -e ASPNETCORE_ENVIRONMENT=Staging
 ```
+
+The `-e|--environment` option requires .NET SDK 9.0.200 or later.
 
 ## Set the environment with the launch settings file (`launchSettings.json`)
 
