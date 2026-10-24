@@ -59,7 +59,7 @@ Scenario / app type | Recommended variable | Behavior and precedence
 --- | --- | ---
 ASP.NET Core web app (using <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>) | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap, but the framework respects either if only one is set.
 Worker services / console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
-Docker containers / CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. Use `DOTNET_ENVIRONMENT` for generic hosts and `WebApplication`, and `ASPNETCORE_ENVIRONMENT` for apps using <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*?displayProperty=nameWithType>.
+Docker containers / CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. Use `DOTNET_ENVIRONMENT` for [generic hosts](/aspnet/core/fundamentals/host/generic-host) and [minimal hosts](xref:fundamentals/minimal-apis/webapplication). Use `ASPNETCORE_ENVIRONMENT` for apps that call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*?displayProperty=nameWithType>.
 
 :::moniker-end
 
