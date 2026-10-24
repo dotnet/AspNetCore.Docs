@@ -53,13 +53,13 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 * [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 * `ASPNETCORE_ENVIRONMENT`
 
-When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
+When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost> ([depreciated at .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
 
 Scenario / app type | Recommended variable | Behavior and precedence
 --- | --- | ---
-ASP.NET Core web app (using <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>) | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap, but the framework respects either if only one is set.
-Worker services / console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
-Docker containers / CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. Use `DOTNET_ENVIRONMENT` for [generic hosts](xref:fundamentals/host/generic-host) and [minimal hosts](xref:fundamentals/minimal-apis/webapplication). Use `ASPNETCORE_ENVIRONMENT` for apps that call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*?displayProperty=nameWithType>.
+ASP.NET Core web apps | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap, but the framework respects either if only one is set. For web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, use `ASPNETCORE_ENVIRONMENT`.    
+Worker services and console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
+Containerized apps and CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. You can set both environment variables to the same value in your pipeline or container configuration.
 
 :::moniker-end
 
