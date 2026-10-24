@@ -57,7 +57,7 @@ Scenario / app type | Recommended variable | Behavior and precedence
 --- | --- | ---
 ASP.NET Core web apps (<xref:Microsoft.AspNetCore.Builder.WebApplication>) | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT`, if present, is read during initial bootstrap and takes precedence over `ASPNETCORE_ENVIRONMENT`, but most web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> should use `ASPNETCORE_ENVIRONMENT` and not set `DOTNET_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost> ([obsolete as of .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
 Worker services and console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
-Containerized apps and CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. You can set both environment variables to the same value in your pipeline or container configuration to ensure stable environment behavior.
+Containerized apps and CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence for web apps. You can set both environment variables to the same value in your pipeline or container configuration to ensure stable environment behavior.
 
 :::moniker-end
 
