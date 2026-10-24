@@ -53,7 +53,7 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 * [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 * `ASPNETCORE_ENVIRONMENT`
 
-When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost> ([depreciated at .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
+When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost> ([obsolete as of .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
 
 Scenario / app type | Recommended variable | Behavior and precedence
 --- | --- | ---
