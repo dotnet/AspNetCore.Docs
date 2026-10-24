@@ -15,6 +15,8 @@ This page shows community-provided [open-source software (OSS)](https://en.wikip
 | [Duende IdentityServer](https://duendesoftware.com/products/identityserver) | IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core. |
 | [OpenIddict](https://github.com/openiddict/openiddict-core) | OAuth 2.0/OpenID Connect server for ASP.NET Core and ASP.NET 4.x. |
 | [FIDO2 .NET Library, WebAuthn](https://github.com/passwordless-lib/fido2-net-lib) | FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET |
+| [UltimateAuth](https://github.com/CodeBeamOrg/UltimateAuth) | Open-source, self-hosted authentication and authorization framework for .NET, providing unified session management, configurable authentication modes, and Blazor integration. |
+
 
 ## OSS authentication provider clients [.NET]
 
