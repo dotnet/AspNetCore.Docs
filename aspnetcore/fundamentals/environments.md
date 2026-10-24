@@ -53,15 +53,11 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 * [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
 * `ASPNETCORE_ENVIRONMENT`
 
-When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost> ([obsolete as of .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
-
 Scenario / app type | Recommended variable | Behavior and precedence
 --- | --- | ---
-ASP.NET Core web apps | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT` takes precedence during initial bootstrap&dagger;, but the framework respects either if only one is set. For web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, use `ASPNETCORE_ENVIRONMENT`.    
+ASP.NET Core web apps (<xref:Microsoft.AspNetCore.Builder.WebApplication>) | `ASPNETCORE_ENVIRONMENT` | `DOTNET_ENVIRONMENT`, if present, is read during initial bootstrap and takes precedence over `ASPNETCORE_ENVIRONMENT`, but most web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> should use `ASPNETCORE_ENVIRONMENT` and not set `DOTNET_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost> ([obsolete as of .NET 10](/aspnet/core/breaking-changes/10/webhostbuilder-deprecated)), `ASPNETCORE_ENVIRONMENT` takes precedence.
 Worker services and console apps (non-web apps) | `DOTNET_ENVIRONMENT` | `ASPNETCORE_ENVIRONMENT` is ignored because web-specific host builders aren't initialized.
 Containerized apps and CI/CD pipelines | Depends on the app's host builder | Deployment doesn't change variable support or precedence. You can set both environment variables to the same value in your pipeline or container configuration to ensure stable environment behavior.
-
-&dagger;The [.NET Generic Host](xref:fundamentals/host/generic-host) builds an internal host configuration dictionary and context. This phase reads environment variables prefixed with `DOTNET_`, and the value of `DOTNET_ENVIRONMENT`, if present, is used to establish the initial environment in <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName?displayProperty=nameWithType>. For web apps that call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> with an absent `ASPNETCORE_ENVIRONMENT` variable and `DOTNET_ENVIRONMENT` set, the framework uses the value of `DOTNET_ENVIRONMENT` to set the environment. If both environment variables are missing, the environment defaults to `Production`.
 
 :::moniker-end
 
