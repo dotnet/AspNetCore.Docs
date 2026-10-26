@@ -2,7 +2,7 @@
 title: Scaling ASP.NET Core Apps on Azure
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
 uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
-ms.date: 10/23/2026
+ms.date: 10/26/2026
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
@@ -134,7 +134,7 @@ It's not immediately apparent why the search requests are failing. The browser t
     In the steps ahead, this issue is resolved by centralizing the data protection keys in an Azure storage service and protecting them with Key Vault.
 
     > [!TIP]
-    > **Alternative: Azure Container Apps built-in Data Protection**
+    > **Alternative: Azure Container Apps built-in data protection**
     >
     > Azure Container Apps provides a built-in feature to manage data protection keys across replicas without requiring separate Azure Blob Storage and Azure Key Vault resources. This feature requires ASP.NET Core 8.0.4 or later (apps targeting earlier versions, such as the sample in this tutorial, must first update their target framework and container base images).
     >
