@@ -3,7 +3,7 @@ title: Enable QR code generation for TOTP authentication
 ai-usage: ai-assisted
 description: Discover how to enable QR code generation for time-based one-time password (TOTP) authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 05/15/2026
+ms.date: 10/26/2026
 uid: security/authentication/identity-enable-qrcodes
 
 # customer intent: As an ASP.NET developer, I want to enable QR code generation for TOTP authenticator apps, so I can support two-factor authentication.
@@ -76,7 +76,7 @@ The following instructions use the _qrcode.js_ file from the [https://davidshimj
    }
    ```
 
-1. In _EnableAuthenticator.cshtml_, locate the placeholder element that links to these instructions (for example, `<div class="alert alert-info">Learn how to <a href="...">enable QR code generation</a>.</div>`). Replace it with the `qrCode` and `qrCodeData` container elements required by _qr.js_:
+1. In _EnableAuthenticator.cshtml_, remove the placeholder notice that links to these instructions (for example, `<div class="alert alert-info">Learn how to <a href="...">enable QR code generation</a>.</div>`). Scaffolded pages may already include the container elements immediately following the notice; if they are missing from your file, add the `qrCode` and `qrCodeData` container elements required by _qr.js_:
 
    ```cshtml
    <div id="qrCode"></div>
