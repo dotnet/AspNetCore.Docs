@@ -84,7 +84,7 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1). For complete setup instructions, see <xref:fundamentals/openapi/overview>.
+For more information about describing a response type, see <xref:fundamentals/openapi/include-metadata#describe-response-types>. For complete setup instructions, see <xref:fundamentals/openapi/overview>.
 
 > [!NOTE]
 > The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see <xref:fundamentals/openapi/overview>.
