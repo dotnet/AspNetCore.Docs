@@ -2,7 +2,7 @@
 title: Model validation in ASP.NET Core MVC
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/28/2026
+ms.date: 10/26/2026
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -305,7 +305,7 @@ Data type validation is based on the .NET type of a property, unless that is ove
 
 ### HTML encoding and error message security
 
-jQuery Unobtrusive Validation inserts error messages from `data-val-*-msg` attributes directly into the DOM as HTML without additional encoding. When custom validation attributes or dynamic scripts define validation error messages containing user input, ensure the message is properly sanitized and HTML-encoded before including it in a `data-val-*-msg` attribute on an HTML element. Never define validation error messages containing unencoded user input, as doing so can expose the application to cross-site scripting (XSS) attacks.
+jQuery Unobtrusive Validation inserts error messages from `data-val-{RULE}` attributes (such as `data-val-required`) directly into the DOM as HTML without additional encoding. When custom validation attributes or dynamic scripts define validation error messages containing user input, ensure the message is properly sanitized and HTML-encoded before including it in a `data-val-{RULE}` attribute on an HTML element. Never define validation error messages containing unencoded user input, as doing so can expose the application to cross-site scripting (XSS) attacks.
 
 ### Add Validation to Dynamic Forms
 
