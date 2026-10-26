@@ -34,8 +34,7 @@ later.
   > Microsoft.AspNetCore.Identity requires users to have an email address by default. For Callback URLs during development, use `https://localhost:{PORT}/signin-twitter`, where the `{PORT}` placeholder is the app's port.
 
   > [!NOTE]
-  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions> class.
-
+  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath*?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions> class.
 
 ## Store the Twitter consumer API key and secret
 
@@ -44,10 +43,10 @@ Store sensitive settings such as the Twitter consumer API key and secret with [S
 1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secrets keys `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`:
 
-    ```dotnetcli
-    dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "<consumer-api-key>"
-    dotnet user-secrets set "Authentication:Twitter:ConsumerSecret" "<consumer-secret>"
-    ```
+   ```dotnetcli
+   dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "<consumer-api-key>"
+   dotnet user-secrets set "Authentication:Twitter:ConsumerSecret" "<consumer-secret>"
+   ```
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -59,13 +58,13 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating a
 
 Add the Authentication service to the `Startup.ConfigureServices`:
 
-[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
+[!code-csharp[](./social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
-[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramTwitter.cs)]
+[!code-csharp[](./social-code/6.x/ProgramTwitter.cs)]
 
 :::moniker-end
 
@@ -85,7 +84,7 @@ You are now logged in using your Twitter credentials:
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
-<!-- 
+<!--
 ### React to cancel Authorize External sign-in
 Twitter doesn't support AccessDeniedPath
 Rather in the twitter setup, you can provide an External sign-in homepage. The external sign-in homepage doesn't support localhost. Tested with https://cors3.azurewebsites.net/ and that works.
