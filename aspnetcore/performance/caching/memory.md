@@ -1,11 +1,11 @@
 ---
 title: Cache in-memory in ASP.NET Core
+ai-usage: ai-assisted
+content_well_notification: AI-contribution
 description: Learn how to cache data in memory in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/01/2026
-content_well_notification: AI-contribution
+ms.date: 10/26/2026
 uid: performance/caching/memory
-ai-usage: ai-assisted
 
 # customer intent: As an ASP.NET developer, I want to use in-memory caching in ASP.NET Core, so I can improve the performance and scalability of my app.
 ---
@@ -184,6 +184,12 @@ The following notes apply to in-memory caching:
 
   * Multiple requests might discover the cached key value is empty because the callback isn't finished.
   * This approach can result in several threads repopulating the cached item.
+
+* `MemoryCache` is thread-safe. You can call `Get`, `TryGetValue`, `Set`, and `Remove` from multiple threads at the same time without adding your own locks.
+
+* <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate%2A> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync%2A> aren't atomic. When several requests miss the same key at the same time, each request runs the factory, and the last value written is the one that stays in the cache. For an expensive data source, this can cause a burst of duplicate calls. To run the factory only once per key, use [`HybridCache`](xref:performance/caching/hybrid), which provides stampede protection.
+
+* The cache stores references to objects, not copies. If code changes an object after reading it from the cache, every caller that reads that entry sees the change. Cache immutable objects, or copy an object before changing it.
 
 * When one cache entry (the parent) creates another entry (the child), the child copies the parent entry's expiration tokens and time-based expiration settings. The child doesn't expire by manual removal or updating of the parent entry.
 
