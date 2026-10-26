@@ -36,7 +36,7 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 Update the `Models/Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Models/Movie.cs?name=snippet_First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Models/Movie.cs?name=snippet_First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -391,7 +391,7 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
 
 The code returns [problem details](xref:fundamentals/error-handling-api#problem-details-service) if the `Movie` property of the data context is null.
 

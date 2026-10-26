@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-5.0"
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
@@ -151,7 +156,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/5/arpMac.png)
+   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/5/arpmac.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 

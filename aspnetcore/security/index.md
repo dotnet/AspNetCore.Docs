@@ -2,7 +2,7 @@
 title: ASP.NET Core security topics
 description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
 ms.custom: sfi-ropc-nochange
-ms.date: 05/13/2026
+ms.date: 10/22/2026
 uid: security/index
 
 # customer intent: As an ASP.NET developer, I want to find topics about working with security in ASP.NET, so I can add authentication and authorization features to my apps.
@@ -42,6 +42,7 @@ ASP.NET Core and Entity Framework contain features that help you secure your app
 * [SQL queries > SQL injection attacks](/ef/core/querying/sql-queries#passing-parameters)
 * [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery)
 * [Open redirect attacks](xref:security/preventing-open-redirects)
+* [Software supply chain vulnerabilities (NuGet security best practices)](/nuget/concepts/security-best-practices#knowing-what-is-in-your-environment)
 
 There are more vulnerabilities that you should be aware of. For more information, see the other articles in the **Security and Identity** section of the table of contents.
 
