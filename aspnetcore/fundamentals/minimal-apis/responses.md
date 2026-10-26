@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/22/2026
+ms.date: 10/26/2026
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -84,10 +84,10 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1). For complete setup instructions, see [OpenAPI in ASP.NET Core](/aspnet/core/fundamentals/openapi).
+For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1). For complete setup instructions, see <xref:fundamentals/openapi/overview>.
 
 > [!NOTE]
-> Extension methods such as `.Produces()` and `.Produces<T>()` require the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package and endpoint API exploration services (such as `builder.Services.AddEndpointsApiExplorer()`).
+> The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see <xref:fundamentals/openapi/overview>.
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
@@ -106,7 +106,9 @@ To use `TypedResults`, the return type must be fully declared; when the method i
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
 
 > [!NOTE]
-> When declaring an asynchronous endpoint method that returns `TypedResults` or union results (such as `Results<T1, T2>`), make sure the method signature explicitly declares the generic `Task<Results<...>>` (or `ValueTask<Results<...>>`) return type. Declaring non-generic `Task` or omitting the return type causes the returned result object to be ignored, resulting in missing response bodies and preventing OpenAPI tools from discovering response schemas.
+> When using a method group whose only parameter is `HttpContext` (for example, `static async Task<Results<ContentHttpResult, BadRequest>> MyHandler(HttpContext context)`), `app.MapGet` matches both `RequestDelegate` and `Delegate`. Overload resolution selects the <xref:Microsoft.AspNetCore.Http.RequestDelegate> overload, which discards return values and triggers analyzer warning [ASP0016](xref:diagnostics/asp0016). To ensure the result is executed and written to the response, cast the method group to `Delegate` (for example, `app.MapGet("/route", (Delegate)MyHandler)`) or use a lambda.
+>
+> When using `TypedResults` with multiple return branches, an explicit union return type such as `Results<T1, T2>` (or `Task<Results<T1, T2>>` for async handlers) is required because the compiler cannot infer a common union type.
 
 ### Results<TResult1, TResultN>
 
