@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
-ms.date: 04/03/2026
+ms.date: 10/22/2026
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 
@@ -85,7 +85,7 @@ Right-click on the `Movie` table **> View Data**
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/rp/sqlite.md)]
+[!INCLUDE[](~/includes/RP/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 ---
@@ -95,7 +95,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Models/SeedData.cs?name=snippet_FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Models/SeedData.cs?name=snippet_FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 

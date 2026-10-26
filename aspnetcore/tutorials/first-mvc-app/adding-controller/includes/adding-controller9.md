@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
@@ -46,7 +51,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_First)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_First)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -92,7 +97,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_Second)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_Second)]
 
 The preceding code:
 
