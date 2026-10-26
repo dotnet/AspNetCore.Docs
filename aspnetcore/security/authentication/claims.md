@@ -3,7 +3,7 @@ title: Map, customize, transform claims in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to map claims, perform claims transformations, and customize claims in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/15/2026
+ms.date: 10/26/2026
 uid: security/authentication/claims
 
 # customer intent: As an ASP.NET developer, I want to work with claims in my ASP.NET Core app, so I can map claims, do transformations, and make customizations.
@@ -95,7 +95,7 @@ builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 > [!NOTE]
 > * **When it is called:** `IClaimsTransformation.TransformAsync` is called by the authentication service only after a successful authentication (`AuthenticateResult.Success`). If authentication fails or no user is authenticated, `TransformAsync` is not called.
 > * **Multiple invocations:** `TransformAsync` can be called multiple times for a single request when authentication is evaluated more than once (such as by authentication middleware, authorization checks, or calls to `AuthenticateAsync`). Ensure transformations are idempotent; always verify whether a claim already exists before adding it.
-> * **Single registration:** ASP.NET Core resolves only a single `IClaimsTransformation` implementation from the dependency injection container. Registering multiple implementations replaces prior registrations rather than chaining them.
+> * **Single implementation resolved:** The authentication service resolves a single `IClaimsTransformation` from the dependency injection container, using a last-registration-wins approach. Registering multiple implementations does not chain them automatically; the authentication service uses only the last registered implementation (earlier registrations remain in the container and are accessible when resolving `IEnumerable<IClaimsTransformation>`).
 
 <!-- see https://github.com/dotnet/AspNetCore.Docs/issues/26032
 ## Extend or add custom claims in ASP.NET Core Identity
