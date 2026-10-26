@@ -2,7 +2,7 @@
 title: Overview of ASP.NET Core Authentication
 ai-usage: ai-assisted
 description: Learn about authentication in ASP.NET Core.
-ms.date: 10/23/2026
+ms.date: 10/26/2026
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -41,7 +41,7 @@ If multiple schemes are used, authorization policies (or authorization attribute
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
-### Multiple calls to `AddAuthentication`
+## Multiple calls to `AddAuthentication`
 
 If `AddAuthentication` is called multiple times (for example, once directly in application startup and once internally by ASP.NET Core Identity):
 
