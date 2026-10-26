@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/23/2026
+ms.date: 10/26/2026
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -68,7 +68,7 @@ When a user authenticates using their username and password they're issued a tok
 
 Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
 
-* `SameSiteMode.Strict`: The cookie is sent only in a first-party context (when the site in the URL matches the cookie's domain). The browser never includes the cookie in cross-site requests, including ordinary link navigations. This provides the highest CSRF protection.
+* `SameSiteMode.Strict`: The cookie is sent only in a first-party context (when the site, defined by scheme plus registrable domain, in the URL matches the request destination). The browser never includes the cookie in cross-site requests, including ordinary link navigations. This provides the highest CSRF protection.
 * `SameSiteMode.Lax`: The cookie is withheld on cross-site subrequests (such as cross-site form POSTs, images, or frames), but sent when a user navigates to the origin site (for example, following a link). This is the default in modern browsers and in ASP.NET Core cookie authentication.
 * `SameSiteMode.None`: The cookie is sent with both same-site and cross-site requests. The cookie must also be marked `Secure`.
 
@@ -77,7 +77,21 @@ While `SameSite` cookies mitigate many CSRF attacks, they should be used as part
 * `SameSite=Lax` cookies are still sent with top-level `GET` requests, meaning any state-changing `GET` endpoints remain vulnerable.
 * Subdomains sharing cookies under the same parent domain can still impact cookie trust boundaries.
 
-Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or automatic CSRF protection provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ### Token-based authentication
 
