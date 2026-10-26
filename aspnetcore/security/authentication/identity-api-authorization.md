@@ -230,7 +230,7 @@ public signOut() {
 ```
 
 > [!NOTE]
-> `SignInManager.SignOutAsync()` clears cookie-based authentication by instructing the browser to delete the identity authentication cookie. Calling `SignOutAsync()` does **not** invalidate stateless Bearer tokens on the server. When using token-based authentication (Bearer tokens), the client application must discard the access and refresh tokens from memory or client storage to complete sign-out. Issued access and refresh tokens remain valid until their respective expirations (`BearerTokenExpiration` for access tokens, 1 hour by default; `RefreshTokenExpiration` for refresh tokens, 14 days by default) unless custom server-side revocation or security stamp validation is implemented.
+> <xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignOutAsync*?displayProperty=nameWithType> clears cookie-based authentication by instructing the browser to delete the identity authentication cookie. Calling `SignOutAsync` does **not** invalidate stateless Bearer tokens on the server. When using token-based authentication (Bearer tokens), the client application must discard the access and refresh tokens from memory or client storage to completely sign the user out of the app. Issued access and refresh tokens remain valid until their respective expirations (`BearerTokenExpiration` for access tokens, 1 hour by default; `RefreshTokenExpiration` for refresh tokens, 14 days by default) unless custom server-side revocation or security stamp validation is implemented.
 
 ## SignOut everywhere
 
