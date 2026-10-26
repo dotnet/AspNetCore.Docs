@@ -31,8 +31,6 @@ This section describes new features for SignalR.
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-cancel-hub-invocations.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-auth-refresh-redirects.md)]
-
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-typescript-authentication-refresh.md)]
 
 ## Minimal APIs
