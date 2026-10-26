@@ -2,7 +2,7 @@
 title: Partial Tag Helper in ASP.NET Core
 description: Discover the ASP.NET Core Partial Tag Helper and the role each of its attributes play in rendering a partial view.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 10/08/2026
+ms.date: 10/26/2026
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---
 # Partial Tag Helper in ASP.NET Core
@@ -64,7 +64,7 @@ The `model` attribute assigns a model instance to pass to the partial view. The 
 When neither `for` nor `model` is specified, the Partial Tag Helper falls back to passing the calling view's model (`ViewContext.ViewData.Model`) to the partial view.
 
 > [!NOTE]
-> Unlike `for`, the `model` attribute passes the model object directly without setting an `HtmlFieldPrefix`. Tag Helpers inside the partial view generate un-prefixed `name` attributes (such as `name="Name"` instead of `name="Product.Name"`). Use `model` when the receiving action method expects an un-prefixed parameter or when the partial view renders an independent model instance.
+> Unlike `for`, the `model` attribute passes the model object directly without appending the property name to `HtmlFieldPrefix`. Instead, it preserves any existing `HtmlFieldPrefix` from the calling view context. If the calling view's prefix is empty, Tag Helpers inside the partial view generate unprefixed `name` attributes (such as `name="Name"` instead of `name="Product.Name"`). If the partial view is invoked within an existing prefix scope (such as inside a parent partial rendered with `for="Product"`), that prefix is retained. Use `model` when the receiving action method expects an unprefixed parameter (ensuring no outer prefix exists) or when rendering an independent model instance.
 
 In the following markup, a new `Product` object is instantiated and passed to the `model` attribute for binding:
 
