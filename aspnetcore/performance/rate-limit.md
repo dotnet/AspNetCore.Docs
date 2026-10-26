@@ -3,7 +3,7 @@ title: Rate limiting middleware in ASP.NET Core
 ai-usage: ai-assisted
 description: Rate limiting middleware in ASP.NET Core protects APIs from abuse and overload. Learn to configure fixed window, sliding window, token bucket, and concurrency limiters.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/09/2026
+ms.date: 10/23/2026
 uid: performance/rate-limit
 ---
 
@@ -192,6 +192,16 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
 <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after `UseRouting` when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) attribute is used, `UseRateLimiter` must be called after `UseRouting`. When calling only global limiters, `UseRateLimiter` can be called before `UseRouting`.
+
+If the app calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>, call it before `UseRouting` and `UseRateLimiter`. When the status code pages middleware re-executes a request, only the middleware registered after it runs again. If `UseRateLimiter` is called before `UseStatusCodePagesWithReExecute`, the rate limiter doesn't run for the re-executed endpoint, so that endpoint's rate limiting policy isn't applied, even when the policy has no permits remaining. The following order lets the rate limiter evaluate the re-executed endpoint:
+
+```csharp
+app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
+app.UseRouting();
+app.UseRateLimiter();
+```
+
+For more information, see the [`UseStatusCodePagesWithReExecute` section of the error handling article](xref:fundamentals/error-handling#usestatuscodepageswithreexecute).
 
 <a name="slide"></a>
 

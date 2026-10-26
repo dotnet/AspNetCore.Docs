@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/19/2026
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -973,7 +973,7 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 
 `MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
 
-The `ShortCircuit` and `MapShortCircuit` methods do not affect middleware placed before `UseRouting`. Trying to use these methods with endpoints that also have `[Authorize]` or `[RequireCors]` metadata will cause requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> methods.
+Short-circuiting doesn't affect middleware placed before `UseRouting`. Short-circuiting an endpoint that also has `[Authorize]` or `[RequireCors]` metadata causes requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> methods. This restriction applies however the endpoint is short-circuited.
 
 To see the effect of short-circuiting middleware, set the "Microsoft" logging category to "Information" in `appsettings.Development.json`:
 
@@ -1008,6 +1008,69 @@ info: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware[4]
 info: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware[5]
       The endpoint 'HTTP: GET /short-circuit' has been executed without running additional middleware.
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Instead of calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> on the endpoint builder, you can apply the <xref:Microsoft.AspNetCore.Routing.ShortCircuitAttribute> to short-circuit an endpoint declaratively. The attribute is in the <xref:Microsoft.AspNetCore.Routing?displayProperty=fullName> namespace and has the same effect as the extension method: routing invokes the endpoint in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and ends the request without running the remaining middleware.
+
+The attribute is valid on a method or a class. It isn't inherited, and it can't be applied more than once to the same target.
+
+On a Minimal API route handler:
+
+```csharp
+app.MapGet("/health-probe", [ShortCircuit] () => Results.Ok());
+```
+
+On an MVC action or an entire controller:
+
+```csharp
+[ApiController]
+[Route("robots.txt")]
+[ShortCircuit]
+public class RobotsController : ControllerBase
+{
+    [HttpGet]
+    public IActionResult Get() => Content("User-agent: *\nDisallow:", "text/plain");
+}
+```
+
+You can optionally specify a status code:
+
+```csharp
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
+{
+    private static readonly string[] Summaries =
+    [
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    ];
+
+    [HttpGet]
+    [ShortCircuit(StatusCodes.Status200OK)]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        })
+        .ToArray();
+    }
+}
+```
+
+When a status code isn't supplied, <xref:Microsoft.AspNetCore.Routing.ShortCircuitAttribute.StatusCode?displayProperty=nameWithType> is `null` and the endpoint runs normally before the request ends. The attribute implements <xref:Microsoft.AspNetCore.Routing.IShortCircuitMetadata>, so custom endpoint conventions and metadata inspection can detect short-circuited endpoints through that interface.
+
+> [!WARNING]
+> The same restriction that applies to the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> and <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit*> methods applies to the attribute. An endpoint that's short-circuited and also has `[Authorize]` or `[RequireCors]` metadata fails with an <xref:System.InvalidOperationException>. Because `[ShortCircuit]` can be applied to a class, take particular care when placing it on an MVC controller that carries an `[Authorize]` attribute, including one applied through a base class.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Guidance for library authors
 
