@@ -3,7 +3,7 @@ title: Model Binding in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 08/10/2026
+ms.date: 10/26/2026
 uid: mvc/models/model-binding
 ---
 <!-- Note the use of inline moniker tags at the end of the file. -->
@@ -98,7 +98,7 @@ For each target parameter or property, the sources are scanned in the order indi
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
 > [!NOTE]
-> For form fields, model binding matches form data keys against model properties or action parameters. In HTML forms, input data is submitted using the `name` attribute of each form control; an element with only an `id` attribute is not included in the HTTP form submission. When using [Tag Helpers](xref:mvc/views/tag-helpers/intro) such as the [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper) (`asp-for`), the rendered HTML element includes matching `name` and `id` attributes automatically.
+> For form fields, model binding matches form data keys against model properties or action parameters. In HTML forms, input data is submitted using the `name` attribute of each form control; an element with only an `id` attribute is not included in the HTTP form submission. When using [Tag Helpers](xref:mvc/views/tag-helpers/intro) for form model binding, the rendered HTML element includes `name` and `id` attributes automatically. Their values can differ for nested properties; only `name` determines the submitted form data key.
 
 If the default source is not correct, use one of the following attributes to specify the source:
 
