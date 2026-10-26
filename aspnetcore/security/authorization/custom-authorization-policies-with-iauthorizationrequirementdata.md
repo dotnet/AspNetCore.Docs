@@ -3,7 +3,7 @@ title: Custom authorization policies with `IAuthorizationRequirementData`
 ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 07/29/2026
+ms.date: 10/13/2026
 uid: security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
@@ -15,6 +15,8 @@ This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint withi
 :::moniker range=">= aspnetcore-11.0"
 
 You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+
+Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync*> overload to combine mixed authorization metadata using the same rules as the authorization middleware.
 
 :::moniker-end
 

@@ -111,52 +111,11 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 ## Add Nuget packages and tools
 
-:::moniker range=">= aspnetcore-9.0"
-
 To add the `dotnet scaffold` tool, execute the following .NET CLI command in the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root folder:
 
 ```dotnetcli
 dotnet tool install --global Microsoft.dotnet-scaffold
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root folder.
-
-Paste all of the following commands at the prompt (`>`) of the **Terminal**. When you paste multiple commands, a warning may appear stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
-
-When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
-
-```dotnetcli
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-```
-
-> [!IMPORTANT]
-> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
-
-> [!NOTE]
-> The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
-
-The preceding commands add:
-
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-* Design time tools for EF Core.
-* The SQLite and SQL Server providers with the EF Core package as a dependency.
-* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions.
-
-:::moniker-end
 
 Save any open files.
 
@@ -170,46 +129,11 @@ Confirm that the app built successfully.
 
 ## Add Nuget packages and tools
 
-:::moniker range=">= aspnetcore-9.0"
-
 To add the `dotnet scaffold` tool, execute the following .NET CLI command in a command shell opened to the project's root folder:
 
 ```dotnetcli
 dotnet tool install --global Microsoft.dotnet-scaffold
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
-
-Paste all of the following commands at the prompt (`>`) of the command shell. When you paste multiple commands, a warning may appear stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
-
-When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
-
-```dotnetcli
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid
-dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-```
-
-The preceding commands add:
-
-* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet).
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-* Design time tools for EF Core.
-* The SQLite and SQL Server providers with the EF Core package as a dependency.
-* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
-
-:::moniker-end
 
 Save any open files.
 
@@ -256,8 +180,6 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
 In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
 
-:::moniker range=">= aspnetcore-9.0"
-
 ```dotnetcli
 dotnet scaffold
 ```
@@ -289,25 +211,6 @@ Executing the `dotnet scaffold` command adds the following tools and packages to
 * Design time tools for EF Core.
 * The SQLite provider with the EF Core package as a dependency.
 * [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-```dotnetcli
-dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
-```
-
-*CRUD* is an acronym for Create, Read, Update, and Delete. The `blazor` generator with the `CRUD` template produces create, edit, delete, details, and index components for the app.
-
-The following details the ASP.NET Core code generator options used in the preceding command:
-
-* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-* `-dc`: The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace (`BlazorWebAppMovies.Data`).
-* `-m`: The name of the model.
-* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages` in this case).
-
-:::moniker-end
 
 :::zone-end
 
@@ -315,8 +218,6 @@ The following details the ASP.NET Core code generator options used in the preced
 
 In a command shell opened to the project's root folder, execute the following command. SQLite is used as the database for users adopting .NET CLI tooling for this tutorial series.
 
-:::moniker range=">= aspnetcore-9.0"
-
 ```dotnetcli
 dotnet scaffold
 ```
@@ -348,25 +249,6 @@ Executing the `dotnet scaffold` command adds the following tools and packages to
 * Design time tools for EF Core.
 * The SQLite provider with the EF Core package as a dependency.
 * [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-```dotnetcli
-dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
-```
-
-*CRUD* is an acronym for Create, Read, Update, and Delete. The `blazor` generator with the `CRUD` template produces create, edit, delete, details, and index components for the app.
-
-The following details the ASP.NET Core code generator options used in the preceding command:
-
-* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-* `-dc`: The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace (`BlazorWebAppMovies.Data`).
-* `-m`: The name of the model.
-* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages` in this case).
-
-:::moniker-end
 
 :::zone-end
 
@@ -651,7 +533,6 @@ EF Core documentation:
 * [Data Types](/ef/core/modeling/relational/data-types)
 * <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>: The API document includes basic information on how entities are saved and change detection.
 * [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)
-* [`dotnet aspnet-codegenerator`](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
 * <xref:fundamentals/dependency-injection>
 * <xref:blazor/components/quickgrid>
 

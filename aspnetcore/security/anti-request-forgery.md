@@ -718,6 +718,30 @@ app.MapDelete("/item/{id}", async (int id, IAntiforgery antiforgery, HttpContext
 >
 > For configuration details, see <xref:fundamentals/middleware/index>.
 
+## Antiforgery with API controllers
+
+When an application configures the antiforgery middleware (`app.UseAntiforgery()`), API controllers inheriting from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> or marked with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> can require antiforgery token validation by applying the <xref:Microsoft.AspNetCore.Antiforgery.RequireAntiforgeryTokenAttribute> attribute:
+
+```csharp
+using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ExampleController : ControllerBase
+{
+    [HttpPost]
+    [RequireAntiforgeryToken]
+    public IActionResult Post([FromForm] MyFormModel model)
+    {
+        // Process form data
+        return Ok();
+    }
+}
+```
+
+The `[RequireAntiforgeryToken]` attribute implements <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryMetadata> with `RequiresValidation = true`, signaling to `AntiforgeryMiddleware` that the endpoint requires valid antiforgery token validation for POST, PUT, and PATCH requests.
+
 ## Windows authentication and antiforgery cookies
 
 When using Windows Authentication, application endpoints must be protected against CSRF attacks in the same way as done for cookies. The browser implicitly sends the authentication context to the server and endpoints need to be protected against CSRF attacks.

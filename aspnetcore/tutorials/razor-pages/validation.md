@@ -84,7 +84,7 @@ By having ASP.NET Core automatically enforce validation rules, you can:
 
 ### Validation error UI in Razor Pages
 
-Run the app and go to **Pages/Movies**.
+Run the app and go to **Pages/MoviePages**.
 
 Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
@@ -127,7 +127,7 @@ The following code shows a portion of the `Create.cshtml` page scaffolded earlie
 * Display the initial form.
 * Redisplay the form in the event of an error.
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/Create.cshtml?range=14-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Create.cshtml?range=14-20)]
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. For more information, see [Validation](xref:mvc/models/validation).
 
