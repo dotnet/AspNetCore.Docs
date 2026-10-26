@@ -2,7 +2,7 @@
 title: Dependency injection into controllers in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
-ms.date: 03/04/2026
+ms.date: 10/23/2026
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
@@ -48,6 +48,33 @@ The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> enables injecting a se
 The following code shows how to access keyed services from the DI container by using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceController/Program.cs" :::
+
+## Property injection with `FromServices`
+
+The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> can also be applied to public properties on an MVC controller. The runtime resolves and populates these properties from the DI container during model binding:
+
+```csharp
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
+{
+    [FromServices]
+    public required ILogger<WeatherForecastController> Logger { get; set; }
+
+    [FromServices]
+    public required IWeatherService WeatherService { get; set; }
+
+    [HttpGet]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        Logger.LogInformation("Fetching weather forecast");
+        return WeatherService.GetForecast();
+    }
+}
+```
+
+> [!NOTE]
+> Property injection using `[FromServices]` is supported on controller properties with public setters. It isn't supported for services resolved generally through the dependency injection container.
 
 ## Access settings from a controller
 
