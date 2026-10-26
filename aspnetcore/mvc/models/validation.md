@@ -37,7 +37,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
 
-You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*> to validate a specific property or a child complex object explicitly. For example, consider a hypothetical complex `Genre` class (distinct from the sample app's `Genre` enum) with its own validation attributes. In a page model where the `Movie` property is bound under the `"Movie"` prefix, manually validate `Movie.Genre` using the full property prefix:
+You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*> to explicitly validate a child complex object. `TryValidateModel` validates the supplied object and attributes declared on its own properties; it does not evaluate validation attributes declared on the containing parent property (such as attributes on the parent `Movie.Genre` property itself). For example, consider a hypothetical complex `Genre` class (distinct from the sample app's `Genre` enum) with its own validation attributes. In a page model where the `Movie` property is bound under the `"Movie"` prefix, manually validate `Movie.Genre` using the full property prefix:
 
 ```csharp
 ModelState.ClearValidationState("Movie.Genre");
