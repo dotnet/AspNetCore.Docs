@@ -82,7 +82,7 @@ If you need to disable the namespaces per scheme and not globally, you can use t
 
 ## Extend or add custom claims using 'IClaimsTransformation'
 
-The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method, <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>.
+The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method, <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*>.
 
 [!code-csharp[](~/security/authentication/claims/samples/6/WebRPmapClaims/MyClaimsTransformation.cs)]
 
@@ -93,9 +93,9 @@ builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
 
 > [!NOTE]
-> * **When it is called:** `IClaimsTransformation.TransformAsync` is called by the authentication service only after a successful authentication (`AuthenticateResult.Success`). If authentication fails or no user is authenticated, `TransformAsync` is not called.
-> * **Multiple invocations:** `TransformAsync` can be called multiple times for a single request when authentication is evaluated more than once (such as by authentication middleware, authorization checks, or calls to `AuthenticateAsync`). Ensure transformations are idempotent; always verify whether a claim already exists before adding it.
-> * **Single implementation resolved:** The authentication service resolves a single `IClaimsTransformation` from the dependency injection container, using a last-registration-wins approach. Registering multiple implementations does not chain them automatically; the authentication service uses only the last registered implementation (earlier registrations remain in the container and are accessible when resolving `IEnumerable<IClaimsTransformation>`).
+> * **When it is called:** `TransformAsync` is called by the authentication service only after a successful authentication (<xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success*?displayProperty=nameWithType>). If authentication fails or no user is authenticated, `TransformAsync` isn't called.
+> * **Multiple invocations:** `TransformAsync` can be called multiple times for a single request when authentication is evaluated more than once, such as by authentication middleware, authorization checks, calls to <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*?displayProperty=nameWithType>, or calls to <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*?displayProperty=nameWithType>. Ensure transformations are idempotent; always verify whether a claim already exists before adding it.
+> * **Single implementation resolved:** The authentication service resolves a single `IClaimsTransformation` from the dependency injection container, using a last-registration-wins approach. Registering multiple implementations doesn't chain them automatically; the authentication service uses only the last registered implementation (earlier registrations remain in the container and are accessible when resolving `IEnumerable<IClaimsTransformation>`).
 
 <!-- see https://github.com/dotnet/AspNetCore.Docs/issues/26032
 ## Extend or add custom claims in ASP.NET Core Identity
