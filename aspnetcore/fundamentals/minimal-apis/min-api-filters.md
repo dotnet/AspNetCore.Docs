@@ -3,7 +3,7 @@ title: Filters in Minimal API apps
 ai-usage: ai-assisted
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 04/28/2026
+ms.date: 10/21/2026
 uid: fundamentals/minimal-apis/min-api-filters
 
 # customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
@@ -117,6 +117,62 @@ In the preceding code:
 * The `EndpointFilterFactoryContext` object provides access to the [MethodInfo](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler.
 * The signature of the handler is examined by inspecting `MethodInfo` for the expected type signature. If the expected signature is found, the validation filter is registered onto the endpoint. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
 * If a matching signature isn't found, a pass-through filter is registered.
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Filters and parameter binding failures
+
+Endpoint filters can run when a parameter-check failure occurs, such as a failed route, query, or header parse, or a missing required parameter. When a filter pipeline is built for an endpoint, `ThrowOnBadRequest` is `false`, and a parameter check fails, the framework:
+
+* Sets `HttpContext.Response.StatusCode` to `400`.
+* Invokes the filter pipeline.
+* Skips the route handler. The innermost step of the pipeline returns an empty result instead of calling the handler whenever the response status code is `400` or greater.
+
+Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported media types) or when an exception is thrown during parameter binding (such as from a custom `BindAsync` method); in those cases, the framework returns or throws before invoking the filter pipeline.
+
+A filter therefore sees the failed request and can replace the empty `400` with a response body of its own:
+
+```csharp
+app.MapGet("/products/{id}", (Guid id) => TypedResults.Ok(id))
+    .AddEndpointFilter(async (context, next) =>
+    {
+        if (context.HttpContext.Response.StatusCode >= StatusCodes.Status400BadRequest)
+        {
+            return TypedResults.Problem(
+                title: "The request couldn't be bound.",
+                statusCode: context.HttpContext.Response.StatusCode);
+        }
+
+        return await next(context);
+    });
+```
+
+Test the status code with `>=` rather than `== 400`. That's the same comparison the framework uses to decide whether to skip the handler, and a filter that runs earlier in the pipeline can set a different code.
+
+Because parameter binding did not fully succeed, values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> might only be partially bound. A filter that inspects arguments should check the status code first before relying on argument values.
+
+## Observe binding failures in the Development environment
+
+<xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> controls whether the framework throws <xref:Microsoft.AspNetCore.Http.BadHttpRequestException> in addition to writing a `Debug`-level log entry when it handles an invalid request. It defaults to the value of <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsDevelopment*>, so it's `true` in the `Development` environment and `false` in other environments.
+
+In the `Development` environment with the default value of `true`, the exception reaches the developer exception page before a filter can respond. Set <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> to `false` to receive the `400` response that the filter can observe:
+
+```csharp
+builder.Services.Configure<RouteHandlerOptions>(options =>
+{
+    options.ThrowOnBadRequest = false;
+});
+```
+
+No change is needed in other environments, where `false` is already the default.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+An endpoint whose filter factories all return `next` unchanged—so that no filter pipeline is actually built—no longer runs its route handler after a parameter-binding failure. In earlier releases, that configuration set the `400` status code and then invoked the handler anyway with unbound argument values. For more information, see [Refactor param binding failure handling in RequestDelegate (`dotnet/aspnetcore` #64539)](https://github.com/dotnet/aspnetcore/pull/64539). (Please don't comment on closed issues and PRs.)
+
+:::moniker-end
 
 ## Register a filter on controller actions
 
