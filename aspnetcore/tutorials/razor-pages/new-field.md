@@ -32,14 +32,14 @@ Automatic verification that the schema and model are in sync makes it easier to 
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Models/MovieDateRating.cs?highlight=13&name=snippet)]
-1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
+1. Edit `Pages/MoviePages/Index.cshtml`, and add a `Rating` field:
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
-   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/Movies/Create.cshtml)*.
-   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/Movies/Delete.cshtml)*.
-   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/Movies/Details.cshtml)*.
-   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/Movies/Edit.cshtml)*.
+   * *[Pages/MoviePages/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/MoviePages/Create.cshtml)*.
+   * *[Pages/MoviePages/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/MoviePages/Delete.cshtml)*.
+   * *[Pages/MoviePages/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/MoviePages/Details.cshtml)*.
+   * *[Pages/MoviePages/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/MoviePages/Edit.cshtml)*.
 
 The app doesn't work until you update the database to include the new field. Running the app without an update to the database throws a `SqlException`:
 

@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-7.0"
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
@@ -372,11 +377,11 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/appsettings.json?highlight=9-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/appsettings.json?highlight=9-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/appsettings_SQLite.json?highlight=9-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/appsettings_SQLite.json?highlight=9-10)]
 
 ---
 
@@ -386,7 +391,7 @@ For local development, the [ASP.NET Core configuration system](xref:fundamentals
 
 Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/Migrations/20210915202210_InitialCreate.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Migrations/20210915202210_InitialCreate.cs)]
 
 In the preceding code:
 
@@ -399,7 +404,7 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/Controllers/MoviesController.cs?name=snippet_Constructor)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Controllers/MoviesController.cs?name=snippet_Constructor)]
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
@@ -417,7 +422,7 @@ MVC provides the ability to pass strongly typed model objects to a view. This st
 
 Examine the generated `Details` method in the `Controllers/MoviesController.cs` file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/Controllers/MoviesController.cs?name=snippet_Details)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Controllers/MoviesController.cs?name=snippet_Details)]
 
 The `id` parameter is generally passed as route data. For example, `https://localhost:5001/movies/details/1` sets:
 
@@ -446,7 +451,7 @@ return View(movie);
 
 Examine the contents of the `Views/Movies/Details.cshtml` file:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/Views/Movies/DetailsOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Views/Movies/DetailsOriginal.cshtml)]
 
 The `@model` statement at the top of the view file specifies the type of object that the view expects. When the movie controller was created, the following `@model` statement was included:
 
@@ -466,11 +471,11 @@ When the movies controller was created, scaffolding included the following `@mod
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/Views/Movies/IndexOriginal.cshtml?range=1)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Views/Movies/IndexOriginal.cshtml?range=1)]
 
 The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the `Index.cshtml` view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie70/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the compiler validates the types used in the code.
 
