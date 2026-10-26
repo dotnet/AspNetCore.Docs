@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/23/2026
+ms.date: 10/26/2026
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -240,7 +240,7 @@ The endpoint that processes the error can get the original URL that generated th
 Similar to `UseExceptionHandler`, only the request path is modified, and the route data is cleared. Request data such as headers (including the referrer), HTTP method, and items are reused as-is on `HttpContext.Request`. Original path and query string details can be retrieved using <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature>.
 
 > [!IMPORTANT]
-> Because the request's original HTTP method is preserved during pipeline re-execution, an error occurring during an HTTP POST request re-executes the status code endpoint with the POST method. If the error-handling page or controller action only handles GET requests (for example, a Razor Page with only an `OnGet` handler), the endpoint returns `405 Method Not Allowed`. Ensure status code handling endpoints implement handlers for the HTTP methods used by the application (for example, implementing `OnPost` alongside `OnGet`), and apply `[IgnoreAntiforgeryToken]` if the error page should accept re-executed POST requests without requiring antiforgery token validation.
+> Because the request's original HTTP method is preserved during pipeline re-execution, an error occurring during an HTTP POST request re-executes the status code endpoint with the POST method. If the error-handling endpoint is constrained to GET requests (for example, an MVC controller action with `[HttpGet]`), the endpoint returns `405 Method Not Allowed`. In Razor Pages, a page without an `OnPost` handler renders the page on POST without running the `OnGet` initialization logic. Ensure status code handling endpoints accommodate the HTTP methods used by the application (for example, implementing `OnPost` alongside `OnGet` so error details are populated for POST requests), and apply `[IgnoreAntiforgeryToken]` if the error page should accept re-executed POST requests without requiring antiforgery token validation.
 
 Since this middleware can re-execute the request pipeline:
 
