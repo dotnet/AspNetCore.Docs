@@ -301,6 +301,8 @@ private async Task UpdateMovie()
         if (!MovieExists(Movie!.Id))
         {
             NavigationManager.NotFound();
+
+            return;
         }
         else
         {
@@ -311,39 +313,6 @@ private async Task UpdateMovie()
     NavigationManager.NavigateTo("/movies");
 }
 ```
-
-<!-- UPDATE 11.0 - Delete the following IMPORTANT note and add the 
-                   return statement to the example code above after
-                   scaffolder updates go public per 
-                   https://github.com/dotnet/Scaffolding/issues/3828.
--->
-
-> [!IMPORTANT]
-> Due to a bug in the Blazor CRUD template, a `return` statement is missing from the `UpdateMovie` method after <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called. The purpose of calling `return` is to ensure the handler (the `UpdateMovie` method) selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>. We're in the process of updating the `Edit` component template, and this article will be updated when the scaffolder generates the correct code.
->
-> After the line that calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>, add a `return` statement:
->
-> ```csharp
-> return;
-> ```
->
-> The `catch` block should look like the following example after the `return` statement is added:
->
-> ```csharp
-> catch (DbUpdateConcurrencyException)
-> {
->     if (!MovieExists(Movie!.Id))
->     {
->         NavigationManager.NotFound();
-> 
->         return;
->     }
->     else
->     {
->         throw;
->     }
-> }
-> ```
 
 Concurrency exceptions are detected when one client deletes the movie and a different client posts changes to the movie.
 
