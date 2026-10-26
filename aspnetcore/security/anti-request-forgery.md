@@ -69,7 +69,7 @@ When a user authenticates using their username and password they're issued a tok
 Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
 
 * `SameSiteMode.Strict`: The cookie is sent only in a first-party context (when the site, defined by scheme plus registrable domain, in the URL matches the request destination). The browser never includes the cookie in cross-site requests, including ordinary link navigations. This provides the highest CSRF protection.
-* `SameSiteMode.Lax`: The cookie is withheld on cross-site subrequests (such as cross-site form POSTs, images, or frames), but sent when a user navigates to the origin site (for example, following a link). This is the default in modern browsers and in ASP.NET Core cookie authentication.
+* `SameSiteMode.Lax`: The cookie is withheld on cross-site subrequests (such as images or frames) and on cross-site requests using unsafe HTTP methods (such as form `POST`s). The cookie is sent on cross-site requests only during top-level navigation that uses a safe HTTP method (such as following a `GET` link). This is the default in modern browsers and in ASP.NET Core cookie authentication.
 * `SameSiteMode.None`: The cookie is sent with both same-site and cross-site requests. The cookie must also be marked `Secure`.
 
 While `SameSite` cookies mitigate many CSRF attacks, they should be used as part of a defense-in-depth strategy:
