@@ -3,7 +3,7 @@ title: Generate OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 09/04/2026
+ms.date: 10/16/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -72,8 +72,84 @@ Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to vie
 
 OpenAPI document generation applies the following behaviors:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
 * Unknown HTTP methods are excluded from the generated document. For example, the `QUERY` method is an HTTP method that isn't yet recognized by the OpenAPI specification, so it's gracefully excluded from the generated document.
 * Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+* The `QUERY` method and app-defined custom HTTP methods are described in the generated document. For more information, see [Operations for HTTP QUERY and custom HTTP methods](#operations-for-http-query-and-custom-http-methods).
+* Endpoints whose HTTP method is missing or isn't a syntactically valid HTTP method token are excluded from the generated document.
+* Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
+
+### Operations for HTTP QUERY and custom HTTP methods
+
+Routing accepts arbitrary HTTP method strings through <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>. OpenAPI document generation describes those operations instead of omitting them.
+
+[HTTP QUERY](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/) is a proposed safe, idempotent method that lets a client send a request body when describing a search. It's useful when a query is too large or too structured to fit in a URL. OpenAPI 3.2 defines a [`query` field on the Path Item Object](https://spec.openapis.org/oas/v3.2.0.html#fixed-fields-6) for exactly this case.
+
+The following endpoint uses `MapMethods` to handle `QUERY` requests:
+
+```csharp
+app.MapMethods("/search", ["QUERY"], (SearchRequest request) =>
+    SearchService.Run(request));
+```
+
+In an OpenAPI 3.2 document, the operation appears inline as a sibling of `get`, `post`, and the other standard operations:
+
+```json
+"paths": {
+  "/search": {
+    "query": {
+      "requestBody": { },
+      "responses": { "200": { } }
+    }
+  }
+}
+```
+
+An HTTP method other than `QUERY` that the OpenAPI specification doesn't define as a fixed field appears under the Path Item's `additionalOperations` field, keyed by the uppercased method name:
+
+```json
+"paths": {
+  "/purge": {
+    "additionalOperations": {
+      "PURGE": {
+        "responses": { "200": { } }
+      }
+    }
+  }
+}
+```
+
+In an OpenAPI 3.0 or 3.1 document, neither field exists, so both `QUERY` and other custom methods are emitted under the `x-oai-additionalOperations` specification extension instead:
+
+```json
+"paths": {
+  "/search": {
+    "x-oai-additionalOperations": {
+      "QUERY": {
+        "requestBody": { },
+        "responses": { "200": { } }
+      }
+    }
+  }
+}
+```
+
+To generate a 3.0 or 3.1 document, set <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A>. For more information, see [Customize the OpenAPI version of a generated document](#customize-the-openapi-version-of-a-generated-document).
+
+> [!NOTE]
+> An endpoint is described only when its HTTP method is a syntactically valid HTTP method token. An endpoint registered with a missing or malformed method string is skipped, and the rest of the document is generated normally.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ## Options to Customize OpenAPI document generation
 
@@ -114,7 +190,11 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with the OpenAPI specification. The following code demonstrates how to modify the default version of the OpenAPI document:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+By default, OpenAPI document generation creates an OpenAPI 3.1 document. The following code demonstrates how to target a different version of the OpenAPI specification:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -122,6 +202,25 @@ builder.Services.AddOpenApi(options =>
     options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
 });
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+By default, OpenAPI document generation creates an OpenAPI 3.2 document. Target an earlier version when downstream tooling doesn't yet handle OpenAPI 3.2. The following code generates an OpenAPI 3.1 document:
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1;
+});
+```
+
+For more information, see [OpenApiVersion defaults to OpenApi3_2](/aspnet/core/breaking-changes/11/openapi-version-default-3-2).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### Customize the OpenAPI endpoint route
 

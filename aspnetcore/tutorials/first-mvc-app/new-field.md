@@ -26,7 +26,7 @@ When Entity Framework (EF) is used to automatically create a database from model
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Models/Movie.cs?name=snippet_AddRating&highlight=19)]
 
 Build the app
 

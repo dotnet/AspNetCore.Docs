@@ -1,0 +1,62 @@
+name: 'Snippets 5000'
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pull_request:
+        description: 'The pull request number to build'
+        required: true
+        type: number
+
+env:
+  DOTNET_VERSION: '11.0.x'
+  DOTNET_QUALITY: 'preview'
+  EnableNuGetPackageRestore: 'True'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  snippets-build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/merge', inputs.pull_request) || github.ref }}
+          persist-credentials: false
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            10.0.x
+            ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+
+      - name: Display .NET info
+        run: dotnet --info
+
+      - name: Clone docs-tools repository
+        run: git clone --depth 1 https://github.com/dotnet/docs-tools
+
+      - name: Run snippets 5000 for PR
+        env:
+          GitHubKey: ${{ secrets.GITHUB_TOKEN }}
+          ExtensionsCodeTriggers: .cs;.vb;.fs;.xaml;.razor;.cshtml;.vbhtml;.sln;.slnx;.csproj;.fsproj;.vbproj;.proj
+          ExtensionsProjects: .sln;.slnx;.csproj;.fsproj;.vbproj;.proj
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pull_request }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+        run: |
+          dotnet run --project docs-tools\snippets5000\Snippets5000\Snippets5000.csproj -- --sourcepath "$env:GITHUB_WORKSPACE" --pullrequest "$env:PR_NUMBER" --owner "$env:REPOSITORY_OWNER" --repo "$env:REPOSITORY_NAME"

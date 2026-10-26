@@ -98,6 +98,17 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 });
 ```
 
+### Implications of increasing or disabling `MaximumReceiveMessageSize`
+
+The default `MaximumReceiveMessageSize` is 32 KB (32,768 bytes). If a client sends a message exceeding this limit, an error is logged and the connection is aborted.
+
+When increasing this limit or setting it to `null` (unlimited), consider the following security and performance implications:
+
+* **Memory consumption and DoS vulnerability**: Each incoming message is buffered in memory by the server before and during deserialization. If multiple clients send large payloads concurrently (or a malicious client floods the hub with oversized messages), server memory can quickly become exhausted. This can lead to heavy Garbage Collection (GC) pauses, thread starvation, or `OutOfMemoryException` crashes.
+* **Hub authorization does not eliminate the risk**: While applying `[Authorize]` prevents unauthenticated callers from invoking hub methods, authenticated accounts can still cause denial-of-service issues if message limits are removed or set excessively high.
+* **Large payload recommendation**: Avoid sending large files, binary streams, or oversized JSON documents over hub method invocations. Instead, upload large payloads to dedicated HTTP endpoints (such as Minimal APIs or controller actions with streaming support) or directly to cloud blob storage, and transmit only references, IDs, or lightweight notifications across the SignalR hub.
+* **Scope limits per hub**: When larger messages are necessary for a specific hub, configure `MaximumReceiveMessageSize` on that specific hub using `AddHubOptions<THub>` rather than modifying it globally across all hubs.
+
 ### Configure advanced HTTP options
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> method in `Program.cs`.
