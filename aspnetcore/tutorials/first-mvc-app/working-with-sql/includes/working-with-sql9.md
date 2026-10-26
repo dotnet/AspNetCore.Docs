@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 ## Introduction
@@ -71,7 +76,7 @@ Right-click on the `Movie` table **> View Data**
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/rp/sqlite.md)]
+[!INCLUDE[](~/includes/RP/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 ---
@@ -81,7 +86,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Models/SeedData.cs?name=snippet_FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Models/SeedData.cs?name=snippet_FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -102,7 +107,7 @@ Replace the contents of `Program.cs` with the following code. The new code is hi
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Program.cs?name=snippet_SQLServerSeedData&highlight=4,14-20)]
 
-Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
+If the database already contains records, delete them, which causes the seed initializer to run. You can do this with the delete links in the browser or from SSOX.
 
 Test the app. Force the app to initialize, calling the code in the `Program.cs` file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
 
@@ -112,7 +117,7 @@ Update `Program.cs` with the following highlighted code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Program.cs?name=snippet_SQLiteSeedData&highlight=4,15-20)]
 
-Delete all the records in the database.
+If the database already contains records, delete them, which causes the seed initializer to run.
 
 Test the app. Stop it and restart it so the `SeedData.Initialize` method runs and seeds the database.
 

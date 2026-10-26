@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Blazor forms overview
+ai-usage: ai-assisted
 description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/22/2026
+ms.date: 10/20/2026
 uid: blazor/forms/index
 ---
 # ASP.NET Core Blazor forms overview
@@ -243,6 +244,12 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> to assign an event handler to run when a form with valid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
+
+:::moniker range=">= aspnetcore-8.0"
+
+During static server-side rendering (static SSR), when a `<form>` or <xref:Microsoft.AspNetCore.Components.Forms.EditForm> doesn't specify an explicit `action` attribute, Blazor automatically renders an `action` attribute set to the current request's root-relative path and query string, which is derived from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType>.
+
+:::moniker-end
 
 ## Clear a form or field
 

@@ -2,8 +2,8 @@
 title: Part 2, add a controller to an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 2 of tutorial series on ASP.NET Core MVC.
-ms.date: 09/06/2026
 monikerRange: '>= aspnetcore-3.1'
+ms.date: 09/06/2026
 uid: tutorials/first-mvc-app/adding-controller
 ---
 
@@ -59,7 +59,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Controllers/HelloWorldController.cs?name=snippet_First)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/HelloWorldController.cs?name=snippet_First)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -105,7 +105,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Controllers/HelloWorldController.cs?name=snippet_Second)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/HelloWorldController.cs?name=snippet_Second)]
 
 The preceding code:
 

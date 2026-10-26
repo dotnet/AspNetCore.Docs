@@ -234,6 +234,16 @@ Since this middleware can re-execute the request pipeline:
 * Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
 * Scoped services remain the same.
 
+Re-execution runs routing again, followed only by the middleware registered after the status code pages middleware. Middleware registered before `UseStatusCodePagesWithReExecute` doesn't run again for the re-executed request. For example, if <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter*> is called before `UseStatusCodePagesWithReExecute`, endpoint-specific rate limiting policies aren't applied to the re-executed endpoint. To have middleware such as the rate limiter evaluate the re-executed endpoint, call `UseStatusCodePagesWithReExecute` before `UseRouting` and register that middleware after `UseRouting`:
+
+```csharp
+app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
+app.UseRouting();
+app.UseRateLimiter();
+```
+
+For more information, see <xref:performance/rate-limit>.
+
 ## Disable status code pages
 
 To disable status code pages for an MVC controller or action method, use the [[SkipStatusCodePages]](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) attribute.

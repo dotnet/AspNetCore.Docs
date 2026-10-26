@@ -1,10 +1,15 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
 Update the `Index` method found inside `Controllers/MoviesController.cs` with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?name=snippet_IndexSearch1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_IndexSearch1)]
 
 The following line in the `Index` action method creates a [LINQ](/dotnet/standard/using-linq) query to select the movies:
 
@@ -17,7 +22,7 @@ The query is *only defined* at this point, it has **not** been run against the d
 
 If the `searchString` parameter contains a string, the movies query is modified to filter on the value of the search string:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?name=snippet_IndexSearchCheckForNull)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_IndexSearchCheckForNull)]
 
 The `s => s.Title!.ToUpper().Contains(searchString.ToUpper())` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where%2A> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
@@ -40,11 +45,11 @@ Change the parameter to `id` and change all occurrences of `searchString` to `id
 
 The previous `Index` method:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?name=snippet_IndexSearch1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_IndexSearch1)]
 
 The updated `Index` method with `id` parameter:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?highlight=1,11,13&name=snippet_IndexSearchID)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?highlight=1,11,13&name=snippet_IndexSearchID)]
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -52,7 +57,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI elements to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?highlight=1,11,13&name=snippet_IndexSearch1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?highlight=1,11,13&name=snippet_IndexSearch1)]
 
 Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlighted below:
 
@@ -66,7 +71,7 @@ There's no `[HttpPost]` overload of the `Index` method as you might expect. You 
 
 You could add the following `[HttpPost] Index` method.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?highlight=1&name=snippet_IndexPost)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?highlight=1&name=snippet_IndexPost)]
 
 The `notUsed` parameter is used to create an overload for the `Index` method. We'll talk about that later in the tutorial.
 
@@ -98,7 +103,7 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 Add the following `MovieGenreViewModel` class to the *Models* folder:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Models/MovieGenreViewModel.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Models/MovieGenreViewModel.cs)]
 
 The movie-genre view model will contain:
 
@@ -109,11 +114,11 @@ The movie-genre view model will contain:
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?name=snippet_IndexGenre)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_IndexGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?name=snippet_IndexGenreLINQ)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_IndexGenreLINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
@@ -123,7 +128,7 @@ When the user searches for the item, the search value is retained in the search 
 
 Update `Index.cshtml` found in *Views/Movies/* as follows:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
 
 Examine the lambda expression used in the following HTML Helper:
 

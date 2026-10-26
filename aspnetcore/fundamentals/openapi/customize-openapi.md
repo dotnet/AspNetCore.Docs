@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 08/19/2026
+ms.date: 10/21/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -104,6 +104,17 @@ Operation transformers can also be added to specific endpoint with the <xref:Mic
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+> [!NOTE]
+> A transformer isn't needed just to mark an API deprecated. Applying <xref:System.ObsoleteAttribute> to an endpoint, a response type, or a property sets `deprecated: true` on the corresponding operation, component schema, or schema property. Applying `[Obsolete]` to an endpoint handler does not propagate to its response schema unless the response type itself is also marked obsolete. Use an operation transformer when the OpenAPI value must differ from what `[Obsolete]` produces. For more information, see [Mark APIs as deprecated](xref:fundamentals/openapi/include-metadata#mark-apis-as-deprecated).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 ### Conditionally applying security requirements
 
 In some scenarios, developers may want to apply security requirements to all endpoints except those explicitly marked with the `AllowAnonymous` attribute.
@@ -199,6 +210,24 @@ The details of this processing are complicated and might change in future versio
 Typically the name of the schema in `components.schemas` is the name of the class/record/struct type,
 but in some circumstances a different name must be used.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Schemas for standalone arrays remain inline by default. When an array type is used as a type argument in an enclosing generic type, a component key in an OpenAPI document must match `^[a-zA-Z0-9._-]+$`, so the C# array syntax can't be used directly. The reference ID segment for an array argument is composed as `ArrayOf` followed by the reference ID of the element type, applied recursively:
+
+C# type | Reference ID segment
+--- | ---
+`string[]` | `ArrayOfstring`
+`Todo[]` | `ArrayOfTodo`
+`string[][]` | `ArrayOfArrayOfstring`
+
+For example, generic result types apply this composition to produce schema reference IDs such as `OkOfArrayOfTodo` for `Ok<Todo[]>`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 ASP.NET Core lets you customize which schemas are replaced with a `$ref` to a schema in `components.schemas`
 using the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> property of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions>.
 This property is a delegate that takes a <xref:System.Text.Json.Serialization.Metadata.JsonTypeInfo> object and returns the name of the schema
@@ -225,6 +254,8 @@ builder.Services.AddOpenApi(options =>
 
 ## Related content
 
+* [Microsoft.OpenApi upgraded to 3.x (ASP.NET Core 11.0 breaking change announcement)](/aspnet/core/breaking-changes/11/microsoft-openapi-3x)
+* [OpenAPI 3.x upgrade migration guidance](xref:migration/100-to-110#microsoftopenapi-upgraded-to-3x)
 * <xref:fundamentals/openapi/using-openapi-documents>
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
