@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-6.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
@@ -127,7 +132,7 @@ You can debug the app by selecting the **MvcMovie** button in the toolbar:
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-vs.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-VS.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

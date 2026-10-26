@@ -86,6 +86,25 @@ public class ChatHub : Hub
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values. Hub method parameters, return values, and stream items can be [C# union types](/dotnet/csharp/language-reference/builtin-types/union) only with the default `JsonHubProtocol`. The MessagePack and `Newtonsoft.Json` hub protocols don't support unions.
 
+### Accept cancellation in a hub method
+
+Any hub method can declare a <xref:System.Threading.CancellationToken>. The server supplies the token, so clients don't send an argument for it. The token is canceled when the client cancels the invocation or when the connection closes:
+
+```csharp
+public class ReportHub : Hub
+{
+    public async Task<Report> GenerateReport(
+        int reportId, CancellationToken cancellationToken)
+    {
+        // Pass cancellationToken to the work being performed.
+    }
+}
+```
+
+Cancellation is cooperative. The hub method decides whether and how quickly to stop, and SignalR sends a completion message for the invocation either way. Letting an <xref:System.OperationCanceledException> propagate out of the hub method completes the invocation with an error.
+
+A client can cancel any invocation that has an invocation ID. For how a client requests cancellation, see <xref:signalr/dotnet-client#cancel-a-hub-method-invocation>.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
