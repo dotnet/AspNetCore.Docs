@@ -32,7 +32,7 @@ For more information on migrating app configuration from earlier versions of ASP
 
 [!INCLUDE[](~/includes/managed-identities-conn-strings.md)]
 
-Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see <xref:fundamentals/index#primary-constructors>.
 
 ## Service manager working directory configuration
 

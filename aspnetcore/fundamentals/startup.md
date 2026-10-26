@@ -192,7 +192,7 @@ Most services aren't available until the `Configure` method is called.
 > [!NOTE]
 > The private field in the preceding example for <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> is named with an underscore (`_env`). It's also acceptable to adopt a coding convention that uses the same name as the injected <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> (`env`) when the private field uses the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) (`this.env = env` in the constructor and `env.IsDevelopment()` in the `ConfigureServices` method).
 >
-> The ASP.NET Core project templates prior to .NET 8 and C# 12 don't adopt *primary constructors*, but the preceding code can be refactored to adopt a primary constructor if your organization uses a .NET 8 or later SDK and the app targets C# 12 or later (for example, `<LangVersion>12.0</LangVersion>`). For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+> The ASP.NET Core project templates prior to .NET 8 and C# 12 don't adopt *primary constructors*, but the preceding code can be refactored to adopt a primary constructor if your organization uses a .NET 8 or later SDK and the app targets C# 12 or later (for example, `<LangVersion>12.0</LangVersion>`). For more information, see <xref:fundamentals/index#primary-constructors>.
 
 ## Multiple `Startup` classes
 

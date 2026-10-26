@@ -17,7 +17,7 @@ Resource-based authorization requires special attention in ASP.NET Core apps. At
 
 <xref:security/authorization/secure-data> contains a sample app that uses resource-based authorization.
 
-Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors). Sample apps that accompany the article that target versions of .NET earlier than .NET 8 use constructor injection.
+Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see <xref:fundamentals/index#primary-constructors>. Sample apps that accompany the article that target versions of .NET earlier than .NET 8 use constructor injection.
 
 ## Use imperative authorization
 

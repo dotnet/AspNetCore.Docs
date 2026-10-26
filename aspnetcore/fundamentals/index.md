@@ -153,7 +153,16 @@ The DI framework provides instances of requested services at run time. In Blazor
 }
 ```
 
-Another way to resolve a service from DI is using constructor injection. In the following example, the [primary constructor (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors) takes parameters of the types `AppDbContext` and `ILogger<OrderProcessor>` and resolves them at run time into the `context` and `logger` variables (the instances of the database and logging abstractions). The database context instance is used to process all of the orders where the `IsProcessed` field is `false` in the database, and each processed order is logged as information with its order ID (`OrderId`) using the logger instance:
+### Primary constructors
+
+In C# 12 (.NET 8) or later, constructor injection can be implemented using *primary constructors*. Primary constructor parameters are in scope throughout the declaring class or struct and can be directly used in members without boilerplate private fields.
+
+For more information on primary constructors, see:
+
+* [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors)
+* [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)
+
+In the following example, the primary constructor takes parameters of the types `AppDbContext` and `ILogger<OrderProcessor>` and resolves them at run time into the `context` and `logger` variables (the instances of the database and logging abstractions). The database context instance is used to process all of the orders where the `IsProcessed` field is `false` in the database, and each processed order is logged as information with its order ID (`OrderId`) using the logger instance:
 
 ```csharp
 public class OrderProcessor(AppDbContext context, ILogger<OrderProcessor> logger)
