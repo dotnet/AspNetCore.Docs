@@ -139,6 +139,26 @@ The following example sets two environment variables in `web.config`. `ASPNETCOR
 > [!WARNING]
 > Only set the `ASPNETCORE_ENVIRONMENT` environment variable to `Development` on staging and testing servers that aren't accessible to untrusted networks, such as the Internet.
 
+### Handler settings
+
+Handler settings configure internal behaviors of the ASP.NET Core Module. Specify handler settings with `<handlerSetting>` child elements of a `<handlerSettings>` collection element inside `<aspNetCore>`.
+
+The `disallowRotationOnConfigChange` setting prevents changes to IIS configuration files (`applicationHost.config` and `web.config`) from triggering an application restart or recycle. When set to `true`, the app will only shut down or restart if the application pool is explicitly recycled/stopped or an `app_offline.htm` file is placed in the app directory. This setting is intended for blue/green and zero-downtime deployment scenarios where global or web configuration changes shouldn't disrupt active workloads.
+
+```xml
+<aspNetCore processPath="dotnet"
+      arguments=".\MyApp.dll"
+      stdoutLogEnabled="false"
+      stdoutLogFile="\\?\%home%\LogFiles\stdout"
+      hostingModel="inprocess">
+  <handlerSettings>
+    <handlerSetting name="disallowRotationOnConfigChange" value="true" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+This setting corresponds to the <xref:Microsoft.Web.Administration.ApplicationPoolRecycling.DisallowRotationOnConfigChange?displayProperty=nameWithType> API. For more information, see <xref:host-and-deploy/iis/advanced#disallow-rotation-on-config>.
+
 ## Configuration of IIS with `web.config`
 
 IIS configuration is influenced by the `<system.webServer>` section of `web.config` for IIS scenarios that are functional for ASP.NET Core apps with the ASP.NET Core Module. For example, IIS configuration is functional for dynamic compression. If IIS is configured at the server level to use dynamic compression, the `<urlCompression>` element in the app's `web.config` file can disable it for an ASP.NET Core app.
