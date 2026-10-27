@@ -2,7 +2,7 @@
 title: Filters in ASP.NET Core
 description: Learn how filters work and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/28/2026
+ms.date: 10/27/2026
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -144,7 +144,7 @@ Filters can't be applied to Razor Page handler methods. They can be applied eith
 
 Filters can be applied using one of several approaches, depending on whether the filter requires dependencies and the desired scope:
 
-* **Filter attributes**: Custom filter classes that inherit from filter attribute base classes (such as <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> or <xref:Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute>) can be applied directly to controllers or actions:
+* **Filter attributes**: Custom filter classes that inherit from filter attribute base classes, such as <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> or <xref:Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute>, can be applied directly to controllers or actions:
 
   ```csharp
   [MyActionFilter]
@@ -174,7 +174,7 @@ Filters can be applied using one of several approaches, depending on whether the
   });
   ```
 
-For more details on managing filter dependencies with `[TypeFilter]` and `[ServiceFilter]`, see the [Dependency injection](#dependency-injection) section.
+For more information on managing filter dependencies with `[TypeFilter]` and `[ServiceFilter]`, see the [Dependency injection](#dependency-injection) section.
 
 ## Filter scopes and order of execution
 
