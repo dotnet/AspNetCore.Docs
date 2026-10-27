@@ -1,6 +1,6 @@
 ### Keep-Alive Timeout for WebSockets
 
-The [WebSockets middleware](https://learn.microsoft.com/aspnet/core/fundamentals/websockets#configure-the-middleware) can now be configured for keep-alive timeouts.
+The [WebSockets middleware](xref:fundamentals/websockets#configure-the-middleware) can now be configured for keep-alive timeouts.
 
 The keep-alive timeout aborts the WebSocket connection and throws an exception from `WebSocket.ReceiveAsync` if both of the following conditions are met:
 
@@ -15,6 +15,8 @@ The keep-alive timeout can be configured globally for the WebSocket middleware:
 
 [!code-csharp[](~/release-notes/aspnetcore-9/samples/WebSocketsKeepAliveTimeoutExample/Program.cs?name=snippet_WebSocket_KeepAliveTimeout_Global)]
 
-Or configured per accepted WebSocket:
+Alternatively, configure the timeout per accepted WebSocket:
 
 [!code-csharp[](~/release-notes/aspnetcore-9/samples/WebSocketsKeepAliveTimeoutExample/Program.cs?name=snippet_KeepAliveTimeout_Per_Accepted_WebSocket)]
+
+For more information, see <xref:fundamentals/websockets#keep-alive-timeout>.
