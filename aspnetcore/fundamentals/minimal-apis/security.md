@@ -106,6 +106,8 @@ Passing a custom scheme name such as `"LocalAuthIssuer"` to <xref:Microsoft.Exte
 If clients send tokens using a custom header prefix (for example, `Authorization: LocalAuthIssuer {TOKEN}`), configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 builder.Services.AddAuthentication()
     .AddJwtBearer("LocalAuthIssuer", options =>
     {
