@@ -2,7 +2,7 @@
 title: Filters in ASP.NET Core
 description: Learn how filters work and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/28/2026
+ms.date: 10/27/2026
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -139,6 +139,42 @@ Filter attributes:
 * <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute>
 
 Filters can't be applied to Razor Page handler methods. They can be applied either to the Razor Page model or globally.
+
+## Applying filters
+
+Filters can be applied using one of several approaches, depending on whether the filter requires dependencies and the desired scope:
+
+* **Filter attributes**: Custom filter classes that inherit from filter attribute base classes, such as <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> or <xref:Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute>, can be applied directly to controllers or actions:
+
+  ```csharp
+  [MyActionFilter]
+  public IActionResult Index() => View();
+  ```
+
+* **`[TypeFilter]` attribute**: <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> applies a filter class that requires constructor dependencies without needing to register the filter itself in the dependency injection (DI) container:
+
+  ```csharp
+  [TypeFilter(typeof(MyLoggingFilter))]
+  public IActionResult Index() => View();
+  ```
+
+* **`[ServiceFilter]` attribute**: <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> applies a filter that is registered as a service in the DI container:
+
+  ```csharp
+  [ServiceFilter(typeof(MyLoggingFilter))]
+  public IActionResult Index() => View();
+  ```
+
+* **Global registration**: Filters can be applied globally to all controllers, actions, and Razor Pages by adding them to <xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters?displayProperty=nameWithType> in `Program.cs`:
+
+  ```csharp
+  builder.Services.AddControllersWithViews(options =>
+  {
+      options.Filters.Add<MyGlobalActionFilter>();
+  });
+  ```
+
+For more information on managing filter dependencies with `[TypeFilter]` and `[ServiceFilter]`, see the [Dependency injection](#dependency-injection) section.
 
 ## Filter scopes and order of execution
 
