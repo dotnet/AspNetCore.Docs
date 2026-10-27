@@ -115,8 +115,8 @@ In the previous code:
 
 There are two ways to invoke a client-to-server streaming hub method from the .NET client. You can pass either an `IAsyncEnumerable<T>` or a `ChannelReader<T>` as an argument to:
 
-* `SendAsync`: Use when the hub method returns `Task` or `void` without returning a response value.
-* `InvokeAsync`: Use when the hub method returns a single response value (such as `Task<TResult>`) upon completing stream processing.
+* `SendAsync`: Use when you don't need to wait for the server to finish processing the stream or observe server-side errors.
+* `InvokeAsync`: Use when you need to wait for the server to finish stream processing, receive an optional response value (such as `Task<TResult>`), or observe server-side errors.
 * `StreamAsync` or `StreamAsChannelAsync`: Use only when the hub method is bidirectional (both receiving a stream from the client and streaming data back to the client). Only call `StreamAsync` on a client-to-server method that returns a stream.
 
 > [!NOTE]
