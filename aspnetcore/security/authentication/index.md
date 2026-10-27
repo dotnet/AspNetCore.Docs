@@ -2,7 +2,7 @@
 title: Overview of ASP.NET Core Authentication
 ai-usage: ai-assisted
 description: Learn about authentication in ASP.NET Core.
-ms.date: 10/26/2026
+ms.date: 10/27/2026
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -22,7 +22,7 @@ The registered authentication handlers and their configuration options are calle
 
 Authentication schemes are specified by registering authentication services in `Program.cs`:
 
-* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
+* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
 * Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
 For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
@@ -47,7 +47,7 @@ If `AddAuthentication` is called multiple times (for example, once directly in a
 
 * **Options configuration:** Overloads of `AddAuthentication` that take a default scheme name or an `Action<AuthenticationOptions>` delegate register options configuration actions that execute in registration order. The parameterless `AddAuthentication()` overload does not register a configuration delegate. Each configuration delegate overwrites only the specific properties it assigns. For example, when ASP.NET Core Identity configures specific scheme properties (such as `DefaultAuthenticateScheme` and `DefaultChallengeScheme`), a subsequent call to `AddAuthentication(JwtBearerDefaults.AuthenticationScheme)` only sets `DefaultScheme` and leaves Identity's `DefaultAuthenticateScheme` and `DefaultChallengeScheme` in effect. To override defaults set by an earlier registration like Identity, explicitly configure the corresponding properties (for example, by setting `options.DefaultAuthenticateScheme` and `options.DefaultChallengeScheme` in `AddAuthentication(options => ...)`).
 * **Service registration:** Core authentication services (such as <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService> and <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandlerProvider>) are registered using `TryAdd`, so subsequent calls do not duplicate or replace existing service registrations.
-* **Scheme registration:** Calling scheme registration methods like <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> or <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> adds named schemes to the authentication builder. Attempting to register the same scheme name twice throws an `InvalidOperationException` stating that the scheme already exists. However, additional options configuration delegates for an existing scheme can be registered using `builder.Services.Configure<CookieAuthenticationOptions>(schemeName, ...)` to modify properties on an already-registered scheme.
+* **Scheme registration:** Calling scheme registration methods like <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> or <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> adds named schemes to the authentication builder. Attempting to register the same scheme name twice throws an `InvalidOperationException` stating that the scheme already exists. However, additional options configuration delegates for an existing scheme can be registered using `builder.Services.Configure<CookieAuthenticationOptions>(schemeName, ...)` to modify properties on an already-registered scheme.
 
 The Authentication middleware is added in `Program.cs` by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. Calling `UseAuthentication` registers the middleware that uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated.
 
@@ -189,7 +189,7 @@ The registered authentication handlers and their configuration options are calle
 
 Authentication schemes are specified by registering authentication services in `Program.cs`:
 
-* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
+* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
 * Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
 For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
@@ -331,7 +331,7 @@ The registered authentication handlers and their configuration options are calle
 
 Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`:
 
-* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> (such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>, for example). These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
+* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> (such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, for example). These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
 * Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
 For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
