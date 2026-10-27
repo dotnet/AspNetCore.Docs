@@ -3,7 +3,7 @@ title: Use Identity to secure a Web API backend for SPAs
 ai-usage: ai-assisted
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
-ms.date: 10/07/2026
+ms.date: 10/26/2026
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -225,7 +225,12 @@ public signOut() {
     withCredentials: true,
     observe: 'response',
     responseType: 'text'
+  });
+}
 ```
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignOutAsync*?displayProperty=nameWithType> clears cookie-based authentication by instructing the browser to delete the identity authentication cookie. Calling `SignOutAsync` does **not** invalidate stateless Bearer tokens on the server. When using token-based authentication (Bearer tokens), the client application must discard the access and refresh tokens from memory or client storage to completely sign the user out of the app. Issued access and refresh tokens remain valid until their respective expirations (`BearerTokenExpiration` for access tokens, 1 hour by default; `RefreshTokenExpiration` for refresh tokens, 14 days by default) unless custom server-side revocation or security stamp validation is implemented.
 
 ## SignOut everywhere
 
