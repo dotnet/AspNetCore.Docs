@@ -3,7 +3,7 @@ title: Strategies for selecting language and culture in a localized ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 10/26/2026
+ms.date: 10/27/2026
 uid: fundamentals/localization/select-language-culture
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
@@ -110,11 +110,7 @@ var localizationOptions = new RequestLocalizationOptions()
     .AddSupportedUICultures(supportedCultures);
 
 // Insert RouteDataRequestCultureProvider at the beginning so route data takes precedence
-localizationOptions.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider
-{
-    RouteDataStringKey = "culture",
-    UIRouteDataStringKey = "culture"
-});
+localizationOptions.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
 
 app.UseRequestLocalization(localizationOptions);
 ```
@@ -131,7 +127,7 @@ Map a localized route that constrains `{culture}` to supported cultures, followe
 app.MapControllerRoute(
     name: "localized",
     pattern: "{culture}/{controller=Home}/{action=Index}/{id?}",
-    constraints: new { culture = "en-US|fr-FR|ru" });
+    constraints: new { culture = string.Join("|", supportedCultures) });
 
 app.MapControllerRoute(
     name: "default",
