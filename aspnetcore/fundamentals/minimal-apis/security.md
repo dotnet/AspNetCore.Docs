@@ -101,9 +101,9 @@ The scheme name is used to uniquely identify an authentication strategy. The nam
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
-Passing a custom scheme name such as `"LocalAuthIssuer"` to <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> identifies the scheme internally within ASP.NET Core for options resolution, policy schemes, and endpoint authorization. It does **not** change the HTTP `Authorization` header format expected by the handler. Per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750), <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> defaults to expecting the `Authorization: Bearer {TOKEN}` header format regardless of the registered scheme name.
+Passing a custom scheme name such as `"LocalAuthIssuer"` to <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> identifies the scheme internally within ASP.NET Core for options resolution, policy schemes, and endpoint authorization. It does **not** change the HTTP `Authorization` header format expected by the handler. Per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750), <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> defaults to expecting the `Authorization: Bearer <token>` header format regardless of the registered scheme name.
 
-If clients send tokens using a custom header prefix (for example, `Authorization: LocalAuthIssuer {TOKEN}`), configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually:
+If clients send tokens using a custom header prefix (for example, `Authorization: LocalAuthIssuer <token>`), configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
