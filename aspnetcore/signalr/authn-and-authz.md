@@ -376,6 +376,39 @@ Register this component in the `Program.cs` file:
 builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 ```
 
+### Identify the hub being accessed
+
+Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextExtensions.GetHttpContext%2A> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
+
+```csharp
+public class CustomUserIdProvider : IUserIdProvider
+{
+    public string? GetUserId(HubConnectionContext connection)
+    {
+        var httpContext = connection.GetHttpContext();
+        if (httpContext == null)
+        {
+            return connection.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+
+        // Identify the hub type using endpoint metadata
+        var endpoint = httpContext.GetEndpoint();
+        var hubMetadata = endpoint?.Metadata.Get<HubMetadata>();
+
+        if (hubMetadata?.HubType == typeof(AdminHub))
+        {
+            // Use employee ID or admin claim for AdminHub
+            return connection.User?.FindFirst("EmployeeId")?.Value;
+        }
+
+        // Default to email or name identifier for other hubs
+        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
+    }
+}
+```
+
+Alternatively, you can inspect `httpContext.Request.Path` to determine the route of the hub being accessed.
+
 ## Authorize users to access hubs and hub methods
 
 By default, an unauthenticated user can call all methods in a hub. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
@@ -635,6 +668,39 @@ Register this component in your `Startup.ConfigureServices`.
 ```csharp
 services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 ```
+
+### Identify the hub being accessed
+
+Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextExtensions.GetHttpContext%2A> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
+
+```csharp
+public class CustomUserIdProvider : IUserIdProvider
+{
+    public string? GetUserId(HubConnectionContext connection)
+    {
+        var httpContext = connection.GetHttpContext();
+        if (httpContext == null)
+        {
+            return connection.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+
+        // Identify the hub type using endpoint metadata
+        var endpoint = httpContext.GetEndpoint();
+        var hubMetadata = endpoint?.Metadata.Get<HubMetadata>();
+
+        if (hubMetadata?.HubType == typeof(AdminHub))
+        {
+            // Use employee ID or admin claim for AdminHub
+            return connection.User?.FindFirst("EmployeeId")?.Value;
+        }
+
+        // Default to email or name identifier for other hubs
+        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
+    }
+}
+```
+
+Alternatively, you can inspect `httpContext.Request.Path` to determine the route of the hub being accessed.
 
 ## Authorize users to access hubs and hub methods
 
