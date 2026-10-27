@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/22/2026
+ms.date: 10/26/2026
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -84,7 +84,10 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see <xref:fundamentals/openapi/include-metadata#describe-response-types>. For complete setup instructions, see <xref:fundamentals/openapi/overview>.
+
+> [!NOTE]
+> The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see <xref:fundamentals/openapi/overview>.
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
@@ -101,6 +104,11 @@ The following method does not compile, because `TypedResults.Ok` and `TypedResul
 To use `TypedResults`, the return type must be fully declared; when the method is asynchronous, the declaration requires wrapping the return type in a `Task<>`. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
+
+> [!NOTE]
+> When using a method group whose only parameter is `HttpContext` (for example, `static async Task<Results<ContentHttpResult, BadRequest>> MyHandler(HttpContext context)`), `app.MapGet` matches both `RequestDelegate` and `Delegate`. Overload resolution selects the <xref:Microsoft.AspNetCore.Http.RequestDelegate> overload, which discards return values and triggers analyzer warning [ASP0016](xref:diagnostics/asp0016). To ensure the result is executed and written to the response, cast the method group to `Delegate` (for example, `app.MapGet("/route", (Delegate)MyHandler)`) or use a lambda.
+>
+> When using `TypedResults` with multiple return branches, an explicit union return type such as `Results<T1, T2>` (or `Task<Results<T1, T2>>` for async handlers) is required because the compiler cannot infer a common union type.
 
 ### Results<TResult1, TResultN>
 
