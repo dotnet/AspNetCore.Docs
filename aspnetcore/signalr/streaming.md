@@ -3,7 +3,7 @@ title: Use streaming in ASP.NET Core SignalR
 description: Learn how to stream data between the client and the server.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-js
-ms.date: 10/29/2020
+ms.date: 10/27/2026
 uid: signalr/streaming
 ---
 # Use streaming in ASP.NET Core SignalR
@@ -117,10 +117,10 @@ There are two ways to invoke a client-to-server streaming hub method from the .N
 
 * `SendAsync`: Use when the hub method returns `Task` or `void` without returning a response value.
 * `InvokeAsync`: Use when the hub method returns a single response value (such as `Task<TResult>`) upon completing stream processing.
-* `StreamAsync` or `StreamAsChannelAsync`: Use only when the hub method is bidirectional (both receiving a stream from the client and streaming data back to the client). Do not call `StreamAsync` on a client-to-server method that does not return a stream.
+* `StreamAsync` or `StreamAsChannelAsync`: Use only when the hub method is bidirectional (both receiving a stream from the client and streaming data back to the client). Only call `StreamAsync` on a client-to-server method that returns a stream.
 
 > [!NOTE]
-> Streaming in SignalR is point-to-point between a single client connection and the server. Streams cannot be broadcast to all connected clients (there is no `Clients.All.StreamAsync` API). To broadcast recurring updates or live events to multiple clients, have the hub call `Clients.All.SendAsync(...)`.
+> Streaming in SignalR is point-to-point between a single client connection and the server. Streams can't be broadcast to all connected clients (there's no `Clients.All.StreamAsync` API). To broadcast recurring updates or live events to multiple clients, have the hub call `Clients.All.SendAsync(...)`.
 
 Whenever data is written to the `IAsyncEnumerable` or `ChannelWriter` object, the hub method on the server receives a new item with the data from the client.
 
