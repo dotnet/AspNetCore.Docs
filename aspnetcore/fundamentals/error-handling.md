@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/26/2026
+ms.date: 10/27/2026
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -55,7 +55,7 @@ To allow unauthenticated users to view the custom error handling page, ensure th
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> to access the exception, the original request path, and endpoint metadata in an error handler.
 
-The exception handling middleware clears the original endpoint and route data from `HttpContext` so error-handling endpoints don't execute filters or route constraints from the failed endpoint. As a result, calling `HttpContext.GetEndpoint()` or `HttpContext.GetRouteData()` directly returns `null` inside an error handler. To inspect the original endpoint or route values that caused the exception, retrieve them from the exception feature:
+The exception handling middleware clears the original endpoint and route data from <xref:Microsoft.AspNetCore.Http.HttpContext> so error-handling endpoints don't execute filters or route constraints from the failed endpoint. As a result, calling [`HttpContext.GetEndpoint`](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*) or [`HttpContext.GetRouteData`](xref:Microsoft.AspNetCore.Routing.RoutingHttpContextExtensions.GetRouteData*) directly returns `null` inside an error handler. To inspect the original endpoint or route values that caused the exception, retrieve them from the exception feature:
 
 ```csharp
 var exceptionFeature = HttpContext.Features.Get<IExceptionHandlerFeature>();
@@ -63,7 +63,7 @@ var originalEndpoint = exceptionFeature?.Endpoint;
 var routeValues = exceptionFeature?.RouteValues;
 ```
 
-The following example uses `IExceptionHandlerPathFeature` to get more information about the exception that was thrown:
+The following example uses <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to get more information about the exception that was thrown:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-27":::
 
