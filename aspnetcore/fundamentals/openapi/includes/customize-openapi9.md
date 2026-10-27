@@ -92,7 +92,7 @@ For example, the following operation transformer adds `500` as a response status
 
 ### Modify interface-typed properties
 
-Many OpenAPI.NET objects supplied to transformers are exposed through interfaces that have get-only properties (such as <xref:Microsoft.OpenApi.IOpenApiParameter> or <xref:Microsoft.OpenApi.IOpenApiSchema>). To mutate these properties, pattern match or cast the interface to its concrete implementation type (such as <xref:Microsoft.OpenApi.OpenApiParameter>), which exposes property setters:
+Many OpenAPI.NET objects supplied to transformers are exposed through interfaces that have get-only properties, such as <xref:Microsoft.OpenApi.IOpenApiParameter> or <xref:Microsoft.OpenApi.IOpenApiSchema>. To mutate these properties, pattern match or cast the interface to its concrete implementation type, such as <xref:Microsoft.OpenApi.OpenApiParameter>, which exposes property setters:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -106,6 +106,7 @@ builder.Services.AddOpenApi(options =>
                 concreteParam.Description = "The sorting order for returned items.";
             }
         }
+
         return Task.CompletedTask;
     });
 });
