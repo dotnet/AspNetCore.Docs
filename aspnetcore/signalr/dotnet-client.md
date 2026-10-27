@@ -308,7 +308,7 @@ To unregister a handler:
   handler.Dispose();
   ```
 
-* Call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Remove*> with the method name to remove all handlers registered for that method:
+* In ASP.NET Core 2.2 and later, call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Remove*> with the method name to remove all handlers registered for that method:
 
   ```csharp
   connection.Remove("ReceiveMessage");
