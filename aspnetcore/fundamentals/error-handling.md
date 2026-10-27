@@ -55,7 +55,7 @@ To allow unauthenticated users to view the custom error handling page, ensure th
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> to access the exception, the original request path, and endpoint metadata in an error handler.
 
-The exception handling middleware clears the original endpoint and route data from <xref:Microsoft.AspNetCore.Http.HttpContext> so error-handling endpoints don't execute filters or route constraints from the failed endpoint. As a result, calling [`HttpContext.GetEndpoint`](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*) or [`HttpContext.GetRouteData`](xref:Microsoft.AspNetCore.Routing.RoutingHttpContextExtensions.GetRouteData*) directly returns `null` inside an error handler. To inspect the original endpoint or route values that caused the exception, retrieve them from the exception feature:
+The exception handling middleware clears the original endpoint and route data from <xref:Microsoft.AspNetCore.Http.HttpContext> so error-handling endpoints don't execute filters or route constraints from the failed endpoint. As a result, calling [`HttpContext.GetEndpoint`](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*) or [`HttpContext.GetRouteData`](xref:Microsoft.AspNetCore.Routing.RoutingHttpContextExtensions.GetRouteData*) directly does not return the original endpoint or route values that triggered the exception. To inspect the original endpoint or route values that caused the exception, retrieve them from the exception feature:
 
 ```csharp
 var exceptionFeature = HttpContext.Features.Get<IExceptionHandlerFeature>();
