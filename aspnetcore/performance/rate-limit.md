@@ -3,7 +3,7 @@ title: Rate limiting middleware in ASP.NET Core
 ai-usage: ai-assisted
 description: Rate limiting middleware in ASP.NET Core protects APIs from abuse and overload. Learn to configure fixed window, sliding window, token bucket, and concurrency limiters.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/09/2026
+ms.date: 10/27/2026
 uid: performance/rate-limit
 ---
 
@@ -46,7 +46,13 @@ When using a cloud hosting service, DDoS protection is usually available as part
 
 Implementing a commercial DDoS protection service in conjunction with rate limiting can provide a comprehensive defense strategy, ensuring the stability, security, and performance of an app.
 
+## Rate limiting with multiple app instances
+
+The rate limiting middleware keeps its counters in memory in each app instance. When an app runs on multiple instances, such as behind a load balancer or after scaling out, each instance enforces its limits separately. The effective limit is the configured limit multiplied by the number of instances. For example, a policy that allows 100 requests per minute allows up to 300 requests per minute across three instances. This also applies to a global limiter: it covers all requests to one instance, not to the whole app. To enforce one limit across all instances, apply rate limiting at a shared layer, such as an API gateway, or write a custom rate limiter that stores its counters in a shared store.
+
 ## Use rate-limiting middleware
+
+The example in this section describes its policy as applying "globally," but the rate limiting behavior applies only to the app's instance. For more information, see the [Rate limiting with multiple app instances](#rate-limiting-with-multiple-app-instances) section.
 
 The following steps show how to use the rate limiting middleware in an ASP.NET Core app:
 
@@ -192,6 +198,16 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
 <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after `UseRouting` when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) attribute is used, `UseRateLimiter` must be called after `UseRouting`. When calling only global limiters, `UseRateLimiter` can be called before `UseRouting`.
+
+If the app calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>, call it before `UseRouting` and `UseRateLimiter`. When the status code pages middleware re-executes a request, only the middleware registered after it runs again. If `UseRateLimiter` is called before `UseStatusCodePagesWithReExecute`, the rate limiter doesn't run for the re-executed endpoint, so that endpoint's rate limiting policy isn't applied, even when the policy has no permits remaining. The following order lets the rate limiter evaluate the re-executed endpoint:
+
+```csharp
+app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
+app.UseRouting();
+app.UseRateLimiter();
+```
+
+For more information, see the [`UseStatusCodePagesWithReExecute` section of the error handling article](xref:fundamentals/error-handling#usestatuscodepageswithreexecute).
 
 <a name="slide"></a>
 

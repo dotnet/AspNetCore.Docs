@@ -2,7 +2,7 @@
 title: What's new in ASP.NET Core in .NET 10
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 10.
-ms.date: 04/22/2026
+ms.date: 10/23/2026
 uid: aspnetcore-10
 ---
 # What's new in ASP.NET Core in .NET 10
