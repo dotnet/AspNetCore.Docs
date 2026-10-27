@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 10/21/2026
+ms.date: 10/27/2026
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -452,17 +452,17 @@ To renew an expired development certificate:
    dotnet dev-certs https --trust
    ```
 
-1. If your development environment exports or mounts the certificate file to disk (such as in Docker containers, JavaScript Project System (JSPS) SPA projects, or Kestrel `Certificates:Default:Path` configurations):
+1. If your development environment exports or mounts the certificate file to disk, such as in Docker containers, JavaScript Project System (JSPS) SPA projects, or Kestrel `Certificates:Default:Path` configurations:
 
-   * **Re-export the certificate**: Export the new certificate to the expected file location:
+   * **Re-export the certificate**: Export the new certificate to the expected file location. In the following example, the `{PATH TO CERTIFICATE}` placeholder is the path to the certificate `.pfx` file (for example, `/etc/ssl/certs/myapp-production.pfx`), and the `{PASSWORD}` placeholder is the password:
 
      ```dotnetcli
-     dotnet dev-certs https -ep <path-to-cert.pfx> -p <password>
+     dotnet dev-certs https -ep {PATH TO CERTIFICATE} -p {PASSWORD}
      ```
 
    * **Docker development**: Delete the expired certificate file in `%APPDATA%\ASP.NET\Https` (Windows) or `~/.aspnet/https` (Linux/macOS), regenerate the certificate using `dotnet dev-certs https -ep ...`, and restart the Docker container to mount the updated certificate.
 
-1. Completely close all browser windows and restart your IDE (such as Visual Studio or Visual Studio Code) to clear cached SSL/TLS sessions.
+1. Completely close all browser windows and restart your IDE, such as Visual Studio or Visual Studio Code, to clear cached SSL/TLS sessions.
 
 ### All platforms - certificate not trusted
 
