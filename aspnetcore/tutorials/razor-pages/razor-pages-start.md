@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 ai-usage: ai-assisted
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/26/2026
+ms.date: 10/27/2026
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -179,7 +179,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>.
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, so you can remove this line.
 * `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see <xref:aspnetcore-9#optimizing-static-web-asset-delivery>.
-* `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs (such as `/css/site.<hash>.css`) for cache-busting.
+* `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs, such as `/css/site.{HASH}.css` (the `{HASH}` placeholder is the file hash), for cache-busting.
 * `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample
