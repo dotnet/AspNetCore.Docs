@@ -454,13 +454,21 @@ To renew an expired development certificate:
 
 1. If your development environment exports or mounts the certificate file to disk, such as in Docker containers, JavaScript Project System (JSPS) SPA projects, or Kestrel `Certificates:Default:Path` configurations:
 
-   * **Re-export the certificate**: Export the new certificate to the expected file location. In the following example, the `{PATH TO CERTIFICATE}` placeholder is the path to the certificate `.pfx` file (for example, `/etc/ssl/certs/myapp-production.pfx`), and the `{PASSWORD}` placeholder is the password:
+   * **Re-export the certificate**: Export the new certificate to the expected file location. In the following example, the `{PATH TO CERTIFICATE}` placeholder is the path to the certificate `.pfx` file (for example, `/etc/ssl/certs/myapp-dev.pfx`), and the `{PASSWORD}` placeholder is the password:
 
      ```dotnetcli
      dotnet dev-certs https -ep {PATH TO CERTIFICATE} -p {PASSWORD}
      ```
 
    * **Docker development**: Delete the expired certificate file in `%APPDATA%\ASP.NET\Https` (Windows) or `~/.aspnet/https` (Linux/macOS), regenerate the certificate using `dotnet dev-certs https -ep ...`, and restart the Docker container to mount the updated certificate.
+
+   * **SPA development**: Delete the expired certificate files in `%APPDATA%\ASP.NET\https` or `~/.aspnet/https` (such as `{PROJECT_NAME}.pem` and `{PROJECT_NAME}.key`). SPA development servers regenerate or re-export these files automatically upon startup, or export them using:
+
+     ```dotnetcli
+     dotnet dev-certs https --export-path {PATH TO CERTIFICATE}.pem --format Pem --no-password
+     ```
+
+1. Stop and restart the running application (including any `dotnet run` or Kestrel process). Kestrel loads the development certificate at startup; restarting the application ensures it loads the renewed certificate.
 
 1. Completely close all browser windows and restart your IDE, such as Visual Studio or Visual Studio Code, to clear cached SSL/TLS sessions.
 
