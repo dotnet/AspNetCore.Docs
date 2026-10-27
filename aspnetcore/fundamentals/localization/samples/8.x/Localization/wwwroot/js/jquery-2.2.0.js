@@ -2627,7 +2627,7 @@
 
     // Support: IE<8
     // Prevent attribute/property "interpolation"
-    // https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute
+    // https://developer.mozilla.org/docs/Web/API/Element/getAttribute
     if ( !assert(function( div ) {
         div.innerHTML = "<a href='#'></a>";
         return div.firstChild.getAttribute("href") === "#" ;

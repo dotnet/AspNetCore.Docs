@@ -2728,7 +2728,7 @@ support.sortDetached = assert(function( el ) {
 
 // Support: IE<8
 // Prevent attribute/property "interpolation"
-// https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute
+// https://developer.mozilla.org/docs/Web/API/Element/getAttribute
 if ( !assert(function( el ) {
 	el.innerHTML = "<a href='#'></a>";
 	return el.firstChild.getAttribute("href") === "#" ;
@@ -6445,7 +6445,7 @@ var
 
 	// Swappable if display is none or starts with table
 	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	// See here for display values: https://developer.mozilla.org/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 	rcustomProp = /^--/,
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
