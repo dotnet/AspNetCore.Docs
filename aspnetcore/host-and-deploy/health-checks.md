@@ -3,7 +3,7 @@ title: Health checks in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 02/25/2026
+ms.date: 10/27/2026
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -57,6 +57,18 @@ The following example demonstrates the layout of a health check:
 The health check's logic is placed in the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method. The preceding example sets a dummy variable, `isHealthy`, to `true`. If the value of `isHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
 
 If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status?displayProperty=nameWithType> set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus>. This status is defined by <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> (see the [Register health check services](#register-health-check-services) section) and includes the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that caused the check failure. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
+
+When an endpoint runs more than one health check, the overall <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport.Status?displayProperty=nameWithType> is the worst individual result:
+
+* If any check is `Unhealthy`, the overall status is `Unhealthy`.
+* Otherwise, if any check is `Degraded`, the overall status is `Degraded`.
+* Otherwise, the overall status is `Healthy`.
+
+With the default status codes, `Degraded` returns HTTP 200, so a load balancer or orchestrator that only checks the status code still treats the app as available. To change this, see [Customize the HTTP status code](#customize-the-http-status-code). To include only some checks in an endpoint, see [Filter health checks](#filter-health-checks).
+
+A registration's failure status applies when a check throws an exception or returns `context.Registration.FailureStatus`. It doesn't change a result that a check returns explicitly, such as <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*?displayProperty=nameWithType>.
+
+Health checks don't run on a timer by default. They run each time the health endpoint is requested, so every probe request runs every check included in that endpoint. To run checks on a schedule, use a [health check publisher](#health-check-publisher).
 
 ## Register health check services
 
