@@ -3,7 +3,7 @@ title: Integration tests in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/23/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
 ---
@@ -18,6 +18,9 @@ Integration tests ensure that an app's components function correctly at a level 
 This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Testing in .NET](/dotnet/core/testing/) article and its linked content.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/10.x/IntegrationTestsSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+
+> [!NOTE]
+> The downloadable sample project is implemented using [xUnit](https://xunit.net/). If you choose **MSTest** or **NUnit** using the test framework selector above, the corresponding test patterns and syntax are demonstrated in the article's code examples.
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 

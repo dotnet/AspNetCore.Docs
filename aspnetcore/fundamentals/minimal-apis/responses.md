@@ -1,11 +1,11 @@
 ---
 title: Create responses in Minimal API applications
+ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 06/16/2026
+ms.date: 10/26/2026
 uid: fundamentals/minimal-apis/responses
-ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
@@ -18,9 +18,12 @@ This article explains how to create responses for Minimal API endpoints in ASP.N
 
 Minimal endpoints support the following types of return values:
 
-1. `string` - This includes `Task<string>` and `ValueTask<string>`.
-1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`.
-1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`.
+1. `string` - This includes `Task<string>`, `ValueTask<string>`, and F# `Async<string>`.
+1. `T` (Any other type) - This includes `Task<T>`, `ValueTask<T>`, and F# `Async<'T>`.
+1. `IResult` based - This includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`.
+
+> [!NOTE]
+> F# `Async<'T>` is supported as an awaitable return type in minimal API endpoints. When `unit` is the generic type argument of a generic awaitable type (`Task<unit>`, `ValueTask<unit>`, or `Async<unit>`), the framework coerces it to `void`, returning an empty response body instead of the JSON `null` token.
 
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
 
@@ -81,7 +84,10 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see <xref:fundamentals/openapi/include-metadata#describe-response-types>. For complete setup instructions, see <xref:fundamentals/openapi/overview>.
+
+> [!NOTE]
+> The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see <xref:fundamentals/openapi/overview>.
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
@@ -98,6 +104,11 @@ The following method does not compile, because `TypedResults.Ok` and `TypedResul
 To use `TypedResults`, the return type must be fully declared; when the method is asynchronous, the declaration requires wrapping the return type in a `Task<>`. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
+
+> [!NOTE]
+> When using a method group whose only parameter is `HttpContext` (for example, `static async Task<Results<ContentHttpResult, BadRequest>> MyHandler(HttpContext context)`), `app.MapGet` matches both `RequestDelegate` and `Delegate`. Overload resolution selects the <xref:Microsoft.AspNetCore.Http.RequestDelegate> overload, which discards return values and triggers analyzer warning [ASP0016](xref:diagnostics/asp0016). To ensure the result is executed and written to the response, cast the method group to `Delegate` (for example, `app.MapGet("/route", (Delegate)MyHandler)`) or use a lambda.
+>
+> When using `TypedResults` with multiple return branches, an explicit union return type such as `Results<T1, T2>` (or `Task<Results<T1, T2>>` for async handlers) is required because the compiler cannot infer a common union type.
 
 ### Results<TResult1, TResultN>
 
@@ -202,6 +213,20 @@ The following example illustrates how to use the `TypedResults.ServerSentEvents`
 
 For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 
+Always return the stream through `TypedResults.ServerSentEvents`. A handler that returns `IAsyncEnumerable<SseItem<T>>` directly compiles and runs, but the result is serialized as JSON rather than sent as Server-Sent Events.
+
+The `SseItem<T>` overload doesn't take an `eventType` parameter, because each `SseItem<T>` carries its own event type. To apply a single event name to every message in the stream, pass a plain `IAsyncEnumerable<T>` and supply `eventType`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see <xref:fundamentals/openapi/include-metadata>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 #### Redirect
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_09":::
@@ -280,12 +305,36 @@ the CLR type of the content in the file result in order to get the desired OpenA
 
 In particular, there are three common schemas for file results:
 
-- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
-  The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
-  this type to the `binary` format in the OpenAPI schema.
-  <!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented -->
-- **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
-- **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema.
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 12.0 - For the first bullet of the 11.0 or greater list, keep an eye on https://github.com/dotnet/aspnetcore/issues/67145 (IBinaryContent). -->
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+The file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
+
+```csharp
+app.MapGet("/report", () => TypedResults.File(File.OpenRead("report.pdf"), MediaTypeNames.Application.Pdf))
+   .Produces<FileStreamHttpResult>(contentType: MediaTypeNames.Application.Pdf);
+```
+
+<xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult>, <xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult>, <xref:Microsoft.AspNetCore.Mvc.FileContentResult>, and <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> all produce the binary schema. `Stream` continues to work and remains a good choice when the result type isn't known at the point where the metadata is declared.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
 
@@ -293,9 +342,26 @@ In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.
 
 As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
 that corresponds to the desired OpenAPI schema for your file result responses:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 * **binary content**: Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
 * **text content**: Use `string` to get a simple `type: string` schema.
 * **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**: Use `Stream` to get the `binary` format in the OpenAPI schema.
+* **text content**: Use `string` to get a simple `type: string` schema.
+* **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### File result support for conditional requests
 
