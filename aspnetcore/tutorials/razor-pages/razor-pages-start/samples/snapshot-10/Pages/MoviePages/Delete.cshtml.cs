@@ -1,63 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.MoviePages
+namespace RazorPagesMovie.Pages.MoviePages;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly RazorPagesMovieContext _context;
+
+    public DeleteModel(RazorPagesMovieContext context)
     {
-        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+        _context = context;
+    }
 
-        public DeleteModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+    [BindProperty]
+    public Movie Movie { get; set; } = default!;
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id is null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Movie Movie { get; set; } = default!;
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+        if (movie is null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (movie == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Movie = movie;
-            }
-            return Page();
+            return NotFound();
+        }
+        else
+        {
+            Movie = movie;
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync(int? id)
+    {
+        if (id is null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movie = await _context.Movie.FindAsync(id);
-            if (movie != null)
-            {
-                Movie = movie;
-                _context.Movie.Remove(Movie);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            return NotFound();
         }
+
+        var movie = await _context.Movie.FindAsync(id);
+        if (movie != null)
+        {
+            Movie = movie;
+            _context.Movie.Remove(Movie);
+            await _context.SaveChangesAsync();
+        }
+
+        return RedirectToPage("./Index");
     }
 }
