@@ -179,7 +179,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>.
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, so you can remove this line.
 * `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see <xref:aspnetcore-9#optimizing-static-web-asset-delivery>.
-* `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs, such as `/css/site.{HASH}.css` (the `{HASH}` placeholder is the file hash), for cache-busting.
+* `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs, such as `/css/site.<hash>.css` (the `<hash>` placeholder is the file hash), for cache-busting.
 * `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample
