@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR .NET client
 ai-usage: ai-assisted
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 09/20/2026
+ms.date: 10/27/2026
 uid: signalr/dotnet-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR .NET client, so I can connect to a SignalR hub and use hub and client methods.
@@ -294,11 +294,9 @@ The preceding code in `connection.On` runs when server-side code calls it by usi
 
 Registering handlers before calling `StartAsync` is recommended to avoid missing incoming messages that the server may send immediately upon connecting. However, handlers can also be registered dynamically after the connection has already started.
 
-### Unregister client methods
-
 To unregister a handler:
 
-* Call <xref:System.IDisposable.Dispose%2A> on the `IDisposable` returned by `connection.On`:
+* Call <xref:System.IDisposable.Dispose*> on the `IDisposable` returned by `connection.On`:
 
   ```csharp
   IDisposable handler = connection.On<string, string>("ReceiveMessage", (user, message) =>
@@ -310,7 +308,7 @@ To unregister a handler:
   handler.Dispose();
   ```
 
-* Call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Remove%2A> with the method name to remove all handlers registered for that method:
+* Call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Remove*> with the method name to remove all handlers registered for that method:
 
   ```csharp
   connection.Remove("ReceiveMessage");
