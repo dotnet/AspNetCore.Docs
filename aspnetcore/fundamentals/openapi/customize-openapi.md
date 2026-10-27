@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 10/21/2026
+ms.date: 10/27/2026
 uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
@@ -163,7 +163,7 @@ Use this approach instead of document transformers when conditional logic based 
 
 ### Modify interface-typed properties
 
-Many OpenAPI.NET objects supplied to transformers are exposed through interfaces that have get-only properties (such as <xref:Microsoft.OpenApi.Models.IOpenApiParameter> or <xref:Microsoft.OpenApi.Models.IOpenApiSchema>). To mutate these properties, pattern match or cast the interface to its concrete implementation type (such as <xref:Microsoft.OpenApi.Models.OpenApiParameter>), which exposes property setters:
+Many OpenAPI.NET objects supplied to transformers are exposed through interfaces that have get-only properties (such as <xref:Microsoft.OpenApi.IOpenApiParameter> or <xref:Microsoft.OpenApi.IOpenApiSchema>). To mutate these properties, pattern match or cast the interface to its concrete implementation type (such as <xref:Microsoft.OpenApi.OpenApiParameter>), which exposes property setters:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
