@@ -456,6 +456,42 @@ For all platforms, try to resolve the untrusted certificate issues with the foll
 
 The `dotnet dev-certs https` commands usually solve most browser trust issues. If the `dotnet dev-certs https --clean` command fails and the browser still doesn't trust the certificate, try the platform-specific suggestions in the following sections.
 
+### Handle an expired developer certificate
+
+ASP.NET Core developer certificates expire after a set duration (typically one year). When a developer certificate expires, browsers display error messages such as `NET::ERR_CERT_DATE_INVALID` or `SEC_ERROR_EXPIRED_CERTIFICATE`.
+
+To regenerate and trust a new developer certificate:
+
+1. Clean the expired certificate and generate a trusted replacement:
+
+   ```dotnetcli
+   dotnet dev-certs https --clean
+   dotnet dev-certs https --trust
+   ```
+
+1. **Update exported certificate files**:
+
+   Development tooling (such as Visual Studio Container Tools, Docker, and JavaScript Project System (JSPS)) often exports the developer certificate to a folder on disk so containers or frontend servers can read it. Regenerating the certificate in the system store does **not** automatically update existing exported files on disk.
+
+   If your app runs in Docker or uses a frontend project template, delete the cached certificate files so tooling can regenerate them, or manually export the new certificate:
+
+   * **Windows**:
+     * Delete the contents of `%APPDATA%\ASP.NET\Https` and `%USERPROFILE%\.aspnet\https`.
+     * If you manually configured certificate file paths in `docker-compose.override.yml` or container launch settings, export a new certificate with:
+       ```dotnetcli
+       dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\<appname>.pfx -p <CREDENTIAL_PLACEHOLDER>
+       ```
+   * **Linux/macOS**:
+     * Delete the contents of `~/.aspnet/https`.
+     * Re-export if needed:
+       ```dotnetcli
+       dotnet dev-certs https -ep ${HOME}/.aspnet/https/<appname>.pfx -p <CREDENTIAL_PLACEHOLDER>
+       ```
+
+1. Clean the solution build artifacts by deleting the `bin` and `obj` folders.
+
+1. Close and reopen the IDE and any running browser instances.
+
 ### Docker - certificate not trusted
 
 If you're using Docker, try to resolve the issue with the following steps:
