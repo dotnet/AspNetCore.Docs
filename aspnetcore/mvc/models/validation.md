@@ -2,7 +2,7 @@
 title: Model validation in ASP.NET Core MVC
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 04/28/2026
+ms.date: 10/26/2026
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -36,6 +36,17 @@ Web API controllers don't have to check `ModelState.IsValid` if they have the [[
 Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState%2A?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
+
+You can also use <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*> to explicitly validate a child complex object. `TryValidateModel` validates the supplied object and attributes declared on its own properties; it does not evaluate validation attributes declared on the containing parent property (such as attributes on the parent `Movie.Genre` property itself). For example, consider a hypothetical complex `Genre` class (distinct from the sample app's `Genre` enum) with its own validation attributes. In a page model where the `Movie` property is bound under the `"Movie"` prefix, manually validate `Movie.Genre` using the full property prefix:
+
+```csharp
+ModelState.ClearValidationState("Movie.Genre");
+
+if (!TryValidateModel(Movie.Genre, "Movie.Genre"))
+{
+    return Page();
+}
+```
 
 ## Validation attributes
 
@@ -303,7 +314,9 @@ Data type validation is based on the .NET type of a property, unless that is ove
 
 ## Unobtrusive validation
 
-For information on unobtrusive validation, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/1111).
+### HTML encoding and error message security
+
+jQuery Unobtrusive Validation inserts error messages from `data-val-{RULE}` attributes (such as `data-val-required`) directly into the DOM as HTML without additional encoding. When custom validation attributes or dynamic scripts define validation error messages containing user input, ensure the message is properly sanitized and HTML-encoded before including it in a `data-val-{RULE}` attribute on an HTML element. Never define validation error messages containing unencoded user input, as doing so can expose the application to cross-site scripting (XSS) attacks.
 
 ### Add Validation to Dynamic Forms
 
