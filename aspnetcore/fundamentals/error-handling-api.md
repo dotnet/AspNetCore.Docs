@@ -131,7 +131,7 @@ For more information on using `AddProblemDetails`, see [Problem Details](#proble
 
 ### Customize bad request handling with `RouteHandlerOptions.ThrowOnBadRequest`
 
-When minimal API parameter binding encounters bad-request failures (such as malformed JSON or type conversion errors), error handling is controlled by <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest%2A>:
+When minimal API parameter binding encounters bad-request failures (such as malformed JSON or type conversion errors), error handling is controlled by <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest*>:
 
 * In the `Development` environment, `ThrowOnBadRequest` defaults to `true`. Bad-request binding failures throw a <xref:Microsoft.AspNetCore.Http.BadHttpRequestException>, which flows through exception handling middleware (`UseExceptionHandler`) and invokes registered <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> handlers (available in ASP.NET Core 8 and later) or custom exception handlers to produce Problem Details responses.
 * In non-Development environments (such as `Production`), `ThrowOnBadRequest` defaults to `false`. Bad-request binding failures write a `400 Bad Request` status code directly without throwing an exception, bypassing custom exception handlers.
