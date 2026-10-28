@@ -86,9 +86,9 @@ When working on an issue:
   * [ ] Number ordered lists as "1." for every item (don't use sequential numbers)
   * [ ] Use backticks around content specifically for file names (`file.txt`), folders (`folder`), file paths (`folder/file.txt`), custom types (`myVariable`, `MyClass`), raw URLs in the text (`https://www.contoso.com`), URL segments (`/product/id/199`), file extensions (`.razor`), NuGet packages (`Microsoft.AspNetCore.SignalR.Client`), and code that should never be localized
   * [ ] For Blazor's Razor components mentioned in article text, use backticks around the name of the component (example: `Counter` component)
-  * [ ] Use placeholders with braces in the format `{PLACEHOLDER NAME}` when used in URIs, code examples, and other contexts where placeholders are used. Use uppercase letters with spaces between words for the placeholder name inside the braces.
-    * [ ] Wrong: "Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document."
-    * [ ] Correct: "Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to view the generated OpenAPI document, where the `{PORT}` placeholder is the port."
+  * [ ] Use placeholders with angle brackets in the format `<placeholder name>` when used in URIs, code examples, and other contexts where placeholders are used. Use lowercase letters with spaces between words for the placeholder name inside the angle brackets.
+    * [ ] Wrong: "Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to view the generated OpenAPI document, where the `{PORT}` phaceholder is the port."
+    * [ ] Correct: "Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document, where the `<port>` placeholder is the port."
   * [ ] For new or updated articles published to Microsoft Learn, follow [Metadata for Microsoft Learn documentation](https://learn.microsoft.com/en-us/contribute/content/metadata) and the metadata and date requirements below. Don't add frontmatter to sample README files, includes, or GitHub-only documentation.
 
 ### 1. Metadata and Date Requirements
