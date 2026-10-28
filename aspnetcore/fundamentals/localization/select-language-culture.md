@@ -3,7 +3,7 @@ title: Strategies for selecting language and culture in a localized ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 10/27/2026
+ms.date: 10/28/2026
 uid: fundamentals/localization/select-language-culture
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
@@ -117,17 +117,16 @@ app.UseRequestLocalization(localizationOptions);
 
 ### Localized route templates and fallback
 
-To support both culture-prefixed URLs (such as `/ru/Home/Index` or `/ru/Index`) and culture-less URLs (such as `/Home/Index` or `/Index`) while allowing fallback to other culture providers (like cookies or `Accept-Language` headers), configure a culture-constrained route alongside an unprefixed default route.
+To support both culture-prefixed URLs (such as `/ru/Home/Index` or `/ru/Index`) and culture-less URLs (such as `/Home/Index` or `/Index`) while allowing fallback to other culture providers (like cookies or `Accept-Language` headers), configure a route with a `{culture}` segment alongside a default route.
 
 **Controllers:**
 
-Map a localized route that constrains `{culture}` to supported cultures, followed by the default route without a culture default:
+Map a localized route with a `{culture}` segment, followed by the default route without a culture prefix:
 
 ```csharp
 app.MapControllerRoute(
     name: "localized",
-    pattern: "{culture}/{controller=Home}/{action=Index}/{id?}",
-    constraints: new { culture = string.Join("|", supportedCultures) });
+    pattern: "{culture}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
@@ -135,8 +134,8 @@ app.MapControllerRoute(
 ```
 
 With this configuration:
-* Requests with a valid culture prefix (such as `/ru/Home/Index`) match the `localized` route. `RouteDataRequestCultureProvider` detects the culture in route data.
-* Requests without a culture prefix (such as `/Home/Index` or `/`) fail the `culture` constraint on the `localized` route and match the `default` route. Because the `default` route has no `{culture}` route parameter, `RouteDataRequestCultureProvider` produces no culture, allowing culture resolution to fall back to the next registered provider (such as a cookie or `Accept-Language` header) or the `DefaultRequestCulture`.
+* Requests with a culture prefix (such as `/ru/Home/Index`) match the `localized` route. `RouteDataRequestCultureProvider` determines the request culture from route data.
+* If the culture value is absent or unsupported, culture resolution falls back to the next registered provider (such as a cookie or `Accept-Language` header) or to `DefaultRequestCulture`.
 
 **Razor Pages:**
 
@@ -145,7 +144,7 @@ In Razor Pages, relative `@page` templates append parameters to the existing pag
 ```csharp
 builder.Services.AddRazorPages(options =>
 {
-    options.Conventions.AddPageRoute("/Index", "{culture:regex(^(en-US|fr-FR|ru)$)}/Index");
+    options.Conventions.AddPageRoute("/Index", "{culture}/Index");
 });
 ```
 
@@ -166,7 +165,7 @@ builder.Services.AddRazorPages(options =>
                 {
                     Order = 1,
                     Template = AttributeRouteModel.CombineTemplates(
-                        "{culture:regex(^(en-US|fr-FR|ru)$)}",
+                        "{culture}",
                         selector.AttributeRouteModel?.Template)
                 }
             });
