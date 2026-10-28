@@ -320,7 +320,7 @@ For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 ### Link generation with MVC areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) shows link generation with the area specified:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/3.1) shows link generation with the area specified:
 
 [!code-cshtml[](areas/samples/3.1/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 

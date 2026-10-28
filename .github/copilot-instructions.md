@@ -154,6 +154,8 @@ When working on an issue:
   * [ ] Explain why and when the topic matters in practical ASP.NET Core development scenarios.
   * [ ] Give a concise summary of what the article covers or enables, so readers know what to expect.
   * [ ] When significantly updating, revise the introductory paragraph to match the new scope and content.
+* [ ] When using "such as" or "including" to introduce one or more non-restrictive/non-essential examples, set the phrase off with commas and avoid placing it in parentheses. If the "such as" or "including" phrase is providing restrictive/essential information, don't set it off with commas.
+* [ ] Make sure that any appearance of "like" is only used to compare nouns. If "like" is used to indicate one or more examples, suggest or use "such as" instead.
 
 ### 6. PR Description Requirements
 * [ ] On the first line of the PR description, reference the originating issue:

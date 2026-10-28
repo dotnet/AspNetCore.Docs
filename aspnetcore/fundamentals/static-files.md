@@ -459,7 +459,7 @@ The generated file must exist when the build process resolves static web assets.
 
 ### Use a JavaScript project for complex build pipelines
 
-For a complex JavaScript or TypeScript client build, use a separate JavaScript project that builds the client assets with the [JavaScript project system](/visualstudio/javascript/javascript-project-system-msbuild-reference) (the `Microsoft.VisualStudio.JavaScript.Sdk` MSBuild SDK and an `.esproj` project file). Reference the JavaScript project from the ASP.NET Core app so that its output is consumed as static web assets. For an example, see the [`Microsoft.FluentUI.AspNetCore.Components.Assets.esproj` project file (`microsoft/fluentui-blazor` GitHub repository)](https://github.com/microsoft/fluentui-blazor/blob/dev/src/Core.Assets/Microsoft.FluentUI.AspNetCore.Components.Assets.esproj).
+For a complex JavaScript or TypeScript client build, use a separate JavaScript project that builds the client assets with the [JavaScript project system](/visualstudio/javascript/javascript-project-system-msbuild-reference) (the `Microsoft.VisualStudio.JavaScript.Sdk` MSBuild SDK and an `.esproj` project file). Reference the JavaScript project from the ASP.NET Core app so that its output is consumed as static web assets. For an example, see the [`Microsoft.FluentUI.AspNetCore.Components.Scripts.esproj` project file](https://github.com/microsoft/fluentui-blazor/blob/dev/src/Core.Scripts/Microsoft.FluentUI.AspNetCore.Components.Scripts.esproj).
 
 :::moniker-end
 
