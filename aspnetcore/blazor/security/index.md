@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor authentication and authorization
 ai-usage: ai-assisted
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/28/2026
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -303,7 +303,21 @@ When you choose the Interactive WebAssembly or Interactive Auto render modes, th
 
 The framework provides a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in both the server and client (`.Client`) projects to flow the user's authentication state to the browser. The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>, while the client project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A>. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the .NET WebAssembly runtime is initialized. The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and then read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. For more information, see the [Manage authentication state in Blazor Web Apps](#manage-authentication-state-in-blazor-web-apps) section.
 
-Only for Interactive Server solutions, `IdentityRevalidatingAuthenticationStateProvider` (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`) in the server project of the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that revalidates the security stamp for the connected user every 30 minutes an interactive circuit is connected.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0 < aspnetcore-11.0"
+
+Only for Interactive Server solutions, `IdentityRevalidatingAuthenticationStateProvider` (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`) in the server project of the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/release/10.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that revalidates the security stamp for the connected user every 30 minutes an interactive circuit is connected.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+For Blazor Web Apps that use Individual Accounts and Interactive Server rendering, the template uses SignalR authentication refresh instead of a template-provided revalidating authentication state provider. In `Program`, `AddInteractiveServerRenderMode` calls the template's `ConfigureIdentityAuthenticationRefresh` helper, defined in [`Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs).
+
+The helper configures `MaximumAuthenticationExpiration` to 40 minutes and enables `CloseOnAuthenticationExpiration`. SignalR normally refreshes authentication five minutes before expiration, approximately every 35 minutes with these settings. During refresh, the Identity cookie handler performs its normal security-stamp validation, whose default interval is 30 minutes. A refreshed anonymous principal updates the existing circuit's authentication state without reconnecting. If authentication isn't refreshed successfully before expiration, the server closes the connection.
+
+This mechanism applies to server circuits, including those in Interactive Auto apps while rendering on the server. It doesn't automatically refresh authentication state during WebAssembly rendering. For sign-out and interval customization, see [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity).
 
 :::moniker-end
 
@@ -311,7 +325,7 @@ Only for Interactive Server solutions, `IdentityRevalidatingAuthenticationStateP
 
 When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components render statically on the server in the Blazor Web App's main project. The project template includes a [`PersistentAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp.Client/PersistentAuthenticationStateProvider.cs) in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to prerender the authentication state and persist it to the page.
 
-In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` in the `Components/Account` folder of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) (Server interactivity solutions only) or the `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions) in the same folder.
+In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` in the `Components/Account` folder of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) (Server interactivity solutions only) or the `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions) in the same folder.
 
 :::moniker-end
 
@@ -577,17 +591,21 @@ Two additional abstractions participate in managing authentication state:
 
 * <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs)): An <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to obtain authentication state from the server.
 
-* <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals, 30 minutes by default.
+* <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals. Its `RevalidationInterval` property is abstract, so derived classes supply the interval.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Authentication state management at sign out
 
-The default revalidation interval is 30 minutes for either ASP.NET Core Identity-based authentication or cookie-based authentication without Identity. Within the 30-minute window, it remains possible under certain sign-out conditions for a user to retain access to areas of the app that you might wish to prevent.
+An existing server circuit doesn't necessarily observe a sign-out immediately. How the circuit detects a change depends on whether the app uses a revalidating authentication state provider or SignalR authentication refresh. Cookie validation and circuit authentication state updates are separate operations.
 
-To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A>.
+#### Provider-based revalidation
 
-For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
+This approach applies to .NET 8–10 Identity templates, earlier Blazor Server Identity templates, and existing apps that continue to use a revalidating authentication state provider, including apps upgraded to .NET 11 or later. It isn't the authentication refresh mechanism used by .NET 11 or later Identity templates.
+
+To control the circuit's revalidation period, implement a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A>.
+
+For an example implementation with a template-supplied 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/release/10.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the .NET 10 Blazor Web App project template.
 
 In the following example, the interval is set to five minutes:
 
@@ -598,16 +616,36 @@ protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(5);
 Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> only revalidates the authentication state held by the current Blazor circuit. Returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A?displayProperty=nameWithType> flips the circuit's state to unauthenticated, so instances of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>/<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> re-evaluate and redirect the user to sign in. However, returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A> doesn't affect the underlying authentication cookie. The next full navigation that occurs before the cookie expires or is invalidated recreates the principal from the cookie. When that happens, the cookie indicates a signed-in user to the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, so the user appears signed in until the next <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> tick fires.
 
 > [!NOTE]
-> Each browser tab requires a separate circuit, so additional tabs opened by a user don't observe an authentication state change until their circuits revalidate. However, the approach in this section sets the revalidation interval for all of the tabs opened by a user.
+> Each browser tab requires a separate circuit. The legacy Identity provider checks the user's security stamp, not the browser's current cookie. Signing out in one tab alone doesn't invalidate the security stamp or sign out other circuits. Server-side invalidation, such as updating the security stamp, is detected when each circuit revalidates.
 
 To control the revalidation interval in apps that adopt ASP.NET Core Identity with cookie authentication, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
 
 
 #### Sign out for ASP.NET Core Identity
 
-To force a complete sign-out within less than the default 30-minute revalidation interval in apps that adopt ASP.NET Core Identity, use the guidance in this section.
+Circuit revalidation or refresh and Identity cookie validation must both be considered when customizing sign-out behavior.
 
-For Blazor apps that target .NET 8 or later, reduce the default 30-minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
+
+For Blazor apps based on .NET 8–10 Interactive Server Identity templates, reduce the template's 30-minute `RevalidationInterval` in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). For .NET 8 WebAssembly or Auto interactivity templates, the provider is `PersistingRevalidatingAuthenticationStateProvider`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+For Blazor Server apps based on Identity templates, reduce the template's 30-minute `RevalidationInterval` in `RevalidatingIdentityAuthenticationStateProvider`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+For apps based on .NET 11 or later Identity templates, customize the maximum authentication expiration in the template's `ConfigureIdentityAuthenticationRefresh` helper in `Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs` together with `SecurityStampValidatorOptions.ValidationInterval`. Account for SignalR's five-minute refresh lead: the default 40-minute maximum produces refreshes approximately every 35 minutes, after the default 30-minute stamp-validation interval has elapsed. Choose intervals so stamp validation is due when refresh occurs. Merely shortening `ValidationInterval` doesn't schedule circuit refreshes.
+
+When a user signs out in another tab, subsequent SignalR authentication refresh requests use the changed browser cookie. A refreshed anonymous principal updates the existing server circuit's authentication state without reconnecting. Signing out in one browser doesn't invalidate cookies in other browsers or sessions. To invalidate those sessions, use server-side invalidation, such as updating the user's security stamp. Each session detects the change when its cookie handler next validates the stamp. This mechanism doesn't automatically refresh WebAssembly authentication state.
+
+For existing apps that retain a revalidating provider after upgrading, use [Provider-based revalidation](#provider-based-revalidation) instead of the template refresh guidance.
+
+:::moniker-end
 
 Whether or not the authentication cookie remains valid is checked by the *security stamp validator* (<xref:Microsoft.AspNetCore.Identity.SecurityStampValidator>), which hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> event of an authentication cookie and queries the user datastore to determine if the user is still signed in. The security stamp validator's interval is governed by <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType>, which defaults to 30 minutes because validating users on every request triggers a database query on every request for every user.
 
@@ -620,17 +658,17 @@ builder.Services.Configure<SecurityStampValidatorOptions>(
 
 The call interval is a tradeoff between hitting the user datastore too frequently and not often enough. Checking with a short interval can result in high demand on the user datastore and reduced app performance but with the benefit of more timely sign-outs. Checking with a long interval results in stale claims, which can make it appear that a user is still signed in if a full navigation recreates the principal from the authentication cookie before it naturally expires.
 
-To catch the next interval tick of the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, set the <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType> to a period just inside the value set for <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A?displayProperty=nameWithType>.
+For apps using provider-based revalidation, the provider checks the security stamp independently of the cookie handler's validation interval. Shortening the provider's interval doesn't shorten the cookie handler's interval, so configure both to meet the app's sign-out requirements.
 
-Custom C# code that's required to force a sign out on a user can call <xref:Microsoft.AspNetCore.Identity.UserManager%601.UpdateSecurityStampAsync%2A?displayProperty=nameWithType>, which immediately invalidates existing cookies the next time they're checked.
+To invalidate a user's other sessions, call <xref:Microsoft.AspNetCore.Identity.UserManager%601.UpdateSecurityStampAsync%2A?displayProperty=nameWithType>. Existing cookies are rejected when their security stamps are next validated, not immediately when the method is called.
 
 For more information, see <xref:security/authentication/identity-configuration#isecuritystampvalidator-and-signout-everywhere>.
 
 #### Sign out for cookie-based authentication
 
-To proactively, completely sign a user off within less than the default 30-minute revalidation interval in apps that adopt cookie-based authentication without ASP.NET Core Identity, use the guidance in this section.
+For apps that adopt cookie-based authentication without ASP.NET Core Identity and use provider-based revalidation, use the guidance in this section. The custom provider determines the revalidation interval; the framework base class doesn't supply a default.
 
-There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> (default: 30 minutes) and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches.
+There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches.
 
 * Sign out on GET in the app's login page. This approach is only valid for static SSR because <xref:Microsoft.AspNetCore.Http.HttpContext> is `null` during interactive rendering:
 
