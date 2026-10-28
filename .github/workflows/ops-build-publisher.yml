@@ -37,7 +37,7 @@ jobs:
           github-token: ${{ github.token }}
 
       - name: Publish validated report
-        uses: dotnet/docs-actions/ops-build-reporter/publish@691009a5575864a826aa1f4f266cc05e8aff968f # main
+        uses: dotnet/docs-actions/ops-build-reporter/publish@e92e67a4b93ea5976eea3d65af4b2082818c7045 # main
         with:
           repo_token: ${{ github.token }}
           artifact_directory: ${{ runner.temp }}/ops-build-report-download
