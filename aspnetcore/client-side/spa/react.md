@@ -9,7 +9,7 @@ uid: spa/react
 ---
 # Use React with ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 

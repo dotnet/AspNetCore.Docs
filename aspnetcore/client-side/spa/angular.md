@@ -8,7 +8,7 @@ uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 
