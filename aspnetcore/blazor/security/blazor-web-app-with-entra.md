@@ -128,7 +128,7 @@ Configure the `MinimalApiJwt` project in the <xref:Microsoft.AspNetCore.Authenti
 
 For the web API app's registration, the `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**.
 
-<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority*> sets the Authority for making OIDC calls.
+<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> sets the Authority for making OIDC calls.
 
 ```csharp
 jwtOptions.Authority = "{AUTHORITY}";
@@ -171,7 +171,7 @@ jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-111
 > [!NOTE]
 > Azure Active Directory B2C is no longer available as a service to new customers as of May 1, 2025. AAD B2C tenants are supported for customers with accounts established prior to May 1, 2025 until 2030. For more information, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/faq).
 
-<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience*> sets the Audience for any received JWT access token. 
+<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience> sets the Audience for any received JWT access token.
 
 ```csharp
 jwtOptions.Audience = "{AUDIENCE}";
@@ -434,7 +434,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
 
 For the web API app's registration, the `Weather.Get` scope is configured in the Entra or Azure portal in **Expose an API**.
 
-<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority*> sets the Authority for making OIDC calls.
+<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> sets the Authority for making OIDC calls.
 
 ```csharp
 jwtOptions.Authority = "{AUTHORITY}";
@@ -477,7 +477,7 @@ jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-111
 > [!NOTE]
 > Azure Active Directory B2C is no longer available as a service to new customers as of May 1, 2025. AAD B2C tenants are supported for customers with accounts established prior to May 1, 2025 until 2030. For more information, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/faq).
 
-<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience*> sets the Audience for any received JWT access token. 
+<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience> sets the Audience for any received JWT access token.
 
 ```csharp
 jwtOptions.Audience = "{AUDIENCE}";
@@ -629,7 +629,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
-The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath*> is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri*> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri*>, if specified.
+The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath> is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>, if specified.
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
@@ -640,7 +640,7 @@ The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions
 
 The callback path (`CallbackPath`) must match the redirect URI (login callback path) configured when registering the application in the Entra or Azure portal. Paths are configured in the **Authentication** blade of the app's registration. The default value of `CallbackPath` is `/signin-oidc` for a registered redirect URI of `https://localhost/signin-oidc` (a port isn't required).
 
-The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath*> is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri*> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri*>, if specified.
+The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath> is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from Entra. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>, if specified.
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
                 
@@ -762,7 +762,7 @@ Configuration is used to facilitate supplying dedicated key vaults and secret na
 
 ## Only serialize the name and role claims
 
-In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims*> to `true`. If you only want the name and role claims serialized for CSR, remove the option or set it to `false`.
+In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims> to `true`. If you only want the name and role claims serialized for CSR, remove the option or set it to `false`.
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
@@ -921,11 +921,11 @@ Production web apps and web APIs should use a production distributed token cache
 
 The distributed token cache is configured by <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>:
 
-* In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache*> to `true`. ***Be sure to reset it back to `false` for production.***
-* Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit*) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
-* In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt*> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
-* Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration*>. The default value is 1 hour.
-* For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure*>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write*>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
+* In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache> to `true`. ***Be sure to reset it back to `false` for production.***
+* Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
+* In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
+* Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration>. The default value is 1 hour.
+* For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
 
 ```csharp
 builder.Services.AddDistributedMemoryCache();
@@ -959,10 +959,10 @@ For more information, see [Token cache serialization: Distributed caches](/entra
                       covered in the *Call a web API* article. Mirror 
                       changes when updating this portion of content. -->
 
-Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt*?displayProperty=nameWithType> is set to `true`.
+Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt?displayProperty=nameWithType> is set to `true`.
 
 > [!NOTE]
-> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt*> to `false` and configure a shared Data Protection key ring later:
+> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt> to `false` and configure a shared Data Protection key ring later:
 >
 > ```csharp
 > options.Encrypt = false;
@@ -1202,7 +1202,7 @@ This article and its accompanying sample apps adopt V1 STS tokens. To adopt V2 t
   };
   ```
 
-  Instead of setting the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudiences*> property, you can specify a single valid audience with <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudience*>:
+  Instead of setting the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudiences> property, you can specify a single valid audience with <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidAudience>:
   
   ```csharp
   ValidAudience = "{WEB API CLIENT ID}",

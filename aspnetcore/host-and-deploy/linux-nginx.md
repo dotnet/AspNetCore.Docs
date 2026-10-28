@@ -112,7 +112,7 @@ Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForw
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
-Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address `10.0.0.100` to the forwarded headers middleware `KnownProxies`:
+Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address `10.0.0.100` to the forwarded headers middleware `KnownProxies`:
 
 :::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/7/Program.cs" id="snippet_all":::
 

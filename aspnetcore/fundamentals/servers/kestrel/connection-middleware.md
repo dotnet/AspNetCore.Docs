@@ -29,7 +29,7 @@ Connection logging is helpful for troubleshooting problems in low-level communic
 
 ## Create custom connection middleware
 
-The following example shows a custom connection middleware that can filter TLS handshakes on a per-connection basis for specific ciphers if necessary. The middleware throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm*?displayProperty=nameWithType> to a list of acceptable cipher suites.
+The following example shows a custom connection middleware that can filter TLS handshakes on a per-connection basis for specific ciphers if necessary. The middleware throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm?displayProperty=nameWithType> to a list of acceptable cipher suites.
 
 No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
 

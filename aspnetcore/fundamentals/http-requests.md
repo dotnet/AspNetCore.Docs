@@ -636,7 +636,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options*?displayProperty=nameWithType>.
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal`1> storage object to pass the data.
 
@@ -1050,7 +1050,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Properties*?displayProperty=nameWithType>.
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Properties?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal`1> storage object to pass the data.
 

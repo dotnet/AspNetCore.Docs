@@ -278,7 +278,7 @@ The following code uses the token bucket limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
 
-When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReplenishment*> is set to `true`, an internal timer replenishes the tokens every <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.ReplenishmentPeriod*>; when set to `false`, the app must call <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.TryReplenish*> on the limiter.
+When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReplenishment> is set to `true`, an internal timer replenishes the tokens every <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.ReplenishmentPeriod>; when set to `false`, the app must call <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.TryReplenish*> on the limiter.
 
 <a name="concur"></a>
 

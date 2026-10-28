@@ -81,8 +81,8 @@ State persistence is enabled by default when <xref:Microsoft.Extensions.Dependen
 
 Use the following options to change the default values of the in-memory provider:
 
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryMaxRetained*> (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryRetentionPeriod*> (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryMaxRetained> (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryRetentionPeriod> (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
 
 ```csharp
 services.Configure<CircuitOptions>(options =>
@@ -139,7 +139,7 @@ services.AddRazorComponents()
 > [NOTE]
 > The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService*>. However, circuit state persistence is only available for the **Interactive Server** render mode.
 
-To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod*>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
 
 In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
 

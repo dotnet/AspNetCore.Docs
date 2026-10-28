@@ -203,7 +203,7 @@ This section describes the various options that can be set in a CORS policy:
 
 `AllowAnyOrigin` affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*>: Sets the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed*> property of the policy to be a function that allows origins to match a configured wildcard domain when evaluating if the origin is allowed.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*>: Sets the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed> property of the policy to be a function that allows origins to match a configured wildcard domain when evaluating if the origin is allowed.
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_aa)]
 
@@ -377,7 +377,7 @@ To allow all [author request headers](https://www.w3.org/TR/cors/#author-request
 Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If either:
 
 * Headers are set to anything other than `"*"`
-* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*> is called:
+* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader> is called:
   Include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
 
 <a name="apf"></a>

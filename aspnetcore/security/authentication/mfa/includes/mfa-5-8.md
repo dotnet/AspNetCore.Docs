@@ -20,7 +20,7 @@ MFA requires at least two or more types of proof for an identity like something 
 
 Two-factor authentication (2FA) is like a subset of MFA, but the difference being that MFA can require two or more factors to prove the identity.
 
-2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1.TwoFactorEnabled*?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
+2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1.TwoFactorEnabled?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 

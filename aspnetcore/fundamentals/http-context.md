@@ -46,7 +46,7 @@ You can use the same property in the corresponding Razor Page View:
 
 ## Access HttpContext from a Razor view in MVC
 
-Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context*> property on the view. The following example retrieves the current username in an intranet app by using Windows Authentication:
+Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context> property on the view. The following example retrieves the current username in an intranet app by using Windows Authentication:
 
 ```cshtml
 @{
@@ -58,7 +58,7 @@ Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.
 
 ## Access HttpContext from a controller
 
-Controllers expose the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext*> property:
+Controllers expose the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext> property:
 
 ```csharp
 public class HomeController : Controller
@@ -104,7 +104,7 @@ public class MyCustomMiddleware
 
 ## Access HttpContext from SignalR
 
-To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.Hub.Context*>:
+To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.Hub.Context>:
 
 ```csharp
 public class MyHub : Hub

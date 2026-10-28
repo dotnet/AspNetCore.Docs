@@ -133,7 +133,7 @@ Use <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Resul
 
 ### Customize output
 
-To customize the output of a health checks report, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter*?displayProperty=nameWithType> property to a delegate that writes the response:
+To customize the output of a health checks report, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter?displayProperty=nameWithType> property to a delegate that writes the response:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResponseWriter":::
 
@@ -205,7 +205,7 @@ To create two different health check endpoints, call `MapHealthChecks` twice:
 The preceding example creates the following health check endpoints:
 
 * `/healthz/ready` for the readiness check. The readiness check filters health checks to those tagged with `ready`.
-* `/healthz/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate*?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks) in this article.
+* `/healthz/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks) in this article.
 
 Before the startup task completes, the `/healthz/ready` endpoint reports an `Unhealthy` status. Once the startup task completes, this endpoint reports a `Healthy` status. The `/healthz/live` endpoint excludes all checks and reports a `Healthy` status for all calls.
 

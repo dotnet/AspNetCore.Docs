@@ -32,9 +32,9 @@ If multiple policies are applied at the controller and action levels, ***all*** 
 
 ## Access MVC request context in handlers
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler`1.HandleRequirementAsync*?displayProperty=nameWithType> method has two parameters: an <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> and the `TRequirement` being handled. Frameworks such as MVC or SignalR are free to add any object to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource*?displayProperty=nameWithType> property to pass extra information.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler`1.HandleRequirementAsync*?displayProperty=nameWithType> method has two parameters: an <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> and the `TRequirement` being handled. Frameworks such as MVC or SignalR are free to add any object to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource?displayProperty=nameWithType> property to pass extra information.
 
-When using endpoint routing, authorization is typically handled by the Authorization Middleware, and the <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource*> property is an instance of <xref:Microsoft.AspNetCore.Http.HttpContext>. The context is used to access the current endpoint, which can be used to probe the underlying resource to which you're routing:
+When using endpoint routing, authorization is typically handled by the Authorization Middleware, and the <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource> property is an instance of <xref:Microsoft.AspNetCore.Http.HttpContext>. The context is used to access the current endpoint, which can be used to probe the underlying resource to which you're routing:
 
 ```csharp
 if (context.Resource is HttpContext httpContext)
@@ -46,9 +46,9 @@ if (context.Resource is HttpContext httpContext)
 }
 ```
 
-With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource*> is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to <xref:Microsoft.AspNetCore.Http.HttpContext>, <xref:Microsoft.AspNetCore.Routing.RouteData>, and everything else provided by MVC and Razor Pages.
+With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource> is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to <xref:Microsoft.AspNetCore.Http.HttpContext>, <xref:Microsoft.AspNetCore.Routing.RouteData>, and everything else provided by MVC and Razor Pages.
 
-The use of the <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource*> property is framework-specific. Using information in the property limits your authorization policies to particular frameworks. Cast the property using the `is` keyword, and then confirm the cast has succeeded to ensure your code doesn't crash with an <xref:System.InvalidCastException> when run on other frameworks. When the cast succeeds, examine MVC-specific data, such as routing data:
+The use of the <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource> property is framework-specific. Using information in the property limits your authorization policies to particular frameworks. Cast the property using the `is` keyword, and then confirm the cast has succeeded to ensure your code doesn't crash with an <xref:System.InvalidCastException> when run on other frameworks. When the cast succeeds, examine MVC-specific data, such as routing data:
 
 ```csharp
 using Microsoft.AspNetCore.Mvc.Filters;

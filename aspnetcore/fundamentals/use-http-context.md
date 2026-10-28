@@ -184,7 +184,7 @@ This article primarily discusses using `HttpContext` in request and response flo
 * The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must ***not*** be captured outside of the request flow. `IHttpContextAccessor`:
   * Relies on  <xref:System.Threading.AsyncLocal`1>, which can have a negative performance impact on asynchronous calls.
   * Creates a dependency on "ambient state" which can make testing more difficult.
-* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext*?displayProperty=nameWithType> might be `null` if accessed outside of the request flow.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> might be `null` if accessed outside of the request flow.
 * To access information from `HttpContext` outside the request flow, copy the information inside the request flow. Be careful to copy the actual data and not just references. For example, rather than copying a reference to an `IHeaderDictionary`, copy the relevant header values or copy the entire dictionary key by key before leaving the request flow.
 * Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
 

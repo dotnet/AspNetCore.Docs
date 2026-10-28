@@ -1,7 +1,7 @@
 :::moniker range="= aspnetcore-2.2"
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
-* A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user hasn't consented to data collection and the app has <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.CheckConsentNeeded*> set to `true`, non-essential cookies aren't sent to the browser.
+* A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user hasn't consented to data collection and the app has <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.CheckConsentNeeded> set to `true`, non-essential cookies aren't sent to the browser.
 * Cookies can be marked as essential. Essential cookies are sent to the browser even when the user hasn't consented and tracking is disabled.
 * [TempData and Session cookies](#tempdata) aren't functional when tracking is disabled.
 * The [Identity manage](#pd) page provides a link to download and delete user data.

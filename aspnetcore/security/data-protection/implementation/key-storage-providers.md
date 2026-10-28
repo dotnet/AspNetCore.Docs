@@ -290,7 +290,7 @@ For more information, see the following topics:
 
 **Only applies to Windows deployments.**
 
-Sometimes the app might not have write access to the file system. Consider a scenario where an app is running as a virtual service account (such as *w3wp.exe*'s app pool identity). In these cases, the administrator can provision a registry key that's accessible by the service account identity. Call the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToRegistry*> extension method as shown below. Provide a <xref:Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.RegistryKey*> pointing to the location where cryptographic keys should be stored:
+Sometimes the app might not have write access to the file system. Consider a scenario where an app is running as a virtual service account (such as *w3wp.exe*'s app pool identity). In these cases, the administrator can provision a registry key that's accessible by the service account identity. Call the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToRegistry*> extension method as shown below. Provide a <xref:Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.RegistryKey> pointing to the location where cryptographic keys should be stored:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

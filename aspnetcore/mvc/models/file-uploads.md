@@ -452,7 +452,7 @@ var filePath = Request.Form.Files.First().FileName;
 return Results.Ok($"Saved file at {filePath}");
 ```
 
-For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader*?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both Minimal APIs and controllers.
+For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both Minimal APIs and controllers.
 
 The [3.1 example](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Pages/StreamedSingleFileUploadDb.cshtml) demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, another customer filter disables form model binding. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
@@ -1538,7 +1538,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize*?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
 
 ```csharp
 services.Configure<IISServerOptions>(options =>
@@ -2268,7 +2268,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize*?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
 
 ```csharp
 services.Configure<IISServerOptions>(options =>

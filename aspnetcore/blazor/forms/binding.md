@@ -130,10 +130,10 @@ When binding a type with constructor parameters, if a constructor parameter matc
 
 Additional model binding options are available from <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions> when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>:
 
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingCollectionSize*>: Maximum number of elements allowed in a form collection.
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingRecursionDepth*>: Maximum depth allowed when recursively mapping form data.
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingErrorCount*>: Maximum number of errors allowed when mapping form data.
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingKeySize*>: Maximum size of the buffer used to read form data keys.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingCollectionSize>: Maximum number of elements allowed in a form collection.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingRecursionDepth>: Maximum depth allowed when recursively mapping form data.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingErrorCount>: Maximum number of errors allowed when mapping form data.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingKeySize>: Maximum size of the buffer used to read form data keys.
 
 The following demonstrates the default values assigned by the framework:
 
@@ -150,7 +150,7 @@ builder.Services.AddRazorComponents(options =>
 
 ## Form names
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName*> parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
+Use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
 
 ```razor
 <EditForm ... FormName="RomulanAle" ...>
@@ -235,8 +235,8 @@ Blazor form mapping with [`[SupplyParameterFromForm]`](xref:Microsoft.AspNetCore
 
 You can specify the following form binding parameters to the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute):
 
-* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.Name*>: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
-* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.FormName*>: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
+* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.Name>: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
+* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.FormName>: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
 
 The following example independently binds two forms to their models by form name.
 

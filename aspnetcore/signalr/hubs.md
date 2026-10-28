@@ -115,18 +115,18 @@ You can specify a return type and parameters, including complex types and arrays
 
 ## Use 'Context' object properties and methods
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Context*> property that contains the following properties with information about the connection.
+The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Context> property that contains the following properties with information about the connection.
 
 | Property | Description |
 |--|--|
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionId*> | Gets the unique ID for the connection, assigned by SignalR. There's one connection ID for each connection. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.UserIdentifier*> | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> property from the <xref:System.Security.Claims.ClaimsPrincipal> associated with the connection as the user identifier. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User*> | Gets the <xref:System.Security.Claims.ClaimsPrincipal> associated with the current user. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Items*> | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it persists for the connection across different hub method invocations. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Features*> | Gets the collection of features available on the connection. This collection isn't currently needed in most scenarios, so detailed documentation isn't yet available. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionAborted*> | Gets a <xref:System.Threading.CancellationToken> that notifies when the connection is aborted. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionId> | Gets the unique ID for the connection, assigned by SignalR. There's one connection ID for each connection. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.UserIdentifier> | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> property from the <xref:System.Security.Claims.ClaimsPrincipal> associated with the connection as the user identifier. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User> | Gets the <xref:System.Security.Claims.ClaimsPrincipal> associated with the current user. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Items> | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it persists for the connection across different hub method invocations. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Features> | Gets the collection of features available on the connection. This collection isn't currently needed in most scenarios, so detailed documentation isn't yet available. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionAborted> | Gets a <xref:System.Threading.CancellationToken> that notifies when the connection is aborted. |
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub.Context*?displayProperty=nameWithType> property also contains the following methods:
+The <xref:Microsoft.AspNetCore.SignalR.Hub.Context?displayProperty=nameWithType> property also contains the following methods:
 
 | Method | Description |
 |--|--|
@@ -135,15 +135,15 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub.Context*?displayProperty=nameWithType
 
 ## Use 'Clients' object properties and methods
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Clients*> property that contains the following properties for communication between server and client:
+The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Clients> property that contains the following properties for communication between server and client:
 
 | Property | Description |
 |--|--|
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All*> | Calls a method on all connected clients. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.Caller*> | Calls a method on the client that invoked the hub method. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.Others*> | Calls a method on all connected clients except the client that invoked the method. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All> | Calls a method on all connected clients. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.Caller> | Calls a method on the client that invoked the hub method. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.Others> | Calls a method on all connected clients except the client that invoked the method. |
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub.Clients*?displayProperty=nameWithType> property also contains the following methods:
+The <xref:Microsoft.AspNetCore.SignalR.Hub.Clients?displayProperty=nameWithType> property also contains the following methods:
 
 | Method | Description |
 |--|--|

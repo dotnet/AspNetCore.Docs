@@ -162,7 +162,7 @@ The following types are bound without explicit attributes:
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
-* <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType>:
+* <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>:
 
   ```csharp
   app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);

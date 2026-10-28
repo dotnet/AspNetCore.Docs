@@ -35,7 +35,7 @@ By default, Interactive Server components:
 
 * Adopt a [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) Content Security Policy (CSP) directive set to `'self'`, which is the default and only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 
-The default `frame-ancestors` CSP can be changed by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy*> to `null` if you want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy) or `'none'` for an even stricter policy. When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it will make the app vulnerable to attack. For more information, see <xref:blazor/security/content-security-policy#the-frame-ancestors-directive> and the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+The default `frame-ancestors` CSP can be changed by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null` if you want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy) or `'none'` for an even stricter policy. When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it will make the app vulnerable to attack. For more information, see <xref:blazor/security/content-security-policy#the-frame-ancestors-directive> and the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
 Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> to configure the <xref:Microsoft.AspNetCore.Http.WebSocketAcceptContext> for the WebSocket connections used by the server components. By default, a policy that enables compression and sets a CSP for the frame ancestors defined in <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> is applied.
 
@@ -317,7 +317,7 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks).
 >
-> Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient*> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
+> Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
 For information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
 
@@ -1772,7 +1772,7 @@ app.MapBlazorHub();
 
 ## Impersonation for Windows Authentication
 
-Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials*> to indicate the use of default credentials for HTTP requests. For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
+Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> to indicate the use of default credentials for HTTP requests. For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
 
 When the app is running in IIS Express as the signed-in user under Windows Authentication, which is likely the user's personal or work account, the default credentials are those of the signed-in user.
 
@@ -1831,7 +1831,7 @@ If HTTP requests in a server-side Blazor app are failing to connect to itself wh
 The following example:
 
 * Configures the hub URL using <xref:System.UriBuilder> and passes it to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithUrl*>.
-* Sets the URI based on the server's address (<xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>) and machine name (<xref:System.Environment.MachineName*>).
+* Sets the URI based on the server's address (<xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>) and machine name (<xref:System.Environment.MachineName>).
 
 ```razor
 @using System.Net

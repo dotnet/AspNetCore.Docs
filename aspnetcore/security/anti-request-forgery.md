@@ -64,7 +64,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property.
+When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
 
@@ -551,14 +551,14 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 | Option | Description |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*> | Determines the settings used to create the antiforgery cookies. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName*> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName*> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader*> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie> | Determines the settings used to create the antiforgery cookies. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
-Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy*> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*?displayProperty=nameWithType> property setting in the app's `Program` file:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie?displayProperty=nameWithType> property setting in the app's `Program` file:
 
 ```csharp
 if (!builder.Environment.IsDevelopment())
@@ -574,7 +574,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 ## Generate antiforgery tokens with `IAntiforgery`
 
-<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services*?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
+<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 
@@ -668,7 +668,7 @@ Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antif
 The antiforgery middleware:
 
 * Does ***not*** short-circuit the execution of the rest of the request pipeline.
-* Sets the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> in the <xref:Microsoft.AspNetCore.Http.HttpContext.Features*?displayProperty=nameWithType> of the current request.
+* Sets the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> in the <xref:Microsoft.AspNetCore.Http.HttpContext.Features?displayProperty=nameWithType> of the current request.
 
 The antiforgery token is only validated if:
 
@@ -676,7 +676,7 @@ The antiforgery token is only validated if:
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods) of type POST, PUT, or PATCH.
 * The request is associated with a valid endpoint.
 
-Antiforgery middleware doesn't short-circuit the request pipeline. Endpoint code always runs, even if token validation fails. To observe the outcome of the token validation, resolve the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> from <xref:Microsoft.AspNetCore.Http.HttpContext.Features*?displayProperty=nameWithType> and inspect its <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.IsValid*> property or the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.Error*> property for failure details. This approach is useful when endpoints require custom handling for failed antiforgery validation.
+Antiforgery middleware doesn't short-circuit the request pipeline. Endpoint code always runs, even if token validation fails. To observe the outcome of the token validation, resolve the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature> from <xref:Microsoft.AspNetCore.Http.HttpContext.Features?displayProperty=nameWithType> and inspect its <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.IsValid> property or the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryValidationFeature.Error> property for failure details. This approach is useful when endpoints require custom handling for failed antiforgery validation.
 
 ***Note:*** When enabled manually, the antiforgery middleware must run after the authentication and authorization middleware to prevent reading form data when the user is unauthenticated.
 
@@ -837,7 +837,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -945,14 +945,14 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 | Option | Description |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*> | Determines the settings used to create the antiforgery cookies. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName*> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName*> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader*> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie> | Determines the settings used to create the antiforgery cookies. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
-Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy*> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*?displayProperty=nameWithType> property setting in the app's `Program` file:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie?displayProperty=nameWithType> property setting in the app's `Program` file:
 
 ```csharp
 if (!builder.Environment.IsDevelopment())
@@ -968,7 +968,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 ## Generate antiforgery tokens with `IAntiforgery`
 
-<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services*?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
+<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 
@@ -1128,7 +1128,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1232,14 +1232,14 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 | Option | Description |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*> | Determines the settings used to create the antiforgery cookies. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName*> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName*> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader*> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie> | Determines the settings used to create the antiforgery cookies. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
-Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy*> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*?displayProperty=nameWithType> property setting in the app's `Program` file:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie?displayProperty=nameWithType> property setting in the app's `Program` file:
 
 ```csharp
 if (!builder.Environment.IsDevelopment())
@@ -1255,7 +1255,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 ## Generate antiforgery tokens with `IAntiforgery`
 
-<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services*?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
+<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 
@@ -1395,7 +1395,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1520,14 +1520,14 @@ Set the antiforgery cookie properties using the properties of the <xref:Microsof
 
 | Option | Description |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*> | Determines the settings used to create the antiforgery cookies. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName*> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName*> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader*> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie> | Determines the settings used to create the antiforgery cookies. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
-Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy*> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
+Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set (for more information, see [Deprecate modification of 'secure' cookies from non-secure origins](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-alone-01)). Since mixing secure and insecure endpoints is a common scenario in apps, ASP.NET Core relaxes the restriction on the secure policy on some cookies, such as the antiforgery cookie, by setting the cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.SecurePolicy> to [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy). Even if a malicious user steals an antiforgery cookie, they also must steal the antiforgery token that's typically sent via a form field (more common) or a separate request header (less common) plus the authentication cookie. Cookies related to authentication or authorization use a stronger policy than [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 
-Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie*?displayProperty=nameWithType> property setting in the app's `Startup` class:
+Optionally, you can secure the antiforgery cookie in non-`Development` environments using Secure Sockets Layer (SSL), over HTTPS only, with the following <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie?displayProperty=nameWithType> property setting in the app's `Startup` class:
 
 ```csharp
 public class Startup

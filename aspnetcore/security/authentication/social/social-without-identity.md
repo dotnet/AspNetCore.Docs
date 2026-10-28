@@ -39,7 +39,7 @@ The call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationService
 
 Setting the app's `DefaultScheme` to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> ("Cookies") configures the app to use Cookies as the default scheme for these extension methods. Setting the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> to `Google.Apis.Auth.AspNetCore3.GoogleOpenIdConnectDefaults.AuthenticationScheme` ("`GoogleOpenIdConnect`") configures the app to use Google as the default scheme for calls to `ChallengeAsync`. `DefaultChallengeScheme` overrides `DefaultScheme`. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions> for more properties that override `DefaultScheme` when set.
 
-In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property and runs the authorization middleware for requests:
+In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property and runs the authorization middleware for requests:
 
 :::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Program.cs" id="snippet_UseAuthentication" highlight="4-5":::
 
@@ -53,7 +53,7 @@ Test the app's authentication configuration by applying the [[Authorize]](xref:M
 
 ## Save the access token
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
 
 To save access and refresh tokens after a successful authorization, set `SaveTokens` to `true` in `Program.cs`:
 
@@ -107,7 +107,7 @@ The call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationService
 
 Setting the app's `DefaultScheme` to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> ("Cookies") configures the app to use Cookies as the default scheme for these extension methods. Setting the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> to <xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme?displayProperty=nameWithType> ("Google") configures the app to use Google as the default scheme for calls to `ChallengeAsync`. `DefaultChallengeScheme` overrides `DefaultScheme`. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions> for more properties that override `DefaultScheme` when set.
 
-In `Startup.Configure`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> between calling <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property and runs the authorization middleware for requests:
+In `Startup.Configure`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> between calling <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property and runs the authorization middleware for requests:
 
 :::code language="csharp" source="social-without-identity/samples/snapshot/3.x/Startup.cs" id="snippet_UseAuthentication" highlight="3-4":::
 

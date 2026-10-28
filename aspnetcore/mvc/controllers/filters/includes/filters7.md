@@ -351,7 +351,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the 
 
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments> - enables reading the inputs to an action method.
 * <xref:Microsoft.AspNetCore.Mvc.Controller> - enables manipulating the controller instance.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result*> - setting `Result` short-circuits execution of the action method and subsequent action filters.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result> - setting `Result` short-circuits execution of the action method and subsequent action filters.
 
 Throwing an exception in an action method:
 
@@ -360,8 +360,8 @@ Throwing an exception in an action method:
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled*> - True if the action execution was short-circuited by another filter.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception*> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
   * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
 
@@ -414,7 +414,7 @@ Exception filters:
 * Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
-To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled*> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result*> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
+To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
 
 Exception filters:
 
@@ -938,7 +938,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the 
 
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments> - enables reading the inputs to an action method.
 * <xref:Microsoft.AspNetCore.Mvc.Controller> - enables manipulating the controller instance.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result*> - setting `Result` short-circuits execution of the action method and subsequent action filters.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result> - setting `Result` short-circuits execution of the action method and subsequent action filters.
 
 Throwing an exception in an action method:
 
@@ -947,8 +947,8 @@ Throwing an exception in an action method:
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled*> - True if the action execution was short-circuited by another filter.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception*> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
 
   * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
@@ -1004,7 +1004,7 @@ Exception filters:
 * Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
-To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled*> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result*> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
+To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
 
 Exception filters:
 

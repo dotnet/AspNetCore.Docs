@@ -13,7 +13,7 @@ This article describes additional security scenarios for Blazor WebAssembly apps
 
 ## Attach tokens to outgoing requests
 
-<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> is a <xref:System.Net.Http.DelegatingHandler> used to process access tokens. Tokens are acquired using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> service, which is registered by the framework. If a token can't be acquired, an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> has a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException.Redirect*> method that navigates to <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.InteractiveRequestUrl*?displayProperty=nameWithType> using the given <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.InteractionOptions*?displayProperty=nameWithType> to allow refreshing the access token.
+<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> is a <xref:System.Net.Http.DelegatingHandler> used to process access tokens. Tokens are acquired using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> service, which is registered by the framework. If a token can't be acquired, an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> has a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException.Redirect*> method that navigates to <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.InteractiveRequestUrl?displayProperty=nameWithType> using the given <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.InteractionOptions?displayProperty=nameWithType> to allow refreshing the access token.
 
 For convenience, the framework provides the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> preconfigured with the app's base address as an authorized URL. **Access tokens are only added when the request URI is within the app's base URI.** When outgoing request URIs aren't within the app's base URI, use a [custom `AuthorizationMessageHandler` class (*recommended*)](#custom-authorizationmessagehandler-class) or [configure the `AuthorizationMessageHandler`](#configure-authorizationmessagehandler).
 
@@ -299,7 +299,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 ```
 
 > [!NOTE]
-> In this section, the preceding message handler is used when a configured <xref:System.Net.Http.HttpClient> is created from an injected <xref:System.Net.Http.IHttpClientFactory>. If you don't use an <xref:System.Net.Http.IHttpClientFactory>, you must create an <xref:System.Net.Http.HttpClientHandler> instance and assign it to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler*?displayProperty=nameWithType>:
+> In this section, the preceding message handler is used when a configured <xref:System.Net.Http.HttpClient> is created from an injected <xref:System.Net.Http.IHttpClientFactory>. If you don't use an <xref:System.Net.Http.IHttpClientFactory>, you must create an <xref:System.Net.Http.HttpClientHandler> instance and assign it to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler?displayProperty=nameWithType>:
 >
 > ```csharp
 > InnerHandler = new HttpClientHandler();
@@ -388,7 +388,7 @@ builder.Services.AddScoped(sp => new HttpClient(
 In the preceding code:
 
 * The scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
-* <xref:System.Net.Http.IHttpClientFactory> isn't used to create <xref:System.Net.Http.HttpClient> instances, so an <xref:System.Net.Http.HttpClientHandler> instance is manually created and assigned to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler*?displayProperty=nameWithType>.
+* <xref:System.Net.Http.IHttpClientFactory> isn't used to create <xref:System.Net.Http.HttpClient> instances, so an <xref:System.Net.Http.HttpClientHandler> instance is manually created and assigned to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>'s <xref:System.Net.Http.DelegatingHandler.InnerHandler?displayProperty=nameWithType>.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -585,7 +585,7 @@ builder.Services.AddMsalAuthentication(options =>
 The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 
 > [!NOTE]
-> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent>.
+> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent>.
 
 The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken*?displayProperty=nameWithType> method provides an overload that allows an app to provision an access token with a given set of scopes.
 
@@ -928,7 +928,7 @@ The [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.n
 | `authentication/profile`         | Triggers an operation to edit the user profile. |
 | `authentication/register`        | Triggers an operation to register a new user. |
 
-The routes shown in the preceding table are configurable via <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions`1.AuthenticationPaths*?displayProperty=nameWithType>. When setting options to provide custom routes, confirm that the app has a route that handles each path.
+The routes shown in the preceding table are configurable via <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions`1.AuthenticationPaths?displayProperty=nameWithType>. When setting options to provide custom routes, confirm that the app has a route that handles each path.
 
 In the following example, all of the paths are prefixed with `/security`.
 

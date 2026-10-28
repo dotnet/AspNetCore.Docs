@@ -37,8 +37,8 @@ If you're moving projects to ASP.NET Core 5.0 or later, ensure that their cookie
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies*?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.Http.HttpResponse.Cookies*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.HttpResponse.Cookies?displayProperty=nameWithType>
 - `Microsoft.Owin.IOwinRequest.Cookies`
 - `Microsoft.Owin.IOwinResponse.Cookies`
 

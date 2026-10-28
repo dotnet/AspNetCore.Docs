@@ -29,7 +29,7 @@ The following requirements also need to be met:
 * The [EnableHttp3 registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880) is set.
 
 
-For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1` because that is how IIS proxies the requests to Kestrel.
+For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1` because that is how IIS proxies the requests to Kestrel.
 
 ## Alt-Svc
 
@@ -64,7 +64,7 @@ The following requirements also need to be met:
 * An `https` url binding is used.
 * The [EnableHttp3 registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880) is set.
 
-For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1` because that is how IIS proxies the requests to Kestrel.
+For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1` because that is how IIS proxies the requests to Kestrel.
 
 ## Alt-Svc
 

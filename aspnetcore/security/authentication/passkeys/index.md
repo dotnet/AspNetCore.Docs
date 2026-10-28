@@ -84,13 +84,13 @@ When implementing passkeys in ASP.NET Core Identity, ensure the app meets the se
 
 ### Host header validation
 
-The implementation infers the Relying Party ID from the host header when <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> isn't explicitly configured. The hosting environment must validate host headers to prevent credential-scoping attacks, which involve using compromised or stolen user credentials (usernames, passwords, tokens) to gain unauthorized access.
+The implementation infers the Relying Party ID from the host header when <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> isn't explicitly configured. The hosting environment must validate host headers to prevent credential-scoping attacks, which involve using compromised or stolen user credentials (usernames, passwords, tokens) to gain unauthorized access.
 
-**Mitigation**: Either explicitly configure <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> in <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> or ensure that the hosting environment (Kestrel, IIS, reverse proxy) validates host headers. For configuration details, see your hosting platform's documentation. In addition to that, if you use forwarded headers middleware, explicitly configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts>.
+**Mitigation**: Either explicitly configure <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> in <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> or ensure that the hosting environment (Kestrel, IIS, reverse proxy) validates host headers. For configuration details, see your hosting platform's documentation. In addition to that, if you use forwarded headers middleware, explicitly configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts>.
 
 ### Subdomain security
 
-ASP.NET Core's passkeys implementation handles subdomain security through the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> configuration option. When <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> isn't explicitly specified, the implementation uses the host header to determine the domain. This means that ***the page on which the passkey was registered controls the domain*** for that credential.
+ASP.NET Core's passkeys implementation handles subdomain security through the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> configuration option. When <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> isn't explicitly specified, the implementation uses the host header to determine the domain. This means that ***the page on which the passkey was registered controls the domain*** for that credential.
 
 For example:
 
@@ -98,7 +98,7 @@ For example:
 * If registered on `contoso.com`, it also works on `*.contoso.com`.
 * The browser enforces that passkeys can only be used on the domain (and subdomains) where they were registered.
 
-**Requirement**: Apps requiring strict domain control should explicitly set <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> rather than relying on the host header. Don't serve untrusted content on any subdomain within the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> scope. If you can't guarantee this, implement [custom origin validation](https://www.w3.org/TR/webauthn-3/#sctn-validating-origin) to restrict passkey usage to specific origins.
+**Requirement**: Apps requiring strict domain control should explicitly set <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> rather than relying on the host header. Don't serve untrusted content on any subdomain within the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> scope. If you can't guarantee this, implement [custom origin validation](https://www.w3.org/TR/webauthn-3/#sctn-validating-origin) to restrict passkey usage to specific origins.
 
 ### HTTPS requirement
 
@@ -117,7 +117,7 @@ For applications implementing passkey-only authentication, consider:
 * Recovery codes generated during account creation.
 * Email-based recovery flows.
 * Mandatory registration of multiple passkeys.
-* Monitoring the <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.IsBackedUp*> flag on <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo> to prompt users to add additional credentials.
+* Monitoring the <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.IsBackedUp> flag on <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo> to prompt users to add additional credentials.
 
 ### Administrative controls
 
@@ -150,9 +150,9 @@ The Blazor Web App template enforces these limits by default at the application 
 
 ASP.NET Core Identity provides various options to configure passkey behavior through the <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> class, which include:
 
-* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.AuthenticatorTimeout*>: Gets or sets the time that the browser should wait for the authenticator to provide a passkey as a <xref:System.TimeSpan>. This option applies to both creating a new passkey and requesting an existing passkey. This option is treated as a hint to the browser, and the browser may ignore the option. The default value is 5 minutes.
-* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ChallengeSize*>: Gets or sets the size of the challenge in bytes sent to the client during attestation and assertion. This option applies to both creating a new passkey and requesting an existing passkey. The default value is 32 bytes.
-* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*>: Gets or sets the effective Relying Party ID (domain) of the server. This should be unique and will be used as the identity for the server. This option applies to both creating a new passkey and requesting an existing passkey. If `null`, which is the default value, the server's origin is used. For more information, see [Relying Party Identifier RP ID](https://www.w3.org/TR/webauthn-3/#rp-id).
+* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.AuthenticatorTimeout>: Gets or sets the time that the browser should wait for the authenticator to provide a passkey as a <xref:System.TimeSpan>. This option applies to both creating a new passkey and requesting an existing passkey. This option is treated as a hint to the browser, and the browser may ignore the option. The default value is 5 minutes.
+* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ChallengeSize>: Gets or sets the size of the challenge in bytes sent to the client during attestation and assertion. This option applies to both creating a new passkey and requesting an existing passkey. The default value is 32 bytes.
+* <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain>: Gets or sets the effective Relying Party ID (domain) of the server. This should be unique and will be used as the identity for the server. This option applies to both creating a new passkey and requesting an existing passkey. If `null`, which is the default value, the server's origin is used. For more information, see [Relying Party Identifier RP ID](https://www.w3.org/TR/webauthn-3/#rp-id).
 
 Example configuration:
 
@@ -239,12 +239,12 @@ Registering a passkey spans two requests. The first request obtains creation opt
 
 <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler`1.MakeCreationOptionsAsync*> returns a <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult> with two parts:
 
-* <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult.CreationOptionsJson*>: Sent to the browser and passed to `navigator.credentials.create()`.
-* <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult.AttestationState*>: Retained by the app and supplied to <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationContext.AttestationState*> when the credential is submitted.
+* <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult.CreationOptionsJson>: Sent to the browser and passed to `navigator.credentials.create()`.
+* <xref:Microsoft.AspNetCore.Identity.PasskeyCreationOptionsResult.AttestationState>: Retained by the app and supplied to <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationContext.AttestationState> when the credential is submitted.
 
 The state that the default handler produces holds the challenge and the <xref:Microsoft.AspNetCore.Identity.PasskeyUserEntity> that identifies the account the passkey is registered to. The state is serialized as JSON without a signature or encryption, so it provides no integrity protection of its own.
 
-The state is the only place that records the account. An attestation response from the browser contains a new public key and the signed challenge but nothing that identifies a user, so <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler`1.PerformAttestationAsync*> reports the user taken from the state in <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity*>. If the state is modified before the credential is submitted, the passkey is registered to whichever account the modified state names.
+The state is the only place that records the account. An attestation response from the browser contains a new public key and the signed challenge but nothing that identifies a user, so <xref:Microsoft.AspNetCore.Identity.IPasskeyHandler`1.PerformAttestationAsync*> reports the user taken from the state in <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity>. If the state is modified before the credential is submitted, the passkey is registered to whichever account the modified state names.
 
 ### Validate integrity and ownership
 
@@ -252,7 +252,7 @@ An app that manages the attestation state itself must meet the following three r
 
 **Integrity**: The client must not be able to modify the state. Don't place the state in a hidden form field, a request body, or unprotected browser storage. An attacker who alters the user ID in the state completes registration normally, and their authenticator is stored on the account that the altered state names, which grants them sign-in access to that account. Keep the state on the server or protect it with the [ASP.NET Core Data Protection APIs](xref:security/data-protection/introduction) before sending it to the browser.
 
-**Ownership**: The state must be bound to the session that requested the creation options, and the binding must be checked when the credential is submitted. Compare <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity*> to the signed-in user before storing the passkey. The handler doesn't perform this check because it has no independent record of the user to compare against.
+**Ownership**: The state must be bound to the session that requested the creation options, and the binding must be checked when the credential is submitted. Compare <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity> to the signed-in user before storing the passkey. The handler doesn't perform this check because it has no independent record of the user to compare against.
 
 **Single use and expiration**: Discard the state after reading it and give it a short lifetime. A state that remains valid can be replayed.
 
@@ -537,7 +537,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement*> option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ResidentKeyRequirement*> indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>.
+The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement> option determines whether the authenticator must verify the user's identity (through biometric or PIN methods), while <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ResidentKeyRequirement> indicates whether the credential should be discoverable, allowing authentication without first providing a username. For more information, see <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions>.
 
 ### Step 4: Client requests credential
 
@@ -653,7 +653,7 @@ The stored <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo> contains all of 
 
 ### Step 8: Post-registration tasks
 
-After successfully registering a passkey, apps often perform additional tasks to improve the user experience. A common pattern is to prompt users to provide a friendly name for their passkey, making it easier to identify among multiple credentials. The <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.Name*?displayProperty=nameWithType> property stores this user-friendly name, which can be updated using the same <xref:Microsoft.AspNetCore.Identity.UserManager`1.AddOrUpdatePasskeyAsync*> method:
+After successfully registering a passkey, apps often perform additional tasks to improve the user experience. A common pattern is to prompt users to provide a friendly name for their passkey, making it easier to identify among multiple credentials. The <xref:Microsoft.AspNetCore.Identity.UserPasskeyInfo.Name?displayProperty=nameWithType> property stores this user-friendly name, which can be updated using the same <xref:Microsoft.AspNetCore.Identity.UserManager`1.AddOrUpdatePasskeyAsync*> method:
 
 ```csharp
 passkey.Name = "My iPhone";
@@ -750,7 +750,7 @@ app.MapPost("/Account/PasskeyRequestOptions", async (
 
 ### Step 3: Server generates options
 
-The server generates authentication options using the same <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> configuration used during registration. The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain*> must match the domain where the passkey was originally registered, or authentication fails. The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement*> determines whether the authenticator must verify the user's identity during authentication.
+The server generates authentication options using the same <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions> configuration used during registration. The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.ServerDomain> must match the domain where the passkey was originally registered, or authentication fails. The <xref:Microsoft.AspNetCore.Identity.IdentityPasskeyOptions.UserVerificationRequirement> determines whether the authenticator must verify the user's identity during authentication.
 
 ### Step 4: Client requests assertion
 

@@ -64,7 +64,7 @@ In the following sections of this article:
 
 The `NavMenu` component (`Components/Layout/NavMenu.razor`) implements sidebar navigation using <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components, which render navigation links to other Razor components.
 
-A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match*> parameter configures the component to display an active CSS class when it matches the entire current URL.
+A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
 The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
 
@@ -315,7 +315,7 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 ## `MainLayout` component for layout
 
-The `MainLayout` component is the app's default layout. The `MainLayout` component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which is a base class for components that represent a layout. The app's components that use the layout are rendered where the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body*> (`@Body`) appears in the markup.
+The `MainLayout` component is the app's default layout. The `MainLayout` component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which is a base class for components that represent a layout. The app's components that use the layout are rendered where the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> (`@Body`) appears in the markup.
 
 `Components/Layout/MainLayout.razor`:
 
@@ -344,7 +344,7 @@ The `MainLayout` component adopts the following additional specifications:
 * The `NavMenu` component is rendered in the sidebar. Notice that you only need to place an HTML tag with the component name to render a component at that location in Razor markup. This allows you to nest components within each other and within any HTML layout that you implement.
 * The `<main>` element's content includes:
   * An **:::no-loc text="About":::** link that sends the user to the ASP.NET Core documentation landing page.
-  * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body*> (`@Body`) parameter, where components that use the layout are rendered.
+  * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> (`@Body`) parameter, where components that use the layout are rendered.
   * The error UI (`<div id="blazor-error-ui" ...>`), where a notice about an unhandled error is displayed.
 
 The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Routes.razor`):
@@ -646,7 +646,7 @@ Add a space to the content of the label element (`<label>`) for the movie's rele
 + <label for="releasedate" class="form-label">Release Date:</label>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model*> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit*> specifies a method to invoke (`AddMovie`) when the form is submitted and the data is valid. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName*> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> specifies a method to invoke (`AddMovie`) when the form is submitted and the data is valid. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
 
 For validation:
 

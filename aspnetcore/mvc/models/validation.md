@@ -99,7 +99,7 @@ public class Person
 }
 ```
 
-If the app was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post results in a validation error. This may seem contradictory since the `[Required(AllowEmptyStrings = true)]` attribute is implied, but this is expected behavior because [empty strings are converted to null by default](xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute.ConvertEmptyStringToNull*). Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
+If the app was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post results in a validation error. This may seem contradictory since the `[Required(AllowEmptyStrings = true)]` attribute is implied, but this is expected behavior because [empty strings are converted to null by default](xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute.ConvertEmptyStringToNull). Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
 
 ```csharp
 public class Person
@@ -164,7 +164,7 @@ Remote validation:
 
 ### Additional fields
 
-The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields*> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
+The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Models/User.cs" id="snippet_Name" highlight="1,5":::
 
@@ -275,7 +275,7 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 
 ## Maximum recursion
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth*?displayProperty=nameWithType> provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 32.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth?displayProperty=nameWithType> provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 32.
 
 ## Automatic short-circuit
 

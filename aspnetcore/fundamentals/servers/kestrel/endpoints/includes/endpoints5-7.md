@@ -211,7 +211,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
-`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost*?displayProperty=nameWithType>.
+`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost?displayProperty=nameWithType>.
 
 * The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
 * Multiple configurations may be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
@@ -229,7 +229,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 
 SNI can be configured in two ways:
 
-* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector*> callback.
+* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback.
 * Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
 
 ### SNI with `ServerCertificateSelector`
@@ -469,7 +469,7 @@ On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TL
 
 Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
 
-The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm*?displayProperty=nameWithType> to a list of acceptable cipher suites.
+The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm?displayProperty=nameWithType> to a list of acceptable cipher suites.
 
 No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
 
@@ -766,7 +766,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
-`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost*?displayProperty=nameWithType>.
+`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost?displayProperty=nameWithType>.
 
 * The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
 * Multiple configurations may be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
@@ -784,7 +784,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 
 SNI can be configured in two ways:
 
-* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector*> callback.
+* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback.
 * Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
 
 ### SNI with `ServerCertificateSelector`
@@ -1017,7 +1017,7 @@ On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TL
 
 Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
 
-The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm*?displayProperty=nameWithType> to a list of acceptable cipher suites.
+The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm?displayProperty=nameWithType> to a list of acceptable cipher suites.
 
 No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
 
@@ -1373,7 +1373,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 SNI can be configured in two ways:
 
-* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector*> callback.
+* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback.
 * Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
 
 ### SNI with `ServerCertificateSelector`

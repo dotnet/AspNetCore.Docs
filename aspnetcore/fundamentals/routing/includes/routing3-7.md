@@ -74,7 +74,7 @@ The string `/hello/{name:alpha}` is a **route template**. A route template is us
 The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
-* Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*?displayProperty=nameWithType>.
+* Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>.
 
 The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
@@ -114,8 +114,8 @@ The routing system builds on top of the middleware pipeline by adding the powerf
 An ASP.NET Core endpoint is:
 
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
-* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection.
-* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
+* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata) collection.
+* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern).
 * Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
@@ -269,7 +269,7 @@ The routing system in endpoint routing is responsible for all dispatching decisi
 * Any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
 > [!WARNING]
-> For backward-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of <xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData*?displayProperty=nameWithType> are set to appropriate values based on the request processing performed thus far.
+> For backward-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of <xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData?displayProperty=nameWithType> are set to appropriate values based on the request processing performed thus far.
 >
 > The `RouteContext` type will be marked obsolete in a future release:
 >
@@ -285,7 +285,7 @@ URL matching operates in a configurable set of phases. In each phase, the output
 
 The list of endpoints is prioritized according to:
 
-* The <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*?displayProperty=nameWithType>
+* The <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order?displayProperty=nameWithType>
 * The [route template precedence](#rtp)
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. It chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
@@ -821,7 +821,7 @@ In the preceding code, the `culture` route parameter is used for localization. T
 
 The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName*> method takes an endpoint name and a URL path, and returns a set of route values extracted from the URL path.
 
-In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name*> of `GetProduct`: 
+In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name> of `GetProduct`:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_ClassGet" highlight="2,5":::
 
@@ -1103,7 +1103,7 @@ The string `/hello/{name:alpha}` is a **route template**. A route template is us
 The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
-* Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*?displayProperty=nameWithType>.
+* Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>.
 
 The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
@@ -1143,8 +1143,8 @@ The routing system builds on top of the middleware pipeline by adding the powerf
 An ASP.NET Core endpoint is:
 
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
-* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection.
-* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
+* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata) collection.
+* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern).
 * Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
@@ -1298,7 +1298,7 @@ The routing system in endpoint routing is responsible for all dispatching decisi
 * Any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
 > [!WARNING]
-> For backward-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of <xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData*?displayProperty=nameWithType> are set to appropriate values based on the request processing performed thus far.
+> For backward-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of <xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData?displayProperty=nameWithType> are set to appropriate values based on the request processing performed thus far.
 >
 > The `RouteContext` type will be marked obsolete in a future release:
 >
@@ -1314,7 +1314,7 @@ URL matching operates in a configurable set of phases. In each phase, the output
 
 The list of endpoints is prioritized according to:
 
-* The <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*?displayProperty=nameWithType>
+* The <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order?displayProperty=nameWithType>
 * The [route template precedence](#rtp)
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. It chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
@@ -1844,7 +1844,7 @@ In the preceding code, the `culture` route parameter is used for localization. T
 
 The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName*> method takes an endpoint name and a URL path, and returns a set of route values extracted from the URL path.
 
-In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name*> of `GetProduct`: 
+In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name> of `GetProduct`:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_ClassGet" highlight="2,5":::
 
@@ -2119,7 +2119,7 @@ The string `/hello/{name:alpha}` is a **route template**. It is used to configur
 The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
-* Is captured and stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*).
+* Is captured and stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues).
 
 The endpoint routing system described in this document is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
 
@@ -2159,8 +2159,8 @@ The routing system builds on top of the middleware pipeline by adding the powerf
 An ASP.NET Core endpoint is:
 
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
-* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection.
-* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
+* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata) collection.
+* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern).
 * Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
@@ -2327,7 +2327,7 @@ URL matching operates in a configurable set of phases. In each phase, the output
 
 The list of endpoints is prioritized according to:
 
-* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*)
+* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order)
 * The [route template precedence](#rtp)
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. It chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.

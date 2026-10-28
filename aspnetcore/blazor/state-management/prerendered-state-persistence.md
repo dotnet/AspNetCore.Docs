@@ -252,7 +252,7 @@ Inject the `CounterTracker` service into a component and use it to increment a c
 }
 ```
 
-To use preceding component to demonstrate persisting the count of 10 in `CounterTracker.CurrentCount`, navigate to the component and refresh the browser, which triggers prerendering. When prerendering occurs, you briefly see <xref:Microsoft.AspNetCore.Components.RendererInfo.Name*?displayProperty=nameWithType> indicate "`Static`" before displaying "`Server`" after final rendering. The counter starts at 10.
+To use preceding component to demonstrate persisting the count of 10 in `CounterTracker.CurrentCount`, navigate to the component and refresh the browser, which triggers prerendering. When prerendering occurs, you briefly see <xref:Microsoft.AspNetCore.Components.RendererInfo.Name?displayProperty=nameWithType> indicate "`Static`" before displaying "`Server`" after final rendering. The counter starts at 10.
 
 ## Use the `PersistentComponentState` service directly instead of the declarative model
 
@@ -469,7 +469,7 @@ Blazor supports handling persistent component state during [enhanced navigation]
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 
-If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates*> to `true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often, such as weather forecast data in the following example:
+If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates> to `true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often, such as weather forecast data in the following example:
 
 ```csharp
 [PersistentState(AllowUpdates = true)]
@@ -486,14 +486,14 @@ protected override async Task OnInitializedAsync()
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates*?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates*?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
 
 :::moniker-end
 

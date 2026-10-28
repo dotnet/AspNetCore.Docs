@@ -168,11 +168,11 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (formerl
 
 When performing a graceful shutdown, the host:
 
-* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping*> event handlers, which allows the app to run logic before the shutdown process begins.
+* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping> event handlers, which allows the app to run logic before the shutdown process begins.
 
 * Stops the server, which disables new connections. The server waits for requests on existing connections to complete, for as long as the [shutdown timeout](#shutdown-timeout) allows. The server sends the connection close header for further requests on existing connections.
 
-* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped*> event handlers, which allows the app to run logic after the application has shutdown.
+* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped> event handlers, which allows the app to run logic after the application has shutdown.
 
 The following example is an `IHostedService` implementation that registers `IHostApplicationLifetime` event handlers:
 
@@ -213,7 +213,7 @@ Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnv
 
 Host configuration is used for the properties of the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> implementation.
 
-Host configuration is available from the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*> property inside the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> method. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
+Host configuration is available from the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration> property inside the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> method. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
 
 To add host configuration, call the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> method on the `IHostBuilder` instance. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
@@ -236,7 +236,7 @@ The following example creates host configuration:
 
 App configuration is created by calling the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> method on the `IHostBuilder` instance. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last on a given key. 
 
-The configuration created by `ConfigureAppConfiguration` is available in the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*> property for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
+The configuration created by `ConfigureAppConfiguration` is available in the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration> property for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
 For more information, see <xref:fundamentals/configuration/index>.
 
@@ -260,7 +260,7 @@ Defines the name of the assembly that contains the entry point for the applicati
 **Set using**: Environment variable  
 **Environment variable**: `{PREFIX_}APPLICATIONNAME`
 
-The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*> property is set from the host configuration during host construction.
+The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName> property is set from the host configuration during host construction.
 
 ### Content root
 
@@ -272,7 +272,7 @@ Determines where the host begins the search for content files.
 **Set using**: Environment variable or `UseContentRoot` on `IHostBuilder`  
 **Environment variable**: `{PREFIX_}CONTENTROOT`
 
-The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*> property identifies where the host begins searching. If the path doesn't exist, the host fails to start.
+The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> property identifies where the host begins searching. If the path doesn't exist, the host fails to start.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -304,7 +304,7 @@ Provides a name for the environment.
 **Set using**: Environment variable or call `UseEnvironment` on `IHostBuilder`  
 **Environment variable**: `{PREFIX_}ENVIRONMENT`
 
-The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*> property can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case-sensitive.
+The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> property can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case-sensitive.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -331,11 +331,11 @@ Specifies the amount of time to wait for the host to shut down.
 **Set using**: Environment variable or `HostOptions`  
 **Environment variable**: `{PREFIX_}SHUTDOWNTIMEOUTSECONDS`
 
-The <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> property sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is 30 seconds.
+The <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> property sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is 30 seconds.
 
 During the timeout period, the host:
 
-* Triggers <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping*>.
+* Triggers <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping>.
 * Attempts to stop hosted services, logging errors for services that fail to stop.
 
 If the timeout period expires before all hosted services stop, any remaining active services stop when the app shuts down. The services stop even if they're still processing. If services require more time to stop, increase the timeout.
@@ -675,7 +675,7 @@ Sets the relative path to the app's static assets.
 **Set using**: Environment variable or `UseWebRoot` on `IWebHostBuilder`  
 **Environment variable**: `{PREFIX_}WEBROOT`
 
-The <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath> property determines the relative path to the app's static assets.  
+The <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath> property determines the relative path to the app's static assets.
 
 The path to `{content root}/wwwroot` must exist. If the path doesn't exist, a no-op file provider is used.
 

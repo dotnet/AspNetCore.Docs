@@ -29,7 +29,7 @@ A disposable component can check for disposal after awaiting any <xref:System.Th
 
 Generally, don't call the following methods in components. The following methods block the execution thread and thus block the app from resuming work until the underlying <xref:System.Threading.Tasks.Task> is complete:
 
-* <xref:System.Threading.Tasks.Task`1.Result*>
+* <xref:System.Threading.Tasks.Task`1.Result>
 * <xref:System.Threading.Tasks.Task.Wait*>
 * <xref:System.Threading.Tasks.Task.WaitAny*>
 * <xref:System.Threading.Tasks.Task.WaitAll*>

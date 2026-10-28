@@ -145,7 +145,7 @@ For more information, see the following resources:
   
   Apps using the `Virtualize` component receive the benefits of these updates automatically. No developer API changes are required.
 
-  These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount*?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+  These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
   For more information, see the following resources:
   
@@ -377,7 +377,7 @@ The switch only controls the rendered HTML element (`<a>` versus `<button>`). Ev
 
 #### Row click event (`OnRowClick`)
 
-The `QuickGrid` component now supports row click events through the new <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick*> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+The `QuickGrid` component now supports row click events through the new <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
@@ -848,12 +848,12 @@ For more information, see <xref:security/authorization/iard?view=aspnetcore-11.0
 
 ### QuickGrid APIs from Virtualize are exposed
 
-The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*> set to `true`):
+The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize> set to `true`):
 
 * `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
 * `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
 * `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
 
 For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
 

@@ -224,7 +224,7 @@ Existing extension methods on <xref:Microsoft.Extensions.Hosting.IHostBuilder> c
 
 ### Customize the `IWebHostBuilder`
 
-Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be accessed using the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost*?displayProperty=nameWithType> property.
+Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be accessed using the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost?displayProperty=nameWithType> property.
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_iwhb)]
 

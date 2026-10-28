@@ -245,7 +245,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### `RequestPathLoggingMode`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathLoggingMode*> determines how the request path is logged, whether `Formatted` or `Structured`, set by <xref:Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode>:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathLoggingMode> determines how the request path is logged, whether `Formatted` or `Structured`, set by <xref:Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode>:
 
 * `Formatted`: Logs the request path without parameters.
 * `Structured`: Logs the request path with parameters included.
@@ -254,7 +254,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### `RequestPathParameterRedactionMode`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode*>
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode>
 specifies how route parameters in the request path should be redacted, whether `Strict`, `Loose`, or `None`, set by <xref:Microsoft.Extensions.Http.Diagnostics.HttpRouteParameterRedactionMode>:
 
 * `Strict`: Request route parameters are considered sensitive, require explicit annotation with a data classification, and are redacted by default.
@@ -265,31 +265,31 @@ specifies how route parameters in the request path should be redacted, whether `
 
 ### `RequestHeadersDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses*> maps request headers to their data classification, which determines how they are redacted:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses> maps request headers to their data classification, which determines how they are redacted:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=10)]
 
 ### `ResponseHeadersDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses*>, similar to <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses*>`, but for response headers:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses>, similar to <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses>`, but for response headers:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=11)]
 
 ### `RouteParameterDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses*> maps route parameters to their data classification:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses> maps route parameters to their data classification:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=12,13,14,15)]
 
 ### `ExcludePathStartsWith`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith*> specifies paths that should be excluded from logging entirely:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith> specifies paths that should be excluded from logging entirely:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=16,17)]
 
 ### `IncludeUnmatchedRoutes`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes*> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
 

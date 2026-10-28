@@ -502,7 +502,7 @@ Similar to a regular component parameter, components accepting a cascading param
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.CascadingValue`1.IsFixed*?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization. 
+<xref:Microsoft.AspNetCore.Components.CascadingValue`1.IsFixed?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization.
 
 :::moniker-end
 
@@ -536,7 +536,7 @@ Recommendations:
 
 ## Cascade multiple values
 
-To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue`1.Name*> string to each [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) component and their corresponding [`[CascadingParameter]` attributes](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute).
+To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue`1.Name> string to each [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) component and their corresponding [`[CascadingParameter]` attributes](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute).
 
 In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) components cascade different instances of `CascadingType`:
 
@@ -555,7 +555,7 @@ In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Compo
 }
 ```
 
-In a descendant component, the cascaded parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue`1.Name*>:
+In a descendant component, the cascaded parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue`1.Name>:
 
 ```razor
 @code {

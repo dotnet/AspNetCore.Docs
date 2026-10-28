@@ -20,7 +20,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 * Takes advantage of JSON schema support provided by <xref:System.Text.Json?displayProperty=fullName>.
 * Compatible with native AoT.
 
-Starting in .NET 11, the default OpenAPI version for generated documents is 3.2. In .NET 10, the default is 3.1. To change the version, explicitly set the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion*> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>:
+Starting in .NET 11, the default OpenAPI version for generated documents is 3.2. In .NET 10, the default is 3.1. To change the version, explicitly set the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -142,7 +142,7 @@ In an OpenAPI 3.0 or 3.1 document, neither field exists, so both `QUERY` and oth
 }
 ```
 
-To generate a 3.0 or 3.1 document, set <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion*>. For more information, see [Customize the OpenAPI version of a generated document](#customize-the-openapi-version-of-a-generated-document).
+To generate a 3.0 or 3.1 document, set <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion>. For more information, see [Customize the OpenAPI version of a generated document](#customize-the-openapi-version-of-a-generated-document).
 
 > [!NOTE]
 > An endpoint is described only when its HTTP method is a syntactically valid HTTP method token. An endpoint registered with a missing or malformed method string is skipped, and the rest of the document is generated normally.

@@ -138,7 +138,7 @@ The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configur
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
-`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost*>.
+`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost>.
 
 * The configuration section for each endpoint is available on the options in the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint*> method so custom settings can be read.
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)?displayProperty=nameWithType> can be called multiple times, but only the last configuration is used unless `Load` is explicitly called on prior instances. The default host doesn't call `Load` so its default configuration section might be replaced.
@@ -412,7 +412,7 @@ All websites must run on the same Kestrel instance. Kestrel doesn't support shar
 SNI can be configured in two ways:
 
 * Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, specify JSON in the _appsettings.json_ file.
-* Create an endpoint in code and select a certificate by using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector*> callback property.
+* Create an endpoint in code and select a certificate by using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback property.
 
 ### Configure SNI in appsettings.json
 

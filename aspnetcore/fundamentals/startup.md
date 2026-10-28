@@ -101,7 +101,7 @@ When shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is dete
 
 1. The host shuts down registered hosted services. Unless the app opts into stopping hosted services concurrently (.NET 8 or later), hosted services stop sequentially in the reverse order of their DI container registrations. For more information, see <xref:fundamentals/host/hosted-services>.
 
-1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped*> event handlers are triggered, which allows the app to run logic after the app has shut down.
+1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped> event handlers are triggered, which allows the app to run logic after the app has shut down.
 
 1. Console execution gracefully exits with an exit code of 0.
 
@@ -115,7 +115,7 @@ The `Startup` class configures services and the app's request pipeline.
 
 ASP.NET Core apps use a startup class, which is named `Startup` by convention. The `Startup` class:
 
-* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are *registered* in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are *registered* in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices>.
 * Includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method to create the app's request processing pipeline.
 
 `ConfigureServices` and `Configure` are called by the ASP.NET Core runtime when the app starts:
@@ -239,7 +239,7 @@ public class Startup
 }
 ```
 
-Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices>.
 
 ## The `Configure` method
 

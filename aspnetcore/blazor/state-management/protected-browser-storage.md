@@ -153,7 +153,7 @@ One approach is to track whether the data is `null`, which means that the data i
 private int? currentCount;
 ```
 
-Instead of unconditionally displaying the count and **`Increment`** button, display these elements only if the data is loaded by checking <xref:System.Nullable`1.HasValue*>:
+Instead of unconditionally displaying the count and **`Increment`** button, display these elements only if the data is loaded by checking <xref:System.Nullable`1.HasValue>:
 
 ```razor
 @if (currentCount.HasValue)

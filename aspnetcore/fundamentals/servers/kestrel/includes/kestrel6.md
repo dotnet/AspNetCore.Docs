@@ -201,7 +201,7 @@ Kestrel is supported on all platforms and versions that .NET supports.
 &dagger;HTTP/2 will be supported on macOS in a future release.
 &Dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1. Support is limited because the list of supported TLS cipher suites available on these operating systems is limited. A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.
 
-If an HTTP/2 connection is established, <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*?displayProperty=nameWithType> reports `HTTP/2`.
+If an HTTP/2 connection is established, <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol?displayProperty=nameWithType> reports `HTTP/2`.
 
 Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
 

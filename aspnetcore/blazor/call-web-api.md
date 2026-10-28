@@ -271,7 +271,7 @@ builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress*?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 The most common use cases for using the client's own base address are:
 
@@ -313,7 +313,7 @@ If the named client is to be used by prerendered client-side components of a Bla
 
 :::moniker-end
 
-The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress*?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -413,7 +413,7 @@ If the typed client is to be used by prerendered client-side components of a Bla
 
 :::moniker-end
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress*?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -925,11 +925,11 @@ In the app's `Program` file, call:
 * <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches*>: Adds the .NET distributed token caches to the service collection.
 * <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
 * Configure the distributed token cache options (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>):
-  * In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache*> to `true`. ***Be sure to reset it back to `false` for production.***
-  * Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit*) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
-  * In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt*> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
-  * Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration*>. The default value is 1 hour.
-  * For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure*>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write*>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
+  * In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache> to `true`. ***Be sure to reset it back to `false` for production.***
+  * Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
+  * In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
+  * Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration>. The default value is 1 hour.
+  * For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
 
 You can choose to encrypt the cache and should always do so in production.
 
@@ -988,10 +988,10 @@ For more information, see [Token cache serialization: Distributed caches](/entra
                       covered in the *BWA + Entra* security article. Mirror 
                       changes when updating this portion of content. -->
 
-Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt*?displayProperty=nameWithType> is set to `true`.
+Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt?displayProperty=nameWithType> is set to `true`.
 
 > [!NOTE]
-> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt*> to `false` and configure a shared Data Protection key ring later:
+> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt> to `false` and configure a shared Data Protection key ring later:
 >
 > ```csharp
 > options.Encrypt = false;
@@ -1168,7 +1168,7 @@ Blazor's client-side implementation of <xref:System.Net.Http.HttpClient> uses [F
 
 Response streaming is enabled by default.
 
-Calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync*?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content*?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a [`BrowserHttpReadStream` (reference source)](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs), not a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
+Calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync*?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a [`BrowserHttpReadStream` (reference source)](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs), not a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

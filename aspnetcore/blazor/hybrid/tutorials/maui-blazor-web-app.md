@@ -385,7 +385,7 @@ Project references:
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 * `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
 
-Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies*> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
+Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
 :::moniker-end
 
@@ -587,7 +587,7 @@ Project references:
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 * `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
 
-Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies*> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
+Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
 ```razor
 <Router AppAssembly="@typeof(Routes).Assembly" 

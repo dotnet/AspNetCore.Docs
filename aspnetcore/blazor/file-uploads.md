@@ -564,7 +564,7 @@ builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress*?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. If you're calling an external web API, set the URI to the web API's base address.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. If you're calling an external web API, set the URI to the web API's base address.
 
 A standalone Blazor WebAssembly app that uploads files to a separate server web API either uses a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) or sets the default <xref:System.Net.Http.HttpClient> service registration to point to the web API's endpoint. In the following example where the web API is hosted locally at port 5001, the base address is `https://localhost:5001`:
 
@@ -1267,7 +1267,7 @@ For more information on SignalR configuration and how to set <xref:Microsoft.Asp
 
 ## Maximum parallel invocations per client hub setting
 
-Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient*> set to 1, which is the default value.
+Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> set to 1, which is the default value.
 
 Increasing the value leads to a high probability that `CopyTo` operations throw `System.InvalidOperationException: 'Reading is not allowed after reader was completed.'`. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
@@ -1279,7 +1279,7 @@ The line that calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Ope
 
 Possible causes:
 
-* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container in .NET 8 or earlier. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters*> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
+* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container in .NET 8 or earlier. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 

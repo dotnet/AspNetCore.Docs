@@ -736,8 +736,8 @@ app.UseHttpsRedirection();
 
 | Option | Default | Description |
 | --- | --- | --- |
-| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort*> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
-| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
 
 > [!NOTE]
 > **Edge servers:** Enable HTTPS Redirection. **Behind a proxy**: Often unnecessary if the proxy handles TLS termination and all internal traffic is over a private network.

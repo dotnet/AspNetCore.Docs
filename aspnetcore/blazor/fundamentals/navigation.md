@@ -48,7 +48,7 @@ In the preceding example, the Home <xref:Microsoft.AspNetCore.Components.Routing
 
 :::moniker range=">= aspnetcore-10.0"
 
-There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match*> attribute of the `<NavLink>` element:
+There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match> attribute of the `<NavLink>` element:
 
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the current URL, ignoring the query string and fragment. To include matching on the query string/fragment, use the `Microsoft.AspNetCore.Components.Routing.NavLink.EnableMatchAllForQueryStringAndFragment` [`AppContext` switch](/dotnet/fundamentals/runtime-libraries/system-appcontext) set to `true`.
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*): The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
@@ -69,7 +69,7 @@ public class CustomNavLink : NavLink
 
 :::moniker range="< aspnetcore-10.0"
 
-There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match*> attribute of the `<NavLink>` element:
+There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match> attribute of the `<NavLink>` element:
 
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the entire current URL, including the query string and fragment.
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*): The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
@@ -298,17 +298,17 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 > [!NOTE]
-> The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage*> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> and is described in more detail later in this section.
+> The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage*?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 > [!NOTE]
 > The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> content rendering uses the following, regardless if the response has started or not (in order):
 
-* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path*?displayProperty=nameWithType> is set, render the contents of the assigned page.
-* If <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage*?displayProperty=nameWithType> is set, render the assigned page.
+* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path?displayProperty=nameWithType> is set, render the contents of the assigned page.
+* If <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> is set, render the assigned page.
 * A status code pages re-execution middleware page, if configured.
 * No action if none of the preceding approaches are adopted.
 
@@ -343,9 +343,9 @@ To provide Not Found content for global interactive rendering or for per-page/co
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage*?displayProperty=nameWithType>, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType>, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
 
-In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage*> parameter:
+In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage> parameter:
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -521,7 +521,7 @@ The `NotFound` page injects the `NotFoundContext` and displays the heading and m
 </div>
 ```
 
-The `Routes` component (`Routes.razor`) sets the `NotFound` component as the Not Found page via the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage*> parameter:
+The `Routes` component (`Routes.razor`) sets the `NotFound` component as the Not Found page via the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage> parameter:
 
 ```razor
 <Router AppAssembly="typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -728,7 +728,7 @@ The following examples disable enhanced navigation:
 
 If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, and the client-side JavaScript retries as a full page load. This ensures no confusion to the framework about external pages that shouldn't be patched into an existing page.
 
-To enable enhanced form handling, add the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*> parameter to <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute to HTML forms (`<form>`):
+To enable enhanced form handling, add the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance> parameter to <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute to HTML forms (`<form>`):
 
 ```razor
 <EditForm ... Enhance ...>
@@ -758,7 +758,7 @@ Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to
 
 To disable enhanced navigation:
 
-* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*> parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance> parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
 Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.

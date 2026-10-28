@@ -849,7 +849,7 @@ The default Identity is replaced in the following code:
 
 [!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet2)]
 
-The following code sets the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LoginPath*>, <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LogoutPath*>, and <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.AccessDeniedPath*>):
+The following code sets the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LoginPath>, <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LogoutPath>, and <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.AccessDeniedPath>):
 
 [!code-csharp[](scaffold-identity/samples/StartupFull.cs?name=snippet3)]
 

@@ -137,7 +137,7 @@ Within `<main>` Razor markup of the `MainLayout` component (`MainLayout.razor`),
 
 ## Customize the cookie consent value
 
-Specify the cookie consent value by assigning a custom string to <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.ConsentCookieValue*?displayProperty=nameWithType>. The following example changes the default value of "`yes`" to "`true`":
+Specify the cookie consent value by assigning a custom string to <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.ConsentCookieValue?displayProperty=nameWithType>. The following example changes the default value of "`yes`" to "`true`":
 
 ```csharp
 options.ConsentCookieValue = "true";

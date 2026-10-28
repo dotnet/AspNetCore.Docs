@@ -53,7 +53,7 @@ services.AddAuthentication()
 
 :::moniker-end
 
-Specifying the default scheme when calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> results in setting the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property to a <xref:System.Security.Claims.ClaimsPrincipal> that relies on that identity. If this behavior isn't desired, invoke the parameterless form of <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>, as shown in the preceding example.
+Specifying the default scheme when calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> results in setting the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property to a <xref:System.Security.Claims.ClaimsPrincipal> that relies on that identity. If this behavior isn't desired, invoke the parameterless form of <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>, as shown in the preceding example.
 
 ## JWT bearer NuGet package
 
@@ -136,7 +136,7 @@ By specifying a single scheme, the corresponding handler runs. In the following 
 
 ## Select the scheme with an authorization policy
 
-If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*> collection when adding the policy.
+If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes> collection when adding the policy.
 
 In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method enforces user authentication to endpoints where the policy is applied.
 
@@ -189,7 +189,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-Use the policy by setting <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy*?displayProperty=nameWithType>.
+Use the policy by setting <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy?displayProperty=nameWithType>.
 
 For a Razor component:
 

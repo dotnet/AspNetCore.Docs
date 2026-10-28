@@ -34,9 +34,9 @@ If you need the old renegotiate behavior, set `HttpSysOptions.ClientCertificateM
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate?displayProperty=nameWithType>
 - <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod?displayProperty=nameWithType>
 
 <!--
 

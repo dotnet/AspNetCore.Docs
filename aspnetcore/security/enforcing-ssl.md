@@ -129,7 +129,7 @@ Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPo
 
 The preceding highlighted code:
 
-* Sets the <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*?displayProperty=nameWithType> property to the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
+* Sets the <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode?displayProperty=nameWithType> property to the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
 * Sets the HTTPS port to 5001.
 
 #### Configure permanent redirects in production
@@ -165,7 +165,7 @@ ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBui
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
-For production environments that are implementing HTTPS for the first time, set the initial <xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*?displayProperty=nameWithType> property value to a small amount by using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day, in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value (commonly, one year).
+For production environments that are implementing HTTPS for the first time, set the initial <xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge?displayProperty=nameWithType> property value to a small amount by using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day, in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value (commonly, one year).
 
 The following highlighted code:
 

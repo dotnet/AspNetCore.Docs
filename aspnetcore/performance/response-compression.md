@@ -226,7 +226,7 @@ builder.Services.Configure<ZstandardCompressionProviderOptions>(options =>
 
 ### Custom providers
 
-Create custom compression implementations with the <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider> interface. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> property represents the content encoding that this `ICompressionProvider` produces. The response compression middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
+Create custom compression implementations with the <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider> interface. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName> property represents the content encoding that this `ICompressionProvider` produces. The response compression middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
 Requests to the sample app with the `Accept-Encoding: mycustomcompression` header return a response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
@@ -498,7 +498,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### Custom providers
 
-Create custom compression implementations with <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> represents the content encoding that this `ICompressionProvider` produces. The middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
+Create custom compression implementations with <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName> represents the content encoding that this `ICompressionProvider` produces. The middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
 Using the sample app, the client submits a request with the `Accept-Encoding: mycustomcompression` header. The middleware uses the custom compression implementation and returns the response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 

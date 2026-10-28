@@ -1126,7 +1126,7 @@ services.AddOptions<KeyOptions>()
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType>.
+The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message?displayProperty=nameWithType>.
 
 > [!NOTE]
 > For demonstration purposes, the following example uses a <xref:Microsoft.AspNetCore.Components.MarkupString> to format raw HTML. Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided. For more information, see <xref:blazor/components/index#raw-html>.
@@ -1179,7 +1179,7 @@ The following example demonstrates how to log options validation exceptions and 
 
 :::moniker range="< aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType> in the page's `OnGet` method.
+The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message?displayProperty=nameWithType> in the page's `OnGet` method.
 
 `OptionsValidation1.cshtml`:
 
@@ -1395,7 +1395,7 @@ services.AddSingleton<IValidateOptions<KeyOptions2>, KeyOptionsValidation>();
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType>.
+The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message?displayProperty=nameWithType>.
 
 `OptionsValidation2.razor`:
 
@@ -1445,7 +1445,7 @@ The following example demonstrates how to log options validation exceptions and 
 
 :::moniker range="< aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType> in the page's `OnGet` method.
+The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message?displayProperty=nameWithType> in the page's `OnGet` method.
 
 `OptionsValidation2.cshtml`:
 
@@ -1751,7 +1751,7 @@ Rendered output from the [named options example](#named-options-support-using-ic
 
 :::moniker range=">= aspnetcore-6.0"
 
-To access <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> in the request processing pipeline, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services*?displayProperty=nameWithType>:
+To access <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> in the request processing pipeline, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services?displayProperty=nameWithType>:
 
 ```csharp
 var name = app.Services.GetRequiredService<IOptionsMonitor<PositionOptions>>()

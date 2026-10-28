@@ -58,7 +58,7 @@ public class Starship
 }
 ```
 
-Add the model to an `EditForm`, include `DataAnnotationsValidator`, and display errors with <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> or <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit*> callback is invoked only when validation succeeds:
+Add the model to an `EditForm`, include `DataAnnotationsValidator`, and display errors with <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> or <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> callback is invoked only when validation succeeds:
 
 ```razor
 <EditForm Model="Model" OnValidSubmit="Submit">
@@ -571,9 +571,9 @@ Live pending indicators require an interactive render mode. During a static SSR 
 
 | Callback | Behavior |
 |---|---|
-| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit*> | Runs after automatic validation succeeds. |
-| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit*> | Runs after automatic validation fails. |
-| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit*> | Gives the handler control of validation and submission. |
+| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> | Runs after automatic validation succeeds. |
+| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> | Runs after automatic validation fails. |
+| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> | Gives the handler control of validation and submission. |
 
 `OnValidSubmit` and `OnInvalidSubmit` can be used together. Don't combine `OnSubmit` with either of them.
 

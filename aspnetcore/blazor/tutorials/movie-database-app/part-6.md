@@ -24,7 +24,7 @@ The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is u
 </QuickGrid>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) of the injected database context factory (`DbFactory`).
+The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) of the injected database context factory (`DbFactory`).
 
 To make the `QuickGrid` component filter on the movie title, the `Index` component should:
 
@@ -44,9 +44,9 @@ private IQueryable<Movie> FilteredMovies =>
 
 `TitleFilter` is the filter string. The property is provided the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute), which lets Blazor know that the value of `TitleFilter` should be assigned from the query string when the query string contains a field of the same name (for example, `?titleFilter=road+warrior` yields a `TitleFilter` value of `road warrior`). Note that query string field names, such as `titleFilter`, aren't case sensitive.
 
-The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the QuickGrid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), an empty string (`string.Empty`) is used for the <xref:System.String.Contains*> clause. Therefore, no movies are filtered for display.
+The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the QuickGrid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), an empty string (`string.Empty`) is used for the <xref:System.String.Contains*> clause. Therefore, no movies are filtered for display.
 
-Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*> parameter to use the `movies` collection:
+Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> parameter to use the `movies` collection:
 
 ```diff
 - <QuickGrid Class="table" Items="context.Movie">

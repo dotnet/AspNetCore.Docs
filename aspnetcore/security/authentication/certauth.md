@@ -319,7 +319,7 @@ By default, certificate authentication disables caching. To enable caching, call
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
-When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated*> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
@@ -408,7 +408,7 @@ Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetC
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, `GetClientCertificateAsync` might throw the exception, _InvalidOperationException: Client stream needs to be drained before renegotiation_.
 
 If you programmatically configure the TLS settings per SNI host name, call the [UseHttps](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
-overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation*> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
+overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
 
 :::moniker-end
 
@@ -1002,7 +1002,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated*> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 

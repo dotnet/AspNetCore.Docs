@@ -27,7 +27,7 @@ To create a custom formatter:
 
 * For serializing data sent to the client, create an output formatter class.
 * For deserializing data received from the client, create an input formatter class.
-* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters*> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters*> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
+* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ## Create a custom formatter
 
@@ -52,7 +52,7 @@ For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.Inpu
 
 ### Specify supported media types and encodings
 
-In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes*> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings*> collections:
+In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings> collections:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
 
@@ -92,7 +92,7 @@ Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.
 
 ## Configure MVC to use a custom formatter
 
-To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters*?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters*?displayProperty=nameWithType> collection:
+To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters?displayProperty=nameWithType> collection:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Program.cs" id="snippet_AddControllers" highlight="5-6":::
 
@@ -151,7 +151,7 @@ To create a custom formatter:
 
 * For serializing data sent to the client, create an output formatter class.
 * For deserializing data received from the client, create an input formatter class.
-* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters*> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters*> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
+* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ## Create a custom formatter
 
@@ -176,7 +176,7 @@ For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.Inpu
 
 ### Specify supported media types and encodings
 
-In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes*> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings*> collections:
+In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings> collections:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
 
@@ -216,7 +216,7 @@ Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.
 
 ## Configure MVC to use a custom formatter
 
-To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters*?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters*?displayProperty=nameWithType> collection:
+To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters?displayProperty=nameWithType> collection:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Startup.cs" id="snippet_ConfigureServices" highlight="5-6":::
 

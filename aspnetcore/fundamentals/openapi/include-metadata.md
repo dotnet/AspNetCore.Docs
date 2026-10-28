@@ -472,7 +472,7 @@ responses:
 If the event payload is a discriminated union, the union's case names are also emitted as an `enum` on the `event` field.
 
 > [!IMPORTANT]
-> `itemSchema` is an OpenAPI 3.2 construct. Apps that target .NET 11 or later generate OpenAPI 3.2 documents by default, but an app that sets <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion*> to an earlier version serializes the item schema as the `x-oai-itemSchema` extension instead. For more information, see [Customize the OpenAPI version of a generated document](xref:fundamentals/openapi/aspnetcore-openapi#customize-the-openapi-version-of-a-generated-document).
+> `itemSchema` is an OpenAPI 3.2 construct. Apps that target .NET 11 or later generate OpenAPI 3.2 documents by default, but an app that sets <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion> to an earlier version serializes the item schema as the `x-oai-itemSchema` extension instead. For more information, see [Customize the OpenAPI version of a generated document](xref:fundamentals/openapi/aspnetcore-openapi#customize-the-openapi-version-of-a-generated-document).
 
 
 #### [Controllers](#tab/controllers)

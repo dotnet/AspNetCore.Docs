@@ -128,7 +128,7 @@ Don't call `next.Invoke` during or after the response is sent to the client. Aft
 * Cause a protocol violation, such as writing more bytes to the response than the stated response's content length (`Content-Length` header value).
 * Corrupt the body format, such as writing an HTML footer to a CSS file.
 
-To determine if the response has started, check the value of <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*>.
+To determine if the response has started, check the value of <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted>.
 
 For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
 
@@ -184,7 +184,7 @@ Request | Response
 `/map2` | :::no-loc text="Map 2":::
 `/map3` | :::no-loc text="Hello from the non-Map delegate.":::
 
-When <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> is used, the matched path segments are removed from <xref:Microsoft.AspNetCore.Http.HttpRequest.Path*?displayProperty=nameWithType> and appended to <xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase*?displayProperty=nameWithType> for each request.
+When <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> is used, the matched path segments are removed from <xref:Microsoft.AspNetCore.Http.HttpRequest.Path?displayProperty=nameWithType> and appended to <xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase?displayProperty=nameWithType> for each request.
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> can match multiple segments at once:
 
@@ -366,7 +366,7 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 > * May cause a protocol violation. For example, writing more than the stated `Content-Length`.
 > * May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
-> <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*> is a useful hint to indicate if headers have been sent or the body has been written to.
+> <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted> is a useful hint to indicate if headers have been sent or the body has been written to.
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 

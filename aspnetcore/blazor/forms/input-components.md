@@ -415,7 +415,7 @@ For information on how empty strings and `null` values are handled in data bindi
 
 ## Display name support
 
-Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName*?displayProperty=nameWithType> parameter.
+Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName?displayProperty=nameWithType> parameter.
 
 In the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
 
@@ -430,7 +430,7 @@ If the field contains an invalid date when the form is submitted, the error mess
 
 > The ProductionDate field must be a date.
 
-Set the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName*> property to a friendly name with a space between the words "`Production`" and "`Date`":
+Set the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName> property to a friendly name with a space between the words "`Production`" and "`Date`":
 
 ```razor
 <label>
@@ -537,8 +537,8 @@ Input components automatically generate an `id` attribute based on the bound exp
 
 <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> support error message templates:
 
-* <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage*?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1.ParsingErrorMessage*?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1.ParsingErrorMessage?displayProperty=nameWithType>
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -548,7 +548,7 @@ In the `Starfleet Starship Database` form (`Starship3` component) of the [Exampl
 The {0} field must be a date.
 ```
 
-The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName*> property appears when the error is displayed to the user.
+The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName> property appears when the error is displayed to the user.
 
 ```razor
 <label>
@@ -560,7 +560,7 @@ The position of the `{0}` placeholder is where the value of the <xref:Microsoft.
 
 > The Production Date field must be a date.
 
-Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage*> to provide a custom message:
+Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage> to provide a custom message:
 
 ```razor
 <label>
@@ -583,7 +583,7 @@ In the `Starfleet Starship Database` form (`Starship3` component) of the [Exampl
 The {0} field must be a date.
 ```
 
-The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName*> property appears when the error is displayed to the user.
+The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName> property appears when the error is displayed to the user.
 
 ```razor
 <label>
@@ -594,7 +594,7 @@ The position of the `{0}` placeholder is where the value of the <xref:Microsoft.
 
 > The ProductionDate field must be a date.
 
-Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage*> to provide a custom message:
+Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage> to provide a custom message:
 
 ```razor
 <label>

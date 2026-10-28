@@ -94,7 +94,7 @@ Default app configuration is loaded in the following order, from highest to lowe
 :::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
-> We don't recommend calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*> more than once solely for the purpose of obtaining configuration values at runtime. We recommend using a <xref:Microsoft.Extensions.Configuration.ConfigurationManager> (for example: `builder.Configuration`, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration*?displayProperty=nameWithType>) or using a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> from the appropriate configuration source.
+> We don't recommend calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*> more than once solely for the purpose of obtaining configuration values at runtime. We recommend using a <xref:Microsoft.Extensions.Configuration.ConfigurationManager> (for example: `builder.Configuration`, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration?displayProperty=nameWithType>) or using a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> from the appropriate configuration source.
 
 :::moniker-end
 
@@ -149,7 +149,7 @@ The following variables are set early in host builder initialization and can't b
 * [Content root](xref:fundamentals/index#content-root).
 * [Web root](xref:fundamentals/index#web-root).
 * Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
-* Variables read by app and library code from <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*?displayProperty=nameWithType> in <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration*?displayProperty=nameWithType> callbacks.
+* Variables read by app and library code from <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration?displayProperty=nameWithType> in <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration*?displayProperty=nameWithType> callbacks.
 
 Other host settings are read from app configuration instead of host configuration.
 
@@ -190,14 +190,14 @@ public class CustomService(IConfiguration config)
 
 ## Access configuration in the `Program` file
 
-The following code accesses configuration in the `Program` file using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration*?displayProperty=nameWithType> (`builder.Configuration`):
+The following code accesses configuration in the `Program` file using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration?displayProperty=nameWithType> (`builder.Configuration`):
 
 ```csharp
 var defaultConnectionString = 
    builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
 ```
 
-After the app is built (after the line `var app = builder.Build();`), use <xref:Microsoft.AspNetCore.Builder.WebApplication.Configuration*?displayProperty=nameWithType> (`app.Configuration`):
+After the app is built (after the line `var app = builder.Build();`), use <xref:Microsoft.AspNetCore.Builder.WebApplication.Configuration?displayProperty=nameWithType> (`app.Configuration`):
 
 ```csharp
 var defaultLogLevel = app.Configuration.GetValue<string>("Logging:LogLevel:Default");
@@ -421,7 +421,7 @@ A common practice is to add the Command-line Configuration Provider last in a se
 
 The preceding sequence of providers is used in the [default configuration](#default-app-configuration-sources).
 
-To inspect the app's configuration providers, [inject](xref:fundamentals/dependency-injection) <xref:Microsoft.Extensions.Configuration.IConfiguration>, cast it to <xref:Microsoft.Extensions.Configuration.IConfigurationRoot>, and read the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Providers*> property.
+To inspect the app's configuration providers, [inject](xref:fundamentals/dependency-injection) <xref:Microsoft.Extensions.Configuration.IConfiguration>, cast it to <xref:Microsoft.Extensions.Configuration.IConfigurationRoot>, and read the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Providers> property.
 
 In the following `ConfigurationProviders` Razor component displays the enabled configuration providers in the order that they're added to the app.
 
@@ -540,7 +540,7 @@ public class AppSettingsPageModel(IConfiguration config) : PageModel
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> instances load configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](xref:fundamentals/environments) (examples: `appsettings.Production.json`, `appsettings.Development.json`). The environment version of the file is loaded based on the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*?displayProperty=nameWithType>.
+1. `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](xref:fundamentals/environments) (examples: `appsettings.Production.json`, `appsettings.Development.json`). The environment version of the file is loaded based on the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName?displayProperty=nameWithType>.
 
 `appsettings.{ENVIRONMENT}.json` values override keys in `appsettings.json`.
 
@@ -1447,7 +1447,7 @@ public class EFConfigurationSource : IConfigurationSource
 }
 ```
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer, <xref:System.StringComparer.OrdinalIgnoreCase*?displayProperty=nameWithType>.
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer, <xref:System.StringComparer.OrdinalIgnoreCase?displayProperty=nameWithType>.
 
 `EFConfigurationProvider/EFConfigurationProvider.cs`:
 

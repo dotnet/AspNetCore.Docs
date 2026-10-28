@@ -205,7 +205,7 @@ For apps that use a user-assigned managed identity, configure the managed identi
 
 * Set the `AZURE_CLIENT_ID` environment variable.
 
-* Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId*?displayProperty=nameWithType> property when calling the `AddAzureKeyVault` method:
+* Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId?displayProperty=nameWithType> property when calling the `AddAzureKeyVault` method:
 
    :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultManagedIdentityClientId" highlight="5":::
 
@@ -225,8 +225,8 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 | Property | Description |
 |---|---|
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager*> | Specifies a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval*> | Specifies the `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager> | Specifies a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval> | Specifies the `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
@@ -352,7 +352,7 @@ To reload secrets, call the <xref:Microsoft.Extensions.Configuration.IConfigurat
 config.Reload();
 ```
 
-To reload secrets periodically, at a specified interval, set the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval*?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
+To reload secrets periodically, at a specified interval, set the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
 
 ## Disabled and expired secrets
 
@@ -620,8 +620,8 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 | Property                                                                                                    | Description                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager*>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval*> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 

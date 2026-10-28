@@ -437,7 +437,7 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*> in the `Program` file to call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents*?displayProperty=nameWithType>:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*> in the `Program` file to call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents?displayProperty=nameWithType>:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>

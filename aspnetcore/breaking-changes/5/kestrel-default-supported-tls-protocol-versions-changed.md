@@ -25,7 +25,7 @@ Kestrel required that connections use TLS 1.1 or TLS 1.2 by default.
 
 ## New behavior
 
-Kestrel allows the operating system to choose the best protocol to use and to block insecure protocols. <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.SslProtocols*?displayProperty=nameWithType> now defaults to `SslProtocols.None` instead of `SslProtocols.Tls12 | SslProtocols.Tls11`.
+Kestrel allows the operating system to choose the best protocol to use and to block insecure protocols. <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.SslProtocols?displayProperty=nameWithType> now defaults to `SslProtocols.None` instead of `SslProtocols.Tls12 | SslProtocols.Tls11`.
 
 ## Reason for change
 
@@ -71,7 +71,7 @@ Unfortunately, there's no API to exclude specific protocols.
 
 ## Affected APIs
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.SslProtocols*?displayProperty=nameWithType>
+<xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.SslProtocols?displayProperty=nameWithType>
 
 <!--
 

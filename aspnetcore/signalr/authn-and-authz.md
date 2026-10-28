@@ -342,7 +342,7 @@ Register this component in the `Program.cs` file:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
-In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials*> property:
+In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -602,7 +602,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials*> property:
+In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()

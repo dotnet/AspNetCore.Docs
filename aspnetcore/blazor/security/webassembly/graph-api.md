@@ -201,7 +201,7 @@ internal static class GraphClientExtensions
 ```
 
 > [!IMPORTANT]
-> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes*> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*>.
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method. The following code defaults to the Version 1.0 Microsoft Graph base address and `User.Read` scopes if these settings aren't found in the app settings file:
 
@@ -612,7 +612,7 @@ internal static class GraphClientExtensions
 ```
 
 > [!IMPORTANT]
-> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes*> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*>.
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
@@ -1048,7 +1048,7 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 > [!IMPORTANT]
-> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes*> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*>.
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
 When the preceding changes are made to the app, the user flow adopts the following sequence:
 
@@ -1255,20 +1255,20 @@ To assign users to the app *with app roles*:
 
 ## `DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`
 
-The examples in this article provision Graph API scopes with <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes*>, not <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*>. 
+The examples in this article provision Graph API scopes with <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes>, not <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
-<xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*> isn't used because it's unable to provision Graph API scopes for users when they sign in to the app for the first time with MSAL via the Azure consent UI. When the user attempts to access Graph API for the first time with the Graph SDK, they're confronted with an exception:
+<xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't used because it's unable to provision Graph API scopes for users when they sign in to the app for the first time with MSAL via the Azure consent UI. When the user attempts to access Graph API for the first time with the Graph SDK, they're confronted with an exception:
 
 > :::no-loc text="Microsoft.Graph.Models.ODataErrors.ODataError: Access token is empty.":::
 
-After a user provisions Graph API scopes provided via <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes*>, the app can use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*> for a subsequent user sign in. However, changing app code makes no sense for a production app that requires the periodic addition of new users with delegated Graph scopes or adding new delegated Graph API scopes to the app.
+After a user provisions Graph API scopes provided via <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes>, the app can use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> for a subsequent user sign in. However, changing app code makes no sense for a production app that requires the periodic addition of new users with delegated Graph scopes or adding new delegated Graph API scopes to the app.
 
 The preceding discussion of how to provision scopes for Graph API access when the user first signs into the app only applies to:
 
 * Apps that adopt the Graph SDK.
 * Apps that use a named <xref:System.Net.Http.HttpClient> for Graph API access that asks users to consent to Graph scopes on their first sign in to the app.
 
-When using a named <xref:System.Net.Http.HttpClient> that doesn't ask users to consent to Graph scopes on their first sign in, users are redirected to the Azure consent UI for Graph API scopes consent *when they first request access to Graph API* via the <xref:System.Net.Http.DelegatingHandler> of the preconfigured, named <xref:System.Net.Http.HttpClient>. When Graph scopes aren't consented initially with the named <xref:System.Net.Http.HttpClient> approach, neither <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes*> nor <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent*> are called by the app. For more information, see the [named `HttpClient` coverage in this article](?pivots=named-client-graph-api).
+When using a named <xref:System.Net.Http.HttpClient> that doesn't ask users to consent to Graph scopes on their first sign in, users are redirected to the Azure consent UI for Graph API scopes consent *when they first request access to Graph API* via the <xref:System.Net.Http.DelegatingHandler> of the preconfigured, named <xref:System.Net.Http.HttpClient>. When Graph scopes aren't consented initially with the named <xref:System.Net.Http.HttpClient> approach, neither <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> nor <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> are called by the app. For more information, see the [named `HttpClient` coverage in this article](?pivots=named-client-graph-api).
 
 :::moniker range="< aspnetcore-8.0"
 

@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization*> adds authorization policy services. The following code assigns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy*?displayProperty=nameWithType>, which requires an authenticated user, to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy*?displayProperty=nameWithType>. This configuration requires authentication when no policy is produced from authorization metadata:
+<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization*> adds authorization policy services. The following code assigns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType>, which requires an authenticated user, to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType>. This configuration requires authentication when no policy is produced from authorization metadata:
 
 ```csharp
 builder.Services.AddAuthorization(options =>

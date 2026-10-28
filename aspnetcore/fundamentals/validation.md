@@ -25,7 +25,7 @@ While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://w
 
 ## Register validation services
 
-Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services*?displayProperty=nameWithType> in the app's `Program` file:
+Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services?displayProperty=nameWithType> in the app's `Program` file:
 
 ```csharp
 builder.Services.AddValidation();
@@ -468,7 +468,7 @@ builder.Services.AddValidation();
 
 ### Attributes that localize themselves
 
-Attributes configured with <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType> or <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType*?displayProperty=nameWithType> perform their own resource lookup and aren't processed by the `Microsoft.Extensions.Validation` localizer.
+Attributes configured with <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType> or <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> perform their own resource lookup and aren't processed by the `Microsoft.Extensions.Validation` localizer.
 
 ### Format a custom attribute's message
 

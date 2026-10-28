@@ -27,7 +27,7 @@ ASP.NET Core apps should be designed to process many requests simultaneously. As
 
 A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls lead to [Thread Pool starvation](/dotnet/core/diagnostics/debug-threadpool-starvation) and degraded response times.
 
-**Do not** block asynchronous execution by calling <xref:System.Threading.Tasks.Task.Wait*?displayProperty=nameWithType> or <xref:System.Threading.Tasks.Task`1.Result*?displayProperty=nameWithType>.
+**Do not** block asynchronous execution by calling <xref:System.Threading.Tasks.Task.Wait*?displayProperty=nameWithType> or <xref:System.Threading.Tasks.Task`1.Result?displayProperty=nameWithType>.
 **Do not** acquire locks in common code paths. ASP.NET Core apps perform best when architected to run code in parallel.
 **Do not** call <xref:System.Threading.Tasks.Task.Run*?displayProperty=nameWithType> and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling `Task.Run` only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, `Task.Run` does not prevent that.
 

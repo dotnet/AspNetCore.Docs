@@ -1078,7 +1078,7 @@ public class MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
 
 Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 
-Avoid static access to <xref:Microsoft.AspNetCore.Http.HttpContext> (for example, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext*?displayProperty=nameWithType>).
+Avoid static access to <xref:Microsoft.AspNetCore.Http.HttpContext> (for example, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType>).
 
 DI is an *alternative* to static/global object access patterns. You might not be able to realize the benefits of DI if you mix it with static object access.
 

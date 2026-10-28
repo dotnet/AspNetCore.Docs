@@ -345,7 +345,7 @@ The [middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/R
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The <xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*?displayProperty=nameWithType> property determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The <xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result?displayProperty=nameWithType> property determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -707,7 +707,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -1063,7 +1063,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |

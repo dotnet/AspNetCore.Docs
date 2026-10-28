@@ -139,7 +139,7 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
 The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger`1> to log information about an automatic 400 response:
 
@@ -270,7 +270,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property is set to `true`. Add the following code:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=11)]
 
@@ -446,7 +446,7 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
 The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger`1> to log information about an automatic 400 response:
 
@@ -549,7 +549,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property is set to `true`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=11)]
 
@@ -736,7 +736,7 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> delegate property to perform custom processing in `Startup.ConfigureServices`. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> delegate property to perform custom processing in `Startup.ConfigureServices`. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
 The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger`1> to log information about an automatic 400 response:
 
@@ -839,7 +839,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
 
 
 [!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,7)]
@@ -1085,7 +1085,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
 
 <a name="consumes"></a>
 

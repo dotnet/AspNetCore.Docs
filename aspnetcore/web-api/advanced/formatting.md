@@ -151,7 +151,7 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 * Customizes the serialization settings.
 * Relies on features that `Newtonsoft.Json` provides.
 
-To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings*>:
+To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings>:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddNewtonsoftJsonSerializerSettings" highlight="4":::
 
@@ -577,7 +577,7 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 * Customizes the serialization settings.
 * Relies on features that `Newtonsoft.Json` provides.
 
-To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings*>:
+To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings>:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddNewtonsoftJsonSerializerSettings" highlight="4":::
 
@@ -601,7 +601,7 @@ By default, the `ValidationProblemDetails` response returned when the `Value` pr
 
 :::code language="csharp" source="formatting/samples/snapshot/7.x/ValidationProblemDetailsDefault.json" highlight="7":::
 
-To format the property names used as error keys, add an implementation of <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider> to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders*?displayProperty=nameWithType> collection. The following example adds a `System.Text.Json`-based implementation, `SystemTextJsonValidationMetadataProvider`, which formats property names as camelCase by default:
+To format the property names used as error keys, add an implementation of <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider> to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders?displayProperty=nameWithType> collection. The following example adds a `System.Text.Json`-based implementation, `SystemTextJsonValidationMetadataProvider`, which formats property names as camelCase by default:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_SystemTextJsonValidationMetadataProvider":::
 

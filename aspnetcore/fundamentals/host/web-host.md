@@ -55,7 +55,7 @@ The `CreateDefaultBuilder` method performs the following tasks:
 
 * When the application runs behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the application base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 
-* Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes*> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
+* Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
 
 The [content root](xref:fundamentals/index#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
@@ -94,7 +94,7 @@ Here are some examples:
         ...
     ```
 
-* The following call to `ConfigureKestrel` overrides the default [Limits.MaxRequestBodySize](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize*) of 30,000,000 bytes established when Kestrel is configured with the `CreateDefaultBuilder` method:
+* The following call to `ConfigureKestrel` overrides the default [Limits.MaxRequestBodySize](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize) of 30,000,000 bytes established when Kestrel is configured with the `CreateDefaultBuilder` method:
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -322,7 +322,7 @@ Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(W
 
 During the timeout period, the Web Host:
 
-* Triggers <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStopping*>.
+* Triggers <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStopping>.
 * Attempts to stop hosted services, logging any errors for services that fail to stop.
 
 If the timeout period expires before all hosted services stop, any remaining active services stop when the app shuts down. The services stop even if they're still processing. If services require more time to stop, increase the timeout.
@@ -758,7 +758,7 @@ public class MyClass
 
 ## Configure scope validation
 
-The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> method sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes*> property to `true` if the app's environment is `Development`.
+The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> method sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> property to `true` if the app's environment is `Development`.
 
 When `ValidateScopes` is set to `true`, the default service provider performs checks to verify:
 

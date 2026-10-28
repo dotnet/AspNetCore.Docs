@@ -117,7 +117,7 @@ The following example uses the `HideColumnOptionsAsync` method to close the colu
 
 In prior Blazor releases, response streaming for <xref:System.Net.Http.HttpClient> requests was opt-in. Now, response streaming is enabled by default.
 
-This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync*?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content*?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
+This is a breaking change because calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync*?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a `BrowserHttpReadStream` and no longer a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
 To opt-out of response streaming globally, use either of the following approaches:
 
@@ -440,7 +440,7 @@ If the MSBuild property is used, code that relied on <xref:Microsoft.AspNetCore.
 
 Blazor now provides an improved way to display a "Not Found" page when navigating to a non-existent page. You can specify a page to render when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*?displayProperty=nameWithType> (described in the next section) is invoked by passing a page type to the `Router` component using the `NotFoundPage` parameter. The feature supports routing, works across status code pages re-execution middleware, and is compatible even with non-Blazor scenarios.
 
-The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound*) (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
+The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound) (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -470,7 +470,7 @@ Streaming rendering can only render components that have a route, such as a [`No
 
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> content rendering uses the following, regardless if the response has started or not (in order):
 
-* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path*?displayProperty=nameWithType> is set, render the contents of the assigned page.
+* If <xref:Microsoft.AspNetCore.Components.Routing.NotFoundEventArgs.Path?displayProperty=nameWithType> is set, render the contents of the assigned page.
 * If `Router.NotFoundPage` is set, render the assigned page.
 * A status code pages re-execution middleware page, if configured.
 * No action if none of the preceding approaches are adopted.

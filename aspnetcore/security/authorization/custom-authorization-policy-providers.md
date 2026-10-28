@@ -76,7 +76,7 @@ internal class CustomPolicyProvider() : IAuthorizationPolicyProvider
 ```
 
 > [!NOTE]
-> Use of <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme*?displayProperty=nameWithType> in the preceding example represents the scheme used to identify application authentication cookies. An empty <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*?displayProperty=nameWithType> list evaluates requirements against the default schemes&mdash;it doesn't authenticate every registered scheme.
+> Use of <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme*?displayProperty=nameWithType> in the preceding example represents the scheme used to identify application authentication cookies. An empty <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes?displayProperty=nameWithType> list evaluates requirements against the default schemes&mdash;it doesn't authenticate every registered scheme.
 
 ASP.NET Core only uses one instance of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider>. <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider> is the framework's default <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> implementation for retrieving authorization policies by name. Policy provider behavior is customized by registering a custom policy provider implementation in the app's service container to replace the default implementation.
 
@@ -133,7 +133,7 @@ return Task.FromResult<AuthorizationPolicy?>(combinedPolicy);
 
 The recommended approach for applying policies in concert with a custom policy provider is to use a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. A custom attribute implementation maps arguments into a string that's used to retrieve a corresponding authorization policy.
 
-The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and makes the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy*?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix (`MinimumAge`) and an integer passed in via its constructor (`MinimumAge{AGE}`), where the `{AGE}` placeholder is the minimum age, for example, `MinimumAge21`. The following attribute is used with the custom policy provider shown later in this article in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section.
+The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and makes the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix (`MinimumAge`) and an integer passed in via its constructor (`MinimumAge{AGE}`), where the `{AGE}` placeholder is the minimum age, for example, `MinimumAge21`. The following attribute is used with the custom policy provider shown later in this article in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section.
 
 `Policies/Attributes/MinimumAgeAuthorizeAttribute.cs`:
 
@@ -159,7 +159,7 @@ The custom policy provider should generate authorization policies by completing 
 * The age is parsed from the policy name.
 * An authorization policy builder (<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder>) creates a new <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy>.
 * The authorization policy builder is constructed with at least one authorization scheme name or always succeeds. Otherwise, there's no information on how to provide a challenge to the user and an exception is thrown. 
-* Set the list of authentication schemes in <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*?displayProperty=nameWithType> for the built policy. The following example passes <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme*?displayProperty=nameWithType>, which represents the scheme used to identify application authentication cookies. An empty (unassigned) <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*> list evaluates requirements against the custom policy provider's default schemes&mdash;it doesn't authenticate every registered scheme.
+* Set the list of authentication schemes in <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes?displayProperty=nameWithType> for the built policy. The following example passes <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme*?displayProperty=nameWithType>, which represents the scheme used to identify application authentication cookies. An empty (unassigned) <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes> list evaluates requirements against the custom policy provider's default schemes&mdash;it doesn't authenticate every registered scheme.
 * Add one or more requirements to the policy for user age evaluations with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AddRequirements*>.
 
 The following example demonstrates a minimum age custom policy provider.
@@ -206,8 +206,8 @@ To use custom policies:
 
 The [sample app](#sample-app) institutes application cookie redirect mapping with the following code:
 
-* Anonymous Users: When an unauthenticated user requests a protected endpoint, the cookie handler issues a challenge and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.LoginPath*?displayProperty=nameWithType> with a return URL parameter.
-* Underage Users: When an authenticated user fails the custom minimum age policy, the handler issues a forbid response and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.AccessDeniedPath*?displayProperty=nameWithType> instead of the login page.
+* Anonymous Users: When an unauthenticated user requests a protected endpoint, the cookie handler issues a challenge and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.LoginPath?displayProperty=nameWithType> with a return URL parameter.
+* Underage Users: When an authenticated user fails the custom minimum age policy, the handler issues a forbid response and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.AccessDeniedPath?displayProperty=nameWithType> instead of the login page.
 
 ```csharp
 builder.Services.ConfigureApplicationCookie(options =>

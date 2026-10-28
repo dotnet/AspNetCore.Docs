@@ -833,7 +833,7 @@ If you didn't already have a `Layout` folder in the `.Client` project, add the n
 @using BlazorSample.Client.Layout
 ```
 
-In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body*> property (`@Body`) with the `ContentLoading` component:
+In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (`@Body`) with the `ContentLoading` component:
 
 In `Layout/MainLayout.razor`:
 

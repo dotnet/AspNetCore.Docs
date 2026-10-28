@@ -93,8 +93,8 @@ The authorization middleware combines the authorization metadata for an endpoint
 
 | Authorization metadata | Policy or behavior |
 | --- | --- |
-| None | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy*?displayProperty=nameWithType> is used, if it's configured. By default, the fallback policy is `null`, so authorization isn't required. |
-| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy*?displayProperty=nameWithType> is used unless the endpoint also has an explicit `AuthorizationPolicy` instance. By default, the default policy requires an authenticated user. |
+| None | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> is used, if it's configured. By default, the fallback policy is `null`, so authorization isn't required. |
+| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> is used unless the endpoint also has an explicit `AuthorizationPolicy` instance. By default, the default policy requires an authenticated user. |
 | `[Authorize(Policy = "{POLICY NAME}")]` or `RequireAuthorization("{POLICY NAME}")` | The named policy is used. |
 | `[Authorize(Roles = "{ROLES}")]` | A policy is built with the specified roles. The default policy isn't added for this authorization declaration. |
 | `RequireAuthorization(policy)` with an `AuthorizationPolicy` instance | The explicit policy is used. If explicit policy metadata is present, bare authorization data and authentication-scheme-only authorization data don't add the default policy. |
@@ -285,7 +285,7 @@ The following example shows a one-to-many relationship in which a permission han
 
 :::moniker-end
 
-The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements*>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
+The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
 
 ### Handler registration
 
@@ -323,7 +323,7 @@ The `Handle` method in the [handler example](#use-a-handler-for-one-requirement)
 
 * To guarantee failure, even if other requirement handlers succeed, call [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*).
 
-If a handler calls [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) or [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*), all other handlers are still called. This allows requirements to produce side effects, such as logging, which takes place even if another handler successfully validates or fails on a requirement. When set to `false`, the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure*> property short-circuits the execution of handlers when [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*) is called. <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure*> defaults to `true`, in which case all handlers are called.
+If a handler calls [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) or [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*), all other handlers are still called. This allows requirements to produce side effects, such as logging, which takes place even if another handler successfully validates or fails on a requirement. When set to `false`, the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure> property short-circuits the execution of handlers when [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*) is called. <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure> defaults to `true`, in which case all handlers are called.
 
 > [!NOTE]
 > Authorization handlers are called even if authentication fails. Also handlers can execute in any order, so do ***not*** depend on the order of calling handlers.

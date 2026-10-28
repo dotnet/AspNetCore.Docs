@@ -85,7 +85,7 @@ The scaffolded `OnPostAsync` code for the **Create** page is vulnerable to [over
 
 The code in the last section creates a `Student` object and then uses posted form fields to update the `Student` object properties. The [TryUpdateModelAsync](xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync(System.Object,System.Type,System.String)) method:
 
-* Uses the posted form values from the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.PageContext*> property in the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class.
+* Uses the posted form values from the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.PageContext> property in the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class.
 
 * Updates only the properties listed (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
 

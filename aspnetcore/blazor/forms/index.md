@@ -74,7 +74,7 @@ In the preceding `StarshipPlainForm` component:
 
 * The form is rendered where the `<form>` element appears. The form is named with the [`@formname`](xref:mvc/views/razor#formname) directive attribute, which uniquely identifies the form to the Blazor framework.
 * The model is created in the component's `@code` block and held in a `public` property (`Model`). The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value*> property.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value> property.
 * The `Submit` method is registered as a handler for the <!-- <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> --> `@onsubmit` callback. The handler is called when the form is submitted by the user.
 
 > [!IMPORTANT]
@@ -122,7 +122,7 @@ In the preceding `Starship1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears. The form is named with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName> property, which uniquely identifies the form to the Blazor framework.
 * The model is created in the component's `@code` block and held in a `public` property (`Model`). The property is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an [input component](xref:blazor/forms/input-components) for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value*> property.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an [input component](xref:blazor/forms/input-components) for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
 > [!IMPORTANT]
@@ -170,7 +170,7 @@ In the preceding `Starship1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a private field (`model`). The field is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value*> property&dagger;.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value> property&dagger;.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
 :::moniker-end
@@ -390,7 +390,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Enhanced form handling
 
-[Enhance navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
+[Enhance navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm ... Enhance ...>
@@ -418,7 +418,7 @@ Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to
 
 To disable enhanced form handling:
 
-* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*> parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance> parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
 Blazor's enhanced navigation and form handling may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.

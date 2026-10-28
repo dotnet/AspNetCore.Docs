@@ -51,7 +51,7 @@ Apps published as a single file executable can't be loaded by the in-process hos
 
 ## Application configuration
 
-To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in `Program.cs`. The following example disables <xref:Microsoft.AspNetCore.Builder.IISServerOptions.AutomaticAuthentication*>:
+To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in `Program.cs`. The following example disables <xref:Microsoft.AspNetCore.Builder.IISServerOptions.AutomaticAuthentication>:
 
 [!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/6.0/Program.cs?highlight=17-20)]
 
@@ -78,7 +78,7 @@ The following characteristics apply when hosting in-process:
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](xref:tutorials/publish-to-iis#create-the-iis-site) section.
 
-* Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
+* Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted) cancellation token is cancelled when the client disconnects.
 
 * When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
 
@@ -171,7 +171,7 @@ The following characteristics apply when hosting in-process:
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](xref:tutorials/publish-to-iis#create-the-iis-site) section.
 
-* Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
+* Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted) cancellation token is cancelled when the client disconnects.
 
 * When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
 

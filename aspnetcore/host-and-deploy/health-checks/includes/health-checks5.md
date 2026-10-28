@@ -283,7 +283,7 @@ app.UseEndpoints(endpoints =>
 
 ### Customize output
 
-In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter*?displayProperty=nameWithType> option to a delegate for writing the response:
+In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter?displayProperty=nameWithType> option to a delegate for writing the response:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -1052,7 +1052,7 @@ app.UseEndpoints(endpoints =>
 
 ### Customize output
 
-In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter*?displayProperty=nameWithType> option to a delegate for writing the response:
+In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter?displayProperty=nameWithType> option to a delegate for writing the response:
 
 ```csharp
 app.UseEndpoints(endpoints =>

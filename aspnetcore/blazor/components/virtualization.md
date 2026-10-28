@@ -41,7 +41,7 @@ If the collection contains thousands of flights, rendering the flights takes a l
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component:
 
-* Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items*?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component.
+* Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component.
 
   If a non-generic collection supplies the items, for example a collection of <xref:System.Data.DataRow>, follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 * Specify a context for each flight with the `Context` parameter. In the following example, `flight` is used as the context, which provides access to each flight's members.
@@ -78,7 +78,7 @@ The item content for the <xref:Microsoft.AspNetCore.Components.Web.Virtualizatio
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection`1>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider*?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component:
+If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection`1>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="LoadEmployees">
@@ -124,7 +124,7 @@ In the following example, a collection of <xref:System.Data.DataRow> is a non-ge
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.RefreshDataAsync*?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider*>. This is useful when external data changes. There's usually no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.RefreshDataAsync*> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items*>. 
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.RefreshDataAsync*?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider>. This is useful when external data changes. There's usually no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.RefreshDataAsync*> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -163,8 +163,8 @@ In the preceding example:
 
 Because requesting items from a remote data source might take some time, you have the option to render a placeholder with item content:
 
-* Use a <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Placeholder*> (`<Placeholder>...</Placeholder>`) to display content until the item data is available.
-* Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemContent*?displayProperty=nameWithType> to set the item template for the list.
+* Use a <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Placeholder> (`<Placeholder>...</Placeholder>`) to display content until the item data is available.
+* Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemContent?displayProperty=nameWithType> to set the item template for the list.
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="LoadEmployees">
@@ -186,7 +186,7 @@ Because requesting items from a remote data source might take some time, you hav
 
 ## Empty content
 
-Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.EmptyContent> parameter to supply content when the component has loaded and either <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items*> is empty or <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderResult`1.TotalItemCount*?displayProperty=nameWithType> is zero.
+Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.EmptyContent> parameter to supply content when the component has loaded and either <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items> is empty or <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderResult`1.TotalItemCount?displayProperty=nameWithType> is zero.
 
 `EmptyContent.razor`:
 
@@ -219,7 +219,7 @@ protected override void OnInitialized() =>
 
 :::moniker range=">= aspnetcore-11.0"
 
-The height of each item in pixels can be set initially with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize*?displayProperty=nameWithType> (default: 50). The following example sets the initial height of each item from 50 pixels to 25 pixels:
+The height of each item in pixels can be set initially with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize?displayProperty=nameWithType> (default: 50). The following example sets the initial height of each item from 50 pixels to 25 pixels:
 
 ```razor
 <Virtualize Context="employee" Items="employees" ItemSize="25">
@@ -227,13 +227,13 @@ The height of each item in pixels can be set initially with <xref:Microsoft.AspN
 </Virtualize>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component measures actual item heights as they enter the viewport and maintains a running average of measured heights. All items use this running average for positioning (or the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize*> parameter before any measurements exist).
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component measures actual item heights as they enter the viewport and maintains a running average of measured heights. All items use this running average for positioning (or the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize> parameter before any measurements exist).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
-The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize*?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:
+The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:
 
 ```razor
 <Virtualize Context="employee" Items="employees" ItemSize="25">
@@ -241,7 +241,7 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 </Virtualize>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize*> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize*> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemSize> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
 :::moniker-end
 
@@ -249,7 +249,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> compo
 
 :::moniker range=">= aspnetcore-11.0"
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount*?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 15). The following example changes the overscan count from the default of 15 items to 17 items:
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 15). The following example changes the overscan count from the default of 15 items to 17 items:
 
 ```razor
 <Virtualize Context="employee" Items="employees" OverscanCount="17">
@@ -261,7 +261,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> compo
 
 :::moniker range="< aspnetcore-11.0"
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount*?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3). The following example changes the overscan count from the default of three items to four items:
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3). The following example changes the overscan count from the default of three items to four items:
 
 ```razor
 <Virtualize Context="employee" Items="employees" OverscanCount="4">
@@ -341,9 +341,9 @@ The following example pins the viewport to the start of a virtualized flight lis
 
 Modes can be combined. For example, assigning `Start | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
 
-`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider*> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
+`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
 
-The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items*> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an <xref:System.Collections.Generic.IEqualityComparer`1> to the `Virtualize` component:
+The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an <xref:System.Collections.Generic.IEqualityComparer`1> to the `Virtualize` component:
 
 <!-- UPDATE 11.0 - Does the 'itemComparer' in the following example
                    need the '@' symbol (ItemComparer="@itemComparer")? 

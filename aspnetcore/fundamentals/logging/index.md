@@ -31,7 +31,7 @@ Apps created from an ASP.NET Core web app project template call <xref:Microsoft.
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-To override the default logging providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging*?displayProperty=nameWithType> and use logging provider extension methods to add logging providers. The following example only sets up the [`Console`](#console) logging provider:
+To override the default logging providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging?displayProperty=nameWithType> and use logging provider extension methods to add logging providers. The following example only sets up the [`Console`](#console) logging provider:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -203,7 +203,7 @@ When logging to Azure Table Storage:
 
 :::moniker range=">= aspnetcore-6.0"
 
-The following example calls <xref:Microsoft.AspNetCore.Builder.WebApplication.Logger*?displayProperty=nameWithType> in the `Program` file to log informational messages:
+The following example calls <xref:Microsoft.AspNetCore.Builder.WebApplication.Logger?displayProperty=nameWithType> in the `Program` file to log informational messages:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -1227,7 +1227,7 @@ Logging should be so fast that it isn't worth the performance cost of asynchrono
 
 The preferred approach for setting log filter rules is by [app configuration](xref:fundamentals/configuration/index).
 
-The following example shows how to register filter rules in code by calling <xref:Microsoft.Extensions.Logging.FilterLoggingBuilderExtensions.AddFilter*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging*?displayProperty=nameWithType>:
+The following example shows how to register filter rules in code by calling <xref:Microsoft.Extensions.Logging.FilterLoggingBuilderExtensions.AddFilter*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging?displayProperty=nameWithType>:
 
 ```csharp
 using Microsoft.Extensions.Logging.Console;

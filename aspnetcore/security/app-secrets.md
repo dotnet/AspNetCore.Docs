@@ -223,7 +223,7 @@ For example, a database connection string stored in an _appsettings.json_ file s
 dotnet user-secrets set "DbPassword" "`<secret value>`"
 ```
 
-Replace the `<secret value>` placeholder in the example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password*> property to include it as the password value in the connection string:
+Replace the `<secret value>` placeholder in the example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password> property to include it as the password value in the connection string:
 
 [!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
 

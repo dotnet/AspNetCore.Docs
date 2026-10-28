@@ -151,7 +151,7 @@ The sample app implements the <xref:Microsoft.Extensions.Caching.SqlServer.SqlSe
 [!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> Properties like <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*>) are typically stored outside of source control. For example, the [Secret Manager](xref:security/app-secrets) or the _appsettings.json_ or _appsettings.{Environment}.json_ file might store the properties. The connection string can contain credentials that should be kept out of source control systems.
+> Properties like <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName>) are typically stored outside of source control. For example, the [Secret Manager](xref:security/app-secrets) or the _appsettings.json_ or _appsettings.{Environment}.json_ file might store the properties. The connection string can contain credentials that should be kept out of source control systems.
 
 For more information, see [SQL Database on Azure](/azure/sql-database/).
 

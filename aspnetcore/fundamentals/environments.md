@@ -94,7 +94,7 @@ if (!app.Environment.IsDevelopment())
 }
 ```
 
-The preceding example checks the current environment for the request processing pipeline. To check the current environment while configuring services, use [`builder.Environment`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment*) instead of [`app.Environment`](xref:Microsoft.AspNetCore.Builder.WebApplication.Environment*).
+The preceding example checks the current environment for the request processing pipeline. To check the current environment while configuring services, use [`builder.Environment`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment) instead of [`app.Environment`](xref:Microsoft.AspNetCore.Builder.WebApplication.Environment).
 
 :::moniker-end
 
@@ -133,7 +133,7 @@ Within the app, the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> provide
 
 ## Control rendered content
 
-Inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment> into a server-rendered Razor component and use the service's extension methods and <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*> property to determine the environment for rendering content:
+Inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment> into a server-rendered Razor component and use the service's extension methods and <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> property to determine the environment for rendering content:
 
 ```razor
 @inject IHostEnvironment Env

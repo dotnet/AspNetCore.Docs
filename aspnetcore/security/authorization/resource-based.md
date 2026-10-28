@@ -54,7 +54,7 @@ Task<AuthorizationResult> AuthorizeAsync(
     IEnumerable<IAuthorizationRequirement> requirements);
 ```
 
-In the following example, which is fully explained in the [Create a resource-based handler](#create-a-resource-based-handler) section, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload is invoked to determine whether the current user is allowed access to the document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded*) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name*>):
+In the following example, which is fully explained in the [Create a resource-based handler](#create-a-resource-based-handler) section, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload is invoked to determine whether the current user is allowed access to the document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name>):
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -158,7 +158,7 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 For more information on creating authorization policies, see <xref:security/authorization/policies>.
 
-The following `AccessDocument` component calls an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload to determine whether the current user is allowed to view a document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded*) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name*>).
+The following `AccessDocument` component calls an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload to determine whether the current user is allowed to view a document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name>).
 
 `Pages/AccessDocument.razor`:
 

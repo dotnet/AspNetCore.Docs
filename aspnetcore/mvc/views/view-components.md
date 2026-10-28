@@ -54,7 +54,7 @@ Any of the following can create a view component class:
 * Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute.
 * Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents).
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name*> property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name> property.
 
 A view component class:
 
@@ -362,7 +362,7 @@ A view component class can be created by any of the following:
 * Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute
 * Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents)
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name*> property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name> property.
 
 A view component class:
 

@@ -16,7 +16,7 @@ The Kestrel web server has constraint configuration options that are especially 
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrel":::
 
-Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits*?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
 ## General limits
 
@@ -56,7 +56,7 @@ The following example configures `MaxRequestBodySize` for a specific request usi
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IHttpMaxRequestBodySizeFeatureMiddleware":::
 
-If the app attempts to configure the limit on a request after it starts to read the request, an exception is thrown. Use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.IsReadOnly*?displayProperty=nameWithType> property to check if it's safe to set the `MaxRequestBodySize` property.
+If the app attempts to configure the limit on a request after it starts to read the request, an exception is thrown. Use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.IsReadOnly?displayProperty=nameWithType> property to check if it's safe to set the `MaxRequestBodySize` property.
 
 When an app runs [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), IIS sets the limit and Kestrel's request body size limit is disabled.
 

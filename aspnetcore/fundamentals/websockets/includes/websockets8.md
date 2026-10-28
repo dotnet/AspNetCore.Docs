@@ -62,8 +62,8 @@ Add the WebSockets middleware in `Program.cs`:
 
 The following settings can be configured:
 
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval*> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins*> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
 
@@ -151,7 +151,7 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
 However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
 
-If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins*> list for WebSockets to verify.
+If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> list for WebSockets to verify.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
 
