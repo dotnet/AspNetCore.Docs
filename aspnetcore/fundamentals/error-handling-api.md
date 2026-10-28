@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core APIs
 description: Learn about error handling in ASP.NET Core APIs with Minimal APIs and controller-based approaches.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 03/04/2026
+ms.date: 10/27/2026
 uid: fundamentals/error-handling-api
 ---
 
@@ -128,6 +128,27 @@ The following code configures the app to generate problem details:
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_ProblemDetails" highlight="2":::
 
 For more information on using `AddProblemDetails`, see [Problem Details](#problem-details)
+
+### Customize bad request handling with `RouteHandlerOptions.ThrowOnBadRequest`
+
+When minimal API parameter binding encounters bad-request failures (such as malformed JSON or type conversion errors), error handling is controlled by <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest*>:
+
+* In the `Development` environment, `ThrowOnBadRequest` defaults to `true`. Bad-request binding failures throw a <xref:Microsoft.AspNetCore.Http.BadHttpRequestException>, which flows through exception handling middleware (`UseExceptionHandler`) and invokes registered <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> handlers (available in ASP.NET Core 8 and later) or custom exception handlers to produce Problem Details responses.
+* In non-Development environments (such as `Production`), `ThrowOnBadRequest` defaults to `false`. Bad-request binding failures write a `400 Bad Request` status code directly without throwing an exception, bypassing custom exception handlers.
+
+For JSON body binding, unsupported request content types throw a <xref:Microsoft.AspNetCore.Http.BadHttpRequestException> with `StatusCode` set to `415` when `ThrowOnBadRequest` is `true` or return `415 Unsupported Media Type` directly when it is `false`. Unhandled exceptions thrown from custom `BindAsync` implementations always propagate regardless of this setting.
+
+To ensure bad-request binding failures throw an exception and trigger your configured exception handlers across all environments, configure `ThrowOnBadRequest`:
+
+```csharp
+builder.Services.Configure<RouteHandlerOptions>(options =>
+{
+    options.ThrowOnBadRequest = true;
+});
+```
+
+> [!IMPORTANT]
+> When `ThrowOnBadRequest` is enabled, binding failures throw a <xref:Microsoft.AspNetCore.Http.BadHttpRequestException>. In ASP.NET Core 11 and later, `UseExceptionHandler` preserves `BadHttpRequestException.StatusCode` by default in problem details responses. In ASP.NET Core 10 and earlier, unhandled exceptions default to `500 Internal Server Error` unless the handler explicitly preserves `BadHttpRequestException.StatusCode` on both `HttpContext.Response.StatusCode` and the generated <xref:Microsoft.AspNetCore.Mvc.ProblemDetails.Status>. Custom exception handlers or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> implementations (ASP.NET Core 8 and later) that override the response should still ensure `BadHttpRequestException.StatusCode` is preserved so client errors aren't reported as server failures.
 
 ### IProblemDetailsService fallback
 
