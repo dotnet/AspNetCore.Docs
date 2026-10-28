@@ -52,7 +52,7 @@ public class PositionOptions
 
 The following example:
 
-* Calls <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> to bind the `PositionOptions` class to the `Position` section.
+* Calls <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> to bind the `PositionOptions` class to the `Position` section.
 * Displays the `Position` configuration data.
 
 :::moniker range=">= aspnetcore-8.0"
@@ -136,7 +136,7 @@ spaces at the ends of the lines when editing the following content.
 
 After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> allows an abstract class to be instantiated. Consider the following example that uses the abstract class `AbstractClassWithName`.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> allows an abstract class to be instantiated. Consider the following example that uses the abstract class `AbstractClassWithName`.
 
 `NameTitleOptions.cs`:
 
@@ -249,7 +249,7 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Title: Writer":::  
 > :::no-loc text="Age: 22":::
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A?displayProperty=nameWithType> binds and returns the specified type. The following example shows how to use <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> with the `PositionOptions` class.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*?displayProperty=nameWithType> binds and returns the specified type. The following example shows how to use <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*> with the `PositionOptions` class.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -330,14 +330,14 @@ spaces at the ends of the lines when editing the following content.
 
 After the app has started, changes to the JSON configuration in the app settings file are read. To demonstrate the behavior, change one or both configuration values in the app settings file and reload the page without restarting the app.
 
-Summary of the differences between <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> and <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A?displayProperty=nameWithType>:
+Summary of the differences between <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> and <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*?displayProperty=nameWithType>:
 
-* <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> is usually more convenient than using <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> because <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> creates and returns a new instance of the object, while <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> populates properties of an existing object instance that's typically established by another line of code.
-* <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A> allows the concretion of an abstract class, while <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get%2A> is only able to create a non-abstract instance of the options type.
+* <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*> is usually more convenient than using <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> because <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*> creates and returns a new instance of the object, while <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> populates properties of an existing object instance that's typically established by another line of code.
+* <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> allows the concretion of an abstract class, while <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*> is only able to create a non-abstract instance of the options type.
 
 ## Bind options to the dependency injection service container
 
-In the following example, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure%2A> and bound to configuration.
+In the following example, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration.
 
 JSON configuration:
 
@@ -454,21 +454,21 @@ For the preceding code, changes to the JSON configuration in the app settings fi
 
 ## Options interfaces
 
-<xref:Microsoft.Extensions.Options.IOptions%601>:
+<xref:Microsoft.Extensions.Options.IOptions`1>:
 
 * Does ***not*** support:
   * Reading of configuration data after the app has started.
   * [Named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
 * Is registered as a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
-<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
+<xref:Microsoft.Extensions.Options.IOptionsSnapshot`1>:
 
 * Covered later in this article in the [Use `IOptionsSnapshot` to read updated data](#use-ioptionssnapshot-to-read-updated-data) section.
 * Is useful in scenarios where options should be recomputed on every request.
 * Is registered as a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped), so it can't be injected into a singleton service.
 * Supports [named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
+<xref:Microsoft.Extensions.Options.IOptionsMonitor`1>:
 
 * Covered later in this article in the [Use `IOptionsMonitor` to read updated data](#use-ioptionsmonitor-to-read-updated-data) section.
 * Is used to retrieve options and manage options notifications for `TOptions` instances.
@@ -477,26 +477,26 @@ For the preceding code, changes to the JSON configuration in the app settings fi
   * Change notifications.
   * [Named options](#specify-a-custom-key-name-for-a-configuration-property-using-configurationkeyname).
   * Reloadable configuration.
-  * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>).
+  * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1>).
   
-[Post-configuration scenarios](#options-post-configuration) enable setting or changing options after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs.
+[Post-configuration scenarios](#options-post-configuration) enable setting or changing options after all <xref:Microsoft.Extensions.Options.IConfigureOptions`1> configuration occurs.
 
-<xref:Microsoft.Extensions.Options.IOptionsFactory%601> is responsible for creating new options instances. It has a single <xref:Microsoft.Extensions.Options.IOptionsFactory%601.Create%2A> method. The default implementation takes all registered <xref:Microsoft.Extensions.Options.IConfigureOptions%601> and <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601> and runs all the configurations first, followed by the post-configuration. It distinguishes between <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> and <xref:Microsoft.Extensions.Options.IConfigureOptions%601> and only calls the appropriate interface.
+<xref:Microsoft.Extensions.Options.IOptionsFactory`1> is responsible for creating new options instances. It has a single <xref:Microsoft.Extensions.Options.IOptionsFactory`1.Create*> method. The default implementation takes all registered <xref:Microsoft.Extensions.Options.IConfigureOptions`1> and <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1> and runs all the configurations first, followed by the post-configuration. It distinguishes between <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and <xref:Microsoft.Extensions.Options.IConfigureOptions`1> and only calls the appropriate interface.
 
 ## Use `IOptionsSnapshot` to read updated data
 
-Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
+Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1>:
 
 * Options are computed once per request when accessed and cached for the lifetime of the request.
 * May incur a significant performance penalty because it's a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and is recomputed per request. For more information, see [`IOptionsSnapshot` is very slow (`dotnet/runtime` #53793)](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding (`dotnet/runtime` #36130)](https://github.com/dotnet/runtime/issues/36130).
 * Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
-The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-data) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is that:
+The difference between [`IOptionsMonitor`](#use-ioptionsmonitor-to-read-updated-data) and <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is that:
 
-* <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> is a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
-The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance after it's created.
+The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache`1> to cache the options instance after it's created.
 
 JSON configuration:
 
@@ -519,7 +519,7 @@ public class PositionOptions
 }
 ```
 
-The following example uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
+The following example uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -613,14 +613,14 @@ After the app has started, changes to the JSON configuration in the app settings
 
 ## Use `IOptionsMonitor` to read updated data
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is used to retrieve options and manage options notifications for `TOptions` instances.
+<xref:Microsoft.Extensions.Options.IOptionsMonitor`1> is used to retrieve options and manage options notifications for `TOptions` instances.
 
-The difference between <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> and [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data) is that:
+The difference between <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> and [`IOptionsSnapshot`](#use-ioptionssnapshot-to-read-updated-data) is that:
 
-* <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> is a [singleton service](/dotnet/core/extensions/dependency-injection/service-lifetimes#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is a [scoped service](/dotnet/core/extensions/dependency-injection/service-lifetimes#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> to cache `TOptions` instances. <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryRemove%2A?displayProperty=nameWithType> invalidates options instances in the monitor so that the value is recomputed. Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.TryAdd%2A?displayProperty=nameWithType>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601.Clear%2A> method is used when all named instances should be recreated on demand.
+<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> to cache `TOptions` instances. <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryRemove*?displayProperty=nameWithType> invalidates options instances in the monitor so that the value is recomputed. Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryAdd*?displayProperty=nameWithType>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.Clear*> method is used when all named instances should be recreated on demand.
 
 JSON configuration:
 
@@ -663,7 +663,7 @@ services.Configure<PositionOptions>(
 
 :::moniker-end
 
-The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>.
+The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -984,15 +984,15 @@ public class NamedOptionsModel : PageModel
 
 :::moniker-end
 
-All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOptions%601> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory%601> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll%2A> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll%2A> use this convention.
+All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOptions`1> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory`1> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> use this convention.
 
 Guidance on post-configuring named options is provided in the [Options post-configuration](#options-post-configuration) section.
 
 ## `OptionsBuilder` API
 
-<xref:Microsoft.Extensions.Options.OptionsBuilder%601> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial [`AddOptions<TOptions>(string optionsName)`](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A) call instead of appearing in all of the subsequent calls. Options validation and the <xref:Microsoft.Extensions.Options.IConfigureOptions%601> overloads that accept service dependencies are only available via `OptionsBuilder` (see [Use DI services to configure options](#use-di-services-to-configure-options)).
+<xref:Microsoft.Extensions.Options.OptionsBuilder`1> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial [`AddOptions<TOptions>(string optionsName)`](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions*) call instead of appearing in all of the subsequent calls. Options validation and the <xref:Microsoft.Extensions.Options.IConfigureOptions`1> overloads that accept service dependencies are only available via `OptionsBuilder` (see [Use DI services to configure options](#use-di-services-to-configure-options)).
 
-<xref:Microsoft.Extensions.Options.OptionsBuilder%601> is demonstrated in the [Options validation](#options-validation) section.
+<xref:Microsoft.Extensions.Options.OptionsBuilder`1> is demonstrated in the [Options validation](#options-validation) section.
 
 For information adding a custom repository, see <xref:security/data-protection/using-data-protection#add-opt>.
 
@@ -1005,7 +1005,7 @@ Services can be accessed from dependency injection while configuring options in 
 
 ### Configuration delegate approach
 
-Where services are registered for dependency injection, pass a configuration delegate to <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A> on <xref:Microsoft.Extensions.Options.OptionsBuilder%601>. `OptionsBuilder<TOptions>` provides overloads of <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A> that allow use of up to five services to configure options:
+Where services are registered for dependency injection, pass a configuration delegate to <xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*> on <xref:Microsoft.Extensions.Options.OptionsBuilder`1>. `OptionsBuilder<TOptions>` provides overloads of <xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*> that allow use of up to five services to configure options:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1031,9 +1031,9 @@ services.AddOptions<PositionOptions>("optionalName")
 
 ### Configuration options service approach
 
-Create a type that implements <xref:Microsoft.Extensions.Options.IConfigureOptions%601> or <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> and register the type as a service.
+Create a type that implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1> or <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and register the type as a service.
 
-We recommend passing a configuration delegate to <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A>, since creating a service is more complex. Creating a type is equivalent to what the framework does when calling <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A>. Calling <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Configure%2A> registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601>, which has a constructor that accepts the generic service types specified. 
+We recommend passing a configuration delegate to <xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*>, since creating a service is more complex. Creating a type is equivalent to what the framework does when calling <xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*>. Calling <xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*> registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified. 
 
 ## Options validation
 
@@ -1069,8 +1069,8 @@ public class KeyOptions
 
 Where services are registered for dependency injection, the following example:
 
-* Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A> to get an <xref:Microsoft.Extensions.Options.OptionsBuilder%601> that binds to the `KeyOptions` class.
-* Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> to enable validation.
+* Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions*> to get an <xref:Microsoft.Extensions.Options.OptionsBuilder`1> that binds to the `KeyOptions` class.
+* Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> to enable validation.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1092,7 +1092,7 @@ services.AddOptions<KeyOptions>()
 
 :::moniker-end
 
-The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> extension method is defined in the [`Microsoft.Extensions.Options.DataAnnotations` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations). For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the [shared framework](xref:fundamentals/metapackage-app).
+The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> extension method is defined in the [`Microsoft.Extensions.Options.DataAnnotations` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations). For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the [shared framework](xref:fundamentals/metapackage-app).
 
 Where services are registered for dependency injection, the following example applies a more complex validation rule using a delegate:
 
@@ -1126,7 +1126,7 @@ services.AddOptions<KeyOptions>()
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
+The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType>.
 
 > [!NOTE]
 > For demonstration purposes, the following example uses a <xref:Microsoft.AspNetCore.Components.MarkupString> to format raw HTML. Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided. For more information, see <xref:blazor/components/index#raw-html>.
@@ -1179,7 +1179,7 @@ The following example demonstrates how to log options validation exceptions and 
 
 :::moniker range="< aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType> in the page's `OnGet` method.
+The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType> in the page's `OnGet` method.
 
 `OptionsValidation1.cshtml`:
 
@@ -1255,7 +1255,7 @@ In the following example, the page content indicates that the value of `Key2` is
 
 ## Validate options in a dedicated class with `IValidateOptions<TOptions>`
 
-Implement <xref:Microsoft.Extensions.Options.IValidateOptions%601> to validate options without the need to maintain validation rules with data annotations or in the app's `Program` file.
+Implement <xref:Microsoft.Extensions.Options.IValidateOptions`1> to validate options without the need to maintain validation rules with data annotations or in the app's `Program` file.
 
 In the following example, the data annotations rules and options delegate validation of the preceding examples is moved to a validation class. The Options model class (`KeyOptions2`) doesn't contain data annotations.
 
@@ -1395,7 +1395,7 @@ services.AddSingleton<IValidateOptions<KeyOptions2>, KeyOptionsValidation>();
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType>.
+The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType>.
 
 `OptionsValidation2.razor`:
 
@@ -1445,7 +1445,7 @@ The following example demonstrates how to log options validation exceptions and 
 
 :::moniker range="< aspnetcore-8.0"
 
-The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message%2A?displayProperty=nameWithType> in the page's `OnGet` method.
+The following example demonstrates how to log options validation exceptions in the page model's constructor and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message*?displayProperty=nameWithType> in the page's `OnGet` method.
 
 `OptionsValidation2.cshtml`:
 
@@ -1514,18 +1514,18 @@ public class OptionsValidation2Model : PageModel
 
 Options validation supports <xref:System.ComponentModel.DataAnnotations.IValidatableObject> to perform class-level validation of a class within a class:
 
-* Implement the <xref:System.ComponentModel.DataAnnotations.IValidatableObject> interface and its <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A> method within the class.
-* Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> in the `Program` file.
+* Implement the <xref:System.ComponentModel.DataAnnotations.IValidatableObject> interface and its <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate*> method within the class.
+* Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> in the `Program` file.
 
 :::moniker range=">= aspnetcore-6.0"
 
 ### Run options validation when the app starts with `ValidateOnStart`
 
 Options validation runs the first time a `TOption` instance is created, which is when the first 
-access to [`IOptionsSnapshot<TOptions>.Value`](xref:Microsoft.Extensions.Options.IOptionsSnapshot%601) occurs in a request pipeline or when 
-[`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.IOptionsMonitor%601) is called. Each time options are reloaded, validation runs again. 
+access to [`IOptionsSnapshot<TOptions>.Value`](xref:Microsoft.Extensions.Options.IOptionsSnapshot`1) occurs in a request pipeline or when 
+[`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.IOptionsMonitor`1) is called. Each time options are reloaded, validation runs again. 
 
-To run options validation when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in the `Program` file where services are registered for dependency injection:
+To run options validation when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart*> in the `Program` file where services are registered for dependency injection:
 
 ```csharp
 builder.Services.AddOptions<KeyOptions>()
@@ -1540,9 +1540,9 @@ builder.Services.AddOptions<KeyOptions>()
 
 ### Asynchronous options validation
 
-In ASP.NET Core 11 or later, options validation supports asynchronous validation during app startup. Use asynchronous validation for rules that require I/O, such as checking whether a configured endpoint or resource is available. Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> so asynchronous validators run during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A> before the app starts.
+In ASP.NET Core 11 or later, options validation supports asynchronous validation during app startup. Use asynchronous validation for rules that require I/O, such as checking whether a configured endpoint or resource is available. Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart*> so asynchronous validators run during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync*> before the app starts.
 
-Register an asynchronous validation delegate with an overload of <xref:Microsoft.Extensions.Options.OptionsBuilder%601.Validate%2A> that accepts a <xref:System.Threading.CancellationToken> and returns `Task<bool>`:
+Register an asynchronous validation delegate with an overload of <xref:Microsoft.Extensions.Options.OptionsBuilder`1.Validate*> that accepts a <xref:System.Threading.CancellationToken> and returns `Task<bool>`:
 
 ```csharp
 builder.Services.AddOptions<RemoteServiceOptions>()
@@ -1556,7 +1556,7 @@ builder.Services.AddOptions<RemoteServiceOptions>()
 
 The asynchronous `Validate` overloads support up to five service dependencies from dependency injection, the same as the synchronous overloads.
 
-To move asynchronous validation logic into a dedicated class, implement <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601>. `IAsyncValidateOptions<TOptions>` inherits from <xref:Microsoft.Extensions.Options.IValidateOptions%601>, so the class must implement both the synchronous `Validate` method and the asynchronous `ValidateAsync` method. Because the validation rule requires asynchronous I/O, the synchronous `Validate` method can't perform the check without blocking on the async call (sync-over-async). The following validator handles only the default-named options instance, returns `ValidateOptionsResult.Skip` for other names, and fails explicitly for matching options when synchronous validation is requested:
+To move asynchronous validation logic into a dedicated class, implement <xref:Microsoft.Extensions.Options.IAsyncValidateOptions`1>. `IAsyncValidateOptions<TOptions>` inherits from <xref:Microsoft.Extensions.Options.IValidateOptions`1>, so the class must implement both the synchronous `Validate` method and the asynchronous `ValidateAsync` method. Because the validation rule requires asynchronous I/O, the synchronous `Validate` method can't perform the check without blocking on the async call (sync-over-async). The following validator handles only the default-named options instance, returns `ValidateOptionsResult.Skip` for other names, and fails explicitly for matching options when synchronous validation is requested:
 
 ```csharp
 public sealed class RemoteServiceOptionsValidator(
@@ -1595,9 +1595,9 @@ builder.Services.AddSingleton<IValidateOptions<RemoteServiceOptions>,
 
 #### Asynchronous validation with data annotations
 
-In ASP.NET Core 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions%601>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions%601> and <xref:Microsoft.Extensions.Options.IValidateOptions%601>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
+In ASP.NET Core 11 or later, <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> registers <xref:Microsoft.Extensions.Options.DataAnnotationValidateOptions`1>, which implements <xref:Microsoft.Extensions.Options.IAsyncValidateOptions`1> and <xref:Microsoft.Extensions.Options.IValidateOptions`1>. When `ValidateDataAnnotations` is combined with `ValidateOnStart`, data annotations validation participates in startup validation.
 
-The asynchronous path uses <xref:System.ComponentModel.DataAnnotations.Validator.TryValidateObjectAsync%2A>, which evaluates synchronous validation attributes before <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute> derived attributes. It calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> when an options type implements <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. Otherwise, it falls back to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject).
+The asynchronous path uses <xref:System.ComponentModel.DataAnnotations.Validator.TryValidateObjectAsync*>, which evaluates synchronous validation attributes before <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute> derived attributes. It calls <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync*> when an options type implements <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. Otherwise, it falls back to the synchronous [class-level validation with `IValidatableObject`](#class-level-validation-with-ivalidatableobject).
 
 `TryValidateObjectAsync` validates one object and doesn't recursively validate its property values. The startup cancellation token is passed through to the asynchronous validation rules.
 
@@ -1613,7 +1613,7 @@ public partial class GeneratedRemoteServiceOptionsValidator :
 }
 ```
 
-The generated `ValidateAsync` method evaluates asynchronous data annotations validation rules, including <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute> derived attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync%2A> for validated types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. A matching hand-written `Validate` or `ValidateAsync` method produces diagnostic `SYSLIB1205` or `SYSLIB1219`, respectively.
+The generated `ValidateAsync` method evaluates asynchronous data annotations validation rules, including <xref:System.ComponentModel.DataAnnotations.AsyncValidationAttribute> derived attributes and <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject.ValidateAsync*> for validated types that implement <xref:System.ComponentModel.DataAnnotations.IAsyncValidatableObject>. A matching hand-written `Validate` or `ValidateAsync` method produces diagnostic `SYSLIB1205` or `SYSLIB1219`, respectively.
 
 Register the generated validator as an `IValidateOptions<TOptions>` service:
 
@@ -1652,16 +1652,16 @@ Register the validator in dependency injection:
 builder.Services.AddSingleton<IAsyncStartupValidator, CustomStartupValidator>();
 ```
 
-The host runs every registered `IAsyncStartupValidator` during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>, alongside the built-in validator that `ValidateOnStart` registers for options validation.
+The host runs every registered `IAsyncStartupValidator` during <xref:Microsoft.Extensions.Hosting.IHost.StartAsync*>, alongside the built-in validator that `ValidateOnStart` registers for options validation.
 
 > [!NOTE]
-> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A>. `OptionsFactory.Create()`, `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
+> Asynchronous validation runs during host startup through <xref:Microsoft.Extensions.Hosting.IHost.StartAsync*>. `OptionsFactory.Create()`, `IOptions<TOptions>.Value`, `IOptionsSnapshot<TOptions>`, and configuration reloads observed through `IOptionsMonitor<TOptions>` remain synchronous and don't invoke asynchronous validators. Options that require asynchronous validation can't be validated outside of the `ValidateOnStart` startup path.
 
 :::moniker-end
 
 ## Options post-configuration
 
-Where services are registered for dependency injection, <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601.PostConfigure%2A> is available to initialize a particular [named option](#named-options-support-using-iconfigurenamedoptions). In the following example, only `TopItem:Month:Name` is post-configured:
+Where services are registered for dependency injection, <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1.PostConfigure*> is available to initialize a particular [named option](#named-options-support-using-iconfigurenamedoptions). In the following example, only `TopItem:Month:Name` is post-configured:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1708,7 +1708,7 @@ spaces at the ends of the lines when editing the following content.
 > :::no-loc text="Month: Name: Blue Gizmo Model: GW46":::  
 > :::no-loc text="Year: Name: Orange Gadget Model: OG35":::
 
-Where services are registered for dependency injection, use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll%2A> to initialize all named instances of the specified options type. In the following example, all instances of `TopItem.Name` are set to `Blue Gizmo`:
+Where services are registered for dependency injection, use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> to initialize all named instances of the specified options type. In the following example, all instances of `TopItem.Name` are set to `Blue Gizmo`:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1751,7 +1751,7 @@ Rendered output from the [named options example](#named-options-support-using-ic
 
 :::moniker range=">= aspnetcore-6.0"
 
-To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in the request processing pipeline, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>:
+To access <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> in the request processing pipeline, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services*?displayProperty=nameWithType>:
 
 ```csharp
 var name = app.Services.GetRequiredService<IOptionsMonitor<PositionOptions>>()
@@ -1762,9 +1762,9 @@ var name = app.Services.GetRequiredService<IOptionsMonitor<PositionOptions>>()
 
 :::moniker range="< aspnetcore-6.0"
 
-<xref:Microsoft.Extensions.Options.IOptions%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
+<xref:Microsoft.Extensions.Options.IOptions`1> and <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
 
-In the following example, <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is injected into the `Startup.Configure` method to obtain `PositionOptions` values:
+In the following example, <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> is injected into the `Startup.Configure` method to obtain `PositionOptions` values:
 
 ```csharp
 public void Configure(IApplicationBuilder app, 
@@ -1777,7 +1777,7 @@ Access the options in the request processing pipeline of `Startup.Configure`:
 var name = options.CurrentValue.Name;
 ```
 
-Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
+Don't use <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
 
 :::moniker-end
 

@@ -44,7 +44,7 @@ Install these packages by using the [NuGet package manager in Visual Studio](/nu
 
 ## Create an `IdentityDbContext`
 
-Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
+Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`1>:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\ApplicationDbContext.cs":::
 
@@ -68,13 +68,13 @@ To save user data between sessions when testing or for production use, change th
     
 ## Add Identity services to the container
 
-After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> to add services to the dependency injection (DI) container:
+After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization*> to add services to the dependency injection (DI) container:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetAddAuthorization":::
 
 ## Activate Identity APIs
 
-After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
+After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores``1(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetActivateAPIs":::
 
@@ -83,13 +83,13 @@ By default, both cookies and proprietary tokens are activated. Cookies are issue
 
 ## Map Identity routes
 
-After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
+After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetMapEndpoints":::
 
 ## Secure selected endpoints
 
-To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method on the `Map{Method}` call that defines the route. For example:
+To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method on the `Map{Method}` call that defines the route. For example:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetRequireAuthorization" highlight="15":::
 

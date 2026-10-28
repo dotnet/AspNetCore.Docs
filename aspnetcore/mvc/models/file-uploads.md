@@ -308,7 +308,7 @@ Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique ar
 For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
-> In .NET 7 or earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName%2A) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
+> In .NET 7 or earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
 >
 > * [GetTempFileNameA function](/windows/win32/api/fileapi/nf-fileapi-gettempfilenamea#remarks)
 > * <xref:System.IO.Path.GetTempFileName*>
@@ -439,7 +439,7 @@ while ((section = await reader.ReadNextSectionAsync(cancellationToken)) != null)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Http.Features.IFormFeature> is a wrapper around <xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> that doesn't require you to write manual request body parsing code. You can use its <xref:Microsoft.AspNetCore.Http.Features.IFormFeature.ReadFormAsync%2A> method to populate the request's form data, then access uploaded files from the built-in collection:
+<xref:Microsoft.AspNetCore.Http.Features.IFormFeature> is a wrapper around <xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> that doesn't require you to write manual request body parsing code. You can use its <xref:Microsoft.AspNetCore.Http.Features.IFormFeature.ReadFormAsync*> method to populate the request's form data, then access uploaded files from the built-in collection:
 
 ```csharp
 // Get the IFormFeature and read the form
@@ -452,7 +452,7 @@ var filePath = Request.Form.Files.First().FileName;
 return Results.Ok($"Saved file at {filePath}");
 ```
 
-For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader%2A?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both Minimal APIs and controllers.
+For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader*?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both Minimal APIs and controllers.
 
 The [3.1 example](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Pages/StreamedSingleFileUploadDb.cshtml) demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, another customer filter disables form model binding. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
@@ -1538,7 +1538,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize%2A?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize*?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
 
 ```csharp
 services.Configure<IISServerOptions>(options =>
@@ -2268,7 +2268,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize%2A?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize*?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
 
 ```csharp
 services.Configure<IISServerOptions>(options =>

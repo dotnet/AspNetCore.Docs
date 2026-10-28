@@ -96,7 +96,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 [!code-csharp[](javascript-client/samples/6.x/SignalRChat/Program.cs?highlight=8-18,35-36,39)]
 
-The <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> method must be called before calling the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> method.
+The <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method must be called before calling the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> method.
 
 ## Call hub methods from the client
 
@@ -128,7 +128,7 @@ In the following example, the method name is `ReceiveMessage`. The argument name
 
 [!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-The preceding code in `connection.on` runs when server-side code calls it by using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it by using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/6.x/SignalRChat/Hubs/ChatHub.cs)]
 
@@ -466,7 +466,7 @@ In the following example, the method name is `ReceiveMessage`. The argument name
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/3.x/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 

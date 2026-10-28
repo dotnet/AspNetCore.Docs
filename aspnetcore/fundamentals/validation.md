@@ -25,7 +25,7 @@ While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://w
 
 ## Register validation services
 
-Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services%2A?displayProperty=nameWithType> in the app's `Program` file:
+Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services*?displayProperty=nameWithType> in the app's `Program` file:
 
 ```csharp
 builder.Services.AddValidation();
@@ -48,7 +48,7 @@ Validation uses a source generator that creates metadata for validatable types i
 
 ### Behavior without generated validation metadata
 
-The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>, or of calling it without the required type being discovered by the source generator, differs by framework, as shown in the following table.
+The consequence of omitting <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*>, or of calling it without the required type being discovered by the source generator, differs by framework, as shown in the following table.
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -101,7 +101,7 @@ When validating a model:
 
 1. Validate the attributes on each property, then validate the property's value. If the value is an `IEnumerable`, validate each non-`null` element. If property validation produces an error, the remaining steps are skipped.
 1. Validate attributes applied to the model type. If type-level validation produces an error, the remaining step is skipped.
-1. Run <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A?displayProperty=nameWithType> if the model implements <xref:System.ComponentModel.DataAnnotations.IValidatableObject>.
+1. Run <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate*?displayProperty=nameWithType> if the model implements <xref:System.ComponentModel.DataAnnotations.IValidatableObject>.
 
 ### Nested objects and collections
 
@@ -109,7 +109,7 @@ Validation recurses into nested objects and collection items, so a rule declared
 
 To validate a nested object graph:
 
-1. Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> in the `Program` file where services are registered.
+1. Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> in the `Program` file where services are registered.
 1. Declare model types in C# files (`.cs`), not in Razor component files (`.razor`).
 1. Annotate the root model type with <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> (`[ValidatableType]`). Types reachable from the root are discovered automatically.
 
@@ -168,7 +168,7 @@ When the [built-in validation attributes](xref:mvc/models/validation#built-in-at
 
 ### Custom validation attributes
 
-Derive from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> and override <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid%2A> to validate a single value.
+Derive from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> and override <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> to validate a single value.
 
 Pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>. Without a member name, the result isn't associated with a field, which prevents the error from being displayed next to the corresponding input in a Blazor form:
 
@@ -216,7 +216,7 @@ protected override ValidationResult? IsValid(object? value,
 }
 ```
 
-For a service that must be resolved, use <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>. Services resolved this way must be registered in the app's service container.
+For a service that must be resolved, use <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*>. Services resolved this way must be registered in the app's service container.
 
 ### Class-level validation with `IValidatableObject`
 
@@ -267,7 +267,7 @@ Asynchronous validation operations can run in parallel, and their execution and 
 
 For Minimal API validation, <xref:Microsoft.Extensions.Validation?displayProperty=fullName> always calls the asynchronous path and never the synchronous path.
 
-Blazor form validation calls the asynchronous path for per-field validation and when the form is validated with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A?displayProperty=nameWithType>, which is what <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses on submit. The synchronous path is only reached through the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> method, which is obsolete in .NET 11 or later. Asynchronous rules therefore work in Blazor forms without additional configuration.
+Blazor form validation calls the asynchronous path for per-field validation and when the form is validated with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync*?displayProperty=nameWithType>, which is what <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses on submit. The synchronous path is only reached through the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate*?displayProperty=nameWithType> method, which is obsolete in .NET 11 or later. Asynchronous rules therefore work in Blazor forms without additional configuration.
 
 If your implementation can't support the synchronous path, throw <xref:System.InvalidOperationException>.
 
@@ -371,7 +371,7 @@ Validation error messages and the display names of validated members are localiz
 
 ### Activate localization
 
-Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is available in the service container. Call <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> to register the standard localization services, then call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
+Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is available in the service container. Call <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> to register the standard localization services, then call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*>:
 
 ```csharp
 builder.Services.AddLocalization();
@@ -468,7 +468,7 @@ builder.Services.AddValidation();
 
 ### Attributes that localize themselves
 
-Attributes configured with <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType> or <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType%2A?displayProperty=nameWithType> perform their own resource lookup and aren't processed by the `Microsoft.Extensions.Validation` localizer.
+Attributes configured with <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType> or <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType*?displayProperty=nameWithType> perform their own resource lookup and aren't processed by the `Microsoft.Extensions.Validation` localizer.
 
 ### Format a custom attribute's message
 
@@ -518,12 +518,12 @@ Applying `[ValidatableType]` to a type in generated code produces warning ASP003
 
 ### Register validation across assemblies
 
-The source generator creates metadata only for the assembly where <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> is called. Calling `AddValidation` only from the host app doesn't generate metadata for types declared in a referenced assembly, such as a class library or the `.Client` project of a Blazor Web App.
+The source generator creates metadata only for the assembly where <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> is called. Calling `AddValidation` only from the host app doesn't generate metadata for types declared in a referenced assembly, such as a class library or the `.Client` project of a Blazor Web App.
 
 To validate types from separate assemblies:
 
 * If the assembly is a plain class library (it isn't based on the `Microsoft.NET.Sdk.Web` or `Microsoft.NET.Sdk.Razor` SDKs), add a package reference to the project for the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation).
-* Create an extension method in each assembly that declares validatable types. The method calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> so that the source generator runs in that assembly:
+* Create an extension method in each assembly that declares validatable types. The method calls <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> so that the source generator runs in that assembly:
 
   ```csharp
   namespace ValidatableTypesAssembly.Extensions;

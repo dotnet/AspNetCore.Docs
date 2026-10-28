@@ -64,7 +64,7 @@ In the following sections of this article:
 
 The `NavMenu` component (`Components/Layout/NavMenu.razor`) implements sidebar navigation using <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components, which render navigation links to other Razor components.
 
-A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> parameter configures the component to display an active CSS class when it matches the entire current URL.
+A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match*> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
 The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
 
@@ -315,7 +315,7 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 ## `MainLayout` component for layout
 
-The `MainLayout` component is the app's default layout. The `MainLayout` component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which is a base class for components that represent a layout. The app's components that use the layout are rendered where the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) appears in the markup.
+The `MainLayout` component is the app's default layout. The `MainLayout` component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which is a base class for components that represent a layout. The app's components that use the layout are rendered where the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body*> (`@Body`) appears in the markup.
 
 `Components/Layout/MainLayout.razor`:
 
@@ -344,7 +344,7 @@ The `MainLayout` component adopts the following additional specifications:
 * The `NavMenu` component is rendered in the sidebar. Notice that you only need to place an HTML tag with the component name to render a component at that location in Razor markup. This allows you to nest components within each other and within any HTML layout that you implement.
 * The `<main>` element's content includes:
   * An **:::no-loc text="About":::** link that sends the user to the ASP.NET Core documentation landing page.
-  * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
+  * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body*> (`@Body`) parameter, where components that use the layout are rendered.
   * The error UI (`<div id="blazor-error-ui" ...>`), where a notice about an unhandled error is displayed.
 
 The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Routes.razor`):
@@ -390,7 +390,7 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 </p>
 ```
 
-The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
 
 ```razor
 <QuickGrid Class="table" Items="context.Movie">
@@ -421,10 +421,10 @@ The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) disp
 In the code block (`@code`):
 
 * The `context` field holds the database context, typed as a `BlazorWebAppMoviesContext`.
-* The `OnInitialized` lifecycle method assigns a created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) from the injected factory (`DbFactory`) to the `context` variable.
+* The `OnInitialized` lifecycle method assigns a created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) from the injected factory (`DbFactory`) to the `context` variable.
 * The asynchronous `DisposeAsync` method disposes of the database context when the component is disposed.
 
-Notice how the context (`Context`) parameter of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> specifies a parameter name (`movie`) for the context instance of the column. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
+Notice how the context (`Context`) parameter of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1> specifies a parameter name (`movie`) for the context instance of the column. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
 
 The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
@@ -457,7 +457,7 @@ For the movie example from the last part of the tutorial series, *The Matrix*&co
 </table>
 ```
 
-The column names are taken from the `Movie` model properties, so the release date doesn't have a space between the words. Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title> to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> with a value that includes a space between the words:
+The column names are taken from the `Movie` model properties, so the release date doesn't have a space between the words. Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title> to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> with a value that includes a space between the words:
 
 ```diff
 - <PropertyColumn Property="movie => movie.ReleaseDate" />
@@ -589,17 +589,17 @@ The `movie` variable is a private field of type `Movie`, which is a null-referen
 
 The `Id` is a *component parameter* supplied from the component's query string due to the presence of the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute). If the identifier is missing, `Id` defaults to zero (`0`).
 
-`OnInitializedAsync` is the first component lifecycle method that we've seen. This method is executed when the component loads. <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync%2A> is called on the database set (`DbSet<Movie>`) to retrieve the movie entity with an `Id` equal to the `Id` parameter that was set by the query string. If `movie` is `null`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> is used to navigate to a `notfound` endpoint.
+`OnInitializedAsync` is the first component lifecycle method that we've seen. This method is executed when the component loads. <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync*> is called on the database set (`DbSet<Movie>`) to retrieve the movie entity with an `Id` equal to the `Id` parameter that was set by the query string. If `movie` is `null`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> is used to navigate to a `notfound` endpoint.
 
 :::moniker range=">= aspnetcore-10.0"
 
-When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
+When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
 
-There isn't an actual `notfound` endpoint (Razor component) in the app. When adopting server-side rendering (SSR) in .NET 8 or .NET 9, the app doesn't have a mechanism to return a 404 (Not Found) status code. A 404 is generated by navigating to a non-existent endpoint. This scaffolded code is for your further implementation of a suitable result when not finding an entity in .NET 8/9. For example, you could have the component direct the user to a page where they can file an inquiry with your support team, or you could remove the injected <xref:Microsoft.AspNetCore.Components.NavigationManager> and <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> code and replace it with Razor markup and code that displays a message to the user that the entity wasn't found. In .NET 10 or later, Blazor has a built-in Not Found feature. For more information, see the [.NET 10 version of this section](?view=aspnetcore-10.0&pivots=vs&preserve-view=true#details-component).
+There isn't an actual `notfound` endpoint (Razor component) in the app. When adopting server-side rendering (SSR) in .NET 8 or .NET 9, the app doesn't have a mechanism to return a 404 (Not Found) status code. A 404 is generated by navigating to a non-existent endpoint. This scaffolded code is for your further implementation of a suitable result when not finding an entity in .NET 8/9. For example, you could have the component direct the user to a page where they can file an inquiry with your support team, or you could remove the injected <xref:Microsoft.AspNetCore.Components.NavigationManager> and <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> code and replace it with Razor markup and code that displays a message to the user that the entity wasn't found. In .NET 10 or later, Blazor has a built-in Not Found feature. For more information, see the [.NET 10 version of this section](?view=aspnetcore-10.0&pivots=vs&preserve-view=true#details-component).
 
 :::moniker-end
 
@@ -646,15 +646,15 @@ Add a space to the content of the label element (`<label>`) for the movie's rele
 + <label for="releasedate" class="form-label">Release Date:</label>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> specifies a method to invoke (`AddMovie`) when the form is submitted and the data is valid. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model*> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit*> specifies a method to invoke (`AddMovie`) when the form is submitted and the data is valid. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName*> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
 
 For validation:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> adds data annotations validation support, which is covered later in this tutorial series.
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component displays a list of validation messages.
-* The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components hold validation messages for the form's fields.
+* The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> components hold validation messages for the form's fields.
 
-Blazor includes several form element components to assist you with creating forms, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm> and various input components, such as <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>. Each input component is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
+Blazor includes several form element components to assist you with creating forms, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm> and various input components, such as <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1>. Each input component is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
 
 In the component's `@code` block, C# code includes a `Movie` component parameter tied to the form via the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute).
 
@@ -662,7 +662,7 @@ The `AddMovie` method:
 
 * Is called when the form is submitted.
 * Adds the movie data bound to the form's model (`Movie`) if form validation passes.
-* <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A> is called on the database context to save the movie.
+* <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*> is called on the database context to save the movie.
 * <xref:Microsoft.AspNetCore.Components.NavigationManager> is used to return the user to the movies `Index` page.
 
 :::moniker range=">= aspnetcore-10.0"
@@ -737,7 +737,7 @@ private async Task DeleteMovie()
 
 :::moniker range=">= aspnetcore-10.0"
 
-When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
+When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 :::moniker-end
 
@@ -838,7 +838,7 @@ The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <x
 
 :::moniker range=">= aspnetcore-10.0"
 
-When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
+When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the Not Found page, which results in returning a 404 (Not Found) status code. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
 
@@ -848,7 +848,7 @@ If there's a concurrency exception and the movie entity no longer exists at the 
 -->
 
 > [!NOTE]
-> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of <xref:blazor/tutorials/movie-database-app/part-4>, which is the next article in this tutorial.
+> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of <xref:blazor/tutorials/movie-database-app/part-4>, which is the next article in this tutorial.
 
 :::moniker-end
 

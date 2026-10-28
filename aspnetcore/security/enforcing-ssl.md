@@ -45,7 +45,7 @@ The secure approach for [HTTP Strict Transport Security (HSTS) protocol](#hsts) 
 
 ### HTTP redirect to HTTPS (ERR_INVALID_REDIRECT on CORS preflight request)
 
-When a request to an endpoint using HTTP is redirected to HTTPS with the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method, the redirection fails with the `ERR_INVALID_REDIRECT` error on the CORS preflight request.
+When a request to an endpoint using HTTP is redirected to HTTPS with the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> method, the redirection fails with the `ERR_INVALID_REDIRECT` error on the CORS preflight request.
 
 API projects can reject HTTP requests rather than use the `UseHttpsRedirection` method to redirect requests to HTTPS.
 
@@ -53,7 +53,7 @@ API projects can reject HTTP requests rather than use the `UseHttpsRedirection` 
 
 For production ASP.NET Core web apps, the following approach is recommended:
 
-* To redirect HTTP requests to HTTPS, use HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>).
+* To redirect HTTP requests to HTTPS, use HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>).
 
 * To send HSTS headers to clients, use HSTS middleware via the [UseHsts](#hsts) method.
 
@@ -62,7 +62,7 @@ For production ASP.NET Core web apps, the following approach is recommended:
 
 ### HTTPS redirection middleware (`UseHttpsRedirection`)
 
-The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method in the _Program.cs_ file:
+The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> method in the _Program.cs_ file:
 
 [!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=13)]
 
@@ -121,7 +121,7 @@ When deploying to Azure App Service, follow the guidance in [Enable HTTPS for a 
 
 ### Options
 
-The following highlighted code calls the <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection%2A> method to configure middleware options:
+The following highlighted code calls the <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection*> method to configure middleware options:
 
 [!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program2.cs?highlight=16-20)]
 
@@ -129,7 +129,7 @@ Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPo
 
 The preceding highlighted code:
 
-* Sets the <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode%2A?displayProperty=nameWithType> property to the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
+* Sets the <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*?displayProperty=nameWithType> property to the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
 * Sets the HTTPS port to 5001.
 
 #### Configure permanent redirects in production
@@ -159,13 +159,13 @@ Because the client enforces [HSTS](https://developer.mozilla.org/docs/Web/HTTP/R
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
 * The application must check every HTTP request and redirect or reject the HTTP request.
 
-ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
 [!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=10)]
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
-For production environments that are implementing HTTPS for the first time, set the initial <xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge%2A?displayProperty=nameWithType> property value to a small amount by using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day, in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value (commonly, one year).
+For production environments that are implementing HTTPS for the first time, set the initial <xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*?displayProperty=nameWithType> property value to a small amount by using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day, in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value (commonly, one year).
 
 The following highlighted code:
 

@@ -31,14 +31,14 @@ Razor Page filters provide the following methods, which can be applied globally 
 
 * Synchronous methods:
 
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerSelected%2A> : Called after a handler method has been selected, but before model binding occurs.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuting%2A> : Called before the handler method executes, after model binding is complete.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuted%2A> : Called after the handler method executes, before the action result.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerSelected*> : Called after a handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuting*> : Called before the handler method executes, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuted*> : Called after the handler method executes, before the action result.
 
 * Asynchronous methods:
 
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A> : Called asynchronously after the handler method has been selected, but before model binding occurs.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync%2A> : Called asynchronously before the handler method is invoked, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync*> : Called asynchronously after the handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync*> : Called asynchronously before the handler method is invoked, after model binding is complete.
 
 Implement **either** the synchronous or the async version of a filter interface, **not** both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's methods. If both interfaces are implemented, only the async methods are called. The same rule applies to overrides in pages, implement the synchronous or the async version of the override, not both.
 
@@ -114,7 +114,7 @@ Razor Page filters:
 * Can be implemented on a page or globally.
 * Cannot be applied to specific page handler methods.
 
-Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext%2A>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
+Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext*>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/filter/samples/PageFilter) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
@@ -122,14 +122,14 @@ Razor Page filters provide the following methods, which can be applied globally 
 
 * Synchronous methods:
 
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerSelected%2A> : Called after a handler method has been selected, but before model binding occurs.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuting%2A> : Called before the handler method executes, after model binding is complete.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuted%2A> : Called after the handler method executes, before the action result.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerSelected*> : Called after a handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuting*> : Called before the handler method executes, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuted*> : Called after the handler method executes, before the action result.
 
 * Asynchronous methods:
 
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A> : Called asynchronously after the handler method has been selected, but before model binding occurs.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync%2A> : Called asynchronously before the handler method is invoked, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync*> : Called asynchronously after the handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync*> : Called asynchronously before the handler method is invoked, after model binding is complete.
 
 > [!NOTE]
 > Implement **either** the synchronous or the async version of a filter interface, not both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's methods. If both interfaces are implemented, only the async methods are called. The same rule applies to overrides in pages, implement the synchronous or the async version of the override, not both.
@@ -172,7 +172,7 @@ The following code overrides the synchronous Razor Page filters:
 
 ## Implement a filter attribute
 
-The built-in attribute-based filter <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync%2A> filter can be subclassed. The following filter adds a header to the response:
+The built-in attribute-based filter <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> filter can be subclassed. The following filter adds a header to the response:
 
 [!code-csharp[Main](filter/samples/PageFilter/Filters/AddHeaderAttribute.cs)]
 

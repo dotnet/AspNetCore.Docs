@@ -107,7 +107,7 @@ ASP.NET Core features built-in [dependency injection (DI)](xref:fundamentals/dep
 
 :::moniker range=">= aspnetcore-6.0"
 
-When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>, [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services) are automatically added, such as services for configuration and logging:
+When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services) are automatically added, such as services for configuration and logging:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -191,7 +191,7 @@ app.MapGet("/todos", async (AppDbContext context, ILogger<Program> logger) =>
 
 :::moniker range="< aspnetcore-6.0"
 
-When the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A?displayProperty=nameWithType> is called in the `Program` file, a new instance of the <xref:Microsoft.Extensions.Hosting.HostBuilder> class is automatically initialized with [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services), such as services for configuration and logging:
+When the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*?displayProperty=nameWithType> is called in the `Program` file, a new instance of the <xref:Microsoft.Extensions.Hosting.HostBuilder> class is automatically initialized with [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services), such as services for configuration and logging:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -265,7 +265,7 @@ For more information, see <xref:fundamentals/environments> and <xref:blazor/fund
 
 The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request.
 
-By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." In the following example representing part of a request processing pipeline, middleware for exception handling (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>), [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>), and HTTPS redirection (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) are called. Two of the middlewares are only triggered when the app isn't under local development in the `Development` environment, such as when the app is staged for deployment (the `Staging` environment) or in production (the `Production` environment):
+By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." In the following example representing part of a request processing pipeline, middleware for exception handling (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>), [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>), and HTTPS redirection (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>) are called. Two of the middlewares are only triggered when the app isn't under local development in the `Development` environment, such as when the app is staged for deployment (the `Staging` environment) or in production (the `Production` environment):
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -331,7 +331,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 ```
 
-The <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A?displayProperty=nameWithType> method configures a host with a set of default options, such as:
+The <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build*?displayProperty=nameWithType> method configures a host with a set of default options, such as:
 
 * Using [Kestrel](#servers) as the web server and enabling IIS integration.
 * Loading [configuration](xref:fundamentals/configuration/index) from app settings files (for example, `appsettings.json`), environment variables, command line arguments, and other configuration sources.
@@ -348,7 +348,7 @@ There are two hosts:
 
 The .NET Generic Host is recommended. The ASP.NET Core Web Host is only available for backwards compatibility.
 
-The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> and <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> methods in the following example configure a host with a set of default options, such as:
+The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> and <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> methods in the following example configure a host with a set of default options, such as:
 
 * Using [Kestrel](#servers) as the web server and enabling IIS integration.
 * Loading [configuration](xref:fundamentals/configuration/index) from app settings files (for example, `appsettings.json`), environment variables, command line arguments, and other configuration sources.
@@ -429,7 +429,7 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 * Azure Application Insights
 * Third-party providers
 
-To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>. A logger object and a console provider for the logger object are stored in the DI container automatically when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method is called.
+To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger`1> service from dependency injection (DI) and call logging methods, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>. A logger object and a console provider for the logger object are stored in the DI container automatically when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> method is called.
 
 The following example shows how to obtain a logging instance from DI and use it in a `Weather` component (`Weather.razor`) of a Blazor app that reports weather data:
 
@@ -454,7 +454,7 @@ For more information, including routing guidance for Razor Pages and MVC apps, s
 
 Routing in ASP.NET Core is a mechanism that maps incoming requests to specific endpoints in an app. It enables you to define URL patterns that correspond to different components, such as Razor components, Razor pages, MVC controller actions, or middleware.
 
-The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> method adds routing middleware to the request pipeline. This middleware processes the routing information and determines the appropriate endpoint for each request. In apps using the [Minimal Host](#host), `UseRouting` isn't explicitly called in developer code unless you want to change middleware processing order.
+The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> method adds routing middleware to the request pipeline. This middleware processes the routing information and determines the appropriate endpoint for each request. In apps using the [Minimal Host](#host), `UseRouting` isn't explicitly called in developer code unless you want to change middleware processing order.
 
 For more information, see the following resources:
 

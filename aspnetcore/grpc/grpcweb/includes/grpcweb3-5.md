@@ -44,7 +44,7 @@ Alternatively, the gRPC-Web middleware can be configured so that all services su
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction applies to making gRPC-Web calls with browser apps. For example, a browser app served by `https://www.contoso.com` is blocked from calling gRPC-Web services hosted on `https://services.contoso.com`. Cross-Origin Resource Sharing (CORS) can be used to relax this restriction.
 
-To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders%2A>.
+To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
 
 [!code-csharp[](~/grpc/grpcweb/samples/3-5.x/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
 
@@ -132,7 +132,7 @@ Create a .NET client compatible with gRPC-Web using the [gRPC client factory](xr
   * [`Grpc.Net.Client.Web`](https://www.nuget.org/packages/Grpc.Net.Client.Web)
   * [`Grpc.Net.ClientFactory`](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
 * Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly app, services are registered with DI in `Program.cs`.
-* Configure `GrpcWebHandler` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.
+* Configure `GrpcWebHandler` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method.
 
 ```csharp
 builder.Services

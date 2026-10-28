@@ -13,7 +13,7 @@ Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by 
 
 ## Endpoints for registering, logging in, and logging out
 
-Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in a backend API to add JSON API endpoints for registering and logging in users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
+Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in a backend API to add JSON API endpoints for registering and logging in users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
 
 In the following examples, `httpClient` is an instance of <xref:System.Net.Http.HttpClient>. For more information, see <xref:blazor/call-web-api>.
 
@@ -39,7 +39,7 @@ using var result = await httpClient.PostAsJsonAsync(
     });
 ```
 
-The backend server API establishes cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder:
+The backend server API establishes cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies*> on the authentication builder:
 
 ```csharp
 builder.Services
@@ -60,7 +60,7 @@ The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is 
 
 The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. For more information, see <xref:security/authentication/identity/spa>.
 
-Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method. Specify the scheme for bearer authentication tokens with <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme%2A?displayProperty=nameWithType>.
+Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies*> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken*> extension method. Specify the scheme for bearer authentication tokens with <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme*?displayProperty=nameWithType>.
 
 In `Backend/Program.cs`, change the authentication services and configuration to the following: 
 
@@ -133,16 +133,16 @@ The [`Backend.http` file](https://github.com/dotnet/blazor-samples/blob/main/8.0
 
 The following setup and configuration is found in the app's [`Program` file](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/Backend/Program.cs). 
 
-User identity with cookie authentication is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A>. Services for authorization checks are added by a call to <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A>.
+User identity with cookie authentication is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies*>. Services for authorization checks are added by a call to <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*>.
 
-Only recommended for demonstrations, the app uses the [EF Core in-memory database provider](/ef/core/providers/in-memory/) for the database context registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>). The in-memory database provider makes it easy to restart the app and test the registration and login user flows. Each run starts with a fresh database, but the app includes [test user seeding demonstration code](#test-user-seeding-demonstration), which is described later in this article. If the database is changed to SQLite, users are saved between sessions, but the database must be created through [migrations](/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app)&dagger;. You can use other relational providers such as SQL Server for your production code.
+Only recommended for demonstrations, the app uses the [EF Core in-memory database provider](/ef/core/providers/in-memory/) for the database context registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*>). The in-memory database provider makes it easy to restart the app and test the registration and login user flows. Each run starts with a fresh database, but the app includes [test user seeding demonstration code](#test-user-seeding-demonstration), which is described later in this article. If the database is changed to SQLite, users are saved between sessions, but the database must be created through [migrations](/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app)&dagger;. You can use other relational providers such as SQL Server for your production code.
 
 > [!NOTE]
 > &dagger;The EF Core getting started tutorial uses PowerShell commands to execute database migrations when using Visual Studio. An alternative approach in Visual Studio is to use the Connected Services UI:
 >
 > In **Solution Explorer**, double-click **Connected Services**. In **Service Dependencies** > **SQL Server Express LocalDB**, select the ellipsis (`...`) followed by either **Add migration** to create a migration or **Update database** to update the database.
 
-Configure Identity to use the EF Core database and expose the Identity endpoints via the calls to <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>, <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%2A>, and <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A>.
+Configure Identity to use the EF Core database and expose the Identity endpoints via the calls to <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>, <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*>, and <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints*>.
 
 A [Cross-Origin Resource Sharing (CORS)](xref:security/cors) policy is established to permit requests from the frontend and backend apps. Fallback URLs are configured for the CORS policy if app settings don't provide them:
 
@@ -167,7 +167,7 @@ Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.
 
 A logout endpoint (`/Logout`) is configured in the middleware pipeline to sign users out.
 
-To secure an endpoint, add the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method to the route definition. For a controller, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
+To secure an endpoint, add the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method to the route definition. For a controller, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
 
 For more information on basic patterns for initialization and configuration of a <xref:Microsoft.EntityFrameworkCore.DbContext> instance, see
 [DbContext Lifetime, Configuration, and Initialization](/ef/core/dbcontext-configuration/) in the EF Core documentation.
@@ -234,7 +234,7 @@ Services and configuration is provided in the [`Program` file (`Program.cs`)](ht
 * The base host URL is configured for a registered HTTP client instance.
 * The base backend URL is configured for a registered HTTP client instance that's used for auth interactions with the backend web API. The HTTP client uses the cookie handler to ensure that cookie credentials are sent with each request.
 
-Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A?displayProperty=nameWithType> when the user's authentication state changes. For an example, see the `LoginAsync` and `LogoutAsync` methods of the [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs).
+Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*?displayProperty=nameWithType> when the user's authentication state changes. For an example, see the `LoginAsync` and `LogoutAsync` methods of the [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs).
 
 > [!WARNING]
 > The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component selectively displays UI content depending on whether the user is authorized. All content within a Blazor WebAssembly app placed in an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component is discoverable without authentication, so sensitive content should be obtained from a backend server-based web API after authentication succeeds. For more information, see the following resources:
@@ -262,15 +262,15 @@ The `SeedData` class ([`SeedData.cs`](https://github.com/dotnet/blazor-samples/b
 
 Role claims aren't sent back from the `manage/info` endpoint to create user claims for users of the `BlazorWasmAuth` app. Role claims are managed independently via a separate request in the `GetAuthenticationStateAsync` method of the [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) after the user is authenticated in the `Backend` project. 
 
-In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize%2A?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
+In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize*?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
 
-In the `Backend` server API's `Program` file, a [Minimal API](xref:fundamentals/apis) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A> are [selected](xref:System.Linq.Enumerable.Select%2A) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json%2A?displayProperty=nameWithType>.
+In the `Backend` server API's `Program` file, a [Minimal API](xref:fundamentals/apis) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType*> are [selected](xref:System.Linq.Enumerable.Select*) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json*?displayProperty=nameWithType>.
 
-The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
+The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
 
 ## Cross-domain hosting (same-site configuration)
 
-The [sample apps](#sample-apps) are configured for hosting both apps at the same domain. If you host the `Backend` app at a different domain than the `BlazorWasmAuth` app, uncomment the code that configures the cookie (<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie%2A>) in the `Backend` app's `Program` file. The default values are:
+The [sample apps](#sample-apps) are configured for hosting both apps at the same domain. If you host the `Backend` app at a different domain than the `BlazorWasmAuth` app, uncomment the code that configures the cookie (<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*>) in the `Backend` app's `Program` file. The default values are:
 
 * Same-site mode: <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType>
 * Secure policy: <xref:Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest?displayProperty=nameWithType>
@@ -298,7 +298,7 @@ Only the logout endpoint (`/logout`) in the `Backend` app requires attention to 
 
 The logout endpoint checks for an empty body to prevent CSRF attacks. By requiring a body, the request must be made from JavaScript, which is the only way to access the authentication cookie. The logout endpoint can't be accessed by a form-based POST. This prevents a malicious site from logging the user out.
 
-Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>) to prevent anonymous access.
+Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>) to prevent anonymous access.
 
 The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
 

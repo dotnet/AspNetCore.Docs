@@ -46,9 +46,9 @@ This response header is used with HTTP/3 upgrades and only applies to the immedi
 
 These headers include `TraceParent`, `Request-Id`, `TraceState`, `Baggage`, and `Correlation-Context`.
 
-They're automatically removed based on <xref:System.Diagnostics.DistributedContextPropagator.Fields%2A?displayProperty=nameWithType>, allowing the forwarding <xref:System.Net.Http.HttpClient> to replace them with updated values.
+They're automatically removed based on <xref:System.Diagnostics.DistributedContextPropagator.Fields*?displayProperty=nameWithType>, allowing the forwarding <xref:System.Net.Http.HttpClient> to replace them with updated values.
 
-You can opt out of modifying these headers by setting <xref:System.Net.Http.SocketsHttpHandler.ActivityHeadersPropagator%2A?displayProperty=nameWithType> to `null`:
+You can opt out of modifying these headers by setting <xref:System.Net.Http.SocketsHttpHandler.ActivityHeadersPropagator*?displayProperty=nameWithType> to `null`:
 
 ```csharp
 services.AddReverseProxy()

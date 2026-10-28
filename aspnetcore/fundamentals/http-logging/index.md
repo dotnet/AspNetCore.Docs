@@ -34,7 +34,7 @@ HTTP logging ***can reduce the performance of an app***, especially when logging
 
 ## Enable HTTP logging
 
-HTTP logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, as shown in the following example:
+HTTP logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging*> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*>, as shown in the following example:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet2&highlight=3,7)]
 
@@ -79,7 +79,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
 
 ## HTTP logging options
 
-To configure global options for the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`, using the lambda to configure <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>.
+To configure global options for the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging*> in `Program.cs`, using the lambda to configure <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices)]
 
@@ -106,9 +106,9 @@ This approach can also be used to enable logging for data that isn't logged by d
 
 #### `MediaTypeOptions` methods
 
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText%2A>
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary%2A>
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear%2A>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText*>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary*>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear*>
 
 ### `RequestBodyLogLimit` and `ResponseBodyLogLimit`
 
@@ -125,7 +125,7 @@ Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> t
 
 ## Endpoint-specific configuration
 
-For endpoint-specific configuration in Minimal API apps, a <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging%2A> extension method is available. The following example shows how to configure HTTP logging for one endpoint:
+For endpoint-specific configuration in Minimal API apps, a <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging*> extension method is available. The following example shows how to configure HTTP logging for one endpoint:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet6)]
 
@@ -142,7 +142,7 @@ For endpoint-specific configuration in apps that use controllers, the [`[HttpLog
 * Adjust how much of the request or response body is logged.
 * Add custom fields to the logs.
 
-Register an <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> implementation by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor%2A> in `Program.cs`. If multiple <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> instances are registered, they're run in the order registered.
+Register an <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> implementation by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor*> in `Program.cs`. If multiple <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> instances are registered, they're run in the order registered.
 
 The following example shows how to register an <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> implementation:
 
@@ -196,8 +196,8 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[8]
 
 The following list shows the order of precedence for logging configuration:
 
-1. Global configuration from <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>, set by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A>.
-1. Endpoint-specific configuration from the [`[HttpLogging]` attribute](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) or the <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging%2A> extension method overrides global configuration.
+1. Global configuration from <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>, set by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging*>.
+1. Endpoint-specific configuration from the [`[HttpLogging]` attribute](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) or the <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging*> extension method overrides global configuration.
 1. [`IHttpLoggingInterceptor`](#ihttplogginginterceptor) is called with the results and can further modify the configuration per request.
 
 :::moniker-end
@@ -208,7 +208,7 @@ The following list shows the order of precedence for logging configuration:
 
 ## Redacting sensitive data
 
-Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction%2A>:
+Http logging with redaction can be enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction*>:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/snapshot/9.x/Program.cs?name=snippet7&highlight=9)]
 
@@ -216,7 +216,7 @@ For more information about .NET's data redaction library, see [Data redaction in
 
 ## Logging redaction options
 
-To configure options for logging with redaction, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction%2A> in `Program.cs` using the lambda to configure <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>:
+To configure options for logging with redaction, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServiceCollectionExtensions.AddHttpLoggingRedaction*> in `Program.cs` using the lambda to configure <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions>:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/MyTaxonomyClassifications.cs)]
 
@@ -245,7 +245,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### `RequestPathLoggingMode`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathLoggingMode%2A> determines how the request path is logged, whether `Formatted` or `Structured`, set by <xref:Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode>:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathLoggingMode*> determines how the request path is logged, whether `Formatted` or `Structured`, set by <xref:Microsoft.AspNetCore.Diagnostics.Logging.IncomingPathLoggingMode>:
 
 * `Formatted`: Logs the request path without parameters.
 * `Structured`: Logs the request path with parameters included.
@@ -254,7 +254,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### `RequestPathParameterRedactionMode`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode%2A>
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestPathParameterRedactionMode*>
 specifies how route parameters in the request path should be redacted, whether `Strict`, `Loose`, or `None`, set by <xref:Microsoft.Extensions.Http.Diagnostics.HttpRouteParameterRedactionMode>:
 
 * `Strict`: Request route parameters are considered sensitive, require explicit annotation with a data classification, and are redacted by default.
@@ -265,31 +265,31 @@ specifies how route parameters in the request path should be redacted, whether `
 
 ### `RequestHeadersDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses%2A> maps request headers to their data classification, which determines how they are redacted:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses*> maps request headers to their data classification, which determines how they are redacted:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=10)]
 
 ### `ResponseHeadersDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses%2A>, similar to <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses%2A>`, but for response headers:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ResponseHeadersDataClasses*>, similar to <xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RequestHeadersDataClasses*>`, but for response headers:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=11)]
 
 ### `RouteParameterDataClasses`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses%2A> maps route parameters to their data classification:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.RouteParameterDataClasses*> maps route parameters to their data classification:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=12,13,14,15)]
 
 ### `ExcludePathStartsWith`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith%2A> specifies paths that should be excluded from logging entirely:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.ExcludePathStartsWith*> specifies paths that should be excluded from logging entirely:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=16,17)]
 
 ### `IncludeUnmatchedRoutes`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes%2A> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes*> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
 

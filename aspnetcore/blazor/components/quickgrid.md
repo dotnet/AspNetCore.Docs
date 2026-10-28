@@ -30,40 +30,40 @@ To implement a `QuickGrid` component:
 
 <!-- UPDATE 11.0 - API Browser cross-links 
 
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.InitialItemIndex%2A>
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ScrollToItemAsync%2A>
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.AnchorMode%2A>
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemComparer%2A>
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.QueryParameterNameOptions%2A>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.InitialItemIndex*>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ScrollToItemAsync*>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.AnchorMode*>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemComparer*>
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.QueryParameterNameOptions*>
 <xref:Microsoft.AspNetCore.Components.QuickGrid.QueryParameterNameOptions>
 
 -->
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*>: A callback that supplies data for the grid.
 * `QueryParameterNameOptions`: Controls the names of the query string parameters that persist the grid's sort column, sort direction, and page number in the URL. The default value is an instance that results in query parameters named "`sort`", "`direction`", and "`page`". Assigning unique names to these query string parameters allows the use of multiple `QuickGrid` components on the same page without their URL parameters conflicting with each other. For more information, see the [Pagination modes](#pagination-modes), [Query parameter names](#query-parameter-names), and [Multiple grids on the same page](#multiple-grids-on-the-same-page) sections.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>.
-* `InitialItemIndex`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
-* `ScrollToItemAsync`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
-* `AnchorMode`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* `ItemComparer`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Class*>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Theme*>: A theme name (default value: `default`). This affects which styling rules match the table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*> if the amount of data rendered is small or if you're using pagination.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemKey*>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OverscanCount*>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>.
+* `InitialItemIndex`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
+* `ScrollToItemAsync`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
+* `AnchorMode`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `ItemComparer`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination*>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Property*>: Defines the value to be displayed in this column's cells.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Format*>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Format*> requires the `TProp` type to implement <xref:System.IFormattable>.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Sortable*>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1.SortBy*> parameter is specified.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.InitialSortDirection*>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.IsDefaultSortColumn*> is `true`.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.IsDefaultSortColumn*>: Indicates whether this column should be sorted by default.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.PlaceholderTemplate*>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -71,24 +71,24 @@ To implement a `QuickGrid` component:
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OverscanCount%2A>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*>: A callback that supplies data for the grid.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Class*>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Theme*>: A theme name (default value: `default`). This affects which styling rules match the table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*> if the amount of data rendered is small or if you're using pagination.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemKey*>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OverscanCount*>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination*>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Property*>: Defines the value to be displayed in this column's cells.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Format*>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Format*> requires the `TProp` type to implement <xref:System.IFormattable>.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Sortable*>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1.SortBy*> parameter is specified.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.InitialSortDirection*>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.IsDefaultSortColumn*> is `true`.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.IsDefaultSortColumn*>: Indicates whether this column should be sorted by default.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.PlaceholderTemplate*>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -96,23 +96,23 @@ To implement a `QuickGrid` component:
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*>: A callback that supplies data for the grid.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Class*>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Theme*>: A theme name (default value: `default`). This affects which styling rules match the table.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>, you should supply a value for <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*> if the amount of data rendered is small or if you're using pagination.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize*>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize*> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemKey*>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination*>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Property*>: Defines the value to be displayed in this column's cells.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Format*>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Format*> requires the `TProp` type to implement <xref:System.IFormattable>.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Sortable*>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1> is sorted if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn`1.SortBy*> parameter is specified.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.InitialSortDirection*>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.IsDefaultSortColumn*> is `true`.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.IsDefaultSortColumn*>: Indicates whether this column should be sorted by default.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.PlaceholderTemplate*>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -156,7 +156,7 @@ The `QuickGrid` component can page data from the data source. In Blazor Web Apps
 
 :::moniker-end
 
-Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`, and ten items per page is set:
+Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage*> to the number of items to display per page. In the following example, the instance is named `pagination`, and ten items per page is set:
 
 ```csharp
 PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
@@ -170,13 +170,13 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 
 :::moniker range=">= aspnetcore-11.0"
 
-To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
+To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State*?displayProperty=nameWithType> to `pagination`:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
-To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above or below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
+To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above or below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State*?displayProperty=nameWithType> to `pagination`:
 
 :::moniker-end
 
@@ -293,7 +293,7 @@ To control the names individually, set the properties of the class. Properties s
 }
 ```
 
-The page query parameter name is applied to the `PaginationState` instance assigned to the grid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A> parameter, so a linked `Paginator` component reads and writes the same parameter name automatically.
+The page query parameter name is applied to the `PaginationState` instance assigned to the grid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination*> parameter, so a linked `Paginator` component reads and writes the same parameter name automatically.
 
 ## Multiple grids on the same page
 
@@ -333,7 +333,7 @@ In the following query string:
 
 #### Row click event (`OnRowClick`)
 
-The `QuickGrid` component supports row click events through the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+The `QuickGrid` component supports row click events through the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick*> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
@@ -362,11 +362,11 @@ The `QuickGrid` component supports row click events through the <xref:Microsoft.
 }
 ```
 
-The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the `row-clickable` CSS class, providing clear visual feedback to users. The class is applied to the `tr` element of every data row when <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> is set, and it's combined with any class returned by the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.RowClass%2A> parameter.
+The feature includes built-in CSS styling that applies a pointer cursor to clickable rows through the `row-clickable` CSS class, providing clear visual feedback to users. The class is applied to the `tr` element of every data row when <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick*> is set, and it's combined with any class returned by the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.RowClass*> parameter.
 
 ##### Event propagation from interactive cell content
 
-The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A>. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](xref:blazor/components/event-handling#stop-event-propagation):
+The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick*>. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](xref:blazor/components/event-handling#stop-event-propagation):
 
 ```razor
 <QuickGrid Items="@people.AsQueryable()" 
@@ -383,7 +383,7 @@ The row click handler is registered on the row's `tr` element, so a click on an 
 
 ##### Accessibility
 
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> is a pointer-based convenience. By design, it doesn't change the grid's table semantics, so rows don't receive keyboard focus, don't respond to <kbd>Enter</kbd> or <kbd>Space</kbd>, and aren't announced as interactive by assistive technologies. Making a row focusable with `tabindex` and `role="button"` isn't a supported workaround, as it breaks the table semantics that assistive technologies rely on to navigate the grid.
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick*> is a pointer-based convenience. By design, it doesn't change the grid's table semantics, so rows don't receive keyboard focus, don't respond to <kbd>Enter</kbd> or <kbd>Space</kbd>, and aren't announced as interactive by assistive technologies. Making a row focusable with `tabindex` and `role="button"` isn't a supported workaround, as it breaks the table semantics that assistive technologies rely on to navigate the grid.
 
 Treat a row click as a shortcut for pointer users rather than the only path to an action. For any action that a row click performs, provide a keyboard-accessible control in a cell, such as a button or a link:
 
@@ -409,7 +409,7 @@ The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting
 
 :::moniker-end
 
-Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tag:
+Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Sortable*>) to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> tag:
 
 ```razor
 <PropertyColumn Property="..." Sortable="true" />
@@ -445,8 +445,8 @@ A paged QuickGrid component can open a details page for a record and return to t
 
 The following API is used:
 
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A?displayProperty=nameWithType>: Gets the current zero-based page index.
-* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType>: Sets the current page index and notifies any associated `QuickGrid` components to fetch and render updated data.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex*?displayProperty=nameWithType>: Gets the current zero-based page index.
+* <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync*?displayProperty=nameWithType>: Sets the current page index and notifies any associated `QuickGrid` components to fetch and render updated data.
 
 :::moniker-end
 
@@ -486,7 +486,7 @@ The `SciFiCharacters` component:
 :::moniker range=">= aspnetcore-11.0"
 
 * Automatically pages the `QuickGrid` component on component initialization using [URL-based navigation](#pagination-modes), which sets the page index from the value of a `page` query string value, if it exists.
-* Opens the preceding `Details` component with the current page number, which is the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) incremented by one to make the value a one-based index in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+* Opens the preceding `Details` component with the current page number, which is the current page index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex*>) incremented by one to make the value a one-based index in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
 
@@ -560,8 +560,8 @@ In `Details.razor`:
 
 :::moniker range="< aspnetcore-11.0"
 
-* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync%2A?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> and [`GetUriWithQueryParameter`](xref:blazor/fundamentals/navigation#query-strings).
-* Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex%2A>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync*?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> and [`GetUriWithQueryParameter`](xref:blazor/fundamentals/navigation#query-strings).
+* Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex*>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
 
@@ -666,7 +666,7 @@ For more information on using `::deep` [pseudo-elements](https://developer.mozil
 
 ## Custom attributes and styles
 
-QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
+QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Class*>) to the rendered table element:
 
 ```razor
 <QuickGrid Items="..." custom-attribute="value" Class="custom-class">
@@ -676,7 +676,7 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 
 ## Style a table row based on the row item
 
-Apply a stylesheet class to a row of the grid based on the row item using the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.RowClass%2A> parameter.
+Apply a stylesheet class to a row of the grid based on the row item using the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.RowClass*> parameter.
 
 In the following example:
 
@@ -702,7 +702,7 @@ In the following example:
 
 ### Close `QuickGrid` column options
 
-Close the `QuickGrid` column options UI with the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.HideColumnOptionsAsync%2A> method.
+Close the `QuickGrid` column options UI with the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.HideColumnOptionsAsync*> method.
 
 The following example closes the column options UI as soon as the title filter is applied:
 
@@ -733,7 +733,7 @@ The following example closes the column options UI as soon as the title filter i
 
 Use the factory pattern to resolve an EF Core database context that provides data to a `QuickGrid` component. For more information on why the factory pattern is recommended, see <xref:blazor/blazor-ef-core>.
 
-A database context factory (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>) is injected into the component with the `@inject` directive. The factory approach requires disposal of the database context, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive. The item provider for the `QuickGrid` component is a `DbSet<T>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory.
+A database context factory (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1>) is injected into the component with the `@inject` directive. The factory approach requires disposal of the database context, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive. The item provider for the `QuickGrid` component is a `DbSet<T>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) of the injected database context factory.
 
 QuickGrid recognizes EF-supplied <xref:System.Linq.IQueryable> instances and knows how to resolve queries asynchronously for efficiency.
 
@@ -741,13 +741,13 @@ Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.Enti
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
+Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter*> on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
 
 ```csharp
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
 
-The following example uses an `ExampleTable` <xref:Microsoft.EntityFrameworkCore.DbSet%601> (table) from a `AppDbContext` database context (`context`) as the data source for a `QuickGrid` component:
+The following example uses an `ExampleTable` <xref:Microsoft.EntityFrameworkCore.DbSet`1> (table) from a `AppDbContext` database context (`context`) as the data source for a `QuickGrid` component:
 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
@@ -776,10 +776,10 @@ The following example uses an `ExampleTable` <xref:Microsoft.EntityFrameworkCore
 In the code block (`@code`) of the preceding example:
 
 * The `context` field holds the database context, typed as an `AppDbContext`.
-* The `OnInitialized` lifecycle method assigns a new database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) to the `context` field from the injected factory (`DbFactory`).
+* The `OnInitialized` lifecycle method assigns a new database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) to the `context` field from the injected factory (`DbFactory`).
 * The asynchronous `DisposeAsync` method disposes of the database context when the component is disposed.
 
-You may also use any EF-supported LINQ operator to filter the data before passing it to the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
+You may also use any EF-supported LINQ operator to filter the data before passing it to the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items*> parameter.
 
 The following example filters movies by a movie title entered in a search box. The database context is `BlazorWebAppMoviesContext`, and the model is `Movie`. The movie's `Title` property is used for the filter operation.
 
@@ -822,7 +822,7 @@ For a working example, see the following resources:
 
 ## Display name support
 
-A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following movie example, the column is given the name "`Release Date`" for the column's movie release date data:
+A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following movie example, the column is given the name "`Release Date`" for the column's movie release date data:
 
 ```razor
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
@@ -835,7 +835,7 @@ However, managing column titles (names) from bound model properties is usually a
 public DateTime ReleaseDate { get; set; }
 ```
 
-To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> property, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>, either in the component or in a separate class. Call the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.GetName%2A> method to return the localized <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> value if an unlocalized <xref:System.ComponentModel.DisplayNameAttribute.DisplayName> ([`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute)) doesn't hold the value:
+To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> property, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>, either in the component or in a separate class. Call the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.GetName*> method to return the localized <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType> value if an unlocalized <xref:System.ComponentModel.DisplayNameAttribute.DisplayName> ([`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute)) doesn't hold the value:
 
 ```csharp
 public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TProp>
@@ -856,7 +856,7 @@ public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TPr
 }
 ```
 
-Use the subclass in the `QuickGrid` component. In the following example, the preceding `DisplayNameColumn` is used. The name "`Release Date`" is provided by the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) in the model, so there's no need to specify a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>:
+Use the subclass in the `QuickGrid` component. In the following example, the preceding `DisplayNameColumn` is used. The name "`Release Date`" is provided by the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) in the model, so there's no need to specify a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase`1.Title>:
 
 ```razor
 <DisplayNameColumn Property="movie => movie.ReleaseDate" />
@@ -873,15 +873,15 @@ However, the `[Display]` attribute is recommended because it makes additional pr
 
 ## Remote data
 
-In Blazor WebAssembly apps, fetching data from a JSON-based web API on a server is a common requirement. To fetch only the data that's required for the current page/viewport of data and apply sorting or filtering rules on the server, use the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A> parameter.
+In Blazor WebAssembly apps, fetching data from a JSON-based web API on a server is a common requirement. To fetch only the data that's required for the current page/viewport of data and apply sorting or filtering rules on the server, use the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*> parameter.
 
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A> can also be used in a server-side Blazor app if the app is required to query an external endpoint or in other cases where the requirements aren't covered by an <xref:System.Linq.IQueryable>.
+<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*> can also be used in a server-side Blazor app if the app is required to query an external endpoint or in other cases where the requirements aren't covered by an <xref:System.Linq.IQueryable>.
 
-Supply a callback matching the <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> delegate type, where `TGridItem` is the type of data displayed in the grid. The callback is given a parameter of type <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProviderRequest%601>, which specifies the start index, maximum row count, and sort order of data to return. In addition to returning the matching items, a total item count (`totalItemCount`) is also required for paging and virtualization to function correctly.
+Supply a callback matching the <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider`1> delegate type, where `TGridItem` is the type of data displayed in the grid. The callback is given a parameter of type <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProviderRequest`1>, which specifies the start index, maximum row count, and sort order of data to return. In addition to returning the matching items, a total item count (`totalItemCount`) is also required for paging and virtualization to function correctly.
 
 The following example obtains data from the public [OpenFDA Food Enforcement database](https://open.fda.gov/apis/food/enforcement/).
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> converts the <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProviderRequest%601> into a query against the OpenFDA database. Query parameters are translated into the particular URL format supported by the external JSON API. It's only possible to perform sorting and filtering via sorting and filtering that's supported by the external API. The OpenFDA endpoint doesn't support sorting, so none of the columns are marked as sortable. However, it does support skipping records (`skip` parameter) and limiting the return of records (`limit` parameter), so the component can enable virtualization and scroll quickly through tens of thousands of records.
+The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider`1> converts the <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProviderRequest`1> into a query against the OpenFDA database. Query parameters are translated into the particular URL format supported by the external JSON API. It's only possible to perform sorting and filtering via sorting and filtering that's supported by the external API. The OpenFDA endpoint doesn't support sorting, so none of the columns are marked as sortable. However, it does support skipping records (`skip` parameter) and limiting the return of records (`limit` parameter), so the component can enable virtualization and scroll quickly through tens of thousands of records.
 
 `FoodRecalls.razor`:
 
@@ -1083,7 +1083,7 @@ Multiple concurrent EF Core queries can trigger the following <xref:System.Inval
 
 This scenario is scheduled for improvement in an upcoming release of ASP.NET Core. For more information, see [[Blazor] Improve the experience with QuickGrid and EF Core (`dotnet/aspnetcore` #58716)](https://github.com/dotnet/aspnetcore/issues/58716).
 
-In the meantime, you can address the problem using an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A> with a cancellation token. The cancellation token prevents concurrent queries by cancelling the previous request when a new request is issued.
+In the meantime, you can address the problem using an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider*> with a cancellation token. The cancellation token prevents concurrent queries by cancelling the previous request when a new request is issued.
 
 Consider the following example, which is based on the movie database `Index` component for the <xref:blazor/tutorials/movie-database-app/index> tutorial. The simpler version scaffolded into the app can be seen in the article's [sample app](xref:blazor/tutorials/movie-database-app/index#sample-app). The `Index` component scaffolded into the app is replaced by the following component.
 

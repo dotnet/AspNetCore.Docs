@@ -37,14 +37,14 @@ When deployed to a host, such as IIS, the app must adopt impersonation to run un
 
 Inspect the `Program` file in the sample app for the following API calls.
 
-<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> is called using the <xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> authentication scheme. <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate%2A> configures the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> to use Negotiate (also known as Windows, Kerberos, or NTLM) authentication, and the authentication handler supports Kerberos on Windows and Linux servers:
+<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> is called using the <xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme*?displayProperty=nameWithType> authentication scheme. <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate*> configures the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> to use Negotiate (also known as Windows, Kerberos, or NTLM) authentication, and the authentication handler supports Kerberos on Windows and Linux servers:
 
 ```csharp
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization%2A> adds authorization policy services. The following code assigns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>, which requires an authenticated user, to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType>. This configuration requires authentication when no policy is produced from authorization metadata:
+<xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorization*> adds authorization policy services. The following code assigns the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy*?displayProperty=nameWithType>, which requires an authenticated user, to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy*?displayProperty=nameWithType>. This configuration requires authentication when no policy is produced from authorization metadata:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -55,7 +55,7 @@ builder.Services.AddAuthorization(options =>
 
 For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
-<xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> adds cascading authentication state to the service collection. This is equivalent to placing a `CascadingAuthenticationState` component at the root of the app's component hierarchy:
+<xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState*> adds cascading authentication state to the service collection. This is equivalent to placing a `CascadingAuthenticationState` component at the root of the app's component hierarchy:
 
 ```csharp
 builder.Services.AddCascadingAuthenticationState();

@@ -37,7 +37,7 @@ Attempting to set or modify a header after the first rendering (after the respon
 
 Examples of situations that result in this error include:
 
-* Calling <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync%2A?displayProperty=nameWithType>, which must set headers for Identity to function correctly, while adopting [streaming rendering](xref:blazor/components/rendering#streaming-rendering).
+* Calling <xref:Microsoft.AspNetCore.Identity.SignInManager`1.PasswordSignInAsync*?displayProperty=nameWithType>, which must set headers for Identity to function correctly, while adopting [streaming rendering](xref:blazor/components/rendering#streaming-rendering).
 * Attempting to set or modify a header after the response has started during interactive rendering.
 
 For guidance on setting headers before the response starts, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.

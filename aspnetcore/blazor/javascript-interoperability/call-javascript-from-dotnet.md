@@ -18,9 +18,9 @@ For information on how to call .NET methods from JS, see <xref:blazor/js-interop
 
 <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
 
-* <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-* <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-* <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
+* <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+* <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+* <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
 
 For the preceding .NET methods that invoke JS functions:
 
@@ -67,7 +67,7 @@ The following example is based on [`TextDecoder`](https://developer.mozilla.org/
 
 The following component:
 
-* Invokes the `convertArray` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when selecting a button (**`Convert Array`**).
+* Invokes the `convertArray` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*> when selecting a button (**`Convert Array`**).
 * After the JS function is called, the passed array is converted into a string. The string is returned to the component for display (`text`).
 
 :::moniker range=">= aspnetcore-9.0"
@@ -126,12 +126,12 @@ Some browser JavaScript (JS) APIs can only be executed in the context of a user 
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
-Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> when:
+Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*> when:
 
 * .NET isn't required to read the result of a JavaScript (JS) call.
 * JS functions return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
-Provide a `displayTickerAlert1` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value:
+Provide a `displayTickerAlert1` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*> and doesn't return a value:
 
 ```html
 <script>
@@ -148,7 +148,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 The following component:
 
-* Invokes the `displayTickerAlert1` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
+* Invokes the `displayTickerAlert1` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
 * The JS function receives the two arguments in strictly-typed parameters and displays a modal alert box with a specified message.
 
 :::moniker range=">= aspnetcore-9.0"
@@ -291,7 +291,7 @@ The following component:
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
-Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when .NET should read the result of a JavaScript (JS) call.
+Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*> when .NET should read the result of a JavaScript (JS) call.
 
 Provide a `displayTickerAlert2` JS function. The following example returns a string for display by the caller:
 
@@ -315,7 +315,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 The following component:
 
-* Invokes the `displayTickerAlert2` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
+* Invokes the `displayTickerAlert2` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*> with two JSON-serializable parameters, a string in `stockSymbol` and a decimal in `price`, when selecting a button (**`Set Stock`**).
 * The JS function receives the two arguments in strictly-typed parameters and displays a modal alert box with a specified message.
 
 :::moniker range=">= aspnetcore-9.0"
@@ -479,8 +479,8 @@ IJSRuntime JS { get; set; }
 
 Create an instance of a JS object using a constructor function and get the <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference> .NET handle for referencing the instance with the following API:
 
-* <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync%2A> (asynchronous)
-* <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A> (synchronous)
+* <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync*> (asynchronous)
+* <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor*> (synchronous)
 
 Examples in this section demonstrate the API calls with the following `TestClass` with a constructor function (`constructor(text)`):
 
@@ -498,7 +498,7 @@ window.TestClass = class {
 
 ### Asynchronous `InvokeConstructorAsync`
 
-Use <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync%2A> on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
+Use <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync*> on <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> to invoke the specified JS constructor function asynchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 ```csharp
 var classRef = await JSRuntime.InvokeConstructorAsync("TestClass", "Blazor!");
@@ -510,7 +510,7 @@ An overload is available that takes a <xref:System.Threading.CancellationToken> 
 
 ### Synchronous `InvokeConstructor`
 
-Use <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A> on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
+Use <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor*> on <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> to invoke the specified JS constructor function synchronously. The function is invoked with the `new` operator. In the following example, `TestClass` contains a constructor function, and `classRef` is an <xref:Microsoft.JSInterop.IJSInProcessObjectReference>:
 
 ```csharp
 var inProcRuntime = ((IJSInProcessRuntime)JSRuntime);
@@ -525,7 +525,7 @@ An overload is available that takes a <xref:System.Threading.CancellationToken> 
 
 Read or modify the value of a JS object property, both data and accessor properties, with the following API:
 
-* <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync%2A>/<xref:Microsoft.JSInterop.JSRuntime.SetValueAsync%2A> (asynchronous)
+* <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync*>/<xref:Microsoft.JSInterop.JSRuntime.SetValueAsync*> (asynchronous)
 * `GetValue`/`SetValue` (synchronous)
 
 Examples in this section demonstrate the API calls with the following JS object (`testObject`):
@@ -538,14 +538,14 @@ window.testObject = {
 
 ### Asynchronous `GetValueAsync` and `SetValueAsync`
 
-Use <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync%2A> to read the value of the specified JS property asynchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property. In the following example, the value of `testObject.num` (10) is stored in `valueFromDataPropertyAsync`:
+Use <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync*> to read the value of the specified JS property asynchronously. A <xref:Microsoft.JSInterop.JSException> is thrown if the property doesn't exist or is a `set`-only property. In the following example, the value of `testObject.num` (10) is stored in `valueFromDataPropertyAsync`:
 
 ```csharp
 var valueFromDataPropertyAsync = 
     await JSRuntime.GetValueAsync<int>("testObject.num");
 ```
 
-Use <xref:Microsoft.JSInterop.JSRuntime.SetValueAsync%2A> to update the value of the specified JS property asynchronously. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
+Use <xref:Microsoft.JSInterop.JSRuntime.SetValueAsync*> to update the value of the specified JS property asynchronously. If the property isn't defined on the target object, the property is created. A <xref:Microsoft.JSInterop.JSException> is thrown if the property exists but isn't writable or when a new property can't be added to the object. In the following example, `testObject.num` is set to 20, and `num2` is created with a value of 30 on `testObject`:
 
 ```csharp
 await JSRuntime.SetValueAsync("testObject.num", 20);
@@ -642,24 +642,24 @@ In server-side scenarios, JS interop calls can't be issued after Blazor's Signal
 :::moniker range=">= aspnetcore-10.0"
 
 * JS interop method calls
-  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync%2A>
-  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A>
-  * <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync%2A>
-  * <xref:Microsoft.JSInterop.JSRuntime.SetValueAsync%2A>
-* <xref:Microsoft.JSInterop.JSRuntime.Dispose%2A>/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntime.InvokeConstructorAsync*>
+  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor*>
+  * <xref:Microsoft.JSInterop.JSRuntime.GetValueAsync*>
+  * <xref:Microsoft.JSInterop.JSRuntime.SetValueAsync*>
+* <xref:Microsoft.JSInterop.JSRuntime.Dispose*>/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-10.0"
 
 * JS interop method calls
-  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-* <xref:Microsoft.JSInterop.JSRuntime.Dispose%2A>/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
+* <xref:Microsoft.JSInterop.JSRuntime.Dispose*>/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end
 
@@ -708,7 +708,7 @@ export function showPrompt(message) {
 }
 ```
 
-Add the preceding JS module to an app or class library as a static web asset in the `wwwroot` folder and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> on the <xref:Microsoft.JSInterop.IJSRuntime> instance.
+Add the preceding JS module to an app or class library as a static web asset in the `wwwroot` folder and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*> on the <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
 <xref:Microsoft.JSInterop.IJSRuntime> imports the module as an <xref:Microsoft.JSInterop.IJSObjectReference>, which represents a reference to a JS object from .NET code. Use the <xref:Microsoft.JSInterop.IJSObjectReference> to invoke exported JS functions from the module.
 
@@ -762,10 +762,10 @@ In the preceding example:
 * Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILE NAME (.js)}`, where:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
   * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
-* Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/component-disposal#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+* Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/component-disposal#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync*?displayProperty=nameWithType>.
 * Don't place a `<script>` tag for the script after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
-Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
+Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*>.
 
 <xref:Microsoft.JSInterop.IJSInProcessObjectReference> represents a reference to a JS object whose functions can be invoked synchronously in client-side components. For more information, see the [Synchronous JS interop in client-side components](#synchronous-js-interop-in-client-side-components) section.
 
@@ -840,7 +840,7 @@ window.interopFunctions = {
 }
 ```
 
-To call a JS function that doesn't return a value, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. The following code triggers a client-side [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event by calling the preceding JS function with the captured <xref:Microsoft.AspNetCore.Components.ElementReference>:
+To call a JS function that doesn't return a value, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>. The following code triggers a client-side [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event by calling the preceding JS function with the captured <xref:Microsoft.AspNetCore.Components.ElementReference>:
 
 ```razor
 @inject IJSRuntime JS
@@ -897,7 +897,7 @@ The `clickElement` method is called directly on the object. The following exampl
 > [!IMPORTANT]
 > The `exampleButton` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JS code, the JS code receives a value of `null`. To manipulate element references after the component has finished rendering, use the [`OnAfterRenderAsync` or `OnAfterRender` component lifecycle methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
 
-When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
+When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask`1>:
 
 ```csharp
 public static ValueTask<T> GenericMethod<T>(
@@ -994,13 +994,13 @@ The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 
 An <xref:Microsoft.AspNetCore.Components.ElementReference> can't be passed between components because:
 
-* The instance is only guaranteed to exist after the component is rendered, which is during or after a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>/<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> method executes.
+* The instance is only guaranteed to exist after the component is rendered, which is during or after a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*>/<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> method executes.
 * An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/dotnet/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
 
 For a parent component to make an element reference available to other components, the parent component can:
 
 * Allow child components to register callbacks.
-* Invoke the registered callbacks during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> event with the passed element reference. Indirectly, this approach allows child components to interact with the parent's element reference.
+* Invoke the registered callbacks during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> event with the passed element reference. Indirectly, this approach allows child components to interact with the parent's element reference.
 
 ```html
 <style>
@@ -1396,7 +1396,7 @@ In the preceding example:
 
 Blazor supports optimized byte array JavaScript (JS) interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to JavaScript.
 
-Provide a `receiveByteArray` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value:
+Provide a `receiveByteArray` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*> and doesn't return a value:
 
 ```html
 <script>
@@ -1650,8 +1650,8 @@ The following JS `Helpers` class contains a simulated long-running function, `lo
 
 The following component:
 
-* Invokes the JS function `longRunningFn` when the **`Start Task`** button is selected. A <xref:System.Threading.CancellationTokenSource> is used to manage the execution of the long-running function. <xref:System.Threading.CancellationToken.Register%2A?displayProperty=nameWithType> sets a JS interop call delegate to execute the JS function `stopFn` when the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled.
-* When the **`Cancel Task`** button is selected, the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled with a call to <xref:System.Threading.CancellationTokenSource.Cancel%2A>.
+* Invokes the JS function `longRunningFn` when the **`Start Task`** button is selected. A <xref:System.Threading.CancellationTokenSource> is used to manage the execution of the long-running function. <xref:System.Threading.CancellationToken.Register*?displayProperty=nameWithType> sets a JS interop call delegate to execute the JS function `stopFn` when the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled.
+* When the **`Cancel Task`** button is selected, the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled with a call to <xref:System.Threading.CancellationTokenSource.Cancel*>.
 * The <xref:System.Threading.CancellationTokenSource> is disposed in the `Dispose` method.
 
 :::moniker-end

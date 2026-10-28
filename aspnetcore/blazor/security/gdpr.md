@@ -17,7 +17,7 @@ This article explains how to implement support for [EU General Data Protection R
 In the `Program` file:
 
 * Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration to require user consent for non-essential cookies and set the same-site policy to none. For more information, see <xref:security/samesite>.
-* Add the default implementation for the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> service by calling <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor%2A>.
+* Add the default implementation for the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> service by calling <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*>.
 
 ```csharp
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -32,13 +32,13 @@ builder.Services.AddHttpContextAccessor();
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*>:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*>:
 
 :::moniker-end
 
@@ -137,7 +137,7 @@ Within `<main>` Razor markup of the `MainLayout` component (`MainLayout.razor`),
 
 ## Customize the cookie consent value
 
-Specify the cookie consent value by assigning a custom string to <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.ConsentCookieValue%2A?displayProperty=nameWithType>. The following example changes the default value of "`yes`" to "`true`":
+Specify the cookie consent value by assigning a custom string to <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.ConsentCookieValue*?displayProperty=nameWithType>. The following example changes the default value of "`yes`" to "`true`":
 
 ```csharp
 options.ConsentCookieValue = "true";

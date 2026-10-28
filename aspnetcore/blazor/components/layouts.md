@@ -286,7 +286,7 @@ Specifying a layout in the imports file overrides a layout specified as the rout
 
 ### Apply a default layout to an app
 
-Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.RouteView> component. Use the <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout%2A> parameter to set the layout type:
+Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.RouteView> component. Use the <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout*> parameter to set the layout type:
 
 ```razor
 <RouteView RouteData="routeData" DefaultLayout="typeof({LAYOUT})" />

@@ -239,14 +239,14 @@ authenticatedUser.Principal = user;
 
 ## Create a custom `AuthenticationStateProvider` with user change updates
 
-To update the user while the Blazor app is running, call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> within the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementation using ***either*** of the following approaches:
+To update the user while the Blazor app is running, call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*> within the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementation using ***either*** of the following approaches:
 
 * [Signal an authentication update from outside of the `BlazorWebView`](#signal-an-authentication-update-from-outside-of-the-blazorwebview-option-1))
 * [Handle authentication within the `BlazorWebView`](#handle-authentication-within-the-blazorwebview-option-2)
 
 ### Signal an authentication update from outside of the `BlazorWebView` (Option 1)
 
-A custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can use a global service to signal an authentication update. We recommend that the service offer an event that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>.
+A custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can use a global service to signal an authentication update. We recommend that the service offer an event that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*>.
 
 > [!NOTE]
 > The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to provide your app's namespace when you implement the example in a production app.
@@ -379,7 +379,7 @@ public class CurrentThreadUserAuthenticationStateProvider : AuthenticationStateP
 }
 ```
 
-Using the alternative approach, only authorization services (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>) and `CurrentThreadUserAuthenticationStateProvider` (`.TryAddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>()`) are added to the service collection.
+Using the alternative approach, only authorization services (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*>) and `CurrentThreadUserAuthenticationStateProvider` (`.TryAddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>()`) are added to the service collection.
 
 ### Handle authentication within the `BlazorWebView` (Option 2)
 
@@ -443,7 +443,7 @@ public class ExternalAuthStateProvider : AuthenticationStateProvider
 In the preceding example:
 
 * The call to `LogInAsyncCore` triggers the login process.
-* The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> notifies that an update is in progress, which allows the app to provide a temporary UI during the login or logout process.
+* The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*> notifies that an update is in progress, which allows the app to provide a temporary UI during the login or logout process.
 * Returning `loginTask` returns the task so that the component that triggered the login can await and react after the task is complete.
 * The `LoginWithExternalProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see your identity provider's documentation. The authenticated user (`authenticatedUser`) is a new <xref:System.Security.Claims.ClaimsPrincipal> based on a new <xref:System.Security.Claims.ClaimsIdentity>.
 
@@ -769,14 +769,14 @@ authenticatedUser.Principal = user;
 
 ## Create a custom `AuthenticationStateProvider` with user change updates
 
-To update the user while the Blazor app is running, call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> within the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementation using ***either*** of the following approaches:
+To update the user while the Blazor app is running, call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*> within the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementation using ***either*** of the following approaches:
 
 * [Signal an authentication update from outside of the `BlazorWebView`](#signal-an-authentication-update-from-outside-of-the-blazorwebview-option-1))
 * [Handle authentication within the `BlazorWebView`](#handle-authentication-within-the-blazorwebview-option-2)
 
 ### Signal an authentication update from outside of the `BlazorWebView` (Option 1)
 
-A custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can use a global service to signal an authentication update. We recommend that the service offer an event that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>.
+A custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can use a global service to signal an authentication update. We recommend that the service offer an event that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*>.
 
 > [!NOTE]
 > The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to provide your app's namespace when you implement the example in a production app.
@@ -909,7 +909,7 @@ public class CurrentThreadUserAuthenticationStateProvider : AuthenticationStateP
 }
 ```
 
-Using the alternative approach, only authorization services (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>) and `CurrentThreadUserAuthenticationStateProvider` (`.AddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>()`) are added to the service collection.
+Using the alternative approach, only authorization services (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*>) and `CurrentThreadUserAuthenticationStateProvider` (`.AddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>()`) are added to the service collection.
 
 ### Handle authentication within the `BlazorWebView` (Option 2)
 
@@ -973,7 +973,7 @@ public class ExternalAuthStateProvider : AuthenticationStateProvider
 In the preceding example:
 
 * The call to `LogInAsyncCore` triggers the login process.
-* The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> notifies that an update is in progress, which allows the app to provide a temporary UI during the login or logout process.
+* The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*> notifies that an update is in progress, which allows the app to provide a temporary UI during the login or logout process.
 * Returning `loginTask` returns the task so that the component that triggered the login can await and react after the task is complete.
 * The `LoginWithExternalProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see your identity provider's documentation. The authenticated user (`authenticatedUser`) is a new <xref:System.Security.Claims.ClaimsPrincipal> based on a new <xref:System.Security.Claims.ClaimsIdentity>.
 

@@ -4,13 +4,13 @@ minimal-apis.md
 model-binding.md
 -->
 
-Starting in .NET 10, the following functional areas of ASP.NET Core use overloads of <xref:System.Text.Json.JsonSerializer.DeserializeAsync%2A?displayProperty=nameWithType> based on PipeReader instead of Stream:
+Starting in .NET 10, the following functional areas of ASP.NET Core use overloads of <xref:System.Text.Json.JsonSerializer.DeserializeAsync*?displayProperty=nameWithType> based on PipeReader instead of Stream:
 
 * Minimal APIs (parameter binding, read request body)
 * MVC (input formatters, model)
 * The <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions> Extension methods to read the request body as JSON.
 
-For most applications, a transition from Stream to PipeReader provides better performance without requiring changes in application code. But if your application has a custom converter, the converter might not handle <xref:System.Text.Json.Utf8JsonReader.HasValueSequence%2A?displayProperty=nameWithType> correctly. If it doesn't, the result could be errors such as <xref:System.ArgumentOutOfRangeException> or missing data when deserializing. You have the following options for getting your converter to work without PipeReader-related errors.
+For most applications, a transition from Stream to PipeReader provides better performance without requiring changes in application code. But if your application has a custom converter, the converter might not handle <xref:System.Text.Json.Utf8JsonReader.HasValueSequence*?displayProperty=nameWithType> correctly. If it doesn't, the result could be errors such as <xref:System.ArgumentOutOfRangeException> or missing data when deserializing. You have the following options for getting your converter to work without PipeReader-related errors.
 
 ### Option 1: Temporary workaround
 

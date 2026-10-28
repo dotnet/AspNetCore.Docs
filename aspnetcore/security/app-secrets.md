@@ -183,7 +183,7 @@ ASP.NET Core web apps created with the [dotnet new](/dotnet/core/tools/dotnet-ne
 
 [!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet2&highlight=1)]
 
-The [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) method initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration and calls the <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> method when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> property is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>.
+The [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*) method initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration and calls the <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> method when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> property is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>.
 
 ### Read the secret via the Configuration API
 
@@ -223,7 +223,7 @@ For example, a database connection string stored in an _appsettings.json_ file s
 dotnet user-secrets set "DbPassword" "`<secret value>`"
 ```
 
-Replace the `<secret value>` placeholder in the example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to include it as the password value in the connection string:
+Replace the `<secret value>` placeholder in the example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password*> property to include it as the password value in the connection string:
 
 [!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
 

@@ -20,10 +20,10 @@ There are reserved words that can't be used as route segments or parameter names
 | Scenario | The sample demonstrates  |
 | -------- | --------------------------- |
 | [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageApplicationModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageHandlerModelConvention></li></ul> | Add a route template and header to an app's pages. |
-| [Page route action conventions](#page-route-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention%2A></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention%2A></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute%2A></li></ul> | Add a route template to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention%2A></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageApplicationModelConvention%2A></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter%2A> (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
+| [Page route action conventions](#page-route-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention*></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention*></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*></li></ul> | Add a route template to pages in a folder and to a single page. |
+| [Page model action conventions](#page-model-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageApplicationModelConvention*></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 
-Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>. The following convention examples are explained later in this topic:
+Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>. The following convention examples are explained later in this topic:
 
 ```csharp
 
@@ -82,7 +82,7 @@ The sample app contains the `GlobalTemplatePageRouteModelConvention` class to ad
 
 In the preceding code:
 
-* The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel> is passed to the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention.Apply%2A> method.
+* The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel> is passed to the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention.Apply*> method.
 * The [PageRouteModel.Selectors](xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel.Selectors) gets the count of selectors.
 * A new <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel> is added which contains a <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel>
 
@@ -190,7 +190,7 @@ See [Parameter transformers](xref:fundamentals/routing#parameter-transformers).
 
 ## Configure a page route
 
-Use <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> to configure a route to a page at the specified page path. Generated links to the page use the specified route. <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute%2A> uses <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention%2A> to establish the route.
+Use <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> to configure a route to a page at the specified page path. Generated links to the page use the specified route. <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> uses <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention*> to establish the route.
 
 The sample app creates a route to `/TheContactPage` for the `Contact` Razor Page:
 
@@ -308,7 +308,7 @@ There are reserved words that can't be used as route segments or parameter names
 | [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Add a route template to pages in a folder and to a single page. |
 | [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 
-Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices`. The following convention examples are explained later in this topic:
+Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices`. The following convention examples are explained later in this topic:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

@@ -161,7 +161,7 @@ The following example monitors the cookie associated with ASP.NET Core Identity.
 | -------------- | --------------- | :-----: |
 | Boolean        | `true`, `false` | `false` |
 
-`vary-by-culture` varys the cached result by request culture. Setting the attribute to `true` means the result is varied by <xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>.
+`vary-by-culture` varys the cached result by request culture. Setting the attribute to `true` means the result is varied by <xref:System.Globalization.CultureInfo.CurrentCulture*?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.CurrentUICulture*?displayProperty=nameWithType>.
 
 Example:
 

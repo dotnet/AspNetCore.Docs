@@ -18,7 +18,7 @@ For [globalization](/dotnet/core/extensions/globalization), Blazor provides numb
 
 A limited set of ASP.NET Core's localization features are supported:
 
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> are supported in Blazor apps.
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> and <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
@@ -306,7 +306,7 @@ In ***client-side development***, dynamically setting the culture from the `Acce
 > [!NOTE]
 > If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the client-side culture by user preference](#dynamically-set-the-client-side-culture-by-user-preference) section of this article.
 
-Apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 Add the following line to the `Program` file where services are registered:
 
@@ -316,16 +316,16 @@ builder.Services.AddLocalization();
 
 :::moniker range=">= aspnetcore-8.0"
 
-In ***server-side development***, specify the app's supported cultures before any middleware that might check the request culture. Generally, place localization middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures supported cultures for United States English and Costa Rican Spanish:
+In ***server-side development***, specify the app's supported cultures before any middleware that might check the request culture. Generally, place localization middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*>. The following example configures supported cultures for United States English and Costa Rican Spanish:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In ***server-side development***, specify the app's supported cultures immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish using the following API:
+In ***server-side development***, specify the app's supported cultures immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish using the following API:
 
-* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A> adds the set of the supported cultures for *globalization* (date, number, and currency formatting).
-* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A> adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
+* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures*> adds the set of the supported cultures for *globalization* (date, number, and currency formatting).
+* <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures*> adds the set of the supported UI cultures *for localization* (translated UI strings for rendering content).
 
 :::moniker-end
 
@@ -493,7 +493,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker range=">= aspnetcore-6.0"
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the `Program` file:
 
@@ -505,13 +505,13 @@ builder.Services.AddLocalization();
 
 :::moniker range=">= aspnetcore-8.0"
 
-Specify the static culture in the `Program` file before any middleware that might check the request culture. Generally, place localization middleware immediately before <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures United States English:
+Specify the static culture in the `Program` file before any middleware that might check the request culture. Generally, place localization middleware immediately before <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*>. The following example configures United States English:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Specify the static culture in the `Program` file immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures United States English:
+Specify the static culture in the `Program` file immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>) is added to the processing pipeline. The following example configures United States English:
 
 :::moniker-end
 
@@ -521,7 +521,7 @@ Specify the static culture in the `Program` file immediately after routing middl
 app.UseRequestLocalization("en-US");
 ```
 
-The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
+The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
 For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
 
@@ -529,7 +529,7 @@ For information on ordering the localization middleware in the middleware pipeli
 
 :::moniker range="< aspnetcore-6.0"
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
 
@@ -543,7 +543,7 @@ Specify the static culture in `Startup.Configure` (`Startup.cs`) immediately aft
 app.UseRequestLocalization("en-US");
 ```
 
-The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
+The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
 For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
@@ -616,7 +616,7 @@ Remove the following line:
 - await builder.Build().RunAsync();
 ```
 
-Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
+Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
 
 ```csharp
 builder.Services.AddLocalization();
@@ -785,7 +785,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the `Program` file:
 
@@ -797,13 +797,13 @@ Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Bui
 
 :::moniker range=">= aspnetcore-8.0"
 
-Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the request processing pipeline, place the following code:
+Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> in the request processing pipeline, place the following code:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-After routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the request processing pipeline, place the following code:
+After routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>) is added to the request processing pipeline, place the following code:
 
 :::moniker-end
 
@@ -892,7 +892,7 @@ At the top of the `Program` file, add the following `using` statement for the re
 using Microsoft.AspNetCore.Localization;
 ```
 
-In the request processing pipeline of the app's `Program` file after the call to <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>:
+In the request processing pipeline of the app's `Program` file after the call to <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*>:
 
 ```csharp
 app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
@@ -911,7 +911,7 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
 :::moniker-end
 
@@ -919,13 +919,13 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 
 If the app isn't configured to process controller actions:
 
-* Add MVC services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> on the service collection in the `Program` file:
+* Add MVC services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*> on the service collection in the `Program` file:
 
   ```csharp
   builder.Services.AddControllers();
   ```
 
-* Add controller endpoint routing in the `Program` file by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> (`app`):
+* Add controller endpoint routing in the `Program` file by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> (`app`):
 
   ```csharp
   app.MapControllers();
@@ -958,7 +958,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect*> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
 :::moniker-end
 
@@ -1167,7 +1167,7 @@ Remove the following line:
 - await builder.Build().RunAsync();
 ```
 
-Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
+Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
 
 ```csharp
 builder.Services.AddLocalization();
@@ -1417,7 +1417,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the server project's `Program` file where services are registered:
 
@@ -1427,7 +1427,7 @@ builder.Services.AddLocalization();
 
 Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
-Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the request processing pipeline, place the following code:
+Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> in the request processing pipeline, place the following code:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CR" };
@@ -1491,7 +1491,7 @@ At the top of the `Program` file, add the following `using` statement for the re
 using Microsoft.AspNetCore.Localization;
 ```
 
-In the request processing pipeline of the app's `Program` file after the call to <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>:
+In the request processing pipeline of the app's `Program` file after the call to <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*>:
 
 ```csharp
 app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
@@ -1510,7 +1510,7 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
 :::moniker-end
 
@@ -1540,7 +1540,7 @@ In the `Program` file, add namespace the namespace for <xref:System.Globalizatio
 using System.Globalization;
 ```
 
-Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>:
+Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>:
 
 ```csharp
 builder.Services.AddLocalization();
@@ -1554,7 +1554,7 @@ If the app doesn't already support dynamic culture selection:
 
 :::moniker range=">= aspnetcore-6.0"
 
-* Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+* Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 * Specify the app's default and supported cultures in the `Program` file. The following example configures supported cultures for United States English and Costa Rican Spanish.
 
 ```csharp
@@ -1565,13 +1565,13 @@ builder.Services.AddLocalization();
 
 :::moniker range=">= aspnetcore-8.0"
 
-Place localization middleware before any middleware that might check the request culture. Generally, place the middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
+Place localization middleware before any middleware that might check the request culture. Generally, place the middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*>:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
+Immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>) is added to the processing pipeline:
 
 :::moniker-end
 
@@ -1593,7 +1593,7 @@ For information on ordering the localization middleware in the middleware pipeli
 
 :::moniker range="< aspnetcore-6.0"
 
-* Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+* Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 * Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Costa Rican Spanish.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
@@ -1602,7 +1602,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-In `Startup.Configure` immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
+In `Startup.Configure` immediately after routing middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>) is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CR" };
@@ -1783,7 +1783,7 @@ The following demonstrates a typical resource file. You can manually place resou
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer`1>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's imports file (`_Imports.razor`):
 
@@ -1879,9 +1879,9 @@ To create localization shared resources, adopt the following approach.
   * `Localization/SharedResource.es.resx`
 
   > [!WARNING]
-  > When following the approach in this section, you can't simultaneously set <xref:Microsoft.Extensions.Localization.LocalizationOptions.ResourcesPath%2A?displayProperty=nameWithType> and use <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory.Create%2A?displayProperty=nameWithType> to load resources.
+  > When following the approach in this section, you can't simultaneously set <xref:Microsoft.Extensions.Localization.LocalizationOptions.ResourcesPath*?displayProperty=nameWithType> and use <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory.Create*?displayProperty=nameWithType> to load resources.
 
-* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
+* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
 
   * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](xref:mvc/views/razor#using) directive.
   * The second example states the `SharedResource` dummy class's namespace explicitly.

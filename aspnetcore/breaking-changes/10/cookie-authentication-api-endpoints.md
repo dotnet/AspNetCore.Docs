@@ -55,7 +55,7 @@ To restore the previous behavior for the whole app, enable the `Microsoft.AspNet
 </ItemGroup>
 ```
 
-The switch is read once, the first time cookie authentication is used, so if you set it in code instead, call <xref:System.AppContext.SetSwitch%2A> before the host is built:
+The switch is read once, the first time cookie authentication is used, so if you set it in code instead, call <xref:System.AppContext.SetSwitch*> before the host is built:
 
 ```csharp
 AppContext.SetSwitch(

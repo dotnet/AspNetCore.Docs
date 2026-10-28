@@ -48,10 +48,10 @@ Replace the `OnGetAsync` method with the following code that reads enrollment da
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Details.cshtml.cs?name=snippet_OnGetAsync&highlight=8-12)]
 
-The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include%2A> and [ThenInclude](xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ThenInclude%60%603(Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{%60%600,%60%601},System.Linq.Expressions.Expression{System.Func{%60%601,%60%602}})))
+The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include*> and [ThenInclude](xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ThenInclude``3(Microsoft.EntityFrameworkCore.Query.IIncludableQueryable{``0,``1},System.Linq.Expressions.Expression{System.Func{``1,``2}})))
 methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment, the `Enrollment.Course` navigation property. These methods are examined in detail in [Read related data (Tutorial 6 of 8)](xref:data/ef-rp/read-related-data).
 
-The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> method improves performance in scenarios where the entities returned aren't updated in the current context. The `AsNoTracking` setting is discussed later in this tutorial.
+The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking*> method improves performance in scenarios where the entities returned aren't updated in the current context. The `AsNoTracking` setting is discussed later in this tutorial.
 
 ### Display enrollments
 
@@ -65,9 +65,9 @@ Run the app, select the **Students** tab, and select the **Details** link for a 
 
 ### Use different methods to read one entity
 
-The generated code uses the [FirstOrDefaultAsync](xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync%60%601(System.Linq.IQueryable{%60%600},System.Threading.CancellationToken)) method to read one entity. This method returns null if nothing is found. Otherwise, it returns the first row found that satisfies the query filter criteria. The `FirstOrDefaultAsync` method is generally a better choice than the following alternatives:
+The generated code uses the [FirstOrDefaultAsync](xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync``1(System.Linq.IQueryable{``0},System.Threading.CancellationToken)) method to read one entity. This method returns null if nothing is found. Otherwise, it returns the first row found that satisfies the query filter criteria. The `FirstOrDefaultAsync` method is generally a better choice than the following alternatives:
 
-* The [SingleOrDefaultAsync](xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.SingleOrDefaultAsync%60%601(System.Linq.IQueryable{%60%600},System.Linq.Expressions.Expression{System.Func{%60%600,System.Boolean}},System.Threading.CancellationToken)) method throws an exception if there's more than one entity that satisfies the query filter. To determine if the query can return more than one row, the `SingleOrDefaultAsync` method tries to fetch multiple rows. The extra work is unnecessary if the query can only return one entity, as when it searches on a unique key.
+* The [SingleOrDefaultAsync](xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.SingleOrDefaultAsync``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)) method throws an exception if there's more than one entity that satisfies the query filter. To determine if the query can return more than one row, the `SingleOrDefaultAsync` method tries to fetch multiple rows. The extra work is unnecessary if the query can only return one entity, as when it searches on a unique key.
 
 * The [FindAsync](xref:Microsoft.EntityFrameworkCore.DbContext.FindAsync(System.Type,System.Object[])) method locates an entity with the primary key. If the context tracks an entity with the primary key, the key is returned without a request to the database. This method is optimized to look up a single entity, but you can't call the `Include` method with the `FindAsync` method. If related data is needed, the `FirstOrDefaultAsync` method is the better choice.
 
@@ -85,7 +85,7 @@ The scaffolded `OnPostAsync` code for the **Create** page is vulnerable to [over
 
 The code in the last section creates a `Student` object and then uses posted form fields to update the `Student` object properties. The [TryUpdateModelAsync](xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync(System.Object,System.Type,System.String)) method:
 
-* Uses the posted form values from the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.PageContext%2A> property in the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class.
+* Uses the posted form values from the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.PageContext*> property in the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class.
 
 * Updates only the properties listed (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
 
@@ -164,7 +164,7 @@ In the _Pages/Students/Edit.cshtml.cs_ file, replace the `OnGetAsync` and `OnPos
 
 The code changes are similar to the **Create** page with a few exceptions:
 
-* The `FirstOrDefaultAsync` method is replaced with the <xref:Microsoft.EntityFrameworkCore.DbSet%601.FindAsync%2A> method. When you don't have to include related data, the `FindAsync` method is more efficient.
+* The `FirstOrDefaultAsync` method is replaced with the <xref:Microsoft.EntityFrameworkCore.DbSet`1.FindAsync*> method. When you don't have to include related data, the `FindAsync` method is more efficient.
 * The `OnPostAsync` method has an `id` parameter.
 * The current student is fetched from the database, rather than creating an empty student.
 
@@ -172,7 +172,7 @@ Run the app, and test it by creating and editing a student.
 
 ## Use Entity States
 
-The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database. The tracking information determines what happens when the [SaveChangesAsync](xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(System.Threading.CancellationToken)) method is called. For example, when a new entity is passed to the <xref:Microsoft.EntityFrameworkCore.DbContext.AddAsync%2A> method, that entity's state is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Added>. When the `SaveChangesAsync` method is called, the database context issues a SQL `INSERT` command.
+The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database. The tracking information determines what happens when the [SaveChangesAsync](xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(System.Threading.CancellationToken)) method is called. For example, when a new entity is passed to the <xref:Microsoft.EntityFrameworkCore.DbContext.AddAsync*> method, that entity's state is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Added>. When the `SaveChangesAsync` method is called, the database context issues a SQL `INSERT` command.
 
 An entity can be in one of the [following states](xref:Microsoft.EntityFrameworkCore.EntityState):
 

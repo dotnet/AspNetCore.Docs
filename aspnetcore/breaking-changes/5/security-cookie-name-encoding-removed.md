@@ -25,7 +25,7 @@ Response cookie names are encoded. Request cookie names are decoded.
 
 ## New behavior
 
-Encoding and decoding of cookie names was removed. For prior [supported versions](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) of ASP.NET Core, the team plans to mitigate the decoding issue in-place. Additionally, calling <xref:Microsoft.AspNetCore.Http.IResponseCookies.Append%2A?displayProperty=nameWithType> with an invalid cookie name throws an exception of type <xref:System.ArgumentException>. Encoding and decoding of cookie values remains unchanged.
+Encoding and decoding of cookie names was removed. For prior [supported versions](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) of ASP.NET Core, the team plans to mitigate the decoding issue in-place. Additionally, calling <xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*?displayProperty=nameWithType> with an invalid cookie name throws an exception of type <xref:System.ArgumentException>. Encoding and decoding of cookie values remains unchanged.
 
 ## Reason for change
 
@@ -37,8 +37,8 @@ If you're moving projects to ASP.NET Core 5.0 or later, ensure that their cookie
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies%2A?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.Http.HttpResponse.Cookies%2A?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.HttpResponse.Cookies*?displayProperty=nameWithType>
 - `Microsoft.Owin.IOwinRequest.Cookies`
 - `Microsoft.Owin.IOwinResponse.Cookies`
 

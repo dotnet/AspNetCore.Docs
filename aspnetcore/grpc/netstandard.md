@@ -43,7 +43,7 @@ var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
-Clients can also be created using the [gRPC client factory](xref:grpc/clientfactory). An HTTP provider is configured using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.
+Clients can also be created using the [gRPC client factory](xref:grpc/clientfactory). An HTTP provider is configured using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method.
 
 ```csharp
 builder.Services

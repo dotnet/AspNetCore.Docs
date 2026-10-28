@@ -25,7 +25,7 @@ Some action result types are specific to a particular format, such as <xref:Micr
 
 An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
 
-By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A?displayProperty=nameWithType> returns JSON-formatted data:
+By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*?displayProperty=nameWithType> returns JSON-formatted data:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
@@ -34,7 +34,7 @@ The sample code returns a list of todo items. Using the F12 browser developer to
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
 
-To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A> helper:
+To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content*> helper:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetVersion":::
 
@@ -109,7 +109,7 @@ Apps that need to support extra formats can add the appropriate NuGet packages a
 
 ### Add XML format support
 
-To configure XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer>, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters%2A>:
+To configure XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer>, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*>:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters" highlight="4":::
 
@@ -121,7 +121,7 @@ To configure features for the `System.Text.Json`-based formatters, use <xref:Mic
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_JsonSerializerOptions" highlight="4-7":::
 
-The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
+The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem*?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetError" highlight="3":::
 
@@ -151,7 +151,7 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 * Customizes the serialization settings.
 * Relies on features that `Newtonsoft.Json` provides.
 
-To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings%2A>:
+To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings*>:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddNewtonsoftJsonSerializerSettings" highlight="4":::
 
@@ -226,7 +226,7 @@ Some action result types are specific to a particular format, such as <xref:Micr
 
 An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
 
-The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A> returns JSON-formatted data:
+The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> returns JSON-formatted data:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_get":::
 
@@ -235,7 +235,7 @@ The sample download returns the list of authors. Using the F12 browser developer
 * The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
 * The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
 
-To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A> helper:
+To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content*> helper:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_about":::
 
@@ -307,7 +307,7 @@ Apps that need to support additional formats can add the appropriate NuGet packa
 
 ### Add XML format support
 
-XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> are configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters%2A>:
+XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> are configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*>:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Startup.cs" id="snippet":::
 
@@ -321,7 +321,7 @@ Features for the `System.Text.Json` based formatters can be configured using <xr
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/StartupPascalCase.cs" id="snippet" highlight="4-5":::
 
-The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
+The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem*?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/WeatherForecastController.cs" id="snippet_Problem" highlight="4":::
 
@@ -457,7 +457,7 @@ Some action result types are specific to a particular format, such as <xref:Micr
 
 An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
 
-By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A?displayProperty=nameWithType> returns JSON-formatted data:
+By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*?displayProperty=nameWithType> returns JSON-formatted data:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
@@ -466,7 +466,7 @@ The sample code returns a list of todo items. Using the F12 browser developer to
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
 
-To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A> helper:
+To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content*> helper:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetVersion":::
 
@@ -541,7 +541,7 @@ Apps that need to support extra formats can add the appropriate NuGet packages a
 
 ### Add XML format support
 
-To configure XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer>, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters%2A>:
+To configure XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer>, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*>:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters" highlight="4":::
 
@@ -577,7 +577,7 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 * Customizes the serialization settings.
 * Relies on features that `Newtonsoft.Json` provides.
 
-To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings%2A>:
+To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings*>:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddNewtonsoftJsonSerializerSettings" highlight="4":::
 
@@ -587,7 +587,7 @@ To configure output serialization options for specific actions, use `JsonResult`
 
 ### Format `ProblemDetails` and `ValidationProblemDetails` responses
 
-The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
+The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem*?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetError" highlight="3":::
 
@@ -601,7 +601,7 @@ By default, the `ValidationProblemDetails` response returned when the `Value` pr
 
 :::code language="csharp" source="formatting/samples/snapshot/7.x/ValidationProblemDetailsDefault.json" highlight="7":::
 
-To format the property names used as error keys, add an implementation of <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider> to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders%2A?displayProperty=nameWithType> collection. The following example adds a `System.Text.Json`-based implementation, `SystemTextJsonValidationMetadataProvider`, which formats property names as camelCase by default:
+To format the property names used as error keys, add an implementation of <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider> to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders*?displayProperty=nameWithType> collection. The following example adds a `System.Text.Json`-based implementation, `SystemTextJsonValidationMetadataProvider`, which formats property names as camelCase by default:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_SystemTextJsonValidationMetadataProvider":::
 

@@ -14,10 +14,10 @@ For an introduction to authentication schemes, see [Overview of ASP.NET Core Aut
 
 In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to sign a user into an app and establish their identity and Bearer authentication (often relying on JWTs) for JavaScript-based requests to web API endpoints. In some cases, the app may have multiple instances of an authentication handler. For example, an app has two cookie handlers, where one contains a basic identity and one is created when a multi-factor authentication (MFA) is triggered. MFA may be triggered because the user requested an operation that requires extra security.
 
-For the following <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> call without a default authentication scheme specified, two authentication handlers are added to the app using their default authentication scheme names:
+For the following <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> call without a default authentication scheme specified, two authentication handlers are added to the app using their default authentication scheme names:
 
-* Cookie (scheme name: "Cookies"): <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>
-* JWT bearer (scheme name: "Bearer"): <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>
+* Cookie (scheme name: "Cookies"): <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>
+* JWT bearer (scheme name: "Bearer"): <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*>
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -53,7 +53,7 @@ services.AddAuthentication()
 
 :::moniker-end
 
-Specifying the default scheme when calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> results in setting the <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType> property to a <xref:System.Security.Claims.ClaimsPrincipal> that relies on that identity. If this behavior isn't desired, invoke the parameterless form of <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, as shown in the preceding example.
+Specifying the default scheme when calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> results in setting the <xref:Microsoft.AspNetCore.Http.HttpContext.User*?displayProperty=nameWithType> property to a <xref:System.Security.Claims.ClaimsPrincipal> that relies on that identity. If this behavior isn't desired, invoke the parameterless form of <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>, as shown in the preceding example.
 
 ## JWT bearer NuGet package
 
@@ -61,7 +61,7 @@ Several examples in this article rely on API in the [`Microsoft.AspNetCore.Authe
 
 ## Select a scheme with an `[Authorize]` attribute
 
-An app can specify an authentication handler for Razor components, Minimal API endpoints, controllers, action methods, Razor Pages, and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>s by passing a comma-delimited list of authentication schemes to the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). The attribute specifies the authentication schemes regardless of whether or not a default scheme is configured. In the following example, the Cookies (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>) and Bearer (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>) authentication schemes are set.
+An app can specify an authentication handler for Razor components, Minimal API endpoints, controllers, action methods, Razor Pages, and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>s by passing a comma-delimited list of authentication schemes to the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). The attribute specifies the authentication schemes regardless of whether or not a default scheme is configured. In the following example, the Cookies (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme*?displayProperty=nameWithType>) and Bearer (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType>) authentication schemes are set.
 
 > [!NOTE]
 > The following examples require the following namespaces: <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName>, <xref:Microsoft.AspNetCore.Authentication.Cookies?displayProperty=fullName>, and <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName>.
@@ -136,9 +136,9 @@ By specifying a single scheme, the corresponding handler runs. In the following 
 
 ## Select the scheme with an authorization policy
 
-If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes%2A> collection when adding the policy.
+If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*> collection when adding the policy.
 
-In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method enforces user authentication to endpoints where the policy is applied.
+In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method enforces user authentication to endpoints where the policy is applied.
 
 > [!NOTE]
 > The following example requires the <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> namespace.
@@ -189,7 +189,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-Use the policy by setting <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy%2A?displayProperty=nameWithType>.
+Use the policy by setting <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy*?displayProperty=nameWithType>.
 
 For a Razor component:
 
@@ -198,7 +198,7 @@ For a Razor component:
 @attribute [Authorize(Policy = "Over18")]
 ```
 
-For a Minimal API endpoint, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> with the policy name:
+For a Minimal API endpoint, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> with the policy name:
 
 ```csharp
 app.MapGet("/api/data", () => 
@@ -233,7 +233,7 @@ The authorization schemes for an endpoint with one or more [`Authorize` attribut
 
 Some apps require support for multiple methods of authentication. A typical scenario involves accepting bearer JWTs issued by several identity providers.
 
-Only one JWT bearer handler is registered with the default authentication scheme <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType>. Register additional JWT bearer schemes for additional identity providers with unique authentication scheme names. The following example names the second scheme "`MEID`" for the ME-ID issuer.
+Only one JWT bearer handler is registered with the default authentication scheme <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType>. Register additional JWT bearer schemes for additional identity providers with unique authentication scheme names. The following example names the second scheme "`MEID`" for the ME-ID issuer.
 
 > [!NOTE]
 > The following examples require the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> and <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> namespaces.
@@ -331,14 +331,14 @@ The preceding code configures default authorization with support for multiple au
 
 1. A new <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder> initializes a policy builder that accepts authentication from two schemes:
 
-   * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme%2A?displayProperty=nameWithType> (JWT bearer tokens)
+   * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType> (JWT bearer tokens)
    * "MEID" (the custom authentication scheme for ME-ID, defined earlier)
 
    This means users can authenticate using either JWT tokens or the MEID scheme
 
-2. <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> is called to require authenticated users for access to protected endpoints.
+2. <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> is called to require authenticated users for access to protected endpoints.
 
-3. <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy%2A> chained to <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A>:
+3. <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetDefaultPolicy*> chained to <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*>:
 
    * Registers authorization services.
    * Sets this policy as the default for all `[Authorize]` attributes that don't specify a custom policy. Any endpoint marked with `[Authorize]` automatically uses this policy
@@ -347,7 +347,7 @@ The result of using the preceding API is that protected endpoints in the app req
 
 ## Select a policy scheme based on the `Authorization` header
 
-For guidance on how to use the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme%2A> method with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector> property to dynamically select an authentication scheme for each request, see <xref:security/authentication/policyschemes>.
+For guidance on how to use the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme*> method with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector> property to dynamically select an authentication scheme for each request, see <xref:security/authentication/policyschemes>.
 
 ## Related content
 

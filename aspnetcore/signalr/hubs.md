@@ -18,11 +18,11 @@ This article describes how to configure hubs, send messages to clients, and allo
 
 :::moniker range=">= aspnetcore-6.0"
 
-Register the services required by SignalR hubs by calling the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> method in the `Program` file:
+Register the services required by SignalR hubs by calling the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> method in the `Program` file:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_AddSignalR" highlight="4":::
 
-Configure SignalR endpoints by calling the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> method in the `Program` file:
+Configure SignalR endpoints by calling the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> method in the `Program` file:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_MapHub" highlight="2":::
 
@@ -30,7 +30,7 @@ Configure SignalR endpoints by calling the <xref:Microsoft.AspNetCore.Builder.Hu
 
 :::moniker range="< aspnetcore-6.0"
 
-The SignalR middleware requires some services, which are configured by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
+The SignalR middleware requires some services, which are configured by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*>:
 
 ```csharp
 services.AddSignalR();
@@ -40,7 +40,7 @@ services.AddSignalR();
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in the `Startup.Configure` method's <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> callback:
+When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> in the `Startup.Configure` method's <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> callback:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -53,7 +53,7 @@ app.UseEndpoints(endpoints =>
 
 :::moniker range="< aspnetcore-3.0"
 
-When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A> in the `Startup.Configure` method:
+When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR*> in the `Startup.Configure` method:
 
 ```csharp
 app.UseSignalR(route =>
@@ -115,47 +115,47 @@ You can specify a return type and parameters, including complex types and arrays
 
 ## Use 'Context' object properties and methods
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A> property that contains the following properties with information about the connection.
+The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Context*> property that contains the following properties with information about the connection.
 
 | Property | Description |
 |--|--|
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionId%2A> | Gets the unique ID for the connection, assigned by SignalR. There's one connection ID for each connection. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.UserIdentifier%2A> | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> property from the <xref:System.Security.Claims.ClaimsPrincipal> associated with the connection as the user identifier. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User%2A> | Gets the <xref:System.Security.Claims.ClaimsPrincipal> associated with the current user. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Items%2A> | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it persists for the connection across different hub method invocations. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Features%2A> | Gets the collection of features available on the connection. This collection isn't currently needed in most scenarios, so detailed documentation isn't yet available. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionAborted%2A> | Gets a <xref:System.Threading.CancellationToken> that notifies when the connection is aborted. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionId*> | Gets the unique ID for the connection, assigned by SignalR. There's one connection ID for each connection. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.UserIdentifier*> | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> property from the <xref:System.Security.Claims.ClaimsPrincipal> associated with the connection as the user identifier. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User*> | Gets the <xref:System.Security.Claims.ClaimsPrincipal> associated with the current user. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Items*> | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it persists for the connection across different hub method invocations. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Features*> | Gets the collection of features available on the connection. This collection isn't currently needed in most scenarios, so detailed documentation isn't yet available. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionAborted*> | Gets a <xref:System.Threading.CancellationToken> that notifies when the connection is aborted. |
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A?displayProperty=nameWithType> property also contains the following methods:
+The <xref:Microsoft.AspNetCore.SignalR.Hub.Context*?displayProperty=nameWithType> property also contains the following methods:
 
 | Method | Description |
 |--|--|
-| <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> | Returns the <xref:Microsoft.AspNetCore.Http.HttpContext> for the connection, or `null` if the connection isn't associated with an HTTP request. For HTTP connections, use this method to get information such as HTTP headers and query strings. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Abort%2A> | Aborts the connection. |
+| <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> | Returns the <xref:Microsoft.AspNetCore.Http.HttpContext> for the connection, or `null` if the connection isn't associated with an HTTP request. For HTTP connections, use this method to get information such as HTTP headers and query strings. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Abort*> | Aborts the connection. |
 
 ## Use 'Clients' object properties and methods
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Clients%2A> property that contains the following properties for communication between server and client:
+The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.AspNetCore.SignalR.Hub.Clients*> property that contains the following properties for communication between server and client:
 
 | Property | Description |
 |--|--|
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All%2A> | Calls a method on all connected clients. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Caller%2A> | Calls a method on the client that invoked the hub method. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A> | Calls a method on all connected clients except the client that invoked the method. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All*> | Calls a method on all connected clients. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.Caller*> | Calls a method on the client that invoked the hub method. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.Others*> | Calls a method on all connected clients except the client that invoked the method. |
 
-The <xref:Microsoft.AspNetCore.SignalR.Hub.Clients%2A?displayProperty=nameWithType> property also contains the following methods:
+The <xref:Microsoft.AspNetCore.SignalR.Hub.Clients*?displayProperty=nameWithType> property also contains the following methods:
 
 | Method | Description |
 |--|--|
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.AllExcept%2A> | Calls a method on all connected clients except for the specified connections. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Client%2A> | Calls a method on a specific connected client. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Clients%2A> | Calls a method on specific connected clients. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Group%2A> | Calls a method on all connections in the specified group. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.GroupExcept%2A> | Calls a method on all connections in the specified group, except the specified connections. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Groups%2A> | Calls a method on multiple groups of connections. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.OthersInGroup%2A> | Calls a method on a group of connections, excluding the client that invoked the hub method. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.User%2A> | Calls a method on all connections associated with a specific user. |
-| <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Users%2A> | Calls a method on all connections associated with the specified users. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.AllExcept*> | Calls a method on all connected clients except for the specified connections. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.Client*> | Calls a method on a specific connected client. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.Clients*> | Calls a method on specific connected clients. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.Group*> | Calls a method on all connections in the specified group. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.GroupExcept*> | Calls a method on all connections in the specified group, except the specified connections. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.Groups*> | Calls a method on multiple groups of connections. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients`1.OthersInGroup*> | Calls a method on a group of connections, excluding the client that invoked the hub method. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.User*> | Calls a method on all connections associated with a specific user. |
+| <xref:Microsoft.AspNetCore.SignalR.IHubClients`1.Users*> | Calls a method on all connections associated with the specified users. |
 
 Each property or method returns an object with a `SendAsync` method. The `SendAsync` method receives the name of the client method to call and any parameters.
 
@@ -204,7 +204,7 @@ public Task SendMessageToGroup(string user, string message)
 
 A drawback of using the `SendAsync` method is that it relies on a string to specify the client method to call. This design leaves code open to runtime errors if the method name is misspelled or missing from the client.
 
-An alternative to using the `SendAsync` method is to strongly type the <xref:Microsoft.AspNetCore.SignalR.Hub> class with <xref:Microsoft.AspNetCore.SignalR.Hub%601>. In the following example, the `ChatHub` client method is extracted into an interface named `IChatClient`:
+An alternative to using the `SendAsync` method is to strongly type the <xref:Microsoft.AspNetCore.SignalR.Hub> class with <xref:Microsoft.AspNetCore.SignalR.Hub`1>. In the following example, the `ChatHub` client method is extracted into an interface named `IChatClient`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/IChatClient.cs" id="snippet_Interface":::
 
@@ -319,9 +319,9 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 :::moniker range=">= aspnetcore-6.0"
 
-SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator`1> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
-Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called.
+Hub constructor service injection is supported. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1> is injected into a hub using a primary constructor to save messages to a database when `SendMessage` is called.
 
 In the app's `Program` file using SQL Server as the example database provider and a connection string from configuration:
 
@@ -412,13 +412,13 @@ For database operations, adopting the factory pattern is preferred for overlappi
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator`1> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Hub constructor service injection is supported with the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
+Hub constructor service injection is supported with the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1>. In the following example, <xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1> is injected into a hub's constructor and used to save messages to a database when `SendMessage` is called.
 
 In `Startup.ConfigureServices` using SQL Server as the example database provider and a connection string from configuration:
 
@@ -472,7 +472,7 @@ When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the fram
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 > [!NOTE]
-> Upgrade the app to target .NET 5 or later to use the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>.
+> Upgrade the app to target .NET 5 or later to use the factory pattern for creating database contexts using <xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1>.
 >
 > For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
 >
@@ -483,7 +483,7 @@ When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the fram
 
 :::moniker range="< aspnetcore-3.0"
 
-SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator%601> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
+SignalR registers an <xref:Microsoft.AspNetCore.SignalR.IHubActivator`1> and creates an unregistered hub with <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities> for each invocation. Singleton services injected into a hub outlive the hub instance, and injected transient services have a lifetime that matches the lifetime of the hub instance. Scoped service instances are created for each hub invocation and also match the lifetime of the hub; therefore, scoped and transient services exhibit equivalent lifetimes.
 
 Hub constructor service injection is supported. The framework automatically creates a dependency injection (DI) scope for the hub method invocation. The framework disposes the context as soon as the invocation completes. ***However, you must ensure that the hub's methods don't execute concurrent database operations on the same context instance because <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread-safe.***
 
@@ -538,7 +538,7 @@ For general guidance on DI, see <xref:fundamentals/dependency-injection> and its
 
 ## Keyed services support in dependency injection
 
-The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
+The keyed services mechanism allows you to register and retrieve dependency injection services by using keys. A service is associated with a key by calling the  <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton*> method to register it. As an alternative, you can call the `AddKeyedScoped` or `AddKeyedTransient` method.
 
 You access a registered service by specifying the key with the [[FromKeyedServices](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute)] attribute. The following code shows how to use keyed services:
 
@@ -642,7 +642,7 @@ If your streaming hub methods return `ChannelReader<T>` instead of `IAsyncEnumer
 
 ## Handle events for a connection
 
-The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync%2A> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the hub, such as adding it to a group:
+The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync*> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync*> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the hub, such as adding it to a group:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnConnectedAsync":::
 
@@ -666,7 +666,7 @@ public override async Task OnDisconnectedAsync(Exception exception)
 
 :::moniker-end
 
-The <xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> method doesn't need to be called within the <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> method because it's handled automatically.
+The <xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync*> method doesn't need to be called within the <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync*> method because it's handled automatically.
 
 :::moniker range="< aspnetcore-6.0"
 

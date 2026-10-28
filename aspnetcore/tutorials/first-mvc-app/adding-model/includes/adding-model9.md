@@ -264,7 +264,7 @@ Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Data/MvcMovieContext.cs?name=snippet_First)]
 
-The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property that represents the movies in the database.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property that represents the movies in the database.
 
 ### Dependency injection
 
@@ -353,7 +353,7 @@ The `id` can be passed in with a query string, as in the following example:
 
 The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in cases when the `id` value isn't provided.
 
-A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A> method to select movie entities that match the route data or query string value.
+A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync*> method to select movie entities that match the route data or query string value.
 
 ```csharp
 var movie = await _context.Movie

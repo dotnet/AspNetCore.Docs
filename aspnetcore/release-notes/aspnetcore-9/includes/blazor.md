@@ -73,10 +73,10 @@ The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationSta
 
 This works well if you've started from the Blazor Web App project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project. There are now APIs, which are now part of the Blazor Web App project template, that can be called in the server and client projects to add this functionality:
 
-* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>: Adds the necessary services to serialize the authentication state on the server.
-* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A>: Adds the necessary services to deserialize the authentication state in the browser.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*>: Adds the necessary services to serialize the authentication state on the server.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*>: Adds the necessary services to deserialize the authentication state in the browser.
 
-By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to include all claims.
+By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> to include all claims.
 
 For more information, see the following sections of <xref:blazor/security/index?view=aspnetcore-9.0>:
 
@@ -97,7 +97,7 @@ Mark any Razor component page with the new [`[ExcludeFromInteractiveRouting]` at
 
 Applying the attribute causes navigation to the page to exit from interactive routing. Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
+The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
 
 In the `App` component, use the pattern in the following example:
 
@@ -126,7 +126,7 @@ In the `App` component, use the pattern in the following example:
 }
 ```
 
-An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
+An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
 This feature is covered by the reference documentation in <xref:blazor/components/render-modes?view=aspnetcore-9.0#static-ssr-pages-in-a-globally-interactive-app>.
 
@@ -187,7 +187,7 @@ The default `OverscanCount` is 3. The following example increases the `OverscanC
 
 ### `InputNumber` component supports the `type="range"` attribute
 
-The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> component now supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
 
 ```razor
 <EditForm Model="Model" OnSubmit="Submit" FormName="EngineForm">

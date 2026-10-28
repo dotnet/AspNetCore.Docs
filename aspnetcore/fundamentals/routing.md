@@ -38,14 +38,14 @@ The following code shows a basic example of routing:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Program.cs" highlight="4":::
 
-The preceding example includes a single endpoint using the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A> method:
+The preceding example includes a single endpoint using the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> method:
 
 * When an HTTP `GET` request is sent to the root URL `/`:
   * The request delegate executes.
   * `Hello World!` is written to the HTTP response.
 * If the request method is not `GET` or the root URL is not `/`, no route matches and an HTTP 404 is returned.
 
-Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>:
+Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>:
 
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the [best match](#urlm) based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
@@ -73,11 +73,11 @@ The `MapGet` method is used to define an **endpoint**. An endpoint is something 
 * Selected, by matching the URL and HTTP method.
 * Executed, by running the delegate.
 
-Endpoints that can be matched and executed by the app are configured in `UseEndpoints`. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) connect request delegates to the routing system. Additional methods can be used to connect ASP.NET Core framework features to the routing system:
+Endpoints that can be matched and executed by the app are configured in `UseEndpoints`. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) connect request delegates to the routing system. Additional methods can be used to connect ASP.NET Core framework features to the routing system:
 
-* [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A)
-* [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A)
-* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub%2A) 
+* [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
+* [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
+* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
 * [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
 
 The following example shows routing with a more sophisticated route template:
@@ -92,7 +92,7 @@ The string `/hello/{name:alpha}` is a **route template**. A route template is us
 The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
-* Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues%2A?displayProperty=nameWithType>.
+* Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*?displayProperty=nameWithType>.
 
 The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
@@ -103,12 +103,12 @@ The preceding example demonstrates how:
 * The authorization middleware can be used with routing.
 * Endpoints can be used to configure authorization behavior.
 
-The <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> call adds a health check endpoint. Chaining <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> on to this call attaches an authorization policy to the endpoint.
+The <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks*> call adds a health check endpoint. Chaining <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> on to this call attaches an authorization policy to the endpoint.
 
-Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> adds the authentication and authorization middleware. These middleware are placed between <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and `UseEndpoints` so that they can:
+Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> adds the authentication and authorization middleware. These middleware are placed between <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and `UseEndpoints` so that they can:
 
 * See which endpoint was selected by `UseRouting`.
-* Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> dispatches to the endpoint.
+* Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> dispatches to the endpoint.
 
 
 
@@ -132,8 +132,8 @@ The routing system builds on top of the middleware pipeline by adding the powerf
 An ASP.NET Core endpoint is:
 
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
-* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata%2A) collection.
-* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern%2A).
+* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection.
+* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
 * Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
@@ -142,7 +142,7 @@ The following code shows how to retrieve and inspect the endpoint matching the c
 
 The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be selected by the routing system.
 
-In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A) configures an inline [middleware](xref:fundamentals/middleware/index).
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an inline [middleware](xref:fundamentals/middleware/index).
 
 <a name="mt"></a>
 
@@ -173,13 +173,13 @@ Running this code with any other URL displays:
 This output demonstrates that:
 
 * The endpoint is always null before `UseRouting` is called.
-* If a match is found, the endpoint is non-null between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>.
+* If a match is found, the endpoint is non-null between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 * The `UseEndpoints` middleware is **terminal** when a match is found. [Terminal middleware](#tm) is defined later in this article.
 * The middleware after `UseEndpoints` execute only when no match is found.
 
-The `UseRouting` middleware uses the <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint%2A> method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and aren't coupled to the routing implementation. Most apps don't need to replace `UseRouting` with custom logic.
+The `UseRouting` middleware uses the <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*> method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and aren't coupled to the routing implementation. Most apps don't need to replace `UseRouting` with custom logic.
 
-The `UseEndpoints` middleware is designed to be used in tandem with the `UseRouting` middleware. The core logic to execute an endpoint isn't complicated. Use <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A> to retrieve the endpoint, and then invoke its <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate> property.
+The `UseEndpoints` middleware is designed to be used in tandem with the `UseRouting` middleware. The core logic to execute an endpoint isn't complicated. Use <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*> to retrieve the endpoint, and then invoke its <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate> property.
 
 The following code demonstrates how middleware can influence or react to routing:
 
@@ -189,8 +189,8 @@ The following code demonstrates how middleware can influence or react to routing
 The preceding example demonstrates two important concepts:
 
 * Middleware can run before `UseRouting` to modify the data that routing operates upon.
-  * Usually middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter%2A>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride%2A>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A>.
-* Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to process the results of routing before the endpoint is executed.
+  * Usually middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
+* Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> to process the results of routing before the endpoint is executed.
   * Middleware that runs between `UseRouting` and `UseEndpoints`:
     * Usually inspects metadata to understand the endpoints.
     * Often makes security decisions, as done by `UseAuthorization` and `UseCors`.
@@ -231,7 +231,7 @@ The following list compares terminal middleware with routing:
   * Middleware terminates the pipeline by returning rather than invoking `next`.
   * Endpoints are always terminal.
 * Terminal middleware allows positioning the middleware at an arbitrary place in the pipeline:
-  * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>.
+  * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 * Terminal middleware allows arbitrary code to determine when the middleware matches:
   * Custom route matching code can be verbose and difficult to write correctly.
   * Routing provides straightforward solutions for typical apps. Most apps don't require custom route matching code.
@@ -250,12 +250,12 @@ Terminal middleware can be an effective tool, but can require:
 
 Consider integrating with routing before writing a terminal middleware.
 
-Existing terminal middleware that integrates with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/dotnet/AspNetCore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
+Existing terminal middleware that integrates with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/dotnet/AspNetCore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
 
 * Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
-* Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder%2A>.
-* Attach the middleware to the new pipeline. In this case, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>.
-* <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Build%2A> the middleware pipeline into a <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
+* Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
+* Attach the middleware to the new pipeline. In this case, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>.
+* <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Build*> the middleware pipeline into a <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
 
@@ -277,7 +277,7 @@ The metadata system was created in response to the problems encountered by exten
 
 When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
 
-* Calling [HttpContext.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A) gets the endpoint.
+* Calling [HttpContext.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
 [Middleware](xref:fundamentals/middleware/index) that runs after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
@@ -287,7 +287,7 @@ The routing system in endpoint routing is responsible for all dispatching decisi
 * Any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
 > [!WARNING]
-> For backward-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of <xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData%2A?displayProperty=nameWithType> are set to appropriate values based on the request processing performed thus far.
+> For backward-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of <xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData*?displayProperty=nameWithType> are set to appropriate values based on the request processing performed thus far.
 >
 > The `RouteContext` type will be marked obsolete in a future release:
 >
@@ -303,7 +303,7 @@ URL matching operates in a configurable set of phases. In each phase, the output
 
 The list of endpoints is prioritized according to:
 
-* The <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order%2A?displayProperty=nameWithType>
+* The <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*?displayProperty=nameWithType>
 * The [route template precedence](#rtp)
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. It chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
@@ -324,7 +324,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 
 > [!WARNING]
 >
-> The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
+> The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
 > Endpoint routing in ASP.NET Core:
 > 
@@ -365,12 +365,12 @@ The link generator is backed by the concept of an **address** and **address sche
 
 The link generator can link to controllers and Razor Pages via the following extension methods:
 
-* <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction%2A>
-* <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction%2A>
-* <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage%2A>
-* <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage%2A>
+* <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*>
+* <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*>
+* <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage*>
+* <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage*>
 
-Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:Microsoft.AspNetCore.Mvc.Routing.UrlHelper.Action%2A) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page%2A), but offer additional flexibility and options.
+Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:Microsoft.AspNetCore.Mvc.Routing.UrlHelper.Action*) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*), but offer additional flexibility and options.
 
 The `GetPath*` methods are most similar to `Url.Action` and `Url.Page`, in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The [ambient](#ambient) route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
@@ -383,8 +383,8 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 | Extension Method                                                      | Description                                                         |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------|
-| <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress%2A> | Generates a URI with an absolute path based on the provided values. |
-| <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress%2A>  | Generates an absolute URI based on the provided values.             |
+| <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Generates a URI with an absolute path based on the provided values. |
+| <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*>  | Generates an absolute URI based on the provided values.             |
 
 > [!WARNING]
 > Pay attention to the following implications of calling <xref:Microsoft.AspNetCore.Routing.LinkGenerator> methods:
@@ -537,7 +537,7 @@ public User GetUserById(int id) { }
 
 [!INCLUDE[](~/includes/regex.md)]
 
-Regular expressions can be specified as inline constraints using the `regex(...)` route constraint. Methods in the <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> family also accept an object literal of constraints. If that form is used, string values are interpreted as regular expressions.
+Regular expressions can be specified as inline constraints using the `regex(...)` route constraint. Methods in the <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> family also accept an object literal of constraints. If that form is used, string values are interpreted as regular expressions.
 
 The following code uses an inline regex constraint:
 
@@ -578,13 +578,13 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ### Custom route constraints
 
-Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:Microsoft.AspNetCore.Routing.IRouteConstraint.Match%2A>, which returns `true` if the constraint is satisfied and `false` otherwise.
+Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:Microsoft.AspNetCore.Routing.IRouteConstraint.Match*>, which returns `true` if the constraint is satisfied and `false` otherwise.
 
 Custom route constraints are rarely needed. Before implementing a custom route constraint, consider alternatives, such as model binding.
 
 The ASP.NET Core [Constraints](https://github.com/dotnet/aspnetcore/tree/main/src/Http/Routing/src/Constraints) folder provides good examples of creating constraints. For example, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
 
-To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Program.cs` either as part of an <xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting%2A> call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `builder.Services.Configure<RouteOptions>`. For example:
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Program.cs` either as part of an <xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*> call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `builder.Services.Configure<RouteOptions>`. For example:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Program.cs" id="snippet_AddRoutingConstraintMap":::
 
@@ -649,9 +649,9 @@ ASP.NET Core provides API conventions for using parameter transformers with gene
 
 This section contains a reference for the algorithm implemented by URL generation. In practice, most complex examples of URL generation use controllers or Razor Pages. See [routing in controllers](xref:mvc/controllers/routing) for additional information.
 
-The URL generation process begins with a call to <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress%2A?displayProperty=nameWithType> or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
+The URL generation process begins with a call to <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*?displayProperty=nameWithType> or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
 
-The first step is to use the address to resolve a set of candidate endpoints using an <xref:Microsoft.AspNetCore.Routing.IEndpointAddressScheme%601> that matches the address's type.
+The first step is to use the address to resolve a set of candidate endpoints using an <xref:Microsoft.AspNetCore.Routing.IEndpointAddressScheme`1> that matches the address's type.
 
 Once the set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does **not** check for ambiguities, the first result returned is the final result.
 
@@ -716,7 +716,7 @@ In the preceding code:
 
 * `/Gadget/Edit/17` is returned.
 * <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url> gets the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>.
-* <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action%2A> generates a URL with an absolute path for an action method. The URL contains the specified `action` name and `route` values.
+* <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*> generates a URL with an absolute path for an action method. The URL contains the specified `action` name and `route` values.
 
 The following code provides ambient values from the current request and explicit values:
 
@@ -731,8 +731,8 @@ If the Edit page doesn't contain the `"{id:int}"` route template, `url` is `/Edi
 The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
 
 * `IUrlHelper` always provides the route values from the current request as ambient values.
-* [IUrlHelper.Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action%2A) always copies the current `action` and `controller` route values as explicit values unless overridden by the developer.
-* [IUrlHelper.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page%2A) always copies the current `page` route value as an explicit value unless overridden. <!--by the user-->
+* [IUrlHelper.Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*) always copies the current `action` and `controller` route values as explicit values unless overridden by the developer.
+* [IUrlHelper.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*) always copies the current `page` route value as an explicit value unless overridden. <!--by the user-->
 * `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden.
 
 Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons, certain route values such as `action`, `controller`, `page`, and `handler` have their own special-case behavior.
@@ -839,9 +839,9 @@ In the preceding code, the `culture` route parameter is used for localization. T
 
 ## Parse URL paths with `LinkParser`
 
-The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName%2A> method takes an endpoint name and a URL path, and returns a set of route values extracted from the URL path.
+The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName*> method takes an endpoint name and a URL path, and returns a set of route values extracted from the URL path.
 
-In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name%2A> of `GetProduct`: 
+In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name*> of `GetProduct`: 
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_ClassGet" highlight="2,5":::
 
@@ -858,7 +858,7 @@ The following links provide information on how to configure endpoint metadata:
 * [Enable Cors with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing)
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
 * [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
-* <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>
+* <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Select a scheme with an `[Authorize]` attribute](xref:security/authorization/authorize-with-a-specific-scheme#select-a-scheme-with-an-authorize-attribute)
 * [Apply policies using an `[Authorize]` attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
@@ -867,7 +867,7 @@ The following links provide information on how to configure endpoint metadata:
 
 ## Host matching in routes with RequireHost
 
-<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost%2A> applies a constraint to the route which requires the specified host. The `RequireHost` or [[Host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) parameter can be a:
+<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost*> applies a constraint to the route which requires the specified host. The `RequireHost` or [[Host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) parameter can be a:
 
 * Host: `www.domain.com`, matches `www.domain.com` with any port.
 * Host with wildcard: `*.domain.com`, matches `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port.
@@ -961,19 +961,19 @@ There are several techniques and optimizations that can be applied to routes tha
 
 ## Short-circuit middleware after routing
 
-When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
+When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapget":::
 
 The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
 
-Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit*> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
 `MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
 
-Short-circuiting doesn't affect middleware placed before `UseRouting`. Short-circuiting an endpoint that also has `[Authorize]` or `[RequireCors]` metadata causes requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> methods. This restriction applies however the endpoint is short-circuited.
+Short-circuiting doesn't affect middleware placed before `UseRouting`. Short-circuiting an endpoint that also has `[Authorize]` or `[RequireCors]` metadata causes requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> methods. This restriction applies however the endpoint is short-circuited.
 
 To see the effect of short-circuiting middleware, set the "Microsoft" logging category to "Information" in `appsettings.Development.json`:
 
@@ -1078,7 +1078,7 @@ This section contains guidance for library authors building on top of routing. T
 
 ### Define endpoints
 
-To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>.
+To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 
 **DO** build on top of <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing. Assume routing is present and familiar for users.
 
@@ -1109,9 +1109,9 @@ app.MapHealthChecks("/healthz");
 
 The routing tests have a [basic example](https://github.com/dotnet/AspNetCore/blob/main/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
 
-**CONSIDER** implementing <xref:Microsoft.AspNetCore.Routing.EndpointDataSource.GetGroupedEndpoints%2A>. This gives complete control over running group conventions and the final metadata on the grouped endpoints. For example, this allows custom `EndpointDataSource` implementations to run [endpoint filters](xref:fundamentals/minimal-apis/min-api-filters) added to groups.
+**CONSIDER** implementing <xref:Microsoft.AspNetCore.Routing.EndpointDataSource.GetGroupedEndpoints*>. This gives complete control over running group conventions and the final metadata on the grouped endpoints. For example, this allows custom `EndpointDataSource` implementations to run [endpoint filters](xref:fundamentals/minimal-apis/min-api-filters) added to groups.
 
-**DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>. The philosophy of routing is that nothing is included by default, and that `UseEndpoints` is the place to register endpoints.
+**DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. The philosophy of routing is that nothing is included by default, and that `UseEndpoints` is the place to register endpoints.
 
 ### Creating routing-integrated middleware
 

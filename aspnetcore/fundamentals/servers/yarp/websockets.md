@@ -40,4 +40,4 @@ The cluster's [`ActivityTimeout`](xref:fundamentals/servers/yarp/http-client-con
 * Send WebSocket keep-alives at an interval shorter than `ActivityTimeout` from the client or the destination server.
 * Increase the `ActivityTimeout` for the cluster.
 
-Browser clients don't send keep-alives on their own, so they depend on the destination server's interval. In ASP.NET Core, <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> defaults to two minutes, which is longer than the default `ActivityTimeout`. For more information, see [YARP Request Timeouts](xref:fundamentals/servers/yarp/timeouts#websockets).
+Browser clients don't send keep-alives on their own, so they depend on the destination server's interval. In ASP.NET Core, <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval*> defaults to two minutes, which is longer than the default `ActivityTimeout`. For more information, see [YARP Request Timeouts](xref:fundamentals/servers/yarp/timeouts#websockets).

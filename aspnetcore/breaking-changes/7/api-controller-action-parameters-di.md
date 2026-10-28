@@ -64,7 +64,7 @@ public class MyController : ControllerBase
 
 The mechanism to infer binding sources of API controller action parameters follows the following rules:
 
-1. A previously specified <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BindingSource%2A?displayProperty=nameWithType> is never overwritten.
+1. A previously specified <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BindingSource*?displayProperty=nameWithType> is never overwritten.
 1. A complex type parameter registered in the DI container is assigned <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Services?displayProperty=nameWithType>.
 1. A complex type parameter not registered in the DI container is assigned <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Body?displayProperty=nameWithType>.
 1. A parameter with a name that appears as a route value in *any* route template is assigned <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Path?displayProperty=nameWithType>.

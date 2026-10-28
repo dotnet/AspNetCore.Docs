@@ -42,7 +42,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 The preceding example:
 
-* Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>.
+* Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*>.
 * Calls `ListenNamedPipe` to listen to a named pipe with the specified name.
 * Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
@@ -175,7 +175,7 @@ static PipeSecurity CreatePipeSecurity(string pipeName)
 }
 ```
 
-The preceding example applies the same principle per endpoint: only the server's own account is granted `CreateNewInstance`, and each pipe grants read/write access to a different set of callers. `CurrentUserOnly` is set to `false` because `context.PipeOptions` is passed to <xref:System.IO.Pipes.NamedPipeServerStreamAcl.Create%2A> along with a `PipeSecurity` object.
+The preceding example applies the same principle per endpoint: only the server's own account is granted `CreateNewInstance`, and each pipe grants read/write access to a different set of callers. `CurrentUserOnly` is set to `false` because `context.PipeOptions` is passed to <xref:System.IO.Pipes.NamedPipeServerStreamAcl.Create*> along with a `PipeSecurity` object.
 
 > [!WARNING]
 > A pipe's security descriptor controls which accounts can *connect* to that pipe. It doesn't control which services a connected caller can invoke. Every endpoint mapped in the app is served on every named pipe endpoint, so a caller that connects to any pipe can call every mapped service. Don't rely on per-pipe access control to restrict access to individual services. Use authentication and authorization instead, or host the restricted services in a separate process with its own pipe. For more information, see <xref:grpc/authn-and-authz>.

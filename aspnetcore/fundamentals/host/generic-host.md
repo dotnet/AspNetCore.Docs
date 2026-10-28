@@ -34,7 +34,7 @@ A *host* is an object that encapsulates an application's resources, such as:
 * Configuration
 * `IHostedService` implementations
 
-When a host starts, it calls the <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> method on each <xref:Microsoft.Extensions.Hosting.IHostedService> instance registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers).
+When a host starts, it calls the <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> method on each <xref:Microsoft.Extensions.Hosting.IHostedService> instance registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers).
 
 By including all of the app's interdependent resources in a single object, the host enables control of application startup and graceful shutdown.
 
@@ -48,7 +48,7 @@ The following code creates a host with an `IHostedService` implementation added 
 
 :::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Program.cs" id="snippet_Host":::
 
-For an HTTP workload, call the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method after the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method:
+For an HTTP workload, call the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method after the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
 :::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_HostConfigureWebHostDefaults":::
 
@@ -115,9 +115,9 @@ If the app uses Entity Framework Core, don't change the name or signature of the
 
 ## Configure default builder settings
 
-The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method performs the following tasks:
+The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method performs the following tasks:
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
+* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 
 * Loads the host configuration from the following sources:
   * Environment variables prefixed with `DOTNET_`
@@ -138,7 +138,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method perf
 
 * Enables [scope validation](xref:fundamentals/dependency-injection#scope-validation) and [dependency validation](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) when the environment is `Development`.
 
-The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method performs the following tasks:
+The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method performs the following tasks:
 
 * Loads host configuration from environment variables prefixed with `ASPNETCORE_`.
 
@@ -168,11 +168,11 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (formerl
 
 When performing a graceful shutdown, the host:
 
-* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping%2A> event handlers, which allows the app to run logic before the shutdown process begins.
+* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping*> event handlers, which allows the app to run logic before the shutdown process begins.
 
 * Stops the server, which disables new connections. The server waits for requests on existing connections to complete, for as long as the [shutdown timeout](#shutdown-timeout) allows. The server sends the connection close header for further requests on existing connections.
 
-* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers, which allows the app to run logic after the application has shutdown.
+* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped*> event handlers, which allows the app to run logic after the application has shutdown.
 
 The following example is an `IHostedService` implementation that registers `IHostApplicationLifetime` event handlers:
 
@@ -195,7 +195,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls wh
 
 The `ConsoleLifetime` method performs the following tasks:
 
-* Listens for <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication%2A>, which starts the shutdown process.
+* Listens for <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*>, which starts the shutdown process.
 
 * Unblocks extensions, such as by running the [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync) methods.
 
@@ -213,9 +213,9 @@ Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnv
 
 Host configuration is used for the properties of the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> implementation.
 
-Host configuration is available from the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration%2A> property inside the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A> method. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
+Host configuration is available from the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*> property inside the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> method. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
 
-To add host configuration, call the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration%2A> method on the `IHostBuilder` instance. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
+To add host configuration, call the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> method on the `IHostBuilder` instance. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
 `CreateDefaultBuilder` includes the environment variable provider with the prefix `DOTNET_` and command-line arguments. For web apps, the environment variable provider with prefix `ASPNETCORE_` is added. The prefix is removed when the environment variables are read. For example, the environment variable value for `ASPNETCORE_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
@@ -234,9 +234,9 @@ The following example creates host configuration:
 
 ## Create the app configuration
 
-App configuration is created by calling the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A> method on the `IHostBuilder` instance. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last on a given key. 
+App configuration is created by calling the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> method on the `IHostBuilder` instance. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last on a given key. 
 
-The configuration created by `ConfigureAppConfiguration` is available in the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration%2A> property for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
+The configuration created by `ConfigureAppConfiguration` is available in the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*> property for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
 For more information, see <xref:fundamentals/configuration/index>.
 
@@ -260,7 +260,7 @@ Defines the name of the assembly that contains the entry point for the applicati
 **Set using**: Environment variable  
 **Environment variable**: `{PREFIX_}APPLICATIONNAME`
 
-The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName%2A> property is set from the host configuration during host construction.
+The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*> property is set from the host configuration during host construction.
 
 ### Content root
 
@@ -272,7 +272,7 @@ Determines where the host begins the search for content files.
 **Set using**: Environment variable or `UseContentRoot` on `IHostBuilder`  
 **Environment variable**: `{PREFIX_}CONTENTROOT`
 
-The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath%2A> property identifies where the host begins searching. If the path doesn't exist, the host fails to start.
+The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*> property identifies where the host begins searching. If the path doesn't exist, the host fails to start.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -304,7 +304,7 @@ Provides a name for the environment.
 **Set using**: Environment variable or call `UseEnvironment` on `IHostBuilder`  
 **Environment variable**: `{PREFIX_}ENVIRONMENT`
 
-The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName%2A> property can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case-sensitive.
+The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*> property can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case-sensitive.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -331,11 +331,11 @@ Specifies the amount of time to wait for the host to shut down.
 **Set using**: Environment variable or `HostOptions`  
 **Environment variable**: `{PREFIX_}SHUTDOWNTIMEOUTSECONDS`
 
-The <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout%2A> property sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync%2A>. The default value is 30 seconds.
+The <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> property sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is 30 seconds.
 
 During the timeout period, the host:
 
-* Triggers <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping%2A>.
+* Triggers <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping*>.
 * Attempts to stop hosted services, logging errors for services that fail to stop.
 
 If the timeout period expires before all hosted services stop, any remaining active services stop when the app shuts down. The services stop even if they're still processing. If services require more time to stop, increase the timeout.
@@ -705,37 +705,37 @@ The difference between the `Run*` and `Start*` methods is that `Run*` methods wa
 
 ### Run
 
-The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run%2A> method runs the app and blocks the calling thread until the host is shut down. 
+The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> method runs the app and blocks the calling thread until the host is shut down. 
 
 ### RunAsync
 
-The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync%2A> method runs the app and returns a <xref:System.Threading.Tasks.Task> object that completes when the cancellation token or shutdown is triggered.
+The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync*> method runs the app and returns a <xref:System.Threading.Tasks.Task> object that completes when the cancellation token or shutdown is triggered.
 
 ### RunConsoleAsync
 
-The <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync%2A> method enables console support, builds and starts the host, and waits for <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM to shut down.
+The <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync*> method enables console support, builds and starts the host, and waits for <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM to shut down.
 
 ### Start
 
-The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start%2A> method launches the host synchronously.
+The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start*> method launches the host synchronously.
 
 ### StartAsync
 
-The <xref:Microsoft.Extensions.Hosting.IHost.StartAsync%2A> method starts the host and returns a <xref:System.Threading.Tasks.Task> object that completes when the cancellation token or shutdown is triggered. 
+The <xref:Microsoft.Extensions.Hosting.IHost.StartAsync*> method starts the host and returns a <xref:System.Threading.Tasks.Task> object that completes when the cancellation token or shutdown is triggered. 
 
-The <xref:Microsoft.Extensions.Hosting.IHostLifetime.WaitForStartAsync%2A> method is called at the start of `StartAsync`, which waits until it's complete before continuing. This method can be used to delay startup until signaled by an external event.
+The <xref:Microsoft.Extensions.Hosting.IHostLifetime.WaitForStartAsync*> method is called at the start of `StartAsync`, which waits until it's complete before continuing. This method can be used to delay startup until signaled by an external event.
 
 ### StopAsync
 
-The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.StopAsync%2A> method attempts to stop the host within the provided timeout.
+The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.StopAsync*> method attempts to stop the host within the provided timeout.
 
 ### WaitForShutdown
 
-The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown%2A> method blocks the calling thread until the IHostLifetime implementation triggers shutdown via <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM.
+The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> method blocks the calling thread until the IHostLifetime implementation triggers shutdown via <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM.
 
 ### WaitForShutdownAsync
 
-The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdownAsync%2A> method returns a <xref:System.Threading.Tasks.Task> object that completes when shutdown is triggered via the given token, and then it calls the <xref:Microsoft.Extensions.Hosting.IHost.StopAsync%2A> method.
+The <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdownAsync*> method returns a <xref:System.Threading.Tasks.Task> object that completes when shutdown is triggered via the given token, and then it calls the <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*> method.
 
 :::moniker range="< aspnetcore-6.0"
 

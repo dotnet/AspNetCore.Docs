@@ -112,7 +112,7 @@ Consider the following example:
 }
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A>, and <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute> APIs are only used during static SSR and are ignored during interactive rendering. The form works correctly during both interactive and static SSR.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance*>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName*>, and <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute> APIs are only used during static SSR and are ignored during interactive rendering. The form works correctly during both interactive and static SSR.
 
 ## Avoid APIs that are specific to static SSR
 

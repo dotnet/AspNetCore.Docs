@@ -61,14 +61,14 @@ The example in this section renders the following Razor component into a page vi
 
 In the `Program` file, add the [namespace for the location of the component](xref:blazor/components/index#component-name-class-name-and-namespace).
 
-Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register a Razor component as a root component for JS rendering.
+Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> on the app's root component collection to register a Razor component as a root component for JS rendering.
 
-<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
+<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
 
 One or more initializer functions can be created and called by different component registrations. The typical use case is to reuse the same initializer function for multiple components, which is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
 
 > [!IMPORTANT]
-> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
@@ -76,7 +76,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker range=">= aspnetcore-8.0"
 
-* In a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> in the server-side `Program` file:
+* In a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> in the server-side `Program` file:
 
   ```csharp
   builder.Services.AddRazorComponents()
@@ -91,7 +91,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 -->
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*> in the `Program` file:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
@@ -101,7 +101,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
   });
   ```
 
-* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file:
+* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file:
 
   ```csharp
   builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
@@ -305,7 +305,7 @@ Add a namespace for the app's components. In the following example, the app's na
 using BlazorSample.Components.Pages;
 ```
 
-Modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> to specify the custom element with <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents> circuit option. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+Modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> to specify the custom element with <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents> circuit option. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -337,7 +337,7 @@ Add a namespace for the app's components. In the following example, the app's na
 using BlazorSample.Pages;
 ```
 
-Modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. Specify the custom element with <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents> circuit option. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+Modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>. Specify the custom element with <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents> circuit option. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 ```csharp
 builder.Services.AddServerSideBlazor(options =>
@@ -352,7 +352,7 @@ Register a root component as a custom element in a Blazor WebAssembly app. In th
 
 * Adds a namespace for the app's components. In the example, the app's namespace is `BlazorSample`, and the components are located in the `Pages` folder.
 * Provides access to the API in the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace.
-* Calls <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> to register the `Counter` component with the custom HTML element `my-counter`.
+* Calls <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> to register the `Counter` component with the custom HTML element `my-counter`.
 
 ```csharp
 using BlazorSample.Pages;
@@ -437,7 +437,7 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file to call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents%2A?displayProperty=nameWithType>:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*> in the `Program` file to call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents*?displayProperty=nameWithType>:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
@@ -449,7 +449,7 @@ Register a root component as a custom element:
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the `Program` file.
 
-* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents?displayProperty=nameWithType> in the `Program` file:
+* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement*> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents?displayProperty=nameWithType> in the `Program` file:
 
   ```csharp
   builder.RootComponents.RegisterCustomElement<Counter>("my-counter");

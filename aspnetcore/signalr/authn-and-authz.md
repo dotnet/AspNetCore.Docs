@@ -97,7 +97,7 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*):
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet2&highlight=25-60)]
 
@@ -106,11 +106,11 @@ On the server, bearer token authentication is configured by using the [JSON web 
 
 #### Identity Server JWT authentication
 
-When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions`1> service to the project:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/ConfigureJwtBearerOptions.cs)]
 
-Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> method):
+Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*> method):
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
 
@@ -342,7 +342,7 @@ Register this component in the `Program.cs` file:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
-In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
+In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials*> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -524,7 +524,7 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/samples/Startup.cs?name=snippet)]
 
@@ -533,7 +533,7 @@ On the server, bearer token authentication is configured using the [JWT bearer m
 
 #### Identity Server JWT authentication
 
-When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions`1> service to the project:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -563,7 +563,7 @@ public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
 }
 ```
 
-Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>):
+Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*>):
 
 ```csharp
 services.AddAuthentication()
@@ -602,7 +602,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
+In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials*> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()

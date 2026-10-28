@@ -11,9 +11,9 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article describes how to implement the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> interface to create a custom authorization policy provider, including how to create an authorization attribute for the provider.
 
-For a typical implementation of [policy-based authorization](xref:security/authorization/policies), policies are registered by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A?displayProperty=nameWithType> during authorization service configuration. Sometimes, it isn't possible or desirable to register many authorization policies in this manner.
+For a typical implementation of [policy-based authorization](xref:security/authorization/policies), policies are registered by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy*?displayProperty=nameWithType> during authorization service configuration. Sometimes, it isn't possible or desirable to register many authorization policies in this manner.
 
-For example, an app might require policy-based checks for building room numbers or user ages, where it doesn't make sense to create policies for building room numbers or ages with many <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy%2A> calls. These scenarios are best implemented by passing a parameter that represents room numbers or ages to a custom `[Authorize]` attribute backed by a custom authorization policy provider. The custom policy provider receives the parameter value and dynamically creates a single policy to determine if authorization requirements are met. Using this approach, you avoid creating dozens or even hundreds of individual, explicit authorization policies.
+For example, an app might require policy-based checks for building room numbers or user ages, where it doesn't make sense to create policies for building room numbers or ages with many <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy*> calls. These scenarios are best implemented by passing a parameter that represents room numbers or ages to a custom `[Authorize]` attribute backed by a custom authorization policy provider. The custom policy provider receives the parameter value and dynamically creates a single policy to determine if authorization requirements are met. Using this approach, you avoid creating dozens or even hundreds of individual, explicit authorization policies.
 
 Other scenarios where a custom policy provider is useful include:
 
@@ -43,15 +43,15 @@ For example, consider a minimum age naming scheme in the format `MinimumAge{AGE}
 
 The developer customizes how authorization policies are provided by implementing the following APIs in the custom policy provider:
 
-* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync%2A> method returns an authorization policy for a given name.
-* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> method returns the default authorization policy, which is selected when authorization is required but no specific policy is set.
-* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A> method returns the fallback authorization policy, which is selected when no policy is produced from authorization metadata. By default, the fallback policy is `null`.
+* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync*> method returns an authorization policy for a given name.
+* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync*> method returns the default authorization policy, which is selected when authorization is required but no specific policy is set.
+* The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync*> method returns the fallback authorization policy, which is selected when no policy is produced from authorization metadata. By default, the fallback policy is `null`.
 
 For complete named, default, and fallback policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 The general format of a custom policy provider that either returns a policy for a given matching name (represented by the `{IDENTIFY POLICY BY NAME}` placeholder) or returns `null` when no policy name matches is similar to the following.
 
-Implementing the required default and fallback policies for a custom policy provider (<xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A>, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A>) are omitted in the following example for brevity but are described and shown in a complete example later in this article.
+Implementing the required default and fallback policies for a custom policy provider (<xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync*>, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync*>) are omitted in the following example for brevity but are described and shown in a complete example later in this article.
 
 ```csharp
 // Omitted for brevity:
@@ -76,37 +76,37 @@ internal class CustomPolicyProvider() : IAuthorizationPolicyProvider
 ```
 
 > [!NOTE]
-> Use of <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme%2A?displayProperty=nameWithType> in the preceding example represents the scheme used to identify application authentication cookies. An empty <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes%2A?displayProperty=nameWithType> list evaluates requirements against the default schemes&mdash;it doesn't authenticate every registered scheme.
+> Use of <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme*?displayProperty=nameWithType> in the preceding example represents the scheme used to identify application authentication cookies. An empty <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*?displayProperty=nameWithType> list evaluates requirements against the default schemes&mdash;it doesn't authenticate every registered scheme.
 
 ASP.NET Core only uses one instance of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider>. <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider> is the framework's default <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> implementation for retrieving authorization policies by name. Policy provider behavior is customized by registering a custom policy provider implementation in the app's service container to replace the default implementation.
 
-If a custom policy provider is able to explicitly match and return all of the authorization policies that the app uses, the policy provider can return `Task.FromResult<AuthorizationPolicy>(null)` from the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync%2A> method when no policy name matches. However, most apps that implement a custom provider defer traditional policy retrieval, for example to handle role-based and claim-based policies, to the default policy provider. Such an app typically uses a custom provider that:
+If a custom policy provider is able to explicitly match and return all of the authorization policies that the app uses, the policy provider can return `Task.FromResult<AuthorizationPolicy>(null)` from the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync*> method when no policy name matches. However, most apps that implement a custom provider defer traditional policy retrieval, for example to handle role-based and claim-based policies, to the default policy provider. Such an app typically uses a custom provider that:
 
 * Attempts to parse policy names, returning an authorization policy for a matching name with one or more requirements or assertions.
-* Uses the framework's <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider> by implementing <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync%2A> to provide an authorization policy for `[Authorize]` attributes that don't specify a policy name:
+* Uses the framework's <xref:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider> by implementing <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync*> to provide an authorization policy for `[Authorize]` attributes that don't specify a policy name:
 
 ```csharp
 public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => 
     DefaultPolicyProvider.GetDefaultPolicyAsync();
 ```
 
-Any of the following <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder> methods can be used for the custom policy provider's requirements and assertions in its <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync%2A> method:
+Any of the following <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder> methods can be used for the custom policy provider's requirements and assertions in its <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync*> method:
 
-* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AddRequirements%2A>
-* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim%2A>
-* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A>
-* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireUserName%2A>
-* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A>
-* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>
+* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AddRequirements*>
+* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim*>
+* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole*>
+* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireUserName*>
+* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion*>
+* <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>
 
-The custom policy provider must also implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync%2A>. Choosing a non-`null` fallback is optional. The following example retrieves the fallback authorization policy by delegating to the default authorization policy provider's implementation:
+The custom policy provider must also implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync*>. Choosing a non-`null` fallback is optional. The following example retrieves the fallback authorization policy by delegating to the default authorization policy provider's implementation:
 
 ```csharp
 public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() => 
     DefaultPolicyProvider.GetFallbackPolicyAsync();
 ```
 
-The default policy or fallback policy can [combine policies](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.Combine%2A), which is useful, for example, when middleware-based authorization flows don't specify per-endpoint authorization. All combined requirements must succeed for the combined policy to succeed.
+The default policy or fallback policy can [combine policies](xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.Combine*), which is useful, for example, when middleware-based authorization flows don't specify per-endpoint authorization. All combined requirements must succeed for the combined policy to succeed.
 
 In the following example, the policy combines:
 
@@ -133,7 +133,7 @@ return Task.FromResult<AuthorizationPolicy?>(combinedPolicy);
 
 The recommended approach for applying policies in concert with a custom policy provider is to use a strongly-typed <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. A custom attribute implementation maps arguments into a string that's used to retrieve a corresponding authorization policy.
 
-The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and makes the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy%2A?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix (`MinimumAge`) and an integer passed in via its constructor (`MinimumAge{AGE}`), where the `{AGE}` placeholder is the minimum age, for example, `MinimumAge21`. The following attribute is used with the custom policy provider shown later in this article in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section.
+The following `MinimumAgeAuthorizeAttribute` example derives from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and makes the `Age` property wrap the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy*?displayProperty=nameWithType> property. The attribute type has a policy string based on the hard-coded prefix (`MinimumAge`) and an integer passed in via its constructor (`MinimumAge{AGE}`), where the `{AGE}` placeholder is the minimum age, for example, `MinimumAge21`. The following attribute is used with the custom policy provider shown later in this article in the [Minimum age custom policy provider example](#minimum-age-custom-policy-provider-example) section.
 
 `Policies/Attributes/MinimumAgeAuthorizeAttribute.cs`:
 
@@ -159,8 +159,8 @@ The custom policy provider should generate authorization policies by completing 
 * The age is parsed from the policy name.
 * An authorization policy builder (<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder>) creates a new <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy>.
 * The authorization policy builder is constructed with at least one authorization scheme name or always succeeds. Otherwise, there's no information on how to provide a challenge to the user and an exception is thrown. 
-* Set the list of authentication schemes in <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes%2A?displayProperty=nameWithType> for the built policy. The following example passes <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme%2A?displayProperty=nameWithType>, which represents the scheme used to identify application authentication cookies. An empty (unassigned) <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes%2A> list evaluates requirements against the custom policy provider's default schemes&mdash;it doesn't authenticate every registered scheme.
-* Add one or more requirements to the policy for user age evaluations with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AddRequirements%2A>.
+* Set the list of authentication schemes in <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*?displayProperty=nameWithType> for the built policy. The following example passes <xref:Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme*?displayProperty=nameWithType>, which represents the scheme used to identify application authentication cookies. An empty (unassigned) <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes*> list evaluates requirements against the custom policy provider's default schemes&mdash;it doesn't authenticate every registered scheme.
+* Add one or more requirements to the policy for user age evaluations with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AddRequirements*>.
 
 The following example demonstrates a minimum age custom policy provider.
 
@@ -206,8 +206,8 @@ To use custom policies:
 
 The [sample app](#sample-app) institutes application cookie redirect mapping with the following code:
 
-* Anonymous Users: When an unauthenticated user requests a protected endpoint, the cookie handler issues a challenge and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.LoginPath%2A?displayProperty=nameWithType> with a return URL parameter.
-* Underage Users: When an authenticated user fails the custom minimum age policy, the handler issues a forbid response and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.AccessDeniedPath%2A?displayProperty=nameWithType> instead of the login page.
+* Anonymous Users: When an unauthenticated user requests a protected endpoint, the cookie handler issues a challenge and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.LoginPath*?displayProperty=nameWithType> with a return URL parameter.
+* Underage Users: When an authenticated user fails the custom minimum age policy, the handler issues a forbid response and redirects to <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.AccessDeniedPath*?displayProperty=nameWithType> instead of the login page.
 
 ```csharp
 builder.Services.ConfigureApplicationCookie(options =>

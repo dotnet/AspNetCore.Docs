@@ -138,7 +138,7 @@ In the _Program.cs_ file, configure Kestrel as follows:
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
 
 > [!NOTE]
-> When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> method, the endpoint doesn't have the defaults applied.
+> When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> method, the endpoint doesn't have the defaults applied.
 
 ### IIS
 
@@ -189,7 +189,7 @@ A separate class can be used to implement validation logic. Because the same sel
 
 #### Implement an HttpClient with a certificate and IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This scenario is configured in the _Program.cs_ file:
+In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This scenario is configured in the _Program.cs_ file:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
@@ -319,7 +319,7 @@ By default, certificate authentication disables caching. To enable caching, call
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
-When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache%2A> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated%2A> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated*> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
@@ -393,7 +393,7 @@ The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOption
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, the request might become unresponsive.
 
-An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The behavior of the `ClientCertificate` property changed in .NET 6. For more information, see [GitHub issue #466](https://github.com/aspnet/Announcements/issues/466).
@@ -402,13 +402,13 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property.
 
-.NET 6 and later provides the `DelayCertificate` option for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+.NET 6 and later provides the `DelayCertificate` option for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, `GetClientCertificateAsync` might throw the exception, _InvalidOperationException: Client stream needs to be drained before renegotiation_.
 
 If you programmatically configure the TLS settings per SNI host name, call the [UseHttps](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
-overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
+overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation*> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
 
 :::moniker-end
 
@@ -621,7 +621,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 ```
 
 > [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> won't have the defaults applied.
 
 ### IIS
 
@@ -792,7 +792,7 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
 
 #### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Startup.ConfigureServices`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This is setup in `Startup.ConfigureServices`:
 
 ```csharp
 var clientCertificate =
@@ -1002,7 +1002,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache%2A> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated%2A> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated*> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
@@ -1067,7 +1067,7 @@ The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Cl
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 #### Kestrel
 
@@ -1283,7 +1283,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 ```
 
 > [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> won't have the defaults applied.
 
 ### IIS
 
@@ -1475,7 +1475,7 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
 
 #### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Startup.ConfigureServices`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This is setup in `Startup.ConfigureServices`:
 
 ```csharp
 var clientCertificate =
@@ -1725,7 +1725,7 @@ The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Cl
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 #### Kestrel
 

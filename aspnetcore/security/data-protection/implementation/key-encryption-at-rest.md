@@ -23,7 +23,7 @@ For more information, see <xref:security/data-protection/configuration/overview#
 
 **Only applies to Windows deployments.**
 
-When Windows DPAPI is used, key material is encrypted with [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory). To configure DPAPI key-at-rest encryption, call one of the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapi%2A>) extension methods:
+When Windows DPAPI is used, key material is encrypted with [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory). To configure DPAPI key-at-rest encryption, call one of the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapi*>) extension methods:
 
 ```csharp
 // Only the local user account can decrypt the keys
@@ -45,14 +45,14 @@ services.AddDataProtection()
 
 If the app is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate (`.pfx` format) across the machines and configure the hosted apps to use the certificate for encryption of keys at rest.
 
-In the following example, the certificate's thumbprint is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>:
+In the following example, the certificate's thumbprint is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 ```csharp
 services.AddDataProtection()
     .ProtectKeysWithCertificate("{CERTIFICATE THUMBPRINT}");
 ```
 
-In the following example, an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>:
+In the following example, an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 ```csharp
 var cert = new X509Certificate2(...);
@@ -81,7 +81,7 @@ Due to .NET Framework limitations, only certificates with CAPI private keys are 
 
 Beginning with Windows 8, Windows OS supports DPAPI-NG (also called CNG DPAPI). For more information, see [About CNG DPAPI](/windows/desktop/SecCNG/cng-dpapi).
 
-The principal is encoded as a protection descriptor rule. In the following example that calls <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapiNG%2A>, only the domain-joined user with the specified SID can decrypt the key ring:
+The principal is encoded as a protection descriptor rule. In the following example that calls <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapiNG*>, only the domain-joined user with the specified SID can decrypt the key ring:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

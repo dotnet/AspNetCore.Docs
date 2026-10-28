@@ -167,7 +167,7 @@ If you don't plan for the server app to serve pages or views and only serve the 
 
 :::zone-end
 
-In the server app's `Program.cs` file, remove the following code, which appears after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
+In the server app's `Program.cs` file, remove the following code, which appears after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>:
 
 * If you plan to serve pages or views from the server app, delete the following lines of code:
 
@@ -314,12 +314,12 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 
 :::zone-end
 
-For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files>.
+For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see <xref:blazor/fundamentals/static-files>.
 
 For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
 
-* <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
-* <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+* <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles*?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+* <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile*?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

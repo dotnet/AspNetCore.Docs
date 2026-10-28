@@ -128,12 +128,12 @@ When binding a type with constructor parameters, if a constructor parameter matc
 
 ## Additional binding options
 
-Additional model binding options are available from <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions> when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+Additional model binding options are available from <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions> when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>:
 
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingCollectionSize%2A>: Maximum number of elements allowed in a form collection.
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingRecursionDepth%2A>: Maximum depth allowed when recursively mapping form data.
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingErrorCount%2A>: Maximum number of errors allowed when mapping form data.
-* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingKeySize%2A>: Maximum size of the buffer used to read form data keys.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingCollectionSize*>: Maximum number of elements allowed in a form collection.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingRecursionDepth*>: Maximum depth allowed when recursively mapping form data.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingErrorCount*>: Maximum number of errors allowed when mapping form data.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingKeySize*>: Maximum size of the buffer used to read form data keys.
 
 The following demonstrates the default values assigned by the framework:
 
@@ -150,7 +150,7 @@ builder.Services.AddRazorComponents(options =>
 
 ## Form names
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
+Use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName*> parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
 
 ```razor
 <EditForm ... FormName="RomulanAle" ...>
@@ -235,8 +235,8 @@ Blazor form mapping with [`[SupplyParameterFromForm]`](xref:Microsoft.AspNetCore
 
 You can specify the following form binding parameters to the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute):
 
-* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.Name%2A>: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
-* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.FormName%2A>: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
+* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.Name*>: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
+* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.FormName*>: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
 
 The following example independently binds two forms to their models by form name.
 
@@ -302,7 +302,7 @@ The following `Ship` class names an identifier (`Id`) and includes the ship deta
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting <xref:Microsoft.AspNetCore.Components.Forms.Editor%601> at the top of the component. <xref:Microsoft.AspNetCore.Components.Forms.Editor%601> ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
+The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting <xref:Microsoft.AspNetCore.Components.Forms.Editor`1> at the top of the component. <xref:Microsoft.AspNetCore.Components.Forms.Editor`1> ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
 
 `StarshipSubform.razor`:
 
@@ -399,7 +399,7 @@ When a component adopts static SSR, the [`OnInitialized{Async}` lifecycle method
 
 The framework instantiates and populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component) instantiates <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext>. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> with the attempted value and any mapping errors.
 
-Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly, as it's mainly a source of data for <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
+Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly, as it's mainly a source of data for <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1>, <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
 
 :::moniker-end
 
@@ -472,17 +472,17 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 For custom input processing scenarios, the following subsections demonstrate custom input components:
 
-* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, which provides a base implementation for binding, callbacks, and validation. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
+* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1>, which provides a base implementation for binding, callbacks, and validation. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 
 * [Input component with full developer control](#input-component-with-full-developer-control): The component takes full control of input processing. The component's code must manage binding, callbacks, and validation. The component can be used inside or outside of a Blazor form.
 
-We recommend that you derive your custom input components from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> unless specific requirements prevent you from doing so. The <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> class is actively maintained by the ASP.NET Core team, ensuring it stays up-to-date with the latest Blazor features and framework changes.
+We recommend that you derive your custom input components from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1> unless specific requirements prevent you from doing so. The <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1> class is actively maintained by the ASP.NET Core team, ensuring it stays up-to-date with the latest Blazor features and framework changes.
 
 ### Input component based on `InputBase<T>`
 
 The following example component:
 
-* Inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
+* Inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1>. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 * Takes boolean input from a checkbox.
 * Sets the background color of its container `<div>` based on the checkbox's state, which occurs when the `AfterChange` method executes after binding (`@bind:after`).
 * Is required to override the base class's `TryParseValueFromString` method but doesn't process string input data because a checkbox doesn't provide string data. Example implementations of `TryParseValueFromString` for other types of input components that process string input are available in the [ASP.NET Core reference source](https://github.com/search?q=repo%3Adotnet%2Faspnetcore%20TryParseValueFromString&type=code).
@@ -533,7 +533,7 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 + <EngineeringApprovalInputDerived @bind-Value="Model!.IsValidatedDesign" />
 ```
 
-If the component that inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> is ever statically rendered, assign the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.NameAttributeValue?displayProperty=nameWithType> property to the `name` attribute of `<input>` elements:
+If the component that inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1> is ever statically rendered, assign the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.NameAttributeValue?displayProperty=nameWithType> property to the `name` attribute of `<input>` elements:
 
 ```razor
 <input @bind="CurrentValue" @bind:after="AfterChange" class="@CssClass"
@@ -546,7 +546,7 @@ The preceding assignment isn't necessary if the component is guaranteed to alway
 
 The following example component:
 
-* Doesn't inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. The component takes full control of input processing, including binding, callbacks, and validation. The component can be used inside or outside of a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
+* Doesn't inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1>. The component takes full control of input processing, including binding, callbacks, and validation. The component can be used inside or outside of a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 * Takes boolean input from a checkbox.
 * Changes the background color if the checkbox is checked.
 
@@ -565,8 +565,8 @@ Code in the component includes:
 
   * The value of the checkbox input is obtained from <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>.
   * The background color and text color of the container `<div>` element are set.
-  * <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding and dispatches an event notification to consumers that the value has changed.
-  * If the component is used in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (the `EditContext` property isn't `null`), <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyFieldChanged%2A?displayProperty=nameWithType> is called to trigger validation.
+  * <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> invokes the delegate associated with the binding and dispatches an event notification to consumers that the value has changed.
+  * If the component is used in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (the `EditContext` property isn't `null`), <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyFieldChanged*?displayProperty=nameWithType> is called to trigger validation.
 
 `EngineeringApprovalInputStandalone.razor`:
 
@@ -665,7 +665,7 @@ Make the `ComponentEnums` class accessible to the:
 * `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;`).
 * `Starfleet Starship Database` form (`Starship3.razor`) (for example, `@using static ComponentEnums`).
 
-Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article:
+Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup`1> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article:
 
 ```csharp
 [Required]
@@ -686,7 +686,7 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
 * A nested radio button group for engine and ship color.
 
 > [!NOTE]
-> Nested radio button groups aren't often used in forms because they can result in a disorganized layout of form controls that may confuse users. However, there are cases when they make sense in UI design, such as in the following example that pairs recommendations for two user inputs, ship engine and ship color. One engine and one color are required by the form's validation. The form's layout uses nested <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601>s to pair engine and color recommendations. However, the user can combine any engine with any color to submit the form.
+> Nested radio button groups aren't often used in forms because they can result in a disorganized layout of form controls that may confuse users. However, there are cases when they make sense in UI design, such as in the following example that pairs recommendations for two user inputs, ship engine and ship color. One engine and one color are required by the form's validation. The form's layout uses nested <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup`1>s to pair engine and color recommendations. However, the user can combine any engine with any color to submit the form.
 
 > [!NOTE]
 > Be sure to make the `ComponentEnums` class available to the component for the following example:
@@ -781,7 +781,7 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
 ```
 
 > [!NOTE]
-> If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components are grouped by their most recent ancestor.
+> If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> components are grouped by their most recent ancestor.
 
 If you implemented the preceding Razor markup in the `Starship3` component of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article, update the logging for the `Submit` method:
 
@@ -805,7 +805,7 @@ Logger.LogInformation("Id = {Id} Description = {Description} " +
 When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
 
 * Handle data binding for a radio button group.
-* Support validation using a custom <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> component.
+* Support validation using a custom <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> component.
 
 `InputRadio.razor`:
 

@@ -14,10 +14,10 @@ The following samples aren't production quality, they're examples on how to use 
 
 The following sample:
 
-* Creates a <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected%2A?displayProperty=nameWithType> callback that's called when a request exceeds the specified limit. `retryAfter` can be used with the <xref:System.Threading.RateLimiting.TokenBucketRateLimiter>, [Fixed Window Limiter](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptionsExtensions.AddFixedWindowLimiter%2A), and [Sliding Window Limiter](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptionsExtensions.AddSlidingWindowLimiter%2A) because these algorithms are able to estimate when more permits are added. The <xref:System.Threading.RateLimiting.ConcurrencyLimiter> has no way of calculating when permits are available.
+* Creates a <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected*?displayProperty=nameWithType> callback that's called when a request exceeds the specified limit. `retryAfter` can be used with the <xref:System.Threading.RateLimiting.TokenBucketRateLimiter>, [Fixed Window Limiter](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptionsExtensions.AddFixedWindowLimiter*), and [Sliding Window Limiter](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptionsExtensions.AddSlidingWindowLimiter*) because these algorithms are able to estimate when more permits are added. The <xref:System.Threading.RateLimiting.ConcurrencyLimiter> has no way of calculating when permits are available.
 * Adds the following limiters:
 
-  * A `SampleRateLimiterPolicy` that implements the <xref:Microsoft.AspNetCore.RateLimiting.IRateLimiterPolicy%601> interface. The `SampleRateLimiterPolicy` class is shown later in this article.
+  * A `SampleRateLimiterPolicy` that implements the <xref:Microsoft.AspNetCore.RateLimiting.IRateLimiterPolicy`1> interface. The `SampleRateLimiterPolicy` class is shown later in this article.
   * A `SlidingWindowLimiter`:
     * With a partition for each authenticated user.
     * One shared partition for all anonymous users.

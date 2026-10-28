@@ -77,12 +77,12 @@ Conditions:
 * No automatic hibernation. You must opt-in and configure state persistence explicitly.
 * No guarantee of recovery. If state persistence fails, the app falls back to the default disconnected experience.
 
-State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> in the `Program` file. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
+State persistence is enabled by default when <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> is called on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> in the `Program` file. <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is the default storage implementation for single app instances and stores up to 1,000 persisted circuits for two hours, which are configurable.
 
 Use the following options to change the default values of the in-memory provider:
 
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryMaxRetained%2A> (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryRetentionPeriod%2A> (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryMaxRetained*> (`{CIRCUIT COUNT}` placeholder): The maximum number of circuits to retain. The default is 1,000 circuits. For example, use `2000` to retain state for up to 2,000 circuits.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitInMemoryRetentionPeriod*> (`{RETENTION PERIOD}` placeholder): The maximum retention period as a <xref:System.TimeSpan>. The default is two hours. For example, use `TimeSpan.FromHours(3)` for a three-hour retention period.
 
 ```csharp
 services.Configure<CircuitOptions>(options =>
@@ -120,7 +120,7 @@ To persist state for a scoped service:
 
 * Annotate the `public` service property with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute).
 * Add the service to the service collection.
-* Call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method with the service.
+* Call the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService*> extension method with the service.
 
 ```csharp
 public class CustomUserService
@@ -137,9 +137,9 @@ services.AddRazorComponents()
 ```
 
 > [NOTE]
-> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A>. However, circuit state persistence is only available for the **Interactive Server** render mode.
+> The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService*>. However, circuit state persistence is only available for the **Interactive Server** render mode.
 
-To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod%2A>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod*>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
 
 In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
 
@@ -284,7 +284,7 @@ This feature is useful in the following scenarios:
 
 <!-- UPDATE 11.0 - API doc cross-links
 
-<xref:Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync%2A>
+<xref:Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync*>
 
 -->
                        
@@ -533,7 +533,7 @@ To persist temporary data between HTTP requests during static server-side render
 > This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), the `TempData` value isn't supplied, and the property retains its default value.
 `TempData`:
 
-* Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file.
+* Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file.
 * Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
 * Supports the [stored-value types listed earlier](#supported-property-types-for-temporary-data-and-session).
@@ -727,14 +727,14 @@ Call `AddSession` on the service collection in the app's `Program` file passing 
 
 Parameter | API | Notes
 --- | --- | ---
-Name | `Name` | The default value is <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName%2A?displayProperty=nameWithType> (`.AspNetCore.Session`).
-Path | `Path` | The default value is <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath%2A?displayProperty=nameWithType> (`/`).
+Name | `Name` | The default value is <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName*?displayProperty=nameWithType> (`.AspNetCore.Session`).
+Path | `Path` | The default value is <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath*?displayProperty=nameWithType> (`/`).
 [HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | The default value is `true`.
 [SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | The default value is <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType>.
 [Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | Some browsers don't allow insecure endpoints to set cookies with a 'secure' flag or overwrite cookies whose 'secure' flag is set. Since mixing secure and insecure endpoints is a common scenario in apps, the framework relaxes the restriction on secure policy on some cookies by setting them to 'None'. Cookies related to authentication or authorization use a stronger policy than 'None'. The default value is [`CookieSecurePolicy.None`](xref:Microsoft.AspNetCore.Http.CookieSecurePolicy).
 Is Essential | `IsEssential` | Session is considered non-essential, as it's designed for ephemeral data. The default value is `false`.
 Idle Timeout | `IdleTimeout` | Indicates how long the session can be idle before its contents are abandoned (default value: 20 minutes). Each session access resets the timeout. This setting only applies to the content of the session, not the cookie.
-IO Timeout | `IOTimeout` | The maximum amount of time allowed to load a session from the store or to commit it back to the store (default value: 1 minute). This may only apply to asynchronous operations. The timeout is disabled using <xref:System.Threading.Timeout.InfiniteTimeSpan%2A?displayProperty=nameWithType>.
+IO Timeout | `IOTimeout` | The maximum amount of time allowed to load a session from the store or to commit it back to the store (default value: 1 minute). This may only apply to asynchronous operations. The timeout is disabled using <xref:System.Threading.Timeout.InfiniteTimeSpan*?displayProperty=nameWithType>.
 
 After configuring session services with `AddSession`, call `UseSession` in the request processing pipeline. The following example demonstrates default values:
 

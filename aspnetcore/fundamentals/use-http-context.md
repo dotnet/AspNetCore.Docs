@@ -57,7 +57,7 @@ An HTTP request can include a request body. The request body is data associated 
 
 The request body can only be read once, from beginning to end. Forward-only reading of the request body avoids the overhead of buffering the entire request body and reduces memory usage. However, in some scenarios, there's a need to read the request body multiple times. For example, middleware might need to read the request body and then rewind it so it's available for the endpoint.
 
-The <xref:Microsoft.AspNetCore.Http.HttpRequestRewindExtensions.EnableBuffering%2A> extension method enables buffering of the HTTP request body and is the recommended way to enable multiple reads. Because a request can be any size, `EnableBuffering` supports options for buffering large request bodies to disk, or rejecting them entirely.
+The <xref:Microsoft.AspNetCore.Http.HttpRequestRewindExtensions.EnableBuffering*> extension method enables buffering of the HTTP request body and is the recommended way to enable multiple reads. Because a request can be any size, `EnableBuffering` supports options for buffering large request bodies to disk, or rejecting them entirely.
 
 The middleware in the following example:
 
@@ -102,7 +102,7 @@ An app can't modify headers after the response has started. Once the response st
 > System.InvalidOperationException: Headers are read-only, response has already started.
 
 > [!NOTE]
-> Unless response buffering is enabled, all write operations (for example, <xref:Microsoft.AspNetCore.Http.HttpResponseWritingExtensions.WriteAsync%2A>) flush the response body internally and mark the response as started. Response buffering is disabled by default.
+> Unless response buffering is enabled, all write operations (for example, <xref:Microsoft.AspNetCore.Http.HttpResponseWritingExtensions.WriteAsync*>) flush the response body internally and mark the response as started. Response buffering is disabled by default.
 
 ### Write response body
 
@@ -126,7 +126,7 @@ For information on how to write content to `BodyWriter`, see [I/O pipelines Pipe
 
 HTTP/2 and HTTP/3 support response trailers. Trailers are headers sent with the response after the response body is complete. Because trailers are sent after the response body, trailers can be added to the response at any time.
 
-The following code sets trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
+The following code sets trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer*>:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=11)]
 
@@ -182,9 +182,9 @@ This article primarily discusses using `HttpContext` in request and response flo
 
 * The `HttpContext` is **NOT** thread safe. Accessing it from multiple threads can result in unpredictable results, such as exceptions and data corruption.
 * The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must ***not*** be captured outside of the request flow. `IHttpContextAccessor`:
-  * Relies on  <xref:System.Threading.AsyncLocal%601>, which can have a negative performance impact on asynchronous calls.
+  * Relies on  <xref:System.Threading.AsyncLocal`1>, which can have a negative performance impact on asynchronous calls.
   * Creates a dependency on "ambient state" which can make testing more difficult.
-* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> might be `null` if accessed outside of the request flow.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext*?displayProperty=nameWithType> might be `null` if accessed outside of the request flow.
 * To access information from `HttpContext` outside the request flow, copy the information inside the request flow. Be careful to copy the actual data and not just references. For example, rather than copying a reference to an `IHeaderDictionary`, copy the relevant header values or copy the entire dictionary key by key before leaving the request flow.
 * Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
 
