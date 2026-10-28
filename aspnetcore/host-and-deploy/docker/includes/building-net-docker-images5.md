@@ -344,7 +344,7 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 
 ## Next steps
 
-The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
+The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/main/samples/AspNetCoreRazorApp/README.md). In particular, learn how to implement HTTPS:
 
 > [!div class="nextstepaction"]
 > [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
