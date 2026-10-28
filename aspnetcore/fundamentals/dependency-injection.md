@@ -218,7 +218,7 @@ The `IMyDependency` implementations shown in the preceding examples were written
 <button @onclick="WriteMessage">Write message</button>
 
 @code {
-    private void WriteMessage() => 
+    private void WriteMessage() =>
         Logger.LogInformation("LoggingExample.WriteMessage called");
 }
 ```
@@ -231,7 +231,7 @@ The `IMyDependency` implementations shown in the preceding examples were written
 
 ```csharp
 public class IndexModel(ILogger<IndexModel> logger) : PageModel
-{ 
+{
     public void OnGet()
     {
         logger.LogInformation("IndexModel.OnGet called");
@@ -302,7 +302,7 @@ builder.Services.AddSingleton<IMyDependency, DifferentDependency>();
 
 public class MyService
 {
-    public MyService(IMyDependency myDependency, 
+    public MyService(IMyDependency myDependency,
        IEnumerable<IMyDependency> myDependencies)
     {
         Trace.Assert(myDependency is DifferentDependency);
@@ -324,7 +324,7 @@ services.AddSingleton<IMyDependency, DifferentDependency>();
 
 public class MyService
 {
-    public MyService(IMyDependency myDependency, 
+    public MyService(IMyDependency myDependency,
        IEnumerable<IMyDependency> myDependencies)
     {
         Trace.Assert(myDependency is DifferentDependency);
@@ -497,7 +497,7 @@ builder.Services.AddKeyedSingleton<IStringCache, StringCache2>("cache2");
 
 ...
 
-app.MapGet("/cache1", ([FromKeyedServices("cache1")] IStringCache stringCache1) => 
+app.MapGet("/cache1", ([FromKeyedServices("cache1")] IStringCache stringCache1) =>
     stringCache1.Get(1));
 app.MapGet("/cache2", ([FromKeyedServices("cache2")] IStringCache stringCache2) =>
     stringCache2.Get(2));
@@ -569,7 +569,7 @@ internal class MyMiddleware
             Console.WriteLine(cache.Get(7));
 
             return _next(context);
-        } 
+        }
 }
 ```
 
@@ -993,7 +993,7 @@ To see the entry for the disposal of `Service1`, navigate away from the `Disposa
 
 ```csharp
 public class IndexModel(
-    Service1 service1, Service2 service2, IService3 service3) 
+    Service1 service1, Service2 service2, IService3 service3)
     : PageModel
 {
     public void OnGet()
@@ -1127,7 +1127,7 @@ Service type | Lifetime
 * [.NET dependency injection](/dotnet/core/extensions/dependency-injection/overview)
 * [ASP.NET Core Dependency Injection: What is the IServiceCollection?](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iservicecollection)
 * [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
-* [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](/archive/msdn-magazine/2016/may/asp-net-writing-clean-code-in-asp-net-core-with-dependency-injection)
+* [Writing Clean Code in ASP.NET Core with Dependency Injection](/archive/msdn-magazine/2016/may/asp-net-writing-clean-code-in-asp-net-core-with-dependency-injection)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
 * [How to register a service with multiple interfaces in ASP.NET Core DI (Andrew Lock)](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)

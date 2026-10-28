@@ -26,7 +26,7 @@ In unit testing, only the gRPC service is involved. Dependencies injected into t
 
 To demonstrate service tests, review the following service in the sample app. 
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 The `TesterService` returns greetings using gRPC's four method types.
 
@@ -73,7 +73,7 @@ Integration tests evaluate an app's components on a broader level than unit test
 
 A unit test library starts the gRPC app and then gRPC services are tested using the gRPC client.
 
-The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) contains infrastructure to make integration testing possible:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/samples) contains infrastructure to make integration testing possible:
 
   * The `GrpcTestFixture<TStartup>` class configures the ASP.NET Core host and starts the gRPC app in an in-memory test server.
   * The `IntegrationTestBase` class is the base type that integration tests inherit from. It contains the fixture state and APIs for creating a gRPC client to call the gRPC app.
