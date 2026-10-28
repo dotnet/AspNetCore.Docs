@@ -55,13 +55,13 @@ In non-development environments, use the [exception handler middleware](xref:fun
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see the [Problem Details](#problem-details) section later in this article.
+To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see the [Problem Details](#problem-details) section later in this article.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="4-7":::
 
 #### [Controllers](#tab/controllers)
 
-1. In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to add the exception handling middleware:
+1. In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> to add the exception handling middleware:
 
     :::code language="csharp" source="~/web-api/handle-errors/samples/6.x/HandleErrorsSample/Program.cs" id="snippet_Middleware" highlight="7":::
 
@@ -74,7 +74,7 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 > [!WARNING]
 > Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method.
 >
-> For web APIs that use [Swagger / OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi%2A> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
+> For web APIs that use [Swagger / OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
 >
 > ```csharp
 > [ApiExplorerSettings(IgnoreApi = true)]
@@ -95,7 +95,7 @@ Consider the following Minimal API app.
 The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` is greater than `0`, otherwise a `400 BAD REQUEST` status code without a response body. For more information about creating a response, see [Create responses in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/responses).
 
 The [`Status Code Pages middleware`](#client-and-server-error-responses) can be configured to produce a common body content, **when empty**, for all HTTP client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configured by calling the 
-[UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A>) extension method.
+[UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*>) extension method.
 
 For example, the following example changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (for example, `404 NOT FOUND`). For more information, see the [Problem Details](#problem-details) section.
 
@@ -206,7 +206,7 @@ MVC uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?dis
 
 * Client error responses
 * Validation failure error responses
-* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem*?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem*?displayProperty=nameWithType>
 
 To customize the problem details response, register a custom implementation of <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> in `Program.cs`:
 
@@ -214,7 +214,7 @@ To customize the problem details response, register a custom implementation of <
 
 ### Use `ApiBehaviorOptions.ClientErrorMapping`
 
-Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A> property to configure the contents of the `ProblemDetails` response. For example, the following code in `Program.cs` updates the <xref:Microsoft.AspNetCore.Mvc.ClientErrorData.Link%2A> property for 404 responses:
+Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping> property to configure the contents of the `ProblemDetails` response. For example, the following code in `Program.cs` updates the <xref:Microsoft.AspNetCore.Mvc.ClientErrorData.Link> property for 404 responses:
 
 :::code language="csharp" source="~/web-api/handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ClientErrorMapping":::
 

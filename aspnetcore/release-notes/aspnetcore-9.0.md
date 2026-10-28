@@ -10,7 +10,7 @@ This article highlights the most significant changes in ASP.NET Core in .NET 9 w
 
 ## Static asset delivery optimization
 
-[`MapStaticAssets` routing endpoint conventions](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A) is a new feature that optimizes the delivery of static assets in ASP.NET Core apps.
+[`MapStaticAssets` routing endpoint conventions](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*) is a new feature that optimizes the delivery of static assets in ASP.NET Core apps.
 
 For information on static asset delivery for Blazor apps, see <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>.
 

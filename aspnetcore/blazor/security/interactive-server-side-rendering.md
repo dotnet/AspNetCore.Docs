@@ -412,7 +412,7 @@ For more information, see <xref:security/cross-site-scripting>.
 Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
 
 * Apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for Cross-Origin Resource Sharing](xref:signalr/security#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
-* If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor SignalR hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the endpoint route builder.
+* If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor SignalR hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> on the endpoint route builder.
 
 For more information, see <xref:security/anti-request-forgery>.
 
@@ -440,7 +440,7 @@ Components must:
 * Avoid using user input as part of the navigation call arguments.
 * Validate arguments to ensure that the target is allowed by the app.
 
-Otherwise, a malicious user can force the browser to go to a cyberattacker-controlled site. In this scenario, the cyberattacker tricks the app into using some user input as part of the invocation of the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> method.
+Otherwise, a malicious user can force the browser to go to a cyberattacker-controlled site. In this scenario, the cyberattacker tricks the app into using some user input as part of the invocation of the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> method.
 
 This advice also applies when rendering links as part of the app:
 
@@ -462,7 +462,7 @@ The following list of security considerations isn't comprehensive:
 * Protect against multiple dispatches.
 * Cancel long-running operations when the component is disposed.
 * Avoid events that produce large amounts of data.
-* Avoid using user input as part of calls to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and validate user input for URLs against a set of allowed origins first if unavoidable.
+* Avoid using user input as part of calls to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and validate user input for URLs against a set of allowed origins first if unavoidable.
 * Don't make authorization decisions based on the state of the UI but only from component state.
 * Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) to protect against XSS attacks. For more information, see <xref:blazor/security/content-security-policy> and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 * Consider using CSP and [X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options) to protect against click-jacking.

@@ -119,7 +119,7 @@ public class MyDependency : IMyDependency
 }
 ```
 
-The app registers the `IMyDependency` service with the concrete type `MyDependency` where services are added to the service container, usually either in the `Program` file (.NET 6 or later) or `Startup.ConfigureServices` method (.NET 5 or earlier). The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, which is the lifetime of a [Blazor circuit](xref:blazor/hosting-models#blazor-server) (.NET 8 or later) or a single request in an MVC or Razor Pages app. [Service lifetimes](#service-lifetimes) are described later in this article.
+The app registers the `IMyDependency` service with the concrete type `MyDependency` where services are added to the service container, usually either in the `Program` file (.NET 6 or later) or `Startup.ConfigureServices` method (.NET 5 or earlier). The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method registers the service with a scoped lifetime, which is the lifetime of a [Blazor circuit](xref:blazor/hosting-models#blazor-server) (.NET 8 or later) or a single request in an MVC or Razor Pages app. [Service lifetimes](#service-lifetimes) are described later in this article.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -194,11 +194,11 @@ public class MyDependency(ILogger<MyDependency> logger) : IMyDependency
 }
 ```
 
-`MyDependency` depends on <xref:Microsoft.Extensions.Logging.ILogger%601>, a [framework-provided service](#framework-provided-services).
+`MyDependency` depends on <xref:Microsoft.Extensions.Logging.ILogger`1>, a [framework-provided service](#framework-provided-services).
 
 It's common to use DI in a chained fashion. Each requested dependency in turn requests its own dependencies. The container resolves the dependencies in the graph and returns the fully resolved service. The collective set of dependencies that must be resolved is typically referred to as a *dependency tree*, *dependency graph*, or *object graph*.
 
-The container resolves <xref:Microsoft.Extensions.Logging.ILogger%601> by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#843-open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#84-constructed-types).
+The container resolves <xref:Microsoft.Extensions.Logging.ILogger`1> by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#843-open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#84-constructed-types).
 
 In DI terminology, a service:
 
@@ -255,7 +255,7 @@ The Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>) of ASP.NET C
 
 By restricting the available services available in the `Startup` class constructor, the Generic Host prevents you from trying to use a service before it's created or available and from creating multiple instances of custom or framework singleton services, where a singleton service created in the temporary service container could be different from one created in the final service container.
 
-Any service registered with the service container can be injected into the `Startup.Configure` method. In the following example, an <xref:Microsoft.Extensions.Logging.ILogger%601> is injected:
+Any service registered with the service container can be injected into the `Startup.Configure` method. In the following example, an <xref:Microsoft.Extensions.Logging.ILogger`1> is injected:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
@@ -292,7 +292,7 @@ services.AddSingleton<MyDependency>();
 
 :::moniker-end
 
-Service registration methods can be used to register multiple service instances of the same service type. In the following example, <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A> is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`.
+Service registration methods can be used to register multiple service instances of the same service type. In the following example, <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*> is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -340,7 +340,7 @@ public class MyService
 
 ## Register groups of services with extension methods
 
-The ASP.NET Core framework convention for registering a group of related services is to use a single `Add{GROUP NAME}` extension method to register all of the services required by a framework feature, where the `{GROUP NAME}` placeholder is a descriptive group name. For example, the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> extension method registers services required for server-side rendering of Razor components.
+The ASP.NET Core framework convention for registering a group of related services is to use a single `Add{GROUP NAME}` extension method to register all of the services required by a framework feature, where the `{GROUP NAME}` placeholder is a descriptive group name. For example, the <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> extension method registers services required for server-side rendering of Razor components.
 
 Consider the following example that configures options and registers services:
 
@@ -451,9 +451,9 @@ For more information, see the following resources:
 
 *Keyed services* registers and retrieves services using keys. A service is associated with a key by calling any of the following extension methods for service registration:
 
-* <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A>
-* <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedScoped%2A>
-* <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedTransient%2A>
+* <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton*>
+* <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedScoped*>
+* <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedTransient*>
 
 The following example demonstrates keyed services with the following API:
 
@@ -594,7 +594,7 @@ For more information on constructor injection behavior, see the following resour
 
 For guidance on EF Core in server-side Blazor apps, see <xref:blazor/blazor-ef-core>.
 
-By default, Entity Framework contexts are added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. To use a different lifetime, specify the lifetime by using an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> overload. Services of a given lifetime shouldn't use a database context with a lifetime that's shorter than the service's lifetime.
+By default, Entity Framework contexts are added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. To use a different lifetime, specify the lifetime by using an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload. Services of a given lifetime shouldn't use a database context with a lifetime that's shorter than the service's lifetime.
 
 ## Lifetime and registration options
 
@@ -832,7 +832,7 @@ If a class has many injected dependencies, it might be a sign that the class has
 
 ### Disposal of services
 
-The container calls <xref:System.IDisposable.Dispose%2A> for the <xref:System.IDisposable> types it creates. Services resolved from the container should never be disposed by the developer. If a type or factory is registered as a singleton, the container disposes the singleton automatically.
+The container calls <xref:System.IDisposable.Dispose*> for the <xref:System.IDisposable> types it creates. Services resolved from the container should never be disposed by the developer. If a type or factory is registered as a singleton, the container disposes the singleton automatically.
 
 In the following example, the services are created by the service container and disposed automatically.
 
@@ -1056,7 +1056,7 @@ For more information, see [Dependency injection in .NET: Default service contain
 
 For more information, see [Dependency injection guidelines: Recommendations](/dotnet/core/extensions/dependency-injection/guidelines#recommendations).
 
-Avoid using the *service locator pattern*. For example, don't invoke <xref:System.IServiceProvider.GetService%2A> to obtain a service instance when you can use DI instead:
+Avoid using the *service locator pattern*. For example, don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
 **Incorrect:**
 
@@ -1078,7 +1078,7 @@ public class MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
 
 Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 
-Avoid static access to <xref:Microsoft.AspNetCore.Http.HttpContext> (for example, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType>).
+Avoid static access to <xref:Microsoft.AspNetCore.Http.HttpContext> (for example, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType>).
 
 DI is an *alternative* to static/global object access patterns. You might not be able to realize the benefits of DI if you mix it with static object access.
 
@@ -1103,11 +1103,11 @@ Service type | Lifetime
 <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Transient
 <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton
 <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Transient
-<xref:Microsoft.Extensions.Logging.ILogger%601?displayProperty=fullName> | Singleton
+<xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Singleton
 <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Singleton
 <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Singleton
-<xref:Microsoft.Extensions.Options.IConfigureOptions%601?displayProperty=fullName> | Transient
-<xref:Microsoft.Extensions.Options.IOptions%601?displayProperty=fullName> | Singleton
+<xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Transient
+<xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Singleton
 <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton
 <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton
 

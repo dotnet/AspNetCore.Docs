@@ -33,8 +33,8 @@ dotnet add package Microsoft.AspNetCore.OpenApi
 
 The following code:
 
-* Adds OpenAPI services using the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method on the app builder's service collection.
-* Maps an endpoint for viewing the OpenAPI document in JSON format with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> extension method on the app.
+* Adds OpenAPI services using the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> extension method on the app builder's service collection.
+* Maps an endpoint for viewing the OpenAPI document in JSON format with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi*> extension method on the app.
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,9)]
 
@@ -52,7 +52,7 @@ Each OpenAPI document in an app has a unique name. The default document name tha
 builder.Services.AddOpenApi(); // Document name is v1
 ```
 
-The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> call.
+The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> call.
 
 ```csharp
 builder.Services.AddOpenApi("internal"); // Document name is internal
@@ -80,7 +80,7 @@ builder.Services.AddOpenApi(options =>
 
 ### Customize the OpenAPI endpoint route
 
-By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
+By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi*> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
@@ -112,14 +112,14 @@ In some scenarios, it's helpful to generate multiple OpenAPI documents with diff
 * Generating OpenAPI documentation for different versions of an API.
 * Generating OpenAPI documentation for different parts of an app, such as a frontend and backend API.
 
-To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method once for each document, specifying a different document name in the first parameter each time.
+To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> extension method once for each document, specifying a different document name in the first parameter each time.
 
 ```csharp
 builder.Services.AddOpenApi("v1");
 builder.Services.AddOpenApi("v2");
 ```
 
-Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so that you can choose to use the same or different customizations for each OpenAPI document.
+Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> can specify its own set of options, so that you can choose to use the same or different customizations for each OpenAPI document.
 
 The framework uses the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> to determine which endpoints to include in each document.
 
@@ -128,7 +128,7 @@ For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldI
 * contains information about the endpoint, such as the HTTP method, route, and response types
 * Metadata attached to the endpoint via attributes or extension methods.
 
-The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that has not been assigned a group name is included all OpenAPI documents.
+The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName*> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that has not been assigned a group name is included all OpenAPI documents.
 
 ```csharp
     // Include endpoints without a group name or with a group name that matches the document name

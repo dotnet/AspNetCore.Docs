@@ -13,7 +13,7 @@ Currently the `Index` method returns a string with a message in the controller c
 
 The preceding code:
 
-* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View%2A> method.
+* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method.
 * Uses a view template to generate an HTML response.
 
 Controller methods:

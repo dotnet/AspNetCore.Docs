@@ -42,7 +42,7 @@ There are three ways to enable CORS:
 Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called in the correct order. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using `UseResponseCaching`.
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
 
 Each approach is detailed in the following sections.
 
@@ -57,16 +57,16 @@ CORS middleware handles cross-origin requests. The following code applies a CORS
 The preceding code:
 
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order).
-* Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors%2A> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order).
+* Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 * Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors6) to apply a CORS policy to specific endpoints.
-* When using [response caching middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
+* When using [response caching middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>.
 
 With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and  `UseEndpoints`.
 
 
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors%2A> method call adds CORS services to the app's service container:
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet&highlight=5-13)]
 
@@ -101,7 +101,7 @@ The preceding code applies the default CORS policy to all controller endpoints.
 
 ## Enable Cors with endpoint routing
 
-With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> set of extension methods:
+With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_endp&highlight=1,5-13,24,32,35,38)]
 
@@ -192,18 +192,18 @@ This section describes the various options that can be set in a CORS policy:
 * [Credentials in cross-origin requests](#credentials-in-cross-origin-requests)
 * [Set the preflight expiration time](#set-the-preflight-expiration-time)
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy%2A> is called in `Program.cs`. For some options, it may be helpful to read the [How CORS works](#how-cors) section first.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> is called in `Program.cs`. For some options, it may be helpful to read the [How CORS works](#how-cors) section first.
 
 ## Set the allowed origins
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin%2A>: Allows CORS requests from all origins with any scheme (`http` or `https`). `AllowAnyOrigin` is insecure because *any website* can make cross-origin requests to the app.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*>: Allows CORS requests from all origins with any scheme (`http` or `https`). `AllowAnyOrigin` is insecure because *any website* can make cross-origin requests to the app.
 
 > [!NOTE]
 > Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. The CORS service returns an invalid CORS response when an app is configured with both methods.
 
 `AllowAnyOrigin` affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains%2A>: Sets the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed%2A> property of the policy to be a function that allows origins to match a configured wildcard domain when evaluating if the origin is allowed.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*>: Sets the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed> property of the policy to be a function that allows origins to match a configured wildcard domain when evaluating if the origin is allowed.
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_aa)]
 
@@ -211,18 +211,18 @@ In the preceding code, `SetIsOriginAllowedToAllowWildcardSubdomains` is called w
 
 ### Set the allowed HTTP methods
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyMethod%2A>:
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyMethod*>:
 
 * Allows any HTTP method:
 * Affects preflight requests and the `Access-Control-Allow-Methods` header. For more information, see the [Preflight requests](#preflight-requests) section.
 
 ### Set the allowed request headers
 
-To allow specific headers to be sent in a CORS request, called [author request headers](https://xhr.spec.whatwg.org/#request), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders%2A> and specify the allowed headers:
+To allow specific headers to be sent in a CORS request, called [author request headers](https://xhr.spec.whatwg.org/#request), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> and specify the allowed headers:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_sa)]
 
-To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader%2A>:
+To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader*>:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_aah)]
 
@@ -257,7 +257,7 @@ The response headers that are available by default are:
 * `Last-Modified`
 * `Pragma`
 
-The CORS specification calls these headers *simple response headers*. To make other headers available to the app, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders%2A>:
+The CORS specification calls these headers *simple response headers*. To make other headers available to the app, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_erh)]
 
@@ -293,7 +293,7 @@ fetch('https://www.example.com/api/test', {
 });
 ```
 
-The server must allow the credentials. To allow cross-origin credentials, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowCredentials%2A>:
+The server must allow the credentials. To allow cross-origin credentials, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowCredentials*>:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_cco)]
 
@@ -366,18 +366,18 @@ Using the F12 tools, the console app shows an error similar to one of the follow
 * Firefox: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at `https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5`. (Reason: CORS request did not succeed). [Learn More](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed)
 * Chromium based: Access to fetch at 'https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5' from origin 'https://cors3.azurewebsites.net' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 
-To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders%2A>:
+To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_whx)]
 
-To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader%2A>:
+To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader*>:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_aah2)]
 
 Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If either:
 
 * Headers are set to anything other than `"*"`
-* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader%2A> is called:
+* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader> is called:
   Include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
 
 <a name="apf"></a>
@@ -407,7 +407,7 @@ See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for in
 
 ### Set the preflight expiration time
 
-The `Access-Control-Max-Age` header specifies how long the response to the preflight request can be cached. To set this header, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetPreflightMaxAge%2A>:
+The `Access-Control-Max-Age` header specifies how long the response to the preflight request can be cached. To set this header, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetPreflightMaxAge*>:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/Program.cs?name=snippet_pfx)]
 
@@ -515,7 +515,7 @@ User-Agent: Mozilla/5.0
 
 In the preceding **Response headers**, the server sets the [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) header in the response. The `https://cors1.azurewebsites.net` value of this header matches the `Origin` header from the request.
 
-If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin%2A> is called, the `Access-Control-Allow-Origin: *`, the wildcard value, is returned. `AllowAnyOrigin` allows any origin.
+If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> is called, the `Access-Control-Allow-Origin: *`, the wildcard value, is returned. `AllowAnyOrigin` allows any origin.
 
 If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
 
@@ -523,7 +523,7 @@ If the response doesn't include the `Access-Control-Allow-Origin` header, the cr
 
 ### HTTP redirection to HTTPS causes ERR_INVALID_REDIRECT on the CORS preflight request
 
-Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> fail with `ERR_INVALID_REDIRECT on the CORS preflight request`.
+Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> fail with `ERR_INVALID_REDIRECT on the CORS preflight request`.
 
 API projects can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
 

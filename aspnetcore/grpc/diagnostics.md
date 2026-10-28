@@ -90,7 +90,7 @@ To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` pro
 
 An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
-If the app isn't using DI, then create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
+If the app isn't using DI, then create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create*?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
 [!code-csharp[](diagnostics/samples/net-client-loggerfactory-create.cs?highlight=1,8)]
 
@@ -314,7 +314,7 @@ To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` pro
 
 An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
-If your app isn't using DI, then you can create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
+If your app isn't using DI, then you can create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create*?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
 [!code-csharp[](diagnostics/samples/net-client-loggerfactory-create.cs?highlight=1,8)]
 

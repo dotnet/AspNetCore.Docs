@@ -622,7 +622,7 @@ ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.Asp
 
 To use the built-in XML input formatters:
 
-* In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters%2A> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters%2A>.
+* In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters*> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters*>.
 
   :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters":::
 
@@ -644,7 +644,7 @@ Consider the following model, which contains a custom `ObjectId` property:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorObjectId.cs" id="snippet_Class" highlight="4":::
 
-To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter%601>:
+To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter`1>:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/ObjectIdConverter.cs" id="snippet_Class":::
 
@@ -672,11 +672,11 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 
 ## Manual model binding
 
-Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
+Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_TryUpdateModelAsync" highlight="1-4":::
 
-<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
+<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
 
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
 * Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.
@@ -1257,7 +1257,7 @@ ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.Asp
 
 To use the built-in XML input formatters:
 
-* In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters%2A> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters%2A>.
+* In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters*> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters*>.
 
   :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters":::
 
@@ -1279,7 +1279,7 @@ Consider the following model, which contains a custom `ObjectId` property:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorObjectId.cs" id="snippet_Class" highlight="4":::
 
-To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter%601>:
+To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter`1>:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/ObjectIdConverter.cs" id="snippet_Class":::
 
@@ -1307,11 +1307,11 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 
 ## Manual model binding
 
-Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
+Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_TryUpdateModelAsync" highlight="1-4":::
 
-<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
+<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
 
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
 * Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.
@@ -1906,7 +1906,7 @@ To use the built-in XML input formatters:
 
 * Install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 
-* In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters%2A> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters%2A>.
+* In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters*> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters*>.
 
   :::code language="csharp" source="~/mvc/models/model-binding/samples/3.x/ModelBindingSample/Startup.cs" id="snippet_ValueProvider" highlight="10":::
 
@@ -1928,7 +1928,7 @@ Consider the following model, which contains a custom `ObjectId` property named 
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/3.x/ModelBindingSample/Models/ModelWithObjectId.cs" id="snippet_Class" highlight="3":::
 
-To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter%601>:
+To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter`1>:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/3.x/ModelBindingSample/JsonConverters/ObjectIdConverter.cs" id="snippet_Class":::
 
@@ -1956,11 +1956,11 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 
 ## Manual model binding	
 
-Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
+Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs" id="snippet_TryUpdate" highlight="1-4":::
 
-<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:	
+<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:	
 
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
 * Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.

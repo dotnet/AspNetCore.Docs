@@ -26,9 +26,9 @@ If you merely want to use access tokens to make web API calls from a Blazor Web 
 > [!NOTE]
 > For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
 
-To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal%601> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
+To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal`1> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
 
-In a service class, obtain access to the members of the namespace <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName> to surface the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A> method on <xref:Microsoft.AspNetCore.Http.HttpContext>. An alternative approach, which is commented out in the following example, is to call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A> on <xref:Microsoft.AspNetCore.Http.HttpContext>. For the returned <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Properties%2A?displayProperty=nameWithType>, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue%2A>.
+In a service class, obtain access to the members of the namespace <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName> to surface the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync*> method on <xref:Microsoft.AspNetCore.Http.HttpContext>. An alternative approach, which is commented out in the following example, is to call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*> on <xref:Microsoft.AspNetCore.Http.HttpContext>. For the returned <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Properties?displayProperty=nameWithType>, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue*>.
 
 ```csharp
 using Microsoft.AspNetCore.Authentication;
@@ -147,9 +147,9 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
 > [!NOTE]
 > For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see the [Access `AuthenticationStateProvider` in outgoing request middleware](#access-authenticationstateprovider-in-outgoing-request-middleware) section.
 
-In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
 
-In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI. For more information on <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor%2A>, see <xref:blazor/components/httpcontext>.
+In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI. For more information on <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*>, see <xref:blazor/components/httpcontext>.
 
 In `Program.cs`:
 
@@ -405,7 +405,7 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 > [!NOTE]
-> An alternative to assigning the initial state to the `TokenProvider` in the preceding example is to copy the data into a scoped service within <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> for use across the app.
+> An alternative to assigning the initial state to the `TokenProvider` in the preceding example is to copy the data into a scoped service within <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> for use across the app.
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
 
@@ -602,8 +602,8 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 In the following example:
 
-* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> method is required unless you implement updates via a handler for authentication changes (`AuthenticationChanged` in the following example).
-* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnCircuitOpenedAsync%2A> is called to attach the authentication changed handler, `AuthenticationChanged`, to update the user. 
+* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync*> is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync*> method is required unless you implement updates via a handler for authentication changes (`AuthenticationChanged` in the following example).
+* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnCircuitOpenedAsync*> is called to attach the authentication changed handler, `AuthenticationChanged`, to update the user. 
 * The `catch` block of the `UpdateAuthentication` task takes no action on exceptions because there's no way to report the exceptions at this point in code execution. If an exception is thrown from the task, the exception is reported elsewhere in app.
 
 `UserService.cs`:
@@ -870,7 +870,7 @@ The approach in this section uses a [keyed service](xref:fundamentals/dependency
 
 Overview of the approach:
 
-* Base client configuration: <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> is called to register a [named client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) with <xref:System.Net.Http.IHttpClientFactory>.
+* Base client configuration: <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> is called to register a [named client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) with <xref:System.Net.Http.IHttpClientFactory>.
 * Keyed registration: A custom `AddApplicationScopeHandler` extension method registers a keyed <xref:System.Net.Http.HttpClient> with the same client name.
 * Scope-aware handler: The application scope handler is resolved from the current scope, giving it access to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
 * Handler caching: The application scope handler uses <xref:System.Net.Http.IHttpMessageHandlerFactory> to get the cached <xref:System.Net.Http.HttpMessageHandler>, which preserves connection pooling.
@@ -1075,14 +1075,14 @@ The guidance in this section explains how to implement opaque (reference) access
 >
 > When testing this pattern against Keycloak, the API's introspection client must be a different OIDC client than the one that issued the user's access token. Introspecting a token using the client that minted it returns `{"active": false}` with "`Access token JWT check failed`" in the server's log. This doesn't happen naturally for the following scenario because the Blazor Web App and the Minimal API (`MinimalApiJwt`) are separate clients.
 
-<xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
+<xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> supports opaque tokens because it doesn't perform access token validation when configured for Proof Key for Code Exchange (PKCE) authorization code flow. It relies on the ASP.NET Core server's HTTPS backchannel to the OIDC authentication service to obtain the ID token using the authorization code received when the user redirects back to the ASP.NET Core app after signing in. If the app is only required to log a user in with OIDC to get a valid authentication cookie, opaque access tokens are supported without modifying the app.
 
-A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate the status and to retrieve the claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
+A failure occurs only when the opaque token acquired by <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> is passed to another service that attempts to validate it with <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*>. Unlike self-contained JWTs, opaque tokens require a request to an authorization server to validate the status and to retrieve the claims. To work around this limitation, either use a third-party API, such as the [Duende Introspection Authentication Handler](https://docs.duendesoftware.com/introspection/), or create a [custom `AuthenticationHandler`](xref:security/authentication/index#authentication-handler) to validate the token.
 
 > [!IMPORTANT]
 > [Duende Software](https://duendesoftware.com/) and [Okta](https://www.okta.com) aren't owned or controlled by Microsoft and might require you to pay a license fee for production use of their services and libraries.
 
-The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> and associated configuration and helper code is provided as a general approach, which might require further development to suit a specific authorization server's requirements. The following handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
+The following <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1> and associated configuration and helper code is provided as a general approach, which might require further development to suit a specific authorization server's requirements. The following handler extracts the opaque token from the `Authorization` header for an HTTP call to an authorization server's introspection endpoint and creates an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> containing the user's claims.
 
 Calling an authorization server's introspection endpoint requires authentication. The following example relies on setting the client secret for authentication in the request's Authorization header (base64 encoded credentials) using the [Secret Manager tool](xref:security/app-secrets) for local development and testing.
 
@@ -1153,7 +1153,7 @@ The following handler attempts to validate an opaque (reference) access token. A
 * If the token is valid, an <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> is created containing the user's claims.
 * If the token is invalid, a failed authorization result is returned.
 
-The handler's options (`Options`) is an instance of `OpaqueTokenAuthenticationOptions` provided by the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> base type, which is configured in the app's `Program` file with the authorization server's introspection endpoint and the API's client ID. The API's client secret is provided by the Secret Manager tool during development.
+The handler's options (`Options`) is an instance of `OpaqueTokenAuthenticationOptions` provided by the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1> base type, which is configured in the app's `Program` file with the authorization server's introspection endpoint and the API's client ID. The API's client secret is provided by the Secret Manager tool during development.
 
 `IOptionsMonitor<OpaqueTokenAuthenticationOptions>` (`optionsMonitor`) isn't used directly by the handler, but it could be used to support dynamic configuration changes at runtime.
 
@@ -1382,7 +1382,7 @@ Server-side Blazor apps (Blazor Web Apps, Blazor Server apps) usually adopt **ei
 
 The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)).
 
-Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>. The fallback policy is selected when no policy is produced from authorization metadata. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The fallback policy is selected when no policy is produced from authorization metadata. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1406,7 +1406,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-The framework's <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> requires an authenticated user. Unless the app uses a [custom policy provider](xref:security/authorization/custom-authorization-policy-providers) with a custom default policy, assigning the framework's default policy (`options.DefaultPolicy`), as shown in the preceding example, is equivalent to using the following code:
+The framework's <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> requires an authenticated user. Unless the app uses a [custom policy provider](xref:security/authorization/custom-authorization-policy-providers) with a custom default policy, assigning the framework's default policy (`options.DefaultPolicy`), as shown in the preceding example, is equivalent to using the following code:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1438,13 +1438,13 @@ The app requires an authenticated user for any resource where no specific policy
 
 :::moniker range=">= aspnetcore-9.0"
 
-If the app's security specification doesn't call for protecting static assets, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A?displayProperty=nameWithType> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>:
+If the app's security specification doesn't call for protecting static assets, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous*?displayProperty=nameWithType> on <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*>:
 
 ```csharp
 app.MapStaticAssets().AllowAnonymous();
 ```
 
-To alternatively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add%2A?displayProperty=nameWithType>.
+To alternatively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add*?displayProperty=nameWithType>.
 
 > [!IMPORTANT]
 > When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
@@ -1487,7 +1487,7 @@ app.MapStaticAssets()
 
 :::moniker range="< aspnetcore-9.0"
 
-If the app's security specification doesn't call for protecting static assets, place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>:
+If the app's security specification doesn't call for protecting static assets, place the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> ***before*** <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>:
 
 ```csharp
 app.UseStaticFiles();
@@ -1496,7 +1496,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-To alternatively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> after authorization pipeline processing only serves other static assets if the user is authorized.
+To alternatively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> after authorization pipeline processing only serves other static assets if the user is authorized.
 
 > [!IMPORTANT]
 > When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
@@ -1539,7 +1539,7 @@ In `Components/Account/Pages/_Imports.razor`:
 
 :::moniker range=">= aspnetcore-5.0"
 
-If the app uses one or more endpoint convention builder instances to provide additional endpoints, such as for Identity components, the endpoint builder's method call chains a call to <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A?displayProperty=nameWithType>. The following example maps additional Identity endpoints by calling `MapAdditionalIdentityEndpoints`, which returns an <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder>: 
+If the app uses one or more endpoint convention builder instances to provide additional endpoints, such as for Identity components, the endpoint builder's method call chains a call to <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous*?displayProperty=nameWithType>. The following example maps additional Identity endpoints by calling `MapAdditionalIdentityEndpoints`, which returns an <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder>: 
 
 ```csharp
 app.MapAdditionalIdentityEndpoints().AllowAnonymous();

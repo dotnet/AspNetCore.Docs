@@ -34,7 +34,7 @@ later.
   > Microsoft.AspNetCore.Identity requires users to have an email address by default. For Callback URLs during development, use `https://localhost:{PORT}/signin-twitter`, where the `{PORT}` placeholder is the app's port.
 
   > [!NOTE]
-  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath*?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions> class.
+  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions> class.
 
 ## Store the Twitter consumer API key and secret
 

@@ -58,7 +58,7 @@ public class Starship
 }
 ```
 
-Add the model to an `EditForm`, include `DataAnnotationsValidator`, and display errors with <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> or <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> callback is invoked only when validation succeeds:
+Add the model to an `EditForm`, include `DataAnnotationsValidator`, and display errors with <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> or <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> callback is invoked only when validation succeeds:
 
 ```razor
 <EditForm Model="Model" OnValidSubmit="Submit">
@@ -238,7 +238,7 @@ When returning a <xref:System.ComponentModel.DataAnnotations.ValidationResult> f
 
 <a id="inject-services-into-a-custom-validation-attribute"></a>
 
-Custom attributes can resolve registered services through <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A>.
+Custom attributes can resolve registered services through <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService*>.
 
 :::moniker-end
 
@@ -248,10 +248,10 @@ Custom attributes can resolve registered services through <xref:System.Component
 
 Custom validation commonly uses:
 
-* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested%2A> for full-form validation.
-* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged%2A> for field validation.
+* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested*> for full-form validation.
+* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged*> for field validation.
 * <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> to add and clear messages.
-* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyValidationStateChanged%2A> to notify the UI after messages change.
+* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyValidationStateChanged*> to notify the UI after messages change.
 
 The following interactive-form pattern adds a form-level business rule alongside data annotations validation and rechecks the rule when either relevant field changes:
 
@@ -337,7 +337,7 @@ Static SSR doesn't provide live .NET field validation between requests.
 
 <!-- UPDATE 11.0 - API Browser cross-ref
 
-                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A>
+                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*>
 -->
 
 For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `EditContext.RegisterAsyncFieldValidator` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
@@ -352,7 +352,7 @@ For a reusable implementation that encapsulates event subscriptions and its mess
 
 ## Display validation messages
 
-Use <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> to display messages associated with one field:
+Use <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> to display messages associated with one field:
 
 ```razor
 <ValidationMessage For="() => Model.Identifier" />
@@ -372,7 +372,7 @@ Assign the summary's `Model` parameter to restrict it to messages associated wit
 <ValidationSummary Model="Model" />
 ```
 
-To inspect current messages in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages%2A>:
+To inspect current messages in code, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages*>:
 
 ```csharp
 var allMessages = editContext.GetValidationMessages();
@@ -472,7 +472,7 @@ editContext.SetFieldCssClassProvider(
     new BootstrapFieldCssClassProvider());
 ```
 
-For custom input markup, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.FieldCssClass%2A> to obtain the class selected by the current provider.
+For custom input markup, call <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.FieldCssClass*> to obtain the class selected by the current provider.
 
 When an `EditForm` is assigned a model, its child content receives the generated `EditContext`. Capture the context through the `Context` parameter and call `FieldCssClass` to apply the field's classes to surrounding markup:
 
@@ -545,7 +545,7 @@ The following example displays custom UI only after a field is modified and inva
 
 :::moniker-end
 
-Input components, `ValidationMessage`, and `ValidationSummary` update themselves when validation state changes. A component that renders other conditional validation UI should subscribe to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationStateChanged%2A> and call `StateHasChanged`:
+Input components, `ValidationMessage`, and `ValidationSummary` update themselves when validation state changes. A component that renders other conditional validation UI should subscribe to <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationStateChanged*> and call `StateHasChanged`:
 
 ```csharp
 private void HandleValidationStateChanged(
@@ -571,15 +571,15 @@ Live pending indicators require an interactive render mode. During a static SSR 
 
 | Callback | Behavior |
 |---|---|
-| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> | Runs after automatic validation succeeds. |
-| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit%2A> | Runs after automatic validation fails. |
-| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit%2A> | Gives the handler control of validation and submission. |
+| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> | Runs after automatic validation succeeds. |
+| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> | Runs after automatic validation fails. |
+| <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> | Gives the handler control of validation and submission. |
 
 `OnValidSubmit` and `OnInvalidSubmit` can be used together. Don't combine `OnSubmit` with either of them.
 
 :::moniker range=">= aspnetcore-11.0"
 
-`EditForm` uses <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync%2A> before invoking `OnValidSubmit` or `OnInvalidSubmit`, so it awaits synchronous and asynchronous validators. When handling `OnSubmit`, call `ValidateAsync` before processing the form:
+`EditForm` uses <xref:Microsoft.AspNetCore.Components.Forms.EditContext.ValidateAsync*> before invoking `OnValidSubmit` or `OnInvalidSubmit`, so it awaits synchronous and asynchronous validators. When handling `OnSubmit`, call `ValidateAsync` before processing the form:
 
 ```razor
 <EditForm EditContext="editContext" OnSubmit="HandleSubmit">
@@ -597,7 +597,7 @@ Live pending indicators require an interactive render mode. During a static SSR 
 }
 ```
 
-The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> method is obsolete in .NET 11. It doesn't await asynchronous validation and throws if a handler attempts to register asynchronous work.
+The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate*> method is obsolete in .NET 11. It doesn't await asynchronous validation and throws if a handler attempts to register asynchronous work.
 
 For interactive forms, the form-level pending state can be used to disable submission while `ValidateAsync` is running:
 
@@ -611,7 +611,7 @@ For interactive forms, the form-level pending state can be used to disable submi
 
 :::moniker range="< aspnetcore-11.0"
 
-When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> before processing the form:
+When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate*> before processing the form:
 
 ```razor
 <EditForm EditContext="editContext" OnSubmit="HandleSubmit">

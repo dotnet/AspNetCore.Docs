@@ -11,7 +11,7 @@ Authentication policy schemes make it easier to have a single logical authentica
 * Easy to forward any authentication action to another scheme.
 * Forward dynamically based on the request.
 
-All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601>:
+All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>:
 
 * Are automatically policy schemes in ASP.NET Core 2.1 or later.
 * Can be enabled via configuring the scheme's options.
@@ -32,7 +32,7 @@ The first non-`null` result is used as the target scheme for forwarding.
 
 ## JWT with multiple schemes
 
-The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme%2A> method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (for example, issuer, claims). This approach allows for greater flexibility within a single API.
+The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme*> method can define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties (for example, issuer, claims). This approach allows for greater flexibility within a single API.
 
 ```csharp
 services.AddAuthentication(options =>

@@ -418,7 +418,7 @@ This method appears in `Views/Account/Login.cshtml` too:
 
 [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Account/Login.cshtml?name=snippet_GetExtAuthNSchemes&highlight=2)]
 
-In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601.GetExternalAuthenticationSchemesAsync%2A> method. The change in `ManageController.cs` resembles the following code:
+In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager`1.GetExternalAuthenticationSchemesAsync*> method. The change in `ManageController.cs` resembles the following code:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemesAsync)]
 

@@ -21,12 +21,12 @@ Templated components are components that receive one or more UI templates as par
 * A list component that allows a user to specify a template for rendering items in a list.
 * A navigation bar component that allows a user to specify a template for start content and navigation links.
 
-A templated component is defined by specifying one or more component parameters of type <xref:Microsoft.AspNetCore.Components.RenderFragment> or <xref:Microsoft.AspNetCore.Components.RenderFragment%601>. A render fragment represents a segment of UI to render. <xref:Microsoft.AspNetCore.Components.RenderFragment%601> takes a type parameter that can be specified when the render fragment is invoked.
+A templated component is defined by specifying one or more component parameters of type <xref:Microsoft.AspNetCore.Components.RenderFragment> or <xref:Microsoft.AspNetCore.Components.RenderFragment`1>. A render fragment represents a segment of UI to render. <xref:Microsoft.AspNetCore.Components.RenderFragment`1> takes a type parameter that can be specified when the render fragment is invoked.
 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
-Often, templated components are generically typed, as the following `TemplatedNavBar` component (`TemplatedNavBar.razor`) demonstrates. The generic type (`<T>`) in the following example is used to render <xref:System.Collections.Generic.IReadOnlyList%601> values, which in this case is a list of pets for a component that displays a navigation bar with links to a pet detail component.
+Often, templated components are generically typed, as the following `TemplatedNavBar` component (`TemplatedNavBar.razor`) demonstrates. The generic type (`<T>`) in the following example is used to render <xref:System.Collections.Generic.IReadOnlyList`1> values, which in this case is a list of pets for a component that displays a navigation bar with links to a pet detail component.
 
 `TemplatedNavBar.razor`:
 
@@ -66,9 +66,9 @@ Often, templated components are generically typed, as the following `TemplatedNa
 
 :::moniker-end
 
-When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<StartContent>...</StartContent>` and `<ItemTemplate>...</ItemTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment%601> templates for `StartContent` and `ItemTemplate` of the `TemplatedNavBar` component.
+When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<StartContent>...</StartContent>` and `<ItemTemplate>...</ItemTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment`1> templates for `StartContent` and `ItemTemplate` of the `TemplatedNavBar` component.
 
-Specify the `Context` attribute on the component element when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TemplatedNavBar` element and applies to all <xref:Microsoft.AspNetCore.Components.RenderFragment%601> template parameters.
+Specify the `Context` attribute on the component element when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TemplatedNavBar` element and applies to all <xref:Microsoft.AspNetCore.Components.RenderFragment`1> template parameters.
 
 `Pets1.razor`:
 
@@ -108,7 +108,7 @@ Specify the `Context` attribute on the component element when you want to specif
 
 :::moniker-end
 
-Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `ItemTemplate` rather than `TemplatedNavBar`.
+Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment`1> child element. In the following example, the `Context` is set on `ItemTemplate` rather than `TemplatedNavBar`.
 
 `Pets2.razor`:
 
@@ -148,7 +148,7 @@ Alternatively, you can change the parameter name using the `Context` attribute o
 
 :::moniker-end
 
-Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
+Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment`1> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
 `Pets3.razor`:
 

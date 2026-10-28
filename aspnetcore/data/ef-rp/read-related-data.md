@@ -26,7 +26,7 @@ The following illustrations show the completed pages for this tutorial:
 
 EF Core can load related data into the navigation properties of an entity in several ways:
 
-* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When you read an entity, EF Core retrieves its related data. This approach typically results in a single join query that retrieves all of the data you need. EF Core issues multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a large single query. Specify eager loading with the <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include%2A> and <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ThenInclude%2A> methods.
+* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When you read an entity, EF Core retrieves its related data. This approach typically results in a single join query that retrieves all of the data you need. EF Core issues multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a large single query. Specify eager loading with the <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Include*> and <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ThenInclude*> methods.
 
   ![Eager loading example](read-related-data/_static/eager-loading.png)
 
@@ -223,7 +223,7 @@ The selected instructor is retrieved from the list of instructors in the view mo
 
 The `Where` method returns a collection. In this case, the filter selects a single entity, so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `Course` navigation property.
 
-The <xref:System.Linq.Enumerable.Single%2A> method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is <xref:System.Linq.Enumerable.SingleOrDefault%2A>, which returns a default value if the collection is empty. For this query, `null` in the default returned.
+The <xref:System.Linq.Enumerable.Single*> method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is <xref:System.Linq.Enumerable.SingleOrDefault*>, which returns a default value if the collection is empty. For this query, `null` in the default returned.
 
 The following code populates the view model's `Enrollments` property when a course is selected:
 

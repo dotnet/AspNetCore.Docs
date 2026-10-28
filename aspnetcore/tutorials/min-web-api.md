@@ -452,7 +452,7 @@ ASP.NET Core automatically serializes the object to [JSON](https://www.json.org)
 
 The return types can represent a wide range of HTTP status codes. For example, `GET /todoitems/{id}` can return two different status values:
 
-* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
+* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
 ## Examine the PUT endpoint
@@ -700,7 +700,7 @@ The DELETE request is sent to the app and the response is displayed in the **Res
 
 ---
 
-The `Program.cs` file you wrote repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method helps organize such groups. It reduces repetitive code and allows you to customize entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+The `Program.cs` file you wrote repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup*> method helps organize such groups. It reduces repetitive code and allows you to customize entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata*>.
 
 * Replace the contents of `Program.cs` with the following code:
 
@@ -752,7 +752,7 @@ Unit tests can call these methods and test that they return the correct type. Fo
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/10.x/TodoApi_VS_EndpointExplorer/Program.cs" id="snippet_typed_getalltodos":::
 
-Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601.Value) is returned from the handler method. For example:
+Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok`1.Value) is returned from the handler method. For example:
 
 ```csharp
 public async Task GetAllTodos_ReturnsOkOfTodosResult()

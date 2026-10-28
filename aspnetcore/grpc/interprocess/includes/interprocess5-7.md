@@ -60,7 +60,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
-* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> to listen to a UDS with the specified path.
+* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a UDS with the specified path.
 * Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
 ### Client configuration

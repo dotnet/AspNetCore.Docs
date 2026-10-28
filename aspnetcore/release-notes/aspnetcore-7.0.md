@@ -147,7 +147,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 * <xref:Microsoft.AspNetCore.Http.INestedHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IStatusCodeHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
-* <xref:Microsoft.AspNetCore.Http.IValueHttpResult%601>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult`1>
 
 For more information, see [IHttpResult interfaces](xref:fundamentals/minimal-apis/responses#httpresultinterfaces7).
 
@@ -169,7 +169,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 #### Provide endpoint descriptions and summaries
 
-Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
+Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription*> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary*> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
 For more information, see [OpenAPI in Minimal API apps](xref:fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-7.0)
 
@@ -595,7 +595,7 @@ For more information, see [Http/2 WebSockets support](xref:fundamentals/websocke
 
 ### Kestrel performance improvements on high core machines
 
-Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue%601> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
+Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue`1> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
 
 Profiling on high core machines on .NET 6 showed significant contention in one of Kestrel's other `ConcurrentQueue` instances, the `PinnedMemoryPool` that Kestrel uses to cache byte buffers.
 

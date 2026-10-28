@@ -314,7 +314,7 @@ The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
-The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. `HTTP 201` is the standard response for an `HTTP POST` method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
@@ -384,7 +384,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 `ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
-* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
+* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an `HTTP 200` response.
 
 ## The PutTodoItem method

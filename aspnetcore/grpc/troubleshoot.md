@@ -48,11 +48,11 @@ The .NET gRPC client requires the service to have a trusted certificate. The fol
 
 You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
-If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
+If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
 [!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificate)]
 
-The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
+The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
 
 [!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificateClientFactory)]
 
@@ -146,7 +146,7 @@ The preceding code:
 * Configures a channel to use `SubdirectoryHandler`.
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
-Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
 
 ## Configure gRPC client to use HTTP/3
 
@@ -160,7 +160,7 @@ A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to
 
 [!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallHttp3Handler)]
 
-Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
 
 ## Building gRPC on Alpine Linux
 

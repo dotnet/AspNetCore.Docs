@@ -27,7 +27,7 @@ To create a custom formatter:
 
 * For serializing data sent to the client, create an output formatter class.
 * For deserializing data received from the client, create an input formatter class.
-* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
+* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ## Create a custom formatter
 
@@ -35,8 +35,8 @@ To create a formatter:
 
 * Derive the class from the appropriate base class. The sample app derives from <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter>.
 * Specify supported media types and encodings in the constructor.
-* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods.
-* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A> methods.
+* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType*> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType*> methods.
+* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync*> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync*> methods.
 
 The following code shows the `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples):
 
@@ -52,7 +52,7 @@ For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.Inpu
 
 ### Specify supported media types and encodings
 
-In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings%2A> collections:
+In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings> collections:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
 
@@ -60,13 +60,13 @@ A formatter class can **not** use constructor injection for its dependencies. Fo
 
 ### Override CanReadType and CanWriteType
 
-Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods. For example, to create vCard text from a `Contact` type and vice versa:
+Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType*> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType*> methods. For example, to create vCard text from a `Contact` type and vice versa:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_CanWriteType":::
 
 #### The CanWriteResult method
 
-In some scenarios, <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteResult%2A> must be overridden rather than <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A>. Use `CanWriteResult` if the following conditions are true:
+In some scenarios, <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteResult*> must be overridden rather than <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType*>. Use `CanWriteResult` if the following conditions are true:
 
 * The action method returns a model class.
 * There are derived classes that might be returned at runtime.
@@ -86,13 +86,13 @@ For the formatter to handle only `Student` objects, check the type of <xref:Micr
 
 ### Override ReadRequestBodyAsync and WriteResponseBodyAsync
 
-Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters:
+Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync*> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync*>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_WriteResponseBodyAsync":::
 
 ## Configure MVC to use a custom formatter
 
-To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A?displayProperty=nameWithType> collection:
+To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters?displayProperty=nameWithType> collection:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Program.cs" id="snippet_AddControllers" highlight="5-6":::
 
@@ -151,7 +151,7 @@ To create a custom formatter:
 
 * For serializing data sent to the client, create an output formatter class.
 * For deserializing data received from the client, create an input formatter class.
-* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
+* Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ## Create a custom formatter
 
@@ -159,8 +159,8 @@ To create a formatter:
 
 * Derive the class from the appropriate base class. The sample app derives from <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter>.
 * Specify supported media types and encodings in the constructor.
-* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods.
-* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A> methods.
+* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType*> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType*> methods.
+* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync*> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync*> methods.
 
 The following code shows the `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples):
 
@@ -176,7 +176,7 @@ For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.Inpu
 
 ### Specify supported media types and encodings
 
-In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings%2A> collections:
+In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings> collections:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
 
@@ -184,13 +184,13 @@ A formatter class can **not** use constructor injection for its dependencies. Fo
 
 ### Override CanReadType and CanWriteType
 
-Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods. For example, to create vCard text from a `Contact` type and vice versa:
+Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType*> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType*> methods. For example, to create vCard text from a `Contact` type and vice versa:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_CanWriteType":::
 
 #### The CanWriteResult method
 
-In some scenarios, <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteResult%2A> must be overridden rather than <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A>. Use `CanWriteResult` if the following conditions are true:
+In some scenarios, <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteResult*> must be overridden rather than <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType*>. Use `CanWriteResult` if the following conditions are true:
 
 * The action method returns a model class.
 * There are derived classes that might be returned at runtime.
@@ -210,13 +210,13 @@ For the formatter to handle only `Student` objects, check the type of <xref:Micr
 
 ### Override ReadRequestBodyAsync and WriteResponseBodyAsync
 
-Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters:
+Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync*> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync*>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_WriteResponseBodyAsync":::
 
 ## Configure MVC to use a custom formatter
 
-To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A?displayProperty=nameWithType> collection:
+To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters?displayProperty=nameWithType> collection:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Startup.cs" id="snippet_ConfigureServices" highlight="5-6":::
 

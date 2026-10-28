@@ -184,7 +184,7 @@ At this point, the cascaded type is available to Razor components throughout the
 The following `Keypad` component example:
 
 * Displays the current value of `KeypadViewModel.DisplayText`.
-* Permits character deletion by calling the `KeypadViewModel.DeleteCharCommand` command if the display string length is greater than 0 (zero), which is checked by the call to <xref:System.Windows.Input.ICommand.CanExecute%2A?displayProperty=nameWithType>.
+* Permits character deletion by calling the `KeypadViewModel.DeleteCharCommand` command if the display string length is greater than 0 (zero), which is checked by the call to <xref:System.Windows.Input.ICommand.CanExecute*?displayProperty=nameWithType>.
 * Permits adding characters by calling `KeypadViewModel.AddCharCommand` with the key pressed in the UI.
 
 `Pages/Keypad.razor`:

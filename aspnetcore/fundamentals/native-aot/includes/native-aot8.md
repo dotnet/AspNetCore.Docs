@@ -185,20 +185,20 @@ The template uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSl
 
 The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app.
 
-As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTTPS or HTTP/3. These protocols typically aren't required for apps that run behind a TLS termination proxy. For example, see [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview). HTTPS can be enabled by calling [builder.WebHost.UseKestrelHttpsConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrelhttpsconfiguration) HTTP/3 can be enabled by calling [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A).
+As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTTPS or HTTP/3. These protocols typically aren't required for apps that run behind a TLS termination proxy. For example, see [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview). HTTPS can be enabled by calling [builder.WebHost.UseKestrelHttpsConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrelhttpsconfiguration) HTTP/3 can be enabled by calling [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic*).
 
 ### `CreateSlimBuilder` vs `CreateBuilder`
 
 The `CreateSlimBuilder` method doesn't support the following features that are supported by the `CreateBuilder` method:
 
 * [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A>
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>
 * The following logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
     * [Debug](/aspnet/core/fundamentals/logging#debug)
     * [Event Source](/aspnet/core/fundamentals/logging#event-source)
 * Web hosting features:
-    * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A>
+    * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*>
     * [IIS Integration](xref:host-and-deploy/iis/index)
 * Kestrel configuration
     * [HTTPS endpoints in Kestrel](xref:fundamentals/servers/kestrel/endpoints#https)

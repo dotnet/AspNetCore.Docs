@@ -109,7 +109,7 @@ The service isn't required for Blazor apps hosted in Azure App Service or Azure 
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-signalr/releases/tag/v1.26.1) or later supports [SignalR stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect%2A>).
+The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-signalr/releases/tag/v1.26.1) or later supports [SignalR stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect*>).
 
 :::moniker-end
 

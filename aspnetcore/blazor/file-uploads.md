@@ -42,9 +42,9 @@ Rendered HTML:
 > [!NOTE]
 > In the preceding example, the `<input>` element's `_bl_2` attribute is used for Blazor's internal processing.
 
-To read data from a user-selected file with a <xref:System.IO.Stream> that represents the file's bytes, call <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
+To read data from a user-selected file with a <xref:System.IO.Stream> that represents the file's bytes, call <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*?displayProperty=nameWithType> on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
 
-<xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> can be used to specify a larger size if required.
+<xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> can be used to specify a larger size if required.
 
 Outside of processing a small file, avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
 
@@ -53,7 +53,7 @@ Outside of processing a small file, avoid reading the incoming file stream direc
 
 In the following examples, `browserFile` implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> to represent an uploaded file. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the file upload components later in this article.
 
-When calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A>, we recommend passing a maximum allowed file size in the `maxAllowedSize` parameter at the limit of the file sizes that you expect to receive. The default value is 500 KB. This article's examples use a maximum allowed file size variable or constant named `maxFileSize` but usually don't show setting a specific value.
+When calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*>, we recommend passing a maximum allowed file size in the `maxAllowedSize` parameter at the limit of the file sizes that you expect to receive. The default value is 500 KB. This article's examples use a maximum allowed file size variable or constant named `maxFileSize` but usually don't show setting a specific value.
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> The following approach is **recommended** because the file's <xref:System.IO.Stream> is provided directly to the consumer, a <xref:System.IO.FileStream> that creates the file at the provided path:
 
@@ -62,7 +62,7 @@ await using FileStream fs = new(path, FileMode.Create);
 await browserFile.OpenReadStream(maxFileSize).CopyToAsync(fs);
 ```
 
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> The following approach is **recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> is provided directly to <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync%2A>:
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> The following approach is **recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> is provided directly to <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync*>:
 
 ```csharp
 await blobContainerClient.UploadBlobAsync(
@@ -84,7 +84,7 @@ var reader =
     await new StreamReader(browserFile.OpenReadStream(maxFileSize)).ReadToEndAsync();
 ```
 
-<span aria-hidden="true">❌</span><span class="visually-hidden">Not recommended:</span> The following approach is **NOT recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> content is copied into a <xref:System.IO.MemoryStream> in memory (`memoryStream`) before calling <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync%2A>:
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not recommended:</span> The following approach is **NOT recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> content is copied into a <xref:System.IO.MemoryStream> in memory (`memoryStream`) before calling <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync*>:
 
 ```csharp
 var memoryStream = new MemoryStream();
@@ -93,7 +93,7 @@ await blobContainerClient.UploadBlobAsync(
     trustedFileName, memoryStream));
 ```
 
-A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
+A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync*?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync*> are most appropriate for Blazor WebAssembly apps.
 
 ## File size read and upload limits
 
@@ -138,13 +138,13 @@ Razor automatically HTML encodes property values for display. The following code
 }
 ```
 
-Outside of Razor, always use <xref:System.Net.WebUtility.HtmlEncode%2A> to safely encode file names from a user's request.
+Outside of Razor, always use <xref:System.Net.WebUtility.HtmlEncode*> to safely encode file names from a user's request.
 
 Many implementations must include a check that the file exists; otherwise, the file is overwritten by a file of the same name. Supply additional logic to meet your app's specifications.
 
 ## Examples
 
-The following examples demonstrate multiple file upload in a component. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.GetMultipleFiles%2A?displayProperty=nameWithType> allows reading multiple files. Specify the maximum number of files to prevent a malicious user from uploading a larger number of files than the app expects. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.File?displayProperty=nameWithType> allows reading the first and only file if the file upload doesn't support multiple files.
+The following examples demonstrate multiple file upload in a component. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.GetMultipleFiles*?displayProperty=nameWithType> allows reading multiple files. Specify the maximum number of files to prevent a malicious user from uploading a larger number of files than the app expects. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.File?displayProperty=nameWithType> allows reading the first and only file if the file upload doesn't support multiple files.
 
 <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's imports file (`_Imports.razor`). When the namespace is present in the imports file, it provides API member access to the app's components.
 
@@ -284,7 +284,7 @@ A security best practice for production apps is to avoid sending error messages 
                  No doc issue yet, but tracked by ...
                  https://github.com/dotnet/AspNetCore.Docs/issues/34437 -->
 
-The following `LazyBrowserFileStream` class defines a custom stream type that lazily calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> just before the first bytes of the stream are requested. The stream isn't transmitted from the browser to the server until reading the stream begins in .NET.
+The following `LazyBrowserFileStream` class defines a custom stream type that lazily calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> just before the first bytes of the stream are requested. The stream isn't transmitted from the browser to the server until reading the stream begins in .NET.
 
 `LazyBrowserFileStream.cs`:
 
@@ -493,7 +493,7 @@ public class FilesaveController(
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName*> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
 
@@ -564,7 +564,7 @@ builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. If you're calling an external web API, set the URI to the web API's base address.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. If you're calling an external web API, set the URI to the web API's base address.
 
 A standalone Blazor WebAssembly app that uploads files to a separate server web API either uses a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) or sets the default <xref:System.Net.Http.HttpClient> service registration to point to the web API's endpoint. In the following example where the web API is hosted locally at port 5001, the base address is `https://localhost:5001`:
 
@@ -879,9 +879,9 @@ public class FilesaveController(
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName*> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
-The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
+The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -914,7 +914,7 @@ builder.Services.AddCors(options =>
 });
 ```
 
-After calling <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> in the `Program` file, call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> to add CORS middleware:
+After calling <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> in the `Program` file, call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> to add CORS middleware:
 
 ```csharp
 app.UseCors();
@@ -950,14 +950,14 @@ builder.Services.Configure<FormOptions>(options =>
 
 ## Cancel a file upload
 
-A file upload component can detect when a user has cancelled an upload by using a <xref:System.Threading.CancellationToken> when calling into the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> or <xref:System.IO.StreamReader.ReadAsync%2A?displayProperty=nameWithType>.
+A file upload component can detect when a user has cancelled an upload by using a <xref:System.Threading.CancellationToken> when calling into the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*?displayProperty=nameWithType> or <xref:System.IO.StreamReader.ReadAsync*?displayProperty=nameWithType>.
 
 Create a <xref:System.Threading.CancellationTokenSource> for the `InputFile` component. At the start of the `OnInputFileChange` method, check if a previous upload is in progress.
 
 If a file upload is in progress:
 
-* Call <xref:System.Threading.CancellationTokenSource.Cancel%2A> on the previous upload.
-* Create a new <xref:System.Threading.CancellationTokenSource> for the next upload and pass the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> to <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> or <xref:System.IO.StreamReader.ReadAsync%2A>.
+* Call <xref:System.Threading.CancellationTokenSource.Cancel*> on the previous upload.
+* Create a new <xref:System.Threading.CancellationTokenSource> for the next upload and pass the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> to <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> or <xref:System.IO.StreamReader.ReadAsync*>.
 
 ## Upload files server-side with progress
 
@@ -1001,7 +1001,7 @@ To use the following example in a test app:
 For more information, see the following API resources:
 
 * <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
-* <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+* <xref:System.IO.FileStream.ReadAsync*?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync*>. Reading a stream synchronously with <xref:System.IO.FileStream.Read*> isn't supported in Razor components.
 
 ## File streams
 
@@ -1267,19 +1267,19 @@ For more information on SignalR configuration and how to set <xref:Microsoft.Asp
 
 ## Maximum parallel invocations per client hub setting
 
-Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value.
+Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> set to 1, which is the default value.
 
 Increasing the value leads to a high probability that `CopyTo` operations throw `System.InvalidOperationException: 'Reading is not allowed after reader was completed.'`. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
 ## Troubleshoot
 
-The line that calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> throws a <xref:System.TimeoutException?displayProperty=nameWithType>:
+The line that calls <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*?displayProperty=nameWithType> throws a <xref:System.TimeoutException?displayProperty=nameWithType>:
 
 > :::no-loc text="System.TimeoutException: Did not receive any data in the allotted time.":::
 
 Possible causes:
 
-* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container in .NET 8 or earlier. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
+* Using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container in .NET 8 or earlier. To resolve the issue, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 
@@ -1287,7 +1287,7 @@ Possible causes:
                    the `LazyBrowserFileStream` class is dropped
                    because the underlying problem is fixed. -->
 
-* Using server-side rendering and calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> on multiple files before reading them to completion. To resolve the issue, use the `LazyBrowserFileStream` class and approach described in the [Upload files to a server with server-side rendering](#upload-files-to-a-server-with-server-side-rendering) section of this article.
+* Using server-side rendering and calling <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> on multiple files before reading them to completion. To resolve the issue, use the `LazyBrowserFileStream` class and approach described in the [Upload files to a server with server-side rendering](#upload-files-to-a-server-with-server-side-rendering) section of this article.
 
 ## Related content
 

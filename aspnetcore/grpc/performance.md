@@ -296,7 +296,7 @@ Using streaming calls is a good choice when:
 Be aware of the additional complexity and limitations of using streaming calls instead of unary:
 
 1. A stream can be interrupted by a service or connection error. Logic is required to restart stream if there is an error.
-2. `RequestStream.WriteAsync` is not safe for multi-threading. Only one message can be written to a stream at a time. Sending messages from multiple threads over a single stream requires a producer/consumer queue like <xref:System.Threading.Channels.Channel%601> to marshall messages.
+2. `RequestStream.WriteAsync` is not safe for multi-threading. Only one message can be written to a stream at a time. Sending messages from multiple threads over a single stream requires a producer/consumer queue like <xref:System.Threading.Channels.Channel`1> to marshall messages.
 3. A gRPC streaming method is limited to receiving one type of message and sending one type of message. For example, `rpc StreamingCall(stream RequestMessage) returns (stream ResponseMessage)` receives `RequestMessage` and sends `ResponseMessage`. Protobuf's support for unknown or conditional messages using `Any` and `oneof` can work around this limitation.
 
 ## Binary payloads
@@ -348,7 +348,7 @@ for (var i = 0; i < data.Length; i++)
 
 These properties allow code to read data directly from a `ByteString` without allocations or copies.
 
-Most .NET APIs have `ReadOnlyMemory<byte>` and `byte[]` overloads, so `ByteString.Memory` is the recommended way to use the underlying data. However, there are circumstances where an app might need to get the data as a byte array. If a byte array is required then the <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType> method can be used to get an array from a `ByteString` without allocating a new copy of the data.
+Most .NET APIs have `ReadOnlyMemory<byte>` and `byte[]` overloads, so `ByteString.Memory` is the recommended way to use the underlying data. However, there are circumstances where an app might need to get the data as a byte array. If a byte array is required then the <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray*?displayProperty=nameWithType> method can be used to get an array from a `ByteString` without allocating a new copy of the data.
 
 ```csharp
 var byteString = GetByteString();
@@ -371,7 +371,7 @@ httpRequest.Content = content;
 
 The preceding code:
 
-* Attempts to get an array from `ByteString.Memory` with <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType>.
+* Attempts to get an array from `ByteString.Memory` with <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray*?displayProperty=nameWithType>.
 * Uses the `ArraySegment<byte>` if it was successfully retrieved. The segment has a reference to the array, offset and count.
 * Otherwise, falls back to allocating a new array with `ByteString.ToByteArray()`.
 

@@ -115,7 +115,7 @@ The following component:
 
 :::moniker-end
 
-For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead%2A?displayProperty=nameWithType>, as the following example demonstrates:
+For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead*?displayProperty=nameWithType>, as the following example demonstrates:
 
 ```csharp
 private Stream GetFileStream() => File.OpenRead(@"{PATH}");

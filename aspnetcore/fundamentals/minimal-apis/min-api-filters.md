@@ -39,7 +39,7 @@ The preceding code:
 
 * Calls the `AddEndpointFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
 * Returns the color specified, except for the value `"Red"`.
-* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` is requested.
+* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem*) when the `/colorSelector/Red` is requested.
 * Uses `next` as the `EndpointFilterDelegate` and `invocationContext` as the `EndpointFilterInvocationContext` to invoke the next filter in the pipeline, or the request delegate if the last filter is already invoked.
 
 The filter runs before the endpoint handler. When multiple `AddEndpointFilter` invocations are made on a handler:

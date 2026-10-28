@@ -11,7 +11,7 @@ The current culture on a request is set in the localization [Middleware](xref:fu
 
 [!code-csharp[](~/fundamentals/localization/samples/6.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
 
-<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> initializes a <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> object. On every request the list of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> in the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
+<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*> initializes a <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> object. On every request the list of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> in the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>
 1. <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>
@@ -35,7 +35,7 @@ http://localhost:5000/?culture=es-MX
 
 ## CookieRequestCultureProvider
 
-Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue%2A> method to create a cookie.
+Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue*> method to create a cookie.
 
 The xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider> <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName> returns the default cookie name used to track the user's preferred culture information. The default cookie name is `.AspNetCore.Culture`.
 
@@ -128,7 +128,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 
 In the preceding example, the order of `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider` is switched, so the `RequestLocalizationMiddleware` looks for the cultures from the cookies first, then the query string.
 
-As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
+As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider*> which sets the order to `0`, so this provider takes the precedence over the others.
 
 ## Set the culture programmatically
 

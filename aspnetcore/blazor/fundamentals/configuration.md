@@ -149,7 +149,7 @@ using var stream = await response.Content.ReadAsStreamAsync();
 builder.Configuration.AddJsonStream(stream);
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 ## Memory Configuration Source
 
@@ -219,7 +219,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 :::moniker-end
 
-Obtain a section of the configuration in C# code with <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType>. The following example obtains the `wheels` section for the configuration in the preceding example:
+Obtain a section of the configuration in C# code with <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*?displayProperty=nameWithType>. The following example obtains the `wheels` section for the configuration in the preceding example:
 
 ```razor
 @code {
@@ -247,7 +247,7 @@ Provide ***public*** authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library):
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library):
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -369,7 +369,7 @@ The following Razor component retrieves the settings with the [`@inject`](xref:m
 }
 ```
 
-Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> and <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
 
 :::moniker range=">= aspnetcore-11.0"
 

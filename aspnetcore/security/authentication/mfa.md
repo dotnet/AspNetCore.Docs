@@ -31,7 +31,7 @@ MFA requires at least two or more types of proof for an identity. Proof types ca
 
 Two-factor authentication (2FA) is like a subset of MFA. 2FA requires exactly two types of proof, whereas MFA can require two or _more_ factors to prove the identity.
 
-2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.TwoFactorEnabled%2A?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
+2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1.TwoFactorEnabled?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
@@ -42,7 +42,7 @@ MFA with TOTP is supported by default when using ASP.NET Core Identity. This app
 
 For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes).
 
-To disable support for MFA TOTP, configure authentication by using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> method instead of the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A> method. The `AddDefaultIdentity` method calls the <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> method internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> method for each required provider. For more information on available token providers, see the ['AddDefaultTokenProviders' reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityBuilderExtensions.cs) in the `dotnet/aspnetcore` GitHub repository.
+To disable support for MFA TOTP, configure authentication by using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*> method instead of the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> method. The `AddDefaultIdentity` method calls the <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*> method internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider*> method for each required provider. For more information on available token providers, see the ['AddDefaultTokenProviders' reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityBuilderExtensions.cs) in the `dotnet/aspnetcore` GitHub repository.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

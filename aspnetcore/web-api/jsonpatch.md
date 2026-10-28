@@ -54,14 +54,14 @@ To enable JSON Patch support with <xref:System.Text.Json>, install the [`Microso
 dotnet add package Microsoft.AspNetCore.JsonPatch.SystemTextJson
 ```
 
-This package provides a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> class to represent a JSON Patch document for objects of type `TModel` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> class is <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `TModel`.
+This package provides a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1> class to represent a JSON Patch document for objects of type `TModel` and custom logic for serializing and deserializing JSON Patch documents using <xref:System.Text.Json>. The key method of the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1> class is <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)>, which applies the patch operations to a target object of type `TModel`.
 
 ## Minimal API PATCH endpoint applying JSON Patch
 
 In a Minimal API, a PATCH endpoint for JSON Patch:
 
 * Uses `MapPatch` to define the route.
-* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> parameter.
+* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1> parameter.
 * Calls <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
 ### Example Minimal API PATCH endpoint
@@ -108,7 +108,7 @@ The following example shows the body of a validation problem response for a JSON
 
 The following examples demonstrate how to use the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method to apply a JSON Patch document to an object.
 
-### Example: Apply a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> to an object
+### Example: Apply a <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1> to an object
 
 The following example demonstrates:
 
@@ -178,12 +178,12 @@ The previous example results in the following output of the updated object:
 }
 ```
 
-The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method generally follows the conventions and options of <xref:System.Text.Json> for processing the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601>, including the behavior controlled by the following options:
+The <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> method generally follows the conventions and options of <xref:System.Text.Json> for processing the <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1>, including the behavior controlled by the following options:
 
 * <xref:System.Text.Json.Serialization.JsonNumberHandling>: Whether numeric properties are read from strings.
 * <xref:System.Text.Json.JsonSerializerOptions.PropertyNameCaseInsensitive>: Whether property names are case-sensitive.
 
-Key differences between <xref:System.Text.Json> and the new <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> implementation:
+Key differences between <xref:System.Text.Json> and the new <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1> implementation:
 
 * The runtime type of the target object, not the declared type, determines which properties <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument.ApplyTo(System.Object)> patches.
 * <xref:System.Text.Json> deserialization relies on the declared type to identify eligible properties.
@@ -259,7 +259,7 @@ to the test value 'Jane'.
 
 ### Example: Construct a JSON Patch document using strongly-typed lambda expressions
 
-In addition to specifying paths as string literals, <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument%601> supports defining patch operations using strongly-typed lambda expressions. Strongly-typed lambda expressions:
+In addition to specifying paths as string literals, <xref:Microsoft.AspNetCore.JsonPatch.SystemTextJson.JsonPatchDocument`1> supports defining patch operations using strongly-typed lambda expressions. Strongly-typed lambda expressions:
 
 * Provide compile-time verification that property paths and value types match the model.
 * Eliminate runtime typographical errors, such a casing error, that can occur with string-based JSON Pointer paths.

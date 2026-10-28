@@ -60,7 +60,7 @@ Accept-Encoding: gzip, deflate, br
 
 ### Exception handler
 
-In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
+In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. 
 
 For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
 
@@ -99,7 +99,7 @@ public record User(int Id);
 The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` is greater than `0`, otherwise a `400 BAD REQUEST` status code without a response body. For more information about creating a response, see [Create responses in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/responses).
 
 The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatuscodepages) can be configured to produce a common body content, **when empty**, for all HTTP client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configured by calling the 
-[UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A>) extension method.
+[UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*>) extension method.
 
 For example, the following example changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (for example, `404 NOT FOUND`). For more information, see the [Problem Details](#problem-details) section.
 

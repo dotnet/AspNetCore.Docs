@@ -39,7 +39,7 @@ The following sections explain how to configure endpoints by using the following
 * `ASPNETCORE_URLS` environment variable
 * `--urls` command-line argument
 * `urls` host configuration key
-* [UseUrls](xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls%2A) extension method
+* [UseUrls](xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls*) extension method
 * [WebApplication.Urls](xref:Microsoft.AspNetCore.Builder.WebApplication.Urls) property
 
 #### URL formats
@@ -134,13 +134,13 @@ Clients connecting to a modified endpoint might be disconnected or refused while
 
 #### ConfigurationLoader
 
-The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader>. The loader's <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method can be used to supplement a configured endpoint's settings:
+The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure*> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader>. The loader's <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method can be used to supplement a configured endpoint's settings:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
-`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost%2A>.
+`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost>.
 
-* The configuration section for each endpoint is available on the options in the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint%2A> method so custom settings can be read.
+* The configuration section for each endpoint is available on the options in the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint*> method so custom settings can be read.
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)?displayProperty=nameWithType> can be called multiple times, but only the last configuration is used unless `Load` is explicitly called on prior instances. The default host doesn't call `Load` so its default configuration section might be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints can be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
@@ -148,34 +148,34 @@ The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configur
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> provides methods for configuring endpoints in code:
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost%2A>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP%2A>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenNamedPipe%2A>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenNamedPipe*>
 
 When both the `Listen` and [UseUrls](#specify-endpoints-with-urls) APIs are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.
 
 #### Bind to a TCP socket
 
-The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A>, <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost%2A>, and <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP%2A> methods bind to a TCP socket:
+The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*>, <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost*>, and <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> methods bind to a TCP socket:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Listen":::
 
 The example code:
 
 * Configures endpoints that listen on port 5000 and 5001.
-* Configures HTTPS for an endpoint with the <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps%2A> extension method on a <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions> object. For more information, see [Configure HTTPS in code](#configure-https-in-code).
+* Configures HTTPS for an endpoint with the <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps*> extension method on a <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions> object. For more information, see [Configure HTTPS in code](#configure-https-in-code).
 
 [!INCLUDE [How to make an X.509 cert](~/includes/make-x509-cert.md)]
 
 #### Bind to a Unix socket
 
-Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> for improved performance with Nginx, as shown in this example:
+Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> for improved performance with Nginx, as shown in this example:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ListenUnixSocket":::
 
-* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`, where `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A>. In the code example, the name is `kestrel-test.sock`.
+* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`, where `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>. In the code example, the name is `kestrel-test.sock`.
 * Ensure the socket is writeable by Nginx. (You can set the write permissions on the socket with the `chmod go+w /tmp/kestrel-test.sock` command).
 
 #### Configure endpoint defaults
@@ -185,7 +185,7 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
 
 > [!NOTE]
-> Endpoints created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults%2A> don't have the defaults applied.
+> Endpoints created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> don't have the defaults applied.
 
 ### Use dynamic port binding
 
@@ -195,7 +195,7 @@ When port number `0` is specified, Kestrel dynamically binds to an available por
 
 Dynamically binding a port isn't available in some scenarios:
 
-* The code calls the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost%2A>.
+* The code calls the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost*>.
 * The code binds together TCP-based HTTP/1.1 or HTTP/2 with QUIC-based HTTP/3.
 
 ## Configure HTTPS
@@ -353,7 +353,7 @@ The default value, `SslProtocols.None`, causes Kestrel to use the operating syst
 
 ### Configure HTTPS in code
 
-When you use the `Listen` API, the <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps%2A> extension method on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions> is available to configure HTTPS.
+When you use the `Listen` API, the <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps*> extension method on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions> is available to configure HTTPS.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Listen":::
 
@@ -368,7 +368,7 @@ The `ListenOptions.UseHttps` parameters include:
 * `location`: The store location to load the certificate from.
 * `serverCertificate`: The X.509 certificate.
 
-For a complete list of `UseHttps` overloads, see <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps%2A>.
+For a complete list of `UseHttps` overloads, see <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps*>.
 
 #### Configure client certificates in code
 
@@ -387,7 +387,7 @@ The [ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)](xref:Micros
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaults":::
 
 > [!NOTE]
-> Endpoints created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> don't have the defaults applied.
+> Endpoints created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> don't have the defaults applied.
 
 #### Configure SSL/TLS protocols in code
 
@@ -412,7 +412,7 @@ All websites must run on the same Kestrel instance. Kestrel doesn't support shar
 SNI can be configured in two ways:
 
 * Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, specify JSON in the _appsettings.json_ file.
-* Create an endpoint in code and select a certificate by using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector%2A> callback property.
+* Create an endpoint in code and select a certificate by using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback property.
 
 ### Configure SNI in appsettings.json
 

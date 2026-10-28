@@ -224,7 +224,7 @@ Blazor WebAssembly apps are often prevented from making direct calls across orig
 
 > :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
 
-Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request often fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
+Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode*> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request often fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
 
 * Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code (not a browser) to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
 
@@ -271,7 +271,7 @@ builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 The most common use cases for using the client's own base address are:
 
@@ -313,7 +313,7 @@ If the named client is to be used by prerendered client-side components of a Bla
 
 :::moniker-end
 
-The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -413,7 +413,7 @@ If the typed client is to be used by prerendered client-side components of a Bla
 
 :::moniker-end
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -500,12 +500,12 @@ We recommend disposing of every <xref:System.Net.Http.HttpRequestMessage> with e
 
 * To gain a performance improvement by avoiding finalizers.
 * It hardens the code for the future in case a request body is ever added to an <xref:System.Net.Http.HttpRequestMessage> that didn't initially have one.
-* To potentially avoid functional issues if a delegating handler expects a call to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* To potentially avoid functional issues if a delegating handler expects a call to <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>.
 * It's simpler to apply a general rule everywhere than trying to remember specific cases.
 
 ***Always*** dispose of <xref:System.Net.Http.HttpResponseMessage> instances.
 
-***Never*** dispose of <xref:System.Net.Http.HttpClient> instances created by calling <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> because they're managed by the framework.
+***Never*** dispose of <xref:System.Net.Http.HttpClient> instances created by calling <xref:System.Net.Http.IHttpClientFactory.CreateClient*> because they're managed by the framework.
 
 Example:
 
@@ -544,7 +544,7 @@ The client's base address is set to the originating server's address. Inject an 
 @inject HttpClient Http
 ```
 
-Use the <xref:System.Net.Http.Json?displayProperty=fullName> namespace for access to <xref:System.Net.Http.Json.HttpClientJsonExtensions>, including <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>, and <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>:
+Use the <xref:System.Net.Http.Json?displayProperty=fullName> namespace for access to <xref:System.Net.Http.Json.HttpClientJsonExtensions>, including <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*>, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync*>, and <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync*>:
 
 ```razor
 @using System.Net.Http.Json
@@ -561,9 +561,9 @@ The following sections cover JSON helpers:
 
 ## GET from JSON (`GetFromJsonAsync`)
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> sends an HTTP GET request and parses the JSON response body to create an object.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> sends an HTTP GET request and parses the JSON response body to create an object.
 
-In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> is called when the component is finished initializing ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)).
+In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> is called when the component is finished initializing ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)).
 
 ```csharp
 todoItems = await Http.GetFromJsonAsync<TodoItem[]>("todoitems");
@@ -571,7 +571,7 @@ todoItems = await Http.GetFromJsonAsync<TodoItem[]>("todoitems");
 
 ## POST as JSON (`PostAsJsonAsync`)
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> sends a POST request to the specified URI containing the value serialized as JSON in the request body.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync*> sends a POST request to the specified URI containing the value serialized as JSON in the request body.
 
 In the following component code, `newItemName` is provided by a bound element of the component. The `AddItem` method is triggered by selecting a `<button>` element.
 
@@ -579,7 +579,7 @@ In the following component code, `newItemName` is provided by a bound element of
 await Http.PostAsJsonAsync("todoitems", addItem);
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync*> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync*> extension method. The following example reads JSON weather data as an array:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? 
@@ -588,7 +588,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
 
 ## PUT as JSON (`PutAsJsonAsync`)
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> sends an HTTP PUT request with JSON-encoded content.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync*> sends an HTTP PUT request with JSON-encoded content.
 
 In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI (not shown) and `EditItem` is called. The `SaveItem` method is triggered by selecting the `<button>` element. The following example doesn't show loading `todoItems` for brevity. See the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items.
 
@@ -596,7 +596,7 @@ In the following component code, `editItem` values for `Name` and `IsCompleted` 
 await Http.PutAsJsonAsync($"todoitems/{editItem.Id}", editItem);
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync*> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync*> extension method. The following example reads JSON weather data as an array:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? 
@@ -607,12 +607,12 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
 
 ## PATCH as JSON (`PatchAsJsonAsync`)
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> sends an HTTP PATCH request with JSON-encoded content.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> sends an HTTP PATCH request with JSON-encoded content.
 
 > [!NOTE]
 > For more information, see <xref:web-api/jsonpatch>.
 
-In the following example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> receives a JSON PATCH document as a plain text string with escaped quotes:
+In the following example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> receives a JSON PATCH document as a plain text string with escaped quotes:
 
 ```csharp
 await Http.PatchAsJsonAsync(
@@ -620,7 +620,7 @@ await Http.PatchAsJsonAsync(
     "[{\"operationType\":2,\"path\":\"/IsComplete\",\"op\":\"replace\",\"value\":true}]");
 ```
 
-As of C# 11 (.NET 7), you can compose a JSON string as a [raw string literal](/dotnet/csharp/language-reference/tokens/raw-string). Specify JSON syntax with the <xref:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute.Json%2A?displayProperty=nameWithType> field to the [`[StringSyntax]` attribute](xref:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute) for code analysis tooling:
+As of C# 11 (.NET 7), you can compose a JSON string as a [raw string literal](/dotnet/csharp/language-reference/tokens/raw-string). Specify JSON syntax with the <xref:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute.Json*?displayProperty=nameWithType> field to the [`[StringSyntax]` attribute](xref:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute) for code analysis tooling:
 
 ```razor
 @using System.Diagnostics.CodeAnalysis
@@ -638,7 +638,7 @@ As of C# 11 (.NET 7), you can compose a JSON string as a [raw string literal](/d
 }
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON todo item data as an array. An empty array is created if no item data is returned by the method, so `content` isn't null after the statement executes:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync*> extension method. The following example reads JSON todo item data as an array. An empty array is created if no item data is returned by the method, so `content` isn't null after the statement executes:
 
 ```csharp
 using var response = await Http.PatchAsJsonAsync(...);
@@ -700,7 +700,7 @@ Add `@using` directives for the <xref:System.Text.Json?displayProperty=fullName>
 @using Microsoft.AspNetCore.JsonPatch
 ```
 
-Compose the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a `TodoItem` with `IsComplete` set to `true` using the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.Replace%2A> method:
+Compose the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a `TodoItem` with `IsComplete` set to `true` using the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.Replace*> method:
 
 ```csharp
 var patchDocument = new JsonPatchDocument<TodoItem>()
@@ -711,7 +711,7 @@ var patchDocument = new JsonPatchDocument<TodoItem>()
 
 :::moniker range=">= aspnetcore-7.0"
 
-Pass the document's operations (`patchDocument.Operations`) to the <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> call:
+Pass the document's operations (`patchDocument.Operations`) to the <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> call:
 
 ```csharp
 private async Task UpdateItem(long id)
@@ -791,7 +791,7 @@ For a fully working PATCH experience, see the `BlazorWebAppCallWebApi` [sample a
 
 ## DELETE (`DeleteAsync`) and additional extension methods
 
-<xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType> is used to send an HTTP DELETE request to a web API.
+<xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. <xref:System.Net.Http.HttpClient.DeleteAsync*?displayProperty=nameWithType> is used to send an HTTP DELETE request to a web API.
 
 In the following component code, the `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete.
 
@@ -805,7 +805,7 @@ await Http.DeleteAsync($"todoitems/{id}");
 
 For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
 
-To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled%2A> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
+To enable request streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestStreamingEnabled*> to `true` on the <xref:System.Net.Http.HttpRequestMessage>.
 
 In the following file upload example:
 
@@ -834,7 +834,7 @@ For more information on file uploads with an <xref:Microsoft.AspNetCore.Componen
 
 *The guidance in this section applies to client-side scenarios that rely upon an authentication cookie.*
 
-For cookie-based authentication, which is considered more secure than bearer token authentication, cookie credentials can be sent with each web API request by calling <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> with a <xref:System.Net.Http.DelegatingHandler> on a preconfigured <xref:System.Net.Http.HttpClient>. The handler configures <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> with <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include?displayProperty=nameWithType>, which advises the browser to send credentials with each request, such as cookies or HTTP authentication headers, including for cross-origin requests.
+For cookie-based authentication, which is considered more secure than bearer token authentication, cookie credentials can be sent with each web API request by calling <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> with a <xref:System.Net.Http.DelegatingHandler> on a preconfigured <xref:System.Net.Http.HttpClient>. The handler configures <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials*> with <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include?displayProperty=nameWithType>, which advises the browser to send credentials with each request, such as cookies or HTTP authentication headers, including for cross-origin requests.
 
 `CookieHandler.cs`:
 
@@ -920,16 +920,16 @@ Example:
 
 In the app's `Program` file, call:
 
-* <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi%2A>: Enables token acquisition to call web APIs.
-* <xref:Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi%2A>: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> to obtain weather data from an external web API (`MinimalApiJwt` project).
-* <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A>: Adds the .NET distributed token caches to the service collection.
-* <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
+* <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilder.EnableTokenAcquisitionToCallDownstreamApi*>: Enables token acquisition to call web APIs.
+* <xref:Microsoft.Identity.Web.DownstreamApiExtensions.AddDownstreamApi*>: Microsoft Identity Web packages provide API to create a named downstream web service for making web API calls. <xref:Microsoft.Identity.Abstractions.IDownstreamApi> is injected into a server-side class, which is used to call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync*> to obtain weather data from an external web API (`MinimalApiJwt` project).
+* <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches*>: Adds the .NET distributed token caches to the service collection.
+* <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*>: Adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory.
 * Configure the distributed token cache options (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions>):
-  * In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache%2A> to `true`. ***Be sure to reset it back to `false` for production.***
-  * Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit%2A) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
-  * In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
-  * Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration%2A>. The default value is 1 hour.
-  * For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure%2A>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write%2A>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
+  * In development for debugging purposes, you can disable the L1 cache by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.DisableL1Cache> to `true`. ***Be sure to reset it back to `false` for production.***
+  * Set the maximum size of your L1 cache with [`L1CacheOptions.SizeLimit`](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit) to prevent the cache from overrunning the server's memory. The default value is 500 MB.
+  * In development for debugging purposes, you can disable token encryption at rest by setting <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt> to `false`, which is the default value. ***Be sure to reset it back to `true` for production.***
+  * Set token eviction from the cache with <xref:Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration>. The default value is 1 hour.
+  * For more information, including guidance on the callback for L2 cache failures (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.OnL2CacheFailure>) and asynchronous L2 cache writes (<xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.EnableAsyncL2Write>), see <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions> and [Token cache serialization: Distributed token caches](/entra/msal/dotnet/how-to/token-cache-serialization#distributed-token-caches).
 
 You can choose to encrypt the cache and should always do so in production.
 
@@ -958,7 +958,7 @@ builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
     });
 ```
 
-In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches%2A> to ensure that there's a base implementation available for distributed token caching.
+In-memory distributed token caches are created when calling <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.DistributedTokenCacheAdapterExtension.AddDistributedTokenCaches*> to ensure that there's a base implementation available for distributed token caching.
 
 Production web apps and web APIs should use a production distributed token cache (for example: [Redis](https://redis.io/), [Microsoft SQL Server](https://www.microsoft.com/sql-server), [Microsoft Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)).
 
@@ -971,9 +971,9 @@ Production web apps and web APIs should use a production distributed token cache
 >
 > Later in the development and testing period, adopt a production distributed token cache provider.
 
-<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*> adds a default implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> that stores cache items in memory, which is used by Microsoft Identity Web for token caching.
 
-<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
+<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*> requires a package reference to the [`Microsoft.Extensions.Caching.Memory` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -982,16 +982,16 @@ To configure a production distributed cache provider, see <xref:performance/cach
 > [!WARNING]
 > Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
 
-For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache%2A>.
+For more information, see [Token cache serialization: Distributed caches](/entra/msal/dotnet/how-to/token-cache-serialization?tabs=msal#distributed-caches). However, the code examples shown don't apply to ASP.NET Core apps, which configure distributed caches via <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*>, not <xref:Microsoft.Identity.Web.TokenCacheExtensions.AddDistributedTokenCache*>.
 
 <!-- DOC AUTHOR NOTE: The next part on using a shared DP key ring is also
                       covered in the *BWA + Entra* security article. Mirror 
                       changes when updating this portion of content. -->
 
-Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A?displayProperty=nameWithType> is set to `true`.
+Use a shared Data Protection key ring in production so that instances of the app across servers in a web farm can decrypt tokens when <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt?displayProperty=nameWithType> is set to `true`.
 
 > [!NOTE]
-> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt%2A> to `false` and configure a shared Data Protection key ring later:
+> For early development and local testing on a single machine, you can set <xref:Microsoft.Identity.Web.TokenCacheProviders.Distributed.MsalDistributedTokenCacheAdapterOptions.Encrypt> to `false` and configure a shared Data Protection key ring later:
 >
 > ```csharp
 > options.Encrypt = false;
@@ -1048,7 +1048,7 @@ builder.Services.AddDataProtection()
 
 `{TENANT ID}`: Tenant ID.
 
-`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName%2A> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
+`{APPLICATION NAME}`: <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> sets the unique name of this app within the data protection system. The value should match across deployments of the app.
 
 `{BLOB URI}`: Full URI to the key file. The URI is generated by Azure Storage when you create the key file. Do not use a SAS.
 
@@ -1057,7 +1057,7 @@ builder.Services.AddDataProtection()
 > [!NOTE]
 > In non-`Production` environments, the preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as the <xref:Azure.Identity.ManagedIdentityCredential> shown in the preceding example. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
-Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync%2A> when calling on behalf of a user:
+Inject <xref:Microsoft.Identity.Abstractions.IDownstreamApi> and call <xref:Microsoft.Identity.Abstractions.IDownstreamApi.CallApiForUserAsync*> when calling on behalf of a user:
 
 ```csharp
 internal sealed class ServerWeatherForecaster(IDownstreamApi downstreamApi) : IWeatherForecaster
@@ -1162,13 +1162,13 @@ For more information, see the following resources:
 }
 ```
 
-Blazor's client-side implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch) and configures the underlying [request-specific Fetch API options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters) via <xref:System.Net.Http.HttpRequestMessage> extension methods and <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions>. Set additional options using the generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method. Blazor and the underlying Fetch API don't directly add or modify request headers. For more information on how user agents, such as browsers, interact with headers, consult external user agent documentation sets and other web resources.
+Blazor's client-side implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch) and configures the underlying [request-specific Fetch API options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters) via <xref:System.Net.Http.HttpRequestMessage> extension methods and <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions>. Set additional options using the generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption*> extension method. Blazor and the underlying Fetch API don't directly add or modify request headers. For more information on how user agents, such as browsers, interact with headers, consult external user agent documentation sets and other web resources.
 
 :::moniker range=">= aspnetcore-10.0"
 
 Response streaming is enabled by default.
 
-Calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync%2A?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content%2A?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a [`BrowserHttpReadStream` (reference source)](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs), not a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
+Calling <xref:System.Net.Http.HttpContent.ReadAsStreamAsync*?displayProperty=nameWithType> for an <xref:System.Net.Http.HttpResponseMessage.Content?displayProperty=nameWithType> (`response.Content.ReadAsStreamAsync()`) returns a [`BrowserHttpReadStream` (reference source)](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs), not a <xref:System.IO.MemoryStream>. `BrowserHttpReadStream` doesn't support synchronous operations, such as `Stream.Read(Span<Byte>)`. If your code uses synchronous operations, you can opt-out of response streaming or copy the <xref:System.IO.Stream> into a <xref:System.IO.MemoryStream> yourself.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -1182,7 +1182,7 @@ To opt-out of response streaming globally, use either of the following approache
 
 * Set the `DOTNET_WASM_ENABLE_STREAMING_RESPONSE` environment variable to `false` or `0`.
 
-To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`request` in the following example):
+To opt-out of response streaming for an individual request, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled*> to `false` on the <xref:System.Net.Http.HttpRequestMessage> (`request` in the following example):
 
 ```csharp
 request.SetBrowserResponseStreamingEnabled(false);
@@ -1192,13 +1192,13 @@ request.SetBrowserResponseStreamingEnabled(false);
 
 :::moniker range="< aspnetcore-10.0"
 
-The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A>  to `true` on the <xref:System.Net.Http.HttpRequestMessage>:
+The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled*>  to `true` on the <xref:System.Net.Http.HttpRequestMessage>:
 
 ```csharp
 request.SetBrowserResponseStreamingEnabled(true);
 ```
 
-By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.HttpCompletionOption) is set, which results in the <xref:System.Net.Http.HttpClient> completing after reading the entire response, including the content. In order to be able to use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> option on large files, set [`HttpCompletionOption.ResponseHeadersRead`](xref:System.Net.Http.HttpCompletionOption) to avoid caching the file's content in memory:
+By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.HttpCompletionOption) is set, which results in the <xref:System.Net.Http.HttpClient> completing after reading the entire response, including the content. In order to be able to use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled*> option on large files, set [`HttpCompletionOption.ResponseHeadersRead`](xref:System.Net.Http.HttpCompletionOption) to avoid caching the file's content in memory:
 
 ```diff
 - using var response = await Http.SendAsync(request);
@@ -1208,7 +1208,7 @@ By default, [`HttpCompletionOption.ResponseContentRead`](xref:System.Net.Http.Ht
 
 :::moniker-end
 
-To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> extension method:
+To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials*> extension method:
 
 ```csharp
 request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
@@ -1218,13 +1218,13 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 ## Handle errors
 
-Handle web API response errors in developer code when they occur. For example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> expects a JSON response from the web API with a `Content-Type` of `application/json`. If the response isn't in JSON format, content validation throws a <xref:System.NotSupportedException>.
+Handle web API response errors in developer code when they occur. For example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> expects a JSON response from the web API with a `Content-Type` of `application/json`. If the response isn't in JSON format, content validation throws a <xref:System.NotSupportedException>.
 
 In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast`, which is missing the letter `e` in `Forecast`.
 
-The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> call expects JSON to be returned, but the web API returns HTML for an unhandled exception with a `Content-Type` of `text/html`. The unhandled exception occurs because the path to `/WeatherForcast` isn't found and middleware can't serve a page or view for the request.
+The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> call expects JSON to be returned, but the web API returns HTML for an unhandled exception with a `Content-Type` of `text/html`. The unhandled exception occurs because the path to `/WeatherForcast` isn't found and middleware can't serve a page or view for the request.
 
-In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user.
+In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user.
 
 `ReturnHTMLOnException.razor`:
 
