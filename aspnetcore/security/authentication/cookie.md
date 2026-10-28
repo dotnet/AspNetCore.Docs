@@ -30,6 +30,9 @@ For demonstration purposes in the sample app, the user account for the hypotheti
 
 [!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=8-9,24-28)]
 
+> [!NOTE]
+> The preceding sample includes `builder.Services.AddHttpContextAccessor()` because its Razor Pages (`Index.cshtml` and `_LoginPartial.cshtml`) inject <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>. In standard controllers, Razor Pages (`PageModel`), and minimal API route handlers, `HttpContext` and `HttpContext.User` are available directly without registering `IHttpContextAccessor`.
+
 <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and the app needs to [authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme). Setting the `AuthenticationScheme` to <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> provides a value of `"Cookies"` for the scheme. Any string value can be used that distinguishes the scheme.
 
 If <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> (default value: "`Cookies`") isn't used as the scheme, supply the scheme used when configuring the authentication provider. Otherwise, the default scheme is used. For example, if "`ContosoCookie`" is used as the scheme, supply the scheme used when configuring the authentication provider.
