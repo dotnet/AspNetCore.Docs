@@ -86,7 +86,7 @@ The preceding code enables the successful resolution of resx files.
 
 ## Culture fallback behavior
 
-When searching for a resource, localization engages in "culture fallback". Starting from the requested culture, if not found, it reverts to the parent culture of that culture. As an aside, the <xref:System.Globalization.CultureInfo.Parent*?displayProperty=nameWithType> property represents the parent culture. This usually (but not always) means removing the national signifier from the language-and-culture code. For example, the dialect of Spanish spoken in Mexico is "es-MX". It has the parent "es"&mdash;Spanish non-specific to any country.
+When searching for a resource, localization engages in *culture fallback*. Starting from the requested culture, if not found, it reverts to the parent culture of that culture. As an aside, the <xref:System.Globalization.CultureInfo.Parent*?displayProperty=nameWithType> property represents the parent culture. This usually (but not always) means removing the national signifier from the language-and-culture code. For example, the dialect of Spanish spoken in Mexico is `es-MX` with the parent `es`, which is non-specific Spanish.
 
 Imagine your site receives a request for a "Welcome" resource using culture "fr-CA". The localization system looks for the following resources, in order, and selects the first match:
 
