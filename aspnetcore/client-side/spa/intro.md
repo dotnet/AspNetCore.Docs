@@ -1,6 +1,6 @@
 ---
 title: Overview of Single Page Apps (SPAs) - ASP.NET Core
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-8.0'
 description: Learn how to get started with Single Page Apps (SPAs) in ASP.NET Core and find links to tutorials for detailed procedures.
 ms.date: 04/24/2026
 uid: spa/intro
@@ -10,8 +10,6 @@ uid: spa/intro
 # Overview of Single Page Apps (SPAs) in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
-::: moniker range=">= aspnetcore-8.0"
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 
@@ -26,11 +24,3 @@ To get started, follow one of the tutorials in the Visual Studio documentation:
 For more information, see [JavaScript and TypeScript in Visual Studio](/visualstudio/javascript/javascript-in-visual-studio)
 
 [!INCLUDE [spa-templates-new-vs-old](../../includes/spa-templates-new-vs-old.md)]
-
-## Related content
-
-- [Developing Single Page Apps](/aspnet/core/client-side/spa/intro?view=aspnetcore-7.0&preserve-view=true#developing-single-page-apps)
-
-::: moniker-end
-
-[!INCLUDE[](~/client-side/spa/includes/intro6-7.md)]

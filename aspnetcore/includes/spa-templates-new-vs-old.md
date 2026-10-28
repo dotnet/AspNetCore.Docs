@@ -17,7 +17,3 @@ The Visual Studio templates for building ASP.NET Core apps with a JavaScript or 
 * npm dependency management UI.
 * Compatible with Visual Studio Code debugging and launch configuration.
 * Run frontend unit tests in [Test Explorer](/visualstudio/test/run-unit-tests-with-test-explorer) by using JavaScript test frameworks.
-
-## Legacy ASP.NET Core SPA templates
-
-Earlier versions of the .NET SDK included what are now legacy templates for building SPA apps with ASP.NET Core. For documentation on these older templates, see the .NET 7 version of the [SPA overview](xref:spa/intro?view=aspnetcore-7.0&preserve-view=true) and the [Angular](xref:spa/angular?view=aspnetcore-7.0&preserve-view=true&tabs=net-cli) and [React](xref:spa/react?view=aspnetcore-7.0&preserve-view=true&tabs=net-cli) articles.
