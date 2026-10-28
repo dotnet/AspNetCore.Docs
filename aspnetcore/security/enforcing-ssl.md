@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 10/21/2026
+ms.date: 10/27/2026
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -438,6 +438,39 @@ Sometimes when an ASP.NET Core HTTPS development certificate is [installed and t
 The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
 To repair the IIS Express certificate, see [Stack Overflow issue #20036984 / answer #20048613](https://stackoverflow.com/questions/20036984/how-do-i-restore-a-missing-iis-express-ssl-certificate/20048613#20048613) - _How do I restore a missing IIS Express SSL Certificate?_
+
+### Expired development certificate (`NET::ERR_CERT_DATE_INVALID`)
+
+ASP.NET Core development certificates are valid for a limited period (typically 12 months). When a development certificate expires, browsers and client tools report errors such as `NET::ERR_CERT_DATE_INVALID` or `SEC_ERROR_EXPIRED_CERTIFICATE`.
+
+To renew an expired development certificate:
+
+1. Remove the expired certificates and create a new trusted development certificate:
+
+   ```dotnetcli
+   dotnet dev-certs https --clean
+   dotnet dev-certs https --trust
+   ```
+
+1. If your development environment exports or mounts the certificate file to disk, such as in Docker containers, JavaScript Project System (JSPS) SPA projects, or Kestrel `Certificates:Default:Path` configurations:
+
+   * **Re-export the certificate**: Export the new certificate to the expected file location. In the following example, the `<path to certificate>` placeholder is the path to the certificate `.pfx` file (for example, `/etc/ssl/certs/myapp-dev.pfx`), and the `<password>` placeholder is the password:
+
+     ```dotnetcli
+     dotnet dev-certs https -ep <path to certificate> -p <password>
+     ```
+
+   * **Docker development**: Delete the expired certificate file in `%APPDATA%\ASP.NET\Https` (Windows) or `~/.aspnet/https` (Linux/macOS), regenerate the certificate using `dotnet dev-certs https -ep ...`, and restart the Docker container to mount the updated certificate.
+
+   * **SPA development**: Delete the expired certificate files in `%APPDATA%\ASP.NET\https` or `~/.aspnet/https`, such as `<project-name>.pem` and `<project-name>.key`. SPA development servers regenerate or re-export these files automatically upon startup, or export them using:
+
+     ```dotnetcli
+     dotnet dev-certs https --export-path <path to certificate> --format Pem --no-password
+     ```
+
+1. Stop and restart the running application, including any `dotnet run` or Kestrel process. Kestrel loads the development certificate at startup; restarting the application ensures it loads the renewed certificate.
+
+1. Completely close all browser windows and restart your IDE, such as Visual Studio or Visual Studio Code, to clear cached SSL/TLS sessions.
 
 ### All platforms - certificate not trusted
 
