@@ -1,7 +1,7 @@
 name: 'OPS build reporter'
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
 
 concurrency:
@@ -9,23 +9,30 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  statuses: read
 
 jobs:
-  ops_build_reporter_job:
-    name: Add preview links and annotate files
+  report:
+    name: Collect OPS diagnostics and previews
     runs-on: ubuntu-latest
-    permissions:
-      statuses: read
-      checks: write
-      pull-requests: write
+    timeout-minutes: 65
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
         with:
           egress-policy: audit
 
-      - uses: dotnet/docs-actions/ops-build-reporter@cdb3719bab6025f7621b04044094048f597b1ae0 # main
+      - name: Produce report artifacts
+        id: report
+        uses: dotnet/docs-actions/ops-build-reporter@e92e67a4b93ea5976eea3d65af4b2082818c7045 # main
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          annotate_file_warnings: true
+          repo_token: ${{ github.token }}
+
+      - name: Upload report
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: ops-build-report
+          path: ${{ steps.report.outputs.artifact_path }}
+          if-no-files-found: error
+          retention-days: 7
+          overwrite: true
