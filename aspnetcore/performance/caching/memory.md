@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Learn how to cache data in memory in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/27/2026
+ms.date: 10/28/2026
 uid: performance/caching/memory
 
 # customer intent: As an ASP.NET developer, I want to use in-memory caching in ASP.NET Core, so I can improve the performance and scalability of my app.
@@ -197,7 +197,7 @@ The following notes apply to in-memory caching:
 
 * Accessing the <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Count> property is computationally expensive under high concurrency because it requires aggregating items across internal partitions. Avoid accessing `Count` frequently in performance-sensitive request paths.
 
-* <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate%2A> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync%2A> aren't atomic. When several requests miss the same key at the same time, each request runs the factory, and the last value written is the one that stays in the cache. For an expensive data source, this can cause a burst of duplicate calls. To run the factory only once per key, use [`HybridCache`](xref:performance/caching/hybrid), which provides stampede protection.
+* <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*> aren't atomic. When several requests miss the same key at the same time, each request runs the factory, and the last value written is the one that stays in the cache. For an expensive data source, this can cause a burst of duplicate calls. To run the factory only once per key, use [`HybridCache`](xref:performance/caching/hybrid), which provides stampede protection.
 
 * The cache stores references to objects, not copies. If code changes an object after reading it from the cache, every caller that reads that entry sees the change. Cache immutable objects, or copy an object before changing it.
 
