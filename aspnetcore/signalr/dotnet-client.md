@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR .NET client
 ai-usage: ai-assisted
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 09/20/2026
+ms.date: 10/27/2026
 uid: signalr/dotnet-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR .NET client, so I can connect to a SignalR hub and use hub and client methods.
@@ -284,13 +284,35 @@ Canceling a non-streaming invocation is supported by the .NET client only. The J
 
 ## Call client methods from hub
 
-Define the methods that the hub calls by using `connection.On` after building, but before starting the connection:
+Define the methods that the hub calls by using `connection.On`. Typically, handlers are registered after building the connection and before starting it:
 
 [!code-csharp[Define client methods](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_ConnectionOn)]
 
 The preceding code in `connection.On` runs when server-side code calls it by using the `SendAsync` method:
 
 [!code-csharp[Call client method](dotnet-client/samples/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
+
+Registering handlers before calling `StartAsync` is recommended to avoid missing incoming messages that the server may send immediately upon connecting. However, handlers can also be registered dynamically after the connection has already started.
+
+To unregister a handler:
+
+* Call <xref:System.IDisposable.Dispose*> on the `IDisposable` returned by `connection.On`:
+
+  ```csharp
+  IDisposable handler = connection.On<string, string>("ReceiveMessage", (user, message) =>
+  {
+      // ...
+  });
+
+  // Later, stop listening for messages:
+  handler.Dispose();
+  ```
+
+* In ASP.NET Core 2.2 and later, call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Remove*> with the method name to remove all handlers registered for that method:
+
+  ```csharp
+  connection.Remove("ReceiveMessage");
+  ```
 
 > [!NOTE]
 > While the hub side of the connection supports strongly typed messaging, the client must register by using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On*?displayProperty=nameWithType> with the method name. For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
