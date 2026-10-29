@@ -23,7 +23,7 @@ ASP.NET Core SignalR supports two protocols for encoding messages: [JSON](https:
 
 ### JSON serialization options
 
-JSON serialization can be configured on the server by using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol%2A> extension method. `AddJsonProtocol` can be added after the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> method in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions%2A> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
+JSON serialization can be configured on the server by using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol*> extension method. `AddJsonProtocol` can be added after the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> method in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
 
 For example, to configure the serializer to not change the casing of property names, rather than the default [camel case](https://wikipedia.org/wiki/Camel_case) names, use the following code in the _Program.cs_ file:
 
@@ -57,7 +57,7 @@ If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/pac
 
 ### MessagePack serialization options
 
-MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol%2A> call. For more information, see [MessagePack in SignalR](xref:signalr/messagepackhubprotocol).
+MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. For more information, see [MessagePack in SignalR](xref:signalr/messagepackhubprotocol).
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -89,7 +89,7 @@ Options can be configured for all hubs by providing an options delegate to the `
  });
 ```
 
-Options for a single hub override the global options provided in `AddSignalR` and can be configured by using the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions%2A> method:
+Options for a single hub override the global options provided in `AddSignalR` and can be configured by using the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> method:
 
 ```csharp
 builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
@@ -98,9 +98,20 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 });
 ```
 
+### Implications of increasing or disabling `MaximumReceiveMessageSize`
+
+The default `MaximumReceiveMessageSize` is 32 KB (32,768 bytes). If a client sends a message exceeding this limit, an error is logged and the connection is aborted.
+
+When increasing this limit or setting it to `null` (unlimited), consider the following security and performance implications:
+
+* **Memory consumption and DoS vulnerability**: Each incoming message is buffered in memory by the server before and during deserialization. If multiple clients send large payloads concurrently (or a malicious client floods the hub with oversized messages), server memory can quickly become exhausted. This can lead to heavy Garbage Collection (GC) pauses, thread starvation, or `OutOfMemoryException` crashes.
+* **Hub authorization does not eliminate the risk**: While applying `[Authorize]` prevents unauthenticated callers from invoking hub methods, authenticated accounts can still cause denial-of-service issues if message limits are removed or set excessively high.
+* **Large payload recommendation**: Avoid sending large files, binary streams, or oversized JSON documents over hub method invocations. Instead, upload large payloads to dedicated HTTP endpoints (such as Minimal APIs or controller actions with streaming support) or directly to cloud blob storage, and transmit only references, IDs, or lightweight notifications across the SignalR hub.
+* **Scope limits per hub**: When larger messages are necessary for a specific hub, configure `MaximumReceiveMessageSize` on that specific hub using `AddHubOptions<THub>` rather than modifying it globally across all hubs.
+
 ### Configure advanced HTTP options
 
-Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> method in `Program.cs`.
+Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> method in `Program.cs`.
 
 [!code-csharp[](~/signalr/configuration/samples/6.x/Program.cs?highlight=24-30)]
 

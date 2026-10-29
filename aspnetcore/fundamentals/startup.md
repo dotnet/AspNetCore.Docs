@@ -20,7 +20,7 @@ For Blazor startup guidance, which adds to or supersedes the guidance in this ar
 
 ASP.NET Core apps initialize and configure startup in the app's `Program` file (`Program.cs`).
 
-The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults before the app is started. The ASP.NET Core project templates assign the web application builder to a variable named `builder`: 
+The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults before the app is started. The ASP.NET Core project templates assign the web application builder to a variable named `builder`: 
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -36,7 +36,7 @@ Properties of the web application builder include:
 * [`builder.Services`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services) is a collection of dependency injection (DI) services (<xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>) for the app to compose for [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion). For more information, see <xref:fundamentals/dependency-injection>.
 * [`builder.WebHost`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) is an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> for configuring server specific properties.
 
-The app is built by calling <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A?displayProperty=nameWithType>, which returns the built <xref:Microsoft.AspNetCore.Builder.WebApplication>. The ASP.NET Core project templates assign the built web application to a variable named `app`:
+The app is built by calling <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build*?displayProperty=nameWithType>, which returns the built <xref:Microsoft.AspNetCore.Builder.WebApplication>. The ASP.NET Core project templates assign the built web application to a variable named `app`:
 
 ```csharp
 var app = builder.Build();
@@ -44,21 +44,21 @@ var app = builder.Build();
 
 The next part of the `Program` file focuses on establishing the HTTP request handling pipeline as a series of [middleware components](xref:fundamentals/middleware/index). Each middleware performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request. By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." For more information, see <xref:fundamentals/middleware/index>.
 
-The <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> method starts the app and blocks the calling thread until the host is shut down:
+The <xref:Microsoft.AspNetCore.Builder.WebApplication.Run*> method starts the app and blocks the calling thread until the host is shut down:
 
 ```csharp
 app.Run();
 ```
 
-When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app transitions to an active, running process:
+When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run*> executes, the app transitions to an active, running process:
 
 1. Hosted services start.
 
-   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A> methods. Unless the app opts into concurrent hosted service startup (.NET 8 or later), hosted services start sequentially in the order of their DI container registrations. For more information, see <xref:fundamentals/host/hosted-services>.
+   The host loops through all registered [hosted services](xref:fundamentals/host/hosted-services) (<xref:Microsoft.Extensions.Hosting.IHostedService> instances) and calls their <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> methods. Unless the app opts into concurrent hosted service startup (.NET 8 or later), hosted services start sequentially in the order of their DI container registrations. For more information, see <xref:fundamentals/host/hosted-services>.
 
 1. The middleware pipeline is built.
 
-   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
+   When [`builder.Build`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build*) is called, dependencies are resolved, but the actual processing pipeline isn't completely set. When [`app.Run`](xref:Microsoft.AspNetCore.Builder.WebApplication.Run*) executes, the framework finalizes the HTTP middleware pipeline. The declared middleware methods and endpoint mappings are compiled into a single, high-performance execution delegate sequence. For more information, see <xref:fundamentals/middleware/index>.
 
 1. The web server ([Kestrel](xref:fundamentals/servers/kestrel) by default) is started.
 
@@ -76,7 +76,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
 1. The main execution thread is blocked while the app runs.
 
-   <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> (`app.Run()`) synchronously waits until shutdown.
+   <xref:Microsoft.AspNetCore.Builder.WebApplication.Run*> (`app.Run()`) synchronously waits until shutdown.
 
 1. The app is ready to process requests.
 
@@ -93,7 +93,7 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> executes, the app
 
   The app remains in this state indefinitely, passing incoming web traffic down the middleware pipeline and sending responses.
 
-When shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is detected in the command shell running the app or a container orchestration tool sends a SIGTERM event, <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> unblocks and the following actions take place:
+When shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is detected in the command shell running the app or a container orchestration tool sends a SIGTERM event, <xref:Microsoft.AspNetCore.Builder.WebApplication.Run*> unblocks and the following actions take place:
 
 1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping> tokens are triggered, which allows the app to run logic before the shutdown process begins.
 
@@ -101,7 +101,7 @@ When shutdown is signaled, for example when <kbd>Ctrl</kbd>+<kbd>c</kbd> is dete
 
 1. The host shuts down registered hosted services. Unless the app opts into stopping hosted services concurrently (.NET 8 or later), hosted services stop sequentially in the reverse order of their DI container registrations. For more information, see <xref:fundamentals/host/hosted-services>.
 
-1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers are triggered, which allows the app to run logic after the app has shut down.
+1. <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped> event handlers are triggered, which allows the app to run logic after the app has shut down.
 
 1. Console execution gracefully exits with an exit code of 0.
 
@@ -115,8 +115,8 @@ The `Startup` class configures services and the app's request pipeline.
 
 ASP.NET Core apps use a startup class, which is named `Startup` by convention. The `Startup` class:
 
-* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are *registered* in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices%2A>.
-* Includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method to create the app's request processing pipeline.
+* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are *registered* in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices>.
+* Includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method to create the app's request processing pipeline.
 
 `ConfigureServices` and `Configure` are called by the ASP.NET Core runtime when the app starts:
 
@@ -135,7 +135,7 @@ public class Startup
 }
 ```
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A?displayProperty=nameWithType> on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*?displayProperty=nameWithType> on the host builder:
 
 ```csharp
 public class Program
@@ -200,7 +200,7 @@ When the app defines separate `Startup` classes for different environments (for 
 
 ## The `ConfigureServices` method
 
-The optional <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> method is:
+The optional <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method is:
 
 * Called by the host before the `Configure` method to configure the app's services.
 * Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
@@ -239,11 +239,11 @@ public class Startup
 }
 ```
 
-Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices%2A>.
+Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices>.
 
 ## The `Configure` method
 
-The <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> method is used to specify how the app responds to HTTP requests. The request pipeline is configured by adding [middleware](xref:fundamentals/middleware/index) components to an <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> instance. `IApplicationBuilder` is available to the `Configure` method, but it isn't registered in the service container. Hosting creates an `IApplicationBuilder` and passes it directly to `Configure`.
+The <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method is used to specify how the app responds to HTTP requests. The request pipeline is configured by adding [middleware](xref:fundamentals/middleware/index) components to an <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> instance. `IApplicationBuilder` is available to the `Configure` method, but it isn't registered in the service container. Hosting creates an `IApplicationBuilder` and passes it directly to `Configure`.
 
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for:
 
@@ -290,7 +290,7 @@ public class Startup
 
 The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
 
-Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:fundamentals/static-files).
+Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:fundamentals/static-files).
 
 Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the chain, if appropriate.
 
@@ -338,7 +338,7 @@ While an app typically creates an explicit middleware execution pipeline, a star
 * Creating a shared library/NuGet package that automatically loads custom middleware without requiring the app to explicitly call the middleware's "`Use`" method. For example, the library's consumer isn't required to make an `app.UseImageProcessingMiddleware` call for an image-processing middleware in the app's request processing pipeline.
 * Guaranteeing a piece of middleware executes before or after other middleware, regardless of how a developer modifies the app's request processing pipeline.
 
-A startup filter implementation provides an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure%2A?displayProperty=nameWithType> method that receives and returns an `Action<IApplicationBuilder>`. The <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> interface is used to configure the app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
+A startup filter implementation provides an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*?displayProperty=nameWithType> method that receives and returns an `Action<IApplicationBuilder>`. The <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> interface is used to configure the app's request pipeline. For more information, see [Create a middleware pipeline with `IApplicationBuilder`](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
 Each startup filter implementation can add one or more middlewares to the request pipeline. The filters are invoked in the order they're added to the service container. Filters can add middleware before or after passing control to the next filter, thus they append to the beginning or end of the pipeline.
 
@@ -414,7 +414,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 *Although supported in ASP.NET Core apps that target .NET 6 or later, using a `Startup` class isn't recommended. For more information, see <xref:migration/50-to-60#new-hosting-model>.*
 
-For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> methods with the minimal hosting model, see the following:
+For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> methods with the minimal hosting model, see the following:
 
 * [Use a `Startup` class with the minimal hosting model](xref:migration/50-to-60#use-a-startup-class-with-the-new-minimal-hosting-model)
 * [The `Startup` class (.NET 5 version of this article)](?view=aspnetcore-5.0&preserve-view=true#the-startup-class)

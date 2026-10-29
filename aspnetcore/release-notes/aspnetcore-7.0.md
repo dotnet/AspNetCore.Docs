@@ -147,7 +147,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 * <xref:Microsoft.AspNetCore.Http.INestedHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IStatusCodeHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
-* <xref:Microsoft.AspNetCore.Http.IValueHttpResult%601>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult`1>
 
 For more information, see [IHttpResult interfaces](xref:fundamentals/minimal-apis/responses#httpresultinterfaces7).
 
@@ -169,7 +169,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 #### Provide endpoint descriptions and summaries
 
-Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
+Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription*> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary*> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
 For more information, see [OpenAPI in Minimal API apps](xref:fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-7.0)
 
@@ -209,7 +209,7 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 * ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
 * Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
 
-For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/json-transcoding?view=aspnetcore-7.0).
+For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../grpc/json-transcoding.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### gRPC health checks in ASP.NET Core
 
@@ -217,14 +217,14 @@ The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc
 
 gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
 
-For more information, see <xref:grpc/health-checks>.
+For more information, see [gRPC health checks in ASP.NET Core](../grpc/health-checks.md).
 
 ### Improved call credentials support
 
 Call credentials are the recommended way to configure a gRPC client to send an auth token to the server. gRPC clients support two new features to make call credentials easier to use:
 
 * Support for call credentials with plaintext connections. Previously, a gRPC call only sent call credentials if the connection was secured with TLS. A new setting on `GrpcChannelOptions`, called `UnsafeUseInsecureChannelCallCredentials`, allows this behavior to be customized. There are security implications to not securing a connection with TLS.
-* A new method called `AddCallCredentials` is available with the [gRPC client factory](xref:grpc/clientfactory). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
+* A new method called `AddCallCredentials` is available with the [gRPC client factory](../grpc/clientfactory.md). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
 
 The following code configures the gRPC client factory to send `Authorization` metadata:
 
@@ -244,7 +244,7 @@ builder.Services
     });
 ```
 
-For more information, see [Configure a bearer token with the gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+For more information, see [Configure a bearer token with the gRPC client factory](../grpc/authn-and-authz.md#bearer-token-with-grpc-client-factory).
 
 ## SignalR
 
@@ -595,7 +595,7 @@ For more information, see [Http/2 WebSockets support](xref:fundamentals/websocke
 
 ### Kestrel performance improvements on high core machines
 
-Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue%601> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
+Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue`1> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
 
 Profiling on high core machines on .NET 6 showed significant contention in one of Kestrel's other `ConcurrentQueue` instances, the `PinnedMemoryPool` that Kestrel uses to cache byte buffers.
 

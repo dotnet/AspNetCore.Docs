@@ -79,7 +79,7 @@ Use the following articles to configure login providers and the app:
 
 ## Multiple authentication providers
 
-When the app requires multiple providers, chain the provider extension methods on <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>:
+When the app requires multiple providers, chain the provider extension methods on <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>:
 
 ```csharp
 builder.Services.AddAuthentication()

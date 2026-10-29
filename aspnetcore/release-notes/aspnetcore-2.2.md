@@ -14,8 +14,8 @@ OpenAPI (formerly known as Swagger) is a language-agnostic specification for des
 
 For more information, see the following resources:
 
-* <xref:web-api/advanced/analyzers>
-* <xref:web-api/advanced/conventions>
+* [Use web API analyzers](../web-api/advanced/analyzers.md)
+* [Use web API conventions](../web-api/advanced/conventions.md)
 * [ASP.NET Core 2.2.0-preview1: OpenAPI Analyzers & Conventions](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## Problem details support

@@ -40,7 +40,7 @@ When developing web applications, treat all user-provided data as untrustworthy.
 
 :::moniker range=">= aspnetcore-6.0"
 
-Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect%2A> result in a Minimal API endpoint:
+Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result in a Minimal API endpoint:
 
 ```csharp
 app.MapGet("/SomeEndpoint", (string redirectUri) =>
@@ -53,7 +53,7 @@ app.MapGet("/SomeEndpoint", (string redirectUri) =>
 
 :::moniker-end
 
-Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> helper method in MVC actions:
+Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect*> helper method in MVC actions:
 
 ```csharp
 public IActionResult SomeAction(string redirectUrl)
@@ -66,7 +66,7 @@ public IActionResult SomeAction(string redirectUrl)
 
 ### IUrlHelper.IsLocalUrl
 
-Use the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper.IsLocalUrl%2A> method to test URLs before redirecting:
+Use the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper.IsLocalUrl*> method to test URLs before redirecting:
 
 The following example shows how to check whether a URL is local before redirecting.
 

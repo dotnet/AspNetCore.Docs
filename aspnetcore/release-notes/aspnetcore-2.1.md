@@ -68,7 +68,7 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -76,7 +76,7 @@ A new package is introduced that streamlines test creation and execution. The [M
 
 * Copies the dependency file (*\*.deps*) from the tested app into the test project's *bin* folder.
 * Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
-* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
+* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 
 The following test uses [xUnit](https://github.com/xunit/xunit) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
@@ -111,7 +111,7 @@ For more information, see the [Integration tests](xref:test/integration-tests) t
 
 ASP.NET Core 2.1 adds new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
-For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index).
+For more information, see [Build Web APIs with ASP.NET Core](../web-api/index.md).
 
 ## IHttpClientFactory
 
@@ -157,7 +157,7 @@ Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example o
 
 ## MVC compatibility version
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion%2A> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
 For more information, see <xref:mvc/compatibility-version>.
 

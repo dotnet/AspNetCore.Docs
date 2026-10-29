@@ -184,7 +184,7 @@ The following example is based on Mailchimp's Transactional API using [Mandrill.
 
 Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the server project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `AppUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender`1>. In the following example, `AppUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `EmailSender.cs`:
 
@@ -244,7 +244,7 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 > [!NOTE]
 > Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed in the email message, consult the service provider's documentation to troubleshoot the problem.
 
-Add the following <xref:Microsoft.AspNetCore.Identity.IEmailSender%601> service registration to the server project's `Program` file:
+Add the following <xref:Microsoft.AspNetCore.Identity.IEmailSender`1> service registration to the server project's `Program` file:
 
 ```csharp
 builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
@@ -254,7 +254,7 @@ builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
 
 In the server project's `Program` file, require a confirmed email address to sign in to the app.
 
-Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
+Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
 
 ```diff
 - builder.Services.AddIdentityCore<AppUser>()
@@ -311,7 +311,7 @@ Password recovery requires the server app to adopt an email provider in order to
 
 Password recovery is a two-step process:
 
-1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in the server project. A message in the UI instructs the user to check their email for a reset code.
+1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in the server project. A message in the UI instructs the user to check their email for a reset code.
 1. A POST request is made to the `/resetPassword` endpoint of the server project with the user's email address, password reset code, and new password.
 
 The preceding steps are demonstrated by the following implementation guidance for the [sample solution](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps).
@@ -615,7 +615,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> to the server project.
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider`1> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> to the server project.
 
 `CustomTokenProvider.cs`:
 

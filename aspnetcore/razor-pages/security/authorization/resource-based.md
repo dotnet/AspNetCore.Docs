@@ -41,7 +41,7 @@ public class DocumentModel(IAuthorizationService authorizationService,
 }
 ```
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> method overloads. One of the overloads accepts a resource and policy name:
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> method overloads. One of the overloads accepts a resource and policy name:
 
 ```csharp
 Task<AuthorizationResult> AuthorizeAsync(
@@ -59,7 +59,7 @@ Task<AuthorizationResult> AuthorizeAsync(
     IEnumerable<IAuthorizationRequirement> requirements);
 ```
 
-In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed to edit the document via a custom "`EditPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded%2A) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name%2A>).
+In the following example, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload is invoked to determine whether the current user is allowed to edit the document via a custom "`EditPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name>).
 
 > [!NOTE]
 > The following example assumes successful authentication with the `User` property set.

@@ -24,7 +24,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -100,7 +100,7 @@ Services are added in `Program.cs`. The typical pattern is to call methods in th
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
 The template-generated app doesn't use [authorization](xref:security/authorization/secure-data). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, and `UseAuthorization` must be called in the order shown in the preceding code.
 
@@ -137,7 +137,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 ### Examine Register
 
-When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager%601.CreateAsync(%600)> on the `_userManager` object:
+When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager`1.CreateAsync(`0)> on the `_userManager` object:
 
 :::code language="csharp" source="../samples/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs" id="snippet" highlight="9":::
 
@@ -167,7 +167,7 @@ The **Log out** link invokes the `LogoutModel.OnPost` action.
 
 In the preceding code, the code `return RedirectToPage();` needs to be a redirect so that the browser performs a new request and the identity for the user gets updated.
 
-<xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
+<xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignOutAsync*> clears the user's claims stored in a cookie.
 
 Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
@@ -204,11 +204,11 @@ See [Configuration](#pw6) for a sample that sets the minimum password requiremen
 
 ## AddDefaultIdentity and AddIdentity
 
-<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A> was introduced in ASP.NET Core 2.1. Calling `AddDefaultIdentity` is similar to calling the following:
+<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> was introduced in ASP.NET Core 2.1. Calling `AddDefaultIdentity` is similar to calling the following:
 
-* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A>
+* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*>
+* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
+* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
 
 See [AddDefaultIdentity source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) for more information.
 
@@ -273,7 +273,7 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -352,7 +352,7 @@ Services are added in `ConfigureServices`. The typical pattern is to call all th
 
 The preceding highlighted code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
 :::code language="csharp" source="../samples/WebApp3/Startup.cs" id="snippet_configure" highlight="19":::
 
@@ -364,7 +364,7 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
 :::code language="csharp" source="../samples/WebApp5x/Startup.cs" id="snippet_configure" highlight="19":::
 
@@ -405,7 +405,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 ### Examine Register
 
-When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager%601.CreateAsync(%600)> on the `_userManager` object:
+When a user clicks the **Register** button on the `Register` page, the `RegisterModel.OnPostAsync` action is invoked. The user is created by <xref:Microsoft.AspNetCore.Identity.UserManager`1.CreateAsync(`0)> on the `_userManager` object:
 
 :::code language="csharp" source="../samples/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs" id="snippet" highlight="9":::
 
@@ -435,7 +435,7 @@ The **Log out** link invokes the `LogoutModel.OnPost` action.
 
 In the preceding code, the code `return RedirectToPage();` needs to be a redirect so that the browser performs a new request and the identity for the user gets updated.
 
-<xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
+<xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignOutAsync*> clears the user's claims stored in a cookie.
 
 Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 

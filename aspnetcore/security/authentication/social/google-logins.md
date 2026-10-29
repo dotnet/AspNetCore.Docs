@@ -43,7 +43,7 @@ Create the client credentials for the app by opening the **Clients** sidebar men
 * Save the **Client ID** and **Client secret**, which are used later in the ASP.NET app configuration.
 
 > [!NOTE]
-> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property.
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property.
 
 When deploying the app, either:
 

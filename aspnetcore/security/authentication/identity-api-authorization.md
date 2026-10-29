@@ -3,7 +3,7 @@ title: Use Identity to secure a Web API backend for SPAs
 ai-usage: ai-assisted
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
-ms.date: 10/07/2026
+ms.date: 10/26/2026
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -44,7 +44,7 @@ Install these packages by using the [NuGet package manager in Visual Studio](/nu
 
 ## Create an `IdentityDbContext`
 
-Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
+Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`1>:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\ApplicationDbContext.cs":::
 
@@ -68,13 +68,13 @@ To save user data between sessions when testing or for production use, change th
     
 ## Add Identity services to the container
 
-After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> to add services to the dependency injection (DI) container:
+After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization*> to add services to the dependency injection (DI) container:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetAddAuthorization":::
 
 ## Activate Identity APIs
 
-After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
+After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores``1(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetActivateAPIs":::
 
@@ -83,13 +83,13 @@ By default, both cookies and proprietary tokens are activated. Cookies are issue
 
 ## Map Identity routes
 
-After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
+After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi``1(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetMapEndpoints":::
 
 ## Secure selected endpoints
 
-To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method on the `Map{Method}` call that defines the route. For example:
+To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method on the `Map{Method}` call that defines the route. For example:
 
 :::code language="csharp" source="~\security\authentication\identity-api-authorization\samples\8\APIforSPA\Program.cs" id="snippetRequireAuthorization" highlight="15":::
 
@@ -225,7 +225,12 @@ public signOut() {
     withCredentials: true,
     observe: 'response',
     responseType: 'text'
+  });
+}
 ```
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignOutAsync*?displayProperty=nameWithType> clears cookie-based authentication by instructing the browser to delete the identity authentication cookie. Calling `SignOutAsync` does **not** invalidate stateless Bearer tokens on the server. When using token-based authentication (Bearer tokens), the client application must discard the access and refresh tokens from memory or client storage to completely sign the user out of the app. Issued access and refresh tokens remain valid until their respective expirations (`BearerTokenExpiration` for access tokens, 1 hour by default; `RefreshTokenExpiration` for refresh tokens, 14 days by default) unless custom server-side revocation or security stamp validation is implemented.
 
 ## SignOut everywhere
 

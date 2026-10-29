@@ -108,7 +108,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Enable the app to use Role services by appending the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> method:
+Enable the app to use Role services by appending the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> method:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet&highlight=10)]
 
@@ -120,7 +120,7 @@ Set the fallback authorization policy to require users to be authenticated:
 
 The preceding highlighted code sets the fallback authorization policy to require an authenticated user. The fallback policy is selected when the authorization middleware can't build a policy from authorization metadata. An endpoint with `[Authorize]` uses the default policy, and an endpoint with `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy. Apply `[AllowAnonymous]` to an endpoint that is intentionally public.
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method adds the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> class to the current instance, which enforces that the current user is authenticated.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method adds the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> class to the current instance, which enforces that the current user is authenticated.
 
 The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
 
@@ -168,14 +168,14 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls the [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A) method if the current authenticated user is the contact owner. 
+The `ContactIsOwnerAuthorizationHandler` calls the [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) method if the current authenticated user is the contact owner. 
 
 The authorization handler generally:
 
 * Calls the `context.Succeed` method when the requirements are met.
 * When requirements aren't met, it returns `Task.CompletedTask`. When `Task.CompletedTask` is returned without a prior call to `context.Succeed` or `context.Fail`, the result isn't a success or failure. Instead, it allows other authorization handlers to run.
 
-If you need to explicitly fail, call the [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A) method.
+If you need to explicitly fail, call the [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*) method.
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
@@ -193,7 +193,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services that use Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services that use Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=22-30)]
 
@@ -472,7 +472,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> to add Role services:
+Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> to add Role services:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=8)]
 
@@ -486,7 +486,7 @@ Set the fallback authorization policy to require users to be authenticated:
 
 The preceding highlighted code sets the fallback authorization policy to require an authenticated user. The fallback policy is selected when the authorization middleware can't build a policy from authorization metadata. An endpoint with `[Authorize]` uses the default policy, and an endpoint with `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy. Apply `[AllowAnonymous]` to an endpoint that is intentionally public.
 
-<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
 The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
 
@@ -534,12 +534,12 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A) if the current authenticated user is the contact owner. Authorization handlers generally:
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Call `context.Succeed` when the requirements are met.
 * Return `Task.CompletedTask` when requirements aren't met. Returning `Task.CompletedTask` without a prior call to `context.Success` or `context.Fail`, is not a success or failure, it allows other authorization handlers to run.
 
-If you need to explicitly fail, call [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A).
+If you need to explicitly fail, call [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*).
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
@@ -557,7 +557,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A>. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 

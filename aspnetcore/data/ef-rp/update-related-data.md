@@ -47,7 +47,7 @@ Update `Pages/Courses/Create.cshtml.cs` with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> to prevent [overposting](xref:data/ef-rp/crud#overposting).
+* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> to prevent [overposting](xref:data/ef-rp/crud#overposting).
 * Removes `ViewData["DepartmentID"]`. The `DepartmentNameSL` `SelectList` is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
 
 ### Update the Course Create Razor page
@@ -93,7 +93,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course page models
 
-<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required.
+<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking*> can improve performance when tracking isn't required.
 
 Update `Pages/Courses/Delete.cshtml.cs` and `Pages/Courses/Details.cshtml.cs` by adding `AsNoTracking` to the `OnGetAsync` methods:
 
@@ -135,7 +135,7 @@ Create the `Pages/Instructors/InstructorCoursesPageModel.cs` base class:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
-The `InstructorCoursesPageModel` is the base class for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet%601) is used for efficient lookups.
+The `InstructorCoursesPageModel` is the base class for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet`1) is used for efficient lookups.
 
 ### Handle office location
 
@@ -154,13 +154,13 @@ Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` and `Courses` navigation properties.
-* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> prevents [overposting](xref:data/ef-rp/crud#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> prevents [overposting](xref:data/ef-rp/crud#overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
-* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> fails. These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.
+* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> fails. These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.
 
-Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, that's done in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> because you're using the overload with declared properties and `Courses` isn't in the include list.
+Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, that's done in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> because you're using the overload with declared properties and `Courses` isn't in the include list.
 
 If no checkboxes were selected, the code in `UpdateInstructorCourses` initializes the `instructorToUpdate.Courses` with an empty collection and returns:
 
@@ -199,7 +199,7 @@ Update the Instructor Create page model and with code similar to the Edit page:
 The preceding code:
 
   * Adds [logging](xref:fundamentals/logging/index) for warning and error messages.
-  * Calls <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Load%2A>, which fetches all the Courses in one database call. For small collections this is an optimization when using <xref:Microsoft.EntityFrameworkCore.DbContext.FindAsync%2A>. `FindAsync` returns the tracked entity without a request to the database.
+  * Calls <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Load*>, which fetches all the Courses in one database call. For small collections this is an optimization when using <xref:Microsoft.EntityFrameworkCore.DbContext.FindAsync*>. `FindAsync` returns the tracked entity without a request to the database.
 
     [!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_find&highlight=9,15,34)]
 
@@ -314,7 +314,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course Details and Delete pages
 
-<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required.
+<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking*> can improve performance when tracking isn't required.
 
 ### Update the Course page models
 
@@ -362,7 +362,7 @@ Create the `Pages/Instructors/InstructorCoursesPageModel.cs` base class:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
-The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet%601) is used for efficient lookups.
+The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet`1) is used for efficient lookups.
 
 Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.
 
@@ -531,7 +531,7 @@ Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
-<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking*> can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
@@ -606,7 +606,7 @@ Create the `Pages/Instructors/InstructorCoursesPageModel.cshtml.cs` base class:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 
-The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet%601) is used to create efficient lookups.
+The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet`1) is used to create efficient lookups.
 
 ### Instructors Edit page model
 

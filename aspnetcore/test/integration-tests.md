@@ -3,7 +3,7 @@ title: Integration tests in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/18/2026
+ms.date: 10/23/2026
 uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
 ---
@@ -18,6 +18,9 @@ Integration tests ensure that an app's components function correctly at a level 
 This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Testing in .NET](/dotnet/core/testing/) article and its linked content.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/10.x/IntegrationTestsSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+
+> [!NOTE]
+> The downloadable sample project is implemented using [xUnit](https://xunit.net/). If you choose **MSTest** or **NUnit** using the test framework selector above, the corresponding test patterns and syntax are demonstrated in the article's code examples.
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 
@@ -54,13 +57,13 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually `Program.cs`.
+<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually `Program.cs`.
 
 Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.net/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
 
 The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method verifies the response status code is successful (200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
-<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
+<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
   
 :::zone pivot="xunit"
 
@@ -88,9 +91,9 @@ This article uses the [AngleSharp](https://anglesharp.github.io/) parser to hand
 
 ## Customize WebApplicationFactory
 
-Web host configuration can be created independently of the test classes by inheriting from <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> to create one or more custom factories:
+Web host configuration can be created independently of the test classes by inheriting from <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> to create one or more custom factories:
 
-1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.ConfigureWebHost%2A>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with [`IWebHostBuilder.ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.ConfigureServices%2A)
+1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureWebHost*>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with [`IWebHostBuilder.ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.ConfigureServices*)
 
    :::zone pivot="xunit"
 
@@ -247,7 +250,7 @@ There are various ways to supply test-specific configurations to the running web
 
 ## Customize the client with WithWebHostBuilder
 
-When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
+When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.WithWebHostBuilder*> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
 
 
 The [sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests) calls `WithWebHostBuilder` to replace configured services with test stubs. For more information and example usage, see [Inject mock services](#inject-mock-services) in this article.
@@ -276,7 +279,7 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 See the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions> page for defaults and available options when creating `HttpClient` instances.
 
-Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> method:
+Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient> method:
 
 :::zone pivot="xunit"
 
@@ -298,7 +301,7 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 ## Inject mock services
 
-Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> on the host builder. To scope the overridden services to the test itself, the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> method is used to retrieve a host builder. This can be seen in the following tests:
+Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices*> on the host builder. To scope the overridden services to the test itself, the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.WithWebHostBuilder*> method is used to retrieve a host builder. This can be seen in the following tests:
 
 * [Get_QuoteService_ProvidesQuoteInPage](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs#L166-L173)
 * [Get_GithubProfilePageCanGetAGithubUser](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/10.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs#L35-L38)
@@ -385,7 +388,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's sign in page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/10.x/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet1)]
 
@@ -412,7 +415,7 @@ By disallowing the client to follow the redirect, the following checks can be ma
 * The status code returned by the SUT can be checked against the expected <xref:System.Net.HttpStatusCode.Redirect?displayProperty=nameWithType> result, not the final status code after the redirect to the sign in page, which would be <xref:System.Net.HttpStatusCode.OK?displayProperty=nameWithType>.
 * The `Location` header value in the response headers is checked to confirm that it starts with `http://localhost/Identity/Account/Login`, not the final sign in page response, where the `Location` header wouldn't be present.
 
-The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success%2A?displayProperty=nameWithType>:
+The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices*> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success*?displayProperty=nameWithType>:
 
 :::zone pivot="xunit"
 
@@ -494,17 +497,17 @@ To disable shadow copying when using xUnit, create a `xunit.runner.json` file in
 
 :::zone pivot="xunit"
 
-After the tests of the `IClassFixture` implementation are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when xUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601). If objects instantiated by the developer require disposal, dispose of them in the `IClassFixture` implementation. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+After the tests of the `IClassFixture` implementation are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when xUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1). If objects instantiated by the developer require disposal, dispose of them in the `IClassFixture` implementation. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
 
 :::zone-end
 :::zone pivot="mstest"
 
-After the tests of the `TestClass` are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when MSTest disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601) in the `ClassCleanup` method. If objects instantiated by the developer require disposal, dispose of them in the `ClassCleanup` method. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+After the tests of the `TestClass` are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when MSTest disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1) in the `ClassCleanup` method. If objects instantiated by the developer require disposal, dispose of them in the `ClassCleanup` method. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
 
 :::zone-end
 :::zone pivot="nunit"
 
-After the tests of the test class are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when NUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601) in the `TearDown` method. If objects instantiated by the developer require disposal, dispose of them in the `TearDown` method. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+After the tests of the test class are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when NUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1) in the `TearDown` method. If objects instantiated by the developer require disposal, dispose of them in the `TearDown` method. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
 
 :::zone-end
 
@@ -544,7 +547,7 @@ The test app is a console app inside the `tests/RazorPagesProject.Tests` directo
 
 | Test app directory | Description |
 |--|--|
-| `AuthTests` | Contains test methods for:<ul><li>Accessing a secure page by an unauthenticated user.</li><li>Accessing a secure page by an authenticated user with a mock <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601>.</li><li>Obtaining a GitHub user profile and checking the profile's user login.</li></ul> |
+| `AuthTests` | Contains test methods for:<ul><li>Accessing a secure page by an unauthenticated user.</li><li>Accessing a secure page by an authenticated user with a mock <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtaining a GitHub user profile and checking the profile's user login.</li></ul> |
 | `BasicTests` | Contains a test method for routing and content type. |
 | `IntegrationTests` | Contains the integration tests for the Index page using custom `WebApplicationFactory` class. |
 | `Helpers/Utilities` | <ul><li>`Utilities.cs` contains the `InitializeDbForTests` method used to seed the database with test data.</li><li>`HtmlHelpers.cs` provides a method to return an AngleSharp `IHtmlDocument` for use by the test methods.</li><li>`HttpClientExtensions.cs` provide overloads for `SendAsync` to submit requests to the SUT.</li></ul> |

@@ -26,7 +26,7 @@ Currently the `Index` method returns a string with a message in the controller c
 
 The preceding code:
 
-* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View%2A> method.
+* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method.
 * Uses a view template to generate an HTML response.
 
 Controller methods:
@@ -96,7 +96,7 @@ Replace the content of the `Views/Shared/_Layout.cshtml` file with the following
 The preceding markup made the following changes:
 
 * Three occurrences of `MvcMovie` to `Movie App`.
-* The anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-area="" asp-controller="HelloWorld" asp-action="Index">Movie App</a>`.
+* The anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-area="" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
 In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) and attribute value was omitted because this app isn't using [Areas](xref:mvc/controllers/areas).
 

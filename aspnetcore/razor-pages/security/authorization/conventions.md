@@ -15,7 +15,7 @@ The sample app uses [cookie authentication without ASP.NET Core Identity](xref:s
 
 ## Require authorization to access a page
 
-Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page at the specified path:
+Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page at the specified path:
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -37,7 +37,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 The specified path is the View Engine path, which is the Razor Pages root relative path without an extension and containing only forward slashes.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizePage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A):
+To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizePage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*):
 
 ```csharp
 options.Conventions.AuthorizePage("/Contact", "AtLeast21");
@@ -48,7 +48,7 @@ options.Conventions.AuthorizePage("/Contact", "AtLeast21");
 
 ## Require authorization to access a folder of pages
 
-Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder%2A> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to all of the pages in a folder at the specified path:
+Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder*> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to all of the pages in a folder at the specified path:
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -70,7 +70,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 The specified path is the View Engine path, which is the Razor Pages root relative path containing only forward slashes.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder%2A):
+To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder*):
 
 ```csharp
 options.Conventions.AuthorizeFolder("/Private", "AtLeast21");
@@ -78,7 +78,7 @@ options.Conventions.AuthorizeFolder("/Private", "AtLeast21");
 
 ## Require authorization to access an area page
 
-Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage%2A> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the area page at the specified path:
+Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the area page at the specified path:
 
 ```csharp
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
@@ -86,7 +86,7 @@ options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 
 The page name is the path of the file without an extension relative to the pages root directory for the specified area. For example, the page name for the file `Areas/Identity/Pages/Manage/Accounts.cshtml` is `/Manage/Accounts`.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeAreaPage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage%2A):
+To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeAreaPage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
 
 ```csharp
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts", "AtLeast21");
@@ -94,7 +94,7 @@ options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts", "AtLeast21
 
 ## Require authorization to access a folder of areas
 
-Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder%2A> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to all of the areas in a folder at the specified path:
+Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to all of the areas in a folder at the specified path:
 
 ```csharp
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
@@ -102,7 +102,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
 
 The folder path is the path of the folder relative to the pages root directory for the specified area. For example, the folder path for the files under `Areas/Identity/Pages/Manage/` is `/Manage`.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeAreaFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder%2A):
+To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeAreaFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*):
 
 ```csharp
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");
@@ -110,7 +110,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");
 
 ## Allow anonymous access to a page
 
-Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AllowAnonymousToPage%2A> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> to a page at the specified path:
+Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AllowAnonymousToPage*> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> to a page at the specified path:
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -134,7 +134,7 @@ The specified path is the View Engine path, which is the Razor Pages root relati
 
 ## Allow anonymous access to a folder of pages
 
-Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AllowAnonymousToFolder%2A> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> to all of the pages in a folder at the specified path:
+Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AllowAnonymousToFolder*> convention to add an <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> to all of the pages in a folder at the specified path:
 
 :::moniker range=">= aspnetcore-10.0"
 

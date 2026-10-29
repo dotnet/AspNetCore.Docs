@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Provides an overview of Minimal APIs in ASP.NET Core
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 09/22/2026
+ms.date: 10/22/2026
 uid: fundamentals/minimal-apis
 ---
 
@@ -38,27 +38,27 @@ The following table lists some of the middleware frequently used with Minimal AP
 
 Middleware | Description | API |
 --- | --- | ---
-[Authentication](xref:security/authentication/index) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>
-[Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>
-[CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>
-[Exception Handler](xref:fundamentals/error-handling-api) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>
-[Forwarded Headers](xref:fundamentals/middleware/index#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A>
-[HTTPS Redirection](xref:security/enforcing-ssl) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>
-[HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>
-[Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>
-[Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts%2A>
-[W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A>
-[Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>
-[Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A>
-[Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>
-[Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A>
-[WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A>
+[Authentication](xref:security/authentication/index) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>
+[Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>
+[CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>
+[Exception Handler](xref:fundamentals/error-handling-api) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>
+[Forwarded Headers](xref:fundamentals/middleware/index#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>
+[HTTPS Redirection](xref:security/enforcing-ssl) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>
+[HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>
+[Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*>
+[Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts*>
+[W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging*>
+[Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>
+[Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*>
+[Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*>
+[Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>
+[WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*>
 
 The following sections cover request handling: routing, parameter binding, and responses.
 
 ## Routing
 
-A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods*> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_r1)]
 
@@ -160,13 +160,13 @@ For the message lookup key conventions, custom message formatting, and loading m
 
 Route handlers support the following types of return values:
 
-* `IResult` based: Includes `Task<IResult>` and `ValueTask<IResult>`.
-* `string`: Includes `Task<string>` and `ValueTask<string>`.
-* `T` (Any other type): Includes `Task<T>` and `ValueTask<T>`.
+* `IResult` based: Includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`.
+* `string`: Includes `Task<string>`, `ValueTask<string>`, and F# `Async<string>`.
+* `T` (Any other type): Includes `Task<T>`, `ValueTask<T>`, and F# `Async<'T>`.
 
 Return value | Behavior | Content-Type
 --- | --- | ---
-`IResult` | The framework calls <xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A?displayProperty=nameWithType>| Decided by the `IResult` implementation.
+`IResult` | The framework calls <xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync*?displayProperty=nameWithType>| Decided by the `IResult` implementation.
 `string` | The framework writes the string directly to the response. | `text/plain`
 `T` (Any other type) | The framework JSON-serializes the response. | `application/json`
 
@@ -301,11 +301,11 @@ For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
 
 ## Authorization
 
-Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
+Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> method:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
 
-The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
+The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_auth2)]
 
@@ -323,7 +323,7 @@ allows unauthenticated users to access endpoints:
 ## CORS
 
 Routes can be [CORS](xref:security/cors) enabled using [CORS policies](xref:security/cors#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
-<xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> method. The following samples enable CORS:
+<xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> method. The following samples enable CORS:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cors)]
 

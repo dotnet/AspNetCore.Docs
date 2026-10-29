@@ -80,11 +80,11 @@ The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.
 
 In this section, you configure the ASP.NET Core web app to send and receive SignalR messages.
 
-1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
+1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*>:
 
    [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Program.cs?name=snippet_AddSignalR&highlight=3)]
 
-1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>:
 
    [!code-csharp[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/Program.cs?name=snippet_FilesMiddleware&highlight=3-4)]
 
@@ -102,7 +102,7 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
    * The TypeScript client sends a message identified as `newMessage`.
    * The C# `NewMessage` method expects the data sent by the client.
-   * A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All).
+   * A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All).
    * The received messages are sent to all clients connected to the hub.
 
 1. Add the following `using` statement at the top of `Program.cs` to resolve the `ChatHub` reference:

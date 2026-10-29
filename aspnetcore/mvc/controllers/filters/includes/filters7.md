@@ -35,8 +35,8 @@ Each filter type is executed at a different stage in the filter pipeline:
 * [Resource filters](#resource-filters):
 
   * Run after authorization.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting%2A> runs code before the rest of the filter pipeline. For example, `OnResourceExecuting` runs code before model binding.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted%2A> runs code after the rest of the pipeline has completed.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> runs code before the rest of the filter pipeline. For example, `OnResourceExecuting` runs code before model binding.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> runs code after the rest of the pipeline has completed.
 
 * [Action filters](#action-filters):
 
@@ -79,11 +79,11 @@ Razor Pages also support [Razor Page filters](xref:razor-pages/filter), which ru
 
 Filters support both synchronous and asynchronous implementations through different interface definitions.
 
-Synchronous filters run before and after their pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuting%2A> is called before the action method is called. <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted%2A> is called after the action method returns:
+Synchronous filters run before and after their pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuting*> is called before the action method is called. <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted*> is called after the action method returns:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/6.x/FiltersSample/Filters/SampleActionFilter.cs" id="snippet_Class":::
 
-Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync%2A>:
+Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync*>:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/6.x/FiltersSample/Filters/SampleAsyncActionFilter.cs" id="snippet_Class":::
 
@@ -170,7 +170,7 @@ The following example illustrates the order in which filter methods run for sync
 
 ### Controller level filters
 
-Every controller that inherits from <xref:Microsoft.AspNetCore.Mvc.Controller> includes the <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting%2A>, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync%2A>, and <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted%2A> methods. These methods wrap the filters that run for a given action:
+Every controller that inherits from <xref:Microsoft.AspNetCore.Mvc.Controller> includes the <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*>, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*>, and <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*> methods. These methods wrap the filters that run for a given action:
 
 * `OnActionExecuting` runs before any of the action's filters.
 * `OnActionExecuted` runs after all of the action's filters.
@@ -274,7 +274,7 @@ When using `ServiceFilterAttribute`, setting <xref:Microsoft.AspNetCore.Mvc.Serv
   * The filter will not be re-requested from the DI container at some later point.
 * Shouldn't be used with a filter that depends on services with a lifetime other than singleton.
 
- <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from DI.
+ <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from DI.
 
 ### TypeFilterAttribute
 
@@ -351,7 +351,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the 
 
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments> - enables reading the inputs to an action method.
 * <xref:Microsoft.AspNetCore.Mvc.Controller> - enables manipulating the controller instance.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result%2A> - setting `Result` short-circuits execution of the action method and subsequent action filters.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result> - setting `Result` short-circuits execution of the action method and subsequent action filters.
 
 Throwing an exception in an action method:
 
@@ -360,8 +360,8 @@ Throwing an exception in an action method:
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled%2A> - True if the action execution was short-circuited by another filter.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception%2A> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
   * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
 
@@ -382,7 +382,7 @@ The `OnActionExecuting` action filter can be used to:
 :::code language="csharp" source="~/mvc/controllers/filters/samples/6.x/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet_Class":::
 
 > [!NOTE]
-> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](../../../../web-api/index.md#automatic-http-400-responses).
 
 The `OnActionExecuted` method runs after the action method:
 
@@ -410,11 +410,11 @@ The following code tests the exception filter:
 Exception filters:
 
 * Don't have before and after events.
-* Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException%2A> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync%2A>.
+* Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
 * Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
-To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled%2A> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result%2A> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
+To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
 
 Exception filters:
 
@@ -445,12 +445,12 @@ Result filters are only executed when an action or action filter produces an act
 * An authorization filter or resource filter short-circuits the pipeline.
 * An exception filter handles an exception by producing an action result.
 
-The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting%2A?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. Write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting`:
+The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. Write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting`:
 
 * Prevents execution of the action result and subsequent filters.
 * Is treated as a failure instead of a successful result.
 
-When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted%2A?displayProperty=fullName> method runs, the response has probably already been sent to the client. If the response has already been sent to the client, it cannot be changed.
+When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName> method runs, the response has probably already been sent to the client. If the response has already been sent to the client, it cannot be changed.
 
 `ResultExecutedContext.Canceled` is set to `true` if the action result execution was short-circuited by another filter.
 
@@ -475,7 +475,7 @@ For example, the following filter always runs and sets an action result (<xref:M
 
 ## IFilterFactory
 
-<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method is called to create the `IFilterMetadata` instance that is invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
+<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method is called to create the `IFilterMetadata` instance that is invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
 `IFilterFactory.IsReusable`:
 
@@ -505,7 +505,7 @@ Filters that implement `IFilterFactory` are useful for filters that:
 * Don't require passing parameters.
 * Have constructor dependencies that need to be filled by DI.
 
-<xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
+<xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/6.x/FiltersSample/Filters/SampleActionTypeFilterAttribute.cs" id="snippet_Class" highlight="1,3-4":::
 
@@ -575,8 +575,8 @@ Each filter type is executed at a different stage in the filter pipeline:
 * [Resource filters](#resource-filters):
 
   * Run after authorization.  
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting%2A> runs code before the rest of the filter pipeline. For example, `OnResourceExecuting` runs code before model binding.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted%2A> runs code after the rest of the pipeline has completed.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> runs code before the rest of the filter pipeline. For example, `OnResourceExecuting` runs code before model binding.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> runs code after the rest of the pipeline has completed.
 
 * [Action filters](#action-filters):
 
@@ -597,13 +597,13 @@ The following diagram shows how filter types interact in the filter pipeline.
 
 Filters support both synchronous and asynchronous implementations through different interface definitions.
 
-Synchronous filters run code before and after their pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuting%2A> is called before the action method is called. <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted%2A> is called after the action method returns.
+Synchronous filters run code before and after their pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuting*> is called before the action method is called. <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted*> is called after the action method returns.
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Filters/MySampleActionFilter.cs" id="snippet_ActionFilter":::
 
 In the preceding code, [MyDebug](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/controllers/filters/samples/3.x/FiltersSample/Helper/MyDebug.cs) is a utility function in the [sample download](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/controllers/filters/samples/3.x/FiltersSample/Helper/MyDebug.cs).
 
-Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync%2A>:
+Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync*>:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Filters/SampleAsyncActionFilter.cs" id="snippet":::
 
@@ -714,7 +714,7 @@ The following example that illustrates the order in which filter methods are cal
 
 ### Controller level filters
 
-Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting%2A?displayProperty=nameWithType>,  <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync%2A?displayProperty=nameWithType>, and <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted%2A?displayProperty=nameWithType>
+Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*?displayProperty=nameWithType>,  <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*?displayProperty=nameWithType>, and <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*?displayProperty=nameWithType>
 `OnActionExecuted` methods. These methods:
 
 * Wrap the filters that run for a given action.
@@ -855,7 +855,7 @@ When using `ServiceFilterAttribute`, setting <xref:Microsoft.AspNetCore.Mvc.Serv
 
 * Should not be used with a filter that depends on services with a lifetime other than singleton.
 
- <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from DI.
+ <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from DI.
 
 ### TypeFilterAttribute
 
@@ -938,7 +938,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the 
 
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments> - enables reading the inputs to an action method.
 * <xref:Microsoft.AspNetCore.Mvc.Controller> - enables manipulating the controller instance.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result%2A> - setting `Result` short-circuits execution of the action method and subsequent action filters.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result> - setting `Result` short-circuits execution of the action method and subsequent action filters.
 
 Throwing an exception in an action method:
 
@@ -947,8 +947,8 @@ Throwing an exception in an action method:
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled%2A> - True if the action execution was short-circuited by another filter.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception%2A> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
 
   * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
@@ -970,7 +970,7 @@ The `OnActionExecuting` action filter can be used to:
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet":::
 
 > [!NOTE]
-> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](../../../../web-api/index.md#automatic-http-400-responses).
 The `OnActionExecuted` method runs after the action method:
 
 * And can see and manipulate the results of the action through the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result> property.
@@ -1000,11 +1000,11 @@ The following code tests the exception filter:
 Exception filters:
 
 * Don't have before and after events.
-* Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException%2A> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync%2A>.
+* Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
 * Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
-To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled%2A> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result%2A> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
+To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
 
 Exception filters:
 
@@ -1035,12 +1035,12 @@ Result filters are only executed when an action or action filter produces an act
 * An authorization filter or resource filter short-circuits the pipeline.
 * An exception filter handles an exception by producing an action result.
 
-The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting%2A?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. Write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting`:
+The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. Write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting`:
 
 * Prevents execution of the action result and subsequent filters.
 * Is treated as a failure instead of a successful result.
 
-When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted%2A?displayProperty=fullName> method runs, the response has probably already been sent to the client. If the response has already been sent to the client, it cannot be changed.
+When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName> method runs, the response has probably already been sent to the client. If the response has already been sent to the client, it cannot be changed.
 
 `ResultExecutedContext.Canceled` is set to `true` if the action result execution was short-circuited by another filter.
 
@@ -1065,7 +1065,7 @@ For example, the following filter always runs and sets an action result (<xref:M
 
 ## IFilterFactory
 
-<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method is called to create the `IFilterMetadata` instance that is invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
+<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method is called to create the `IFilterMetadata` instance that is invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
 `IFilterFactory.IsReusable`:
 
@@ -1112,7 +1112,7 @@ Filters that implement `IFilterFactory` are useful for filters that:
 * Don't require passing parameters.
 * Have constructor dependencies that need to be filled by DI.
 
-<xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
+<xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Filters/SampleActionFilterAttribute.cs" id="snippet_TypeFilterAttribute" highlight="1,3,8":::
 

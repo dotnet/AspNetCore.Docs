@@ -65,7 +65,7 @@ The data protection stack consists of five packages:
 * [Microsoft.AspNetCore.DataProtection.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Abstractions/) contains:
 
   * <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> and <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> interfaces to create data protection services.
-  * Useful extension methods for working with these types. for example, [IDataProtector.Protect](xref:Microsoft.AspNetCore.DataProtection.IDataProtector.Protect%2A)
+  * Useful extension methods for working with these types. for example, [IDataProtector.Protect](xref:Microsoft.AspNetCore.DataProtection.IDataProtector.Protect*)
 
   If the data protection system is instantiated elsewhere and you're consuming the API, reference `Microsoft.AspNetCore.DataProtection.Abstractions`.
 

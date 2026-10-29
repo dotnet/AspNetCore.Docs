@@ -93,10 +93,10 @@ In `MauiBlazorWeb.Web/Components/Layout/NavMenu.razor`:
 
 ### Server project
 
-The Blazor Web App project (`MauiBlazorWeb.Web`) of the sample app contains the ASP.NET Core Identity pages and uses the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> framework class to manage logins and users on the server. In order for the MAUI client (or any external client) to authenticate, the Identity endpoints must be registered and exposed. In the `Program` file, Identity endpoints are set up with the calls to:
+The Blazor Web App project (`MauiBlazorWeb.Web`) of the sample app contains the ASP.NET Core Identity pages and uses the <xref:Microsoft.AspNetCore.Identity.SignInManager`1> framework class to manage logins and users on the server. In order for the MAUI client (or any external client) to authenticate, the Identity endpoints must be registered and exposed. In the `Program` file, Identity endpoints are set up with the calls to:
 
-* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints%2A>
-* <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A>
+* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints*>
+* <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*>
 * `MapAdditionalIdentityEndpoints` (`MauiBlazorWeb.Web/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs`).
 
 In `MauiBlazorWeb.Web/Program.cs`:
@@ -115,9 +115,9 @@ app.MapAdditionalIdentityEndpoints();
 ```
 
 > [!IMPORTANT]
-> ASP.NET Core Identity pages and the implementation of the <xref:Microsoft.AspNetCore.Identity.SignInManager%601> framework class to manage logins and users is generated automatically when you create a project from the Blazor Web App project template with **Individual Accounts**.
+> ASP.NET Core Identity pages and the implementation of the <xref:Microsoft.AspNetCore.Identity.SignInManager`1> framework class to manage logins and users is generated automatically when you create a project from the Blazor Web App project template with **Individual Accounts**.
 >
-> This article focuses on using the provided sample app; but when creating a new project from the Blazor Web App template, you must remove the generated call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>. The call isn't necessary when implementing API such as `MapAdditionalIdentityEndpoints` in the sample app and results in an error if left in the app.
+> This article focuses on using the provided sample app; but when creating a new project from the Blazor Web App template, you must remove the generated call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies*> on <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>. The call isn't necessary when implementing API such as `MapAdditionalIdentityEndpoints` in the sample app and results in an error if left in the app.
 
 ### Log in from the MAUI client
 
@@ -155,7 +155,7 @@ The MAUI Authentication State Provider also uses the `TokenStorage` class (`Maui
 
 The MAUI project's `MauiProgram` file (`MauiProgram.cs`) is where the `MauiAuthenticationStateProvider` is registered in the DI container. Authorization core components are also registered, where API such as [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) are defined.
 
-In `MauiBlazorWeb/MauiProgram.cs`, core functionality is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>:
+In `MauiBlazorWeb/MauiProgram.cs`, core functionality is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*>:
 
 ```csharp
 builder.Services.AddAuthorizationCore();

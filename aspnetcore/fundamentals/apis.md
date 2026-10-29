@@ -95,7 +95,7 @@ Most of these features can be implemented in Minimal APIs with custom solutions,
 
 * <xref:tutorials/min-web-api> - Minimal API tutorial
 * <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
-* <xref:web-api/index> - Controller-based APIs overview
+* [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
 * <xref:tutorials/first-web-api> - Controller-based API tutorial
 
 :::moniker-end
@@ -155,7 +155,7 @@ Both API projects refer to the following class:
 
 * <xref:tutorials/min-web-api> - Minimal API tutorial
 * <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
-* <xref:web-api/index> - Controller-based APIs overview
+* [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
 * <xref:tutorials/first-web-api> - Controller-based API tutorial
 
 :::moniker-end

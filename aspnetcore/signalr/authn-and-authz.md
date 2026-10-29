@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/20/2026
+ms.date: 10/22/2026
 uid: signalr/authn-and-authz
 ---
 
@@ -97,7 +97,7 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*):
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet2&highlight=25-60)]
 
@@ -106,11 +106,11 @@ On the server, bearer token authentication is configured by using the [JSON web 
 
 #### Identity Server JWT authentication
 
-When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions`1> service to the project:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/ConfigureJwtBearerOptions.cs)]
 
-Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> method):
+Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*> method):
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
 
@@ -153,7 +153,15 @@ The endpoint behaves as follows:
 
 Include the `/refresh` route when configuring a reverse proxy, firewall, or web application firewall in front of the app, and when writing route-scoped authorization or CORS policies. A proxy that forwards `/negotiate` but blocks `/refresh` causes every refresh attempt to fail, and connections close when their tokens expire if `CloseOnAuthenticationExpiration` is enabled.
 
-To inspect or reject a refresh, set the `OnAuthenticationRefresh` callback. It runs after the refresh request is authenticated but before the connection's user is replaced. Return `false` to reject the refresh, in which case the endpoint responds with an HTTP 403 status code and the connection keeps its current user. The callback is an additional check on top of the built-in verification that the refreshed principal maps to the same SignalR user. It can reject a refresh, but it can't approve one that fails the built-in check:
+To inspect or reject a refresh, set the `OnAuthenticationRefresh` callback. It runs after the refresh request is authenticated but before the connection's user is replaced. Return `false` to reject the refresh, in which case the endpoint responds with an HTTP 403 status code and the connection keeps its current user.
+
+The built-in check compares the first `sub`, `ClaimTypes.NameIdentifier`, or `ClaimTypes.Upn` claim in each principal, in that order. The following examples show how the check works:
+
+* **Same identity claim:** The connection's current principal and refreshed principal both have a `sub` claim whose value is `123` and issuer is `https://login.example.com`. The refresh succeeds even if the refreshed principal has a different tenant, role, or scope claim.
+* **Changed identity claim:** The connection's current principal has a `sub` claim whose value is `123` and issuer is `https://login.example.com`, but the refreshed principal has a different value, issuer, or claim type. The refresh is rejected.
+* **No identity claim:** When neither principal has one of the identity claims, the refresh succeeds if both principals are unauthenticated. Otherwise, the principals' identities and claims must be identical, including their order, authentication type, name and role claim types, label, and each claim's type, value, value type, issuer, and original issuer.
+
+The callback is an additional policy check. Use it when a refresh must preserve or validate information beyond the built-in identity claim, such as a tenant, role, scope, account status, or a custom claim. It can reject a refresh, but it can't approve one that fails the built-in check:
 
 ```csharp
 app.MapHub<ChatHub>("/chat", options =>
@@ -334,7 +342,7 @@ Register this component in the `Program.cs` file:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
-In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
+In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -516,7 +524,7 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/samples/Startup.cs?name=snippet)]
 
@@ -525,7 +533,7 @@ On the server, bearer token authentication is configured using the [JWT bearer m
 
 #### Identity Server JWT authentication
 
-When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions`1> service to the project:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -555,7 +563,7 @@ public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
 }
 ```
 
-Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>):
+Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*>):
 
 ```csharp
 services.AddAuthentication()
@@ -594,7 +602,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
+In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
