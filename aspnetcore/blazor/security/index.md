@@ -284,7 +284,7 @@ The Blazor Web App template scaffolds Identity code for a SQL Server database. T
 
 The template:
 
-* Supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios with authenticated users. 
+* Supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios with authenticated users.
 * Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multi-factor authentication](xref:security/authentication/mfa) using a third-party app. Note that the Identity components themselves don't support interactivity.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in the imports file (`_Imports.razor`).
@@ -413,7 +413,7 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux with 
 Don't attempt to resolve <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a custom scope because it results in the creation of a new instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that isn't correctly initialized.
 
 To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> into the component and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
-  
+
 `ExampleService.cs`:
 
 ```csharp
@@ -435,7 +435,7 @@ public class ExampleService
     }
 }
 ```
-  
+
 Register the service as scoped. In a server-side Blazor app, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
 
 :::moniker range=">= aspnetcore-6.0"
@@ -587,7 +587,7 @@ The default revalidation interval is 30 minutes for either ASP.NET Core Identity
 
 To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval>.
 
-For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
+For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/v10.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
 
 In the following example, the interval is set to five minutes:
 
@@ -601,7 +601,6 @@ Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuth
 > Each browser tab requires a separate circuit, so additional tabs opened by a user don't observe an authentication state change until their circuits revalidate. However, the approach in this section sets the revalidation interval for all of the tabs opened by a user.
 
 To control the revalidation interval in apps that adopt ASP.NET Core Identity with cookie authentication, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
-
 
 #### Sign out for ASP.NET Core Identity
 
@@ -680,8 +679,8 @@ Use the <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOp
 In the following example the value is extended to seven minutes:
 
 ```csharp
-builder.Services.AddRazorComponents(options => 
-    options.TemporaryRedirectionUrlValidityDuration = 
+builder.Services.AddRazorComponents(options =>
+    options.TemporaryRedirectionUrlValidityDuration =
         TimeSpan.FromMinutes(7));
 ```
 
@@ -735,7 +734,7 @@ public interface IWeatherForecaster
 The client project's `ClientWeatherForecaster` service implements `IWeatherForecaster`. The `GetWeatherForecastAsync` method calls a web API in the server project at the `/weather-forecast` endpoint for weather data:
 
 ```csharp
-internal sealed class ClientWeatherForecaster(HttpClient httpClient) 
+internal sealed class ClientWeatherForecaster(HttpClient httpClient)
     : IWeatherForecaster
 {
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync() =>
@@ -896,7 +895,7 @@ internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 {
     public readonly string[] summaries =
     [
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", 
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot",
         "Sweltering", "Scorching"
     ];
 
@@ -920,7 +919,7 @@ internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 If the app must call an external web API to obtain the weather data, you can inject an HTTP client (`HttpClient`) to request the data:
 
 ```csharp
-internal sealed class ServerWeatherForecaster(HttpClient httpClient, 
+internal sealed class ServerWeatherForecaster(HttpClient httpClient,
     IHttpContextAccessor httpContextAccessor) : IWeatherForecaster
 {
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
@@ -929,7 +928,7 @@ internal sealed class ServerWeatherForecaster(HttpClient httpClient,
             throw new InvalidOperationException("No HttpContext!");
         var accessToken = await httpContext.GetTokenAsync("access_token") ??
             throw new InvalidOperationException("No access_token was saved");
-        using var request = 
+        using var request =
             new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
         request.Headers.Authorization = new("Bearer", accessToken);
         using var response = await httpClient.SendAsync(request);
@@ -1212,7 +1211,7 @@ When you create a Blazor app from one of the Blazor project templates with authe
 ```razor
 <Router ...>
     <Found ...>
-        <AuthorizeRouteView RouteData="routeData" 
+        <AuthorizeRouteView RouteData="routeData"
             DefaultLayout="typeof(Layout.MainLayout)" />
         ...
     </Found>
@@ -1237,7 +1236,7 @@ When you create a Blazor app from one of the Blazor project templates with authe
 <CascadingAuthenticationState>
     <Router ...>
         <Found ...>
-            <AuthorizeRouteView RouteData="routeData" 
+            <AuthorizeRouteView RouteData="routeData"
                 DefaultLayout="typeof(MainLayout)" />
             ...
         </Found>
@@ -1475,7 +1474,7 @@ To authorize users for resources, pass the request's route data to the <xref:Mic
 In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route:
 
 ```razor
-<AuthorizeRouteView Resource="routeData" RouteData="routeData" 
+<AuthorizeRouteView Resource="routeData" RouteData="routeData"
     DefaultLayout="typeof(MainLayout)" />
 ```
 
@@ -1507,7 +1506,7 @@ In the `Program` file:
           if (context.Resource is RouteData rd)
           {
               var routeValue = rd.RouteValues.TryGetValue("id", out var value);
-              var id = Convert.ToString(value, 
+              var id = Convert.ToString(value,
                   System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty;
 
               if (!string.IsNullOrEmpty(id))
