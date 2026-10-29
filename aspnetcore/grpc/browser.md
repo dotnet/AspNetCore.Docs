@@ -12,7 +12,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 It's not possible to directly call a gRPC service from a browser. gRPC uses HTTP/2 features, and no browser provides the level of control required over web requests to support a gRPC client.
 
-gRPC on ASP.NET Core offers two browser-compatible solutions, gRPC-Web and gRPC JSON transcoding.
+gRPC on ASP.NET Core offers two browser-compatible solutions: [gRPC-Web](#grpc-web) and [gRPC JSON transcoding](#grpc-json-transcoding).
 
 ## gRPC-Web
 

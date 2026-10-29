@@ -209,7 +209,7 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 * ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
 * Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
 
-For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../grpc/json-transcoding.md?view=aspnetcore-7.0).
+For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../grpc/json-transcoding.md).
 
 ### gRPC health checks in ASP.NET Core
 

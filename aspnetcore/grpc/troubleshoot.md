@@ -65,7 +65,7 @@ The .NET gRPC client can call insecure gRPC services by specifying `http` in the
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](troubleshoot.md?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-client-2):
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](troubleshoot.md?view=aspnetcore-3.1&preserve-view=true#call-insecure-grpc-services-with-net-client-2):
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](aspnetcore.md#protocol-negotiation).
@@ -76,7 +76,7 @@ Kestrel doesn't support HTTP/2 with TLS on macOS before .NET 8. The ASP.NET Core
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
 
-To work around this issue in .NET 7 or earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [ASP.NET Core in .NET 7: Unable to start ASP.NET Core gRPC app on macOS](troubleshoot.md?view=aspnetcore-7.0#unable-to-start-aspnet-core-grpc-app-on-macos).
+To work around this issue in .NET 7 or earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [ASP.NET Core in .NET 7: Unable to start ASP.NET Core gRPC app on macOS](troubleshoot.md?view=aspnetcore-7.0&preserve-view=true#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## gRPC C# assets are not code generated from `.proto` files
 

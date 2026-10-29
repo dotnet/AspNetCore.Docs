@@ -5,8 +5,8 @@ Processes running on the same machine can be designed to communicate with each o
 .NET provides support for inter-process communication using gRPC.
 
 > [!NOTE]
-> Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.  
-> For more information, see [the .NET 8 or later version of this topic](../../interprocess.md?view=aspnetcore-8.0)
+> Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.
+> For more information, see [the .NET 8 or later version of this artcile](../../interprocess.md?view=aspnetcore-8.0&preserve-view=true)
 
 ## Get started
 
