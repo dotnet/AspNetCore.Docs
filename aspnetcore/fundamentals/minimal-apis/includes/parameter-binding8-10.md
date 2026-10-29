@@ -316,7 +316,7 @@ To test the preceding code, add the following endpoint to populate the database 
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs" id="snippet_batch":::
 
-Use a tool like [`HttpRepl`](xref:web-api/http-repl) to pass the following data to the previous endpoint:
+Use a tool like [`HttpRepl`](../../../web-api/http-repl/index.md) to pass the following data to the previous endpoint:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs" id="batch_post_payload":::
 

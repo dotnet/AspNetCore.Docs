@@ -701,7 +701,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 ```
 
-For more information about this feature and how to use .NET and gRPC to create an IPC server and client, see <xref:grpc/interprocess>.
+For more information about this feature and how to use .NET and gRPC to create an IPC server and client, see [Inter-process communication with gRPC](../grpc/interprocess.md).
 
 ### Performance improvements to named pipes transport
 
@@ -900,14 +900,14 @@ The new analyzers shown in the following table are available in .NET 8.
 
 | Diagnostic ID | Breaking or nonbreaking | Description |
 | --- | --- | --- |
-| [ASP0016](xref:diagnostics/asp0016) | Nonbreaking | Don't return a value from RequestDelegate |
-| [ASP0019](xref:diagnostics/asp0019) | Nonbreaking | Suggest using IHeaderDictionary.Append or the indexer |
-| [ASP0020](xref:diagnostics/asp0020) | Nonbreaking | Complex types referenced by route parameters must be parsable |
-| [ASP0021](xref:diagnostics/asp0021) | Nonbreaking | The return type of the BindAsync method must be `ValueTask<T>` |
-| [ASP0022](xref:diagnostics/asp0022) | Nonbreaking | Route conflict detected between route handlers |
-| [ASP0023](xref:diagnostics/asp0023) | Nonbreaking | MVC: Route conflict detected between route handlers |
-| [ASP0024](xref:diagnostics/asp0024) | Nonbreaking | Route handler has multiple parameters with the `[FromBody]` attribute |
-| [ASP0025](xref:diagnostics/asp0025) | Nonbreaking | Use AddAuthorizationBuilder |
+| [ASP0016](../diagnostics/asp0016.md) | Nonbreaking | Don't return a value from RequestDelegate |
+| [ASP0019](../diagnostics/asp0019.md) | Nonbreaking | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0020](../diagnostics/asp0020.md) | Nonbreaking | Complex types referenced by route parameters must be parsable |
+| [ASP0021](../diagnostics/asp0021.md) | Nonbreaking | The return type of the BindAsync method must be `ValueTask<T>` |
+| [ASP0022](../diagnostics/asp0022.md) | Nonbreaking | Route conflict detected between route handlers |
+| [ASP0023](../diagnostics/asp0023.md) | Nonbreaking | MVC: Route conflict detected between route handlers |
+| [ASP0024](../diagnostics/asp0024.md) | Nonbreaking | Route handler has multiple parameters with the `[FromBody]` attribute |
+| [ASP0025](../diagnostics/asp0025.md) | Nonbreaking | Use AddAuthorizationBuilder |
 
 ### Route tooling
 

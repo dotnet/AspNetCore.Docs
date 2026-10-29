@@ -87,6 +87,6 @@ For more information, see:
 * <xref:blazor/index>
 * <xref:blazor/hosting-models>
 * <xref:blazor/components/integration>
-* <xref:grpc/comparison>
+* [Compare gRPC services with HTTP APIs](../../../grpc/comparison.md)
 
 :::moniker-end

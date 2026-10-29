@@ -568,10 +568,10 @@ Missing generated validation metadata doesn't produce a runtime exception or log
 
 Build analyzers report common unsupported configurations:
 
-* <xref:diagnostics/asp0033> and <xref:diagnostics/asp0034> report inaccessible validatable types and endpoint parameter types.
-* <xref:diagnostics/asp0035> and <xref:diagnostics/asp0036> report inaccessible validated properties or property types.
-* <xref:diagnostics/asp0037> reports `[ValidatableType]` applied to generated code.
-* <xref:diagnostics/asp0038> reports `[ValidatableType]` used without a matching `AddValidation` call.
+* [ASP0033: ValidatableType is applied to an inaccessible type](../diagnostics/asp0033.md) and [ASP0034: Endpoint parameter type is inaccessible from generated code](../diagnostics/asp0034.md) report inaccessible validatable types and endpoint parameter types.
+* [ASP0035: Validatable property or its type on a ValidatableType is not accessible](../diagnostics/asp0035.md) and [ASP0036: Validatable property or its type on an endpoint parameter type is not accessible](../diagnostics/asp0036.md) report inaccessible validated properties or property types.
+* [ASP0037: ValidatableType cannot be used in generated code](../diagnostics/asp0037.md) reports `[ValidatableType]` applied to generated code.
+* [ASP0038: ValidatableType should not be used without a call to AddValidation](../diagnostics/asp0038.md) reports `[ValidatableType]` used without a matching `AddValidation` call.
 
 Other missing-metadata cases might not produce a diagnostic.
 

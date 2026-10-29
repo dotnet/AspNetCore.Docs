@@ -106,7 +106,7 @@ To use `TypedResults`, the return type must be fully declared; when the method i
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
 
 > [!NOTE]
-> When using a method group whose only parameter is `HttpContext` (for example, `static async Task<Results<ContentHttpResult, BadRequest>> MyHandler(HttpContext context)`), `app.MapGet` matches both `RequestDelegate` and `Delegate`. Overload resolution selects the <xref:Microsoft.AspNetCore.Http.RequestDelegate> overload, which discards return values and triggers analyzer warning [ASP0016](xref:diagnostics/asp0016). To ensure the result is executed and written to the response, cast the method group to `Delegate` (for example, `app.MapGet("/route", (Delegate)MyHandler)`) or use a lambda.
+> When using a method group whose only parameter is `HttpContext` (for example, `static async Task<Results<ContentHttpResult, BadRequest>> MyHandler(HttpContext context)`), `app.MapGet` matches both `RequestDelegate` and `Delegate`. Overload resolution selects the <xref:Microsoft.AspNetCore.Http.RequestDelegate> overload, which discards return values and triggers analyzer warning [ASP0016](../../diagnostics/asp0016.md). To ensure the result is executed and written to the response, cast the method group to `Delegate` (for example, `app.MapGet("/route", (Delegate)MyHandler)`) or use a lambda.
 >
 > When using `TypedResults` with multiple return branches, an explicit union return type such as `Results<T1, T2>` (or `Task<Results<T1, T2>>` for async handlers) is required because the compiler cannot infer a common union type.
 

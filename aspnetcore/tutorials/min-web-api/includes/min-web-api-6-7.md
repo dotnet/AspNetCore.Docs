@@ -2,7 +2,7 @@
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -338,7 +338,7 @@ This method is similar to the `MapPut` method, except it uses HTTP PATCH and onl
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. Using nullable properties allows the endpoint to distinguish between a field that wasn't provided (null) versus a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool would default to false, potentially overwriting an existing true value when that field wasn't included in the request.
 
 > [!NOTE]
-> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
+> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see [JsonPatch in ASP.NET Core web API](../../../web-api/jsonpatch.md).
 
 ## Test the PATCH endpoint
 
@@ -499,7 +499,7 @@ See <xref:fundamentals/minimal-apis>
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 

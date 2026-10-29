@@ -130,7 +130,7 @@ public async Task UnauthorizedApiRequest_Returns401()
 ## Related topics
 
 * <xref:security/authentication/cookie>
-* <xref:web-api/index>
+* [Create web APIs with ASP.NET Core](../../web-api/index.md)
 * <xref:fundamentals/minimal-apis/responses>
 * <xref:signalr/authn-and-authz>
 * [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints)

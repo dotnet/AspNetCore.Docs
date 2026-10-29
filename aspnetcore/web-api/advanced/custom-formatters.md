@@ -3,13 +3,12 @@ title: Custom formatters in ASP.NET Core Web API
 description: Learn how to create and use custom formatters for web APIs in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/26/2022
-uid: web-api/advanced/custom-formatters
 ---
 # Custom formatters in ASP.NET Core Web API
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](xref:web-api/advanced/formatting).
+ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](formatting.md).
 
 The framework provides built-in input and output formatters for JSON and XML. It provides a built-in output formatter for plain text, but doesn't provide an input formatter for plain text.
 
@@ -120,20 +119,20 @@ To see vCard output, run the app and send a Get request with Accept header `text
 
 To add a vCard to the in-memory collection of contacts:
 
-* Send a `Post` request to `/api/contacts` with a tool like [http-repl](xref:web-api/http-repl).
+* Send a `Post` request to `/api/contacts` with a tool like [http-repl](../http-repl/index.md).
 * Set the `Content-Type` header to `text/vcard`.
 * Set `vCard` text in the body, formatted like the preceding example.
 
 ## Additional resources
 
-* <xref:web-api/advanced/formatting>
-* <xref:grpc/dotnet-grpc>
+* [Format response data in ASP.NET Core Web API](formatting.md)
+* [Manage Protobuf references with dotnet-grpc](../../grpc/dotnet-grpc.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](xref:web-api/advanced/formatting).
+ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](formatting.md).
 
 The framework provides built-in input and output formatters for JSON and XML. It provides a built-in output formatter for plain text, but doesn't provide an input formatter for plain text.
 
@@ -250,7 +249,7 @@ To add a vCard to the in-memory collection of contacts:
 
 ## Additional resources
 
-* <xref:web-api/advanced/formatting>
-* <xref:grpc/dotnet-grpc>
+* [Format response data in ASP.NET Core Web API](formatting.md)
+* [Manage Protobuf references with dotnet-grpc](../../grpc/dotnet-grpc.md)
 
 :::moniker-end

@@ -218,7 +218,7 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 :::image source="~/tutorials/web-api-help-pages-using-swagger/_static/v6-swagger-post-responses.png"  alt-text="Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages.":::
 
-Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../../../web-api/advanced/conventions.md).
 
 To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annotations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response, schema, and parameter metadata.
 
@@ -515,7 +515,7 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 :::image source="~/tutorials/web-api-help-pages-using-swagger/_static/data-annotations-response-types.png" alt-text="Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages.":::
 
-In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../../../web-api/advanced/conventions.md).
 
 To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annotations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response, schema, and parameter metadata.
 

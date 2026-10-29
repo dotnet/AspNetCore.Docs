@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: ActionResult vs IActionResult
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 02/26/2026
-uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API
 
@@ -91,7 +90,7 @@ For example, the following model indicates that requests must include the `Name`
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/8.x/WebApiSample/Models/Product.cs" id="snippet_ProductClass" highlight="5-6,8-9":::
 
-If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute is applied, model validation errors result in a 400 status code. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute is applied, model validation errors result in a 400 status code. For more information, see [Automatic HTTP 400 responses](index.md#automatic-http-400-responses).
 
 ## ActionResult vs IActionResult
 
@@ -147,7 +146,7 @@ In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCor
 Different than the MVC-specific result types, the `HttpResults`:
 
 * Are a results implementation that is processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync*).
-* Does ***not*** leverage the configured [Formatters](xref:web-api/advanced/formatting#format-specific-action-results). Not leveraging the configured formatters means:
+* Does ***not*** leverage the configured [Formatters](advanced/formatting.md#format-specific-action-results). Not leveraging the configured formatters means:
 
   * Some features like `Content negotiation` aren't available.
   * The produced `Content-Type` is decided by the `HttpResults` implementation.

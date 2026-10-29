@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/06/2026
-uid: web-api/advanced/conventions
 ---
 # Use web API conventions
 
@@ -28,7 +27,7 @@ Default conventions are available from <xref:Microsoft.AspNetCore.Mvc.DefaultApi
 
 Actions that follow the patterns in the `ValuesController.cs` work with the default conventions. If the default conventions don't meet your needs, see [Create web API conventions](#create-web-api-conventions).
 
-At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions. `ApiExplorer` is MVC's abstraction to communicate with [OpenAPI](https://www.openapis.org/) (also known as Swagger) document generators. Attributes from the applied convention are associated with an action and are included in the action's OpenAPI documentation. [API analyzers](xref:web-api/advanced/analyzers) also understand conventions. If your action is unconventional (for example, it returns a status code that isn't documented by the applied convention), a warning encourages you to document the status code.
+At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions. `ApiExplorer` is MVC's abstraction to communicate with [OpenAPI](https://www.openapis.org/) (also known as Swagger) document generators. Attributes from the applied convention are associated with an action and are included in the action's OpenAPI documentation. [API analyzers](analyzers.md) also understand conventions. If your action is unconventional (for example, it returns a status code that isn't documented by the applied convention), a warning encourages you to document the status code.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/conventions/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
@@ -115,5 +114,5 @@ In the preceding example:
 
 * [Video: Create metadata for NSwagClient](/shows/beginners-series-to-web-apis/generating-api-clients-17-of-18--beginners-series-to-web-apis)
 * [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/)
-* <xref:web-api/advanced/analyzers>
+* [Use web API analyzers](analyzers.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>

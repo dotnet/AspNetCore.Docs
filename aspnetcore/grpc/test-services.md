@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to test gRPC services in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/01/2022
-uid: grpc/test-services
 ---
 # Test gRPC services in ASP.NET Core
 
@@ -18,7 +17,7 @@ There are three common approaches for testing gRPC services:
 
 * **Unit testing**: Test gRPC services directly from a unit testing library.
 * **Integration testing**: The gRPC app is hosted in <xref:Microsoft.AspNetCore.TestHost.TestServer>, an in-memory test server from the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost) package. gRPC services are tested by calling them using a gRPC client from a unit testing library.
-* **Manual testing**: Test gRPC servers with ad hoc calls. For information about how to use command-line and UI tooling with gRPC services, see <xref:grpc/test-tools>.
+* **Manual testing**: Test gRPC servers with ad hoc calls. For information about how to use command-line and UI tooling with gRPC services, see [Test gRPC services with gRPCurl and gRPCui in ASP.NET Core](test-tools.md).
 
 In unit testing, only the gRPC service is involved. Dependencies injected into the service must be mocked. In integration testing, the gRPC service and its auxiliary infrastructure are part of the test. This includes app startup, dependency injection, routing and authentication, and authorization.
 
@@ -102,5 +101,5 @@ The preceding integration test:
 
 ## Related content
 
-* <xref:grpc/test-tools>
-* <xref:grpc/test-client>
+* [Test gRPC services with gRPCurl and gRPCui in ASP.NET Core](test-tools.md)
+* [Mock gRPC client in tests](test-client.md)

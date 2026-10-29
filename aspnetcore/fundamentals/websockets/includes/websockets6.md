@@ -10,7 +10,7 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 For most applications, we recommend SignalR over raw WebSockets. SignalR provides transport fallback for environments where WebSockets isn't available. It also provides a basic remote procedure call app model. And in most scenarios, SignalR has no significant performance disadvantage compared to using raw WebSockets.
 
-For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSockets.
+For some apps, [gRPC on .NET](../../../grpc/index.md) provides an alternative to WebSockets.
 
 ## Prerequisites
 

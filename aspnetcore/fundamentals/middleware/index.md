@@ -29,7 +29,7 @@ Standalone Blazor WebAssembly apps run entirely on the client and don't process 
 
 ## Middleware code analysis
 
-For more information about ASP.NET Core's compiler platform analyzers that inspect app code for quality, see <xref:diagnostics/code-analysis>.
+For more information about ASP.NET Core's compiler platform analyzers that inspect app code for quality, see [Diagnostic Code Analysis in ASP.NET Core Apps](../../diagnostics/code-analysis.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -116,9 +116,9 @@ In the app's console window when the app is run:
 <!-- DOC AUTHOR NOTE: Two spaces at the ends of the first three lines
                       for newlines in the rendered article. -->
 
-> :::no-loc text="Work that can write to the response. (1)":::  
-> :::no-loc text="Work that can write to the response. (2)":::  
-> :::no-loc text="Work that doesn't write to the response. (2)":::  
+> :::no-loc text="Work that can write to the response. (1)":::
+> :::no-loc text="Work that can write to the response. (2)":::
+> :::no-loc text="Work that doesn't write to the response. (2)":::
 > :::no-loc text="Work that doesn't write to the response. (1)":::
 
 *Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [static file middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*> extension method.
@@ -304,7 +304,7 @@ app.Run();
 
 void HandleBranchAndRejoin(IApplicationBuilder app)
 {
-    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
+    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>();
 
     app.Use(async (context, next) =>
     {
@@ -1131,7 +1131,7 @@ Run forwarded headers middleware before other middleware to ensure that the midd
 The latest release of ASP.NET Core includes the following middleware. The *UI stack* column shows the typical UI stack where the middleware is used: [All, Blazor Web App (BWA), Razor Pages and MVC (RP/MVC)]. The *Order* column provides notes on middleware placement in the request processing pipeline and under what conditions the middleware might stop request processing. When a middleware short-circuits the request processing pipeline and prevents further downstream middleware from processing a request, it's called a *terminal middleware*. For more information about short-circuiting, see the [Create a middleware pipeline with `WebApplication`](#create-a-middleware-pipeline-with-webapplication) section.
 
 <!-- REVIEWER NOTE: I have "All" for the *UI stack* entries except:
-                    
+
                     MVC: RP/MVC
                     OWIN: RP/MVC
                     Output Caching: RP/MVC
@@ -1151,9 +1151,9 @@ Middleware | Description | UI stack | Order
 [Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | All | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
 [Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
 [Health Check](xref:host-and-deploy/health-checks) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | All | Terminal if a request matches a health check endpoint.
-[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. | 
-All | 
-[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline. 
+[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. |
+All |
+[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline.
 [HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. | All | Before middleware that consume the updated method.
 [HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
 [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
@@ -1179,7 +1179,7 @@ All |
 * [Lifetime and registration options (includes middleware sample)](xref:fundamentals/dependency-injection#lifetime-and-registration-options)
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
-* [Configure gRPC-Web in ASP.NET Core](xref:grpc/browser#configure-grpc-web-in-aspnet-core)
+* [Configure gRPC-Web in ASP.NET Core](../../grpc/browser.md#grpc-web)
 * <xref:migration/fx-to-core/areas/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>

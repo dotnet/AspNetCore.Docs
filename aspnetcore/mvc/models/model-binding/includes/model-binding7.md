@@ -74,7 +74,7 @@ Model binding uses specific definitions for the types it operates on. A *simple 
 By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
 
 1. Form fields
-1. The request body (For [controllers that have the [ApiController] attribute](xref:web-api/index#binding-source-parameter-inference).)
+1. The request body (For [controllers that have the [ApiController] attribute](../../../../web-api/index.md#binding-source-parameter-inference).)
 1. Route data
 1. Query string parameters
 1. Uploaded files
@@ -771,7 +771,7 @@ By default, properties are not bound for HTTP GET requests. Typically, all you n
 By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
 
 1. Form fields
-1. The request body (For [controllers that have the [ApiController] attribute](xref:web-api/index#binding-source-parameter-inference).)
+1. The request body (For [controllers that have the [ApiController] attribute](../../../../web-api/index.md#binding-source-parameter-inference).)
 1. Route data
 1. Query string parameters
 1. Uploaded files
@@ -1408,7 +1408,7 @@ By default, properties are not bound for HTTP GET requests. Typically, all you n
 By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
 
 1. Form fields
-1. The request body (For [controllers that have the [ApiController] attribute](xref:web-api/index#binding-source-parameter-inference).)
+1. The request body (For [controllers that have the [ApiController] attribute](../../../../web-api/index.md#binding-source-parameter-inference).)
 1. Route data
 1. Query string parameters
 1. Uploaded files
