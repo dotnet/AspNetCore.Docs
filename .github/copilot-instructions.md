@@ -7,6 +7,7 @@ ms.date: 10/21/2026
 # Copilot Instructions for `dotnet/AspNetCore.Docs`
 
 ## Introduction
+
 This document contains general and repository-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. **Unless otherwise specified, all ".NET" references refer to modern .NET, not .NET Framework.**
 
 For code-specific guidelines, including code snippets, version targeting, and language standards, please refer to the [copilot-code-instructions.md](./copilot-code-instructions.md) file.
@@ -14,7 +15,9 @@ For code-specific guidelines, including code snippets, version targeting, and la
 ## General Guidelines
 
 ### 1. Issue Handling
+
 When creating a PR for an issue:
+
 * [ ] Read the full issue and all linked references
 * [ ] Study code samples from linked PRs that demonstrate features in the latest .NET pre-release version (e.g., .NET 11 Preview) to ensure that guidance and documentation reflect the latest upcoming changes and best practices.
 * [ ] For labeled issues that have the following labels, follow these guidelines:
@@ -25,7 +28,9 @@ When creating a PR for an issue:
 * [ ] Include the folder structure of the repository, including any important directories or files that are relevant to the project.
 
 ### 2. Issue Discussion Analysis
+
 When working on an issue:
+
 * [ ] **Read the complete issue discussion** - Don't rely solely on the initial issue description
 * [ ] **Prioritize maintainer guidance** - Comments from repository maintainers (especially those with "MEMBER" association) should take precedence over the original issue description
 * [ ] **Look for updated analysis** - Later comments may contain revised understanding, additional context, or modified resolution approaches
@@ -33,9 +38,11 @@ When working on an issue:
 * [ ] **Validate your understanding** - If the discussion seems to contradict the initial issue description, follow the most recent maintainer guidance
 
 ### 3. Markdown File Naming and Organization
+
 * [ ] If you're adding a new Markdown file, it should be named in all lowercase with hyphens separating words. Also, omit any filler words such as "the" or "a" from the file name.
 
 ### 4. API References and Verification
+
   * [ ] Use `<xref:api-doc-ID>` for API cross-references, where `api-doc-ID` is the API documentation ID.
     * [ ] For an encoded asterisk (%2A), use a plain text asterisk (*) instead.
     * [ ] For an encoded backtick (%60), use a plain text backtick (`) instead.
@@ -44,42 +51,21 @@ When working on an issue:
   * [ ] If you cannot verify, state that explicitly in your output.
 
 ### 5. Links and References
-* [ ] For cross-references to other articles within the AspNetCore.Docs repository:
-  * [ ] Use the xref syntax: `<xref:target-uid>`
-  * [ ] The "target-uid" of the xref syntax is obtained from the `uid` property value in the YAML front matter of the article's markdown file
-  * [ ] Examples
-    * [ ] For a target article `uid` value of `aspnetcore/mvc/overview`, the xref cross-link is `<xref:aspnetcore/mvc/overview>`
-    * [ ] For a target article `uid` value of `blazor/index`, the xref cross-link is `<xref:blazor/index>`
 
-* [ ] For non-markdown files (files that don't have the `.md` file extension) within this repository, such as PowerShell scripts and code files:
-  * [ ] Use relative links with the appropriate file extension
-  * [ ] Example: `../build-tools/build.ps1` or `./sample.json`
+* [ ] For cross-references to other articles within the AspNetCore.Docs repository, use file-relative links with the appropriate file extension
+  * [ ] Example: `../mvc/overview.md`
 
 * [ ] For external links to non-Microsoft sites (MDN, W3C, etc.):
   * [ ] Use absolute URLs
   * [ ] Remove any language or culture segment from the URL path (such as `/en-us/`, `/fr-fr/`, `/en/`, etc.)
-  * [ ] Example (MDN):
-    * [ ] Original: `https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event`
-    * [ ] Correct: `https://developer.mozilla.org/docs/Web/API/Element/click_event`
-
-* [ ] For links to GitHub repositories:
-  * [ ] Use the full URL path
-    * [ ] Example: `https://github.com/maraf/blazor-wasm-react/blob/main/blazor/Counter.razor`
-    * [ ] Example: `https://github.com/dotnet/blazor-samples/blob/main/10.0/BlazorWebAssemblyReact/blazor/Counter.razor`
-  * [ ] For other Git hosting services or non-Microsoft domains, use the full URL
-    * [ ] Example: `https://gitlab.com/username/repo-name`
 
 * [ ] For links to Microsoft Learn content in other repositories:
   * [ ] Use the relative URL starting with a forward slash
   * [ ] Don't include the scheme and the host (example: `https://learn.microsoft.com`) and don't include the locale (example: `en-us`)
   * [ ] Example: For the target Learn website URL `https://learn.microsoft.com/en-us/dotnet/core/introduction`, use the relative URL `/dotnet/core/introduction` for the link destination
 
-* [ ] Never use physical .md file paths in published content
-  * [ ] Wrong: `../blazor/index.md` or `/aspnet/core/blazor/index.md`
-  * [ ] Correct: `<xref:blazor/index>`
-  * [ ] Exception: GitHub-only content (such as README files, contributing guidelines, and other repository documentation that isn't published to learn.microsoft.com) should use an absolute URL to the markdown file (`.md` file extension)
-
 ## Repository-Specific Guidelines
+
 * [ ] Follow the [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/)
   * [ ] Use contractions following the guidance in [Use contractions](https://learn.microsoft.com/en-us/style-guide/word-choice/use-contractions)
 * [ ] **Repository Exceptions**:
@@ -92,6 +78,7 @@ When working on an issue:
   * [ ] For new or updated articles published to Microsoft Learn, follow [Metadata for Microsoft Learn documentation](https://learn.microsoft.com/en-us/contribute/content/metadata) and the metadata and date requirements below. Don't add frontmatter to sample README files, includes, or GitHub-only documentation.
 
 ### 1. Metadata and Date Requirements
+
 * [ ] These requirements apply to articles published to Microsoft Learn, not sample README files, includes, or GitHub-only documentation.
 * [ ] Set `ms.date` for new articles and update it for significant content changes. Leave it unchanged for minor or mechanical edits, such as typo fixes, formatting, link corrections, or sample directory renames.
 * [ ] When setting or updating `ms.date`, use the current date in MM/DD/YYYY format. However, accept an existing date within 14 days before or after the PR's opening date. Don't require it to match the day Copilot runs or refresh it solely because review or subsequent PR edits take place days or weeks later.
@@ -102,13 +89,16 @@ When working on an issue:
   * [ ] DD: Two digits, leading zero if needed (01-31)
   * [ ] YYYY: Four digits (2025)
   * [ ] Example: `ms.date: 08/07/2025`
+
 ### 2. Version Targeting Common Range Patterns
+
 * [ ] Fixed Range: `>= aspnetcore-7.0 <= aspnetcore-9.0`
 * [ ] Open Upper Bound: `>= aspnetcore-7.0`
 * [ ] Open Lower Bound: `<= aspnetcore-9.0`
 * [ ] Specific Version: `== aspnetcore-9.0`
 
 ### 3. Handling File Redirections
+
 * [ ] When a Markdown (.md) article file (this does not apply to includes) is deleted or renamed in a PR, create a redirection entry.
 * [ ] Redirections ensure users following existing links aren't left with broken links
 * [ ] To add a redirection:
@@ -149,6 +139,7 @@ When working on an issue:
 * [ ] For middleware content and examples, use the middleware class approach
 
 ### 5. Content Writing Guidelines
+
 * [ ] Introductory paragraph:
   * [ ] When drafting the first paragraph of any new article, or when significantly updating an existing article:
   * [ ] Explain why and when the topic matters in practical ASP.NET Core development scenarios.
@@ -158,6 +149,7 @@ When working on an issue:
 * [ ] Make sure that any appearance of "like" is only used to compare nouns. If "like" is used to indicate one or more examples, suggest or use "such as" instead.
 
 ### 6. PR Description Requirements
+
 * [ ] On the first line of the PR description, reference the originating issue:
   * [ ] Issue in this repository (`dotnet/AspNetCore.Docs`): use a closing keyword: `Fixes #[issue-number]`
   * [ ] Issue in another repository: use a non-closing, fully-qualified reference so it links without closing: `Contributes to [owner]/[repo]#[issue-number]`
@@ -169,6 +161,7 @@ When working on an issue:
 * [ ] List all files that were modified with brief descriptions
 
 ### 7. PR review guidelines (Copilot-assigned reviews)
+
 * [ ] Flag capitalization of middleware/feature names that use proper-noun casing and suggest lowercase per the "4. ASP.NET Core Specific Guidelines" section, except for code identifiers, proper adjectives (URL, HTTP), branded names, and words that begin a sentence, heading, or bullet.
 * [ ] Flag compound adjectives in feature names that risk adjective/name ambiguity and suggest hyphenation (example: "host-filtering middleware").
 * [ ] Verify sentence-case titles/headers and the metadata/ms.date rules already defined above, including the PR-relative date tolerance and exceptions for minor edits and non-article files. Don't flag an accepted date merely because it isn't today's date, request `ai-usage` for mechanical edits, or request frontmatter for sample README files.
