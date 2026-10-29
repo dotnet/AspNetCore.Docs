@@ -186,7 +186,7 @@ Form bodies are always required and have `required` set to `true`.
 
 Use a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or an [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
 
-For endpoints that accept a JSON Patch document, the generated OpenAPI document uses the `application/json-patch+json` media type for the request body and includes a detailed schema that describes the structure of the JSON Patch document, including the operations it can contain. For more information about JSON Patch in ASP.NET Core, see <xref:web-api/jsonpatch>.
+For endpoints that accept a JSON Patch document, the generated OpenAPI document uses the `application/json-patch+json` media type for the request body and includes a detailed schema that describes the structure of the JSON Patch document, including the operations it can contain. For more information about JSON Patch in ASP.NET Core, see [JsonPatch in ASP.NET Core web API](../../../web-api/jsonpatch.md).
 
 Other mechanisms for setting request body metadata depend on the type of app being developed and are described in the following sections.
 
@@ -267,7 +267,7 @@ In this case, the requestBody in the generated OpenAPI document will include onl
 A [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute can't add support for a content type that doesn't have an associated input formatter, and the generated OpenAPI document doesn't include any content types that don't have an associated input formatter.
 
 For content types other than JSON or XML, you need to create a custom input formatter.
-For more information and examples, see [Custom formatters in ASP.NET Core Web API](xref:web-api/advanced/custom-formatters).
+For more information and examples, see [Custom formatters in ASP.NET Core Web API](../../../web-api/advanced/custom-formatters.md).
 
 If the route handler doesn't have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter, the route handler might read the request body directly from the `Request.Body` stream and might use the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute to restrict the content types allowed, but no requestBody is generated in the OpenAPI document.
 
@@ -412,7 +412,7 @@ When not specified by an attribute:
 * The schema for the response body of 3xx and 5xx responses is considered to be not specified.
 * The content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
 
-By default, there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]` attribute](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) is consistent with the actual behavior of the action method, which may return a different status code or response body type than specified by the metadata. To enable these checks, [enable Web API analyzers](xref:web-api/advanced/analyzers).
+By default, there are no compile-time checks to ensure that the response metadata specified with a [`[ProducesResponseType]` attribute](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) is consistent with the actual behavior of the action method, which may return a different status code or response body type than specified by the metadata. To enable these checks, [enable Web API analyzers](../../../web-api/advanced/analyzers.md).
 
 > [!WARNING]
 > Web API analyzers are deprecated as of .NET 10 and will be removed in a future release. For more information, see [IncludeOpenAPIAnalyzers property and MVC API analyzers are deprecated](/aspnet/core/breaking-changes/10/openapi-analyzers-deprecated?view=aspnetcore-10.0&preserve-view=true).

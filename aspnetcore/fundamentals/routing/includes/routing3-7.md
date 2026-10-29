@@ -60,7 +60,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
 * [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
-* [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
+* [MapGrpcService\<TService> for gRPC](../../../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
 
@@ -1089,7 +1089,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
 * [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
-* [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
+* [MapGrpcService\<TService> for gRPC](../../../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
 
@@ -2105,7 +2105,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
 * [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
-* [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
+* [MapGrpcService\<TService> for gRPC](../../../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
 

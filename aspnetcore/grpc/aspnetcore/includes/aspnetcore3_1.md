@@ -99,7 +99,7 @@ If an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.P
 For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 > [!NOTE]
-> macOS doesn't support ASP.NET Core gRPC with TLS before .NET 8. Additional configuration is required to successfully run gRPC services on macOS when using .NET 7 or earlier. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+> macOS doesn't support ASP.NET Core gRPC with TLS before .NET 8. Additional configuration is required to successfully run gRPC services on macOS when using .NET 7 or earlier. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](../../troubleshoot.md#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## Host gRPC in non-ASP.NET Core projects
 
@@ -153,8 +153,8 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 ## Related content
 
 * <xref:tutorials/grpc/grpc-start>
-* <xref:grpc/index>
-* <xref:grpc/basics>
+* [Overview for gRPC on .NET](../../index.md)
+* [gRPC Services with C#](../../basics.md)
 * <xref:fundamentals/servers/kestrel>
 
 :::moniker-end

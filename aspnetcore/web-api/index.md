@@ -3,7 +3,6 @@ title: Create web APIs with ASP.NET Core
 description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/06/2026
-uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
@@ -301,10 +300,10 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
-* <xref:web-api/action-return-types>
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
 * <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
@@ -580,10 +579,10 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
-* <xref:web-api/action-return-types>
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
 * <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
@@ -870,10 +869,10 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* <xref:web-api/action-return-types>
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
 * <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
@@ -1106,10 +1105,10 @@ The `[Consumes]` attribute also allows an action to influence its selection base
 In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
 The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
 ## Additional resources
-* <xref:web-api/action-return-types>
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
 * <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)

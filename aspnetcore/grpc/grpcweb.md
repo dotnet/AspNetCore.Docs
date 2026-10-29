@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 07/10/2025
-uid: grpc/grpcweb
 ---
 # gRPC-Web in ASP.NET Core gRPC apps
 
@@ -16,7 +15,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 Learn how to configure an existing ASP.NET Core gRPC service to be callable from browser apps, using the [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) protocol. gRPC-Web allows browser JavaScript and Blazor apps to call gRPC services. It's not possible to call an HTTP/2 gRPC service from a browser-based app. gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC.
 
-For instructions on adding a gRPC service to an existing ASP.NET Core app, see [Add gRPC services to an ASP.NET Core app](xref:grpc/aspnetcore#add-grpc-services-to-an-aspnet-core-app).
+For instructions on adding a gRPC service to an existing ASP.NET Core app, see [Add gRPC services to an ASP.NET Core app](aspnetcore.md#add-grpc-services-to-an-aspnet-core-app).
 
 For instructions on creating a gRPC project, see <xref:tutorials/grpc/grpc-start>.
 
@@ -96,7 +95,7 @@ Update the default protocol in `appsettings.json`:
 
 Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/servers/kestrel/endpoints).
 
-Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information, see [ASP.NET Core gRPC protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information, see [ASP.NET Core gRPC protocol negotiation](aspnetcore.md#protocol-negotiation).
 
 ## Call gRPC-Web from the browser
 
@@ -112,7 +111,7 @@ A JavaScript gRPC-Web client exists. For instructions on how to use gRPC-Web fro
 
 ### Configure gRPC-Web with the .NET gRPC client
 
-The .NET gRPC client can be configured to make gRPC-Web calls. This is useful for [Blazor WebAssembly](xref:blazor/index#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code. Calling gRPC-Web with a .NET client is the same as [HTTP/2 gRPC](xref:grpc/client). The only modification is how the channel is created.
+The .NET gRPC client can be configured to make gRPC-Web calls. This is useful for [Blazor WebAssembly](xref:blazor/index#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code. Calling gRPC-Web with a .NET client is the same as [HTTP/2 gRPC](client.md). The only modification is how the channel is created.
 
 To use gRPC-Web:
 
@@ -141,7 +140,7 @@ The preceding code:
 
 ### Use gRPC client factory with gRPC-Web
 
-Create a .NET client compatible with gRPC-Web using the [gRPC client factory](xref:grpc/clientfactory):
+Create a .NET client compatible with gRPC-Web using the [gRPC client factory](clientfactory.md):
 
 * Add package references to the project file for the following packages:
   * [`Grpc.Net.Client.Web`](https://www.nuget.org/packages/Grpc.Net.Client.Web)
@@ -159,13 +158,13 @@ builder.Services
         () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
-For more information, see <xref:grpc/clientfactory>.
+For more information, see [gRPC client factory integration in .NET](clientfactory.md).
 
 ## Related content
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
-* <xref:grpc/json-transcoding>
+* [gRPC JSON transcoding in ASP.NET Core gRPC apps](json-transcoding.md)
 
 :::moniker-end
 

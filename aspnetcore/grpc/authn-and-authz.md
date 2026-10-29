@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure authentication and authorization in gRPC for ASP.NET Core with bearer tokens, client certificates, and policies. Secure your services.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 09/15/2026
-uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
 
@@ -284,7 +283,7 @@ app.Run();
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
-* [Configure interceptors in a gRPC client factory in .NET](xref:grpc/clientfactory#configure-interceptors)
+* [Configure interceptors in a gRPC client factory in .NET](clientfactory.md#configure-interceptors)
 
 :::moniker-end
 
@@ -553,6 +552,6 @@ public class TicketerService : Ticketer.TicketerBase
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
-* [Configure interceptors in a gRPC client factory in .NET](xref:grpc/clientfactory#configure-interceptors)
+* [Configure interceptors in a gRPC client factory in .NET](clientfactory.md#configure-interceptors)
 
 :::moniker-end

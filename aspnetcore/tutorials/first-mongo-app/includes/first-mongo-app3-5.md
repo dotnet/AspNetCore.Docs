@@ -356,8 +356,8 @@ For more information on building ASP.NET Core web APIs, see the following resour
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/3.x/SampleApp) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end

@@ -610,7 +610,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> sends an HTTP PATCH request with JSON-encoded content.
 
 > [!NOTE]
-> For more information, see <xref:web-api/jsonpatch>.
+> For more information, see [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md).
 
 In the following example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> receives a JSON PATCH document as a plain text string with escaped quotes:
 
@@ -730,7 +730,7 @@ private async Task UpdateItem(long id)
 
 Add <xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=nameWithType> set to `true` if you want to present the JSON payload in a pleasant format for display. Writing indented JSON has no bearing on processing PATCH requests and isn't typically performed in production apps for web API requests.
 
-Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
+Follow the guidance in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
 
 :::moniker-end
 
@@ -783,7 +783,7 @@ app.MapPatch("/todoitems/{id}", async (long id, TodoContext db) =>
 ```
 
 > [!WARNING]
-> As with the other examples in the <xref:web-api/jsonpatch> article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
+> As with the other examples in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
 
 For a fully working PATCH experience, see the `BlazorWebAppCallWebApi` [sample app](#sample-apps).
 

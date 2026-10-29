@@ -6,7 +6,7 @@ Processes running on the same machine can be designed to communicate with each o
 
 > [!NOTE]
 > Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.  
-> For more information, see [the .NET 8 or later version of this topic](xref:grpc/interprocess?view=aspnetcore-8.0)
+> For more information, see [the .NET 8 or later version of this topic](../../interprocess.md?view=aspnetcore-8.0)
 
 ## Get started
 

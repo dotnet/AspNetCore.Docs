@@ -1351,9 +1351,9 @@ The list of claims in the ID token changes for v2.0 endpoints. Microsoft documen
 
 ## Configure and use gRPC in components
 
-To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
+To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](../../../grpc/index.md):
 
-* Enable gRPC-Web on the server. For more information, see <xref:grpc/grpcweb>.
+* Enable gRPC-Web on the server. For more information, see [gRPC-Web in ASP.NET Core gRPC apps](../../../grpc/grpcweb.md).
 * Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (the `Program` file).
 
 :::moniker range=">= aspnetcore-8.0"
@@ -1433,7 +1433,7 @@ Server response: <strong>@serverResponse</strong>
 
 To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
-For more information, see <xref:grpc/grpcweb>.
+For more information, see [gRPC-Web in ASP.NET Core gRPC apps](../../../grpc/grpcweb.md).
 
 ## Replace the `AuthenticationService` implementation
 

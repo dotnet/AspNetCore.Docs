@@ -1187,7 +1187,7 @@ items:
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
       - name: Handle JSON Patch requests
-        uid: web-api/jsonpatch
+        href: web-api/jsonpatch.md
       - name: Handle errors
         uid: fundamentals/error-handling-api
       - name: Authentication and authorization
@@ -1219,7 +1219,7 @@ items:
       - name: Controller-based APIs
         items:
         - name: Overview
-          uid: web-api/index
+          href: web-api/index.md
         - name: Tutorials
           items:
             - name: Create a web API with controllers
@@ -1227,21 +1227,21 @@ items:
             - name: Web API with MongoDB
               uid: tutorials/first-mongo-app
         - name: Action return types
-          uid: web-api/action-return-types
+          href: web-api/action-return-types.md
         - name: Format response data
-          uid: web-api/advanced/formatting
+          href: web-api/advanced/formatting.md
         - name: Custom formatters
-          uid: web-api/advanced/custom-formatters
+          href: web-api/advanced/custom-formatters.md
         - name: Analyzers
-          uid: web-api/advanced/analyzers
+          href: web-api/advanced/analyzers.md
         - name: Conventions
-          uid: web-api/advanced/conventions
+          href: web-api/advanced/conventions.md
         - name: Test with HttpRepl
           items:
             - name: Overview
-              uid: web-api/http-repl
+              href: web-api/http-repl/index.md
             - name: Telemetry
-              uid: web-api/http-repl/telemetry
+              href: web-api/http-repl/telemetry.md
   - name: Real-time apps
     displayName: signalr
     items:
@@ -1366,7 +1366,7 @@ items:
   - name: Remote Procedure Call apps
     items:
       - name: Overview
-        uid: grpc/index
+        href: grpc/index.md
       - name: Tutorials
         items:
           - name: Get started with a gRPC service
@@ -1374,89 +1374,89 @@ items:
       - name: gRPC services with C#
         items:
           - name: Overview
-            uid: grpc/basics
+            href: grpc/basics.md
           - name: Create services
-            uid: grpc/services
+            href: grpc/services.md
           - name: Create Protobuf messages
-            uid: grpc/protobuf
+            href: grpc/protobuf.md
           - name: Version services
-            uid: grpc/versioning
+            href: grpc/versioning.md
           - name: Test services
-            uid: grpc/test-services
+            href: grpc/test-services.md
       - name: Call gRPC services with C#
         items:
           - name: Overview
-            uid: grpc/client
+            href: grpc/client.md
           - name: Client factory integration
-            uid: grpc/clientfactory
+            href: grpc/clientfactory.md
           - name: Deadlines and cancellation
-            uid: grpc/deadlines-cancellation
+            href: grpc/deadlines-cancellation.md
           - name: Transient fault handling
-            uid: grpc/retries
+            href: grpc/retries.md
           - name: Client-side load balancing
-            uid: grpc/loadbalancing
+            href: grpc/loadbalancing.md
           - name: .NET Standard 2.0 support
-            uid: grpc/netstandard
+            href: grpc/netstandard.md
           - name: Mock client in tests
-            uid: grpc/test-client
+            href: grpc/test-client.md
       - name: gRPC services with ASP.NET Core
-        uid: grpc/aspnetcore
+        href: grpc/aspnetcore.md
       - name: Supported platforms
-        uid: grpc/supported-platforms
+        href: grpc/supported-platforms.md
       - name: Use gRPC in browser apps
         items:
           - name: Overview
-            uid: grpc/browser
+            href: grpc/browser.md
           - name: gRPC-Web
-            uid: grpc/grpcweb
+            href: grpc/grpcweb.md
           - name: gRPC JSON transcoding
             items:
               - name: Overview
-                uid: grpc/json-transcoding
+                href: grpc/json-transcoding.md
               - name: HTTP rules and JSON
-                uid: grpc/json-transcoding-binding
+                href: grpc/json-transcoding-binding.md
       - name: Configuration
-        uid: grpc/configuration
+        href: grpc/configuration.md
       - name: Authentication and authorization
-        uid: grpc/authn-and-authz
+        href: grpc/authn-and-authz.md
       - name: Error handling
-        uid: grpc/error-handling
+        href: grpc/error-handling.md
       - name: gRPC interceptors
-        uid: grpc/interceptors
+        href: grpc/interceptors.md
       - name: Logging and diagnostics
-        uid: grpc/diagnostics
+        href: grpc/diagnostics.md
       - name: Security considerations
-        uid: grpc/security
+        href: grpc/security.md
       - name: Performance best practices
-        uid: grpc/performance
+        href: grpc/performance.md
       - name: Native AOT
-        uid: grpc/native-aot
+        href: grpc/native-aot.md
       - name: Inter-process communication
         items:
           - name: Overview
-            uid: grpc/interprocess
+            href: grpc/interprocess.md
           - name: Unix domain sockets
-            uid: grpc/interprocess-uds
+            href: grpc/interprocess-uds.md
           - name: Named pipes
-            uid: grpc/interprocess-namedpipes
+            href: grpc/interprocess-namedpipes.md
       - name: Code-first services and clients
-        uid: grpc/code-first
+        href: grpc/code-first.md
       - name: gRPC health checks
-        uid: grpc/health-checks
+        href: grpc/health-checks.md
       - name: Manage Protobuf references with dotnet-grpc
-        uid: grpc/dotnet-grpc
+        href: grpc/dotnet-grpc.md
       - name: Test services with gRPCurl and gRPCui
-        uid: grpc/test-tools
+        href: grpc/test-tools.md
       - name: Migrate from C-core to gRPC for .NET
-        uid: grpc/migration
+        href: grpc/migration.md
       - name: Why migrate WCF to ASP.NET Core gRPC
-        uid: grpc/wcf
+        href: grpc/why-migrate-wcf-to-dotnet-grpc.md
       - name: Compare gRPC services with HTTP APIs
-        uid: grpc/comparison
+        href: grpc/comparison.md
       - name: Samples
         href: https://github.com/grpc/grpc-dotnet/tree/master/examples
       - name: Troubleshoot
-        uid: grpc/troubleshoot
+        href: grpc/troubleshoot.md
   - name: Servers
     items:
       - name: Overview
@@ -1702,10 +1702,10 @@ items:
         items:
           - name: Overview
             displayName: test, httprepl
-            uid: web-api/http-repl
+            href: web-api/http-repl/index.md
           - name: Telemetry
             displayName: test, httprepl
-            uid: web-api/http-repl/telemetry
+            href: web-api/http-repl/telemetry.md
       - name: Test Minimal API
         uid: fundamentals/minimal-apis/test-min-api
       - name: Blazor tests
@@ -1746,105 +1746,105 @@ items:
     items:
       - name: Overview
         displayName: code analysis
-        uid: diagnostics/code-analysis
+        href: diagnostics/code-analysis.md
       - name: ASP0000
-        uid: diagnostics/asp0000
+        href: diagnostics/asp0000.md
       - name: ASP0001
-        uid: diagnostics/asp0001
+        href: diagnostics/asp0001.md
       - name: ASP0003
-        uid: diagnostics/asp0003
+        href: diagnostics/asp0003.md
       - name: ASP0004
-        uid: diagnostics/asp0004
+        href: diagnostics/asp0004.md
       - name: ASP0005
-        uid: diagnostics/asp0005
+        href: diagnostics/asp0005.md
       - name: ASP0006
-        uid: diagnostics/asp0006
+        href: diagnostics/asp0006.md
       - name: ASP0007
-        uid: diagnostics/asp0007
+        href: diagnostics/asp0007.md
       - name: ASP0008
-        uid: diagnostics/asp0008
+        href: diagnostics/asp0008.md
       - name: ASP0009
-        uid: diagnostics/asp0009
+        href: diagnostics/asp0009.md
       - name: ASP0010
-        uid: diagnostics/asp0010
+        href: diagnostics/asp0010.md
       - name: ASP0011
-        uid: diagnostics/asp0011
+        href: diagnostics/asp0011.md
       - name: ASP0012
-        uid: diagnostics/asp0012
+        href: diagnostics/asp0012.md
       - name: ASP0013
-        uid: diagnostics/asp0013
+        href: diagnostics/asp0013.md
       - name: ASP0014
-        uid: diagnostics/asp0014
+        href: diagnostics/asp0014.md
       - name: ASP0015
-        uid: diagnostics/asp0015
+        href: diagnostics/asp0015.md
       - name: ASP0016
-        uid: diagnostics/asp0016
+        href: diagnostics/asp0016.md
       - name: ASP0017
-        uid: diagnostics/asp0017
+        href: diagnostics/asp0017.md
       - name: ASP0018
-        uid: diagnostics/asp0018
+        href: diagnostics/asp0018.md
       - name: ASP0019
-        uid: diagnostics/asp0019
+        href: diagnostics/asp0019.md
       - name: ASP0020
-        uid: diagnostics/asp0020
+        href: diagnostics/asp0020.md
       - name: ASP0021
-        uid: diagnostics/asp0021
+        href: diagnostics/asp0021.md
       - name: ASP0022
-        uid: diagnostics/asp0022
+        href: diagnostics/asp0022.md
       - name: ASP0023
-        uid: diagnostics/asp0023
+        href: diagnostics/asp0023.md
       - name: ASP0024
-        uid: diagnostics/asp0024
+        href: diagnostics/asp0024.md
       - name: ASP0025
-        uid: diagnostics/asp0025
+        href: diagnostics/asp0025.md
       - name: ASP0026
-        uid: diagnostics/asp0026
+        href: diagnostics/asp0026.md
       - name: ASP0027
-        uid: diagnostics/asp0027
+        href: diagnostics/asp0027.md
       - name: ASP0028
-        uid: diagnostics/asp0028
+        href: diagnostics/asp0028.md
       - name: ASP0033
-        uid: diagnostics/asp0033
+        href: diagnostics/asp0033.md
       - name: ASP0034
-        uid: diagnostics/asp0034
+        href: diagnostics/asp0034.md
       - name: ASP0035
-        uid: diagnostics/asp0035
+        href: diagnostics/asp0035.md
       - name: ASP0036
-        uid: diagnostics/asp0036
+        href: diagnostics/asp0036.md
       - name: ASP0037
-        uid: diagnostics/asp0037
+        href: diagnostics/asp0037.md
       - name: ASP0038
-        uid: diagnostics/asp0038
+        href: diagnostics/asp0038.md
       - name: BL0001
-        uid: diagnostics/bl0001
+        href: diagnostics/bl0001.md
       - name: BL0002
-        uid: diagnostics/bl0002
+        href: diagnostics/bl0002.md
       - name: BL0003
-        uid: diagnostics/bl0003
+        href: diagnostics/bl0003.md
       - name: BL0004
-        uid: diagnostics/bl0004
+        href: diagnostics/bl0004.md
       - name: BL0005
-        uid: diagnostics/bl0005
+        href: diagnostics/bl0005.md
       - name: BL0006
-        uid: diagnostics/bl0006
+        href: diagnostics/bl0006.md
       - name: BL0007
-        uid: diagnostics/bl0007
+        href: diagnostics/bl0007.md
       - name: BL0008
-        uid: diagnostics/bl0008
+        href: diagnostics/bl0008.md
       - name: MVC1000
-        uid: diagnostics/mvc1000
+        href: diagnostics/mvc1000.md
       - name: MVC1001
-        uid: diagnostics/mvc1001
+        href: diagnostics/mvc1001.md
       - name: MVC1002
-        uid: diagnostics/mvc1002
+        href: diagnostics/mvc1002.md
       - name: MVC1003
-        uid: diagnostics/mvc1003
+        href: diagnostics/mvc1003.md
       - name: MVC1004
-        uid: diagnostics/mvc1004
+        href: diagnostics/mvc1004.md
       - name: MVC1005
-        uid: diagnostics/mvc1005
+        href: diagnostics/mvc1005.md
       - name: MVC1006
-        uid: diagnostics/mvc1006
+        href: diagnostics/mvc1006.md
   - name: RDG diagnostics
     items:
       - name: Overview
@@ -1876,9 +1876,9 @@ items:
     items:
       - name: Overview
         displayName: aspdepr diagnostics
-        uid: diagnostics/aspdepr-ids
+        href: diagnostics/aspdepr-ids.md
       - name: ASPDEPR002
-        uid: diagnostics/aspdepr002
+        href: diagnostics/aspdepr002.md
   - name: Data access
     items:
       - name: Tutorials

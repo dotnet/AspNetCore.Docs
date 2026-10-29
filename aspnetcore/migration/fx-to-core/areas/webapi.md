@@ -178,8 +178,8 @@ Run the migrated project, and browse to `/api/products`.  For example: https://l
 
 ## Additional resources
 
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
 * <xref:mvc/compatibility-version>
 
 :::moniker-end
@@ -302,8 +302,8 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 
 ## Additional resources
 
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
 * <xref:mvc/compatibility-version>
 :::moniker-end
 

@@ -29,7 +29,7 @@ Standalone Blazor WebAssembly apps run entirely on the client and don't process 
 
 ## Middleware code analysis
 
-For more information about ASP.NET Core's compiler platform analyzers that inspect app code for quality, see <xref:diagnostics/code-analysis>.
+For more information about ASP.NET Core's compiler platform analyzers that inspect app code for quality, see [Diagnostic Code Analysis in ASP.NET Core Apps](../../diagnostics/code-analysis.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1179,7 +1179,7 @@ All |
 * [Lifetime and registration options (includes middleware sample)](xref:fundamentals/dependency-injection#lifetime-and-registration-options)
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
-* [Configure gRPC-Web in ASP.NET Core](xref:grpc/browser#configure-grpc-web-in-aspnet-core)
+* [Configure gRPC-Web in ASP.NET Core](../../grpc/browser.md#configure-grpc-web-in-aspnet-core)
 * <xref:migration/fx-to-core/areas/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>

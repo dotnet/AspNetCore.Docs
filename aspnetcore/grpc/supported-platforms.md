@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 08/05/2026
-uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms
 
@@ -24,7 +23,7 @@ gRPC takes advantage of advanced features available in HTTP/2. HTTP/2 isn't supp
 * [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) - gRPC over HTTP/2 is how gRPC is typically used.
 * [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places. gRPC-Web can be used by browser apps and in networks without complete support for HTTP/2. Two advanced gRPC features are no longer supported: client streaming and bidirectional streaming.
 
-gRPC on .NET supports both wire-formats. `application/grpc` is used by default. gRPC-Web must be configured on the client and the server for successful gRPC-Web calls. For information on setting up gRPC-Web, see <xref:grpc/grpcweb>.
+gRPC on .NET supports both wire-formats. `application/grpc` is used by default. gRPC-Web must be configured on the client and the server for successful gRPC-Web calls. For information on setting up gRPC-Web, see [gRPC-Web in ASP.NET Core gRPC apps](grpcweb.md).
 
 ## ASP.NET Core gRPC server requirements
 
@@ -58,10 +57,10 @@ ASP.NET Core gRPC services can be hosted on all operating systems that .NET supp
 > * Linux
 > * macOS&dagger;
 
-&dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+&dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](troubleshoot.md#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 > [!NOTE]
-> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). In addition, macOS [doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos). For production hosting, use Windows or Linux server distributions.
+> macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). In addition, macOS [doesn't support hosting ASP.NET Core apps with HTTPS](troubleshoot.md#unable-to-start-aspnet-core-grpc-app-on-macos). For production hosting, use Windows or Linux server distributions.
 
 :::moniker-end
 
@@ -78,7 +77,7 @@ All built-in ASP.NET Core servers are supported.
 
 &dagger;Requires .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later.
 
-For information about configuring ASP.NET Core servers to run gRPC, see <xref:grpc/aspnetcore#server-options>.
+For information about configuring ASP.NET Core servers to run gRPC, see [gRPC services with ASP.NET Core](aspnetcore.md#server-options).
 
 ### Azure services
 
@@ -109,17 +108,17 @@ The following table lists .NET implementations and their gRPC client support.
 | Universal Windows Platform 10.0.16299        | ❌                | ✔️         |
 | Unity 2018.1                                 | ❌                | ✔️         |
 
-&dagger;.NET Framework requires configuration of <xref:System.Net.Http.WinHttpHandler> and Windows 11 or later, Windows Server 2019 or later. For more information, see [Make gRPC calls on .NET Framework](xref:grpc/netstandard#net-framework).
+&dagger;.NET Framework requires configuration of <xref:System.Net.Http.WinHttpHandler> and Windows 11 or later, Windows Server 2019 or later. For more information, see [Make gRPC calls on .NET Framework](netstandard.md#net-framework).
 
 Using `Grpc.Net.Client` with gRPC-Web requires additional configuration. For more information:
 
-* [Configure gRPC-Web with the .NET gRPC client](xref:grpc/grpcweb#configure-grpc-web-with-the-net-grpc-client)
-* <xref:grpc/netstandard>
+* [Configure gRPC-Web with the .NET gRPC client](grpcweb.md#configure-grpc-web-with-the-net-grpc-client)
+* [Use gRPC client with .NET Standard 2.0](netstandard.md)
 
 > [!IMPORTANT]
-> gRPC-Web requires the client ***and*** server to support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](xref:grpc/grpcweb#configure-grpc-web-in-aspnet-core). Other gRPC server implementations require a proxy to support gRPC-Web.
+> gRPC-Web requires the client ***and*** server to support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](grpcweb.md#configure-grpc-web-in-aspnet-core). Other gRPC server implementations require a proxy to support gRPC-Web.
 
 ## Related content
 
-* <xref:grpc/netstandard>
+* [Use gRPC client with .NET Standard 2.0](netstandard.md)
 * [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/)
