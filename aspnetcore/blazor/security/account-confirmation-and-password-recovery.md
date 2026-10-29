@@ -164,7 +164,7 @@ The following example is based on Mailchimp's Transactional API using [Mandrill.
 
 Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `ApplicationUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender`1>. In the following example, `ApplicationUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `Components/Account/EmailSender.cs`:
 
@@ -301,7 +301,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>.
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider`1> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>.
 
 `CustomTokenProvider.cs`:
 

@@ -29,7 +29,7 @@ Each level of the model has access to a common `Properties` collection, and lowe
 
 ASP.NET Core MVC loads the application model using a provider pattern, defined by the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider> interface. This section covers some of the internal implementation details of how this provider functions. Use of the provider pattern is an advanced subject, primarily for framework use. Most apps should use conventions, not the provider pattern.
 
-Implementations of the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider> interface "wrap" one another, where each implementation calls <xref:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuting%2A> in ascending order based on its <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider.Order> property. The <xref:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuted%2A> method is then called in reverse order. The framework defines several providers:
+Implementations of the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider> interface "wrap" one another, where each implementation calls <xref:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuting*> in ascending order based on its <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider.Order> property. The <xref:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuted*> method is then called in reverse order. The framework defines several providers:
 
 First (`Order=-1000`):
 
@@ -176,7 +176,7 @@ ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Usi
 To use the Web API Compatibility Shim:
 
 * Add the `Microsoft.AspNetCore.Mvc.WebApiCompatShim` package to the project.
-* Add the conventions to MVC by calling <xref:Microsoft.Extensions.DependencyInjection.WebApiCompatShimMvcBuilderExtensions.AddWebApiConventions%2A> in `Startup.ConfigureServices`:
+* Add the conventions to MVC by calling <xref:Microsoft.Extensions.DependencyInjection.WebApiCompatShimMvcBuilderExtensions.AddWebApiConventions*> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc().AddWebApiConventions();
@@ -234,8 +234,8 @@ ASP.NET Core uses <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProv
 
 Implement <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> to programmatically inspect or modify `ApiDescription` instances produced by the framework:
 
-* <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.OnProvidersExecuting%2A>: Executes in ascending order of the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order> property to construct `ApiDescription` metadata for discovered endpoints.
-* <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.OnProvidersExecuted%2A>: Executes in reverse order after all providers have executed, allowing customization or enrichment of generated `ApiDescription` instances.
+* <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.OnProvidersExecuting*>: Executes in ascending order of the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order> property to construct `ApiDescription` metadata for discovered endpoints.
+* <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.OnProvidersExecuted*>: Executes in reverse order after all providers have executed, allowing customization or enrichment of generated `ApiDescription` instances.
 
 The following example demonstrates a custom `IApiDescriptionProvider` that adds custom metadata properties to discovered API descriptions:
 
@@ -263,7 +263,7 @@ public class CustomApiDescriptionProvider : IApiDescriptionProvider
 }
 ```
 
-Register the custom provider with dependency injection using <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable%2A> in `Program.cs`:
+Register the custom provider with dependency injection using <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*> in `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Mvc.ApiExplorer;

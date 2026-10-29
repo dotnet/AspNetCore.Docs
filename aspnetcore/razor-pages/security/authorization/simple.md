@@ -66,7 +66,7 @@ The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can't be applie
 If you decide not to use an MVC controller, the following two approaches can be used to apply authorization to Razor Page handler methods:
 
 * Use separate pages for page handlers requiring different authorization. Move shared content into one or more [partial views](xref:mvc/views/partial). When possible, this is the recommended approach.
-* For content that must share a common page, write a filter that performs authorization as part of <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync%2A?displayProperty=nameWithType>. This approach is demonstrated by the following example.
+* For content that must share a common page, write a filter that performs authorization as part of <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync*?displayProperty=nameWithType>. This approach is demonstrated by the following example.
 
 The `AuthorizeIndexPageHandlerFilter` implements the authorization filter:
 

@@ -39,8 +39,8 @@ There is no runtime component required to serve the app:
 :::code language="csharp" source="~/client-side/spa/intro/samples/Program.cs" highlight="13,21":::
 
 In the preceding template generated `Program.cs` file:
-* `app.`<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> allows the files to be served.
-* `app.`<xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A>`("index.html")` enables serving the default document for any unknown request the server receives.
+* `app.`<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> allows the files to be served.
+* `app.`<xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile*>`("index.html")` enables serving the default document for any unknown request the server receives.
 
 When the app is published with [dotnet publish](/dotnet/core/tools/dotnet-publish), the following tasks in the `csproj` file ensures that [`npm restore`](https://www.npmjs.com/package/restore) runs and that the appropriate npm script runs to generate the production artifacts:
 

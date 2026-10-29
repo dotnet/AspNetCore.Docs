@@ -39,19 +39,19 @@ To test the render mode behaviors locally, you can place the following component
 
 A Blazor Web App must be configured to support interactive render modes. The following extensions are automatically applied to apps created from the *Blazor Web App* project template during app creation. Individual components are still required to declare their render mode per the [*Render modes*](#render-modes) section after the component services and endpoints are configured in the app's `Program` file.
 
-Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>.
+Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>.
 
 Component builder extensions:
 
-* <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> adds services to support rendering Interactive Server components.
-* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A> adds services to support rendering Interactive WebAssembly components.
+* <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> adds services to support rendering Interactive Server components.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents*> adds services to support rendering Interactive WebAssembly components.
 
-<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`).
+<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`).
 
 Endpoint convention builder extensions:
 
-* <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures interactive server-side rendering (interactive SSR) for the app.
-* <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A> configures the Interactive WebAssembly render mode for the app.
+* <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode*> configures interactive server-side rendering (interactive SSR) for the app.
+* <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode*> configures the Interactive WebAssembly render mode for the app.
 
 > [!NOTE]
 > For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
@@ -349,7 +349,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 * [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](xref:security/authorization/authorizationmiddlewareresulthandler).
 
-* [Not Found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
+* [Not Found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*)).
 
 :::moniker-end
 
@@ -616,7 +616,7 @@ Mark any Razor component page with the [`[ExcludeFromInteractiveRouting]` attrib
 
 Applying the attribute causes navigation to the page to exit from [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing). Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
+The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
 
 In the `App` component, use the pattern in the following example:
 
@@ -645,7 +645,7 @@ In the `App` component, use the pattern in the following example:
 }
 ```
 
-An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
+An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
 :::moniker-end
 
@@ -678,7 +678,7 @@ The app also contains an imports file (`_Imports.razor`) automatically applied t
 @layout AccountLayout
 ```
 
-The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component has adopted static SSR. For example, Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This forces a full rerender of the page using static SSR.
+The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component has adopted static SSR. For example, Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh*?displayProperty=nameWithType> with `forceLoad` set to `true`. This forces a full rerender of the page using static SSR.
 
 `Components/Account/Shared/AccountLayout.razor`:
 
@@ -748,7 +748,7 @@ The components that must adopt static SSR in the `Account` folder aren't require
 
 In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. Alternatively, the `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR. This subsection describes the approach.
 
-The app has a custom layout that can be applied to components around the app. Usually, a shared component for the app is placed in the `Components/Layout` folder. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component has adopted static SSR. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This triggers a request to the server for the component.
+The app has a custom layout that can be applied to components around the app. Usually, a shared component for the app is placed in the `Components/Layout` folder. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component has adopted static SSR. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh*?displayProperty=nameWithType> with `forceLoad` set to `true`. This triggers a request to the server for the component.
 
 `Components/Layout/StaticSsrLayout.razor`:
 

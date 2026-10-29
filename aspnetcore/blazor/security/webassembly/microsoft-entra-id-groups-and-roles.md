@@ -113,7 +113,7 @@ Confirm that the `Program` file uses the <xref:Microsoft.AspNetCore.Components.W
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-Update the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> call to the following. Note that the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> is replaced by the app's `CustomUserAccount` for the MSAL authentication and account claims principal factory:
+Update the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication*> call to the following. Note that the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> is replaced by the app's `CustomUserAccount` for the MSAL authentication and account claims principal factory:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
@@ -313,7 +313,7 @@ Multiple roles are assigned in the Azure portal by ***re-adding a user*** for ea
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `role` claim with a JSON array value. Add and register the `CustomAccountFactory` in the app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `role` claim because it's automatically removed by the framework.
 
-In the `Program` file, add or confirm the claim named "`role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In the `Program` file, add or confirm the claim named "`role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole*?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

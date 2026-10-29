@@ -26,7 +26,7 @@ Transformers fall into three categories:
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 * Schema transformers apply to each schema in the document. These can be used to modify the schema of request or response bodies, or any nested schemas.
 
-Transformers can be registered onto the document by calling the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer%2A> method on the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> object. The following snippet shows different ways to register transformers onto the document:
+Transformers can be registered onto the document by calling the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer*> method on the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> object. The following snippet shows different ways to register transformers onto the document:
 
 * Register a document transformer using a delegate.
 * Register a document transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer>.
@@ -100,7 +100,7 @@ For example, the following operation transformer adds `500` as a response status
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
  
-Operation transformers can also be added to specific endpoint with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.AddOpenApiOperationTransformer%2A> API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
+Operation transformers can also be added to specific endpoint with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.AddOpenApiOperationTransformer*> API, instead of all endpoints in a document. This can be useful to change specific OpenAPI data for a specific endpoint, like adding a security scheme, response description or other OpenAPI operation properties. The following example demonstrates adding an operation transformer to a deprecated endpoint specifically, which marks the endpoint as deprecated in the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer2)]
 
@@ -232,7 +232,7 @@ ASP.NET Core lets you customize which schemas are replaced with a `$ref` to a sc
 using the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateSchemaReferenceId> property of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions>.
 This property is a delegate that takes a <xref:System.Text.Json.Serialization.Metadata.JsonTypeInfo> object and returns the name of the schema
 in `components.schemas` that should be used for that type.
-The framework provides a default implementation of this delegate, <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateDefaultSchemaReferenceId%2A>
+The framework provides a default implementation of this delegate, <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.CreateDefaultSchemaReferenceId*>
 that uses the name of the type, but you can replace it with your own implementation.
 
 As a simple example of this customization, you might choose to always inline enum schemas.

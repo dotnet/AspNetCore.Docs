@@ -20,7 +20,7 @@ This article describes how to configure and map claims by using an [OpenID Conne
 
 * Set name and role claims
 * Reset the claims namespaces
-* Customize and extend the claims with the <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A> method
+* Customize and extend the claims with the <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*> method
 
 ## Map claims with OpenID Connect authentication
 
@@ -119,7 +119,7 @@ This article covers the following areas:
 * How to configure and map claims using an [OpenID Connect](https://openid.net/developers/how-connect-works/) client
 * Set the name and role claim
 * Reset the claims namespaces
-* Customize, extend the claims using <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>
+* Customize, extend the claims using <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*>
 
 ## Mapping claims using OpenID Connect authentication
 

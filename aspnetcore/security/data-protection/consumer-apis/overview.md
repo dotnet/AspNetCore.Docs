@@ -50,7 +50,7 @@ The following highlighted code shows how to use <xref:Microsoft.AspNetCore.DataP
 
 [!code-csharp[](~/security/data-protection/using-data-protection/samples/webappexample2.cs?highlight=3,4,5,6,7,8,18,22)]
 
-The package `Microsoft.AspNetCore.DataProtection.Abstractions` contains an extension method <xref:Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions.GetDataProtector%2A> as a developer convenience. It encapsulates as a single operation both retrieving an <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> from the service provider and calling [`IDataProtectionProvider.CreateProtector`](xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider.CreateProtector%2A). The following sample demonstrates its usage:
+The package `Microsoft.AspNetCore.DataProtection.Abstractions` contains an extension method <xref:Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions.GetDataProtector*> as a developer convenience. It encapsulates as a single operation both retrieving an <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> from the service provider and calling [`IDataProtectionProvider.CreateProtector`](xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider.CreateProtector*). The following sample demonstrates its usage:
 
 [!code-csharp[](./overview/samples/getdataprotector.cs?highlight=15)]
 

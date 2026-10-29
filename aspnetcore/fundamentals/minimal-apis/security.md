@@ -110,15 +110,15 @@ Configuration of the authorization requirements on a resource is a two-step proc
 1. Define the authorization requirements in a policy globally.
 1. Apply individual policies to resources.
 
-In the following code, the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> method is invoked, which:
+In the following code, the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> method is invoked, which:
 
 * Adds authorization-related services to the DI container.
 * Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> object that can be used to directly register authorization policies.
 
 The code creates a new authorization policy named `admin_greetings` that encapsulates two authorization requirements:
 
-* A role-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
-* A claim-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim%2A> for which the user must provide a `greetings_api` scope claim.
+* A role-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole*> for users with an `admin` role.
+* A claim-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim*> for which the user must provide a `greetings_api` scope claim.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint:
 

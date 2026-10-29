@@ -52,7 +52,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 The client provides an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
+On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*).
 
 In the .NET gRPC client, send the token with calls by using the `Metadata` collection. Send entries in the `Metadata` collection with a gRPC call as HTTP headers:
 
@@ -334,7 +334,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 The client provides an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
+On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*).
 
 In the .NET gRPC client, send the token with calls by using the `Metadata` collection. Send entries in the `Metadata` collection with a gRPC call as HTTP headers:
 

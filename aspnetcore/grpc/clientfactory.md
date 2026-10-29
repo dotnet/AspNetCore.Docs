@@ -130,7 +130,7 @@ builder.Services
 
 > [!NOTE]
 > Some properties are set on `GrpcChannelOptions` before the `ConfigureChannel` callback is run:
-> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
+> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>.
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
 > These values can be overridden by `ConfigureChannel`.
@@ -353,7 +353,7 @@ services
 
 > [!NOTE]
 > Some properties are set on `GrpcChannelOptions` before the `ConfigureChannel` callback is run:
-> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
+> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>.
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
 > These values can be overridden by `ConfigureChannel`.

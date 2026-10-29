@@ -86,7 +86,7 @@ The Forever Frame transport isn't supported in ASP.NET Core SignalR.
 
 The ASP.NET Core SignalR server-side libraries are included in [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), which is used in the **ASP.NET Core Web Application** template for both Razor and MVC projects.
 
-ASP.NET Core SignalR is an ASP.NET Core middleware. It must be configured by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Startup.ConfigureServices`.
+ASP.NET Core SignalR is an ASP.NET Core middleware. It must be configured by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> in `Startup.ConfigureServices`.
 
 ```csharp
 services.AddSignalR()
@@ -94,7 +94,7 @@ services.AddSignalR()
 
 :::moniker range=">= aspnetcore-3.0"
 
-To configure routing, map routes to hubs inside the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> method call in the `Startup.Configure` method.
+To configure routing, map routes to hubs inside the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> method call in the `Startup.Configure` method.
 
 ```csharp
 app.UseRouting();
@@ -109,7 +109,7 @@ app.UseEndpoints(endpoints =>
 
 :::moniker range="<= aspnetcore-2.2"
 
-To configure routing, map routes to hubs inside the <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A> method call in the `Startup.Configure` method.
+To configure routing, map routes to hubs inside the <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR*> method call in the `Startup.Configure` method.
 
 ```csharp
 app.UseSignalR(routes =>

@@ -18,7 +18,7 @@ ASP.NET Core SignalR supports streaming from client to server and from server to
 
 ## Set up a hub for streaming
 
-A hub method automatically becomes a streaming hub method when it returns <xref:System.Collections.Generic.IAsyncEnumerable`1>, <xref:System.Threading.Channels.ChannelReader%601>, `Task<IAsyncEnumerable<T>>`, or `Task<ChannelReader<T>>`.
+A hub method automatically becomes a streaming hub method when it returns <xref:System.Collections.Generic.IAsyncEnumerable`1>, <xref:System.Threading.Channels.ChannelReader`1>, `Task<IAsyncEnumerable<T>>`, or `Task<ChannelReader<T>>`.
 
 ### Server-to-client streaming
 
@@ -28,7 +28,7 @@ Streaming hub methods can return `IAsyncEnumerable<T>` in addition to `ChannelRe
 
 [!code-csharp[Streaming hub async iterator method](streaming/samples/3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
 
-The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the <xref:System.Threading.Channels.ChannelWriter%601>, the object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
+The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the <xref:System.Threading.Channels.ChannelWriter`1>, the object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
 
 > [!NOTE]
 > Write to the `ChannelWriter<T>` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations are blocked until a `ChannelReader` is returned.
@@ -41,11 +41,11 @@ Server-to-client streaming hub methods can accept a `CancellationToken` paramete
 
 ### Client-to-server streaming
 
-A hub method automatically becomes a client-to-server streaming hub method when it accepts one or more objects of type <xref:System.Threading.Channels.ChannelReader%601> or <xref:System.Collections.Generic.IAsyncEnumerable%601>. The following sample shows the basics of reading streaming data sent from the client. Whenever the client writes to the <xref:System.Threading.Channels.ChannelWriter%601>, the data is written into the `ChannelReader` on the server from which the hub method is reading.
+A hub method automatically becomes a client-to-server streaming hub method when it accepts one or more objects of type <xref:System.Threading.Channels.ChannelReader`1> or <xref:System.Collections.Generic.IAsyncEnumerable`1>. The following sample shows the basics of reading streaming data sent from the client. Whenever the client writes to the <xref:System.Threading.Channels.ChannelWriter`1>, the data is written into the `ChannelReader` on the server from which the hub method is reading.
 
 [!code-csharp[Streaming upload hub method](streaming/samples/3.0/Hubs/StreamHub.cs?name=snippet2)]
 
-An <xref:System.Collections.Generic.IAsyncEnumerable%601> version of the method follows.
+An <xref:System.Collections.Generic.IAsyncEnumerable`1> version of the method follows.
 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 

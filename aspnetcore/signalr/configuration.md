@@ -23,7 +23,7 @@ ASP.NET Core SignalR supports two protocols for encoding messages: [JSON](https:
 
 ### JSON serialization options
 
-JSON serialization can be configured on the server by using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol%2A> extension method. `AddJsonProtocol` can be added after the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> method in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions%2A> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
+JSON serialization can be configured on the server by using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol*> extension method. `AddJsonProtocol` can be added after the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> method in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
 
 For example, to configure the serializer to not change the casing of property names, rather than the default [camel case](https://wikipedia.org/wiki/Camel_case) names, use the following code in the _Program.cs_ file:
 
@@ -57,7 +57,7 @@ If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/pac
 
 ### MessagePack serialization options
 
-MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol%2A> call. For more information, see [MessagePack in SignalR](xref:signalr/messagepackhubprotocol).
+MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. For more information, see [MessagePack in SignalR](xref:signalr/messagepackhubprotocol).
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -89,7 +89,7 @@ Options can be configured for all hubs by providing an options delegate to the `
  });
 ```
 
-Options for a single hub override the global options provided in `AddSignalR` and can be configured by using the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions%2A> method:
+Options for a single hub override the global options provided in `AddSignalR` and can be configured by using the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> method:
 
 ```csharp
 builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
@@ -111,7 +111,7 @@ When increasing this limit or setting it to `null` (unlimited), consider the fol
 
 ### Configure advanced HTTP options
 
-Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> method in `Program.cs`.
+Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> method in `Program.cs`.
 
 [!code-csharp[](~/signalr/configuration/samples/6.x/Program.cs?highlight=24-30)]
 

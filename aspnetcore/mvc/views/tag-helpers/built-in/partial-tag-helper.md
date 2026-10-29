@@ -23,10 +23,10 @@ The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/par
 
 The HTML Helper options for rendering a partial view include:
 
-* [`@await Html.PartialAsync`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync%2A)
-* [`@await Html.RenderPartialAsync`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync%2A)
-* [`@Html.Partial`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial%2A)
-* [`@Html.RenderPartial`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial%2A)
+* [`@await Html.PartialAsync`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync*)
+* [`@await Html.RenderPartialAsync`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*)
+* [`@Html.Partial`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial*)
+* [`@Html.RenderPartial`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial*)
 
 The *Product* model is used in samples throughout this document:
 

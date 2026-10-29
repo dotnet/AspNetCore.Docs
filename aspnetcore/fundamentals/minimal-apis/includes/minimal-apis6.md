@@ -19,7 +19,7 @@ The following code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> 
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_create)]
 
-[`WebApplication.Create`](xref:Microsoft.AspNetCore.Builder.WebApplication.Create%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
+[`WebApplication.Create`](xref:Microsoft.AspNetCore.Builder.WebApplication.Create*) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
 
 ### Working with ports
 
@@ -155,7 +155,7 @@ The following code sets the content root, application name, and environment:
 
 [!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_root)]
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
 For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
 
@@ -228,7 +228,7 @@ Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be 
 
 ### Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static file middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method:
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static file middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot*> method:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_chngr)]
 
@@ -258,7 +258,7 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 ### Developer exception page
 
-<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
+<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dep)]
 
@@ -268,20 +268,20 @@ The following table lists some of the middleware frequently used with Minimal AP
 
 | Middleware | Description | API |
 |--|--|--|
-| [Authentication](xref:security/authentication/index?view=aspnetcore-6.0) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> |
-| [Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> |
-| [CORS](xref:security/cors?view=aspnetcore-6.0) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> |
-| [Exception Handler](xref:fundamentals/error-handling-api?view=aspnetcore-6.0) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> |
-| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
-| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
-| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
-| [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
-| [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A> |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
+| [Authentication](xref:security/authentication/index?view=aspnetcore-6.0) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
+| [Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> |
+| [CORS](xref:security/cors?view=aspnetcore-6.0) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
+| [Exception Handler](xref:fundamentals/error-handling-api?view=aspnetcore-6.0) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
+| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
+| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
+| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
+| [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
+| [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging*> |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
+| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*> |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> |
+| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*> |
 
 ## Request handling
 
@@ -289,7 +289,7 @@ The following sections cover routing, parameter binding, and responses.
 
 ### Routing
 
-A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods*>:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
@@ -503,7 +503,7 @@ The following types are bound without explicit attributes:
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
-* <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>:
+* <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>:
 
   ```csharp
   app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);
@@ -624,7 +624,7 @@ Route handlers support the following types of return values:
 
 |Return value|Behavior|Content-Type|
 |--|--|--|
-|`IResult` | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
+|`IResult` | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync*)| Decided by the `IResult` implementation
 |`string` | The framework writes the string directly to the response | `text/plain`
 | `T` (Any other type) | The framework will JSON serialize the response| `application/json`
 
@@ -692,19 +692,19 @@ Common result helpers exist in the `Microsoft.AspNetCore.Http.Results` static cl
 
 |Description|Response type|Status Code|API|
 |--|--|--|--|
-Write a JSON response with advanced options |application/json |200|[Results.Json](xref:Microsoft.AspNetCore.Http.Results.Json%2A)|
-|Write a JSON response |application/json |200|[Results.Ok](xref:Microsoft.AspNetCore.Http.Results.Ok%2A)|
-|Write a text response |text/plain (default), configurable |200|[Results.Text](xref:Microsoft.AspNetCore.Http.Results.Text%2A)|
-|Write the response as bytes |application/octet-stream (default), configurable |200|[Results.Bytes](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A)|
-|Write a stream of bytes to the response |application/octet-stream (default), configurable |200|[Results.Stream](xref:Microsoft.AspNetCore.Http.Results.Stream%2A)|
-|Stream a file to the response for download with the content-disposition header |application/octet-stream (default), configurable |200|[Results.File](xref:Microsoft.AspNetCore.Http.Results.File%2A)|
-|Set the status code to 404, with an optional JSON response | N/A |404|[Results.NotFound](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A)|
-|Set the status code to 204 | N/A |204|[Results.NoContent](xref:Microsoft.AspNetCore.Http.Results.NoContent%2A)|
-|Set the status code to 422, with an optional JSON response | N/A |422|[Results.UnprocessableEntity](xref:Microsoft.AspNetCore.Http.Results.UnprocessableEntity%2A)|
-|Set the status code to 400, with an optional JSON response | N/A |400|[Results.BadRequest](xref:Microsoft.AspNetCore.Http.Results.BadRequest%2A)|
-|Set the status code to 409, with an optional JSON response | N/A |409|[Results.Conflict](xref:Microsoft.AspNetCore.Http.Results.Conflict%2A)|
-|Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A)|
-|Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A)|
+Write a JSON response with advanced options |application/json |200|[Results.Json](xref:Microsoft.AspNetCore.Http.Results.Json*)|
+|Write a JSON response |application/json |200|[Results.Ok](xref:Microsoft.AspNetCore.Http.Results.Ok*)|
+|Write a text response |text/plain (default), configurable |200|[Results.Text](xref:Microsoft.AspNetCore.Http.Results.Text*)|
+|Write the response as bytes |application/octet-stream (default), configurable |200|[Results.Bytes](xref:Microsoft.AspNetCore.Http.Results.Bytes*)|
+|Write a stream of bytes to the response |application/octet-stream (default), configurable |200|[Results.Stream](xref:Microsoft.AspNetCore.Http.Results.Stream*)|
+|Stream a file to the response for download with the content-disposition header |application/octet-stream (default), configurable |200|[Results.File](xref:Microsoft.AspNetCore.Http.Results.File*)|
+|Set the status code to 404, with an optional JSON response | N/A |404|[Results.NotFound](xref:Microsoft.AspNetCore.Http.Results.NotFound*)|
+|Set the status code to 204 | N/A |204|[Results.NoContent](xref:Microsoft.AspNetCore.Http.Results.NoContent*)|
+|Set the status code to 422, with an optional JSON response | N/A |422|[Results.UnprocessableEntity](xref:Microsoft.AspNetCore.Http.Results.UnprocessableEntity*)|
+|Set the status code to 400, with an optional JSON response | N/A |400|[Results.BadRequest](xref:Microsoft.AspNetCore.Http.Results.BadRequest*)|
+|Set the status code to 409, with an optional JSON response | N/A |409|[Results.Conflict](xref:Microsoft.AspNetCore.Http.Results.Conflict*)|
+|Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem*)|
+|Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem*)|
 
 ### Customizing results
 
@@ -718,11 +718,11 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 ## Authorization
 
-Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
+Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> method:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
 
-The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
+The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth2)]
 
@@ -740,7 +740,7 @@ allows unauthenticated users to access endpoints:
 ## CORS
 
 Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
-<xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> method. The following samples enable CORS:
+<xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> method. The following samples enable CORS:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 

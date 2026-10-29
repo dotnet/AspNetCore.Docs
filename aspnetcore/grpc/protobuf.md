@@ -260,7 +260,7 @@ public class Person
 }
 ```
 
-`RepeatedField<T>` implements <xref:System.Collections.Generic.IList%601>. So you can use LINQ queries or convert it to an array or a list. `RepeatedField<T>` properties don't have a public setter. Items should be added to the existing collection.
+`RepeatedField<T>` implements <xref:System.Collections.Generic.IList`1>. So you can use LINQ queries or convert it to an array or a list. `RepeatedField<T>` properties don't have a public setter. Items should be added to the existing collection.
 
 ```csharp
 var person = new Person();
@@ -275,7 +275,7 @@ person.Roles.Add(roles);
 
 ### Dictionaries
 
-The .NET <xref:System.Collections.Generic.IDictionary%602> type is represented in Protobuf using `map<key_type, value_type>`.
+The .NET <xref:System.Collections.Generic.IDictionary`2> type is represented in Protobuf using `map<key_type, value_type>`.
 
 ```protobuf
 message Person {
@@ -284,7 +284,7 @@ message Person {
 }
 ```
 
-In generated .NET code, `map` fields are represented by the `Google.Protobuf.Collections.MapField<TKey, TValue>` generic type. `MapField<TKey, TValue>` implements <xref:System.Collections.Generic.IDictionary%602>. Like `repeated` properties, `map` properties don't have a public setter. Items should be added to the existing collection.
+In generated .NET code, `map` fields are represented by the `Google.Protobuf.Collections.MapField<TKey, TValue>` generic type. `MapField<TKey, TValue>` implements <xref:System.Collections.Generic.IDictionary`2>. Like `repeated` properties, `map` properties don't have a public setter. Items should be added to the existing collection.
 
 ```csharp
 var person = new Person();

@@ -109,7 +109,7 @@ When an API uses JWT access tokens for authorization, the API only validates the
 OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
 
 * For apps acting on behalf of a user and an application: Use OIDC to enable delegated user access. In web apps, use the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) for enhanced security.
-  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A).
+  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync*).
 * If the app has no user: Use the OAuth 2.0 client credentials flow to obtain application access tokens.
 
 ## Implementing JWT bearer token authentication
@@ -129,7 +129,7 @@ If any of these claims or values are incorrect, the API should return a 401 resp
 
 ### JWT bearer token basic validation
 
-A basic implementation of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
+A basic implementation of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -142,7 +142,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 ### JWT bearer token explicit validation
 
-The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
+The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
 
 Explicitly defining the parameters is not required. The definitions depends on the access token claim values and the secure token server used to validate the access token. You should use the default values if possible. 
 
@@ -178,7 +178,7 @@ APIs often need to accommodate access tokens from various issuers. You can suppo
 
 ### Require authentication for all API endpoints
 
-Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> to require an authenticated user for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata:
+Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy*> to require an authenticated user for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata:
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
@@ -263,9 +263,9 @@ This is easy to implement but the client application has full application access
 
 ## Handling access tokens
 
-When using access tokens in a client application, the access tokens must be rotated, persisted, and stored on the server. In a web app, cookies are used to secure the session and can be used to store tokens via the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property.
+When using access tokens in a client application, the access tokens must be rotated, persisted, and stored on the server. In a web app, cookies are used to secure the session and can be used to store tokens via the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> property.
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-yarp-and-aspire#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-yarp-and-aspire#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
 > [!NOTE]
 > If deploying to production, the cache should work in a multi-instance deployment. A persistent cache is normally required.

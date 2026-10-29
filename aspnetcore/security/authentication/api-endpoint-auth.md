@@ -88,7 +88,7 @@ Set the switch in the project file so that it applies before any app code runs:
 </ItemGroup>
 ```
 
-The switch can also be set in code. It's read once, the first time cookie authentication is used, so call <xref:System.AppContext.SetSwitch%2A> before the host is built:
+The switch can also be set in code. It's read once, the first time cookie authentication is used, so call <xref:System.AppContext.SetSwitch*> before the host is built:
 
 ```csharp
 AppContext.SetSwitch(

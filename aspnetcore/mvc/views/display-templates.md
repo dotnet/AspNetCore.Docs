@@ -50,7 +50,7 @@ The following code shows the Details view using the Address Display Template:
 
 [!code-cshtml[](display-templates/samples/Pages/Adr2/Details.cshtml?highlight=15)]
 
-To reference a template whose name doesn't match the type name, use the `templateName` parameter in the <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor%2A> method. For example, the following markup displays the `Address` model with the `AddressShort` template:
+To reference a template whose name doesn't match the type name, use the `templateName` parameter in the <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor*> method. For example, the following markup displays the `Address` model with the `AddressShort` template:
 
 [!code-cshtml[](display-templates/samples/Pages/Adr2/DetailsCC.cshtml?highlight=15)]
 

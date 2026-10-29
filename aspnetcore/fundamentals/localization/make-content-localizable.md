@@ -18,7 +18,7 @@ One task for localizing an app is to wrap localizable content with code that fac
 
 ## `IStringLocalizer`
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development.
 
 The following code example shows how to wrap the string "About Title" for localization.
 
@@ -32,7 +32,7 @@ Alternatively, you can use the traditional approach and provide a key to retriev
 
 ## `IHtmlLocalizer`
 
-Use the <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer%601> implementation for resources that contain HTML. <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
+Use the <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer`1> implementation for resources that contain HTML. <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
 
 [!code-csharp[](~/fundamentals/localization/samples/8.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
@@ -117,7 +117,7 @@ In the preceding code, `SharedResource` is the class corresponding to the *.resx
 
 Validation error messages and the display names of validated members are localized by <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, which is the validation pipeline used by Minimal APIs and Blazor forms.
 
-Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is registered. Call <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> together with <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
+Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is registered. Call <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> together with <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*>:
 
 ```csharp
 builder.Services.AddLocalization();
@@ -138,11 +138,11 @@ Localization services are configured in `Program.cs`:
 
 [!code-csharp[](~/fundamentals/localization/samples/6.x/Localization/Program.cs?name=snippet_LocalizationConfigurationServices)]
 
-* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
+* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
 
-* <xref:Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization%2A> adds support for localized view files. In this sample, view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
+* <xref:Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization*> adds support for localized view files. In this sample, view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
 
-* <xref:Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcBuilderExtensions.AddDataAnnotationsLocalization%2A> adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
+* <xref:Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcBuilderExtensions.AddDataAnnotationsLocalization*> adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 

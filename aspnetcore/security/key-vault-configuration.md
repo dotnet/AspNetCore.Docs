@@ -145,11 +145,11 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 The `Certificate` sample app obtains its configuration values from <xref:Microsoft.Extensions.Configuration.IConfigurationRoot> with the same name as the secret name:
 
 * Nonhierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.
-* Hierarchical values (sections): Use colon (`:`) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> method. Use one of the following approaches to obtain the configuration value:
+* Hierarchical values (sections): Use colon (`:`) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*> method. Use one of the following approaches to obtain the configuration value:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The operating system manages the X.509 certificate. The app calls the <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> method with values supplied by the _appsettings.json_ file:
+The operating system manages the X.509 certificate. The app calls the <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> method with values supplied by the _appsettings.json_ file:
 
 :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Certificate":::
 
@@ -205,7 +205,7 @@ For apps that use a user-assigned managed identity, configure the managed identi
 
 * Set the `AZURE_CLIENT_ID` environment variable.
 
-* Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId%2A?displayProperty=nameWithType> property when calling the `AddAzureKeyVault` method:
+* Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId?displayProperty=nameWithType> property when calling the `AddAzureKeyVault` method:
 
    :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultManagedIdentityClientId" highlight="5":::
 
@@ -225,8 +225,8 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 | Property | Description |
 |---|---|
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager%2A> | Specifies a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | Specifies the `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager> | Specifies a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval> | Specifies the `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
@@ -346,13 +346,13 @@ The configuration in the JSON file is stored in Key Vault by using double dash (
 
 By default, the configuration provider caches secrets for the application lifetime. The app ignores secrets that are later disabled or updated in the key vault.
 
-To reload secrets, call the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> method:
+To reload secrets, call the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*?displayProperty=nameWithType> method:
 
 ```csharp
 config.Reload();
 ```
 
-To reload secrets periodically, at a specified interval, set the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
+To reload secrets periodically, at a specified interval, set the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
 
 ## Disabled and expired secrets
 
@@ -531,11 +531,11 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 The `Certificate` sample app obtains its configuration values from <xref:Microsoft.Extensions.Configuration.IConfigurationRoot> with the same name as the secret name:
 
 * Non-hierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.
-* Hierarchical values (sections): Use `:` (colon) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> method. Use either of these approaches to obtain the configuration value:
+* Hierarchical values (sections): Use `:` (colon) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*> method. Use either of these approaches to obtain the configuration value:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the `appsettings.json` file:
+The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> with values supplied by the `appsettings.json` file:
 
 :::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="46-49":::
 
@@ -620,8 +620,8 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 | Property                                                                                                    | Description                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
@@ -737,7 +737,7 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Subsequently disabled or updated secrets in the vault aren't respected by the app until `Reload` is executed.
+Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*?displayProperty=nameWithType> is called. Subsequently disabled or updated secrets in the vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();

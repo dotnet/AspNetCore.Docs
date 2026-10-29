@@ -62,7 +62,7 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-A [Minimal API](xref:fundamentals/minimal-apis) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method and the `MinimumAgeAuthorizeAttribute`:
+A [Minimal API](xref:fundamentals/minimal-apis) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
 
 ```csharp
 app.MapGet("/api/greetings/hello", (HttpContext context) =>

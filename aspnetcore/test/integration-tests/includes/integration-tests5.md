@@ -46,13 +46,13 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
+<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
 Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.net/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
 
 The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method checks if the response status code is successful (status codes in the range 200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
-<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
+<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
 
 [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
@@ -62,7 +62,7 @@ By default, non-essential cookies aren't preserved across requests when the [GDP
 
 Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
 
-1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.ConfigureWebHost%2A>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>:
+1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureWebHost*>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>:
 
    [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
@@ -119,7 +119,7 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
 
 ## Customize the client with WithWebHostBuilder
 
-When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
+When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.WithWebHostBuilder*> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
 
 The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) demonstrates the use of `WithWebHostBuilder`. This test performs a record delete in the database by triggering a form submission in the SUT.
 
@@ -138,7 +138,7 @@ The following table shows the default <xref:Microsoft.AspNetCore.Mvc.Testing.Web
 | <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.HandleCookies> | Gets or sets whether `HttpClient` instances should handle cookies. | `true` |
 | <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.MaxAutomaticRedirections> | Gets or sets the maximum number of redirect responses that `HttpClient` instances should follow. | 7 |
 
-Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> method (default values are shown in the code example):
+Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient> method (default values are shown in the code example):
 
 ```csharp
 // Default client option values are shown
@@ -153,7 +153,7 @@ _client = _factory.CreateClient(clientOptions);
 
 ## Inject mock services
 
-Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> on the host builder. **To inject mock services, the SUT must have a `Startup` class with a `Startup.ConfigureServices` method.**
+Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices*> on the host builder. **To inject mock services, the SUT must have a `Startup` class with a `Startup.ConfigureServices` method.**
 
 The sample SUT includes a scoped service that returns a quote. The quote is embedded in a hidden field on the Index page when the Index page is requested.
 
@@ -208,7 +208,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's Login page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
@@ -221,7 +221,7 @@ By disallowing the client to follow the redirect, the following checks can be ma
 * The status code returned by the SUT can be checked against the expected <xref:System.Net.HttpStatusCode.Redirect?displayProperty=nameWithType> result, not the final status code after the redirect to the Login page, which would be <xref:System.Net.HttpStatusCode.OK?displayProperty=nameWithType>.
 * The `Location` header value in the response headers is checked to confirm that it starts with `http://localhost/Identity/Account/Login`, not the final Login page response, where the `Location` header wouldn't be present.
 
-The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success%2A?displayProperty=nameWithType>:
+The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices*> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success*?displayProperty=nameWithType>:
 
 [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
 
@@ -270,7 +270,7 @@ To disable shadow copying when using xUnit, create a `xunit.runner.json` file in
 
 ## Disposal of objects
 
-After the tests of the `IClassFixture` implementation are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when xUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601). If objects instantiated by the developer require disposal, dispose of them in the `IClassFixture` implementation. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
+After the tests of the `IClassFixture` implementation are executed, <xref:Microsoft.AspNetCore.TestHost.TestServer> and <xref:System.Net.Http.HttpClient> are disposed when xUnit disposes of the [`WebApplicationFactory`](xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1). If objects instantiated by the developer require disposal, dispose of them in the `IClassFixture` implementation. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
 
 ## Integration tests sample
 
@@ -308,7 +308,7 @@ The test app is a console app inside the `tests/RazorPagesProject.Tests` directo
 
 | Test app directory | Description |
 |--|--|
-| `AuthTests` | Contains test methods for:<ul><li>Accessing a secure page by an unauthenticated user.</li><li>Accessing a secure page by an authenticated user with a mock <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601>.</li><li>Obtaining a GitHub user profile and checking the profile's user login.</li></ul> |
+| `AuthTests` | Contains test methods for:<ul><li>Accessing a secure page by an unauthenticated user.</li><li>Accessing a secure page by an authenticated user with a mock <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtaining a GitHub user profile and checking the profile's user login.</li></ul> |
 | `BasicTests` | Contains a test method for routing and content type. |
 | `IntegrationTests` | Contains the integration tests for the Index page using custom `WebApplicationFactory` class. |
 | `Helpers/Utilities` | <ul><li>`Utilities.cs` contains the `InitializeDbForTests` method used to seed the database with test data.</li><li>`HtmlHelpers.cs` provides a method to return an AngleSharp `IHtmlDocument` for use by the test methods.</li><li>`HttpClientExtensions.cs` provide overloads for `SendAsync` to submit requests to the SUT.</li></ul> |

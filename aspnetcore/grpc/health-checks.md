@@ -32,7 +32,7 @@ To set up gRPC health checks in an app:
 * Register gRPC health checks service:
   * `AddGrpcHealthChecks` to register services that enable health checks.
   * `MapGrpcHealthChecksService` to add a health checks service endpoint.
-* Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> method.
+* Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> method.
 
 [!code-csharp[](~/grpc/health-checks/samples/6/GrpcServiceHC/Program.cs?name=snippet&highlight=2,7-8,13)]
 
@@ -148,7 +148,7 @@ To set up gRPC health checks in an app:
 * Register gRPC health checks service in `Startup.cs`:
   * `AddGrpcHealthChecks` to register services that enable health checks.
   * `MapGrpcHealthChecksService` to add a health checks service endpoint.
-* Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> method.
+* Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> method.
 
 [!code-csharp[](~/grpc/health-checks/Startup.cs?highlight=4-6,16)]
 

@@ -156,7 +156,7 @@ In the following example that serializes state for multiple components of the sa
 In the following example that serializes state for a dependency injection service:
 
 * Properties annotated with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) are serialized during prerendering and deserialized when the app becomes interactive.
-* The <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService%2A> extension method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
+* The <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService*> extension method is used to register the service for persistence. The render mode is required because the render mode can't be inferred from the service type. Use any of the following values:
   * `RenderMode.Server`: The service is available for the Interactive Server render mode.
   * `RenderMode.Webassembly`: The service is available for the Interactive Webassembly render mode.
   * `RenderMode.InteractiveAuto`: The service is available for both the Interactive Server and Interactive Webassembly render modes if a component renders in either of those modes.
@@ -252,11 +252,11 @@ Inject the `CounterTracker` service into a component and use it to increment a c
 }
 ```
 
-To use preceding component to demonstrate persisting the count of 10 in `CounterTracker.CurrentCount`, navigate to the component and refresh the browser, which triggers prerendering. When prerendering occurs, you briefly see <xref:Microsoft.AspNetCore.Components.RendererInfo.Name%2A?displayProperty=nameWithType> indicate "`Static`" before displaying "`Server`" after final rendering. The counter starts at 10.
+To use preceding component to demonstrate persisting the count of 10 in `CounterTracker.CurrentCount`, navigate to the component and refresh the browser, which triggers prerendering. When prerendering occurs, you briefly see <xref:Microsoft.AspNetCore.Components.RendererInfo.Name?displayProperty=nameWithType> indicate "`Static`" before displaying "`Server`" after final rendering. The counter starts at 10.
 
 ## Use the `PersistentComponentState` service directly instead of the declarative model
 
-As an alternative to using the declarative model for persisting state with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+As an alternative to using the declarative model for persisting state with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), you can use the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service directly, which offers greater flexibility for complex state persistence scenarios. Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> to register a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
 
@@ -325,7 +325,7 @@ When the component executes, `currentCount` is only set once during prerendering
 
 :::moniker range="< aspnetcore-10.0"
 
-To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> registers a callback to persist the component state during prerendering. The state is retrieved when the component renders interactively. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
 
@@ -349,7 +349,7 @@ When the component executes, `currentCount` is only set once during prerendering
 
 ## Serialization extensibility for persistent component state
 
-Implement a custom serializer with <xref:Microsoft.AspNetCore.Components.PersistentComponentStateSerializer%601>. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
+Implement a custom serializer with <xref:Microsoft.AspNetCore.Components.PersistentComponentStateSerializer`1>. Without a registered custom serializer, serialization falls back to the existing JSON serialization.
 
 The following example creates a custom serializer for `int?` types that uses a custom format to demonstrate serialization extensibility. The serializer prefixes integer values with "`CUSTOM:`" to clearly distinguish them from JSON serialization.
 
@@ -469,7 +469,7 @@ Blazor supports handling persistent component state during [enhanced navigation]
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 
-If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A> to `true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often, such as weather forecast data in the following example:
+If the data is read-only and doesn't change frequently, opt-in to allow updates during enhanced navigation by setting <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates> to `true` on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute). This is useful for scenarios such as displaying cached data that's expensive to fetch but doesn't change often, such as weather forecast data in the following example:
 
 ```csharp
 [PersistentState(AllowUpdates = true)]
@@ -486,14 +486,14 @@ protected override async Task OnInitializedAsync()
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates%2A?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
 
 :::moniker-end
 
@@ -513,7 +513,7 @@ To skip restoring state during reconnection, set `RestoreBehavior` to `SkipLastS
 public int CounterNotRestoredOnReconnect { get; set; }
 ```
 
-Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnRestoring%2A?displayProperty=nameWithType> to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> provides full control of how state is persisted.
+Call <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnRestoring*?displayProperty=nameWithType> to register a callback for imperatively controlling how state is restored, similar to how <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> provides full control of how state is persisted.
 
 :::moniker-end
 

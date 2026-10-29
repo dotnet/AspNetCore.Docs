@@ -329,13 +329,13 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
 :::moniker range=">= aspnetcore-10.0"
 
 * JS interop method calls
-  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.IJSObjectReference.InvokeConstructorAsync%2A>
-  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A>
-  * <xref:Microsoft.JSInterop.IJSObjectReference.GetValueAsync%2A>
-  * <xref:Microsoft.JSInterop.IJSObjectReference.SetValueAsync%2A>
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.InvokeConstructorAsync*>
+  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor*>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.GetValueAsync*>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.SetValueAsync*>
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end
@@ -343,9 +343,9 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
 :::moniker range="< aspnetcore-10.0"
 
 * JS interop method calls
-  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end
@@ -410,6 +410,6 @@ For interactive components in server-side apps, JS interop calls passing data fr
 
 ## Determine where the app is running
 
-If it's relevant for the app to know where code is running for JS interop calls, use <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to determine if the component is executing in the context of browser on WebAssembly.
+If it's relevant for the app to know where code is running for JS interop calls, use <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType> to determine if the component is executing in the context of browser on WebAssembly.
 
 :::moniker-end

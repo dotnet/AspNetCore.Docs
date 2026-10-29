@@ -72,7 +72,7 @@ await connection.on("ReceiveMessage") { (user: String, message: String) in
 }
 ```
 
-The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/6.x/SignalRChat/Hubs/ChatHub.cs)]
 

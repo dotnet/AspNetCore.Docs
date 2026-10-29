@@ -36,6 +36,19 @@ The following table shows the relationship between the parameters used in the pr
 | `customHeader` | header |
 | `service` | Provided by dependency injection |
 
+For example, given the following HTTP request:
+
+```http
+GET /42?page=3 HTTP/1.1
+Host: example.com
+X-CUSTOM-HEADER: hello
+```
+
+* `42` in `/42` matches `{id}` in the route template `/{id}` and binds to the `id` route parameter.
+* `page=3` in `?page=3` matches the query string key `page` and binds to the `page` parameter.
+* `X-CUSTOM-HEADER: hello` matches the `[FromHeader(Name = "X-CUSTOM-HEADER")]` header attribute and binds to `customHeader`.
+* `service` is resolved from the dependency injection (DI) container, rather than from the incoming HTTP request.
+
 The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind from body. To bind from body (as JSON) for these HTTP methods, [bind explicitly](#explicit-parameter-binding) with [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or read from the <xref:Microsoft.AspNetCore.Http.HttpRequest>.
 
 The following example POST route handler uses a binding source of body (as JSON) for the `person` parameter:
@@ -162,7 +175,7 @@ The following types are bound without explicit attributes:
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
-* <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>:
+* <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>:
 
   ```csharp
   app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);
@@ -230,16 +243,16 @@ For more information, see [Form binding in Minimal APIs](https://andrewlock.net/
 
 #### IFormFile collection binding behavior
 
-The following table summarizes how different <xref:Microsoft.AspNetCore.Http.IFormFile> collection parameter types are bound in Minimal APIs. The general guidance that the parameter name in the route handler must match the form field name applies to <xref:Microsoft.AspNetCore.Http.IFormFile> and supported named file collections such as <xref:System.Collections.Generic.IReadOnlyList%601>, but not to <xref:Microsoft.AspNetCore.Http.IFormFileCollection>, which binds all uploaded files.
+The following table summarizes how different <xref:Microsoft.AspNetCore.Http.IFormFile> collection parameter types are bound in Minimal APIs. The general guidance that the parameter name in the route handler must match the form field name applies to <xref:Microsoft.AspNetCore.Http.IFormFile> and supported named file collections such as <xref:System.Collections.Generic.IReadOnlyList`1>, but not to <xref:Microsoft.AspNetCore.Http.IFormFileCollection>, which binds all uploaded files.
 
 | Parameter type | Bound value | Honors parameter name? |
 | --- | --- | --- |
 | [`IFormFileCollection`](xref:Microsoft.AspNetCore.Http.IFormFileCollection) | All files in [`HttpContext.Request.Form.Files`](xref:Microsoft.AspNetCore.Http.IFormCollection.Files) | No |
 | [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) | The single file whose form field name matches the parameter name | Yes |
-| [`IReadOnlyList<IFormFile>`](xref:System.Collections.Generic.IReadOnlyList%601) | All files whose form field name matches the parameter name | Yes |
+| [`IReadOnlyList<IFormFile>`](xref:System.Collections.Generic.IReadOnlyList`1) | All files whose form field name matches the parameter name | Yes |
 | Other [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) collection types (`IEnumerable<IFormFile>`, `List<IFormFile>`, `IFormFile[]`, etc.) | Not supported — parameter is not populated | N/A |
 
-Use <xref:Microsoft.AspNetCore.Http.IFormFileCollection> when you need all uploaded files regardless of form field name. Use <xref:System.Collections.Generic.IReadOnlyList%601> when you need only the files whose form field name matches the parameter name.
+Use <xref:Microsoft.AspNetCore.Http.IFormFileCollection> when you need all uploaded files regardless of form field name. Use <xref:System.Collections.Generic.IReadOnlyList`1> when you need only the files whose form field name matches the parameter name.
 
 > [!NOTE]
 > The <xref:Microsoft.AspNetCore.Http.IFormFile> collection binding rules in the preceding table also apply to properties on [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) types and form-mapped complex types, since the form-mapping layer is shared with Blazor.
@@ -362,7 +375,7 @@ There are three ways to customize parameter binding:
 
 1. For route, query, and header binding sources, bind custom types by adding a static `TryParse` method for the type.
 1. Control the binding process by implementing a `BindAsync` method on a type.
-1. For advanced scenarios, implement the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface to provide custom binding logic directly from the `HttpContext`.
+1. For advanced scenarios, implement the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext`1> interface to provide custom binding logic directly from the `HttpContext`.
 
 ### TryParse
 
@@ -394,7 +407,7 @@ The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` wit
 
 ### Custom parameter binding with `IBindableFromHttpContext`
 
-ASP.NET Core provides support for custom parameter binding in Minimal APIs using the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface. This interface, introduced with C# 11's static abstract members, allows you to create types that can be bound from an HTTP context directly in route handler parameters.
+ASP.NET Core provides support for custom parameter binding in Minimal APIs using the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext`1> interface. This interface, introduced with C# 11's static abstract members, allows you to create types that can be bound from an HTTP context directly in route handler parameters.
 
 ```csharp
 public interface IBindableFromHttpContext<TSelf>
@@ -404,7 +417,7 @@ public interface IBindableFromHttpContext<TSelf>
 }
 ```
 
-By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601>, you can create custom types that handle their own binding logic from the `HttpContext`. When a route handler includes a parameter of this type, the framework automatically calls the static `BindAsync` method to create the instance:
+By implementing the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext`1>, you can create custom types that handle their own binding logic from the `HttpContext`. When a route handler includes a parameter of this type, the framework automatically calls the static `BindAsync` method to create the instance:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/10.0/CustomBindingExample/Program.cs" id="snippet_IBindableFromHttpContext":::
 
@@ -455,8 +468,8 @@ The rules for determining a binding source from a parameter:
     1. [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) ([`HttpContext.Request.Form.Files[paramName]`](xref:Microsoft.AspNetCore.Http.IFormFileCollection.Item(System.String)))
     1. [`Stream`](xref:System.IO.Stream) ([`HttpContext.Request.Body`](xref:Microsoft.AspNetCore.Http.HttpRequest.Body))
     1. [`PipeReader`](xref:System.IO.Pipelines.PipeReader) ([`HttpContext.Request.BodyReader`](xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader))
-1. Parameter type has a valid static [`BindAsync`](xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601.BindAsync%2A) method.
-1. Parameter type is a string or has a valid static [`TryParse`](xref:System.IParsable%601.TryParse%2A) method.
+1. Parameter type has a valid static [`BindAsync`](xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext`1.BindAsync*) method.
+1. Parameter type is a string or has a valid static [`TryParse`](xref:System.IParsable`1.TryParse*) method.
    1. If the parameter name exists in the route template for example, `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
    1. Bound from the query string.
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
@@ -468,7 +481,7 @@ The body binding source uses <xref:System.Text.Json?displayProperty=fullName> fo
 
 ### Configure JSON deserialization options globally
 
-Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
+Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions*>. The following example includes public fields and formats JSON output.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
@@ -476,7 +489,7 @@ Since the sample code configures both serialization and deserialization, it can 
 
 ### Configure JSON deserialization options for an endpoint
 
-<xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. The following example includes public fields and formats JSON output.
+<xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync*> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. The following example includes public fields and formats JSON output.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="5-8,12":::
 

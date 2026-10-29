@@ -7,7 +7,7 @@ To enable the default cookie consent feature like that found in the ASP.NET Core
 
   [!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_1&highlight=4-11,23)]
 
-In the preceding code, <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> are used.
+In the preceding code, <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> are used.
 
 * Add the cookie consent partial to the `_Layout.cshtml` file:
 

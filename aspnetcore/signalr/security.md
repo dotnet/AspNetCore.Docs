@@ -56,7 +56,7 @@ builder.Services.AddCors(options =>
 });
 ```
 
-**Apply the CORS policy on the hub endpoint mapping** by chaining <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> on the `MapHub` call:
+**Apply the CORS policy on the hub endpoint mapping** by chaining <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> on the `MapHub` call:
 
 ```csharp
 app.MapHub<ChatHub>("/chatHub")

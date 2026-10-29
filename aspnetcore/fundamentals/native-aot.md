@@ -213,7 +213,7 @@ The **Web API (Native AOT)** template uses the <xref:Microsoft.AspNetCore.Builde
 The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app.
 
 As described earlier, the `CreateSlimBuilder` method doesn't include support for HTTPS or HTTP/3. These protocols typically aren't required for apps that run behind a TLS termination proxy. For example, see [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview). You can enable HTTPS by calling the 
-[builder.WebHost.UseKestrelHttpsConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrelhttpsconfiguration) method, or enable HTTP/3 by calling the [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A).
+[builder.WebHost.UseKestrelHttpsConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrelhttpsconfiguration) method, or enable HTTP/3 by calling the [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic*).
 
 ## Compare CreateSlimBuilder() and CreateBuilder()
 
@@ -235,13 +235,13 @@ If you prefer to use a builder that omits all features, see the [WebApplication.
 The `CreateSlimBuilder` method **doesn't** provide the following features, which are available in `CreateBuilder`:
 
 * [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
-* [UseStartup](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A) method
+* [UseStartup](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method
 * Logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
     * [Debug](/aspnet/core/fundamentals/logging#debug)
     * [EventSource](/aspnet/core/fundamentals/logging#eventsource)
 * Web hosting features:
-    * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A) method
+    * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*) method
     * [IIS integration](xref:host-and-deploy/iis/index)
 * Kestrel configuration:
     * [HTTPS endpoints](xref:fundamentals/servers/kestrel/endpoints#configure-https)

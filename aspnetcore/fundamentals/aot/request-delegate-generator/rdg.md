@@ -25,7 +25,7 @@ The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source gener
 The RDG:
 
 * Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview).
-* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions>, such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
+* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions>, such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut*>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete*>.
 
 When publishing and Native AOT is ***not*** enabled:
 

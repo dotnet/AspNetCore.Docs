@@ -95,4 +95,4 @@ Remove `.WithOpenApi()` calls from your code.
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.WithOpenApi%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointConventionBuilderExtensions.WithOpenApi*?displayProperty=fullName>

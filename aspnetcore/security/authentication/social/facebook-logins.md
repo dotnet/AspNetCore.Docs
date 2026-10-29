@@ -24,7 +24,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
   The Facebook authentication configured later in this tutorial automatically handles requests at the */signin-facebook* route to implement the OAuth flow.
 
 > [!NOTE]
-> The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
+> The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
 
 * Follow the [Facebook Login Permissions](https://developers.facebook.com/docs/facebook-login/permissions) guide to enable the **email** permission for your app. The ASP.NET Core Facebook authentication middleware requests the `email` scope by default. If the **email** permission isn't enabled on your Facebook app, authentication may fail or the user's email address will be missing after sign-in.
 

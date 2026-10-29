@@ -597,7 +597,7 @@ The preceding example uses inline middleware, but you can also create a custom m
 
 ### Client-side development without prerendering
 
-Pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
+Pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile*> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
 :::moniker-end
 
@@ -655,7 +655,7 @@ A future release of .NET might provide a framework-based loading indicator. In t
 
 *This scenario applies to per-component Interactive WebAssembly rendering (`@rendermode InteractiveWebAssembly` applied to individual components).*
 
-Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
+Create a `ContentLoading` component in the `Layout` folder of the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType>:
 
 * When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
@@ -833,7 +833,7 @@ If you didn't already have a `Layout` folder in the `.Client` project, add the n
 @using BlazorSample.Client.Layout
 ```
 
-In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> property (`@Body`) with the `ContentLoading` component:
+In the `MainLayout` component (`Layout/MainLayout.razor`) of the `.Client` project, wrap the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (`@Body`) with the `ContentLoading` component:
 
 In `Layout/MainLayout.razor`:
 
