@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core APIs
 description: Learn about error handling in ASP.NET Core APIs with Minimal APIs and controller-based approaches.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/27/2026
+ms.date: 10/30/2026
 uid: fundamentals/error-handling-api
 ---
 
@@ -233,9 +233,9 @@ If you're migrating from controller-based APIs to Minimal APIs:
 3. **Replace exception filters** with exception handling middleware
 4. **Configure problem details** using `AddProblemDetails()` for consistent error responses
 
-### Returning multiple result types with TypedResults
+### Returning multiple result types with `TypedResults`
 
-Endpoints often return different result types depending on the request outcome, such as returning a <xref:Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult> on error or a <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> on success. To preserve compile-time type safety and enable automatic OpenAPI metadata generation, use the union return type <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> with `TypedResults`:
+Endpoints often return different result types depending on the request outcome, such as returning a <xref:Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult> on an error or a <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> on a success. To preserve compile-time type safety and enable automatic OpenAPI metadata generation, use the union return type <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> with <xref:Microsoft.AspNetCore.Http.TypedResults>:
 
 ```csharp
 app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (string? provider) =>
@@ -260,7 +260,7 @@ app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (st
 });
 ```
 
-Using `TypedResults` with `Results<T1, T2>` avoids throwing exceptions for expected business errors and provides strongly-typed response signatures for testability.
+Using <xref:Microsoft.AspNetCore.Http.TypedResults> with <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> avoids throwing exceptions for expected business errors and provides strongly-typed response signatures for testability.
 
 ### When to use controller-based error handling
 
