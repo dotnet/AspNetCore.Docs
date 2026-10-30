@@ -3,7 +3,6 @@ title: Compare gRPC services with HTTP APIs
 description: Learn how gRPC compares with HTTP APIs and what it's recommend scenarios are.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 12/05/2019
-uid: grpc/comparison
 ---
 # Compare gRPC services with HTTP APIs
 
@@ -11,7 +10,7 @@ uid: grpc/comparison
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs with JSON (including ASP.NET Core [web APIs](xref:web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
+This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs with JSON (including ASP.NET Core [web APIs](../web-api/index.md)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
 
 ## High-level comparison
 
@@ -78,7 +77,7 @@ gRPC is well suited to the following scenarios:
 * **Point-to-point real-time communication**: gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
 * **Polyglot environments**: gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
 * **Network constrained environments**: gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.
-* **Inter-process communication (IPC)**: IPC transports such as Unix domain sockets and named pipes can be used with gRPC to communicate between apps on the same machine. For more information, see <xref:grpc/interprocess>.
+* **Inter-process communication (IPC)**: IPC transports such as Unix domain sockets and named pipes can be used with gRPC to communicate between apps on the same machine. For more information, see [Inter-process communication with gRPC](interprocess.md).
 
 ## gRPC weaknesses
 
@@ -90,11 +89,11 @@ gRPC on ASP.NET Core offers two browser-compatible solutions:
 
 * **gRPC-Web** allows browser apps to call gRPC services with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app to generate a gRPC client. gRPC-Web allows browser apps to benefit from the high-performance and low network usage of gRPC.
 
-  .NET has built-in support for gRPC-Web. For more information, see <xref:grpc/grpcweb>.
+  .NET has built-in support for gRPC-Web. For more information, see [gRPC-Web in ASP.NET Core gRPC apps](grpcweb.md).
 
 * **gRPC JSON transcoding** allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC. RESTful APIs can be automatically created from gRPC services by annotating the `.proto` file with HTTP metadata. Transcoding allows an app to support both gRPC and JSON web APIs without duplicating the effort of building separate services for both.
 
-  .NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/json-transcoding>.
+  .NET has built-in support for creating JSON web APIs from gRPC services. For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](json-transcoding.md).
 
 > [!NOTE]
 > gRPC JSON transcoding requires .NET 7 or later.
@@ -117,6 +116,6 @@ Other frameworks are recommended over gRPC in the following scenarios:
 ## Related content
 
 * <xref:tutorials/grpc/grpc-start>
-* <xref:grpc/index>
-* <xref:grpc/basics>
-* <xref:grpc/migration>
+* [Overview for gRPC on .NET](index.md)
+* [gRPC Services with C#](basics.md)
+* [Migrate gRPC from C-core to gRPC for .NET](migration.md)

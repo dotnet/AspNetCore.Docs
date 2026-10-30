@@ -15,8 +15,8 @@ ASP.NET Core 1.1 includes the following new features:
 * [Middleware as MVC filters](xref:mvc/controllers/filters#using-middleware-in-the-filter-pipeline)
 * [Cookie-based TempData provider](xref:fundamentals/app-state#tempdata)
 * [Azure App Service logging provider](xref:fundamentals/logging/index#azure-app-service)
-* [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
-* [Azure and Redis Storage Data Protection Key Repositories](xref:security/data-protection/implementation/key-storage-providers)
+* [Azure Key Vault configuration provider](../security/key-vault-configuration.md)
+* [Azure and Redis Storage Data Protection Key Repositories](../security/data-protection/implementation/key-storage-providers.md)
 * WebListener Server for Windows
 * [WebSockets support](xref:fundamentals/websockets)
 

@@ -2,7 +2,6 @@
 title: Key management in ASP.NET Core
 description: Learn implementation details of the ASP.NET Core Data Protection key management APIs.
 ms.date: 10/14/2016
-uid: security/data-protection/implementation/key-management
 ---
 # Key management in ASP.NET Core
 
@@ -18,20 +17,20 @@ The data protection system automatically manages the lifetime of master keys use
 
 * Revoked - the key is compromised and must not be used for new Protect operations.
 
-Created, active, and expired keys may all be used to unprotect incoming payloads. Revoked keys by default may not be used to unprotect payloads, but the application developer can [override this behavior](xref:security/data-protection/consumer-apis/dangerous-unprotect#data-protection-consumer-apis-dangerous-unprotect) if necessary.
+Created, active, and expired keys may all be used to unprotect incoming payloads. Revoked keys by default may not be used to unprotect payloads, but the application developer can [override this behavior](../consumer-apis/dangerous-unprotect.md#data-protection-consumer-apis-dangerous-unprotect) if necessary.
 
->[!WARNING]
+> [!WARNING]
 > The developer might be tempted to delete a key from the key ring (for example by deleting the corresponding file from the file system). At that point, all data protected by the key is permanently undecipherable, and there's no emergency override like there's with revoked keys. Deleting a key is truly destructive behavior.
 
 ## Default key selection
 
 When the data protection system reads the key ring from the backing repository, it will attempt to locate a "default" key from the key ring. The default key is used for new Protect operations.
 
-The general heuristic is that the data protection system chooses the key with the most recent activation date as the default key. (There's a small fudge factor to allow for server-to-server clock skew.) If the key is expired or revoked, and if the application has not disabled automatic key generation, then a new key will be generated with immediate activation per the [key expiration and rolling](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management-expiration) policy below.
+The general heuristic is that the data protection system chooses the key with the most recent activation date as the default key. (There's a small fudge factor to allow for server-to-server clock skew.) If the key is expired or revoked, and if the application has not disabled automatic key generation, then a new key will be generated with immediate activation per the [key expiration and rolling](key-management.md#data-protection-implementation-key-management-expiration) policy below.
 
 The reason the data protection system generates a new key immediately rather than falling back to a different key is that new key generation should be treated as an implicit expiration of all keys that were activated prior to the new key. The general idea is that new keys may have been configured with different algorithms or encryption-at-rest mechanisms than old keys, and the system should prefer the current configuration over falling back.
 
-There's an exception. If the application developer has [disabled automatic key generation](xref:security/data-protection/configuration/overview#disableautomatickeygeneration), then the data protection system must choose something as the default key. In this fallback scenario, the system will choose the non-revoked key with the most recent activation date, with preference given to keys that have had time to propagate to other machines in the cluster. The fallback system may end up choosing an expired default key as a result. The fallback system will never choose a revoked key as the default key, and if the key ring is empty or every key has been revoked then the system will produce an error upon initialization.
+There's an exception. If the application developer has disabled automatic key generation[Disable automatic key generation (`DisableAutomaticKeyGeneration`)](../configuration/overview.md#disable-automatic-key-generation-disableautomatickeygeneration), then the data protection system must choose something as the default key. In this fallback scenario, the system will choose the non-revoked key with the most recent activation date, with preference given to keys that have had time to propagate to other machines in the cluster. The fallback system may end up choosing an expired default key as a result. The fallback system will never choose a revoked key as the default key, and if the key ring is empty or every key has been revoked then the system will produce an error upon initialization.
 
 <a name="data-protection-implementation-key-management-expiration"></a>
 
@@ -79,5 +78,5 @@ The sample below demonstrates using the `IKeyManager` interface to inspect and m
 
 The data protection system has a heuristic whereby it attempts to deduce an appropriate key storage location and encryption-at-rest mechanism automatically. The key persistence mechanism is also configurable by the app developer. The following documents discuss the in-box implementations of these mechanisms:
 
-* <xref:security/data-protection/implementation/key-storage-providers>
-* <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Key storage providers in ASP.NET Core](key-storage-providers.md)
+* [Key encryption at rest in Windows and Azure using ASP.NET Core](key-encryption-at-rest.md)

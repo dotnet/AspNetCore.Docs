@@ -1,7 +1,7 @@
 ---
 title: What's new in ASP.NET Core in .NET 9
 description: Learn about the new features in ASP.NET Core in .NET 9.
-ms.date: 09/23/2026
+ms.date: 10/27/2026
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core in .NET 9
@@ -10,7 +10,7 @@ This article highlights the most significant changes in ASP.NET Core in .NET 9 w
 
 ## Static asset delivery optimization
 
-[`MapStaticAssets` routing endpoint conventions](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A) is a new feature that optimizes the delivery of static assets in ASP.NET Core apps.
+[`MapStaticAssets` routing endpoint conventions](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*) is a new feature that optimizes the delivery of static assets in ASP.NET Core apps.
 
 For information on static asset delivery for Blazor apps, see <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>.
 
@@ -87,6 +87,8 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/trust_dev_cert_linux.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/updated-versions.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/websockets-keep-alive-timeout.md)]
 
 ## Breaking changes
 

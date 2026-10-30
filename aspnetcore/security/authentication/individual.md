@@ -3,7 +3,6 @@ title: Articles based on ASP.NET Core projects created with individual accounts
 ai-usage: ai-assisted
 description: ASP.NET Core individual accounts let you scaffold Identity UI, sign-in pages, and authentication code. Explore the authentication options and related articles.
 ms.date: 08/23/2026
-uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual accounts
 
@@ -57,11 +56,11 @@ The following table shows the authentication options available for new web apps.
 | Option | Type of authentication | Link for more information |
  | ----------------- | ------------ | ---------- |
 | None            |  No authentication. | | 
-| Individual      |  Individual authentication. | <xref:security/authentication/identity>
+| Individual      |  Individual authentication. | [Introduction to Identity on ASP.NET Core](identity.md)
 | IndividualB2C   |  Cloud-hosted individual authentication with Azure AD B2C. | [Azure AD B2C](/azure/active-directory-b2c/) |
 | SingleOrg       |  Organizational authentication for a single tenant. Entra External ID tenants also use SingleOrg.| [Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
 | MultiOrg        |  Organizational authentication for multiple tenants. | [Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
-| Windows         |  Windows authentication. | [Windows Authentication](xref:security/authentication/windowsauth)
+| Windows         |  Windows authentication. | [Windows Authentication](windowsauth.md)
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
@@ -72,11 +71,11 @@ The following table shows the authentication options available when creating a n
 | Option | Type of authentication | Link for more information |
  | ----------------- | ------------ | ---------- |
 | None            |  No authentication | | 
-| Individual Accounts / Store user accounts in-app |  Individual authentication | <xref:security/authentication/identity> |
+| Individual Accounts / Store user accounts in-app |  Individual authentication | [Introduction to Identity on ASP.NET Core](identity.md) |
 | Individual Accounts / Connect to an existing user store in the cloud |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
 | Work or School Cloud / Single Org  |  Organizational authentication for a single tenant | [Microsoft Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
 | Work or School Cloud / Multiple Org |  Organizational authentication for multiple tenants | [Microsoft Entra ID](/entra/identity-platform/quickstart-web-app-sign-in) |
-| Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
+| Windows         |  Windows authentication | [Windows Authentication](windowsauth.md)
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
@@ -84,5 +83,5 @@ The following table shows the authentication options available when creating a n
 
 The following articles show how to use the code generated in ASP.NET Core templates that use individual accounts:
 
-* [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
-* [Create an ASP.NET Core app with user data protected by authorization](xref:security/authorization/secure-data)
+* [Account confirmation and password recovery in ASP.NET Core](accconfirm.md)
+* [Create an ASP.NET Core app with user data protected by authorization](../authorization/secure-data.md)

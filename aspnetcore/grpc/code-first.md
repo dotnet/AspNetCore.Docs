@@ -3,7 +3,6 @@ title: Code-first gRPC services and clients with .NET
 description: Learn the basic concepts when writing code-first gRPC with .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 02/23/2022
-uid: grpc/code-first
 ---
 # Code-first gRPC services and clients with .NET
 
@@ -75,7 +74,7 @@ To add gRPC code-first service to an ASP.NET Core app:
   * `AddCodeFirstGrpc` registers services that enable code-first.
   * `MapGrpcService<GreeterService>` adds the code-first service endpoint.
 
-gRPC services implemented with code-first and `.proto` files can co-exist in the same app. All gRPC services use [gRPC service configuration](xref:grpc/configuration#configure-services-options).
+gRPC services implemented with code-first and `.proto` files can co-exist in the same app. All gRPC services use [gRPC service configuration](configuration.md#configure-services-options).
 
 ## Create a code-first gRPC client
 
@@ -99,7 +98,7 @@ The preceding gRPC client `Program.cs` code:
 * Creates a code-first client from the channel with the `CreateGrpcService<IGreeterService>` extension method.
 * Calls the gRPC service with `SayHelloAsync`.
 
-A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](xref:grpc/configuration#configure-client-options).
+A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](configuration.md#configure-client-options).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
@@ -165,7 +164,7 @@ In the preceding code:
 * `AddCodeFirstGrpc` registers services that enable code-first.
 * `MapGrpcService<GreeterService>` adds the code-first service endpoint.
 
-gRPC services implemented with code-first and `.proto` files can co-exist in the same app. All gRPC services use [gRPC service configuration](xref:grpc/configuration#configure-services-options).
+gRPC services implemented with code-first and `.proto` files can co-exist in the same app. All gRPC services use [gRPC service configuration](configuration.md#configure-services-options).
 
 ## Create a code-first gRPC client
 
@@ -183,7 +182,7 @@ The preceding code:
 * Creates a code-first client from the channel with the `CreateGrpcService<IGreeterService>` extension method.
 * Calls the gRPC service with `SayHelloAsync`.
 
-A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](xref:grpc/configuration#configure-client-options).
+A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](configuration.md#configure-client-options).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/5.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 

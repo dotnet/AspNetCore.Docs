@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 ai-usage: ai-assisted
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 01/07/2026
+ms.date: 10/27/2026
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -167,7 +167,7 @@ The following lines of code in this file create a `WebApplicationBuilder` with p
 
 The developer exception page is enabled by default and provides helpful information on exceptions. Don't run production apps in development mode because the developer exception page can leak sensitive information.
 
-The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) when the app is ***not*** running in development mode:
+The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security (HSTS) protocol](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) when the app is ***not*** running in development mode:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program1Snip.cs?name=snippet_env)]
 
@@ -178,9 +178,8 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 * `app.UseHttpsRedirection();` : Redirects HTTP requests to HTTPS.
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>.
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, so you can remove this line.
-* `app.MapRazorPages();`: Configures endpoint routing for Razor Pages.
-* `app.MapStaticAssets()` : Optimizes the delivery of static assets in an app, such as HTML, CSS, images, and JavaScript. For more information, see <xref:aspnetcore-9#optimizing-static-web-asset-delivery>.
-* `.WithStaticAssets();` :  Ensures Razor Pages participate in the optimization system for static assets.
+* `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see <xref:aspnetcore-9#optimizing-static-web-asset-delivery>.
+* `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs, such as `/css/site.<hash>.css` (the `<hash>` placeholder is the file hash), for cache-busting.
 * `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample

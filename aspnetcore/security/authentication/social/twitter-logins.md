@@ -3,13 +3,12 @@ title: Twitter external sign-in setup with ASP.NET Core
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
 ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
-uid: security/authentication/twitter-logins
 ---
 # Twitter external sign-in setup with ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This sample shows how to enable users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
+This sample shows how to enable users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](index.md).
 
 > [!NOTE]
 > The Microsoft.AspNetCore.Authentication.Twitter package described below uses the OAuth 1.0 APIs provided by Twitter. Twitter has since added OAuth 2.0 APIs with a different set of functionality. The [OpenIddict](https://documentation.openiddict.com/integrations/web-providers) and [AspNet.Security.OAuth.Twitter](https://www.nuget.org/packages/AspNet.Security.OAuth.Twitter/) packages are community implementations that use the new OAuth 2.0 APIs.
@@ -34,13 +33,13 @@ later.
   > Microsoft.AspNetCore.Identity requires users to have an email address by default. For Callback URLs during development, use `https://localhost:{PORT}/signin-twitter`, where the `{PORT}` placeholder is the app's port.
 
   > [!NOTE]
-  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath*?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions> class.
+  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions> class.
 
 ## Store the Twitter consumer API key and secret
 
-Store sensitive settings such as the Twitter consumer API key and secret with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Twitter consumer API key and secret with [Secret Manager](../../app-secrets.md). For this sample, use the following steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](../../app-secrets.md#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secrets keys `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`:
 
    ```dotnetcli
@@ -97,7 +96,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## Next steps
 
-* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
+* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 
 * Once you publish your web site to Azure web app, you should reset the `ConsumerSecret` in the Twitter developer portal.
 
@@ -105,4 +104,4 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## Related content
 
-[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)
+[Multiple authentication providers](index.md#multiple-authentication-providers)

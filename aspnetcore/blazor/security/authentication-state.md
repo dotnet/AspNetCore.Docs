@@ -21,9 +21,9 @@ The general approaches taken for server-side and client-side Blazor apps are sim
 
 The Blazor framework includes an abstract <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> class to provide information about the authentication state of the current user with the following members:
 
-* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync%2A>: Asynchronously gets the authentication state of the current user.
+* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync*>: Asynchronously gets the authentication state of the current user.
 * <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.AuthenticationStateChanged>: An event that provides notification when the authentication state has changed. For example, this event may be raised if a user signs in or out of the app.
-* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>: Raises an authentication state changed event.
+* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*>: Raises an authentication state changed event.
 
 ## Implement a custom `AuthenticationStateProvider`
 
@@ -121,7 +121,7 @@ builder.Services.AddAuthorizationCore();
 
 :::zone-end
 
-Subclass <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync%2A> to create the user's authentication state. In the following example, all users are authenticated with the username `mrfibuli`. 
+Subclass <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync*> to create the user's authentication state. In the following example, all users are authenticated with the username `mrfibuli`. 
 
 `CustomAuthStateProvider.cs`:
 
@@ -152,7 +152,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A>:
+The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>:
 
 ```csharp
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
@@ -162,7 +162,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>:
 
 ```csharp
 builder.Services.AddServerSideBlazor();
@@ -174,7 +174,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 :::moniker range="< aspnetcore-6.0"
 
-In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>:
 
 ```csharp
 services.AddServerSideBlazor();
@@ -188,7 +188,7 @@ services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 :::zone pivot="webassembly"
 
-The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *singleton* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A>:
+The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *singleton* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>:
 
 ```csharp
 builder.Services.AddSingleton<AuthenticationStateProvider, CustomAuthStateProvider>();
@@ -264,7 +264,7 @@ For guidance on the use of <xref:Microsoft.AspNetCore.Components.Authorization.A
 
 ## Authentication state change notifications
 
-A [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can invoke <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class to notify consumers of the authentication state change to rerender.
+A [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can invoke <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class to notify consumers of the authentication state change to rerender.
 
 The following example is based on implementing a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> by following the guidance in the [Implement a custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) section earlier in this article. If you already followed the guidance in that section, the following `CustomAuthStateProvider` replaces the one shown in the section.
 
@@ -336,7 +336,7 @@ In a component:
 }
 ```
 
-The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `CustomAuthenticationService` class maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the authentication state provider can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>. With the additional configuration later in this section, the `CustomAuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
+The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `CustomAuthenticationService` class maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the authentication state provider can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*>. With the additional configuration later in this section, the `CustomAuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
 
 `CustomAuthenticationService.cs`:
 

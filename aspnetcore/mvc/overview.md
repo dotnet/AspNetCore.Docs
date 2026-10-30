@@ -153,7 +153,7 @@ public class AccountController : Controller
 
 In addition to being a great platform for building web sites, ASP.NET Core MVC has great support for building Web APIs. You can build services that reach a broad range of clients including browsers and mobile devices.
 
-The framework includes support for HTTP content-negotiation with built-in support to [format data](xref:web-api/advanced/formatting) as JSON or XML. Write [custom formatters](xref:web-api/advanced/custom-formatters) to add support for your own formats.
+The framework includes support for HTTP content-negotiation with built-in support to [format data](../web-api/advanced/formatting.md) as JSON or XML. Write [custom formatters](../web-api/advanced/custom-formatters.md) to add support for your own formats.
 
 Use link generation to enable support for hypermedia. Easily enable support for [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/#http-cors-protocol) so that your Web APIs can be shared across multiple Web applications.
 

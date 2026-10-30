@@ -3,9 +3,9 @@ ASP.NET Core Identity adds user interface (UI) login functionality to ASP.NET Co
 * [Microsoft Entra ID](/azure/api-management/api-management-howto-protect-backend-with-aad)
 * [OpenIddict](https://documentation.openiddict.com/)
 * [Duende IdentityServer](https://docs.duendesoftware.com)
-* Other [community-supported authentication solutions](xref:security/authentication/community)
+* Other [community-supported authentication solutions](../security/authentication/community.md)
 
-For a comparison of identity solutions, see <xref:security/identity-management-solutions>.
+For a comparison of identity solutions, see [Identity management solutions for .NET web apps](../security/identity-management-solutions.md).
 
 Duende IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core. Duende IdentityServer enables the following security features:
 

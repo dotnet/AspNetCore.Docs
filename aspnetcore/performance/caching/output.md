@@ -16,30 +16,30 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](xref:fundamentals/minimal-apis), [Web API with controllers](xref:web-api/index), [MVC](xref:mvc/overview), and [Razor Pages](xref:razor-pages/index). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
+The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](xref:fundamentals/minimal-apis), [Web API with controllers](../../web-api/index.md), [MVC](xref:mvc/overview), and [Razor Pages](xref:razor-pages/index). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
 
 The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample) and [Preprocessor directives](/dotnet/csharp/fundamentals/program-structure/preprocessor-directives).
 
 ## Add the middleware to the app
 
-Add the output caching middleware to the service collection by calling the <xref:Microsoft.Extensions.DependencyInjection.OutputCacheServiceCollectionExtensions.AddOutputCache%2A> method. For example:
+Add the output caching middleware to the service collection by calling the <xref:Microsoft.Extensions.DependencyInjection.OutputCacheServiceCollectionExtensions.AddOutputCache*> method. For example:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies4" highlight="1":::
 
-Add the middleware to the request processing pipeline by calling the <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A> method. For example:
+Add the middleware to the request processing pipeline by calling the <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*> method. For example:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_use" highlight="6":::
 
 Calling the `AddOutputCache`and `UseOutputCache` methods doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as described in the following sections.
 
 > [!NOTE]
-> * In apps that use [Cross-Origin Requests (CORS) middleware](xref:security/cors), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> method.
+> * In apps that use [Cross-Origin Requests (CORS) middleware](../../security/cors.md), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method.
 > * In Razor Pages apps and apps with controllers, the `UseOutputCache` method must be called after the `UseRouting` method.
-> * In apps that use [authentication](xref:security/authentication/index) or [authorization](xref:security/authorization/introduction), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
+> * In apps that use [authentication](../../security/authentication/index.md) or [authorization](../../security/authorization/introduction.md), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
 
 ## Configure one endpoint or page
 
-For Minimal API apps, configure an endpoint to do caching by calling the [CacheOutput](xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%2A) method, or by applying the [[OutputCache](xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute)] attribute, as shown in the following examples:
+For Minimal API apps, configure an endpoint to do caching by calling the [CacheOutput](xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput*) method, or by applying the [[OutputCache](xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute)] attribute, as shown in the following examples:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="oneendpoint":::
 
@@ -158,9 +158,9 @@ The following code does the same for a controller action:
 
 Here are some of the options for controlling the cache key:
 
-* The <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByQuery%2A> method specifies one or more query string names to add to the cache key.
-* The <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByHeader%2A> method specifies one or more HTTP headers to add to the cache key.
-* The <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue%2A> method provides a value to add to the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds changes from an odd to even value, or vice versa.
+* The <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByQuery*> method specifies one or more query string names to add to the cache key.
+* The <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByHeader*> method specifies one or more HTTP headers to add to the cache key.
+* The <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue*> method provides a value to add to the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds changes from an odd to even value, or vice versa.
 
   :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Program.cs" id="policies2" highlight="10-14":::
 
@@ -220,7 +220,7 @@ This base policy enables you to use the `tag-all` tag to evict everything in cac
 
 By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](xref:performance/caching/overview#output-caching).
 
-To disable resource locking, call the [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking%2A) method while creating a policy, as shown in the following example:
+To disable resource locking, call the [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking*) method while creating a policy, as shown in the following example:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="9":::
 

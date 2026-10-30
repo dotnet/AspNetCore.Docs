@@ -65,7 +65,7 @@ Generator         | Operation
 `blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](xref:blazor/components/quickgrid#quickgrid-scaffolder).
 `blazor-identity` | Generates Blazor Identity files.
 `controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
-`identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
+`identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
 `razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
 `view`            | [Scaffolds a view](xref:mvc/views/overview).
@@ -78,7 +78,7 @@ Generator         | Operation
 ----------------- | ---
 `area`            | [Scaffolds an area](xref:mvc/controllers/areas).
 `controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
-`identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
+`identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
 `razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
 `view`            | [Scaffolds a view](xref:mvc/views/overview).
@@ -260,7 +260,7 @@ For an example that uses the `controller` generator, see <xref:tutorials/first-m
 
 ### Identity options
 
-For more information, see <xref:security/authentication/scaffold-identity>.
+For more information, see [Scaffold Identity in ASP.NET Core projects](../../security/authentication/scaffold-identity.md).
 
 ### Minimal API options
 

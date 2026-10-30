@@ -5,7 +5,6 @@ description: Learn how to use the Azure Key Vault configuration provider to conf
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-azurecli
 ms.date: 05/13/2026
-uid: security/key-vault-configuration
 
 # customer intent: As an ASP.NET Core developer, I want to use the Azure Key Vault configuration provider, so I can load app configuration values from Key Vault secrets at runtime.
 ---
@@ -40,7 +39,7 @@ For more information about configuring a sample app by using `#define`, see [Pre
 
 ## Secret storage in the Development environment
 
-Set secrets locally by using the [Secret Manager](xref:security/app-secrets) tool. When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
+Set secrets locally by using the [Secret Manager](app-secrets.md) tool. When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
 
 Secret Manager requires a `<UserSecretsId>` property in the application project file. Set the property value (`{GUID}`) to any unique GUID:
 
@@ -145,11 +144,11 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 The `Certificate` sample app obtains its configuration values from <xref:Microsoft.Extensions.Configuration.IConfigurationRoot> with the same name as the secret name:
 
 * Nonhierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.
-* Hierarchical values (sections): Use colon (`:`) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> method. Use one of the following approaches to obtain the configuration value:
+* Hierarchical values (sections): Use colon (`:`) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*> method. Use one of the following approaches to obtain the configuration value:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The operating system manages the X.509 certificate. The app calls the <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> method with values supplied by the _appsettings.json_ file:
+The operating system manages the X.509 certificate. The app calls the <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> method with values supplied by the _appsettings.json_ file:
 
 :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Certificate":::
 
@@ -205,7 +204,7 @@ For apps that use a user-assigned managed identity, configure the managed identi
 
 * Set the `AZURE_CLIENT_ID` environment variable.
 
-* Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId%2A?displayProperty=nameWithType> property when calling the `AddAzureKeyVault` method:
+* Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId?displayProperty=nameWithType> property when calling the `AddAzureKeyVault` method:
 
    :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultManagedIdentityClientId" highlight="5":::
 
@@ -225,8 +224,8 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 | Property | Description |
 |---|---|
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager%2A> | Specifies a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | Specifies the `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager> | Specifies a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval> | Specifies the `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
@@ -275,7 +274,7 @@ When you implement this approach, complete the following steps:
    </PropertyGroup>
    ```
 
-   Save the following secrets locally by using [Secret Manager](xref:security/app-secrets):
+   Save the following secrets locally by using [Secret Manager](app-secrets.md):
 
    ```dotnetcli
    dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"
@@ -346,13 +345,13 @@ The configuration in the JSON file is stored in Key Vault by using double dash (
 
 By default, the configuration provider caches secrets for the application lifetime. The app ignores secrets that are later disabled or updated in the key vault.
 
-To reload secrets, call the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> method:
+To reload secrets, call the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*?displayProperty=nameWithType> method:
 
 ```csharp
 config.Reload();
 ```
 
-To reload secrets periodically, at a specified interval, set the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
+To reload secrets periodically, at a specified interval, set the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
 
 ## Disabled and expired secrets
 
@@ -436,7 +435,7 @@ For more information configuring a sample app using preprocessor directives (`#d
 
 ## Secret storage in the `Development` environment
 
-Set secrets locally using [Secret Manager](xref:security/app-secrets). When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
+Set secrets locally using [Secret Manager](app-secrets.md). When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
 
 Secret Manager requires a `<UserSecretsId>` property in the app's project file. Set the property value (`{GUID}`) to any unique GUID:
 
@@ -531,11 +530,11 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 The `Certificate` sample app obtains its configuration values from <xref:Microsoft.Extensions.Configuration.IConfigurationRoot> with the same name as the secret name:
 
 * Non-hierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.
-* Hierarchical values (sections): Use `:` (colon) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> method. Use either of these approaches to obtain the configuration value:
+* Hierarchical values (sections): Use `:` (colon) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*> method. Use either of these approaches to obtain the configuration value:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the `appsettings.json` file:
+The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> with values supplied by the `appsettings.json` file:
 
 :::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="46-49":::
 
@@ -620,8 +619,8 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 | Property                                                                                                    | Description                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
-| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.Manager>        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions.ReloadInterval> | `TimeSpan` to wait between attempts at polling the vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
@@ -670,7 +669,7 @@ When this approach is implemented:
    </PropertyGroup>
    ```
 
-   Save the following secrets locally with [Secret Manager](xref:security/app-secrets):
+   Save the following secrets locally with [Secret Manager](app-secrets.md):
 
    ```dotnetcli
    dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"
@@ -737,7 +736,7 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Subsequently disabled or updated secrets in the vault aren't respected by the app until `Reload` is executed.
+Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*?displayProperty=nameWithType> is called. Subsequently disabled or updated secrets in the vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();

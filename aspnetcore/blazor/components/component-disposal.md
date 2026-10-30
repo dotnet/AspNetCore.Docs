@@ -39,7 +39,7 @@ For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> when a circui
 
 ## Synchronous `IDisposable`
 
-For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
+For synchronous disposal tasks, use <xref:System.IDisposable.Dispose*?displayProperty=nameWithType>.
 
 The following component:
 
@@ -62,7 +62,7 @@ The following component:
 }
 ```
 
-If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
+If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose*> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -113,7 +113,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 :::moniker-end
 
 > [!NOTE]
-> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
+> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
 If the object is created in a lifecycle method, such as [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
@@ -172,7 +172,7 @@ For more information, see:
 
 ## Asynchronous `IAsyncDisposable`
 
-For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync*?displayProperty=nameWithType>.
 
 The following component:
 
@@ -206,9 +206,9 @@ For more information, see:
 
 ## Assignment of `null` to disposed objects
 
-Usually, there's no need to assign `null` to disposed objects after calling <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>. Rare cases for assigning `null` include the following:
+Usually, there's no need to assign `null` to disposed objects after calling <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>. Rare cases for assigning `null` include the following:
 
-* If the object's type is poorly implemented and doesn't tolerate repeat calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>, assign `null` after disposal to gracefully skip further calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* If the object's type is poorly implemented and doesn't tolerate repeat calls to <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>, assign `null` after disposal to gracefully skip further calls to <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>.
 * If a long-lived process continues to hold a reference to a disposed object, assigning `null` allows the [garbage collector](/dotnet/standard/garbage-collection/fundamentals) to free the object in spite of the long-lived process holding a reference to it.
 
 These are unusual scenarios. For objects that are implemented correctly and behave normally, there's no point in assigning `null` to disposed objects. In the rare cases where an object must be assigned `null`, we recommend documenting the reason and seeking a solution that prevents the need to assign `null`.
@@ -216,7 +216,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 ## `StateHasChanged`
 
 > [!NOTE]
-> Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` and `DisposeAsync` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
+> Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in `Dispose` and `DisposeAsync` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
 
 ## Event handlers
 

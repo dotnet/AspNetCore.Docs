@@ -49,7 +49,7 @@ For a tutorial experience building an app that uses EF Core for database operati
 
 ## Database access
 
-EF Core relies on a <xref:Microsoft.EntityFrameworkCore.DbContext> as the means to [configure database access](/ef/core/miscellaneous/configuring-dbcontext) and act as a [*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html). EF Core provides the <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> extension for ASP.NET Core apps that registers the context as a *scoped* service. In server-side Blazor apps, scoped service registrations can be problematic because the instance is shared across components within the user's circuit. <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread safe and isn't designed for concurrent use. The existing lifetimes are inappropriate for these reasons:
+EF Core relies on a <xref:Microsoft.EntityFrameworkCore.DbContext> as the means to [configure database access](/ef/core/miscellaneous/configuring-dbcontext) and act as a [*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html). EF Core provides the <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> extension for ASP.NET Core apps that registers the context as a *scoped* service. In server-side Blazor apps, scoped service registrations can be problematic because the instance is shared across components within the user's circuit. <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread safe and isn't designed for concurrent use. The existing lifetimes are inappropriate for these reasons:
 
 * **Singleton** shares state across all users of the app and leads to inappropriate concurrent use.
 * **Scoped** (the default) poses a similar issue between components for the same user.
@@ -98,7 +98,7 @@ The following recommendations are designed to provide a consistent approach to u
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
 * Using [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
-* Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
+* Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](../security/authentication/customize-identity-model.md). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
@@ -135,12 +135,12 @@ namespace BlazorServerDbContextExample.Data
 
 In the preceding factory:
 
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> satisfies any dependencies via the service provider.
-* <xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601> is available in EF Core in .NET 5 or later, so the preceding interface is only required for ASP.NET Core 3.x.
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance*?displayProperty=nameWithType> satisfies any dependencies via the service provider.
+* <xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1> is available in EF Core in .NET 5 or later, so the preceding interface is only required for ASP.NET Core 3.x.
 
 :::moniker-end
 
-The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging in an app that manages contacts. The code uses an extension method (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A>) to configure the database factory for DI and provide default options:
+The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging in an app that manages contacts. The code uses an extension method (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*>) to configure the database factory for DI and provide default options:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -224,9 +224,9 @@ public void Dispose() => Context?.Dispose();
 
 ## Enable sensitive data logging
 
-<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) when it logs SQL statements executed against the database.
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> is a **security risk**, as it may expose passwords and other [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) when it logs SQL statements executed against the database.
 
-We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> for local development and testing:
+We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> for local development and testing:
 
 ```csharp
 if (builder.Environment.IsDevelopment())

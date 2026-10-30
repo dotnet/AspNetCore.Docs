@@ -46,7 +46,7 @@ If your app currently relies on passkey sign-in to bypass these checks, the safe
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasskeySignInAsync%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Identity.SignInManager`1.PasskeySignInAsync*?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedPhoneNumber?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedAccount?displayProperty=fullName>
