@@ -860,7 +860,7 @@ The following links provide information on how to configure endpoint metadata:
 * [Test authentication with the [Authorize] attribute](../security/authentication/identity.md#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Select a scheme with an `[Authorize]` attribute](../security/authorization/authorize-with-a-specific-scheme.md#select-a-scheme-with-an-authorize-attribute)
-* [Apply policies in MVC and Razor Pages apps](../../../security/authorization/policies.md#apply-policies-in-mvc-and-razor-pages-apps)
+* [Apply policies in MVC and Razor Pages apps](../security/authorization/policies.md#apply-policies-in-mvc-and-razor-pages-apps)
 * [Role-based authorization in ASP.NET Core](../security/authorization/roles.md)
 
 <a name="hostmatch"></a>
