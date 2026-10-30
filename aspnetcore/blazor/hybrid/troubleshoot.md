@@ -47,7 +47,7 @@ To configure the **Debug** logging provider, add a reference to the [`Microsoft.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Register the provider inside the call to <xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A> added in the previous step by calling the <xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug%2A> extension method:
+Register the provider inside the call to <xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging*> added in the previous step by calling the <xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug*> extension method:
 
 ```csharp
 services.AddLogging(logging =>

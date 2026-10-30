@@ -18,12 +18,12 @@ This article explains how to configure [response caching middleware](https://git
 
 ## Configuration
 
-In `Program.cs`, add the response caching middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
+In `Program.cs`, add the response caching middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching*> to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
 [!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3,12)]
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using [CORS middleware](xref:security/cors).
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using [CORS middleware](../../security/cors.md).
 
 The sample app adds headers to control caching on subsequent requests:
 
@@ -135,7 +135,7 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 * The response must be cacheable according to [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). For example, the `no-store` directive must not exist in request or response header fields. See [RFC 9111: HTTP Caching (Section 3: *Storing Responses in Caches*](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches) for details.
 
 > [!NOTE]
-> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see <xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration>.
+> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration).
 
 ## Additional resources
 
@@ -172,7 +172,7 @@ Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Buil
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using [CORS middleware](xref:security/cors).
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using [CORS middleware](../../security/cors.md).
 
 The sample app adds headers to control caching on subsequent requests:
 
@@ -284,7 +284,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The response must be cacheable according to [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). For example, the `no-store` directive must not exist in request or response header fields. See [RFC 9111: HTTP Caching (Section 3: *Storing Responses in Caches*](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches) for details.
 
 > [!NOTE]
-> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see <xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration>.
+> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration).
 
 ## Additional resources
 

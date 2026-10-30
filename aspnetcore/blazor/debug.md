@@ -199,7 +199,7 @@ Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.Gateway`](https
 
 :::moniker range="< aspnetcore-11.0"
 
-Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging*> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 
 :::moniker-end
 
@@ -207,7 +207,7 @@ Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.Dev
 
 Hosted Blazor WebAssembly:
 
-* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging*> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 * **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 :::moniker-end
@@ -340,7 +340,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 You can also debug server code in the **:::no-loc text="Server":::** project:
 
-1. Set a breakpoint in the `Pages/FetchData.razor` page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+1. Set a breakpoint in the `Pages/FetchData.razor` page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>.
 1. Set a breakpoint in the `WeatherForecastController` in the `Get` action method.
 1. Browse to the `Fetch Data` page to hit the first breakpoint in the `FetchData` component just before it issues an HTTP request to the server.
 1. Press <kbd>F5</kbd> to continue execution and then hit the breakpoint on the server in the `WeatherForecastController`.
@@ -507,7 +507,7 @@ If you're running into errors, the following tips may help:
 * Remove breakpoints:
   * Google Chrome: In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
   * Microsoft Edge: In the **Application** tab, open **Local storage**. Right-click the site and select **Clear**.
-* Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see <xref:security/enforcing-ssl#troubleshoot-certificate-problems-such-as-certificate-not-trusted>.
+* Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md#troubleshoot-certificate-problems-such-as-certificate-not-trusted).
 * Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome and Edge)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
 * If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
   * The `launchSettings.json` file for the project.
@@ -518,7 +518,7 @@ If you're running into errors, the following tips may help:
 
 The Blazor framework's debugging proxy doesn't launch instantly on app startup, so breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) might not be hit. We recommend adding a delay at the start of the method body to give the debug proxy some time to launch before the breakpoint is hit. You can include the delay based on an [`if` compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to ensure that the delay isn't present for a release build of the app.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*>:
 
 ```csharp
 protected override void OnInitialized()
@@ -531,7 +531,7 @@ protected override void OnInitialized()
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>:
 
 ```csharp
 protected override async Task OnInitializedAsync()

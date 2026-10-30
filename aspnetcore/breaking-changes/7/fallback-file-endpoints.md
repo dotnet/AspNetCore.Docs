@@ -14,11 +14,11 @@ ASP.NET Core 7.0 RC 2
 
 ## Previous behavior
 
-Endpoints configured with <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=nameWithType> matched requests made with any request method.
+Endpoints configured with <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile*?displayProperty=nameWithType> matched requests made with any request method.
 
 ## New behavior
 
-Endpoints configured with <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=nameWithType> only match `HEAD` and `GET` requests.
+Endpoints configured with <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile*?displayProperty=nameWithType> only match `HEAD` and `GET` requests.
 
 ## Type of breaking change
 
@@ -39,4 +39,4 @@ endpoints.MapFallbackToFile("index.html")
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile*?displayProperty=fullName>

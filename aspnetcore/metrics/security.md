@@ -15,7 +15,7 @@ For an overview of all built-in metrics reference pages and how to read this ref
 
 ## `Microsoft.AspNetCore.Authorization`
 
-The `Microsoft.AspNetCore.Authorization` metrics report information about [authorization attempts](xref:security/authorization/introduction) in ASP.NET Core apps:
+The `Microsoft.AspNetCore.Authorization` metrics report information about [authorization attempts](../security/authorization/introduction.md) in ASP.NET Core apps:
 
 * [`aspnetcore.authorization.attempts`](#metric-aspnetcoreauthorizationattempts)
 
@@ -34,7 +34,7 @@ Attribute | Type | Description | Examples | Presence
 
 ## `Microsoft.AspNetCore.Authentication`
 
-The `Microsoft.AspNetCore.Authentication` metrics report information about [Authentication](xref:security/authentication/index) in ASP.NET Core apps:
+The `Microsoft.AspNetCore.Authentication` metrics report information about [Authentication](../security/authentication/index.md) in ASP.NET Core apps:
 
 * [`aspnetcore.authentication.authenticate.duration`](#metric-aspnetcoreauthenticationauthenticateduration)
 * [`aspnetcore.authentication.challenges`](#metric-aspnetcoreauthenticationchallenges)

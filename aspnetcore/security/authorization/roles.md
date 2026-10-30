@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
 
-When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType>. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> must be called to add Role services when setting up the app's identity system.
+When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through <xref:System.Security.Claims.ClaimsPrincipal.IsInRole*?displayProperty=nameWithType>. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> must be called to add Role services when setting up the app's identity system.
 
-While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
+While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see [Use Identity to secure a Web API backend for SPAs](../authentication/identity-api-authorization.md).
 
 This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Related content](#related-content) section. For Razor Pages and MVC guidance, see the following resources:
 
@@ -34,7 +33,7 @@ The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` s
 
 :::moniker range=">= aspnetcore-6.0"
 
-Register role-based authorization services in the `Program` file by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
+Register role-based authorization services in the `Program` file by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
 
 ```csharp
 builder.Services.AddDefaultIdentity<IdentityUser>( ... )
@@ -44,7 +43,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>( ... )
 
 The preceding code requires the [`Microsoft.AspNetCore.Identity.UI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.UI) and a `using` directive for <xref:Microsoft.AspNetCore.Identity?displayProperty=fullName>.
 
-In cases where the app takes granular control to build Identity manually, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>:
+In cases where the app takes granular control to build Identity manually, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>:
 
 ```csharp
 builder.Services.AddIdentityCore<IdentityUser>()
@@ -56,7 +55,7 @@ builder.Services.AddIdentityCore<IdentityUser>()
 
 :::moniker range="< aspnetcore-6.0"
 
-Register role-based authorization services in `Startup.ConfigureServices` (`Startup.cs`) by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
+Register role-based authorization services in `Startup.ConfigureServices` (`Startup.cs`) by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
 
 ```csharp
 services.AddDefaultIdentity<IdentityUser>()
@@ -66,7 +65,7 @@ services.AddDefaultIdentity<IdentityUser>()
 
 The preceding code requires the [`Microsoft.AspNetCore.Identity.UI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.UI) and a `using` directive for <xref:Microsoft.AspNetCore.Identity?displayProperty=fullName>.
 
-In cases where the app takes granular control to build Identity manually, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>:
+In cases where the app takes granular control to build Identity manually, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>:
 
 ```csharp
 services.AddIdentityCore<IdentityUser>()
@@ -78,9 +77,9 @@ services.AddIdentityCore<IdentityUser>()
 
 :::moniker range=">= aspnetcore-8.0"
 
-In Blazor Web Apps (.NET 8 or later), calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file isn't required.
+In Blazor Web Apps (.NET 8 or later), calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> in the `Program` file isn't required.
 
-In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+In Blazor Server apps, call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> (if present):
 
 ```csharp
 app.UseAuthentication(); // Only present if not called internally
@@ -91,7 +90,7 @@ app.UseAuthorization();
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> in the `Program` file after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> (if present):
 
 ```csharp
 app.UseAuthentication(); // Only present if not called internally
@@ -102,7 +101,7 @@ app.UseAuthorization();
 
 :::moniker range="< aspnetcore-6.0"
 
-In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` (`Startup.cs`) after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> (if present):
+In Blazor Server apps (not Blazor Web Apps), call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> in `Startup.Configure` (`Startup.cs`) after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> (if present):
 
 ```csharp
 app.UseAuthentication(); // Only present if not called internally
@@ -113,7 +112,7 @@ app.UseAuthorization();
 
 :::moniker range=">= aspnetcore-5.0"
 
-Blazor WebAssembly apps call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A> in the `Program` file to add authorization services:
+Blazor WebAssembly apps call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*> in the `Program` file to add authorization services:
 
 ```csharp
 builder.Services.AddAuthorizationCore();
@@ -209,7 +208,7 @@ When multiple attributes are applied, the user must be a member of *all* of the 
 </p>
 ```
 
-Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>.
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see [Claim-based authorization in ASP.NET Core](claims.md#claim-case-sensitivity).
 
 ## Policy-based authorization checks
 
@@ -324,7 +323,7 @@ Policies are applied to an entire Razor component using the <xref:Microsoft.AspN
 <p>You can only see this if the 'RequireAdminRole' policy is satisfied.</p>
 ```
 
-To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method. In the following example, users are authorized if they belong to the `Admin` *or* `SuperUser` roles:
+To specify multiple allowed roles in a requirement, specify the roles as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole*> method. In the following example, users are authorized if they belong to the `Admin` *or* `SuperUser` roles:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -448,13 +447,13 @@ services.AddAuthorization(options =>
 
 :::moniker range=">= aspnetcore-9.0"
 
-After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](xref:blazor/security/blazor-web-app-windows-authentication)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](../authentication/windowsauth.md) ([Blazor-specific guidance](xref:blazor/security/blazor-web-app-windows-authentication)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](../authentication/windowsauth.md) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 :::moniker-end
 
@@ -490,13 +489,13 @@ else
 
 :::moniker range=">= aspnetcore-9.0"
 
-For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-An approach similar to the preceding example for retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+An approach similar to the preceding example for retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
@@ -506,4 +505,4 @@ An approach similar to the preceding example for retrieving SID group claims can
 * <xref:blazor/security/webassembly/meid-groups-roles>
 * <xref:razor-pages/security/authorization/roles>
 * <xref:mvc/security/authorization/roles>
-* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation)
+* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

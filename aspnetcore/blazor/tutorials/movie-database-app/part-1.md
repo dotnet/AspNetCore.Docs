@@ -270,7 +270,7 @@ A <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> creates the app with
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-Razor component services are added to the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>, which enables Razor components to render and execute code on the server, and <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> adds services to support rendering Interactive Server components:
+Razor component services are added to the app by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>, which enables Razor components to render and execute code on the server, and <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> adds services to support rendering Interactive Server components:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -287,8 +287,8 @@ Next, the HTTP request pipeline is configured.
 
 When the app isn't running in the `Development` environment:
 
-* Exception handler middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>) processes errors and displays a custom error page.
-* [HTTP Strict Transport Security (HSTS) protocol middleware](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
+* Exception handler middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>) processes errors and displays a custom error page.
+* [HTTP Strict Transport Security (HSTS) protocol middleware](../../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -300,7 +300,7 @@ if (!app.Environment.IsDevelopment())
 
 :::moniker range=">= aspnetcore-10.0"
 
-By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code without a body, it returns the status code and an empty response body. However, an app generated from the Blazor Web App project template calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> to add status code pages middleware to the request pipeline for pages that aren't found, which generates the response body by re-executing the request pipeline using the path to the Not Found error page (`/not-found`): 
+By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code without a body, it returns the status code and an empty response body. However, an app generated from the Blazor Web App project template calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> to add status code pages middleware to the request pipeline for pages that aren't found, which generates the response body by re-executing the request pipeline using the path to the Not Found error page (`/not-found`): 
 
 ```csharp
 app.UseStatusCodePagesWithReExecute("/not-found", 
@@ -309,13 +309,13 @@ app.UseStatusCodePagesWithReExecute("/not-found",
 
 :::moniker-end
 
-HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
+HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
 
 ```csharp
 app.UseHttpsRedirection();
 ```
 
-Antiforgery middleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>) enforces antiforgery protection for form processing:
+Antiforgery middleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*>) enforces antiforgery protection for form processing:
 
 ```csharp
 app.UseAntiforgery();
@@ -323,7 +323,7 @@ app.UseAntiforgery();
 
 :::moniker range=">= aspnetcore-9.0"
 
-Map Static Assets routing endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
+Map Static Assets routing endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*>) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
 
 ```csharp
 app.MapStaticAssets();
@@ -333,7 +333,7 @@ app.MapStaticAssets();
 
 :::moniker range="< aspnetcore-9.0"
 
-Static file middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) serves static files, such as images, scripts, and stylesheets from the `wwwroot` folder:
+Static file middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>) serves static files, such as images, scripts, and stylesheets from the `wwwroot` folder:
 
 ```csharp
 app.UseStaticFiles();
@@ -341,7 +341,7 @@ app.UseStaticFiles();
 
 :::moniker-end
 
-<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> maps components defined in the root `App` component to the given .NET assembly and renders routable components, and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures interactive server-side rendering (interactive SSR) support for the app:
+<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> maps components defined in the root `App` component to the given .NET assembly and renders routable components, and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode*> configures interactive server-side rendering (interactive SSR) support for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -349,9 +349,9 @@ app.MapRazorComponents<App>()
 ```
 
 > [!NOTE]
-> The extension methods <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> make the app capable of adopting interactive SSR, which isn't relevant until the last part of the tutorial series on interactivity. Over the next several articles, the app's components only adopt static SSR.
+> The extension methods <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode*> on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> make the app capable of adopting interactive SSR, which isn't relevant until the last part of the tutorial series on interactivity. Over the next several articles, the app's components only adopt static SSR.
 
-The app is run by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplication> (`app`):
+The app is run by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.Run*> on the <xref:Microsoft.AspNetCore.Builder.WebApplication> (`app`):
 
 ```csharp
 app.Run();
@@ -363,7 +363,7 @@ app.Run();
 
 ## Related content
 
-When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see <xref:security/enforcing-ssl>.
+When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md).
 
 ## Next steps
 

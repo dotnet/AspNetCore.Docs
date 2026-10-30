@@ -26,12 +26,12 @@ The components in the table are also supported outside of a form in Razor compon
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1> | `<input type="date">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputFile> | `<input type="file">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> | `<input type="radio">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> | Group of child <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> | `<input type="radio">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup`1> | Group of child <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> | `<select>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 | [`Label<TValue>`](#label-component) (.NET 11 or later) | `<label>` |
@@ -45,14 +45,14 @@ For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFil
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> | `<select>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> components are available in .NET 5 or later. For more information, select a .NET 5 or later version of this article.
+> <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> and <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup`1> components are available in .NET 5 or later. For more information, select a .NET 5 or later version of this article.
 
 :::moniker-end
 
@@ -63,11 +63,11 @@ Input components provide default behavior for validating when a field is changed
 * For input components in a form with an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation behavior includes updating the field CSS class to reflect the field's state as valid or invalid with validation styling of the underlying HTML element.
 * For controls that don't have an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation reflects the valid or invalid state but doesn't provide validation styling to the underlying HTML element.
 
-Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
+Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 
 :::moniker range=">= aspnetcore-9.0"
 
-The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> component supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
 
 ```razor
 <InputNumber @bind-Value="..." max="..." min="..." step="..." type="range" />
@@ -237,7 +237,7 @@ In the following example:
 
 * A shortened version of the earlier `Starfleet Starship Database` form (`Starship3` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * The `Submit` method executes when the **`Submit`** button is selected.
-* The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `Submit` method.
+* The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate*?displayProperty=nameWithType> in the `Submit` method.
 * Logging is executed depending on the validation result.
 
 `Starship4.razor`:
@@ -317,7 +317,7 @@ In the following example:
 
 ## Multiple option selection with the `InputSelect` component
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> component. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type, which results in the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> component automatically adding the [`multiple` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) to the `<select>` element when the component is rendered.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type, which results in the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component automatically adding the [`multiple` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) to the `<select>` element when the component is rendered.
 
 In the following example, the user must select at least two starship classifications but no more than three classifications.
 
@@ -415,7 +415,7 @@ For information on how empty strings and `null` values are handled in data bindi
 
 ## Display name support
 
-Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter.
+Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName?displayProperty=nameWithType> parameter.
 
 In the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
 
@@ -430,7 +430,7 @@ If the field contains an invalid date when the form is submitted, the error mess
 
 > The ProductionDate field must be a date.
 
-Set the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A> property to a friendly name with a space between the words "`Production`" and "`Date`":
+Set the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName> property to a friendly name with a space between the words "`Production`" and "`Date`":
 
 ```razor
 <label>
@@ -450,7 +450,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 <!-- UPDATE 11.0 - API cross-link 
 
-                   <xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601>
+                   <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1>
 -->
 The `DisplayName` component can be used to display property names from metadata attributes
 
@@ -485,7 +485,7 @@ Use the `DisplayName` component in labels or table headers:
 
 <!-- UPDATE 11.0 - API cross-link 
 
-                   <xref:Microsoft.AspNetCore.Components.Forms.Label%601>
+                   <xref:Microsoft.AspNetCore.Components.Forms.Label`1>
 -->
 
 The `Label` component renders a `<label>` element that automatically extracts the display name from a model property using `[Display]` or `[DisplayName]` attributes. This simplifies form creation by eliminating the need to manually specify label text.
@@ -535,10 +535,10 @@ Input components automatically generate an `id` attribute based on the bound exp
 
 ## Error message template support
 
-<xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> support error message templates:
+<xref:Microsoft.AspNetCore.Components.Forms.InputDate`1> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> support error message templates:
 
-* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601.ParsingErrorMessage%2A?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601.ParsingErrorMessage%2A?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1.ParsingErrorMessage?displayProperty=nameWithType>
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -548,7 +548,7 @@ In the `Starfleet Starship Database` form (`Starship3` component) of the [Exampl
 The {0} field must be a date.
 ```
 
-The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A> property appears when the error is displayed to the user.
+The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName> property appears when the error is displayed to the user.
 
 ```razor
 <label>
@@ -560,7 +560,7 @@ The position of the `{0}` placeholder is where the value of the <xref:Microsoft.
 
 > The Production Date field must be a date.
 
-Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601.ParsingErrorMessage%2A> to provide a custom message:
+Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage> to provide a custom message:
 
 ```razor
 <label>
@@ -583,7 +583,7 @@ In the `Starfleet Starship Database` form (`Starship3` component) of the [Exampl
 The {0} field must be a date.
 ```
 
-The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A> property appears when the error is displayed to the user.
+The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.DisplayName> property appears when the error is displayed to the user.
 
 ```razor
 <label>
@@ -594,7 +594,7 @@ The position of the `{0}` placeholder is where the value of the <xref:Microsoft.
 
 > The ProductionDate field must be a date.
 
-Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601.ParsingErrorMessage%2A> to provide a custom message:
+Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1.ParsingErrorMessage> to provide a custom message:
 
 ```razor
 <label>

@@ -4,14 +4,13 @@ ai-usage: ai-assisted
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 02/27/2026
-uid: security/authentication/facebook-logins
 ---
 
 # Facebook external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
+This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md).
 
 ## Create the app in Facebook
 
@@ -24,7 +23,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
   The Facebook authentication configured later in this tutorial automatically handles requests at the */signin-facebook* route to implement the OAuth flow.
 
 > [!NOTE]
-> The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
+> The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
 
 * Follow the [Facebook Login Permissions](https://developers.facebook.com/docs/facebook-login/permissions) guide to enable the **email** permission for your app. The ASP.NET Core Facebook authentication middleware requests the `email` scope by default. If the **email** permission isn't enabled on your Facebook app, authentication may fail or the user's email address will be missing after sign-in.
 
@@ -34,9 +33,9 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
 ## Store the Facebook app ID and secret
 
-Store sensitive settings such as the Facebook app ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Facebook app ID and secret values with [Secret Manager](../../app-secrets.md). For this sample, use the following steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](../../app-secrets.md#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`:
 
     ```dotnetcli
@@ -121,7 +120,7 @@ For more information on configuration options supported by Facebook authenticati
 
 ## Next steps
 
-* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
+* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 
 * Once you publish your web site to Azure web app, you should reset the `AppSecret` in the Facebook developer portal.
 
@@ -129,4 +128,4 @@ For more information on configuration options supported by Facebook authenticati
 
 ## Related content
 
-[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)
+[Multiple authentication providers](index.md#multiple-authentication-providers)

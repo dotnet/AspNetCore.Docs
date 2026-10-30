@@ -3,7 +3,6 @@ title: Overview for gRPC on .NET
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 04/24/2026
-uid: grpc/index
 
 # customer intent: As an ASP.NET developer, I want to explore gRPC services with Kestrel server and the ASP.NET Core stack, so I can use gRPC in my project.
 ---
@@ -62,7 +61,7 @@ message HelloReply {
 </ItemGroup>
 ```
 
-For more information on gRPC tooling support, see [gRPC services with C#](xref:grpc/basics).
+For more information on gRPC tooling support, see [gRPC services with C#](basics.md).
 
 ## gRPC services on ASP.NET Core
 
@@ -70,7 +69,7 @@ gRPC services can be hosted on ASP.NET Core. Services have full integration with
 
 ### Add gRPC services to an ASP.NET Core app
 
-gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For information on configuring gRPC in a .NET app, see [Configure gRPC](xref:grpc/aspnetcore#configure-grpc).
+gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For information on configuring gRPC in a .NET app, see [Configure gRPC](aspnetcore.md#configure-grpc).
 
 ### The gRPC service project template
 
@@ -132,11 +131,11 @@ public class GreeterService : Greeter.GreeterBase
 app.MapGrpcService<GreeterService>();
 ```
 
-To learn more, see [gRPC services with ASP.NET Core](xref:grpc/aspnetcore).
+To learn more, see [gRPC services with ASP.NET Core](aspnetcore.md).
 
 ## gRPC service calls with a .NET client
 
-gRPC clients are concrete client types that are [generated from .proto files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the _.proto_ file.
+gRPC clients are concrete client types that are [generated from .proto files](basics.md#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the _.proto_ file.
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -150,12 +149,12 @@ Console.WriteLine(response.Message);
 
 A gRPC client is created by using a channel, which represents a long-lived connection to a gRPC service. A channel can be created by using `GrpcChannel.ForAddress`.
 
-For more information on creating clients, and calling different service methods, see [Call gRPC services with the .NET client](xref:grpc/client).
+For more information on creating clients, and calling different service methods, see [Call gRPC services with the .NET client](client.md).
 
 ## Related content
 
-* [gRPC services with ASP.NET Core](xref:grpc/aspnetcore)
-* [gRPC client factory integration in .NET](xref:grpc/clientfactory)
+* [gRPC services with ASP.NET Core](aspnetcore.md)
+* [gRPC client factory integration in .NET](clientfactory.md)
 * [Create a .NET gRPC client and server in ASP.NET Core](xref:tutorials/grpc/grpc-start)
 
 :::moniker-end
@@ -207,7 +206,7 @@ message HelloReply {
 </ItemGroup>
 ```
 
-For more information on gRPC tooling support, see <xref:grpc/basics>.
+For more information on gRPC tooling support, see [gRPC Services with C#](basics.md).
 
 ## gRPC services on ASP.NET Core
 
@@ -215,7 +214,7 @@ gRPC services can be hosted on ASP.NET Core. Services have full integration with
 
 ### Add gRPC services to an ASP.NET Core app
 
-gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For information on configuring gRPC in a .NET app, see [Configure gRPC](xref:grpc/aspnetcore#configure-grpc).
+gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For information on configuring gRPC in a .NET app, see [Configure gRPC](aspnetcore.md#configure-grpc).
 
 ### The gRPC service project template
 
@@ -252,11 +251,11 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-To learn more about gRPC services on ASP.NET Core, see <xref:grpc/aspnetcore>.
+To learn more about gRPC services on ASP.NET Core, see [gRPC services with ASP.NET Core](aspnetcore.md).
 
 ## Call gRPC services with a .NET client
 
-gRPC clients are concrete client types that are [generated from `.proto` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `.proto` file.
+gRPC clients are concrete client types that are [generated from `.proto` files](basics.md#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `.proto` file.
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -270,14 +269,14 @@ Console.WriteLine(response.Message);
 
 A gRPC client is created using a channel, which represents a long-lived connection to a gRPC service. A channel can be created using `GrpcChannel.ForAddress`.
 
-For more information on creating clients, and calling different service methods, see <xref:grpc/client>.
+For more information on creating clients, and calling different service methods, see [Call gRPC services with the .NET client](client.md).
 
 ## Related content
 
-* <xref:grpc/basics>
-* <xref:grpc/aspnetcore>
-* <xref:grpc/client>
-* <xref:grpc/clientfactory>
+* [gRPC Services with C#](basics.md)
+* [gRPC services with ASP.NET Core](aspnetcore.md)
+* [Call gRPC services with the .NET client](client.md)
+* [gRPC client factory integration in .NET](clientfactory.md)
 * <xref:tutorials/grpc/grpc-start>
 
 :::moniker-end

@@ -491,7 +491,7 @@ else
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-10.0"
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 In the following example:
 
@@ -626,7 +626,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps.
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](../../security/data-protection/introduction.md) ensures that the data is transferred securely in Blazor Server apps.
 
 ## Prerendered state size and SignalR message size limit
 
@@ -1060,7 +1060,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 In the following example, the `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
 
@@ -1145,7 +1145,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps.
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](../../security/data-protection/introduction.md) ensures that the data is transferred securely in Blazor Server apps.
 
 ## Prerendered state size and SignalR message size limit
 

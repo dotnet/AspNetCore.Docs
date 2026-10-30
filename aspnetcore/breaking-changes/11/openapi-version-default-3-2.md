@@ -14,7 +14,7 @@ The default value of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVe
 
 ## Previous behavior
 
-Previously, `OpenApiOptions.OpenApiVersion` defaulted to `OpenApiSpecVersion.OpenApi3_1`. Calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> without explicitly setting a version produced an OpenAPI 3.1 document.
+Previously, `OpenApiOptions.OpenApiVersion` defaulted to `OpenApiSpecVersion.OpenApi3_1`. Calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> without explicitly setting a version produced an OpenAPI 3.1 document.
 
 ## New behavior
 

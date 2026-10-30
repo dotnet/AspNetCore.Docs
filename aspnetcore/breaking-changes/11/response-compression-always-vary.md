@@ -57,4 +57,4 @@ app.Use(async (context, next) =>
 ## Affected APIs
 
 - <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*?displayProperty=fullName>

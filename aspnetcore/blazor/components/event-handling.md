@@ -588,7 +588,7 @@ Avoid using a loop variable directly in a lambda expression, such as `i` in the 
 * The loop variable `i` is assigned to `buttonNumber`.
 * `buttonNumber` is used in the lambda expression.
 
-Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range*?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
 
 ```razor
 @foreach (var buttonNumber in Enumerable.Range(1, 3))
@@ -645,7 +645,7 @@ The following `Child` component demonstrates how a button's `onclick` handler is
 
 :::moniker-end
 
-The parent component sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) to its `ShowMessage` method.
+The parent component sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback`1> (`OnClickCallback`) to its `ShowMessage` method.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -698,15 +698,15 @@ The parent component sets the child's <xref:Microsoft.AspNetCore.Components.Even
 When the button is selected in the `ChildComponent`:
 
 * The `Parent` component's `ShowMessage` method is called. `message` is updated and displayed in the `Parent` component.
-* A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically to rerender the `Parent` component, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering#statehaschanged>.
+* A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is called automatically to rerender the `Parent` component, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering#statehaschanged>.
 
-Use <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> for event handling and binding component parameters.
+Use <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback`1> for event handling and binding component parameters.
 
-Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%601> over <xref:Microsoft.AspNetCore.Components.EventCallback>. <xref:Microsoft.AspNetCore.Components.EventCallback%601> provides enhanced error feedback when an inappropriate type is used, guiding users of the component towards correct implementation. Similar to other UI event handlers, specifying the event parameter is optional. Use <xref:Microsoft.AspNetCore.Components.EventCallback> when there's no value passed to the callback.
+Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback`1> over <xref:Microsoft.AspNetCore.Components.EventCallback>. <xref:Microsoft.AspNetCore.Components.EventCallback`1> provides enhanced error feedback when an inappropriate type is used, guiding users of the component towards correct implementation. Similar to other UI event handlers, specifying the event parameter is optional. Use <xref:Microsoft.AspNetCore.Components.EventCallback> when there's no value passed to the callback.
 
-<xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
+<xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback`1> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback`1> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
 
-Invoke an <xref:Microsoft.AspNetCore.Components.EventCallback> or <xref:Microsoft.AspNetCore.Components.EventCallback%601> with <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> and await the <xref:System.Threading.Tasks.Task>:
+Invoke an <xref:Microsoft.AspNetCore.Components.EventCallback> or <xref:Microsoft.AspNetCore.Components.EventCallback`1> with <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*> and await the <xref:System.Threading.Tasks.Task>:
 
 ```csharp
 await OnClickCallback.InvokeAsync({ARGUMENT});
@@ -893,7 +893,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 ## Focus an element
 
-Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync%2A> on an [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements) to focus an element in code. In the following example, select the button to focus the `<input>` element.
+Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync*> on an [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements) to focus an element in code. In the following example, select the button to focus the `<input>` element.
 
 :::moniker-end
 

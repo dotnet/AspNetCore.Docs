@@ -6,7 +6,7 @@ In the server project:
 
 * Remove the Persisting Authentication State Provider (`PersistingAuthenticationStateProvider.cs`).
 
-* Remove the service registration from the `Program` file. Instead, chain a call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+* Remove the service registration from the `Program` file. Instead, chain a call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>:
 
   ```diff
   - builder.Services.AddScoped<AuthenticationStateProvider, PersistingAuthenticationStateProvider>();
@@ -27,7 +27,7 @@ In the client project (`.Client`):
 
 * Remove the Persistent Authentication State Provider (`PersistentAuthenticationStateProvider.cs`).
 
-* Remove the service registration from the `Program` file. Instead, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> on the service collection:
+* Remove the service registration from the `Program` file. Instead, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*> on the service collection:
 
   ```diff
   - builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
