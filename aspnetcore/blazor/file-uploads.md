@@ -99,7 +99,7 @@ A component that receives an image file can call the <xref:Microsoft.AspNetCore.
 
 :::moniker range=">= aspnetcore-9.0"
 
-For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, HTTPS, and [CORS](xref:security/cors), client-side Blazor supports using the [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files with [request streaming](xref:blazor/call-web-api#client-side-request-streaming).
+For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, HTTPS, and [CORS](../security/cors.md), client-side Blazor supports using the [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files with [request streaming](xref:blazor/call-web-api#client-side-request-streaming).
 
 Without a Chromium browser, HTTP/2 protocol, or HTTPS, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshaling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
@@ -388,7 +388,7 @@ Remove the `LazyBrowserFileStream` class (`LazyBrowserFileStream.cs`), as it isn
 The following controller in the web API project saves uploaded files from the client.
 
 > [!IMPORTANT]
-> The controller in this section is intended for use in a separate web API project from the Blazor app. The web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if file upload users are authenticated.
+> The controller in this section is intended for use in a separate web API project from the Blazor app. The web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](../security/anti-request-forgery.md) if file upload users are authenticated.
 
 :::moniker range="= aspnetcore-6.0"
 
@@ -881,7 +881,7 @@ public class FilesaveController(
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName*> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
-The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
+The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](../security/anti-request-forgery.md) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -920,7 +920,7 @@ After calling <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.Us
 app.UseCors();
 ```
 
-For more information, see <xref:security/cors>.
+For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md).
 
 :::moniker range=">= aspnetcore-9.0"
 

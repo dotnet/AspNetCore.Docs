@@ -94,7 +94,7 @@ ASPNETCORE_URLS=http://*:3000;https://+:5000;http://0.0.0.0:5005
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cert)]
 
-For more information on the development certificate, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust).
+For more information on the development certificate, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](../../../security/enforcing-ssl.md#trust).
 
 ### Specify HTTPS using a custom certificate
 

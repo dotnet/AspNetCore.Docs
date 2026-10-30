@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to set up OpenID Connect authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/18/2026
-uid: security/authentication/configure-oidc-web-authentication
 ---
 # Configure OpenID Connect Web (UI) authentication in ASP.NET Core
 
@@ -54,7 +53,7 @@ Add the authentication to the web application using the builder.Services in the 
 
 The OpenID Connect handler is used for challenges and signout. The cookie is used to handle the session in the web application. The default schemes for the authentication can be specified as required. 
 
-For more information, see the [ASP.NET Core `authentication-handler` guidance](xref:security/authentication/index#authentication-handler).
+For more information, see the [ASP.NET Core `authentication-handler` guidance](index.md#authentication-handler).
 
 ```csharp
 builder.Services.AddAuthentication(options =>
@@ -85,7 +84,7 @@ builder.Services.AddAuthentication(options =>
 
 For details on the different OpenID Connect options, see <xref:blazor/security/blazor-web-app-oidc>.
 
-For the different claims mapping possibilities, see <xref:security/authentication/claims>.
+For the different claims mapping possibilities, see [Map, customize, transform claims in ASP.NET Core](claims.md).
 
 > [!NOTE]
 > The following namespaces are required:
@@ -99,7 +98,7 @@ For the different claims mapping possibilities, see <xref:security/authenticatio
 
 ### Setup the configuration properties
 
-Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. For more information, see <xref:security/app-secrets>.
+Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. For more information, see [Safe storage of app secrets in development](../app-secrets.md).
 
 ```json
 "OpenIDConnectSettings": {
@@ -156,7 +155,7 @@ builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(requireAuthPolicy);
 ```
 
-The fallback policy requires authentication for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+The fallback policy requires authentication for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../authorization/policies.md#default-and-fallback-policies).
 
 Opt out of authorization at public endpoints by applying the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to the public endpoints. For examples, see the [Add a new `Logout.cshtml` and `SignedOut.cshtml` Razor pages to the project](#add-a-new-logoutcshtml-and-signedoutcshtml-razor-pages-to-the-project) and [Implement `Login` page](#implement-login-page) sections.
 
@@ -372,7 +371,7 @@ The OAuth and OIDC authentication handlers (<xref:Microsoft.AspNetCore.Authentic
 
 ## Map claims from OpenID Connect
 
-For more information, see <xref:security/authentication/claims>.
+For more information, see [Map, customize, transform claims in ASP.NET Core](claims.md).
 
 ## Blazor OpenID Connect
 

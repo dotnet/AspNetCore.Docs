@@ -3,7 +3,6 @@ title: Custom authorization policy providers in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to use a custom authorization policy provider (IAuthorizationPolicyProvider) in an ASP.NET Core app to dynamically generate authorization policies.
 ms.date: 09/18/2026
-uid: security/authorization/custom-authorization-policy-providers
 ---
 # Custom authorization policy providers in ASP.NET Core
 
@@ -11,7 +10,7 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article describes how to implement the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> interface to create a custom authorization policy provider, including how to create an authorization attribute for the provider.
 
-For a typical implementation of [policy-based authorization](xref:security/authorization/policies), policies are registered by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy*?displayProperty=nameWithType> during authorization service configuration. Sometimes, it isn't possible or desirable to register many authorization policies in this manner.
+For a typical implementation of [policy-based authorization](policies.md), policies are registered by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy*?displayProperty=nameWithType> during authorization service configuration. Sometimes, it isn't possible or desirable to register many authorization policies in this manner.
 
 For example, an app might require policy-based checks for building room numbers or user ages, where it doesn't make sense to create policies for building room numbers or ages with many <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.AddPolicy*> calls. These scenarios are best implemented by passing a parameter that represents room numbers or ages to a custom `[Authorize]` attribute backed by a custom authorization policy provider. The custom policy provider receives the parameter value and dynamically creates a single policy to determine if authorization requirements are met. Using this approach, you avoid creating dozens or even hundreds of individual, explicit authorization policies.
 
@@ -47,7 +46,7 @@ The developer customizes how authorization policies are provided by implementing
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync*> method returns the default authorization policy, which is selected when authorization is required but no specific policy is set.
 * The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync*> method returns the fallback authorization policy, which is selected when no policy is produced from authorization metadata. By default, the fallback policy is `null`.
 
-For complete named, default, and fallback policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+For complete named, default, and fallback policy selection rules, see [Policy-based authorization in ASP.NET Core](policies.md#default-and-fallback-policies).
 
 The general format of a custom policy provider that either returns a policy for a given matching name (represented by the `{IDENTIFY POLICY BY NAME}` placeholder) or returns `null` when no policy name matches is similar to the following.
 
@@ -146,9 +145,9 @@ You can apply the attribute for any given authorized minimum age with an integer
 >
 > For examples that work with the custom policy provider in this article, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` code in the *Policy-based authorization* article, which work with the `MinimumAgePolicyProvider` demonstrated in this article:
 >
-> * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
-> * [`MinimumAgeHandler` class for one requirement](xref:security/authorization/policies#use-a-handler-for-one-requirement)
-> * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
+> * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](policies.md#requirements-and-policy-registration)
+> * [`MinimumAgeHandler` class for one requirement](policies.md#use-a-handler-for-one-requirement)
+> * [Register the `MinimumAgeHandler`](policies.md#handler-registration)
 
 ## Minimum age custom policy provider example
 
@@ -176,9 +175,9 @@ To use custom policies:
 
   For examples that work with the custom policy provider in this article, see the parameterized `MinimumAgeRequirement` and `MinimumAgeHandler` code in the *Policy-based authorization* article, which work with the `MinimumAgePolicyProvider` demonstrated in this article:
 
-  * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](xref:security/authorization/policies#requirements-and-policy-registration)
-  * [`MinimumAgeHandler` class for one requirement](xref:security/authorization/policies#use-a-handler-for-one-requirement)
-  * [Register the `MinimumAgeHandler`](xref:security/authorization/policies#handler-registration)
+  * [`MinimumAgeRequirement(int)` parameterized class that accepts a minimum age](policies.md#requirements-and-policy-registration)
+  * [`MinimumAgeHandler` class for one requirement](policies.md#use-a-handler-for-one-requirement)
+  * [Register the `MinimumAgeHandler`](policies.md#handler-registration)
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -239,6 +238,6 @@ app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () =>
 ## Related content
 
 * [Complete custom 'IAuthorizationPolicyProvider' sample (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider)
-* <xref:security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core](policies.md)
 * <xref:razor-pages/security/authorization/policies>
 * <xref:mvc/security/authorization/policies>

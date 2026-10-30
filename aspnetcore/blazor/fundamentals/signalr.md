@@ -11,17 +11,17 @@ uid: blazor/fundamentals/signalr
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation, especially <xref:signalr/configuration#configure-server-options>.
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation, especially [ASP.NET Core SignalR configuration](../../signalr/configuration.md#configure-server-options).
 
 Server-side apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to server-side apps.
 
-Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
+Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](../../signalr/security.md). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
 
 :::moniker range=">= aspnetcore-8.0"
 
 ## Azure SignalR Service with stateful reconnect
 
-The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-signalr/releases/tag/v1.26.1) or later supports [SignalR stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect*>).
+The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-signalr/releases/tag/v1.26.1) or later supports [SignalR stateful reconnect](../../signalr/configuration.md#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect*>).
 
 :::moniker-end
 
@@ -161,7 +161,7 @@ hubConnection = new HubConnectionBuilder()
 
 The preceding example configures the hub connection URL to the absolute URI address at `/chathub`. The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
-For more information, see <xref:signalr/configuration#configure-other-options>.
+For more information, see [ASP.NET Core SignalR configuration](../../signalr/configuration.md#configure-other-options).
 
 ## Client-side rendering
 
@@ -196,7 +196,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 * [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
-* <xref:signalr/configuration>
+* [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## Use session affinity (sticky sessions) for server-side web farm hosting
@@ -271,7 +271,7 @@ services.AddServerSideBlazor(options =>
 
 :::moniker-end
 
-To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions*>. View the defaults for the hub connection context options in [reference source](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/server/Core/src/HubConnectionContextOptions.cs). For option descriptions in the SignalR documentation, see <xref:signalr/configuration#configure-server-options>. The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
+To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions*>. View the defaults for the hub connection context options in [reference source](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/server/Core/src/HubConnectionContextOptions.cs). For option descriptions in the SignalR documentation, see [ASP.NET Core SignalR configuration](../../signalr/configuration.md#configure-server-options). The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -1772,7 +1772,7 @@ app.MapBlazorHub();
 
 ## Impersonation for Windows Authentication
 
-Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> to indicate the use of default credentials for HTTP requests. For more information, see <xref:signalr/authn-and-authz#windows-authentication>.
+Authenticated hub connections (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>) are created with <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> to indicate the use of default credentials for HTTP requests. For more information, see [SignalR authentication and authorization](../../signalr/authn-and-authz.md#windows-authentication).
 
 When the app is running in IIS Express as the signed-in user under Windows Authentication, which is likely the user's personal or work account, the default credentials are those of the signed-in user.
 
@@ -1896,7 +1896,7 @@ The following example:
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
 * <xref:signalr/introduction>
-* <xref:signalr/configuration>
+* [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * Server-side security documentation
   * <xref:blazor/security/index>
   * <xref:blazor/security/index>

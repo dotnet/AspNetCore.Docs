@@ -47,7 +47,7 @@ The `CreateDefaultBuilder` method performs the following tasks:
 * Loads the app configuration in the following order:
   * _appsettings.json_ file
   * _appsettings.{Environment}.json_ file
-  * [User secrets](xref:security/app-secrets) (Loaded when the app runs in the `Development` environment by using the entry assembly.)
+  * [User secrets](../../security/app-secrets.md) (Loaded when the app runs in the `Development` environment by using the entry assembly.)
   * Environment variables
   * Command-line arguments
 
@@ -237,7 +237,7 @@ Sets the HTTPS port for redirection if you get a non-HTTPS connection.
 **Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_HTTPS_PORT`
 
-This setting is used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
+This setting is used in [enforcing HTTPS](../../security/enforcing-ssl.md). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)

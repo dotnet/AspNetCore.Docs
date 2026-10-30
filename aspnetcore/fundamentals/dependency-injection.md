@@ -1117,7 +1117,7 @@ Service type | Lifetime
 * [Inject services into a SignalR hub](xref:signalr/hubs#inject-services-into-a-hub)
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
-* <xref:security/authorization/dependencyinjection>
+* [Dependency injection in requirement handlers in ASP.NET Core](../security/authorization/dependencyinjection.md)
 * [NDC Conference Patterns for DI app development](https://www.youtube.com/watch?v=x-C-CNBVTaY)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>

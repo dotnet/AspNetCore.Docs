@@ -84,7 +84,7 @@ The following code in the app's `Program` file:
 
 * Uses <xref:Microsoft.AspNetCore.Builder.WebApplication.Environment?displayProperty=nameWithType> to distinguish the environment.
 * Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, which adds [exception handler middleware](xref:fundamentals/error-handling) to the request processing pipeline to handle exceptions.
-* Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>, which adds [HSTS middleware](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
+* Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>, which adds [HSTS middleware](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
 
 ```csharp
 if (!app.Environment.IsDevelopment())

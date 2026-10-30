@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure ASP.NET Core SignalR apps, including allowed transports, logging levels, timeout intervals, and serialization.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 09/02/2026
-uid: signalr/configuration
 
 # customer intent: As an ASP.NET developer, I want to configure ASP.NET Core SignalR, so I can specify my preferences for client and server options.
 ---
@@ -134,7 +133,7 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 
 :::moniker range=">= aspnetcore-11.0"
 
-The following advanced HTTP options configure SignalR *authentication refresh*, introduced in .NET 11. Authentication refresh lets a connected client update its authentication credentials without reconnecting. For more information, see <xref:signalr/authn-and-authz#authentication-refresh>.
+The following advanced HTTP options configure SignalR *authentication refresh*, introduced in .NET 11. Authentication refresh lets a connected client update its authentication credentials without reconnecting. For more information, see [SignalR authentication and authorization](authn-and-authz.md#authentication-refresh).
 
 | Option | Default value | Description |
 | ------ | ------------- | ----------- |
@@ -475,7 +474,7 @@ var connection = new HubConnectionBuilder()
 | `headers` | `null` | A dictionary of headers sent with every HTTP request. <br><br>**Note**: Sending headers in the browser doesn't work for WebSockets or the <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType#microsoft-aspnetcore-http-connections-httptransporttype-serversenteventsstream> stream. |
 | `logMessageContent` | `null` | Set this option to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this option to `true` to skip the negotiation step. <br><br>**Note**: This option is available only when the WebSockets transport is the only enabled transport. The setting can't be enabled when using the Azure SignalR Service. |
-| `withCredentials` | `true` | Specifies whether credentials are sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more information on CORS with SignalR, see <xref:signalr/security#cross-origin-resource-sharing>. |
+| `withCredentials` | `true` | Specifies whether credentials are sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more information on CORS with SignalR, see [Security considerations in ASP.NET Core SignalR](security.md#cross-origin-resource-sharing). |
 | `timeout` | `100,000` | The timeout value in milliseconds to apply to HTTP requests. <br><br>**Note**: This option doesn't apply to Long Polling poll requests, EventSource, or WebSockets. |
 | `httpClient` | `null` | An `HttpClient` used to make HTTP requests. Provide a custom implementation to inspect or customize the requests made during negotiation and by the Long Polling and Server-Sent Events transports. <br><br>**Note**: This setting isn't used for WebSocket connections. |
 

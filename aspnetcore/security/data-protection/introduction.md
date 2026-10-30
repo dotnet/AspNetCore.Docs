@@ -2,7 +2,6 @@
 title: ASP.NET Core Data Protection Overview
 description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
 ms.date: 05/13/2026
-uid: security/data-protection/introduction
 
 # customer intent: As a developer, I want to learn about data protection and design principles of the ASP.NET Core Data Protection APIs, so I can use the APIs in my apps.
 ---
@@ -44,7 +43,7 @@ Some common assumptions can narrow the scope of requirements:
 
 ## Design philosophy
 
-ASP.NET Core data protection is an [easy to use](xref:security/data-protection/using-data-protection) data protection stack based on the following principles:
+ASP.NET Core data protection is an [easy to use](using-data-protection.md) data protection stack based on the following principles:
 
 * **Configuration should be easy**. The system strives for zero configuration. In situations where developers need to configure a specific aspect, such as the key repository, those specific configurations aren't difficult.
 * **Offer basic consumer-facing APIs**. The APIs are straight forward to use correctly and difficult to use incorrectly.
@@ -57,15 +56,15 @@ The data protection APIs aren't primarily intended for indefinite persistence of
 
 The data protection system provides APIs that target three main audiences:
 
-- The [consumer APIs](xref:security/data-protection/consumer-apis/overview) target application and framework developers.
+- The [consumer APIs](consumer-apis/overview.md) target application and framework developers.
 
    *I don't want to learn about how the stack operates or about how it's configured. I just want to perform some operation with high probability of using the APIs successfully.*
 
-- The [configuration APIs](xref:security/data-protection/configuration/overview) target app developers and system administrators.
+- The [configuration APIs](configuration/overview.md) target app developers and system administrators.
 
    *I need to tell the data protection system that my environment requires nondefault paths or settings.*
 
-- The [extensibility APIs](xref:security/data-protection/extensibility/index) target developers in charge of implementing custom policy. Usage of these APIs is limited to rare situations and developers with security experience.
+- The [extensibility APIs](extensibility/index.md) target developers in charge of implementing custom policy. Usage of these APIs is limited to rare situations and developers with security experience.
 
    *I need to replace an entire component within the system because I have truly unique behavioral requirements. I'm willing to learn uncommonly used parts of the API surface so I can build a plugin that fulfills my requirements.*
 
@@ -96,13 +95,13 @@ The data protection stack consists of five packages:
   * Factory methods to instantiate the data protection system to store keys at a location on the file system without dependency injection. For more information, see <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>.
   * Extension methods for limiting the lifetime of protected payloads. For more information, see <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector>.
 
-* [Microsoft.AspNetCore.DataProtection.SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) can be installed into an existing ASP.NET 4.x app to redirect its `<machineKey>` operations to use the new ASP.NET Core data protection stack. For more information, see <xref:security/data-protection/compatibility/replacing-machinekey>.
+* [Microsoft.AspNetCore.DataProtection.SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) can be installed into an existing ASP.NET 4.x app to redirect its `<machineKey>` operations to use the new ASP.NET Core data protection stack. For more information, see [Replace the ASP.NET machineKey in ASP.NET Core](compatibility/replacing-machinekey.md).
 
-* [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine. It's convenient for systems that must handle user passwords securely. For more information, see <xref:security/data-protection/consumer-apis/password-hashing>.
+* [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine. It's convenient for systems that must handle user passwords securely. For more information, see [Hash passwords in ASP.NET Core](consumer-apis/password-hashing.md).
 
 ## Related content
 
-* <xref:security/data-protection/using-data-protection>
+* [Get started with the Data Protection APIs in ASP.NET Core](using-data-protection.md)
 * <xref:host-and-deploy/web-farm>
 
 :::moniker-end

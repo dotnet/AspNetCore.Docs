@@ -3,7 +3,6 @@ title: Prevent open redirect attacks in ASP.NET Core
 ai-usage: ai-assisted
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
 ms.date: 08/26/2026
-uid: security/preventing-open-redirects
 ---
 # Prevent open redirect attacks in ASP.NET Core
 

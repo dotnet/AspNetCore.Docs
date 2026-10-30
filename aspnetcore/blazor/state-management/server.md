@@ -151,7 +151,7 @@ services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
 
-In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
+In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](../../security/app-secrets.md#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
 
 For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
 
@@ -566,7 +566,7 @@ The `ITempData` interface provides the following methods for controlling value l
 
 Data stored in `TempData` is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
 
-The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](xref:security/data-protection/configuration/overview) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
+The default cookie-based provider uses [Data Protection](../../security/data-protection/introduction.md) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](../../security/data-protection/configuration/overview.md) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
 
 To change the Blazor `TempData` cookie settings in the following table, configure `TempDataCookie` when calling `AddRazorComponents` in the app's `Program` file.
 

@@ -15,7 +15,7 @@ The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middle
 
 ## Authentication uses single scheme as DefaultScheme
 
-As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](xref:security/authentication/index#defaultscheme).
+As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](../security/authentication/index.md#defaultscheme).
 
 ## MVC and Razor pages
 
@@ -37,7 +37,7 @@ In ASP.NET Core versions earlier than 7, the cookie consent validation uses the 
 
 [!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
 
-For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
+For more information, see [Customize the cookie consent value](../security/gdpr.md#customize-the-cookie-consent-value).
 
 ## API controllers
 
@@ -673,7 +673,7 @@ The Angular project template has been updated to Angular 14. The React project t
 
 ### Manage JSON Web Tokens in development with dotnet user-jwts
 
-The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt?view=aspnetcore-7.0&preserve-view=true).
+The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](../security/authentication/jwt-authn.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### Support for additional request headers in W3CLogger
 

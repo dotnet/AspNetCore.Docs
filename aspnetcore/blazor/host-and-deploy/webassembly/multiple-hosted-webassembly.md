@@ -62,7 +62,7 @@ The examples shown in this article require additional configuration for:
 The preceding configurations are beyond the scope of this article. For more information, see the following resources:
 
 * <xref:host-and-deploy/index>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md)
 * <xref:blazor/components/integration-hosted-webassembly>
 
 Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.

@@ -507,7 +507,7 @@ If you're running into errors, the following tips may help:
 * Remove breakpoints:
   * Google Chrome: In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
   * Microsoft Edge: In the **Application** tab, open **Local storage**. Right-click the site and select **Clear**.
-* Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see <xref:security/enforcing-ssl#troubleshoot-certificate-problems-such-as-certificate-not-trusted>.
+* Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md#troubleshoot-certificate-problems-such-as-certificate-not-trusted).
 * Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome and Edge)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
 * If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
   * The `launchSettings.json` file for the project.

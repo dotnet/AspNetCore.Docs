@@ -314,7 +314,7 @@ Do **not** throw exceptions within authorization filters:
 
 Consider issuing a challenge when an exception occurs in an authorization filter.
 
-Learn more about [Authorization](xref:security/authorization/introduction).
+Learn more about [Authorization](../../../../security/authorization/introduction.md).
 
 ## Resource filters
 
@@ -901,7 +901,7 @@ Do **not** throw exceptions within authorization filters:
 
 Consider issuing a challenge when an exception occurs in an authorization filter.
 
-Learn more about [Authorization](xref:security/authorization/introduction).
+Learn more about [Authorization](../../../../security/authorization/introduction.md).
 
 ## Resource filters
 

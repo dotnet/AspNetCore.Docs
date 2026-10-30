@@ -503,9 +503,9 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
     .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
   ```
-  
+
   The `bufferSize` option is optional with a default of 100,000 bytes.
-  
+
 * Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
@@ -518,7 +518,7 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
 
   The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
-For more information, see [Configure stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect).
+For more information, see [Configure stateful reconnect](../signalr/configuration.md#configure-stateful-reconnect).
 
 ## Minimal APIs
 
@@ -537,7 +537,7 @@ Starting in .NET 8, the [RequestLocalizationOptions.CultureInfoUseUserOverride](
 
 ### Binding to forms
 
-Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [antiforgery token](xref:security/anti-request-forgery). The antiforgery token is validated when the request is processed.
+Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [antiforgery token](../security/anti-request-forgery.md). The antiforgery token is validated when the request is processed.
 
 Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
@@ -556,7 +556,7 @@ For more information, see [Bind to collections and complex types from forms](xre
 
 ### Antiforgery with Minimal APIs
 
-This release adds a middleware for validating antiforgery tokens, which are used to mitigate cross-site request forgery attacks. Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the middleware when the antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
+This release adds a middleware for validating antiforgery tokens, which are used to mitigate cross-site request forgery attacks. Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the middleware when the antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](../security/anti-request-forgery.md).
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3":::
 
@@ -571,7 +571,7 @@ The antiforgery token is only validated if:
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
 * The request is associated with a valid endpoint.
 
-For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
+For more information, see [Antiforgery with Minimal APIs](../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis).
 
 ### New `IResettable` interface in `ObjectPool`
 
@@ -734,7 +734,7 @@ If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled
 
 The Server Name Indication (SNI) host name is now exposed in the <!--keep--> [HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,29) property of the <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> interface.
 
-SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
+SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request.
 
 Normally the host name is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in an app can use that information for purposes such as diagnostics, rate limiting, routing, and billing.
 
@@ -797,19 +797,19 @@ The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sampl
 ```diff
 using AuthRequirementsData.Authorization;
 using Microsoft.AspNetCore.Authorization;
-  
+
 var builder = WebApplication.CreateBuilder();
-  
+
 builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 -builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
-  
+
 var app = builder.Build();
-  
+
 app.MapControllers();
-  
+
 app.Run();
 ```
 
@@ -822,7 +822,7 @@ using System.Security.Claims;
 
 namespace AuthRequirementsData.Authorization;
 
-class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger) 
+class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger)
 -    : AuthorizationHandler<MinimumAgeRequirement>
 +    : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
 {
@@ -838,7 +838,7 @@ class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> log
 
 The updated sample is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-For more information, see <xref:security/authorization/iard>.
+For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md).
 
 ### Securing Swagger UI endpoints
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.custom: devx-track-csharp
 ms.date: 03/25/2026
-uid: security/authentication/azure-ad-b2c
 ---
 # Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 
@@ -55,4 +54,4 @@ After completing identity provider setup using the Entra or Azure AD B2C documen
 * [Customize the Azure AD B2C user interface](/azure/active-directory-b2c/customize-ui)
 * [Configure password complexity in Azure AD B2C](/azure/active-directory-b2c/password-complexity)
 * [Microsoft Graph API with Azure AD B2C](/azure/active-directory-b2c/microsoft-graph-operations)
-* <xref:security/authentication/index>
+* [Overview of ASP.NET Core Authentication](index.md)

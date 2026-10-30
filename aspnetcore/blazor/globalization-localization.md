@@ -911,7 +911,7 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 :::moniker-end
 
@@ -958,7 +958,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect*> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect*> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 :::moniker-end
 
@@ -1510,7 +1510,7 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 :::moniker-end
 

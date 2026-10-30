@@ -1,6 +1,6 @@
 ### New `DisplayName` component and support for `[Display]` and `[DisplayName]` attributes
 
-<!-- UPDATE 11.0 - API cross-link 
+<!-- UPDATE 11.0 - API cross-link
 
 <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1>
 -->
@@ -142,13 +142,13 @@ For more information, see the following resources:
 * The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component no longer assumes every item has the same height. Previously, the component disabled the browser's native scroll anchoring (to avoid an infinite rendering loop), which meant any height change above the viewport&mdash;item expansion, data updates, lazy-loaded content&mdash;caused visible items to jump on screen. The `Virtualize` component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary.
 
   The updates use a hybrid approach: native CSS scroll anchoring on browsers that support it for non-`<table>` layouts with a manual `ResizeObserver`-based scroll-compensation fallback for `<table>` layouts and Safari, where native anchoring miscalculates positions on `<tr>` elements.
-  
+
   Apps using the `Virtualize` component receive the benefits of these updates automatically. No developer API changes are required.
 
   These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
   For more information, see the following resources:
-  
+
   * [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
   * [[Virtualization] Visible content does not shift when in-DOM items above the viewport change height (`dotnet/aspnetcore` #65951)](https://github.com/dotnet/aspnetcore/pull/65951) (Please don't comment on closed issues and PRs).
 
@@ -167,7 +167,7 @@ For more information, see the following resources:
   ```
 
   For more information, see the following resources:
-  
+
   * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
   * [[release/11.0-preview4] Virtualization AnchorMode with variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
@@ -279,7 +279,7 @@ The constructor takes an optional prefix argument that's prepended to all three 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid ... 
+<QuickGrid ...
     QueryParameterNameOptions="@(new QueryParameterNameOptions("products_"))">
     ...
 </QuickGrid>
@@ -329,7 +329,7 @@ With the release of .NET 11, the following `QuickGrid` components require unique
     ...
 </QuickGrid>
 
-<QuickGrid ... Pagination="@pagination2" 
+<QuickGrid ... Pagination="@pagination2"
     QueryParameterNameOptions="@(new QueryParameterNameOptions("cities_"))">
     ...
 </QuickGrid>
@@ -383,7 +383,7 @@ The `QuickGrid` component now supports row click events through the new <xref:Mi
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject NavigationManager NavigationManager
 
-<QuickGrid Items="@people.AsQueryable()" 
+<QuickGrid Items="@people.AsQueryable()"
     OnRowClick="@((Person args) => HandleRowClick(args))">
     <PropertyColumn Property="@(p => p.Name)" />
     <PropertyColumn Property="@(p => p.Email)" />
@@ -599,7 +599,7 @@ Blazor WebAssembly now supports `IHostedService` for running background services
 public class DataRefreshService : IHostedService
 {
     private Timer? _timer;
-    
+
     public Task StartAsync(CancellationToken cancellationToken)
     {
         _timer = new Timer(RefreshData, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
@@ -655,7 +655,7 @@ You can also set the options in a Razor component with the `ConfigureBrowser` co
 <ConfigureBrowser Options="RequestBrowserOptions" />
 
 ...
-    
+
 @code {
     private BrowserOptions RequestBrowserOptions => new()
     {
@@ -785,7 +785,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Antiforgery middleware (`app.UseAntiforgery()`) optional in Blazor Web Apps
 
-[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
+[CSRF protection](../../../security/anti-request-forgery.md#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
 
 For more information, see the following resources:
 
@@ -794,7 +794,7 @@ For more information, see the following resources:
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
-* <xref:security/anti-request-forgery?view=aspnetcore-11.0>
+* [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md?view=aspnetcore-11.0&preserve-view=true)
 * <xref:blazor/forms/index?view=aspnetcore-11.0#antiforgery-support>
 * <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
 
@@ -844,7 +844,7 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
-For more information, see <xref:security/authorization/iard?view=aspnetcore-11.0>.
+For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../../../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### QuickGrid APIs from Virtualize are exposed
 

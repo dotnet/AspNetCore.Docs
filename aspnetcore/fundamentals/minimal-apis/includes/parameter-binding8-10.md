@@ -95,7 +95,7 @@ Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFil
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1" highlight="20-35":::
 
-Parameters bound to the request with `[FromForm]` include an [antiforgery token](xref:security/anti-request-forgery). The antiforgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
+Parameters bound to the request with `[FromForm]` include an [antiforgery token](../../../security/anti-request-forgery.md). The antiforgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](../../../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis).
 
 For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/).
 
@@ -171,7 +171,7 @@ The following types are bound without explicit attributes:
 * <xref:System.Threading.CancellationToken>: The cancellation token associated with the current HTTP request:
 
   ```csharp
-  app.MapGet("/", async (CancellationToken cancellationToken) => 
+  app.MapGet("/", async (CancellationToken cancellationToken) =>
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
@@ -233,11 +233,11 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples/8/Iform/Program.cs" highlight="18-23,44-50":::
 
-***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an antiforgery token:
+***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](../../../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an antiforgery token:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples/8/Iform/Program.cs" highlight="25,45":::
 
-For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
+For more information on XSRF attacks, see [Antiforgery with Minimal APIs](../../../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis)
 
 For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
 
@@ -281,7 +281,7 @@ In the preceding code:
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
 * Binding from complex or collection types is ***not*** supported for Minimal APIs that are compiled with the Request Delegate Generator.
 * The markup shows an additional hidden input with a name of `isCompleted` and a value of `false`. If the `isCompleted` checkbox is checked when the form is submitted, both values `true` and `false` are submitted as values. If the checkbox is unchecked, only the hidden input value `false` is submitted. The ASP.NET Core form-mapping process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
-  
+
 An example of the form data submitted to the preceding endpoint looks as follows:
 
 ```txt

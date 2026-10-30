@@ -167,7 +167,7 @@ The following Tag Helpers are shown in the preceding markup:
 
 ---
 
-The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](xref:security/anti-request-forgery).
+The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](../../../../security/anti-request-forgery.md).
 
 The scaffolding engine creates Razor markup for each field in the model, except the ID, similar to the following:
 

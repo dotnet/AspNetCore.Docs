@@ -8,7 +8,7 @@ uid: migration/1x-to-2x/identity-2x
 
 By [Scott Addie](https://github.com/scottaddie) and [Hao Kung](https://github.com/HaoK)
 
-ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security/authentication/identity) that simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication or Identity can be updated to use the new model as outlined below.
+ASP.NET Core 2.0 has a new model for authentication and [Identity](../../security/authentication/identity.md) that simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication or Identity can be updated to use the new model as outlined below.
 
 ## Update namespaces
 
@@ -322,7 +322,7 @@ There are two variations of Windows authentication:
 
   > `System.InvalidOperationException`: No authenticationScheme was specified, and there was no DefaultChallengeScheme found.
 
-For more information, see <xref:security/authentication/windowsauth>.
+For more information, see [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md).
 
 <a name="identity-cookie-options"></a>
 

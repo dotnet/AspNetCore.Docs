@@ -80,7 +80,7 @@ For more information, see [ASP.NET Core SignalR Java client](../signalr/java-cli
 
 In earlier versions of ASP.NET Core, CORS middleware allows `Accept`, `Accept-Language`, `Content-Language`, and `Origin` headers to be sent regardless of the values configured in `CorsPolicy.Headers`. In 2.2, a CORS middleware policy match is only possible when the headers sent in `Access-Control-Request-Headers` exactly match the headers stated in `WithHeaders`.
 
-For more information, see [CORS middleware](xref:security/cors?view=aspnetcore-2.2#set-the-allowed-request-headers).
+For more information, see [CORS middleware](../security/cors.md?view=aspnetcore-2.2&preserve-view=true#set-the-allowed-request-headers).
 
 ## Response compression
 

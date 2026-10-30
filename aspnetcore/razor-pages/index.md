@@ -336,7 +336,7 @@ Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is 
 
 ## XSRF/CSRF and Razor Pages
 
-Razor Pages are protected by [Antiforgery validation](xref:security/anti-request-forgery). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
+Razor Pages are protected by [Antiforgery validation](../security/anti-request-forgery.md). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
 
 <a name="layout"></a>
 

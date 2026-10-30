@@ -33,9 +33,9 @@ Add the middleware to the request processing pipeline by calling the <xref:Micro
 Calling the `AddOutputCache`and `UseOutputCache` methods doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as described in the following sections.
 
 > [!NOTE]
-> * In apps that use [Cross-Origin Requests (CORS) middleware](xref:security/cors), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method.
+> * In apps that use [Cross-Origin Requests (CORS) middleware](../../security/cors.md), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method.
 > * In Razor Pages apps and apps with controllers, the `UseOutputCache` method must be called after the `UseRouting` method.
-> * In apps that use [authentication](xref:security/authentication/index) or [authorization](xref:security/authorization/introduction), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
+> * In apps that use [authentication](../../security/authentication/index.md) or [authorization](../../security/authorization/introduction.md), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
 
 ## Configure one endpoint or page
 

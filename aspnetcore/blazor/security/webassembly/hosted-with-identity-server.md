@@ -45,7 +45,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
    Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 
-1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
+1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication type** to store users within the app using ASP.NET Core's [Identity](../../../security/authentication/identity.md) system.
 
 1. Select the **ASP.NET Core Hosted** checkbox.
 
@@ -53,7 +53,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 # [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
 
-To create a new Blazor WebAssembly project with an authentication mechanism in an empty folder, specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system:
+To create a new Blazor WebAssembly project with an authentication mechanism in an empty folder, specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](../../../security/authentication/identity.md) system:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -ho -o {PROJECT NAME}
@@ -353,7 +353,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Azure App Service on Linux
 
-Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see [Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md#azure-app-service-on-linux).
 
 ## Name and role claim with API authorization
 
@@ -727,7 +727,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 
 ## Related content
 
-* [Deployment to Azure App Service](xref:security/authentication/identity/spa#deploy-to-production)
+* [Deployment to Azure App Service](../../../security/authentication/identity-api-authorization.md#deploy-to-production)
 * [Import a certificate from Key Vault (Azure documentation)](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

@@ -58,7 +58,7 @@ A custom token (one that is proprietary to the ASP.NET Core Identity platform) i
 
 The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. For more information, see <xref:security/authentication/identity/spa>.
+The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. For more information, see [Use Identity to secure a Web API backend for SPAs](../../../../security/authentication/identity-api-authorization.md).
 
 Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies*> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken*> extension method. Specify the scheme for bearer authentication tokens with <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme*?displayProperty=nameWithType>.
 
@@ -77,7 +77,7 @@ In `BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs`, remove the `u
 + login
 ```
 
-At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see <xref:security/authentication/identity/spa>.
+At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see [Use Identity to secure a Web API backend for SPAs](../../../../security/authentication/identity-api-authorization.md).
 
 ## Additional Identity scenarios
 
@@ -86,7 +86,7 @@ Scenarios covered by the Blazor documentation set:
 * [Account confirmation, password management, and recovery codes](xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery)
 * [Two-factor authentication (2FA) with a TOTP authenticator app](xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps)
 
-For information on additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
+For information on additional Identity scenarios provided by the API, see [Use Identity to secure a Web API backend for SPAs](../../../../security/authentication/identity-api-authorization.md):
 
 * Secure selected endpoints
 * User info management
@@ -144,7 +144,7 @@ Only recommended for demonstrations, the app uses the [EF Core in-memory databas
 
 Configure Identity to use the EF Core database and expose the Identity endpoints via the calls to <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>, <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*>, and <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints*>.
 
-A [Cross-Origin Resource Sharing (CORS)](xref:security/cors) policy is established to permit requests from the frontend and backend apps. Fallback URLs are configured for the CORS policy if app settings don't provide them:
+A [Cross-Origin Resource Sharing (CORS)](../../../../security/cors.md) policy is established to permit requests from the frontend and backend apps. Fallback URLs are configured for the CORS policy if app settings don't provide them:
 
 * `Backend` app (`BackendUrl`): `https://localhost:5001`
 * `BlazorWasmAuth` app (`FrontendUrl`): `https://localhost:5002`
@@ -294,7 +294,7 @@ For more information on same-site cookie settings, see the following resources:
 
 ## Antiforgery support
 
-Only the logout endpoint (`/logout`) in the `Backend` app requires attention to mitigate the threat of [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery).
+Only the logout endpoint (`/logout`) in the `Backend` app requires attention to mitigate the threat of [Cross-Site Request Forgery (CSRF)](../../../../security/anti-request-forgery.md).
 
 The logout endpoint checks for an empty body to prevent CSRF attacks. By requiring a body, the request must be made from JavaScript, which is the only way to access the authentication cookie. The logout endpoint can't be accessed by a form-based POST. This prevents a malicious site from logging the user out.
 
@@ -302,9 +302,9 @@ Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetC
 
 The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
 
-Outside of the logout endpoint, [antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
+Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
 
-Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](xref:security/cors) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
+Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](../../../../security/cors.md) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
 
 ## Troubleshoot
 

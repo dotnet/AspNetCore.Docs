@@ -44,7 +44,7 @@ Alternatively, the gRPC-Web middleware can be configured so that all services su
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction applies to making gRPC-Web calls with browser apps. For example, a browser app served by `https://www.contoso.com` is blocked from calling gRPC-Web services hosted on `https://services.contoso.com`. Cross-Origin Resource Sharing (CORS) can be used to relax this restriction.
 
-To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
+To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](../../../security/cors.md). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
 
 [!code-csharp[](~/grpc/grpcweb/samples/3-5.x/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
 
@@ -90,7 +90,7 @@ Browser apps can use gRPC-Web to call gRPC services. There are some requirements
 
 * The server must contain configuration to support gRPC-Web.
 * Client streaming and bidirectional streaming calls aren't supported. Server streaming is supported.
-* Calling gRPC services on a different domain requires [CORS](xref:security/cors) configuration on the server.
+* Calling gRPC services on a different domain requires [CORS](../../../security/cors.md) configuration on the server.
 
 ### JavaScript gRPC-Web client
 
@@ -149,7 +149,7 @@ For more information, see [gRPC client factory integration in .NET](../../client
 ## Related content
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
-* <xref:security/cors>
+* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md)
 * [gRPC JSON transcoding in ASP.NET Core gRPC apps](../../json-transcoding.md)
 
 :::moniker-end

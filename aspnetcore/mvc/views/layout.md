@@ -85,7 +85,7 @@ The following markup uses the [Partial Tag Helper](xref:mvc/views/tag-helpers/bu
 }
 ```
 
-[Scaffolding Identity](xref:security/authentication/scaffold-identity) generated the preceding markup.
+[Scaffolding Identity](../../security/authentication/scaffold-identity.md) generated the preceding markup.
 
 Sections defined in a page or view are available only in its immediate layout page. They can't be referenced from partials, view components, or other parts of the view system.
 

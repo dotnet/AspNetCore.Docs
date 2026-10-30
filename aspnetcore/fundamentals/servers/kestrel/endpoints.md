@@ -202,7 +202,7 @@ Dynamically binding a port isn't available in some scenarios:
 
 Kestrel supports securing endpoints with HTTPS. Data sent over HTTPS is encrypted by using [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) to increase the security of data transferred between the client and server.
 
-HTTPS requires a TLS certificate. The TLS certificate is stored on the server, and Kestrel is configured to use it. An app can use the [ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl) in a local development environment. The development certificate isn't installed in nondevelopment environments. In production, a TLS certificate must be explicitly configured. At a minimum, a default certificate must be provided.
+HTTPS requires a TLS certificate. The TLS certificate is stored on the server, and Kestrel is configured to use it. An app can use the [ASP.NET Core HTTPS development certificate](../../../security/enforcing-ssl.md) in a local development environment. The development certificate isn't installed in nondevelopment environments. In production, a TLS certificate must be explicitly configured. At a minimum, a default certificate must be provided.
 
 How HTTPS and the TLS certificate is configured depends on how endpoints are configured. If [URL prefixes](#specify-endpoints-with-urls) or [only specified ports](#specify-ports-only) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. A default certificate can be configured with the following options:
 
@@ -324,7 +324,7 @@ The [ClientCertificateMode](xref:Microsoft.AspNetCore.Server.Kestrel.Https.Clien
 
 The default value is `ClientCertificateMode.NoCertificate`, where Kestrel doesn't request or require a certificate from the client.
 
-For more information, see [Configure certificate authentication in ASP.NET Core](xref:security/authentication/certauth).
+For more information, see [Configure certificate authentication in ASP.NET Core](../../../security/authentication/certauth.md).
 
 #### Configure SSL/TLS protocols in appsettings.json
 
@@ -378,7 +378,7 @@ The <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> confi
 
 The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate> (0), where Kestrel doesn't request or require a certificate from the client.
 
-For more information, see [Configure certificate authentication in ASP.NET Core](xref:security/authentication/certauth).
+For more information, see [Configure certificate authentication in ASP.NET Core](../../../security/authentication/certauth.md).
 
 #### Configure HTTPS defaults in code
 

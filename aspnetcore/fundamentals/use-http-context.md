@@ -156,7 +156,7 @@ The middleware in the following example:
 
 ## `User`
 
-The <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property is used to get or set the user, represented by <xref:System.Security.Claims.ClaimsPrincipal>, for the request. The <xref:System.Security.Claims.ClaimsPrincipal> is typically set by [ASP.NET Core authentication](xref:security/authentication/index).
+The <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property is used to get or set the user, represented by <xref:System.Security.Claims.ClaimsPrincipal>, for the request. The <xref:System.Security.Claims.ClaimsPrincipal> is typically set by [ASP.NET Core authentication](../security/authentication/index.md).
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_User&highlight=6)]
 

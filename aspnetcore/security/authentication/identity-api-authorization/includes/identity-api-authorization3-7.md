@@ -411,7 +411,7 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
-* <xref:security/authentication/scaffold-identity>
+* [Scaffold Identity in ASP.NET Core projects](../../scaffold-identity.md)
 
 :::moniker-end
 
@@ -821,6 +821,6 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
-* <xref:security/authentication/scaffold-identity>
+* [Scaffold Identity in ASP.NET Core projects](../../scaffold-identity.md)
 
 :::moniker-end

@@ -5,7 +5,6 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-3.1'
 ms.ai: assisted
 ms.date: 10/26/2026
-uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
 
@@ -47,8 +46,8 @@ Depending on your application requirements, consider these alternatives:
 
 **For public-facing applications:**
 
-* [OpenID Connect](xref:security/how-to-choose-identity) with external identity providers
-* ASP.NET Core Identity with local user accounts (<xref:security/authentication/identity>)
+* [OpenID Connect](../how-to-choose-identity-solution.md) with external identity providers
+* ASP.NET Core Identity with local user accounts ([Introduction to Identity on ASP.NET Core](identity.md))
 * Azure Active Directory (AAD) for Microsoft 365 environments
 
 **For mixed environments** with both intranet and external users:
@@ -197,7 +196,7 @@ Highlighted lines:
 * 26: <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> executes authentication handlers for each request and populates <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
 * 27: <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> evaluates authorization policies, including the fallback policy.
 
-For the rules that determine when the fallback policy is selected instead of a named or default policy, see <xref:security/authorization/policies#default-and-fallback-policies>.
+For the rules that determine when the fallback policy is selected instead of a named or default policy, see [Policy-based authorization in ASP.NET Core](../authorization/policies.md#default-and-fallback-policies).
 
 > [!NOTE]
 > Calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate*> registers and configures the Negotiate handler; it does not run authentication per request. The Authentication middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>) invokes the handler and populates <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>, and must appear before <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> for policy evaluation to work.
@@ -218,7 +217,7 @@ Some configurations may require specific credentials to query the LDAP domain. T
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
-Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
+Anonymous requests are allowed. Use [ASP.NET Core Authorization](../authorization/introduction.md) to challenge anonymous requests for authentication.
 
 ### Windows environment configuration
 
@@ -299,7 +298,7 @@ When Windows Authentication is enabled and anonymous access is disabled, the [`[
 
 ### Allow anonymous access
 
-When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see <xref:security/authorization/simple>.
+When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see [Simple authorization in ASP.NET Core](../authorization/simple.md).
 
 > [!NOTE]
 > By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
@@ -361,8 +360,8 @@ Depending on your application requirements, consider these alternatives:
 
 **For public-facing applications:**
 
-* [OpenID Connect](xref:security/how-to-choose-identity) with external identity providers
-* ASP.NET Core Identity with local user accounts (<xref:security/authentication/identity>)
+* [OpenID Connect](../how-to-choose-identity-solution.md) with external identity providers
+* ASP.NET Core Identity with local user accounts ([Introduction to Identity on ASP.NET Core](identity.md))
 * Azure Active Directory (AAD) for Microsoft 365 environments
 
 **For mixed environments** with both intranet and external users:
@@ -540,7 +539,7 @@ Some configurations may require specific credentials to query the LDAP domain. T
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
-Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
+Anonymous requests are allowed. Use [ASP.NET Core Authorization](../authorization/introduction.md) to challenge anonymous requests for authentication.
 
 <xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme> requires the [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate).
 
@@ -608,7 +607,7 @@ When Windows Authentication is enabled and anonymous access is disabled, the [`[
 
 ### Allow anonymous access
 
-When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see <xref:security/authorization/simple>.
+When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see [Simple authorization in ASP.NET Core](../authorization/simple.md).
 
 > [!NOTE]
 > By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.

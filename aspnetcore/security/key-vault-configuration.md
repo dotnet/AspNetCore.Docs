@@ -5,7 +5,6 @@ description: Learn how to use the Azure Key Vault configuration provider to conf
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-azurecli
 ms.date: 05/13/2026
-uid: security/key-vault-configuration
 
 # customer intent: As an ASP.NET Core developer, I want to use the Azure Key Vault configuration provider, so I can load app configuration values from Key Vault secrets at runtime.
 ---
@@ -40,7 +39,7 @@ For more information about configuring a sample app by using `#define`, see [Pre
 
 ## Secret storage in the Development environment
 
-Set secrets locally by using the [Secret Manager](xref:security/app-secrets) tool. When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
+Set secrets locally by using the [Secret Manager](app-secrets.md) tool. When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
 
 Secret Manager requires a `<UserSecretsId>` property in the application project file. Set the property value (`{GUID}`) to any unique GUID:
 
@@ -275,7 +274,7 @@ When you implement this approach, complete the following steps:
    </PropertyGroup>
    ```
 
-   Save the following secrets locally by using [Secret Manager](xref:security/app-secrets):
+   Save the following secrets locally by using [Secret Manager](app-secrets.md):
 
    ```dotnetcli
    dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"
@@ -436,7 +435,7 @@ For more information configuring a sample app using preprocessor directives (`#d
 
 ## Secret storage in the `Development` environment
 
-Set secrets locally using [Secret Manager](xref:security/app-secrets). When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
+Set secrets locally using [Secret Manager](app-secrets.md). When the sample app runs on the local machine in the `Development` environment, secrets are loaded from the local user secrets store.
 
 Secret Manager requires a `<UserSecretsId>` property in the app's project file. Set the property value (`{GUID}`) to any unique GUID:
 
@@ -670,7 +669,7 @@ When this approach is implemented:
    </PropertyGroup>
    ```
 
-   Save the following secrets locally with [Secret Manager](xref:security/app-secrets):
+   Save the following secrets locally with [Secret Manager](app-secrets.md):
 
    ```dotnetcli
    dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"

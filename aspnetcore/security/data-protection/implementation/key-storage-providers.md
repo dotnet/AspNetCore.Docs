@@ -3,15 +3,14 @@ title: Key storage providers in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.date: 11/07/2025
-uid: security/data-protection/implementation/key-storage-providers
 ---
 <!-- ms.sfi.ropc: t -->
 # Key storage providers in ASP.NET Core
 
-The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine where cryptographic keys should be persisted. The developer can override the default discovery mechanism and manually specify the location.
+The data protection system [employs a discovery mechanism by default](../configuration/default-settings.md) to determine where cryptographic keys should be persisted. The developer can override the default discovery mechanism and manually specify the location.
 
 > [!WARNING]
-> If you specify an explicit key persistence location, the data protection system deregisters the default key encryption at rest mechanism, so keys are no longer encrypted at rest. It's recommended that you additionally [specify an explicit key encryption mechanism](xref:security/data-protection/implementation/key-encryption-at-rest) for production deployments.
+> If you specify an explicit key persistence location, the data protection system deregisters the default key encryption at rest mechanism, so keys are no longer encrypted at rest. It's recommended that you additionally [specify an explicit key encryption mechanism](key-encryption-at-rest.md) for production deployments.
 
 ## File system
 
@@ -25,7 +24,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The `DirectoryInfo` can point to a directory on the local machine, or it can point to a folder on a network share. If pointing to a directory on the local machine (and the scenario is that only apps on the local machine require access to use this repository), consider using [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (on Windows) to encrypt the keys at rest. Otherwise, consider using an [X.509 certificate](xref:security/data-protection/implementation/key-encryption-at-rest) to encrypt keys at rest.
+The `DirectoryInfo` can point to a directory on the local machine, or it can point to a folder on a network share. If pointing to a directory on the local machine (and the scenario is that only apps on the local machine require access to use this repository), consider using [Windows DPAPI](key-encryption-at-rest.md) (on Windows) to encrypt the keys at rest. Otherwise, consider using an [X.509 certificate](key-encryption-at-rest.md) to encrypt keys at rest.
 
 ## Azure Storage
 
@@ -301,7 +300,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!IMPORTANT]
-> We recommend using [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) to encrypt the keys at rest.
+> We recommend using [Windows DPAPI](key-encryption-at-rest.md) to encrypt the keys at rest.
 
 :::moniker range=">= aspnetcore-2.2"
 

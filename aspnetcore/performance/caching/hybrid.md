@@ -170,7 +170,7 @@ The secondary cache requires a data store, such as Redis, SQL Server, or Postgre
 * Install the `Microsoft.Extensions.Caching.StackExchangeRedis` package.
 * Create an instance of Azure Cache for Redis.
 * Get a connection string that connects to the Redis instance. Find the connection string by selecting **Show access keys** on the **Overview** page in the Azure portal.
-* Store the connection string in the app's configuration. For example, use a [user secrets file](xref:security/app-secrets) that looks like the following JSON, with the connection string in the `ConnectionStrings` section. Replace `<the connection string>` with the actual connection string:
+* Store the connection string in the app's configuration. For example, use a [user secrets file](../../security/app-secrets.md) that looks like the following JSON, with the connection string in the `ConnectionStrings` section. Replace `<the connection string>` with the actual connection string:
 
   ```json
   {
