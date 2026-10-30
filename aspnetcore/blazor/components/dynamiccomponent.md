@@ -254,15 +254,6 @@ In the following example:
 
 Dictionary values for [C# union-typed parameters](/dotnet/csharp/language-reference/builtin-types/union) must be boxed as the union, not the raw case value, because an implicit conversion is only valid at compile-time.
 
-<!-- UPDATE 11.0 - Remove the NOTE at GA -->
-
-> [!NOTE]
-> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
->
-> ```xml
-> <LangVersion>preview</LangVersion>
-> ```
-
 Consider the following C# union type, `SlotContent`, that accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
 ```csharp

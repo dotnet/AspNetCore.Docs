@@ -1165,15 +1165,6 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter*?displayProperty=nameWithType>.
 
-<!-- UPDATE 11.0 - Remove the NOTE at GA -->
-
-> [!NOTE]
-> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
->
-> ```xml
-> <LangVersion>preview</LangVersion>
-> ```
-
 The following C# union type, `SlotContent`, accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
 ```csharp
