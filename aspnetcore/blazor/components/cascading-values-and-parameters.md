@@ -42,7 +42,7 @@ The following class is used in this section's examples.
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following registrations are made in the app's `Program` file with <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A>:
+The following registrations are made in the app's `Program` file with <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue*>:
 
 * `Dalek` with a property value for `Units` is registered as a fixed cascading value.
 * A second `Dalek` registration with a different property value for `Units` is named "`AlphaGroup`".
@@ -72,7 +72,7 @@ The following `Daleks` component displays the cascaded values.
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If `false`, all recipients are subscribed for update notifications. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource`1), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If `false`, all recipients are subscribed for update notifications. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
 
 ```csharp
 builder.Services.AddCascadingValue(sp =>
@@ -89,11 +89,11 @@ builder.Services.AddCascadingValue(sp =>
 >
 > Treat required services separately from cascading values, registering them separately from the cascaded type.
 >
-> Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Instead, wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
+> Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue*> to register a component type as a cascading value. Instead, wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
 
 ## Root-level cascading values with notifications
 
-Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> to issue update notifications can be used to signal multiple Razor component subscribers that a cascading value has changed. Notifications aren't possible for subscribers that adopt static server-side rendering (static SSR), so subscribers must adopt an interactive render mode. 
+Calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1.NotifyChangedAsync*> to issue update notifications can be used to signal multiple Razor component subscribers that a cascading value has changed. Notifications aren't possible for subscribers that adopt static server-side rendering (static SSR), so subscribers must adopt an interactive render mode. 
 
 In the following example:
 
@@ -143,7 +143,7 @@ public class NotifyingDalek : INotifyPropertyChanged
 }
 ```
 
-The following `CascadingStateServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
+The following `CascadingStateServiceCollectionExtensions` creates a <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1> from a type that implements <xref:System.ComponentModel.INotifyPropertyChanged>.
 
 > [!NOTE]
 > For a Blazor Web App solution consisting of server and client (`.Client`) projects, the following `CascadingStateServiceCollectionExtensions.cs` file is placed in the `.Client` project.
@@ -195,9 +195,9 @@ public static class CascadingStateServiceCollectionExtensions
 }
 ```
 
-The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandlePropertyChanged`) calls the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> method to notify subscribers that the cascading value has changed. The <xref:System.Threading.Tasks.Task> is discarded when calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A> because the call only represents the duration of the dispatch to the synchronous context. Exceptions are handled internally by dispatching them to the renderer within the context of whichever component threw when receiving the update. This is the same way that exceptions are processed with a <xref:Microsoft.AspNetCore.Components.CascadingValue%601>, which isn't notified about exceptions that happen inside notification recipients. The event handler is disconnected in the `Dispose` method to prevent a memory leak.
+The type's <xref:System.ComponentModel.PropertyChangedEventHandler> (`HandlePropertyChanged`) calls the <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1>'s <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1.NotifyChangedAsync*> method to notify subscribers that the cascading value has changed. The <xref:System.Threading.Tasks.Task> is discarded when calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1.NotifyChangedAsync*> because the call only represents the duration of the dispatch to the synchronous context. Exceptions are handled internally by dispatching them to the renderer within the context of whichever component threw when receiving the update. This is the same way that exceptions are processed with a <xref:Microsoft.AspNetCore.Components.CascadingValue`1>, which isn't notified about exceptions that happen inside notification recipients. The event handler is disconnected in the `Dispose` method to prevent a memory leak.
 
-In the `Program` file, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> with an initial `Unit` value of 888 units:
+In the `Program` file, `NotifyingDalek` is passed to create a <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1> with an initial `Unit` value of 888 units:
 
 ```csharp
 builder.Services.AddNotifyingCascadingValue(new NotifyingDalek() { Units = 888 });
@@ -287,7 +287,7 @@ Add a navigation link to the `DaleksMain` component in `NavMenu.razor`:
 </div>
 ```
 
-Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management/index) before adopting it in a production app with constrained processing and memory resources.
+Because the <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1>'s type in this example (`NotifyingDalek`) is a class type, you can meet virtually any state management feature specification requirement. However, subscriptions create overhead and reduce performance, so benchmark the performance of this approach in your app and compare it to other [state management approaches](xref:blazor/state-management/index) before adopting it in a production app with constrained processing and memory resources.
 
 Any change in state (any property value change of the class) causes all subscribed components to rerender, regardless of which part of the state they use. **Avoid creating a single large class representing the entire global application state.** Instead, create granular classes and cascade them separately with specific subscriptions to cascading parameters, ensuring that only components subscribed to a specific portion of the application state are affected by changes.
 
@@ -295,7 +295,7 @@ Any change in state (any property value change of the class) causes all subscrib
 
 ## `CascadingValue` component
 
-An ancestor component provides a cascading value using the Blazor framework's [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component, which wraps a subtree of a component hierarchy and supplies a single value to all of the components within its subtree.
+An ancestor component provides a cascading value using the Blazor framework's [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) component, which wraps a subtree of a component hierarchy and supplies a single value to all of the components within its subtree.
 
 The following example demonstrates the flow of theme information down the component hierarchy to provide a CSS style class to buttons in child components.
 
@@ -386,7 +386,7 @@ The following [layout component](xref:blazor/components/layouts) specifies theme
 
 Blazor Web Apps provide alternative approaches for cascading values that apply more broadly to the app than furnishing them via a single layout file:
 
-* Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify the data as a cascading value for all of the app's components.
+* Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) component to specify the data as a cascading value for all of the app's components.
 
   The following example cascades `ThemeInfo` data from the `Routes` component.
 
@@ -405,9 +405,9 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
   ```
 
   > [!NOTE]
-  > Wrapping the `Routes` component instance in the `App` component (`Components/App.razor`) with a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component isn't supported.
+  > Wrapping the `Routes` component instance in the `App` component (`Components/App.razor`) with a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) component isn't supported.
 
-* Specify a *root-level cascading value* as a service by calling the <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> extension method on the service collection builder.
+* Specify a *root-level cascading value* as a service by calling the <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue*> extension method on the service collection builder.
 
   The following example cascades `ThemeInfo` data from the `Program` file.
 
@@ -502,7 +502,7 @@ Similar to a regular component parameter, components accepting a cascading param
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization. 
+<xref:Microsoft.AspNetCore.Components.CascadingValue`1.IsFixed?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization.
 
 :::moniker-end
 
@@ -536,9 +536,9 @@ Recommendations:
 
 ## Cascade multiple values
 
-To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> string to each [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component and their corresponding [`[CascadingParameter]` attributes](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute).
+To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue`1.Name> string to each [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) component and their corresponding [`[CascadingParameter]` attributes](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute).
 
-In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) components cascade different instances of `CascadingType`:
+In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue`1) components cascade different instances of `CascadingType`:
 
 ```razor
 <CascadingValue Value="parentCascadeParameter1" Name="CascadeParam1">
@@ -555,7 +555,7 @@ In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Compo
 }
 ```
 
-In a descendant component, the cascaded parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>:
+In a descendant component, the cascaded parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue`1.Name>:
 
 ```razor
 @code {

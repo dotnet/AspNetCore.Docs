@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to gather diagnostics from your gRPC app on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 06/20/2025
-uid: grpc/diagnostics
 ---
 # Logging and diagnostics in gRPC on .NET
 
@@ -88,9 +87,9 @@ To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` pro
 
 [!code-csharp[](diagnostics/samples/net-client-dependency-injection.cs?highlight=7,16)]
 
-An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
+An alternative way to enable client logging is to use the [gRPC client factory](clientfactory.md) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
-If the app isn't using DI, then create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
+If the app isn't using DI, then create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create*?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
 [!code-csharp[](diagnostics/samples/net-client-loggerfactory-create.cs?highlight=1,8)]
 
@@ -231,8 +230,8 @@ Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 ## Additional resources
 
 * <xref:fundamentals/logging/index>
-* <xref:grpc/configuration>
-* <xref:grpc/clientfactory>
+* [gRPC for .NET configuration](configuration.md)
+* [gRPC client factory integration in .NET](clientfactory.md)
 
 :::moniker-end
 
@@ -312,9 +311,9 @@ To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` pro
 
 [!code-csharp[](diagnostics/samples/net-client-dependency-injection.cs?highlight=7,16)]
 
-An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
+An alternative way to enable client logging is to use the [gRPC client factory](clientfactory.md) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
-If your app isn't using DI, then you can create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
+If your app isn't using DI, then you can create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create*?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
 [!code-csharp[](diagnostics/samples/net-client-loggerfactory-create.cs?highlight=1,8)]
 
@@ -455,7 +454,7 @@ Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 ## Additional resources
 
 * <xref:fundamentals/logging/index>
-* <xref:grpc/configuration>
-* <xref:grpc/clientfactory>
+* [gRPC for .NET configuration](configuration.md)
+* [gRPC client factory integration in .NET](clientfactory.md)
 
 :::moniker-end

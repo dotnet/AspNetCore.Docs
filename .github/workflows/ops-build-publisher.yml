@@ -1,0 +1,45 @@
+name: 'Publish OPS build report'
+
+on:
+  workflow_run:
+    workflows: ['OPS build reporter']
+    types: [completed]
+
+permissions:
+  actions: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  publish:
+    name: Publish OPS diagnostics and previews
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      (github.event.workflow_run.conclusion == 'success' ||
+       github.event.workflow_run.conclusion == 'failure')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: ops-publish-${{ github.repository }}-${{ github.event.workflow_run.head_repository.id }}-${{ github.event.workflow_run.head_branch }}
+      cancel-in-progress: false
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
+        with:
+          egress-policy: audit
+
+      - name: Download producer report
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: ops-build-report
+          path: ${{ runner.temp }}/ops-build-report-download
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Publish validated report
+        uses: dotnet/docs-actions/ops-build-reporter/publish@e92e67a4b93ea5976eea3d65af4b2082818c7045 # main
+        with:
+          repo_token: ${{ github.token }}
+          artifact_directory: ${{ runner.temp }}/ops-build-report-download
+          producer_workflow_file: .github/workflows/ops-build-reporter.yml
+          annotate_file_warnings: true

@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -426,7 +426,7 @@ ASP.NET Core automatically serializes the object to [JSON](https://www.json.org)
 
 The return types can represent a wide range of HTTP status codes. For example, `GET /todoitems/{id}` can return two different status values:
 
-* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
+* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
 ## Examine the PUT endpoint
@@ -512,7 +512,7 @@ This method is similar to the `MapPut` method, except it uses HTTP PATCH and onl
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. Using nullable properties allows the endpoint to distinguish between a field that wasn't provided (null) versus a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool would default to false, potentially overwriting an existing true value when that field wasn't included in the request.
 
 > [!NOTE]
-> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
+> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see [JsonPatch in ASP.NET Core web API](../../../web-api/jsonpatch.md).
 
 ## Test the PATCH endpoint
 
@@ -607,7 +607,7 @@ Use Swagger to send a DELETE request:
 
 ## Use the MapGroup API
 
-The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup*> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata*>.
 
 Replace the contents of `Program.cs` with the following code:
 
@@ -657,7 +657,7 @@ Unit tests can call these methods and test that they return the correct type. Fo
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
 
-Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601.Value) is returned from the handler method. For example:
+Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok`1.Value) is returned from the handler method. For example:
 
 ```csharp
 public async Task GetAllTodos_ReturnsOkOfTodosResult()

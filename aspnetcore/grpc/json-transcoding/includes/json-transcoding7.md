@@ -66,7 +66,7 @@ The proceeding example:
 * The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
 * The `name` field on the request message is bound to a route parameter.
 
-Many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](xref:grpc/json-transcoding-binding).
+Many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](../../json-transcoding-binding.md).
 
 ### Streaming methods
 
@@ -118,7 +118,7 @@ Update the default protocol in `appsettings.json`:
 
 Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/servers/kestrel/endpoints).
 
-Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 
 ## gRPC JSON transcoding vs gRPC-Web
 
@@ -156,8 +156,8 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 
 ## Related content
 
-* <xref:grpc/json-transcoding-binding>
-* <xref:grpc/browser>
-* <xref:grpc/grpcweb>
+* [Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps](../../json-transcoding-binding.md)
+* [Use gRPC in browser apps](../../browser.md)
+* [gRPC-Web in ASP.NET Core gRPC apps](../../grpcweb.md)
 
 :::moniker-end

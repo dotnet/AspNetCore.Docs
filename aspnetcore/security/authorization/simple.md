@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/18/2026
-uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
 
@@ -46,7 +45,7 @@ The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeA
 <p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
 ```
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](policies.md):
 
 ```razor
 @page "/"
@@ -60,7 +59,7 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 * Authenticated (signed-in) users are authorized.
 * Unauthenticated (signed-out) users are unauthorized.
 
-Endpoints without authorization metadata don't use the default policy. Such endpoints don't require authorization unless the app configures a fallback policy. For a comparison of named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
+Endpoints without authorization metadata don't use the default policy. Such endpoints don't require authorization unless the app configures a fallback policy. For a comparison of named, default, and fallback policies, see [Policy-based authorization in ASP.NET Core](policies.md#default-and-fallback-policies).
 
 When the user isn't authorized and if the app doesn't [customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
 
@@ -77,7 +76,7 @@ Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.A
 @attribute [AllowAnonymous]
 ```
 
-For server-side apps where most endpoints require authentication, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
+For server-side apps where most endpoints require authentication, see [Require global user authentication](policies.md#require-global-user-authentication).
 
 ## Related content
 

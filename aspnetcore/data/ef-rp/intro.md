@@ -343,10 +343,10 @@ Because an entity set contains multiple entities, many developers prefer the `DB
 
 The highlighted code:
 
-* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
+* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for each entity set. In EF Core terminology:
   * An entity set typically corresponds to a database table.
   * An entity corresponds to a row in the table.
-* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
+* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*>. `OnModelCreating`:
   * Is called when `SchoolContext` has been initialized but before the model has been secured and used to initialize the context.
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
@@ -367,7 +367,7 @@ The following highlighted lines were added by the scaffolder:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A>.
+Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite*>.
 
 [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite&highlight=1-2,7-8)]
 
@@ -381,7 +381,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ### Add the database exception filter
 
-Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint%2A> as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint*> as shown in the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -419,7 +419,7 @@ Update `Program.cs` to create the database if it doesn't exist:
 
 ---
 
-The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -857,10 +857,10 @@ Because an entity set contains multiple entities, many developers prefer the `DB
 
 The highlighted code:
 
-* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
+* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for each entity set. In EF Core terminology:
   * An entity set typically corresponds to a database table.
   * An entity corresponds to a row in the table.
-* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
+* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*>. `OnModelCreating`:
   * Is called when `SchoolContext` has been initialized but before the model has been secured and used to initialize the context.
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
@@ -895,7 +895,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ### Add the database exception filter
 
-Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint%2A> as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint*> as shown in the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -925,7 +925,7 @@ Update `Program.cs` to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
-The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -1346,7 +1346,7 @@ Update `Data/SchoolContext.cs` with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-The highlighted code creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
+The highlighted code creates a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a database table.
 * An entity corresponds to a row in the table.
@@ -1385,7 +1385,7 @@ Update `Program.cs` to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
-The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.

@@ -160,7 +160,7 @@ builder.Services
     });
 ```
 
-For more information about authentication schemes and how they work in ASP.NET Core, see <xref:security/authentication/index> and <xref:security/authentication/cookie>.
+For more information about authentication schemes and how they work in ASP.NET Core, see [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md) and [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md).
 
 ### Access OWIN authentication
 
@@ -365,4 +365,4 @@ When incorporating OWIN middleware into your ASP.NET Core application:
 
 * <xref:migration/fx-to-core/areas/authentication>
 * <xref:fundamentals/middleware/index>
-* <xref:security/authentication/index>
+* [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md)

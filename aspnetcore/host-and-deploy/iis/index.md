@@ -64,7 +64,7 @@ In general, we recommend using a pattern like [blue-green deployments](https://w
 
 ## Optional client certificates
 
-For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates).
+For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](../../security/authentication/certauth.md#optional-client-certificates).
 
 ## Additional resources
 
@@ -138,7 +138,7 @@ After the IIS HTTP Server processes the request:
 
 In-process hosting is opt-in for existing apps. The ASP.NET Core web templates use the in-process hosting model.
 
-`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS%2A> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
+`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
 
 The in-process hosting model can't load apps published as a single file executable.
 
@@ -155,7 +155,7 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 1. The module forwards the requests to Kestrel on a random port for the app. The random port isn't 80 or 443.
 
 <!-- make this a bullet list -->
-The ASP.NET Core Module specifies the port via an environment variable at startup. The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration%2A> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding. Requests are forwarded over HTTP even if received by IIS over HTTPS.
+The ASP.NET Core Module specifies the port via an environment variable at startup. The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding. Requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is forwarded into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which forwards it back to the HTTP client that initiated the request.
 
@@ -167,7 +167,7 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/in
 
 ### Enable the IISIntegration components
 
-When building a host in `CreateHostBuilder` (`Program.cs`), call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> to enable IIS integration:
+When building a host in `CreateHostBuilder` (`Program.cs`), call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> to enable IIS integration:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -181,7 +181,7 @@ For more information on `CreateDefaultBuilder`, see <xref:fundamentals/host/gene
 
 **In-process hosting model**
 
-To configure IIS Server options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>. The following example disables AutomaticAuthentication:
+To configure IIS Server options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. The following example disables AutomaticAuthentication:
 
 ```csharp
 services.Configure<IISServerOptions>(options => 
@@ -192,14 +192,14 @@ services.Configure<IISServerOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
+| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](../../security/authentication/windowsauth.md). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `AllowSynchronousIO`           | `false` | Whether synchronous I/O is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
 | `MaxRequestBodySize`           | `30000000`  | Gets or sets the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength`, which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the `web.config` to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Out-of-process hosting model**
 
-To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>. The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
+To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
 
 ```csharp
 services.Configure<IISOptions>(options => 
@@ -210,7 +210,7 @@ services.Configure<IISOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) article. |
+| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](../../security/authentication/windowsauth.md) article. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
@@ -276,7 +276,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -298,7 +298,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -398,7 +398,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
 **Windows Authentication configuration (Optional)**  
-For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
+For more information, see [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
 ## Deploy the app
 
@@ -450,13 +450,13 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -466,7 +466,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
   For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/dotnet/AspNetCore/blob/main/src/DataProtection/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a registry key in the HKLM registry that's accessible only to the worker process account of the app's app pool. Keys are encrypted at rest using DPAPI with a machine-wide key.
 
-  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for details.
+  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md) for details.
 
 * **Configure the IIS Application Pool to load the user profile**
 
@@ -481,16 +481,16 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
 * **Use the file system as a key ring store**
 
-  Adjust the app code to [use the file system as a key ring store](xref:security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
+  Adjust the app code to [use the file system as a key ring store](../../security/data-protection/configuration/overview.md). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
 
   When using IIS in a web farm:
 
   * Use a file share that all machines can access.
-  * Deploy an X509 certificate to each machine. Configure [data protection in code](xref:security/data-protection/configuration/overview).
+  * Deploy an X509 certificate to each machine. Configure [data protection in code](../../security/data-protection/configuration/overview.md).
 
 * **Set a machine-wide policy for data protection**
 
-  The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. For more information, see <xref:security/data-protection/introduction>.
+  The data protection system has limited support for setting a default [machine-wide policy](../../security/data-protection/configuration/machine-wide-policy.md) for all apps that consume the Data Protection APIs. For more information, see [ASP.NET Core Data Protection Overview](../../security/data-protection/introduction.md).
 
 ## Virtual Directories
 
@@ -598,7 +598,7 @@ For more information, see the [icacls](/windows-server/administration/windows-co
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
   * TLS 1.2 or later connection
 
-For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
+For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
 For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
 
@@ -752,7 +752,7 @@ After Kestrel picks up the request from the module, the request is pushed into t
 
 `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and enables IIS Integration by configuring the base path and port for the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration%2A> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
@@ -768,7 +768,7 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/in
 
 ### Enable the IISIntegration components
 
-When building a host in `CreateWebHostBuilder` (`Program.cs`), call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to enable IIS integration:
+When building a host in `CreateWebHostBuilder` (`Program.cs`), call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to enable IIS integration:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -782,7 +782,7 @@ For more information on `CreateDefaultBuilder`, see <xref:fundamentals/host/web-
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
+| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](../../security/authentication/windowsauth.md). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 
 To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
@@ -796,7 +796,7 @@ services.Configure<IISOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) article. |
+| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](../../security/authentication/windowsauth.md) article. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
@@ -855,7 +855,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -877,7 +877,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -965,7 +965,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
 **Windows Authentication configuration (Optional)**  
-For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
+For more information, see [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
 ## Deploy the app
 
@@ -1018,13 +1018,13 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -1034,7 +1034,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
   For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/dotnet/AspNetCore/blob/main/src/DataProtection/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a registry key in the HKLM registry that's accessible only to the worker process account of the app's app pool. Keys are encrypted at rest using DPAPI with a machine-wide key.
 
-  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for details.
+  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md) for details.
 
 * **Configure the IIS Application Pool to load the user profile**
 
@@ -1049,16 +1049,16 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
 * **Use the file system as a key ring store**
 
-  Adjust the app code to [use the file system as a key ring store](xref:security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
+  Adjust the app code to [use the file system as a key ring store](../../security/data-protection/configuration/overview.md). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
 
   When using IIS in a web farm:
 
   * Use a file share that all machines can access.
-  * Deploy an X509 certificate to each machine. Configure [data protection in code](xref:security/data-protection/configuration/overview).
+  * Deploy an X509 certificate to each machine. Configure [data protection in code](../../security/data-protection/configuration/overview.md).
 
 * **Set a machine-wide policy for data protection**
 
-  The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. For more information, see <xref:security/data-protection/introduction>.
+  The data protection system has limited support for setting a default [machine-wide policy](../../security/data-protection/configuration/machine-wide-policy.md) for all apps that consume the Data Protection APIs. For more information, see [ASP.NET Core Data Protection Overview](../../security/data-protection/introduction.md).
 
 ## Virtual Directories
 
@@ -1191,7 +1191,7 @@ For more information, see the [icacls](/windows-server/administration/windows-co
 * Target framework: Not applicable to out-of-process deployments, since IIS handles the HTTP/2 connection entirely.
 * TLS 1.2 or later connection
 
-If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
+If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
 HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 connection isn't established. For more information on HTTP/2 configuration with IIS deployments, see [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
 

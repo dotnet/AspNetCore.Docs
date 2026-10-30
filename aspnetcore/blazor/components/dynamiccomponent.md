@@ -143,7 +143,7 @@ In the following example, a Razor component renders a component based on the use
 
 In the preceding example:
 
-* An <xref:System.Collections.Generic.Dictionary%602> is used to manage components to be displayed.
+* An <xref:System.Collections.Generic.Dictionary`2> is used to manage components to be displayed.
 * Names serve as the dictionary keys and are provided as selection options.
 * Component types are stored as dictionary values using the [`typeof` operator](/dotnet/csharp/language-reference/operators/type-testing-and-cast#typeof-operator).
 
@@ -482,7 +482,7 @@ In the following parent component example, the `ShowDTMessage` method assigns a 
 The parent component passes the callback method, `ShowDTMessage` in the parameter dictionary:
 
 * The `string` key is the callback method's name, `OnClickCallback`.
-* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# field initialization, so a C# property is used for the parameter dictionary.
+* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create*?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# field initialization, so a C# property is used for the parameter dictionary.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -590,7 +590,7 @@ The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3
   @inject ILogger<{COMPONENT TYPE}> Logger
   ```
 
-* Each component implements a `Log` method. The log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> is called:
+* Each component implements a `Log` method. The log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> is called:
 
   ```razor
   @code {

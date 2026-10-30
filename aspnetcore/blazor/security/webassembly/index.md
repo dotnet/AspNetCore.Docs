@@ -21,7 +21,7 @@ A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's 
 
 The following technologies are useful for storing sensitive data, which can be used together in the same app to split responsibilities for storing data among `Development`, `Staging`, and `Production` environments:
 
-* [Secret Manager tool](xref:security/app-secrets): Only used on the local development system.
+* [Secret Manager tool](../../../security/app-secrets.md): Only used on the local development system.
 * [Azure Key Vault](https://azure.microsoft.com/products/key-vault/): Can be used for locally-running apps in the `Development` environment and for `Staging`/`Production` deployments.
 
 For examples of the preceding approaches, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery#configure-a-secret-for-the-email-providers-security-key>.
@@ -32,13 +32,13 @@ For examples of the preceding approaches, see <xref:blazor/security/webassembly/
      article under the heading:
      "Client-side scenarios for calling external web APIs" -->
 
-To protect .NET/C# code and data, use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles and examples in this documentation node.
+To protect .NET/C# code and data, use [ASP.NET Core Data Protection](../../../security/data-protection/introduction.md) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles and examples in this documentation node.
 
 Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](xref:blazor/call-web-api#cross-origin-resource-sharing-cors). A typical exception looks like the following:
 
 > :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
 
-Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request usually fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
+Even if you call <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode*> with a <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestMode> field of `NoCors` (1) seeking to circumvent the preceding exception, the request usually fails due to CORS restrictions on the web API's origin, such as a restriction that only allows calls from specific origins or a restriction that prevents JavaScript [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests from a browser. The only way for such calls to succeed is for the web API that you're calling to allow your origin to call its origin with the correct CORS configuration. Most external web APIs don't allow you to configure their CORS policies. To deal with this restriction, adopt either of the following strategies:
 
 * Maintain your own server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls your server-side web API, and your web API makes the request from its server-based C# code (not a browser) to the external web API with the correct CORS headers, returning the result to your client-side Blazor WebAssembly app.
 
@@ -73,12 +73,12 @@ Blazor WebAssembly supports authenticating and authorizing apps using OIDC via t
 
 The authentication support in the Blazor WebAssembly Library (`Authentication.js`) is built on top of the [Microsoft Authentication Library (MSAL, `msal.js`)](/entra/identity-platform/msal-overview), which is used to handle the underlying authentication protocol details. The Blazor WebAssembly Library only supports the Proof Key for Code Exchange (PKCE) authorization code flow. Implicit grant isn't supported.
 
-Other options for authenticating SPAs exist, such as the use of SameSite cookies. However, the engineering design of Blazor WebAssembly uses OAuth and OIDC as the best option for authentication in Blazor WebAssembly apps. [Token-based authentication](xref:security/anti-request-forgery#token-based-authentication) based on [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519) was chosen over [cookie-based authentication](xref:security/anti-request-forgery#cookie-based-authentication) for functional and security reasons:
+Other options for authenticating SPAs exist, such as the use of SameSite cookies. However, the engineering design of Blazor WebAssembly uses OAuth and OIDC as the best option for authentication in Blazor WebAssembly apps. [Token-based authentication](../../../security/anti-request-forgery.md#token-based-authentication) based on [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519) was chosen over [cookie-based authentication](../../../security/anti-request-forgery.md#cookie-based-authentication) for functional and security reasons:
 
 :::moniker range=">= aspnetcore-8.0"
 
 * Using a token-based protocol offers fewer vulnerabilities, as the tokens aren't sent in all requests.
-* The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
+* The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](../../../security/anti-request-forgery.md). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
 * Tokens have a short lifetime, one hour, which limits the attack window. Tokens can also be revoked at any time.
 * Self-contained JWTs offer guarantees to the client and server about the authentication process. For example, a client has the means to detect and validate that the tokens it receives are legitimate and were emitted as part of a given authentication process. If a third party attempts to switch a token in the middle of the authentication process, the client can detect the switched token and avoid using it.
@@ -90,7 +90,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 :::moniker range="< aspnetcore-8.0"
 
 * Using a token-based protocol offers fewer vulnerabilities, as the tokens aren't sent in all requests.
-* The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
+* The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](../../../security/anti-request-forgery.md). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
 * Tokens have a short lifetime, one hour, which limits the attack window. Tokens can also be revoked at any time.
 * Self-contained JWTs offer guarantees to the client and server about the authentication process. For example, a client has the means to detect and validate that the tokens it receives are legitimate and were emitted as part of a given authentication process. If a third party attempts to switch a token in the middle of the authentication process, the client can detect the switched token and avoid using it.
@@ -122,7 +122,7 @@ The `Authentication` component (`Authentication.razor`) handles remote authentic
 * Set UI content for authentication states.
 * Manage authentication state.
 
-Authentication actions, such as registering or signing in a user, are passed to the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorViewCore%601> component, which persists and controls state across authentication operations.
+Authentication actions, such as registering or signing in a user, are passed to the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorViewCore`1> component, which persists and controls state across authentication operations.
 
 For more information and examples, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -154,7 +154,7 @@ The state stored by the History API provides the following benefits for remote a
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> represents the request to the identity provider for logging in or provisioning an access token.
 
-<xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions> provides the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogin%2A> method for a login operation and <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogout%2A> for a logout operation. The methods call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType>, setting the history entry state with a passed <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> or a new <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> instance created by the method for:
+<xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions> provides the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogin*> method for a login operation and <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogout*> for a logout operation. The methods call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType>, setting the history entry state with a passed <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> or a new <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> instance created by the method for:
 
 * A user signing in (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractionType.SignIn?displayProperty=nameWithType>) with the current URI for the return URL.
 * A user signing out (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractionType.SignOut?displayProperty=nameWithType>) with the return URL.
@@ -173,7 +173,7 @@ The following authentication scenarios are covered in the <xref:blazor/security/
 
 *For patterns that apply to server-side Blazor apps (Blazor Web Apps, Blazor Server apps), see <xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns>.*
 
-Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>. The [server-side fallback policy](xref:security/authorization/policies#default-and-fallback-policies) is enforced by authorization middleware and isn't a client-side authorization mechanism. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
+Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The [server-side fallback policy](../../../security/authorization/policies.md#default-and-fallback-policies) is enforced by authorization middleware and isn't a client-side authorization mechanism. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
 
 * In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
 
@@ -272,7 +272,7 @@ For more information, see <xref:blazor/security/webassembly/additional-scenarios
 
 Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server.
 
-For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+For more information, see [Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md#azure-app-service-on-linux).
 
 ## Windows Authentication
 
@@ -280,7 +280,7 @@ We don't recommend using Windows Authentication with Blazor Webassembly or with 
 
 If Windows Authentication is used with Blazor Webassembly or with any other SPA framework, additional measures are required to protect the app from cross-site request forgery (CSRF) tokens. The same concerns that apply to cookies apply to Windows Authentication with the addition that Windows Authentication doesn't offer a mechanism to prevent sharing of the authentication context across origins. Apps using Windows Authentication without additional protection from CSRF should at least be restricted to an organization's intranet and not be used on the open Internet.
 
-For more information, see <xref:security/anti-request-forgery>.
+For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md).
 
 ## Secure a SignalR hub
 
@@ -288,7 +288,7 @@ To secure a SignalR hub in the server API project, apply the [`[Authorize]` attr
 
 In a client project with prerendering, such as hosted Blazor WebAssembly (ASP.NET Core in .NET 7 or earlier) or a Blazor Web App (ASP.NET Core in .NET 8 or later), see the guidance in <xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication>.
 
-In a client project component without prerendering, such as standalone Blazor WebAssembly, or non-browser apps, supply an access token to the hub connection, as the following example demonstrates. For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
+In a client project component without prerendering, such as standalone Blazor WebAssembly, or non-browser apps, supply an access token to the hub connection, as the following example demonstrates. For more information, see [SignalR authentication and authorization](../../../signalr/authn-and-authz.md#bearer-token-authentication).
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -358,7 +358,7 @@ Further configuration guidance is found in the following articles:
 
 ## Use the Authorization Code flow with PKCE
 
-Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/entra/identity-platform/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/entra/identity-platform/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [Cross-Origin Resource Sharing (CORS)](xref:security/cors) for single-page applications, including Blazor. 
+Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/entra/identity-platform/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/entra/identity-platform/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [Cross-Origin Resource Sharing (CORS)](../../../security/cors.md) for single-page applications, including Blazor. 
 
 **Microsoft doesn't recommend using Implicit grant.**
 

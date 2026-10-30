@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to use to SameSite cookies in ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 5/20/2022
-uid: security/samesite
+no-loc: Electron
 ---
 # Work with SameSite cookies in ASP.NET Core
 
@@ -34,9 +34,9 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 The following sample can be downloaded and tested:
 
-| Sample               | Document |
-| ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
+| Sample | Document |
+|--------|----------|
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 ## .NET support for the sameSite attribute
 
@@ -119,6 +119,7 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 
 > [!WARNING]
 > The following code is for demonstration only:
+>
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
@@ -160,9 +161,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -170,10 +171,9 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 * [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
 * [November 2019 Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
 
-
-| Sample               | Document |
-| ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| Sample | Document |
+|--------|----------|
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 :::moniker-end
 
@@ -183,7 +183,7 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 ## .NET Core support for the sameSite attribute
 
@@ -269,6 +269,7 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 
 > [!WARNING]
 > The following code is for demonstration only:
+>
 > * It should not be considered complete.
 > * It is not maintained or supported.
 
@@ -310,9 +311,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -323,7 +324,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 :::moniker-end
 
@@ -333,8 +334,8 @@ The following samples can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | [ASP.NET Core 2.1 MVC SameSite cookie sample](samesite/mvc21.md) |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | [ASP.NET Core 2.1 Razor Pages SameSite cookie sample](samesite/rp21.md) |
 
 ## December patch behavior changes
 
@@ -446,9 +447,9 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
 
-### Test with :::no-loc text="Electron":::
+### Test with Electron
 
-Versions of :::no-loc text="Electron"::: include older versions of Chromium. For example, the version of :::no-loc text="Electron"::: used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of :::no-loc text="Electron"::: your product uses. See [Supporting older browsers](#sob) in the following section.
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 ## Additional resources
 
@@ -458,7 +459,7 @@ Versions of :::no-loc text="Electron"::: include older versions of Chromium. For
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | [ASP.NET Core 2.1 MVC SameSite cookie sample](samesite/mvc21.md) |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | [ASP.NET Core 2.1 Razor Pages SameSite cookie sample](samesite/rp21.md) |
 
 :::moniker-end

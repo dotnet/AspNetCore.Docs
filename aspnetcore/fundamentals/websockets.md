@@ -50,7 +50,7 @@ WebSockets over HTTP/2 is supported for:
 * ASP.NET Core SignalR JavaScript client
 * ASP.NET Core SignalR with Blazor WebAssembly
 
-For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSockets.
+For some apps, [gRPC on .NET](../grpc/index.md) provides an alternative to WebSockets.
 
 ## Prerequisites
 
@@ -74,9 +74,9 @@ Add the WebSockets middleware in `Program.cs`:
 
 The following settings can be configured:
 
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveTimeout%2A> - How long to wait for a "pong" frame from the client after sending a "ping" frame. If the timeout is exceeded, the WebSocket connection is aborted and `WebSocket.ReceiveAsync` throws an exception. The default is `Timeout.InfiniteTimeSpan` (disabled). For more information, see [Handle client disconnects](#handle-client-disconnects) in this article.
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveTimeout> - How long to wait for a "pong" frame from the client after sending a "ping" frame. If the timeout is exceeded, the WebSocket connection is aborted and `WebSocket.ReceiveAsync` throws an exception. The default is `Timeout.InfiniteTimeSpan` (disabled). For more information, see [Handle client disconnects](#handle-client-disconnects) in this article.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
 
@@ -101,7 +101,7 @@ System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed t
 Object name: 'HttpResponseStream'.
 ```
 
-If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request, as shown in the following example:
+If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource`1>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource`1.TrySetResult*> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource`1.Task> property during the request, as shown in the following example:
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsyncBackgroundSocketProcessor":::
 
@@ -162,7 +162,7 @@ The WebSockets middleware can be configured with a keep-alive timeout. The keep-
 * The server sends a ping frame using the WebSocket protocol.
 * The client doesn't reply with a pong frame within the specified timeout.
 
-The server automatically sends the ping frame and configures its frequency with <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A>.
+The server automatically sends the ping frame and configures its frequency with <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval>.
 
 The keep-alive timeout setting is useful for detecting connections that might be slow or ungracefully disconnected. The default is `Timeout.InfiniteTimeSpan`, which disables the timeout.
 
@@ -183,7 +183,7 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
 However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
 
-If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> list for WebSockets to verify.
+If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> list for WebSockets to verify.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
 

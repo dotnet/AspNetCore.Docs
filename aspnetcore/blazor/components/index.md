@@ -852,7 +852,7 @@ The following parent component displays four instances of the preceding `Paramet
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
-* The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
+* The current local date in long format with <xref:System.DateTime.ToLongDateString*>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
 The fifth `ParameterChild` component instance also sets the `Count` parameter. Note how a `string`-typed parameter requires an `@` prefix to ensure that an expression isn't treated as a string literal. However, `Count` is a nullable integer (<xref:System.Int32?displayProperty=fullName>), so `Count` can receive the value of `count` without an `@` prefix. You can establish an alternative code convention that requires developers in your organization to always prefix with `@`. Either way, we merely recommend that you adopt a consistent approach for how component parameters are passed in Razor markup.
@@ -1073,13 +1073,13 @@ Don't use the [`required` modifier](/dotnet/csharp/language-reference/keywords/r
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties*?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction.
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties*?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction.
 
 :::moniker-end
 
@@ -1163,7 +1163,7 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 :::moniker range=">= aspnetcore-11.0"
 
-Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter%2A?displayProperty=nameWithType>.
+Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter*?displayProperty=nameWithType>.
 
 <!-- UPDATE 11.0 - Remove the NOTE at GA -->
 
@@ -1501,7 +1501,7 @@ When rendering the `RenderFragmentChild2` component in a parent component, use a
 }
 ```
 
-Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop:
+Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range*?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop:
 
 ```razor
 @foreach (var c in Enumerable.Range(1, 3))
@@ -1696,7 +1696,7 @@ Render fragments can be defined using Razor template syntax to define a UI snipp
 @<{HTML tag}>...</{HTML tag}>
 ```
 
-The following example illustrates how to specify <xref:Microsoft.AspNetCore.Components.RenderFragment> and <xref:Microsoft.AspNetCore.Components.RenderFragment%601> values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](xref:blazor/components/templated-components).
+The following example illustrates how to specify <xref:Microsoft.AspNetCore.Components.RenderFragment> and <xref:Microsoft.AspNetCore.Components.RenderFragment`1> values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](xref:blazor/components/templated-components).
 
 `RazorTemplate.razor`:
 
@@ -1872,7 +1872,7 @@ The following example demonstrates:
 Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) directive is used with a value of `true`, extra whitespace is removed if:
 
 * Leading or trailing within an element.
-* Leading or trailing within a <xref:Microsoft.AspNetCore.Components.RenderFragment>/<xref:Microsoft.AspNetCore.Components.RenderFragment%601> parameter (for example, child content passed to another component).
+* Leading or trailing within a <xref:Microsoft.AspNetCore.Components.RenderFragment>/<xref:Microsoft.AspNetCore.Components.RenderFragment`1> parameter (for example, child content passed to another component).
 * It precedes or follows a C# code block, such as `@if` or `@foreach`.
 
 Whitespace removal might affect the rendered output when using a CSS rule, such as `white-space: pre`. To disable this performance optimization and preserve the whitespace, take one of the following actions:
@@ -1933,7 +1933,7 @@ A *root Razor component* (*root component*) is the first component loaded of any
 
 :::moniker range=">= aspnetcore-8.0"
 
-In an app created from the Blazor Web App project template, the `App` component (`App.razor`) is specified as the default root component by the type parameter declared for the call to [`MapRazorComponents<TRootComponent>`](xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A) in the server-side `Program` file. The following example shows the use of the `App` component as the root component, which is the default for an app created from the Blazor project template:
+In an app created from the Blazor Web App project template, the `App` component (`App.razor`) is specified as the default root component by the type parameter declared for the call to [`MapRazorComponents<TRootComponent>`](xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*) in the server-side `Program` file. The following example shows the use of the `App` component as the root component, which is the default for an app created from the Blazor project template:
 
 ```csharp
 app.MapRazorComponents<App>();

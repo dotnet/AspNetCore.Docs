@@ -8,7 +8,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/497
 
 We updated the support for authentication in Blazor WebAssembly apps to rely on the history state instead of query strings in the URL. As a result, existing applications that pass the return URL through the query string will fail to redirect back to the original page after a successful login.
 
-Existing applications should use the new <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogin%2A> extension method as it's able to flow the data to the login page correctly.
+Existing applications should use the new <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogin*> extension method as it's able to flow the data to the login page correctly.
 
 ## Version introduced
 
@@ -51,7 +51,7 @@ Most apps have a *RedirectToLogin.razor* file that you can update as follows:
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.SignOutSessionStateManager?displayProperty=fullName> (obsoleted in favor of new <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogout%2A?displayProperty=nameWithType> method)
+- <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.SignOutSessionStateManager?displayProperty=fullName> (obsoleted in favor of new <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogout*?displayProperty=nameWithType> method)
 
 ## See also
 

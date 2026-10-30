@@ -53,7 +53,7 @@ Change the assertion to test the middleware under normal operating conditions. T
 
 ## Send requests with HttpContext
 
-A test app can also send a request using [SendAsync(Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). In the following example, several checks are made when `https://example.com/A/Path/?and=query` is processed by the middleware:
+A test app can also send a request using [SendAsync(Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync*). In the following example, several checks are made when `https://example.com/A/Path/?and=query` is processed by the middleware:
 
 ```csharp
 [Fact]
@@ -102,7 +102,7 @@ public async Task TestMiddleware_ExpectedResponse()
 }
 ```
 
-<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the <xref:System.Net.Http.HttpClient> abstractions. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
+<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync*> permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the <xref:System.Net.Http.HttpClient> abstractions. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync*> to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
 As with the earlier example that tested for a *404 - Not Found* response, check the opposite for each `Assert` statement in the preceding test. The check confirms that the test fails correctly when the middleware is operating normally. After you've confirmed that the false positive test works, set the final `Assert` statements for the expected conditions and values of the test. Run it again to confirm that the test passes.
 

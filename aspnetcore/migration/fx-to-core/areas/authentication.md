@@ -14,7 +14,7 @@ zone_pivot_groups: migration-remote-app-setup
 
 Authentication is a critical component of web applications, handling user identity verification across HTTP requests. When migrating from ASP.NET Framework to ASP.NET Core, authentication presents unique challenges because the two frameworks handle authentication very differently.
 
-For general information about authentication in ASP.NET Core, see <xref:security/authentication/index>. For information about authorization, see <xref:security/authorization/introduction>.
+For general information about authentication in ASP.NET Core, see [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md). For information about authorization, see [Introduction to authorization in ASP.NET Core](../../../security/authorization/introduction.md).
 
 ## Why authentication migration is complex
 
@@ -122,11 +122,11 @@ ASP.NET Core provides comprehensive authentication support with high performance
 When migrating to native ASP.NET Core authentication:
 
 **Choose based on your Framework authentication type:**
-* **Forms authentication** → Migrate to [Cookie authentication](xref:security/authentication/cookie)
-* **JWT bearer tokens** → Migrate to [JWT bearer authentication](xref:security/authentication/configure-jwt-bearer-authentication)
-* **Windows authentication** → Use [Windows authentication](xref:security/authentication/windowsauth)
+* **Forms authentication** → Migrate to [Cookie authentication](../../../security/authentication/cookie.md)
+* **JWT bearer tokens** → Migrate to [JWT bearer authentication](../../../security/authentication/configure-jwt-bearer-authentication.md)
+* **Windows authentication** → Use [Windows authentication](../../../security/authentication/windowsauth.md)
 * **OWIN OAuth providers** → Use corresponding ASP.NET Core OAuth providers
-* **Custom authentication** → Implement [custom authentication handlers](xref:security/authentication/index#authentication-handler)
+* **Custom authentication** → Implement [custom authentication handlers](../../../security/authentication/index.md#authentication-handler)
 
 **Code changes required:**
 * Replace `HttpContext.User` access patterns (mostly compatible)
@@ -309,7 +309,7 @@ Common issues when configuring remote authentication:
 
 This remote authentication approach has a couple known limitations:
 
-1. **Windows Authentication**: Because Windows authentication depends on a handle to a Windows identity, Windows authentication is not supported by this feature. Future work is planned to explore how shared Windows authentication might work. See [dotnet/systemweb-adapters#246](https://github.com/dotnet/systemweb-adapters/issues/246) for more information. For Windows authentication scenarios, consider using <xref:security/authentication/windowsauth> in your ASP.NET Core application instead.
+1. **Windows Authentication**: Because Windows authentication depends on a handle to a Windows identity, Windows authentication is not supported by this feature. Future work is planned to explore how shared Windows authentication might work. See [dotnet/systemweb-adapters#246](https://github.com/dotnet/systemweb-adapters/issues/246) for more information. For Windows authentication scenarios, consider using [Configure Windows Authentication in ASP.NET Core](../../../security/authentication/windowsauth.md) in your ASP.NET Core application instead.
 1. **User Management Actions**: This feature allows the ASP.NET Core app to make use of an identity authenticated by the ASP.NET app, but all actions related to users (logging on, logging off, etc.) still need to be routed through the ASP.NET app.
 1. **Performance Considerations**: Each authentication request requires an HTTP call to the ASP.NET app, which may impact performance. Consider using shared cookie authentication (described in the Alternatives section) if performance is critical.
 
@@ -349,7 +349,7 @@ Note that because signing in typically depends on a specific database, not all a
 * Both apps are able to see the users' identity and claims.
 * Both apps are able to sign the user out.
 
-Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing). For more information about cookie authentication in ASP.NET Core, see <xref:security/authentication/cookie>. For guidance on configuring `<machineKey>` and data protection when sharing protected values between Framework and Core apps, see <xref:migration/fx-to-core/areas/machine-key>.
+Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](../../../security/cookie-sharing.md). For more information about cookie authentication in ASP.NET Core, see [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md). For guidance on configuring `<machineKey>` and data protection when sharing protected values between Framework and Core apps, see <xref:migration/fx-to-core/areas/machine-key>.
 
 The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out:
 
@@ -368,16 +368,16 @@ The following samples in the [System.Web adapters](https://github.com/dotnet/sys
 Sharing authentication is a good option if both the following are true:
 
 * The ASP.NET app is already using `Microsoft.Owin` cookie authentication.
-* It's possible to update the ASP.NET app and ASP.NET Core apps to use matching data protection settings. Matching shared data protection settings includes a shared file path, Redis cache, or Azure Blob Storage for storing data protection keys. For more information, see <xref:security/data-protection/introduction>.
+* It's possible to update the ASP.NET app and ASP.NET Core apps to use matching data protection settings. Matching shared data protection settings includes a shared file path, Redis cache, or Azure Blob Storage for storing data protection keys. For more information, see [ASP.NET Core Data Protection Overview](../../../security/data-protection/introduction.md).
 
 For other scenarios, the remote authentication approach described previously in this doc is more flexible and is probably a better fit.
 
 ## See also
 
-* <xref:security/authentication/index>
-* <xref:security/authorization/introduction>
-* <xref:security/cookie-sharing>
-* <xref:security/authentication/cookie>
+* [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md)
+* [Introduction to authorization in ASP.NET Core](../../../security/authorization/introduction.md)
+* [Share authentication cookies among ASP.NET apps](../../../security/cookie-sharing.md)
+* [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md)
 * <xref:fundamentals/middleware/index>
 * <xref:migration/fx-to-core/index>
 * <xref:migration/fx-to-core/inc/remote-app-setup>

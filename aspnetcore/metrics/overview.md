@@ -290,14 +290,14 @@ Alternatively, enter a counter category such as `kestrel` in the **Expression** 
 
 ## Test metrics in ASP.NET Core apps
 
-You can test metrics in ASP.NET Core apps. One way to do this is to collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) by using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>.
+You can test metrics in ASP.NET Core apps. One way to do this is to collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) by using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector`1>.
 
 :::code language="csharp" source="~/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 
 The preceding test:
 
-* Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
-* Collects metrics values with <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector%601>
+* Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1>. `Program` in the factory's generic argument specifies the web app.
+* Collects metrics values with <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector`1>
   * Requires a package reference to `Microsoft.Extensions.Diagnostics.Testing`.
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.

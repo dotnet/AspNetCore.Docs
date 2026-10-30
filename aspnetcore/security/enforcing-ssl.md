@@ -4,10 +4,7 @@ ai-usage: ai-assisted
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app, and find troubleshooting steps for untrusted certificate issues.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
-ms.date: 09/24/2026
-uid: security/enforcing-ssl
-
-# customer intent: As an ASP.NET Core web app developer, I want to force incoming requests to use HTTPS/TLS, so I can avoid insecure interaction with my apps.
+ms.date: 10/27/2026
 ---
 # Enforce HTTPS in ASP.NET Core
 
@@ -47,7 +44,7 @@ The secure approach for [HTTP Strict Transport Security (HSTS) protocol](#hsts) 
 
 ### HTTP redirect to HTTPS (ERR_INVALID_REDIRECT on CORS preflight request)
 
-When a request to an endpoint using HTTP is redirected to HTTPS with the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method, the redirection fails with the `ERR_INVALID_REDIRECT` error on the CORS preflight request.
+When a request to an endpoint using HTTP is redirected to HTTPS with the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> method, the redirection fails with the `ERR_INVALID_REDIRECT` error on the CORS preflight request.
 
 API projects can reject HTTP requests rather than use the `UseHttpsRedirection` method to redirect requests to HTTPS.
 
@@ -55,7 +52,7 @@ API projects can reject HTTP requests rather than use the `UseHttpsRedirection` 
 
 For production ASP.NET Core web apps, the following approach is recommended:
 
-* To redirect HTTP requests to HTTPS, use HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>).
+* To redirect HTTP requests to HTTPS, use HTTPS redirection middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>).
 
 * To send HSTS headers to clients, use HSTS middleware via the [UseHsts](#hsts) method.
 
@@ -64,7 +61,7 @@ For production ASP.NET Core web apps, the following approach is recommended:
 
 ### HTTPS redirection middleware (`UseHttpsRedirection`)
 
-The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> method in the _Program.cs_ file:
+The following code calls the <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> method in the _Program.cs_ file:
 
 [!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=13)]
 
@@ -123,7 +120,7 @@ When deploying to Azure App Service, follow the guidance in [Enable HTTPS for a 
 
 ### Options
 
-The following highlighted code calls the <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection%2A> method to configure middleware options:
+The following highlighted code calls the <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection*> method to configure middleware options:
 
 [!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program2.cs?highlight=16-20)]
 
@@ -131,7 +128,7 @@ Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPo
 
 The preceding highlighted code:
 
-* Sets the <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode%2A?displayProperty=nameWithType> property to the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
+* Sets the <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode?displayProperty=nameWithType> property to the <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> code, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
 * Sets the HTTPS port to 5001.
 
 #### Configure permanent redirects in production
@@ -161,13 +158,13 @@ Because the client enforces [HSTS](https://developer.mozilla.org/docs/Web/HTTP/R
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
 * The application must check every HTTP request and redirect or reject the HTTP request.
 
-ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
 [!code-csharp[](enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=10)]
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
-For production environments that are implementing HTTPS for the first time, set the initial <xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge%2A?displayProperty=nameWithType> property value to a small amount by using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day, in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value (commonly, one year).
+For production environments that are implementing HTTPS for the first time, set the initial <xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge?displayProperty=nameWithType> property value to a small amount by using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day, in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value (commonly, one year).
 
 The following highlighted code:
 
@@ -276,6 +273,18 @@ If you store the certificates you want OpenSSL to trust in a specific directory,
 As on other platforms, development certificates are stored and trusted separately for each user. 
 
 If you run `dotnet dev-certs` as a different user (for example, by using `sudo`), then _that_ specific user (for example `root`) trusts the development certificate.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+### Trust the certificate from Windows Subsystem for Linux
+
+Run the trust command inside WSL. When WSL interop is enabled, it also attempts to add the public certificate to the Windows Current User Root certificate store. Check the command output for trust failures and any required Linux configuration.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
@@ -428,6 +437,39 @@ Sometimes when an ASP.NET Core HTTPS development certificate is [installed and t
 The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
 To repair the IIS Express certificate, see [Stack Overflow issue #20036984 / answer #20048613](https://stackoverflow.com/questions/20036984/how-do-i-restore-a-missing-iis-express-ssl-certificate/20048613#20048613) - _How do I restore a missing IIS Express SSL Certificate?_
+
+### Expired development certificate (`NET::ERR_CERT_DATE_INVALID`)
+
+ASP.NET Core development certificates are valid for a limited period (typically 12 months). When a development certificate expires, browsers and client tools report errors such as `NET::ERR_CERT_DATE_INVALID` or `SEC_ERROR_EXPIRED_CERTIFICATE`.
+
+To renew an expired development certificate:
+
+1. Remove the expired certificates and create a new trusted development certificate:
+
+   ```dotnetcli
+   dotnet dev-certs https --clean
+   dotnet dev-certs https --trust
+   ```
+
+1. If your development environment exports or mounts the certificate file to disk, such as in Docker containers, JavaScript Project System (JSPS) SPA projects, or Kestrel `Certificates:Default:Path` configurations:
+
+   * **Re-export the certificate**: Export the new certificate to the expected file location. In the following example, the `<path to certificate>` placeholder is the path to the certificate `.pfx` file (for example, `/etc/ssl/certs/myapp-dev.pfx`), and the `<password>` placeholder is the password:
+
+     ```dotnetcli
+     dotnet dev-certs https -ep <path to certificate> -p <password>
+     ```
+
+   * **Docker development**: Delete the expired certificate file in `%APPDATA%\ASP.NET\Https` (Windows) or `~/.aspnet/https` (Linux/macOS), regenerate the certificate using `dotnet dev-certs https -ep ...`, and restart the Docker container to mount the updated certificate.
+
+   * **SPA development**: Delete the expired certificate files in `%APPDATA%\ASP.NET\https` or `~/.aspnet/https`, such as `<project-name>.pem` and `<project-name>.key`. SPA development servers regenerate or re-export these files automatically upon startup, or export them using:
+
+     ```dotnetcli
+     dotnet dev-certs https --export-path <path to certificate> --format Pem --no-password
+     ```
+
+1. Stop and restart the running application, including any `dotnet run` or Kestrel process. Kestrel loads the development certificate at startup; restarting the application ensures it loads the renewed certificate.
+
+1. Completely close all browser windows and restart your IDE, such as Visual Studio or Visual Studio Code, to clear cached SSL/TLS sessions.
 
 ### All platforms - certificate not trusted
 

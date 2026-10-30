@@ -62,8 +62,8 @@ We've made it easier to build secure web APIs using Identity in ASP.NET Core 2.0
 
 For more information on authentication changes in 2.0, see the following resources:
 
-* [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
-* [Enable QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+* [Account confirmation and password recovery in ASP.NET Core](../security/authentication/accconfirm.md)
+* [Enable QR Code generation for authenticator apps in ASP.NET Core](../security/authentication/identity-enable-qrcodes.md)
 * [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
 ## SPA templates
@@ -112,7 +112,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ASP.NET Core has always helped HTML-encode content by default, but with the new version an extra step is taken to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit antiforgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
-For more information, see <xref:security/anti-request-forgery>.
+For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md).
 
 ## Automatic precompilation
 
@@ -133,11 +133,11 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 ## Other documentation updates for 2.0
 
 * [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles)
-* [Key Management](xref:security/data-protection/implementation/key-management)
-* [Configure Facebook authentication](xref:security/authentication/facebook-logins)
-* [Configure Twitter authentication](xref:security/authentication/twitter-logins)
-* [Configure Google authentication](xref:security/authentication/google-logins)
-* [Configure Microsoft Account authentication](xref:security/authentication/microsoft-logins)
+* [Key Management](../security/data-protection/implementation/key-management.md)
+* [Configure Facebook authentication](../security/authentication/social/facebook-logins.md)
+* [Configure Twitter authentication](../security/authentication/social/twitter-logins.md)
+* [Configure Google authentication](../security/authentication/social/google-logins.md)
+* [Configure Microsoft Account authentication](../security/authentication/social/microsoft-logins.md)
 
 ## Migration guidance
 

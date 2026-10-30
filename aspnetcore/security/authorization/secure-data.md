@@ -5,7 +5,6 @@ description: Learn how to create an ASP.NET Core web app with user data protecte
 ms.custom: sfi-image-nochange
 ms.date: 09/18/2026
 ms.sfi.ropc: t
-uid: security/authorization/secure-data
 
 # customer intent: As an ASP.NET developer, I want to create a web app with authorization functionality, so I can protect user data with ASP.NET Core Identity.
 ---
@@ -60,9 +59,9 @@ The sample contains the following authorization handlers:
 This tutorial is advanced. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication and ASP.NET Core Identity](xref:security/authentication/identity)
-* [Account confirmation and password recovery](xref:security/authentication/accconfirm)
-* [Authorization](xref:security/authorization/introduction)
+* [Authentication and ASP.NET Core Identity](../authentication/identity.md)
+* [Account confirmation and password recovery](../authentication/accconfirm.md)
+* [Authorization](introduction.md)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## The starter and completed app
@@ -93,11 +92,11 @@ The following sections demonstrate all the major steps to create the secure user
 
 ### Tie the contact data to the user
 
-Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add the `OwnerID` and `ContactStatus` fields to the `Contact` model:
+Use the ASP.NET [Identity](../authentication/identity.md) user ID to ensure users can edit their data, but not other users data. Add the `OwnerID` and `ContactStatus` fields to the `Contact` model:
 
 [!code-csharp[](secure-data/samples/final6/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users.
+`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](../authentication/identity.md) database. The `Status` field determines if a contact is viewable by general users.
 
 Create a new migration and update the database:
 
@@ -108,7 +107,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Enable the app to use Role services by appending the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> method:
+Enable the app to use Role services by appending the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> method:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet&highlight=10)]
 
@@ -120,13 +119,13 @@ Set the fallback authorization policy to require users to be authenticated:
 
 The preceding highlighted code sets the fallback authorization policy to require an authenticated user. The fallback policy is selected when the authorization middleware can't build a policy from authorization metadata. An endpoint with `[Authorize]` uses the default policy, and an endpoint with `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy. Apply `[AllowAnonymous]` to an endpoint that is intentionally public.
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> method adds the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> class to the current instance, which enforces that the current user is authenticated.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method adds the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> class to the current instance, which enforces that the current user is authenticated.
 
 The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
 
 Setting the fallback authorization policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authorization required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
-For a comparison of named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
+For a comparison of named, default, and fallback policies, see [Policy-based authorization in ASP.NET Core](policies.md#default-and-fallback-policies).
 
 As an alternate approach, MVC controllers and Razor Pages can add an authorization filter to require all users be authenticated:
 
@@ -140,7 +139,7 @@ Add the [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousA
 
 ### Configure the test account
 
-The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing the _Program.cs_ file):
+The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](../app-secrets.md) to set a password for these accounts. Set the password from the project directory (the directory containing the _Program.cs_ file):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -168,14 +167,14 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls the [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A) method if the current authenticated user is the contact owner. 
+The `ContactIsOwnerAuthorizationHandler` calls the [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) method if the current authenticated user is the contact owner. 
 
 The authorization handler generally:
 
 * Calls the `context.Succeed` method when the requirements are met.
 * When requirements aren't met, it returns `Task.CompletedTask`. When `Task.CompletedTask` is returned without a prior call to `context.Succeed` or `context.Fail`, the result isn't a success or failure. Instead, it allows other authorization handlers to run.
 
-If you need to explicitly fail, call the [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A) method.
+If you need to explicitly fail, call the [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*) method.
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
@@ -193,7 +192,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services that use Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services that use Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](../authentication/identity.md), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=22-30)]
 
@@ -299,9 +298,9 @@ In the preceding code:
 ## Test the completed app
 
 > [!WARNING]
-> This article uses the [Secret Manager tool](xref:security/app-secrets) to store the password for the seeded user accounts. The Secret Manager tool is used to store sensitive data during local development. For information on authentication procedures that can be used when an app is deployed to a test or production environment, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+> This article uses the [Secret Manager tool](../app-secrets.md) to store the password for the seeded user accounts. The Secret Manager tool is used to store sensitive data during local development. For information on authentication procedures that can be used when an app is deployed to a test or production environment, see [Secure authentication flows](../index.md#secure-authentication-flows).
 
-If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
+If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](../app-secrets.md#secret-manager) to set a password:
 
 * Choose a [strong password](https://support.microsoft.com/account-billing/how-to-help-keep-your-microsoft-account-secure-628538c2-7006-33bb-5ef4-c917657362b9):
   * At least 12 characters long, but 14 or more is better.
@@ -436,9 +435,9 @@ The sample contains the following authorization handlers:
 This tutorial is advanced. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/identity)
-* [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
-* [Authorization](xref:security/authorization/introduction)
+* [Authentication](../authentication/identity.md)
+* [Account Confirmation and Password Recovery](../authentication/accconfirm.md)
+* [Authorization](introduction.md)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## The starter and completed app
@@ -457,11 +456,11 @@ The following sections have all the major steps to create the secure user data a
 
 ### Tie the contact data to the user
 
-Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` and `ContactStatus` to the `Contact` model:
+Use the ASP.NET [Identity](../authentication/identity.md) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` and `ContactStatus` to the `Contact` model:
 
 [!code-csharp[](secure-data/samples/final3/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users.
+`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](../authentication/identity.md) database. The `Status` field determines if a contact is viewable by general users.
 
 Create a new migration and update the database:
 
@@ -472,7 +471,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> to add Role services:
+Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> to add Role services:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=8)]
 
@@ -486,13 +485,13 @@ Set the fallback authorization policy to require users to be authenticated:
 
 The preceding highlighted code sets the fallback authorization policy to require an authenticated user. The fallback policy is selected when the authorization middleware can't build a policy from authorization metadata. An endpoint with `[Authorize]` uses the default policy, and an endpoint with `[Authorize(Policy = "{POLICY NAME}")]` uses the named policy. Apply `[AllowAnonymous]` to an endpoint that is intentionally public.
 
-<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
 The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
 
 Setting the fallback authorization policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authorization required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
-For a comparison of named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
+For a comparison of named, default, and fallback policies, see [Policy-based authorization in ASP.NET Core](policies.md#default-and-fallback-policies).
 
 An alternative way for MVC controllers and Razor Pages to require all users be authenticated is adding an authorization filter:
 
@@ -506,7 +505,7 @@ Add [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttri
 
 ### Configure the test account
 
-The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing `Program.cs`):
+The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](../app-secrets.md) to set a password for these accounts. Set the password from the project directory (the directory containing `Program.cs`):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -534,12 +533,12 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A) if the current authenticated user is the contact owner. Authorization handlers generally:
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Call `context.Succeed` when the requirements are met.
 * Return `Task.CompletedTask` when requirements aren't met. Returning `Task.CompletedTask` without a prior call to `context.Success` or `context.Fail`, is not a success or failure, it allows other authorization handlers to run.
 
-If you need to explicitly fail, call [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A).
+If you need to explicitly fail, call [context.Fail](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*).
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
@@ -557,7 +556,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A>. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](../authentication/identity.md), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 
@@ -665,7 +664,7 @@ In the preceding code:
 
 ## Test the completed app
 
-If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
+If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](../app-secrets.md#secret-manager) to set a password:
 
 * Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
 * Execute the following command from the project's folder, where `<PW>` is the password:
@@ -751,5 +750,5 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 * [Tutorial: Build an ASP.NET Core and Azure SQL Database app in Azure App Service](/azure/app-service/tutorial-dotnetcore-sqldb-app)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop) (extended details on security features)
-* <xref:security/authorization/introduction>
-* [Custom policy-based authorization](xref:security/authorization/policies)
+* [Introduction to authorization in ASP.NET Core](introduction.md)
+* [Custom policy-based authorization](policies.md)
