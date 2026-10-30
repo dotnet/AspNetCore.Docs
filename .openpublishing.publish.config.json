@@ -25,7 +25,7 @@
     }
   ],
   "notification_subscribers": [
-    "wpickett@microsoft.com"
+    "daroth@microsoft.com"
   ],
   "branches_to_filter": [],
   "git_repository_branch_open_to_public_contributors": "main",
