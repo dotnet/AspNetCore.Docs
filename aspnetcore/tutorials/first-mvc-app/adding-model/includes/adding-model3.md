@@ -89,7 +89,7 @@ Add a `Data/MvcMovieContext.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 <a name="reg"></a>
 

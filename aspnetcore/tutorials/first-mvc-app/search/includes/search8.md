@@ -24,10 +24,10 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie80/Controllers/MoviesController.cs?name=snippet_IndexSearchCheckForNull)]
 
-The `s => s.Title!.ToUpper().Contains(searchString.ToUpper())` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where%2A> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
+The `s => s.Title!.ToUpper().Contains(searchString.ToUpper())` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where*> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
 > [!NOTE]
-> The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
+> The <xref:System.Data.Objects.DataClasses.EntityCollection`1.Contains*> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
 > 
 > * [How to use case-insensitive query with Sqlite provider? (`dotnet/efcore` #11414)](https://github.com/dotnet/efcore/issues/11414)
 > * [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
@@ -83,7 +83,7 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 ![Network tab of Microsoft Edge Developer Tools showing a request body with a searchString value of ghost](~/tutorials/first-mvc-app/search/_static/f12_rb.png)
 
-You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) antiforgery token. We're not modifying data, so we don't need to validate the token in the controller method.
+You can see the search parameter and [XSRF](../../../../security/anti-request-forgery.md) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](../../../../security/anti-request-forgery.md) antiforgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the `Views/Movies/Index.cshtml` file.
 
@@ -129,6 +129,8 @@ When the user searches for the item, the search value is retained in the search 
 Update `Index.cshtml` found in *Views/Movies/* as follows:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie80/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
+
+The `<select>` element uses `asp-for="MovieGenre"` to bind the selected value to the `MovieGenre` property and `asp-items="Model.Genres"` to populate the dropdown list with the available genres. The `<option value="">All</option>` element sets an empty string as the value for the **All** option. When the user selects **All**, `movieGenre` is submitted as an empty string, satisfying `string.IsNullOrEmpty(movieGenre)` in the controller's `Index` action so that the `movies.Where(x => x.Genre == movieGenre)` filter is skipped, and results are filtered only by the title search string if one was provided.
 
 Examine the lambda expression used in the following HTML Helper:
 

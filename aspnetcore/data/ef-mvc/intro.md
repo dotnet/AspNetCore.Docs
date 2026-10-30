@@ -215,7 +215,7 @@ Open the `appsettings.json` file and add a connection string as shown in the fol
 
 ### Add the database exception filter
 
-Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> to `ConfigureServices` as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> to `ConfigureServices` as shown in the following code:
 
 [!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=6)]
 

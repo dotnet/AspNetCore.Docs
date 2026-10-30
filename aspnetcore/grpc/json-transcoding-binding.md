@@ -3,7 +3,6 @@ title: Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps
 description: Learn how to configure HTTP and JSON for gRPC JSON transcoding apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 09/20/2022
-uid: grpc/json-transcoding-binding
 ---
 # Configure HTTP and JSON for gRPC JSON transcoding
 
@@ -117,9 +116,9 @@ message TestMessage {
 }
 ```
 
-Transcoding doesn't support advanced JSON customization. Apps requiring precise JSON structure control should consider using [ASP.NET Core Web API](xref:web-api/index).
+Transcoding doesn't support advanced JSON customization. Apps requiring precise JSON structure control should consider using [ASP.NET Core Web API](../web-api/index.md).
 
 ## Related content
 
-* <xref:grpc/json-transcoding>
+* [gRPC JSON transcoding in ASP.NET Core gRPC apps](json-transcoding.md)
 * [HttpRule specification](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)

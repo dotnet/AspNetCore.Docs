@@ -52,7 +52,7 @@ By default, store static files within the project's [web root](xref:fundamentals
 
 At runtime, static web assets are returned by static file middleware when requested with asset modification and content type headers applied. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set.
 
-Static file middleware enables static file serving and is used by an app when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> is called in the app's request processing pipeline. Files are served from the path specified in <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which defaults to the web root folder, typically `wwwroot`.
+Static file middleware enables static file serving and is used by an app when <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> is called in the app's request processing pipeline. Files are served from the path specified in <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which defaults to the web root folder, typically `wwwroot`.
 
 :::moniker-end
 
@@ -169,10 +169,10 @@ if (builder.Environment.IsStaging())
 
 ## Serve files outside of the web root directory via `IWebHostEnvironment.WebRootPath`
 
-When you set <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*?displayProperty=nameWithType> to a folder other than `wwwroot`, the app exhibits the following default behaviors:
+When you set <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath?displayProperty=nameWithType> to a folder other than `wwwroot`, the app exhibits the following default behaviors:
 
-* In the `Development` environment, static assets are served from `wwwroot` if assets with the same name are in both `wwwroot` and a different folder assigned to <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*>.
-* In any environment other than `Development`, duplicate static assets are served from the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*> folder.
+* In the `Development` environment, static assets are served from `wwwroot` if assets with the same name are in both `wwwroot` and a different folder assigned to <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath>.
+* In any environment other than `Development`, duplicate static assets are served from the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath> folder.
 
 Consider a web app created from the empty web template:
 
@@ -208,7 +208,7 @@ To ensure assets from `wwwroot-custom` are always returned, use ***one*** of the
   </ItemGroup>
   ```
 
-The following code updates <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*> to a non-Development value (`Staging`), guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
+The following code updates <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath> to a non-Development value (`Staging`), guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
@@ -431,7 +431,7 @@ The build process generates the manifest in the build output directory. Its file
 
 Because `MapStaticAssets` only serves assets listed in the manifest, it doesn't serve files that aren't part of the manifest. Files aren't part of the manifest when they're:
 
-* Located outside the build-time web root, such as files served from disk, embedded resources, or a custom <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*> set at runtime.
+* Located outside the build-time web root, such as files served from disk, embedded resources, or a custom <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath> set at runtime.
 * Excluded from the manifest with the `StaticWebAssetEndpointExclusionPattern` MSBuild property (see the [Large collection of assets](#large-collection-of-assets) section).
 
 To serve files that aren't in the manifest, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, which serves files directly from the web root at runtime. This is also why serving [default documents](#serve-default-documents) with `MapStaticAssets` requires a call to `UseStaticFiles`.
@@ -459,7 +459,7 @@ The generated file must exist when the build process resolves static web assets.
 
 ### Use a JavaScript project for complex build pipelines
 
-For a complex JavaScript or TypeScript client build, use a separate JavaScript project that builds the client assets with the [JavaScript project system](/visualstudio/javascript/javascript-project-system-msbuild-reference) (the `Microsoft.VisualStudio.JavaScript.Sdk` MSBuild SDK and an `.esproj` project file). Reference the JavaScript project from the ASP.NET Core app so that its output is consumed as static web assets. For an example, see the [`Microsoft.FluentUI.AspNetCore.Components.Assets.esproj` project file (`microsoft/fluentui-blazor` GitHub repository)](https://github.com/microsoft/fluentui-blazor/blob/dev/src/Core.Assets/Microsoft.FluentUI.AspNetCore.Components.Assets.esproj).
+For a complex JavaScript or TypeScript client build, use a separate JavaScript project that builds the client assets with the [JavaScript project system](/visualstudio/javascript/javascript-project-system-msbuild-reference) (the `Microsoft.VisualStudio.JavaScript.Sdk` MSBuild SDK and an `.esproj` project file). Reference the JavaScript project from the ASP.NET Core app so that its output is consumed as static web assets. For an example, see the [`Microsoft.FluentUI.AspNetCore.Components.Scripts.esproj` project file](https://github.com/microsoft/fluentui-blazor/blob/dev/src/Core.Scripts/Microsoft.FluentUI.AspNetCore.Components.Scripts.esproj).
 
 :::moniker-end
 
@@ -467,7 +467,7 @@ For a complex JavaScript or TypeScript client build, use a separate JavaScript p
 
 :::moniker range=">= aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
+When an app adopts a [fallback authorization policy](../security/authorization/policies.md#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
 
 ```csharp
 app.MapStaticAssets().Add(endpointBuilder =>
@@ -478,7 +478,7 @@ app.MapStaticAssets().Add(endpointBuilder =>
 
 :::moniker range="< aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
+When an app adopts a [fallback authorization policy](../security/authorization/policies.md#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
 
 * No authorization checks are performed on the static files.
 * Static files served by the static file middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
@@ -523,7 +523,7 @@ In `Startup.Configure` after the call to <xref:Microsoft.AspNetCore.Builder.Auth
 
 :::moniker-end
 
-In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../security/authorization/policies.md#default-and-fallback-policies).
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
@@ -577,7 +577,7 @@ In the following example:
 
 * An `images` folder at the root of the app holds images for directory browsing.
 * The request path to browse the images is `/DirectoryImages`.
-* Calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> and setting the <xref:Microsoft.AspNetCore.StaticFiles.Infrastructure.SharedOptionsBase.FileProvider*> of <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> enables displaying browser links to the individual files.
+* Calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> and setting the <xref:Microsoft.AspNetCore.StaticFiles.Infrastructure.SharedOptionsBase.FileProvider> of <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> enables displaying browser links to the individual files.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -676,7 +676,7 @@ app.MapStaticAssets();
 ```
 
 > [!IMPORTANT]
-> Configuring only <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> (without <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>) returns a *404 - Not Found* response for a request to `/`. This behavior occurs because minimal hosting adds routing middleware at the start of the request processing pipeline, so endpoint routing matches the request before `UseDefaultFiles` rewrites it to the default document. The problem is especially apparent when you change the [web root](xref:fundamentals/index#web-root) to a custom path with <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath*>, because files in a custom web root aren't part of the [build-time static assets manifest](#static-assets-manifest) that `MapStaticAssets` serves. Add a call to `UseStaticFiles` after `UseDefaultFiles`, as shown in the preceding example, to serve default documents.
+> Configuring only <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> (without <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>) returns a *404 - Not Found* response for a request to `/`. This behavior occurs because minimal hosting adds routing middleware at the start of the request processing pipeline, so endpoint routing matches the request before `UseDefaultFiles` rewrites it to the default document. The problem is especially apparent when you change the [web root](xref:fundamentals/index#web-root) to a custom path with <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath>, because files in a custom web root aren't part of the [build-time static assets manifest](#static-assets-manifest) that `MapStaticAssets` serves. Add a call to `UseStaticFiles` after `UseDefaultFiles`, as shown in the preceding example, to serve default documents.
 
 :::moniker-end
 
@@ -848,7 +848,7 @@ If no default-named file exists in the `ExtraStaticFiles` directory, `https://{H
 
 :::moniker-end
 
-Use <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider.Mappings*?displayProperty=nameWithType> to add or modify file extension to MIME content type mappings.
+Use <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider.Mappings?displayProperty=nameWithType> to add or modify file extension to MIME content type mappings.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> is **not thread-safe** for concurrent writes. Its internal mappings dictionary is a standard `Dictionary<string, string>` without synchronization. The provider's mappings are intended to be configured once at startup. If only read operations (lookups) are performed afterward, the provider can safely be registered as a singleton. Do not add, remove, or modify mappings after the provider is in use by concurrent requests.
@@ -962,7 +962,7 @@ With the preceding code, a request for a file with an unknown content type is re
 
 ## Provide a custom static files manifest
 
-If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*) is `null`, the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*?displayProperty=nameWithType> is used to locate the manifest. Alternatively, specify a full path to the manifest file. If you use a relative path, the framework searches for the file in the <xref:System.AppContext.BaseDirectory*?displayProperty=nameWithType>.
+If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*) is `null`, the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName?displayProperty=nameWithType> is used to locate the manifest. Alternatively, specify a full path to the manifest file. If you use a relative path, the framework searches for the file in the <xref:System.AppContext.BaseDirectory?displayProperty=nameWithType>.
 
 :::moniker-end
 
@@ -970,6 +970,9 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
 
 > [!WARNING]
 > <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> or <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*>. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
+
+> [!NOTE]
+> A file with an accessible 8.3 short-name alias can also be served through that alias. Static file middleware determines the content type from the requested path, not the resolved file name. If the alias has a recognized extension, a file whose long-name extension is unrecognized can be served even when `ServeUnknownFileTypes` is disabled. Don't rely on file extension filtering to protect private files. Keep them outside all directories served by static file middleware.
 
 * The URLs for content exposed through <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> follow the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
 

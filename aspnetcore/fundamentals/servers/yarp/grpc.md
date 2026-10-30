@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 gRPC requires HTTP/2 for most scenarios. HTTP/1.1 and HTTP/2 are enabled by default on ASP.NET Core servers (YARP's front end) but they require https (TLS) for HTTP/2 so YARP needs to be listening on a `https://` URL.
 
-HTTP/2 over http (non-TLS) is only supported on Kestrel and requires specific settings. For more information, see <xref:grpc/aspnetcore#server-options>.
+HTTP/2 over http (non-TLS) is only supported on Kestrel and requires specific settings. For more information, see [gRPC services with ASP.NET Core](../../../grpc/aspnetcore.md#server-options).
 
 This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
 

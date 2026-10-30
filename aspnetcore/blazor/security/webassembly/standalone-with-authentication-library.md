@@ -58,11 +58,11 @@ After choosing the **Blazor WebAssembly App** template, set the **Authentication
 
 :::moniker-end
 
-The **Individual Accounts** selection uses ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
+The **Individual Accounts** selection uses ASP.NET Core's [Identity](../../../security/authentication/identity.md) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
 # [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
 
-Create a new Blazor WebAssembly project with an authentication mechanism in an empty folder. Specify the `Individual` authentication mechanism with the `-au|--auth` option to use ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
+Create a new Blazor WebAssembly project with an authentication mechanism in an empty folder. Specify the `Individual` authentication mechanism with the `-au|--auth` option to use ASP.NET Core's [Identity](../../../security/authentication/identity.md) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -o {PROJECT NAME}
@@ -138,9 +138,9 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 ### Authentication service support
 
-Support for authenticating users using OpenID Connect (OIDC) is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> extension method provided by the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication).
+Support for authenticating users using OpenID Connect (OIDC) is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication*> extension method provided by the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication` package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication).
 
-The <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
+The <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication*> method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
 
 For a new app, provide values for the `{AUTHORITY}` and `{CLIENT ID}` placeholders in the following configuration. Provide other configuration values that are required for use with the app's IP. The example is for Google, which requires `PostLogoutRedirectUri`, `RedirectUri`, and `ResponseType`. If adding authentication to an app, manually add the following code and configuration to the app with values for the placeholders and other configuration values.
 

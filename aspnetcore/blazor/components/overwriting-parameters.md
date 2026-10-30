@@ -77,9 +77,9 @@ After the following `ShowMoreExpander` component demonstrates an overwritten par
 
 :::moniker-end
 
-The `ShowMoreExpander` component is added to the following `Expanders` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
+The `ShowMoreExpander` component is added to the following `Expanders` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*>:
 
-* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically enqueues component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering#statehaschanged>.
+* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in developer code notifies a component that its state has changed and typically enqueues component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering#statehaschanged>.
 * The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
 
 `Expanders.razor`:
@@ -122,15 +122,15 @@ The `ShowMoreExpander` component is added to the following `Expanders` parent co
 
 Initially, the `ShowMoreExpander` components behave independently when their `InitiallyExpanded` properties are set. The child components maintain their states as expected.
 
-If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
 
 * For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
 * For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
 
 For the `Expanders` component:
 
-* The first `ShowMoreExpander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `InitiallyExpanded` to its initial value of `false`.
-* The second `ShowMoreExpander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `InitiallyExpanded` value isn't overwritten.
+* The first `ShowMoreExpander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in the parent component automatically rerenders the component and potentially overwrites the value of `InitiallyExpanded` to its initial value of `false`.
+* The second `ShowMoreExpander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in the parent component doesn't automatically rerender the child component, so the component's `InitiallyExpanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `ShowMoreExpander` component to maintain its state.
 

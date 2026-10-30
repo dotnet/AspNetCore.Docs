@@ -161,7 +161,7 @@ The following example monitors the cookie associated with ASP.NET Core Identity.
 | -------------- | --------------- | :-----: |
 | Boolean        | `true`, `false` | `false` |
 
-`vary-by-culture` varys the cached result by request culture. Setting the attribute to `true` means the result is varied by <xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>.
+`vary-by-culture` varys the cached result by request culture. Setting the attribute to `true` means the result is varied by <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.CurrentUICulture?displayProperty=nameWithType>.
 
 Example:
 
@@ -193,7 +193,7 @@ The following example monitors the header value `User-Agent`. The example caches
 | -------------- | -------------------- |
 | String         | `Make`, `Make,Model` |
 
-`vary-by-query` accepts a comma-delimited list of <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> in a query string (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>) that trigger a cache refresh when the value of any listed key changes.
+`vary-by-query` accepts a comma-delimited list of <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys> in a query string (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query>) that trigger a cache refresh when the value of any listed key changes.
 
 The following example monitors the values of `Make` and `Model`. The example caches the content for every different `Make` and `Model` presented to the web server:
 
@@ -250,4 +250,4 @@ Using this attribute maintains the contents in cache through a sign-in and sign-
 ## Related content
 
 * <xref:performance/caching/memory>
-* <xref:security/authentication/identity>
+* [Introduction to Identity on ASP.NET Core](../../../../security/authentication/identity.md)

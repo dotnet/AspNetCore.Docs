@@ -3,7 +3,6 @@ title: Test gRPC services with gRPCurl and gRPCui in ASP.NET Core
 description: Learn how to test services with gRPC tools. gRPCurl a command-line tool for interacting with gRPC services. gRPCui is an interactive web UI.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 04/03/2024
-uid: grpc/test-tools
 ---
 # Test gRPC services with gRPCurl and gRPCui in ASP.NET Core
 
@@ -24,7 +23,7 @@ This article discusses how to:
   * Interact with gRPC services via a browser using `grpcui`.
 
 > [!NOTE]
-> To learn how to unit test gRPC services, see <xref:grpc/test-services>.
+> To learn how to unit test gRPC services, see [Test gRPC services in ASP.NET Core](test-services.md).
 
 ## Set up gRPC reflection
 
@@ -48,7 +47,7 @@ When gRPC reflection is set up:
 
 * A gRPC reflection service is added to the server app.
 * Client apps that support gRPC reflection can call the reflection service to discover services hosted by the server.
-* gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](xref:grpc/authn-and-authz) require the caller to pass credentials for the endpoint to be called successfully.
+* gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](authn-and-authz.md) require the caller to pass credentials for the endpoint to be called successfully.
 
 ### Reflection service security
 
@@ -182,8 +181,8 @@ The tool launches a browser window with the interactive web UI. gRPC services ar
 * [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl)
 * [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui)
 * [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
-* <xref:grpc/test-services>
-* <xref:grpc/test-client>
+* [Test gRPC services in ASP.NET Core](test-services.md)
+* [Mock gRPC client in tests](test-client.md)
 
 :::moniker-end
 
@@ -201,7 +200,7 @@ This article discusses how to:
   * Interact with gRPC services via a browser using `grpcui`.
 
 > [!NOTE]
-> To learn how to unit test gRPC services, see <xref:grpc/test-services>.
+> To learn how to unit test gRPC services, see [Test gRPC services in ASP.NET Core](test-services.md).
 
 ## Set up gRPC reflection
 
@@ -225,7 +224,7 @@ When gRPC reflection is set up:
 
 * A gRPC reflection service is added to the server app.
 * Client apps that support gRPC reflection can call the reflection service to discover services hosted by the server.
-* gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](xref:grpc/authn-and-authz) require the caller to pass credentials for the endpoint to be called successfully.
+* gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](authn-and-authz.md) require the caller to pass credentials for the endpoint to be called successfully.
 
 ## gRPCurl
 
@@ -332,7 +331,7 @@ The tool launches a browser window with the interactive web UI. gRPC services ar
 * [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl)
 * [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui)
 * [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
-* <xref:grpc/test-services>
-* <xref:grpc/test-client>
+* [Test gRPC services in ASP.NET Core](test-services.md)
+* [Mock gRPC client in tests](test-client.md)
 
 :::moniker-end

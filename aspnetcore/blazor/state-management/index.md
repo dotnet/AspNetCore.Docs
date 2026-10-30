@@ -172,15 +172,15 @@ Use [cascading values and parameters](xref:blazor/components/cascading-values-an
 
 :::moniker range=">= aspnetcore-8.0"
 
-Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
+Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
 
 :::moniker-end
 
 ## Support state modifications from outside Blazor's synchronization context
 
-When using a custom state management service where you want to support state modifications from outside Blazor's synchronization context (for example from a timer or a background service), all consuming components must wrap the <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> call in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>. This ensures the change notification is handled on the renderer's synchronization context.
+When using a custom state management service where you want to support state modifications from outside Blazor's synchronization context (for example from a timer or a background service), all consuming components must wrap the <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> call in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType>. This ensures the change notification is handled on the renderer's synchronization context.
 
-When the state management service doesn't call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on Blazor's synchronization context, the following error is thrown:
+When the state management service doesn't call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> on Blazor's synchronization context, the following error is thrown:
 
 > :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
 

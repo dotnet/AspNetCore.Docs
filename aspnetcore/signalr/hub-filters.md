@@ -198,4 +198,4 @@ The `HubLifetimeContext` contains information for the `OnConnectedAsync` and `On
 
 ## Authorization and filters
 
-[Authorize attributes on hub methods](xref:signalr/authn-and-authz#use-authorization-handlers-to-customize-hub-method-authorization) run before hub filters.
+[Authorize attributes on hub methods](authn-and-authz.md#use-authorization-handlers-to-customize-hub-method-authorization) run before hub filters.
