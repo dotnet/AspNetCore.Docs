@@ -1,11 +1,11 @@
 ---
 title: Create responses in Minimal API applications
+ai-usage: ai-assisted
 description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 06/16/2026
+ms.date: 10/26/2026
 uid: fundamentals/minimal-apis/responses
-ai-usage: ai-assisted
 ---
 
 # How to create responses in Minimal API apps
@@ -18,9 +18,12 @@ This article explains how to create responses for Minimal API endpoints in ASP.N
 
 Minimal endpoints support the following types of return values:
 
-1. `string` - This includes `Task<string>` and `ValueTask<string>`.
-1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`.
-1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`.
+1. `string` - This includes `Task<string>`, `ValueTask<string>`, and F# `Async<string>`.
+1. `T` (Any other type) - This includes `Task<T>`, `ValueTask<T>`, and F# `Async<'T>`.
+1. `IResult` based - This includes `Task<IResult>`, `ValueTask<IResult>`, and F# `Async<IResult>`.
+
+> [!NOTE]
+> F# `Async<'T>` is supported as an awaitable return type in minimal API endpoints. When `unit` is the generic type argument of a generic awaitable type (`Task<unit>`, `ValueTask<unit>`, or `Async<unit>`), the framework coerces it to `void`, returning an empty response body instead of the JSON `null` token.
 
 [!INCLUDE[](~/includes/api-endpoint-auth.md)]
 
@@ -60,7 +63,7 @@ The `200` status code is returned with `application/json` Content-Type header an
 
 |Behavior|Content-Type|
 |--|--|
-| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A).| Decided by the `IResult` implementation.
+| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync*).| Decided by the `IResult` implementation.
 
 The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class and the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) are used to create various `IResult` objects that represent different types of responses.
 
@@ -81,13 +84,16 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see <xref:fundamentals/openapi/include-metadata#describe-response-types>. For complete setup instructions, see <xref:fundamentals/openapi/overview>.
+
+> [!NOTE]
+> The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see <xref:fundamentals/openapi/overview>.
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
 Because all methods on `Results` return `IResult` in their signature, the compiler automatically infers that as the request delegate return type when returning different results from a single endpoint. `TypedResults` requires the use of `Results<T1, TN>` from such delegates.
 
-The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetCore.Http.Results.Ok%2A) and [`Results.NotFound`](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A) are declared as returning `IResult`, even though the actual concrete types of the objects returned are different:
+The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetCore.Http.Results.Ok*) and [`Results.NotFound`](xref:Microsoft.AspNetCore.Http.Results.NotFound*) are declared as returning `IResult`, even though the actual concrete types of the objects returned are different:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1a":::
 
@@ -98,6 +104,11 @@ The following method does not compile, because `TypedResults.Ok` and `TypedResul
 To use `TypedResults`, the return type must be fully declared; when the method is asynchronous, the declaration requires wrapping the return type in a `Task<>`. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
+
+> [!NOTE]
+> When using a method group whose only parameter is `HttpContext` (for example, `static async Task<Results<ContentHttpResult, BadRequest>> MyHandler(HttpContext context)`), `app.MapGet` matches both `RequestDelegate` and `Delegate`. Overload resolution selects the <xref:Microsoft.AspNetCore.Http.RequestDelegate> overload, which discards return values and triggers analyzer warning [ASP0016](../../diagnostics/asp0016.md). To ensure the result is executed and written to the response, cast the method group to `Delegate` (for example, `app.MapGet("/route", (Delegate)MyHandler)`) or use a lambda.
+>
+> When using `TypedResults` with multiple return branches, an explicit union return type such as `Results<T1, T2>` (or `Task<Results<T1, T2>>` for async handlers) is required because the compiler cannot infer a common union type.
 
 ### Results<TResult1, TResultN>
 
@@ -130,7 +141,7 @@ The following sections demonstrate the usage of the common result helpers.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_05":::
 
-<xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
+<xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync*> is an alternative way to return JSON:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
 
@@ -202,6 +213,20 @@ The following example illustrates how to use the `TypedResults.ServerSentEvents`
 
 For more information, see the [Minimal API sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/MinimalServerSentEvents/Program.cs) using the `TypedResults.ServerSentEvents` API to return a stream of heart rate events as string, `ServerSentEvents`, and JSON objects to the client.
 
+Always return the stream through `TypedResults.ServerSentEvents`. A handler that returns `IAsyncEnumerable<SseItem<T>>` directly compiles and runs, but the result is serialized as JSON rather than sent as Server-Sent Events.
+
+The `SseItem<T>` overload doesn't take an `eventType` parameter, because each `SseItem<T>` carries its own event type. To apply a single event name to every message in the stream, pass a plain `IAsyncEnumerable<T>` and supply `eventType`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see <xref:fundamentals/openapi/include-metadata>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 #### Redirect
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/9.0/Snippets/Program.cs" id="snippet_09":::
@@ -221,7 +246,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 * <xref:Microsoft.AspNetCore.Http.INestedHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IStatusCodeHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
-* <xref:Microsoft.AspNetCore.Http.IValueHttpResult%601>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult`1>
 
 Here's an example of a filter that uses one of these interfaces:
 
@@ -244,17 +269,17 @@ It also handles conditional request headers and range request headers when the a
 
 ### File result types
 
-In Minimal APIs, the most common and recommended way to create a file result is [`TypedResults.File`](xref:Microsoft.AspNetCore.Http.TypedResults.File%2A), which accepts a `byte[]` or `Stream` and returns a [`FileContentHttpResult`](xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult) or [`FileStreamHttpResult`](xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult).
+In Minimal APIs, the most common and recommended way to create a file result is [`TypedResults.File`](xref:Microsoft.AspNetCore.Http.TypedResults.File*), which accepts a `byte[]` or `Stream` and returns a [`FileContentHttpResult`](xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult) or [`FileStreamHttpResult`](xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult).
 
-Alternatives include [`TypedResults.Bytes`](xref:Microsoft.AspNetCore.Http.TypedResults.Bytes%2A) for an explicit byte-array helper,
-[`TypedResults.PhysicalFile`](xref:Microsoft.AspNetCore.Http.TypedResults.PhysicalFile%2A) for serving files by absolute path, or
-[`Results.File`](xref:Microsoft.AspNetCore.Http.Results.File%2A) / [`Results.Bytes`](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A) when you only need the `IResult` interface.
+Alternatives include [`TypedResults.Bytes`](xref:Microsoft.AspNetCore.Http.TypedResults.Bytes*) for an explicit byte-array helper,
+[`TypedResults.PhysicalFile`](xref:Microsoft.AspNetCore.Http.TypedResults.PhysicalFile*) for serving files by absolute path, or
+[`Results.File`](xref:Microsoft.AspNetCore.Http.Results.File*) / [`Results.Bytes`](xref:Microsoft.AspNetCore.Http.Results.Bytes*) when you only need the `IResult` interface.
 
 ASP.NET Core also provides [static files middleware](xref:fundamentals/static-files) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_file_types":::
 
-In controller-based APIs, the [`ControllerBase.File()`](xref:Microsoft.AspNetCore.Mvc.ControllerBase.File%2A) helper method accepts either a `byte[]` or `Stream` and returns the appropriate concrete result type ([`FileContentResult`](xref:Microsoft.AspNetCore.Mvc.FileContentResult), [`FileStreamResult`](xref:Microsoft.AspNetCore.Mvc.FileStreamResult)).
+In controller-based APIs, the [`ControllerBase.File()`](xref:Microsoft.AspNetCore.Mvc.ControllerBase.File*) helper method accepts either a `byte[]` or `Stream` and returns the appropriate concrete result type ([`FileContentResult`](xref:Microsoft.AspNetCore.Mvc.FileContentResult), [`FileStreamResult`](xref:Microsoft.AspNetCore.Mvc.FileStreamResult)).
 
 Alternatives include returning a [`VirtualFileResult`](xref:Microsoft.AspNetCore.Mvc.VirtualFileResult) for files relative to the web root, or a [`PhysicalFileResult`](xref:Microsoft.AspNetCore.Mvc.PhysicalFileResult) for files by absolute path, but these are less common as the static files middleware usually handles those scenarios.
 
@@ -265,7 +290,7 @@ Alternatives include returning a [`VirtualFileResult`](xref:Microsoft.AspNetCore
 File result types don't automatically contribute response metadata to the generated OpenAPI document.
 To get a proper response description in the OpenAPI document, you must specify this metadata explicitly.
 
-In Minimal APIs, use the [`Produces<TResponse>()`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A)
+In Minimal APIs, use the [`Produces<TResponse>()`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*)
 extension method to provide the OpenAPI metadata for the response. This metadata determines the status code, content type, and schema for the response in the OpenAPI document.
 For a file result, it's important to specify the content type, such as `application/pdf`, and to use an appropriate `TResponse` to get the desired schema.
 You can also specify the status code in the `Produces` extension method if it differs from the default of `200 OK`.
@@ -280,12 +305,36 @@ the CLR type of the content in the file result in order to get the desired OpenA
 
 In particular, there are three common schemas for file results:
 
-- **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`.
-  The recommended `TResponse` for this case is `Stream`. The framework has special logic to map
-  this type to the `binary` format in the OpenAPI schema.
-  <!-- Hope we can change this to IBinaryContent if #67145 is approved and implemented -->
-- **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
-- **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema.
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+<!-- UPDATE 12.0 - For the first bullet of the 11.0 or greater list, keep an eye on https://github.com/dotnet/aspnetcore/issues/67145 (IBinaryContent). -->
+
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
+* **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
+* **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
+
+The file result types themselves also map to the `type: string, format: binary` schema, so `TResponse` can match what the endpoint actually returns:
+
+```csharp
+app.MapGet("/report", () => TypedResults.File(File.OpenRead("report.pdf"), MediaTypeNames.Application.Pdf))
+   .Produces<FileStreamHttpResult>(contentType: MediaTypeNames.Application.Pdf);
+```
+
+<xref:Microsoft.AspNetCore.Http.HttpResults.FileContentHttpResult>, <xref:Microsoft.AspNetCore.Http.HttpResults.FileStreamHttpResult>, <xref:Microsoft.AspNetCore.Mvc.FileContentResult>, and <xref:Microsoft.AspNetCore.Mvc.FileStreamResult> all produce the binary schema. `Stream` continues to work and remains a good choice when the result type isn't known at the point where the metadata is declared.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute:
 
@@ -293,9 +342,26 @@ In a controller-based app, use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.
 
 As with Minimal APIs, you should choose the `Type` parameter of the `[Produces]` and `[ProducesResponseType]` attributes
 that corresponds to the desired OpenAPI schema for your file result responses:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
 * **binary content**: Use `FileContentResult` or `FileStreamResult` to get the `binary` format in the OpenAPI schema.
 * **text content**: Use `string` to get a simple `type: string` schema.
 * **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+* **binary content**: Use `Stream` to get the `binary` format in the OpenAPI schema.
+* **text content**: Use `string` to get a simple `type: string` schema.
+* **base64-encoded content**: Use `byte[]` to get the `byte` format in the OpenAPI schema, though this is uncommon for file results.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### File result support for conditional requests
 
@@ -385,7 +451,7 @@ By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization
 
 ### Configure JSON serialization options globally
 
-Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
+Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions*>. The following example includes public fields and formats JSON output.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
@@ -393,11 +459,11 @@ Since fields are included, the preceding code reads `NameField` and includes it 
 
 ### Configure JSON serialization options for an endpoint
 
-To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json%2A?displayProperty=nameWithType> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
+To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json*?displayProperty=nameWithType> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions" highlight="5-6,9":::
 
-As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
+As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync*> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
 

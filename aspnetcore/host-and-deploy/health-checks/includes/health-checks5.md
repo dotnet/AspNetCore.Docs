@@ -36,7 +36,7 @@ For many apps, a basic health probe configuration that reports the app's availab
 
 The basic configuration registers health check services and calls the health checks middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it can respond at the health endpoint URL. The default response writer writes the status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) as a plaintext response back to the client, indicating either a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy?displayProperty=nameWithType>, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded?displayProperty=nameWithType>, or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> status.
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
 
 In the sample app, the health check endpoint is created at `/health` (`BasicStartup.cs`):
 
@@ -76,7 +76,7 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
 
 ## Create health checks
 
-Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method returns a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> can also return optional key-value pairs.
+Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> method returns a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> can also return optional key-value pairs.
 
 The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
 
@@ -102,18 +102,18 @@ public class ExampleHealthCheck : IHealthCheck
 }
 ```
 
-If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status?displayProperty=nameWithType> set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus>, which is defined by <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> (see the [Register health check services](#register-health-check-services) section) and includes the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that initially caused the check failure. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
+If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status?displayProperty=nameWithType> set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus>, which is defined by <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> (see the [Register health check services](#register-health-check-services) section) and includes the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that initially caused the check failure. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
 
 ## Register health check services
 
-The `ExampleHealthCheck` type is added to health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices`:
+The `ExampleHealthCheck` type is added to health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddHealthChecks()
     .AddCheck<ExampleHealthCheck>("example_health_check");
 ```
 
-The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> overload shown in the following example sets the failure status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) to report when the health check reports a failure. If the failure status is set to `null` (default), <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs if the health check implementation honors the setting.
+The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> overload shown in the following example sets the failure status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) to report when the health check reports a failure. If the failure status is set to `null` (default), <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs if the health check implementation honors the setting.
 
 *Tags* can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
 
@@ -125,7 +125,7 @@ services.AddHealthChecks()
         tags: new[] { "example" });
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> can also execute a lambda function. In the following example, the health check name is specified as `Example` and the check always returns a healthy state:
+<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> can also execute a lambda function. In the following example, the health check name is specified as `Example` and the check always returns a healthy state:
 
 ```csharp
 services.AddHealthChecks()
@@ -133,7 +133,7 @@ services.AddHealthChecks()
         HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" });
 ```
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck%2A> to pass arguments to a health check implementation. In the following example, `TestHealthCheckWithArgs` accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> is called:
+Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck*> to pass arguments to a health check implementation. In the following example, `TestHealthCheckWithArgs` accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> is called:
 
 ```csharp
 private class TestHealthCheckWithArgs : IHealthCheck
@@ -204,7 +204,7 @@ app.UseEndpoints(endpoints =>
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md).
 
 ## Health check options
 
@@ -283,7 +283,7 @@ app.UseEndpoints(endpoints =>
 
 ### Customize output
 
-In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter%2A?displayProperty=nameWithType> option to a delegate for writing the response:
+In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter?displayProperty=nameWithType> option to a delegate for writing the response:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -324,7 +324,7 @@ Supply a valid database connection string in the `appsettings.json` file of the 
 
 :::code language="json" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/appsettings.json" highlight="3":::
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. The sample app calls the `AddSqlServer` method with the database's connection string (`DbHealthStartup.cs`):
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. The sample app calls the `AddSqlServer` method with the database's connection string (`DbHealthStartup.cs`):
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/DbHealthStartup.cs" id="snippet_ConfigureServices":::
 
@@ -432,7 +432,7 @@ The long-running background task is started by a [Hosted Service](xref:fundament
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/Services/StartupHostedService.cs" id="snippet1" highlight="23":::
 
-The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
+The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/LivenessProbeStartup.cs" id="snippet_ConfigureServices":::
 
@@ -502,7 +502,7 @@ The sample app demonstrates a memory health check with a custom response writer.
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/MemoryHealthCheck.cs" id="snippet1":::
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Instead of enabling the health check by passing it to <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A>, the `MemoryHealthCheck` is registered as a service. All <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> registered services are available to the health check services and middleware. We recommend registering health check services as Singleton services.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Instead of enabling the health check by passing it to <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*>, the `MemoryHealthCheck` is registered as a service. All <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> registered services are available to the health check services and middleware. We recommend registering health check services as Singleton services.
 
 In `CustomWriterStartup.cs` of the sample app:
 
@@ -561,7 +561,7 @@ The following `Properties/launchSettings.json` file in the sample app isn't incl
 }
 ```
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
 
 In the sample app, a call to `RequireHost` on the endpoint in `Startup.Configure` specifies the management port from configuration:
 
@@ -591,7 +591,7 @@ app.UseEndpoints(endpoints =>
 ```
 
 > [!NOTE]
-> You can avoid creating the `launchSettings.json` file in the sample app by setting the management port explicitly in code. In `Program.cs` where the <xref:Microsoft.Extensions.Hosting.HostBuilder> is created, add a call to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP%2A> and provide the app's management port endpoint. In `Configure` of `ManagementPortStartup.cs`, specify the management port with `RequireHost`:
+> You can avoid creating the `launchSettings.json` file in the sample app by setting the management port explicitly in code. In `Program.cs` where the <xref:Microsoft.Extensions.Hosting.HostBuilder> is created, add a call to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> and provide the app's management port endpoint. In `Configure` of `ManagementPortStartup.cs`, specify the management port with `RequireHost`:
 >
 > `Program.cs`:
 >
@@ -734,8 +734,8 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 In the sample app, `ReadinessPublisher` is an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation. The health check status is logged for each check at a log level of:
 
-* Information (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>) if the health checks status is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
-* Error (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>) if the status is either <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+* Information (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) if the health checks status is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
+* Error (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) if the status is either <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/ReadinessPublisher.cs" id="snippet_ReadinessPublisher" highlight="18-27":::
 
@@ -750,7 +750,7 @@ In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` r
 
 ## Restrict health checks with MapWhen
 
-Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to conditionally branch the request pipeline for health check endpoints.
+Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> to conditionally branch the request pipeline for health check endpoints.
 
 In the following example, `MapWhen` branches the request pipeline to activate health checks middleware if a GET request is received for the `api/HealthCheck` endpoint:
 
@@ -808,7 +808,7 @@ For many apps, a basic health probe configuration that reports the app's availab
 
 The basic configuration registers health check services and calls the health checks middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it can respond at the health endpoint URL. The default response writer writes the status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) as a plaintext response back to the client, indicating either a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy?displayProperty=nameWithType>, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded?displayProperty=nameWithType>, or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> status.
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
 
 In the sample app, the health check endpoint is created at `/health` (`BasicStartup.cs`):
 
@@ -848,9 +848,9 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
 
 ## Create health checks
 
-Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method returns a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> can also return optional key-value pairs.
+Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> method returns a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> can also return optional key-value pairs.
 
-The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the [`HealthCheckResult.Unhealthy`](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy%2A) status is returned.
+The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the [`HealthCheckResult.Unhealthy`](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status is returned.
 
 ```csharp
 public class ExampleHealthCheck : IHealthCheck
@@ -875,14 +875,14 @@ public class ExampleHealthCheck : IHealthCheck
 
 ## Register health check services
 
-The `ExampleHealthCheck` type is added to health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices`:
+The `ExampleHealthCheck` type is added to health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddHealthChecks()
     .AddCheck<ExampleHealthCheck>("example_health_check");
 ```
 
-The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> overload shown in the following example sets the failure status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) to report when the health check reports a failure. If the failure status is set to `null` (default), <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs if the health check implementation honors the setting.
+The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> overload shown in the following example sets the failure status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) to report when the health check reports a failure. If the failure status is set to `null` (default), <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs if the health check implementation honors the setting.
 
 *Tags* can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
 
@@ -894,7 +894,7 @@ services.AddHealthChecks()
         tags: new[] { "example" });
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> can also execute a lambda function. In the following example, the health check name is specified as `Example` and the check always returns a healthy state:
+<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> can also execute a lambda function. In the following example, the health check name is specified as `Example` and the check always returns a healthy state:
 
 ```csharp
 services.AddHealthChecks()
@@ -902,7 +902,7 @@ services.AddHealthChecks()
         HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" });
 ```
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck%2A> to pass arguments to a health check implementation. In the following example, `TestHealthCheckWithArgs` accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> is called:
+Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck*> to pass arguments to a health check implementation. In the following example, `TestHealthCheckWithArgs` accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> is called:
 
 ```csharp
 private class TestHealthCheckWithArgs : IHealthCheck
@@ -973,7 +973,7 @@ app.UseEndpoints(endpoints =>
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md).
 
 ## Health check options
 
@@ -1052,7 +1052,7 @@ app.UseEndpoints(endpoints =>
 
 ### Customize output
 
-In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter%2A?displayProperty=nameWithType> option to a delegate for writing the response:
+In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter?displayProperty=nameWithType> option to a delegate for writing the response:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -1093,7 +1093,7 @@ Supply a valid database connection string in the `appsettings.json` file of the 
 
 :::code language="json" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/appsettings.json" highlight="3":::
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. The sample app calls the `AddSqlServer` method with the database's connection string (`DbHealthStartup.cs`):
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. The sample app calls the `AddSqlServer` method with the database's connection string (`DbHealthStartup.cs`):
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/DbHealthStartup.cs" id="snippet_ConfigureServices":::
 
@@ -1201,7 +1201,7 @@ The long-running background task is started by a [Hosted Service](xref:fundament
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/Services/StartupHostedService.cs" id="snippet1" highlight="23":::
 
-The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
+The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/LivenessProbeStartup.cs" id="snippet_ConfigureServices":::
 
@@ -1271,7 +1271,7 @@ The sample app demonstrates a memory health check with a custom response writer.
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/MemoryHealthCheck.cs" id="snippet1":::
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Instead of enabling the health check by passing it to <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A>, the `MemoryHealthCheck` is registered as a service. All <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> registered services are available to the health check services and middleware. We recommend registering health check services as Singleton services.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Instead of enabling the health check by passing it to <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*>, the `MemoryHealthCheck` is registered as a service. All <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> registered services are available to the health check services and middleware. We recommend registering health check services as Singleton services.
 
 In `CustomWriterStartup.cs` of the sample app:
 
@@ -1330,7 +1330,7 @@ The following `Properties/launchSettings.json` file in the sample app isn't incl
 }
 ```
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
 
 In the sample app, a call to `RequireHost` on the endpoint in `Startup.Configure` specifies the management port from configuration:
 
@@ -1360,7 +1360,7 @@ app.UseEndpoints(endpoints =>
 ```
 
 > [!NOTE]
-> You can avoid creating the `launchSettings.json` file in the sample app by setting the management port explicitly in code. In `Program.cs` where the <xref:Microsoft.Extensions.Hosting.HostBuilder> is created, add a call to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP%2A> and provide the app's management port endpoint. In `Configure` of `ManagementPortStartup.cs`, specify the management port with `RequireHost`:
+> You can avoid creating the `launchSettings.json` file in the sample app by setting the management port explicitly in code. In `Program.cs` where the <xref:Microsoft.Extensions.Hosting.HostBuilder> is created, add a call to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> and provide the app's management port endpoint. In `Configure` of `ManagementPortStartup.cs`, specify the management port with `RequireHost`:
 >
 > `Program.cs`:
 >
@@ -1503,8 +1503,8 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 In the sample app, `ReadinessPublisher` is an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation. The health check status is logged for each check at a log level of:
 
-* Information (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>) if the health checks status is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
-* Error (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>) if the status is either <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+* Information (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) if the health checks status is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
+* Error (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) if the status is either <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/ReadinessPublisher.cs" id="snippet_ReadinessPublisher" highlight="18-27":::
 
@@ -1519,7 +1519,7 @@ In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` r
 
 ## Restrict health checks with MapWhen
 
-Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to conditionally branch the request pipeline for health check endpoints.
+Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> to conditionally branch the request pipeline for health check endpoints.
 
 In the following example, `MapWhen` branches the request pipeline to activate health checks middleware if a GET request is received for the `api/HealthCheck` endpoint:
 

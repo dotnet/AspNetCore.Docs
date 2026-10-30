@@ -284,7 +284,7 @@ The preceding command scaffolds the `TodoItemsController`.
 
 The generated code:
 
-* Marks the class with the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
+* Marks the class with the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see [Create web APIs with ASP.NET Core](../../../web-api/index.md).
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 The ASP.NET Core templates for:
@@ -314,7 +314,7 @@ The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
-The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. `HTTP 201` is the standard response for an `HTTP POST` method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
@@ -380,11 +380,11 @@ In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for th
 
 ## Return values
 
-The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](../../../web-api/action-return-types.md#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 `ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
-* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
+* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an `HTTP 200` response.
 
 ## The PutTodoItem method
@@ -416,7 +416,7 @@ Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response i
 There are many other tools that can be used to test web APIs, for example:
 
 * [Visual Studio Endpoints Explorer and .http files](xref:test/http-files)
-* [http-repl](xref:web-api/http-repl)
+* [http-repl](../../../web-api/http-repl/index.md)
 * [curl](https://terminalcheatsheet.com/guides/curl-rest-api). Swagger uses `curl` and shows the `curl` commands it submits.
 * [Fiddler](https://www.telerik.com/fiddler)
 
@@ -482,12 +482,12 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 For more information, see the following resources:
 
-* <xref:web-api/index>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
 * <xref:tutorials/min-web-api>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
-* <xref:web-api/action-return-types>
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)

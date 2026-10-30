@@ -138,7 +138,7 @@ The same component pattern supports asynchronous work:
 
 <!-- UPDATE 11.0 - API Browser cross-ref
 
-                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator%2A>
+                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*>
 -->
 
 * In an `OnValidationRequested` handler, call `e.AddAsyncValidator` to register form-level work. `EditForm` awaits it before invoking `OnValidSubmit` or `OnInvalidSubmit`.
@@ -236,7 +236,7 @@ If the WebAssembly form is prerendered, its client-side services must also be av
 
 ### Validate with a Minimal API
 
-Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> in the server project to validate supported endpoint parameters before the handler runs.
+Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> in the server project to validate supported endpoint parameters before the handler runs.
 
 :::moniker-end
 
@@ -287,7 +287,7 @@ app.MapPost("/api/starships/validate", (StarshipModel model) =>
 
 :::moniker range=">= aspnetcore-10.0"
 
-Automatic validation rejects invalid data annotations before the handler runs. <xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A> returns `400 Bad Request` with an `errors` property containing field-keyed messages. Successful validation returns `204 No Content`.
+Automatic validation rejects invalid data annotations before the handler runs. <xref:Microsoft.AspNetCore.Http.Results.ValidationProblem*> returns `400 Bad Request` with an `errors` property containing field-keyed messages. Successful validation returns `204 No Content`.
 
 :::moniker-end
 

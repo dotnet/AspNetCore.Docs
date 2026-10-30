@@ -98,13 +98,13 @@ When the path to the shared configuration isn't on the same machine as the IIS i
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the Data Protection key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -114,7 +114,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
   For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/dotnet/AspNetCore/blob/main/src/DataProtection/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a Registry key in the HKLM registry that's accessible only to the worker process account of the app's app pool. Keys are encrypted at rest using DPAPI with a machine-wide key.
 
-  In web farm scenarios, an app can be configured to use a UNC path to store its Data Protection key ring. By default, the keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account that the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates. Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. For more information, see <xref:security/data-protection/configuration/overview>.
+  In web farm scenarios, an app can be configured to use a UNC path to store its Data Protection key ring. By default, the keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account that the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates. Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. For more information, see [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md).
 
 * **Configure the IIS Application Pool to load the user profile**
 
@@ -129,16 +129,16 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
 * **Use the file system as a key ring store**
 
-  Adjust the app code to [use the file system as a key ring store](xref:security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
+  Adjust the app code to [use the file system as a key ring store](../../security/data-protection/configuration/overview.md). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
 
   When using IIS in a web farm:
 
   * Use a file share that all machines can access.
-  * Deploy an X509 certificate to each machine. Configure [Data Protection in code](xref:security/data-protection/configuration/overview).
+  * Deploy an X509 certificate to each machine. Configure [Data Protection in code](../../security/data-protection/configuration/overview.md).
 
 * **Set a machine-wide policy for Data Protection**
 
-  The Data Protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. For more information, see <xref:security/data-protection/introduction>.
+  The Data Protection system has limited support for setting a default [machine-wide policy](../../security/data-protection/configuration/machine-wide-policy.md) for all apps that consume the Data Protection APIs. For more information, see [ASP.NET Core Data Protection Overview](../../security/data-protection/introduction.md).
 
 ## IIS configuration
 
@@ -155,7 +155,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -177,7 +177,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -272,7 +272,7 @@ For more information, see the [icacls](/windows-server/administration/windows-co
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
   * TLS 1.2 or later connection.
 
-For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
+For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
 For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
 
@@ -445,7 +445,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
 **Windows Authentication configuration (Optional)**  
-For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
+For more information, see [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
  :::moniker range=">= aspnetcore-7.0"
 

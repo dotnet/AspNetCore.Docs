@@ -3,7 +3,6 @@ title: ASP.NET Core 2.1 MVC SameSite cookie sample
 description: ASP.NET Core 2.1 MVC SameSite cookie sample
 monikerRange: '>= aspnetcore-2.1 < aspnetcore-3.0'
 ms.date: 12/03/2019
-uid: security/samesite/mvc21
 ---
 
 # ASP.NET Core 2.1 MVC SameSite cookie sample
@@ -134,26 +133,23 @@ The helper function `CheckSameSite(HttpContext, CookieOptions)`:
 
 * Is called when cookies are appended to the request or deleted from the request.
 * Checks to see if the `SameSite` property is set to `None`.
-* If `SameSite` is set to `None` and the current user agent is known to not support the
-none attribute value. The check is done using the [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/samesite/snippets/SameSiteSupport.cs) class:
-  * Sets `SameSite` to not emit the value by setting the property to `(SameSiteMode)(-1)`
+* If `SameSite` is set to `None` and the current user agent is known to not support the none attribute value, sets `SameSite` to not emit the value by setting the property to `(SameSiteMode)(-1)`.
 
 ## Targeting .NET Framework
 
-ASP.NET Core and System.Web (ASP.NET 4.x) have independent implementations of SameSite. The SameSite KB patches for .NET Framework are not required if using ASP.NET Core nor does the System.Web SameSite minimum framework version requirement (.NET Framework 4.7.2) apply to ASP.NET Core.
+ASP.NET Core and System.Web (ASP.NET 4.x) have independent implementations of SameSite. The SameSite KB patches for .NET Framework aren't required if using ASP.NET Core. Also, the System.Web SameSite minimum framework version requirement (.NET Framework 4.7.2) apply to ASP.NET Core.
 
 ASP.NET Core on .NET requires updating NuGet package dependencies to get the appropriate fixes.
 
-To get the ASP.NET Core changes for .NET Framework ensure that you have a direct reference to the patched packages and 
-versions (2.1.14 or later 2.1 versions).
+To get the ASP.NET Core changes for .NET Framework, ensure that you have a direct reference to the patched packages and versions (2.1.14 or later 2.1 versions).
 
 ```xml
 <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.1.14" />
 <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.1.14" />
 ```
 
-### More Information
- 
-[Chrome Updates](https://www.chromium.org/updates/same-site)
-[ASP.NET Core SameSite Documentation](../samesite.md)
-[ASP.NET Core 2.1 SameSite Change Announcement](https://github.com/dotnet/aspnetcore/issues/8212)
+### More information
+
+* [Chrome Updates](https://www.chromium.org/updates/same-site)
+* [ASP.NET Core SameSite Documentation](../samesite.md)
+* [ASP.NET Core 2.1 SameSite Change Announcement](https://github.com/dotnet/aspnetcore/issues/8212)

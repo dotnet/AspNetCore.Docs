@@ -2,7 +2,6 @@
 title: Hash passwords in ASP.NET Core
 description: Learn how to hash passwords using the ASP.NET Core Data Protection APIs.
 ms.date: 05/15/2026
-uid: security/data-protection/consumer-apis/password-hashing
 
 # customer intent: As an ASP.NET developer, I want to use the Data Protection APIs, so I can hash passwords in my ASP.NET Core apps.
 ---

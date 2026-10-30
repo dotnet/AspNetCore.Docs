@@ -38,7 +38,7 @@ The primary interface is <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.Length> (in bytes)
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.LastModified> date
 
-You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream%2A?displayProperty=nameWithType> method.
+You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> method.
 
 The `FileProviderSample` sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
 
@@ -114,7 +114,7 @@ Additional overloads allow you to:
 
 | Overload | Description |
 | -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents%2A> to those resources under the provided path. |
+| `ManifestEmbeddedFileProvider(Assembly, String)` | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> to those resources under the provided path. |
 | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Accepts an optional `root` relative path parameter and a `lastModified` date (<xref:System.DateTimeOffset>) parameter. The `lastModified` date scopes the last modification date for the <xref:Microsoft.Extensions.FileProviders.IFileInfo> instances returned by the <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |
 | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
 
@@ -128,7 +128,7 @@ In the `FileProviderSample` sample app, a `PhysicalFileProvider` and a `Manifest
 
 ## Watch for changes
 
-The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch%2A?displayProperty=nameWithType> method provides a scenario to watch one or more files or directories for changes. The `Watch` method:
+The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?displayProperty=nameWithType> method provides a scenario to watch one or more files or directories for changes. The `Watch` method:
 
 * Accepts a file path string, which can use [glob patterns](#glob-patterns) to specify multiple files.
 * Returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>.
@@ -136,7 +136,7 @@ The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch%2A?displayPrope
 The resulting change token exposes:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: A property that can be inspected to determine if a change has occurred.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback%2A>: Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
 
 The `WatchConsole` sample app writes a message whenever a `.txt` file in the `TextFiles` directory is modified:
 

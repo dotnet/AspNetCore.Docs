@@ -71,11 +71,11 @@ builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
 
 :::zone-end
 
-<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A> registers a factory for the given context as a service in the app's service collection.
+<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*> registers a factory for the given context as a service in the app's service collection.
 
-<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional types of databases.
+<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer*> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite*> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional types of databases.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString%2A> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
+<xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
 
 For local development, configuration obtains the database connection string from the app settings file (`appsettings.json`). The `{CONNECTION STRING}` placeholder in the following example is the connection string:
 
@@ -267,7 +267,7 @@ Review the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 
 When an HTTP GET request is made for the `Edit` component page (for example at the relative URL: `/movies/edit?id=6`):
 
-* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method fetches the movie with an `Id` of `6` from the database and assigns it to the `Movie` property.
+* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> method fetches the movie with an `Id` of `6` from the database and assigns it to the `Movie` property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter specifies the top-level model object for the form. An edit context is constructed for the form using the assigned model.
 * The form is displayed with the values from the movie.
 
@@ -319,9 +319,9 @@ private async Task UpdateMovie()
 -->
 
 > [!IMPORTANT]
-> Due to a bug in the Blazor CRUD template, a `return` statement is missing from the `UpdateMovie` method after <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called. The purpose of calling `return` is to ensure the handler (the `UpdateMovie` method) selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>. We're in the process of updating the `Edit` component template, and this article will be updated when the scaffolder generates the correct code.
+> Due to a bug in the Blazor CRUD template, a `return` statement is missing from the `UpdateMovie` method after <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is called. The purpose of calling `return` is to ensure the handler (the `UpdateMovie` method) selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>. We're in the process of updating the `Edit` component template, and this article will be updated when the scaffolder generates the correct code.
 >
-> After the line that calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>, add a `return` statement:
+> After the line that calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>, add a `return` statement:
 >
 > ```csharp
 > return;

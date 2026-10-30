@@ -219,7 +219,7 @@ $.extend( $.fn, {
 // JQuery trim is deprecated, provide a trim method based on String.prototype.trim
 var trim = function( str ) {
 
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim#Polyfill
+	// https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/trim#Polyfill
 	return str.replace( /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "" );
 };
 

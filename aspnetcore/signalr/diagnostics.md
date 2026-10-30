@@ -287,6 +287,6 @@ Press p to pause, r to resume, q to quit.
 
 ## Related content
 
-* <xref:signalr/configuration>
+* [ASP.NET Core SignalR configuration](configuration.md)
 * <xref:signalr/javascript-client>
 * <xref:signalr/dotnet-client>

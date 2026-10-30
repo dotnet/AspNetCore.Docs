@@ -20,7 +20,7 @@ MFA requires at least two or more types of proof for an identity like something 
 
 Two-factor authentication (2FA) is like a subset of MFA, but the difference being that MFA can require two or more factors to prove the identity.
 
-2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.TwoFactorEnabled%2A?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
+2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1.TwoFactorEnabled?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
@@ -29,9 +29,9 @@ MFA using TOTP is supported by default when using ASP.NET Core Identity. This ap
 * Microsoft Authenticator
 * Google Authenticator
 
-For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes).
+For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](../../identity-enable-qrcodes.md).
 
-To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> for each required provider. For more information about available token providers, see the extension methods at <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions>.
+To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider*> for each required provider. For more information about available token providers, see the extension methods at <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions>.
 
 ### MFA passkeys/FIDO2 or passwordless
 
@@ -498,7 +498,7 @@ Alternatively, logging in using OTP with Identity:
 
 ## Additional resources
 
-* [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+* [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](../../identity-enable-qrcodes.md)
 * [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless)
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
@@ -535,7 +535,7 @@ MFA using TOTP is a supported implementation using ASP.NET Core Identity. This c
 
 See the following link for implementation details:
 
-[Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+[Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](../../identity-enable-qrcodes.md)
 
 ### MFA passkeys/FIDO2 or passwordless
 
@@ -1040,7 +1040,7 @@ Alternatively, logging in using OTP with Identity:
 
 ## Additional resources
 
-* [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+* [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](../../identity-enable-qrcodes.md)
 * [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless)
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)

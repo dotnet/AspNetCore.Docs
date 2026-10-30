@@ -34,15 +34,15 @@ For more information, see <xref:razor-pages/ui-class>.
 
 ## Identity UI library & scaffolding
 
-ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
+ASP.NET Core 2.1 provides [ASP.NET Core Identity](../security/authentication/identity.md) as a [Razor class library](xref:razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
 Apps that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
-For more information, see [Scaffold Identity in ASP.NET Core projects](xref:security/authentication/scaffold-identity).
+For more information, see [Scaffold Identity in ASP.NET Core projects](../security/authentication/scaffold-identity.md).
 
 ## HTTPS
 
-With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don't use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl).
+With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don't use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](../security/gdpr.md) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](../security/enforcing-ssl.md).
 
 ### On by default
 
@@ -57,7 +57,7 @@ Run `dotnet dev-certs https --trust` to trust the certificate.
 
 Web apps typically need to listen on both HTTP and HTTPS, but then redirect all HTTP traffic to HTTPS. In 2.1, specialized HTTPS redirection middleware that intelligently redirects based on the presence of configuration or bound server ports has been introduced.
 
-Use of HTTPS can be further enforced using [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol). HSTS instructs browsers to always access the site via HTTPS. ASP.NET Core 2.1 adds HSTS middleware that supports options for max age, subdomains, and the HSTS preload list.
+Use of HTTPS can be further enforced using [HTTP Strict Transport Security (HSTS) protocol](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol). HSTS instructs browsers to always access the site via HTTPS. ASP.NET Core 2.1 adds HSTS middleware that supports options for max age, subdomains, and the HSTS preload list.
 
 ### Configuration for production
 
@@ -68,7 +68,7 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](../security/gdpr.md). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -76,7 +76,7 @@ A new package is introduced that streamlines test creation and execution. The [M
 
 * Copies the dependency file (*\*.deps*) from the tested app into the test project's *bin* folder.
 * Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
-* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
+* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 
 The following test uses [xUnit](https://github.com/xunit/xunit) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
@@ -111,7 +111,7 @@ For more information, see the [Integration tests](xref:test/integration-tests) t
 
 ASP.NET Core 2.1 adds new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
-For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index).
+For more information, see [Build Web APIs with ASP.NET Core](../web-api/index.md).
 
 ## IHttpClientFactory
 
@@ -157,7 +157,7 @@ Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example o
 
 ## MVC compatibility version
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion%2A> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
 For more information, see <xref:mvc/compatibility-version>.
 

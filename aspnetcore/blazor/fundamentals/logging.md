@@ -53,7 +53,7 @@ using Microsoft.Extensions.Logging;
 
 Configure logging in client-side apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
 
-To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in the `Program` file with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
+To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel*?displayProperty=nameWithType> on the host builder in the `Program` file with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
 ```csharp
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
@@ -400,7 +400,7 @@ public static class CustomLoggerExtensions
 }
 ```
 
-In the `Program` file on the host builder, clear the existing provider by calling <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> and add the custom logging provider:
+In the `Program` file on the host builder, clear the existing provider by calling <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> and add the custom logging provider:
 
 ```csharp
 builder.Logging.ClearProviders().AddCustomLogger();
@@ -498,7 +498,7 @@ builder.Logging.AddConfiguration(
     builder.Configuration.GetSection("Logging"));
 ```
 
-The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
+The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration*?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
 Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format (the client app is named `LoggingTest`):
 
@@ -512,7 +512,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-The sample app uses standard ASP.NET Core <xref:Microsoft.Extensions.Logging.LoggerExtensions.BeginScope%2A> logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
+The sample app uses standard ASP.NET Core <xref:Microsoft.Extensions.Logging.LoggerExtensions.BeginScope*> logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
 
 ```csharp
 using (Logger.BeginScope("L1"))
@@ -680,7 +680,7 @@ For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fund
 Set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
-> As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
+> As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel*?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
 
 Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettings.json` file and in the `Development` environment app settings file. Use a typical less-verbose log level for the default, such as <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. The default app settings value is what is used in `Staging` and `Production` environments if no app settings files for those environments are present. Use a verbose log level in the `Development` environment app settings file, such as <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType>.
 
@@ -731,7 +731,7 @@ At the top of the Razor component file (`.razor`):
 > [!NOTE]
 > The following example is based on the demonstration in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging*?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 
 ```csharp
 protected override async Task OnInitializedAsync()

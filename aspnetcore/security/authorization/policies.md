@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to require authenticated users by default and create, select, and use authorization policies in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/18/2026
-uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
 
@@ -19,9 +18,9 @@ This article explains:
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
-A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/custom-authorization-policy-providers> documentation) generates policies dynamically instead of registering them at app startup.
+A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> ([Custom authorization policy providers in ASP.NET Core](custom-authorization-policy-providers.md) documentation) generates policies dynamically instead of registering them at app startup.
 
-[Role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
+[Role-based authorization](roles.md) and [claims-based authorization](claims.md) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 
 This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance that applies to all releases of ASP.NET Core, see the following resources after reading this article:
 
@@ -93,8 +92,8 @@ The authorization middleware combines the authorization metadata for an endpoint
 
 | Authorization metadata | Policy or behavior |
 | --- | --- |
-| None | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> is used, if it's configured. By default, the fallback policy is `null`, so authorization isn't required. |
-| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType> is used unless the endpoint also has an explicit `AuthorizationPolicy` instance. By default, the default policy requires an authenticated user. |
+| None | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> is used, if it's configured. By default, the fallback policy is `null`, so authorization isn't required. |
+| `[Authorize]` or `RequireAuthorization()` without a policy name | The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> is used unless the endpoint also has an explicit `AuthorizationPolicy` instance. By default, the default policy requires an authenticated user. |
 | `[Authorize(Policy = "{POLICY NAME}")]` or `RequireAuthorization("{POLICY NAME}")` | The named policy is used. |
 | `[Authorize(Roles = "{ROLES}")]` | A policy is built with the specified roles. The default policy isn't added for this authorization declaration. |
 | `RequireAuthorization(policy)` with an `AuthorizationPolicy` instance | The explicit policy is used. If explicit policy metadata is present, bare authorization data and authentication-scheme-only authorization data don't add the default policy. |
@@ -112,7 +111,7 @@ Requirements supplied as endpoint metadata through <xref:Microsoft.AspNetCore.Au
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-In ASP.NET Core 8.0 through 10.0, attributes that implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> are only enforced on Minimal API and routed endpoints. For version and hosting model support, see <xref:security/authorization/iard>.
+In ASP.NET Core 8.0 through 10.0, attributes that implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> are only enforced on Minimal API and routed endpoints. For version and hosting model support, see [Custom authorization policies with \`IAuthorizationRequirementData\`](custom-authorization-policies-with-iauthorizationrequirementdata.md).
 
 :::moniker-end
 
@@ -152,7 +151,7 @@ Consider the following `MinimumAgeRequirement` requirement, which describes a si
 
 :::moniker range=">= aspnetcore-7.0"
 
-A policy is registered as part of the authorization service configuration in the app's `Program` file by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old.
+A policy is registered as part of the authorization service configuration in the app's `Program` file by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy*?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old.
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
@@ -164,7 +163,7 @@ builder.Services.AddAuthorizationBuilder()
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-A policy is registered as part of the authorization service configuration in the app's `Program` file by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old:
+A policy is registered as part of the authorization service configuration in the app's `Program` file by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy*?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -178,7 +177,7 @@ builder.Services.AddAuthorization(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-A policy is registered as part of the authorization service configuration in `Startup.ConfigureServices` (`Startup.cs`) by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy%2A?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old:
+A policy is registered as part of the authorization service configuration in `Startup.ConfigureServices` (`Startup.cs`) by calling <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.AddPolicy*?displayProperty=nameWithType>. The following example creates an `AtLeast21` policy with a single requirement of a minimum age, and it sets the minimum age to 21 years old:
 
 ```csharp
 services.AddAuthorization(options =>
@@ -211,7 +210,7 @@ If multiple policies are applied, ***all*** policies must pass before access is 
 
 ## Apply policies to endpoints
 
-Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> with the policy name. For example:
+Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> with the policy name. For example:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/policies/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_requireAuthorization":::
 
@@ -224,7 +223,7 @@ For guidance on applying policies in Razor Pages and MVC apps, see the following
 
 ## Authorization service interface (`IAuthorizationService`)
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> is primarily responsible for determining if authorization is successful when an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> overload is called:
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> is primarily responsible for determining if authorization is successful when an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*?displayProperty=nameWithType> overload is called:
 
 * `AuthorizeAsync(ClaimsPrincipal user, object resource, IEnumerable<IAuthorizationRequirement> requirements)`: Checks if a user meets a specific set of authorization requirements for a specified resource.
 * `AuthorizeAsync(ClaimsPrincipal user, object resource, string policyName)`: Checks if a user meets a specific authorization policy for a specified resource.
@@ -233,7 +232,7 @@ If a resource isn't required for policy evaluation, `null` is passed for the res
 
 The preceding methods return an <xref:Microsoft.AspNetCore.Authorization.AuthorizationResult> wrapped in a <xref:System.Threading.Tasks.Task>.
 
-Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met via <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler.HandleAsync%2A?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class contains the authorization information used by the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> implementation. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods that serves as the mechanism for tracking whether authorization is successful. When <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A?displayProperty=nameWithType> is called with the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, the policy is met:
+Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met via <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler.HandleAsync*?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class contains the authorization information used by the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> implementation. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker interface with no methods that serves as the mechanism for tracking whether authorization is successful. When <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*?displayProperty=nameWithType> is called with the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, the policy is met:
 
 ```csharp
 context.Succeed(requirement);
@@ -243,7 +242,7 @@ context.Succeed(requirement);
 
 An authorization handler is responsible for the evaluation of a requirement's properties. The authorization handler evaluates the requirements against a provided <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> to determine if access is allowed.
 
-A requirement can have [multiple handlers](#why-would-i-want-multiple-handlers-for-a-requirement). A handler may inherit <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler%601>, where `TRequirement` is the requirement to handle. Alternatively, a handler may implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> directly to handle more than one type of requirement.
+A requirement can have [multiple handlers](#why-would-i-want-multiple-handlers-for-a-requirement). A handler may inherit <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandler`1>, where `TRequirement` is the requirement to handle. Alternatively, a handler may implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> directly to handle more than one type of requirement.
 
 ### Use a handler for one requirement
 
@@ -267,7 +266,7 @@ The following example shows a one-to-one relationship in which a minimum age han
 
 :::moniker-end
 
-The preceding code determines if the current user principal has a date of birth claim. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is considered successful. When authorization is successful, [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A) is invoked with the satisfied requirement as its sole parameter.
+The preceding code determines if the current user principal has a date of birth claim. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is considered successful. When authorization is successful, [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) is invoked with the satisfied requirement as its sole parameter.
 
 ### Use a handler for multiple requirements
 
@@ -285,7 +284,7 @@ The following example shows a one-to-many relationship in which a permission han
 
 :::moniker-end
 
-The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements%2A>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
+The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
 
 ### Handler registration
 
@@ -317,13 +316,13 @@ See the [implementation of the ASP.NET Core `AssertionRequirement` class](https:
 
 The `Handle` method in the [handler example](#use-a-handler-for-one-requirement) returns no value. How is a status of either success or failure indicated?
 
-* A handler indicates success by calling [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A), passing the successfully validated requirement (<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>).
+* A handler indicates success by calling [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*), passing the successfully validated requirement (<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>).
 
 * A handler isn't required to handle failures generally, as other handlers for the same requirement may succeed.
 
-* To guarantee failure, even if other requirement handlers succeed, call [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A).
+* To guarantee failure, even if other requirement handlers succeed, call [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*).
 
-If a handler calls [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed%2A) or [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A), all other handlers are still called. This allows requirements to produce side effects, such as logging, which takes place even if another handler successfully validates or fails on a requirement. When set to `false`, the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure%2A> property short-circuits the execution of handlers when [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail%2A) is called. <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure%2A> defaults to `true`, in which case all handlers are called.
+If a handler calls [`context.Succeed`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed*) or [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*), all other handlers are still called. This allows requirements to produce side effects, such as logging, which takes place even if another handler successfully validates or fails on a requirement. When set to `false`, the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure> property short-circuits the execution of handlers when [`context.Fail`](xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail*) is called. <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure> defaults to `true`, in which case all handlers are called.
 
 > [!NOTE]
 > Authorization handlers are called even if authentication fails. Also handlers can execute in any order, so do ***not*** depend on the order of calling handlers.
@@ -369,7 +368,7 @@ In the following example implementations:
 
 :::moniker-end
 
-Ensure that both handlers are [registered](xref:security/authorization/policies#handler-registration). If either of the handlers succeed when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
+Ensure that both handlers are [registered](policies.md#handler-registration). If either of the handlers succeed when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
 ## Use a `Func` to fulfill a policy
 
@@ -401,7 +400,7 @@ In the `Contoso.Security.API` project, set the `AllowedClients` placeholder (`{C
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthorizationExternalService/Contoso.Security.API/appsettings.json":::
 
-In a command shell opened to the `Contoso.API` project, use [`dotnet user-jwts`](xref:security/authentication/jwt) to generate an access token with an `appid` claim for the client app's ID, which was created in the preceding step (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`).
+In a command shell opened to the `Contoso.API` project, use [`dotnet user-jwts`](../authentication/jwt-authn.md) to generate an access token with an `appid` claim for the client app's ID, which was created in the preceding step (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`).
 
 ```dotnetcli
 dotnet user-jwts create --claim appid={GUID}
