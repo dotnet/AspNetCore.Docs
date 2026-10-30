@@ -3,7 +3,7 @@ title: Strategies for selecting language and culture in a localized ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 10/28/2026
+ms.date: 10/30/2026
 uid: fundamentals/localization/select-language-culture
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
@@ -112,8 +112,13 @@ var localizationOptions = new RequestLocalizationOptions()
 // Insert RouteDataRequestCultureProvider at the beginning so route data takes precedence
 localizationOptions.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
 
+app.UseRouting();
+
 app.UseRequestLocalization(localizationOptions);
 ```
+
+> [!NOTE]
+> When using `RouteDataRequestCultureProvider`, `app.UseRequestLocalization` must be called after `app.UseRouting` so that route data is available when resolving the culture.
 
 ### Localized route templates and fallback
 
