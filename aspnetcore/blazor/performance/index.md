@@ -12,7 +12,7 @@ uid: blazor/performance/index
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
 > [!NOTE]
-> The code examples in this node of articles adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later.
+> The code examples in this node of articles adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later.
 
 :::moniker range=">= aspnetcore-6.0"
 

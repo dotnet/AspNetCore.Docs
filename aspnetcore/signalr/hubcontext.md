@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use the ASP.NET Core SignalR HubContext service for sending notifications to clients from outside a hub.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/20/2023
-uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
 
@@ -53,7 +52,7 @@ app.Use(async (context, next) =>
 > Apps that need to map a user to the connection ID and persist that mapping can do one of the following:
 >
 > * Persist mapping of single or multiple connections as groups. See [Groups in SignalR](groups.md#groups-in-signalr) for more information.
-> * Retain connection and user information through a singleton service. See [Inject services into a hub](xref:signalr/hubs#inject-services-into-a-hub) for more information. The singleton service can use any storage method, such as:
+> * Retain connection and user information through a singleton service. See [Inject services into a hub](hubs.md#inject-services-into-a-hub) for more information. The singleton service can use any storage method, such as:
 >   * In-memory storage in a dictionary.
 >   * Permanent external storage.  For example, a database or Azure Table storage using the [Azure.Data.Tables NuGet package](https://www.nuget.org/packages/Azure.Data.Tables/).
 > * Pass the connection ID between clients.
@@ -102,7 +101,7 @@ public class ChatController : Controller
 }
 ```
 
-See [Use strongly typed hubs](xref:signalr/hubs#use-strongly-typed-hubs) for more information.
+See [Use strongly typed hubs](hubs.md#use-strongly-typed-hubs) for more information.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -144,7 +143,7 @@ This is useful when:
 
 ## Related content
 
-* [SignalR assemblies in shared framework](xref:migration/22-to-30#signalr-assemblies-in-shared-framework)
+* [SignalR assemblies in shared framework](../migration/22-to-30.md#signalr-assemblies-in-shared-framework)
 * <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/publish-to-azure-web-app>
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

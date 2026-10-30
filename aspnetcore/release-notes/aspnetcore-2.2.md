@@ -40,7 +40,7 @@ Health checks are used by a container orchestrator or load balancer to quickly d
 
 Health checks are exposed by an application as an HTTP endpoint used by monitoring systems. Health checks can be configured for a variety of real-time monitoring scenarios and monitoring systems. The health checks service integrates with the [BeatPulse project](https://github.com/Xabaril/BeatPulse). which makes it easier to add checks for dozens of popular systems and dependencies.
 
-For more information, see [Health checks in ASP.NET Core](xref:host-and-deploy/health-checks).
+For more information, see [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md).
 
 ## HTTP/2 in Kestrel
 
@@ -68,7 +68,7 @@ In earlier versions of ASP.NET Core, Kestrel options are configured by calling `
 
 In earlier versions of ASP.NET Core, IIS serves as a reverse proxy. In 2.2, the ASP.NET Core Module can boot the CoreCLR and host an app inside the IIS worker process (*w3wp.exe*). In-process hosting provides performance and diagnostic gains when running with IIS.
 
-For more information, see [in-process hosting for IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
+For more information, see [in-process hosting for IIS](../host-and-deploy/aspnet-core-module.md?view=aspnetcore-2.2#in-process-hosting-model).
 
 ## SignalR Java client
 

@@ -105,7 +105,7 @@ For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod
 
 ## Hosted deployment on Linux (Apache)
 
-Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in <xref:host-and-deploy/proxy-load-balancer>.
+Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).
 
 For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/app-base-path>.
 

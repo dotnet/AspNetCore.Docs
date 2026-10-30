@@ -31,7 +31,7 @@ State can be stored using several approaches. Each approach is described later i
 
 ## SignalR/Blazor Server and HTTP context-based state management
 
-[SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
+[SignalR](../signalr/introduction.md) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](../signalr/hubs.md). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
 
 ## Cookies
 
@@ -47,7 +47,7 @@ See the [European Union General Data Protection Regulations (GDPR)](https://ec.e
 
 Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data. The site should continue to function without the session data. Critical application data should be stored in the user database and cached in session only as a performance optimization.
 
-Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](xref:signalr/hubs) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
+Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](../signalr/hubs.md) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
 
 ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID. The cookie session ID:
 
@@ -305,7 +305,7 @@ State can be stored using several approaches. Each approach is described later i
 
 ## SignalR/Blazor Server and HTTP context-based state management
 
-[SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
+[SignalR](../signalr/introduction.md) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](../signalr/hubs.md). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
 
 ## Cookies
 
@@ -321,7 +321,7 @@ See the [European Union General Data Protection Regulations (GDPR)](https://ec.e
 
 Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data. The site should continue to function without the session data. Critical application data should be stored in the user database and cached in session only as a performance optimization.
 
-Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](xref:signalr/hubs) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
+Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](../signalr/hubs.md) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
 
 ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID. The cookie session ID:
 
@@ -553,12 +553,12 @@ The recommended approach to check for errors is to call `await feature.Session.C
 :::moniker range=">= aspnetcore-6.0"
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-<xref:host-and-deploy/web-farm>
+[Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end

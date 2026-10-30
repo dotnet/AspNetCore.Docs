@@ -3,7 +3,6 @@ title: Transform web.config
 description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 01/13/2020
-uid: host-and-deploy/iis/transform-webconfig
 ---
 # Transform web.config
 
@@ -127,7 +126,7 @@ dotnet publish --configuration Release /p:EnvironmentName=Production
 
 The MSBuild property for the environment is `$(EnvironmentName)`.
 
-When publishing from Visual Studio and using a publish profile, see <xref:host-and-deploy/visual-studio-publish-profiles#set-the-environment>.
+When publishing from Visual Studio and using a publish profile, see [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../visual-studio-publish-profiles.md#set-the-environment).
 
 The `ASPNETCORE_ENVIRONMENT` environment variable is automatically added to the *web.config* file when the environment name is specified.
 

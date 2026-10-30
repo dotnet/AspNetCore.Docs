@@ -14,7 +14,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   For more information, see the following resources:
 
-  * <xref:signalr/scale>
+  * [ASP.NET Core SignalR production hosting and scaling](../../scale.md)
   * [Redis documentation](https://redis.io/)
   * [Azure Redis Cache documentation](/azure/azure-cache-for-redis/)
 
@@ -109,7 +109,7 @@ In the SignalR app, include all of the possible Redis nodes using either of the 
 
 For more information, see the following resources:
 
-* <xref:signalr/scale>
+* [ASP.NET Core SignalR production hosting and scaling](../../scale.md)
 * [Redis documentation](https://redis.io/documentation)
 * [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/)
 * [Azure Redis Cache documentation](/azure/azure-cache-for-redis/)

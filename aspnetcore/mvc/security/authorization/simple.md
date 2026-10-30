@@ -78,4 +78,4 @@ For information on how to require authentication for all app users, see [Require
 ## Related content
 
 * [Simple authorization in ASP.NET Core](../../../security/authorization/simple.md)
-* <xref:razor-pages/security/authorization/simple>
+* [Simple authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/simple.md)

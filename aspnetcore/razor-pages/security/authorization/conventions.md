@@ -3,7 +3,6 @@ title: Razor Pages authorization conventions in ASP.NET Core
 description: Learn how to control access to pages with conventions that authorize users and allow anonymous users to access pages or folders of pages.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 03/25/2026
-uid: razor-pages/security/authorization/conventions
 ---
 # Razor Pages authorization conventions in ASP.NET Core
 
@@ -44,7 +43,7 @@ options.Conventions.AuthorizePage("/Contact", "AtLeast21");
 ```
 
 > [!NOTE]
-> An <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see <xref:razor-pages/filter#authorize-filter-attribute>.
+> An <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see [Filter methods for Razor Pages in ASP.NET Core](../../filter.md#authorize-filter-attribute).
 
 ## Require authorization to access a folder of pages
 
@@ -176,5 +175,5 @@ Requiring authorization on the Private page fails. When both the <xref:Microsoft
 
 ## Related content
 
-* <xref:razor-pages/razor-pages-conventions>
+* [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md)
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>

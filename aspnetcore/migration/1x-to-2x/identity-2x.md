@@ -2,7 +2,6 @@
 title: Migrate authentication and Identity to ASP.NET Core 2.0
 description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.0.
 ms.date: 06/21/2019
-uid: migration/1x-to-2x/identity-2x
 ---
 # Migrate authentication and Identity to ASP.NET Core 2.0
 
@@ -300,7 +299,7 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 There are two variations of Windows authentication:
 
 * The host only allows authenticated users. This variation isn't affected by the 2.0 changes.
-* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](xref:host-and-deploy/iis/index) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
+* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](../../host-and-deploy/iis/index.md) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
 
   For [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/), set the default scheme to `IISDefaults.AuthenticationScheme`:
 

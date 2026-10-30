@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 10/02/2026
-uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
 
 By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
-The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](xref:signalr/javascript-client) and the [.NET client](xref:signalr/dotnet-client), the Java client enables you to receive and send messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 or later.
+The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](javascript-client.md) and the [.NET client](dotnet-client.md), the Java client enables you to receive and send messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 or later.
 
 The sample Java console app referenced in this article uses the SignalR Java client.
 
@@ -75,7 +74,7 @@ With regard to Android SDK compatibility for the SignalR client features, consid
 
 * The SignalR Java client runs on Android API Level 16 or later.
 * Connecting through the Azure SignalR Service requires Android API Level 20 or later because the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) requires TLS 1.2 and doesn't support SHA-1-based cipher suites. Android [added support for SHA-256 (and above) cipher suites](https://developer.android.com/reference/javax/net/ssl/SSLSocket) in API Level 20.
-* When using [MessagePack](xref:signalr/messagepackhubprotocol) for the Java client, see [MessagePack considerations: Android device support](xref:signalr/messagepackhubprotocol#android-device-support).
+* When using [MessagePack](messagepackhubprotocol.md) for the Java client, see [MessagePack considerations: Android device support](messagepackhubprotocol.md#android-device-support).
 
 ## Configure bearer token authentication
 
@@ -140,7 +139,7 @@ This convention is necessary because we can not retrieve complete information ab
 ## Related content
 
 * [Java API reference](/java/api/com.microsoft.signalr?view=aspnet-signalr-java&preserve-view=true)
-* <xref:signalr/hubs>
-* <xref:signalr/javascript-client>
-* <xref:signalr/publish-to-azure-web-app>
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)

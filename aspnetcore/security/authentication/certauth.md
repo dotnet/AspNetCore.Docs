@@ -152,7 +152,7 @@ Complete the following steps in IIS Manager:
 
 ### Azure and custom web proxies
 
-For more information on how to configure the certificate forwarding middleware, see the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding).
+For more information on how to configure the certificate forwarding middleware, see the [host and deploy documentation](../../host-and-deploy/proxy-load-balancer.md#certificate-forwarding).
 
 ### Certificate authentication in Azure Web Apps
 
@@ -634,7 +634,7 @@ Complete the following steps in IIS Manager:
 
 ### Azure and custom web proxies
 
-See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
+See the [host and deploy documentation](../../host-and-deploy/proxy-load-balancer.md#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
 ### Use certificate authentication in Azure Web Apps
 
@@ -1029,7 +1029,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
     * IIS
-      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Hosting IIS](../../host-and-deploy/iis/index.md#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
@@ -1296,7 +1296,7 @@ Complete the following steps in IIS Manager:
 
 ### Azure and custom web proxies
 
-See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
+See the [host and deploy documentation](../../host-and-deploy/proxy-load-balancer.md#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
 ### Use certificate authentication in Azure Web Apps
 
@@ -1687,7 +1687,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
       * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/31097).
     * IIS
-      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Hosting IIS](../../host-and-deploy/iis/index.md#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 

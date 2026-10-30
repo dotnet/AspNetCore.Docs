@@ -215,7 +215,7 @@ For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../g
 
 The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) is a standard for reporting the health of gRPC server apps. An app exposes health checks as a gRPC service. They are typically used with an external monitoring service to check the status of an app.
 
-gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](../host-and-deploy/health-checks.md) are reported to callers.
 
 For more information, see [gRPC health checks in ASP.NET Core](../grpc/health-checks.md).
 
@@ -252,13 +252,13 @@ For more information, see [Configure a bearer token with the gRPC client factory
 
 The server now supports requesting a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler. Strongly-typed hubs can also return values from interface methods.
 
-For more information, see [Client results](xref:signalr/hubs?view=aspnetcore-7.0#client-results)
+For more information, see [Client results](../signalr/hubs.md?view=aspnetcore-7.0#client-results)
 
 ### Dependency injection for SignalR hub methods
 
 SignalR hub methods now support injecting services through dependency injection (DI).
 
-Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
+Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](../signalr/hubs.md?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
 
 ## Blazor
 
@@ -449,7 +449,7 @@ When .NET 6 was released last year, the HTML markup of the `_Host` page (`Pages/
 
 In .NET 7, the HTML markup has been recombined with the `_Host` page in project templates.
 
-Several additional changes were made to the Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see <xref:migration/60-to-70#blazor>.
+Several additional changes were made to the Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see [Migrate from ASP.NET Core in .NET 6 to .NET 7](../migration/60-to-70.md#blazor).
 
 ### Experimental `QuickGrid` component
 
@@ -556,7 +556,7 @@ This release:
 * Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
 * Improves Kestrel's support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
 * Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
-* Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](xref:host-and-deploy/iis/modules).
+* Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](../host-and-deploy/iis/modules.md).
 
 The following example shows how to use an SNI callback to resolve TLS options:
 
@@ -617,9 +617,9 @@ The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/H
 
 ### Shadow copying in IIS
 
-Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
+Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](../host-and-deploy/aspnet-core-module.md) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](../host-and-deploy/app-offline.md).
 
-For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy).
+For more information, see [Shadow copying in IIS](../host-and-deploy/iis/advanced.md?view=aspnetcore-7.0#shadow-copy).
 
 ## Miscellaneous
 

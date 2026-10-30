@@ -26,7 +26,7 @@ For more information, see the following articles:
 
 * <xref:blazor/fundamentals/index?view=aspnetcore-8.0&preserve-view=true>: New sections on rendering and static/interactive concepts appear at the top of the article.
 * <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>
-* **Migration coverage**: <xref:migration/70-to-80#blazor>
+* **Migration coverage**: [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#blazor)
 
 Examples throughout the Blazor documentation have been updated for use in Blazor Web Apps. Blazor Server examples remain in content versioned for .NET 7 or earlier.
 
@@ -321,7 +321,7 @@ For more information, see the following resources:
 
 Routing and deep linking for Blazor Server with Yarp work correctly in .NET 8.
 
-For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-routing-workaround>.
+For more information, see [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#drop-blazor-server-with-yarp-routing-workaround).
 
 ### Multiple Blazor Web Apps per server project
 
@@ -744,7 +744,7 @@ For more information, see <!--keep--> [ITlsHandshakeFeature.HostName](https://so
 
 ### IHttpSysRequestTimingFeature
 
-<!--keep--> [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests when using the [HTTP.sys server](xref:fundamentals/servers/httpsys) and [In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8):
+<!--keep--> [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests when using the [HTTP.sys server](xref:fundamentals/servers/httpsys) and [In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8):
 
 * Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
 * The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
@@ -755,7 +755,7 @@ For more information, see <!--keep--> [ITlsHandshakeFeature.HostName](https://so
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
-For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
+For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 ### HTTP.sys: opt-in support for kernel-mode response buffering
 

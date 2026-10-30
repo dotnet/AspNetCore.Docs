@@ -3,7 +3,6 @@ title: Razor Pages route and app conventions in ASP.NET Core
 description: Discover how route and app model provider conventions help you control page routing, discovery, and processing.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/07/2020
-uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
 
@@ -11,7 +10,7 @@ uid: razor-pages/razor-pages-conventions
 
 Learn how to use page [route and app model provider conventions](xref:mvc/controllers/application-model#conventions) to control page routing, discovery, and processing in Razor Pages apps.
 
-To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](xref:razor-pages/index#custom-routes).
+To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
 
@@ -280,12 +279,12 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
 
-The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](filter.md).
 
 ## Additional resources
 
 * [Razor Pages Routing](https://www.learnrazorpages.com/razor-pages/routing)
-* <xref:razor-pages/security/authorization/conventions>
+* [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
 :::moniker-end
@@ -296,7 +295,7 @@ Learn how to use page [route and app model provider conventions](xref:mvc/contro
 
 When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
 
-To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](xref:razor-pages/index#custom-routes).
+To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
 
@@ -562,11 +561,11 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
 
-The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](filter.md).
 
 ## Additional resources
 
-* <xref:razor-pages/security/authorization/conventions>
+* [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
 :::moniker-end
@@ -577,7 +576,7 @@ Learn how to use page [route and app model provider conventions](xref:mvc/contro
 
 When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
 
-To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](xref:razor-pages/index#custom-routes).
+To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:fundamentals/routing#reserved-routing-names).
 
@@ -818,11 +817,11 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
 
-The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](filter.md).
 
 ## Additional resources
 
-* <xref:razor-pages/security/authorization/conventions>
+* [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
 :::moniker-end

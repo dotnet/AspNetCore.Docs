@@ -13,7 +13,7 @@ When an identity is created for an app user upon signing into an app, the identi
 This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razor Pages guidance, see the following resources:
 
 * [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
-* <xref:razor-pages/security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/claims.md)
 
 ## Sample app
 

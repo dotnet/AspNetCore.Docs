@@ -28,7 +28,7 @@ If authorization rule enforcement and the security of data and code must be guar
 
 :::moniker-end
 
-[Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
+[Razor Pages authorization conventions](../../razor-pages/security/authorization/conventions.md) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -39,7 +39,7 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 :::moniker-end
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from examples in this article.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from examples in this article.
 
 ## Securely maintain sensitive data and credentials
 
@@ -144,7 +144,7 @@ Blazor differs from traditional server-rendered web apps that make new HTTP requ
 > Implementing a custom `NavigationManager` to achieve authentication validation during navigation isn't recommended. If the app must execute custom authentication state logic during navigation, use a [custom `AuthenticationStateProvider`](xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider).
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the examples in this article.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the examples in this article.
 
 The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
@@ -1811,7 +1811,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
   * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/entra/identity-platform/quickstart-v2-aspnet-core-webapp)
   * [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/entra/identity-platform/quickstart-v2-aspnet-core-web-api)
-  * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+  * [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md): Includes guidance on:
     * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
     * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * Microsoft identity platform documentation
@@ -1837,7 +1837,7 @@ PII refers any information relating to an identified or identifiable natural per
   * [Authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
   * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/entra/identity-platform/quickstart-v2-aspnet-core-webapp)
   * [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/entra/identity-platform/quickstart-v2-aspnet-core-web-api)
-  * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+  * [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md): Includes guidance on:
     * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
     * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * Microsoft identity platform documentation

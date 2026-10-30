@@ -54,4 +54,4 @@ A critical aspect of server-side Blazor security is that the user attached to a 
 
 :::moniker-end
 
-For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and <xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core SignalR, see <xref:signalr/httpcontext>.
+For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and <xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core SignalR, see [IHttpContextAccessor/HttpContext in ASP.NET Core SignalR](../../signalr/httpcontext.md).

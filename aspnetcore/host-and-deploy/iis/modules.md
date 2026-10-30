@@ -3,7 +3,6 @@ title: IIS modules with ASP.NET Core
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 01/13/2020
-uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
 
@@ -51,7 +50,7 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **WebDav**<br>`WebDAV`                                                                           | No  | |
 | **Windows Authentication**<br>`WindowsAuthenticationModule`                                      | Yes | |
 
-&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).
+&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](../directory-structure.md).
 
 ## Managed modules
 

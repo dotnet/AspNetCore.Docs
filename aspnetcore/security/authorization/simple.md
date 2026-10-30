@@ -11,7 +11,7 @@ Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](x
 
 This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For Razor Pages and MVC guidance, see the following resources after reading this article:
 
-* <xref:razor-pages/security/authorization/simple>
+* [Simple authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/simple.md)
 * <xref:mvc/security/authorization/simple>
 
 ## `[Authorize]` attribute
@@ -80,5 +80,5 @@ For server-side apps where most endpoints require authentication, see [Require g
 
 ## Related content
 
-* <xref:razor-pages/security/authorization/simple>
+* [Simple authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/simple.md)
 * <xref:mvc/security/authorization/simple>

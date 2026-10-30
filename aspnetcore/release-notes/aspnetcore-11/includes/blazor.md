@@ -75,7 +75,7 @@ Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render 
 
 The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](xref:blazor/js-interop/javascript-location?view=aspnetcore-11.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy?view=aspnetcore-11.0) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
-To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see <xref:migration/100-to-110>.
+To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md).
 
 ### `NavigateTo` and `NavLink` support for relative navigation
 
@@ -789,7 +789,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 For more information, see the following resources:
 
-* <xref:migration/100-to-110>
+* [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md)
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
@@ -1323,6 +1323,6 @@ Passing a thread to `UIAgent` enables new completed turns to be persisted but do
 
 For more information, see the following resources:
 
-* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
+* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](../../../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
 * <xref:fundamentals/validation?view=aspnetcore-11.0#nested-objects-and-collections>
 * <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>

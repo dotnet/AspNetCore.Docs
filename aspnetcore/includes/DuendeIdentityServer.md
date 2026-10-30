@@ -15,6 +15,6 @@ Duende IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET C
 * Federation Gateway
 
 > [!IMPORTANT]
-> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende IdentityServer. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
+> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende IdentityServer. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#project-templates-use-duende-identity-server).
 
 For more information, see the [Duende IdentityServer documentation (Duende Software website)](https://docs.duendesoftware.com).

@@ -6,7 +6,6 @@ ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/10/2025
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/owin
 ---
 
 # OWIN integration
@@ -175,7 +174,7 @@ authManager.SignOut();
 
 ### <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>
 
-If code is expecting to use <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>, then see <xref:migration/fx-to-core/areas/claimsprincipal-current> for options to enable setting that property.
+If code is expecting to use <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>, then see [Migrate from static ClaimsPrincipal access](claimsprincipal-current.md) for options to enable setting that property.
 
 ## Migrating ASP.NET Framework Identity
 
@@ -363,6 +362,6 @@ When incorporating OWIN middleware into your ASP.NET Core application:
 
 ## Related content
 
-* <xref:migration/fx-to-core/areas/authentication>
+* [ASP.NET Framework to Core Authentication Migration](authentication.md)
 * <xref:fundamentals/middleware/index>
 * [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md)

@@ -11,9 +11,9 @@ uid: blazor/fundamentals/signalr
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation, especially [ASP.NET Core SignalR configuration](../../signalr/configuration.md#configure-server-options).
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the [Overview of ASP.NET Core SignalR](../../signalr/introduction.md) area of the documentation, especially [ASP.NET Core SignalR configuration](../../signalr/configuration.md#configure-server-options).
 
-Server-side apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to server-side apps.
+Server-side apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](../../signalr/publish-to-azure-web-app.md) apply to server-side apps.
 
 Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](../../signalr/security.md). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
 
@@ -195,7 +195,7 @@ To resolve the problem, use ***either*** of the following approaches:
 ## Additional client-side resources
 
 * [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
-* <xref:signalr/introduction>
+* [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -211,7 +211,7 @@ For more information on session affinity with Azure App Service hosting, see <xr
 
 ## Azure SignalR Service
 
-The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+The optional [Azure SignalR Service](../../signalr/scale.md#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 The service isn't required for Blazor apps hosted in Azure App Service or Azure Container Apps but can be helpful in other hosting environments:
 
@@ -418,7 +418,7 @@ When SignalR logging isn't set to [Debug](xref:Microsoft.Extensions.Logging.LogL
 
 > Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
 
-When [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) is set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), server-side logging surfaces an <xref:System.IO.InvalidDataException> for a message size error.
+When [SignalR server-side logging](../../signalr/diagnostics.md#server-side-logging) is set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), server-side logging surfaces an <xref:System.IO.InvalidDataException> for a message size error.
 
 `appsettings.Development.json`:
 
@@ -1895,7 +1895,7 @@ The following example:
 ## Additional server-side resources
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
-* <xref:signalr/introduction>
+* [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * Server-side security documentation
   * <xref:blazor/security/index>
@@ -1906,5 +1906,5 @@ The following example:
 * [Server-side reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
+* [Publish an ASP.NET Core SignalR app to Azure App Service](../../signalr/publish-to-azure-web-app.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

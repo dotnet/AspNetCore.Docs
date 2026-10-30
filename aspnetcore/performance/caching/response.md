@@ -116,7 +116,7 @@ Cache-Control: no-store,no-cache
 Pragma: no-cache
 ```
 
-To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add the attribute with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](xref:razor-pages/filter).
+To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add the attribute with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](../../razor-pages/filter.md).
 
 In an MVC app, add the following code:
 
@@ -315,7 +315,7 @@ Cache-Control: no-store,no-cache
 Pragma: no-cache
 ```
 
-To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add it with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](xref:razor-pages/filter).
+To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add it with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](../../razor-pages/filter.md).
 
 In an MVC app:
 

@@ -495,7 +495,7 @@ setx Logging__LogLevel__Microsoft Information /M
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), follow the guidance in [Configure an App Service app](/azure/app-service/configure-common?tabs=portal#configure-app-settings) to set logging environment variables.
 
-For more information, see [Azure Apps: Override app configuration using the Azure portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+For more information, see [Azure Apps: Override app configuration using the Azure portal](../../host-and-deploy/azure-apps/index.md#override-app-configuration-using-the-azure-portal).
 
 ## Log category
 
@@ -847,7 +847,7 @@ The following logging providers are provided by Microsoft, but not as part of th
 
 ASP.NET Core doesn't include a logging provider for writing logs to files. To write logs to files from an ASP.NET Core app, consider using a [third-party logging provider](#third-party-logging-providers).
 
-For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 ### `Console`
 

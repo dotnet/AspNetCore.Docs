@@ -3,7 +3,6 @@ title: Host ASP.NET Core in a web farm
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 01/13/2020
-uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
 
@@ -22,13 +21,13 @@ This topic describes configuration and dependencies for ASP.NET core apps hosted
 
 ## General configuration
 
-<xref:host-and-deploy/index>  
-Learn how to set up hosting environments and deploy ASP.NET Core apps. Configure a process manager on each node of the web farm to automate app starts and restarts. Each node requires the ASP.NET Core runtime. For more information, see the topics in the [Host and deploy](xref:host-and-deploy/index) area of the documentation.
+[Host and deploy ASP.NET Core](index.md)  
+Learn how to set up hosting environments and deploy ASP.NET Core apps. Configure a process manager on each node of the web farm to automate app starts and restarts. Each node requires the ASP.NET Core runtime. For more information, see the topics in the [Host and deploy](index.md) area of the documentation.
 
-<xref:host-and-deploy/proxy-load-balancer>  
+[Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md)  
 Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 
-<xref:host-and-deploy/azure-apps/index>  
+[Deploy ASP.NET Core apps to Azure App Service](azure-apps/index.md)  
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core. App Service is a fully managed platform that provides automatic scaling, load balancing, patching, and continuous deployment.
 
 ## App data
@@ -85,5 +84,5 @@ If the web farm apps are capable of responding to requests, obtain request, conn
 ## Related content
 
 * [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows): Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md)
  

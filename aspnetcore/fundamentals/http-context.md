@@ -11,7 +11,7 @@ uid: fundamentals/httpcontext
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, [SignalR](xref:signalr/introduction), gRPC, and more.
+The <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, [SignalR](../signalr/introduction.md), gRPC, and more.
 
 For information about using `HttpContext` with an HTTP request and response, see <xref:fundamentals/use-httpcontext>.
 
@@ -268,5 +268,5 @@ If you want to access the `IHttpContextAccessor` or `HttpContext` in Razor compo
 ## Related content
 
 - [Use HttpContext in ASP.NET Core](xref:fundamentals/use-httpcontext)
-- [Razor Pages architecture and concepts in ASP.NET Core](xref:razor-pages/index)
+- [Razor Pages architecture and concepts in ASP.NET Core](../razor-pages/index.md)
 - [gRPC services with ASP.NET Core](../grpc/aspnetcore.md)

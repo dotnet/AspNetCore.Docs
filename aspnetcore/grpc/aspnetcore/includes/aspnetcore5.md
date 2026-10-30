@@ -103,9 +103,9 @@ For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpo
 
 ## IIS
 
-[Internet Information Services (IIS)](xref:host-and-deploy/iis/index) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core. .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later are required to host gRPC services with IIS.
+[Internet Information Services (IIS)](../../../host-and-deploy/iis/index.md) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core. .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later are required to host gRPC services with IIS.
 
-IIS must be configured to use TLS and HTTP/2. For more information, see <xref:host-and-deploy/iis/protocols>.
+IIS must be configured to use TLS and HTTP/2. For more information, see [Use ASP.NET Core with HTTP/2 on IIS](../../../host-and-deploy/iis/protocols.md).
 
 ## HTTP.sys
 

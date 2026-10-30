@@ -13,12 +13,12 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 
 This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Related content](#related-content) section. For Razor Pages and MVC guidance, see the following resources:
 
-* <xref:razor-pages/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/roles.md)
 * <xref:mvc/security/authorization/roles>
 
 :::moniker range="< aspnetcore-6.0"
 
-Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor Web Apps were released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
+Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor Web Apps were released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](../../razor-pages/security/authorization/roles.md) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
 
 :::moniker-end
 
@@ -125,7 +125,7 @@ builder.Services.AddAuthorizationCore();
 Role-based authorization checks:
 
 * Are declarative and specify roles that the current user must be a member of to access the requested resource.
-* Are applied to Razor components (examples in this article), [Razor Pages](xref:razor-pages/security/authorization/roles), or [MVC controllers or actions within a controller](xref:mvc/security/authorization/roles).
+* Are applied to Razor components (examples in this article), [Razor Pages](../../razor-pages/security/authorization/roles.md), or [MVC controllers or actions within a controller](xref:mvc/security/authorization/roles).
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](xref:blazor/security/index#authorizeview-component)) supports *role-based* authorization. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
 
@@ -503,6 +503,6 @@ An approach similar to the preceding example for retrieving SID group claims can
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:razor-pages/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/roles.md)
 * <xref:mvc/security/authorization/roles>
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

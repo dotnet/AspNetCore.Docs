@@ -265,7 +265,7 @@ The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FR
 
 For more information, see the following articles:
 
-* ASP.NET Core app hosting and deployment: <xref:host-and-deploy/index>
+* ASP.NET Core app hosting and deployment: [Host and deploy ASP.NET Core](../../../host-and-deploy/index.md)
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
@@ -294,7 +294,7 @@ In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifi
 Publish the **:::no-loc text="Server":::** project in the **Release** configuration.
 
 > [!NOTE]
-> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, not with the `-r|--runtime` option.
+> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../../../host-and-deploy/visual-studio-publish-profiles.md#publish-profiles) article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, not with the `-r|--runtime` option.
 
 ### .NET CLI
 
@@ -334,7 +334,7 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** 
 For more information, see the following articles:
 
 * [.NET application publishing overview](/dotnet/core/deploying/)
-* <xref:host-and-deploy/index>
+* [Host and deploy ASP.NET Core](../../../host-and-deploy/index.md)
 
 :::moniker-end
 

@@ -6,7 +6,6 @@ ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/10/2025
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/hosting
 ---
 
 # ASP.NET Framework HttpApplicationHost

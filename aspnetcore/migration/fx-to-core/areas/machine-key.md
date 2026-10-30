@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/10/2025
 ms.reviewer: tasou
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/machine-key
 ---
 
 # Migrate ASP.NET machineKey by using System.Web adapters

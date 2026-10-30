@@ -15,7 +15,7 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razor Pages guidance, see the following resources:
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:razor-pages/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/roles.md)
 
 ## Add Role services to Identity
 
@@ -365,5 +365,5 @@ An approach similar to the preceding example for retrieving SID group claims can
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:razor-pages/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/roles.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

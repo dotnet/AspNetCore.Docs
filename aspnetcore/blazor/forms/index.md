@@ -463,7 +463,7 @@ public ShipDescription ShipDescription { get; set; } = new ShipDescription();
 
 :::moniker range="< aspnetcore-6.0"
 
-Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see <xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis>.
+Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
 If using C# 9 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
 

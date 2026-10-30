@@ -4,7 +4,6 @@ description: Learn how to stream data between the client and the server.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-js
 ms.date: 10/27/2026
-uid: signalr/streaming
 ---
 # Use streaming in ASP.NET Core SignalR
 
@@ -217,7 +216,7 @@ To end the stream, call `stream.onComplete()`.
 
 ## Related content
 
-* [Hubs](xref:signalr/hubs)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* [Hubs](hubs.md)
+* [.NET client](dotnet-client.md)
+* [JavaScript client](javascript-client.md)
+* [Publish to Azure](publish-to-azure-web-app.md)

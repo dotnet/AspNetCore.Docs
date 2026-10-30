@@ -3,7 +3,6 @@ title: Differences between SignalR and ASP.NET Core SignalR
 description: Differences between SignalR and ASP.NET Core SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 11/21/2019
-uid: signalr/version-differences
 ---
 
 # Differences between ASP.NET SignalR and ASP.NET Core SignalR
@@ -50,7 +49,7 @@ In ASP.NET SignalR:
 
 In ASP.NET Core SignalR:
 
-* Automatic reconnects are opt-in with both the [.NET client](xref:signalr/dotnet-client#automatically-reconnect) and the [JavaScript client](xref:signalr/javascript-client#automatically-reconnect):
+* Automatic reconnects are opt-in with both the [.NET client](dotnet-client.md#automatically-reconnect) and the [JavaScript client](javascript-client.md#automatically-reconnect):
 
 ```csharp
 HubConnection connection = new HubConnectionBuilder()
@@ -76,7 +75,7 @@ Prior to ASP.NET Core 3.0, SignalR doesn't support automatic reconnects. If the 
 
 ### Protocol support
 
-ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
+ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [MessagePack](messagepackhubprotocol.md). Additionally, custom protocols can be created.
 
 ### Transports
 
@@ -130,7 +129,7 @@ In ASP.NET Core SignalR, the connection model has been simplified. Connections a
 
 ### Streaming
 
-ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from the hub to the client.
+ASP.NET Core SignalR now supports [streaming data](streaming.md) from the hub to the client.
 
 ### State
 
@@ -142,7 +141,7 @@ In ASP.NET Core SignalR, the [PersistentConnection](/previous-versions/aspnet/jj
 
 ### GlobalHost
 
-ASP.NET Core has dependency injection (DI) built into the framework. Services can use DI to access the [HubContext](xref:signalr/hubcontext). The `GlobalHost` object that is used in ASP.NET SignalR to get a `HubContext` doesn't exist in ASP.NET Core SignalR.
+ASP.NET Core has dependency injection (DI) built into the framework. Services can use DI to access the [HubContext](hubcontext.md). The `GlobalHost` object that is used in ASP.NET SignalR to get a `HubContext` doesn't exist in ASP.NET Core SignalR.
 
 ### HubPipeline
 
@@ -152,7 +151,7 @@ ASP.NET Core SignalR doesn't have support for `HubPipeline` modules.
 
 ### TypeScript
 
-The ASP.NET Core SignalR client is written in [TypeScript](https://www.typescriptlang.org/). You can write in JavaScript or TypeScript when using the [JavaScript client](xref:signalr/javascript-client).
+The ASP.NET Core SignalR client is written in [TypeScript](https://www.typescriptlang.org/). You can write in JavaScript or TypeScript when using the [JavaScript client](javascript-client.md).
 
 ### The JavaScript client is hosted at npm
 
@@ -185,7 +184,7 @@ The dependency on jQuery has been removed, however projects can still use jQuery
 ### Internet Explorer support
 
 ASP.NET Core SignalR doesn't support Microsoft Internet Explorer, whereas ASP.NET SignalR supports Microsoft Internet Explorer 8 or later.
-For more information, see <xref:signalr/supported-platforms#javascript-client>.
+For more information, see [ASP.NET Core SignalR supported platforms](supported-platforms.md#javascript-client).
 
 ### JavaScript client method syntax
 
@@ -270,11 +269,11 @@ ASP.NET SignalR supports SQL Server and Redis. ASP.NET Core SignalR supports Azu
 ### ASP.NET Core
 
 * [Azure SignalR Service](/azure/azure-signalr/)
-* [Redis Backplane](xref:signalr/redis-backplane)
+* [Redis Backplane](redis-backplane.md)
 
 ## Related content
 
-* [Hubs](xref:signalr/hubs)
-* [JavaScript client](xref:signalr/javascript-client)
-* [.NET client](xref:signalr/dotnet-client)
-* [Supported platforms](xref:signalr/supported-platforms)
+* [Hubs](hubs.md)
+* [JavaScript client](javascript-client.md)
+* [.NET client](dotnet-client.md)
+* [Supported platforms](supported-platforms.md)

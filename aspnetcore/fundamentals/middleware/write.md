@@ -170,7 +170,7 @@ The following code calls the middleware from `Startup.Configure`:
 * [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
-* <xref:migration/fx-to-core/areas/http-modules>
+* [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>
@@ -183,7 +183,7 @@ The following code calls the middleware from `Startup.Configure`:
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
-* <xref:migration/fx-to-core/areas/http-modules>
+* [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>

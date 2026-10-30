@@ -47,7 +47,7 @@ Projects created with no authentication:
 
 Specify Windows Authentication for new web apps in the .NET CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
 
-If you select Windows Authentication, the app uses the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
+If you select Windows Authentication, the app uses the [Windows Authentication IIS module](../../host-and-deploy/iis/modules.md). Windows Authentication is intended for Intranet web sites.
 
 ## dotnet new webapp authentication options
 

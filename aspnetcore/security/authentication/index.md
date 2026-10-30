@@ -289,7 +289,7 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Challenge and forbid with an operational resource handler](xref:razor-pages/security/authorization/resource-based#challenge-and-forbid-with-an-operational-resource-handler).
+* [Challenge and forbid with an operational resource handler](../../razor-pages/security/authorization/resource-based.md#challenge-and-forbid-with-an-operational-resource-handler).
 * [Differences between challenge and forbid](../authorization/secure-data.md#challenge).
 
 ## Authentication providers per tenant

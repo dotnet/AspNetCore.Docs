@@ -464,7 +464,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](../../razor-pages/razor-pages-conventions.md):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=7-10,16-19)]
 
@@ -659,7 +659,7 @@ builder.Services.Configure<FormOptions>(options =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Program.cs`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Program.cs`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -707,7 +707,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Program.cs`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Program.cs`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -1239,7 +1239,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](../../razor-pages/razor-pages-conventions.md):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=7-10,16-19)]
 
@@ -1435,7 +1435,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddRazorPages(options =>
@@ -1482,7 +1482,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddRazorPages(options =>
@@ -1547,7 +1547,7 @@ services.Configure<IISServerOptions>(options =>
 });
 ```
 
-For more information, see <xref:host-and-deploy/iis/index#iis-options>.
+For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 ## Troubleshoot
 
@@ -1974,7 +1974,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](../../razor-pages/razor-pages-conventions.md):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
@@ -2170,7 +2170,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
@@ -2216,7 +2216,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
@@ -2277,7 +2277,7 @@ services.Configure<IISServerOptions>(options =>
 });
 ```
 
-For more information, see <xref:host-and-deploy/iis/index#iis-options>.
+For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 ## Troubleshoot
 

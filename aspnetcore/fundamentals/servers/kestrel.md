@@ -58,7 +58,7 @@ For more information on configuring `WebApplication` and `WebApplicationBuilder`
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
 * [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md)
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket isn't automatically deleted on app shutdown. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 

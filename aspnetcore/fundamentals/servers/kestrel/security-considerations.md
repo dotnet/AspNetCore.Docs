@@ -62,7 +62,7 @@ When Kestrel sits behind a reverse proxy (YARP, IIS Application Request Routing 
 
 Key considerations:
 
-- **[Forwarded Headers](#forwarded-headers) middleware is required** to preserve the original client IP, scheme, and host. Without it, `HttpContext.Connection.RemoteIpAddress` returns the proxy's IP, not the client's. For full configuration details, see the [Forwarded Headers middleware documentation](xref:host-and-deploy/proxy-load-balancer).
+- **[Forwarded Headers](#forwarded-headers) middleware is required** to preserve the original client IP, scheme, and host. Without it, `HttpContext.Connection.RemoteIpAddress` returns the proxy's IP, not the client's. For full configuration details, see the [Forwarded Headers middleware documentation](../../../host-and-deploy/proxy-load-balancer.md).
 - **Authentication and secure-cookie behavior often depend on the restored scheme.** If the proxy terminates TLS but Kestrel still sees the request as `http`, authentication handlers may generate incorrect redirect URIs, secure cookies may not be issued or returned as expected, and policies that require HTTPS can fail.
 - **Configure `KnownProxies` or `KnownIPNetworks` explicitly.** By default, Forwarded Headers middleware only trusts the IPv6 loopback address (`::1`). If your proxy's IP isn't in the trusted list, the original client information is discarded.
 - **Keep `ForwardLimit` at `1`** unless you have a chain of multiple proxies. Setting it to `null` (unlimited) means any number of `X-Forwarded-For` entries are processed, which can be exploited.
@@ -792,7 +792,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 > [!WARNING]
 > Forwarded Headers middleware **must be placed before** any middleware that depends on scheme, host, or client IP (authentication, authorization, CORS, etc.). If it runs too late, those components may see the backend hop as plain `http` instead of the original `https` request and fail in subtle ways—for example, authentication handlers may reject requests because the scheme is `http` instead of `https`, and secure cookies won't be sent. Also, **never enable this middleware in edge deployments**—it allows clients to spoof their IP address.
 >
-> For the full set of configuration options and guidance, see the [ASP.NET Core Forwarded Headers middleware documentation](xref:host-and-deploy/proxy-load-balancer).
+> For the full set of configuration options and guidance, see the [ASP.NET Core Forwarded Headers middleware documentation](../../../host-and-deploy/proxy-load-balancer.md).
 
 ### Rate limiting
 

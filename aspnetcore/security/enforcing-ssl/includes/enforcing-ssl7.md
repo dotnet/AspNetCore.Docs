@@ -88,7 +88,7 @@ For more information, see [Kestrel endpoint configuration](xref:fundamentals/ser
 
 Any firewall between the client and server must also have communication ports open for traffic.
 
-If requests are forwarded in a reverse proxy configuration, use [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer) before calling HTTPS redirection middleware. Forwarded headers middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header. The middleware permits redirect URIs and other security policies to work correctly. When forwarded headers middleware isn't used, the backend app might not receive the correct scheme and end up in a redirect loop. A common end user error message is that too many redirects have occurred.
+If requests are forwarded in a reverse proxy configuration, use [forwarded headers middleware](../../../host-and-deploy/proxy-load-balancer.md) before calling HTTPS redirection middleware. Forwarded headers middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header. The middleware permits redirect URIs and other security policies to work correctly. When forwarded headers middleware isn't used, the backend app might not receive the correct scheme and end up in a redirect loop. A common end user error message is that too many redirects have occurred.
 
 When deploying to Azure App Service, follow the guidance in [Tutorial: Bind an existing custom SSL certificate to Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
@@ -663,8 +663,8 @@ In some cases, group policy may prevent self-signed certificates from being trus
 
 ## Additional information
 
-* <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
+* [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](../../../host-and-deploy/linux-nginx.md#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * <xref:fundamentals/servers/kestrel/endpoints>
 * [OWASP HSTS browser support](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html#browser-support)

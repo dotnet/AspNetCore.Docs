@@ -263,9 +263,9 @@ When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes
 
 ### Set the environment for apps deployed to IIS
 
-To set the `ASPNETCORE_ENVIRONMENT` environment variable with the `web.config` file, see <xref:host-and-deploy/iis/web-config#set-environment-variables>.
+To set the `ASPNETCORE_ENVIRONMENT` environment variable with the `web.config` file, see [web.config file](../host-and-deploy/iis/web-config.md#set-environment-variables).
 
-To set the environment variable on deployment to IIS, include the `<EnvironmentName>` property in the [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. The following example sets the environment in `web.config` to the `Staging` environment when the project is published:
+To set the environment variable on deployment to IIS, include the `<EnvironmentName>` property in the [publish profile (.pubxml)](../host-and-deploy/visual-studio-publish-profiles.md) or project file. The following example sets the environment in `web.config` to the `Staging` environment when the project is published:
 
 ```xml
 <PropertyGroup>

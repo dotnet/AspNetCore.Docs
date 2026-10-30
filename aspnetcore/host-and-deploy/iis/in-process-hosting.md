@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about in-Process hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 4/4/2022
-uid: host-and-deploy/iis/in-process-hosting
 ---
 # In-process hosting with IIS and ASP.NET Core
 
@@ -72,7 +71,7 @@ The following characteristics apply when hosting in-process:
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](web-config.md#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
@@ -165,7 +164,7 @@ The following characteristics apply when hosting in-process:
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](web-config.md#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 

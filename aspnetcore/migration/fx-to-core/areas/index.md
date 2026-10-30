@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Detailed guidance for complex ASP.NET Framework to ASP.NET Core migration scenarios
 ms.date: 12/10/2025
 ms.reviewer: tasou
-uid: migration/fx-to-core/areas
 ---
 # Technology specific guidance
 
@@ -25,7 +24,7 @@ uid: migration/fx-to-core/areas
 
 For complex migration scenarios not covered in these guides:
 
-* Review the [ASP.NET Core migration overview](xref:migration/fx-to-core/index)
+* Review the [ASP.NET Core migration overview](../index.md)
 * Consult the [ASP.NET Core fundamentals documentation](xref:fundamentals/index)
 * Engage with the community through [GitHub discussions](https://github.com/dotnet/aspnetcore/discussions)
 * Consider professional migration services for mission-critical applications

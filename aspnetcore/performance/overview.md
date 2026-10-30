@@ -16,7 +16,7 @@ The following articles provide information about how to optimize the performance
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
 * <xref:performance/memory>
-* <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>
+* [Scaling ASP.NET Core Apps on Azure](../host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md)
 * <xref:performance/ObjectPool>
 * <xref:performance/response-compression>
 * <xref:performance/diagnostic-tools>
@@ -33,7 +33,7 @@ The following articles provide information about how to optimize the performance
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
 * <xref:performance/memory>
-* <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>
+* [Scaling ASP.NET Core Apps on Azure](../host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md)
 * <xref:performance/ObjectPool>
 * <xref:performance/response-compression>
 * <xref:performance/diagnostic-tools>

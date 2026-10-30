@@ -9,7 +9,7 @@ uid: mvc/views/overview
 
 By [Steve Smith](https://ardalis.com/) and [Dave Brock](https://twitter.com/daveabrock)
 
-This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see <xref:razor-pages/index>.
+This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md).
 
 In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 

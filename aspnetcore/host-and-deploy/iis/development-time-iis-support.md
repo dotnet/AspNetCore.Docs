@@ -3,7 +3,6 @@ title: Development-time IIS support in Visual Studio for ASP.NET Core
 description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/07/2020
-uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
 
@@ -48,7 +47,7 @@ IIS must have a website configured with the following:
 1. Select **Modify** for the Visual Studio installation that you plan to use for IIS development-time support.
 1. For the **ASP.NET and web development** workload, locate and install the **Development time IIS support** component.
 
-   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
+   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](../aspnet-core-module.md), which is a native IIS module required to run ASP.NET Core apps with IIS.
 
 :::moniker-end
 
@@ -167,7 +166,7 @@ IIS must have a website configured with the following:
 1. Select **Modify** for the Visual Studio installation that you plan to use for IIS development-time support.
 1. For the **ASP.NET and web development** workload, locate and install the **Development time IIS support** component.
 
-   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
+   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](../aspnet-core-module.md), which is a native IIS module required to run ASP.NET Core apps with IIS.
 
 ## Configure the project
 

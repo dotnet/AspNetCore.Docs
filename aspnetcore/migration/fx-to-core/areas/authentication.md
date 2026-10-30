@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/10/2025
 ms.reviewer: tasou
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/authentication
 zone_pivot_groups: migration-remote-app-setup
 ---
 
@@ -177,9 +176,9 @@ The System.Web adapters' remote authentication feature allows an ASP.NET Core ap
 
 ### Remote authentication configuration
 
-There are just a few small code changes needed to enable remote authentication in a solution that's already set up according to the [Getting Started](xref:migration/fx-to-core/start).
+There are just a few small code changes needed to enable remote authentication in a solution that's already set up according to the [Getting Started](../start.md).
 
-First, follow the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
+First, follow the [remote app setup](../inc/remote-app-setup.md) instructions to connect the ASP.NET Core and ASP.NET apps. Then, there are just a couple extra extension methods to call to enable remote app authentication.
 
 :::zone pivot="manual"
 
@@ -349,7 +348,7 @@ Note that because signing in typically depends on a specific database, not all a
 * Both apps are able to see the users' identity and claims.
 * Both apps are able to sign the user out.
 
-Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](../../../security/cookie-sharing.md). For more information about cookie authentication in ASP.NET Core, see [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md). For guidance on configuring `<machineKey>` and data protection when sharing protected values between Framework and Core apps, see <xref:migration/fx-to-core/areas/machine-key>.
+Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](../../../security/cookie-sharing.md). For more information about cookie authentication in ASP.NET Core, see [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md). For guidance on configuring `<machineKey>` and data protection when sharing protected values between Framework and Core apps, see [ASP.NET machineKey to ASP.NET Core migration](machine-key.md).
 
 The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out:
 
@@ -379,5 +378,5 @@ For other scenarios, the remote authentication approach described previously in 
 * [Share authentication cookies among ASP.NET apps](../../../security/cookie-sharing.md)
 * [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md)
 * <xref:fundamentals/middleware/index>
-* <xref:migration/fx-to-core/index>
-* <xref:migration/fx-to-core/inc/remote-app-setup>
+* [Migrate from ASP.NET Framework to ASP.NET Core](../index.md)
+* [Remote app setup](../inc/remote-app-setup.md)

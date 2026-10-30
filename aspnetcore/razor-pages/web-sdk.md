@@ -2,7 +2,6 @@
 title: ASP.NET Core Web SDK
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.date: 01/25/2023
-uid: razor-pages/web-sdk
 ---
 
 # ASP.NET Core Web SDK

@@ -10,7 +10,7 @@ uid: mvc/views/view-compilation
 
 :::moniker range=">= aspnetcore-6.0"
 
-Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring the project.
+Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](../../razor-pages/sdk.md). Runtime compilation may be optionally enabled by configuring the project.
 
 > [!NOTE]
 > Runtime compilation:
@@ -68,7 +68,7 @@ With this approach, no code changes are needed in `Program.cs`. At runtime, ASP.
 
 ## Enable runtime compilation for a Razor class library
 
-Consider a scenario in which a Razor Pages project references a [Razor class library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file consumed by MVC and Razor Pages projects. To enable runtime compilation for the `_Layout.cshtml` file in that RCL, make the following changes in the Razor Pages project:
+Consider a scenario in which a Razor Pages project references a [Razor class library (RCL)](../../razor-pages/ui-class.md) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file consumed by MVC and Razor Pages projects. To enable runtime compilation for the `_Layout.cshtml` file in that RCL, make the following changes in the Razor Pages project:
 
 1. Enable runtime compilation with the instructions at [Enable runtime compilation conditionally](#enable-runtime-compilation-conditionally).
 1. Configure <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.MvcRazorRuntimeCompilationOptions> in `Program.cs`:
@@ -79,16 +79,16 @@ Consider a scenario in which a Razor Pages project references a [Razor class lib
 
 ## Additional resources
 
-* [RazorCompileOnBuild and RazorCompileOnPublish](xref:razor-pages/sdk#properties) properties
-* <xref:razor-pages/index>
+* [RazorCompileOnBuild and RazorCompileOnPublish](../../razor-pages/sdk.md#properties) properties
+* [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md)
 * <xref:mvc/views/overview>
-* <xref:razor-pages/sdk>
+* [ASP.NET Core Razor SDK](../../razor-pages/sdk.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your project.
+Razor files with a `.cshtml` extension are compiled at both build and publish time using the [Razor SDK](../../razor-pages/sdk.md). Runtime compilation may be optionally enabled by configuring your project.
 
 ## Razor compilation
 
@@ -154,7 +154,7 @@ No code changes are needed in the project's `Startup` class. At runtime, ASP.NET
 
 ## Enable runtime compilation for a Razor class library
 
-Consider a scenario in which a Razor Pages project references a [Razor class library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file that all of your team's MVC and Razor Pages projects consume. You want to enable runtime compilation for the `_Layout.cshtml` file in that RCL. Make the following changes in the Razor Pages project:
+Consider a scenario in which a Razor Pages project references a [Razor class library (RCL)](../../razor-pages/ui-class.md) named *MyClassLib*. The RCL contains a `_Layout.cshtml` file that all of your team's MVC and Razor Pages projects consume. You want to enable runtime compilation for the `_Layout.cshtml` file in that RCL. Make the following changes in the Razor Pages project:
 
 1. Enable runtime compilation with the instructions at [Conditionally enable runtime compilation in an existing project](#conditionally-enable-runtime-compilation-in-an-existing-project).
 1. Configure the runtime compilation options in `Startup.ConfigureServices`:
@@ -165,9 +165,9 @@ Consider a scenario in which a Razor Pages project references a [Razor class lib
 
 ## Additional resources
 
-* [RazorCompileOnBuild and RazorCompileOnPublish](xref:razor-pages/sdk#properties) properties
-* <xref:razor-pages/index>
+* [RazorCompileOnBuild and RazorCompileOnPublish](../../razor-pages/sdk.md#properties) properties
+* [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md)
 * <xref:mvc/views/overview>
-* <xref:razor-pages/sdk>
+* [ASP.NET Core Razor SDK](../../razor-pages/sdk.md)
 
 :::moniker-end

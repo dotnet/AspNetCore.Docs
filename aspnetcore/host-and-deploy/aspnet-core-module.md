@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/20/2026
-uid: host-and-deploy/aspnet-core-module
 ---
 
 # ASP.NET Core Module (ANCM) for IIS
@@ -15,8 +14,8 @@ uid: host-and-deploy/aspnet-core-module
 
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either:
 
-* Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](xref:host-and-deploy/iis/in-process-hosting).
-* Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](xref:host-and-deploy/iis/out-of-process-hosting).
+* Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](iis/in-process-hosting.md).
+* Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](iis/out-of-process-hosting.md).
 
 There are trade-offs between each of the hosting models. By default, the in-process hosting model is used due to better performance and diagnostics.
 
@@ -25,7 +24,7 @@ For more information and configuration guidance, see the following topics:
 
 ## Install ASP.NET Core Module (ANCM)
 
-The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](iis/hosting-bundle.md). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -33,7 +32,7 @@ Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-For more information, including installing an earlier version of the module, see <xref:host-and-deploy/iis/hosting-bundle>.
+For more information, including installing an earlier version of the module, see [Hosting Bundle](iis/hosting-bundle.md).
 
 For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
 
@@ -73,7 +72,7 @@ The following characteristics apply when hosting in-process:
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [`app_offline.htm` file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a WebSocket connection may delay app shut down.
+* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [`app_offline.htm` file in the deployment](iis/index.md#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a WebSocket connection may delay app shut down.
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
 
@@ -131,7 +130,7 @@ For IIS Express, the module doesn't recycle the worker process but instead trigg
 
 `Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](iis/modules.md).
 
 The ASP.NET Core Module can also:
 
@@ -141,7 +140,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -192,7 +191,7 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications> pr
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the `LogFiles` folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see [Host ASP.NET Core on Windows with IIS](iis/index.md#sub-applications).
 
 ### Attributes of the aspNetCore element
 
@@ -231,7 +230,7 @@ The following example sets two environment variables in `web.config`. `ASPNETCOR
 ```
 
 > [!NOTE]
-> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (`.pubxml`)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. This approach sets the environment in `web.config` when the project is published:
+> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (`.pubxml`)](visual-studio-publish-profiles.md) or project file. This approach sets the environment in `web.config` when the project is published:
 >
 > ```xml
 > <PropertyGroup>
@@ -268,7 +267,7 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
 Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
@@ -491,7 +490,7 @@ The following characteristics apply when hosting in-process:
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection might delay app shut down.
+* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](iis/index.md#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection might delay app shut down.
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
 
@@ -548,7 +547,7 @@ For IIS Express, the module doesn't recycle the worker process but instead trigg
 
 `Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](iis/modules.md).
 
 The ASP.NET Core Module can also:
 
@@ -558,7 +557,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -609,7 +608,7 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications> pr
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see [Host ASP.NET Core on Windows with IIS](iis/index.md#sub-applications).
 
 ### Attributes of the aspNetCore element
 
@@ -648,7 +647,7 @@ The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` c
 ```
 
 > [!NOTE]
-> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. This approach sets the environment in `web.config` when the project is published:
+> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (.pubxml)](visual-studio-publish-profiles.md) or project file. This approach sets the environment in `web.config` when the project is published:
 >
 > ```xml
 > <PropertyGroup>
@@ -685,7 +684,7 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
 Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
@@ -861,11 +860,11 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the [IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+The module specifies the port via an environment variable at startup, and the [IIS integration middleware](iis/index.md#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](iis/modules.md).
 
 The ASP.NET Core Module can also:
 
@@ -875,7 +874,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-core-hosting-bundle).
 
 ## Configuration with web.config
 
@@ -916,7 +915,7 @@ The following *web.config* is published for a [self-contained deployment](/dotne
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see [Host ASP.NET Core on Windows with IIS](iis/index.md#sub-applications).
 
 ### Attributes of the aspNetCore element
 
@@ -974,7 +973,7 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
 Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
@@ -1068,7 +1067,7 @@ The files can be found by searching for *aspnetcore* in the *applicationHost.con
 
 ## Related content
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/azure-apps/index>
+* [Host ASP.NET Core on Windows with IIS](iis/index.md)
+* [Deploy ASP.NET Core apps to Azure App Service](azure-apps/index.md)
 * [ASP.NET Core Module reference source [default branch (main)]](https://github.com/dotnet/aspnetcore/tree/main/src/Servers/IIS/AspNetCoreModuleV2): Use the **Branch** drop down list to select a specific release (for example, `release/3.1`).
-* <xref:host-and-deploy/iis/modules>
+* [IIS modules with ASP.NET Core](iis/modules.md)

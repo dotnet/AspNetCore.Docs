@@ -551,7 +551,7 @@ items:
             uid: fundamentals/w3c-logger/index
           - name: Health checks
             displayName: logging, monitoring
-            uid: host-and-deploy/health-checks
+            href: host-and-deploy/health-checks.md
           - name: Metrics
             displayName: logging, monitoring
             uid: metrics/overview
@@ -575,7 +575,7 @@ items:
       - name: Razor Pages
         items:
           - name: Architecture and concepts
-            uid: razor-pages/index
+            href: razor-pages/index.md
           - name: Tutorial
             items:
               - name: Overview
@@ -597,25 +597,25 @@ items:
               - name: Add validation
                 uid: tutorials/razor-pages/validation
           - name: Filters
-            uid: razor-pages/filter
+            href: razor-pages/filter.md
           - name: Route and app conventions
-            uid: razor-pages/razor-pages-conventions
+            href: razor-pages/razor-pages-conventions.md
           - name: Security and Identity
             items:
               - name: Authorization
                 items:
                   - name: Simple authorization
-                    uid: razor-pages/security/authorization/simple
+                    href: razor-pages/security/authorization/simple.md
                   - name: Authorization conventions
-                    uid: razor-pages/security/authorization/conventions
+                    href: razor-pages/security/authorization/conventions.md
                   - name: Role-based authorization
-                    uid: razor-pages/security/authorization/roles
+                    href: razor-pages/security/authorization/roles.md
                   - name: Claim-based authorization
-                    uid: razor-pages/security/authorization/claims
+                    href: razor-pages/security/authorization/claims.md
                   - name: Policy-based authorization
-                    uid: razor-pages/security/authorization/policies
+                    href: razor-pages/security/authorization/policies.md
                   - name: Resource-based authorization
-                    uid: razor-pages/security/authorization/resource-based
+                    href: razor-pages/security/authorization/resource-based.md
       - name: MVC
         items:
           - name: Overview
@@ -1087,7 +1087,7 @@ items:
       - name: Razor syntax
         uid: mvc/views/razor
       - name: Razor class libraries
-        uid: razor-pages/ui-class
+        href: razor-pages/ui-class.md
       - name: Tag Helpers
         uid: mvc/views/tag-helpers/builtin-th/Index
         items:
@@ -1148,7 +1148,7 @@ items:
           - name: Filters
             uid: mvc/controllers/filters
           - name: Razor SDK
-            uid: razor-pages/sdk
+            href: razor-pages/sdk.md
           - name: Razor breaking changes since .NET 8
             href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%208.md
           - name: Razor breaking changes since .NET 9
@@ -1162,7 +1162,7 @@ items:
           - name: Upload files
             uid: mvc/models/file-uploads
           - name: Web SDK
-            uid: razor-pages/web-sdk
+            href: razor-pages/web-sdk.md
           - name: Code generator tool (scaffolding)
             displayName: aspnet-codegenerator
             uid: fundamentals/tools/dotnet-aspnet-codegenerator
@@ -1246,9 +1246,9 @@ items:
     displayName: signalr
     items:
       - name: Overview
-        uid: signalr/introduction
+        href: signalr/introduction.md
       - name: Supported platforms
-        uid: signalr/supported-platforms
+        href: signalr/supported-platforms.md
         displayName: signalr
       - name: Tutorials
         items:
@@ -1271,66 +1271,66 @@ items:
         displayName: signalr
         items:
           - name: Hubs
-            uid: signalr/hubs
+            href: signalr/hubs.md
             displayName: signalr
           - name: Send from outside a hub
-            uid: signalr/hubcontext
+            href: signalr/hubcontext.md
             displayName: signalr
           - name: Users and groups
             href: signalr/groups.md
             displayName: signalr
           - name: API design considerations
-            uid: signalr/api-design
+            href: signalr/api-design.md
             displayName: signalr
           - name: Hub filters
-            uid: signalr/hub-filters
+            href: signalr/hub-filters.md
             displayName: signalr
       - name: Clients
         displayName: signalr
         items:
           - name: Overview
-            uid: signalr/client-features
+            href: signalr/client-features.md
             displayName: signalr
           - name: .NET client
-            uid: signalr/dotnet-client
+            href: signalr/dotnet-client.md
             displayName: signalr
           - name: .NET API reference
             href: /dotnet/api/microsoft.aspnetcore.signalr.client
             displayName: signalr
           - name: Java client
-            uid: signalr/java-client
+            href: signalr/java-client.md
             displayName: signalr
           - name: Java API reference
             href: /java/api/com.microsoft.signalr
             displayName: signalr
           - name: JavaScript client
-            uid: signalr/javascript-client
+            href: signalr/javascript-client.md
             displayName: signalr
           - name: JavaScript API reference
             href: /javascript/api/@microsoft/signalr/
             displayName: signalr
           - name: Swift client
-            uid: signalr/swift-client
+            href: signalr/swift-client.md
             displayName: signalr
       - name: Host and scale
         displayName: signalr
         items:
           - name: Overview
             displayName: signalr
-            uid: signalr/scale
+            href: signalr/scale.md
           - name: Azure App Service
-            uid: signalr/publish-to-azure-web-app
+            href: signalr/publish-to-azure-web-app.md
             displayName: signalr
           - name: Redis backplane
             displayName: signalr
-            uid: signalr/redis-backplane
+            href: signalr/redis-backplane.md
           - name: SignalR with background services
-            uid: signalr/background-services
+            href: signalr/background-services.md
       - name: Configuration
         href: signalr/configuration.md
         displayName: signalr
       - name: IHttpContextAccessor and HttpContext
-        uid: signalr/httpcontext
+        href: signalr/httpcontext.md
         displayName: signalr
       - name: Authentication and authorization
         href: signalr/authn-and-authz.md
@@ -1339,23 +1339,23 @@ items:
         href: signalr/security.md
         displayName: signalr
       - name: MessagePack Hub Protocol
-        uid: signalr/messagepackhubprotocol
+        href: signalr/messagepackhubprotocol.md
         displayName: signalr
       - name: Streaming
-        uid: signalr/streaming
+        href: signalr/streaming.md
         displayName: signalr
       - name: Compare SignalR and SignalR Core
-        uid: signalr/version-differences
+        href: signalr/version-differences.md
         displayName: signalr
       - name: WebSockets
         displayName: signalr
         uid: fundamentals/websockets
       - name: Logging and diagnostics
         displayName: signalr
-        uid: signalr/diagnostics
+        href: signalr/diagnostics.md
       - name: Troubleshooting
         displayName: signalr
-        uid: signalr/troubleshoot
+        href: signalr/troubleshoot.md
       - name: Specifications
         displayName: signalr, specs
         items:
@@ -1507,49 +1507,49 @@ items:
         items:
           - name: Overview
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/index
+            href: host-and-deploy/iis/index.md
           - name: ASP.NET Core Module
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/aspnet-core-module
+            href: host-and-deploy/aspnet-core-module.md
           - name: In-process hosting
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/in-process-hosting
+            href: host-and-deploy/iis/in-process-hosting.md
           - name: Out-of-process hosting
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/out-of-process-hosting
+            href: host-and-deploy/iis/out-of-process-hosting.md
           - name: Hosting Bundle
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/hosting-bundle
+            href: host-and-deploy/iis/hosting-bundle.md
           - name: web.config file
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/web-config
+            href: host-and-deploy/iis/web-config.md
           - name: IIS support in Visual Studio
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/development-time-iis-support
+            href: host-and-deploy/iis/development-time-iis-support.md
           - name: IIS Modules
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/modules
+            href: host-and-deploy/iis/modules.md
           - name: Logging and diagnostics
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/logging-and-diagnostics
+            href: host-and-deploy/iis/logging-and-diagnostics.md
           - name: Troubleshoot
             displayName: deploy, publish, server, iis
             uid: test/troubleshoot-azure-iis
           - name: Errors reference
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/azure-iis-errors-reference
+            href: host-and-deploy/azure-iis-errors-reference.md
           - name: Advanced configuration
             displayName: deploy, publish, server, iis, ancm, aspnetcoremodule
-            uid: host-and-deploy/iis/advanced
+            href: host-and-deploy/iis/advanced.md
           - name: Transform web.config
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/transform-webconfig
+            href: host-and-deploy/iis/transform-webconfig.md
           - name: HTTP/2
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/protocols
+            href: host-and-deploy/iis/protocols.md
           - name: HTTP/3
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/http3
+            href: host-and-deploy/iis/http3.md
       - name: YARP
         items:
           - name: YARP Overview
@@ -1741,7 +1741,7 @@ items:
       - name: Troubleshoot Azure and IIS
         uid: test/troubleshoot-azure-iis
       - name: Azure and IIS errors reference
-        uid: host-and-deploy/azure-iis-errors-reference
+        href: host-and-deploy/azure-iis-errors-reference.md
   - name: Code analysis
     items:
       - name: Overview
@@ -1946,13 +1946,13 @@ items:
     items:
       - name: Overview
         displayName: azure, deploy, publish
-        uid: host-and-deploy/index
+        href: host-and-deploy/index.md
       - name: Azure App Service
         displayName: deploy, publish
         items:
           - name: Overview
             displayName: azure, deploy, publish
-            uid: host-and-deploy/azure-apps/index
+            href: host-and-deploy/azure-apps/index.md
           - name: Publish with Visual Studio
             displayName: azure, deploy, publish
             uid: tutorials/publish-to-azure-webapp-using-vs
@@ -1967,13 +1967,13 @@ items:
             href: /azure/devops/pipelines/get-started-yaml
           - name: ASP.NET Core Module (ANCM) for IIS
             displayName: azure, deploy, publish
-            uid: host-and-deploy/aspnet-core-module
+            href: host-and-deploy/aspnet-core-module.md
           - name: Troubleshoot
             displayName: azure, deploy, publish
             uid: test/troubleshoot-azure-iis
           - name: Errors reference
             displayName: azure, deploy, publish
-            uid: host-and-deploy/azure-iis-errors-reference
+            href: host-and-deploy/azure-iis-errors-reference.md
       - name: DevOps
         items:
           - name: Overview
@@ -1999,19 +1999,19 @@ items:
         uid: tutorials/publish-to-iis
       - name: Windows service
         displayName: deploy, publish
-        uid: host-and-deploy/windows-service
+        href: host-and-deploy/windows-service.md
       - name: Linux with Nginx
         displayName: deploy, publish
-        uid: host-and-deploy/linux-nginx
+        href: host-and-deploy/linux-nginx.md
       - name: Docker
         displayName: deploy, publish
         items:
           - name: Overview
             displayName: deploy, publish, docker
-            uid: host-and-deploy/docker/index
+            href: host-and-deploy/docker/index.md
           - name: Build Docker images
             displayName: deploy, publish, docker
-            uid: host-and-deploy/docker/building-net-docker-images
+            href: host-and-deploy/docker/building-net-docker-images.md
           - name: Visual Studio Tools
             displayName: deploy, publish, docker
             href: /visualstudio/containers/add-container-support
@@ -2023,22 +2023,22 @@ items:
             href: https://github.com/dotnet/dotnet-docker/blob/main/samples/AspNetCoreRazorApp/README.md
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
-        uid: host-and-deploy/proxy-load-balancer
+        href: host-and-deploy/proxy-load-balancer.md
       - name: Scaling apps on Azure
         displayName: azure, deploy, publish, scale
-        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
+        href: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md
       - name: Web farm
         displayName: deploy, publish
-        uid: host-and-deploy/web-farm
+        href: host-and-deploy/web-farm.md
       - name: Visual Studio publish profiles
         displayName: deploy, publish
-        uid: host-and-deploy/visual-studio-publish-profiles
+        href: host-and-deploy/visual-studio-publish-profiles.md
       - name: Visual Studio for Mac publish to folder
         displayName: deploy, publish
         href: /visualstudio/mac/publish-folder?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Directory structure
         displayName: deploy, publish
-        uid: host-and-deploy/directory-structure
+        href: host-and-deploy/directory-structure.md
   - name: Security and Identity
     displayName: authentication, authorization
     items:
@@ -2335,7 +2335,7 @@ items:
         uid: performance/memory
       - name: Scaling apps on Azure
         displayName: azure, deploy, publish, scale
-        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
+        href: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md
       - name: Object reuse with ObjectPool
         uid: performance/ObjectPool
       - name: Response compression
@@ -2420,116 +2420,116 @@ items:
     items:
       - name: Overview
         displayName: migrate, migration
-        uid: migration/index
+        href: migration/index.md
       - name: Version updates
         items:
           - name: 10 to 11
             displayName: migrate, migration
-            uid: migration/100-to-110
+            href: migration/100-to-110.md
           - name: 9 to 10
             displayName: migrate, migration
-            uid: migration/90-to-100
+            href: migration/90-to-100.md
           - name: 8 to 9
             displayName: migrate, migration
-            uid: migration/80-to-90
+            href: migration/80-to-90.md
           - name: 7 to 8
             displayName: migrate, migration
-            uid: migration/70-to-80
+            href: migration/70-to-80.md
           - name: 6 to 7
             displayName: migrate, migration
-            uid: migration/60-to-70
+            href: migration/60-to-70.md
           - name: 5 to 6
             displayName: migrate, migration
-            uid: migration/50-to-60
+            href: migration/50-to-60.md
           - name: 3.1/5.0 Code to 6
             displayName: migrate, migration
-            uid: migration/50-to-60-samples
+            href: migration/50-to-60-samples.md
           - name: 3.1 to 6 LTS
             displayName: migrate, migration, LTS
-            uid: migration/31-to-60
+            href: migration/31-to-60.md
           - name: Older versions
             items:
               - name: 3.1 to 5.0
                 displayName: migrate, migration
-                uid: migration/31-to-50
+                href: migration/31-to-50.md
               - name: 3.0 to 3.1
                 displayName: migrate, migration
-                uid: migration/30-to-31
+                href: migration/30-to-31.md
               - name: 2.2 to 3.0
                 displayName: migrate, migration
-                uid: migration/22-to-30
+                href: migration/22-to-30.md
               - name: 2.1 to 2.2
                 displayName: migrate, migration
-                uid: migration/21-to-22
+                href: migration/21-to-22.md
               - name: Logging 2.1 to 2.2 or 3.0
                 displayName: migrate, migration
-                uid: migration/logging-nonaspnetcore
+                href: migration/Logging-nonaspnetcore.md
               - name: 2.0 to 2.1
                 displayName: migrate, migration
-                uid: migration/20-to-21
+                href: migration/20-to-21.md
               - name: 1.x to 2.0
                 displayName: migrate, migration
                 items:
                   - name: Overview
-                    uid: migration/1x-to-2x/index
+                    href: migration/1x-to-2x/index.md
                   - name: Authentication and Identity
-                    uid: migration/1x-to-2x/identity-2x
+                    href: migration/1x-to-2x/identity-2x.md
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
           - name: Overview
-            uid: migration/fx-to-core/index
+            href: migration/fx-to-core/index.md
           - name: Get started
-            uid: migration/fx-to-core/start
+            href: migration/fx-to-core/start.md
           - name: Tooling
-            uid: migration/fx-to-core/tooling
+            href: migration/fx-to-core/tooling.md
           - name: Incremental migration
             displayName: migrate, migration
             items:
             - name: System.Web adapters
-              uid: migration/fx-to-core/systemweb-adapters
+              href: migration/fx-to-core/inc/systemweb-adapters.md
             - name: Remote app setup
-              uid: migration/fx-to-core/inc/remote-app-setup
+              href: migration/fx-to-core/inc/remote-app-setup.md
             - name: A/B Testing endpoints
-              uid: migration/fx-to-core/inc/ab-testing
+              href: migration/fx-to-core/inc/ab-testing.md
             - name: Blazor support with YARP
-              uid: migration/fx-to-core/inc/blazor
+              href: migration/fx-to-core/inc/blazor.md
           - name: Technology Areas
             items:
             - name: Overview
-              uid: migration/fx-to-core/areas
+              href: migration/fx-to-core/areas/index.md
             - name: HttpApplicationHost
-              uid: migration/fx-to-core/areas/hosting
+              href: migration/fx-to-core/areas/hosting.md
             - name: HttpContext
-              uid: migration/fx-to-core/areas/http-context
+              href: migration/fx-to-core/areas/http-context.md
             - name: HTTP Modules
-              uid: migration/fx-to-core/areas/http-modules
+              href: migration/fx-to-core/areas/http-modules.md
             - name: HTTP Handlers
-              uid: migration/fx-to-core/areas/http-handlers
+              href: migration/fx-to-core/areas/http-handlers.md
             - name: Machine Key
-              uid: migration/fx-to-core/areas/machine-key
+              href: migration/fx-to-core/areas/machine-key.md
             - name: Session
-              uid: migration/fx-to-core/areas/session
+              href: migration/fx-to-core/areas/session.md
             - name: Authentication
-              uid: migration/fx-to-core/areas/authentication
+              href: migration/fx-to-core/areas/authentication.md
             - name: Membership
-              uid: migration/fx-to-core/areas/membership
+              href: migration/fx-to-core/areas/membership.md
             - name: OWIN
-              uid: migration/fx-to-core/areas/owin
+              href: migration/fx-to-core/areas/owin.md
             - name: Web API
-              uid: migration/fx-to-core/areas/webapi
+              href: migration/fx-to-core/areas/webapi.md
             - name: ClaimsPrincipal.Current
-              uid: migration/fx-to-core/areas/claimsprincipal-current
+              href: migration/fx-to-core/areas/claimsprincipal-current.md
             - name: Miscellaneous
-              uid: migration/fx-to-core/areas/misc
+              href: migration/fx-to-core/areas/misc.md
           - name: Example Migration
             items:
             - name: Overview
-              uid: migration/fx-to-core/examples/overview
+              href: migration/fx-to-core/examples/overview.md
             - name: Configuration
-              uid: migration/fx-to-core/examples/configuration
+              href: migration/fx-to-core/examples/configuration.md
             - name: Identity
-              uid: migration/fx-to-core/examples/identity
+              href: migration/fx-to-core/examples/identity.md
   - name: API reference
     href: /dotnet/api/
   - name: Contribute
