@@ -2,7 +2,6 @@
 title: ASP.NET Core Web Host
 description: Learn about Web Host in ASP.NET Core, which is responsible for app startup and lifetime management.
 ms.date: 04/22/2026
-uid: fundamentals/host/web-host
 
 # customer intent: As an ASP.NET developer, I want to explore the Web Host in ASP.NET Core, so I can configure startup and management for my web app.
 ---
@@ -36,9 +35,9 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
 
 The `CreateDefaultBuilder` method performs the following tasks:
 
-* Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server by using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
+* Configures [Kestrel](../servers/kestrel.md) server as the web server by using the app's hosting configuration providers. For the Kestrel server's default options, see [Configure options for the ASP.NET Core Kestrel web server](../servers/kestrel/options.md).
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Sets the [content root](../index.md#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 
 * Loads the [host configuration](#set-web-host-configuration-values) from the following sources:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`)
@@ -51,20 +50,20 @@ The `CreateDefaultBuilder` method performs the following tasks:
   * Environment variables
   * Command-line arguments
 
-* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an _appsettings.json_ or _appsettings.{Environment}.json_ file.
+* Configures [logging](../logging/index.md) for console and debug output. Logging includes [log filtering](../logging/index.md#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an _appsettings.json_ or _appsettings.{Environment}.json_ file.
 
 * When the application runs behind IIS with the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md), `CreateDefaultBuilder` enables [IIS Integration](../../host-and-deploy/iis/index.md), which configures the application base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 * Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
 
-The [content root](xref:fundamentals/index#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
+The [content root](../index.md#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
-For more information on app configuration, see <xref:fundamentals/configuration/index>.
+For more information on app configuration, see [Configuration in ASP.NET Core](../configuration/index.md).
 
 > [!NOTE]
 > As an alternative to using the static `CreateDefaultBuilder` method, you can create a host from <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with ASP.NET Core 2.x.
 
-When you set up a host, you can use the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.Configure*> and <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureServices*> methods. If a `Startup` class is specified, it must define a `Configure` method. For more information, see <xref:fundamentals/startup>. Multiple calls to `ConfigureServices` append each other. Multiple calls to `Configure` or `UseStartup` on the `WebHostBuilder` instance replace any previous settings.
+When you set up a host, you can use the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.Configure*> and <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureServices*> methods. If a `Startup` class is specified, it must define a `Configure` method. For more information, see [App startup in ASP.NET Core](../startup.md). Multiple calls to `ConfigureServices` append each other. Multiple calls to `Configure` or `UseStartup` on the `WebHostBuilder` instance replace any previous settings.
 
 ### Methods for overriding the configuration
 
@@ -162,7 +161,7 @@ Determines where ASP.NET Core begins searching for content files.
 **Set using**: `UseContentRoot`  
 **Environment variable**: `ASPNETCORE_CONTENTROOT`
 
-The content root is also used as the base path for the [web root](xref:fundamentals/index#web-root). If the content root path doesn't exist, the host fails to start.
+The content root is also used as the base path for the [web root](../index.md#web-root). If the content root path doesn't exist, the host fails to start.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -171,7 +170,7 @@ WebHost.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [Fundamentals: Content root](../index.md#content-root)
 * [Web root](#web-root)
 
 ### Detailed errors
@@ -203,7 +202,7 @@ Sets the application environment.
 
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
 
-By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When you use [Visual Studio](https://visualstudio.microsoft.com), environment variables can be set in the _launchSettings.json_ file. For more information, see <xref:fundamentals/environments>.
+By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When you use [Visual Studio](https://visualstudio.microsoft.com), environment variables can be set in the _launchSettings.json_ file. For more information, see [ASP.NET Core runtime environments](../environments.md).
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -276,7 +275,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ### Prevent hosting startup
 
-Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see [Use hosting startup assemblies in ASP.NET Core](platform-specific-configuration.md).
 
 **Key**: `preventHostingStartup`  
 **Type**: *bool* (`true` or `1`)  
@@ -306,7 +305,7 @@ WebHost.CreateDefaultBuilder(args)
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
-Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+Kestrel has its own endpoint configuration API. For more information, see [Configure endpoints for Kestrel web server](../servers/kestrel/endpoints.md).
 
 ### Shutdown timeout
 
@@ -373,12 +372,12 @@ WebHost.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [Fundamentals: Web root](../index.md#web-root)
 * [Content root](#content-root)
 
 ## Override the Web Host configuration
 
-Use application [configuration in ASP.NET Core](xref:fundamentals/configuration/index) to configure the Web Host.
+Use application [configuration in ASP.NET Core](../configuration/index.md) to configure the Web Host.
 
 In the following example, host configuration is optionally specified in a _hostsettings.json_ file. Command-line arguments can override any configuration loaded from the _hostsettings.json_ file. The built configuration (in config) is used to configure the host with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> method. `IWebHostBuilder` configuration is added to the application configuration, but the converse isn't true. The `ConfigureAppConfiguration` method doesn't affect the `IWebHostBuilder` configuration.
 
@@ -604,7 +603,7 @@ Produces the same result as [StartWith(Action\<IApplicationBuilder> app)](#start
 
 ## Use the IWebHostEnvironment interface
 
-The `IWebHostEnvironment` interface provides information about the app's web hosting environment. Use [constructor injection](xref:fundamentals/dependency-injection) to obtain the `IWebHostEnvironment` instance, and then access its properties and extension methods:
+The `IWebHostEnvironment` interface provides information about the app's web hosting environment. Use [constructor injection](../dependency-injection.md) to obtain the `IWebHostEnvironment` instance, and then access its properties and extension methods:
 
 ```csharp
 public class CustomFileReader
@@ -624,7 +623,7 @@ public class CustomFileReader
 }
 ```
 
-A [convention-based approach](xref:fundamentals/environments#environment-based-startup-class-and-methods) can be used to configure the app at startup based on the environment. Alternatively, inject the `IWebHostEnvironment` instance into the `Startup` constructor for use in the `ConfigureServices` method:
+A [convention-based approach](../environments.md#environment-specific-startup-class) can be used to configure the app at startup based on the environment. Alternatively, inject the `IWebHostEnvironment` instance into the `Startup` constructor for use in the `ConfigureServices` method:
 
 ```csharp
 public class Startup
@@ -653,7 +652,7 @@ public class Startup
 ```
 
 > [!NOTE]
-> In addition to the `IsDevelopment` extension method, `IWebHostEnvironment` offers the `IsStaging`, `IsProduction`, and `IsEnvironment(string environmentName)` methods. For more information, see <xref:fundamentals/environments>.
+> In addition to the `IsDevelopment` extension method, `IWebHostEnvironment` offers the `IsStaging`, `IsProduction`, and `IsEnvironment(string environmentName)` methods. For more information, see [ASP.NET Core runtime environments](../environments.md).
 
 The `IWebHostEnvironment` service can also be injected directly into the `Configure` method for setting up the processing pipeline:
 
@@ -675,7 +674,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-`IWebHostEnvironment` can be injected into the `Invoke` method when creating custom [middleware](xref:fundamentals/middleware/write):
+`IWebHostEnvironment` can be injected into the `Invoke` method when creating custom [middleware](../middleware/write.md):
 
 ```csharp
 public async Task Invoke(HttpContext context, IWebHostEnvironment env)

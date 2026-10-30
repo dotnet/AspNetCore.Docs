@@ -531,7 +531,7 @@ Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) wh
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `await Clients.All.SendAsync(...);`  
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> `Clients.All.SendAsync(...);` (missing `await`)
 
-For general guidance on DI, see <xref:fundamentals/dependency-injection> and its linked additional resources.
+For general guidance on DI, see [Dependency injection in ASP.NET Core](../fundamentals/dependency-injection.md) and its linked additional resources.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -732,7 +732,7 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 * [Overview of ASP.NET Core SignalR](introduction.md)
 * [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 * [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

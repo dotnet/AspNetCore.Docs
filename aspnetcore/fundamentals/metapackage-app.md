@@ -3,7 +3,6 @@ title: Microsoft.AspNetCore.App metapackage for ASP.NET Core
 description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 09/24/2019
-uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App for ASP.NET Core
 
@@ -106,6 +105,6 @@ To update ASP.NET Core:
 
  Applications will roll forward to the latest installed version on application restart. It's not necessary to update the `Microsoft.AspNetCore.App` version number in the project file. For more information, see [Framework-dependent apps roll forward](/dotnet/core/versions/selection#framework-dependent-apps-roll-forward).
 
-If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).
+If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](metapackage.md#migrate).
 
 :::moniker-end

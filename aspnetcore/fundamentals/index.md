@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn the fundamental concepts for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/04/2026
-uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals overview
 
@@ -21,7 +20,7 @@ For Blazor fundamentals guidance, which adds to or supersedes the guidance in th
 ASP.NET Core apps created from the framework's project templates contain startup code in the `Program` file (`Program.cs`). The `Program` file is where:
 
 * Services required by the app are configured.
-* The app's request handling pipeline is defined as a series of [middleware components](xref:fundamentals/middleware/index).
+* The app's request handling pipeline is defined as a series of [middleware components](middleware/index.md).
 
 :::moniker-end
 
@@ -87,7 +86,7 @@ The following app startup code supports:
 The `Startup` class (`Startup.cs`) is where:
 
 * Services required by the app are configured in the `ConfigureServices` method.
-* The app's request handling pipeline is defined in the `Configure` method as a series of [middleware components](xref:fundamentals/middleware/index).
+* The app's request handling pipeline is defined in the `Configure` method as a series of [middleware components](middleware/index.md).
 
 The following app startup code supports:
 
@@ -99,15 +98,15 @@ The following app startup code supports:
 
 :::moniker-end
 
-For more information, see <xref:fundamentals/startup> and <xref:blazor/fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](startup.md) and <xref:blazor/fundamentals/startup>.
 
 ## Dependency injection (services)
 
-ASP.NET Core features built-in [dependency injection (DI)](xref:fundamentals/dependency-injection) that makes configured services available throughout an app for [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion). 
+ASP.NET Core features built-in [dependency injection (DI)](dependency-injection.md) that makes configured services available throughout an app for [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion). 
 
 :::moniker range=">= aspnetcore-6.0"
 
-When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services) are automatically added, such as services for configuration and logging:
+When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, [framework-provided services](dependency-injection.md#framework-provided-services) are automatically added, such as services for configuration and logging:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -191,7 +190,7 @@ app.MapGet("/todos", async (AppDbContext context, ILogger<Program> logger) =>
 
 :::moniker range="< aspnetcore-6.0"
 
-When the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*?displayProperty=nameWithType> is called in the `Program` file, a new instance of the <xref:Microsoft.Extensions.Hosting.HostBuilder> class is automatically initialized with [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services), such as services for configuration and logging:
+When the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*?displayProperty=nameWithType> is called in the `Program` file, a new instance of the <xref:Microsoft.Extensions.Hosting.HostBuilder> class is automatically initialized with [framework-provided services](dependency-injection.md#framework-provided-services), such as services for configuration and logging:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -218,7 +217,7 @@ Services are typically resolved from DI using constructor injection. With constr
 
 If the built-in DI container doesn't meet your needs, a third-party IoC container can be used instead.
 
-For more information, see <xref:fundamentals/dependency-injection> and <xref:blazor/fundamentals/dependency-injection>.
+For more information, see [Dependency injection in ASP.NET Core](dependency-injection.md) and <xref:blazor/fundamentals/dependency-injection>.
 
 ## Environments
 
@@ -259,11 +258,11 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 :::moniker-end
 
-For more information, see <xref:fundamentals/environments> and <xref:blazor/fundamentals/environments>.
+For more information, see [ASP.NET Core runtime environments](environments.md) and <xref:blazor/fundamentals/environments>.
 
 ## Middleware
 
-The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request.
+The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](http-context.md) and either invokes the next middleware in the pipeline or terminates the request.
 
 By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." In the following example representing part of a request processing pipeline, middleware for exception handling (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>), [HTTP Strict Transport Security (HSTS) protocol](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>), and HTTPS redirection (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>) are called. Two of the middlewares are only triggered when the app isn't under local development in the `Development` environment, such as when the app is staged for deployment (the `Staging` environment) or in production (the `Production` environment):
 
@@ -299,7 +298,7 @@ app.UseHttpsRedirection();
 
 :::moniker-end
 
-ASP.NET Core includes a rich set of built-in middleware. You can also create custom middleware components to meet an app's special request processing specifications. For more information, see <xref:fundamentals/middleware/index>.
+ASP.NET Core includes a rich set of built-in middleware. You can also create custom middleware components to meet an app's special request processing specifications. For more information, see [ASP.NET Core middleware](middleware/index.md).
 
 ## Host
 
@@ -315,9 +314,9 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 
 There are three different hosts capable of running an ASP.NET Core app:
 
-* [ASP.NET Core WebApplication](xref:fundamentals/minimal-apis/webapplication) (also known as the [Minimal Host](../migration/50-to-60.md#new-hosting-model))
-* [.NET Generic Host](xref:fundamentals/host/generic-host)
-* [ASP.NET Core WebHost](xref:fundamentals/host/web-host)
+* [ASP.NET Core WebApplication](minimal-apis/webapplication.md) (also known as the [Minimal Host](../migration/50-to-60.md#new-hosting-model))
+* [.NET Generic Host](host/generic-host.md)
+* [ASP.NET Core WebHost](host/web-host.md)
 
 The ASP.NET Core <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> types are recommended and are used in all of the ASP.NET Core project templates. `WebApplication` behaves similarly to the .NET Generic Host and exposes many of the same interfaces but requires fewer callbacks to configure. The ASP.NET Core <xref:Microsoft.AspNetCore.WebHost> is only available for backward compatibility.
 
@@ -334,7 +333,7 @@ var app = builder.Build();
 The <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build*?displayProperty=nameWithType> method configures a host with a set of default options, such as:
 
 * Using [Kestrel](#servers) as the web server and enabling IIS integration.
-* Loading [configuration](xref:fundamentals/configuration/index) from app settings files (for example, `appsettings.json`), environment variables, command line arguments, and other configuration sources.
+* Loading [configuration](configuration/index.md) from app settings files (for example, `appsettings.json`), environment variables, command line arguments, and other configuration sources.
 * Setting up logging and directing logging output to the console and debug logging providers.
 
 :::moniker-end
@@ -343,15 +342,15 @@ The <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build*?displayPrope
 
 There are two hosts: 
 
-* [.NET Generic Host](xref:fundamentals/host/generic-host)
-* [ASP.NET Core WebHost](xref:fundamentals/host/web-host)
+* [.NET Generic Host](host/generic-host.md)
+* [ASP.NET Core WebHost](host/web-host.md)
 
 The .NET Generic Host is recommended. The ASP.NET Core Web Host is only available for backwards compatibility.
 
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> and <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> methods in the following example configure a host with a set of default options, such as:
 
 * Using [Kestrel](#servers) as the web server and enabling IIS integration.
-* Loading [configuration](xref:fundamentals/configuration/index) from app settings files (for example, `appsettings.json`), environment variables, command line arguments, and other configuration sources.
+* Loading [configuration](configuration/index.md) from app settings files (for example, `appsettings.json`), environment variables, command line arguments, and other configuration sources.
 * Setting up logging and directing logging output to the console and debug logging providers.
 
 ```csharp
@@ -375,18 +374,18 @@ public class Program
 
 For more information, see the following resources:
 
-* <xref:fundamentals/host/generic-host> (*Recommended*)
-* <xref:fundamentals/host/web-host> (*For backwards compatibility*)
+* [.NET Generic Host in ASP.NET Core](host/generic-host.md) (*Recommended*)
+* [ASP.NET Core Web Host](host/web-host.md) (*For backwards compatibility*)
 
 ### Non-web scenarios
 
-The [Generic Host](xref:fundamentals/host/generic-host) enables other types of apps to use cross-cutting framework extensions, such as logging, dependency injection (DI), configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/hosted-services>.
+The [Generic Host](host/generic-host.md) enables other types of apps to use cross-cutting framework extensions, such as logging, dependency injection (DI), configuration, and app lifetime management. For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md) and [Background tasks with hosted services in ASP.NET Core](host/hosted-services.md).
 
 ## Servers
 
-An ASP.NET Core app uses an HTTP server implementation to listen for HTTP requests. The server surfaces requests to the app as a set of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
+An ASP.NET Core app uses an HTTP server implementation to listen for HTTP requests. The server surfaces requests to the app as a set of [request features](request-features.md) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-For more information, see <xref:fundamentals/servers/index>.
+For more information, see [Web server implementations in ASP.NET Core](servers/index.md).
 
 ### Windows
 
@@ -402,17 +401,17 @@ ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP
 
 ## Configuration
 
-ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that obtains settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as JSON files (`.json`), XML files (`.xml`), environment variables, and command-line arguments. You can create custom configuration providers to support other sources.
+ASP.NET Core provides a [configuration](configuration/index.md) framework that obtains settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as JSON files (`.json`), XML files (`.xml`), environment variables, and command-line arguments. You can create custom configuration providers to support other sources.
 
 By default, ASP.NET Core apps are configured to read from app settings files (for example, `appsettings.json`), environment variables, and the command line.
 
-When the app's configuration is loaded, values from environment variables override values from app settings files. The [Options API](xref:fundamentals/configuration/options) is available for reading related configuration values.
+When the app's configuration is loaded, values from environment variables override values from app settings files. The [Options API](configuration/options.md) is available for reading related configuration values.
 
 For managing confidential configuration data such as passwords in the `Development` environment, .NET provides the [Secret Manager](../security/app-secrets.md#secret-manager). For production secrets, we recommend using [Azure Key Vault](https://azure.microsoft.com/products/key-vault). 
 
 For more information, see the following resources:
 
-* <xref:fundamentals/configuration/index>
+* [Configuration in ASP.NET Core](configuration/index.md)
 * <xref:blazor/fundamentals/configuration>
 * [Azure Key Vault (ASP.NET Core documentation)](../security/key-vault-configuration.md)
 
@@ -448,7 +447,7 @@ The following example shows how to obtain a logging instance from DI and use it 
 }
 ```
 
-For more information, including routing guidance for Razor Pages and MVC apps, see <xref:fundamentals/logging/index> and <xref:blazor/fundamentals/logging>.
+For more information, including routing guidance for Razor Pages and MVC apps, see [Logging in .NET and ASP.NET Core](logging/index.md) and <xref:blazor/fundamentals/logging>.
 
 ## Routing
 
@@ -458,7 +457,7 @@ The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensio
 
 For more information, see the following resources:
 
-* <xref:fundamentals/routing>
+* [Routing in ASP.NET Core](routing.md)
 * <xref:blazor/fundamentals/routing>
 * <xref:blazor/fundamentals/navigation>
 
@@ -471,7 +470,7 @@ ASP.NET Core has built-in features for handling errors, such as:
 * Static status code pages
 * Startup exception handling
 
-For more information, see <xref:fundamentals/error-handling> and <xref:blazor/fundamentals/handle-errors>.
+For more information, see [Handle errors in ASP.NET Core](error-handling.md) and <xref:blazor/fundamentals/handle-errors>.
 
 ## Make HTTP requests
 
@@ -483,7 +482,7 @@ An implementation of <xref:System.Net.Http.IHttpClientFactory> is available for 
 * Manages the pooling and lifetime of underlying <xref:System.Net.Http.HttpClientHandler> instances to avoid common DNS problems that occur when managing `HttpClient` lifetimes manually.
 * Adds a configurable logging experience via <xref:Microsoft.Extensions.Logging.ILogger> for all requests sent through clients created by the factory.
 
-For more information, see <xref:fundamentals/http-requests> and <xref:blazor/call-web-api>.
+For more information, see [HTTP requests with IHttpClientFactory - ASP.NET Core](http-requests.md) and <xref:blazor/call-web-api>.
 
 ## Content root
 
@@ -496,7 +495,7 @@ The content root is the base path for:
 
 During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [web root](#web-root). Specify a different content root by setting its path when building the [host](#host).
 
-For more information, see <xref:fundamentals/host/generic-host#contentroot> and <xref:fundamentals/static-files>.
+For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#content-root) and [Serve static files in ASP.NET Core apps](static-files.md).
 
 ## Web root
 
@@ -506,7 +505,7 @@ By default, static files are only served from the web root directory and its sub
 
 In Razor `.cshtml` files, `~/` points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
-For more information, see <xref:fundamentals/host/generic-host#webroot> and <xref:fundamentals/static-files>.
+For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#web-root) and [Serve static files in ASP.NET Core apps](static-files.md).
 
 ## How to download a sample
 

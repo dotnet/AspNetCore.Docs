@@ -39,7 +39,7 @@ gRPC C-Core and gRPC for .NET share many APIs, and code generated from `.proto` 
 
 ## gRPC service implementation lifetime
 
-In the ASP.NET Core stack, gRPC services, by default, are created with a [scoped lifetime](xref:fundamentals/dependency-injection#service-lifetimes). In contrast, gRPC C-core by default binds to a service with a [singleton lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
+In the ASP.NET Core stack, gRPC services, by default, are created with a [scoped lifetime](../fundamentals/dependency-injection.md#service-lifetimes). In contrast, gRPC C-core by default binds to a service with a [singleton lifetime](../fundamentals/dependency-injection.md#service-lifetimes).
 
 A scoped lifetime allows the service implementation to resolve other services with scoped lifetimes. For example, a scoped lifetime can also resolve `DbContext` from the DI container through constructor injection. Using scoped lifetime:
 
@@ -47,7 +47,7 @@ A scoped lifetime allows the service implementation to resolve other services wi
 * It isn't possible to share state between requests via instance members on the implementation type.
 * The expectation is to store shared states in a singleton service in the DI container. The stored shared states are resolved in the constructor of the gRPC service implementation.
 
-For more information on service lifetimes, see <xref:fundamentals/dependency-injection#service-lifetimes>.
+For more information on service lifetimes, see [Dependency injection in ASP.NET Core](../fundamentals/dependency-injection.md#service-lifetimes).
 
 ### Add a singleton service
 
@@ -83,7 +83,7 @@ For more information on configuration, see [gRPC for .NET configuration](configu
 
 ## Logging
 
-C-core-based apps rely on the `GrpcEnvironment` to [configure the logger](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) for debugging purposes. The ASP.NET Core stack provides this functionality through the [Logging API](xref:fundamentals/logging/index). For example, a logger can be added to the gRPC service.
+C-core-based apps rely on the `GrpcEnvironment` to [configure the logger](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) for debugging purposes. The ASP.NET Core stack provides this functionality through the [Logging API](../fundamentals/logging/index.md). For example, a logger can be added to the gRPC service.
 
 Constructor injection:
 
@@ -113,16 +113,16 @@ For more information on gRPC logging and diagnostics, see [Logging and diagnosti
 ## HTTPS
 
 :::moniker range=">= aspnetcore-5.0"
-C-core-based apps configure HTTPS through the [Server.Ports property](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports). A similar concept is used to configure servers in ASP.NET Core. For example, Kestrel uses [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) for this functionality.
+C-core-based apps configure HTTPS through the [Server.Ports property](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports). A similar concept is used to configure servers in ASP.NET Core. For example, Kestrel uses [endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) for this functionality.
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-C-core-based apps configure HTTPS through the [Server.Ports property](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports). A similar concept is used to configure servers in ASP.NET Core. For example, Kestrel uses [endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) for this functionality.
+C-core-based apps configure HTTPS through the [Server.Ports property](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports). A similar concept is used to configure servers in ASP.NET Core. For example, Kestrel uses [endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration) for this functionality.
 :::moniker-end
 
 ## gRPC Interceptors
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Both are supported by ASP.NET Core gRPC apps, so there's no need to rewrite interceptors.
+ASP.NET Core [middleware](../fundamentals/middleware/index.md) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Both are supported by ASP.NET Core gRPC apps, so there's no need to rewrite interceptors.
 
 For more information on how these features compare to each other, see [gRPC Interceptors versus middleware](interceptors.md#grpc-interceptors-versus-middleware).
 

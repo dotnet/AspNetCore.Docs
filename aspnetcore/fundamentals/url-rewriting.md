@@ -5,7 +5,6 @@ description: Learn about URL rewriting and redirecting with URL rewriting middle
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
 ms.date: 09/18/2026
-uid: fundamentals/url-rewriting
 ---
 # URL rewriting middleware in ASP.NET Core
 
@@ -67,7 +66,7 @@ Use URL rewriting middleware when the following approaches aren't satisfactory:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
+Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](servers/httpsys.md).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -427,7 +426,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, limit the number and complexity of rules.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](index.md#how-to-download-a-sample))
 
 ## URL redirect and URL rewrite
 
@@ -467,7 +466,7 @@ Use URL rewriting middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
+Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](servers/httpsys.md).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -781,7 +780,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, limit the number and complexity of rules.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](index.md#how-to-download-a-sample))
 
 ## URL redirect and URL rewrite
 
@@ -821,7 +820,7 @@ Use URL rewriting middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Also, use the middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener).
+Also, use the middleware when the app is hosted on [HTTP.sys server](servers/httpsys.md) (formerly called WebListener).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -834,7 +833,7 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
 
 ## Package
 
-To include the middleware in your project, add a package reference to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) in the project file, which contains the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package.
+To include the middleware in your project, add a package reference to the [Microsoft.AspNetCore.App metapackage](metapackage-app.md) in the project file, which contains the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package.
 
 When not using the `Microsoft.AspNetCore.App` metapackage, add a project reference to the `Microsoft.AspNetCore.Rewrite` package.
 
@@ -1120,10 +1119,10 @@ Original Request: `/image.jpg`
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](index.md#how-to-download-a-sample))
 * [`RewriteMiddleware` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
-* <xref:fundamentals/startup>
-* <xref:fundamentals/middleware/index>
+* [App startup in ASP.NET Core](startup.md)
+* [ASP.NET Core middleware](middleware/index.md)
 * [Regular expressions in .NET](/dotnet/articles/standard/base-types/regular-expressions)
 * [Regular expression language - quick reference](/dotnet/articles/standard/base-types/quick-ref)
 * [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)

@@ -18,7 +18,7 @@ Related articles provide more detail:
 
 :::moniker range=">= aspnetcore-11.0"
 
-* For writing and configuring model-based validation rules, including custom and asynchronous rules, nested object validation, and localization, see <xref:fundamentals/validation>.
+* For writing and configuring model-based validation rules, including custom and asynchronous rules, nested object validation, and localization, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
 * For live browser validation in static server-side rendering (static SSR), see <xref:blazor/forms/validation-client-side>.
 * For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
 
@@ -26,7 +26,7 @@ Related articles provide more detail:
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
-* For writing and configuring model-based validation rules and nested object validation, see <xref:fundamentals/validation>.
+* For writing and configuring model-based validation rules and nested object validation, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
 * For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
 
 :::moniker-end
@@ -168,7 +168,7 @@ The `AddValidation` call registers the package's validation services and activat
 | Generated metadata is available | Validates nested objects and collections. |
 | Generated metadata isn't available | Validates top-level properties only. |
 
-The `ValidatableTypeAttribute` and `SkipValidationAttribute` APIs are experimental in .NET 10. For details and available workarounds, see <xref:fundamentals/validation#experimental-api-in-apps-that-target-net-10>.
+The `ValidatableTypeAttribute` and `SkipValidationAttribute` APIs are experimental in .NET 10. For details and available workarounds, see [Validation in ASP.NET Core](../../fundamentals/validation.md#experimental-api-in-apps-that-target-net-10).
 
 :::moniker-end
 
@@ -176,7 +176,7 @@ The `ValidatableTypeAttribute` and `SkipValidationAttribute` APIs are experiment
 
 When using `Microsoft.Extensions.Validation`, declare model types in C# files (`.cs`) rather than Razor component files (`.razor`). The source generator creates validation metadata from C# source and can't include model types declared in Razor components.
 
-For configuration requirements, validation order, custom rules, nested object graphs, and generated metadata, see <xref:fundamentals/validation>.
+For configuration requirements, validation order, custom rules, nested object graphs, and generated metadata, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
 
 :::moniker-end
 
@@ -220,7 +220,7 @@ For .NET 5 or earlier, use the experimental package's `ComparePropertyAttribute`
 
 ### Write model-based custom rules
 
-When built-in attributes can't express a rule, use a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. For detailed guidance, see <xref:fundamentals/validation#write-custom-validation-rules>.
+When built-in attributes can't express a rule, use a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. For detailed guidance, see [Validation in ASP.NET Core](../../fundamentals/validation.md#write-custom-validation-rules).
 
 :::moniker-end
 
@@ -342,7 +342,7 @@ Static SSR doesn't provide live .NET field validation between requests.
 
 For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `EditContext.RegisterAsyncFieldValidator` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
 
-For model-based asynchronous validation attributes, see <xref:fundamentals/validation#asynchronous-validation-support>. For a complete reusable validator component, see <xref:blazor/forms/validation-advanced>.
+For model-based asynchronous validation attributes, see [Validation in ASP.NET Core](../../fundamentals/validation.md#asynchronous-validation-support). For a complete reusable validator component, see <xref:blazor/forms/validation-advanced>.
 
 :::moniker-end
 
@@ -640,7 +640,7 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 :::moniker range=">= aspnetcore-10.0"
 
-* <xref:fundamentals/validation>
+* [Validation in ASP.NET Core](../../fundamentals/validation.md)
 
 :::moniker-end
 

@@ -17,7 +17,7 @@ By [Wade Pickett](https://github.com/wadepickett) and [Tom Dykstra](https://gith
 
 Minimal APIs are designed to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -163,7 +163,7 @@ The pasted code also includes `using Scalar.AspNetCore;` and `app.MapScalarApiRe
 
 The OpenAPI lines that the template adds (`builder.Services.AddOpenApi()` and `app.MapOpenApi()`) stay in place. They now describe the Todo endpoints instead of the sample weather endpoint.
 
-The following highlighted code registers the app's services in the [dependency injection (DI)](xref:fundamentals/dependency-injection) container: the database context (`AddDbContext`) and the OpenAPI document generator (`AddOpenApi`):
+The following highlighted code registers the app's services in the [dependency injection (DI)](../fundamentals/dependency-injection.md) container: the database context (`AddDbContext`) and the OpenAPI document generator (`AddOpenApi`):
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -228,7 +228,7 @@ The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` th
 
 # [Visual Studio](#tab/visual-studio)
 
-* Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging. Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and trusts the development certificate if needed.
+* Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging. Visual Studio launches the [Kestrel web server](../fundamentals/servers/kestrel.md) and trusts the development certificate if needed.
 
 [!INCLUDE[](~/includes/trustCertVS26.md)]
 
@@ -726,7 +726,7 @@ The preceding code has the following changes:
 
 The next steps modify the `Program.cs` file, so stop the app before making these changes. Leave the scalar page in the browser running.
 
-Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
+Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](../fundamentals/minimal-apis/responses.md#typedresults-versus-results).
 
 * The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
@@ -807,20 +807,20 @@ This app needs to hide the `Secret` field, but an administrative app could choos
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 
-* [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-* Handle errors and exceptions: The [developer exception page](xref:fundamentals/error-handling-api#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/error-handling-api).
+* [Configure JSON serialization options](../fundamentals/minimal-apis/responses.md#configure-json-serialization-options).
+* Handle errors and exceptions: The [developer exception page](../fundamentals/error-handling-api.md#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md).
 * For an example of testing a Minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-* [OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
+* [OpenAPI support in Minimal APIs](../fundamentals/openapi/aspnetcore-openapi.md).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
 ### Learn more
 
-See <xref:fundamentals/minimal-apis>
+See [Minimal APIs quick reference](../fundamentals/minimal-apis.md)
 
 :::moniker-end
 

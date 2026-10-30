@@ -685,7 +685,7 @@ For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateMo
 
 ## [FromServices] attribute
 
-This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
+This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](../../../../fundamentals/dependency-injection.md) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
 If an instance of the type isn't registered in the dependency injection container, the app throws an exception when attempting to bind the parameter. To make the parameter optional, use one of the following approaches:
 
@@ -696,7 +696,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
 
@@ -1320,7 +1320,7 @@ For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateMo
 
 ## [FromServices] attribute
 
-This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
+This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](../../../../fundamentals/dependency-injection.md) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
 If an instance of the type isn't registered in the dependency injection container, the app throws an exception when attempting to bind the parameter. To make the parameter optional, use one of the following approaches:
 
@@ -1331,7 +1331,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
 
@@ -1341,7 +1341,7 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 This article explains what model binding is, how it works, and how to customize its behavior.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## What is Model binding
 
@@ -1969,7 +1969,7 @@ For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateMo
 
 ## [FromServices] attribute
 
-This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
+This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](../../../../fundamentals/dependency-injection.md) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
 ## Additional resources
 

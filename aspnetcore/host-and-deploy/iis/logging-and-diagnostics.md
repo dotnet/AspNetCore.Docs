@@ -14,7 +14,7 @@ Logs aren't rotated, unless process recycling/restart occurs. It's the responsib
 
 Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (`.log`) to the last segment of the `stdoutLogFile` path (typically `stdout`) delimited by underscores. If the `stdoutLogFile` path ends with `stdout`, a log for an app with a PID of 1934 created on 2/5/2018 at 19:42:32 has the file name `stdout_20180205194132_1934.log`.
 
@@ -33,7 +33,7 @@ The following sample `aspNetCore` element configures stdout logging at the relat
 
 When publishing an app for Azure App Service deployment, the Web SDK sets the `stdoutLogFile` value to `\\?\%home%\LogFiles\stdout`. The `%home` environment variable is predefined for apps hosted by Azure App Service.
 
-To create logging filter rules, see the [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
+To create logging filter rules, see the [Apply log filter rules in code](../../fundamentals/logging/index.md#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
 
 For more information on path formats, see [File path formats on Windows systems](/dotnet/standard/io/file-path-formats).
 

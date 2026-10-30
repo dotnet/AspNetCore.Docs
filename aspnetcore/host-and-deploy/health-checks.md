@@ -115,7 +115,7 @@ To prevent unauthorized clients from spoofing the port, call <xref:Microsoft.Asp
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPortAuth":::
 
-For more information, see [Host matching in routes with RequireHost](xref:fundamentals/routing#host-matching-in-routes-with-requirehost).
+For more information, see [Host matching in routes with RequireHost](../fundamentals/routing.md#host-matching-in-routes-with-requirehost).
 
 ### Require authorization
 
@@ -261,7 +261,7 @@ spec:
 
 To distribute a health check as a library:
 
-1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
+1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](../fundamentals/dependency-injection.md), type activation, and [named options](../fundamentals/configuration/options.md) to access configuration data.
 
 1. Write an extension method with parameters that the consuming app calls in its `Program.cs` method. Consider the following example health check, which accepts `arg1` and `arg2` as constructor parameters:
 
@@ -333,13 +333,13 @@ You can make health checks accessible to callers in two ways:
 By using `MapHealthChecks` instead of `UseHealthChecks`, you can use endpoint aware middleware, such as authorization, and you get greater fine-grained control over the matching policy. By using `UseHealthChecks` instead of `MapHealthChecks`, you control exactly where health checks runs in the middleware pipeline.
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>:
-* Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
+* Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](../fundamentals/middleware/index.md) is often desirable because it avoids unnecessary work, such as logging and other middleware.
 * Is primarily used for configuring the health checks middleware in the pipeline.
 * Can match any path on a port with a `null` or empty `PathString`. Allows performing a health check on any request made to the specified port.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks*> allows:
-* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 * Mapping specific routes or endpoints for health checks.
 * Customization of the URL or path where the health check endpoint is accessible.
 * Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
@@ -381,11 +381,11 @@ Call <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuild
 app.MapHealthChecks("/healthz").ShortCircuit();
 ```
 
-Because short-circuiting only bypasses middleware positioned after routing in the pipeline, it doesn't suppress server hosting logs (such as Kestrel or HTTP.sys request logs), middleware placed before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, or health check service logging. Combine <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> with logging category configuration to minimize probe noise. For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+Because short-circuiting only bypasses middleware positioned after routing in the pipeline, it doesn't suppress server hosting logs (such as Kestrel or HTTP.sys request logs), middleware placed before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, or health check service logging. Combine <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> with logging category configuration to minimize probe noise. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 > [!NOTE]
 > This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).

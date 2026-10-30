@@ -215,7 +215,7 @@ This section shows how to translate the most commonly used properties of <xref:S
 
 * **<xref:System.Web.HttpResponse.TransmitFile*?displayProperty=nameWithType>** → **See request features**
   
-  Serving files is discussed in <xref:fundamentals/request-features>
+  Serving files is discussed in [Request Features in ASP.NET Core](../../../fundamentals/request-features.md)
 
 * **<xref:System.Web.HttpResponse.Headers?displayProperty=nameWithType>** → **<xref:Microsoft.AspNetCore.Http.HttpResponse.OnStarting*?displayProperty=nameWithType>**
   
@@ -282,7 +282,7 @@ For more information about System.Web adapters, see the [System.Web adapters doc
 ## Related content
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
-* [HttpContext in ASP.NET Core](xref:fundamentals/httpcontext)
-* [Middleware](xref:fundamentals/middleware/index)
-* [Configuration](xref:fundamentals/configuration/index)
+* [HttpContext in ASP.NET Core](../../../fundamentals/http-context.md)
+* [Middleware](../../../fundamentals/middleware/index.md)
+* [Configuration](../../../fundamentals/configuration/index.md)
 * [System.Web adapters](~/migration/fx-to-core/inc/systemweb-adapters.md)

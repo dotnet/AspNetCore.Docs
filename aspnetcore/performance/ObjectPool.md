@@ -53,7 +53,7 @@ Important `ObjectPool` types and interfaces:
 The ObjectPool can be used in an app in multiple ways:
 
 * Instantiating a pool.
-* Registering a pool in [Dependency injection](xref:fundamentals/dependency-injection) (DI) as an instance.
+* Registering a pool in [Dependency injection](../fundamentals/dependency-injection.md) (DI) as an instance.
 * Registering the `ObjectPoolProvider<>` in DI and using it as a factory.
 
 ## How to use ObjectPool
@@ -64,7 +64,7 @@ Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> to get an object a
 
 The following code:
 
-* Adds `ObjectPoolProvider` to the [Dependency injection](xref:fundamentals/dependency-injection) (DI) container.
+* Adds `ObjectPoolProvider` to the [Dependency injection](../fundamentals/dependency-injection.md) (DI) container.
 * Implements the `IResettable` interface to automatically clear the contents of the buffer when returned to the object pool.
 
 [!code-csharp[](~/performance/ObjectPool/ObjectPoolSample8/Program.cs)]

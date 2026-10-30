@@ -11,7 +11,7 @@ Specify URLs using the:
 
 The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
-For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+For more information on these approaches, see [Server URLs](../../../../host/web-host.md#server-urls) and [Override configuration](../../../../host/web-host.md#override-the-web-host-configuration).
 
 A development certificate is created:
 
@@ -179,12 +179,12 @@ In the following `appsettings.json` example:
 
 Schema notes:
 
-* Endpoints names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
+* Endpoints names are [case-insensitive](../../../../configuration/index.md#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
 * The `Certificate` section supports multiple [certificate sources](#certificate-sources).
-* Any number of endpoints may be defined in [Configuration](xref:fundamentals/configuration/index) as long as they don't cause port conflicts.
+* Any number of endpoints may be defined in [Configuration](../../../../configuration/index.md) as long as they don't cause port conflicts.
 
 #### Certificate sources
 
@@ -230,7 +230,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 SNI can be configured in two ways:
 
 * Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback.
-* Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
+* Configure a mapping between host names and HTTPS options in [Configuration](../../../../configuration/index.md). For example, JSON in  the `appsettings.json` file.
 
 ### SNI with `ServerCertificateSelector`
 
@@ -441,7 +441,7 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | `Http2` | HTTP/2 only. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
 | `Http3` | HTTP/3 only. Requires TLS. The client may need to be configured to use HTTP/3 only. |
 | `Http1AndHttp2` | HTTP/1.1 and HTTP/2. HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake; otherwise, the connection defaults to HTTP/1.1. |
-| `Http1AndHttp2AndHttp3` | HTTP/1.1, HTTP/2 and HTTP/3. The first client request normally uses HTTP/1.1 or HTTP/2, and the [`alt-svc` response header](xref:fundamentals/servers/kestrel/http3#alt-svc) prompts the client to upgrade to HTTP/3. HTTP/2 and HTTP/3 requires TLS; otherwise, the connection defaults to HTTP/1.1. |
+| `Http1AndHttp2AndHttp3` | HTTP/1.1, HTTP/2 and HTTP/3. The first client request normally uses HTTP/1.1 or HTTP/2, and the [`alt-svc` response header](../../http3.md#alt-svc) prompts the client to upgrade to HTTP/3. HTTP/2 and HTTP/3 requires TLS; otherwise, the connection defaults to HTTP/1.1. |
 
 The default `ListenOptions.Protocols` value for any endpoint is `HttpProtocols.Http1AndHttp2`.
 
@@ -535,10 +535,10 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   http://*:80/
   ```
 
-  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
+  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](../../../httpsys.md) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
+  > Hosting in a reverse proxy configuration requires [host filtering](../../host-filtering.md).
 
 * Host `localhost` name with port number or loopback IP with port number
 
@@ -568,7 +568,7 @@ Specify URLs using the:
 
 The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
-For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+For more information on these approaches, see [Server URLs](../../../../host/web-host.md#server-urls) and [Override configuration](../../../../host/web-host.md#override-the-web-host-configuration).
 
 A development certificate is created:
 
@@ -734,12 +734,12 @@ In the following `appsettings.json` example:
 
 Schema notes:
 
-* Endpoints names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
+* Endpoints names are [case-insensitive](../../../../configuration/index.md#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
 * The `Certificate` section supports multiple [certificate sources](#certificate-sources).
-* Any number of endpoints may be defined in [Configuration](xref:fundamentals/configuration/index) as long as they don't cause port conflicts.
+* Any number of endpoints may be defined in [Configuration](../../../../configuration/index.md) as long as they don't cause port conflicts.
 
 #### Certificate sources
 
@@ -785,7 +785,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 SNI can be configured in two ways:
 
 * Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback.
-* Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
+* Configure a mapping between host names and HTTPS options in [Configuration](../../../../configuration/index.md). For example, JSON in  the `appsettings.json` file.
 
 ### SNI with `ServerCertificateSelector`
 
@@ -1083,10 +1083,10 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   http://*:80/
   ```
 
-  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
+  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](../../../httpsys.md) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
+  > Hosting in a reverse proxy configuration requires [host filtering](../../host-filtering.md).
 
 * Host `localhost` name with port number or loopback IP with port number
 
@@ -1116,7 +1116,7 @@ Specify URLs using the:
 
 The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
-For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+For more information on these approaches, see [Server URLs](../../../../host/web-host.md#server-urls) and [Override configuration](../../../../host/web-host.md#override-the-web-host-configuration).
 
 A development certificate is created:
 
@@ -1301,12 +1301,12 @@ In the following `appsettings.json` example:
 
 Schema notes:
 
-* Endpoints names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
+* Endpoints names are [case-insensitive](../../../../configuration/index.md#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
 * The `Certificate` section supports multiple [certificate sources](#certificate-sources).
-* Any number of endpoints may be defined in [Configuration](xref:fundamentals/configuration/index) as long as they don't cause port conflicts.
+* Any number of endpoints may be defined in [Configuration](../../../../configuration/index.md) as long as they don't cause port conflicts.
 
 #### Certificate sources
 
@@ -1374,7 +1374,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 SNI can be configured in two ways:
 
 * Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback.
-* Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
+* Configure a mapping between host names and HTTPS options in [Configuration](../../../../configuration/index.md). For example, JSON in  the `appsettings.json` file.
 
 ### SNI with `ServerCertificateSelector`
 
@@ -1876,10 +1876,10 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   http://*:80/
   ```
 
-  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
+  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](../../../httpsys.md) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
+  > Hosting in a reverse proxy configuration requires [host filtering](../../host-filtering.md).
 
 * Host `localhost` name with port number or loopback IP with port number
 

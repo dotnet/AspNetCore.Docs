@@ -13,9 +13,9 @@ This article describes how to call a web API from a Blazor app.
 
 ## Server-side scenarios for calling external web APIs
 
-Server-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see <xref:fundamentals/http-requests>.
+Server-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md).
 
-A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
+A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](../fundamentals/http-requests.md).
 
 In the `Program` file:
 
@@ -23,7 +23,7 @@ In the `Program` file:
 builder.Services.AddHttpClient();
 ```
 
-The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md) article.
 
 `CallWebAPI.razor`:
 
@@ -148,7 +148,7 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
-The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md) article.
 
 `CallWebAPI.razor`:
 
@@ -287,7 +287,7 @@ builder.Services.AddScoped(sp =>
 
 ## Named `HttpClient` with `IHttpClientFactory`
 
-*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#review-consumption-patterns).*
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
@@ -373,7 +373,7 @@ For a working demonstration in a client app based on calling Microsoft Graph wit
 
 ## Typed `HttpClient`
 
-*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#review-consumption-patterns).*
 
 Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints. Typed clients are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
@@ -473,7 +473,7 @@ The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a w
 
 For an example of how to access a service in outgoing request middleware using either an application scope handler or a circuit activity handler, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
 
-For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#outgoing-request-middleware).
 
 :::moniker-end
 
@@ -730,7 +730,7 @@ private async Task UpdateItem(long id)
 
 Add <xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=nameWithType> set to `true` if you want to present the JSON payload in a pleasant format for display. Writing indented JSON has no bearing on processing PATCH requests and isn't typically performed in production apps for web API requests.
 
-Follow the guidance in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
+Follow the guidance in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](../fundamentals/minimal-apis.md) with the following steps.
 
 :::moniker-end
 
@@ -1098,7 +1098,7 @@ For more information, see the following resources:
 
 *The guidance in this section applies to client-side scenarios that rely upon bearer token authentication.*
 
-[`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a web API endpoint and shows the response body.
+[`HttpClient`](../fundamentals/http-requests.md) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a web API endpoint and shows the response body.
 
 `TodoRequest.razor`:
 
@@ -1335,7 +1335,7 @@ For working examples, see the following sample apps in the [Blazor samples GitHu
 
 Call an external (not in the Blazor Web App) todo list web API from a Blazor Web App:
 
-* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](../fundamentals/minimal-apis.md). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
 * `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
 
 For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
@@ -1359,7 +1359,7 @@ Call an internal (inside the Blazor Web App) movie list API, where the API resid
 
 * `BlazorApp`: A Blazor Web App that maintains a movie list:
   * When operations are performed on the movie list within the app on the server, ordinary API calls are used.
-  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](../fundamentals/minimal-apis.md).
 * `BlazorApp.Client`: The client project of the Blazor Web App, which contains Interactive WebAssembly and Auto components for user management of the movie list.
 
 For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the API are made via a client-based service (`ClientMovieService`) that uses a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Because these calls are made over a public or private web, the movie list API is a *web API*.
@@ -1398,7 +1398,7 @@ A weather data sample app that uses streaming rendering for weather data.
 
 Calls a todo list web API from a Blazor WebAssembly app:
 
-* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](../fundamentals/minimal-apis.md).
 * `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
 
 ### `BlazorWebAssemblyStandaloneWithIdentity`
@@ -1480,9 +1480,9 @@ For guidance on mitigating overposting attacks, see <xref:tutorials/first-web-ap
 ### Server-side
 
 * <xref:blazor/security/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
-* <xref:fundamentals/http-requests>
+* [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md)
 * [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
-* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
+* [Kestrel HTTPS endpoint configuration](../fundamentals/servers/kestrel/endpoints.md)
 
 ### Client-side
 

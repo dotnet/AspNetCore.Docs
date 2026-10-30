@@ -48,7 +48,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -63,7 +63,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
 
@@ -452,7 +452,7 @@ The token-based antiforgery system described in the rest of this article predate
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -743,7 +743,7 @@ app.MapDelete("/item/{id}", async (int id, IAntiforgery antiforgery, HttpContext
 > * Avoid form-field overrides for endpoints that rely on antiforgery validation.
 > * If form-field override must run first, validate the antiforgery token explicitly using `IAntiforgery.ValidateRequestAsync`.
 >
-> For configuration details, see <xref:fundamentals/middleware/index>.
+> For configuration details, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
 ## Antiforgery with API controllers
 
@@ -821,7 +821,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -836,7 +836,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -859,7 +859,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -1112,7 +1112,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -1127,7 +1127,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1146,7 +1146,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -1379,7 +1379,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -1394,7 +1394,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1413,7 +1413,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Startup.ConfigureServices`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>

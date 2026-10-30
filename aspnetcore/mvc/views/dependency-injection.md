@@ -9,9 +9,9 @@ uid: mvc/views/dependency-injection
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-injection) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. Most of the data views display should be passed in from the controller.
+ASP.NET Core supports [dependency injection](../../fundamentals/dependency-injection.md) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. Most of the data views display should be passed in from the controller.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/samples/6.0) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/samples/6.0) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Configuration injection
 
@@ -27,7 +27,7 @@ The following markup displays the configuration value in a MVC view:
 
 [!code-cshtml[](~/mvc/views/dependency-injection/samples/6.0/WebViewInject/Views/Home/Privacy.cshtml?highlight=1-2,11)]
 
-For more information, see <xref:fundamentals/configuration/index>
+For more information, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)
 
 ## Service injection
 
@@ -92,9 +92,9 @@ The default fields include `Html`, `Component`, and `Url`. To replace the defaul
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-injection) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) between your controllers and views. Most of the data your views display should be passed in from the controller.
+ASP.NET Core supports [dependency injection](../../fundamentals/dependency-injection.md) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) between your controllers and views. Most of the data your views display should be passed in from the controller.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Configuration injection
 

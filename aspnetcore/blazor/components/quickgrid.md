@@ -989,7 +989,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md)
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
@@ -1041,7 +1041,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md)
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.

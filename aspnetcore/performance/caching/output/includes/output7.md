@@ -175,7 +175,7 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 ## See also
 
 * <xref:performance/caching/overview>
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](../../../../fundamentals/middleware/index.md)
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions>
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>
 

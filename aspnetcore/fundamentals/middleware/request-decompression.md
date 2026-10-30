@@ -3,7 +3,6 @@ title: Request decompression in ASP.NET Core
 description: Learn how to use the request decompression middleware in ASP.NET Core
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 06/30/2026
-uid: fundamentals/middleware/request-decompression
 ai-usage: ai-assisted
 ---
 # Request decompression in ASP.NET Core
@@ -99,9 +98,9 @@ In order of precedence, the maximum request size for an endpoint is set by:
 
 | Web server implementation | `MaxRequestBodySize` configuration |
 | --------- | --------- |
-| [HTTP.sys](xref:fundamentals/servers/httpsys) | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize?displayProperty=nameWithType> |
+| [HTTP.sys](../servers/httpsys.md) | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize?displayProperty=nameWithType> |
 | [IIS](../../host-and-deploy/iis/index.md) | <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> |
-| [Kestrel](xref:fundamentals/servers/kestrel) | <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize?displayProperty=nameWithType> |
+| [Kestrel](../servers/kestrel.md) | <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize?displayProperty=nameWithType> |
 
 
 > [!WARNING]
@@ -109,7 +108,7 @@ In order of precedence, the maximum request size for an endpoint is set by:
 
 ## Related content
 
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](index.md)
 * [Mozilla Developer Network: Content-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding)
 * [Brotli Compressed Data Format](https://www.rfc-editor.org/rfc/rfc7932)
 * [DEFLATE Compressed Data Format Specification version 1.3](https://www.rfc-editor.org/rfc/rfc1951)

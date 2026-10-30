@@ -2,7 +2,6 @@
 title: Open Web Interface for .NET (OWIN) with ASP.NET Core
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
 ms.date: 04/24/2025
-uid: fundamentals/owin
 ---
 # Open Web Interface for .NET (OWIN) with ASP.NET Core
 
@@ -25,7 +24,7 @@ This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host o
 > [!NOTE]
 > Using these adapters comes with a performance cost. Apps using only ASP.NET Core components shouldn't use the `Microsoft.AspNetCore.Owin` package or adapters.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/owin/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/owin/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## Running OWIN middleware in the ASP.NET Core pipeline
 
@@ -181,5 +180,5 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 ## Related content
 
 * See the [source on GitHub](https://github.com/aspnet/HttpAbstractions/blob/524a0227e5b7945b9520855d37881dabf7e5da32/src/Microsoft.AspNetCore.Owin/OwinFeatureCollection.cs) for OWIN keys supported in the translation layer.
-* [Middleware](xref:fundamentals/middleware/index)
-* [Servers](xref:fundamentals/servers/index)
+* [Middleware](middleware/index.md)
+* [Servers](servers/index.md)

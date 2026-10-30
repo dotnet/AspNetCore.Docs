@@ -22,13 +22,13 @@ This tutorial uses a database you set up in the previous step: <xref:tutorials/f
 
 ## Working with the database context
 
-The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
+The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](../../../../fundamentals/dependency-injection.md) container in the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/Program.cs?name=FirstSQLServer&highlight=3-4)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
+The ASP.NET Core [Configuration](../../../../fundamentals/configuration/index.md) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/appsettings.json?highlight=2&range=9-11)]
 
@@ -36,7 +36,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
+The ASP.NET Core [Configuration](../../../../fundamentals/configuration/index.md) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/appsettings_SQLite.json?highlight=2&range=9-11)]
 

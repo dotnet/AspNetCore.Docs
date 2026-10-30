@@ -34,12 +34,12 @@ For prerequisites and preliminary steps, see the [Build your first app](/dotnet/
 
 The sample app is a starter solution that contains a native, cross-platform MAUI Blazor Hybrid app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
-1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample).
+1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](../../../fundamentals/index.md#how-to-download-a-sample).
 1. Make sure you have [the latest .NET installed with the MAUI workload](/dotnet/maui/get-started/installation).
 1. Open the solution in Visual Studio (2022 or later) or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
 1. Start the `MauiBlazorWeb.Web` project without debugging. In Visual Studio, right-click on the project and select **Debug** > **Start without Debugging**.
-1. Inspect the Identity endpoints via [OpenAPI documentation](xref:fundamentals/openapi/overview). You can add a third-party OpenAPI-compliant visual UI/endpoint tester.
+1. Inspect the Identity endpoints via [OpenAPI documentation](../../../fundamentals/openapi/overview.md). You can add a third-party OpenAPI-compliant visual UI/endpoint tester.
 1. Navigate to `https://localhost:7157/account/register` to register a user in the Blazor Web App. Immediately after the user is registered, use the **Click here to confirm your account** link in the UI to confirm the user's email address because a real email sender isn't registered for account confirmation.
 1. Start (`F5`) the `MauiBlazorWeb` MAUI project. You can set the debug target to either **Windows** or an Android emulator.
 1. Notice you can only see the `Home` and `Login` pages.

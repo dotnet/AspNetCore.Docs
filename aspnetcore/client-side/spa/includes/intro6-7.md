@@ -5,7 +5,7 @@
 
 The Single Page Application (SPA) templates for [Angular](https://angular.dev/) and [React](https://reactjs.org/) offer the ability to develop Angular and React apps that are hosted inside a .NET backend server.
 
-At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static file middleware](xref:fundamentals/static-files).
+At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static file middleware](../../../fundamentals/static-files.md).
 
 Rather than returning HTTP 404 (Not Found), a fallback route handles unknown requests to the backend and serves the `index.html` for the SPA.
 
@@ -59,7 +59,7 @@ The project file defines a few properties that control the behavior of the app d
 
 The package `Microsoft.AspNetCore.SpaProxy` is responsible for the preceding logic to detect the proxy and redirect the browser.
 
-The [hosting startup assembly](xref:fundamentals/configuration/platform-specific-configuration) defined in `Properties/launchSettings.json` is used to automatically add the required components during development necessary to detect if the proxy is running and launch it otherwise:
+The [hosting startup assembly](../../../fundamentals/host/platform-specific-configuration.md) defined in `Properties/launchSettings.json` is used to automatically add the required components during development necessary to detect if the proxy is running and launch it otherwise:
 
 :::code language="json" source="~/client-side/spa/intro/samples/launchSettings.json" highlight="17,25":::
 
@@ -125,6 +125,6 @@ The ASP.NET Core SPA templates can be updated in a patch release to a new SPA fr
 * [Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md)
 * <xref:spa/angular>
 * <xref:spa/react>
-* [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies)
+* [Hosting Startup Assemblies](../../../fundamentals/host/web-host.md#hosting-startup-assemblies)
 
 ::: moniker-end

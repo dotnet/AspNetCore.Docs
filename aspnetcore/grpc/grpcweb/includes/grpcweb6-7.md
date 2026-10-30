@@ -36,7 +36,7 @@ Alternatively, the gRPC-Web middleware can be configured so that all services su
 :::code language="csharp" source="~/grpc/grpcweb/samples/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnableAllServices" highlight="9":::
 
 > [!NOTE]
-> There is a known issue that causes gRPC-Web to fail when [hosted by HTTP.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
+> There is a known issue that causes gRPC-Web to fail when [hosted by HTTP.sys](../../../fundamentals/servers/httpsys.md) in .NET Core 3.x.
 >
 > A workaround to get gRPC-Web working on HTTP.sys is available in [Grpc-web experimental and UseHttpSys()? (grpc/grpc-dotnet #853)](https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202).
 
@@ -80,7 +80,7 @@ Update the default protocol in `appsettings.json`:
 }
 ```
 
-Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/servers/kestrel/endpoints).
+Alternatively, [configure Kestrel endpoints in startup code](../../../fundamentals/servers/kestrel/endpoints.md).
 
 Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information, see [ASP.NET Core gRPC protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 

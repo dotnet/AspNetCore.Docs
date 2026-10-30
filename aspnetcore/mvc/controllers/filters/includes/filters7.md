@@ -234,9 +234,9 @@ Therefore the `ResponseHeaderAttribute` filter never runs for the `Index` action
 Filters can be added by type or by instance. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. A type-activated filter means:
 
 * An instance is created for each request.
-* Any constructor dependencies are populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
+* Any constructor dependencies are populated by [dependency injection](../../../../fundamentals/dependency-injection.md) (DI).
 
-Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](xref:fundamentals/dependency-injection) (DI). Constructor dependencies cannot be provided by DI because attributes must have their constructor parameters supplied where they're applied. 
+Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](../../../../fundamentals/dependency-injection.md) (DI). Constructor dependencies cannot be provided by DI because attributes must have their constructor parameters supplied where they're applied. 
 
 The following filters support constructor dependencies provided from DI:
 
@@ -246,7 +246,7 @@ The following filters support constructor dependencies provided from DI:
 
 The preceding filters can be applied to a controller or an action.
 
-Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](xref:fundamentals/logging/index) typically provides what's needed for logging. Logging added to filters:
+Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](../../../../fundamentals/logging/index.md) typically provides what's needed for logging. Logging added to filters:
 
 * Should focus on business domain concerns or behavior specific to the filter.
 * Should **not** log actions or other framework events. The built-in filters already log actions and framework events.
@@ -517,7 +517,7 @@ In the preceding code, the first approach to applying the filter is preferred.
 
 ## Use middleware in the filter pipeline
 
-Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
+Resource filters work like [middleware](../../../../fundamentals/middleware/index.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
 
 To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses middleware to set a response header:
 
@@ -535,7 +535,7 @@ When passing an *instance* of a filter into `Add`, instead of its `Type`, the fi
 
 ## Related content
 
-* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 * [Filter methods for Razor Pages in ASP.NET Core](../../../../razor-pages/filter.md)
 
 :::moniker-end
@@ -558,7 +558,7 @@ This document applies to Razor Pages, API controllers, and controllers with view
 * The component is embedded in a page or view.
 * The page or controller and view uses the filter.
 
-[View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## How filters work
 
@@ -640,7 +640,7 @@ The following code implements an `ActionFilterAttribute` that:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/Filters/MyActionFilterAttribute.cs" id="snippet":::
 
-The configuration options are provided from the [configuration system](xref:fundamentals/configuration/index) using the [options pattern](xref:fundamentals/configuration/options). For example, from the `appsettings.json` file:
+The configuration options are provided from the [configuration system](../../../../fundamentals/configuration/index.md) using the [options pattern](../../../../fundamentals/configuration/options.md). For example, from the `appsettings.json` file:
 
 :::code language="json" source="~/mvc/controllers/filters/samples/3.x/FiltersSample/appsettings.json":::
 
@@ -810,9 +810,9 @@ Therefore the `AddHeader` filter never runs for the `SomeResource` action. This 
 Filters can be added by type or by instance. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. A type-activated filter means:
 
 * An instance is created for each request.
-* Any constructor dependencies are populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
+* Any constructor dependencies are populated by [dependency injection](../../../../fundamentals/dependency-injection.md) (DI).
 
-Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](xref:fundamentals/dependency-injection) (DI). Constructor dependencies cannot be provided by DI because:
+Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](../../../../fundamentals/dependency-injection.md) (DI). Constructor dependencies cannot be provided by DI because:
 
 * Attributes must have their constructor parameters supplied where they're applied. 
 * This is a limitation of how attributes work.
@@ -825,7 +825,7 @@ The following filters support constructor dependencies provided from DI:
 
 The preceding filters can be applied to a controller or action method:
 
-Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](xref:fundamentals/logging/index) typically provides what's needed for logging. Logging added to filters:
+Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](../../../../fundamentals/logging/index.md) typically provides what's needed for logging. Logging added to filters:
 
 * Should focus on business domain concerns or behavior specific to the filter.
 * Should **not** log actions or other framework events. The built-in filters log actions and framework events.
@@ -1124,7 +1124,7 @@ In the preceding code, decorating the method with `[SampleActionFilter]` is the 
 
 ## Using middleware in the filter pipeline
 
-Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
+Resource filters work like [middleware](../../../../fundamentals/middleware/index.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
 
 To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses the localization middleware to establish the current culture for a request:
 

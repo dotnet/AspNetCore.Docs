@@ -71,7 +71,7 @@ Resource exhaustion can occur when a client interacts with the server and causes
 
 Denial of Service (DoS) attacks usually seek to exhaust an app or server's resources. However, resource exhaustion isn't necessarily the result of an attack on the system. For example, finite resources can be exhausted due to high user demand. DoS is covered further in the [DoS section](#denial-of-service-dos-attacks).
 
-Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:fundamentals/best-practices>.
+Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see [ASP.NET Core Best Practices](../../fundamentals/best-practices.md).
 
 ### CPU
 
@@ -411,7 +411,7 @@ For more information, see [Prevent Cross-Site Scripting (XSS) in ASP.NET Core](.
 
 Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor apps offer [the same guarantees that any other SignalR app using the hub protocol offer](../../signalr/security.md):
 
-* Apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for Cross-Origin Resource Sharing](../../signalr/security.md#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
+* Apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for Cross-Origin Resource Sharing](../../signalr/security.md#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see [WebSockets support in ASP.NET Core](../../fundamentals/websockets.md#websocket-origin-restriction).
 * If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor SignalR hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> on the endpoint route builder.
 
 For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md).

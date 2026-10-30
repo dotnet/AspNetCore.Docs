@@ -16,7 +16,7 @@ By [Justin Kotalik](https://github.com/jkotalik)
 * Windows Server 2016 or later / Windows 10 or later
 * IIS 10 or later
 * TLS 1.2 or later connection
-* When [hosting out-of-process](index.md#out-of-process-hosting-model): Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+* When [hosting out-of-process](index.md#out-of-process-hosting-model): Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](../../fundamentals/servers/kestrel.md) uses HTTP/1.1.
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 

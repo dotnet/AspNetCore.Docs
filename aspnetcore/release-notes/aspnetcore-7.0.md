@@ -43,7 +43,7 @@ For more information, see [Customize the cookie consent value](../security/gdpr.
 
 ### Parameter binding with DI in API controllers
 
-Parameter binding for API controller actions binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for API controller actions binds parameters through [dependency injection](../fundamentals/dependency-injection.md) when the type is configured as a service. This means it's no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
 
@@ -89,7 +89,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version.
 
-For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
+For more information, see [Filters in Minimal API apps](../fundamentals/minimal-apis/min-api-filters.md)
 
 ### Bind arrays and string values from headers and query strings
 
@@ -97,9 +97,9 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bqs2pa)]
 
-Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
+Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#bindar).
 
-For more information, see [Add endpoint summary or description](xref:fundamentals/minimal-apis#add-endpoint-summary-or-description).
+For more information, see [Add endpoint summary or description](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true#add-endpoint-summary-or-description).
 
 ### Bind the request body as a `Stream` or `PipeReader`
 
@@ -110,7 +110,7 @@ The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`Pip
 
 For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
 
-For more information, see [Bind the request body as a `Stream` or `PipeReader`](xref:fundamentals/minimal-apis#rbs)
+For more information, see [Bind the request body as a `Stream` or `PipeReader`](../fundamentals/minimal-apis.md#rbs)
 
 ### New Results.Stream overloads
 
@@ -118,7 +118,7 @@ We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.resul
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
 
-For more information, see [Stream examples](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#stream7)
+For more information, see [Stream examples](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#stream7)
 
 ### Typed results for Minimal APIs
 
@@ -136,7 +136,7 @@ The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_1" highlight="18":::
 
-For more information, see [`IResult` implementation types](xref:fundamentals/minimal-apis/test-min-api#iit7).
+For more information, see [`IResult` implementation types](../fundamentals/minimal-apis/test-min-api.md#iit7).
 
 ### New HttpResult interfaces
 
@@ -149,7 +149,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult`1>
 
-For more information, see [IHttpResult interfaces](xref:fundamentals/minimal-apis/responses#httpresultinterfaces7).
+For more information, see [IHttpResult interfaces](../fundamentals/minimal-apis/responses.md#httpresultinterfaces7).
 
 ### OpenAPI improvements for Minimal APIs
 
@@ -171,7 +171,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription*> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary*> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-For more information, see [OpenAPI in Minimal API apps](xref:fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-7.0)
+For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0)
 
 ### File uploads using IFormFile and IFormFileCollection
 
@@ -185,7 +185,7 @@ There is no built-in support for [antiforgery](/aspnet/core/security/anti-reques
 
 ### `[AsParameters]` attribute enables parameter binding for argument lists
 
-The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists. For more information, see [Parameter binding for argument lists with `[AsParameters]`](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#asparam7).
 
 ## Minimal APIs and API controllers
 
@@ -193,7 +193,7 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-For more information, see [Problem details service](xref:fundamentals/error-handling-api#pds7).
+For more information, see [Problem details service](../fundamentals/error-handling-api.md#problem-details).
 
 ### Route groups
 
@@ -556,7 +556,7 @@ This release:
 * Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
 * Improves Kestrel's support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
 * Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
-* Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](../host-and-deploy/iis/modules.md).
+* Adds support for HTTP/3 on [HTTP.sys](../fundamentals/servers/httpsys.md) and [IIS](../host-and-deploy/iis/modules.md).
 
 The following example shows how to use an SNI callback to resolve TLS options:
 
@@ -591,7 +591,7 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-For more information, see [Http/2 WebSockets support](xref:fundamentals/websockets?view=aspnetcore-7.0#http2-websockets-support).
+For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0#http2-websockets-support).
 
 ### Kestrel performance improvements on high core machines
 
@@ -687,17 +687,17 @@ services.AddW3CLogging(logging =>
 });
 ```
 
-For more information, see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).
+For more information, see [W3CLogger options](../fundamentals/w3c-logger/index.md#w3clogger-options-1).
 
 ### Request decompression
 
-The new [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true):
+The new [Request decompression middleware](../fundamentals/middleware/request-decompression.md?view=aspnetcore-7.0&preserve-view=true):
 
 * Enables API endpoints to accept requests with compressed content.
 * Uses the [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) HTTP header to automatically identify and decompress requests which contain compressed content.
 * Eliminates the need to write code to handle compressed requests.
 
-For more information, see [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).
+For more information, see [Request decompression middleware](../fundamentals/middleware/request-decompression.md?view=aspnetcore-7.0&preserve-view=true).
 
 ## Breaking changes
 

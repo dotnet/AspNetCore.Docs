@@ -107,7 +107,7 @@ In the next part of the series, we review the app and make some improvements to 
 ## Related content
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
-* [Globalization and localization](xref:fundamentals/localization)
+* [Globalization and localization](../../../../fundamentals/localization.md)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 

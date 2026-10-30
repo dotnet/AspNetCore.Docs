@@ -154,7 +154,7 @@ The convention is added as an option in `Startup.ConfigureServices`:
 [!code-csharp[](./application-model/samples/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=6)]
 
 > [!TIP]
-> Add conventions to [middleware](xref:fundamentals/middleware/index) via <xref:Microsoft.AspNetCore.Mvc.MvcOptions> using the following approach. The `{CONVENTION}` placeholder is the convention to add:
+> Add conventions to [middleware](../../fundamentals/middleware/index.md) via <xref:Microsoft.AspNetCore.Mvc.MvcOptions> using the following approach. The `{CONVENTION}` placeholder is the convention to add:
 >
 > ```csharp
 > services.Configure<MvcOptions>(c => c.Conventions.Add({CONVENTION}));
@@ -221,14 +221,14 @@ Using this approach (and additional conventions if required), API visibility is 
 
 :::moniker range=">= aspnetcore-9.0"
 
-Starting with .NET 9, ASP.NET Core includes built-in OpenAPI document generation in the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package. To programmatically inspect or modify the generated OpenAPI output, use document, operation, and schema transformers rather than implementing <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> directly. For more information, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+Starting with .NET 9, ASP.NET Core includes built-in OpenAPI document generation in the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package. To programmatically inspect or modify the generated OpenAPI output, use document, operation, and schema transformers rather than implementing <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> directly. For more information, see [Generate OpenAPI documents](../../fundamentals/openapi/aspnetcore-openapi.md).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> is an advanced extensibility point intended for framework and library authors. Most apps don't need to implement it. Starting with .NET 9, use the built-in OpenAPI document, operation, and schema transformers to customize generated API documentation. For more information, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+> <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> is an advanced extensibility point intended for framework and library authors. Most apps don't need to implement it. Starting with .NET 9, use the built-in OpenAPI document, operation, and schema transformers to customize generated API documentation. For more information, see [Generate OpenAPI documents](../../fundamentals/openapi/aspnetcore-openapi.md).
 
 ASP.NET Core uses <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> implementations to discover endpoints and generate <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> metadata. Tools such as Swashbuckle and NSwag inspect these `ApiDescription` instances when producing API documentation.
 

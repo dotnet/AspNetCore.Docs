@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](key-vault-configuration.md).
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 For more information on authentication for deployed test and production apps, see [Secure authentication flows](index.md#secure-authentication-flows).
 
@@ -176,7 +176,7 @@ To access a secret, complete the following steps:
 
 ### Register the user secrets configuration source
 
-The user secrets [configuration provider](/dotnet/core/extensions/configuration-providers) registers the appropriate configuration source with the .NET [Configuration API](xref:fundamentals/configuration/index).
+The user secrets [configuration provider](/dotnet/core/extensions/configuration-providers) registers the appropriate configuration source with the .NET [Configuration API](../fundamentals/configuration/index.md).
 
 ASP.NET Core web apps created with the [dotnet new](/dotnet/core/tools/dotnet-new) command or Visual Studio generate the following code:
 
@@ -196,7 +196,7 @@ The following examples demonstrate how to read the `Movies:ServiceApiKey` key:
 
 [!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
-For more information, see <xref:fundamentals/configuration/index>.
+For more information, see [Configuration in ASP.NET Core](../fundamentals/configuration/index.md).
 
 ## Map secrets to a POCO
 
@@ -204,7 +204,7 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#bind-an-array) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
+To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](../fundamentals/configuration/index.md#bind-an-array) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
 [!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
@@ -347,7 +347,7 @@ class Program
 
 * [GitHub dotnet/aspnetcore.docs issue #30378 (Debugging under Internet Information Services (IIS))](https://github.com/dotnet/AspNetCore.Docs/issues/30378)
 * [GitHub dotnet/aspnetcore.docs issue #16328 (Running in IIS)](https://github.com/dotnet/AspNetCore.Docs/issues/16328)
-* <xref:fundamentals/configuration/index>
+* [Configuration in ASP.NET Core](../fundamentals/configuration/index.md)
 * [Azure Key Vault configuration provider](key-vault-configuration.md)
 
 :::moniker-end

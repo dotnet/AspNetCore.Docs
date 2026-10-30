@@ -150,7 +150,7 @@ The `[DisplayFormat]` attribute can be used by itself, but it's generally a good
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
    ```
 
-It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration](xref:fundamentals/configuration/index) for date ranges and other values that are subject to frequent change rather than specifying it in code.
+It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration](../../../../fundamentals/configuration/index.md) for date ranges and other values that are subject to frequent change rather than specifying it in code.
 
 The following code shows combining attributes on one line:
 
@@ -223,7 +223,7 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 ## Related content
 
 * <xref:mvc/views/working-with-forms>
-* <xref:fundamentals/localization>
+* [Globalization and localization in ASP.NET Core](../../../../fundamentals/localization.md)
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
 

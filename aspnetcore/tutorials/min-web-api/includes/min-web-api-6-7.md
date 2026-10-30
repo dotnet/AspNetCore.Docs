@@ -2,7 +2,7 @@
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -87,7 +87,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS22.md)]
 
-Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and opens a browser window.
+Visual Studio launches the [Kestrel web server](../../../fundamentals/servers/kestrel.md) and opens a browser window.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -143,7 +143,7 @@ Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_all)]
 
-The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
+The following highlighted code adds the database context to the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container and enables displaying database-related exceptions:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
@@ -393,7 +393,7 @@ Test the endpoints to verify that they work the same.
 
 ## Use the TypedResults API
 
-Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
+Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](../../../fundamentals/minimal-apis/responses.md#typedresults-versus-results).
 
 The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
@@ -478,20 +478,20 @@ Verify you can post and get all fields except the secret field.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 
-* [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-* Handle errors and exceptions: The [developer exception page](xref:fundamentals/error-handling-api#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/error-handling-api).
+* [Configure JSON serialization options](../../../fundamentals/minimal-apis/responses.md#configure-json-serialization-options).
+* Handle errors and exceptions: The [developer exception page](../../../fundamentals/error-handling-api.md#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](../../../fundamentals/error-handling-api.md).
 * For an example of testing a Minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-* [OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
+* [OpenAPI support in Minimal APIs](../../../fundamentals/openapi/aspnetcore-openapi.md).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
 ### Learn more
 
-See <xref:fundamentals/minimal-apis>
+See [Minimal APIs quick reference](../../../fundamentals/minimal-apis.md)
 
 :::moniker-end
 
@@ -499,7 +499,7 @@ See <xref:fundamentals/minimal-apis>
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -581,7 +581,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS22.md)]
 
-Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and opens a browser window.
+Visual Studio launches the [Kestrel web server](../../../fundamentals/servers/kestrel.md) and opens a browser window.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -637,7 +637,7 @@ Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 
-The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
+The following highlighted code adds the database context to the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container and enables displaying database-related exceptions:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
@@ -881,6 +881,6 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Related content
 
-* <xref:fundamentals/minimal-apis>
+* [Minimal APIs quick reference](../../../fundamentals/minimal-apis.md)
 
 :::moniker-end

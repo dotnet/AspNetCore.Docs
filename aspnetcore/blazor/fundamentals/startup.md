@@ -11,7 +11,7 @@ uid: blazor/fundamentals/startup
 
 This article explains Blazor app startup configuration.
 
-For general guidance on ASP.NET Core app configuration for server-side development, see <xref:fundamentals/configuration/index>.
+For general guidance on ASP.NET Core app configuration for server-side development, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 ## Startup process and configuration
 
@@ -569,7 +569,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 ### Server-side and prerendered client-side scenarios
 
-Use [ASP.NET Core middleware](xref:fundamentals/middleware/index) to control the headers collection.
+Use [ASP.NET Core middleware](../../fundamentals/middleware/index.md) to control the headers collection.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -591,7 +591,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see <xref:fundamentals/middleware/write>.
+The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see [Write custom ASP.NET Core middleware](../../fundamentals/middleware/write.md).
 
 :::moniker range="< aspnetcore-8.0"
 

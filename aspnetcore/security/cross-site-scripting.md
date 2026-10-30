@@ -170,7 +170,7 @@ The preceding code generates the following output:
 
 You can use HTML, JavaScript, and URL encoders in your code in two ways:
 
-* Inject them via [dependency injection](xref:fundamentals/dependency-injection).
+* Inject them via [dependency injection](../fundamentals/dependency-injection.md).
 * Use the default encoders contained in the `System.Text.Encodings.Web` namespace.
 
 When you use the default encoders, any customizations applied to character ranges (so they're treated as safe) don't take effect. The default encoders use the safest encoding rules possible.
@@ -297,6 +297,6 @@ Never rely on validation alone. Always encode untrusted input before output, no 
 
 ## Related content
 
-- <xref:fundamentals/dependency-injection>
+- [Dependency injection in ASP.NET Core](../fundamentals/dependency-injection.md)
 - [Unicode 17.0 Character Code Charts](https://www.unicode.org/charts/index.html)
 - [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro)

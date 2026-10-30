@@ -13,13 +13,13 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://githu
 
 This article explains how Blazor apps can inject services into components.
 
-[Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
+[Dependency injection (DI)](../../fundamentals/dependency-injection.md) is a technique for accessing services configured in a central location:
 
 * Framework-registered services can be injected directly into Razor components.
 * Blazor apps define and register custom services and make them available throughout the app via DI.
 
 > [!NOTE]
-> We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
+> We recommend reading [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md) before reading this topic.
 
 ## Default services
 
@@ -204,7 +204,7 @@ Services can be configured with the lifetimes shown in the following table.
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive the same instance of the service. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
 
-The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
+The DI system is based on the DI system in ASP.NET Core. For more information, see [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md).
 
 ## Request a service in a component
 
@@ -793,8 +793,8 @@ services.AddScoped<BlazorServiceAccessor>();
 
 :::moniker range=">= aspnetcore-8.0"
 
-* <xref:fundamentals/dependency-injection>
-* [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md)
+* [`IDisposable` guidance for Transient and shared instances](../../fundamentals/dependency-injection.md#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
 * [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)
 
@@ -802,8 +802,8 @@ services.AddScoped<BlazorServiceAccessor>();
 
 :::moniker range="< aspnetcore-8.0"
 
-* <xref:fundamentals/dependency-injection>
-* [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md)
+* [`IDisposable` guidance for Transient and shared instances](../../fundamentals/dependency-injection.md#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
 
 :::moniker-end

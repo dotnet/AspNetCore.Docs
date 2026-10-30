@@ -119,7 +119,7 @@ By convention, the `PageModel` class is called `<PageName>Model` and is in the s
 
 The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows:
 
-* Managing of page dependencies through [dependency injection](xref:fundamentals/dependency-injection).
+* Managing of page dependencies through [dependency injection](../fundamentals/dependency-injection.md).
 * [Unit testing](xref:test/razor-pages-tests)
 
 The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). Handler methods for any HTTP verb can be added. The most common handlers are:
@@ -526,7 +526,7 @@ The `Pages/Customers/Index.cshtml.cs` page model applies the `[TempData]` attrib
 public string Message { get; set; }
 ```
 
-For more information, see [TempData](xref:fundamentals/app-state#tempdata).
+For more information, see [TempData](../fundamentals/app-state.md#tempdata).
 
 <a name="mhpp"></a>
 
@@ -583,7 +583,7 @@ To precompile views, see [Razor view compilation](xref:mvc/views/view-compilatio
 
 ### Specify that Razor Pages are at the content root
 
-By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> to specify that your Razor Pages are at the [content root](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
+By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> to specify that your Razor Pages are at the [content root](../fundamentals/index.md#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
 
 [!code-csharp[](~/razor-pages/index/samples/6.0/RazorPagesContacts/Program.cs?name=snippet_cr&highlight=5-9)]
 

@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Learn about built-in HTTP metrics for ASP.NET Core apps, including hosting, routing, rate limiting, header parsing, Kestrel, and SignalR.
 ms.date: 09/01/2026
 ms.topic: reference
-uid: metrics/http
 ---
 # ASP.NET Core built-in HTTP metrics
 
 This article describes the built-in HTTP-related metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics cover hosting, routing, rate limiting, header parsing, the Kestrel web server, and SignalR.
 
-For an overview of all built-in metrics reference pages and how to read this reference, see <xref:metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:metrics/overview>.
+For an overview of all built-in metrics reference pages and how to read this reference, see [ASP.NET Core built-in metrics](built-in.md). For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see [ASP.NET Core metrics](overview.md).
 
 ## `Microsoft.AspNetCore.Hosting`
 
@@ -22,7 +21,7 @@ The `Microsoft.AspNetCore.Hosting` metrics report high-level information about H
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In ASP.NET Core 11 and later, the instruments under `Microsoft.AspNetCore.Hosting` are the framework's primary implementation of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). Register this meter directly with the OpenTelemetry SDK (for example, call `AddMeter("Microsoft.AspNetCore.Hosting")` in your OpenTelemetry metrics pipeline) without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
+> In ASP.NET Core 11 and later, the instruments under `Microsoft.AspNetCore.Hosting` are the framework's primary implementation of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). Register this meter directly with the OpenTelemetry SDK (for example, call `AddMeter("Microsoft.AspNetCore.Hosting")` in your OpenTelemetry metrics pipeline) without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see [ASP.NET Core metrics](overview.md).
 
 :::moniker-end
 
@@ -193,7 +192,7 @@ The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection informa
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In ASP.NET Core 11 and later, the Kestrel meter conforms to the [OpenTelemetry semantic conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/). Register it directly with the OpenTelemetry SDK (for example, call `AddMeter("Microsoft.AspNetCore.Server.Kestrel")` in your OpenTelemetry metrics pipeline) without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see <xref:metrics/overview>.
+> In ASP.NET Core 11 and later, the Kestrel meter conforms to the [OpenTelemetry semantic conventions for Kestrel web server metrics](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/). Register it directly with the OpenTelemetry SDK (for example, call `AddMeter("Microsoft.AspNetCore.Server.Kestrel")` in your OpenTelemetry metrics pipeline) without adding the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) package. For details, see [ASP.NET Core metrics](overview.md).
 
 :::moniker-end
 
@@ -370,8 +369,8 @@ Attribute | Type | Description | Examples | Presence
 
 ## Related content
 
-* <xref:metrics/built-in>
-* <xref:metrics/diagnostics>
-* <xref:metrics/blazor>
-* <xref:metrics/security>
-* <xref:metrics/overview>
+* [ASP.NET Core built-in metrics](built-in.md)
+* [ASP.NET Core built-in diagnostics metrics](diagnostics.md)
+* [ASP.NET Core built-in Blazor (Razor components) metrics](blazor.md)
+* [ASP.NET Core built-in authentication and authorization metrics](security.md)
+* [ASP.NET Core metrics](overview.md)

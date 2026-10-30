@@ -3,7 +3,6 @@ title: File Providers in ASP.NET Core
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/06/2020
-uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
 
@@ -15,12 +14,12 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core abstracts file system access through the use of File Providers. File Providers are used throughout the ASP.NET Core framework. For example:
 
-* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
-* [Static file middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
+* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](index.md#content-root) and [web root](index.md#web-root) as `IFileProvider` types.
+* [Static file middleware](static-files.md) uses File Providers to locate static files.
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## File Provider interfaces
 
@@ -40,7 +39,7 @@ The primary interface is <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 
 You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> method.
 
-The `FileProviderSample` sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
+The `FileProviderSample` sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](dependency-injection.md).
 
 ## File Provider implementations
 
@@ -54,7 +53,7 @@ The following table lists implementations of `IFileProvider`.
 
 ### Physical File Provider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](dependency-injection.md).
 
 > [!WARNING]
 > `PhysicalFileProvider` scopes access to its root directory and child paths, but this doesn't guarantee a security sandbox. Symbolic links under the root can still expose files outside the root directory.
@@ -169,12 +168,12 @@ The following table provides common examples of glob patterns.
 
 ASP.NET Core abstracts file system access through the use of File Providers. File Providers are used throughout the ASP.NET Core framework:
 
-* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
-* [Static file middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
+* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](index.md#content-root) and [web root](index.md#web-root) as `IFileProvider` types.
+* [Static file middleware](static-files.md) uses File Providers to locate static files.
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## File Provider interfaces
 
@@ -194,7 +193,7 @@ The primary interface is <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 
 You can read from the file using the [IFileInfo.CreateReadStream](xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*) method.
 
-The sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
+The sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](dependency-injection.md).
 
 ## File Provider implementations
 
@@ -208,7 +207,7 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](dependency-injection.md).
 
 When instantiating this provider directly, a directory path is required and serves as the base path for all requests made using the provider.
 

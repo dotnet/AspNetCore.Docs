@@ -14,7 +14,7 @@ To specify a page route, add route segments, or add parameters to a route, use t
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 | Scenario | The sample demonstrates  |
 | -------- | --------------------------- |
@@ -185,7 +185,7 @@ info: SampleApp.Pages.AboutModel[0]
 
 ## Use a parameter transformer to customize page routes
 
-See [Parameter transformers](xref:fundamentals/routing#parameter-transformers).
+See [Parameter transformers](../fundamentals/routing.md#parameter-transformers).
 
 ## Configure a page route
 
@@ -299,7 +299,7 @@ To specify a page route, add route segments, or add parameters to a route, use t
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 | Scenario | The sample demonstrates ... |
 | -------- | --------------------------- |
@@ -578,9 +578,9 @@ When you need to configure custom page routes for individual pages, configure ro
 
 To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
-There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:fundamentals/routing#reserved-routing-names).
+There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](../mvc/controllers/routing.md#reserved-routing-names).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 | Scenario | The sample demonstrates ... |
 | -------- | --------------------------- |

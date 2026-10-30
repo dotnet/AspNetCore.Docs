@@ -161,7 +161,7 @@ The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor
 
 ### Add page size to configuration
 
-Add `PageSize` to the `appsettings.json` [Configuration](xref:fundamentals/configuration/index) file:
+Add `PageSize` to the `appsettings.json` [Configuration](../../fundamentals/configuration/index.md) file:
 
 [!code-json[Main](intro/samples/cu50/appsettings.json?highlight=2)]
 
@@ -178,7 +178,7 @@ The preceding code:
 * Saves the sort order in the `CurrentSort` property.
 * Resets page index to 1 when there's a new search string.
 * Uses the `PaginatedList` class to get Student entities.
-* Sets `pageSize` to 3 from [Configuration](xref:fundamentals/configuration/index), 4 if configuration fails.
+* Sets `pageSize` to 3 from [Configuration](../../fundamentals/configuration/index.md), 4 if configuration fails.
 
 All the parameters that `OnGetAsync` receives are null when:
 

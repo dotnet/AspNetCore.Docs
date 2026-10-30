@@ -4,8 +4,8 @@
 > [!NOTE]
 > In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. Swashbuckle is no longer included by default, but it remains available as a community package you can add manually to ASP.NET Core projects targeting .NET 9 or later.
 > 
-> • To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
-> • To add and use the Swagger UI provided by the `Swashbuckle.AspNetCore.SwaggerUI` package for interactive exploration or local ad‑hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+> • To understand the built‑in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../../../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).  
+> • To add and use the Swagger UI provided by the `Swashbuckle.AspNetCore.SwaggerUI` package for interactive exploration or local ad‑hoc testing, see [Use the generated OpenAPI documents](../../../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 >
 >The following instructions apply when using Swashbuckle with .NET versions earlier than 9.
 
@@ -236,14 +236,14 @@ To inject additional CSS stylesheets, add them to the project's *wwwroot* folder
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 * [Improve the developer experience of an API with Swagger documentation](/training/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 There are three main components to Swashbuckle:
 
@@ -307,7 +307,7 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 > Swashbuckle relies on MVC's <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> to discover the routes and endpoints. If the project calls <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>, routes and endpoints are discovered automatically. When calling <xref:Microsoft.Extensions.DependencyInjection.MvcCoreServiceCollectionExtensions.AddMvcCore*>, the <xref:Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions.AddApiExplorer*> method must be explicitly called. For more information, see [Swashbuckle, ApiExplorer, and Routing](https://github.com/domaindrivendev/Swashbuckle.AspNetCore#swashbuckle-apiexplorer-and-routing).
 
 In development, the preceding `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool. This depends on
-the [static file middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
+the [static file middleware](../../../fundamentals/static-files.md). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](xref:tutorials/web-api-help-pages-using-swagger#openapi-specification-openapijson).
 
@@ -529,7 +529,7 @@ If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.Stat
 <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
 ```
 
-The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](xref:fundamentals/metapackage).
+The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](../../../fundamentals/metapackage.md).
 
 Enable static file middleware:
 

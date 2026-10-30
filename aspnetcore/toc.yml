@@ -485,26 +485,26 @@ items:
   - name: Fundamentals
     items:
       - name: Overview
-        uid: fundamentals/index
+        href: fundamentals/index.md
       - name: App start up
-        uid: fundamentals/startup
+        href: fundamentals/startup.md
       - name: Dependency injection (services)
-        uid: fundamentals/dependency-injection
+        href: fundamentals/dependency-injection.md
       - name: Native AOT
         items:
           - name: Overview
             displayName: native, aot
-            uid: fundamentals/native-aot
+            href: fundamentals/native-aot.md
           - name: Tutorial
             displayName: native, aot
-            uid: fundamentals/native-aot-tutorial
+            href: fundamentals/aot/native-aot-tutorial.md
           - name: Request Delegate Generator
             displayName: aot, RDG, Request Delegate Generator
-            uid: fundamentals/aot/rdg
+            href: fundamentals/aot/request-delegate-generator/rdg.md
       - name: Middleware
         items:
           - name: Middleware overview
-            uid: fundamentals/middleware/index
+            href: fundamentals/middleware/index.md
           - name: Rate limiting middleware
             uid: performance/rate-limit
           - name: Rate limiting samples
@@ -514,60 +514,60 @@ items:
           - name: Response caching middleware
             uid: performance/caching/middleware
           - name: Write middleware
-            uid: fundamentals/middleware/write
+            href: fundamentals/middleware/write.md
           - name: Request and response operations
             displayName: middleware
-            uid: fundamentals/middleware/request-response
+            href: fundamentals/middleware/request-response.md
           - name: Request decompression
             displayName: request decompression middleware
-            uid: fundamentals/middleware/request-decompression
+            href: fundamentals/middleware/request-decompression.md
           - name: Factory-based middleware
-            uid: fundamentals/middleware/extensibility
+            href: fundamentals/middleware/extensibility.md
           - name: Factory-based middleware with third-party container
-            uid: fundamentals/middleware/extensibility-third-party-container
+            href: fundamentals/middleware/extensibility-third-party-container.md
       - name: Host
         items:
           - name: WebApplication and WebApplicationBuilder
-            uid: fundamentals/minimal-apis/webapplication
+            href: fundamentals/minimal-apis/webapplication.md
           - name: Generic Host
-            uid: fundamentals/host/generic-host
+            href: fundamentals/host/generic-host.md
           - name: Web Host
-            uid: fundamentals/host/web-host
+            href: fundamentals/host/web-host.md
       - name: Configuration
-        uid: fundamentals/configuration/index
+        href: fundamentals/configuration/index.md
       - name: Options
-        uid: fundamentals/configuration/options
+        href: fundamentals/configuration/options.md
       - name: Environments (dev, stage, prod)
-        uid: fundamentals/environments
+        href: fundamentals/environments.md
       - name: Logging and monitoring
         items:
           - name: Logging
-            uid: fundamentals/logging/index
+            href: fundamentals/logging/index.md
           - name: HTTP logging
-            uid: fundamentals/http-logging/index
+            href: fundamentals/http-logging/index.md
           - name: Enrich HTTP request logs in ASP.NET Core
-            uid: fundamentals/http-logging/http-log-enricher
+            href: fundamentals/http-logging/http-log-enricher.md
           - name: W3C logger
-            uid: fundamentals/w3c-logger/index
+            href: fundamentals/w3c-logger/index.md
           - name: Health checks
             displayName: logging, monitoring
             href: host-and-deploy/health-checks.md
           - name: Metrics
             displayName: logging, monitoring
-            uid: metrics/overview
+            href: metrics/overview.md
       - name: HttpContext
-        uid: fundamentals/use-httpcontext
+        href: fundamentals/use-http-context.md
       - name: Routing
-        uid: fundamentals/routing
+        href: fundamentals/routing.md
       - name: Handle errors
-        uid: fundamentals/error-handling
+        href: fundamentals/error-handling.md
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
-        uid: fundamentals/http-requests
+        href: fundamentals/http-requests.md
       - name: Static files
-        uid: fundamentals/static-files
+        href: fundamentals/static-files.md
       - name: Validation
-        uid: fundamentals/validation
+        href: fundamentals/validation.md
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
@@ -1081,7 +1081,7 @@ items:
           - name: Browser Link
             uid: client-side/using-browserlink
       - name: Session and state management
-        uid: fundamentals/app-state
+        href: fundamentals/app-state.md
       - name: Layout
         uid: mvc/views/layout
       - name: Razor syntax
@@ -1165,49 +1165,49 @@ items:
             href: razor-pages/web-sdk.md
           - name: Code generator tool (scaffolding)
             displayName: aspnet-codegenerator
-            uid: fundamentals/tools/dotnet-aspnet-codegenerator
+            href: fundamentals/tools/dotnet-aspnet-codegenerator.md
   - name: APIs
     items:
       - name: Overview
-        uid: fundamentals/apis
+        href: fundamentals/apis.md
       - name: "Tutorial: Create a Minimal API"
         uid: tutorials/min-web-api
       - name: Minimal APIs quick reference
-        uid: fundamentals/minimal-apis
+        href: fundamentals/minimal-apis.md
       - name: WebApplication and WebApplicationBuilder
-        uid: fundamentals/minimal-apis/webapplication
+        href: fundamentals/minimal-apis/webapplication.md
       - name: Route Handlers
-        uid: fundamentals/minimal-apis/route-handlers
+        href: fundamentals/minimal-apis/route-handlers.md
       - name: Parameter binding
-        uid: fundamentals/minimal-apis/parameter-binding
+        href: fundamentals/minimal-apis/parameter-binding.md
       - name: Create responses
-        uid: fundamentals/minimal-apis/responses
+        href: fundamentals/minimal-apis/responses.md
       - name: Filters
-        uid: fundamentals/minimal-apis/min-api-filters
+        href: fundamentals/minimal-apis/min-api-filters.md
       - name: Unit and integration tests
-        uid: fundamentals/minimal-apis/test-min-api
+        href: fundamentals/minimal-apis/test-min-api.md
       - name: Handle JSON Patch requests
         href: web-api/jsonpatch.md
       - name: Handle errors
-        uid: fundamentals/error-handling-api
+        href: fundamentals/error-handling-api.md
       - name: Authentication and authorization
-        uid: fundamentals/minimal-apis/security
+        href: fundamentals/minimal-apis/security.md
       - name: OpenAPI
         items:
           - name: Overview
-            uid: fundamentals/openapi/overview
+            href: fundamentals/openapi/overview.md
           - name: Generate OpenAPI documents
-            uid: fundamentals/openapi/aspnetcore-openapi
+            href: fundamentals/openapi/aspnetcore-openapi.md
           - name: Include OpenAPI metadata
-            uid: fundamentals/openapi/include-metadata
+            href: fundamentals/openapi/include-metadata.md
           - name: XML doc comment support
-            uid: fundamentals/openapi/aspnet-openapi-xml
+            href: fundamentals/openapi/openapi-comments.md
           - name: Customize OpenAPI documents
-            uid: fundamentals/openapi/customize-openapi
+            href: fundamentals/openapi/customize-openapi.md
           - name: Use OpenAPI documents
-            uid: fundamentals/openapi/using-openapi-documents
+            href: fundamentals/openapi/using-openapi-documents.md
           - name: OpenAPI tools
-            uid: fundamentals/openapi/openapi-tools
+            href: fundamentals/openapi/openapi-tools.md
           - name: Swagger / NSwag
             items:
               - name: Overview
@@ -1349,7 +1349,7 @@ items:
         displayName: signalr
       - name: WebSockets
         displayName: signalr
-        uid: fundamentals/websockets
+        href: fundamentals/websockets.md
       - name: Logging and diagnostics
         displayName: signalr
         href: signalr/diagnostics.md
@@ -1461,48 +1461,48 @@ items:
     items:
       - name: Overview
         displayName: kestrel, iis, http.sys, httpsys, servers
-        uid: fundamentals/servers/index
+        href: fundamentals/servers/index.md
       - name: HTTP.sys
         displayName: deploy, publish, server, httpsys
-        uid: fundamentals/servers/httpsys
+        href: fundamentals/servers/httpsys.md
       - name: Kestrel
         items:
           - name: Overview
             displayName: deploy, publish, server, kestrel
-            uid: fundamentals/servers/kestrel
+            href: fundamentals/servers/kestrel.md
           - name: Endpoints
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/endpoints
+            href: fundamentals/servers/kestrel/endpoints.md
           - name: Options
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/options
+            href: fundamentals/servers/kestrel/options.md
           - name: Diagnostics
             displayName: diagnostics
-            uid: fundamentals/servers/kestrel/diagnostics
+            href: fundamentals/servers/kestrel/diagnostics.md
           - name: Memory management
             displayName: memory, pool, kestrel
-            uid: fundamentals/servers/kestrel/memory-management
+            href: fundamentals/servers/kestrel/memory-management.md
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/http2
+            href: fundamentals/servers/kestrel/http2.md
           - name: HTTP/3
             displayName: HTTP/3, kestrel
-            uid: fundamentals/servers/kestrel/http3
+            href: fundamentals/servers/kestrel/http3.md
           - name: Connection middleware
             displayName: connection, middleware, kestrel
-            uid: fundamentals/servers/kestrel/connection-middleware
+            href: fundamentals/servers/kestrel/connection-middleware.md
           - name: When to use a reverse proxy
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
+            href: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy.md
           - name: Host filtering
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/host-filtering
+            href: fundamentals/servers/kestrel/host-filtering.md
           - name: Request draining
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/request-draining
+            href: fundamentals/servers/kestrel/request-draining.md
           - name: Security considerations
             displayName: deploy, publish, server, Kestrel, security
-            uid: fundamentals/servers/kestrel/security-considerations
+            href: fundamentals/servers/kestrel/security-considerations.md
       - name: IIS
         items:
           - name: Overview
@@ -1676,17 +1676,17 @@ items:
     items:
       - name: Overview
         displayName: logging, monitoring
-        uid: metrics/overview
+        href: metrics/overview.md
       - name: Built-in metrics
-        uid: metrics/built-in
+        href: metrics/built-in.md
       - name: HTTP metrics
-        uid: metrics/http
+        href: metrics/http.md
       - name: Diagnostics metrics
-        uid: metrics/diagnostics
+        href: metrics/diagnostics.md
       - name: Blazor (Razor components) metrics
-        uid: metrics/blazor
+        href: metrics/blazor.md
       - name: Authentication and authorization metrics
-        uid: metrics/security
+        href: metrics/security.md
   - name: Test
     items:
       - name: .NET Hot Reload
@@ -1707,7 +1707,7 @@ items:
             displayName: test, httprepl
             href: web-api/http-repl/telemetry.md
       - name: Test Minimal API
-        uid: fundamentals/minimal-apis/test-min-api
+        href: fundamentals/minimal-apis/test-min-api.md
       - name: Blazor tests
         uid: blazor/test
       - name: Razor Pages unit tests
@@ -1849,29 +1849,29 @@ items:
     items:
       - name: Overview
         displayName: aot, rdg diagnostics
-        uid: fundamentals/aot/request-delegate-generator/rdg-ids
+        href: fundamentals/aot/request-delegate-generator/rdg-ids.md
       - name: RDG002
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg002.md
       - name: RDG004
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg004
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg004.md
       - name: RDG005
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg005
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg005.md
       - name: RDG006
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg006
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg006.md
       - name: RDG007
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg007
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg007.md
       - name: RDG008
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg008
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg008.md
       - name: RDG009
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg009
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg009.md
       - name: RDG010
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg010
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg010.md
       - name: RDG011
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg011
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg011.md
       - name: RDG012
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg012.md
       - name: RDG013
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg013.md
   - name: ASPDEPR diagnostics
     items:
       - name: Overview
@@ -2303,7 +2303,7 @@ items:
         uid: performance/overview
       - name: Best practices
         displayName: performance
-        uid: fundamentals/best-practices
+        href: fundamentals/best-practices.md
       - name: Caching
         items:
           - name: Overview
@@ -2350,22 +2350,22 @@ items:
     items:
       - name: Overview
         displayName: globalization, localization
-        uid: fundamentals/localization
+        href: fundamentals/localization.md
       - name: Make an app's content localizable
         displayName: globalization, localization
-        uid: fundamentals/localization/make-content-localizable
+        href: fundamentals/localization/make-content-localizable.md
       - name: Provide resources
         displayName: globalization, localization
-        uid: fundamentals/localization/provide-resources
+        href: fundamentals/localization/provide-resources.md
       - name: Select language/culture
         displayName: globalization, localization
-        uid: fundamentals/localization/select-language-culture
+        href: fundamentals/localization/select-language-culture.md
       - name: Portable Object localization
-        uid: fundamentals/portable-object-localization
+        href: fundamentals/portable-object-localization.md
       - name: Extensibility
-        uid: fundamentals/localization-extensibility
+        href: fundamentals/localization-extensibility.md
       - name: Troubleshoot
-        uid: fundamentals/troubleshoot-aspnet-core-localization
+        href: fundamentals/troubleshoot-aspnet-core-localization.md
   - name: Advanced
     items:
       - name: Model binding
@@ -2377,45 +2377,45 @@ items:
       - name: Compatibility version
         uid: mvc/compatibility-version
       - name: Write middleware
-        uid: fundamentals/middleware/write
+        href: fundamentals/middleware/write.md
       - name: Request and response operations
         displayName: middleware
-        uid: fundamentals/middleware/request-response
+        href: fundamentals/middleware/request-response.md
       - name: Request decompression
         displayName: request decompression middleware
-        uid: fundamentals/middleware/request-decompression
+        href: fundamentals/middleware/request-decompression.md
       - name: URL rewriting
-        uid: fundamentals/url-rewriting
+        href: fundamentals/url-rewriting.md
       - name: File providers
-        uid: fundamentals/file-providers
+        href: fundamentals/file-providers.md
       - name: Request-feature interfaces
-        uid: fundamentals/request-features
+        href: fundamentals/request-features.md
       - name: Access HttpContext
-        uid: fundamentals/httpcontext
+        href: fundamentals/http-context.md
       - name: Change tokens
-        uid: fundamentals/change-tokens
+        href: fundamentals/change-tokens.md
       - name: Open Web Interface for .NET (OWIN)
-        uid: fundamentals/owin
+        href: fundamentals/owin.md
       - name: Background tasks with hosted services
-        uid: fundamentals/host/hosted-services
+        href: fundamentals/host/hosted-services.md
       - name: Hosting startup assemblies
-        uid: fundamentals/configuration/platform-specific-configuration
+        href: fundamentals/host/platform-specific-configuration.md
       - name: ASP.NET Core in class libraries
         displayName: shared framework
-        uid: fundamentals/target-aspnetcore
+        href: fundamentals/target-aspnetcore.md
       - name: Microsoft.AspNetCore.App metapackage
-        uid: fundamentals/metapackage-app
+        href: fundamentals/metapackage-app.md
       - name: Microsoft.AspNetCore.All metapackage
-        uid: fundamentals/metapackage
+        href: fundamentals/metapackage.md
       - name: High performance logging
         displayName: loggermessage
         href: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Use a file watcher
         uid: tutorials/dotnet-watch
       - name: Factory-based middleware
-        uid: fundamentals/middleware/extensibility
+        href: fundamentals/middleware/extensibility.md
       - name: Factory-based middleware with third-party container
-        uid: fundamentals/middleware/extensibility-third-party-container
+        href: fundamentals/middleware/extensibility-third-party-container.md
   - name: Migration and updates
     items:
       - name: Overview

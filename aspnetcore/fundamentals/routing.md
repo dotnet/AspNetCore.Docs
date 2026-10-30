@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/19/2026
-uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
@@ -23,7 +22,7 @@ Apps can configure routing using:
 * Razor Pages
 * SignalR
 * gRPC Services
-* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](../host-and-deploy/health-checks.md).
+* Endpoint-enabled [middleware](middleware/index.md) such as [Health Checks](../host-and-deploy/health-checks.md).
 * Delegates and lambdas registered with routing.
 
 This article covers low-level details of ASP.NET Core routing. For information on configuring routing:
@@ -134,7 +133,7 @@ An ASP.NET Core endpoint is:
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
 * Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata) collection.
 * Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern).
-* Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
+* Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](dependency-injection.md).
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
 
@@ -142,7 +141,7 @@ The following code shows how to retrieve and inspect the endpoint matching the c
 
 The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be selected by the routing system.
 
-In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an inline [middleware](xref:fundamentals/middleware/index).
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an inline [middleware](middleware/index.md).
 
 <a name="mt"></a>
 
@@ -250,7 +249,7 @@ Terminal middleware can be an effective tool, but can require:
 
 Consider integrating with routing before writing a terminal middleware.
 
-Existing terminal middleware that integrates with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/dotnet/AspNetCore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
+Existing terminal middleware that integrates with [Map](middleware/index.md#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/dotnet/AspNetCore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
 
 * Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
 * Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
@@ -275,12 +274,12 @@ The metadata system was created in response to the problems encountered by exten
 * Is based on data in the URL path and headers.
 * Can be extended to consider any data in the request.
 
-When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
+When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](request-features.md) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
 
 * Calling [HttpContext.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
-[Middleware](xref:fundamentals/middleware/index) that runs after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+[Middleware](middleware/index.md) that runs after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Because the middleware applies policies based on the selected endpoint, it's important that:
 
@@ -359,7 +358,7 @@ URL generation:
 * Is the process by which routing can create a URL path based on a set of route values.
 * Allows for a logical separation between endpoints and the URLs that access them.
 
-Endpoint routing includes the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API. `LinkGenerator` is a singleton service available from [DI](xref:fundamentals/dependency-injection). The `LinkGenerator` API can be used outside of the context of an executing request. [Mvc.IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` API internally to provide link generating capabilities.
+Endpoint routing includes the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API. `LinkGenerator` is a singleton service available from [DI](dependency-injection.md). The `LinkGenerator` API can be used outside of the context of an executing request. [Mvc.IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` API internally to provide link generating capabilities.
 
 The link generator is backed by the concept of an **address** and **address schemes**. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from controllers and Razor Pages are implemented as an address scheme.
 
@@ -696,7 +695,7 @@ The following example shows ambient values and explicit values. It provides ambi
 The preceding code:
 
 * Returns `/Widget/Index/17`
-* Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](xref:fundamentals/dependency-injection).
+* Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](dependency-injection.md).
 
 The following code provides only explicit values and no ambient values:
 
@@ -1109,7 +1108,7 @@ app.MapHealthChecks("/healthz");
 
 The routing tests have a [basic example](https://github.com/dotnet/AspNetCore/blob/main/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
 
-**CONSIDER** implementing <xref:Microsoft.AspNetCore.Routing.EndpointDataSource.GetGroupedEndpoints*>. This gives complete control over running group conventions and the final metadata on the grouped endpoints. For example, this allows custom `EndpointDataSource` implementations to run [endpoint filters](xref:fundamentals/minimal-apis/min-api-filters) added to groups.
+**CONSIDER** implementing <xref:Microsoft.AspNetCore.Routing.EndpointDataSource.GetGroupedEndpoints*>. This gives complete control over running group conventions and the final metadata on the grouped endpoints. For example, this allows custom `EndpointDataSource` implementations to run [endpoint filters](minimal-apis/min-api-filters.md) added to groups.
 
 **DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. The philosophy of routing is that nothing is included by default, and that `UseEndpoints` is the place to register endpoints.
 
@@ -1166,4 +1165,4 @@ This behavior makes the authorization middleware useful outside of routing and f
 
 ## Related content
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](index.md#how-to-download-a-sample))

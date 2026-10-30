@@ -42,7 +42,7 @@ By default, the new middleware:
 ![Add Relying Party Trust Wizard: Configure URL](ws-federation/_static/AdfsConfigureUrl.png)
 
 > [!NOTE]
-> This must be an HTTPS URL. IIS Express can provide a self-signed certificate when hosting the app during development. Kestrel requires manual certificate configuration. See the [Kestrel documentation](xref:fundamentals/servers/kestrel) for more details.
+> This must be an HTTPS URL. IIS Express can provide a self-signed certificate when hosting the app during development. Kestrel requires manual certificate configuration. See the [Kestrel documentation](../../fundamentals/servers/kestrel.md) for more details.
 
 * Click **Next** through the rest of the wizard and **Close** at the end.
 

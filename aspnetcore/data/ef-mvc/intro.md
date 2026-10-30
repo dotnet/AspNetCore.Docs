@@ -207,7 +207,7 @@ To register `SchoolContext` as a service, open `Startup.cs`, and add the highlig
 
 [!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 Open the `appsettings.json` file and add a connection string as shown in the following markup:
 
@@ -219,7 +219,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptio
 
 [!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=6)]
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments).
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](../../fundamentals/environments.md).
 
 ### SQL Server Express LocalDB
 
@@ -463,7 +463,7 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## About EF Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), so you don't need to reference the package.
+To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.App metapackage](../../fundamentals/metapackage-app.md), so you don't need to reference the package.
 
 The EF SQL Server package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide runtime support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial.
 
@@ -551,7 +551,7 @@ To register `SchoolContext` as a service, open `Startup.cs`, and add the highlig
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
 

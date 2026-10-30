@@ -237,7 +237,7 @@ Update `Pages/Instructors/Index.cshtml` with the following code.
 
 The preceding code makes the following changes:
 
-  * Updates the `page` directive to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The [route template](xref:fundamentals/routing#route-template-reference) changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
+  * Updates the `page` directive to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The [route template](../../fundamentals/routing.md#route-template-reference) changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 
     `https://localhost:5001/Instructors?id=2`
 
@@ -610,7 +610,7 @@ The next tutorial shows how to update related data.
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
-If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 The following illustrations show the completed pages for this tutorial:
 

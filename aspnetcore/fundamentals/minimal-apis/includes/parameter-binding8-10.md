@@ -103,7 +103,7 @@ The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tre
 
 ## Parameter binding with dependency injection
 
-Parameter binding for Minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for Minimal APIs binds parameters through [dependency injection](../../dependency-injection.md) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-7/samples/ApiController/Program.cs" id="snippet_min" highlight="8-9":::
 
@@ -227,7 +227,7 @@ Authenticated file upload requests are supported using an [Authorization header]
 
 ### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 
-Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](../../openapi/aspnetcore-openapi.md) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
 The following code uploads files using inferred binding from the `IFormFile` type:
 
@@ -443,7 +443,7 @@ When binding fails, the framework logs a debug message and returns various statu
 | Failure to deserialize JSON body |doesn't matter|body|400|
 | Wrong content type (not `application/json`) |doesn't matter|body|415|
 
-When `ThrowOnBadRequest` is `false`, endpoints that have a filter pipeline run their filters after a parameter-check failure (such as failed route, query, or header parsing, or a missing required parameter), allowing a filter to observe the `400` status code and replace the response body. Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported content types) or for binding exceptions. For more information, see [Filters and parameter binding failures](xref:fundamentals/minimal-apis/min-api-filters#filters-and-parameter-binding-failures).
+When `ThrowOnBadRequest` is `false`, endpoints that have a filter pipeline run their filters after a parameter-check failure (such as failed route, query, or header parsing, or a missing required parameter), allowing a filter to observe the `400` status code and replace the response body. Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported content types) or for binding exceptions. For more information, see [Filters and parameter binding failures](../min-api-filters.md#filters-and-parameter-binding-failures).
 
 ## Binding Precedence
 

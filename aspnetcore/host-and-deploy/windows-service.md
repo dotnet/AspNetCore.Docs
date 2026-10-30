@@ -33,7 +33,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 Update Program.cs to call <!--keep-->[AddWindowsService](https://source.dot.net/#Microsoft.Extensions.Hosting.WindowsServices/WindowsServiceLifetimeHostBuilderExtensions.cs,f8bfb38e255ef3b6,references). When the app is running as a Windows Service, `AddWindowsService`:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
+* Sets the [content root](../fundamentals/index.md#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log:
   * The application name is used as the default source name.
   * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
@@ -50,8 +50,8 @@ The following `Program.cs` calls [`AddHostedService`](/dotnet/api/microsoft.exte
 
 The following sample apps accompany this article:
 
-* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
-* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
+* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
 
 For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
@@ -67,7 +67,7 @@ For a web app-based service that uses the Razor Pages or MVC frameworks, specify
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-If the service only executes background tasks (for example, [hosted services](xref:fundamentals/host/hosted-services)), specify the Worker SDK in the project file:
+If the service only executes background tasks (for example, [hosted services](../fundamentals/host/hosted-services.md)), specify the Worker SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -215,8 +215,8 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and
 
 For additional URL and port configuration approaches, see the relevant server article:
 
-* <xref:fundamentals/servers/kestrel/endpoints>
-* <xref:fundamentals/servers/httpsys#configure-windows-server>
+* [Configure endpoints for Kestrel web server](../fundamentals/servers/kestrel/endpoints.md)
+* [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md#configure-windows-server)
 
 The preceding guidance covers support for HTTPS endpoints. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
@@ -233,7 +233,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> sets the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
+The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](../fundamentals/host/generic-host.md#set-up-a-host).
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
@@ -273,7 +273,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](../fundamentals/logging/index.md#log-level) or run the app in the [`Development` environment](../fundamentals/environments.md).
 
 ### Clear package caches
 
@@ -324,9 +324,9 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) (includes HTTPS configuration and SNI support)
-* <xref:fundamentals/host/generic-host>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
+* [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) (includes HTTPS configuration and SNI support)
+* [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
 * <xref:test/troubleshoot>
 
 :::moniker-end
@@ -335,7 +335,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after server reboots.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -358,7 +358,7 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 `IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
+* Sets the [content root](../fundamentals/index.md#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log:
   * The application name is used as the default source name.
   * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
@@ -374,8 +374,8 @@ In `Program.cs`:
 
 The following sample apps accompany this topic:
 
-* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
-* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
+* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
 
 For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
@@ -391,7 +391,7 @@ For a web app-based service that uses the Razor Pages or MVC frameworks, specify
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-If the service only executes background tasks (for example, [hosted services](xref:fundamentals/host/hosted-services)), specify the Worker SDK in the project file:
+If the service only executes background tasks (for example, [hosted services](../fundamentals/host/hosted-services.md)), specify the Worker SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -539,8 +539,8 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and
 
 For additional URL and port configuration approaches, see the relevant server article:
 
-* <xref:fundamentals/servers/kestrel/endpoints>
-* <xref:fundamentals/servers/httpsys#configure-windows-server>
+* [Configure endpoints for Kestrel web server](../fundamentals/servers/kestrel/endpoints.md)
+* [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md#configure-windows-server)
 
 The preceding guidance covers support for HTTPS endpoints. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
@@ -557,7 +557,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> sets the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
+The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](../fundamentals/host/generic-host.md#set-up-a-host).
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
@@ -597,7 +597,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](../fundamentals/logging/index.md#log-level) or run the app in the [`Development` environment](../fundamentals/environments.md).
 
 ### Clear package caches
 
@@ -648,8 +648,8 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Additional resources
 
-* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) (includes HTTPS configuration and SNI support)
-* <xref:fundamentals/host/generic-host>
+* [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) (includes HTTPS configuration and SNI support)
+* [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
 * <xref:test/troubleshoot>
 
 :::moniker-end
@@ -658,7 +658,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after server reboots.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -681,7 +681,7 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 `IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
+* Sets the [content root](../fundamentals/index.md#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log:
   * The application name is used as the default source name.
   * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
@@ -698,8 +698,8 @@ Host.CreateDefaultBuilder(args)
 
 The following sample apps accompany this topic:
 
-* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
-* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
+* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
 
 For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
@@ -715,7 +715,7 @@ For a web app-based service that uses the Razor Pages or MVC frameworks, specify
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-If the service only executes background tasks (for example, [hosted services](xref:fundamentals/host/hosted-services)), specify the Worker SDK in the project file:
+If the service only executes background tasks (for example, [hosted services](../fundamentals/host/hosted-services.md)), specify the Worker SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -862,8 +862,8 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and
 
 For additional URL and port configuration approaches, see the relevant server article:
 
-* <xref:fundamentals/servers/kestrel/endpoints>
-* <xref:fundamentals/servers/httpsys#configure-windows-server>
+* [Configure endpoints for Kestrel web server](../fundamentals/servers/kestrel/endpoints.md)
+* [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md#configure-windows-server)
 
 The preceding guidance covers support for HTTPS endpoints. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
@@ -880,7 +880,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> sets the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
+The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](../fundamentals/host/generic-host.md#set-up-a-host).
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
@@ -920,7 +920,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](../fundamentals/logging/index.md#log-level) or run the app in the [`Development` environment](../fundamentals/environments.md).
 
 ### Clear package caches
 
@@ -971,8 +971,8 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Additional resources
 
-* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) (includes HTTPS configuration and SNI support)
-* <xref:fundamentals/host/generic-host>
+* [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) (includes HTTPS configuration and SNI support)
+* [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
 * <xref:test/troubleshoot>
 
 :::moniker-end
@@ -981,7 +981,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after server reboots.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -1004,7 +1004,7 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 `IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
+* Sets the [content root](../fundamentals/index.md#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log:
   * The application name is used as the default source name.
   * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
@@ -1021,8 +1021,8 @@ Host.CreateDefaultBuilder(args)
 
 The following sample apps accompany this topic:
 
-* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
-* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
+* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](../fundamentals/host/hosted-services.md) for background tasks.
 
 For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
@@ -1038,7 +1038,7 @@ For a web app-based service that uses the Razor Pages or MVC frameworks, specify
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-If the service only executes background tasks (for example, [hosted services](xref:fundamentals/host/hosted-services)), specify the Worker SDK in the project file:
+If the service only executes background tasks (for example, [hosted services](../fundamentals/host/hosted-services.md)), specify the Worker SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -1185,8 +1185,8 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and
 
 For additional URL and port configuration approaches, see the relevant server article:
 
-* <xref:fundamentals/servers/kestrel#endpoint-configuration>
-* <xref:fundamentals/servers/httpsys#configure-windows-server>
+* [Kestrel web server in ASP.NET Core](../fundamentals/servers/kestrel.md#endpoint-configuration)
+* [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md#configure-windows-server)
 
 The preceding guidance covers support for HTTPS endpoints. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
@@ -1203,7 +1203,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> sets the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
+The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](../fundamentals/host/generic-host.md#set-up-a-host).
 
 For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
@@ -1243,7 +1243,7 @@ Access the System and Application Event Logs:
 
 ### Run the app at a command prompt
 
-Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](xref:fundamentals/logging/index#log-level) or run the app in the [`Development` environment](xref:fundamentals/environments).
+Many startup errors don't produce useful information in the event logs. You can find the cause of some errors by running the app at a command prompt on the hosting system. To log additional detail from the app, lower the [log level](../fundamentals/logging/index.md#log-level) or run the app in the [`Development` environment](../fundamentals/environments.md).
 
 ### Clear package caches
 
@@ -1294,8 +1294,8 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Additional resources
 
-* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
-* <xref:fundamentals/host/generic-host>
+* [Kestrel endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration) (includes HTTPS configuration and SNI support)
+* [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
 * <xref:test/troubleshoot>
 
 :::moniker-end

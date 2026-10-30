@@ -428,7 +428,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 :::moniker range=">= aspnetcore-5.0"
 
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
-* <xref:fundamentals/target-aspnetcore>
+* [Use ASP.NET Core APIs in a class library](../../fundamentals/target-aspnetcore.md)
 * [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
 * [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)
 
@@ -437,7 +437,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 :::moniker range="< aspnetcore-5.0"
 
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
-* <xref:fundamentals/target-aspnetcore>
+* [Use ASP.NET Core APIs in a class library](../../fundamentals/target-aspnetcore.md)
 * [Add an XML Intermediate Language (IL) Linker configuration file to a library](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
 
 :::moniker-end

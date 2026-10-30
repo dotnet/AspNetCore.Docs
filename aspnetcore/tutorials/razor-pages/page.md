@@ -25,7 +25,7 @@ Examine the `Pages/MoviePages/Index.cshtml.cs` Page Model:
 
 Razor Pages derive from <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>. By convention, the `PageModel` derived class is named `PageNameModel`. For example, the Index page is named `IndexModel`.
 
-The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `RazorPagesMovieContext` to the page:
+The constructor uses [dependency injection](../../fundamentals/dependency-injection.md) to add the `RazorPagesMovieContext` to the page:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Index.cshtml.cs?name=snippet2FirstGenerated)]
 

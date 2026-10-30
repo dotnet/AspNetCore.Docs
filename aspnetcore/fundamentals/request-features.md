@@ -3,7 +3,6 @@ title: Request Features in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
 ms.date: 10/21/2026
-uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core
 
@@ -125,7 +124,7 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
    
 <xref:Microsoft.AspNetCore.Http.Features.IServiceProvidersFeature>: Provides access to an <xref:System.IServiceProvider> with scoped request services.
 
-<xref:Microsoft.AspNetCore.Http.Features.ISessionFeature>: Defines `ISessionFactory` and <xref:Microsoft.AspNetCore.Http.ISession> abstractions for supporting user sessions. `ISessionFeature` is implemented by the <xref:Microsoft.AspNetCore.Session.SessionMiddleware> (see <xref:fundamentals/app-state>).
+<xref:Microsoft.AspNetCore.Http.Features.ISessionFeature>: Defines `ISessionFactory` and <xref:Microsoft.AspNetCore.Http.ISession> abstractions for supporting user sessions. `ISessionFeature` is implemented by the <xref:Microsoft.AspNetCore.Session.SessionMiddleware> (see [Session in ASP.NET Core](app-state.md)).
 
 <xref:Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature>: Defines an API for retrieving client certificates.
 
@@ -145,5 +144,5 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 ## Related content
 
-* <xref:fundamentals/servers/index>
-* <xref:fundamentals/middleware/index>
+* [Web server implementations in ASP.NET Core](servers/index.md)
+* [ASP.NET Core middleware](middleware/index.md)

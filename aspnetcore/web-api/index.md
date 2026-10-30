@@ -162,7 +162,7 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
 |[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
-|[`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) | [Method parameters](xref:fundamentals/minimal-apis#asparam7) |
+|[`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) | [Method parameters](../fundamentals/minimal-apis.md#asparam7) |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
@@ -212,7 +212,7 @@ When an action has more than one parameter bound from the request body, an excep
 
 ### FromServices inference notes
 
-Parameter binding binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding binds parameters through [dependency injection](../fundamentals/dependency-injection.md) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](index/samples/7.x/ApiController/Controllers/MyController.cs?name=snippet)]
 
@@ -299,9 +299,9 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -578,9 +578,9 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -594,7 +594,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 
 ## ControllerBase class
 
@@ -870,7 +870,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ## Additional resources
 
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -1106,7 +1106,7 @@ In the preceding code, `ConsumesController` is configured to handle requests sen
 The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
 ## Additional resources
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>

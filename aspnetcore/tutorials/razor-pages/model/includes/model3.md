@@ -6,7 +6,7 @@ In this section, classes are added for managing movies. The app's model classes 
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 [!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
 
@@ -85,7 +85,7 @@ using RazorPagesMovie.Data;
 using Microsoft.EntityFrameworkCore;
 ```
 
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
+Register the database context with the [dependency injection](../../../../fundamentals/dependency-injection.md) container in `Startup.ConfigureServices`.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
@@ -182,7 +182,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](../../../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
 ### Use SQLite for development, SQL Server for production
 
@@ -320,7 +320,7 @@ The `update` command runs the `Up` method in migrations that have not been appli
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services, such as Razor Pages, are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../../../fundamentals/dependency-injection.md). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services, such as Razor Pages, are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically created a database context and registered it with the dependency injection container.
 
@@ -334,7 +334,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, 
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](../../../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 

@@ -12,7 +12,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 > * Work with a database.
 > * Add search and validation.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -134,7 +134,7 @@ The following image shows the app:
 
   Visual Studio Code:
 
-  * Starts [Kestrel](xref:fundamentals/servers/kestrel)
+  * Starts [Kestrel](../../../../fundamentals/servers/kestrel.md)
   * Launches a browser.
   * Navigates to `https://localhost:5001`.
 
@@ -152,7 +152,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Select **Run** > **Start Without Debugging** to launch the app.
 
-  Visual Studio for Mac: starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+  Visual Studio for Mac: starts [Kestrel](../../../../fundamentals/servers/index.md#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 

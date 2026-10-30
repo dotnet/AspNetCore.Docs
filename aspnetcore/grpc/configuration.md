@@ -23,7 +23,7 @@ The following table describes options for configuring gRPC services.
 | `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured providers support **gzip** compression. |
 | `ResponseCompressionAlgorithm` | `null` | The compression algorithm used to compress messages sent from the server. The algorithm must match a compression provider in `CompressionProviders`. For the algorithm to compress a response, the client must indicate it supports the algorithm by sending it in the **grpc-accept-encoding** header. |
 | `ResponseCompressionLevel` | `null` | The compress level used to compress messages sent from the server. |
-| `Interceptors` | None | A collection of interceptors that are run with each gRPC call. Interceptors are run in the order they are registered. Globally configured interceptors are run before interceptors configured for a single service.<br/><br/>Interceptors have a per-request lifetime by default. The interceptor constructor is called and parameters are resolved from [dependency injection (DI)](xref:fundamentals/dependency-injection). An interceptor type can also be registered with DI to override how it is created and its lifetime.<br/><br/>Interceptors offer similar functionalities compared to ASP.NET Core middleware. For more information, see [gRPC Interceptors vs. middleware](interceptors.md#grpc-interceptors-versus-middleware). |
+| `Interceptors` | None | A collection of interceptors that are run with each gRPC call. Interceptors are run in the order they are registered. Globally configured interceptors are run before interceptors configured for a single service.<br/><br/>Interceptors have a per-request lifetime by default. The interceptor constructor is called and parameters are resolved from [dependency injection (DI)](../fundamentals/dependency-injection.md). An interceptor type can also be registered with DI to override how it is created and its lifetime.<br/><br/>Interceptors offer similar functionalities compared to ASP.NET Core middleware. For more information, see [gRPC Interceptors vs. middleware](interceptors.md#grpc-interceptors-versus-middleware). |
 | `IgnoreUnknownServices` | `false` | If `true`, calls to unknown services and methods don't return an **UNIMPLEMENTED** status, and the request passes to the next registered middleware in ASP.NET Core. |
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`:
@@ -46,8 +46,8 @@ The server used by an ASP.NET Core app is configured in app startup code. The de
 
 For more information about the different servers and their configuration options, see:
 
-* <xref:fundamentals/servers/kestrel>
-* <xref:fundamentals/servers/httpsys>
+* [Kestrel web server in ASP.NET Core](../fundamentals/servers/kestrel.md)
+* [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md)
 * [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md)
 
 ## Configure client options

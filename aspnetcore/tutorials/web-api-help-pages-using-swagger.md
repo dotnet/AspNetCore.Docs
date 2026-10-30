@@ -16,8 +16,8 @@ This article covers using **Swagger** tooling — provided by the [Swashbuckle.A
 
 In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support that replaces Swashbuckle as the default. Swashbuckle is no longer included in project templates, but it remains available as a community package you can add manually.
 
-* To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
-* To add Swagger UI for interactive exploration or local ad‑hoc testing alongside the built-in OpenAPI support, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+* To understand the built‑in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).
+* To add Swagger UI for interactive exploration or local ad‑hoc testing alongside the built-in OpenAPI support, see [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 
 The following instructions apply to projects using Swashbuckle or NSwag with ASP.NET Core 8.0 and earlier.
 

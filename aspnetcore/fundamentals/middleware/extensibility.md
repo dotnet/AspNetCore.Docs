@@ -3,7 +3,6 @@ title: Factory-based middleware activation in ASP.NET Core
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 03/25/2022
-uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
 
@@ -11,12 +10,12 @@ uid: fundamentals/middleware/extensibility
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation that offers the following benefits:
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](index.md) activation that offers the following benefits:
 
 * Activation per client request (injection of scoped services)
 * Strong typing of middleware
 
-<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](xref:fundamentals/dependency-injection#service-lifetimes) in the app's service container.
+<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](../dependency-injection.md#service-lifetimes) in the app's service container.
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> is activated per client request (connection), so scoped services can be injected into the middleware's constructor.
 
@@ -65,9 +64,9 @@ The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, 
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation.
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](index.md) activation.
 
-<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](xref:fundamentals/dependency-injection#service-lifetimes) in the app's service container.
+<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](../dependency-injection.md#service-lifetimes) in the app's service container.
 
 Benefits:
 
@@ -76,7 +75,7 @@ Benefits:
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> is activated per client request (connection), so scoped services can be injected into the middleware's constructor.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](../index.md#how-to-download-a-sample))
 
 ## IMiddleware
 
@@ -123,9 +122,9 @@ The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, 
 
 :::moniker range="< aspnetcore-3.0"
 
-<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation.
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](index.md) activation.
 
-<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](xref:fundamentals/dependency-injection#service-lifetimes) in the app's service container.
+<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](../dependency-injection.md#service-lifetimes) in the app's service container.
 
 Benefits:
 
@@ -134,7 +133,7 @@ Benefits:
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> is activated per client request (connection), so scoped services can be injected into the middleware's constructor.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](../index.md#how-to-download-a-sample))
 
 ## IMiddleware
 
@@ -183,15 +182,15 @@ The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, 
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:fundamentals/middleware/index>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](../index.md#how-to-download-a-sample))
+* [ASP.NET Core middleware](index.md)
+* [Middleware activation with a third-party container in ASP.NET Core](extensibility-third-party-container.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* <xref:fundamentals/middleware/index>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
+* [ASP.NET Core middleware](index.md)
+* [Middleware activation with a third-party container in ASP.NET Core](extensibility-third-party-container.md)
 
 :::moniker-end

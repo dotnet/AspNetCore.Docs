@@ -16,7 +16,7 @@ uid: blazor/fundamentals/logging
 
 This article provides information on logging in Blazor apps, particularly in client-side logging scenarios.
 
-For general ASP.NET Core logging guidance, including how to log from Razor components, see <xref:fundamentals/logging/index>.
+For general ASP.NET Core logging guidance, including how to log from Razor components, see [Logging in .NET and ASP.NET Core](../../fundamentals/logging/index.md).
 
 ## Configuration
 
@@ -39,7 +39,7 @@ Log levels conform to ASP.NET Core app log levels, which are listed in the API d
 
 ## Client-side logging
 
-Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported client-side. For example, client-side components don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored client-side are ***insecure*** and can be easily discovered by malicious users.
+Not every feature of [ASP.NET Core logging](../../fundamentals/logging/index.md) is supported client-side. For example, client-side components don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored client-side are ***insecure*** and can be easily discovered by malicious users.
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -87,7 +87,7 @@ Developer tools console output:
 
 ## Client-side log category
 
-[Log categories](xref:fundamentals/logging/index#log-category) are supported.
+[Log categories](../../fundamentals/logging/index.md#log-category) are supported.
 
 The following example shows how to use log categories with the `Counter` component of an app created from a Blazor project template.
 
@@ -105,7 +105,7 @@ Developer tools console output:
 
 ## Client-side log event ID
 
-[Log event ID](xref:fundamentals/logging/index#log-event-id) is supported.
+[Log event ID](../../fundamentals/logging/index.md#log-event-id) is supported.
 
 The following example shows how to use log event IDs with the `Counter` component of an app created from a Blazor project template.
 
@@ -135,7 +135,7 @@ Developer tools console output:
 
 ## Client-side log message template
 
-[Log message templates](xref:fundamentals/logging/index#log-message-template) are supported:
+[Log message templates](../../fundamentals/logging/index.md#log-message-template) are supported:
 
 The following example shows how to use log message templates with the `Counter` component of an app created from a Blazor project template.
 
@@ -152,7 +152,7 @@ Developer tools console output:
 
 ## Client-side log exception parameters
 
-[Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported.
+[Log exception parameters](../../fundamentals/logging/index.md#log-exceptions) are supported.
 
 The following example shows how to use log exception parameters with the `Counter` component of an app created from a Blazor project template.
 
@@ -184,7 +184,7 @@ Developer tools console output:
 
 ## Client-side filter function
 
-[Filter functions](xref:fundamentals/logging/index#filter-function) are supported.
+[Filter functions](../../fundamentals/logging/index.md#filter-function) are supported.
 
 The following example shows how to use a filter with the `Counter` component of an app created from a Blazor project template.
 
@@ -336,7 +336,7 @@ public sealed class CustomLogger : ILogger
 }
 ```
 
-Add the following custom logger provider to the app. `CustomLoggerProvider` adopts an [`Options`-based approach](xref:fundamentals/configuration/options) to configure the logger via built-in logging configuration features. For example, the app can set or change log formats via an `appsettings.json` file without requiring code changes to the custom logger, which is demonstrated at the end of this section.
+Add the following custom logger provider to the app. `CustomLoggerProvider` adopts an [`Options`-based approach](../../fundamentals/configuration/options.md) to configure the logger via built-in logging configuration features. For example, the app can set or change log formats via an `appsettings.json` file without requiring code changes to the custom logger, which is demonstrated at the end of this section.
 
 `CustomLoggerProvider.cs`:
 
@@ -510,7 +510,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 ## Client-side log scopes
 
-The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+The developer tools console logger doesn't support [log scopes](../../fundamentals/logging/index.md#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
 The sample app uses standard ASP.NET Core <xref:Microsoft.Extensions.Logging.LoggerExtensions.BeginScope*> logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
 
@@ -797,7 +797,7 @@ Use ***either*** of the following approaches:
 
 ## Related content
 
-* <xref:fundamentals/logging/index>
+* [Logging in .NET and ASP.NET Core](../../fundamentals/logging/index.md)
 * [`Loglevel` Enum (API documentation)](xref:Microsoft.Extensions.Logging.LogLevel)
 * [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider)
 * Browser developer tools documentation:

@@ -28,7 +28,7 @@ The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` s
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](xref:fundamentals/dependency-injection):
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](../../fundamentals/dependency-injection.md):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization

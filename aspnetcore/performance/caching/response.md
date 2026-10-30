@@ -21,7 +21,7 @@ For server-side caching that follows the HTTP 1.1 Caching specification, use [re
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## HTTP-based response caching
 
@@ -130,7 +130,7 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
         }));
 ```
 
-For an approach that applies to Razor Pages apps, see [GitHub dotnet/aspnetcore issue #18890)](https://github.com/dotnet/aspnetcore/issues/18890#issuecomment-584290537) - _Adding ResponseCacheAttribute to MVC global filter list does not apply to Razor Pages_. The comment example in the issue applies to ASP.NET Core apps that predate the release of [Minimal APIs](xref:fundamentals/minimal-apis) (ASP.NET Core version 6.0). For apps that target version 6.0 and later, change the service registration used in the example to `builder.Services.AddSingleton...` in the _Program.cs_ file.
+For an approach that applies to Razor Pages apps, see [GitHub dotnet/aspnetcore issue #18890)](https://github.com/dotnet/aspnetcore/issues/18890#issuecomment-584290537) - _Adding ResponseCacheAttribute to MVC global filter list does not apply to Razor Pages_. The comment example in the issue applies to ASP.NET Core apps that predate the release of [Minimal APIs](../../fundamentals/minimal-apis.md) (ASP.NET Core version 6.0). For apps that target version 6.0 and later, change the service registration used in the example to `builder.Services.AddSingleton...` in the _Program.cs_ file.
 
 ### Location and Duration properties
 
@@ -192,7 +192,7 @@ The following code applies the `[ResponseCache]` attribute at the controller lev
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
@@ -383,7 +383,7 @@ Cache-Control: public,max-age=30
 * [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control)
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
-* <xref:fundamentals/change-tokens>
+* [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
 * <xref:performance/caching/middleware>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>

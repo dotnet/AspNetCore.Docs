@@ -248,7 +248,7 @@ In this tutorial, you learned how to:
 To learn more about the fundamentals of ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
-> <xref:fundamentals/index>
+> [ASP.NET Core fundamentals overview](fundamentals/index.md)
 
 ## Additional tutorials
 

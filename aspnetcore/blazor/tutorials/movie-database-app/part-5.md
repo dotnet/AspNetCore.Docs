@@ -194,7 +194,7 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 ## Related content
 
 * <xref:mvc/views/working-with-forms>
-* <xref:fundamentals/localization>
+* [Globalization and localization in ASP.NET Core](../../../fundamentals/localization.md)
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
 * [Migrations overview (EF Core documentation)](/ef/core/managing-schemas/migrations/)

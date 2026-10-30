@@ -363,5 +363,5 @@ When incorporating OWIN middleware into your ASP.NET Core application:
 ## Related content
 
 * [ASP.NET Framework to Core Authentication Migration](authentication.md)
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](../../../fundamentals/middleware/index.md)
 * [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md)

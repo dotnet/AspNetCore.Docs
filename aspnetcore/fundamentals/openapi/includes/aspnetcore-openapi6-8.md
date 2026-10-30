@@ -133,7 +133,7 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 ### Set responses for `ProblemDetails`
 
-When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*> extension method, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem*>, or [`TypedResults.Problem`](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata. Note that the `ProducesProblem` and `ProducesValidationProblem` extension methods can't be used with [route groups](xref:fundamentals/minimal-apis/route-handlers#route-groups) in .NET 8 or earlier.
+When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*> extension method, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem*>, or [`TypedResults.Problem`](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata. Note that the `ProducesProblem` and `ProducesValidationProblem` extension methods can't be used with [route groups](../../minimal-apis/route-handlers.md#route-groups) in .NET 8 or earlier.
 
 When there are no explicit annotations provided by one of the strategies above, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
@@ -198,7 +198,7 @@ Minimal APIs support API versioning via the [Asp.Versioning.Http package](https:
 
 ## Related content
 
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](../../minimal-apis/security.md)
 
 :::moniker-end
 

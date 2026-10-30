@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to serve and secure static files and configure Map Static Assets endpoint conventions and static file middleware in ASP.NET Core web apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/15/2026
-uid: fundamentals/static-files
 ---
 # Serve static files in ASP.NET Core apps
 
@@ -18,7 +17,7 @@ For Blazor static files guidance, which adds to or supersedes the guidance in th
 
 To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*>.
 
-By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
+By default, store static files within the project's [web root](index.md#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](index.md#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
 Only files with specific file extensions mapped to supported media types are treated as static web assets.
 
@@ -26,7 +25,7 @@ Static web assets are discovered at build time and optimized using content-based
 
 At runtime, the discovered static web assets are exposed as endpoints with HTTP headers applied, such as [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) and content type headers. An asset is served once until the file changes or the browser clears its cache. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set. The browser is prevented from using stale assets after an app is updated.
 
-Delivery of static assets is based on [endpoint routing](xref:fundamentals/routing), so it works with other endpoint-aware features, such as authorization. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
+Delivery of static assets is based on [endpoint routing](routing.md), so it works with other endpoint-aware features, such as authorization. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
 
 Map Static Assets provides the following benefits:
 
@@ -48,7 +47,7 @@ Map Static Assets doesn't provide features for minification or other file transf
 
 To enable static file handling in ASP.NET Core, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>.
 
-By default, store static files within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](xref:fundamentals/index#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
+By default, store static files within the project's [web root](index.md#web-root) directory. The default directory is `{CONTENT ROOT}/wwwroot`, where the `{CONTENT ROOT}` placeholder is the app's [content root](index.md#content-root). Only files in the `wwwroot` folder are addressable, so you don't need to worry about the rest of your code.
 
 At runtime, static web assets are returned by static file middleware when requested with asset modification and content type headers applied. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set.
 
@@ -60,7 +59,7 @@ You can also serve static web assets from [referenced projects and packages](../
 
 ## Change the web root directory
 
-To change the web root, use the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot*> method. For more information, see <xref:fundamentals/index#web-root>.
+To change the web root, use the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot*> method. For more information, see [ASP.NET Core fundamentals overview](index.md#web-root).
 
 Prevent publishing files in `wwwroot` by using the [`<Content>` project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in `wwwroot/local` and its subdirectories:
 
@@ -92,7 +91,7 @@ Host.CreateDefaultBuilder(args)
 
 :::moniker range=">= aspnetcore-9.0"
 
-In the request processing pipeline, after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> to enable serving static files from the app's [web root](xref:fundamentals/index#web-root):
+In the request processing pipeline, after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>, call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> to enable serving static files from the app's [web root](index.md#web-root):
 
 ```csharp
 app.MapStaticAssets();
@@ -102,7 +101,7 @@ app.MapStaticAssets();
 
 :::moniker range="< aspnetcore-9.0"
 
-In the request processing pipeline, after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> to enable serving static files from the app's [web root](xref:fundamentals/index#web-root):
+In the request processing pipeline, after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> to enable serving static files from the app's [web root](index.md#web-root):
 
 ```csharp
 app.UseStaticFiles();
@@ -110,7 +109,7 @@ app.UseStaticFiles();
 
 :::moniker-end
 
-Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root).
+Static files are accessible via a path relative to the [web root](index.md#web-root).
 
 To access an image at `wwwroot/images/favicon.png`:
 
@@ -250,7 +249,7 @@ The following features covered in this article are supported with static file mi
 
 ## Serve files outside of the web root directory via `UseStaticFiles`
 
-Consider the following directory hierarchy with static files residing outside of the app's [web root](xref:fundamentals/index#web-root) in a folder named `ExtraStaticFiles`:
+Consider the following directory hierarchy with static files residing outside of the app's [web root](index.md#web-root) in a folder named `ExtraStaticFiles`:
 
 * `wwwroot`
   * `css`
@@ -425,7 +424,7 @@ app.MapStaticAssets();
 
 ## Static assets manifest
 
-<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> serves assets from a *static assets manifest* rather than by scanning the [web root](xref:fundamentals/index#web-root) at runtime. The manifest is generated at build and publish time and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations ([Gzip](https://tools.ietf.org/html/rfc1952) and [Brotli](https://tools.ietf.org/html/rfc7932)). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> serves assets from a *static assets manifest* rather than by scanning the [web root](index.md#web-root) at runtime. The manifest is generated at build and publish time and records the static web assets discovered for the app, along with metadata such as content fingerprints, `Content-Type` headers, caching headers, and the precomputed compressed representations ([Gzip](https://tools.ietf.org/html/rfc1952) and [Brotli](https://tools.ietf.org/html/rfc7932)). At runtime, `MapStaticAssets` reads the manifest, registers an endpoint for each asset, and serves the optimized responses.
 
 The build process generates the manifest in the build output directory. Its file name is based on the project's assembly name (for example, `{ASSEMBLY NAME}.staticwebassets.endpoints.json`, where the `{ASSEMBLY NAME}` placeholder is the app's MSBuild `AssemblyName` value). To provide a manifest from a different location, see the [Provide a custom static files manifest](#provide-a-custom-static-files-manifest) section.
 
@@ -438,7 +437,7 @@ To serve files that aren't in the manifest, call <xref:Microsoft.AspNetCore.Buil
 
 ## Integrate build-generated files into static web assets
 
-Build tools, such as TypeScript compilers and JavaScript bundlers, often produce files during the build. To serve these generated files with the fingerprinting, compression, and caching that <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> provides, the files must be discovered as static web assets during the build. Generated files are usually kept outside of the [web root](xref:fundamentals/index#web-root) (`wwwroot`) and excluded from source control, so they aren't discovered as static web assets by default. Only files resolved as being under `wwwroot` when static web assets are resolved during the build are added to the [static assets manifest](#static-assets-manifest) and served by `MapStaticAssets`. Files linked into `wwwroot` (for example, with a `<Content>` item and a `Link`) are also included, even when the source file is stored outside of `wwwroot`.
+Build tools, such as TypeScript compilers and JavaScript bundlers, often produce files during the build. To serve these generated files with the fingerprinting, compression, and caching that <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> provides, the files must be discovered as static web assets during the build. Generated files are usually kept outside of the [web root](index.md#web-root) (`wwwroot`) and excluded from source control, so they aren't discovered as static web assets by default. Only files resolved as being under `wwwroot` when static web assets are resolved during the build are added to the [static assets manifest](#static-assets-manifest) and served by `MapStaticAssets`. Files linked into `wwwroot` (for example, with a `<Content>` item and a `Link`) are also included, even when the source file is stored outside of `wwwroot`.
 
 To include build-generated files as static web assets, use either of the following approaches.
 
@@ -676,7 +675,7 @@ app.MapStaticAssets();
 ```
 
 > [!IMPORTANT]
-> Configuring only <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> (without <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>) returns a *404 - Not Found* response for a request to `/`. This behavior occurs because minimal hosting adds routing middleware at the start of the request processing pipeline, so endpoint routing matches the request before `UseDefaultFiles` rewrites it to the default document. The problem is especially apparent when you change the [web root](xref:fundamentals/index#web-root) to a custom path with <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath>, because files in a custom web root aren't part of the [build-time static assets manifest](#static-assets-manifest) that `MapStaticAssets` serves. Add a call to `UseStaticFiles` after `UseDefaultFiles`, as shown in the preceding example, to serve default documents.
+> Configuring only <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> (without <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>) returns a *404 - Not Found* response for a request to `/`. This behavior occurs because minimal hosting adds routing middleware at the start of the request processing pipeline, so endpoint routing matches the request before `UseDefaultFiles` rewrites it to the default document. The problem is especially apparent when you change the [web root](index.md#web-root) to a custom path with <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath>, because files in a custom web root aren't part of the [build-time static assets manifest](#static-assets-manifest) that `MapStaticAssets` serves. Add a call to `UseStaticFiles` after `UseDefaultFiles`, as shown in the preceding example, to serve default documents.
 
 :::moniker-end
 
@@ -987,7 +986,7 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
   > [!WARNING]
   > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This condition occurs, for example, if the `web.config` file isn't deployed.
 
-* Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). This configuration creates a logical separation between the app's client-side content and server-based code. This separation prevents server-side code from being leaked.
+* Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](index.md#web-root). This configuration creates a logical separation between the app's client-side content and server-based code. This separation prevents server-side code from being leaked.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -1074,4 +1073,4 @@ Configuration key | Description
 ## Related content
 
 * <xref:blazor/fundamentals/static-files>
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](middleware/index.md)

@@ -120,15 +120,15 @@ Localization services are configured in the `Startup.ConfigureServices` method:
 
 Localizing an app also involves the following tasks:
 
-* [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
-* [Implement a strategy to select the language/culture for each request](xref:fundamentals/localization/select-language-culture)
+* [Provide localized resources for the languages and cultures the app supports](../provide-resources.md)
+* [Implement a strategy to select the language/culture for each request](../select-language-culture.md)
 
 ## Related content
 
-* <xref:fundamentals/localization>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/localization/select-language-culture>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalization and localization in ASP.NET Core](../../localization.md)
+* [Provide localized resources for languages and cultures in an ASP.NET Core app](../provide-resources.md)
+* [Strategies for selecting language and culture in a localized ASP.NET Core app](../select-language-culture.md)
+* [Troubleshoot ASP.NET Core localization](../../troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

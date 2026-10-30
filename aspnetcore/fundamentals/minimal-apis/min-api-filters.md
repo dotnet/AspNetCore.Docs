@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/21/2026
-uid: fundamentals/minimal-apis/min-api-filters
 
 # customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
 ---
@@ -96,7 +95,7 @@ In addition to being passed as delegates, filters can be registered by implement
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
 
-Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection (DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves **can't** be resolved from DI.
+Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection (DI)](../dependency-injection.md), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves **can't** be resolved from DI.
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
@@ -182,7 +181,7 @@ In some scenarios, it might be necessary to apply the same filter logic for both
 
 ## Related content
 
-* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/samples/7) ([How to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/samples/7) ([How to download](../index.md#how-to-download-a-sample))
 * [ValidationFilterRouteHandlerBuilderExtensions (Validation extension methods)](https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/src/MinimalApis.Extensions/Filters/ValidationFilterRouteHandlerBuilderExtensions.cs)
 * [Tutorial: Create a Minimal API with ASP.NET Core](xref:tutorials/min-web-api)
-* [Authentication and authorization in Minimal APIs](xref:fundamentals/minimal-apis/security)
+* [Authentication and authorization in Minimal APIs](security.md)

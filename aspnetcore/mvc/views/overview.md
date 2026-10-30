@@ -382,7 +382,7 @@ This feature offers flexibility but doesn't offer compilation protection or Inte
 
 Generating custom HTML markup can be achieved with many built-in HTML Helpers. [View Components](xref:mvc/views/view-components) can handle more complex user interface logic. View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
 
-Like many other aspects of ASP.NET Core, views support [dependency injection](xref:fundamentals/dependency-injection), allowing services to be [injected into views](xref:mvc/views/dependency-injection).
+Like many other aspects of ASP.NET Core, views support [dependency injection](../../fundamentals/dependency-injection.md), allowing services to be [injected into views](xref:mvc/views/dependency-injection).
 
 :::moniker range=">= aspnetcore-6.0"
 

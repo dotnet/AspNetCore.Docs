@@ -79,7 +79,7 @@ In .NET 8, Native AOT is supported by the following ASP.NET Core app types:
 
 * Minimal APIs - For more information, see the [The Web API (Native AOT) template](#the-web-api-native-aot-template) section later in this article.
 * gRPC - For more information, see [gRPC and Native AOT](../../../grpc/native-aot.md).
-* Worker services - For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
+* Worker services - For more information, see [AOT in Worker Service templates](../../host/hosted-services.md?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
 ## The Web API (Native AOT) template
 
@@ -191,7 +191,7 @@ As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTT
 
 The `CreateSlimBuilder` method doesn't support the following features that are supported by the `CreateBuilder` method:
 
-* [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
+* [Hosting startup assemblies](../../host/platform-specific-configuration.md)
 * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>
 * The following logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
@@ -201,8 +201,8 @@ The `CreateSlimBuilder` method doesn't support the following features that are s
     * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*>
     * [IIS Integration](../../../host-and-deploy/iis/index.md)
 * Kestrel configuration
-    * [HTTPS endpoints in Kestrel](xref:fundamentals/servers/kestrel/endpoints#https)
-    * [Quic (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
+    * [HTTPS endpoints in Kestrel](../../servers/kestrel/endpoints.md#configure-https)
+    * [Quic (HTTP/3)](../../servers/kestrel/http3.md#http3-benefits)
 * [Regex and alpha constraints used in routing](https://github.com/dotnet/aspnetcore/issues/46142)
 
 The `CreateSlimBuilder` method includes the following features needed for an efficient development experience:
@@ -254,7 +254,7 @@ All types that are transmitted as part of the HTTP body or returned from request
 
 In the preceding highlighted code:
 
-* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection). For more information, see:
+* The JSON serializer context is registered with the [DI container](../../dependency-injection.md). For more information, see:
   * [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation?pivots=dotnet-8-0#combine-source-generators)
   * <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>
 * The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute to enable source generated JSON serializer code for the `ToDo` type.
@@ -269,7 +269,7 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 
 ## See also
 
-* <xref:fundamentals/native-aot-tutorial>
+* [Tutorial: Publish an ASP.NET Core app using Native AOT](../../aot/native-aot-tutorial.md)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
 * [Optimize AOT deployments](/dotnet/core/deploying/native-aot/optimizing)
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)

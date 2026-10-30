@@ -11,7 +11,7 @@ ms.date: 10/27/2026
 
 The ASP.NET Core SignalR .NET client library lets you communicate with SignalR hubs from .NET apps. This article describes how to use the APIs to connect to a SignalR hub, and call the .NET hub and client methods. The code sample in this article is a Windows Presentation Foundation (WPF) app that uses the ASP.NET Core SignalR .NET client.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Install the SignalR .NET client package
 

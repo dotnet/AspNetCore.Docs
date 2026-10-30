@@ -3,7 +3,6 @@ title: Provide localized resources for languages and cultures in an ASP.NET Core
 description: Learn how to provide localized resources for localizing content of an ASP.NET Core app into different languages and cultures.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 06/20/2025
-uid: fundamentals/localization/provide-resources
 ---
 # Provide localized resources for languages and cultures in an ASP.NET Core app
 
@@ -108,17 +107,17 @@ Each language and culture combination (other than the default language) requires
 
 Localizing an app also involves the following tasks:
 
-* [Make the app's content localizable](xref:fundamentals/localization/make-content-localizable).
-* [Implement a strategy to select the language/culture for each request](xref:fundamentals/localization/select-language-culture)
+* [Make the app's content localizable](make-content-localizable.md).
+* [Implement a strategy to select the language/culture for each request](select-language-culture.md)
 
 ## Related content
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
-* <xref:fundamentals/localization>
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/select-language-culture>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalization and localization in ASP.NET Core](../localization.md)
+* [Make an ASP.NET Core app's content localizable](make-content-localizable.md)
+* [Strategies for selecting language and culture in a localized ASP.NET Core app](select-language-culture.md)
+* [Troubleshoot ASP.NET Core localization](../troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

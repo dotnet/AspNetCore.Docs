@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to integrate OpenAPI in ASP.NET Core API apps. Discover features, tools, and packages for generating and customizing OpenAPI documents.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 08/28/2026
-uid: fundamentals/openapi/overview
 ---
 # OpenAPI support in ASP.NET Core API apps
 
@@ -43,7 +42,7 @@ To use the `Microsoft.AspNetCore.OpenApi` package, add it as a PackageReference 
 
 [!code-xml[](~/fundamentals/openapi/samples/10.x/WebMinOpenApi/projectFile.xml?highlight=15)]
 
-To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+To learn more about the `Microsoft.AspNetCore.OpenApi` package, see [Generate OpenAPI documents](aspnetcore-openapi.md).
 
 ## `Microsoft.Extensions.ApiDescription.Server` NuGet package
 
@@ -67,7 +66,7 @@ the output directory by setting the `OpenApiDocumentsDirectory` property.
 
 ## Related content
 
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](../minimal-apis/security.md)
 
 :::moniker-end
 

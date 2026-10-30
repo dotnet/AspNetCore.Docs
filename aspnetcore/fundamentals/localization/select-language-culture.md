@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 06/20/2025
-uid: fundamentals/localization/select-language-culture
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
 
@@ -18,7 +17,7 @@ One task for localizing an app is to implement a strategy for selecting the appr
 
 ## Configure Localization middleware
 
-The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in `Program.cs`. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
+The current culture on a request is set in the localization [Middleware](../middleware/index.md). The localization middleware is enabled in `Program.cs`. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](~/fundamentals/localization/samples/8.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
 
@@ -185,17 +184,17 @@ See [Globalization behavior of model binding route data and query strings](xref:
 
 Localizing an app also involves the following tasks:
 
-* [Make the app's content localizable](xref:fundamentals/localization/make-content-localizable).
-* [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
+* [Make the app's content localizable](make-content-localizable.md).
+* [Provide localized resources for the languages and cultures the app supports](provide-resources.md)
 
 ## Related content
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
-* <xref:fundamentals/localization>
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalization and localization in ASP.NET Core](../localization.md)
+* [Make an ASP.NET Core app's content localizable](make-content-localizable.md)
+* [Provide localized resources for languages and cultures in an ASP.NET Core app](provide-resources.md)
+* [Troubleshoot ASP.NET Core localization](../troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

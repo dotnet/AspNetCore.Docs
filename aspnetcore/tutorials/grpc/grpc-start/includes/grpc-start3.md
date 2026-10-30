@@ -4,7 +4,7 @@ This tutorial shows how to create a .NET Core [gRPC](../../../../grpc/index.md) 
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 In this tutorial, you:
 
@@ -100,9 +100,9 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * *greet.proto*: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](../../../../grpc/index.md).
 * *Services* folder: Contains the implementation of the `Greeter` service.
-* `appsettings.json`: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-* `Program.cs`: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
-* `Startup.cs`: Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
+* `appsettings.json`: Contains configuration data, such as protocol used by Kestrel. For more information, see [Configuration in ASP.NET Core](../../../../fundamentals/configuration/index.md).
+* `Program.cs`: Contains the entry point for the gRPC service. For more information, see [.NET Generic Host in ASP.NET Core](../../../../fundamentals/host/generic-host.md).
+* `Startup.cs`: Contains code that configures app behavior. For more information, see [App startup](../../../../fundamentals/startup.md).
 
 ## Create the gRPC client in a .NET console app
 

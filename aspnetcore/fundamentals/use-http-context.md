@@ -3,7 +3,6 @@ title: Use HttpContext in ASP.NET Core
 description: How to use HttpContext in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/09/2025
-uid: fundamentals/use-httpcontext
 ---
 <!-- ms.sfi.ropc: t -->
 
@@ -26,7 +25,7 @@ Commonly used members on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en`<br />`article=getstarted`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
-|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:fundamentals/best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`|
+|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](best-practices.md#prefer-readformasync-over-requestform).|`email=user@contoso.com`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
 
 ### Get request headers
@@ -51,7 +50,7 @@ An HTTP request can include a request body. The request body is data associated 
 `HttpRequest.Body` can be read directly or used with other APIs that accept stream.
 
 > [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> directly to a <xref:System.IO.Stream> parameter.
+> [Minimal APIs](minimal-apis.md) supports binding <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> directly to a <xref:System.IO.Stream> parameter.
 
 #### Enable request body buffering
 
@@ -141,7 +140,7 @@ The `RequestAborted` cancellation token doesn't need to be used for request body
 In some cases, passing the `RequestAborted` token to write operations can be a convenient way to force a write loop to exit early with an <xref:System.OperationCanceledException>. However, it's typically better to pass the `RequestAborted` token into any asynchronous operations responsible for retrieving the response body content instead.
 
 > [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> directly to a <xref:System.Threading.CancellationToken> parameter.
+> [Minimal APIs](minimal-apis.md) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> directly to a <xref:System.Threading.CancellationToken> parameter.
 
 ## `Abort()`
 
@@ -161,7 +160,7 @@ The <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithTyp
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_User&highlight=6)]
 
 > [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> directly to a <xref:System.Security.Claims.ClaimsPrincipal> parameter.
+> [Minimal APIs](minimal-apis.md) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> directly to a <xref:System.Security.Claims.ClaimsPrincipal> parameter.
 
 ## `Features`
 
@@ -174,7 +173,7 @@ The following example:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Features&highlight=6)]
 
-For more information about using request features and `HttpContext`, see <xref:fundamentals/request-features>.
+For more information about using request features and `HttpContext`, see [Request Features in ASP.NET Core](request-features.md).
 
 ## HttpContext isn't thread safe
 
@@ -212,10 +211,10 @@ The application also includes `PeriodicBranchesLoggerService`, which logs the op
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/PeriodicBranchesLoggerService.cs)]
 
-`PeriodicBranchesLoggerService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Logging from the `PeriodicBranchesLoggerService` has a null `HttpContext`. The `PeriodicBranchesLoggerService` was written to not depend on the `HttpContext`.
+`PeriodicBranchesLoggerService` is a [hosted service](host/hosted-services.md), which runs outside the request and response flow. Logging from the `PeriodicBranchesLoggerService` has a null `HttpContext`. The `PeriodicBranchesLoggerService` was written to not depend on the `HttpContext`.
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
 
 ## Related content
 
-For more information about accessing `HttpContext`, see <xref:fundamentals/httpcontext>.
+For more information about accessing `HttpContext`, see [Access HttpContext in ASP.NET Core](http-context.md).

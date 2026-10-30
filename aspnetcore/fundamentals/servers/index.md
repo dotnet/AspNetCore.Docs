@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 08/04/2026
-uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
 
@@ -12,7 +11,7 @@ uid: fundamentals/servers/index
 
 By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com/), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
-An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as a set of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
+An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as a set of [request features](../request-features.md) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
 :::moniker range=">= aspnetcore-2.2"
 
@@ -20,9 +19,9 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index?tabs=windows#kestrel-vs-httpsys) in the Windows tab.
+* [Kestrel server](kestrel.md) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](index.md?tabs=windows#kestrel-vs-httpsys) in the Windows tab.
 * IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
-* [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
+* [HTTP.sys server](httpsys.md) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
 When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the app either runs:
 
@@ -69,14 +68,14 @@ For more information, see the following:
 
 # [macOS](#tab/macos)
 
-ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+ASP.NET Core ships with [Kestrel server](kestrel.md), which is the default, cross-platform HTTP server.
 
 > [!NOTE]
 > macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
 # [Linux](#tab/linux)
 
-ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+ASP.NET Core ships with [Kestrel server](kestrel.md), which is the default, cross-platform HTTP server.
 
 ---
 
@@ -84,7 +83,7 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 ## Kestrel
 
- [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](#kestrel-vs-httpsys) in this document.
+ [Kestrel server](kestrel.md) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](#kestrel-vs-httpsys) in this document.
 
 Use Kestrel:
 
@@ -98,7 +97,7 @@ Use Kestrel:
 
 Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported.
 
-For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see <xref:fundamentals/servers/kestrel>.
+For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see [Kestrel web server in ASP.NET Core](kestrel.md).
 
 :::moniker range="< aspnetcore-2.2"
 
@@ -106,8 +105,8 @@ For Kestrel configuration guidance and information on when to use Kestrel in a r
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server.
-* [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
+* [Kestrel server](kestrel.md) is the default, cross-platform HTTP server.
+* [HTTP.sys server](httpsys.md) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
 When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the app runs in a process separate from the IIS worker process (*out-of-process*) with the [Kestrel server](#kestrel).
 
@@ -130,14 +129,14 @@ For IIS and ASP.NET Core Module configuration guidance, see the following topics
 
 # [macOS](#tab/macos)
 
-ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+ASP.NET Core ships with [Kestrel server](kestrel.md), which is the default, cross-platform HTTP server.
 
 > [!NOTE]
 > macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
 # [Linux](#tab/linux)
 
-ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+ASP.NET Core ships with [Kestrel server](kestrel.md), which is the default, cross-platform HTTP server.
 
 ---
 
@@ -149,7 +148,7 @@ For information on how to use Nginx on Linux as a reverse proxy server for Kestr
 
 ## HTTP.sys
 
-If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel. For more information, see <xref:fundamentals/servers/httpsys>.
+If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel. For more information, see [HTTP.sys web server implementation in ASP.NET Core](httpsys.md).
 
 ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
@@ -157,7 +156,7 @@ HTTP.sys can also be used for apps that are only exposed to an internal network.
 
 ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
 
-For HTTP.sys configuration guidance, see <xref:fundamentals/servers/httpsys>.
+For HTTP.sys configuration guidance, see [HTTP.sys web server implementation in ASP.NET Core](httpsys.md).
 
 ## ASP.NET Core server infrastructure
 
@@ -167,7 +166,7 @@ The <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> available in the `St
 
 ## Custom servers
 
-If the built-in servers don't meet the app's requirements, a custom server implementation can be created. The [Open Web Interface for .NET (OWIN) guide](xref:fundamentals/owin) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation. Only the feature interfaces that the app uses require implementation, though at a minimum <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature> and <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature> must be supported.
+If the built-in servers don't meet the app's requirements, a custom server implementation can be created. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation. Only the feature interfaces that the app uses require implementation, though at a minimum <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature> and <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature> must be supported.
 
 ## Server startup
 
@@ -186,13 +185,13 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 :::moniker range=">= aspnetcore-8.0"
 
-* [Kestrel](xref:fundamentals/servers/kestrel/http2)
+* [Kestrel](kestrel/http2.md)
   * Operating system
     * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * macOS 10.15 or later
   * Target framework: .NET Core 2.2 or later
-* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
+* [HTTP.sys](httpsys.md#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](../../host-and-deploy/iis/index.md#http2-support)
@@ -209,13 +208,13 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
-* [Kestrel](xref:fundamentals/servers/kestrel/http2)
+* [Kestrel](kestrel/http2.md)
   * Operating system
     * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
   * Target framework: .NET Core 2.2 or later
-* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
+* [HTTP.sys](httpsys.md#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](../../host-and-deploy/iis/index.md#http2-support)
@@ -232,13 +231,13 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 :::moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
 
-* [Kestrel](xref:fundamentals/servers/kestrel#http2-support)
+* [Kestrel](kestrel.md#http2-support)
   * Operating system
     * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
   * Target framework: .NET Core 2.2 or later
-* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
+* [HTTP.sys](httpsys.md#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](../../host-and-deploy/iis/index.md#http2-support)
@@ -255,7 +254,7 @@ A `launchSettings.json` file provides configuration when launching an app with `
 
 :::moniker range="< aspnetcore-2.2"
 
-* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
+* [HTTP.sys](httpsys.md#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (out-of-process)](../../host-and-deploy/iis/index.md#http2-support)
@@ -271,9 +270,9 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 
 ## Related content
 
-* <xref:fundamentals/servers/kestrel>
+* [Kestrel web server in ASP.NET Core](kestrel.md)
 * [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md)
 * [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
 * [Deploy ASP.NET Core apps to Azure App Service](../../host-and-deploy/azure-apps/index.md)
 * [Host ASP.NET Core on Linux with Nginx](../../host-and-deploy/linux-nginx.md)
-* <xref:fundamentals/servers/httpsys>
+* [HTTP.sys web server implementation in ASP.NET Core](httpsys.md)

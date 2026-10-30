@@ -19,7 +19,7 @@ This article explains how to configure the timeout middleware. The timeout middl
 
 Request timeouts are in the <xref:Microsoft.AspNetCore.Http.Timeouts> namespace.
 
-***Note:*** When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](xref:fundamentals/servers/kestrel/options#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
+***Note:*** When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](../fundamentals/servers/kestrel/options.md#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
 
 ## Add the middleware to the app
 
@@ -95,6 +95,6 @@ To cancel a timeout that has already been started, use the <xref:Microsoft.AspNe
 ## See also
 
 * <xref:Microsoft.AspNetCore.Http.Timeouts>
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](../fundamentals/middleware/index.md)
 
 :::moniker-end

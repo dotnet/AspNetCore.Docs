@@ -7,7 +7,7 @@ ms.reviewer: tasou
 ---
 # Migrate HTTP handlers to ASP.NET Core middleware
 
-This article shows how to migrate existing ASP.NET [HTTP handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
+This article shows how to migrate existing ASP.NET [HTTP handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](../../../fundamentals/middleware/index.md).
 
 ## Handlers revisited
 
@@ -35,12 +35,12 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP handler
 
 :::moniker range=">= aspnetcore-3.0"
 
-* [Pipeline branching](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+* [Pipeline branching](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
 
-* [Pipeline branching](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+* [Pipeline branching](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 :::moniker-end
 
@@ -82,7 +82,7 @@ One solution is to branch the pipeline for requests with a given extension, usin
 
 Middleware added to the pipeline before the branch will be invoked on all requests; the branch will have no impact on them.
 
-For additional details, see the [middleware documentation](xref:fundamentals/middleware/index) for additional ways to use middleware to replace your usage of handlers. 
+For additional details, see the [middleware documentation](../../../fundamentals/middleware/index.md) for additional ways to use middleware to replace your usage of handlers. 
 
 ## Migrating to the new HttpContext
 
@@ -97,6 +97,6 @@ public async Task Invoke(HttpContext context)
 ## Related content
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
-* [Application Startup](xref:fundamentals/startup)
-* [Middleware](xref:fundamentals/middleware/index)
+* [Application Startup](../../../fundamentals/startup.md)
+* [Middleware](../../../fundamentals/middleware/index.md)
 * [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md)

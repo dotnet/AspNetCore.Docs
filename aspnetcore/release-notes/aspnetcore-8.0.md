@@ -155,7 +155,7 @@ For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&p
 
 ### Error page support
 
-Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](xref:fundamentals/error-handling#exception-handler-page). The Blazor Web App project template includes a default error page with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from exception handling middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
+Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](../fundamentals/error-handling.md#exception-handler-page). The Blazor Web App project template includes a default error page with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from exception handling middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
 
 See the `Error` component (`Components/Pages/Error.razor`) of the server project in the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp).
 
@@ -539,12 +539,12 @@ Starting in .NET 8, the [RequestLocalizationOptions.CultureInfoUseUserOverride](
 
 Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [antiforgery token](../security/anti-request-forgery.md). The antiforgery token is validated when the request is processed.
 
-Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](../fundamentals/openapi/aspnetcore-openapi.md) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
 For more information, see:
 
-* [Explicit binding from form values](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#explicit-binding-from-form-values).
-* [Binding to forms with IFormCollection, IFormFile, and IFormFileCollection](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#binding-to-forms-with-iformcollection-iformfile-and-iformfilecollection).
+* [Explicit binding from form values](../fundamentals/minimal-apis/parameter-binding.md?view=aspnetcore-8.0&preserve-view=true#explicit-binding-from-form-values).
+* [Binding to forms with IFormCollection, IFormFile, and IFormFileCollection](../fundamentals/minimal-apis/parameter-binding.md?view=aspnetcore-8.0&preserve-view=true#binding-to-forms-with-iformcollection-iformfile-and-iformfilecollection).
 * [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/)
 
 Binding from forms is now supported for:
@@ -552,7 +552,7 @@ Binding from forms is now supported for:
 * Collections, for example [List](/dotnet/api/system.collections.generic.list-1) and [Dictionary](/dotnet/api/system.collections.generic.dictionary-2)
 * Complex types, for example, `Todo` or `Project`
 
-For more information, see [Bind to collections and complex types from forms](xref:fundamentals/minimal-apis/parameter-binding#bindcc).
+For more information, see [Bind to collections and complex types from forms](../fundamentals/minimal-apis/parameter-binding.md#bindcc).
 
 ### Antiforgery with Minimal APIs
 
@@ -583,13 +583,13 @@ For more information, see the [ObjectPool sample](xref:performance/ObjectPool##o
 
 ## Native AOT
 
-Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, Minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and Native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
+Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, Minimal API, and worker service apps. For more information, see [ASP.NET Core support for Native AOT](../fundamentals/native-aot.md) and [Tutorial: Publish an ASP.NET Core app using Native AOT](../fundamentals/aot/native-aot-tutorial.md). For information about known issues with ASP.NET Core and Native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
 
 [!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
 
 ### New project template
 
-The new **ASP.NET Core Web API (Native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (Native AOT) template](xref:fundamentals/native-aot#the-web-api-native-aot-template).
+The new **ASP.NET Core Web API (Native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (Native AOT) template](../fundamentals/native-aot.md#the-web-api-native-aot-template).
 
 ### New `CreateSlimBuilder` method
 
@@ -600,7 +600,7 @@ The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method 
 * Console logging.
 * Logging configuration.
 
-For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+For more information, see [The `CreateSlimBuilder` method](../fundamentals/native-aot.md#the-createslimbuilder-method).
 
 ### New `CreateEmptyBuilder` method
 
@@ -614,7 +614,7 @@ Publishing this code with Native AOT using .NET 8 Preview 7 on a linux-x64 machi
 
 ### Reduced app size with configurable HTTPS support
 
-We've further reduced Native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+We've further reduced Native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](../fundamentals/native-aot.md#the-createslimbuilder-method).
 
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
@@ -677,7 +677,7 @@ For more information about the <xref:System.Text.Json.JsonSerializerOptions.Type
 
 * [JsonSerializerOptions.TypeInfoResolverChain](https://devblogs.microsoft.com/dotnet/announcing-dotnet-8-preview-4/#jsonserializeroptions-typeinforesolverchain)
 * [Chain source generators](/dotnet/core/whats-new/dotnet-8#chain-source-generators)
-* [Changes to support source generation](xref:fundamentals/native-aot#changes-to-support-source-generation)
+* [Changes to support source generation](../fundamentals/native-aot.md#changes-to-support-source-generation)
 
 ### Libraries and Native AOT
 
@@ -714,11 +714,11 @@ Time to create 100,000 connections:
 
 ### HTTP/2 over TLS (HTTPS) support on macOS in Kestrel
 
-.NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2. For more information, see <xref:fundamentals/servers/kestrel/http2>.
+.NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2. For more information, see [Use HTTP/2 with the ASP.NET Core Kestrel web server](../fundamentals/servers/kestrel/http2.md).
 
 ### Certificate file watching in Kestrel
 
-TLS certificates [configured](xref:fundamentals/configuration/index) by path are now monitored for changes when `reloadOnChange` is passed to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure?displayProperty=nameWithType>.  A change to the certificate file is treated the same way as a change to the configured path (that is, endpoints are reloaded).
+TLS certificates [configured](../fundamentals/configuration/index.md) by path are now monitored for changes when `reloadOnChange` is passed to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure?displayProperty=nameWithType>.  A change to the certificate file is treated the same way as a change to the configured path (that is, endpoints are reloaded).
 
 Note that file deletions are specifically not tracked since they arise transiently and would crash the server if non-transient.
 
@@ -744,7 +744,7 @@ For more information, see <!--keep--> [ITlsHandshakeFeature.HostName](https://so
 
 ### IHttpSysRequestTimingFeature
 
-<!--keep--> [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests when using the [HTTP.sys server](xref:fundamentals/servers/httpsys) and [In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8):
+<!--keep--> [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests when using the [HTTP.sys server](../fundamentals/servers/httpsys.md) and [In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8):
 
 * Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
 * The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
@@ -755,7 +755,7 @@ For more information, see <!--keep--> [ITlsHandshakeFeature.HostName](https://so
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
-For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
+For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](../fundamentals/servers/httpsys.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 ### HTTP.sys: opt-in support for kernel-mode response buffering
 
@@ -946,7 +946,7 @@ Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more
 
 `IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](xref:Microsoft.Extensions.DependencyInjection.ExceptionHandlerServiceCollectionExtensions.AddExceptionHandler*). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 
-For more information, see [IExceptionHandler](xref:fundamentals/error-handling#iexceptionhandler).
+For more information, see [IExceptionHandler](../fundamentals/error-handling.md#iexceptionhandler).
 
 ### Improved debugging experience
 
@@ -1027,7 +1027,7 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
-For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 
 ### HTTP logging middleware extensibility
 
@@ -1041,15 +1041,15 @@ The HTTP logging middleware has several new capabilities:
   * Adjust how much of the request or response body is logged.
   * Add custom fields to the logs.
 
-For more information, see <xref:fundamentals/http-logging/index>.
+For more information, see [HTTP logging in .NET and ASP.NET Core](../fundamentals/http-logging/index.md).
 
 ### New APIs in ProblemDetails to support more resilient integrations
 
-In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> isn't able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync*> API:
+In .NET 7, the [ProblemDetails service](../fundamentals/error-handling.md#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> isn't able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync*> API:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
-For more information, see [IProblemDetailsService fallback](xref:fundamentals/error-handling-api#iproblemdetailsservice-fallback)
+For more information, see [IProblemDetailsService fallback](../fundamentals/error-handling-api.md#iproblemdetailsservice-fallback)
 
 <!--
 ## API controllers

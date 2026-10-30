@@ -31,7 +31,7 @@ The following code adds the static file middleware to an ASP.NET Core in .NET 6 
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. For more information, see [ASP.NET Core middleware](../fundamentals/middleware/index.md?view=aspnetcore-6.0)
 
 ## Routing
 
@@ -58,7 +58,7 @@ In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builde
 **Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
 <!-- TODO, uncomment when article is updated for .NET 6
-For more information, see <xref:fundamentals/routing?view=aspnetcore-6.0>
+For more information, see [Routing in ASP.NET Core](../fundamentals/routing.md?view=aspnetcore-6.0)
 -->
 
 <a name="ccr"></a>
@@ -84,7 +84,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_root)]
 
-For more information, see <xref:fundamentals/index>
+For more information, see [ASP.NET Core fundamentals overview](../fundamentals/index.md)
 
 #### Change the content root, app name, and environment by environment variables or command line
 
@@ -117,7 +117,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 
-For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
+For detailed information, see [File configuration providers](../fundamentals/configuration/index.md?view=aspnetcore-6.0#file-configuration-provider) in [Configuration in ASP.NET Core](../fundamentals/configuration/index.md?view=aspnetcore-6.0).
 
 ## Add logging providers
 
@@ -140,7 +140,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_log)]
 
-For more information, see  <xref:fundamentals/logging/index?view=aspnetcore-6.0#>.
+For more information, see  [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md?view=aspnetcore-6.0#).
 
 ## Add services
 
@@ -164,7 +164,7 @@ public class Startup
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_svc)]
 
-For more information, see  <xref:fundamentals/dependency-injection?view=aspnetcore-6.0#>.
+For more information, see  [Dependency injection in ASP.NET Core](../fundamentals/dependency-injection.md?view=aspnetcore-6.0#).
 
 <a name="cii"></a>
 
