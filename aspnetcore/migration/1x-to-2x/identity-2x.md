@@ -299,7 +299,7 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 There are two variations of Windows authentication:
 
 * The host only allows authenticated users. This variation isn't affected by the 2.0 changes.
-* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](../../host-and-deploy/iis/index.md) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
+* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](../../host-and-deploy/iis/index.md) or [HTTP.sys](../../fundamentals/servers/httpsys.md) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
 
   For [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/), set the default scheme to `IISDefaults.AuthenticationScheme`:
 

@@ -16,7 +16,7 @@ Minimal APIs are architected to create HTTP APIs with minimal dependencies. They
 
 * <xref:tutorials/min-web-api>
 * [Differences between Minimal APIs and APIs with controllers](xref:tutorials/min-web-api?view=aspnetcore-6.0#differences-between-minimal-apis-and-apis-with-controllers)
-* <xref:fundamentals/minimal-apis>
+* [Minimal APIs quick reference](../fundamentals/minimal-apis.md)
 * [Code samples migrated to the new minimal hosting model in 6.0](../migration/50-to-60-samples.md)
 
 ## SignalR
@@ -53,7 +53,7 @@ Many changes were made to reduce allocations and improve performance across the 
 
 * Non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use*) extension method. The new overload of `app.Use` requires passing the context to `next` which saves two internal per-request allocations that are required when using the other overload.
 * Reduced memory allocations when accessing <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies?displayProperty=nameWithType>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
-* Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) for the windows only [HTTP.sys web server](xref:fundamentals/servers/httpsys). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
+* Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) for the windows only [HTTP.sys web server](../fundamentals/servers/httpsys.md). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
 * Reduce the per connection overhead in [SocketConnection](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Transport.Sockets/src/Internal/SocketConnection.cs) by ~30%. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31308).
 * Reduce allocations by removing logging delegates in generic types. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/issues/31340).
 * Faster GET access (about 50%) to commonly-used features such as  <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature>, <xref:Microsoft.AspNetCore.Http.Features.IRouteValuesFeature>, and <xref:Microsoft.AspNetCore.Http.Features.IEndpointFeature>. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31322).
@@ -271,7 +271,7 @@ For more information, see the following resources:
 
 [HTTP/3](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34) is currently in draft and therefore subject to change. HTTP/3 support in ASP.NET Core is not released, it's a preview feature included in .NET 6.
 
-Kestrel now supports HTTP/3. For more information, see <xref:fundamentals/servers/kestrel/http3> and the blog entry [HTTP/3 support in .NET 6](https://devblogs.microsoft.com/dotnet/http-3-support-in-dotnet-6/).
+Kestrel now supports HTTP/3. For more information, see [Use HTTP/3 with the ASP.NET Core Kestrel web server](../fundamentals/servers/kestrel/http3.md) and the blog entry [HTTP/3 support in .NET 6](https://devblogs.microsoft.com/dotnet/http-3-support-in-dotnet-6/).
 
 ### New Kestrel logging categories for selected logging
 
@@ -287,7 +287,7 @@ Existing rules continue to work, but you can now be more selective on which rule
 
 [!code-xml[](aspnetcore-6.0/samples/WebApp1/appsettings.Test.json?highlight=6)]
 
-Log filtering applies rules with the longest matching category prefix. For more information, see [How filtering rules are applied](xref:fundamentals/logging/index?view=aspnetcore-6.0#how-filtering-rules-are-applied)
+Log filtering applies rules with the longest matching category prefix. For more information, see [How filtering rules are applied](../fundamentals/logging/index.md?view=aspnetcore-6.0#how-filtering-rules-are-applied)
 
 ### Emit KestrelServerOptions via EventSource event
 
@@ -362,7 +362,7 @@ Kestrel now emits a new `DiagnosticSource` event for HTTP requests rejected at t
 
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_diag)]
 
-For more information, see <xref:fundamentals/servers/kestrel/diagnostics>.
+For more information, see [Logging and diagnostics in Kestrel](../fundamentals/servers/kestrel/diagnostics.md).
 
 ### Create a ConnectionContext from an Accept Socket
 
@@ -470,7 +470,7 @@ The web app templates:
 
 Random ports are assigned during project creation for use by the Kestrel web server. Random ports help minimize a port conflict when multiple projects are run on the same machine.
 
-When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated `Properties/launchSettings.json` file. The ports can be changed in the `Properties/launchSettings.json` file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated `Properties/launchSettings.json` file. The ports can be changed in the `Properties/launchSettings.json` file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see [Configure endpoints for Kestrel web server](../fundamentals/servers/kestrel/endpoints.md).
 
 ### New logging defaults
 
@@ -487,7 +487,7 @@ The change from `"Microsoft": "Warning"` to `"Microsoft.AspNetCore": "Warning"` 
 <!-- TODO add and routing -->
 ### Developer exception page middleware added automatically
 
-In the [development environment](xref:fundamentals/environments), the <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> is added by default. It's no longer necessary to add the following code to web UI apps:
+In the [development environment](../fundamentals/environments.md), the <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> is added by default. It's no longer necessary to add the following code to web UI apps:
 
 ```csharp
 if (app.Environment.IsDevelopment())

@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/21/2026
-uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The options pattern uses classes to provide strongly typed access to groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
+The options pattern uses classes to provide strongly typed access to groups of related settings. When [configuration settings](index.md) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
 * [Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation): Classes that depend on configuration settings depend only on the configuration settings that they use.
 * [Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns): Settings for different parts of the app aren't dependent or coupled to one another.
@@ -19,7 +18,7 @@ Options also provide a mechanism to validate configuration data, which is descri
 
 This article provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
-The examples in this article rely on a general understanding of injecting services into classes. For more information, see <xref:fundamentals/dependency-injection>. Examples are based on [Blazor's Razor components](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) ([Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
+The examples in this article rely on a general understanding of injecting services into classes. For more information, see [Dependency injection in ASP.NET Core](../dependency-injection.md). Examples are based on [Blazor's Razor components](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) ([Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
 ## How to use the options pattern
 
@@ -1092,7 +1091,7 @@ services.AddOptions<KeyOptions>()
 
 :::moniker-end
 
-The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> extension method is defined in the [`Microsoft.Extensions.Options.DataAnnotations` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations). For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the [shared framework](xref:fundamentals/metapackage-app).
+The <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> extension method is defined in the [`Microsoft.Extensions.Options.DataAnnotations` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations). For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the [shared framework](../metapackage-app.md).
 
 Where services are registered for dependency injection, the following example applies a more complex validation rule using a delegate:
 
@@ -1784,4 +1783,4 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Exte
 ## Related content
 
 * [ASP.NET Core Blazor configuration: Options configuration](xref:blazor/fundamentals/configuration#options-configuration)
-* [View or download sample code (Razor Pages)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code (Razor Pages)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](../index.md#how-to-download-a-sample))

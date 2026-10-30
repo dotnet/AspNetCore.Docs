@@ -17,7 +17,7 @@ The term *partial view* is used when developing either an MVC app, where markup 
 
 :::moniker-end
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/partial/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/partial/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## When to use partial views
 

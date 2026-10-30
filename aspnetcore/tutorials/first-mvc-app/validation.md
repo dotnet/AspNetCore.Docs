@@ -169,7 +169,7 @@ For more information, see [Resetting all migrations](/ef/core/managing-schemas/m
 
 * [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
 * [Working with Forms](xref:mvc/views/working-with-forms)
-* [Globalization and localization](xref:fundamentals/localization)
+* [Globalization and localization](../../fundamentals/localization.md)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 

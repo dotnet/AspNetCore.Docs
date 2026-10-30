@@ -3,7 +3,6 @@ title: HTTP requests with IHttpClientFactory - ASP.NET Core
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/08/2026
-uid: fundamentals/http-requests
 
 # customer intent: As an ASP.NET developer, I want to use the IHttpClientFactory interface in ASP.NET Core, so I can manage logical HttpClient instances.
 ---
@@ -44,7 +43,7 @@ Register `IHttpClientFactory` by calling the `AddHttpClient` method in the _Prog
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientBasic" highlight="4":::
 
-An `IHttpClientFactory` can be requested by using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested by using [dependency injection (DI)](dependency-injection.md). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Pages/Consumption/Basic.cshtml.cs" id="snippet_Class" highlight="5-6,23":::
 
@@ -353,7 +352,7 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> and `GitHubService` are registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> and `GitHubService` are registered in the [Generic Host's](host/generic-host.md) service container.
 * `GitHubService` is requested from DI, which in-turn requests an instance of `IHttpClientFactory`.
 * `GitHubService` uses `IHttpClientFactory` to create an instance of `HttpClient`, which it uses to retrieve docs GitHub branches.
 
@@ -384,7 +383,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample)).
 
 The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
@@ -405,7 +404,7 @@ The best approach depends upon the app's requirements.
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet1" highlight="13":::
 
-An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested using [dependency injection (DI)](dependency-injection.md). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
@@ -767,7 +766,7 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
@@ -802,7 +801,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample)).
 
 The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
@@ -823,7 +822,7 @@ The best approach depends upon the app's requirements.
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet1" highlight="13":::
 
-An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested using [dependency injection (DI)](dependency-injection.md). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
@@ -1181,7 +1180,7 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
@@ -1216,11 +1215,11 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
-Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the `Microsoft.Extensions.Http` package.
+Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](metapackage-app.md) already include the `Microsoft.Extensions.Http` package.
 
 ## Consumption patterns
 
@@ -1239,7 +1238,7 @@ The `IHttpClientFactory` can be registered by calling the `AddHttpClient` extens
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet1":::
 
-Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The `IHttpClientFactory` can be used to create an `HttpClient` instance:
+Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](dependency-injection.md). The `IHttpClientFactory` can be used to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
@@ -1499,9 +1498,9 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
-* The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see <xref:fundamentals/dependency-injection#call-services-from-main>.
+* The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see [Dependency injection in ASP.NET Core](dependency-injection.md#call-services-from-main).
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,22":::
 
@@ -1528,7 +1527,7 @@ Header propagation is a community supported middleware to propagate HTTP headers
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample))
 
 :::moniker-end
 

@@ -1324,5 +1324,5 @@ Passing a thread to `UIAgent` enables new completed turns to be persisted but do
 For more information, see the following resources:
 
 * [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](../../../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
-* <xref:fundamentals/validation?view=aspnetcore-11.0#nested-objects-and-collections>
-* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0#nested-objects-and-collections)
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0#force-generate-validatable-type-information)

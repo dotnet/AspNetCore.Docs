@@ -85,7 +85,7 @@ app.MapBlazorHub("base/path/_blazor");
 
 The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
 
-You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
+You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](../../fundamentals/middleware/index.md#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
 
 ```csharp
 app.Map("/base/path", subapp => {
@@ -214,7 +214,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
     [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
     
-    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+    For more information on the `launchSettings.json` file, see [ASP.NET Core runtime environments](../../fundamentals/environments.md#development-and-launchsettingsjson). For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
 * Standalone Blazor WebAssembly (`wwwroot/index.html`):
 
@@ -243,7 +243,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> as described in the [ASP.NET Core middleware](../../fundamentals/middleware/index.md#middleware-order) and [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
@@ -295,7 +295,7 @@ Using `CoolApp` as the example:
 
 Using either `dotnet watch` (or `dotnet run`) with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+For more information on the `launchSettings.json` file, see [ASP.NET Core runtime environments](../../fundamentals/environments.md#development-and-launchsettingsjson). For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
 ## Obtain the app base path from configuration
 
@@ -358,4 +358,4 @@ If there's no configuration value to load, for example in non-staging environmen
 The examples in this section focus on supplying the app base path from app settings, but the approach of reading the path from <xref:Microsoft.Extensions.Configuration.IConfiguration> is valid for any configuration provider. For more information, see the following resources:
 
 * <xref:blazor/fundamentals/configuration>
-* <xref:fundamentals/configuration/index>
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)

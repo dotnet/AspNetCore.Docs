@@ -139,7 +139,7 @@ For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API 
 
 ### Client-side fingerprinting
 
-The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript (JS) modules. For .NET 10, you can opt-into client-side fingerprinting of JS modules for standalone Blazor WebAssembly apps.
+The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](../../../fundamentals/static-files.md), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript (JS) modules. For .NET 10, you can opt-into client-side fingerprinting of JS modules for standalone Blazor WebAssembly apps.
 
 In standalone Blazor WebAssembly apps during build and publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
@@ -466,7 +466,7 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a <xre
 
 * **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](../../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> content rendering uses the following, regardless if the response has started or not (in order):
 
@@ -475,7 +475,7 @@ Streaming rendering can only render components that have a route, such as a [`No
 * A status code pages re-execution middleware page, if configured.
 * No action if none of the preceding approaches are adopted.
 
-[Status code pages re-execution middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+[Status code pages re-execution middleware](../../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 You can use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound*?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is invoked.
 
@@ -662,7 +662,7 @@ If one of the preceding steps produces a validation error, the remaining steps a
 You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App, by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
 * In the app, call both the method and `AddValidation`.
 
-For more information, see <xref:fundamentals/validation?view=aspnetcore-10.0#register-validation-in-multi-assembly-apps>.
+For more information, see [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-10.0#register-validation-in-multi-assembly-apps).
 
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
@@ -756,7 +756,7 @@ public User? CurrentUser { get; set; } = new();
 
 ### `OwningComponentBase` now implements `IAsyncDisposable`
 
-[`OwningComponentBase`](xref:fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope) now includes support for asynchronous disposal, improving resource management. There are new `DisposeAsync` and `DisposeAsyncCore` methods with an updated `Dispose` method to handle both synchronous and asynchronous disposal of the service scope.
+[`OwningComponentBase`](../../../fundamentals/dependency-injection.md#utility-base-component-classes-to-manage-a-di-scope) now includes support for asynchronous disposal, improving resource management. There are new `DisposeAsync` and `DisposeAsyncCore` methods with an updated `Dispose` method to handle both synchronous and asynchronous disposal of the service scope.
 
 ### New `InputHidden` component to handle hidden input fields in forms
 

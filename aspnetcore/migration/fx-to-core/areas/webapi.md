@@ -66,7 +66,7 @@ The `Program.cs` file:
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 The following shows the application startup code in the ASP.NET Core `Program.cs` file:
 
@@ -158,7 +158,7 @@ The migrated `ProductsController` contains the following highlighted attributes:
 
 [!code-csharp[](webapi/samples/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7,26,32)]
 
-* The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern.
+* The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](../../../fundamentals/routing.md) pattern.
 * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
 * [Attribute routing supports tokens](xref:mvc/controllers/routing#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
@@ -173,7 +173,7 @@ The migrated `ProductsController` contains the following highlighted attributes:
 
 Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Additional resources
 
@@ -237,7 +237,7 @@ The `Startup` class:
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 ## Migrate models and controllers
 
@@ -274,7 +274,7 @@ The ASP.NET Core *API* project template includes endpoint routing configuration 
 
 The following <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> calls:
 
-* Register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline.
+* Register route matching and endpoint execution in the [middleware](../../../fundamentals/middleware/index.md) pipeline.
 * Replace the *ProductsApp* project's `App_Start/WebApiConfig.cs` file.
 
 [!code-csharp[](webapi/samples/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14)]

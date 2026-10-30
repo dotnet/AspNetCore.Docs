@@ -142,7 +142,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state#tempdata)
+* [TempData](../../fundamentals/app-state.md#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters when the app:
 
@@ -209,7 +209,7 @@ Built-in features provide a limited range of polymorphic serialization but no su
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end
 
@@ -217,7 +217,7 @@ Built-in features provide a limited range of polymorphic serialization but no su
 
 ASP.NET Core MVC has support for formatting response data. Response data can be formatted using specific formats or in response to client requested format.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Format-specific Action Results
 
@@ -366,7 +366,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state#tempdata)
+* [TempData](../../fundamentals/app-state.md#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters when the app:
 
@@ -568,7 +568,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state#tempdata)
+* [TempData](../../fundamentals/app-state.md#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters when the app:
 
@@ -671,6 +671,6 @@ Built-in features provide a limited range of polymorphic serialization but no su
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end

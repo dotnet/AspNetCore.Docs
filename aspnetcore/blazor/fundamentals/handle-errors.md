@@ -729,7 +729,7 @@ You must decide which incidents to log and the level of severity of logged incid
 For more information, see the following articles:
 
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&Dagger;
+* [Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)&Dagger;
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
 
 &Dagger;Applies to server-side Blazor apps and other server-side ASP.NET Core apps that are web API backend apps for Blazor. Client-side apps can trap and send error information on the client to a web API, which logs the error information to a persistent logging provider.
@@ -745,7 +745,7 @@ You must decide which incidents to log and the level of severity of logged incid
 For more information, see the following articles:
 
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&Dagger;
+* [Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)&Dagger;
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
 
 &dagger;Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support client-side apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (`microsoft/ApplicationInsights-dotnet` #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (`dotnet/aspnetcore` #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
@@ -991,7 +991,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 * [Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/components/sync-context#handle-caught-exceptions-outside-of-a-razor-components-lifecycle)
 * [Not Found responses](xref:blazor/fundamentals/navigation#not-found-responses)
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&dagger;
+* [Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)&dagger;
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -1001,7 +1001,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 * [Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/components/sync-context#handle-caught-exceptions-outside-of-a-razor-components-lifecycle)
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&dagger;
+* [Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)&dagger;
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -1010,7 +1010,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 :::moniker range="< aspnetcore-8.0"
 
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&dagger;
+* [Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)&dagger;
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 

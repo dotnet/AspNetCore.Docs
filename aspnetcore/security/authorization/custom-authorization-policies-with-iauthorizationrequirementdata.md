@@ -9,7 +9,7 @@ ms.date: 10/13/2026
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
+This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -61,7 +61,7 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-A [Minimal API](xref:fundamentals/minimal-apis) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
+A [Minimal API](../../fundamentals/minimal-apis.md) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
 
 ```csharp
 app.MapGet("/api/greetings/hello", (HttpContext context) =>

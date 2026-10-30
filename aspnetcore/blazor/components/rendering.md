@@ -56,7 +56,7 @@ To stream content updates when using static server-side rendering (static SSR) o
 
 If [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) is active, streaming rendering renders [Not Found responses](xref:blazor/fundamentals/navigation#not-found-responses) without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh. 
 
-Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](xref:blazor/fundamentals/navigation#not-found-responses) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](xref:blazor/fundamentals/navigation#not-found-responses) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). The Not Found render fragment (`<NotFound>...</NotFound>`) and the `DefaultNotFound` 404 content ("`Not found`" plain text) don't have routes, so they can't be used during streaming rendering.
 
 Streaming `NavigationManager.NotFound` content rendering uses (in order):
 
@@ -70,7 +70,7 @@ Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
 * Not Found render fragment content, if present. *Not recommended in .NET 10 or later.*
 * `DefaultNotFound` 404 content ("`Not found`" plain text).
 
-[Status code pages re-execution middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+[Status code pages re-execution middleware](../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 :::moniker-end
 

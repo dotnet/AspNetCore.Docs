@@ -15,7 +15,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](../../razor-pages/index.md) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu60) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu60) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -59,7 +59,7 @@ The UI style of this site is based on the built-in project templates. The tutori
 
 ### Optional: Build the sample download
 
-This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -263,7 +263,7 @@ The following packages are automatically installed:
 
 * Create a *Pages/Students* folder.
 
-* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
@@ -355,7 +355,7 @@ We hope to [fix this issue](https://github.com/dotnet/Scaffolding/issues/1594) i
 
 ## Program.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
@@ -375,7 +375,7 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` or the `appsettings.Development.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` or the `appsettings.Development.json` file.
 
 <a name="dbx"></a>
 
@@ -402,7 +402,7 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments) for EF migrations errors.
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](../../fundamentals/environments.md) for EF migrations errors.
 
 ## Create the database
 
@@ -547,7 +547,7 @@ For more information, see [Performance considerations (EF)](/ef/core/performance
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](../../razor-pages/index.md) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -591,7 +591,7 @@ The UI style of this site is based on the built-in project templates. The tutori
 
 ### Optional: Build the sample download
 
-This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -779,7 +779,7 @@ The following packages are automatically installed:
 
 * Create a *Pages/Students* folder.
 
-* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
@@ -869,7 +869,7 @@ Build the project to verify there are no compiler errors.
 
 ## Startup.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
@@ -889,7 +889,7 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 <a name="dbx"></a>
 
@@ -917,7 +917,7 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments) for EF migrations errors.
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](../../fundamentals/environments.md) for EF migrations errors.
 
 ## Create the database
 
@@ -1040,7 +1040,7 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 
 [!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
 
-See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
+See [Configuration](../../fundamentals/configuration/index.md) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
 
 Paging is covered later in the tutorial.
 
@@ -1061,7 +1061,7 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](../../razor-pages/index.md) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -1284,7 +1284,7 @@ remove dotnet tool install --global  below
 
 * Create a *Pages/Students* folder.
 
-* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
   ```dotnetcli
   dotnet tool install --global dotnet-aspnet-codegenerator
@@ -1359,7 +1359,7 @@ Build the project to verify there are no compiler errors.
 
 ## Startup.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
@@ -1377,7 +1377,7 @@ The scaffolding tool automatically registered the context class with the depende
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 ## Create the database
 

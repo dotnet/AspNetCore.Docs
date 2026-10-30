@@ -24,7 +24,7 @@ This article explains how to configure server-side Blazor for additional securit
 If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties server-side for other purposes.
 
 > [!NOTE]
-> For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+> For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../../fundamentals/http-requests.md#outgoing-request-middleware).
 
 To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal`1> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
 
@@ -857,16 +857,16 @@ Use either of the following approaches to address this scenario:
 * [Circuit activity handler](#circuit-activity-handler)
 
 > [!NOTE]
-> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory>, see the following sections of <xref:fundamentals/http-requests>:
+> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory>, see the following sections of [HTTP requests with IHttpClientFactory - ASP.NET Core](../../fundamentals/http-requests.md):
 >
-> * [Outgoing request middleware](xref:fundamentals/http-requests#outgoing-request-middleware)
-> * [Use DI in outgoing request middleware](xref:fundamentals/http-requests#use-di-in-outgoing-request-middleware)
+> * [Outgoing request middleware](../../fundamentals/http-requests.md#outgoing-request-middleware)
+> * [Use DI in outgoing request middleware](../../fundamentals/http-requests.md#use-di-in-outgoing-request-middleware)
 
 The examples in the following subsections attach a custom user name header for authenticated users to outgoing requests.
 
 ### Application scope handler (*Recommended*)
 
-The approach in this section uses a [keyed service](xref:fundamentals/dependency-injection#keyed-services) to register a custom <xref:System.Net.Http.HttpClient> that wraps the base client with an application scope handler resolved from the current application scope to access <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
+The approach in this section uses a [keyed service](../../fundamentals/dependency-injection.md#keyed-services) to register a custom <xref:System.Net.Http.HttpClient> that wraps the base client with an application scope handler resolved from the current application scope to access <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
 
 Overview of the approach:
 

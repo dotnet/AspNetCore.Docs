@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/09/2026
-uid: fundamentals/servers/kestrel/security-considerations
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
 
@@ -694,8 +693,8 @@ Beyond rejection-specific signals, Kestrel emits a set of built-in metrics under
 
 These metrics integrate with OpenTelemetry, `dotnet-counters`, Prometheus exporters, and Azure Monitor. For full setup guidance, see:
 
-- [ASP.NET Core metrics overview](xref:metrics/overview)
-- [Kestrel built-in metrics reference](xref:metrics/http#microsoftaspnetcoreserverkestrel)
+- [ASP.NET Core metrics overview](../../../metrics/overview.md)
+- [Kestrel built-in metrics reference](../../../metrics/http.md#microsoftaspnetcoreserverkestrel)
 
 ### TLS-over-HTTP detection
 

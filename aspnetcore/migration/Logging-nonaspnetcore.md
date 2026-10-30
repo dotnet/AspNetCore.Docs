@@ -63,4 +63,4 @@ using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole())
 ## Related content
 
 * [Microsoft.Extensions.Logging.Console NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/).
-* <xref:fundamentals/logging/index>
+* [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md)

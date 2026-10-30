@@ -6,7 +6,7 @@ Examine the `Pages/Movies/Index.cshtml.cs` Page Model:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippetFull)]
 
-Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is named `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `RazorPagesMovieContext` to the page:
+Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is named `<PageName>Model`. The constructor uses [dependency injection](../../../../fundamentals/dependency-injection.md) to add the `RazorPagesMovieContext` to the page:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet1&highlight=5)]
 

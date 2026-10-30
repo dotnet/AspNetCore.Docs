@@ -227,7 +227,7 @@ The `RazorPagesMovieContext` class in the generated file `RazorPagesMovieContext
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 ## Test the app
 
@@ -255,7 +255,7 @@ The next tutorial explains the files created by scaffolding.
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Register services, such as the EF Core database context, with dependency injection during application startup. Provide components that require these services (such as Razor Pages) via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Register services, such as the EF Core database context, with dependency injection during application startup. Provide components that require these services (such as Razor Pages) via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically creates a database context and registers it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
@@ -271,7 +271,7 @@ The scaffolding tool automatically creates a database context and registers it w
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 

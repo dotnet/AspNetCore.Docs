@@ -123,7 +123,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 * In the preceding code, replace the localhost port number `5287` with the `HTTP` (not `HTTPS`) port number specified in `Properties/launchSettings.json` within the gRPC service project.
 
-When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
+When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](../../../fundamentals/servers/kestrel/endpoints.md#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
@@ -234,7 +234,7 @@ Alternatively, a client factory can be configured with `SubdirectoryHandler` by 
 
 ## Configure gRPC client to use HTTP/3
 
-The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends an `alt-svc` response header to the client that indicates the server supports HTTP/3, the client will automatically upgrade its connection to HTTP/3. For information about how to enable HTTP/3 on the server, see <xref:fundamentals/servers/kestrel/http3>.
+The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends an `alt-svc` response header to the client that indicates the server supports HTTP/3, the client will automatically upgrade its connection to HTTP/3. For information about how to enable HTTP/3 on the server, see [Use HTTP/3 with the ASP.NET Core Kestrel web server](../../../fundamentals/servers/kestrel/http3.md).
 
 HTTP/3 support in .NET 8 is enabled by default. HTTP/3 support in .NET 6 and .NET 7 needs to be enabled via a configuration flag in the project file:
 
@@ -465,7 +465,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
+When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](../../../fundamentals/servers/kestrel/endpoints.md#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
@@ -714,7 +714,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
+When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](../../../fundamentals/servers/kestrel.md#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
 
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 

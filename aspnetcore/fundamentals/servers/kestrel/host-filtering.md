@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about using host filtering with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 05/04/2020
-uid: fundamentals/servers/kestrel/host-filtering
 ---
 
 # Host filtering with ASP.NET Core Kestrel web server

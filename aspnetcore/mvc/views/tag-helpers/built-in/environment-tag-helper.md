@@ -8,7 +8,7 @@ uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 
 By [Peter Kellner](https://peterkellner.net) and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
-The Environment Tag Helper conditionally renders its enclosed content based on the current [hosting environment](xref:fundamentals/environments). The Environment Tag Helper's single attribute, `names`, is a comma-separated list of environment names. If any of the provided environment names match the current environment, the enclosed content is rendered.
+The Environment Tag Helper conditionally renders its enclosed content based on the current [hosting environment](../../../../fundamentals/environments.md). The Environment Tag Helper's single attribute, `names`, is a comma-separated list of environment names. If any of the provided environment names match the current environment, the enclosed content is rendered.
 
 For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
@@ -58,4 +58,4 @@ In contrast to the `include` attribute, the content of the `<environment>` tag i
 
 ## Related content
 
-* <xref:fundamentals/environments>
+* [ASP.NET Core runtime environments](../../../../fundamentals/environments.md)

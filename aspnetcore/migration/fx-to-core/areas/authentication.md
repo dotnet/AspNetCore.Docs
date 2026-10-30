@@ -221,7 +221,7 @@ When using remote authentication with YARP-based fallback to the ASP.NET Framewo
 
 To avoid running remote authentication for fallback requests, use one of these approaches:
 
-* Use routing short-circuit metadata on the YARP fallback route so that the route bypasses the rest of the middleware pipeline. For example, call `ShortCircuit` on the fallback endpoint as shown in the remote app setup guidance and in [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+* Use routing short-circuit metadata on the YARP fallback route so that the route bypasses the rest of the middleware pipeline. For example, call `ShortCircuit` on the fallback endpoint as shown in the remote app setup guidance and in [Short-circuit middleware after routing](../../../fundamentals/routing.md#short-circuit-middleware-after-routing).
 * Don't use remote authentication as the default authentication scheme. Instead, configure remote authentication only for the endpoints that need it. For example, pass `false` to `AddAuthenticationClient` and specify the remote authentication scheme explicitly on those endpoints.
 
 #### Using Remote Authentication with Specific Endpoints
@@ -273,7 +273,7 @@ public class CustomAuthResultProcessor : IRemoteAuthenticationResultProcessor
 builder.Services.AddScoped<IRemoteAuthenticationResultProcessor, CustomAuthResultProcessor>();
 ```
 
-Finally, if the ASP.NET Core app didn't previously include authentication middleware, that will need to be enabled (after routing middleware, but before authorization middleware). For more information about middleware ordering, see <xref:fundamentals/middleware/index#middleware-order>:
+Finally, if the ASP.NET Core app didn't previously include authentication middleware, that will need to be enabled (after routing middleware, but before authorization middleware). For more information about middleware ordering, see [ASP.NET Core middleware](../../../fundamentals/middleware/index.md#middleware-order):
 
 :::code language="csharp" source="~/migration/fx-to-core/areas/authentication/samples/AspNetCore.cs" id="snippet_UseAuthentication" :::
 
@@ -281,7 +281,7 @@ Finally, if the ASP.NET Core app didn't previously include authentication middle
 
 When implementing remote authentication, consider the following security aspects:
 
-* **API Key Security**: The API key used for communication between the ASP.NET Core and ASP.NET apps should be stored securely using [configuration providers](xref:fundamentals/configuration/index) and not hardcoded.
+* **API Key Security**: The API key used for communication between the ASP.NET Core and ASP.NET apps should be stored securely using [configuration providers](../../../fundamentals/configuration/index.md) and not hardcoded.
 * **Network Security**: Communication between the apps should occur over secure channels (HTTPS) in production environments.
 * **Header Forwarding**: Be cautious about which headers you forward to avoid exposing sensitive information. Only forward headers that are necessary for authentication.
 * **Endpoint Protection**: The authentication endpoint on the ASP.NET app should only be accessible to the ASP.NET Core app, not external clients.
@@ -377,6 +377,6 @@ For other scenarios, the remote authentication approach described previously in 
 * [Introduction to authorization in ASP.NET Core](../../../security/authorization/introduction.md)
 * [Share authentication cookies among ASP.NET apps](../../../security/cookie-sharing.md)
 * [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md)
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](../../../fundamentals/middleware/index.md)
 * [Migrate from ASP.NET Framework to ASP.NET Core](../index.md)
 * [Remote app setup](../inc/remote-app-setup.md)

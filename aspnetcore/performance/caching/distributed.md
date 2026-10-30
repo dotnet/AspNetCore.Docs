@@ -27,7 +27,7 @@ When cached data is distributed, the data:
 
 Distributed cache configuration is implementation specific. This article describes how to configure SQL Server, Redis, or Postgres distributed caches. Non-Microsoft implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache)), Azure Cosmos DB, and Postgres. Regardless of which implementation is selected, the app interacts with the cache by using the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 [!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
@@ -97,7 +97,7 @@ An app configures the cache implementation with a <xref:Microsoft.Extensions.Cac
 
 1. Create an instance of Azure Cache for Redis.
 
-1. Copy the primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
+1. Copy the primary connection string (StackExchange.Redis) to [Configuration](../../fundamentals/configuration/index.md).
 
    - **For local development**: Save the connection string with [Secret Manager](../../security/app-secrets.md#secret-manager).
 
@@ -279,9 +279,9 @@ services.AddCosmosCache((CosmosCacheOptions cacheOptions) =>
 
 ## Use the distributed cache
 
-To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface, request an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in the app. The instance is provided by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface, request an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> in the app. The instance is provided by [dependency injection (DI)](../../fundamentals/dependency-injection.md).
 
-When the sample app starts, the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instance is injected into the _Program.cs_ file. The current time is cached by using the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> interface. (For more information, see [.NET Generic Host: IHostApplicationLifetime](xref:fundamentals/host/generic-host#ihostapplicationlifetime).)
+When the sample app starts, the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instance is injected into the _Program.cs_ file. The current time is cached by using the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> interface. (For more information, see [.NET Generic Host: IHostApplicationLifetime](../../fundamentals/host/generic-host.md#ihostapplicationlifetime).)
 
 [!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure)]
 
@@ -320,7 +320,7 @@ If SQL Server is the distributed cache backing store, and the cache and app data
 * [Azure Database for PostgreSQL](/azure/postgresql/)
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
 * [Repository README file for Microsoft.Extensions.Caching.Cosmos](https://github.com/Azure/Microsoft.Extensions.Caching.Cosmos/blob/master/README.md)
-* <xref:fundamentals/change-tokens>
+* [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 * [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)

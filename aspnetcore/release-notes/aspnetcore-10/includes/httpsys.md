@@ -14,4 +14,4 @@ The `RequestQueueSecurityDescriptor` property applies only when creating a new r
 For example, the following code allows all authenticated users but denies guests:
 [!code-csharp[](~/release-notes/aspnetcore-10/samples/HttpSysConfig/Program.cs)]
 
-For more information, see <xref:fundamentals/servers/httpsys>.
+For more information, see [HTTP.sys web server implementation in ASP.NET Core](../../../fundamentals/servers/httpsys.md).

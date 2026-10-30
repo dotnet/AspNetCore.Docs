@@ -5,7 +5,6 @@ description: Learn how to create responses for Minimal APIs in ASP.NET Core.
 ms.reviewer: brolivei
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/26/2026
-uid: fundamentals/minimal-apis/responses
 ---
 
 # How to create responses in Minimal API apps
@@ -84,10 +83,10 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see <xref:fundamentals/openapi/include-metadata#describe-response-types>. For complete setup instructions, see <xref:fundamentals/openapi/overview>.
+For more information about describing a response type, see [Include OpenAPI metadata in an ASP.NET Core app](../openapi/include-metadata.md#describe-response-types). For complete setup instructions, see [Overview of OpenAPI support in ASP.NET Core API apps](../openapi/overview.md).
 
 > [!NOTE]
-> The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see <xref:fundamentals/openapi/overview>.
+> The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see [Overview of OpenAPI support in ASP.NET Core API apps](../openapi/overview.md).
 
 For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
 
@@ -221,7 +220,7 @@ The `SseItem<T>` overload doesn't take an `eventType` parameter, because each `S
 
 :::moniker range=">= aspnetcore-11.0"
 
-Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see <xref:fundamentals/openapi/include-metadata>.
+Endpoints that stream `SseItem<T>` are described in generated OpenAPI 3.2 documents with an `itemSchema` for the per-event payload. For more information, see [Include OpenAPI metadata in an ASP.NET Core app](../openapi/include-metadata.md).
 
 :::moniker-end
 
@@ -252,7 +251,7 @@ Here's an example of a filter that uses one of these interfaces:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
-For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters) and [IResult implementation types](xref:fundamentals/minimal-apis/test-min-api#iresult-implementation-types).
+For more information, see [Filters in Minimal API apps](min-api-filters.md) and [IResult implementation types](test-min-api.md#iresult-implementation-types).
 
 ## File result return values
 
@@ -275,7 +274,7 @@ Alternatives include [`TypedResults.Bytes`](xref:Microsoft.AspNetCore.Http.Typed
 [`TypedResults.PhysicalFile`](xref:Microsoft.AspNetCore.Http.TypedResults.PhysicalFile*) for serving files by absolute path, or
 [`Results.File`](xref:Microsoft.AspNetCore.Http.Results.File*) / [`Results.Bytes`](xref:Microsoft.AspNetCore.Http.Results.Bytes*) when you only need the `IResult` interface.
 
-ASP.NET Core also provides [static files middleware](xref:fundamentals/static-files) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
+ASP.NET Core also provides [static files middleware](../static-files.md) that serves files relative to the web root (`wwwroot`) without requiring an explicit endpoint.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/FileResults/10.x/FileEndpoints.cs" id="snippet_file_types":::
 
@@ -319,7 +318,7 @@ In particular, there are three common schemas for file results:
 
 <!-- UPDATE 12.0 - For the first bullet of the 11.0 or greater list, keep an eye on https://github.com/dotnet/aspnetcore/issues/67145 (IBinaryContent). -->
 
-* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](xref:fundamentals/openapi/include-metadata#describe-binary-file-responses).
+* **binary content**, such as PDFs, images, or videos, where the schema should be `type: string, format: binary`. The recommended `TResponse` for this case is `Stream`. The framework has special logic to map this type to the `binary` format in the OpenAPI schema. For a working example that shows the generated OpenAPI document for a binary response, see [Describe binary file responses](../openapi/include-metadata.md#describe-binary-file-responses).
 * **text content**, such as CSV or plain text. Here the schema should be simply `type: string` with no `format`. Use `string` as the `TResponse` for this case.
 * **base64-encoded content**, where the schema should be `type: string, format: byte`. It's uncommon to base64-encode file content in an API response, but for legacy reasons this is the schema produced when the `TResponse` is `byte[]`.
 
@@ -469,7 +468,7 @@ As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpRespon
 
 ## Related content
 
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](security.md)
 
 :::moniker-end
 

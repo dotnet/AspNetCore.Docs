@@ -80,7 +80,7 @@ Before deploying the app to Azure, make sure it is running properly on your loca
 
     The preceding command:
 
-    * Starts [Kestrel](xref:fundamentals/servers/kestrel), ASP.NET Core's built-in web server.
+    * Starts [Kestrel](../fundamentals/servers/kestrel.md), ASP.NET Core's built-in web server.
     * Displays a URL to test the web app such as `http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
   
     The output shows messages similar to the following, indicating that the app is running and awaiting requests:

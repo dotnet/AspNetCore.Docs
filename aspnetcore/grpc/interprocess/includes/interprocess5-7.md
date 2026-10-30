@@ -33,7 +33,7 @@ Requirements:
 
 ### Server configuration
 
-Unix domain sockets (UDS) are supported by [Kestrel](xref:fundamentals/servers/kestrel), which is configured in `Program.cs`:
+Unix domain sockets (UDS) are supported by [Kestrel](../../../fundamentals/servers/kestrel.md), which is configured in `Program.cs`:
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
@@ -61,7 +61,7 @@ The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
 * Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a UDS with the specified path.
-* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](../../../fundamentals/servers/kestrel/endpoints.md#listenoptionsusehttps).
 
 ### Client configuration
 

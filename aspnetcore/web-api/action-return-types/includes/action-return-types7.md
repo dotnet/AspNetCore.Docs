@@ -1,7 +1,7 @@
 
 :::moniker range="= aspnetcore-7.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/7.x/WebApiSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/7.x/WebApiSample) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ASP.NET Core provides the following options for web API controller action return types:
 
@@ -24,7 +24,7 @@ When multiple return types are possible, it's common to mix an <xref:Microsoft.A
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
-See [Return `IEnumerable<T>` or `IAsyncEnumerable<T>`](xref:fundamentals/best-practices#return-ienumerablet-or-iasyncenumerablet) for performance considerations.
+See [Return `IEnumerable<T>` or `IAsyncEnumerable<T>`](../../../fundamentals/best-practices.md#return-ienumerablet-or-iasyncenumerablet) for performance considerations.
 
 ASP.NET Core buffers the result of actions that return <xref:System.Collections.Generic.IEnumerable`1> before writing them to the response. Consider declaring the action signature's return type as <xref:System.Collections.Generic.IAsyncEnumerable`1> to guarantee asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned and the selected formatter affects how the result is processed:
 
@@ -131,7 +131,7 @@ In the preceding action:
 
 ## HttpResults type
 
-In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1)), ASP.NET Core includes the [HttpResults](xref:Microsoft.AspNetCore.Http.HttpResults) types that can be used in both [Minimal APIs](xref:fundamentals/minimal-apis) and Web API.
+In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1)), ASP.NET Core includes the [HttpResults](xref:Microsoft.AspNetCore.Http.HttpResults) types that can be used in both [Minimal APIs](../../../fundamentals/minimal-apis.md) and Web API.
 
 Different than the MVC-specific result types, the `HttpResults`:
 
@@ -207,7 +207,7 @@ In the preceding action:
 
 :::moniker range="< aspnetcore-7.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ASP.NET Core offers the following options for web API controller action return types:
 

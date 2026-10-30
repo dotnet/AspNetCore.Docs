@@ -3,7 +3,6 @@ title: Dependency injection in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.date: 09/22/2026
-uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
@@ -19,11 +18,11 @@ Guidance that adds to or supersedes the guidance in this article is found the fo
 
 * <xref:blazor/fundamentals/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
-* [Use DI services to configure options](xref:fundamentals/configuration/options#use-di-services-to-configure-options)
+* [Use DI services to configure options](configuration/options.md#use-di-services-to-configure-options)
 
 Code examples in this article are based on [Blazor](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/dependency-injection) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/dependency-injection) ([how to download](index.md#how-to-download-a-sample))
 
 When using the sample code in this article in a local Blazor Web App for demonstration purposes, adopt an [interactive render mode](xref:blazor/components/render-modes).
 
@@ -180,7 +179,7 @@ By using the DI pattern, the class that consumes the dependency:
 * Doesn't use the concrete type `MyDependency`, only the `IMyDependency` interface it implements. That makes it easy to change the implementation without modifying the consumer.
 * Doesn't directly create an instance of `MyDependency` or dispose of it. The dependency is created and disposed by the service container.
 
-The `IMyDependency` interface implementation can be improved by using the built-in [logging API](xref:fundamentals/logging/index), which is injected as a dependency in the following example.
+The `IMyDependency` interface implementation can be improved by using the built-in [logging API](logging/index.md), which is injected as a dependency in the following example.
 
 `Services/MyDependency.cs`:
 
@@ -205,7 +204,7 @@ In DI terminology, a service:
 * Is typically an object that provides a service to other objects, such as the preceding `IMyDependency` service.
 * Isn't related to a web service, although the service might use a web service.
 
-The `IMyDependency` implementations shown in the preceding examples were written to demonstrate general DI principles, not to implement logging. Most apps shouldn't need to create loggers, as the preceding examples show. The following code demonstrates directly using the [framework's built-in logging API](xref:fundamentals/logging/index), which doesn't require the registration of a custom service (`IMyDependency`).
+The `IMyDependency` implementations shown in the preceding examples were written to demonstrate general DI principles, not to implement logging. Most apps shouldn't need to create loggers, as the preceding examples show. The following code demonstrates directly using the [framework's built-in logging API](logging/index.md), which doesn't require the registration of a custom service (`IMyDependency`).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -264,7 +263,7 @@ public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
 }
 ```
 
-For more information, see <xref:fundamentals/startup> and [Access configuration in Startup](xref:fundamentals/configuration/index#access-configuration-in-startup).
+For more information, see [App startup in ASP.NET Core](startup.md) and [Access configuration in Startup](configuration/index.md#access-configuration-in-startup).
 
 :::moniker-end
 
@@ -438,11 +437,11 @@ For general guidance on service lifetimes, see [Service lifetimes](/dotnet/core/
 To use scoped services in middleware, use one of the following approaches:
 
 * Inject the service into the middleware's `Invoke` or `InvokeAsync` method. Using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) throws a runtime exception because it forces the scoped service to behave like a singleton. The sample in the [Lifetime and registration options](#lifetime-and-registration-options) section demonstrates the `InvokeAsync` approach.
-* Use [factory-based middleware](xref:fundamentals/middleware/extensibility). Middleware registered using this approach is activated per client request (connection), which allows scoped services to be injected into the middleware's constructor.
+* Use [factory-based middleware](middleware/extensibility.md). Middleware registered using this approach is activated per client request (connection), which allows scoped services to be injected into the middleware's constructor.
 
 For more information, see the following resources:
 
-* <xref:fundamentals/middleware/write#per-request-middleware-dependencies>
+* [Write custom ASP.NET Core middleware](middleware/write.md#per-request-middleware-dependencies)
 * For more information on using keyed services with Razor components, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
 :::moniker range=">= aspnetcore-8.0"
@@ -579,7 +578,7 @@ In the app processing pipeline of the `Program` file (.NET 6 or later) or the `S
 app.UseMiddleware<MyMiddleware>();
 ```
 
-For more information on creating middleware, see <xref:fundamentals/middleware/write>.
+For more information on creating middleware, see [Write custom ASP.NET Core middleware](middleware/write.md).
 
 :::moniker-end
 
@@ -769,7 +768,7 @@ In the app processing pipeline of the `Program` file (.NET 6 or later) or the `S
 app.UseMiddleware<MyMiddleware>();
 ```
 
-For more information on creating middleware, see <xref:fundamentals/middleware/write>.
+For more information on creating middleware, see [Write custom ASP.NET Core middleware](middleware/write.md).
 
 Output from the preceding examples shows:
 
@@ -809,7 +808,7 @@ using (var serviceScope = app.Services.CreateScope())
 For guidance on scope validation, see the following resources:
 
 * [.NET dependency injection: Scope validation](/dotnet/core/extensions/dependency-injection/overview#scope-validation)
-* [ASP.NET Core Web Host: Scope validation](xref:fundamentals/host/web-host#scope-validation)
+* [ASP.NET Core Web Host: Scope validation](host/web-host.md#scope-validation)
 
 ## Request Services
 
@@ -1090,7 +1089,7 @@ For examples of how to build modular and multitenant apps using just the Orchard
 
 ## Framework-provided services
 
-The `Program` file (.NET 6 or later) or the `Startup` file (.NET 5 or earlier) registers services that the app uses, including platform features, such as Entity Framework Core and services to support Razor components in Blazor (.NET 8 or later). Initially, the `IServiceCollection` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services.
+The `Program` file (.NET 6 or later) or the `Startup` file (.NET 5 or earlier) registers services that the app uses, including platform features, such as Entity Framework Core and services to support Razor components in Blazor (.NET 8 or later). Initially, the `IServiceCollection` has services defined by the framework depending on [how the host was configured](index.md#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services.
 
 The following table describes a small sample of framework-registered services.
 
@@ -1119,8 +1118,8 @@ Service type | Lifetime
 * <xref:mvc/controllers/dependency-injection>
 * [Dependency injection in requirement handlers in ASP.NET Core](../security/authorization/dependencyinjection.md)
 * [NDC Conference Patterns for DI app development](https://www.youtube.com/watch?v=x-C-CNBVTaY)
-* <xref:fundamentals/startup>
-* <xref:fundamentals/middleware/extensibility>
+* [App startup in ASP.NET Core](startup.md)
+* [Factory-based middleware activation in ASP.NET Core](middleware/extensibility.md)
 * [Understand dependency injection basics in .NET](/dotnet/core/extensions/dependency-injection/basics)
 * [Dependency injection guidelines](/dotnet/core/extensions/dependency-injection/guidelines)
 * [Tutorial: Use dependency injection in .NET](/dotnet/core/extensions/dependency-injection/usage)

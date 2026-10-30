@@ -202,7 +202,7 @@ Replace the code in the _Pages/Students/Delete.cshtml.cs_ file with the followin
 
 This code adds the following functionality:
 
-* [Logging](xref:fundamentals/logging/index) for .NET and ASP.NET Core.
+* [Logging](../../fundamentals/logging/index.md) for .NET and ASP.NET Core.
 * The optional parameter `saveChangesError` to the `OnGetAsync` method signature. The `saveChangesError` parameter indicates whether the method call occurs after a failure to delete the `Student` object.
 
 :::moniker-end

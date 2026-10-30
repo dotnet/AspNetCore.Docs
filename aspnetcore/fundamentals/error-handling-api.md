@@ -4,7 +4,6 @@ description: Learn about error handling in ASP.NET Core APIs with Minimal APIs a
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/27/2026
-uid: fundamentals/error-handling-api
 ---
 
 # Handle errors in ASP.NET Core APIs
@@ -29,7 +28,7 @@ This article describes how to handle errors in ASP.NET Core APIs. Documentation 
 
 To see the Developer Exception Page in a Minimal API:
 
-* Run the sample app in the [`Development` environment](xref:fundamentals/environments).
+* Run the sample app in the [`Development` environment](environments.md).
 * Go to the `/exception` endpoint.
 
 This section refers to the following sample app to demonstrate ways to handle exceptions in a Minimal API. It throws an exception when the endpoint `/exception` is requested:
@@ -44,14 +43,14 @@ To see the Developer Exception Page in a controller-based API:
 
   :::code language="csharp" source="~/web-api/handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
 
-* Run the app in the [development environment](xref:fundamentals/environments).
+* Run the app in the [development environment](environments.md).
 * Go to the endpoint defined by the controller action.
 
 ---
 
 ## Exception handler
 
-In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload.
+In non-development environments, use the [exception handler middleware](error-handling.md#exception-handler-page) to produce an error payload.
 
 #### [Minimal APIs](#tab/minimal-apis)
 

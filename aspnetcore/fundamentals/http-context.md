@@ -3,7 +3,6 @@ title: Access HttpContext in ASP.NET Core
 description: Learn about using HttpContext in ASP.NET Core apps. HttpContext isn't thread-safe and can throw an exception when accessed.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/27/2026
-uid: fundamentals/httpcontext
 
 # customer intent: As an ASP.NET developer, I want to understand how to access HttpContext in my ASP.NET Core apps, so I can address related exceptions and thread issues.
 ---
@@ -13,7 +12,7 @@ uid: fundamentals/httpcontext
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, [SignalR](../signalr/introduction.md), gRPC, and more.
 
-For information about using `HttpContext` with an HTTP request and response, see <xref:fundamentals/use-httpcontext>.
+For information about using `HttpContext` with an HTTP request and response, see [Use HttpContext in ASP.NET Core](use-http-context.md).
 
 ## Access HttpContext from Razor Pages
 
@@ -124,7 +123,7 @@ To use `HttpContext` from [gRPC](../grpc/aspnetcore.md) methods, see [Resolve Ht
 
 ## Access HttpContext from custom components
 
-For other framework and custom components that require access to `HttpContext`, the recommended approach is to register a dependency by using the built-in [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. The DI container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors:
+For other framework and custom components that require access to `HttpContext`, the recommended approach is to register a dependency by using the built-in [Dependency Injection (DI)](dependency-injection.md) container. The DI container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -267,6 +266,6 @@ If you want to access the `IHttpContextAccessor` or `HttpContext` in Razor compo
 
 ## Related content
 
-- [Use HttpContext in ASP.NET Core](xref:fundamentals/use-httpcontext)
+- [Use HttpContext in ASP.NET Core](use-http-context.md)
 - [Razor Pages architecture and concepts in ASP.NET Core](../razor-pages/index.md)
 - [gRPC services with ASP.NET Core](../grpc/aspnetcore.md)

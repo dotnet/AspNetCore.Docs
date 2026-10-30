@@ -3,7 +3,6 @@ title: Configure portable object localization in ASP.NET Core
 ai-usage: ai-assisted
 description: This article introduces Portable Object files and outlines steps for using them in an ASP.NET Core application with the Orchard Core framework.
 ms.date: 07/09/2025
-uid: fundamentals/portable-object-localization
 ---
 # Configure portable object localization in ASP.NET Core
 
@@ -15,7 +14,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/6.x/POLocalization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/6.x/POLocalization) ([how to download](index.md#how-to-download-a-sample))
 
 ## What is a PO file?
 
@@ -231,7 +230,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/5.x/POLocalization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/5.x/POLocalization) ([how to download](index.md#how-to-download-a-sample))
 
 ## What is a PO file?
 
@@ -443,7 +442,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/POLocalization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/POLocalization) ([how to download](index.md#how-to-download-a-sample))
 
 ## What is a PO file?
 

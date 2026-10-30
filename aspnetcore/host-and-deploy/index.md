@@ -57,16 +57,16 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 ## Set up a reverse proxy
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+If the app uses the [Kestrel](../fundamentals/servers/kestrel.md) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
 :::moniker-end 
 
 :::moniker range=">= aspnetcore-5.0"
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](../fundamentals/servers/kestrel/when-to-use-a-reverse-proxy.md).
 :::moniker-end
 
 :::moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](../fundamentals/servers/kestrel.md#when-to-use-kestrel-with-a-reverse-proxy).
 :::moniker-end
 
 :::moniker range=">= aspnetcore-2.2"
@@ -145,9 +145,9 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 ## Set up a reverse proxy
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+If the app uses the [Kestrel](../fundamentals/servers/kestrel.md) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](../fundamentals/servers/kestrel.md#when-to-use-kestrel-with-a-reverse-proxy).
 
 ## Proxy server and load balancer scenarios
 

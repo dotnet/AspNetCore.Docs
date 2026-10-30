@@ -41,7 +41,7 @@ services.AddLogging(logging =>
 
 After configuring components to write log information, configure where the loggers should write log information.
 
-The **Debug** logging providers write the output [using `Debug` statements](xref:fundamentals/logging/index#debug).
+The **Debug** logging providers write the output [using `Debug` statements](../../fundamentals/logging/index.md#debug).
 
 To configure the **Debug** logging provider, add a reference to the [`Microsoft.Extensions.Logging.Debug`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) NuGet package.
 
@@ -64,4 +64,4 @@ When the app is run from Visual Studio with debugging enabled, the debug output 
 ## Related content
 
 * [Logging in C# and .NET](/dotnet/core/extensions/logging)
-* <xref:fundamentals/logging/index#debug>
+* [Logging in .NET and ASP.NET Core](../../fundamentals/logging/index.md#debug)

@@ -13,7 +13,7 @@ In an app, a *resource* is typically represented by a C# class that includes dat
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of an action that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/resource-based) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/resource-based) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)).
 
 [Create an ASP.NET Core app with user data protected by authorization](../../../security/authorization/secure-data.md) contains a sample app that uses resource-based authorization.
 
@@ -21,7 +21,7 @@ Examples in this article use *primary constructors*, available in C# 12 (.NET 8)
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](xref:fundamentals/dependency-injection). The following controller also injects a document repository, which the developer creates and registers in the service container to manage document operations:
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](../../../fundamentals/dependency-injection.md). The following controller also injects a document repository, which the developer creates and registers in the service container to manage document operations:
 
 ```csharp
 public class DocumentController(IAuthorizationService authorizationService,

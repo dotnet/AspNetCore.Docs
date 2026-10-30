@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: ASP.NET Core middleware handles requests and responses through a configurable pipeline. Learn how to use Run, Map, and Use delegates, branch pipelines, and order middleware correctly.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 08/19/2026
-uid: fundamentals/middleware/index
 ---
 # ASP.NET Core middleware
 
@@ -121,16 +120,16 @@ In the app's console window when the app is run:
 > :::no-loc text="Work that doesn't write to the response. (2)":::
 > :::no-loc text="Work that doesn't write to the response. (1)":::
 
-*Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [static file middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*> extension method.
+*Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [static file middleware](../static-files.md) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*> extension method.
 
-Don't call `next.Invoke` during or after the response is sent to the client. After an <xref:Microsoft.AspNetCore.Http.HttpResponse> is started, changes result in an exception. For example, [setting headers or a response status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started) after the response starts. Writing to the response body after calling `next` may:
+Don't call `next.Invoke` during or after the response is sent to the client. After an <xref:Microsoft.AspNetCore.Http.HttpResponse> is started, changes result in an exception. For example, [setting headers or a response status code throw an exception](../best-practices.md#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started) after the response starts. Writing to the response body after calling `next` may:
 
 * Cause a protocol violation, such as writing more bytes to the response than the stated response's content length (`Content-Length` header value).
 * Corrupt the body format, such as writing an HTML footer to a CSS file.
 
 To determine if the response has started, check the value of <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted>.
 
-For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+For more information, see [Short-circuit middleware after routing](../routing.md#short-circuit-middleware-after-routing).
 
 ## `Run` delegate
 
@@ -358,10 +357,10 @@ app.Use(async (context, next) =>
 });
 ```
 
-When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [static file middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
+When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [static file middleware](../static-files.md) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
 > [!WARNING]
-> Don't call `next.Invoke` after the response has been sent to the client. Changes to <xref:Microsoft.AspNetCore.Http.HttpResponse> after the response has started throw an exception. For example, [setting headers and a status code throw an exception](xref:fundamentals/best-practices#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started). Writing to the response body after calling `next`:
+> Don't call `next.Invoke` after the response has been sent to the client. Changes to <xref:Microsoft.AspNetCore.Http.HttpResponse> after the response has started throw an exception. For example, [setting headers and a status code throw an exception](../best-practices.md#do-not-modify-the-status-code-or-headers-after-the-response-body-has-started). Writing to the response body after calling `next`:
 >
 > * May cause a protocol violation. For example, writing more than the stated `Content-Length`.
 > * May corrupt the body format. For example, writing an HTML footer to a CSS file.
@@ -659,7 +658,7 @@ The following diagram shows the complete request processing pipeline for ASP.NET
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
-The preceding diagram shows the **Routing** middleware following **Static Files**. This order is how the project templates work by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
+The preceding diagram shows the **Routing** middleware following **Static Files**. This order is how the project templates work by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](../routing.md).
 
 The order you add middleware components in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
@@ -785,7 +784,7 @@ In the preceding example code, each middleware extension method is exposed on <x
 
 <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> is the first middleware component added to the pipeline. Therefore, the exception handler middleware catches any exceptions that occur in later calls.
 
-Static file middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by static file middleware, including those under *wwwroot*, are publicly available. For an approach to secure static files, see <xref:fundamentals/static-files>.
+Static file middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by static file middleware, including those under *wwwroot*, are publicly available. For an approach to secure static files, see [Serve static files in ASP.NET Core apps](../static-files.md).
 
 If the request isn't handled by the static file middleware, it's passed on to the authentication middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), which performs authentication. Authentication doesn't short-circuit unauthenticated requests. Although authentication middleware authenticates requests, authorization (and rejection) occurs only after MVC selects a specific Razor Page or MVC controller and action.
 
@@ -812,7 +811,7 @@ The following diagram shows the complete request processing pipeline for ASP.NET
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
-The preceding diagram shows the **Routing** middleware following **Static Files**. This order is how the project templates work by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
+The preceding diagram shows the **Routing** middleware following **Static Files**. This order is how the project templates work by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](../routing.md).
 
 The order you add middleware components in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
@@ -939,7 +938,7 @@ In the preceding example code, each middleware extension method is exposed on <x
 
 <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> is the first middleware component added to the pipeline. Therefore, the exception handler middleware catches any exceptions that occur in later calls.
 
-Static file middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by static file middleware, including those under *wwwroot*, are publicly available. For an approach to secure static files, see <xref:fundamentals/static-files>.
+Static file middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by static file middleware, including those under *wwwroot*, are publicly available. For an approach to secure static files, see [Serve static files in ASP.NET Core apps](../static-files.md).
 
 If the request isn't handled by the static file middleware, it's passed on to the authentication middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), which performs authentication. Authentication doesn't short-circuit unauthenticated requests. Although authentication middleware authenticates requests, authorization (and rejection) occurs only after MVC selects a specific Razor Page or MVC controller and action.
 
@@ -1084,7 +1083,7 @@ In the preceding example code, each middleware extension method is exposed on <x
 
 <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> is the first middleware component added to the pipeline. Therefore, the exception handler middleware catches any exceptions that occur in later calls.
 
-Static file middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by static file middleware, including those under *wwwroot*, are publicly available. For an approach to secure static files, see <xref:fundamentals/static-files>.
+Static file middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by static file middleware, including those under *wwwroot*, are publicly available. For an approach to secure static files, see [Serve static files in ASP.NET Core apps](../static-files.md).
 
 If the request isn't handled by the static file middleware, it's passed on to the authentication middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), which performs authentication. Authentication doesn't short-circuit unauthenticated requests. Although authentication middleware authenticates requests, authorization (and rejection) occurs only after MVC selects a specific Razor Page or MVC controller and action.
 
@@ -1148,41 +1147,41 @@ Middleware | Description | UI stack | Order
 [Cookie Policy](../../security/gdpr.md) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | All | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
 [CORS](../../security/cors.md) | Configures Cross-Origin Resource Sharing. | All | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
 [Developer Exception Page](xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) | Generates a page with error information that's intended for use only in the `Development` environment. | All | Before middleware that generate errors. The project templates automatically register this middleware as the first middleware in the pipeline when the environment is `Development`.
-[Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | All | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
+[Diagnostics](../error-handling.md) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | All | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
 [Forwarded Headers](../../host-and-deploy/proxy-load-balancer.md) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
 [Health Check](../../host-and-deploy/health-checks.md) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | All | Terminal if a request matches a health check endpoint.
-[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. |
+[Header Propagation](../http-requests.md#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. |
 All |
-[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline.
+[HTTP Logging](../http-logging/index.md) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline.
 [HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. | All | Before middleware that consume the updated method.
 [HTTPS Redirection](../../security/enforcing-ssl.md#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
 [HTTP Strict Transport Security (HSTS)](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
 [MVC](xref:mvc/overview) | Processes requests with MVC and Razor Pages. | RP/MVC | Terminal if a request matches a route.
-[OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request.
+[OWIN](../owin.md) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request.
 [Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>, and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> must come before <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>.
 [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. This middleware requires client participation to work. Use output caching for complete server control. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must come before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. Response caching isn't typically beneficial for UI apps, such as Razor Pages, because browsers generally set request headers that prevent caching. [Output caching](xref:performance/caching/output) benefits UI apps.
-[Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. | All | Before middleware that read the request body.
+[Request Decompression](request-decompression.md) | Provides support for decompressing requests. | All | Before middleware that read the request body.
 [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | All | Before middleware that require compression.
-[Request Localization](xref:fundamentals/localization) | Provides localization support. | All | Before localization sensitive middleware. Must appear after routing middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>.
+[Request Localization](../localization.md) | Provides localization support. | All | Before localization sensitive middleware. Must appear after routing middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>.
 [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global and per endpoint. | All | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts*> must come after <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>, and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>.
-[Endpoint Routing](xref:fundamentals/routing). | Defines and constrains request routes. | All | Terminal for matching routes.
+[Endpoint Routing](../routing.md). | Defines and constrains request routes. | All | Terminal for matching routes.
 [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa*) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA). | All | Appears late in the pipeline, so other middleware for serving static files, such as MVC actions, take precedence.
-[Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | RP/MVC | Before middleware that require Session.
-[Static File](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | All | Terminal if a request matches a file.
-[URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | All | Before middleware that consume the URL.
-[W3C Logging](xref:fundamentals/w3c-logger/index) | Generates server access logs in the [W3C Extended Log File Format](https://www.w3.org/TR/WD-logfile.html). | All | At the beginning of the middleware pipeline.
+[Session](../app-state.md) | Provides support for managing user sessions. | RP/MVC | Before middleware that require Session.
+[Static File](../static-files.md) | Provides support for serving static files and directory browsing. | All | Terminal if a request matches a file.
+[URL Rewrite](../url-rewriting.md) | Provides support for rewriting URLs and redirecting requests. | All | Before middleware that consume the URL.
+[W3C Logging](../w3c-logger/index.md) | Generates server access logs in the [W3C Extended Log File Format](https://www.w3.org/TR/WD-logfile.html). | All | At the beginning of the middleware pipeline.
 [Blazor WebAssembly Debugging](xref:blazor/debug) | Debugs Blazor Web Apps that use client-side rendering (CSR) inside Chromium developer tools. | BWA | At the beginning of the middleware pipeline.
-[WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | All | Before middleware that are required to accept WebSocket requests.
+[WebSockets](../websockets.md) | Enables the WebSockets protocol. | All | Before middleware that are required to accept WebSocket requests.
 
 ## Related content
 
-* [Lifetime and registration options (includes middleware sample)](xref:fundamentals/dependency-injection#lifetime-and-registration-options)
-* <xref:fundamentals/middleware/write>
+* [Lifetime and registration options (includes middleware sample)](../dependency-injection.md#lifetime-and-registration-options)
+* [Write custom ASP.NET Core middleware](write.md)
 * <xref:test/middleware>
 * [Configure gRPC-Web in ASP.NET Core](../../grpc/browser.md#grpc-web)
 * [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
-* <xref:fundamentals/startup>
-* <xref:fundamentals/request-features>
-* <xref:fundamentals/middleware/extensibility>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
-* <xref:fundamentals/apis>
+* [App startup in ASP.NET Core](../startup.md)
+* [Request Features in ASP.NET Core](../request-features.md)
+* [Factory-based middleware activation in ASP.NET Core](extensibility.md)
+* [Middleware activation with a third-party container in ASP.NET Core](extensibility-third-party-container.md)
+* [APIs overview](../apis.md)

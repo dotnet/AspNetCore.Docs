@@ -26,7 +26,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 ## Server configuration
 
-Named pipes are supported by [Kestrel](xref:fundamentals/servers/kestrel), which is configured in `Program.cs`:
+Named pipes are supported by [Kestrel](../fundamentals/servers/kestrel.md), which is configured in `Program.cs`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -43,7 +43,7 @@ The preceding example:
 
 * Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*>.
 * Calls `ListenNamedPipe` to listen to a named pipe with the specified name.
-* Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+* Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](../fundamentals/servers/kestrel/endpoints.md#listenoptionsusehttps).
 
 ### Configuring `PipeSecurity` for named pipes
 
@@ -108,7 +108,7 @@ The preceding example:
 > [!WARNING]
 > Don't grant `PipeAccessRights.CreateNewInstance` to client accounts or to groups that contain untrusted users. `CreateNewInstance` corresponds to the Windows `FILE_CREATE_PIPE_INSTANCE` right, which authorizes a grantee to create *additional server instances* under the same pipe name. Windows distributes incoming client connections across all instances of a pipe, so a process holding that right can accept genuine client connections and impersonate the service. Grant `CreateNewInstance` only to the account the server runs as.
 
-Inspecting the connected pipe's owner SID from the client doesn't detect an impostor created this way. Every instance of a named pipe shares the security descriptor supplied when the first instance was created, so an instance added by another process reports the same owner as the genuine server. To let clients verify which server they're talking to, authenticate the channel itself. For example, enable HTTPS on the endpoint and validate the server certificate, or require a secret that only the genuine server can present. For more information, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+Inspecting the connected pipe's owner SID from the client doesn't detect an impostor created this way. Every instance of a named pipe shares the security descriptor supplied when the first instance was created, so an instance added by another process reports the same owner as the genuine server. To let clients verify which server they're talking to, authenticate the channel itself. For example, enable HTTPS on the endpoint and validate the server certificate, or require a secret that only the genuine server can present. For more information, see [Kestrel HTTPS endpoint configuration](../fundamentals/servers/kestrel/endpoints.md#listenoptionsusehttps).
 
 > [!IMPORTANT]
 > `CurrentUserOnly` defaults to `true`, which restricts the pipe to the account the server runs as. Setting a custom `PipeSecurity` requires `CurrentUserOnly` to be `false`, otherwise an `ArgumentException` is thrown. Setting it to `false` replaces that built-in restriction, so the supplied `PipeSecurity` becomes the only access control on the pipe.

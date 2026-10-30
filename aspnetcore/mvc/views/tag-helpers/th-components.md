@@ -13,7 +13,7 @@ A Tag Helper Component is a Tag Helper that allows you to conditionally modify o
 
 ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in `_ViewImports.cshtml`.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Use cases
 
@@ -60,7 +60,7 @@ A Tag Helper Component must be added to the app's Tag Helper Components collecti
 
 ### Registration via services container
 
-If the Tag Helper Component class isn't managed with <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>, it must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](xref:fundamentals/dependency-injection#lifetime-and-registration-options):
+If the Tag Helper Component class isn't managed with <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>, it must be registered with the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](../../../fundamentals/dependency-injection.md#lifetime-and-registration-options):
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
@@ -149,6 +149,6 @@ For example, the `if` statement evaluates to true when processing the following 
 
 ## Related content
 
-* <xref:fundamentals/dependency-injection>
+* [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/views/tag-helpers/builtin-th/Index>

@@ -3,7 +3,6 @@ title: Test Minimal API apps
 description: Unit and integration tests in Minimal API apps
 ms.date: 09/15/2025
 monikerRange: '>= aspnetcore-7.0'
-uid: fundamentals/minimal-apis/test-min-api
 ---
 
 # Unit and integration tests in Minimal API apps
@@ -43,7 +42,7 @@ The following code uses the <xref:Microsoft.AspNetCore.Http.TypedResults.Ok*> cl
 
 * [Basic authentication tests](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) is not a .NET repository but was written by a member of the .NET team. It provides examples of basic authentication testing.
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample)
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](security.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * <xref:mvc/controllers/testing>
 * <xref:test/razor-pages-tests>

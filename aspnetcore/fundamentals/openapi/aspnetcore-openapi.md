@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/16/2026
-uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
 
@@ -288,7 +287,7 @@ You can customize the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldIn
 > [!NOTE]
 > Starting with .NET 9, ASP.NET Core includes built-in OpenAPI support. The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides OpenAPI document generation at runtime, and adding the [`Microsoft.Extensions.ApiDescription.Server` ](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) package enables build-time document generation. 
 >
->ASP.NET Core generates OpenAPI documents only. Interactive UIs such as **Swagger UI** or **Scalar** are not included by default and must be added separately. For guidance on using these UI options, see <xref:fundamentals/openapi/using-openapi-documents>.
+>ASP.NET Core generates OpenAPI documents only. Interactive UIs such as **Swagger UI** or **Scalar** are not included by default and must be added separately. For guidance on using these UI options, see [Use the generated OpenAPI documents](using-openapi-documents.md).
 
 In typical web apps, OpenAPI documents are generated at runtime and served via an HTTP request to the app server.
 
@@ -413,7 +412,7 @@ Selecting the environment enables environment-specific configuration, such as se
 
 ### Customize runtime behavior during build-time document generation
 
-Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](xref:fundamentals/dependency-injection) or reads from configuration. In some scenarios, it's necessary to restrict the code paths when the app's entry point is invoked from build-time document generation. These scenarios include:
+Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](../dependency-injection.md) or reads from configuration. In some scenarios, it's necessary to restrict the code paths when the app's entry point is invoked from build-time document generation. These scenarios include:
 
 * Not reading from certain configuration strings.
 * Not registering database-related services.

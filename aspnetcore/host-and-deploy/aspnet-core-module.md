@@ -20,7 +20,7 @@ The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pi
 There are trade-offs between each of the hosting models. By default, the in-process hosting model is used due to better performance and diagnostics.
 
 For more information and configuration guidance, see the following topics:
-* <xref:fundamentals/servers/index>
+* [Web server implementations in ASP.NET Core](../fundamentals/servers/index.md)
 
 ## Install ASP.NET Core Module (ANCM)
 
@@ -43,7 +43,7 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
-* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
+* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](../fundamentals/servers/kestrel.md), called the [out-of-process hosting model](#out-of-process-hosting-model).
 
 Supported Windows versions:
 
@@ -52,7 +52,7 @@ Supported Windows versions:
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
-When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](xref:fundamentals/servers/httpsys).
+When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](../fundamentals/servers/httpsys.md).
 
 ## Hosting models
 
@@ -62,7 +62,7 @@ ASP.NET Core apps default to the in-process hosting model.
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../fundamentals/servers/kestrel.md) server. For in-process, [CreateDefaultBuilder](../fundamentals/host/generic-host.md#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -113,9 +113,9 @@ In-process hosting is set with `InProcess`, which is the default value.
 
 The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and `outofprocess` are valid values.
 
-[Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
+[Kestrel](../fundamentals/servers/kestrel.md) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [`CreateDefaultBuilder`](../fundamentals/host/generic-host.md#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
@@ -214,7 +214,7 @@ For information on IIS sub-application configuration, see [Host ASP.NET Core on 
 
 Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element. Environment variables set in this section take precedence over system environment variables.
 
-The following example sets two environment variables in `web.config`. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables in `web.config`. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -269,7 +269,7 @@ Logs aren't rotated, unless process recycling/restart occurs. It's the responsib
 
 Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (`.log`) to the last segment of the `stdoutLogFile` path (typically `stdout`) delimited by underscores. If the `stdoutLogFile` path ends with `stdout`, a log for an app with a PID of 1934 created on February 5, 2018 at 19:42:32 has the file name `stdout_20180205194132_1934.log`.
 
@@ -288,7 +288,7 @@ The following sample `aspNetCore` element configures stdout logging at the relat
 
 When publishing an app for Azure App Service deployment, the Web SDK sets the `stdoutLogFile` value to `\\?\%home%\LogFiles\stdout`. The `%home` environment variable is predefined for apps hosted by Azure App Service.
 
-To create logging filter rules, see the [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
+To create logging filter rules, see the [Apply log filter rules in code](../fundamentals/logging/index.md#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
 
 For more information on path formats, see [File path formats on Windows systems](/dotnet/standard/io/file-path-formats).
 
@@ -449,7 +449,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
-* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
+* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](../fundamentals/servers/kestrel.md), called the [out-of-process hosting model](#out-of-process-hosting-model).
 
 Supported Windows versions:
 
@@ -458,7 +458,7 @@ Supported Windows versions:
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
-When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](xref:fundamentals/servers/httpsys).
+When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](../fundamentals/servers/httpsys.md).
 
 ## Hosting models
 
@@ -480,7 +480,7 @@ If the `<AspNetCoreHostingModel>` property isn't present in the file, the defaul
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../fundamentals/servers/kestrel.md) server. For in-process, [CreateDefaultBuilder](../fundamentals/host/web-host.md#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -530,9 +530,9 @@ To configure an app for out-of-process hosting, use either of the following appr
 
 The value is case insensitive, so `inprocess` and `outofprocess` are valid values.
 
-[Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
+[Kestrel](../fundamentals/servers/kestrel.md) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [CreateDefaultBuilder](../fundamentals/host/web-host.md#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
@@ -631,7 +631,7 @@ For information on IIS sub-application configuration, see [Host ASP.NET Core on 
 
 Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element. Environment variables set in this section take precedence over system environment variables.
 
-The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -686,7 +686,7 @@ Logs aren't rotated, unless process recycling/restart occurs. It's the responsib
 
 Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (`.log`) to the last segment of the `stdoutLogFile` path (typically `stdout`) delimited by underscores. If the `stdoutLogFile` path ends with `stdout`, a log for an app with a PID of 1934 created on 2/5/2018 at 19:42:32 has the file name `stdout_20180205194132_1934.log`.
 
@@ -850,7 +850,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-The module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys).
+The module only works with Kestrel. The module is incompatible with [HTTP.sys](../fundamentals/servers/httpsys.md).
 
 Because ASP.NET Core apps run in a process separate from the IIS worker process, the module also handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it crashes. This is essentially the same behavior as seen with ASP.NET 4.x apps that run in-process in IIS that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
@@ -940,7 +940,7 @@ Environment variables can be specified for the process in the `processPath` attr
 > [!WARNING]
 > Environment variables set in this section conflict with system environment variables set with the same name. If an environment variable is set in both the *web.config* file and at the system level in Windows, the value from the *web.config* file becomes appended to the system environment variable value (for example, `ASPNETCORE_ENVIRONMENT: Development;Development`), which prevents the app from starting.
 
-The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the *web.config* file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the *web.config* file in order to force the [Developer Exception Page](../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -975,7 +975,7 @@ Logs aren't rotated, unless process recycling/restart occurs. It's the responsib
 
 Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (*.log*) to the last segment of the `stdoutLogFile` path (typically *stdout*) delimited by underscores. If the `stdoutLogFile` path ends with *stdout*, a log for an app with a PID of 1934 created on 2/5/2018 at 19:42:32 has the file name *stdout_20180205194132_1934.log*.
 
@@ -991,7 +991,7 @@ The following sample `aspNetCore` element configures stdout logging at the relat
 
 When publishing an app for Azure App Service deployment, the Web SDK sets the `stdoutLogFile` value to `\\?\%home%\LogFiles\stdout`. The `%home` environment variable is predefined for apps hosted by Azure App Service.
 
-To create logging filter rules, see the [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
+To create logging filter rules, see the [Apply log filter rules in code](../fundamentals/logging/index.md#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
 
 For more information on path formats, see [File path formats on Windows systems](/dotnet/standard/io/file-path-formats).
 

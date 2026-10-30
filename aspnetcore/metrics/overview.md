@@ -5,7 +5,6 @@ description: Learn how ASP.NET Core metrics work, from instrumentation to alerti
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/09/2026
 ms.topic: concept-article
-uid: metrics/overview
 ---
 # ASP.NET Core metrics
 
@@ -17,7 +16,7 @@ Metrics are numerical measurements reported over time. Use them to monitor the h
 
 Report these metrics to a monitoring system at regular intervals. Set up dashboards to view metrics and create alerts to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
-The comprehensive list of all instruments together with their attributes is described in <xref:metrics/built-in>.
+The comprehensive list of all instruments together with their attributes is described in [ASP.NET Core built-in metrics](built-in.md).
 
 ## Use metrics
 
@@ -186,7 +185,7 @@ Press p to pause, r to resume, q to quit.
 
 :::moniker range=">= aspnetcore-11.0"
 
-Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see <xref:metrics/http>.
+Starting in ASP.NET Core 11, the framework's built-in HTTP server metrics and traces comply with the required parts of the [OpenTelemetry HTTP server semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/). The HTTP server request activity emits these attributes by default, matching the built-in metrics. As a result, the [`OpenTelemetry.Instrumentation.AspNetCore`](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) NuGet package is optional for collecting HTTP server metrics and traces. The sample in this article uses only the built-in meters (`Microsoft.AspNetCore.Hosting` and `Microsoft.AspNetCore.Server.Kestrel`) and doesn't reference the instrumentation package. For the list of built-in instruments and their attributes, see [ASP.NET Core built-in HTTP metrics](http.md).
 
 Although the package is optional, it isn't a drop-in equivalent of the built-in instrumentation. The built-in instrumentation covers only the *required* parts of the semantic conventions. Consider the following differences before you remove the package:
 
@@ -357,4 +356,4 @@ For a list of ASP.NET Core meters and counters, see [ASP.NET Core metrics](/dotn
 
 * [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 * [Explore Aspire telemetry](https://aspire.dev/fundamentals/telemetry/)
-* <xref:metrics/built-in>
+* [ASP.NET Core built-in metrics](built-in.md)

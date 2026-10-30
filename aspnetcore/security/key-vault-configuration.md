@@ -33,9 +33,9 @@ The sample app runs in either of two modes determined by the `#define` preproces
 
 * `Managed`: Demonstrates how to use [Managed identities for Azure resources](/entra/identity/managed-identities-azure-resources/overview). The managed identity authenticates the app to Key Vault with Managed identities for Azure resources without storing credentials in the application code or configuration. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
-For more information about configuring a sample app by using `#define`, see [Preprocessor directives in sample code](xref:fundamentals/index#preprocessor-directives-in-sample-code).
+For more information about configuring a sample app by using `#define`, see [Preprocessor directives in sample code](../fundamentals/index.md#preprocessor-directives-in-sample-code).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Secret storage in the Development environment
 
@@ -49,15 +49,15 @@ Secret Manager requires a `<UserSecretsId>` property in the application project 
 </PropertyGroup>
 ```
 
-Secrets are created as name-value pairs. Hierarchical values (configuration sections) use colons (`:`) as separators in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
+Secrets are created as name-value pairs. Hierarchical values (configuration sections) use colons (`:`) as separators in [ASP.NET Core configuration](../fundamentals/configuration/index.md) key names.
 
-Secret Manager is used in a command shell (or terminal) opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+Secret Manager is used in a command shell (or terminal) opened to the project's [content root](../fundamentals/index.md#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
 ```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Run the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root). The commands set the secrets for the sample app:
+Run the following commands in a command shell from the project's [content root](../fundamentals/index.md#content-root). The commands set the secrets for the sample app:
 
 ```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
@@ -94,7 +94,7 @@ Create an Azure key vault and store the sample application secrets by completing
 
 1. Create secrets in the vault as name-value pairs.
 
-   Key Vault secret names can consist of alphanumeric characters and dashes (`-`). Hierarchical values (configuration sections) use two dashes or hyphens (`--`) as a delimiter. The colon character isn't allowed in Key Vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the application configuration.
+   Key Vault secret names can consist of alphanumeric characters and dashes (`-`). Hierarchical values (configuration sections) use two dashes or hyphens (`--`) as a delimiter. The colon character isn't allowed in Key Vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](../fundamentals/configuration/index.md). The two-dash sequence is replaced with a colon when the secrets are loaded into the application configuration.
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix that distinguishes them from the `_dev` suffix values loaded in the `Development` environment via Secret Manager. Replace `{KEY VAULT NAME}` with the name of the key vault you created earlier:
 
@@ -303,7 +303,7 @@ The process completes the following tasks:
 
 The provider can read configuration values into an array for binding to a POCO array.
 
-When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](../fundamentals/configuration/index.md#bind-an-array).
 
 Key Vault keys can't use a colon (`:`) as a separator. The approach described in this article uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
@@ -384,7 +384,7 @@ Disabled secrets can't be retrieved from Key Vault and are never included.
 
 ## Troubleshoot configuration load issues
 
-When the app fails to load configuration by using the provider, an error message is written to the [ASP.NET Core logging infrastructure](xref:fundamentals/logging/index).
+When the app fails to load configuration by using the provider, an error message is written to the [ASP.NET Core logging infrastructure](../fundamentals/logging/index.md).
 
 The following conditions can prevent configuration from loading:
 
@@ -398,8 +398,8 @@ The following conditions can prevent configuration from loading:
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:fundamentals/configuration/index>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
+* [Configuration in ASP.NET Core](../fundamentals/configuration/index.md)
 * [Azure Key Vault documentation](/azure/key-vault/)
 * [Import HSM-protected keys to Azure Key Vault](/azure/key-vault/keys/hsm-protected-keys)
 * [Quickstart: Azure Key Vault secret client library for .NET](/azure/key-vault/secrets/quick-create-net)
@@ -431,7 +431,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Secret storage in the `Development` environment
 
@@ -445,15 +445,15 @@ Secret Manager requires a `<UserSecretsId>` property in the app's project file. 
 </PropertyGroup>
 ```
 
-Secrets are created as name-value pairs. Hierarchical values (configuration sections) use a `:` (colon) as a separator in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
+Secrets are created as name-value pairs. Hierarchical values (configuration sections) use a `:` (colon) as a separator in [ASP.NET Core configuration](../fundamentals/configuration/index.md) key names.
 
-Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+Secret Manager is used from a command shell opened to the project's [content root](../fundamentals/index.md#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
 ```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root) to set the secrets for the sample app:
+Execute the following commands in a command shell from the project's [content root](../fundamentals/index.md#content-root) to set the secrets for the sample app:
 
 ```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
@@ -490,7 +490,7 @@ Complete the following steps to create an Azure Key Vault and store the sample a
 
 1. Create secrets in the vault as name-value pairs.
 
-   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in Key Vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
+   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in Key Vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](../fundamentals/configuration/index.md). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the `Development` environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the Key Vault you created in the prior step:
 
@@ -696,7 +696,7 @@ When this approach is implemented:
 
 The provider can read configuration values into an array for binding to a POCO array.
 
-When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](../fundamentals/configuration/index.md#bind-an-array).
 
 Azure Key Vault keys can't use a colon as a separator. The approach described in this article uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
@@ -773,7 +773,7 @@ Disabled secrets cannot be retrieved from Key Vault and are never included.
 
 ## Troubleshoot
 
-When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Core Logging infrastructure](xref:fundamentals/logging/index). The following conditions will prevent configuration from loading:
+When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Core Logging infrastructure](../fundamentals/logging/index.md). The following conditions will prevent configuration from loading:
 
 * The app or certificate isn't configured correctly in Microsoft Entra ID.
 * The vault doesn't exist in Azure Key Vault.
@@ -785,8 +785,8 @@ When the app fails to load configuration using the provider, an error message is
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:fundamentals/configuration/index>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
+* [Configuration in ASP.NET Core](../fundamentals/configuration/index.md)
 * [Microsoft Azure: Key Vault Documentation](/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
 * [Quickstart: Set and retrieve a secret from Azure Key Vault by using a .NET web app](/azure/key-vault/quick-create-net)

@@ -18,17 +18,17 @@ This guidance applies to client-side project configuration in a Blazor Web App o
 Default behavior in Blazor Web Apps:
 
 * For server-side configuration:
-  * See <xref:fundamentals/configuration/index> for guidance.
+  * See [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) for guidance.
   * Only configuration in the project's root app settings files is loaded.
   * The remainder of this article only applies to client-side configuration in the `.Client` project. 
 * For client-side configuration (`.Client` project), configuration is loaded from the following app settings files:
   * `wwwroot/appsettings.json`.
-  * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+  * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md).
 
 In standalone Blazor WebAssembly apps, configuration is loaded from the following app settings files:
 
 * `wwwroot/appsettings.json`.
-* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md).
 
 :::moniker-end
 
@@ -36,12 +36,12 @@ In standalone Blazor WebAssembly apps, configuration is loaded from the followin
 
 This guidance applies to the **`Client`** project of a hosted Blazor WebAssembly solution or a Blazor WebAssembly app.
 
-For server-side ASP.NET Core app configuration in the **`Server`** project of a hosted Blazor WebAssembly solution, see <xref:fundamentals/configuration/index>.
+For server-side ASP.NET Core app configuration in the **`Server`** project of a hosted Blazor WebAssembly solution, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 On the client, configuration is loaded from the following app settings files:
 
 * `wwwroot/appsettings.json`.
-* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md).
 
 :::moniker-end
 
@@ -55,7 +55,7 @@ Other configuration providers registered by the app can also provide configurati
 * [Azure Key Vault configuration provider](../../security/key-vault-configuration.md): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially client-side apps because the client secret can't be secured client-side to access the Azure Key Vault service.
 * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for a client-side app because the app doesn't run on a server in Azure.
 
-For more information on configuration providers, see <xref:fundamentals/configuration/index>.
+For more information on configuration providers, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 > [!WARNING]
 > Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in any web root file.**
@@ -306,7 +306,7 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 ## Options configuration
 
-[Options configuration](xref:fundamentals/configuration/options) uses API in the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
+[Options configuration](../../fundamentals/configuration/options.md) uses API in the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
 
 Example:
 

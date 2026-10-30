@@ -202,7 +202,7 @@ sc.exe start null
 
 ### Connection reset
 
-If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
+If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](../../../fundamentals/logging/index.md) can help troubleshoot these types of errors.
 
 ### Default startup limits
 
@@ -312,7 +312,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
 >
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
 
@@ -357,7 +357,7 @@ For more information, see [Log creation and redirection with the ASP.NET Core Mo
 > [!WARNING]
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
 >
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### Slow or nonresponding app (Azure App Service)
 
@@ -409,7 +409,7 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ## Troubleshoot on IIS
 
@@ -466,7 +466,7 @@ For more information, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### ASP.NET Core Module debug log (IIS)
 
@@ -487,7 +487,7 @@ For more information, see [Log creation and redirection with the ASP.NET Core Mo
 
 ### Enable the Developer Exception Page
 
-The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](../../../host-and-deploy/aspnet-core-module.md#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](xref:fundamentals/error-handling) to appear when the app is run.
+The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](../../../host-and-deploy/aspnet-core-module.md#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](../../../fundamentals/error-handling.md) to appear when the app is run.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -573,7 +573,7 @@ A functioning app may fail immediately after upgrading either the .NET SDK on th
 * <xref:test/debug-aspnetcore-source>
 * <xref:test/troubleshoot>
 * [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../../../host-and-deploy/azure-iis-errors-reference.md)
-* <xref:fundamentals/error-handling>
+* [Handle errors in ASP.NET Core](../../../fundamentals/error-handling.md)
 * [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md)
 
 ### Azure documentation

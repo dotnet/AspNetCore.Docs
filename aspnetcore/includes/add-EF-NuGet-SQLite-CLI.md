@@ -13,12 +13,12 @@ dotnet add package Microsoft.Extensions.Logging.Debug --version 3.1.9
 
 The preceding commands add:
 
-* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* The [aspnet-codegenerator scaffolding tool](../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 * The Entity Framework Core Tools for the .NET CLI.
 * The EF Core SQLite provider, which installs the EF Core package as a dependency.
 * Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
 
-For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
+For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see [ASP.NET Core runtime environments](../fundamentals/environments.md#environment-based-startup-class-and-methods).
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 

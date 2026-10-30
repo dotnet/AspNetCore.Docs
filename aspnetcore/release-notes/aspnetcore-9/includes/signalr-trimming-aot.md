@@ -1,6 +1,6 @@
 ### SignalR supports trimming and Native AOT
 
-Continuing the [Native AOT journey](xref:fundamentals/native-aot) started in .NET 8, we have enabled trimming and native ahead-of-time (AOT) compilation support for both SignalR client and server scenarios. You can now take advantage of the performance benefits of using Native AOT in applications that use SignalR for real-time web communications.
+Continuing the [Native AOT journey](../../../fundamentals/native-aot.md) started in .NET 8, we have enabled trimming and native ahead-of-time (AOT) compilation support for both SignalR client and server scenarios. You can now take advantage of the performance benefits of using Native AOT in applications that use SignalR for real-time web communications.
 
 #### Getting started
 

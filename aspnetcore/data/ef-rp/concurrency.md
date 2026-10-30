@@ -792,7 +792,7 @@ Delete the test department from the second tab. A concurrency error is display w
 
 :::moniker range="< aspnetcore-3.0"
 
-This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Concurrency conflicts
 

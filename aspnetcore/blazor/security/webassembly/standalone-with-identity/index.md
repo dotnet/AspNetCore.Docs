@@ -151,7 +151,7 @@ A [Cross-Origin Resource Sharing (CORS)](../../../../security/cors.md) policy is
 
 :::moniker range=">= aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../../../fundamentals/openapi/overview.md).
 
 :::moniker-end
 
@@ -161,7 +161,7 @@ Services and endpoints for [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-u
 
 :::moniker-end
 
-User role claims are sent from a [Minimal API](xref:fundamentals/apis) at the `/roles` endpoint.
+User role claims are sent from a [Minimal API](../../../../fundamentals/apis.md) at the `/roles` endpoint.
 
 Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.
 
@@ -264,7 +264,7 @@ Role claims aren't sent back from the `manage/info` endpoint to create user clai
 
 In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize*?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
 
-In the `Backend` server API's `Program` file, a [Minimal API](xref:fundamentals/apis) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType> are [selected](xref:System.Linq.Enumerable.Select*) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json*?displayProperty=nameWithType>.
+In the `Backend` server API's `Program` file, a [Minimal API](../../../../fundamentals/apis.md) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType> are [selected](xref:System.Linq.Enumerable.Select*) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json*?displayProperty=nameWithType>.
 
 The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
 

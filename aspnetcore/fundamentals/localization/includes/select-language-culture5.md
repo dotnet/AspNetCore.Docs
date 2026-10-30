@@ -6,7 +6,7 @@ One task for localizing an app is to implement a strategy for selecting the appr
 
 ## Configure Localization middleware
 
-The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
+The current culture on a request is set in the localization [Middleware](../../middleware/index.md). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](~/fundamentals/localization/samples/3.x/Localization/Startup.cs?name=snippet2)]
 
@@ -153,15 +153,15 @@ See [Globalization behavior of model binding route data and query strings](xref:
 
 Localizing an app also involves the following tasks:
 
-* [Make the app's content localizable](xref:fundamentals/localization/make-content-localizable).
-* [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
+* [Make the app's content localizable](../make-content-localizable.md).
+* [Provide localized resources for the languages and cultures the app supports](../provide-resources.md)
 
 ## Related content
 
-* <xref:fundamentals/localization>
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalization and localization in ASP.NET Core](../../localization.md)
+* [Make an ASP.NET Core app's content localizable](../make-content-localizable.md)
+* [Provide localized resources for languages and cultures in an ASP.NET Core app](../provide-resources.md)
+* [Troubleshoot ASP.NET Core localization](../../troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

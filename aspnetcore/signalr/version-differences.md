@@ -15,7 +15,7 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
-| **Server NuGet package** | [Microsoft.AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | None. Included in the [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) shared framework. |
+| **Server NuGet package** | [Microsoft.AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | None. Included in the [Microsoft.AspNetCore.App](../fundamentals/metapackage-app.md) shared framework. |
 | **Client NuGet packages** | [Microsoft.AspNet.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft.AspNet.SignalR.JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | **JavaScript client npm package** | [signalr](https://www.npmjs.com/package/signalr) | [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) |
 | **Java client** | [GitHub Repository](https://github.com/SignalR/java-client) (deprecated)  | Maven package [com.microsoft.signalr](https://central.sonatype.com/artifact/com.microsoft.signalr/signalr) |
@@ -83,7 +83,7 @@ The Forever Frame transport isn't supported in ASP.NET Core SignalR.
 
 ## Differences on the server
 
-The ASP.NET Core SignalR server-side libraries are included in [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), which is used in the **ASP.NET Core Web Application** template for both Razor and MVC projects.
+The ASP.NET Core SignalR server-side libraries are included in [Microsoft.AspNetCore.App](../fundamentals/metapackage-app.md), which is used in the **ASP.NET Core Web Application** template for both Razor and MVC projects.
 
 ASP.NET Core SignalR is an ASP.NET Core middleware. It must be configured by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> in `Startup.ConfigureServices`.
 

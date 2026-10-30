@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 04/25/2025
-uid: fundamentals/http-logging/index
 ---
 # HTTP logging in ASP.NET Core
 
@@ -289,7 +288,7 @@ specifies how route parameters in the request path should be redacted, whether `
 
 ### `IncludeUnmatchedRoutes`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](../routing.md) instead of logging `Unknown` value for path attribute:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
 

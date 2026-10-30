@@ -14,7 +14,7 @@ This article explains how to host and deploy server-side Blazor apps (Blazor Web
 
 ## Host configuration values
 
-Server-side Blazor apps can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).
+Server-side Blazor apps can accept [Generic Host configuration values](../../../fundamentals/host/generic-host.md#host-configuration).
 
 ## Deployment
 
@@ -65,7 +65,7 @@ For more information on SignalR in Blazor apps, including configuration guidance
 
 ### Transports
 
-Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](../../../signalr/security.md). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
+Blazor works best when using [WebSockets](../../../fundamentals/websockets.md) as the SignalR transport due to lower latency, better reliability, and improved [security](../../../signalr/security.md). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
 
 A console warning appears if Long Polling is utilized:
 
@@ -90,7 +90,7 @@ Hosting on Azure App Service requires configuration for WebSockets and session a
 
 Enable the following for the app's registration in Azure App Service:
 
-* [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function. The default setting is **Off**.
+* [WebSockets](../../../fundamentals/websockets.md) to allow the WebSockets transport to function. The default setting is **Off**.
 * Session affinity to route requests from a user back to the same App Service instance. The default setting is **On**.
 
 1. In the Azure portal, navigate to the web app in **App Services**.
@@ -113,7 +113,7 @@ The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-sign
 
 :::moniker-end
 
-In the event that the app uses Long Polling or falls back to Long Polling instead of [WebSockets](xref:fundamentals/websockets), you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection.
+In the event that the app uses Long Polling or falls back to Long Polling instead of [WebSockets](../../../fundamentals/websockets.md), you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection.
 
 For guidance on how to add the service as a dependency to a production deployment, see [Publish an ASP.NET Core SignalR app to Azure App Service](../../../signalr/publish-to-azure-web-app.md).
 
@@ -173,7 +173,7 @@ For a deeper exploration of scaling server-side Blazor apps on the Azure Contain
 
 When using IIS, enable:
 
-* [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
+* [WebSockets on IIS](../../../fundamentals/websockets.md#enabling-websockets-on-iis).
 * [Session affinity with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
 For more information, see the guidance and external IIS resource cross-links in <xref:tutorials/publish-to-iis>.

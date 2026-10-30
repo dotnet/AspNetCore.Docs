@@ -11,7 +11,7 @@
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
 >
-> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see <xref:fundamentals/environments> and [8 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/8-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
+> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md) and [8 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/8-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
 >
 > ## HSTS and API projects
 >
@@ -58,7 +58,7 @@ A port must be available for the middleware to redirect an insecure request to H
 Specify the HTTPS port using any of the following approaches:
 
 * Set [HttpsRedirectionOptions.HttpsPort](#options).
-* Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
+* Set the `https_port` [host setting](../../../fundamentals/host/generic-host.md#https_port):
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
@@ -66,23 +66,23 @@ Specify the HTTPS port using any of the following approaches:
 
     [!code-json[](~/security/enforcing-ssl/samples/snapshot/6.x/appsettings.json?highlight=2)]
 
-* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
+* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../../../fundamentals/host/generic-host.md#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * The ASP.NET Core web templates set an HTTPS URL in `Properties/launchsettings.json` for both Kestrel and IIS Express. `launchsettings.json` is only used on the local machine.
-* Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) server or [HTTP.sys](xref:fundamentals/servers/httpsys) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
+* Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](../../../fundamentals/servers/kestrel.md) server or [HTTP.sys](../../../fundamentals/servers/httpsys.md) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
 > When an app is run in a reverse proxy configuration, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> isn't available. Set the port using one of the other approaches described in this section.
 
 ### Edge deployments
 
-When [Kestrel](xref:fundamentals/servers/kestrel) or [HTTP.sys](xref:fundamentals/servers/httpsys) is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
+When [Kestrel](../../../fundamentals/servers/kestrel.md) or [HTTP.sys](../../../fundamentals/servers/httpsys.md) is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
 
 * The secure port where the client is redirected (typically, 443 in production and 5001 in development).
 * The insecure port (typically, 80 in production and 5000 in development).
 
 The insecure port must be accessible by the client in order for the app to receive an insecure request and redirect the client to the secure port.
 
-For more information, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) or <xref:fundamentals/servers/httpsys>.
+For more information, see [Kestrel endpoint configuration](../../../fundamentals/servers/kestrel.md#endpoint-configuration) or [HTTP.sys web server implementation in ASP.NET Core](../../../fundamentals/servers/httpsys.md).
 
 ### Deployment scenarios
 
@@ -115,7 +115,7 @@ When configuring services in `Program.cs`:
 
 ## HTTPS redirection middleware alternative approach
 
-An alternative to using HTTPS redirection middleware (`UseHttpsRedirection`) is to use URL rewriting middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL rewriting middleware](xref:fundamentals/url-rewriting).
+An alternative to using HTTPS redirection middleware (`UseHttpsRedirection`) is to use URL rewriting middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL rewriting middleware](../../../fundamentals/url-rewriting.md).
 
 When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware (`UseHttpsRedirection`) described in this article.
 
@@ -134,7 +134,7 @@ Because [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transp
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
 * The application must check every HTTP request and redirect or reject the HTTP request.
 
-ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> extension method. The following code calls `UseHsts` when the app isn't in [development mode](../../../fundamentals/environments.md):
 
 [!code-csharp[](~/security/enforcing-ssl/samples/snapshot/6.x/Program.cs?highlight=10)]
 
@@ -215,7 +215,7 @@ dotnet dev-certs https --help
 
 ### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
 
-The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](../../../fundamentals/servers/kestrel.md) developer certificates.
 
 There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
 
@@ -569,7 +569,7 @@ The preceding approach is a one time operation per certificate and per WSL distr
 
 ## Troubleshoot certificate problems such as certificate not trusted
 
-This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
+This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](../../../fundamentals/servers/kestrel.md).
 
 To repair the IIS Express certificate, see [this Stackoverflow](https://stackoverflow.com/a/20048613/502537) issue.
 
@@ -666,7 +666,7 @@ In some cases, group policy may prevent self-signed certificates from being trus
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](../../../host-and-deploy/linux-nginx.md#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
-* <xref:fundamentals/servers/kestrel/endpoints>
+* [Configure endpoints for Kestrel web server](../../../fundamentals/servers/kestrel/endpoints.md)
 * [OWASP HSTS browser support](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html#browser-support)
 
 :::moniker-end
@@ -681,7 +681,7 @@ In some cases, group policy may prevent self-signed certificates from being trus
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
 >
-> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see <xref:fundamentals/environments> and [5 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/5-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
+> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md) and [5 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/5-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
 >
 > ## HSTS and API projects
 >
@@ -720,7 +720,7 @@ A port must be available for the middleware to redirect an insecure request to H
 Specify the HTTPS port using any of the following approaches:
 
 * Set [HttpsRedirectionOptions.HttpsPort](#options).
-* Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
+* Set the `https_port` [host setting](../../../fundamentals/host/generic-host.md#https_port):
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
@@ -728,10 +728,10 @@ Specify the HTTPS port using any of the following approaches:
 
     [!code-json[](~/security/enforcing-ssl/samples/snapshot/3.x/appsettings.json?highlight=2)]
 
-* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
+* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../../../fundamentals/host/generic-host.md#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in `launchsettings.json`. Enable HTTPS when IIS Express is used.
 
-* Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) server or [HTTP.sys](xref:fundamentals/servers/httpsys) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
+* Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](../../../fundamentals/servers/kestrel.md) server or [HTTP.sys](../../../fundamentals/servers/httpsys.md) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
 > When an app is run in a reverse proxy configuration, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> isn't available. Set the port using one of the other approaches described in this section.
@@ -745,7 +745,7 @@ When Kestrel or HTTP.sys is used as a public-facing edge server, Kestrel or HTTP
 
 The insecure port must be accessible by the client in order for the app to receive an insecure request and redirect the client to the secure port.
 
-For more information, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) or <xref:fundamentals/servers/httpsys>.
+For more information, see [Kestrel endpoint configuration](../../../fundamentals/servers/kestrel.md#endpoint-configuration) or [HTTP.sys web server implementation in ASP.NET Core](../../../fundamentals/servers/httpsys.md).
 
 ### Deployment scenarios
 
@@ -791,7 +791,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## HTTPS redirection middleware alternative approach
 
-An alternative to using HTTPS redirection middleware (`UseHttpsRedirection`) is to use URL rewriting middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL rewriting middleware](xref:fundamentals/url-rewriting).
+An alternative to using HTTPS redirection middleware (`UseHttpsRedirection`) is to use URL rewriting middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL rewriting middleware](../../../fundamentals/url-rewriting.md).
 
 When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware (`UseHttpsRedirection`) described in this article.
 
@@ -810,7 +810,7 @@ Because HSTS is enforced by the client, it has some limitations:
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
 * The application must check every HTTP request and redirect or reject the HTTP request.
 
-ASP.NET Core implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+ASP.NET Core implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](../../../fundamentals/environments.md):
 
 [!code-csharp[](~/security/enforcing-ssl/samples/snapshot/3.x/Startup.cs?name=snippet1&highlight=11)]
 
@@ -888,7 +888,7 @@ dotnet dev-certs https --help
 
 ### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
 
-The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](../../../fundamentals/servers/kestrel.md) developer certificates.
 
 There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
 
@@ -1083,7 +1083,7 @@ The preceding approach is a one time operation per certificate and per WSL distr
 
 ## Troubleshoot certificate problems such as certificate not trusted
 
-This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
+This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](../../../fundamentals/servers/kestrel.md).
 
 To repair the IIS Express certificate, see [this Stackoverflow](https://stackoverflow.com/a/20048613/502537) issue.
 

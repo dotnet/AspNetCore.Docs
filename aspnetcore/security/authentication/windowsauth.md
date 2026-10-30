@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 :::moniker range=">= aspnetcore-6.0"
 
-Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](../../host-and-deploy/iis/index.md), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
+Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](../../host-and-deploy/iis/index.md), [Kestrel](../../fundamentals/servers/kestrel.md), or [HTTP.sys](../../fundamentals/servers/httpsys.md).
 
 Windows Authentication relies on the operating system to authenticate users of ASP.NET Core apps. Windows Authentication is used for servers that run on a corporate network using Active Directory domain identities or Windows accounts to identify users. Windows Authentication is best suited to intranet environments where users, client apps, and web servers belong to the same Windows domain.
 
@@ -165,7 +165,7 @@ Use **either** of the following approaches:
 
 ## Kestrel
 
-The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) can be used with [Kestrel](xref:fundamentals/servers/kestrel) to enable Windows Authentication using Negotiate and Kerberos on Windows, Linux, and macOS.
+The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) can be used with [Kestrel](../../fundamentals/servers/kestrel.md) to enable Windows Authentication using Negotiate and Kerberos on Windows, Linux, and macOS.
 
 > [!WARNING]
 > Credentials can be persisted across requests on a connection. *Negotiate authentication must not be used with proxies unless the proxy maintains a 1:1 connection affinity (a persistent connection) with Kestrel.*
@@ -265,7 +265,7 @@ Once the Linux or macOS machine is joined to the domain, additional steps are re
 
 ## HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) supports [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) Windows Authentication using Negotiate, NTLM, or Basic authentication.
+[HTTP.sys](../../fundamentals/servers/httpsys.md) supports [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) Windows Authentication using Negotiate, NTLM, or Basic authentication.
 
 The following code adds authentication and configures the app's web host to use HTTP.sys with Windows Authentication:
 
@@ -275,7 +275,7 @@ The following code adds authentication and configures the app's web host to use 
 > HTTP.sys delegates to [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication with the Kerberos authentication protocol. [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
 
 > [!TIP]
-> To further protect Windows authentication over HTTPS, consider enabling channel binding token (CBT) hardening. For details, see [Enable channel binding token (CBT) hardening](xref:fundamentals/servers/httpsys#enable-channel-binding-token-cbt-hardening).
+> To further protect Windows authentication over HTTPS, consider enabling channel binding token (CBT) hardening. For details, see [Enable channel binding token (CBT) hardening](../../fundamentals/servers/httpsys.md#enable-channel-binding-token-cbt-hardening).
 
 <!-- DOC AUTHOR NOTE
 
@@ -301,11 +301,11 @@ When Windows Authentication is enabled and anonymous access is disabled, the [`[
 When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see [Simple authorization in ASP.NET Core](../authorization/simple.md).
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](../../fundamentals/error-handling.md#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
 
 ## Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use <xref:System.Security.Principal.WindowsIdentity.RunImpersonated*?displayProperty=nameWithType> or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync*> in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Program.cs`. Run a single action in this context and then close the context.
+ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use <xref:System.Security.Principal.WindowsIdentity.RunImpersonated*?displayProperty=nameWithType> or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync*> in a [terminal inline middleware](../../fundamentals/middleware/index.md#create-a-middleware-pipeline-with-iapplicationbuilder) in `Program.cs`. Run a single action in this context and then close the context.
 
 [!code-csharp[](windowsauth/samples/6.0/WebRPwinAuth/Program.cs?name=snippet_imp&highlight=10-19)]
 
@@ -326,7 +326,7 @@ When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationS
 
 :::moniker range="< aspnetcore-6.0"
 
-Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](../../host-and-deploy/iis/index.md), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
+Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](../../host-and-deploy/iis/index.md), [Kestrel](../../fundamentals/servers/kestrel.md), or [HTTP.sys](../../fundamentals/servers/httpsys.md).
 
 Windows Authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows Authentication when your server runs on a corporate network using Active Directory domain identities or Windows accounts to identify users. Windows Authentication is best suited to intranet environments where users, client apps, and web servers belong to the same Windows domain.
 
@@ -443,7 +443,7 @@ Update the `iisSettings` node of the `launchSettings.json` file:
 
 ---
 
-When modifying an existing project, confirm that the project file includes a package reference for the [`Microsoft.AspNetCore.App` metapackage](xref:fundamentals/metapackage-app) **or** the [`Microsoft.AspNetCore.Authentication` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication/).
+When modifying an existing project, confirm that the project file includes a package reference for the [`Microsoft.AspNetCore.App` metapackage](../../fundamentals/metapackage-app.md) **or** the [`Microsoft.AspNetCore.Authentication` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication/).
 
 ### IIS
 
@@ -488,7 +488,7 @@ Use **either** of the following approaches:
 
 ## Kestrel
 
-The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) can be used with [Kestrel](xref:fundamentals/servers/kestrel) to support Windows Authentication using Negotiate and Kerberos on Windows, Linux, and macOS.
+The [`Microsoft.AspNetCore.Authentication.Negotiate` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) can be used with [Kestrel](../../fundamentals/servers/kestrel.md) to support Windows Authentication using Negotiate and Kerberos on Windows, Linux, and macOS.
 
 > [!WARNING]
 > Credentials can be persisted across requests on a connection. *Negotiate authentication must not be used with proxies unless the proxy maintains a 1:1 connection affinity (a persistent connection) with Kestrel.*
@@ -512,7 +512,7 @@ Add authentication middleware by calling <xref:Microsoft.AspNetCore.Builder.Auth
 app.UseAuthentication();
 ```
 
-For more information on middleware, see <xref:fundamentals/middleware/index>.
+For more information on middleware, see [ASP.NET Core middleware](../../fundamentals/middleware/index.md).
 
 <a name="rbac"></a>
 ### Kerberos authentication and role-based access control (RBAC)
@@ -571,7 +571,7 @@ Once the Linux or macOS machine is joined to the domain, additional steps are re
 
 ## HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) supports [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) Windows Authentication using Negotiate, NTLM, or Basic authentication.
+[HTTP.sys](../../fundamentals/servers/httpsys.md) supports [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) Windows Authentication using Negotiate, NTLM, or Basic authentication.
 
 Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (<xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> namespace) in `Startup.ConfigureServices`:
 
@@ -610,11 +610,11 @@ When Windows Authentication is enabled and anonymous access is disabled, the [`[
 When both Windows Authentication and anonymous access are enabled, use the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute allows you to secure endpoints of the app which require authentication. The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute overrides the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute in apps that allow anonymous access. For attribute usage details, see [Simple authorization in ASP.NET Core](../authorization/simple.md).
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [status code pages middleware](../../fundamentals/error-handling.md#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
 
 ## Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync*> in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
+ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync*> in a [terminal inline middleware](../../fundamentals/middleware/index.md#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
 
 [!code-csharp[](windowsauth/samples/snapshot/Startup.cs?highlight=10-19)]
 

@@ -1126,7 +1126,7 @@ In the preceding example:
 
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md). For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 

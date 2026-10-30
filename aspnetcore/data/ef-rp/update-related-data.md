@@ -198,7 +198,7 @@ Update the Instructor Create page model and with code similar to the Edit page:
 
 The preceding code:
 
-  * Adds [logging](xref:fundamentals/logging/index) for warning and error messages.
+  * Adds [logging](../../fundamentals/logging/index.md) for warning and error messages.
   * Calls <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Load*>, which fetches all the Courses in one database call. For small collections this is an optimization when using <xref:Microsoft.EntityFrameworkCore.DbContext.FindAsync*>. `FindAsync` returns the tracked entity without a request to the database.
 
     [!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_find&highlight=9,15,34)]
@@ -451,7 +451,7 @@ Run the app and test the Delete page.
 
 :::moniker range="< aspnetcore-3.0"
 
-This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 The following illustrations shows some of the completed pages.
 

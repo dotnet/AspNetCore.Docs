@@ -275,9 +275,9 @@ Therefore the `ResponseHeaderAttribute` filter never runs for the `Index` action
 Filters can be added by type or by instance. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. A type-activated filter means:
 
 * An instance is created for each request.
-* Any constructor dependencies are populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
+* Any constructor dependencies are populated by [dependency injection](../../fundamentals/dependency-injection.md) (DI).
 
-Filters that are implemented as attributes and added directly to controller classes or action methods can't have constructor dependencies provided by [dependency injection](xref:fundamentals/dependency-injection) (DI). Constructor dependencies can't be provided by DI because attributes must have their constructor parameters supplied where they're applied.
+Filters that are implemented as attributes and added directly to controller classes or action methods can't have constructor dependencies provided by [dependency injection](../../fundamentals/dependency-injection.md) (DI). Constructor dependencies can't be provided by DI because attributes must have their constructor parameters supplied where they're applied.
 
 The following filters support constructor dependencies provided from DI:
 
@@ -287,7 +287,7 @@ The following filters support constructor dependencies provided from DI:
 
 The preceding filters can be applied to a controller or an action.
 
-Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](xref:fundamentals/logging/index) typically provides what's needed for logging. Logging added to filters:
+Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](../../fundamentals/logging/index.md) typically provides what's needed for logging. Logging added to filters:
 
 * Should focus on business domain concerns or behavior specific to the filter.
 * Should **not** log actions or other framework events. The built-in filters already log actions and framework events.
@@ -559,7 +559,7 @@ In the preceding code, the first approach to applying the filter is preferred.
 
 ## Use middleware in the filter pipeline
 
-Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
+Resource filters work like [middleware](../../fundamentals/middleware/index.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
 
 To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses middleware to set a response header:
 
@@ -577,7 +577,7 @@ When passing an *instance* of a filter into `Add`, instead of its `Type`, the fi
 
 ## Related content
 
-* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 * [Filter methods for Razor Pages in ASP.NET Core](../../razor-pages/filter.md)
 
 :::moniker-end

@@ -103,7 +103,7 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 
 ## Related content
 
-* [Globalization and localization](xref:fundamentals/localization)
+* [Globalization and localization](../../../../fundamentals/localization.md)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 * [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../../security/anti-request-forgery.md)

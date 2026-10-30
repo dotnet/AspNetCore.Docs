@@ -40,7 +40,7 @@ The following command makes the app respond to port `7777`:
 dotnet run --urls="https://localhost:7777"
 ```
 
-If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index#kestrel-endpoint-configuration)
+If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](../../configuration/index.md#kestrel-endpoint-configuration)
 
 #### Read the port from environment
 
@@ -97,7 +97,7 @@ ASPNETCORE_HTTP_PORTS=3000;5005
 ASPNETCORE_HTTPS_PORTS=5000
 ```
 
-For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+For more information, see [Configure endpoints for Kestrel web server](../../servers/kestrel/endpoints.md).
 
 > [!NOTE]
 > Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](../../../security/enforcing-ssl.md#https-redirection-middleware-usehttpsredirection).
@@ -128,7 +128,7 @@ The following sections show how to specify the custom certificate using the `app
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_re)]
 
-For more information using the environment, see <xref:fundamentals/environments>.
+For more information using the environment, see [ASP.NET Core runtime environments](../../environments.md).
 
 ### Configuration
 
@@ -136,7 +136,7 @@ The following code reads from the configuration system:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_config)]
 
-For more information, see <xref:fundamentals/configuration/index>.
+For more information, see [Configuration in ASP.NET Core](../../configuration/index.md).
 
 ### Logging
 
@@ -144,7 +144,7 @@ The following code writes a message to the log on application startup:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_log)]
 
-For more information, see <xref:fundamentals/logging/index>.
+For more information, see [Logging in .NET and ASP.NET Core](../../logging/index.md).
 
 ### Access the Dependency Injection (DI) container
 
@@ -156,7 +156,7 @@ The following code shows how to access keys from the DI container using the [`[F
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceMinAPI/Program.cs" :::
 
-For more information on DI, see <xref:fundamentals/dependency-injection>.
+For more information on DI, see [Dependency injection in ASP.NET Core](../../dependency-injection.md).
 
 ## `WebApplicationBuilder`
 
@@ -170,7 +170,7 @@ The following code sets the content root, application name, and environment:
 
 <xref:Microsoft.AspNetCore.Builder.WebApplication.Create*?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
 
-For more information, see <xref:fundamentals/index>
+For more information, see [ASP.NET Core fundamentals overview](../../index.md)
 
 ### Change the content root, app name, and environment by using environment variables or command line
 
@@ -188,7 +188,7 @@ The following sample adds the INI configuration provider:
 
 [!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 
-For detailed information, see [File configuration providers](xref:fundamentals/configuration/index#file-configuration-provider) in <xref:fundamentals/configuration/index>.
+For detailed information, see [File configuration providers](../../configuration/index.md#file-configuration-provider) in [Configuration in ASP.NET Core](../../configuration/index.md).
 
 ### Read configuration
 
@@ -198,7 +198,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index#default-configuration) in <xref:fundamentals/configuration/index>.
+For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md#default-configuration) in [Configuration in ASP.NET Core](../../configuration/index.md).
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
@@ -256,11 +256,11 @@ Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_addmid)]
 
-For more information, see <xref:fundamentals/middleware/index>.
+For more information, see [ASP.NET Core middleware](../../middleware/index.md).
 
 ### Developer exception page
 
-<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
+<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](../../environments.md), navigating to `/` renders a friendly page that shows the exception.
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_dep)]
 :::moniker-end

@@ -5,7 +5,6 @@ ai-usage: ai-assisted
 ms.date: 05/04/2026
 ms.reviewer: jeliknes
 monikerRange: '>= aspnetcore-6.0'
-uid: fundamentals/apis
 ---
 
 # APIs overview
@@ -48,8 +47,8 @@ Minimal APIs support the configuration and customization needed to scale to mult
 ### Getting started with Minimal APIs
 
 * **Tutorial**: <xref:tutorials/min-web-api>
-* **Quick reference**: <xref:fundamentals/minimal-apis>
-* **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>
+* **Quick reference**: [Minimal APIs quick reference](minimal-apis.md)
+* **Examples**: For a full list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md)
 
 ## Controller-based APIs - Alternative approach
 
@@ -94,7 +93,7 @@ Most of these features can be implemented in Minimal APIs with custom solutions,
 ## See also
 
 * <xref:tutorials/min-web-api> - Minimal API tutorial
-* <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
+* [Minimal APIs quick reference](minimal-apis.md) - Minimal APIs quick reference
 * [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
 * <xref:tutorials/first-web-api> - Controller-based API tutorial
 
@@ -121,7 +120,7 @@ app.Run();
 ### Getting started with Minimal APIs
 
 * **Tutorial**: <xref:tutorials/min-web-api>
-* **Quick reference**: <xref:fundamentals/minimal-apis>
+* **Quick reference**: [Minimal APIs quick reference](minimal-apis.md)
 
 ## Controller-based APIs - Alternative approach
 
@@ -154,7 +153,7 @@ Both API projects refer to the following class:
 ## See also
 
 * <xref:tutorials/min-web-api> - Minimal API tutorial
-* <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
+* [Minimal APIs quick reference](minimal-apis.md) - Minimal APIs quick reference
 * [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
 * <xref:tutorials/first-web-api> - Controller-based API tutorial
 

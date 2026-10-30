@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-8.0"
 
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
 
 ## Overview
 
@@ -212,7 +212,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Register the database context
 
-In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
+In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container. The container provides the service to controllers.
 
 Update `Program.cs` with the following highlighted code:
 
@@ -478,7 +478,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Related content
 
-[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:fundamentals/index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](../../../fundamentals/index.md#how-to-download-a-sample).
 
 For more information, see the following resources:
 

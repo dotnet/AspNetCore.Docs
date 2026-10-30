@@ -74,26 +74,26 @@ The `App` component (`App.razor`) is the root component of the app with HTML `<h
 
 An imports file (`_Imports.razor`) in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
-The `Properties` folder of the server project holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+The `Properties` folder of the server project holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
 [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
-The `wwwroot` folder of the server project is the [Web Root](xref:fundamentals/index#web-root) folder for the server project that holds the app's public static assets.
+The `wwwroot` folder of the server project is the [Web Root](../fundamentals/index.md#web-root) folder for the server project that holds the app's public static assets.
 
-The `Program.cs` file of the server project is the project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline:
+The `Program.cs` file of the server project is the project's entry point that sets up the ASP.NET Core web application [host](../fundamentals/host/generic-host.md#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline:
 
 * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>. <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> adds services to support rendering Interactive Server components. <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents*> adds services to support rendering Interactive WebAssembly components.
 * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode*> configures interactive server-side rendering (interactive SSR) for the app. <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode*> configures the Interactive WebAssembly render mode for the app.
 
-The app settings files (`appsettings.Development.json`, `appsettings.json`) in either the server or `.Client` project provide [configuration settings](xref:blazor/fundamentals/configuration). In the server project, settings files are at the root of the project. In the `.Client` project, settings files are consumed from the [Web Root](xref:fundamentals/index#web-root) folder, `wwwroot`. 
+The app settings files (`appsettings.Development.json`, `appsettings.json`) in either the server or `.Client` project provide [configuration settings](xref:blazor/fundamentals/configuration). In the server project, settings files are at the root of the project. In the `.Client` project, settings files are consumed from the [Web Root](../fundamentals/index.md#web-root) folder, `wwwroot`. 
 
 In the `.Client` project:
 
 * The `Pages` folder contains routable client-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
-* The `wwwroot` folder is the [Web Root](xref:fundamentals/index#web-root) folder for the `.Client` project that holds the app's public static assets.
+* The `wwwroot` folder is the [Web Root](../fundamentals/index.md#web-root) folder for the `.Client` project that holds the app's public static assets.
 
-* The `Program.cs` file is the project's entry point that sets up the WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
+* The `Program.cs` file is the project's entry point that sets up the WebAssembly [host](../fundamentals/host/generic-host.md#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
 
 Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -129,7 +129,7 @@ Project structure:
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -140,7 +140,7 @@ Project structure:
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -148,9 +148,9 @@ Project structure:
 
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
-* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
+* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
 
-  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * Specifies the app's [dependency injection (DI)](../fundamentals/dependency-injection.md) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](../signalr/introduction.md), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
@@ -177,7 +177,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -188,7 +188,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -196,9 +196,9 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
-* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
+* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
 
-  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * Specifies the app's [dependency injection (DI)](../fundamentals/dependency-injection.md) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](../signalr/introduction.md), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
@@ -224,7 +224,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -235,7 +235,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -243,11 +243,11 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
-* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host).
+* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md).
 
 * `Startup.cs`: Contains the app's startup logic. The `Startup` class defines two methods:
 
-  * `ConfigureServices`: Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * `ConfigureServices`: Configures the app's [dependency injection (DI)](../fundamentals/dependency-injection.md) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * `Configure`: Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](../signalr/introduction.md), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
@@ -273,7 +273,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -282,7 +282,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -290,11 +290,11 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
-* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host).
+* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md).
 
 * `Startup.cs`: Contains the app's startup logic. The `Startup` class defines two methods:
 
-  * `ConfigureServices`: Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * `ConfigureServices`: Configures the app's [dependency injection (DI)](../fundamentals/dependency-injection.md) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * `Configure`: Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](../signalr/introduction.md), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
@@ -351,11 +351,11 @@ Project structure:
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
   
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -388,7 +388,7 @@ Project structure:
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -399,7 +399,7 @@ Project structure:
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`) (*ASP.NET Core in .NET 7 or earlier*): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -446,7 +446,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -457,7 +457,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -500,7 +500,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -511,7 +511,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -554,7 +554,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -563,7 +563,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `app` DOM element (`<app>Loading...</app>`).
 
@@ -735,7 +735,7 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 
 * <xref:blazor/tooling>
 * <xref:blazor/hosting-models>
-* <xref:fundamentals/apis>
+* [APIs overview](../fundamentals/apis.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 :::moniker-end

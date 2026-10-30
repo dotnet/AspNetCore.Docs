@@ -130,7 +130,7 @@ public async Task UnauthorizedApiRequest_Returns401()
 
 * [Use cookie authentication without ASP.NET Core Identity](cookie.md)
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
-* <xref:fundamentals/minimal-apis/responses>
+* [Create responses in Minimal API applications](../../fundamentals/minimal-apis/responses.md)
 * [SignalR authentication and authorization](../../signalr/authn-and-authz.md)
 * [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints)
 

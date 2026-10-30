@@ -145,7 +145,7 @@ Webpack dev middleware is registered into the HTTP request pipeline via the foll
 
 [!code-csharp[](../client-side/spa-services/samples/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
-The `UseWebpackDevMiddleware` extension method must be called before [registering static file hosting](xref:fundamentals/static-files) via the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
+The `UseWebpackDevMiddleware` extension method must be called before [registering static file hosting](../fundamentals/static-files.md) via the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
 
 The `webpack.config.js` file's `output.publicPath` property tells the middleware to watch the `dist` folder for changes:
 
@@ -240,7 +240,7 @@ Two primary runtime configuration modes exist:
   * Excludes source maps.
   * Optimizes the client-side code via bundling and minification.
 
-ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. For more information, see [Set the environment](xref:fundamentals/environments#set-the-environment).
+ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. For more information, see [Set the environment](../fundamentals/environments.md#set-the-environment).
 
 ### Run with .NET CLI
 

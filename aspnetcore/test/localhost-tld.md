@@ -16,7 +16,7 @@ Having different apps running locally be resolvable via different names allows f
 
 ## Kestrel support for .localhost
 
-ASP.NET Core's built-in HTTP server, Kestrel, correctly treats any `*.localhost` name set via [supported endpoint configuration mechanisms](xref:fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0#configure-endpoints) as the local loopback address and binds to it rather than all external addresses (that is, bind to `127.0.0.1`/`::1` rather than `0.0.0.0`/`::`). This includes the `"applicationUrl"` property in [launch profiles configured in a *launchSettings.json* file](xref:fundamentals/environments?view=aspnetcore-10.0#development-and-launchsettingsjson), and the `ASPNETCORE_URLS` environment variable. When configured to listen on a `.localhost` address, Kestrel logs an information message for both the `.localhost` **and** `localhost` addresses, to make it clear that both names can be used.
+ASP.NET Core's built-in HTTP server, Kestrel, correctly treats any `*.localhost` name set via [supported endpoint configuration mechanisms](../fundamentals/servers/kestrel/endpoints.md?view=aspnetcore-10.0#configure-endpoints) as the local loopback address and binds to it rather than all external addresses (that is, bind to `127.0.0.1`/`::1` rather than `0.0.0.0`/`::`). This includes the `"applicationUrl"` property in [launch profiles configured in a *launchSettings.json* file](../fundamentals/environments.md?view=aspnetcore-10.0#development-and-launchsettingsjson), and the `ASPNETCORE_URLS` environment variable. When configured to listen on a `.localhost` address, Kestrel logs an information message for both the `.localhost` **and** `localhost` addresses, to make it clear that both names can be used.
 
 ## Browser compatibility
 

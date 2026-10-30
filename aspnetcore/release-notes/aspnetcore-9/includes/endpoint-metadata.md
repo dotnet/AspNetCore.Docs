@@ -1,6 +1,6 @@
 ### Developer exception page improvements
 
-The [ASP.NET Core developer exception page](xref:fundamentals/error-handling#developer-exception-page) is displayed when an app throws an unhandled exception during development. The developer exception page provides detailed information about the exception and request.
+The [ASP.NET Core developer exception page](../../../fundamentals/error-handling.md#developer-exception-page) is displayed when an app throws an unhandled exception during development. The developer exception page provides detailed information about the exception and request.
 
 Preview 3 added endpoint metadata to the developer exception page. ASP.NET Core uses endpoint metadata to control endpoint behavior, such as routing, response caching, rate limiting, OpenAPI generation, and more. The following image shows the new metadata information in the `Routing` section of the developer exception page:
 

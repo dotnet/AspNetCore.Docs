@@ -97,13 +97,13 @@ When the path to the shared configuration isn't on the same machine as the IIS i
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](../../fundamentals/middleware/index.md), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the Data Protection key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](../../fundamentals/app-state.md#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -157,7 +157,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
-   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
+   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](../../fundamentals/websockets.md).
 
 1. Proceed through the **Confirmation** step to install the web server role and services. A server/IIS restart isn't required after installing the **Web Server (IIS)** role.
 
@@ -179,7 +179,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
    To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
-   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
+   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](../../fundamentals/websockets.md).
 
 1. If the IIS installation requires a restart, restart the system.
 
@@ -198,7 +198,7 @@ Static asset links within the sub-app should use tilde-slash (`~/`) notation in 
 > [!NOTE]
 > Razor components (`.razor`) shouldn't use tilde-slash notation. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
 
-If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](xref:fundamentals/index#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
+If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](../../fundamentals/index.md#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
@@ -268,7 +268,7 @@ For more information, see the [icacls](/windows-server/administration/windows-co
   * TLS 1.2 or later connection.
 * Out-of-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later.
-  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](../../fundamentals/servers/kestrel.md) uses HTTP/1.1.
   * TLS 1.2 or later connection.
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.

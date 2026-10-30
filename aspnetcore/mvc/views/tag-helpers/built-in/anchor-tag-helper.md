@@ -15,7 +15,7 @@ The [Anchor Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper
 
 For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
 
 *SpeakerController* is used in samples throughout this document:
 
@@ -289,7 +289,7 @@ The generated HTML:
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
-If the referenced page doesn't exist, a link to the current page is generated using an [ambient value](xref:fundamentals/routing#ambient-values-and-explicit-values) from the request. No warning is indicated, except at the debug log level.
+If the referenced page doesn't exist, a link to the current page is generated using an [ambient value](../../../../fundamentals/routing.md#ambient-values-and-explicit-values) from the request. No warning is indicated, except at the debug log level.
 
 ### asp-page-handler
 

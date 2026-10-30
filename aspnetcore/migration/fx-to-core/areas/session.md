@@ -28,7 +28,7 @@ You have three main approaches for handling session state during migration:
 2. **Incremental with separate sessions** - Migrate components piece by piece, with each app maintaining its own session state
 3. **Incremental with shared sessions** - Migrate components while sharing session data between Framework and Core applications
 
-For most applications, migrating to [ASP.NET Core session](xref:fundamentals/app-state) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using the System.Web adapters.
+For most applications, migrating to [ASP.NET Core session](../../../fundamentals/app-state.md) provides the best performance and maintainability. However, larger applications or those with complex session requirements may benefit from an incremental approach using the System.Web adapters.
 
 ## Choose your migration approach
 
