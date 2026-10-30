@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Navigate to the breaking changes in ASP.NET Core 11.
 ms.date: 09/29/2026
 no-loc: [Blazor, Kestrel, SignalR]
-titleSuffix: ""
 ---
 # Breaking changes in ASP.NET Core 11
 
