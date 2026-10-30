@@ -310,13 +310,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-<<<<<<< Updated upstream
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
-=======
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 * [Dependency injection into views](dependency-injection.md)
->>>>>>> Stashed changes
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 
@@ -623,13 +618,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-<<<<<<< Updated upstream
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
-=======
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 * [Dependency injection into views](dependency-injection.md)
->>>>>>> Stashed changes
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 

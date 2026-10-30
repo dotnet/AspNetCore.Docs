@@ -643,29 +643,17 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
   * <xref:blazor/forms/validation-client-side>
   * <xref:blazor/forms/validation-advanced>
 * [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
-<<<<<<< Updated upstream
-* <xref:fundamentals/minimal-apis>
-  * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:mvc/models/validation>
-=======
 * [Minimal APIs quick reference](minimal-apis.md)
   * [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
 * [Make an ASP.NET Core app's content localizable](localization/make-content-localizable.md)
 * [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
->>>>>>> Stashed changes
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
 * <xref:blazor/forms/validation>
-<<<<<<< Updated upstream
-* [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
-* <xref:mvc/models/validation>
-=======
 * [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
 * [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
->>>>>>> Stashed changes
 
 :::moniker-end

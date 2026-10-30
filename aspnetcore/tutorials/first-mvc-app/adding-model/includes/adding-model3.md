@@ -384,13 +384,8 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 ## Related content
 
 * [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
-<<<<<<< Updated upstream
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Globalization and localization](xref:fundamentals/localization)
-=======
 * [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
 * [Globalization and localization](../../../../fundamentals/localization.md)
->>>>>>> Stashed changes
 
 > [!div class="step-by-step"]
 > [Previous Adding a View](~/tutorials/first-mvc-app/adding-view.md)

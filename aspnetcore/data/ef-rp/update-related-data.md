@@ -46,7 +46,7 @@ Update `Pages/Courses/Create.cshtml.cs` with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> to prevent [overposting](crud.md#overposting).
+* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> to prevent [overposting](crud.md#prevent-overposting).
 * Removes `ViewData["DepartmentID"]`. The `DepartmentNameSL` `SelectList` is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](../../mvc/views/overview.md#VD_VB).
 
 ### Update the Course Create Razor page
@@ -153,7 +153,7 @@ Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` and `Courses` navigation properties.
-* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> prevents [overposting](crud.md#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> prevents [overposting](crud.md#prevent-overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
@@ -267,7 +267,7 @@ Update `Pages/Courses/Create.cshtml.cs` with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses `TryUpdateModelAsync` to prevent [overposting](crud.md#overposting).
+* Uses `TryUpdateModelAsync` to prevent [overposting](crud.md#prevent-overposting).
 * Removes `ViewData["DepartmentID"]`. `DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](../../mvc/views/overview.md#VD_VB).
 
 ### Update the Course Create Razor page
@@ -396,7 +396,7 @@ Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment`, `CourseAssignment`, and `CourseAssignment.Course` navigation properties.
-* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](crud.md#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](crud.md#prevent-overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
@@ -482,7 +482,7 @@ Update the Create page model with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses `TryUpdateModelAsync` to prevent [overposting](crud.md#overposting).
+* Uses `TryUpdateModelAsync` to prevent [overposting](crud.md#prevent-overposting).
 * Replaces `ViewData["DepartmentID"]` with `DepartmentNameSL` (from the base class).
 
 `ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](../../mvc/views/overview.md#VD_VB).
@@ -569,7 +569,7 @@ Update the instructors Edit page model with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
-* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](crud.md#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](crud.md#prevent-overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 
 ### Update the instructor Edit page

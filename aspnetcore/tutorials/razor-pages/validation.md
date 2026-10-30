@@ -268,17 +268,10 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 
 ## Related content
 
-<<<<<<< Updated upstream
-* <xref:mvc/views/working-with-forms>
-* <xref:fundamentals/localization>
-* <xref:mvc/views/tag-helpers/intro>
-* <xref:mvc/views/tag-helpers/authoring>
-=======
 * [Tag Helpers in forms in ASP.NET Core](../../mvc/views/working-with-forms.md)
 * [Globalization and localization in ASP.NET Core](../../fundamentals/localization.md)
 * [Tag Helpers in ASP.NET Core](../../mvc/views/tag-helpers/intro.md)
 * [Author Tag Helpers in ASP.NET Core](../../mvc/views/tag-helpers/authoring.md)
->>>>>>> Stashed changes
 
 ## Next steps
 

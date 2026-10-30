@@ -869,13 +869,8 @@ This document:
   * Covers both:
     * [Conventional routing](#cr) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
-<<<<<<< Updated upstream
-  * See [Routing](xref:fundamentals/routing) for advanced routing details.
-* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
-=======
   * See [Routing](../../fundamentals/routing.md) for advanced routing details.
-* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](routing.md?view=aspnetcore-2.2) for reference material on the legacy routing system.
->>>>>>> Stashed changes
+* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](routing.md?view=aspnetcore-2.2&preserve-view=true) for reference material on the legacy routing system.
 
 <a name="cr"></a>
 

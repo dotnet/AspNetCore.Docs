@@ -251,13 +251,8 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 * [Exception handler](xref:fundamentals/error-handling#exception-handler-page)
 * [HTTP Strict Transport Security (HSTS)](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol)
 * [HTTPS redirection](../security/enforcing-ssl.md)
-<<<<<<< Updated upstream
-* [Static files](xref:fundamentals/static-files)
-* ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](../razor-pages/index.md)
-=======
 * [Static files](static-files.md)
 * ASP.NET Core [MVC](../mvc/overview.md) and [Razor Pages](../razor-pages/index.md)
->>>>>>> Stashed changes
 
 The following example demonstrates middleware for a typical Razor Pages app:
 

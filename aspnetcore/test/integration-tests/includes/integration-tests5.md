@@ -329,12 +329,7 @@ For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the tes
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * <xref:test/razor-pages-tests>
-<<<<<<< Updated upstream
-* <xref:fundamentals/middleware/index>
-* <xref:mvc/controllers/testing>
-=======
 * [ASP.NET Core middleware](../../../fundamentals/middleware/index.md)
 * [Test controller logic in ASP.NET Core](../../../mvc/controllers/testing.md)
->>>>>>> Stashed changes
 
 :::moniker-end

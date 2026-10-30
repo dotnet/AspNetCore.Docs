@@ -114,15 +114,9 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 
 ## Related content
 
-<<<<<<< Updated upstream
-* [Globalization and localization](xref:fundamentals/localization)
-* [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
-=======
 * [Globalization and localization](../../fundamentals/localization.md)
 * [Introduction to Tag Helpers](../../mvc/views/tag-helpers/intro.md)
 * [Author Tag Helpers](../../mvc/views/tag-helpers/authoring.md)
->>>>>>> Stashed changes
 * [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md)
 * Protect your controller from [over-posting](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)

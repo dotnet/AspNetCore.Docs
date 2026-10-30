@@ -13,11 +13,7 @@ By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twit
 
 :::moniker range=">= aspnetcore-9.0"
 
-<<<<<<< Updated upstream
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
-=======
 This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating a Minimal API, see [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md).
->>>>>>> Stashed changes
 
 ## Overview
 
@@ -848,19 +844,11 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 For more information, see the following resources:
 
 * [Create web APIs with ASP.NET Core](../web-api/index.md)
-<<<<<<< Updated upstream
-* <xref:tutorials/min-web-api>
-* <xref:fundamentals/openapi/using-openapi-documents>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:data/ef-rp/intro>
-* <xref:mvc/controllers/routing>
-=======
 * [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md)
 * [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md)
 * [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md)
 * [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../data/ef-rp/intro.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
->>>>>>> Stashed changes
 * [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
 * [Deploy ASP.NET Core apps to Azure App Service](../host-and-deploy/azure-apps/index.md)
 * [Host and deploy ASP.NET Core](../host-and-deploy/index.md)

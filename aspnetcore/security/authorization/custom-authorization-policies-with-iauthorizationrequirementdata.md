@@ -9,11 +9,7 @@ ms.date: 10/13/2026
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-<<<<<<< Updated upstream
-This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
-=======
 This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the [Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md).
->>>>>>> Stashed changes
 
 :::moniker range=">= aspnetcore-11.0"
 

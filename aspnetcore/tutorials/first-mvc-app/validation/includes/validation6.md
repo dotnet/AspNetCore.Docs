@@ -139,19 +139,11 @@ In the next part of the series, we review the app and make some improvements to 
 
 ## Related content
 
-<<<<<<< Updated upstream
-* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
-* [Working with Forms](xref:mvc/views/working-with-forms)
-* [Globalization and localization](xref:fundamentals/localization)
-* [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
-=======
 * [Part 8, Add a new field (EF Core migrations)](../../new-field.md)
 * [Working with Forms](../../../../mvc/views/working-with-forms.md)
 * [Globalization and localization](../../../../fundamentals/localization.md)
 * [Introduction to Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
 * [Author Tag Helpers](../../../../mvc/views/tag-helpers/authoring.md)
->>>>>>> Stashed changes
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/new-field.md)

@@ -75,11 +75,7 @@ ASP.NET Core doesn't provide a native bundling and minification solution. Third-
 
 As a best practice, the bundled and minified files of your app should be used in a production environment. During development, the original files make for easier debugging of the app.
 
-<<<<<<< Updated upstream
-Specify which files to include in your pages by using the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) in your views. The Environment Tag Helper only renders its contents when running in specific [environments](xref:fundamentals/environments).
-=======
 Specify which files to include in your pages by using the [Environment Tag Helper](../mvc/views/tag-helpers/built-in/environment-tag-helper.md) in your views. The Environment Tag Helper only renders its contents when running in specific [environments](../fundamentals/environments.md).
->>>>>>> Stashed changes
 
 The following `environment` tag renders the unprocessed CSS files when running in the `Development` environment:
 
@@ -137,10 +133,5 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ## Related content
 
-<<<<<<< Updated upstream
-* [Use multiple environments](xref:fundamentals/environments)
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-=======
 * [Use multiple environments](../fundamentals/environments.md)
 * [Tag Helpers](../mvc/views/tag-helpers/intro.md)
->>>>>>> Stashed changes

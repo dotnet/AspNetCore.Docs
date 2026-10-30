@@ -148,12 +148,6 @@ For example, the `if` statement evaluates to true when processing the following 
 
 ## Related content
 
-<<<<<<< Updated upstream
-* <xref:fundamentals/dependency-injection>
-* <xref:mvc/views/dependency-injection>
-* <xref:mvc/views/tag-helpers/builtin-th/Index>
-=======
 * [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
 * [Dependency injection into views in ASP.NET Core](../dependency-injection.md)
 * [ASP.NET Core built-in Tag Helpers](built-in/index.md)
->>>>>>> Stashed changes

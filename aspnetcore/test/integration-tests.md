@@ -566,13 +566,8 @@ The SUT's database context is registered in `Program.cs`. The test app's `builde
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * <xref:test/razor-pages-tests>
-<<<<<<< Updated upstream
-* <xref:fundamentals/middleware/index>
-* <xref:mvc/controllers/testing>
-=======
 * [ASP.NET Core middleware](../fundamentals/middleware/index.md)
 * [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md)
->>>>>>> Stashed changes
 * [Basic tests for authentication middleware](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test)
 
 :::moniker-end

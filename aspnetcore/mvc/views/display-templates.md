@@ -74,12 +74,6 @@ The following markup shows the *Edit.cshtml* page which uses the `Pages/Shared/E
 
 ## Related content
 
-<<<<<<< Updated upstream
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Tag Helpers compared to HTML Helpers](xref:mvc/views/tag-helpers/intro#tag-helpers-compared-to-html-helpers)
-=======
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 * [Tag Helpers](tag-helpers/intro.md)
 * [Tag Helpers compared to HTML Helpers](tag-helpers/intro.md#tag-helpers-compared-to-html-helpers)
->>>>>>> Stashed changes

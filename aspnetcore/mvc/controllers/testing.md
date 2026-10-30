@@ -14,11 +14,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ## Unit testing controllers
 
-<<<<<<< Updated upstream
-Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing), and [model binding](xref:mvc/models/model-binding). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
-=======
 Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](filters.md), [routing](../../fundamentals/routing.md), and [model binding](../models/model-binding.md). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
->>>>>>> Stashed changes
 
 If you're writing custom filters and routes, unit test them in isolation, not as part of tests on a particular controller action.
 
@@ -185,11 +181,7 @@ For a valid session `id`, the final test confirms that:
 
 [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) involve testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action are tested, not the behavior of its dependencies or of the framework itself.
 
-<<<<<<< Updated upstream
-Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing), and [model binding](xref:mvc/models/model-binding). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
-=======
 Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](filters.md), [routing](../../fundamentals/routing.md), and [model binding](../models/model-binding.md). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
->>>>>>> Stashed changes
 
 If you're writing custom filters and routes, unit test them in isolation, not as part of tests on a particular controller action.
 

@@ -1,10 +1,6 @@
 :::moniker range="= aspnetcore-7.0"
 
-<<<<<<< Updated upstream
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
-=======
 This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating a Minimal API, see [Tutorial: Create a Minimal API with ASP.NET Core](../../min-web-api.md).
->>>>>>> Stashed changes
 
 ## Overview
 

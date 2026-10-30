@@ -180,7 +180,7 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 [!code-csharp[](~/razor-pages/index/samples/3.0/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
-`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](../../../data/ef-rp/crud.md#overposting).
+`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](../../../data/ef-rp/crud.md#prevent-overposting).
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties removes the need to writing code to convert HTTP data to the model type. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 

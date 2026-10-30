@@ -645,11 +645,7 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 
 ### `@inject`
 
-<<<<<<< Updated upstream
-The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
-=======
 The `@inject` directive enables the Razor Page to inject a service from the [service container](../../fundamentals/dependency-injection.md) into a view. For more information, see [Dependency injection into views](dependency-injection.md).
->>>>>>> Stashed changes
 
 ### `@layout`
 

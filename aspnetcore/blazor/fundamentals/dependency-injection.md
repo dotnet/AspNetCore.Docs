@@ -793,29 +793,17 @@ services.AddScoped<BlazorServiceAccessor>();
 
 :::moniker range=">= aspnetcore-8.0"
 
-<<<<<<< Updated upstream
-* <xref:fundamentals/dependency-injection>
-* [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
-* <xref:mvc/views/dependency-injection>
-=======
 * [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md)
 * [`IDisposable` guidance for Transient and shared instances](../../fundamentals/dependency-injection.md#idisposable-guidance-for-transient-and-shared-instances)
 * [Dependency injection into views in ASP.NET Core](../../mvc/views/dependency-injection.md)
->>>>>>> Stashed changes
 * [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-<<<<<<< Updated upstream
-* <xref:fundamentals/dependency-injection>
-* [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
-* <xref:mvc/views/dependency-injection>
-=======
 * [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md)
 * [`IDisposable` guidance for Transient and shared instances](../../fundamentals/dependency-injection.md#idisposable-guidance-for-transient-and-shared-instances)
 * [Dependency injection into views in ASP.NET Core](../../mvc/views/dependency-injection.md)
->>>>>>> Stashed changes
 
 :::moniker-end

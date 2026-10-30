@@ -18,13 +18,8 @@ This article provides information on DI in ASP.NET Core web apps. For informatio
 Guidance that adds to or supersedes the guidance in this article is found the following articles:
 
 * <xref:blazor/fundamentals/dependency-injection>
-<<<<<<< Updated upstream
-* <xref:mvc/controllers/dependency-injection>
-* [Use DI services to configure options](xref:fundamentals/configuration/options#use-di-services-to-configure-options)
-=======
 * [Dependency injection into controllers in ASP.NET Core](../mvc/controllers/dependency-injection.md)
 * [Use DI services to configure options](configuration/options.md#use-di-services-to-configure-options)
->>>>>>> Stashed changes
 
 Code examples in this article are based on [Blazor](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true).
 
@@ -442,13 +437,8 @@ For general guidance on service lifetimes, see [Service lifetimes](/dotnet/core/
 
 To use scoped services in middleware, use one of the following approaches:
 
-<<<<<<< Updated upstream
-* Inject the service into the middleware's `Invoke` or `InvokeAsync` method. Using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) throws a runtime exception because it forces the scoped service to behave like a singleton. The sample in the [Lifetime and registration options](#lifetime-and-registration-options) section demonstrates the `InvokeAsync` approach.
-* Use [factory-based middleware](xref:fundamentals/middleware/extensibility). Middleware registered using this approach is activated per client request (connection), which allows scoped services to be injected into the middleware's constructor.
-=======
 * Inject the service into the middleware's `Invoke` or `InvokeAsync` method. Using [constructor injection](../mvc/controllers/dependency-injection.md#constructor-injection) throws a runtime exception because it forces the scoped service to behave like a singleton. The sample in the [Lifetime and registration options](#lifetime-and-registration-options) section demonstrates the `InvokeAsync` approach.
 * Use [factory-based middleware](middleware/extensibility.md). Middleware registered using this approach is activated per client request (connection), which allows scoped services to be injected into the middleware's constructor.
->>>>>>> Stashed changes
 
 For more information, see the following resources:
 

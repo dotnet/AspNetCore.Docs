@@ -204,7 +204,7 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
 
-For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
+For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
@@ -421,7 +421,7 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 
-For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
+For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
@@ -615,7 +615,7 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 
-For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
+For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
