@@ -2,7 +2,7 @@
 title: Partial Tag Helper in ASP.NET Core
 description: Discover the ASP.NET Core Partial Tag Helper and the role each of its attributes play in rendering a partial view.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 10/08/2026
+ms.date: 10/26/2026
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---
 # Partial Tag Helper in ASP.NET Core
@@ -54,11 +54,17 @@ The partial view is bound to the associated page model's `Product` property:
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
+> [!NOTE]
+> When `for` is used, the Partial Tag Helper sets <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.HtmlFieldPrefix%2A> to include the property expression name (for example, `Product`). Consequently, form Tag Helpers (such as `asp-for="Name"`) within the partial view generate prefixed HTML `name` attributes (such as `name="Product.Name"`). This ensures form field values bind correctly back to the nested complex property on HTTP POST form submission.
+
 ## model
 
 The `model` attribute assigns a model instance to pass to the partial view. The `model` attribute can't be used with the [for](#for) attribute.
 
 When neither `for` nor `model` is specified, the Partial Tag Helper falls back to passing the calling view's model (`ViewContext.ViewData.Model`) to the partial view.
+
+> [!NOTE]
+> Unlike `for`, the `model` attribute passes the model object directly without appending the property name to `HtmlFieldPrefix`. Instead, it preserves any existing `HtmlFieldPrefix` from the calling view context. If the calling view's prefix is empty, Tag Helpers inside the partial view generate unprefixed `name` attributes (such as `name="Name"` instead of `name="Product.Name"`). If the partial view is invoked within an existing prefix scope (such as inside a parent partial rendered with `for="Product"`), that prefix is retained. Use `model` when the receiving action method expects an unprefixed parameter (ensuring no outer prefix exists) or when rendering an independent model instance.
 
 In the following markup, a new `Product` object is instantiated and passed to the `model` attribute for binding:
 
