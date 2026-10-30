@@ -63,7 +63,7 @@ Examine the lambda expression used in the following HTML Helper:
 @Html.DisplayNameFor(model => model.Movie[0].Title)
 ```
 
-The <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper%601.DisplayNameFor%2A> HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there's no access violation when `model`, `model.Movie`, or `model.Movie[0]` is `null` or empty. When the lambda expression is evaluated, for example, by using `@Html.DisplayFor(modelItem => item.Title)`, the model's property values are evaluated.
+The <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper`1.DisplayNameFor*> HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there's no access violation when `model`, `model.Movie`, or `model.Movie[0]` is `null` or empty. When the lambda expression is evaluated, for example, by using `@Html.DisplayFor(modelItem => item.Title)`, the model's property values are evaluated.
 
 ### The layout page
 
@@ -167,7 +167,7 @@ Visual Studio displays the following tags in a distinctive bold font used for Ta
 
 ---
 
-The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](xref:security/anti-request-forgery).
+The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](../../security/anti-request-forgery.md).
 
 The scaffolding engine creates Razor markup for each field in the model, except the ID, similar to the following code:
 

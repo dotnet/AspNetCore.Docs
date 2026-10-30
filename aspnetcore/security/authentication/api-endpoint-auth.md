@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how ASP.NET Core 10 and later handles authentication failures for API endpoints using cookie authentication.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 09/16/2026
-uid: security/authentication/api-endpoint-auth
 ---
 
 # API endpoint authentication behavior in ASP.NET Core
@@ -88,7 +87,7 @@ Set the switch in the project file so that it applies before any app code runs:
 </ItemGroup>
 ```
 
-The switch can also be set in code. It's read once, the first time cookie authentication is used, so call <xref:System.AppContext.SetSwitch%2A> before the host is built:
+The switch can also be set in code. It's read once, the first time cookie authentication is used, so call <xref:System.AppContext.SetSwitch*> before the host is built:
 
 ```csharp
 AppContext.SetSwitch(
@@ -129,10 +128,10 @@ public async Task UnauthorizedApiRequest_Returns401()
 
 ## Related topics
 
-* <xref:security/authentication/cookie>
-* <xref:web-api/index>
+* [Use cookie authentication without ASP.NET Core Identity](cookie.md)
+* [Create web APIs with ASP.NET Core](../../web-api/index.md)
 * <xref:fundamentals/minimal-apis/responses>
-* <xref:signalr/authn-and-authz>
+* [SignalR authentication and authorization](../../signalr/authn-and-authz.md)
 * [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints)
 
 :::moniker-end

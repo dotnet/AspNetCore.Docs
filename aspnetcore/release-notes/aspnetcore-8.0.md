@@ -503,9 +503,9 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
     .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
   ```
-  
+
   The `bufferSize` option is optional with a default of 100,000 bytes.
-  
+
 * Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
@@ -518,7 +518,7 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
 
   The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
-For more information, see [Configure stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect).
+For more information, see [Configure stateful reconnect](../signalr/configuration.md#configure-stateful-reconnect).
 
 ## Minimal APIs
 
@@ -537,7 +537,7 @@ Starting in .NET 8, the [RequestLocalizationOptions.CultureInfoUseUserOverride](
 
 ### Binding to forms
 
-Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [antiforgery token](xref:security/anti-request-forgery). The antiforgery token is validated when the request is processed.
+Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [antiforgery token](../security/anti-request-forgery.md). The antiforgery token is validated when the request is processed.
 
 Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
@@ -556,7 +556,7 @@ For more information, see [Bind to collections and complex types from forms](xre
 
 ### Antiforgery with Minimal APIs
 
-This release adds a middleware for validating antiforgery tokens, which are used to mitigate cross-site request forgery attacks. Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the middleware when the antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
+This release adds a middleware for validating antiforgery tokens, which are used to mitigate cross-site request forgery attacks. Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the middleware when the antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](../security/anti-request-forgery.md).
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3":::
 
@@ -571,7 +571,7 @@ The antiforgery token is only validated if:
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
 * The request is associated with a valid endpoint.
 
-For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
+For more information, see [Antiforgery with Minimal APIs](../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis).
 
 ### New `IResettable` interface in `ObjectPool`
 
@@ -620,7 +620,7 @@ We've further reduced Native AOT binary size for apps that don't need HTTPS or H
 
 New features were added to <xref:System.Text.Json> to better support Native AOT. These new features add capabilities for the source generation mode of `System.Text.Json`, because reflection isn't supported by AOT.
 
-One of the new features is support for JSON serialization of <xref:System.Collections.Generic.IAsyncEnumerable%601> implementations implemented by the C# compiler. This support opens up their use in ASP.NET Core projects configured to publish Native AOT.
+One of the new features is support for JSON serialization of <xref:System.Collections.Generic.IAsyncEnumerable`1> implementations implemented by the C# compiler. This support opens up their use in ASP.NET Core projects configured to publish Native AOT.
 
 This API is useful in scenarios where a route handler uses `yield return` to asynchronously return an enumeration. For example, to materialize rows from a database query. For more information, see [Unspeakable type support](https://devblogs.microsoft.com/dotnet/announcing-dotnet-8-preview-4/#unspeakable-type-support) in the .NET 8 Preview 4 announcement.
 
@@ -701,7 +701,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 ```
 
-For more information about this feature and how to use .NET and gRPC to create an IPC server and client, see <xref:grpc/interprocess>.
+For more information about this feature and how to use .NET and gRPC to create an IPC server and client, see [Inter-process communication with gRPC](../grpc/interprocess.md).
 
 ### Performance improvements to named pipes transport
 
@@ -734,7 +734,7 @@ If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled
 
 The Server Name Indication (SNI) host name is now exposed in the <!--keep--> [HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,29) property of the <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> interface.
 
-SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
+SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request.
 
 Normally the host name is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in an app can use that information for purposes such as diagnostics, rate limiting, routing, and billing.
 
@@ -771,7 +771,7 @@ Apps that use asynchronous I/O and that can have more than one write outstanding
 
 ### Identity API endpoints
 
-[`MapIdentityApi<TUser>`](xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
+[`MapIdentityApi<TUser>`](xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
 ### `IAuthorizationRequirementData`
 
@@ -797,19 +797,19 @@ The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sampl
 ```diff
 using AuthRequirementsData.Authorization;
 using Microsoft.AspNetCore.Authorization;
-  
+
 var builder = WebApplication.CreateBuilder();
-  
+
 builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 -builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
-  
+
 var app = builder.Build();
-  
+
 app.MapControllers();
-  
+
 app.Run();
 ```
 
@@ -822,7 +822,7 @@ using System.Security.Claims;
 
 namespace AuthRequirementsData.Authorization;
 
-class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger) 
+class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger)
 -    : AuthorizationHandler<MinimumAgeRequirement>
 +    : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
 {
@@ -838,11 +838,11 @@ class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> log
 
 The updated sample is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
-For more information, see <xref:security/authorization/iard>.
+For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md).
 
 ### Securing Swagger UI endpoints
 
-Swagger UI endpoints can now be secured in production environments by calling [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A). For more information, see [Securing Swagger UI endpoints](/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0&preserve-view=true#securing-swagger-ui-endpoints)
+Swagger UI endpoints can now be secured in production environments by calling [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*). For more information, see [Securing Swagger UI endpoints](/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0&preserve-view=true#securing-swagger-ui-endpoints)
 
 ## Miscellaneous
 
@@ -850,7 +850,7 @@ The following sections describe miscellaneous new features in ASP.NET Core in .N
 
 ### Keyed services support in Dependency Injection
 
-*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
+*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton*> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47":::
 
@@ -900,14 +900,14 @@ The new analyzers shown in the following table are available in .NET 8.
 
 | Diagnostic ID | Breaking or nonbreaking | Description |
 | --- | --- | --- |
-| [ASP0016](xref:diagnostics/asp0016) | Nonbreaking | Don't return a value from RequestDelegate |
-| [ASP0019](xref:diagnostics/asp0019) | Nonbreaking | Suggest using IHeaderDictionary.Append or the indexer |
-| [ASP0020](xref:diagnostics/asp0020) | Nonbreaking | Complex types referenced by route parameters must be parsable |
-| [ASP0021](xref:diagnostics/asp0021) | Nonbreaking | The return type of the BindAsync method must be `ValueTask<T>` |
-| [ASP0022](xref:diagnostics/asp0022) | Nonbreaking | Route conflict detected between route handlers |
-| [ASP0023](xref:diagnostics/asp0023) | Nonbreaking | MVC: Route conflict detected between route handlers |
-| [ASP0024](xref:diagnostics/asp0024) | Nonbreaking | Route handler has multiple parameters with the `[FromBody]` attribute |
-| [ASP0025](xref:diagnostics/asp0025) | Nonbreaking | Use AddAuthorizationBuilder |
+| [ASP0016](../diagnostics/asp0016.md) | Nonbreaking | Don't return a value from RequestDelegate |
+| [ASP0019](../diagnostics/asp0019.md) | Nonbreaking | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0020](../diagnostics/asp0020.md) | Nonbreaking | Complex types referenced by route parameters must be parsable |
+| [ASP0021](../diagnostics/asp0021.md) | Nonbreaking | The return type of the BindAsync method must be `ValueTask<T>` |
+| [ASP0022](../diagnostics/asp0022.md) | Nonbreaking | Route conflict detected between route handlers |
+| [ASP0023](../diagnostics/asp0023.md) | Nonbreaking | MVC: Route conflict detected between route handlers |
+| [ASP0024](../diagnostics/asp0024.md) | Nonbreaking | Route handler has multiple parameters with the `[FromBody]` attribute |
+| [ASP0025](../diagnostics/asp0025.md) | Nonbreaking | Use AddAuthorizationBuilder |
 
 ### Route tooling
 
@@ -944,7 +944,7 @@ Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more
 
 <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler> is a new interface that gives the developer a callback for handling known exceptions in a central location.
 
-`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](xref:Microsoft.Extensions.DependencyInjection.ExceptionHandlerServiceCollectionExtensions.AddExceptionHandler%2A). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
+`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](xref:Microsoft.Extensions.DependencyInjection.ExceptionHandlerServiceCollectionExtensions.AddExceptionHandler*). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 
 For more information, see [IExceptionHandler](xref:fundamentals/error-handling#iexceptionhandler).
 
@@ -977,7 +977,7 @@ For more information about debugging improvements in .NET 8, see:
 
 ### `IPNetwork.Parse` and `TryParse`
 
-The new <xref:System.Net.IPNetwork.Parse%2A> and <xref:System.Net.IPNetwork.TryParse%2A> methods on <xref:System.Net.IPNetwork> add support for creating an `IPNetwork` by using an input string in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) or "slash notation".
+The new <xref:System.Net.IPNetwork.Parse*> and <xref:System.Net.IPNetwork.TryParse*> methods on <xref:System.Net.IPNetwork> add support for creating an `IPNetwork` by using an input string in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) or "slash notation".
 
 Here are IPv4 examples:
 
@@ -1019,11 +1019,11 @@ ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for o
 
 ### Short-circuit middleware after routing
 
-When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
+When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapget":::
 
-Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit*> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
@@ -1035,7 +1035,7 @@ The HTTP logging middleware has several new capabilities:
 
 * <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.Duration?displayProperty=nameWithType>: When enabled, the middleware emits a new log at the end of the request and response that measures the total time taken for processing. This new field has been added to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All?displayProperty=nameWithType> set.
 * <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs?displayProperty=nameWithType>: When enabled, the middleware consolidates all of its enabled logs for a request and response into one log at the end. A single log message includes the request, request body, response, response body, and duration.
-* <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor>: A new interface for a service that can be implemented and registered (using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor%2A>) to receive per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. An implementation can:
+* <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor>: A new interface for a service that can be implemented and registered (using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor*>) to receive per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. An implementation can:
   * Inspect a request and response.
   * Enable or disable any <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields>.
   * Adjust how much of the request or response body is logged.
@@ -1045,7 +1045,7 @@ For more information, see <xref:fundamentals/http-logging/index>.
 
 ### New APIs in ProblemDetails to support more resilient integrations
 
-In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> isn't able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
+In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> isn't able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync*> API:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 

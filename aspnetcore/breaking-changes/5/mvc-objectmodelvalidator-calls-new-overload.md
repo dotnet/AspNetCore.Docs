@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/440
 ---
 # MVC: ObjectModelValidator calls a new overload of ValidationVisitor.Validate
 
-In ASP.NET Core 5.0, an overload of the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate%2A?displayProperty=nameWithType> was added. The new overload accepts the top-level model instance that contains properties:
+In ASP.NET Core 5.0, an overload of the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate*?displayProperty=nameWithType> was added. The new overload accepts the top-level model instance that contains properties:
 
 ```diff
   bool Validate(ModelMetadata metadata, string key, object model, bool alwaysValidateAtTopLevel);
@@ -56,7 +56,7 @@ public class MyCustomValidationVisitor : ValidationVisitor
 
 ## Affected APIs
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate%2A?displayProperty=nameWithType>
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Validate*?displayProperty=nameWithType>
 
 <!--
 

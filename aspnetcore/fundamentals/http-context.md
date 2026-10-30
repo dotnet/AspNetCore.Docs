@@ -46,7 +46,7 @@ You can use the same property in the corresponding Razor Page View:
 
 ## Access HttpContext from a Razor view in MVC
 
-Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context%2A> property on the view. The following example retrieves the current username in an intranet app by using Windows Authentication:
+Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context> property on the view. The following example retrieves the current username in an intranet app by using Windows Authentication:
 
 ```cshtml
 @{
@@ -58,7 +58,7 @@ Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.
 
 ## Access HttpContext from a controller
 
-Controllers expose the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext%2A> property:
+Controllers expose the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext> property:
 
 ```csharp
 public class HomeController : Controller
@@ -104,7 +104,7 @@ public class MyCustomMiddleware
 
 ## Access HttpContext from SignalR
 
-To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> on the <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A>:
+To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.Hub.Context>:
 
 ```csharp
 public class MyHub : Hub
@@ -120,7 +120,7 @@ public class MyHub : Hub
 
 ## Access HttpContext from gRPC methods
 
-To use `HttpContext` from [gRPC](xref:grpc/aspnetcore) methods, see [Resolve HttpContext in gRPC methods](xref:grpc/aspnetcore#resolve-httpcontext-in-grpc-methods).
+To use `HttpContext` from [gRPC](../grpc/aspnetcore.md) methods, see [Resolve HttpContext in gRPC methods](../grpc/aspnetcore.md#resolve-httpcontext-in-grpc-methods).
 
 ## Access HttpContext from custom components
 
@@ -269,4 +269,4 @@ If you want to access the `IHttpContextAccessor` or `HttpContext` in Razor compo
 
 - [Use HttpContext in ASP.NET Core](xref:fundamentals/use-httpcontext)
 - [Razor Pages architecture and concepts in ASP.NET Core](xref:razor-pages/index)
-- [gRPC services with ASP.NET Core](xref:grpc/aspnetcore)
+- [gRPC services with ASP.NET Core](../grpc/aspnetcore.md)

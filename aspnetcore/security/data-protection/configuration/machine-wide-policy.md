@@ -2,7 +2,6 @@
 title: Data Protection machine-wide policy support in ASP.NET Core
 description: Learn about support for setting a default machine-wide policy for all apps that consume ASP.NET Core Data Protection.
 ms.date: 10/14/2016
-uid: security/data-protection/configuration/machine-wide-policy
 ---
 # Data Protection machine-wide policy support in ASP.NET Core
 
@@ -31,7 +30,7 @@ The supported values are shown below.
 
 ## Encryption types
 
-If EncryptionType is CNG-CBC, the system is configured to use a CBC-mode symmetric block cipher for confidentiality and HMAC for authenticity with services provided by Windows CNG (see [Specifying custom Windows CNG algorithms](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the CngCbcAuthenticatedEncryptionSettings type.
+If EncryptionType is CNG-CBC, the system is configured to use a CBC-mode symmetric block cipher for confidentiality and HMAC for authenticity with services provided by Windows CNG (see [Specifying custom Windows CNG algorithms](overview.md#specifying-custom-windows-cng-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the CngCbcAuthenticatedEncryptionSettings type.
 
 | Value                       | Type   | Description |
 | --------------------------- | :----: | ----------- |
@@ -41,7 +40,7 @@ If EncryptionType is CNG-CBC, the system is configured to use a CBC-mode symmetr
 | HashAlgorithm               | string | The name of a hash algorithm understood by CNG. This algorithm is opened in HMAC mode. |
 | HashAlgorithmProvider       | string | The name of the CNG provider implementation that can produce the algorithm HashAlgorithm. |
 
-If EncryptionType is CNG-GCM, the system is configured to use a Galois/Counter Mode symmetric block cipher for confidentiality and authenticity with services provided by Windows CNG (see [Specifying custom Windows CNG algorithms](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the CngGcmAuthenticatedEncryptionSettings type.
+If EncryptionType is CNG-GCM, the system is configured to use a Galois/Counter Mode symmetric block cipher for confidentiality and authenticity with services provided by Windows CNG (see [Specifying custom Windows CNG algorithms](overview.md#specifying-custom-windows-cng-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the CngGcmAuthenticatedEncryptionSettings type.
 
 | Value                       | Type   | Description |
 | --------------------------- | :----: | ----------- |
@@ -49,7 +48,7 @@ If EncryptionType is CNG-GCM, the system is configured to use a Galois/Counter M
 | EncryptionAlgorithmProvider | string | The name of the CNG provider implementation that can produce the algorithm EncryptionAlgorithm. |
 | EncryptionAlgorithmKeySize  | DWORD  | The length (in bits) of the key to derive for the symmetric block cipher algorithm. |
 
-If EncryptionType is Managed, the system is configured to use a managed SymmetricAlgorithm for confidentiality and KeyedHashAlgorithm for authenticity (see [Specifying custom managed algorithms](xref:security/data-protection/configuration/overview#specifying-custom-managed-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the ManagedAuthenticatedEncryptionSettings type.
+If EncryptionType is Managed, the system is configured to use a managed SymmetricAlgorithm for confidentiality and KeyedHashAlgorithm for authenticity (see [Specifying custom managed algorithms](overview.md#specifying-custom-managed-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the ManagedAuthenticatedEncryptionSettings type.
 
 | Value                      | Type   | Description |
 | -------------------------- | :----: | ----------- |

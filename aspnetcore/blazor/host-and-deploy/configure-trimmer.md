@@ -60,7 +60,7 @@ Trimming may have detrimental effects for a published app leading to runtime err
 
 The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
-Consider the following example that performs JSON deserialization into a <xref:System.Tuple%602> collection (`List<Tuple<string, string>>`).
+Consider the following example that performs JSON deserialization into a <xref:System.Tuple`2> collection (`List<Tuple<string, string>>`).
 
 `TrimExample.razor`:
 
@@ -100,7 +100,7 @@ The preceding component executes normally when the app is run locally and produc
 > • 1:T1, 1:T2  
 > • 2:T2, 2:T2
 
-When the app is published, <xref:System.Tuple%602> is trimmed from the app, even in spite of setting the `<PublishTrimmed>` property to `false` in the project file. Accessing the component throws the following exception:
+When the app is published, <xref:System.Tuple`2> is trimmed from the app, even in spite of setting the `<PublishTrimmed>` property to `false` in the project file. Accessing the component throws the following exception:
 
 > :::no-loc text="crit: Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]":::  
 > :::no-loc text="Unhandled exception rendering component: ConstructorContainsNullParameterNames, System.Tuple`2[System.String,System.String]":::  
@@ -164,7 +164,7 @@ If not already present, add an `@using` directive for <xref:System.Diagnostics.C
 @using System.Diagnostics.CodeAnalysis
 ```
 
-Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to preserve the <xref:System.Tuple%602>:
+Add a [`[DynamicDependency]` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to preserve the <xref:System.Tuple`2>:
 
 ```diff
 + [DynamicDependency(DynamicallyAccessedMemberTypes.PublicConstructors, 

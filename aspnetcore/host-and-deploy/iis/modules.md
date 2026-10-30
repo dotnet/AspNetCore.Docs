@@ -47,7 +47,7 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Static Content**<br>`StaticFileModule`                                                         | No  | [Static file middleware](xref:fundamentals/static-files) |
 | **Token Caching**<br>`TokenCacheModule`                                                          | Yes | |
 | **URI Caching**<br>`UriCacheModule`                                                              | Yes | |
-| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](../../security/authentication/identity.md) |
 | **WebDav**<br>`WebDAV`                                                                           | No  | |
 | **Windows Authentication**<br>`WindowsAuthenticationModule`                                      | Yes | |
 
@@ -62,7 +62,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [Cookie authentication middleware](xref:security/authentication/cookie) |
+| FormsAuthentication     | [Cookie authentication middleware](../../security/authentication/cookie.md) |
 | OutputCache             | [Response caching middleware](xref:performance/caching/middleware) |
 | Profile                 | |
 | RoleManager             | |
@@ -70,7 +70,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | Session                 | [Session middleware](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [URL rewriting middleware](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](../../security/authentication/identity.md) |
 | WindowsAuthentication   | |
 
 ## IIS Manager application changes

@@ -10,4 +10,4 @@ The following dialog is displayed:
 
 * Enter your password and select **Update Settings**.
 
-See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
+See [Trust the ASP.NET Core HTTPS development certificate](../security/enforcing-ssl.md#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.

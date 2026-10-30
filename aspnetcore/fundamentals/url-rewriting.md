@@ -165,7 +165,7 @@ options.AddRedirect("go/(.*)", "https://$1/path");
 
 Use a fixed local prefix when redirecting within the app. For external redirects, use a fixed host or validate the host against an allow list. Imported IIS URL Rewrite and Apache `mod_rewrite` rules also expand back-references and variables. Importing a rule doesn't validate its resulting substitution, so review imported rules by the same criteria.
 
-Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see <xref:security/preventing-open-redirects>.
+Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 ### URL redirect to a secure endpoint
 
@@ -185,7 +185,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 <!-- Note: something wrong with project because the localhostHTTPSport is correctly calculated but not used in the redirect. The exact same code at https://github.com/Rick-Anderson/WebRedirect does work. -->
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](../security/enforcing-ssl.md#require-https).
 
 The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an insecure HTTP request to the app at `http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`. When testing HTTP to HTTPS redirection with localhost:
 
@@ -345,7 +345,7 @@ The [middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/R
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The <xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result%2A?displayProperty=nameWithType> property determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The <xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result?displayProperty=nameWithType> property determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -552,7 +552,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](../security/enforcing-ssl.md#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -707,7 +707,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -908,7 +908,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](../security/enforcing-ssl.md#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -1063,7 +1063,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |

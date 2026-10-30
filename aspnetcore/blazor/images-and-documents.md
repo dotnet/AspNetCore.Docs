@@ -60,7 +60,7 @@ Avoid using a loop variable directly in a lambda expression, such as `i` in the 
 * The loop variable `i` is assigned to `imageId`.
 * `imageId` is used in the lambda expression.
 
-Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range*?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
 
 ```razor
 @foreach (var imageId in Enumerable.Range(1, 3))

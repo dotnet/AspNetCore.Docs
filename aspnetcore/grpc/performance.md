@@ -3,7 +3,6 @@ title: Performance best practices with gRPC
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 05/16/2025
-uid: grpc/performance
 ---
 # Performance best practices with gRPC
 
@@ -32,7 +31,7 @@ Channels are safe to share and reuse between gRPC calls:
 * A channel and clients created from the channel can safely be used by multiple threads.
 * Clients created from the channel can make multiple simultaneous calls.
 
-gRPC client factory offers a centralized way to configure channels. It automatically reuses underlying channels. For more information, see <xref:grpc/clientfactory>.
+gRPC client factory offers a centralized way to configure channels. It automatically reuses underlying channels. For more information, see [gRPC client factory integration in .NET](clientfactory.md).
 
 ## Connection concurrency
 
@@ -56,7 +55,7 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
 });
 ```
 
-.NET Framework apps that make gRPC calls [must be configured to use `WinHttpHandler`](xref:grpc/netstandard#net-framework). .NET Framework apps can set the <xref:System.Net.Http.WinHttpHandler.EnableMultipleHttp2Connections?displayProperty=nameWithType> property to `true` to create additional connections.
+.NET Framework apps that make gRPC calls [must be configured to use `WinHttpHandler`](netstandard.md#net-framework). .NET Framework apps can set the <xref:System.Net.Http.WinHttpHandler.EnableMultipleHttp2Connections?displayProperty=nameWithType> property to `true` to create additional connections.
 
 :::moniker-end
 
@@ -133,7 +132,7 @@ With client-side load balancing, the client knows about endpoints. For each gRPC
 
 Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients periodically query the central location for information to use when making load balancing decisions.
 
-For more information, see <xref:grpc/loadbalancing>.
+For more information, see [gRPC client-side load balancing](loadbalancing.md).
 
 ### Proxy load balancing
 
@@ -151,7 +150,7 @@ There are many L7 proxies available. Some options are:
 
 gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient when the client and service are on the same machine.
 
-Consider using a transport like Unix domain sockets or named pipes for gRPC calls between processes on the same machine. For more information, see <xref:grpc/interprocess>.
+Consider using a transport like Unix domain sockets or named pipes for gRPC calls between processes on the same machine. For more information, see [Inter-process communication with gRPC](interprocess.md).
 
 ## Keep alive pings
 
@@ -231,7 +230,7 @@ Server response stream:
 1. The server has finished writing messages to the response stream and the server method has exited.
 2. The client has read all messages from the response stream. Depending on how you're reading messages, either `call.ResponseStream.MoveNext()` returns `false` or `call.ResponseStream.ReadAllAsync()` has finished.
 
-For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](xref:grpc/client#bi-directional-streaming-call).
+For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](client.md#bi-directional-streaming-call).
 
 Server streaming calls don't have a request stream. This means that the only way a client can communicate to the server that the stream should stop is by canceling it. If the overhead from canceled calls is impacting the app then consider changing the server streaming call to a bi-directional streaming call. In a bi-directional streaming call the client completing the request stream can be a signal to the server to end the call.
 
@@ -296,7 +295,7 @@ Using streaming calls is a good choice when:
 Be aware of the additional complexity and limitations of using streaming calls instead of unary:
 
 1. A stream can be interrupted by a service or connection error. Logic is required to restart stream if there is an error.
-2. `RequestStream.WriteAsync` is not safe for multi-threading. Only one message can be written to a stream at a time. Sending messages from multiple threads over a single stream requires a producer/consumer queue like <xref:System.Threading.Channels.Channel%601> to marshall messages.
+2. `RequestStream.WriteAsync` is not safe for multi-threading. Only one message can be written to a stream at a time. Sending messages from multiple threads over a single stream requires a producer/consumer queue like <xref:System.Threading.Channels.Channel`1> to marshall messages.
 3. A gRPC streaming method is limited to receiving one type of message and sending one type of message. For example, `rpc StreamingCall(stream RequestMessage) returns (stream ResponseMessage)` receives `RequestMessage` and sends `ResponseMessage`. Protobuf's support for unknown or conditional messages using `Any` and `oneof` can work around this limitation.
 
 ## Binary payloads
@@ -348,7 +347,7 @@ for (var i = 0; i < data.Length; i++)
 
 These properties allow code to read data directly from a `ByteString` without allocations or copies.
 
-Most .NET APIs have `ReadOnlyMemory<byte>` and `byte[]` overloads, so `ByteString.Memory` is the recommended way to use the underlying data. However, there are circumstances where an app might need to get the data as a byte array. If a byte array is required then the <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType> method can be used to get an array from a `ByteString` without allocating a new copy of the data.
+Most .NET APIs have `ReadOnlyMemory<byte>` and `byte[]` overloads, so `ByteString.Memory` is the recommended way to use the underlying data. However, there are circumstances where an app might need to get the data as a byte array. If a byte array is required then the <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray*?displayProperty=nameWithType> method can be used to get an array from a `ByteString` without allocating a new copy of the data.
 
 ```csharp
 var byteString = GetByteString();
@@ -371,7 +370,7 @@ httpRequest.Content = content;
 
 The preceding code:
 
-* Attempts to get an array from `ByteString.Memory` with <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType>.
+* Attempts to get an array from `ByteString.Memory` with <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray*?displayProperty=nameWithType>.
 * Uses the `ArraySegment<byte>` if it was successfully retrieved. The segment has a reference to the array, offset and count.
 * Otherwise, falls back to allocating a new array with `ByteString.ToByteArray()`.
 
@@ -389,7 +388,7 @@ Binary payloads are allocated as a byte array. For example, a 10 MB binary paylo
 Advice for creating high-performance applications with large binary payloads:
 
 * **Avoid** large binary payloads in gRPC messages. A byte array larger than 85,000 bytes is considered a large object. Keeping below that size avoids allocating on the large object heap.
-* **Consider** splitting large binary payloads [using gRPC streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages. For more information on how to stream files, see examples in the grpc-dotnet repository:
+* **Consider** splitting large binary payloads [using gRPC streaming](client.md#client-streaming-call). Binary data is chunked and streamed over multiple messages. For more information on how to stream files, see examples in the grpc-dotnet repository:
   *  [gRPC streaming file download](https://github.com/grpc/grpc-dotnet/tree/master/examples#downloader).
   *  [gRPC streaming file upload](https://github.com/grpc/grpc-dotnet/tree/master/examples#uploader).
 * **Consider** not using gRPC for large binary data. In ASP.NET Core, web APIs can be used alongside gRPC services. An HTTP endpoint can access the request and response stream body directly:

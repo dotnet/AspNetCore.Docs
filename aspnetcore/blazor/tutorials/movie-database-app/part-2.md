@@ -210,7 +210,7 @@ Executing the `dotnet scaffold` command adds the following tools and packages to
 * [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
 * Design time tools for EF Core.
 * The SQLite provider with the EF Core package as a dependency.
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> extension method in the `Program` file, which captures database-related exceptions. 
 
 :::zone-end
 
@@ -248,7 +248,7 @@ Executing the `dotnet scaffold` command adds the following tools and packages to
 * [`dotnet scaffold` tooling](https://devblogs.microsoft.com/dotnet/introducing-dotnet-scaffold/).
 * Design time tools for EF Core.
 * The SQLite provider with the EF Core package as a dependency.
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> extension method in the `Program` file, which captures database-related exceptions. 
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) to use the <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> extension method in the `Program` file, which captures database-related exceptions. 
 
 :::zone-end
 
@@ -284,9 +284,9 @@ If the `MoviePages` folder and assets aren't present after scaffolding, return t
 
 ASP.NET Core is built with dependency injection (DI), which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with DI during application startup. These services are injected into Razor components for use by the components.
 
-The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a Razor component for efficiently displaying data in tabular form. The scaffolder places a `QuickGrid` component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for QuickGrid to recognize EF Core-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency.
+The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is a Razor component for efficiently displaying data in tabular form. The scaffolder places a `QuickGrid` component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter*> on the service collection adds an EF Core adapter for QuickGrid to recognize EF Core-supplied <xref:System.Linq.IQueryable`1> instances and to resolve database queries asynchronously for efficiency.
 
-In combination with <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A>, <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> captures database-related exceptions that can be resolved by using Entity Framework migrations. When these exceptions occur, an HTML response is generated with details about possible actions to resolve the issue.
+In combination with <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>, <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> captures database-related exceptions that can be resolved by using Entity Framework migrations. When these exceptions occur, an HTML response is generated with details about possible actions to resolve the issue.
 
 :::zone pivot="vs"
 
@@ -432,7 +432,7 @@ The database context `BlazorWebAppMoviesContext` (`Data/BlazorWebAppMoviesContex
 * Derives from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>.
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as CRUD operations, for the `Movie` model.
-* Contains a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for the `Movie` entity set. In EF terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+* Contains a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for the `Movie` entity set. In EF terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the connection string is read from the `appsettings.json` file.
 
@@ -465,12 +465,12 @@ To resolve this problem:
 1. Deselect the checkbox for **Break when this exception type is user-handled**.
 2. Select the **Continue** button in the menu bar to continue execution.
 
-The exception isn't thrown when a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> method is executed throughout the rest of the tutorial series.
+The exception isn't thrown when a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> method is executed throughout the rest of the tutorial series.
 
 In .NET 10 or later:
 
-* Updates to the way that <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> manages navigation never result in a <xref:Microsoft.AspNetCore.Components.NavigationException>.
-* The Visual Studio debugger doesn't break when processing <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> calls with a valid endpoint.
+* Updates to the way that <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> manages navigation never result in a <xref:Microsoft.AspNetCore.Components.NavigationException>.
+* The Visual Studio debugger doesn't break when processing <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> calls with a valid endpoint.
 
 :::zone-end
 
@@ -531,7 +531,7 @@ EF Core documentation:
 * [Entity Framework Core](/ef/core/)
 * [Entity Framework Core tools reference - .NET CLI](/ef/core/cli/dotnet)
 * [Data Types](/ef/core/modeling/relational/data-types)
-* <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>: The API document includes basic information on how entities are saved and change detection.
+* <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>: The API document includes basic information on how entities are saved and change detection.
 * [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)
 * <xref:fundamentals/dependency-injection>
 * <xref:blazor/components/quickgrid>

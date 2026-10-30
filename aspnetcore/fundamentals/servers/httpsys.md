@@ -21,7 +21,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.co
 
 HTTP.sys supports the following features:
 
-* [Windows Authentication](xref:security/authentication/windowsauth)
+* [Windows Authentication](../../security/authentication/windowsauth.md)
 * Port sharing
 * HTTPS with SNI
 * HTTP/2 over TLS (Windows 10 or later)
@@ -61,7 +61,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
-If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) reports `HTTP/2`.
+If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`.
 
 HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the connection falls back to HTTP/1.1. In a future release of Windows, HTTP/2 configuration flags will be available, including the ability to disable HTTP/2 with HTTP.sys.
 
@@ -130,7 +130,7 @@ Apps that use asynchronous I/O and that may have more than one write outstanding
 
 ### Configure the ASP.NET Core app to use HTTP.sys
 
-Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys%2A> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
+Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
 :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
 
@@ -336,7 +336,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
-[IHttpSysRequestTimingFeature.TryGetTimestamp](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp%2A) retrieves the timestamp for the provided timing type:
+[IHttpSysRequestTimingFeature.TryGetTimestamp](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp*) retrieves the timestamp for the provided timing type:
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
@@ -374,7 +374,7 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 ## Related content
 
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
+* [Enable Windows Authentication with HTTP.sys](../../security/authentication/windowsauth.md#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](xref:fundamentals/index#host)
