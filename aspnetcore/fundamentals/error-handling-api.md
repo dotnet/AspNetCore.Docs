@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core APIs
 description: Learn about error handling in ASP.NET Core APIs with Minimal APIs and controller-based approaches.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/27/2026
+ms.date: 10/30/2026
 uid: fundamentals/error-handling-api
 ---
 
@@ -232,6 +232,35 @@ If you're migrating from controller-based APIs to Minimal APIs:
 2. **Replace model validation** with manual validation or custom binding
 3. **Replace exception filters** with exception handling middleware
 4. **Configure problem details** using `AddProblemDetails()` for consistent error responses
+
+### Returning multiple result types with `TypedResults`
+
+Endpoints often return different result types depending on the request outcome, such as returning a <xref:Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult> on an error or a <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> on a success. To preserve compile-time type safety and enable automatic OpenAPI metadata generation, use the union return type <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> with <xref:Microsoft.AspNetCore.Http.TypedResults>:
+
+```csharp
+app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (string? provider) =>
+{
+    if (string.IsNullOrEmpty(provider))
+    {
+        return TypedResults.Problem(
+            title: "Provider not specified",
+            detail: "A login provider is required.",
+            statusCode: StatusCodes.Status400BadRequest);
+    }
+
+    if (!IsSupportedProvider(provider))
+    {
+        return TypedResults.Problem(
+            title: "Provider not supported",
+            detail: $"The provider '{provider}' is not supported.",
+            statusCode: StatusCodes.Status501NotImplemented);
+    }
+
+    return TypedResults.Redirect($"/auth/{provider}");
+});
+```
+
+Using <xref:Microsoft.AspNetCore.Http.TypedResults> with <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> avoids throwing exceptions for expected business errors and provides strongly-typed response signatures for testability.
 
 ### When to use controller-based error handling
 
