@@ -495,7 +495,7 @@ The content root is the base path for:
 
 During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [web root](#web-root). Specify a different content root by setting its path when building the [host](#host).
 
-For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#contentroot) and [Serve static files in ASP.NET Core apps](static-files.md).
+For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#content-root) and [Serve static files in ASP.NET Core apps](static-files.md).
 
 ## Web root
 
@@ -505,7 +505,7 @@ By default, static files are only served from the web root directory and its sub
 
 In Razor `.cshtml` files, `~/` points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
-For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#webroot) and [Serve static files in ASP.NET Core apps](static-files.md).
+For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#web-root) and [Serve static files in ASP.NET Core apps](static-files.md).
 
 ## How to download a sample
 

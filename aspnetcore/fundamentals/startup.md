@@ -195,7 +195,7 @@ Most services aren't available until the `Configure` method is called.
 
 ## Multiple `Startup` classes
 
-When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the `Development` environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](environments.md#environment-based-startup-class-and-methods).
+When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the `Development` environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](environments.md#environment-specific-startup-class).
 
 ## The `ConfigureServices` method
 

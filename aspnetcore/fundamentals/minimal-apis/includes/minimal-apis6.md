@@ -45,7 +45,7 @@ The following command makes the app respond to port `7777`:
 dotnet run --urls="https://localhost:7777"
 ```
 
-If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true#kestrel)
+If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true#kestrel-endpoint-configuration)
 
 #### Read the port from environment
 
@@ -195,7 +195,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md?view=aspnetcore-6.0#default-configuration) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true)
+For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md?view=aspnetcore-6.0#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true)
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 

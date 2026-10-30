@@ -251,7 +251,7 @@ Here's an example of a filter that uses one of these interfaces:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
-For more information, see [Filters in Minimal API apps](min-api-filters.md) and [IResult implementation types](test-min-api.md#iresult-implementation-types).
+For more information, see [Filters in Minimal API apps](min-api-filters.md) and [IResult implementation types](test-min-api.md#unit-test-iresult-implementation-types).
 
 ## File result return values
 

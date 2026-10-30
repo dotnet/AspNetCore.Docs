@@ -48,7 +48,7 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 
 :::moniker range=">= aspnetcore-7.0"
 
-* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration)
+* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration-sources)
 * `ASPNETCORE_ENVIRONMENT`
 
 When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
@@ -57,14 +57,14 @@ When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIR
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration)
+* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration-sources)
 * `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> method is called. The ASP.NET Core web app project templates call `WebApplication.CreateBuilder`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration)
+* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration-sources)
 * `ASPNETCORE_ENVIRONMENT` when <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> is called. The ASP.NET Core web app project templates call `ConfigureWebHostDefaults`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 :::moniker-end
@@ -354,7 +354,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 :::moniker range="< aspnetcore-6.0"
 
-Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#environmentname).
+Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#environment-name).
 
 :::moniker-end
 

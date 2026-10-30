@@ -180,7 +180,7 @@ The following code reads `HelloKey` from configuration and displays the value at
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_configb)]
 
-For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md#default-configuration) in [Configuration in ASP.NET Core](../../configuration/index.md).
+For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md).
 
 ### Add logging providers
 

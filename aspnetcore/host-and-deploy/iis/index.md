@@ -174,7 +174,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         ...
 ```
 
-For more information on `CreateDefaultBuilder`, see [.NET Generic Host in ASP.NET Core](../../fundamentals/host/generic-host.md#default-builder-settings).
+For more information on `CreateDefaultBuilder`, see [.NET Generic Host in ASP.NET Core](../../fundamentals/host/generic-host.md#configure-default-builder-settings).
 
 ### IIS options
 
@@ -755,7 +755,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 * `UseUrls`
 * [Kestrel's Listen API](../../fundamentals/servers/kestrel.md#endpoint-configuration)
-* [Configuration](../../fundamentals/configuration/index.md) (or [command-line --urls option](../../fundamentals/host/web-host.md#override-configuration))
+* [Configuration](../../fundamentals/configuration/index.md) (or [command-line --urls option](../../fundamentals/host/web-host.md#override-the-web-host-configuration))
 
 Calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified only when running the app without IIS.
 

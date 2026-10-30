@@ -28,7 +28,7 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally in the [`Development` environment](../../../fundamentals/environments.md#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
+If the app is run locally in the [`Development` environment](../../../fundamentals/environments.md#control-code-execution-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
 
@@ -43,7 +43,7 @@ If the app is run locally in the [`Development` environment](../../../fundamenta
     }
     ```
 
-    For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md#configure-services-and-middleware-by-environment).
+    For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md#control-code-execution-by-environment).
 
   * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
 
@@ -225,7 +225,7 @@ Some values (for example, SQL connection strings) must be escaped for the config
 systemd-escape "<value-to-escape>"
 ```
 
-Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](../../../fundamentals/configuration/index.md#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
+Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](../../../fundamentals/configuration/index.md#environment-variables-configuration-provider) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
 ```
 Environment=ConnectionStrings__DefaultConnection={Connection String}
@@ -352,7 +352,7 @@ The [dotnet run](/dotnet/core/tools/dotnet-run) command uses the app's `Properti
 Configure the app to use a certificate in development for the `dotnet run` command or development environment (<kbd>F5</kbd> or <kbd>Ctrl</kbd>+<kbd>F5</kbd> in Visual Studio Code) using one of the following approaches:
 
 * [Replace the default certificate from configuration](../../../fundamentals/servers/kestrel/endpoints.md#configuration) (*Recommended*)
-* [KestrelServerOptions.ConfigureHttpsDefaults](../../../fundamentals/servers/kestrel/endpoints.md#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+* [KestrelServerOptions.ConfigureHttpsDefaults](../../../fundamentals/servers/kestrel/endpoints.md#configurehttpsdefaults)
 
 **Configure the reverse proxy for secure (HTTPS) client connections**
 
@@ -471,7 +471,7 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally in the [`Development` environment](../../../fundamentals/environments.md#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
+If the app is run locally in the [`Development` environment](../../../fundamentals/environments.md#control-code-execution-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
 
@@ -486,7 +486,7 @@ If the app is run locally in the [`Development` environment](../../../fundamenta
     }
     ```
 
-    For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md#configure-services-and-middleware-by-environment).
+    For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md#control-code-execution-by-environment).
 
   * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
 
@@ -671,7 +671,7 @@ Some values (for example, SQL connection strings) must be escaped for the config
 systemd-escape "<value-to-escape>"
 ```
 
-Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](../../../fundamentals/configuration/index.md#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
+Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](../../../fundamentals/configuration/index.md#environment-variables-configuration-provider) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
 ```
 Environment=ConnectionStrings__DefaultConnection={Connection String}

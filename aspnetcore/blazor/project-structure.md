@@ -74,13 +74,13 @@ The `App` component (`App.razor`) is the root component of the app with HTML `<h
 
 An imports file (`_Imports.razor`) in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
-The `Properties` folder of the server project holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+The `Properties` folder of the server project holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
 [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 The `wwwroot` folder of the server project is the [Web Root](../fundamentals/index.md#web-root) folder for the server project that holds the app's public static assets.
 
-The `Program.cs` file of the server project is the project's entry point that sets up the ASP.NET Core web application [host](../fundamentals/host/generic-host.md#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline:
+The `Program.cs` file of the server project is the project's entry point that sets up the ASP.NET Core web application [host](../fundamentals/host/generic-host.md#understand-the-role-of-the-host) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline:
 
 * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>. <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> adds services to support rendering Interactive Server components. <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents*> adds services to support rendering Interactive WebAssembly components.
 * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode*> configures interactive server-side rendering (interactive SSR) for the app. <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode*> configures the Interactive WebAssembly render mode for the app.
@@ -93,7 +93,7 @@ In the `.Client` project:
 
 * The `wwwroot` folder is the [Web Root](../fundamentals/index.md#web-root) folder for the `.Client` project that holds the app's public static assets.
 
-* The `Program.cs` file is the project's entry point that sets up the WebAssembly [host](../fundamentals/host/generic-host.md#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
+* The `Program.cs` file is the project's entry point that sets up the WebAssembly [host](../fundamentals/host/generic-host.md#understand-the-role-of-the-host) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
 
 Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -129,7 +129,7 @@ Project structure:
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -177,7 +177,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -224,7 +224,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -273,7 +273,7 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -351,7 +351,7 @@ Project structure:
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
   
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -388,7 +388,7 @@ Project structure:
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -446,7 +446,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -500,7 +500,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
@@ -554,7 +554,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
-* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#development-and-launchsettingsjson) in the `launchSettings.json` file.
+* `Properties` folder: Holds [development environment configuration](../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson) in the `launchSettings.json` file.
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 

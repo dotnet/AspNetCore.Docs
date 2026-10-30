@@ -55,7 +55,7 @@ Apps published with Native AOT have:
 * Reduced startup time
 * Reduce memory demand
 
-For more information and examples of the benefits that Native AOT provides, see [Benefits of using Native AOT with ASP.NET Core](../fundamentals/native-aot.md#benefits-of-using-native-aot-with-aspnet-core).
+For more information and examples of the benefits that Native AOT provides, see [Benefits of using Native AOT with ASP.NET Core](../fundamentals/native-aot.md).
 
 ## Related content
 

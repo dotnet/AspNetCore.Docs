@@ -86,7 +86,7 @@ The URLs indicate the IP or host addresses with ports and protocols that the ser
   http://*:5000;http://localhost:5001;https://hostname:5002
   ```
 
-For more information, see [Override configuration](../../host/web-host.md#override-configuration).
+For more information, see [Override configuration](../../host/web-host.md#override-the-web-host-configuration).
 
 #### HTTPS URL prefixes
 
@@ -378,6 +378,8 @@ The <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> confi
 The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate> (0), where Kestrel doesn't request or require a certificate from the client.
 
 For more information, see [Configure certificate authentication in ASP.NET Core](../../../security/authentication/certauth.md).
+
+<a name="configurehttpsdefaults"></a>
 
 #### Configure HTTPS defaults in code
 

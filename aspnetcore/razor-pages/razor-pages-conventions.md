@@ -578,7 +578,7 @@ When you need to configure custom page routes for individual pages, configure ro
 
 To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
-There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](../fundamentals/routing.md#reserved-routing-names).
+There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](../mvc/controllers/routing.md#reserved-routing-names).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 

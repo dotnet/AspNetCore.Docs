@@ -30,7 +30,7 @@ For more information, see the following resources:
 
 * [Endpoint routing in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
 * [Route parameter transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (see **Routing** section)
-* [Differences between IRouter- and endpoint-based routing](../fundamentals/routing.md?view=aspnetcore-2.2#differences-from-earlier-versions-of-routing)
+* [Differences between IRouter- and endpoint-based routing](../fundamentals/routing.md?view=aspnetcore-2.2)
 
 ## Health checks
 
@@ -62,7 +62,7 @@ For more information, see [HTTP/2 support](../fundamentals/servers/index.md?view
 In earlier versions of ASP.NET Core, Kestrel options are configured by calling `UseKestrel`. In 2.2, Kestrel options are configured by calling `ConfigureKestrel` on the host builder. This change resolves an issue with the order of `IServer` registrations for in-process hosting. For more information, see the following resources:
 
 * [Mitigate UseIIS conflict](https://github.com/aspnet/KestrelHttpServer/issues/2760)
-* [Configure Kestrel server options with ConfigureKestrel](../fundamentals/servers/kestrel.md?view=aspnetcore-2.2#how-to-use-kestrel-in-aspnet-core-apps)
+* [Configure Kestrel server options with ConfigureKestrel](../fundamentals/servers/kestrel.md?view=aspnetcore-2.2#kestrel-in-aspnet-core-apps)
 
 ## IIS in-process hosting
 

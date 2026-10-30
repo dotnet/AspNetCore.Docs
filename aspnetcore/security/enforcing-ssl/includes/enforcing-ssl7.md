@@ -58,7 +58,7 @@ A port must be available for the middleware to redirect an insecure request to H
 Specify the HTTPS port using any of the following approaches:
 
 * Set [HttpsRedirectionOptions.HttpsPort](#options).
-* Set the `https_port` [host setting](../../../fundamentals/host/generic-host.md#https_port):
+* Set the `https_port` [host setting](../../../fundamentals/host/generic-host.md#https-port):
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
@@ -66,7 +66,7 @@ Specify the HTTPS port using any of the following approaches:
 
     [!code-json[](~/security/enforcing-ssl/samples/snapshot/6.x/appsettings.json?highlight=2)]
 
-* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../../../fundamentals/host/generic-host.md#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
+* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../../../fundamentals/host/generic-host.md#server-urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * The ASP.NET Core web templates set an HTTPS URL in `Properties/launchsettings.json` for both Kestrel and IIS Express. `launchsettings.json` is only used on the local machine.
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](../../../fundamentals/servers/kestrel.md) server or [HTTP.sys](../../../fundamentals/servers/httpsys.md) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 

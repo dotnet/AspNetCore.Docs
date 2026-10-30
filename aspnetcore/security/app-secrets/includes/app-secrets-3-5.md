@@ -155,7 +155,7 @@ If the user secrets configuration source is registered, the .NET Configuration A
 
 [!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
-For more information, see [Access configuration in Startup](../../../fundamentals/configuration/index.md#access-configuration-in-startup) and [Access configuration in Razor Pages](../../../fundamentals/configuration/index.md#access-configuration-in-razor-pages).
+For more information, see [Access configuration in Startup](../../../fundamentals/configuration/index.md#access-configuration-in-the-startup-class) and [Access configuration in Razor Pages](../../../fundamentals/configuration/index.md#access-configuration-with-dependency-injection-di).
 
 ## Map secrets to a POCO
 

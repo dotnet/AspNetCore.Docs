@@ -756,7 +756,7 @@ public User? CurrentUser { get; set; } = new();
 
 ### `OwningComponentBase` now implements `IAsyncDisposable`
 
-[`OwningComponentBase`](../../../fundamentals/dependency-injection.md#utility-base-component-classes-to-manage-a-di-scope) now includes support for asynchronous disposal, improving resource management. There are new `DisposeAsync` and `DisposeAsyncCore` methods with an updated `Dispose` method to handle both synchronous and asynchronous disposal of the service scope.
+[`OwningComponentBase`](../../../blazor/fundamentals/dependency-injection.md#utility-base-component-classes-to-manage-a-di-scope) now includes support for asynchronous disposal, improving resource management. There are new `DisposeAsync` and `DisposeAsyncCore` methods with an updated `Dispose` method to handle both synchronous and asynchronous disposal of the service scope.
 
 ### New `InputHidden` component to handle hidden input fields in forms
 

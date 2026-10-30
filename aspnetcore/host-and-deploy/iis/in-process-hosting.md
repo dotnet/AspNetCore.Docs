@@ -65,7 +65,7 @@ To configure IIS options, include a service configuration for <xref:Microsoft.As
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../../fundamentals/servers/kestrel.md) server. For in-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../../fundamentals/servers/kestrel.md) server. For in-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -158,7 +158,7 @@ services.Configure<IISServerOptions>(options =>
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../../fundamentals/servers/kestrel.md) server. For in-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../../fundamentals/servers/kestrel.md) server. For in-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.

@@ -201,7 +201,7 @@ The `CreateSlimBuilder` method doesn't support the following features that are s
     * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*>
     * [IIS Integration](../../../host-and-deploy/iis/index.md)
 * Kestrel configuration
-    * [HTTPS endpoints in Kestrel](../../servers/kestrel/endpoints.md#https)
+    * [HTTPS endpoints in Kestrel](../../servers/kestrel/endpoints.md#configure-https)
     * [Quic (HTTP/3)](../../servers/kestrel/http3.md#http3-benefits)
 * [Regex and alpha constraints used in routing](https://github.com/dotnet/aspnetcore/issues/46142)
 

@@ -80,7 +80,7 @@ If the app shuts down unexpectedly (for example, the app's process fails), `Stop
 
 To extend the default five second shutdown timeout, set:
 
-* <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> when using Generic Host. For more information, see [.NET Generic Host in ASP.NET Core](../../generic-host.md#shutdowntimeout).
+* <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> when using Generic Host. For more information, see [.NET Generic Host in ASP.NET Core](../../generic-host.md#shutdown-timeout).
 * Shutdown timeout host configuration setting when using Web Host. For more information, see [ASP.NET Core Web Host](../../web-host.md#shutdown-timeout).
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.

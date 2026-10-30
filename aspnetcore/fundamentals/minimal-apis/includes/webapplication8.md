@@ -198,7 +198,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md#default-configuration) in [Configuration in ASP.NET Core](../../configuration/index.md).
+For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md).
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 

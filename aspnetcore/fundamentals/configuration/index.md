@@ -24,7 +24,7 @@ For additional Blazor configuration guidance, which adds to or supersedes the gu
 
 This article primarily pertains to app configuration. Other types of configuration, such as launch settings files and the `web.config` file, are mentioned here, but their primary documentation is elsewhere:
 
-* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see [ASP.NET Core runtime environments](../environments.md#development). Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
+* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see [ASP.NET Core runtime environments](../environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson). Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
 * `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md) and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md).
 
 For more information on migrating app configuration from earlier versions of ASP.NET, see [Migrate configuration to ASP.NET Core](../../migration/fx-to-core/examples/configuration.md).
@@ -67,7 +67,7 @@ ASP.NET Core web apps call <xref:Microsoft.AspNetCore.Builder.WebApplication.Cre
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-For more information, see [.NET Generic Host in ASP.NET Core](../host/generic-host.md#default-builder-settings).
+For more information, see [.NET Generic Host in ASP.NET Core](../host/generic-host.md#configure-default-builder-settings).
 
 :::moniker-end
 
@@ -1096,7 +1096,7 @@ Kestrel-specific endpoint configuration overrides all [cross-server](../servers/
 
 * [`UseUrls`](../host/web-host.md#server-urls).
 * `--urls` on the [command line](index.md#command-line).
-* The `ASPNETCORE_URLS` [environment variable](index.md#environment-variables).
+* The `ASPNETCORE_URLS` [environment variable](index.md#environment-variables-configuration-provider).
 
 Consider the following Kestrel configuration section in an `appsettings.json` file:
 

@@ -263,7 +263,7 @@ public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
 }
 ```
 
-For more information, see [App startup in ASP.NET Core](startup.md) and [Access configuration in Startup](configuration/index.md#access-configuration-in-startup).
+For more information, see [App startup in ASP.NET Core](startup.md) and [Access configuration in Startup](configuration/index.md#access-configuration-in-the-startup-class).
 
 :::moniker-end
 
@@ -808,7 +808,7 @@ using (var serviceScope = app.Services.CreateScope())
 For guidance on scope validation, see the following resources:
 
 * [.NET dependency injection: Scope validation](/dotnet/core/extensions/dependency-injection/overview#scope-validation)
-* [ASP.NET Core Web Host: Scope validation](host/web-host.md#scope-validation)
+* [ASP.NET Core Web Host: Scope validation](host/web-host.md#configure-scope-validation)
 
 ## Request Services
 

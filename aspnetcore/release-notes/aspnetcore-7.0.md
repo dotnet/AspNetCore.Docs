@@ -99,7 +99,7 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#bindar).
 
-For more information, see [Add endpoint summary or description](../fundamentals/minimal-apis.md#add-endpoint-summary-or-description).
+For more information, see [Add endpoint summary or description](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true#add-endpoint-summary-or-description).
 
 ### Bind the request body as a `Stream` or `PipeReader`
 
@@ -193,7 +193,7 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-For more information, see [Problem details service](../fundamentals/error-handling-api.md#pds7).
+For more information, see [Problem details service](../fundamentals/error-handling-api.md#problem-details).
 
 ### Route groups
 

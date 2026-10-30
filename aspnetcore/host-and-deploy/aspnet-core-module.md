@@ -62,7 +62,7 @@ ASP.NET Core apps default to the in-process hosting model.
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../fundamentals/servers/kestrel.md) server. For in-process, [CreateDefaultBuilder](../fundamentals/host/generic-host.md#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../fundamentals/servers/kestrel.md) server. For in-process, [CreateDefaultBuilder](../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -115,7 +115,7 @@ The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and 
 
 [Kestrel](../fundamentals/servers/kestrel.md) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [`CreateDefaultBuilder`](../fundamentals/host/generic-host.md#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [`CreateDefaultBuilder`](../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.

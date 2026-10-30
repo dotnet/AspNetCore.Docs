@@ -542,7 +542,7 @@ Specify URLs using the:
 
 The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
-For more information on these approaches, see [Server URLs](../../../host/web-host.md#server-urls) and [Override configuration](../../../host/web-host.md#override-configuration).
+For more information on these approaches, see [Server URLs](../../../host/web-host.md#server-urls) and [Override configuration](../../../host/web-host.md#override-the-web-host-configuration).
 
 A development certificate is created:
 

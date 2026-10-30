@@ -14,7 +14,7 @@ This article explains how to host and deploy server-side Blazor apps (Blazor Web
 
 ## Host configuration values
 
-Server-side Blazor apps can accept [Generic Host configuration values](../../../fundamentals/host/generic-host.md#host-configuration).
+Server-side Blazor apps can accept [Generic Host configuration values](../../../fundamentals/host/generic-host.md#set-up-host-configuration).
 
 ## Deployment
 

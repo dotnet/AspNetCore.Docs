@@ -1500,7 +1500,7 @@ In the following example:
 
 * <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
-* The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see [Dependency injection in ASP.NET Core](dependency-injection.md#call-services-from-main).
+* The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see [Dependency injection in ASP.NET Core](dependency-injection.md#resolve-a-service-at-app-startup).
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,22":::
 

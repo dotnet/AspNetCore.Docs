@@ -23,9 +23,9 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Configuration Validation**<br>`ConfigurationValidationModule`                                  | Yes | |
 | **HTTP Errors**<br>`CustomErrorModule`                                                           | No  | [Status code pages middleware](../../fundamentals/error-handling.md#usestatuscodepages) |
 | **Custom Logging**<br>`CustomLoggingModule`                                                      | Yes | |
-| **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default files middleware](../../fundamentals/static-files.md#serve-a-default-document) |
+| **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default files middleware](../../fundamentals/static-files.md#serve-default-documents) |
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |
-| **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory-browsing middleware](../../fundamentals/static-files.md#enable-directory-browsing) |
+| **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory-browsing middleware](../../fundamentals/static-files.md#directory-browsing) |
 | **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response compression middleware](xref:performance/response-compression) |
 | **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](../../fundamentals/logging/index.md#dotnet-trace-tooling) |
 | **File Caching**<br>`FileCacheModule`                                                            | No  | [Response caching middleware](xref:performance/caching/middleware) |
