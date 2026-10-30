@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR .NET client
 ai-usage: ai-assisted
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 10/27/2026
+ms.date: 10/30/2026
 uid: signalr/dotnet-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR .NET client, so I can connect to a SignalR hub and use hub and client methods.
@@ -42,6 +42,27 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 [!code-csharp[Build hub connection](dotnet-client/samples/SignalRChatClient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
+## Stop and dispose a connection
+
+<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> implements <xref:System.IAsyncDisposable>. To gracefully stop and dispose a connection and release its underlying resources, timers, and active transport, adopt ***either*** of the following approaches:
+
+* Call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.DisposeAsync*>:
+
+  ```csharp
+  await connection.DisposeAsync();
+  ```
+
+* Scope the connection with [`await using`](/dotnet/csharp/language-reference/operators/await#asynchronous-streams-and-disposables):
+
+  ```csharp
+  await using var connection = new HubConnectionBuilder()
+      .WithUrl("https://example.com/chathub")
+      .Build();
+
+  await connection.StartAsync();
+  ```
+
+Calling <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.DisposeAsync*> stops the connection if it's currently running, cancels pending hub invocations, stops any active reconnection timers, and cleans up socket or HTTP resources. It isn't necessary to call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.StopAsync*> separately before calling <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.DisposeAsync*>.
 
 ## Handle lost connection
 
