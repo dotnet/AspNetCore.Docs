@@ -159,7 +159,7 @@ curl -i -H "Authorization: Bearer {TOKEN}" https://localhost:{PORT}/swagger/v1/s
 
 where the `{TOKEN}` placeholder is the JWT bearer token and the `{PORT}` placeholder is the port number.
 
-For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
+For more information on testing with JWT tokens, see [Generate tokens with dotnet user-jwts](../security/authentication/jwt-authn.md).
 
 ## Generate an XML documentation file at compile time
 

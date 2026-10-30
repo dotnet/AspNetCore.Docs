@@ -7,7 +7,7 @@
 
 HTTP.sys supports the following features:
 
-* [Windows Authentication](xref:security/authentication/windowsauth)
+* [Windows Authentication](../../../../security/authentication/windowsauth.md)
 * Port sharing
 * HTTPS with SNI
 * HTTP/2 over TLS (Windows 10 or later)
@@ -277,7 +277,7 @@ Requirements to run gRPC with HTTP.sys:
 
 HTTP.sys supports the following features:
 
-* [Windows Authentication](xref:security/authentication/windowsauth)
+* [Windows Authentication](../../../../security/authentication/windowsauth.md)
 * Port sharing
 * HTTPS with SNI
 * HTTP/2 over TLS (Windows 10 or later)

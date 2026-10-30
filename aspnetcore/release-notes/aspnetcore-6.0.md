@@ -453,7 +453,7 @@ The [ASP.NET Core SignalR Client package](https://www.nuget.org/packages/Microso
 
 ### Source Code Analysis
 
-Several .NET compiler platform analyzers were added that inspect application code for problems such as incorrect middleware configuration or order, routing conflicts, etc. For more information, see <xref:diagnostics/code-analysis>.
+Several .NET compiler platform analyzers were added that inspect application code for problems such as incorrect middleware configuration or order, routing conflicts, etc. For more information, see [Diagnostic Code Analysis in ASP.NET Core Apps](../diagnostics/code-analysis.md).
 
 ### Web app template improvements
 

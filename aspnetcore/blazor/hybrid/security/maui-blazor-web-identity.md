@@ -141,7 +141,7 @@ private async Task LoginUser()
 ```
 
 > [!NOTE]
-> This sample only implements Login and Logout pages on the MAUI client, but you can build Register and other management pages against the exposed Identity endpoints for more functionality. For more information on Identity endpoints, see <xref:security/authentication/identity/spa>.
+> This sample only implements Login and Logout pages on the MAUI client, but you can build Register and other management pages against the exposed Identity endpoints for more functionality. For more information on Identity endpoints, see [Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md).
 
 ### MAUI Authentication State Provider (`MauiAuthenticationStateProvider`)
 

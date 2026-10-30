@@ -56,9 +56,9 @@ The `DefaultApplicationModelProvider` establishes many of the default behaviors 
 
 Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel>, which in turn references <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel>, <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PropertyModel>, and <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel> instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that may change in the future.
 
-The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> and <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> attributes. For more information, see <xref:security/authorization/simple>.
+The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> and <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> attributes. For more information, see [Simple authorization in ASP.NET Core](../../security/authorization/simple.md).
 
-The `CorsApplicationModelProvider` implements behavior associated with <xref:Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute> and <xref:Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute>. For more information, see <xref:security/cors>.
+The `CorsApplicationModelProvider` implements behavior associated with <xref:Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute> and <xref:Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute>. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../security/cors.md).
 
 Information on the framework's internal providers described in this section aren't available via the [.NET API browser](/dotnet/api/). However, the providers may be inspected in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore). Use GitHub search to find the providers by name and select the version of the source with the **Switch branches/tags** dropdown list.
 

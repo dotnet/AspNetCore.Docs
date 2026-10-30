@@ -213,6 +213,6 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:security/authentication/azure-active-directory/index>
+* [Microsoft identity platform and Microsoft Entra ID with ASP.NET Core](../../../security/authentication/azure-active-directory/index.md)
 * [Microsoft identity platform documentation](/entra/identity-platform/)
 * [Security best practices for application properties in Microsoft Entra ID](/entra/identity-platform/security-best-practices-for-app-registration)

@@ -682,8 +682,8 @@ The Blazor Web App project template provides out-of-the-box passkey management a
 
 For more information, see the following articles:
 
-* <xref:security/authentication/passkeys/index>
-* <xref:security/authentication/passkeys/blazor>
+* [Enable Web Authentication API (WebAuthn) passkeys](../../../security/authentication/passkeys/index.md)
+* [Implement passkeys in ASP.NET Core Blazor Web Apps](../../../security/authentication/passkeys/blazor.md)
 
 ### Circuit state persistence
 

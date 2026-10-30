@@ -90,9 +90,9 @@ The following code creates and starts a connection. The hub name is case insensi
 
 Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
 
-For [cross domain requests](xref:signalr/security#cross-origin-resource-sharing), the client code ***must*** use an absolute URL rather than a relative URL. When you use cross domain requests, change `.withUrl("/chathub")` to `.withUrl("https://{App domain name}/chathub")`.
+For [cross domain requests](security.md#cross-origin-resource-sharing), the client code ***must*** use an absolute URL rather than a relative URL. When you use cross domain requests, change `.withUrl("/chathub")` to `.withUrl("https://{App domain name}/chathub")`.
 
-To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable [CORS](xref:security/cors):
+To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](../security/cors.md) are disabled by default. To allow a cross-origin request, enable [CORS](../security/cors.md):
 
 [!code-csharp[](javascript-client/samples/6.x/SignalRChat/Program.cs?highlight=8-18,35-36,39)]
 
@@ -195,7 +195,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 
 Because the connection looks entirely new to the server, a new `connectionId` is provided to the `onreconnected` callback.
 
-The `onreconnected` callback's `connectionId` parameter is ***undefined*** if the `HubConnection` is configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+The `onreconnected` callback's `connectionId` parameter is ***undefined*** if the `HubConnection` is configured to [skip negotiation](configuration.md#configure-client-options).
 
 ```javascript
 connection.onreconnected(connectionId => {
@@ -356,7 +356,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 Each refresh calls `accessTokenFactory` again to obtain a new token. To refresh immediately, for example after the app obtains updated claims, call `connection.refreshAuthentication()`.
 
-For the refresh options, the success and failure handlers, and the server configuration that enables the feature, see <xref:signalr/authn-and-authz#authentication-refresh>.
+For the refresh options, the success and failure handlers, and the server configuration that enables the feature, see [SignalR authentication and authorization](authn-and-authz.md#authentication-refresh).
 
 :::moniker-end
 
@@ -430,7 +430,7 @@ Typically, browsers load connections from the same domain as the requested page.
 > [!IMPORTANT]
 > The client code must use an absolute URL instead of a relative URL. Change `.withUrl("/chathub")` to `.withUrl("https://myappurl/chathub")`.
 
-To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
+To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](../security/cors.md) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
 
 [!code-csharp[](javascript-client/samples/3.x/SignalRChat/Startup.cs?highlight=16-23,40)]
 
@@ -526,7 +526,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 Since the connection looks entirely new to the server, a new `connectionId` will be provided to the `onreconnected` callback.
 
 > [!WARNING]
-> The `onreconnected` callback's `connectionId` parameter will be undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+> The `onreconnected` callback's `connectionId` parameter will be undefined if the `HubConnection` was configured to [skip negotiation](configuration.md#configure-client-options).
 
 ```javascript
 connection.onreconnected(connectionId => {
@@ -674,7 +674,7 @@ For the preceding code example:
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Cross-Origin Requests (CORS)](xref:security/cors)
+* [Cross-Origin Requests (CORS)](../security/cors.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
 * [Troubleshoot connection errors](xref:signalr/troubleshoot)
 

@@ -16,7 +16,7 @@ This article explains how to implement support for [EU General Data Protection R
 
 In the `Program` file:
 
-* Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration to require user consent for non-essential cookies and set the same-site policy to none. For more information, see <xref:security/samesite>.
+* Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration to require user consent for non-essential cookies and set the same-site policy to none. For more information, see [Work with SameSite cookies in ASP.NET Core](../../security/samesite.md).
 * Add the default implementation for the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> service by calling <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*>.
 
 ```csharp

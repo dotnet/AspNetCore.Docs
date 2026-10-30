@@ -12,7 +12,7 @@ When an identity is created for an app user upon signing into an app, the identi
 
 This article uses Razor Pages examples and focuses on Razor Pages authorization scenarios. For Blazor and MVC guidance, see the following resources:
 
-* <xref:security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
 * <xref:mvc/security/authorization/claims>
 
 Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see <xref:razor-pages/razor-pages-conventions#page-model-action-conventions>.
@@ -229,7 +229,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+For more information, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#use-a-func-to-fulfill-a-policy).
 
 ## Evaluate multiple policies
 
@@ -239,7 +239,7 @@ If multiple policies are applied at the controller and action levels, ***all*** 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/7.x/WebAll/Pages/X/Salary.cshtml.cs" id="snippet" highlight="1,2":::
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](../../../security/authorization/policies.md).
 
 ## Claim case sensitivity
 

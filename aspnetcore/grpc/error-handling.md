@@ -3,7 +3,6 @@ title: Error handling with gRPC on .NET
 description: Learn how to do error handling with gRPC on .NET.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/09/2024
-uid: grpc/error-handling
 ---
 # Error handling with gRPC
 
@@ -80,7 +79,7 @@ public class GreeterService : GreeterBase
 
 Thrown exception types that aren't `RpcException` also cause the call to fail, but with an `UNKNOWN` status code and a generic message `Exception was thrown by handler`.
 
-`Exception was thrown by handler` is sent to the client rather than the exception message to prevent exposing potentially sensitive information. To see a more descriptive error message in a development environment, configure [`EnableDetailedErrors`](xref:grpc/configuration#configure-services-options).
+`Exception was thrown by handler` is sent to the client rather than the exception message to prevent exposing potentially sensitive information. To see a more descriptive error message in a development environment, configure [`EnableDetailedErrors`](configuration.md#configure-services-options).
 
 ## Handle client errors
 
@@ -129,7 +128,7 @@ gRPC on .NET supports a rich error model using the [`Grpc.StatusProto`](https://
 
 Rich errors are created from `Google.Rpc.Status`. This type is ***different*** from `Grpc.Core.Status`.
 
-`Google.Rpc.Status` has status, message, and details fields. The most important field is details, which is a repeating field of [`Any`](xref:grpc/protobuf#any) values. Details are where complex payloads are added.
+`Google.Rpc.Status` has status, message, and details fields. The most important field is details, which is a repeating field of [`Any`](protobuf.md#any) values. Details are where complex payloads are added.
 
 Although any message type can be used as a payload, it's recommended to use one of the [standard error payloads](https://cloud.google.com/apis/design/errors#error_model):
 
@@ -211,6 +210,6 @@ The preceding code:
 
 ## Related content
 
-* <xref:grpc/services>
-* <xref:grpc/client>
+* [Create gRPC services and methods](services.md)
+* [Call gRPC services with the .NET client](client.md)
 * [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html)

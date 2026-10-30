@@ -77,8 +77,8 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
-* [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
+* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*)
+* [MapGrpcService\<TService> for gRPC](../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
 
@@ -327,7 +327,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 > The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
 > Endpoint routing in ASP.NET Core:
-> 
+>
 > * Doesn't have the concept of routes.
 > * Doesn't provide ordering guarantees. All endpoints are processed at once.
 
@@ -405,7 +405,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters must be separated by a literal value. For example:
 
-   `{controller=Home}{action=Index}` 
+   `{controller=Home}{action=Index}`
 
 isn't a valid route, because there's no literal value between `{controller}` and `{action}`. Route parameters must have a name and may have additional attributes specified.
 
@@ -855,13 +855,13 @@ In the preceding example, the `AddRelatedProduct` action extracts the `id` route
 
 The following links provide information on how to configure endpoint metadata:
 
-* [Enable Cors with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing)
+* [Enable Cors with endpoint routing](../security/cors.md#enable-cors-with-endpoint-routing)
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
-* [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
+* [Test authentication with the [Authorize] attribute](../security/authentication/identity.md#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
-* [Select a scheme with an `[Authorize]` attribute](xref:security/authorization/authorize-with-a-specific-scheme#select-a-scheme-with-an-authorize-attribute)
-* [Apply policies using an `[Authorize]` attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
-* <xref:security/authorization/roles>
+* [Select a scheme with an `[Authorize]` attribute](../security/authorization/authorize-with-a-specific-scheme.md#select-a-scheme-with-an-authorize-attribute)
+* [Apply policies in MVC and Razor Pages apps](../security/authorization/policies.md#apply-policies-in-mvc-and-razor-pages-apps)
+* [Role-based authorization in ASP.NET Core](../security/authorization/roles.md)
 
 <a name="hostmatch"></a>
 
@@ -926,7 +926,7 @@ The following code uses a more compact approach to the preceding timing code:
 The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
 * Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.
-* Complex segments (`{x}-{y}-{z}`): 
+* Complex segments (`{x}-{y}-{z}`):
   * Are significantly more expensive than parsing a regular URL path segment.
   * Result in many more substrings being allocated.
 * Synchronous data access: Many complex apps have database access as part of their routing. Use extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext>, which are asynchronous.
@@ -1156,7 +1156,7 @@ As an example of this guideline, consider the authorization middleware. A config
 * Endpoints without authorization metadata that produces a policy.
 * Requests that don't match an endpoint.
 
-This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../security/authorization/policies.md#default-and-fallback-policies).
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

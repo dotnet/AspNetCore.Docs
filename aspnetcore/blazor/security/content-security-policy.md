@@ -9,7 +9,7 @@ uid: blazor/security/content-security-policy
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against certain types of malicious attacks, such as [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) and [clickjacking](https://developer.mozilla.org/docs/Web/Security/Attacks/Clickjacking) attacks. XSS is a security vulnerability where a cyberattacker places one or more malicious client-side scripts into an app's rendered content. In a clickjacking attack, a user is tricked into interactions with a decoy website that has your app embedded within it.
+This article explains how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against certain types of malicious attacks, such as [Cross-Site Scripting (XSS)](../../security/cross-site-scripting.md) and [clickjacking](https://developer.mozilla.org/docs/Web/Security/Attacks/Clickjacking) attacks. XSS is a security vulnerability where a cyberattacker places one or more malicious client-side scripts into an app's rendered content. In a clickjacking attack, a user is tricked into interactions with a decoy website that has your app embedded within it.
 
 A CSP helps protect against these types of attacks by informing the browser of valid:
 
@@ -423,7 +423,7 @@ Subresource Integrity (SRI) enables browsers to confirm that fetched resources a
 In the following example for a Blazor Server app, an integrity is calculated using a third-party tool and specified for the Blazor script (`blazor.server.js`) and CSP. The Blazor script doesn't dynamically change in this scenario and has a stable SHA hash, so you can hardcode the `integrity` attribute's value.
 
 > [!WARNING]
-> Set the [`crossorigin` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) on a subresource that's loaded from a different origin without [Cross-Origin Resource Sharing (CORS)](xref:security/cors). If the app's origin is different from where a subresource loads, an `Access-Control-Allow-Origin` header is required that allows the resource to be shared with the requesting origin *or else* the `crossorigin` attribute must be applied to the subresource's tag in the app. Otherwise, the browser adopts the 'fail-open' policy for the subresource, which means the subresource is loaded without checking its integrity.
+> Set the [`crossorigin` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) on a subresource that's loaded from a different origin without [Cross-Origin Resource Sharing (CORS)](../../security/cors.md). If the app's origin is different from where a subresource loads, an `Access-Control-Allow-Origin` header is required that allows the resource to be shared with the requesting origin *or else* the `crossorigin` attribute must be applied to the subresource's tag in the app. Otherwise, the browser adopts the 'fail-open' policy for the subresource, which means the subresource is loaded without checking its integrity.
 >
 > The `crossorigin` attribute isn't added to the Blazor `<script>` tag in the following example because the Blazor script is loaded from the app's origin.
 >

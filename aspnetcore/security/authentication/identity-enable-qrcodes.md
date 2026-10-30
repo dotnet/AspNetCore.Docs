@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover how to enable QR code generation for time-based one-time password (TOTP) authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/26/2026
-uid: security/authentication/identity-enable-qrcodes
 
 # customer intent: As an ASP.NET developer, I want to enable QR code generation for TOTP authenticator apps, so I can support two-factor authentication.
 ---
@@ -27,7 +26,7 @@ The ASP.NET Core web app templates support authenticators but don't provide supp
 
 :::moniker-end
 
-Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External sign ins are protected by whatever mechanism the external authentication provider supports. For example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. When the default templates require 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
+Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](social/google-logins.md) or [Facebook](social/facebook-logins.md). External sign ins are protected by whatever mechanism the external authentication provider supports. For example, the [Microsoft](social/microsoft-logins.md) authentication provider requires a hardware key or another 2FA approach. When the default templates require 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
 
 If you're working with Blazor in ASP.NET Core 8.0 or later, you can find similar guidance in the following articles:
 
@@ -40,7 +39,7 @@ The following instructions use the `qrcode.js` file from the [https://davidshimj
 
 1. Download the ['qrcode.js' JavaScript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
-1. Follow the instructions in [Scaffold Identity](xref:security/authentication/scaffold-identity) to generate the `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml` file.
+1. Follow the instructions in [Scaffold Identity](scaffold-identity.md) to generate the `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml` file.
 
 1. In the `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml` file, locate the `Scripts` section at the end of the file:
 

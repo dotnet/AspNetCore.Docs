@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/26/2026
-uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 
@@ -82,13 +81,13 @@ While `SameSite` cookies mitigate many CSRF attacks, they should be used as part
 
 :::moniker range=">= aspnetcore-11.0"
 
-Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) provides the most comprehensive protection. For more information, see [Work with SameSite cookies in ASP.NET Core](samesite.md).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens provides the most comprehensive protection. For more information, see [Work with SameSite cookies in ASP.NET Core](samesite.md).
 
 :::moniker-end
 
@@ -122,7 +121,7 @@ Modern browsers attach [Fetch Metadata](https://developer.mozilla.org/docs/Web/H
 
 ASP.NET Core ships an automatic CSRF protection middleware that's enabled by default in apps built with `WebApplication.CreateBuilder`. Unlike the [token-based antiforgery system](#antiforgery-in-aspnet-core), this middleware doesn't issue or validate tokens. Instead, it inspects the `Sec-Fetch-Site` and `Origin` [Fetch metadata headers](#fetch-metadata-headers) and records a validation verdict on the request. Components that process submitted form data enforce that verdict, rejecting cross-origin form posts that aren't explicitly trusted.
 
-For most apps, no code changes are required: same-origin browser requests, safe HTTP methods, and non-browser clients (`curl`, server-to-server, mobile apps) all pass through unaffected. The middleware primarily affects apps that accept cross-origin form posts from a browser, such as a site that posts a form to an API on a different origin. Those scenarios need to either configure [CORS](xref:security/cors) to declare the trusted origin or opt the endpoint out.
+For most apps, no code changes are required: same-origin browser requests, safe HTTP methods, and non-browser clients (`curl`, server-to-server, mobile apps) all pass through unaffected. The middleware primarily affects apps that accept cross-origin form posts from a browser, such as a site that posts a form to an API on a different origin. Those scenarios need to either configure [CORS](cors.md) to declare the trusted origin or opt the endpoint out.
 
 This middleware is *additive* to the token-based antiforgery system. The two protections coexist and can both be active on the same endpoint. For a comparison of when each one applies, see [Interaction with token-based antiforgery](#interaction-with-token-based-antiforgery).
 
@@ -183,7 +182,7 @@ The middleware integrates with the existing antiforgery model:
 
 The most common scenario that requires action is a browser-based client that submits a cross-origin form—for example, a site at `https://app.contoso.com` posting a form to an API at `https://api.contoso.com`. Such form posts are denied by default because `Sec-Fetch-Site` is `same-site` or `cross-site` rather than `same-origin`, and the form consumer enforces that verdict with a `400 - Bad Request`.
 
-The CSRF middleware doesn't introduce its own trust list. It reuses the same CORS policy that the [CORS middleware](xref:security/cors) resolves for the endpoint: if that policy allows the request's `Origin` *and* the policy has `.AllowCredentials()` configured, the CSRF middleware records an allowed verdict for the request.
+The CSRF middleware doesn't introduce its own trust list. It reuses the same CORS policy that the [CORS middleware](cors.md) resolves for the endpoint: if that policy allows the request's `Origin` *and* the policy has `.AllowCredentials()` configured, the CSRF middleware records an allowed verdict for the request.
 
 Allowing an origin with `WithOrigins` does not, by itself, permit browser JavaScript at that origin to read responses to credentialed requests. `.AllowCredentials()` grants that permission. Omitting it does not guarantee that requests arrive without credentials, so CORS alone is not a defense against CSRF. The CSRF middleware requires both an allowed origin and `.AllowCredentials()` as an explicit trust signal. Otherwise, the request falls through to the remaining `Sec-Fetch-Site` and Origin-vs-Host checks.
 
@@ -234,7 +233,7 @@ app.MapPost("/widgets", ([FromForm] Widget w) => Results.Created($"/widgets/{w.I
 
 `[DisableCors]` on an endpoint isn't a CSRF opt-out. It skips the CORS-derived trust step, and the request still has to satisfy the `Sec-Fetch-Site` and Origin-vs-Host rules. To opt out of CSRF protection, see [Opting an endpoint out](#opting-an-endpoint-out).
 
-For details on configuring CORS itself—`AddCors`, `AddDefaultPolicy`, `AddPolicy`, `WithOrigins`, and the rest of the policy builder API—see <xref:security/cors>.
+For details on configuring CORS itself—`AddCors`, `AddDefaultPolicy`, `AddPolicy`, `WithOrigins`, and the rest of the policy builder API—see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](cors.md).
 
 ### Opting an endpoint out
 
@@ -360,7 +359,7 @@ The two CSRF defenses target different layers and are designed to coexist. They 
 | Introduced | ASP.NET Core 2.0+ | .NET 11 |
 | Activation | Opt-in via `app.UseAntiforgery()` (or implicitly by `AddMvc` / `MapRazorPages` / `AddRazorComponents`) | Auto-injected by `WebApplication.CreateBuilder` |
 | Validates | Synchronized token (form field + cookie pair) | `Sec-Fetch-Site` / `Origin` headers |
-| Requires | <xref:security/data-protection/introduction> for token encryption | No tokens, no state |
+| Requires | [ASP.NET Core Data Protection Overview](data-protection/introduction.md) for token encryption | No tokens, no state |
 | Browser scope | All browsers that send cookies | All modern browsers; `Origin` fallback for legacy |
 | Per-endpoint opt-out | `.DisableAntiforgery()` / `[IgnoreAntiforgeryToken]` | Same — both honor the same metadata |
 
@@ -451,7 +450,7 @@ The token-based antiforgery system described in the rest of this article predate
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
 Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
@@ -661,7 +660,7 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 ## Antiforgery with Minimal APIs
 
-Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI, and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> to add the Antiforgery Middleware to the request processing pipeline.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
+Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI, and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> to add the Antiforgery Middleware to the request processing pipeline.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](anti-request-forgery.md).
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3,7":::
 
@@ -858,7 +857,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
 Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
@@ -1145,7 +1144,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
 Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
@@ -1412,7 +1411,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 ## ASP.NET Core antiforgery configuration
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
 Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
 

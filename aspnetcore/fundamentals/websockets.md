@@ -50,7 +50,7 @@ WebSockets over HTTP/2 is supported for:
 * ASP.NET Core SignalR JavaScript client
 * ASP.NET Core SignalR with Blazor WebAssembly
 
-For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSockets.
+For some apps, [gRPC on .NET](../grpc/index.md) provides an alternative to WebSockets.
 
 ## Prerequisites
 

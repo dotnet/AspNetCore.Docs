@@ -467,7 +467,7 @@ For a complex JavaScript or TypeScript client build, use a separate JavaScript p
 
 :::moniker range=">= aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
+When an app adopts a [fallback authorization policy](../security/authorization/policies.md#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
 
 ```csharp
 app.MapStaticAssets().Add(endpointBuilder =>
@@ -478,7 +478,7 @@ app.MapStaticAssets().Add(endpointBuilder =>
 
 :::moniker range="< aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
+When an app adopts a [fallback authorization policy](../security/authorization/policies.md#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
 
 * No authorization checks are performed on the static files.
 * Static files served by the static file middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
@@ -523,7 +523,7 @@ In `Startup.Configure` after the call to <xref:Microsoft.AspNetCore.Builder.Auth
 
 :::moniker-end
 
-In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../security/authorization/policies.md#default-and-fallback-policies).
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 

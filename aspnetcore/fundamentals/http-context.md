@@ -120,7 +120,7 @@ public class MyHub : Hub
 
 ## Access HttpContext from gRPC methods
 
-To use `HttpContext` from [gRPC](xref:grpc/aspnetcore) methods, see [Resolve HttpContext in gRPC methods](xref:grpc/aspnetcore#resolve-httpcontext-in-grpc-methods).
+To use `HttpContext` from [gRPC](../grpc/aspnetcore.md) methods, see [Resolve HttpContext in gRPC methods](../grpc/aspnetcore.md#resolve-httpcontext-in-grpc-methods).
 
 ## Access HttpContext from custom components
 
@@ -269,4 +269,4 @@ If you want to access the `IHttpContextAccessor` or `HttpContext` in Razor compo
 
 - [Use HttpContext in ASP.NET Core](xref:fundamentals/use-httpcontext)
 - [Razor Pages architecture and concepts in ASP.NET Core](xref:razor-pages/index)
-- [gRPC services with ASP.NET Core](xref:grpc/aspnetcore)
+- [gRPC services with ASP.NET Core](../grpc/aspnetcore.md)

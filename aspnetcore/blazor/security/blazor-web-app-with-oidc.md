@@ -101,7 +101,7 @@ Additional Entra configuration guidance for specific settings is provided later 
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](../../security/app-secrets.md) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
 The Blazor server project hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
@@ -414,7 +414,7 @@ Sample solution features:
 
 * Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
 
-* Weather data is handled by a Minimal API endpoint (`/weather-forecast`) in the `Program` file (`Program.cs`) of the `MinimalApiJwt` project. The endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization).
+* Weather data is handled by a Minimal API endpoint (`/weather-forecast`) in the `Program` file (`Program.cs`) of the `MinimalApiJwt` project. The endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action. For more information on requiring authorization across the app via an [authorization policy](../../security/authorization/policies.md) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](../../security/authentication/configure-oidc-web-authentication.md#force-authorization).
 
 * The app securely calls a web API for weather data:
 
@@ -461,7 +461,7 @@ Additional Entra configuration guidance for specific settings is provided later 
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](../../security/app-secrets.md) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
 The Blazor server project hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
@@ -810,7 +810,7 @@ Additional Entra configuration guidance for specific settings is provided later 
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](../../security/app-secrets.md) to store the Blazor server project's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
 The Blazor server project hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the app's project file):
 
@@ -950,7 +950,7 @@ builder.Services.AddHttpClient("ExternalApi",
       .AddHttpMessageHandler<TokenHandler>();
 ```
 
-The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](xref:security/authorization/policies) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](xref:security/authentication/configure-oidc-web-authentication#force-authorization).
+The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](../../security/authorization/policies.md) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](../../security/authentication/configure-oidc-web-authentication.md#force-authorization).
 
 The `ExternalApi` HTTP client is used to make a request for weather data to the secure web API. In the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of `Weather.razor`:
 
@@ -1500,11 +1500,11 @@ For more information, see the [Duende Access Token Management documentation for 
 
 Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
 
-We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits). For more information, see the following articles:
+We also recommend using a shared [Data Protection](../../security/data-protection/introduction.md) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits). For more information, see the following articles:
 
-* <xref:security/data-protection/configuration/overview>
-* <xref:security/data-protection/implementation/key-storage-providers>
-* <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
+* [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
+* [Key encryption at rest in Windows and Azure using ASP.NET Core](../../security/data-protection/implementation/key-encryption-at-rest.md)
 
 ## Troubleshoot
 

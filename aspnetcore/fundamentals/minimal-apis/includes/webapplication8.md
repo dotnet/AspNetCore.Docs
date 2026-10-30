@@ -100,13 +100,13 @@ ASPNETCORE_HTTPS_PORTS=5000
 For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 > [!NOTE]
-> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](../../../security/enforcing-ssl.md#https-redirection-middleware-usehttpsredirection).
 
 ### Specify HTTPS with development certificate
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cert)]
 
-For more information on the development certificate, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust).
+For more information on the development certificate, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](../../../security/enforcing-ssl.md#trust).
 
 ### Specify HTTPS using a custom certificate
 

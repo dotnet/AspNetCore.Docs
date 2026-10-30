@@ -41,7 +41,7 @@ The .NET gRPC client requires the service to have a trusted certificate. The fol
 > Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
 > ---> System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.
 
-You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](../../../security/enforcing-ssl.md#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
@@ -55,7 +55,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001",
 var client = new Greet.GreeterClient(channel);
 ```
 
-The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
+The [gRPC client factory](../../clientfactory.md) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
 
 ```csharp
 builder.Services
@@ -98,7 +98,7 @@ There are some additional requirements to call insecure gRPC services depending 
 The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 > [!IMPORTANT]
-> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
@@ -128,7 +128,7 @@ When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
-> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
+> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](../../security.md#transport-security).
 
 ## gRPC C# assets are not code generated from `.proto` files
 
@@ -137,7 +137,7 @@ gRPC code generation of concrete clients and service base classes requires proto
 * `.proto` files you want to use in the `<Protobuf>` item group. [Imported `.proto` files](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) must be referenced by the project.
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
-For more information on generating gRPC C# assets, see <xref:grpc/basics>.
+For more information on generating gRPC C# assets, see [gRPC Services with C#](../../basics.md).
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
@@ -164,7 +164,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 You can workaround this issue by:
 
 1. Create a new .NET class library project.
-2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
+2. In the new project, add references to enable [C# code generation from `.proto` files](../../basics.md#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
         * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/)
@@ -283,7 +283,7 @@ Alternatively, a client factory can be configured with `Http3Handler` by using <
 
 ## Building gRPC on Alpine Linux
 
-The `Grpc.Tools` package [generates .NET types from `.proto` files](xref:grpc/basics#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by the native binaries in `Grpc.Tools`, such as Alpine Linux.
+The `Grpc.Tools` package [generates .NET types from `.proto` files](../../basics.md#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by the native binaries in `Grpc.Tools`, such as Alpine Linux.
 
 ### Generate code ahead of time
 
@@ -381,7 +381,7 @@ The .NET gRPC client requires the service to have a trusted certificate. The fol
 > Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
 > ---> System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.
 
-You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](../../../security/enforcing-ssl.md#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
@@ -395,7 +395,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001",
 var client = new Greet.GreeterClient(channel);
 ```
 
-The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
+The [gRPC client factory](../../clientfactory.md) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
 
 ```csharp
 services
@@ -438,7 +438,7 @@ There are some additional requirements to call insecure gRPC services depending 
 The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 > [!IMPORTANT]
-> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
@@ -470,7 +470,7 @@ When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
-> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
+> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](../../security.md#transport-security).
 
 ## gRPC C# assets are not code generated from `.proto` files
 
@@ -479,7 +479,7 @@ gRPC code generation of concrete clients and service base classes requires proto
 * `.proto` files you want to use in the `<Protobuf>` item group. [Imported `.proto` files](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) must be referenced by the project.
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
-For more information on generating gRPC C# assets, see <xref:grpc/basics>.
+For more information on generating gRPC C# assets, see [gRPC Services with C#](../../basics.md).
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
@@ -506,7 +506,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 You can workaround this issue by:
 
 1. Create a new .NET class library project.
-2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
+2. In the new project, add references to enable [C# code generation from `.proto` files](../../basics.md#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
         * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/)
@@ -630,7 +630,7 @@ The .NET gRPC client requires the service to have a trusted certificate. The fol
 > Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
 > ---> System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.
 
-You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](../../../security/enforcing-ssl.md#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
@@ -644,7 +644,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001",
 var client = new Greet.GreeterClient(channel);
 ```
 
-The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
+The [gRPC client factory](../../clientfactory.md) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
 
 ```csharp
 services
@@ -687,7 +687,7 @@ There are some additional requirements to call insecure gRPC services depending 
 The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 > [!IMPORTANT]
-> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
@@ -719,7 +719,7 @@ When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET client](#call-insecure-grpc-services-with-net-client).
 
 > [!WARNING]
-> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
+> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](../../security.md#transport-security).
 
 ## gRPC C# assets are not code generated from `.proto` files
 
@@ -728,7 +728,7 @@ gRPC code generation of concrete clients and service base classes requires proto
 * `.proto` files you want to use in the `<Protobuf>` item group. [Imported `.proto` files](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) must be referenced by the project.
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
-For more information on generating gRPC C# assets, see <xref:grpc/basics>.
+For more information on generating gRPC C# assets, see [gRPC Services with C#](../../basics.md).
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
@@ -755,7 +755,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 You can workaround this issue by:
 
 1. Create a new .NET class library project.
-2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
+2. In the new project, add references to enable [C# code generation from `.proto` files](../../basics.md#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
         * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/)

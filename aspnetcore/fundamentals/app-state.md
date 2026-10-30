@@ -41,7 +41,7 @@ Because cookies are subject to tampering, they must be validated by the app. Coo
 
 Cookies are often used for personalization, where content is customized for a known user. The user is only identified and not authenticated in most cases. The cookie can store the user's name, account name, or unique user ID such as a GUID. The cookie can be used to access the user's personalized settings, such as their preferred website background color.
 
-See the [European Union General Data Protection Regulations (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection) when issuing cookies and dealing with privacy concerns. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr).
+See the [European Union General Data Protection Regulations (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection) when issuing cookies and dealing with privacy concerns. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](../security/gdpr.md).
 
 ## Session state
 
@@ -65,7 +65,7 @@ Session state exhibits the following behaviors:
   * Where the data doesn't require permanent storage across sessions.
 * Session data is deleted either when the <xref:Microsoft.AspNetCore.Http.ISession.Clear*?displayProperty=nameWithType> implementation is called or when the session expires.
 * There's no default mechanism to inform app code that a client browser has been closed or when the session cookie is deleted or expired on the client.
-* Session state cookies aren't marked essential by default. Session state isn't functional unless tracking is permitted by the site visitor. For more information, see <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
+* Session state cookies aren't marked essential by default. Session state isn't functional unless tracking is permitted by the site visitor. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](../security/gdpr.md#tempdata-provider-and-session-state-cookies-arent-essential).
 * **Note**: There is no replacement for the cookieless session feature from the ASP.NET Framework because it's considered insecure and can lead to session fixation attacks.
 
 > [!WARNING]
@@ -74,7 +74,7 @@ Session state exhibits the following behaviors:
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
 * Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
-* The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+* The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 ### Configure session state
 
@@ -212,7 +212,7 @@ Choosing a TempData provider involves several considerations, such as:
 
 * Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app beyond the size of the data.
 * Does the app use TempData only sparingly for relatively small amounts of data, up to 500 bytes? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection. For more information, see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 Most web clients such as web browsers enforce limits on the maximum size of each cookie and the total number of cookies. When using the cookie TempData provider, verify the app won't exceed [these limits](http://www.faqs.org/rfcs/rfc2965.html). Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
 
@@ -228,7 +228,7 @@ To enable the session-based TempData provider, use the <xref:Microsoft.Extension
 
 A limited amount of data can be passed from one request to another by adding it to the new request's query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. Because URL query strings are public, never use query strings for sensitive data.
 
-In addition to unintended sharing, including data in query strings can expose the app to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. Any preserved session state must protect against CSRF attacks. For more information, see <xref:security/anti-request-forgery>.
+In addition to unintended sharing, including data in query strings can expose the app to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. Any preserved session state must protect against CSRF attacks. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md).
 
 ## Hidden fields
 
@@ -315,7 +315,7 @@ Because cookies are subject to tampering, they must be validated by the app. Coo
 
 Cookies are often used for personalization, where content is customized for a known user. The user is only identified and not authenticated in most cases. The cookie can store the user's name, account name, or unique user ID such as a GUID. The cookie can be used to access the user's personalized settings, such as their preferred website background color.
 
-See the [European Union General Data Protection Regulations (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection) when issuing cookies and dealing with privacy concerns. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr).
+See the [European Union General Data Protection Regulations (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection) when issuing cookies and dealing with privacy concerns. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](../security/gdpr.md).
 
 ## Session state
 
@@ -339,7 +339,7 @@ Session state exhibits the following behaviors:
   * Where the data doesn't require permanent storage across sessions.
 * Session data is deleted either when the <xref:Microsoft.AspNetCore.Http.ISession.Clear*?displayProperty=nameWithType> implementation is called or when the session expires.
 * There's no default mechanism to inform app code that a client browser has been closed or when the session cookie is deleted or expired on the client.
-* Session state cookies aren't marked essential by default. Session state isn't functional unless tracking is permitted by the site visitor. For more information, see <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
+* Session state cookies aren't marked essential by default. Session state isn't functional unless tracking is permitted by the site visitor. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](../security/gdpr.md#tempdata-provider-and-session-state-cookies-arent-essential).
 
 > [!WARNING]
 > Don't store sensitive data in session state. The user might not close the browser and clear the session cookie. Some browsers maintain valid session cookies across browser windows. A session might not be restricted to a single user. The next user might continue to browse the app with the same session cookie.
@@ -347,7 +347,7 @@ Session state exhibits the following behaviors:
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
 * Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
-* The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+* The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 ### Configure session state
 
@@ -483,7 +483,7 @@ Choosing a TempData provider involves several considerations, such as:
 
 * Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app beyond the size of the data.
 * Does the app use TempData only sparingly for relatively small amounts of data, up to 500 bytes? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
+* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md)).
 
 Most web clients such as web browsers enforce limits on the maximum size of each cookie and the total number of cookies. When using the cookie TempData provider, verify the app won't exceed [these limits](http://www.faqs.org/rfcs/rfc2965.html). Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
 
@@ -499,7 +499,7 @@ To enable the session-based TempData provider, use the <xref:Microsoft.Extension
 
 A limited amount of data can be passed from one request to another by adding it to the new request's query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. Because URL query strings are public, never use query strings for sensitive data.
 
-In addition to unintended sharing, including data in query strings can expose the app to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. Any preserved session state must protect against CSRF attacks. For more information, see <xref:security/anti-request-forgery>.
+In addition to unintended sharing, including data in query strings can expose the app to [Cross-Site Request Forgery (CSRF)](https://owasp.org/www-community/attacks/csrf) attacks. Any preserved session state must protect against CSRF attacks. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md).
 
 ## Hidden fields
 

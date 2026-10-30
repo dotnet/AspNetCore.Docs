@@ -12,7 +12,7 @@ When an identity is created for an app user upon signing into an app, the identi
 
 This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razor Pages guidance, see the following resources:
 
-* <xref:security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
 * <xref:razor-pages/security/authorization/claims>
 
 ## Sample app
@@ -154,7 +154,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+For more information, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#use-a-func-to-fulfill-a-policy).
 
 ## Evaluate multiple policies
 
@@ -166,7 +166,7 @@ If multiple policies are applied at the controller and action levels, ***all*** 
 
 In the preceding example, any identity that fulfills the `EmployeeOnly` policy can access the `Payslip` action, as that policy is enforced on the controller. However, in order to call the `UpdateSalary` action, the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](../../../security/authorization/policies.md).
 
 ## Claim case sensitivity
 

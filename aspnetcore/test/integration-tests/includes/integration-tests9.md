@@ -86,7 +86,7 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 
 :::zone-end
 
-By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
+By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](../../../security/gdpr.md) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](../../../security/gdpr.md#essential-cookies).
 
 <a name="asap7"></a>
 
@@ -167,7 +167,7 @@ Web host configuration can be created independently of the test classes by inher
 
    :::zone-end
 
-Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
+Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](../../../security/data-protection/introduction.md). In order to arrange for a test's POST request, the test app must:
 
 1. Make a request for the page.
 1. Parse the antiforgery cookie and request validation token from the response.

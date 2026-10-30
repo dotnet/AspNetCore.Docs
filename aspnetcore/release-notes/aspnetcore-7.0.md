@@ -15,7 +15,7 @@ The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middle
 
 ## Authentication uses single scheme as DefaultScheme
 
-As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](xref:security/authentication/index#defaultscheme).
+As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](../security/authentication/index.md#defaultscheme).
 
 ## MVC and Razor pages
 
@@ -37,7 +37,7 @@ In ASP.NET Core versions earlier than 7, the cookie consent validation uses the 
 
 [!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
 
-For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
+For more information, see [Customize the cookie consent value](../security/gdpr.md#customize-the-cookie-consent-value).
 
 ## API controllers
 
@@ -209,7 +209,7 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 * ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
 * Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
 
-For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/json-transcoding?view=aspnetcore-7.0).
+For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../grpc/json-transcoding.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### gRPC health checks in ASP.NET Core
 
@@ -217,14 +217,14 @@ The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc
 
 gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
 
-For more information, see <xref:grpc/health-checks>.
+For more information, see [gRPC health checks in ASP.NET Core](../grpc/health-checks.md).
 
 ### Improved call credentials support
 
 Call credentials are the recommended way to configure a gRPC client to send an auth token to the server. gRPC clients support two new features to make call credentials easier to use:
 
 * Support for call credentials with plaintext connections. Previously, a gRPC call only sent call credentials if the connection was secured with TLS. A new setting on `GrpcChannelOptions`, called `UnsafeUseInsecureChannelCallCredentials`, allows this behavior to be customized. There are security implications to not securing a connection with TLS.
-* A new method called `AddCallCredentials` is available with the [gRPC client factory](xref:grpc/clientfactory). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
+* A new method called `AddCallCredentials` is available with the [gRPC client factory](../grpc/clientfactory.md). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
 
 The following code configures the gRPC client factory to send `Authorization` metadata:
 
@@ -244,7 +244,7 @@ builder.Services
     });
 ```
 
-For more information, see [Configure a bearer token with the gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+For more information, see [Configure a bearer token with the gRPC client factory](../grpc/authn-and-authz.md#bearer-token-with-grpc-client-factory).
 
 ## SignalR
 
@@ -673,7 +673,7 @@ The Angular project template has been updated to Angular 14. The React project t
 
 ### Manage JSON Web Tokens in development with dotnet user-jwts
 
-The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt?view=aspnetcore-7.0&preserve-view=true).
+The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](../security/authentication/jwt-authn.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### Support for additional request headers in W3CLogger
 

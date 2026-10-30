@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: JWT bearer tokens protect ASP.NET Core APIs from unauthorized calls. See how to add AddJwtBearer, set validation parameters, and support multiple issuer schemes.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/18/2026
-uid: security/authentication/configure-jwt-bearer-authentication
 ---
 # Configure JWT bearer authentication in ASP.NET Core
 
@@ -146,7 +145,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBea
 
 Explicitly defining the parameters is not required. The definitions depends on the access token claim values and the secure token server used to validate the access token. You should use the default values if possible. 
 
-See [Mapping claims](xref:security/authentication/claims#claims-namespaces-default-namespaces) MapInboundClaims details.
+See [Mapping claims](claims.md#claims-namespaces-default-namespaces) MapInboundClaims details.
 
 ```csharp
 builder.Services.AddAuthentication()
@@ -174,7 +173,7 @@ builder.Services.AddAuthentication()
 APIs often need to accommodate access tokens from various issuers. You can support multiple token issuers in an API by using the following approaches:
 
 * **Separate APIs**: Create distinct APIs with dedicated authentication schemes for each issuer.
-* [AddPolicyScheme](xref:security/authentication/policyschemes): Define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties, such as the issuer or claims. This approach offers greater flexibility within a single API.
+* [AddPolicyScheme](policyschemes.md): Define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties, such as the issuer or claims. This approach offers greater flexibility within a single API.
 
 ### Require authentication for all API endpoints
 
@@ -189,7 +188,7 @@ builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(requireAuthPolicy);
 ```
 
-The default policy applies to `[Authorize]` without a policy name and requires an authenticated user unless the app changes it. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+The default policy applies to `[Authorize]` without a policy name and requires an authenticated user unless the app changes it. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../authorization/policies.md#default-and-fallback-policies).
 
 You can also use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to force authentication. If you use multiple schemes, set the bearer scheme as the default authentication scheme or specify it by using `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
 
@@ -322,7 +321,7 @@ When implementing a Swagger UI for an API, you should normally not deploy the UI
 
 Refer to the following document:
 
-[Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims)
+[Mapping, customizing, and transforming claims in ASP.NET Core](claims.md)
 
 ## Standards
 

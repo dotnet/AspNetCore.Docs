@@ -4,7 +4,6 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.custom: sfi-ropc-nochange
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 05/13/2026
-uid: security/app-secrets
 
 # customer intent: As an ASP.NET Core developer, I want to store and retrieve sensitive information during development of my app, so I can ensure my app secrets remain secure.
 ---
@@ -17,11 +16,11 @@ uid: security/app-secrets
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](key-vault-configuration.md).
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-For more information on authentication for deployed test and production apps, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+For more information on authentication for deployed test and production apps, see [Secure authentication flows](index.md#secure-authentication-flows).
 
 To use user secrets in a .NET console app, see [GitHub dotnet/entityframework.docs issue #3939](https://github.com/dotnet/EntityFramework.Docs/issues/3939#issuecomment-1191978026).
 
@@ -349,7 +348,7 @@ class Program
 * [GitHub dotnet/aspnetcore.docs issue #30378 (Debugging under Internet Information Services (IIS))](https://github.com/dotnet/AspNetCore.Docs/issues/30378)
 * [GitHub dotnet/aspnetcore.docs issue #16328 (Running in IIS)](https://github.com/dotnet/AspNetCore.Docs/issues/16328)
 * <xref:fundamentals/configuration/index>
-* <xref:security/key-vault-configuration>
+* [Azure Key Vault configuration provider](key-vault-configuration.md)
 
 :::moniker-end
 

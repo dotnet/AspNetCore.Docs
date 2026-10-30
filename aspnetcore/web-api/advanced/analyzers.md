@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the ASP.NET Core MVC web API analyzers package.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/06/2026
-uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers
 
@@ -15,7 +14,7 @@ uid: web-api/advanced/analyzers
 
 :::moniker-end
 
-ASP.NET Core provides an MVC analyzers package intended for use with web API projects. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [web API conventions](xref:web-api/advanced/conventions).
+ASP.NET Core provides an MVC analyzers package intended for use with web API projects. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [web API conventions](conventions.md).
 
 The analyzers package notifies you of any controller action that:
 
@@ -52,6 +51,6 @@ Analyzers don't work with library projects or projects referencing `Sdk="Microso
 
 ## Related content
 
-* <xref:web-api/advanced/conventions>
+* [Use web API conventions](conventions.md)
 * <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:web-api/index>
+* [Create web APIs with ASP.NET Core](../index.md)

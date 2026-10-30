@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/13/2026
-uid: security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
 
@@ -104,7 +103,7 @@ In the preceding example, the localhost audience matches the localhost address s
 
 ## Demonstration
 
-Test the sample with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
+Test the sample with [`dotnet user-jwts`](../authentication/jwt-authn.md) and curl.
 
 From the project's folder in a command shell, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
 

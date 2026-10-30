@@ -5,9 +5,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](../../key-vault-configuration.md).
 
-For more information on authentication for test and production environments, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+For more information on authentication for test and production environments, see [Secure authentication flows](../../index.md#secure-authentication-flows).
 
 ## Environment variables
 
@@ -306,6 +306,6 @@ class Program
 
 * See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/30378) and [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
 * <xref:fundamentals/configuration/index>
-* <xref:security/key-vault-configuration>
+* [Azure Key Vault configuration provider](../../key-vault-configuration.md)
 
 :::moniker-end

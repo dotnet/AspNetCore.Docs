@@ -668,7 +668,7 @@ A hosted Blazor solution based on the [Blazor WebAssembly project template](xref
 
 :::moniker-end
 
-For more information, see <xref:security/cors> and the sample app's HTTP Request Tester component (`Components/HTTPRequestTester.razor`).
+For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md) and the sample app's HTTP Request Tester component (`Components/HTTPRequestTester.razor`).
 
 ## Handle token request errors
 
@@ -1275,7 +1275,7 @@ In the preceding example:
 
 When authenticating and authorizing a hosted Blazor WebAssembly app with a third-party provider, there are several options available for authenticating the user. Which one you choose depends on your scenario.
 
-For more information, see <xref:security/authentication/social/additional-claims>.
+For more information, see [Persist additional claims and tokens from external providers in ASP.NET Core](../../../security/authentication/social/additional-claims.md).
 
 :::moniker-end
 
@@ -1351,9 +1351,9 @@ The list of claims in the ID token changes for v2.0 endpoints. Microsoft documen
 
 ## Configure and use gRPC in components
 
-To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
+To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](../../../grpc/index.md):
 
-* Enable gRPC-Web on the server. For more information, see <xref:grpc/grpcweb>.
+* Enable gRPC-Web on the server. For more information, see [gRPC-Web in ASP.NET Core gRPC apps](../../../grpc/grpcweb.md).
 * Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (the `Program` file).
 
 :::moniker range=">= aspnetcore-8.0"
@@ -1433,7 +1433,7 @@ Server response: <strong>@serverResponse</strong>
 
 To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
-For more information, see <xref:grpc/grpcweb>.
+For more information, see [gRPC-Web in ASP.NET Core gRPC apps](../../../grpc/grpcweb.md).
 
 ## Replace the `AuthenticationService` implementation
 

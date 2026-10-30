@@ -56,7 +56,7 @@ services.Configure<IISOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) topic. |
+| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](../../security/authentication/windowsauth.md) topic. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 

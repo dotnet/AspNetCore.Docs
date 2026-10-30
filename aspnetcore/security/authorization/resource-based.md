@@ -3,7 +3,6 @@ title: Resource-based authorization in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to implement resource-based authorization in an ASP.NET Core app when an [Authorize] attribute doesn't suffice.
 ms.date: 07/21/2026
-uid: security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core
 
@@ -77,7 +76,7 @@ protected override async Task OnParametersSetAsync()
 
 ## Create a resource-based handler
 
-Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see <xref:security/authorization/policies#requirements-and-policy-registration>.
+Creating a resource-based authorization handler is similar to [creating a plain requirements handler](policies.md#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see [Policy-based authorization in ASP.NET Core](policies.md#requirements-and-policy-registration).
 
 The following demonstration `Document` class is used:
 
@@ -156,7 +155,7 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 :::moniker-end
 
-For more information on creating authorization policies, see <xref:security/authorization/policies>.
+For more information on creating authorization policies, see [Policy-based authorization in ASP.NET Core](policies.md).
 
 The following `AccessDocument` component calls an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload to determine whether the current user is allowed to view a document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name>).
 

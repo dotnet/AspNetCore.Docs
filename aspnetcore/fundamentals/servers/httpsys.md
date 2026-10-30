@@ -21,7 +21,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.co
 
 HTTP.sys supports the following features:
 
-* [Windows Authentication](xref:security/authentication/windowsauth)
+* [Windows Authentication](../../security/authentication/windowsauth.md)
 * Port sharing
 * HTTPS with SNI
 * HTTP/2 over TLS (Windows 10 or later)
@@ -374,7 +374,7 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 ## Related content
 
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
+* [Enable Windows Authentication with HTTP.sys](../../security/authentication/windowsauth.md#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](xref:fundamentals/index#host)

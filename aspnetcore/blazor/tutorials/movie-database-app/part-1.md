@@ -288,7 +288,7 @@ Next, the HTTP request pipeline is configured.
 When the app isn't running in the `Development` environment:
 
 * Exception handler middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>) processes errors and displays a custom error page.
-* [HTTP Strict Transport Security (HSTS) protocol middleware](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
+* [HTTP Strict Transport Security (HSTS) protocol middleware](../../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -363,7 +363,7 @@ app.Run();
 
 ## Related content
 
-When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see <xref:security/enforcing-ssl>.
+When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md).
 
 ## Next steps
 
