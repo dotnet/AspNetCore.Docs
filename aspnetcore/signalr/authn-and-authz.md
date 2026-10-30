@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/22/2026
-uid: signalr/authn-and-authz
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -15,14 +14,14 @@ This article describes how to authenticate and authorize users in ASP.NET Core a
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections can be associated with a single user.
+SignalR can be used with [ASP.NET Core authentication](../security/authentication/identity.md) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](groups.md). Multiple connections can be associated with a single user.
 
 The following code is an example that uses SignalR and ASP.NET Core authentication:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet1)]
 
 > [!NOTE]
-> If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvents` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set the [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) option.
+> If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvents` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set the [CloseOnAuthenticationExpiration](configuration.md#configure-advanced-http-options) option.
 
 ### User and role changes during the connection lifetime
 
@@ -40,7 +39,7 @@ On the next long-poll request, the authentication middleware might authenticate 
 
 To enforce updated authorization on an active connection, take one of the following approaches:
 
-* Close affected connections so that clients reconnect and reauthenticate. For bearer token authentication, the [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) option closes connections when the authentication token expires.
+* Close affected connections so that clients reconnect and reauthenticate. For bearer token authentication, the [CloseOnAuthenticationExpiration](configuration.md#configure-advanced-http-options) option closes connections when the authentication token expires.
 * Perform authorization checks in hub methods against current data, such as the user's current roles or claims from a data store, instead of relying only on the cached principal.
 
 :::moniker-end
@@ -73,11 +72,11 @@ Cookies are a browser-specific way to send access tokens, but nonbrowser clients
 
 The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. For transports that make multiple HTTP requests (for example, `LongPolling` and `ServerSentEvents`), authentication runs on each request, but SignalR caches the resulting principal for the lifetime of the connection. As with cookie authentication, SignalR doesn't automatically revalidate the user during the life of the connection to check for token revocation or for changes to the user's roles or claims. For more information, see [User and role changes during the connection lifetime](#user-and-role-changes-during-the-connection-lifetime).
 
-In the JavaScript client, the token can be provided by using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
+In the JavaScript client, the token can be provided by using the [accessTokenFactory](configuration.md#configure-bearer-authentication) option.
 
 [!code-typescript[Configure Access Token](authn-and-authz/samples/wwwroot/js/chat.ts?range=52-55)]
 
-In the .NET client, there's a similar [AccessTokenProvider](xref:signalr/configuration#configure-bearer-authentication) property that can be used to configure the token:
+In the .NET client, there's a similar [AccessTokenProvider](configuration.md#configure-bearer-authentication) property that can be used to configure the token:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -97,20 +96,20 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured by using the [JSON web token (JWT) Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*):
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet2&highlight=25-60)]
 
 > [!NOTE]
-> The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When you use HTTPS, the TLS connection secures the query string values. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR uses headers to transmit tokens in environments that support them, such as the .NET and Java clients.
+> The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When you use HTTPS, the TLS connection secures the query string values. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](security.md). SignalR uses headers to transmit tokens in environments that support them, such as the .NET and Java clients.
 
 #### Identity Server JWT authentication
 
-When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+When using Duende IdentityServer, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions`1> service to the project:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/ConfigureJwtBearerOptions.cs)]
 
-Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> method):
+Register the service after adding services for authentication (with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> method) and the authentication handler for Identity Server (with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*> method):
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_i&highlight=7-11)]
 
@@ -120,7 +119,7 @@ Register the service after adding services for authentication (with the <xref:Mi
 
 ### Authentication refresh
 
-A SignalR connection can outlive the access token that established it. When [CloseOnAuthenticationExpiration](xref:signalr/configuration#configure-advanced-http-options) is enabled, the server closes the connection after the token expires, and the client must reconnect to continue. Messages sent during the gap are missed, and group and user routing are disrupted until the client reconnects.
+A SignalR connection can outlive the access token that established it. When [CloseOnAuthenticationExpiration](configuration.md#configure-advanced-http-options) is enabled, the server closes the connection after the token expires, and the client must reconnect to continue. Messages sent during the gap are missed, and group and user routing are disrupted until the client reconnects.
 
 Authentication refresh, available in .NET 11 and later, lets a client update the credentials for an active connection without reconnecting. The server re-authenticates the refresh request through the normal endpoint authorization pipeline and replaces the connection's <xref:System.Security.Claims.ClaimsPrincipal> in place, as long as the refreshed principal maps to the same SignalR user.
 
@@ -327,7 +326,7 @@ Cookies are specific to browsers. Sending them from other kinds of clients adds 
 
 ### Windows authentication
 
-If [Windows authentication](xref:security/authentication/windowsauth) is configured in the app, SignalR can use that identity to secure hubs. However, to send messages to individual users, add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
+If [Windows authentication](../security/authentication/windowsauth.md) is configured in the app, SignalR can use that identity to secure hubs. However, to send messages to individual users, add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user for use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
@@ -342,7 +341,7 @@ Register this component in the `Program.cs` file:
 
 [!code-csharp[](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
-In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
+In the .NET client, Windows authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -382,7 +381,7 @@ By default, an unauthenticated user can call all methods in a hub. To require au
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
 
-The constructor arguments and properties of the `[Authorize]` attribute can be used to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, with the custom authorization policy called `MyAuthorizationPolicy`, only users matching that policy can access the hub by using the following code:
+The constructor arguments and properties of the `[Authorize]` attribute can be used to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, with the custom authorization policy called `MyAuthorizationPolicy`, only users matching that policy can access the hub by using the following code:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Hubs/ChatPolicyHub.cs?name=snippet&highlight=1)]
 
@@ -443,7 +442,7 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 
 :::moniker range=">= aspnetcore-11.0"
 
-As an alternative to registering the `DomainRestricted` policy and referencing it with `[Authorize("DomainRestricted")]`, you can apply an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attribute directly to a hub or hub method. SignalR combines the attribute's requirements into the effective policy for the method invocation. For more information, see <xref:security/authorization/iard>.
+As an alternative to registering the `DomainRestricted` policy and referencing it with `[Authorize("DomainRestricted")]`, you can apply an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attribute directly to a hub or hub method. SignalR combines the attribute's requirements into the effective policy for the method invocation. For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md).
 
 :::moniker-end
 
@@ -452,7 +451,7 @@ As an alternative to registering the `DomainRestricted` policy and referencing i
 ## Additional resources
 
 * [Bearer token authentication in ASP.NET Core (blog)](https://devblogs.microsoft.com/dotnet/bearer-token-authentication-in-asp-net-core/)
-* [Resource-based authorization](xref:security/authorization/resource-based)
+* [Resource-based authorization](../security/authorization/resource-based.md)
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
 
 :::moniker-end
@@ -463,7 +462,7 @@ As an alternative to registering the `DomainRestricted` policy and referencing i
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
+SignalR can be used with [ASP.NET Core authentication](../security/authentication/identity.md) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](groups.md). Multiple connections may be associated with a single user.
 
 The following is an example of `Startup.Configure` which uses SignalR and ASP.NET Core authentication:
 
@@ -500,11 +499,11 @@ Cookies are a browser-specific way to send access tokens, but non-browser client
 
 The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. During the life of the connection, the server doesn't automatically revalidate to check for token revocation.
 
-In the JavaScript client, the token can be provided using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
+In the JavaScript client, the token can be provided using the [accessTokenFactory](configuration.md#configure-bearer-authentication) option.
 
 [!code-typescript[Configure Access Token](authn-and-authz/samples/wwwroot/js/chat.ts?range=52-55)]
 
-In the .NET client, there's a similar [AccessTokenProvider](xref:signalr/configuration#configure-bearer-authentication) property that can be used to configure the token:
+In the .NET client, there's a similar [AccessTokenProvider](configuration.md#configure-bearer-authentication) property that can be used to configure the token:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -524,16 +523,16 @@ The query string fallback is a browser API constraint, not a limitation of Signa
 
 #### Built-in JWT authentication
 
-On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
+On the server, bearer token authentication is configured using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/samples/Startup.cs?name=snippet)]
 
 > [!NOTE]
-> The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When using HTTPS, query string values are secured by the TLS connection. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR uses headers to transmit tokens in environments which support them (such as the .NET and Java clients).
+> The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When using HTTPS, query string values are secured by the TLS connection. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](security.md). SignalR uses headers to transmit tokens in environments which support them (such as the .NET and Java clients).
 
 #### Identity Server JWT authentication
 
-When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions`1> service to the project:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -563,7 +562,7 @@ public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
 }
 ```
 
-Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>):
+Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*>):
 
 ```csharp
 services.AddAuthentication()
@@ -579,7 +578,7 @@ Cookies are specific to browsers. Sending them from other kinds of clients adds 
 
 ### Windows authentication
 
-If [Windows authentication](xref:security/authentication/windowsauth) is configured in your app, SignalR can use that identity to secure hubs. However, to send messages to individual users, you need to add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
+If [Windows authentication](../security/authentication/windowsauth.md) is configured in your app, SignalR can use that identity to secure hubs. However, to send messages to individual users, you need to add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
@@ -602,7 +601,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
+In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -642,7 +641,7 @@ By default, all methods in a hub can be called by an unauthenticated user. To re
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
 
-You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the hub using the following code:
+You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the hub using the following code:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
@@ -743,6 +742,6 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 ## Additional resources
 
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
-* [Resource-based authorization](xref:security/authorization/resource-based)
+* [Resource-based authorization](../security/authorization/resource-based.md)
 
 :::moniker-end

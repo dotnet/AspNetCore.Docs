@@ -45,7 +45,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
    Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 
-1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
+1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication type** to store users within the app using ASP.NET Core's [Identity](../../../security/authentication/identity.md) system.
 
 1. Select the **ASP.NET Core Hosted** checkbox.
 
@@ -53,7 +53,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 # [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
 
-To create a new Blazor WebAssembly project with an authentication mechanism in an empty folder, specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system:
+To create a new Blazor WebAssembly project with an authentication mechanism in an empty folder, specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](../../../security/authentication/identity.md) system:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -ho -o {PROJECT NAME}
@@ -107,14 +107,14 @@ The following services are registered.
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
+  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization*> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
 
     ```csharp
     builder.Services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by Identity Server:
+  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*> helper method that configures the app to validate JWT tokens produced by Identity Server:
 
     ```csharp
     builder.Services.AddAuthentication()
@@ -141,14 +141,14 @@ The following services are registered.
 
     [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
+  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization*> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by Identity Server:
+  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*> helper method that configures the app to validate JWT tokens produced by Identity Server:
 
     ```csharp
     services.AddAuthentication()
@@ -201,13 +201,13 @@ The following services are registered.
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [Identity Server](https://docs.duendesoftware.com) for ASP.NET Core scenarios. Identity Server is a powerful and extensible framework for handling app security concerns. Identity Server exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of Identity Server is available to customize authentication to suit an app's requirements.
+The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization*> helper method configures [Identity Server](https://docs.duendesoftware.com) for ASP.NET Core scenarios. Identity Server is a powerful and extensible framework for handling app security concerns. Identity Server exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of Identity Server is available to customize authentication to suit an app's requirements.
 
 ### Add an authentication handler for an API that coexists with Identity Server
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space under `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
+The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space under `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
 
 * Registers an API resource with Identity Server with a default scope of `{PROJECT NAME}API`, where the `{PROJECT NAME}` placeholder is the project's name at app creation.
 * Configures the JWT bearer token middleware to validate tokens issued by Identity Server for the app.
@@ -216,15 +216,15 @@ The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.Ad
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-In the `WeatherForecastController` (`Controllers/WeatherForecastController.cs`), the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) is applied to the class. The attribute indicates that the user must be authorized based on the default policy to access the resource. The default authorization policy is configured to use the default authentication scheme, which is set up by <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>. The helper method configures <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> as the default handler for requests to the app.
+In the `WeatherForecastController` (`Controllers/WeatherForecastController.cs`), the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) is applied to the class. The attribute indicates that the user must be authorized based on the default policy to access the resource. The default authorization policy is configured to use the default authentication scheme, which is set up by <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt*>. The helper method configures <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> as the default handler for requests to the app.
 
 ### Application database context
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-In the `ApplicationDbContext` (`Data/ApplicationDbContext.cs`), <xref:Microsoft.EntityFrameworkCore.DbContext> extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> to include the schema for Identity Server. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> is derived from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+In the `ApplicationDbContext` (`Data/ApplicationDbContext.cs`), <xref:Microsoft.EntityFrameworkCore.DbContext> extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext`1> to include the schema for Identity Server. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext`1> is derived from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
-To gain full control of the database schema, inherit from one of the available Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> method.
+To gain full control of the database schema, inherit from one of the available Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*> method.
 
 ### OIDC configuration controller
 
@@ -353,7 +353,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Azure App Service on Linux
 
-Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see [Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md#azure-app-service-on-linux).
 
 ## Name and role claim with API authorization
 
@@ -435,7 +435,7 @@ builder.Services.AddApiAuthorization()
     .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-In the **:::no-loc text="Server":::** app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on the Identity builder, which adds role-related services.
+In the **:::no-loc text="Server":::** app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -727,7 +727,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 
 ## Related content
 
-* [Deployment to Azure App Service](xref:security/authentication/identity/spa#deploy-to-production)
+* [Deployment to Azure App Service](../../../security/authentication/identity-api-authorization.md#deploy-to-production)
 * [Import a certificate from Key Vault (Azure documentation)](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

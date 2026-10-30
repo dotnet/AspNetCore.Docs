@@ -32,7 +32,7 @@ The following sections describe additions to the project when authentication sup
 
 ### `Program.cs`
 
-The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
+The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization*> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt*> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
 
 `dotnet new angular -au Individual` generates the following `Program.cs` file:
 
@@ -411,7 +411,7 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
-* <xref:security/authentication/scaffold-identity>
+* [Scaffold Identity in ASP.NET Core projects](../../scaffold-identity.md)
 
 :::moniker-end
 
@@ -445,7 +445,7 @@ The following sections describe additions to the project when authentication sup
 
 ### `Startup` class
 
-The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
+The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization*> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt*> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
 
 The `Startup` class has the following additions:
 
@@ -821,6 +821,6 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
-* <xref:security/authentication/scaffold-identity>
+* [Scaffold Identity in ASP.NET Core projects](../../scaffold-identity.md)
 
 :::moniker-end

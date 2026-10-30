@@ -19,9 +19,9 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie60/Controllers/MoviesController.cs?name=IndexSearchCheckForNull)]
 
-The `s => s.Title!.Contains(searchString)` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where%2A> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
+The `s => s.Title!.Contains(searchString)` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where*> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
-Note: The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the c# code shown above. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
+Note: The <xref:System.Data.Objects.DataClasses.EntityCollection`1.Contains*> method is run on the database, not in the c# code shown above. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
 Navigate to `/Movies/Index`. Append a query string such as `?searchString=Ghost` to the URL. The filtered movies are displayed.
 
@@ -73,7 +73,7 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 ![Network tab of Microsoft Edge Developer Tools showing a request body with a searchString value of ghost](~/tutorials/first-mvc-app/search/_static/f12_rb.png)
 
-You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) antiforgery token. We're not modifying data, so we don't need to validate the token in the controller method.
+You can see the search parameter and [XSRF](../../../../security/anti-request-forgery.md) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](../../../../security/anti-request-forgery.md) antiforgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the `Views/Movies/Index.cshtml` file.
 

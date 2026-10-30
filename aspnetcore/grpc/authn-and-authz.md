@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure authentication and authorization in gRPC for ASP.NET Core with bearer tokens, client certificates, and policies. Secure your services.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 09/15/2026
-uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
 
@@ -17,7 +16,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 ## Authenticate users calling a gRPC service
 
-Use gRPC with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
+Use gRPC with [ASP.NET Core authentication](../security/authentication/identity.md) to associate a user with each call.
 
 The following example of `Program.cs` uses gRPC and ASP.NET Core authentication:
 
@@ -52,7 +51,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 The client provides an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
+On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*).
 
 In the .NET gRPC client, send the token with calls by using the `Metadata` collection. Send entries in the `Metadata` collection with a gRPC call as HTTP headers:
 
@@ -178,10 +177,10 @@ The preceding code:
 
 ### Client certificate authentication
 
-A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
+A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](../security/authentication/certauth.md) allows you to resolve the certificate to a `ClaimsPrincipal`.
 
 > [!NOTE]
-> Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see <xref:security/authentication/certauth#configure-your-server-to-require-certificates>.
+> Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see [Configure certificate authentication in ASP.NET Core](../security/authentication/certauth.md#configure-your-server-to-require-certificates).
 
 In the .NET gRPC client, add the client certificate to `HttpClientHandler` and use it to create the gRPC client:
 
@@ -216,7 +215,7 @@ Many ASP.NET Core supported authentication mechanisms work with gRPC:
 * OpenID Connect
 * WS-Federation
 
-For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
+For more information on configuring authentication on the server, see [ASP.NET Core authentication](../security/authentication/identity.md).
 
 Configuring the gRPC client to use authentication depends on the authentication mechanism you're using. The previous bearer token example shows how to send authentication metadata with gRPC calls, while the client certificate example shows how to configure TLS client authentication:
 
@@ -237,7 +236,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-Use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service by using the following code:
+Use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service by using the following code:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
@@ -283,8 +282,8 @@ app.Run();
 ## Additional resources
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
-* [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
-* [Configure interceptors in a gRPC client factory in .NET](xref:grpc/clientfactory#configure-interceptors)
+* [Configure Client Certificate authentication in ASP.NET Core](../security/authentication/certauth.md)
+* [Configure interceptors in a gRPC client factory in .NET](clientfactory.md#configure-interceptors)
 
 :::moniker-end
 
@@ -293,7 +292,7 @@ app.Run();
 
 ## Authenticate users calling a gRPC service
 
-Use gRPC with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
+Use gRPC with [ASP.NET Core authentication](../security/authentication/identity.md) to associate a user with each call.
 
 The following example shows `Startup.Configure` that uses gRPC and ASP.NET Core authentication:
 
@@ -334,7 +333,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 The client provides an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
+On the server, configure bearer token authentication by using the [JWT bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*).
 
 In the .NET gRPC client, send the token with calls by using the `Metadata` collection. Send entries in the `Metadata` collection with a gRPC call as HTTP headers:
 
@@ -460,10 +459,10 @@ The preceding code:
 
 ### Client certificate authentication
 
-A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
+A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](../security/authentication/certauth.md) allows you to resolve the certificate to a `ClaimsPrincipal`.
 
 > [!NOTE]
-> Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see <xref:security/authentication/certauth#configure-your-server-to-require-certificates>.
+> Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see [Configure certificate authentication in ASP.NET Core](../security/authentication/certauth.md#configure-your-server-to-require-certificates).
 
 In the .NET gRPC client, add the client certificate to `HttpClientHandler` and use it to create the gRPC client:
 
@@ -498,7 +497,7 @@ Many ASP.NET Core supported authentication mechanisms work with gRPC:
 * OpenID Connect
 * WS-Federation
 
-For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
+For more information on configuring authentication on the server, see [ASP.NET Core authentication](../security/authentication/identity.md).
 
 Configuring the gRPC client to use authentication depends on the authentication mechanism you're using. The previous bearer token and client certificate examples show a couple of ways you can configure the gRPC client to send authentication metadata with gRPC calls:
 
@@ -519,7 +518,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-Use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service by using the following code:
+Use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service by using the following code:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
@@ -552,7 +551,7 @@ public class TicketerService : Ticketer.TicketerBase
 ## Additional resources
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
-* [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
-* [Configure interceptors in a gRPC client factory in .NET](xref:grpc/clientfactory#configure-interceptors)
+* [Configure Client Certificate authentication in ASP.NET Core](../security/authentication/certauth.md)
+* [Configure interceptors in a gRPC client factory in .NET](clientfactory.md#configure-interceptors)
 
 :::moniker-end

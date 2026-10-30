@@ -13,11 +13,11 @@ Previously, no validation was enabled by default. Now, in the [development envir
 
 ## Previous behavior
 
-<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> defaulted to `false` and were only enabled when they were explicitly set by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A>.
+<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> defaulted to `false` and were only enabled when they were explicitly set by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider*>.
 
 ## New behavior
 
-In the [development environment](/aspnet/core/fundamentals/environments) when options haven't been set with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A>, <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> are set to `true`.
+In the [development environment](/aspnet/core/fundamentals/environments) when options haven't been set with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider*>, <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> are set to `true`.
 
 ## Type of breaking change
 
@@ -29,7 +29,7 @@ Validation helps to catch problems early in application startup rather than late
 
 ## Recommended action
 
-No action necessary if your application validates successfully. If you do see a validation error when testing in development, first try to fix it. If you can't fix it, you can disable validation by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A>.
+No action necessary if your application validates successfully. If you do see a validation error when testing in development, first try to fix it. If you can't fix it, you can disable validation by calling <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider*>.
 
 ## Affected APIs
 

@@ -141,7 +141,7 @@ app.UseEndpoints(endpoints =>
 
 #### Apply rate limiting to server-side Blazor apps
 
-To set rate limiting for all of the app's routable Razor components, specify <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> with the rate limiting policy name on the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> call in the `Program` file. In the following example, the rate limiting policy named "`policy`" is applied:
+To set rate limiting for all of the app's routable Razor components, specify <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting*> with the rate limiting policy name on the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> call in the `Program` file. In the following example, the rate limiting policy named "`policy`" is applied:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -159,7 +159,7 @@ To set a policy for a single routable Razor component or a folder of components 
 <h1>Counter</h1>
 ```
 
-Apply the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) only to a routable component or a folder of components via an imports file if <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> is ***not*** called on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+Apply the [`[EnableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) only to a routable component or a folder of components via an imports file if <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting*> is ***not*** called on <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*>.
 
 Use the [`[DisableRateLimiting]` attribute](xref:Microsoft.AspNetCore.RateLimiting.DisableRateLimitingAttribute) to disable rate limiting for a routable component or a folder of components via an imports file.
 
@@ -186,7 +186,7 @@ Consider the following code:
 
 The preceding code:
 
-* Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterServiceCollectionExtensions.AddRateLimiter%2A> to add a rate limiting service to the service collection.
+* Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterServiceCollectionExtensions.AddRateLimiter*> to add a rate limiting service to the service collection.
 * Calls `AddFixedWindowLimiter` to create a fixed window limiter with a policy name of `"fixed"` and sets:
 * <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.PermitLimit> to 4 and the time <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.Window> to 12. A maximum of 4 requests per each 12-second window are allowed.
 * <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.QueueProcessingOrder> to <xref:System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst>.
@@ -197,7 +197,7 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
-<xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after `UseRouting` when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) attribute is used, `UseRateLimiter` must be called after `UseRouting`. When calling only global limiters, `UseRateLimiter` can be called before `UseRouting`.
+<xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter*> must be called after `UseRouting` when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) attribute is used, `UseRateLimiter` must be called after `UseRouting`. When calling only global limiters, `UseRateLimiter` can be called before `UseRouting`.
 
 If the app calls <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>, call it before `UseRouting` and `UseRateLimiter`. When the status code pages middleware re-executes a request, only the middleware registered after it runs again. If `UseRateLimiter` is called before `UseStatusCodePagesWithReExecute`, the rate limiter doesn't run for the re-executed endpoint, so that endpoint's rate limiting policy isn't applied, even when the policy has no permits remaining. The following order lets the rate limiter evaluate the re-executed endpoint:
 
@@ -278,7 +278,7 @@ The following code uses the token bucket limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
 
-When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReplenishment%2A> is set to `true`, an internal timer replenishes the tokens every <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.ReplenishmentPeriod%2A>; when set to `false`, the app must call <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.TryReplenish%2A> on the limiter.
+When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReplenishment> is set to `true`, an internal timer replenishes the tokens every <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.ReplenishmentPeriod>; when set to `false`, the app must call <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.TryReplenish*> on the limiter.
 
 <a name="concur"></a>
 
@@ -387,7 +387,7 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpC
 
 ### Create chained limiters
 
-The <xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A> API accepts multiple <xref:System.Threading.RateLimiting.PartitionedRateLimiter> instances and combines them into one `PartitionedRateLimiter`. The combined limiter runs all the input limiters in sequence. Because the result is a `PartitionedRateLimiter` assigned to `GlobalLimiter`, the chain applies to every endpoint. To chain limiters for a specific endpoint instead, use a named policy, as shown in [Chain limiters in a named policy](#chain-limiters-in-a-named-policy).
+The <xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained*> API accepts multiple <xref:System.Threading.RateLimiting.PartitionedRateLimiter> instances and combines them into one `PartitionedRateLimiter`. The combined limiter runs all the input limiters in sequence. Because the result is a `PartitionedRateLimiter` assigned to `GlobalLimiter`, the chain applies to every endpoint. To chain limiters for a specific endpoint instead, use a named policy, as shown in [Chain limiters in a named policy](#chain-limiters-in-a-named-policy).
 
 The following code uses `CreateChained`:
 
@@ -397,9 +397,9 @@ For more information, see the [CreateChained source code](https://github.com/dot
 
 ### Chain limiters in a named policy
 
-<xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A> chains *global* limiters that apply to every endpoint. To combine multiple limiter types and scope them to specific endpoints, chain the limiters inside a named policy with <xref:System.Threading.RateLimiting.RateLimiter.CreateChained%2A>. This overload returns a single <xref:System.Threading.RateLimiting.RateLimiter> that runs each limiter in sequence, which is the return type a named policy's partition factory requires.
+<xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained*> chains *global* limiters that apply to every endpoint. To combine multiple limiter types and scope them to specific endpoints, chain the limiters inside a named policy with <xref:System.Threading.RateLimiting.RateLimiter.CreateChained*>. This overload returns a single <xref:System.Threading.RateLimiting.RateLimiter> that runs each limiter in sequence, which is the return type a named policy's partition factory requires.
 
-The following `"combined"` policy chains a token bucket limiter and a concurrency limiter with `RateLimiter.CreateChained`, then applies the policy to a single endpoint with <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A>:
+The following `"combined"` policy chains a token bucket limiter and a concurrency limiter with `RateLimiter.CreateChained`, then applies the policy to a single endpoint with <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting*>:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -525,7 +525,7 @@ builder.Services.AddRateLimiter(options =>
 
 Apply the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) and [`[DisableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.DisableRateLimitingAttribute) attributes to a controller, action method, or Razor Page. For Razor Pages, apply the attribute to the Razor Page and not the page handlers. For example, you can't apply `[EnableRateLimiting]` to `OnGet`, `OnPost`, or any other page handler.
 
-The `[DisableRateLimiting]` attribute ***disables*** rate limiting for the controller, action method, or Razor Page, regardless of named rate limiters or global limiters applied. For example, consider the following code which calls <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> to apply the `fixedPolicy` rate limiting to all controller endpoints:
+The `[DisableRateLimiting]` attribute ***disables*** rate limiting for the controller, action method, or Razor Page, regardless of named rate limiters or global limiters applied. For example, consider the following code which calls <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting*> to apply the `fixedPolicy` rate limiting to all controller endpoints:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_1" highlight="51":::
 

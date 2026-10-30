@@ -32,7 +32,7 @@ The following code adds the static file middleware to an ASP.NET Core in .NET 6 
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
 
 ## Routing
 
@@ -52,7 +52,7 @@ public class Startup
 }
 ```
 
-In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. The following code adds an endpoint to an ASP.NET Core in .NET 6 app:
+In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>. The following code adds an endpoint to an ASP.NET Core in .NET 6 app:
 
 [!code-csharp[](samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_rt)]
 
@@ -320,7 +320,7 @@ In ASP.NET Core in .NET 6:
 
 ### ASP.NET Core in .NET 5
 
-In the following samples, the test project uses `TestServer` and <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. These ship as separate packages that require explicit reference:
+In the following samples, the test project uses `TestServer` and <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1>. These ship as separate packages that require explicit reference:
 
 #### WebApplicationFactory
 

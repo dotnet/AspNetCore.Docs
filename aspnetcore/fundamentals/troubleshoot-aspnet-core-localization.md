@@ -97,7 +97,7 @@ A common reason for a custom provider not working properly is that it isn't the 
 
 :::moniker-end
 
-* Use the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> extension method to set the custom provider as the initial provider.
+* Use the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider*> extension method to set the custom provider as the initial provider.
 
 ## Root namespace issues
 

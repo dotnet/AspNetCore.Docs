@@ -3,7 +3,6 @@ title: Persist additional claims and tokens from external providers in ASP.NET C
 description: Learn how to establish additional claims and tokens from external providers.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/18/2021
-uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
 
@@ -13,17 +12,17 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see [Using external login providers with Identity in ASP.NET Core](index.md). The sample app uses the [Google authentication provider](google-logins.md).
 
 ## Set the client ID and client secret
 
 The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Google authentication](xref:security/authentication/google-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other authentication providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Google authentication](google-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other authentication providers](other-logins.md)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
 Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits assigning optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
@@ -34,7 +33,7 @@ The sample app configures the Google authentication provider with a client ID an
 
 ## Establish the authentication scope
 
-Specify the list of permissions to retrieve from the provider by specifying the <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Authentication scopes for common external providers appear in the following table.
+Specify the list of permissions to retrieve from the provider by specifying the <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope>. Authentication scopes for common external providers appear in the following table.
 
 | Provider  | Scope                                                            |
 | --------- | ---------------------------------------------------------------- |
@@ -57,7 +56,7 @@ The sample app creates locale (`urn:google:locale`) and picture (`urn:google:pic
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=6-7)]
 
-In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager%601> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager`1> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal>.
 
 In the sample app, `OnPostConfirmationAsync` (`Account/ExternalLogin.cshtml.cs`) establishes the locale (`urn:google:locale`) and picture (`urn:google:picture`) claims for the signed in `ApplicationUser`, including a claim for <xref:System.Security.Claims.ClaimTypes.GivenName>:
 
@@ -75,13 +74,13 @@ If a large amount of user data is required for processing user requests:
 
 ## Save the access token
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
 
 The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions>:
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=9)]
 
-When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
+When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
 The sample app saves the access token in `OnPostConfirmationAsync` (new user registration) and `OnGetCallbackAsync` (previously registered user) in `Account/ExternalLogin.cshtml.cs`:
 
@@ -92,7 +91,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 
 ## How to add additional custom tokens
 
-To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
+To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name) of `TicketCreated`:
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=11-24)]
 
@@ -106,22 +105,22 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 ## Add and update user claims
 
-Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
+Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager`1) on a user to force the generation of a new authentication cookie.
 
-In the `Development` environment working with test user accounts, delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
+In the `Development` environment working with test user accounts, delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](../scaffold-identity.md) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
 
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_dict&highlight=49-53)]
 
-Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, preserving the existing authentication properties (`AuthenticationProperties`).
+Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager`1>, preserving the existing authentication properties (`AuthenticationProperties`).
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_both&highlight=27-69)]
 
 A similar approach is taken when claims change while a user is signed in but a backfill step isn't required. To update a user's claims, call the following on the user:
 
-* [UserManager.ReplaceClaimAsync](xref:Microsoft.AspNetCore.Identity.UserManager%601) on the user for claims stored in the identity database.
-* [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on the user to force the generation of a new authentication cookie.
+* [UserManager.ReplaceClaimAsync](xref:Microsoft.AspNetCore.Identity.UserManager`1) on the user for claims stored in the identity database.
+* [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager`1) on the user to force the generation of a new authentication cookie.
 
 ## Remove claim actions and claims
 
@@ -181,17 +180,17 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see [Using external login providers with Identity in ASP.NET Core](index.md). The sample app uses the [Google authentication provider](google-logins.md).
 
 ## Set the client ID and client secret
 
 The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply to your scenario:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Google authentication](xref:security/authentication/google-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other authentication providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Google authentication](google-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other authentication providers](other-logins.md)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
 Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits you to assign optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
@@ -202,7 +201,7 @@ The sample app configures the Google authentication provider with a client ID an
 
 ## Establish the authentication scope
 
-Specify the list of permissions to retrieve from the provider by specifying the <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Authentication scopes for common external providers appear in the following table.
+Specify the list of permissions to retrieve from the provider by specifying the <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope>. Authentication scopes for common external providers appear in the following table.
 
 | Provider  | Scope                                                            |
 | --------- | ---------------------------------------------------------------- |
@@ -211,7 +210,7 @@ Specify the list of permissions to retrieve from the provider by specifying the 
 | Microsoft | `https://login.microsoftonline.com/common/oauth2/v2.0/authorize` |
 | Twitter   | `https://api.twitter.com/oauth/authenticate`                     |
 
-In the sample app, Google's `profile`, `email`, and `openid` scopes are automatically added by the framework when <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle%2A> is called on the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder>. If the app requires additional scopes, add them to the options. In the following example, the Google `https://www.googleapis.com/auth/user.birthday.read` scope is added to retrieve a user's birthday:
+In the sample app, Google's `profile`, `email`, and `openid` scopes are automatically added by the framework when <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> is called on the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder>. If the app requires additional scopes, add them to the options. In the following example, the Google `https://www.googleapis.com/auth/user.birthday.read` scope is added to retrieve a user's birthday:
 
 ```csharp
 options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
@@ -225,7 +224,7 @@ The sample app creates locale (`urn:google:locale`) and picture (`urn:google:pic
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
 
-In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager%601> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager`1> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal>.
 
 In the sample app, `OnPostConfirmationAsync` (`Account/ExternalLogin.cshtml.cs`) establishes the locale (`urn:google:locale`) and picture (`urn:google:picture`) claims for the signed in `ApplicationUser`, including a claim for <xref:System.Security.Claims.ClaimTypes.GivenName>:
 
@@ -243,13 +242,13 @@ If a large amount of user data is required for processing user requests:
 
 ## Save the access token
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
 
 The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=15)]
 
-When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
+When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
 The sample app saves the access token in `OnPostConfirmationAsync` (new user registration) and `OnGetCallbackAsync` (previously registered user) in `Account/ExternalLogin.cshtml.cs`:
 
@@ -260,7 +259,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 
 ## How to add additional custom tokens
 
-To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
+To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name) of `TicketCreated`:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=17-30)]
 
@@ -274,9 +273,9 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 ## Add and update user claims
 
-Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
+Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager`1) on a user to force the generation of a new authentication cookie.
 
-In the `Development` environment working with test user accounts, you can simply delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
+In the `Development` environment working with test user accounts, you can simply delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](../scaffold-identity.md) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
 
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
@@ -288,7 +287,7 @@ private readonly IReadOnlyDictionary<string, string> _claimsToSync =
     };
 ```
 
-Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, preserving the existing authentication properties (`AuthenticationProperties`).
+Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager`1>, preserving the existing authentication properties (`AuthenticationProperties`).
 
 ```csharp
 public async Task<IActionResult> OnGetCallbackAsync(
@@ -394,8 +393,8 @@ public async Task<IActionResult> OnGetCallbackAsync(
 
 A similar approach is taken when claims change while a user is signed in but a backfill step isn't required. To update a user's claims, call the following on the user:
 
-* [UserManager.ReplaceClaimAsync](xref:Microsoft.AspNetCore.Identity.UserManager%601) on the user for claims stored in the identity database.
-* [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on the user to force the generation of a new authentication cookie.
+* [UserManager.ReplaceClaimAsync](xref:Microsoft.AspNetCore.Identity.UserManager`1) on the user for claims stored in the identity database.
+* [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager`1) on the user to force the generation of a new authentication cookie.
 
 ## Removal of claim actions and claims
 
@@ -451,17 +450,17 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see [Using external login providers with Identity in ASP.NET Core](index.md). The sample app uses the [Google authentication provider](google-logins.md).
 
 ## Set the client ID and client secret
 
 The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply to your scenario:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Google authentication](xref:security/authentication/google-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other authentication providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Google authentication](google-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other authentication providers](other-logins.md)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
@@ -470,7 +469,7 @@ The sample app configures the Google authentication provider with a client ID an
 
 ## Establish the authentication scope
 
-Specify the list of permissions to retrieve from the provider by specifying the <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Authentication scopes for common external providers appear in the following table.
+Specify the list of permissions to retrieve from the provider by specifying the <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope>. Authentication scopes for common external providers appear in the following table.
 
 | Provider  | Scope                                                            |
 | --------- | ---------------------------------------------------------------- |
@@ -493,7 +492,7 @@ The sample app creates locale (`urn:google:locale`) and picture (`urn:google:pic
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
 
-In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager%601> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager`1.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager`1> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal>.
 
 In the sample app, `OnPostConfirmationAsync` (`Account/ExternalLogin.cshtml.cs`) establishes the locale (`urn:google:locale`) and picture (`urn:google:picture`) claims for the signed in `ApplicationUser`, including a claim for <xref:System.Security.Claims.ClaimTypes.GivenName>:
 
@@ -511,13 +510,13 @@ If a large amount of user data is required for processing user requests:
 
 ## Save the access token
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
 
 The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=15)]
 
-When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
+When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
 The sample app saves the access token in `OnPostConfirmationAsync` (new user registration) and `OnGetCallbackAsync` (previously registered user) in `Account/ExternalLogin.cshtml.cs`:
 
@@ -525,7 +524,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 
 ## How to add additional custom tokens
 
-To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
+To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name) of `TicketCreated`:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=17-30)]
 

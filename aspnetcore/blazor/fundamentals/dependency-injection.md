@@ -129,7 +129,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added in the `ConfigureServices` method by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
+The <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices*> method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added in the `ConfigureServices` method by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -200,9 +200,9 @@ Services can be configured with the lifetimes shown in the following table.
 
 | Lifetime | Description |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Client-side doesn't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>Server-side development supports the `Scoped` lifetime across HTTP requests but not across SignalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes a tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state in server-side apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.</p> |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive the same instance of the service. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | <p>Client-side doesn't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>Server-side development supports the `Scoped` lifetime across HTTP requests but not across SignalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes a tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state in server-side apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.</p> |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive the same instance of the service. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
 
 The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
 
@@ -369,7 +369,7 @@ Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type 
 
 <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
-DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
+DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> or <xref:System.IServiceProvider.GetService*>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
   
 The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> on the server. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implementation calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
   
@@ -402,7 +402,7 @@ builder.Services.AddScoped<ITimeTravel, TimeTravel>();
 In the following `TimeTravel` component:
 
 * The time travel service is directly injected with `@inject` as `TimeTravel1`.
-* The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
+* The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> as `TimeTravel2`.
 
 `TimeTravel.razor`:
 
@@ -477,7 +477,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 
 ### `OwningComponentBase<TService>`
 
-<xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase`1> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase`1.Service> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
 
 ```razor
 @page "/users"
@@ -506,7 +506,7 @@ Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssemb
 * `Services/TransientDisposableService.cs`
 * In `Program.cs`:
   * The app's `Services` namespace is provided at the top of the file (`using BlazorSample.Services;`).
-  * `DetectIncorrectUsageOfTransients` is called immediately after the `builder` is assigned from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>.
+  * `DetectIncorrectUsageOfTransients` is called immediately after the `builder` is assigned from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault*?displayProperty=nameWithType>.
   * The `TransientDisposableService` is registered (`builder.Services.AddTransient<TransientDisposableService>();`).
   * `EnableTransientDisposableDetection` is called on the built host in the processing pipeline of the app (`host.EnableTransientDisposableDetection();`).
 * The app registers the `TransientDisposableService` service without throwing an exception. However, attempting to resolve the service in `TransientService.razor` throws an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDisposableService`.
@@ -542,7 +542,7 @@ Inspect the following in .NET 6 or .NET 7 versions of the `BlazorSample_Server` 
 
 ### Transient service registrations for `IHttpClientFactory`/`HttpClient` handlers
 
-Transient service registrations for <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers are recommended. If the app contains <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers and uses the <xref:Microsoft.Extensions.DependencyInjection.IRemoteAuthenticationBuilder%602> to add support for authentication, the following transient disposables for client-side authentication are also discovered, which is expected and can be ignored:
+Transient service registrations for <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers are recommended. If the app contains <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers and uses the <xref:Microsoft.Extensions.DependencyInjection.IRemoteAuthenticationBuilder`2> to add support for authentication, the following transient disposables for client-side authentication are also discovered, which is expected and can be ignored:
 
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
@@ -682,9 +682,9 @@ internal sealed class BlazorServiceAccessor
 
 To set the value of `BlazorServiceAccessor.Services` automatically when an `async` component method is invoked, create a custom base component that re-implements the three primary asynchronous entry points into Razor component code:
 
-* <xref:Microsoft.AspNetCore.Components.IComponent.SetParametersAsync%2A?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync%2A?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync%2A?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.IComponent.SetParametersAsync*?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync*?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync*?displayProperty=nameWithType>
 
 The following class demonstrates the implementation for the base component.
   

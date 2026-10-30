@@ -93,13 +93,13 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 
 The distributed Redis cache delivers the best performance and is recommended for production apps. [Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can configure an [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview) for an Azure-hosted ASP.NET Core app, and use an Azure Cache for Redis for local development. For more information, see [Review cache recommendations](#review-cache-recommendations).
 
-An app configures the cache implementation with a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance by calling the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache%2A> method. For [output caching](xref:performance/caching/output#cache-storage), use the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisOutputCacheServiceCollectionExtensions.AddStackExchangeRedisOutputCache%2A> method.
+An app configures the cache implementation with a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance by calling the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> method. For [output caching](xref:performance/caching/output#cache-storage), use the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisOutputCacheServiceCollectionExtensions.AddStackExchangeRedisOutputCache*> method.
 
 1. Create an instance of Azure Cache for Redis.
 
 1. Copy the primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
 
-   - **For local development**: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
+   - **For local development**: Save the connection string with [Secret Manager](../../security/app-secrets.md#secret-manager).
 
    - **For Azure**: Save the connection string in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview).
 
@@ -151,7 +151,7 @@ The sample app implements the <xref:Microsoft.Extensions.Caching.SqlServer.SqlSe
 [!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> Properties like <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*>) are typically stored outside of source control. For example, the [Secret Manager](xref:security/app-secrets) or the _appsettings.json_ or _appsettings.{Environment}.json_ file might store the properties. The connection string can contain credentials that should be kept out of source control systems.
+> Properties like <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName>) are typically stored outside of source control. For example, the [Secret Manager](../../security/app-secrets.md) or the _appsettings.json_ or _appsettings.{Environment}.json_ file might store the properties. The connection string can contain credentials that should be kept out of source control systems.
 
 For more information, see [SQL Database on Azure](/azure/sql-database/).
 

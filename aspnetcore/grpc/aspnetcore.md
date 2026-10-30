@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 09/21/2023
-uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
 
@@ -27,7 +26,7 @@ This document shows how to get started with gRPC services using ASP.NET Core.
 
 ## Get started with gRPC service in ASP.NET Core
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -80,7 +79,7 @@ Kestrel gRPC endpoints:
 
 ### HTTP/2
 
-gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) is `HTTP/2`.
+gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) is `HTTP/2`.
 
 Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel/http2) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
@@ -107,7 +106,7 @@ If an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.P
 For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
 
 > [!NOTE]
-> macOS doesn't support ASP.NET Core gRPC with TLS before .NET 8. Additional configuration is required to successfully run gRPC services on macOS when using .NET 7 or earlier. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+> macOS doesn't support ASP.NET Core gRPC with TLS before .NET 8. Additional configuration is required to successfully run gRPC services on macOS when using .NET 7 or earlier. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](troubleshoot.md#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## IIS
 
@@ -187,8 +186,8 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 ## Related content
 
 * <xref:tutorials/grpc/grpc-start>
-* <xref:grpc/index>
-* <xref:grpc/basics>
+* [Overview for gRPC on .NET](index.md)
+* [gRPC Services with C#](basics.md)
 * <xref:fundamentals/servers/kestrel>
 
 :::moniker-end

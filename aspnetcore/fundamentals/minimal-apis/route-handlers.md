@@ -13,7 +13,7 @@ uid: fundamentals/minimal-apis/route-handlers
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-A configured `WebApplication` supports `Map{Verb}` and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>, where `{Verb}` is a Pascal-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
+A configured `WebApplication` supports `Map{Verb}` and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods*>, where `{Verb}` is a Pascal-cased HTTP method like `Get`, `Post`, `Put`, or `Delete`:
 
 [!code-csharp[](samples/7.0/WebMinAPIs/Program.cs?name=snippet_r1)]
 

@@ -3,7 +3,6 @@ title: ASP.NET Core security topics
 description: Find topics about working with security in your ASP.NET Core apps, including links to articles on authentication and authorization.
 ms.custom: sfi-ropc-nochange
 ms.date: 10/22/2026
-uid: security/index
 
 # customer intent: As an ASP.NET developer, I want to find topics about working with security in ASP.NET, so I can add authentication and authorization features to my apps.
 ---
@@ -11,14 +10,14 @@ uid: security/index
 
 ASP.NET Core enables developers to configure and manage security. The following list provides links to articles about working with security in ASP.NET Core:
 
-* [Authentication](xref:security/authentication/index)
-* [Authorization](xref:security/authorization/introduction)
-* [Data protection](xref:security/data-protection/introduction)
-* [HTTPS enforcement](xref:security/enforcing-ssl)
-* [Safe storage of app secrets in development](xref:security/app-secrets)
-* [XSRF/CSRF prevention](xref:security/anti-request-forgery)
-* [Cross Origin Resource Sharing (CORS)](xref:security/cors)
-* [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
+* [Authentication](authentication/index.md)
+* [Authorization](authorization/introduction.md)
+* [Data protection](data-protection/introduction.md)
+* [HTTPS enforcement](enforcing-ssl.md)
+* [Safe storage of app secrets in development](app-secrets.md)
+* [XSRF/CSRF prevention](anti-request-forgery.md)
+* [Cross Origin Resource Sharing (CORS)](cors.md)
+* [Cross-Site Scripting (XSS) attacks](cross-site-scripting.md)
 
 These security features allow you to build robust and secure ASP.NET Core apps.
 
@@ -30,7 +29,7 @@ ASP.NET Core provides many tools and libraries to secure ASP.NET Core apps, such
 
 ## Authentication vs. Authorization
 
-[Authentication](xref:security/authentication/index) is a process where a user provides credentials that are compared to credentials stored in an operating system, database, app, or resource. When the two sets of credentials match, the user authenticates successfully. They can then perform actions for which they're authorized. The [authorization](xref:security/authorization/introduction) process determines the actions the user is allowed to do.
+[Authentication](authentication/index.md) is a process where a user provides credentials that are compared to credentials stored in an operating system, database, app, or resource. When the two sets of credentials match, the user authenticates successfully. They can then perform actions for which they're authorized. The [authorization](authorization/introduction.md) process determines the actions the user is allowed to do.
 
 Another way to think of authentication is to consider it as a way to **enter** a space, where the space is a server, database, app, or resource. Authorization defines **what actions** the user can perform to which objects inside that space (server, database, or app).
 
@@ -38,10 +37,10 @@ Another way to think of authentication is to consider it as a way to **enter** a
 
 ASP.NET Core and Entity Framework contain features that help you secure your apps and prevent security breaches. The following list of links takes you to documentation detailing techniques to avoid the most common security vulnerabilities in web apps:
 
-* [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
+* [Cross-Site Scripting (XSS) attacks](cross-site-scripting.md)
 * [SQL queries > SQL injection attacks](/ef/core/querying/sql-queries#passing-parameters)
-* [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery)
-* [Open redirect attacks](xref:security/preventing-open-redirects)
+* [Cross-Site Request Forgery (XSRF/CSRF) attacks](anti-request-forgery.md)
+* [Open redirect attacks](preventing-open-redirects.md)
 * [Software supply chain vulnerabilities (NuGet security best practices)](/nuget/concepts/security-best-practices#knowing-what-is-in-your-environment)
 
 There are more vulnerabilities that you should be aware of. For more information, see the other articles in the **Security and Identity** section of the table of contents.
@@ -66,7 +65,7 @@ When the app is deployed to a test server, an environment variable can be used t
 
 Configuration data guidelines:
 
-* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](xref:security/app-secrets) tool can be used to store secrets in development.
+* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](app-secrets.md) tool can be used to store secrets in development.
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
 
@@ -86,7 +85,7 @@ For information on other cloud providers, see:
 
 ## Related content
 
-* <xref:security/authentication/identity>
-* <xref:security/authentication/identity-enable-qrcodes>
-* <xref:security/authentication/social/index> 
-* <xref:security/identity-management-solutions>
+* [Introduction to Identity on ASP.NET Core](authentication/identity.md)
+* [Enable QR code generation for TOTP authentication](authentication/identity-enable-qrcodes.md)
+* [Using external login providers with Identity in ASP.NET Core](authentication/social/index.md) 
+* [Identity management solutions for .NET web apps](identity-management-solutions.md)
