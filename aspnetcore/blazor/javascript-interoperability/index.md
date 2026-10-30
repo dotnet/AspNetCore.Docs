@@ -40,7 +40,7 @@ With compression, which is enabled by default, avoid creating secure (authentica
 
 ## JavaScript interop abstractions and features package
 
-The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) ([`Microsoft.JSInterop` NuGet package](https://www.nuget.org/packages/Microsoft.JSInterop)) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
+The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) ([`Microsoft.JSInterop` NuGet package](https://www.nuget.org/packages/Microsoft.JSInterop)) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/JSInterop). For more information, see the GitHub repository's `README.md` file.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

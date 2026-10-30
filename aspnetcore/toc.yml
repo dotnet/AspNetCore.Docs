@@ -230,11 +230,11 @@ items:
               - name: Overview
                 href: breaking-changes/5/overview.md
               - name: ASP.NET Core apps deserialize quoted numbers
-                href: /dotnet/core/compatility/serialization/5.0/jsonserializer-allows-reading-numbers-as-strings
+                href: /dotnet/core/compatibility/serialization/5.0/jsonserializer-allows-reading-numbers-as-strings
               - name: AzureAD.UI and AzureADB2C.UI APIs obsolete
                 href: breaking-changes/5/authentication-aad-packages-obsolete.md
               - name: BinaryFormatter serialization methods are obsolete
-                href: /dotnet/core/compatility/serialization/5.0/binaryformatter-serialization-obsolete
+                href: /dotnet/core/compatibility/serialization/5.0/binaryformatter-serialization-obsolete
               - name: Resource in endpoint routing is HttpContext
                 href: breaking-changes/5/authorization-resource-in-endpoint-routing.md
               - name: Microsoft-prefixed Azure integration packages removed
@@ -256,7 +256,7 @@ items:
               - name: "Blazor: Updated validation logic for static web assets"
                 href: breaking-changes/5/blazor-static-web-assets-validation-logic-updated.md
               - name: Cryptography APIs not supported on browser
-                href: /dotnet/core/compatility/cryptography/5.0/cryptography-apis-not-supported-on-blazor-webassembly
+                href: /dotnet/core/compatibility/cryptography/5.0/cryptography-apis-not-supported-on-blazor-webassembly
               - name: "Extensions: Package reference changes"
                 href: breaking-changes/5/extensions-package-reference-changes.md
               - name: Kestrel and IIS BadHttpRequestException types are obsolete
@@ -276,7 +276,7 @@ items:
               - name: "Kestrel: Libuv transport marked as obsolete"
                 href: breaking-changes/5/kestrel-libuv-transport-obsolete.md
               - name: Obsolete properties on ConsoleLoggerOptions
-                href: /dotnet/core/compatility/core-libraries/5.0/obsolete-consoleloggeroptions-properties
+                href: /dotnet/core/compatibility/core-libraries/5.0/obsolete-consoleloggeroptions-properties
               - name: ResourceManagerWithCultureStringLocalizer class and WithCulture interface member removed
                 href: breaking-changes/5/localization-members-removed.md
               - name: Pubternal APIs removed
@@ -2020,7 +2020,7 @@ items:
             href: /visualstudio/containers/vs-azure-tools-docker-hosting-web-apps-in-docker
           - name: Sample Docker images
             displayName: deploy, publish, docker
-            href: https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md
+            href: https://github.com/dotnet/dotnet-docker/blob/main/samples/AspNetCoreRazorApp/README.md
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
         uid: host-and-deploy/proxy-load-balancer
