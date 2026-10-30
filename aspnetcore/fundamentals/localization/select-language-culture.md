@@ -3,7 +3,7 @@ title: Strategies for selecting language and culture in a localized ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 06/20/2025
+ms.date: 10/30/2026
 uid: fundamentals/localization/select-language-culture
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
@@ -97,12 +97,89 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 
 ## Apply the RouteDataRequest CultureProvider
 
-The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` route value. See [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) for information on:
+The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` and `ui-culture` route values in the request URL.
 
-* Using the middleware as filters feature of ASP.NET Core.
-* How to use `RouteDataRequestCultureProvider` to set the culture of an app from the url.
+To configure `RouteDataRequestCultureProvider`, register the provider in <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> and define route patterns containing the `{culture}` route parameter:
 
-See [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/) for information on how to apply the `RouteDataRequestCultureProvider` globally.
+```csharp
+var supportedCultures = new[] { "en-US", "fr-FR", "ru" };
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("en-US")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+// Insert RouteDataRequestCultureProvider at the beginning so route data takes precedence
+localizationOptions.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
+
+app.UseRouting();
+
+app.UseRequestLocalization(localizationOptions);
+```
+
+> [!NOTE]
+> When using `RouteDataRequestCultureProvider`, `app.UseRequestLocalization` must be called after `app.UseRouting` so that route data is available when resolving the culture.
+
+### Localized route templates and fallback
+
+To support both culture-prefixed URLs (such as `/ru/Home/Index` or `/ru/Index`) and culture-less URLs (such as `/Home/Index` or `/Index`) while allowing fallback to other culture providers (like cookies or `Accept-Language` headers), configure a route with a `{culture}` segment alongside a default route.
+
+**Controllers:**
+
+Map a localized route with a `{culture}` segment, followed by the default route without a culture prefix:
+
+```csharp
+app.MapControllerRoute(
+    name: "localized",
+    pattern: "{culture}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+```
+
+With this configuration:
+* Requests with a culture prefix (such as `/ru/Home/Index`) match the `localized` route. `RouteDataRequestCultureProvider` determines the request culture from route data.
+* If the culture value is absent or unsupported, culture resolution falls back to the next registered provider (such as a cookie or `Accept-Language` header) or to `DefaultRequestCulture`.
+
+**Razor Pages:**
+
+In Razor Pages, relative `@page` templates append parameters to the existing page route (for example, `@page "{culture?}"` on `Pages/Index.cshtml` matches `/Index/ru` rather than `/ru/Index`). To support a culture prefix without replacing the default page route, configure an additional page route using <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*>:
+
+```csharp
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/Index", "{culture}/Index");
+});
+```
+
+To add culture-prefixed routes to all pages in a folder, use <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention*>:
+
+```csharp
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddFolderRouteModelConvention("/", model =>
+    {
+        var selectorCount = model.Selectors.Count;
+        for (var i = 0; i < selectorCount; i++)
+        {
+            var selector = model.Selectors[i];
+            model.Selectors.Add(new()
+            {
+                AttributeRouteModel = new()
+                {
+                    Order = 1,
+                    Template = AttributeRouteModel.CombineTemplates(
+                        "{culture}",
+                        selector.AttributeRouteModel?.Template)
+                }
+            });
+        }
+    });
+});
+```
+
+For more information, see [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) and [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/).
 
 ## Use a custom provider
 
