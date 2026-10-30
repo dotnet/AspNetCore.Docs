@@ -239,7 +239,7 @@ The preceding web API controller:
 
 * Uses the `BooksService` class to run CRUD operations.
 * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
-* Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtAction` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+* Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtAction` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
 
 ## Test the web API
 
@@ -312,8 +312,8 @@ To satisfy the preceding requirements, make the following changes:
 ## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/8.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end

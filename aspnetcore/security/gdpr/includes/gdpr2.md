@@ -1,20 +1,20 @@
 :::moniker range="= aspnetcore-2.2"
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
-* A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user hasn't consented to data collection and the app has <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.CheckConsentNeeded%2A> set to `true`, non-essential cookies aren't sent to the browser.
+* A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user hasn't consented to data collection and the app has <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.CheckConsentNeeded> set to `true`, non-essential cookies aren't sent to the browser.
 * Cookies can be marked as essential. Essential cookies are sent to the browser even when the user hasn't consented and tracking is disabled.
 * [TempData and Session cookies](#tempdata) aren't functional when tracking is disabled.
 * The [Identity manage](#pd) page provides a link to download and delete user data.
 
-The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) allows you to test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) file for testing instructions.
+The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) allows you to test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) file for testing instructions.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## ASP.NET Core GDPR support in template-generated code
 
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
 
-* <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> are set in the `Startup` class.
+* <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> are set in the `Startup` class.
 * The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
 * The `Pages/Privacy.cshtml` page or `Views/Home/Privacy.cshtml` view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
 * For apps created with individual user accounts, the Manage page provides links to download and delete [personal user data](#pd).
@@ -25,7 +25,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 [!code-csharp[Main](~/security/gdpr/samples/Startup.cs?name=snippet1&highlight=14-20)]
 
-<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> is called in `Startup.Configure`:
+<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> is called in `Startup.Configure`:
 
 [!code-csharp[](~/security/gdpr/samples/Startup.cs?name=snippet1&highlight=51)]
 
@@ -71,10 +71,10 @@ Select the user name and then select **Personal data**:
 
 Notes:
 
-* To generate the `Account/Manage` code, see [Scaffold Identity](xref:security/authentication/scaffold-identity).
-* The **Delete** and **Download** links only act on the default identity data. Apps that create custom user data must be extended to delete/download the custom user data. For more information, see [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data).
+* To generate the `Account/Manage` code, see [Scaffold Identity](../../authentication/scaffold-identity.md).
+* The **Delete** and **Download** links only act on the default identity data. Apps that create custom user data must be extended to delete/download the custom user data. For more information, see [Add, download, and delete custom user data to Identity](../../authentication/add-user-data.md).
 * Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
-* [External provider authentication](xref:security/authentication/social/index), such as Facebook and Google, isn't available before the cookie policy is accepted.
+* [External provider authentication](../../authentication/social/index.md), such as Facebook and Google, isn't available before the cookie policy is accepted.
 
 ## Encryption at rest
 

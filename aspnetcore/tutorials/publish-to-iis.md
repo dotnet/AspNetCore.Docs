@@ -124,7 +124,7 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/directory-structure>
 * <xref:test/troubleshoot-azure-iis>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis)
 
 ### Articles pertaining to ASP.NET Core app deployment

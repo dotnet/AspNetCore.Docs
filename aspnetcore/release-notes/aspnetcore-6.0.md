@@ -51,14 +51,14 @@ For more information about this change, see [the related announcement issue](htt
 
 Many changes were made to reduce allocations and improve performance across the stack:
 
-* Non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method. The new overload of `app.Use` requires passing the context to `next` which saves two internal per-request allocations that are required when using the other overload.
-* Reduced memory allocations when accessing <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies%2A?displayProperty=nameWithType>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
-* Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define%2A) for the windows only [HTTP.sys web server](xref:fundamentals/servers/httpsys). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
+* Non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use*) extension method. The new overload of `app.Use` requires passing the context to `next` which saves two internal per-request allocations that are required when using the other overload.
+* Reduced memory allocations when accessing <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies?displayProperty=nameWithType>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
+* Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) for the windows only [HTTP.sys web server](xref:fundamentals/servers/httpsys). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
 * Reduce the per connection overhead in [SocketConnection](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Transport.Sockets/src/Internal/SocketConnection.cs) by ~30%. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31308).
 * Reduce allocations by removing logging delegates in generic types. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/issues/31340).
 * Faster GET access (about 50%) to commonly-used features such as  <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature>, <xref:Microsoft.AspNetCore.Http.Features.IRouteValuesFeature>, and <xref:Microsoft.AspNetCore.Http.Features.IEndpointFeature>. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31322).
 * Use single instance strings for known header names, even if they aren't in the preserved header block. Using single instance string helps prevent multiple duplicates of the same string in long lived connections, for example, in <xref:Microsoft.AspNetCore.WebSockets>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/31305).
-* Reuse [HttpProtocol CancellationTokenSource](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs#L401-L409) in Kestrel. Use the new [CancellationTokenSource.TryReset](xref:System.Threading.CancellationTokenSource.TryReset%2A) method on `CancellationTokenSource` to reuse tokens if they haven't been canceled. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/48492) and this [video](https://www.youtube.com/watch?v=vNPybpatlUU&t=1h38m28s).
+* Reuse [HttpProtocol CancellationTokenSource](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs#L401-L409) in Kestrel. Use the new [CancellationTokenSource.TryReset](xref:System.Threading.CancellationTokenSource.TryReset*) method on `CancellationTokenSource` to reuse tokens if they haven't been canceled. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/48492) and this [video](https://www.youtube.com/watch?v=vNPybpatlUU&t=1h38m28s).
 * Implement and use an [AdaptiveCapacityDictionary](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Http/Http/src/Internal/RequestCookieCollection.cs#L24) in <xref:Microsoft.AspNetCore.Http> [RequestCookieCollection](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Internal/RequestCookieCollection.cs) for more efficient access to dictionaries. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31360).
 
 ### Reduced memory footprint for idle TLS connections
@@ -80,7 +80,7 @@ By shrinking the size of <xref:System.IO.Pipelines.Pipe?displayProperty=fullName
 
 #### Zero bytes reads with SslStream
 
-Bufferless reads are a technique employed in ASP.NET Core to avoid renting memory from the memory pool if there's no data available on the socket. Prior to this change, our WebSocket server with 5000 idle connections required ~200 MB without TLS compared to ~800 MB with TLS. Some of these allocations (4k per connection) were from Kestrel having to hold on to an <xref:System.Buffers.ArrayPool%601> buffer while waiting for the reads on <xref:System.Net.Security.SslStream> to complete. Given that these connections were idle, none of reads completed and returned their buffers to the `ArrayPool`, forcing the `ArrayPool` to allocate more memory. The remaining allocations were in `SslStream` itself: 4k buffer for TLS handshakes and 32k buffer for normal reads. In .NET 6, when the user performs a zero byte read on `SslStream` and it has no data available, `SslStream` internally performs a zero-byte read on the underlying wrapped stream. In the best case (idle connection), these changes result in a savings of 40 Kb per connection while still allowing the consumer (Kestrel) to be notified when data is available without holding on to any unused buffers.
+Bufferless reads are a technique employed in ASP.NET Core to avoid renting memory from the memory pool if there's no data available on the socket. Prior to this change, our WebSocket server with 5000 idle connections required ~200 MB without TLS compared to ~800 MB with TLS. Some of these allocations (4k per connection) were from Kestrel having to hold on to an <xref:System.Buffers.ArrayPool`1> buffer while waiting for the reads on <xref:System.Net.Security.SslStream> to complete. Given that these connections were idle, none of reads completed and returned their buffers to the `ArrayPool`, forcing the `ArrayPool` to allocate more memory. The remaining allocations were in `SslStream` itself: 4k buffer for TLS handshakes and 32k buffer for normal reads. In .NET 6, when the user performs a zero byte read on `SslStream` and it has no data available, `SslStream` internally performs a zero-byte read on the underlying wrapped stream. In the best case (idle connection), these changes result in a savings of 40 Kb per connection while still allowing the consumer (Kestrel) to be notified when data is available without holding on to any unused buffers.
 
 #### Zero byte reads with PipeReader
 
@@ -100,7 +100,7 @@ To reduce fragmentation of the heap, Kestrel employed a technique where it alloc
 
 <xref:System.IAsyncDisposable> is now available for controllers, Razor Pages, and View Components. Asynchronous versions have been added to the relevant interfaces in factories and activators:
 
-* The new methods offer a default interface implementation that delegates to the synchronous version and calls <xref:System.IDisposable.Dispose%2A>.
+* The new methods offer a default interface implementation that delegates to the synchronous version and calls <xref:System.IDisposable.Dispose*>.
 * The implementations override the default implementation and handle
 disposing `IAsyncDisposable` implementations.
 * The implementations favor `IAsyncDisposable` over `IDisposable` when
@@ -453,7 +453,7 @@ The [ASP.NET Core SignalR Client package](https://www.nuget.org/packages/Microso
 
 ### Source Code Analysis
 
-Several .NET compiler platform analyzers were added that inspect application code for problems such as incorrect middleware configuration or order, routing conflicts, etc. For more information, see <xref:diagnostics/code-analysis>.
+Several .NET compiler platform analyzers were added that inspect application code for problems such as incorrect middleware configuration or order, routing conflicts, etc. For more information, see [Diagnostic Code Analysis in ASP.NET Core Apps](../diagnostics/code-analysis.md).
 
 ### Web app template improvements
 

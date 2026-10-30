@@ -41,7 +41,7 @@ Data Protection and Caching require configuration for apps deployed to a web far
 
 ### Data Protection
 
-The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the Data Protection system is initialized, it applies [default settings](xref:security/data-protection/configuration/default-settings) that store the key ring locally. Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. An alternative to implementing a shared key ring is to always route user requests to the same node. For more information on Data Protection system configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>.
+The [ASP.NET Core Data Protection system](../security/data-protection/introduction.md) is used by apps to protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the Data Protection system is initialized, it applies [default settings](../security/data-protection/configuration/default-settings.md) that store the key ring locally. Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. An alternative to implementing a shared key ring is to always route user requests to the same node. For more information on Data Protection system configuration for web farm deployments, see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md).
 
 ### Caching
 
@@ -53,11 +53,11 @@ The following scenarios don't require additional configuration, but they depend 
 
 | Scenario | Depends on &hellip; |
 | -------- | ------------------- |
-| Authentication | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/authentication/cookie> and <xref:security/cookie-sharing>. |
-| Identity | Authentication and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
-| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](xref:fundamentals/app-state#session-state). |
-| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and state management: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and state management: TempData](xref:fundamentals/app-state#tempdata). |
-| Antiforgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
+| Authentication | Data Protection (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)).<br><br>For more information, see [Use cookie authentication without ASP.NET Core Identity](../security/authentication/cookie.md) and [Share authentication cookies among ASP.NET apps](../security/cookie-sharing.md). |
+| Identity | Authentication and database configuration.<br><br>For more information, see [Introduction to Identity on ASP.NET Core](../security/authentication/identity.md). |
+| Session | Data Protection (encrypted cookies) (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](xref:fundamentals/app-state#session-state). |
+| TempData | Data Protection (encrypted cookies) (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)) or Session (see [Session and state management: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and state management: TempData](xref:fundamentals/app-state#tempdata). |
+| Antiforgery | Data Protection (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)).<br><br>For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md). |
 
 ## Troubleshoot
 
@@ -76,7 +76,7 @@ When any of the following symptoms occur **intermittently**, the problem is usua
 * TempData fails.
 * POSTs fail: The antiforgery check fails.
 
-For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
+For more information on Data Protection configuration for web farm deployments, see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md). For more information on caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
 
 ## Obtain data from apps
 

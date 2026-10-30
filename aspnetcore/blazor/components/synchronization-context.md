@@ -13,9 +13,9 @@ Blazor uses a synchronization context (<xref:System.Threading.SynchronizationCon
 
 Blazor's server-side synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. This emulation is scoped only to an individual circuit, meaning two different circuits can run in parallel. At any given point in time within a circuit, work is performed on exactly one thread, which yields the impression of a single logical thread. No two operations execute concurrently within the same circuit.
 
-A single logical thread of execution doesn't imply a single asynchronous control flow. A component is re-entrant at any point where it awaits an incomplete <xref:System.Threading.Tasks.Task>. [Lifecycle methods](xref:blazor/components/lifecycle) or [component disposal methods](xref:blazor/components/component-disposal) may be called before the asynchronous control flow resumes after awaiting a <xref:System.Threading.Tasks.Task> to complete. Therefore, a component must ensure that it's in a valid state before awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. In particular, a component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> return. If either of these methods return an incomplete <xref:System.Threading.Tasks.Task>, they must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering.
+A single logical thread of execution doesn't imply a single asynchronous control flow. A component is re-entrant at any point where it awaits an incomplete <xref:System.Threading.Tasks.Task>. [Lifecycle methods](xref:blazor/components/lifecycle) or [component disposal methods](xref:blazor/components/component-disposal) may be called before the asynchronous control flow resumes after awaiting a <xref:System.Threading.Tasks.Task> to complete. Therefore, a component must ensure that it's in a valid state before awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. In particular, a component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> return. If either of these methods return an incomplete <xref:System.Threading.Tasks.Task>, they must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering.
 
-Another implication of re-entrant components is that a method can't defer a <xref:System.Threading.Tasks.Task> until after the method returns by passing it to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> may only defer the <xref:System.Threading.Tasks.Task> until the next [`await` operator](/dotnet/csharp/language-reference/operators/await) is reached.
+Another implication of re-entrant components is that a method can't defer a <xref:System.Threading.Tasks.Task> until after the method returns by passing it to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType>. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType> may only defer the <xref:System.Threading.Tasks.Task> until the next [`await` operator](/dotnet/csharp/language-reference/operators/await) is reached.
 
 Components might implement <xref:System.IDisposable> or <xref:System.IAsyncDisposable> to call asynchronous methods using a <xref:System.Threading.CancellationToken> from a <xref:System.Threading.CancellationTokenSource> that's canceled when the component is disposed. However, this really depends on the scenario. It's up to the component author to determine whether that's the correct behavior. For example, if implementing a `SaveButton` component that persists some local data to a database when a save button is selected, the component author may indeed intend to discard the changes if the user selects the button and quickly navigates to another page, which could dispose the component before the asynchronous save completes.
 
@@ -23,21 +23,21 @@ A disposable component can check for disposal after awaiting any <xref:System.Th
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase> ignores exceptions caused by <xref:System.Threading.Tasks.Task> cancellation (more precisely, it ignores *all* exceptions if the awaited <xref:System.Threading.Tasks.Task>s are canceled), so component methods don't need to handle <xref:System.Threading.Tasks.TaskCanceledException> and <xref:System.OperationCanceledException>.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase> can't follow the preceding guidelines because it doesn't conceptualize what constitutes a valid state for a derived component and it doesn't itself implement <xref:System.IDisposable> or <xref:System.IAsyncDisposable>. If <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> returns an incomplete <xref:System.Threading.Tasks.Task> that doesn't use a <xref:System.Threading.CancellationToken> and the component is disposed before the <xref:System.Threading.Tasks.Task> completes, <xref:Microsoft.AspNetCore.Components.ComponentBase> still calls <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> and awaits <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>. If a disposable component doesn't use a <xref:System.Threading.CancellationToken>, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> should check if the component is disposed.
+<xref:Microsoft.AspNetCore.Components.ComponentBase> can't follow the preceding guidelines because it doesn't conceptualize what constitutes a valid state for a derived component and it doesn't itself implement <xref:System.IDisposable> or <xref:System.IAsyncDisposable>. If <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> returns an incomplete <xref:System.Threading.Tasks.Task> that doesn't use a <xref:System.Threading.CancellationToken> and the component is disposed before the <xref:System.Threading.Tasks.Task> completes, <xref:Microsoft.AspNetCore.Components.ComponentBase> still calls <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> and awaits <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*>. If a disposable component doesn't use a <xref:System.Threading.CancellationToken>, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> should check if the component is disposed.
 
 ## Avoid thread-blocking calls
 
 Generally, don't call the following methods in components. The following methods block the execution thread and thus block the app from resuming work until the underlying <xref:System.Threading.Tasks.Task> is complete:
 
-* <xref:System.Threading.Tasks.Task%601.Result%2A>
-* <xref:System.Threading.Tasks.Task.Wait%2A>
-* <xref:System.Threading.Tasks.Task.WaitAny%2A>
-* <xref:System.Threading.Tasks.Task.WaitAll%2A>
-* <xref:System.Threading.Thread.Sleep%2A>
-* <xref:System.Runtime.CompilerServices.TaskAwaiter.GetResult%2A>
+* <xref:System.Threading.Tasks.Task`1.Result>
+* <xref:System.Threading.Tasks.Task.Wait*>
+* <xref:System.Threading.Tasks.Task.WaitAny*>
+* <xref:System.Threading.Tasks.Task.WaitAll*>
+* <xref:System.Threading.Thread.Sleep*>
+* <xref:System.Runtime.CompilerServices.TaskAwaiter.GetResult*>
 
 > [!NOTE]
-> Blazor documentation examples that use the thread-blocking methods mentioned in this section are only using the methods for demonstration purposes, not as recommended coding guidance. For example, a few component code demonstrations simulate a long-running process by calling <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>.
+> Blazor documentation examples that use the thread-blocking methods mentioned in this section are only using the methods for demonstration purposes, not as recommended coding guidance. For example, a few component code demonstrations simulate a long-running process by calling <xref:System.Threading.Thread.Sleep*?displayProperty=nameWithType>.
 
 ## Invoke component methods externally to update state
 
@@ -215,12 +215,12 @@ To dispatch caught exceptions from the background `TimerService` to the componen
 
 ## Handle caught exceptions outside of a Razor component's lifecycle
 
-Use <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A?displayProperty=nameWithType> in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
+Use <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType> in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A?displayProperty=nameWithType> is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync%2A?displayProperty=nameWithType>.
+> <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType> is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync*?displayProperty=nameWithType>.
 
-To handle caught exceptions outside of a Razor component's lifecycle, pass the exception to <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync%2A> and await the result:
+To handle caught exceptions outside of a Razor component's lifecycle, pass the exception to <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync*> and await the result:
 
 ```csharp
 try
@@ -252,7 +252,7 @@ In the following example, the user selects the **Send report** button to trigger
 }
 ```
 
-To treat failures like lifecycle method exceptions, explicitly dispatch exceptions back to the component with <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A>, as the following example demonstrates: 
+To treat failures like lifecycle method exceptions, explicitly dispatch exceptions back to the component with <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*>, as the following example demonstrates: 
 
 ```razor
 <button @onclick="SendReport">Send report</button>
@@ -277,7 +277,7 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
 }
 ```
 
-An alternative approach leverages <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>:
+An alternative approach leverages <xref:System.Threading.Tasks.Task.Run*?displayProperty=nameWithType>:
 
 ```csharp
 private void SendReport()
@@ -346,8 +346,8 @@ If you run the app at this point, the exception is thrown when the elapsed count
 
 To dispatch exceptions from the timer service back to the `Notifications` component, the following changes are made to the component:
 
-* Start the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
-* In the `StartTimer` method, start the asynchronous timer service in the <xref:System.Action> delegate of <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> and intentionally discard the returned <xref:System.Threading.Tasks.Task>.
+* Start the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*> and awaiting the result.
+* In the `StartTimer` method, start the asynchronous timer service in the <xref:System.Action> delegate of <xref:System.Threading.Tasks.Task.Run*?displayProperty=nameWithType> and intentionally discard the returned <xref:System.Threading.Tasks.Task>.
 
 The `StartTimer` method of the `Notifications` component (`Notifications.razor`):
 

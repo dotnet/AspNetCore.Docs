@@ -5,7 +5,6 @@ description: Learn how to configure certificate authentication in ASP.NET Core f
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/07/2026
 ms.reviewer: shalter
-uid: security/authentication/certauth
 
 # customer intent: As an ASP.NET developer, I want to use certificate authentication in ASP.NET Core for IIS and HTTP.sys, so I can control access to my apps by using certificates.
 ---
@@ -13,7 +12,7 @@ uid: security/authentication/certauth
 
 :::moniker range=">= aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level before it ever gets to ASP.NET Core. More accurately, this functionality is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`.
 
 You **must** [configure your server](#configure-your-server-to-require-certificates) for certificate authentication with IIS, Kestrel, Azure Web Apps, or your preferred solution.
 
@@ -36,7 +35,7 @@ In the web app:
 
 - Add a reference to the [Microsoft.AspNetCore.Authentication.Certificate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Certificate) NuGet package.
 
-- In the _Program.cs_ file, call the 
+- In the _Program.cs_ file, call the
 `builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` method. Provide a delegate for the `OnCertificateValidated` event handler to complete any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal` value and set it on the `context.Principal` property.
 
 If authentication fails, this handler returns a `403 (Forbidden)` response rather than a `401 (Unauthorized)`, as you might expect. The handler returns a different response because it expects authentication to occur during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
@@ -138,7 +137,7 @@ In the _Program.cs_ file, configure Kestrel as follows:
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
 
 > [!NOTE]
-> When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> method, the endpoint doesn't have the defaults applied.
+> When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> method, the endpoint doesn't have the defaults applied.
 
 ### IIS
 
@@ -147,7 +146,7 @@ Complete the following steps in IIS Manager:
 1. In the **Connections** tab, select your site.
 1. In the **Features View** window, double-click **SSL Settings**.
 1. Select the **Require SSL** checkbox.
-1. For the **Client certificates** option, select **Require**. 
+1. For the **Client certificates** option, select **Require**.
 
 :::image source="certauth/_static/README-IISConfig.png" alt-text="Screenshot that shows how to configure the client certificate settings in IIS.":::
 
@@ -189,7 +188,7 @@ A separate class can be used to implement validation logic. Because the same sel
 
 #### Implement an HttpClient with a certificate and IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This scenario is configured in the _Program.cs_ file:
+In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This scenario is configured in the _Program.cs_ file:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
@@ -260,7 +259,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Create child certificate from root certificate
 
-A child certificate can also be created from the root certificate directly. 
+A child certificate can also be created from the root certificate directly.
 
 ```powershell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
@@ -298,7 +297,7 @@ Export-Certificate -Cert cert:\localMachine\my\BA9BF91ED35538A01375EFC212A2F4610
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\BA9BF91ED35538A01375EFC212A2F46104B33A44 )
 
-New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com" 
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com"
 
 Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_b_from_a_dev_damienbod.pfx -Password $mypwd
 
@@ -319,7 +318,7 @@ By default, certificate authentication disables caching. To enable caching, call
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
-When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache%2A> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated%2A> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
@@ -328,9 +327,9 @@ The default caching implementation stores results in memory. You can provide you
 ## Use optional client certificates
 
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This scenario presents some challenges:
-  
+
 * Client certificates are a TLS feature, not an HTTP feature.
-* Client certificates are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
+* Client certificates are negotiated per-connection and usually at the start of the connection before any HTTP data is available.
 
 There are two approaches for implementing optional client certificates:
 
@@ -364,7 +363,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 
    For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
 
-   For more information, see <xref:security/authorization/introduction>.
+   For more information, see [Introduction to authorization in ASP.NET Core](../authorization/introduction.md).
 
 &dagger; Server Name Indication (SNI) is a TLS extension that's used to include a virtual domain as a part of SSL negotiation. This approach effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
 
@@ -393,7 +392,7 @@ The other setting is the <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOption
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, the request might become unresponsive.
 
-An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The behavior of the `ClientCertificate` property changed in .NET 6. For more information, see [GitHub issue #466](https://github.com/aspnet/Announcements/issues/466).
@@ -402,19 +401,19 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> property.
 
-.NET 6 and later provides the `DelayCertificate` option for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+.NET 6 and later provides the `DelayCertificate` option for the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> property. When this option is set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body is consumed before calling the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to negotiate one. `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 > [!NOTE]
 > The application should buffer or consume any request body data before attempting the renegotiation. Otherwise, `GetClientCertificateAsync` might throw the exception, _InvalidOperationException: Client stream needs to be drained before renegotiation_.
 
 If you programmatically configure the TLS settings per SNI host name, call the [UseHttps](xref:fundamentals/servers/kestrel/endpoints#configure-https-in-code)
-overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
+overload (.NET 6 or later) that takes a <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> class object. This option controls client certificate renegotiation via the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation> property. For more information, see the [ListenOptionsHttpsExtensions.UseHttps](/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions.usehttps) method.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, which occurs long before it ever gets to ASP.NET Core. More accurately, this authentication handler validates the certificate and gives you an event where you can resolve the certificate to a `ClaimsPrincipal` value. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, which occurs long before it ever gets to ASP.NET Core. More accurately, this authentication handler validates the certificate and gives you an event where you can resolve the certificate to a `ClaimsPrincipal` value.
 
 [Configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
@@ -526,20 +525,20 @@ The handler has two events:
                     var claims = new[]
                     {
                         new Claim(
-                            ClaimTypes.NameIdentifier, 
+                            ClaimTypes.NameIdentifier,
                             context.ClientCertificate.Subject,
-                            ClaimValueTypes.String, 
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer),
                         new Claim(ClaimTypes.Name,
                             context.ClientCertificate.Subject,
-                            ClaimValueTypes.String, 
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer)
                     };
-    
+
                     context.Principal = new ClaimsPrincipal(
                         new ClaimsIdentity(claims, context.Scheme.Name));
                     context.Success();
-    
+
                     return Task.CompletedTask;
                 }
             };
@@ -562,28 +561,28 @@ services.AddAuthentication(
                 var validationService =
                     context.HttpContext.RequestServices
                         .GetRequiredService<ICertificateValidationService>();
-                
+
                 if (validationService.ValidateCertificate(
                     context.ClientCertificate))
                 {
                     var claims = new[]
                     {
                         new Claim(
-                            ClaimTypes.NameIdentifier, 
-                            context.ClientCertificate.Subject, 
-                            ClaimValueTypes.String, 
+                            ClaimTypes.NameIdentifier,
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer),
                         new Claim(
-                            ClaimTypes.Name, 
-                            context.ClientCertificate.Subject, 
-                            ClaimValueTypes.String, 
+                            ClaimTypes.Name,
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer)
                     };
 
                     context.Principal = new ClaimsPrincipal(
                         new ClaimsIdentity(claims, context.Scheme.Name));
                     context.Success();
-                }                     
+                }
 
                 return Task.CompletedTask;
             }
@@ -613,7 +612,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
             webBuilder.UseStartup<Startup>();
             webBuilder.ConfigureKestrel(o =>
             {
-                o.ConfigureHttpsDefaults(o => 
+                o.ConfigureHttpsDefaults(o =>
                     o.ClientCertificateMode =  ClientCertificateMode.RequireCertificate);
             });
         });
@@ -621,7 +620,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 ```
 
 > [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> won't have the defaults applied.
 
 ### IIS
 
@@ -772,7 +771,7 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
     var handler = new HttpClientHandler();
     handler.ClientCertificates.Add(cert);
     var client = new HttpClient(handler);
-     
+
     var request = new HttpRequestMessage()
     {
         RequestUri = new Uri("https://localhost:44379/api/values"),
@@ -785,17 +784,17 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
         var data = JsonDocument.Parse(responseContent);
         return data;
     }
- 
+
     throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
 }
 ```
 
-#### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory 
+#### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Startup.ConfigureServices`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This is setup in `Startup.ConfigureServices`:
 
 ```csharp
-var clientCertificate = 
+var clientCertificate =
     new X509Certificate2(
       Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
 
@@ -813,16 +812,16 @@ The `IHttpClientFactory` can then be used to get the named instance with the han
 
 ```csharp
 private readonly IHttpClientFactory _clientFactory;
- 
+
 public ApiService(IHttpClientFactory clientFactory)
 {
     _clientFactory = clientFactory;
 }
- 
+
 private async Task<JsonDocument> GetApiDataWithNamedClient()
 {
     var client = _clientFactory.CreateClient("namedClient");
- 
+
     var request = new HttpRequestMessage()
     {
         RequestUri = new Uri("https://localhost:44379/api/values"),
@@ -835,7 +834,7 @@ private async Task<JsonDocument> GetApiDataWithNamedClient()
         var data = JsonDocument.Parse(responseContent);
         return data;
     }
- 
+
     throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
 }
 ```
@@ -863,7 +862,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 #### Install in the trusted root
 
-The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default. For information on how to trust the root certificate on Windows, see [this question](https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the).
+The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default.
 
 #### Intermediate certificate
 
@@ -901,7 +900,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Create child certificate from root certificate
 
-A child certificate can also be created from the root certificate directly. 
+A child certificate can also be created from the root certificate directly.
 
 ```powershell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
@@ -937,7 +936,7 @@ Export-Certificate -Cert cert:\localMachine\my\BA9BF91ED35538A01375EFC212A2F4610
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\BA9BF91ED35538A01375EFC212A2F46104B33A44 )
 
-New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com" 
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com"
 
 Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_b_from_a_dev_damienbod.pfx -Password $mypwd
 
@@ -953,7 +952,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace AspNetCoreCertificateAuthApi
 {
-    public class MyCertificateValidationService 
+    public class MyCertificateValidationService
     {
         public bool ValidateCertificate(X509Certificate2 clientCertificate)
         {
@@ -1002,7 +1001,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache%2A> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated%2A> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
+When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
 The cache stores both successful and failed validation results for the configured cache entry lifetime.
 
@@ -1011,9 +1010,9 @@ The default caching implementation stores results in memory. You can provide you
 ## Optional client certificates
 
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
-  
+
 * Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
+* Are negotiated per-connection and usually at the start of the connection before any HTTP data is available.
 
 There are two approaches to implementing optional client certificates:
 1. Using separate host names (SNI) and redirecting. While more work to configure, this is recommended because it works in most environments and protocols.
@@ -1039,7 +1038,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
   * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
-  * For more information, see <xref:security/authorization/introduction>.
+  * For more information, see [Introduction to authorization in ASP.NET Core](../authorization/introduction.md).
 
 &dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
 
@@ -1067,7 +1066,7 @@ The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Cl
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 #### Kestrel
 
@@ -1079,7 +1078,7 @@ For .NET 5 or earlier Kestrel does not support renegotiating after the start of 
 
 :::moniker range="< aspnetcore-5.0"
 
-`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
+`Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`.
 
 [Configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
@@ -1188,20 +1187,20 @@ The handler has two events:
                     var claims = new[]
                     {
                         new Claim(
-                            ClaimTypes.NameIdentifier, 
+                            ClaimTypes.NameIdentifier,
                             context.ClientCertificate.Subject,
-                            ClaimValueTypes.String, 
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer),
                         new Claim(ClaimTypes.Name,
                             context.ClientCertificate.Subject,
-                            ClaimValueTypes.String, 
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer)
                     };
-    
+
                     context.Principal = new ClaimsPrincipal(
                         new ClaimsIdentity(claims, context.Scheme.Name));
                     context.Success();
-    
+
                     return Task.CompletedTask;
                 }
             };
@@ -1224,28 +1223,28 @@ services.AddAuthentication(
                 var validationService =
                     context.HttpContext.RequestServices
                         .GetRequiredService<ICertificateValidationService>();
-                
+
                 if (validationService.ValidateCertificate(
                     context.ClientCertificate))
                 {
                     var claims = new[]
                     {
                         new Claim(
-                            ClaimTypes.NameIdentifier, 
-                            context.ClientCertificate.Subject, 
-                            ClaimValueTypes.String, 
+                            ClaimTypes.NameIdentifier,
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer),
                         new Claim(
-                            ClaimTypes.Name, 
-                            context.ClientCertificate.Subject, 
-                            ClaimValueTypes.String, 
+                            ClaimTypes.Name,
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String,
                             context.Options.ClaimsIssuer)
                     };
 
                     context.Principal = new ClaimsPrincipal(
                         new ClaimsIdentity(claims, context.Scheme.Name));
                     context.Success();
-                }                     
+                }
 
                 return Task.CompletedTask;
             }
@@ -1275,7 +1274,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
             webBuilder.UseStartup<Startup>();
             webBuilder.ConfigureKestrel(o =>
             {
-                o.ConfigureHttpsDefaults(o => 
+                o.ConfigureHttpsDefaults(o =>
                     o.ClientCertificateMode =  ClientCertificateMode.RequireCertificate);
             });
         });
@@ -1283,7 +1282,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 ```
 
 > [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> won't have the defaults applied.
 
 ### IIS
 
@@ -1455,7 +1454,7 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
     var handler = new HttpClientHandler();
     handler.ClientCertificates.Add(cert);
     var client = new HttpClient(handler);
-     
+
     var request = new HttpRequestMessage()
     {
         RequestUri = new Uri("https://localhost:44379/api/values"),
@@ -1468,17 +1467,17 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
         var data = JsonDocument.Parse(responseContent);
         return data;
     }
- 
+
     throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
 }
 ```
 
-#### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory 
+#### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Startup.ConfigureServices`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This is setup in `Startup.ConfigureServices`:
 
 ```csharp
-var clientCertificate = 
+var clientCertificate =
     new X509Certificate2(
       Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
 
@@ -1496,16 +1495,16 @@ The `IHttpClientFactory` can then be used to get the named instance with the han
 
 ```csharp
 private readonly IHttpClientFactory _clientFactory;
- 
+
 public ApiService(IHttpClientFactory clientFactory)
 {
     _clientFactory = clientFactory;
 }
- 
+
 private async Task<JsonDocument> GetApiDataWithNamedClient()
 {
     var client = _clientFactory.CreateClient("namedClient");
- 
+
     var request = new HttpRequestMessage()
     {
         RequestUri = new Uri("https://localhost:44379/api/values"),
@@ -1518,7 +1517,7 @@ private async Task<JsonDocument> GetApiDataWithNamedClient()
         var data = JsonDocument.Parse(responseContent);
         return data;
     }
- 
+
     throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
 }
 ```
@@ -1546,7 +1545,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 #### Install in the trusted root
 
-The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default. For information on how to trust the root certificate on Windows, see [this question](https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the).
+The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default.
 
 #### Intermediate certificate
 
@@ -1584,7 +1583,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Create child certificate from root certificate
 
-A child certificate can also be created from the root certificate directly. 
+A child certificate can also be created from the root certificate directly.
 
 ```powershell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
@@ -1620,7 +1619,7 @@ Export-Certificate -Cert cert:\localMachine\my\BA9BF91ED35538A01375EFC212A2F4610
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\BA9BF91ED35538A01375EFC212A2F46104B33A44 )
 
-New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com" 
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com"
 
 Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_b_from_a_dev_damienbod.pfx -Password $mypwd
 
@@ -1636,7 +1635,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace AspNetCoreCertificateAuthApi
 {
-    public class MyCertificateValidationService 
+    public class MyCertificateValidationService
     {
         public bool ValidateCertificate(X509Certificate2 clientCertificate)
         {
@@ -1668,9 +1667,9 @@ namespace AspNetCoreCertificateAuthApi
 ## Optional client certificates
 
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
-  
+
 * Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
+* Are negotiated per-connection and usually at the start of the connection before any HTTP data is available.
 
 There are two approaches to implementing optional client certificates:
 1. Using separate host names (SNI) and redirecting. While more work to configure, this is recommended because it works in most environments and protocols.
@@ -1697,7 +1696,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
   * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
-  * For more information, see <xref:security/authorization/introduction>.
+  * For more information, see [Introduction to authorization in ASP.NET Core](../authorization/introduction.md).
 
 &dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
 
@@ -1725,7 +1724,7 @@ The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Cl
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/466). Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 #### Kestrel
 
@@ -1739,7 +1738,7 @@ Leave questions, comments, and other feedback on optional client certificates in
 
 ## Related content
 
-- [Overview of ASP.NET Core authentication](xref:security/authentication/index)
-- [Introduction to authorization in ASP.NET Core](xref:security/authorization/introduction)
+- [Overview of ASP.NET Core authentication](index.md)
+- [Introduction to authorization in ASP.NET Core](../authorization/introduction.md)
 - [Use TLS/SSL certificates in your app code (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code)
 - [Important changes to App Service managed certificates (Blog, November 2025)](https://techcommunity.microsoft.com/blog/appsonazureblog/follow-up-to-%E2%80%98important-changes-to-app-service-managed-certificates%E2%80%99-november-20/4466120)

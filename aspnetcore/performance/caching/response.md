@@ -92,7 +92,7 @@ Cache-Control: public,max-age=30
 Vary: User-Agent
 ```
 
-The preceding code requires adding the response caching middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> method to the service collection. The code configures the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. 
+The preceding code requires adding the response caching middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching*> method to the service collection. The code configures the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. 
 
 [!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet&highlight=4,13)]
 

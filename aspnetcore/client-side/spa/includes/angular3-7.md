@@ -235,4 +235,4 @@ if (typeof window !== 'undefined') {
 
 ## Related content
 
-<xref:security/authentication/identity/spa>
+[Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md)

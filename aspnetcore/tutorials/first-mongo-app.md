@@ -256,10 +256,10 @@ In the `Program.cs` file, replace the weatherforecast example with the following
 
 The preceding code:
 
-* Uses <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> to help organize all the books related endpoints, and provides a common route prefix of `/books` for all the endpoints within the group.
+* Uses <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup*> to help organize all the books related endpoints, and provides a common route prefix of `/books` for all the endpoints within the group.
 * Contains endpoints to support GET, POST, PUT, and DELETE HTTP requests.
 * Uses the `BooksService` class to run CRUD operations.
-* Calls <xref:Microsoft.AspNetCore.Http.Results.Created%2A> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `Created` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+* Calls <xref:Microsoft.AspNetCore.Http.Results.Created*> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `Created` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
 
 ## Configure JSON serialization options
 
@@ -526,8 +526,8 @@ The OpenAPI specification is a document in JSON format that describes the struct
 ## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/10.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
+* [Create web APIs with ASP.NET Core](../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
 * [Create a minimal web API with ASP.NET Core](/training/modules/interact-api/)
 
 :::moniker-end

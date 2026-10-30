@@ -3,7 +3,7 @@ title: Generate OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 09/04/2026
+ms.date: 10/16/2026
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Generate OpenAPI documents
@@ -20,7 +20,7 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 * Takes advantage of JSON schema support provided by <xref:System.Text.Json?displayProperty=fullName>.
 * Compatible with native AoT.
 
-Starting in .NET 11, the default OpenAPI version for generated documents is 3.2. In .NET 10, the default is 3.1. To change the version, explicitly set the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion%2A> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
+Starting in .NET 11, the default OpenAPI version for generated documents is 3.2. In .NET 10, the default is 3.1. To change the version, explicitly set the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion> property of the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> in the `configureOptions` delegate parameter of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -63,8 +63,8 @@ dotnet add package Microsoft.AspNetCore.OpenApi
 
 The following code:
 
-* Adds OpenAPI services using the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method on the app builder's service collection.
-* Maps an endpoint for viewing the OpenAPI document in JSON format with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> extension method on the app.
+* Adds OpenAPI services using the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> extension method on the app builder's service collection.
+* Maps an endpoint for viewing the OpenAPI document in JSON format with the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi*> extension method on the app.
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,9)]
 
@@ -72,8 +72,84 @@ Launch the app and navigate to `https://localhost:{PORT}/openapi/v1.json` to vie
 
 OpenAPI document generation applies the following behaviors:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
 * Unknown HTTP methods are excluded from the generated document. For example, the `QUERY` method is an HTTP method that isn't yet recognized by the OpenAPI specification, so it's gracefully excluded from the generated document.
 * Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+* The `QUERY` method and app-defined custom HTTP methods are described in the generated document. For more information, see [Operations for HTTP QUERY and custom HTTP methods](#operations-for-http-query-and-custom-http-methods).
+* Endpoints whose HTTP method is missing or isn't a syntactically valid HTTP method token are excluded from the generated document.
+* Numbers and dates are formatted using the invariant culture, so the generated document is consistent regardless of the server's culture settings.
+
+### Operations for HTTP QUERY and custom HTTP methods
+
+Routing accepts arbitrary HTTP method strings through <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods*>. OpenAPI document generation describes those operations instead of omitting them.
+
+[HTTP QUERY](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/) is a proposed safe, idempotent method that lets a client send a request body when describing a search. It's useful when a query is too large or too structured to fit in a URL. OpenAPI 3.2 defines a [`query` field on the Path Item Object](https://spec.openapis.org/oas/v3.2.0.html#fixed-fields-6) for exactly this case.
+
+The following endpoint uses `MapMethods` to handle `QUERY` requests:
+
+```csharp
+app.MapMethods("/search", ["QUERY"], (SearchRequest request) =>
+    SearchService.Run(request));
+```
+
+In an OpenAPI 3.2 document, the operation appears inline as a sibling of `get`, `post`, and the other standard operations:
+
+```json
+"paths": {
+  "/search": {
+    "query": {
+      "requestBody": { },
+      "responses": { "200": { } }
+    }
+  }
+}
+```
+
+An HTTP method other than `QUERY` that the OpenAPI specification doesn't define as a fixed field appears under the Path Item's `additionalOperations` field, keyed by the uppercased method name:
+
+```json
+"paths": {
+  "/purge": {
+    "additionalOperations": {
+      "PURGE": {
+        "responses": { "200": { } }
+      }
+    }
+  }
+}
+```
+
+In an OpenAPI 3.0 or 3.1 document, neither field exists, so both `QUERY` and other custom methods are emitted under the `x-oai-additionalOperations` specification extension instead:
+
+```json
+"paths": {
+  "/search": {
+    "x-oai-additionalOperations": {
+      "QUERY": {
+        "requestBody": { },
+        "responses": { "200": { } }
+      }
+    }
+  }
+}
+```
+
+To generate a 3.0 or 3.1 document, set <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.OpenApiVersion>. For more information, see [Customize the OpenAPI version of a generated document](#customize-the-openapi-version-of-a-generated-document).
+
+> [!NOTE]
+> An endpoint is described only when its HTTP method is a syntactically valid HTTP method token. An endpoint registered with a missing or malformed method string is skipped, and the rest of the document is generated normally.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ## Options to Customize OpenAPI document generation
 
@@ -81,7 +157,7 @@ The following sections demonstrate how to customize OpenAPI document generation.
 
 ### Generate OpenAPI document in YAML format
 
-The OpenAPI document can be generated in either JSON or YAML format. By default, the OpenAPI document is generated in JSON format. To generate the OpenAPI document in YAML format, specify the endpoint in the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> call with a "`.yaml`" or "`.yml`" suffix, as shown in the following example, where the `{documentName}` placeholder is the document name:
+The OpenAPI document can be generated in either JSON or YAML format. By default, the OpenAPI document is generated in JSON format. To generate the OpenAPI document in YAML format, specify the endpoint in the <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi*> call with a "`.yaml`" or "`.yml`" suffix, as shown in the following example, where the `{documentName}` placeholder is the document name:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}.yaml");
@@ -97,7 +173,7 @@ Each OpenAPI document in an app has a unique name. The default document name tha
 builder.Services.AddOpenApi(); // Document name is v1
 ```
 
-The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> call:
+The document name can be modified by passing the name as a parameter to the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> call:
 
 ```csharp
 builder.Services.AddOpenApi("internal"); // Document name is internal
@@ -114,7 +190,11 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with the OpenAPI specification. The following code demonstrates how to modify the default version of the OpenAPI document:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+By default, OpenAPI document generation creates an OpenAPI 3.1 document. The following code demonstrates how to target a different version of the OpenAPI specification:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -123,9 +203,28 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+By default, OpenAPI document generation creates an OpenAPI 3.2 document. Target an earlier version when downstream tooling doesn't yet handle OpenAPI 3.2. The following code generates an OpenAPI 3.1 document:
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1;
+});
+```
+
+For more information, see [OpenApiVersion defaults to OpenApi3_2](/aspnet/core/breaking-changes/11/openapi-version-default-3-2).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 ### Customize the OpenAPI endpoint route
 
-By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
+By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi*> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
@@ -157,14 +256,14 @@ In some scenarios, it's helpful to generate multiple OpenAPI documents with diff
 * Versions of an API.
 * Parts of an app, such as a frontend and backend API.
 
-To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> extension method once for each document, specifying a different document name in the first parameter each time.
+To generate multiple OpenAPI documents, call the <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> extension method once for each document, specifying a different document name in the first parameter each time.
 
 ```csharp
 builder.Services.AddOpenApi("v1");
 builder.Services.AddOpenApi("v2");
 ```
 
-Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A> can specify its own set of options, so you can choose to use the same or different customizations for each OpenAPI document.
+Each invocation of <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*> can specify its own set of options, so you can choose to use the same or different customizations for each OpenAPI document.
 
 The framework uses the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldInclude> delegate method of <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> to determine which endpoints to include in each document.
 
@@ -173,7 +272,7 @@ For each document, the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.ShouldI
 * Contains information about the endpoint, such as the HTTP method, route, and response types.
 * Metadata attached to the endpoint via attributes or extension methods.
 
-The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName%2A> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that hasn't been assigned a group name is included in all OpenAPI documents.
+The default implementation of this delegate uses the <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName> field of <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>. The delegate is set on an endpoint using either the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithGroupName*> extension method or the <xref:Microsoft.AspNetCore.Routing.EndpointGroupNameAttribute> attribute. `WithGroupName` or the `EndpointGroupName` attribute determines which endpoints to include in the document. Any endpoint that hasn't been assigned a group name is included in all OpenAPI documents.
 
 ```csharp
 // Include endpoints without a group name or with a group name

@@ -247,7 +247,7 @@ Troubleshooting:
 
 Confirm that the sub-app's *web.config* file doesn't include a `<handlers>` section or that the sub-app doesn't inherit the parent app's handlers.
 
-The parent app's `<system.webServer>` section of *web.config* is placed inside of a `<location>` element. The <xref:System.Configuration.SectionInformation.InheritInChildApplications*> property is set to `false` to indicate that the settings specified within the [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the parent app. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+The parent app's `<system.webServer>` section of *web.config* is placed inside of a `<location>` element. The <xref:System.Configuration.SectionInformation.InheritInChildApplications> property is set to `false` to indicate that the settings specified within the [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the parent app. For more information, see <xref:host-and-deploy/aspnet-core-module>.
 
 ## stdout log path incorrect
 

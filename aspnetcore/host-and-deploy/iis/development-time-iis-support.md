@@ -58,11 +58,11 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) to the app when it's created.
 
-For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
+For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md).
 
-For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
+For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) aren't added to the app. No app configuration is required.
 
 ### IIS launch profile
 
@@ -129,7 +129,7 @@ If an untrusted development certificate is used, the browser may require you to 
 ## Additional resources
 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md)
 
 :::moniker-end
 
@@ -173,11 +173,11 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) to the app when it's created.
 
-For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
+For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md).
 
-For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
+For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) aren't added to the app. No app configuration is required.
 
 ### IIS launch profile
 
@@ -244,6 +244,6 @@ If an untrusted development certificate is used, the browser may require you to 
 ## Additional resources
 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md)
 
 :::moniker-end

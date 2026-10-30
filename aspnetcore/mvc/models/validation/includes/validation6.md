@@ -16,11 +16,11 @@ For ASP.NET Core MVC with controllers and views, the following example shows how
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Snippets/Controllers/MoviesController.cs" id="snippet_Create" highlight="3-6":::
 
-Web API controllers don't have to check `ModelState.IsValid` if they have the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+Web API controllers don't have to check `ModelState.IsValid` if they have the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](../../../../web-api/index.md#automatic-http-400-responses).
 
 ## Rerun validation
 
-Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState%2A?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
+Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState*?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
 
@@ -56,7 +56,7 @@ Validation attributes let you specify the error message to be displayed for inva
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-Internally, the attributes call <xref:System.String.Format%2A?displayProperty=nameWithType> with a placeholder for the field name and sometimes additional placeholders. For example:
+Internally, the attributes call <xref:System.String.Format*?displayProperty=nameWithType> with a placeholder for the field name and sometimes additional placeholders. For example:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -149,7 +149,7 @@ To implement remote validation:
    
 ### Additional fields
 
-The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields%2A> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
+The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Models/User.cs" id="snippet_Name" highlight="1,5":::
 
@@ -167,7 +167,7 @@ To validate two or more additional fields, provide them as a comma-delimited lis
 public string MiddleName { get; set; }
 ```
 
-`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, don't use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call <xref:System.String.Join%2A> to initialize `AdditionalFields`.
+`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, don't use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call <xref:System.String.Join*> to initialize `AdditionalFields`.
 
 ## Alternatives to built-in attributes
 
@@ -178,7 +178,7 @@ If you need validation not provided by built-in attributes, you can:
 
 ## Custom attributes
 
-For scenarios that the built-in validation attributes don't handle, you can create custom validation attributes. Create a class that inherits from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, and override the <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid%2A> method.
+For scenarios that the built-in validation attributes don't handle, you can create custom validation attributes. Create a class that inherits from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, and override the <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> method.
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a <xref:System.ComponentModel.DataAnnotations.ValidationContext> object, which provides additional information, such as the model instance created by model binding.
 
@@ -228,7 +228,7 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 
 ## Maximum recursion
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth%2A?displayProperty=nameWithType> provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 32.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth?displayProperty=nameWithType> provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 32.
 
 ## Automatic short-circuit
 
@@ -340,18 +340,18 @@ The following example shows the `data-` attributes for the [sample app's](https:
 
 As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use information from validation attributes to render `data-` attributes. There are two options for writing code that results in the creation of custom `data-` HTML attributes:
 
-* Create a class that derives from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601> and a class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>, and register your attribute and its adapter in DI. This method follows the [single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle) in that server-related and client-related validation code is in separate classes. The adapter also has the advantage that since it's registered in DI, other services in DI are available to it if needed.
+* Create a class that derives from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase`1> and a class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>, and register your attribute and its adapter in DI. This method follows the [single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle) in that server-related and client-related validation code is in separate classes. The adapter also has the advantage that since it's registered in DI, other services in DI are available to it if needed.
 * Implement <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> in your <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> class. This method might be appropriate if the attribute doesn't do any server-side validation and doesn't need any services from DI.
 
 ### AttributeAdapter for client-side validation
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovie` attribute in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples). To add client validation by using this method:
 
-1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
+1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase`1>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
    :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs" id="snippet_Class":::
 
-1. Create an adapter provider class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>. In the <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider.GetAttributeAdapter%2A> method pass in the custom attribute to the adapter's constructor, as shown in this example:
+1. Create an adapter provider class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>. In the <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider.GetAttributeAdapter*> method pass in the custom attribute to the adapter's constructor, as shown in this example:
 
    :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Validation/CustomValidationAttributeAdapterProvider.cs" id="snippet_Class":::
 
@@ -363,7 +363,7 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovieWithClientValidator` attribute in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples). To add client validation by using this method:
 
-* In the custom validation attribute, implement the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> interface and create an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator.AddValidation%2A> method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
+* In the custom validation attribute, implement the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> interface and create an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator.AddValidation*> method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
 
   :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Validation/ClassicMovieWithClientValidatorAttribute.cs" id="snippet_Class":::
 
@@ -378,7 +378,7 @@ Other options to disable client-side validation:
 * Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
-The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor class library. For more information, see <xref:security/authentication/scaffold-identity>.
+The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](../../../../security/authentication/scaffold-identity.md).
 
 ## Additional resources
 
@@ -401,11 +401,11 @@ Both model binding and model validation occur before the execution of a controll
 
 :::code language="csharp" source="~/mvc/models/validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_OnPostAsync" highlight="3-6":::
 
-Web API controllers don't have to check `ModelState.IsValid` if they have the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+Web API controllers don't have to check `ModelState.IsValid` if they have the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](../../../../web-api/index.md#automatic-http-400-responses).
 
 ## Rerun validation
 
-Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState%2A?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
+Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState*?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
 
@@ -441,7 +441,7 @@ Validation attributes let you specify the error message to be displayed for inva
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-Internally, the attributes call <xref:System.String.Format%2A?displayProperty=nameWithType> with a placeholder for the field name and sometimes additional placeholders. For example:
+Internally, the attributes call <xref:System.String.Format*?displayProperty=nameWithType> with a placeholder for the field name and sometimes additional placeholders. For example:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -521,7 +521,7 @@ To implement remote validation:
    
 ### Additional fields
 
-The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields%2A> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
+The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/3.x/ValidationSample/Models/User.cs" id="snippet_Name" highlight="1,5":::
 
@@ -538,7 +538,7 @@ To validate two or more additional fields, provide them as a comma-delimited lis
 public string MiddleName { get; set; }
 ```
 
-`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, don't use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call <xref:System.String.Join%2A> to initialize `AdditionalFields`.
+`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, don't use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call <xref:System.String.Join*> to initialize `AdditionalFields`.
 
 ## Alternatives to built-in attributes
 
@@ -549,7 +549,7 @@ If you need validation not provided by built-in attributes, you can:
 
 ## Custom attributes
 
-For scenarios that the built-in validation attributes don't handle, you can create custom validation attributes. Create a class that inherits from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, and override the <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid%2A> method.
+For scenarios that the built-in validation attributes don't handle, you can create custom validation attributes. Create a class that inherits from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, and override the <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> method.
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a <xref:System.ComponentModel.DataAnnotations.ValidationContext> object, which provides additional information, such as the model instance created by model binding.
 
@@ -599,7 +599,7 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 
 ## Maximum recursion
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth%2A?displayProperty=nameWithType> provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 32.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth?displayProperty=nameWithType> provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 32.
 
 ## Automatic short-circuit
 
@@ -711,18 +711,18 @@ The following example shows the `data-` attributes for the [sample app's](https:
 
 As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use information from validation attributes to render `data-` attributes. There are two options for writing code that results in the creation of custom `data-` HTML attributes:
 
-* Create a class that derives from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601> and a class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>, and register your attribute and its adapter in DI. This method follows the [single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle) in that server-related and client-related validation code is in separate classes. The adapter also has the advantage that since it's registered in DI, other services in DI are available to it if needed.
+* Create a class that derives from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase`1> and a class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>, and register your attribute and its adapter in DI. This method follows the [single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle) in that server-related and client-related validation code is in separate classes. The adapter also has the advantage that since it's registered in DI, other services in DI are available to it if needed.
 * Implement <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> in your <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> class. This method might be appropriate if the attribute doesn't do any server-side validation and doesn't need any services from DI.
 
 ### AttributeAdapter for client-side validation
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovie` attribute in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples). To add client validation by using this method:
 
-1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
+1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase`1>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
    :::code language="csharp" source="~/mvc/models/validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs" id="snippet_Class":::
 
-1. Create an adapter provider class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>. In the <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider.GetAttributeAdapter%2A> method pass in the custom attribute to the adapter's constructor, as shown in this example:
+1. Create an adapter provider class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>. In the <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider.GetAttributeAdapter*> method pass in the custom attribute to the adapter's constructor, as shown in this example:
 
    :::code language="csharp" source="~/mvc/models/validation/samples/3.x/ValidationSample/Validation/CustomValidationAttributeAdapterProvider.cs" id="snippet_Class":::
 
@@ -734,7 +734,7 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovieWithClientValidator` attribute in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples). To add client validation by using this method:
 
-* In the custom validation attribute, implement the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> interface and create an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator.AddValidation%2A> method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
+* In the custom validation attribute, implement the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> interface and create an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator.AddValidation*> method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
 
   :::code language="csharp" source="~/mvc/models/validation/samples/3.x/ValidationSample/Validation/ClassicMovieWithClientValidatorAttribute.cs" id="snippet_Class":::
 
@@ -749,7 +749,7 @@ Other options to disable client-side validation:
 * Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
-The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor class library. For more information, see <xref:security/authentication/scaffold-identity>.
+The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](../../../../security/authentication/scaffold-identity.md).
 
 ## Additional resources
 
