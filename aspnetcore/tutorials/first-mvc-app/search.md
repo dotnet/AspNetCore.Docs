@@ -3,7 +3,7 @@ title: Part 7, add search to an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 7 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 01/22/2026
+ms.date: 10/27/2026
 uid: tutorials/first-mvc-app/search
 ---
 
@@ -137,6 +137,8 @@ When the user searches for the item, the search value is retained in the search 
 Update `Index.cshtml` found in *Views/Movies/* as follows:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
+
+The `<select>` element uses `asp-for="MovieGenre"` to bind the selected value to the `MovieGenre` property and `asp-items="Model.Genres"` to populate the dropdown list with the available genres. The `<option value="">All</option>` element sets an empty string as the value for the **All** option. When the user selects **All**, `movieGenre` is submitted as an empty string, satisfying `string.IsNullOrEmpty(movieGenre)` in the controller's `Index` action so that the `movies.Where(x => x.Genre == movieGenre)` filter is skipped, and results are filtered only by the title search string if one was provided.
 
 Examine the lambda expression used in the following HTML Helper:
 
