@@ -27,7 +27,7 @@ This article uses Razor component examples and focuses on [Blazor](xref:blazor/i
 * <xref:razor-pages/security/authorization/policies>
 * <xref:mvc/security/authorization/policies>
 
-Some examples in this article (ASP.NET Core 8.0 or later) use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
+Some examples in this article (ASP.NET Core 8.0 or later) use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see <xref:fundamentals/index#primary-constructors>.
 
 ## Require global user authentication
 
