@@ -1,8 +1,8 @@
 ### New `DisplayName` component and support for `[Display]` and `[DisplayName]` attributes
 
-<!-- UPDATE 11.0 - API cross-link 
+<!-- UPDATE 11.0 - API cross-link
 
-<xref:Microsoft.AspNetCore.Components.Forms.DisplayName%601>
+<xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1>
 -->
 The `DisplayName` component can be used to display property names from metadata attributes:
 
@@ -79,7 +79,7 @@ To migrate an existing app to .NET 11, including adopting the new JS module appr
 
 ### `NavigateTo` and `NavLink` support for relative navigation
 
-The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
+The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
 
 Consider the following nested endpoints:
 
@@ -88,7 +88,7 @@ Consider the following nested endpoints:
     * `/installation`
     * `/configuration`
 
-When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> or the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) for the desired navigation:
+When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) for the desired navigation:
 
 ```csharp
 Navigation.NavigateTo("/configuration", new NavigationOptions
@@ -105,7 +105,7 @@ Navigation.NavigateTo("/configuration", new NavigationOptions
 
 To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports TempData. TempData is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
-TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 ```csharp
 [CascadingParameter]
@@ -139,16 +139,16 @@ For more information, see the following resources:
 
 ### Virtualization enhancements
 
-* The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component no longer assumes every item has the same height. Previously, the component disabled the browser's native scroll anchoring (to avoid an infinite rendering loop), which meant any height change above the viewport&mdash;item expansion, data updates, lazy-loaded content&mdash;caused visible items to jump on screen. The `Virtualize` component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary.
+* The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component no longer assumes every item has the same height. Previously, the component disabled the browser's native scroll anchoring (to avoid an infinite rendering loop), which meant any height change above the viewport&mdash;item expansion, data updates, lazy-loaded content&mdash;caused visible items to jump on screen. The `Virtualize` component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary.
 
   The updates use a hybrid approach: native CSS scroll anchoring on browsers that support it for non-`<table>` layouts with a manual `ResizeObserver`-based scroll-compensation fallback for `<table>` layouts and Safari, where native anchoring miscalculates positions on `<tr>` elements.
-  
+
   Apps using the `Virtualize` component receive the benefits of these updates automatically. No developer API changes are required.
 
-  These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
+  These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
   For more information, see the following resources:
-  
+
   * [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
   * [[Virtualization] Visible content does not shift when in-DOM items above the viewport change height (`dotnet/aspnetcore` #65951)](https://github.com/dotnet/aspnetcore/pull/65951) (Please don't comment on closed issues and PRs).
 
@@ -167,7 +167,7 @@ For more information, see the following resources:
   ```
 
   For more information, see the following resources:
-  
+
   * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
   * [[release/11.0-preview4] Virtualization AnchorMode with variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
@@ -279,7 +279,7 @@ The constructor takes an optional prefix argument that's prepended to all three 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid ... 
+<QuickGrid ...
     QueryParameterNameOptions="@(new QueryParameterNameOptions("products_"))">
     ...
 </QuickGrid>
@@ -329,7 +329,7 @@ With the release of .NET 11, the following `QuickGrid` components require unique
     ...
 </QuickGrid>
 
-<QuickGrid ... Pagination="@pagination2" 
+<QuickGrid ... Pagination="@pagination2"
     QueryParameterNameOptions="@(new QueryParameterNameOptions("cities_"))">
     ...
 </QuickGrid>
@@ -377,13 +377,13 @@ The switch only controls the rendered HTML element (`<a>` versus `<button>`). Ev
 
 #### Row click event (`OnRowClick`)
 
-The `QuickGrid` component now supports row click events through the new <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.OnRowClick%2A> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
+The `QuickGrid` component now supports row click events through the new <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick> parameter. When set, the grid automatically applies appropriate styling (cursor pointer) and invokes the callback with the clicked item:
 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject NavigationManager NavigationManager
 
-<QuickGrid Items="@people.AsQueryable()" 
+<QuickGrid Items="@people.AsQueryable()"
     OnRowClick="@((Person args) => HandleRowClick(args))">
     <PropertyColumn Property="@(p => p.Name)" />
     <PropertyColumn Property="@(p => p.Email)" />
@@ -599,7 +599,7 @@ Blazor WebAssembly now supports `IHostedService` for running background services
 public class DataRefreshService : IHostedService
 {
     private Timer? _timer;
-    
+
     public Task StartAsync(CancellationToken cancellationToken)
     {
         _timer = new Timer(RefreshData, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
@@ -655,7 +655,7 @@ You can also set the options in a Razor component with the `ConfigureBrowser` co
 <ConfigureBrowser Options="RequestBrowserOptions" />
 
 ...
-    
+
 @code {
     private BrowserOptions RequestBrowserOptions => new()
     {
@@ -785,7 +785,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Antiforgery middleware (`app.UseAntiforgery()`) optional in Blazor Web Apps
 
-[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
+[CSRF protection](../../../security/anti-request-forgery.md#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
 
 For more information, see the following resources:
 
@@ -794,7 +794,7 @@ For more information, see the following resources:
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
-* <xref:security/anti-request-forgery?view=aspnetcore-11.0>
+* [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md?view=aspnetcore-11.0&preserve-view=true)
 * <xref:blazor/forms/index?view=aspnetcore-11.0#antiforgery-support>
 * <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
 
@@ -844,16 +844,16 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
-For more information, see <xref:security/authorization/iard?view=aspnetcore-11.0>.
+For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../../../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### QuickGrid APIs from Virtualize are exposed
 
-The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> set to `true`):
+The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize> set to `true`):
 
 * `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
 * `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
 * `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
 
 For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
 
@@ -915,8 +915,19 @@ dotnet add package AGUI.Client
 using AGUI.Client;
 using Microsoft.Extensions.AI;
 
-builder.Services.AddHttpClient<IChatClient>(httpClient =>
-    new AGUIChatClient(new(httpClient, "https://api.example.com/agent")));
+builder.Services.AddHttpClient("Agent", client =>
+{
+    client.Timeout = Timeout.InfiniteTimeSpan;
+});
+
+builder.Services.AddScoped<IChatClient>(services =>
+{
+    var httpClient = services.GetRequiredService<IHttpClientFactory>()
+        .CreateClient("Agent");
+
+    return new AGUIChatClient(
+        new AGUIChatClientOptions(httpClient, "https://api.example.com/agent"));
+});
 ```
 
 `AGUIChatClient` streams AG-UI events as `ChatResponseUpdate` values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any `IChatClient`, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
@@ -1305,3 +1316,13 @@ var restoredBlocks = await agent.RestoreAsync();
 ```
 
 Passing a thread to `UIAgent` enables new completed turns to be persisted but doesn't automatically restore earlier turns. For MAF-hosted AG-UI agents, see [AG-UI conversation continuity](/agent-framework/integrations/by-component/ui/ag-ui/getting-started#conversation-continuity).
+
+### Validation attributes are no longer experimental
+
+<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> from the [`Microsoft.Extensions.Validation` package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) are no longer marked experimental. If you suppressed `ASP0029` to use either attribute, remove the suppression.
+
+For more information, see the following resources:
+
+* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
+* <xref:fundamentals/validation?view=aspnetcore-11.0#nested-objects-and-collections>
+* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>

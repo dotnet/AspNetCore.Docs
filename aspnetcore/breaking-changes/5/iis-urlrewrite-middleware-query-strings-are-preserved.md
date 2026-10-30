@@ -41,7 +41,7 @@ If the behavior of removing the query string is preferred, set the `action` elem
 
 ## Affected APIs
 
-<xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite%2A?displayProperty=nameWithType>
+<xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*?displayProperty=nameWithType>
 
 <!--
 

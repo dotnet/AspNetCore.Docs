@@ -3,7 +3,6 @@ title: Migrate gRPC from C-core to gRPC for .NET
 description: Learn how to move an existing C-core based gRPC app to run on top of gRPC for .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 01/18/2022
-uid: grpc/migration
 ---
 # Migrate gRPC from C-core to gRPC for .NET
 
@@ -21,7 +20,7 @@ gRPC C-core and gRPC for .NET have different platform support:
 * **gRPC C-core**: A C++ gRPC implementation with its own TLS and HTTP/2 stacks. The `Grpc.Core` package is a .NET wrapper around gRPC C-core and contains a gRPC client and server. It supports .NET Framework, .NET Core, and .NET 5 or later.
 * **gRPC for .NET**: Designed for .NET Core 3.x and .NET 5 or later. It uses TLS and HTTP/2 stacks built into modern .NET releases. The `Grpc.AspNetCore` package contains a gRPC server that is hosted in ASP.NET Core and requires .NET Core 3.x or .NET 5 or later. The `Grpc.Net.Client` package contains a gRPC client. The client in `Grpc.Net.Client` has limited support for .NET Framework using <xref:System.Net.Http.WinHttpHandler>.
 
-For more information, see <xref:grpc/supported-platforms>.
+For more information, see [gRPC on .NET supported platforms](supported-platforms.md).
 
 ## Configure server and channel
 
@@ -29,8 +28,8 @@ NuGet packages, configuration, and startup code must be modified when migrating 
 
 gRPC for .NET has separate NuGet packages for its client and server. The packages added depend upon whether an app is hosting gRPC services or calling them:
 
-* [**`Grpc.AspNetCore`**](https://www.nuget.org/packages/Grpc.AspNetCore): Services are hosted by ASP.NET Core. For server configuration information, see <xref:grpc/aspnetcore>.
-* [**`Grpc.Net.Client`**](https://www.nuget.org/packages/Grpc.Net.Client): Clients use `GrpcChannel`, which internally uses networking functionality built into .NET. For client configuration information, see <xref:grpc/client>.
+* [**`Grpc.AspNetCore`**](https://www.nuget.org/packages/Grpc.AspNetCore): Services are hosted by ASP.NET Core. For server configuration information, see [gRPC services with ASP.NET Core](aspnetcore.md).
+* [**`Grpc.Net.Client`**](https://www.nuget.org/packages/Grpc.Net.Client): Clients use `GrpcChannel`, which internally uses networking functionality built into .NET. For client configuration information, see [Call gRPC services with the .NET client](client.md).
 
 When migration is complete, the `Grpc.Core` package should be removed from the app. `Grpc.Core` contains large native binaries, and removing the package reduces NuGet restore time and app size.
 
@@ -80,7 +79,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-For more information on configuration, see <xref:grpc/configuration>.
+For more information on configuration, see [gRPC for .NET configuration](configuration.md).
 
 ## Logging
 
@@ -109,7 +108,7 @@ public class GreeterService(ILogger<GreeterService> logger) : Greeter.GreeterBas
 }
 ```
 
-For more information on gRPC logging and diagnostics, see <xref:grpc/diagnostics>.
+For more information on gRPC logging and diagnostics, see [Logging and diagnostics in gRPC on .NET](diagnostics.md).
 
 ## HTTPS
 
@@ -125,7 +124,7 @@ C-core-based apps configure HTTPS through the [Server.Ports property](https://gr
 
 ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Both are supported by ASP.NET Core gRPC apps, so there's no need to rewrite interceptors.
 
-For more information on how these features compare to each other, see [gRPC Interceptors versus middleware](xref:grpc/interceptors#grpc-interceptors-versus-middleware).
+For more information on how these features compare to each other, see [gRPC Interceptors versus middleware](interceptors.md#grpc-interceptors-versus-middleware).
 
 ## Host gRPC in non-ASP.NET Core projects
 
@@ -133,11 +132,11 @@ A C-core-based server can be added to any project type. gRPC for .NET server req
 
 A gRPC server can be hosted to non-ASP.NET Core projects by adding `<FrameworkReference Include="Microsoft.AspNetCore.App" />` to a project. The framework reference makes ASP.NET Core APIs available and they can be used to start an ASP.NET Core server.
 
-For more information, see [Host gRPC in non-ASP.NET Core projects](xref:grpc/aspnetcore#host-grpc-in-non-aspnet-core-projects).
+For more information, see [Host gRPC in non-ASP.NET Core projects](aspnetcore.md#host-grpc-in-non-aspnet-core-projects).
 
 ## Related content
 
-* <xref:grpc/index>
-* <xref:grpc/basics>
-* <xref:grpc/aspnetcore>
+* [Overview for gRPC on .NET](index.md)
+* [gRPC Services with C#](basics.md)
+* [gRPC services with ASP.NET Core](aspnetcore.md)
 * <xref:tutorials/grpc/grpc-start>

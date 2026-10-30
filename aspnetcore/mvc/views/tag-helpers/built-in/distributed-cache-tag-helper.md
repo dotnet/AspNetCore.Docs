@@ -65,4 +65,4 @@ For more information, see <xref:performance/caching/distributed>.
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:fundamentals/dependency-injection>
 * <xref:performance/caching/memory>
-* <xref:security/authentication/identity>
+* [Introduction to Identity on ASP.NET Core](../../../../security/authentication/identity.md)

@@ -35,5 +35,5 @@ Remove project references to Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv
 
 ## Affected APIs
 
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.LibuvTransportOptions?displayProperty=fullName>

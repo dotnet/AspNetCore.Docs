@@ -3,7 +3,6 @@ title: gRPC client factory integration in .NET
 description: Learn how to create gRPC clients using the client factory.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 02/25/2022
-uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET
 
@@ -12,7 +11,7 @@ uid: grpc/clientfactory
 By [James Newton-King](https://twitter.com/jamesnk)
 
 :::moniker range=">= aspnetcore-6.0"
-gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](xref:grpc/client). Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
+gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](client.md). Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
 
 The factory offers the following benefits:
 
@@ -108,7 +107,7 @@ builder.Services
 
 Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
-A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](authn-and-authz.md#bearer-token-with-grpc-client-factory).
 
 ## Configure Channel
 
@@ -126,11 +125,11 @@ builder.Services
     });
 ```
 
-`ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](xref:grpc/configuration#configure-client-options).
+`ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](configuration.md#configure-client-options).
 
 > [!NOTE]
 > Some properties are set on `GrpcChannelOptions` before the `ConfigureChannel` callback is run:
-> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
+> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>.
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
 > These values can be overridden by `ConfigureChannel`.
@@ -155,7 +154,7 @@ builder.Services
     });
 ```
 
-For more information about configuring call credentials, see [Bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+For more information about configuring call credentials, see [Bearer token with gRPC client factory](authn-and-authz.md#bearer-token-with-grpc-client-factory).
 
 ## Deadline and cancellation propagation
 
@@ -183,7 +182,7 @@ builder.Services
     .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
-For more information about deadlines and RPC cancellation, see <xref:grpc/deadlines-cancellation>.
+For more information about deadlines and RPC cancellation, see [Reliable gRPC services with deadlines and cancellation](deadlines-cancellation.md).
 
 ## Named clients
 
@@ -229,13 +228,13 @@ public class AggregatorService : Aggregator.AggregatorBase
 
 ## Additional resources
 
-* <xref:grpc/client>
-* <xref:grpc/deadlines-cancellation>
+* [Call gRPC services with the .NET client](client.md)
+* [Reliable gRPC services with deadlines and cancellation](deadlines-cancellation.md)
 * <xref:fundamentals/http-requests>
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
-gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](xref:grpc/client). Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
+gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](client.md). Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
 
 The factory offers the following benefits:
 
@@ -331,7 +330,7 @@ services
 
 Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection/service-lifetimes).
 
-A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](authn-and-authz.md#bearer-token-with-grpc-client-factory).
 
 ## Configure Channel
 
@@ -349,11 +348,11 @@ services
     });
 ```
 
-`ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](xref:grpc/configuration#configure-client-options).
+`ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](configuration.md#configure-client-options).
 
 > [!NOTE]
 > Some properties are set on `GrpcChannelOptions` before the `ConfigureChannel` callback is run:
-> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
+> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>.
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
 > These values can be overridden by `ConfigureChannel`.
@@ -384,7 +383,7 @@ services
     .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
-For more information about deadlines and RPC cancellation, see <xref:grpc/deadlines-cancellation>.
+For more information about deadlines and RPC cancellation, see [Reliable gRPC services with deadlines and cancellation](deadlines-cancellation.md).
 
 ## Named clients
 
@@ -430,7 +429,7 @@ public class AggregatorService : Aggregator.AggregatorBase
 
 ## Additional resources
 
-* <xref:grpc/client>
-* <xref:grpc/deadlines-cancellation>
+* [Call gRPC services with the .NET client](client.md)
+* [Reliable gRPC services with deadlines and cancellation](deadlines-cancellation.md)
 * <xref:fundamentals/http-requests>
 :::moniker-end

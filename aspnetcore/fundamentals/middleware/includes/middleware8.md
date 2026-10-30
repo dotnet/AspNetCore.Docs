@@ -42,7 +42,7 @@ app.MapGet("/", () => "hello world");
 app.UseEndpoints(e => {});
 ```
 
-In some cases, the default middleware configuration isn't correct for the app and requires modification. For example, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> should be called before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. The app needs to call `UseAuthentication` and `UseAuthorization` if `UseCors` is called:
+In some cases, the default middleware configuration isn't correct for the app and requires modification. For example, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> should be called before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. The app needs to call `UseAuthentication` and `UseAuthorization` if `UseCors` is called:
 
 ```csharp
 app.UseCors();
@@ -50,7 +50,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-If middleware should run before route matching occurs, <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> should be called and the middleware should be placed before the call to `UseRouting`. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> isn't required in this case because it's automatically added as described earlier:
+If middleware should run before route matching occurs, <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> should be called and the middleware should be placed before the call to `UseRouting`. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> isn't required in this case because it's automatically added as described earlier:
 
 ```csharp
 app.Use((context, next) =>
@@ -85,6 +85,6 @@ app.Run(context =>
 
 Terminal middleware is middleware that runs if no endpoint handles the request.
 
-For information on antiforgery middleware in Minimal APIs, see <xref:security/anti-request-forgery#afwma>.
+For information on antiforgery middleware in Minimal APIs, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md#antiforgery-with-minimal-apis).
 
 :::moniker-end

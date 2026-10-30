@@ -417,16 +417,16 @@ Using `:get`/`:set` modifiers both controls the underlying value of `inputValue`
 :::moniker range=">= aspnetcore-7.0"
 
 > [!NOTE]
-> Across multiple components, two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in the property's setter. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the [`@bind:get`/`@bind:set` guidance](#binding-features) earlier in this article.
+> Across multiple components, two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> in the property's setter. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the [`@bind:get`/`@bind:set` guidance](#binding-features) earlier in this article.
 >
-> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
+> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
 > [!NOTE]
-> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in .NET 7 or later versions of this article.
+> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in .NET 7 or later versions of this article.
 
 :::moniker-end
 
@@ -624,7 +624,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and either use `@bind:get`/`@bind:set` modifiers (described earlier in this article) or [bind to a property with custom `get` and `set` accessor logic](#binding-to-a-property-with-c-get-and-set-accessors) to handle invalid entries.
-* Use an [input component](xref:blazor/forms/input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, with [form validation](xref:blazor/forms/validation). Input components together with form validation components provide built-in support to manage invalid inputs:
+* Use an [input component](xref:blazor/forms/input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1>, with [form validation](xref:blazor/forms/validation). Input components together with form validation components provide built-in support to manage invalid inputs:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -695,9 +695,9 @@ A common scenario is binding a property of a child component to a property in it
 
 You can't implement chained binds with [`@bind`](xref:mvc/views/razor#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](xref:mvc/views/razor#bind) syntax to set up data binding with the child component.
 
-The following `ChildBind` component has a `Year` component parameter and an <xref:Microsoft.AspNetCore.Components.EventCallback%601>. By convention, the <xref:Microsoft.AspNetCore.Components.EventCallback%601> for the parameter must be named as the component parameter name with a "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the following example, the <xref:Microsoft.AspNetCore.Components.EventCallback%601> is named `YearChanged`.
+The following `ChildBind` component has a `Year` component parameter and an <xref:Microsoft.AspNetCore.Components.EventCallback`1>. By convention, the <xref:Microsoft.AspNetCore.Components.EventCallback`1> for the parameter must be named as the component parameter name with a "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the following example, the <xref:Microsoft.AspNetCore.Components.EventCallback`1> is named `YearChanged`.
 
-<xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
+<xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
 
 `ChildBind.razor`:
 
@@ -737,7 +737,7 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 :::moniker-end
 
-For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
+For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback`1>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
 In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
@@ -995,7 +995,7 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 * Assigns the value of `ChildMessage` to `GrandchildMessage` with `@bind:get` syntax.
 * Updates `GrandchildMessage` when `ChildMessageChanged` executes with `@bind:set` syntax.
 
-Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
+Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 The reason to avoid directly changing the value of a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite rerenders that hang the app.
 

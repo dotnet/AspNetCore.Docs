@@ -412,7 +412,7 @@ In `Pages/_Host.cshtml` of Blazor apps that are WebAssembly prerendered (`WebAss
 </body>
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 In the following example:
 
@@ -971,7 +971,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
 The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
 

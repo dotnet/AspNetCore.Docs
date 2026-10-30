@@ -36,8 +36,8 @@ In the preceding code:
 * `AddressStyleTagHelperComponent` implements <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. The abstraction:
   * Allows initialization of the class with a <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext>.
   * Enables the use of Tag Helper Components to add or modify HTML elements.
-* The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order*> property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
-* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.ProcessAsync*> compares the execution context's <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.TagName*> property value to `head`. If the comparison evaluates to true, the content of the `_style` field is injected into the HTML `<head>` element.
+* The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order> property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
+* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.ProcessAsync*> compares the execution context's <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.TagName> property value to `head`. If the comparison evaluates to true, the content of the `_style` field is injected into the HTML `<head>` element.
 
 ### Inject into HTML body element
 

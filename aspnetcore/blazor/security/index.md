@@ -34,7 +34,7 @@ If authorization rule enforcement and the security of data and code must be guar
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which generally isn't the Blazor app client-server communication model. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks. Building Razor components that directly handle Identity tasks is possible for several scenarios but isn't recommended or supported by Microsoft.
 
-ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app).
+ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
 
 :::moniker-end
 
@@ -45,12 +45,12 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 
 Don't store app secrets, connection strings, credentials, passwords, personal identification numbers (PINs), private .NET/C# code, or private keys/tokens in client-side code, which is ***always insecure***. Client-side Blazor code should access secure services and databases through a secure web API that you control.
 
-In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data. For more information, see the following resources:
+In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](../../security/app-secrets.md) is recommended for securing sensitive data. For more information, see the following resources:
 
-* [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
+* [Secure authentication flows (ASP.NET Core documentation)](../../security/index.md#secure-authentication-flows)
 * [Managed identities for Microsoft Azure services (this article)](#managed-identities-for-microsoft-azure-services)
 
-For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
+For client-side and server-side local development and testing, use the [Secret Manager tool](../../security/app-secrets.md) to secure sensitive credentials.
 
 ## Managed identities for Microsoft Azure services
 
@@ -72,13 +72,13 @@ The Blazor project template:
 :::moniker range=">= aspnetcore-11.0"
 
 * Enables automatic Cross-Site Request Forgery (CSRF) protection middleware in apps built with `WebApplication.CreateBuilder`. The middleware inspects the `Sec-Fetch-Site` and `Origin` headers on unsafe HTTP methods and records a validation verdict on the request. Blazor server-side rendering (SSR) form posts enforce that verdict and return `400 Bad Request` for cross-origin form posts that aren't trusted.
-* Implicitly adds token-based antiforgery *services* to the app when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the `Program` file.
+* Implicitly adds token-based antiforgery *services* to the app when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the `Program` file.
 
-Antiforgery *middleware* isn't automatically included in the request processing pipeline without explicitly calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
+Antiforgery *middleware* isn't automatically included in the request processing pipeline without explicitly calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*>.
 
-To explicitly add antiforgery middleware, call <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+To explicitly add antiforgery middleware, call <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>.
 
-Adding token-based antiforgery middleware doesn't replace the automatic header-based CSRF protection middleware. When an app calls <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>, both defense mechanisms run for a form post:
+Adding token-based antiforgery middleware doesn't replace the automatic header-based CSRF protection middleware. When an app calls <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*>, both defense mechanisms run for a form post:
 
 * The header-based CSRF protection middleware runs first and records its verdict.
 * Antiforgery middleware performs token-based validation.
@@ -96,19 +96,19 @@ To disable the automatic header-based CSRF protection middleware, set the `Disab
 The `DisableCsrfProtection` configuration setting can be supplied by any configuration source, including via an environment variable (`DisableCsrfProtection=true`).
 
 > [!WARNING]
-> Disabling the automatic CSRF protection middleware removes the default header-based (`Sec-Fetch-Site`/`Origin`) protection for the entire app. Only disable it if you provide an alternative CSRF defense, such as explicitly adopting token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>.
+> Disabling the automatic CSRF protection middleware removes the default header-based (`Sec-Fetch-Site`/`Origin`) protection for the entire app. Only disable it if you provide an alternative CSRF defense, such as explicitly adopting token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*>.
 
-For more information, see [Automatic CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core).
+For more information, see [Automatic CSRF protection](../../security/anti-request-forgery.md#automatic-csrf-protection-in-aspnet-core).
 
 > [!IMPORTANT]
-> The following guidance on the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component and the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider> service only apply to an app that explicitly adopts token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in its request processing pipeline.
+> The following guidance on the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component and the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider> service only apply to an app that explicitly adopts token-based antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> in its request processing pipeline.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-* Adds antiforgery services automatically when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is called in the `Program` file.
-* Adds antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> in its request processing pipeline in the `Program` file and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) to mitigate the threats of Cross-Site Request Forgery (CSRF/XSRF). <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> is called after <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls, if present, to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
+* Adds antiforgery services automatically when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the `Program` file.
+* Adds antiforgery middleware by calling <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> in its request processing pipeline in the `Program` file and requires endpoint [antiforgery protection](../../security/anti-request-forgery.md) to mitigate the threats of Cross-Site Request Forgery (CSRF/XSRF). <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> is called after <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> must be placed after calls, if present, to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>.
 
 :::moniker-end
 
@@ -121,20 +121,20 @@ The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider> servic
 Blazor stores request tokens in component state, which guarantees that antiforgery tokens are available to interactive components, even when they don't have access to the request.
 
 > [!NOTE]
-> [Antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain` since these are the [only valid form enctypes](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-enctype).
+> [Antiforgery mitigation](../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain` since these are the [only valid form enctypes](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-enctype).
 
 For more information, see the following resources:
 
-* <xref:security/anti-request-forgery>: This article is the primary ASP.NET Core article on the subject, which applies to server-side Blazor Server, the server project of Blazor Web Apps, and Blazor integration with MVC/Razor Pages.
+* [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md): This article is the primary ASP.NET Core article on the subject, which applies to server-side Blazor Server, the server project of Blazor Web Apps, and Blazor integration with MVC/Razor Pages.
 * <xref:blazor/forms/index#antiforgery-support>: The *Antiforgery support* section of the article pertains to Blazor forms antiforgery support.
 
 :::moniker-end
 
 ## Server-side Blazor authentication
 
-Server-side Blazor apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>.
+Server-side Blazor apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under [ASP.NET Core security topics](../../security/index.md).
 
-The authentication context is only established when the app starts, which is when the app first [connects to the WebSocket over a SignalR connection](xref:signalr/authn-and-authz) with the client. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server). The authentication context is maintained for the lifetime of the connection and is re-evaluated on reconnection.
+The authentication context is only established when the app starts, which is when the app first [connects to the WebSocket over a SignalR connection](../../signalr/authn-and-authz.md) with the client. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server). The authentication context is maintained for the lifetime of the connection and is re-evaluated on reconnection.
 
 If the app must capture users for custom services or react to updates to the user, see <xref:blazor/security/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
@@ -146,7 +146,7 @@ Blazor differs from traditional server-rendered web apps that make new HTTP requ
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the examples in this article.
 
-The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
 ### Shared state
 
@@ -154,12 +154,12 @@ The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.Authe
 
 ### Server-side security of sensitive data and credentials
 
-In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data. For more information, see the following resources:
+In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code or configuration files. Outside of local development testing, we recommend avoiding the use of environment variables to store sensitive data, as environment variables aren't the most secure approach. For local development testing, the [Secret Manager tool](../../security/app-secrets.md) is recommended for securing sensitive data. For more information, see the following resources:
 
-* [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
+* [Secure authentication flows (ASP.NET Core documentation)](../../security/index.md#secure-authentication-flows)
 * [Managed identities for Microsoft Azure services (Blazor documentation)](#managed-identities-for-microsoft-azure-services)
 
-For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
+For client-side and server-side local development and testing, use the [Secret Manager tool](../../security/app-secrets.md) to secure sensitive credentials.
 
 ### Project template
 
@@ -172,14 +172,14 @@ After choosing the server-side app template and configuring the project, select 
 :::moniker range=">= aspnetcore-8.0"
 
 * **None** (default): No authentication.
-* **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
+* **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](../../security/authentication/identity.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 * **None** (default): No authentication.
-* **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
+* **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](../../security/authentication/identity.md).
 * **Microsoft identity platform**: For more information, see the links in the [Related content](#related-content) section.
 * **Windows**: Use Windows Authentication.
 
@@ -213,7 +213,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | ------------------------ | ----------- |
 | `None` (default)         | No authentication |
 | `Individual`             | Users stored in the app with ASP.NET Core Identity |
-| `IndividualB2C`          | Users stored in [Azure AD B2C](xref:security/authentication/azure-ad-b2c) |
+| `IndividualB2C`          | Users stored in [Azure AD B2C](../../security/authentication/azure-ad-b2c.md) |
 | `SingleOrg`              | Organizational authentication for a single tenant |
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
@@ -252,7 +252,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | ------------------------ | ----------- |
 | `None` (default)         | No authentication |
 | `Individual`             | Users stored in the app with ASP.NET Core Identity |
-| `IndividualB2C`          | Users stored in [Azure AD B2C](xref:security/authentication/azure-ad-b2c) |
+| `IndividualB2C`          | Users stored in [Azure AD B2C](../../security/authentication/azure-ad-b2c.md) |
 | `SingleOrg`              | Organizational authentication for a single tenant |
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
@@ -284,8 +284,8 @@ The Blazor Web App template scaffolds Identity code for a SQL Server database. T
 
 The template:
 
-* Supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios with authenticated users. 
-* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multi-factor authentication](xref:security/authentication/mfa) using a third-party app. Note that the Identity components themselves don't support interactivity.
+* Supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios with authenticated users.
+* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity features, such as [account confirmation and password recovery](../../security/authentication/accconfirm.md) and [multi-factor authentication](../../security/authentication/mfa.md) using a third-party app. Note that the Identity components themselves don't support interactivity.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in the imports file (`_Imports.razor`).
 * Creates a custom user Identity class (`ApplicationUser`).
@@ -301,7 +301,7 @@ To inspect the Blazor framework's Identity components, access them in the `Pages
 
 When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components render statically on the server in the Blazor Web App's main project.
 
-The framework provides a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in both the server and client (`.Client`) projects to flow the user's authentication state to the browser. The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>, while the client project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A>. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the .NET WebAssembly runtime is initialized. The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and then read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. For more information, see the [Manage authentication state in Blazor Web Apps](#manage-authentication-state-in-blazor-web-apps) section.
+The framework provides a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in both the server and client (`.Client`) projects to flow the user's authentication state to the browser. The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*>, while the client project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*>. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the .NET WebAssembly runtime is initialized. The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and then read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. For more information, see the [Manage authentication state in Blazor Web Apps](#manage-authentication-state-in-blazor-web-apps) section.
 
 Only for Interactive Server solutions, `IdentityRevalidatingAuthenticationStateProvider` (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`) in the server project of the [Blazor Web App project template (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that revalidates the security stamp for the connected user every 30 minutes an interactive circuit is connected.
 
@@ -340,7 +340,7 @@ To address this, the best approach is to perform authentication within the ASP.N
 
 :::moniker range=">= aspnetcore-9.0"
 
-In the server project's `Program` file, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>, which serializes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> returned by the server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> using the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>):
+In the server project's `Program` file, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*>, which serializes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> returned by the server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> using the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>):
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -348,7 +348,7 @@ builder.Services.AddRazorComponents()
     .AddAuthenticationStateSerialization();
 ```
 
-The API only serializes the server-side name and role claims for access in the browser. To include all claims, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims%2A> to `true` in the server-side call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>:
+The API only serializes the server-side name and role claims for access in the browser. To include all claims, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims> to `true` in the server-side call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*>:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -357,7 +357,7 @@ builder.Services.AddRazorComponents()
         options => options.SerializeAllClaims = true);
 ```
 
-In the client (`.Client`) project's `Program` file, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A>, which adds an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> where the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> is deserialized from the server using `AuthenticationStateData` and the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>). There should be a corresponding call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> in the server project.
+In the client (`.Client`) project's `Program` file, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*>, which adds an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> where the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> is deserialized from the server using `AuthenticationStateData` and the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>). There should be a corresponding call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> in the server project.
 
 ```csharp
 builder.Services.AddAuthorizationCore();
@@ -387,7 +387,7 @@ builder.Services.AddAuthenticationStateDeserialization();
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-For more information on scaffolding Identity into a server-side Blazor app, see <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app>.
+For more information on scaffolding Identity into a server-side Blazor app, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
 
 :::moniker-end
 
@@ -395,25 +395,25 @@ For more information on scaffolding Identity into a server-side Blazor app, see 
 
 Scaffold Identity into a server-side Blazor app:
 
-* [Without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app-without-existing-authorization).
-* [With authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
+* [Without existing authorization](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app-without-existing-authorization).
+* [With authorization](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
 
 :::moniker-end
 
 ### Additional claims and tokens from external providers
 
-To store additional claims from external providers, see <xref:security/authentication/social/additional-claims>.
+To store additional claims from external providers, see [Persist additional claims and tokens from external providers in ASP.NET Core](../../security/authentication/social/additional-claims.md).
 
 ### Azure App Service on Linux with Identity Server
 
-Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see [Use Identity to secure a Web API backend for SPAs](../../security/authentication/identity-api-authorization.md#azure-app-service-on-linux).
 
 ### Inject `AuthenticationStateProvider` for services scoped to a component
 
 Don't attempt to resolve <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a custom scope because it results in the creation of a new instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that isn't correctly initialized.
 
 To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> into the component and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
-  
+
 `ExampleService.cs`:
 
 ```csharp
@@ -435,7 +435,7 @@ public class ExampleService
     }
 }
 ```
-  
+
 Register the service as scoped. In a server-side Blazor app, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
 
 :::moniker range=">= aspnetcore-6.0"
@@ -462,7 +462,7 @@ In the following `InjectAuthStateProvider` component:
 
 * The component inherits <xref:Microsoft.AspNetCore.Components.OwningComponentBase>.
 * The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is injected and passed to `ExampleService.ExampleMethod`.
-* `ExampleService` is resolved with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices?displayProperty=nameWithType> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>, which returns the correct, initialized instance of `ExampleService` that exists for the lifetime of the user's circuit.
+* `ExampleService` is resolved with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices?displayProperty=nameWithType> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*>, which returns the correct, initialized instance of `ExampleService` that exists for the lifetime of the user's circuit.
 
 `InjectAuthStateProvider.razor`:
 
@@ -561,7 +561,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
 
 :::moniker-end
 
-* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication). After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
+* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see [Require global user authentication](../../security/authorization/policies.md#require-global-user-authentication). After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
 
 ### User state management
 
@@ -585,9 +585,9 @@ Two additional abstractions participate in managing authentication state:
 
 The default revalidation interval is 30 minutes for either ASP.NET Core Identity-based authentication or cookie-based authentication without Identity. Within the 30-minute window, it remains possible under certain sign-out conditions for a user to retain access to areas of the app that you might wish to prevent.
 
-To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A>.
+To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval>.
 
-For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
+For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/v10.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
 
 In the following example, the interval is set to five minutes:
 
@@ -595,21 +595,20 @@ In the following example, the interval is set to five minutes:
 protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(5);
 ```
 
-Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> only revalidates the authentication state held by the current Blazor circuit. Returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A?displayProperty=nameWithType> flips the circuit's state to unauthenticated, so instances of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>/<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> re-evaluate and redirect the user to sign in. However, returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync%2A> doesn't affect the underlying authentication cookie. The next full navigation that occurs before the cookie expires or is invalidated recreates the principal from the cookie. When that happens, the cookie indicates a signed-in user to the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, so the user appears signed in until the next <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> tick fires.
+Implementing <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a short <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval> only revalidates the authentication state held by the current Blazor circuit. Returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync*?displayProperty=nameWithType> flips the circuit's state to unauthenticated, so instances of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>/<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> re-evaluate and redirect the user to sign in. However, returning `false` from <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.ValidateAuthenticationStateAsync*> doesn't affect the underlying authentication cookie. The next full navigation that occurs before the cookie expires or is invalidated recreates the principal from the cookie. When that happens, the cookie indicates a signed-in user to the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, so the user appears signed in until the next <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval> tick fires.
 
 > [!NOTE]
 > Each browser tab requires a separate circuit, so additional tabs opened by a user don't observe an authentication state change until their circuits revalidate. However, the approach in this section sets the revalidation interval for all of the tabs opened by a user.
 
 To control the revalidation interval in apps that adopt ASP.NET Core Identity with cookie authentication, see the following [Sign out for ASP.NET Core Identity](#sign-out-for-aspnet-core-identity) subsection for details. For apps that adopt cookie-based authentication without Identity, see the following [Sign out for cookie-based authentication](#sign-out-for-cookie-based-authentication) subsection.
 
-
 #### Sign out for ASP.NET Core Identity
 
 To force a complete sign-out within less than the default 30-minute revalidation interval in apps that adopt ASP.NET Core Identity, use the guidance in this section.
 
-For Blazor apps that target .NET 8 or later, reduce the default 30-minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
+For Blazor apps that target .NET 8 or later, reduce the default 30-minute <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval> in the `IdentityRevalidatingAuthenticationStateProvider` class (`Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs`). If the app targets .NET earlier than .NET 8, reduce the interval in `RevalidatingIdentityAuthenticationStateProvider`.
 
-Whether or not the authentication cookie remains valid is checked by the *security stamp validator* (<xref:Microsoft.AspNetCore.Identity.SecurityStampValidator>), which hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> event of an authentication cookie and queries the user datastore to determine if the user is still signed in. The security stamp validator's interval is governed by <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType>, which defaults to 30 minutes because validating users on every request triggers a database query on every request for every user.
+Whether or not the authentication cookie remains valid is checked by the *security stamp validator* (<xref:Microsoft.AspNetCore.Identity.SecurityStampValidator>), which hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> event of an authentication cookie and queries the user datastore to determine if the user is still signed in. The security stamp validator's interval is governed by <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval?displayProperty=nameWithType>, which defaults to 30 minutes because validating users on every request triggers a database query on every request for every user.
 
 The following example shortens the default 30-minute interval to four minutes:
 
@@ -620,17 +619,17 @@ builder.Services.Configure<SecurityStampValidatorOptions>(
 
 The call interval is a tradeoff between hitting the user datastore too frequently and not often enough. Checking with a short interval can result in high demand on the user datastore and reduced app performance but with the benefit of more timely sign-outs. Checking with a long interval results in stale claims, which can make it appear that a user is still signed in if a full navigation recreates the principal from the authentication cookie before it naturally expires.
 
-To catch the next interval tick of the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, set the <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval%2A?displayProperty=nameWithType> to a period just inside the value set for <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A?displayProperty=nameWithType>.
+To catch the next interval tick of the <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider>, set the <xref:Microsoft.AspNetCore.Identity.SecurityStampValidatorOptions.ValidationInterval?displayProperty=nameWithType> to a period just inside the value set for <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval?displayProperty=nameWithType>.
 
-Custom C# code that's required to force a sign out on a user can call <xref:Microsoft.AspNetCore.Identity.UserManager%601.UpdateSecurityStampAsync%2A?displayProperty=nameWithType>, which immediately invalidates existing cookies the next time they're checked.
+Custom C# code that's required to force a sign out on a user can call <xref:Microsoft.AspNetCore.Identity.UserManager`1.UpdateSecurityStampAsync*?displayProperty=nameWithType>, which immediately invalidates existing cookies the next time they're checked.
 
-For more information, see <xref:security/authentication/identity-configuration#isecuritystampvalidator-and-signout-everywhere>.
+For more information, see [Configure ASP.NET Core Identity](../../security/authentication/identity-configuration.md#isecuritystampvalidator-and-signout-everywhere).
 
 #### Sign out for cookie-based authentication
 
 To proactively, completely sign a user off within less than the default 30-minute revalidation interval in apps that adopt cookie-based authentication without ASP.NET Core Identity, use the guidance in this section.
 
-There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval%2A> (default: 30 minutes) and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches.
+There are two approaches that you can take. The first approach is to wait for a revalidation check to occur and ensure cookie invalidation when the check is made. To adopt this approach, pair an implementation of <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval> (default: 30 minutes) and a sign-out trigger. Implement the sign-out trigger using ***either*** of the following approaches.
 
 * Sign out on GET in the app's login page. This approach is only valid for static SSR because <xref:Microsoft.AspNetCore.Http.HttpContext> is `null` during interactive rendering:
 
@@ -650,7 +649,7 @@ There are two approaches that you can take. The first approach is to wait for a 
   }
   ```
 
-* Call `NavigationManager.NavigateTo("/Account/Logout", forceLoad: true)` where you sign out users. Create an endpoint for `/Account/Logout` with a call to <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A> in the app's `Program` file, which in turn calls <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync%2A>:
+* Call `NavigationManager.NavigateTo("/Account/Logout", forceLoad: true)` where you sign out users. Create an endpoint for `/Account/Logout` with a call to <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> in the app's `Program` file, which in turn calls <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync*>:
 
   ```csharp
   app.MapGet("/Account/Logout", async (HttpContext context) =>
@@ -662,12 +661,12 @@ There are two approaches that you can take. The first approach is to wait for a 
   .RequireAuthorization();
   ```
 
-The alternative second approach is aimed at first-request freshness without waiting for the next revalidation check. To adopt this approach, perform a user datastore authentication check in <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> and call <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.RejectPrincipal%2A?displayProperty=nameWithType> with <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync%2A>.
+The alternative second approach is aimed at first-request freshness without waiting for the next revalidation check. To adopt this approach, perform a user datastore authentication check in <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal?displayProperty=nameWithType> and call <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.RejectPrincipal*?displayProperty=nameWithType> with <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.SignOutAsync*>.
 
 For more information, see the following sections of the *Use cookie authentication without ASP.NET Core Identity* article:
 
-* [Sign out](xref:security/authentication/cookie#sign-out)
-* [React to back-end changes](xref:security/authentication/cookie#react-to-back-end-changes)
+* [Sign out](../../security/authentication/cookie.md#sign-out)
+* [React to back-end changes](../../security/authentication/cookie.md#react-to-back-end-changes)
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -675,13 +674,13 @@ For more information, see the following sections of the *Use cookie authenticati
 
 *This section applies to Blazor Web Apps.*
 
-Use the <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.TemporaryRedirectionUrlValidityDuration%2A?displayProperty=nameWithType> option to get or set the lifetime of ASP.NET Core Data Protection validity for temporary redirection URLs emitted by Blazor server-side rendering. These are only used transiently, so the lifetime only needs to be long enough for a client to receive the URL and begin navigation to it. However, it should also be long enough to allow for clock skew across servers. The default value is five minutes.
+Use the <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.TemporaryRedirectionUrlValidityDuration?displayProperty=nameWithType> option to get or set the lifetime of ASP.NET Core Data Protection validity for temporary redirection URLs emitted by Blazor server-side rendering. These are only used transiently, so the lifetime only needs to be long enough for a client to receive the URL and begin navigation to it. However, it should also be long enough to allow for clock skew across servers. The default value is five minutes.
 
 In the following example the value is extended to seven minutes:
 
 ```csharp
-builder.Services.AddRazorComponents(options => 
-    options.TemporaryRedirectionUrlValidityDuration = 
+builder.Services.AddRazorComponents(options =>
+    options.TemporaryRedirectionUrlValidityDuration =
         TimeSpan.FromMinutes(7));
 ```
 
@@ -735,7 +734,7 @@ public interface IWeatherForecaster
 The client project's `ClientWeatherForecaster` service implements `IWeatherForecaster`. The `GetWeatherForecastAsync` method calls a web API in the server project at the `/weather-forecast` endpoint for weather data:
 
 ```csharp
-internal sealed class ClientWeatherForecaster(HttpClient httpClient) 
+internal sealed class ClientWeatherForecaster(HttpClient httpClient)
     : IWeatherForecaster
 {
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync() =>
@@ -896,7 +895,7 @@ internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 {
     public readonly string[] summaries =
     [
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", 
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot",
         "Sweltering", "Scorching"
     ];
 
@@ -920,7 +919,7 @@ internal sealed class ServerWeatherForecaster() : IWeatherForecaster
 If the app must call an external web API to obtain the weather data, you can inject an HTTP client (`HttpClient`) to request the data:
 
 ```csharp
-internal sealed class ServerWeatherForecaster(HttpClient httpClient, 
+internal sealed class ServerWeatherForecaster(HttpClient httpClient,
     IHttpContextAccessor httpContextAccessor) : IWeatherForecaster
 {
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
@@ -929,7 +928,7 @@ internal sealed class ServerWeatherForecaster(HttpClient httpClient,
             throw new InvalidOperationException("No HttpContext!");
         var accessToken = await httpContext.GetTokenAsync("access_token") ??
             throw new InvalidOperationException("No access_token was saved");
-        using var request = 
+        using var request =
             new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
         request.Headers.Authorization = new("Bearer", accessToken);
         using var response = await httpClient.SendAsync(request);
@@ -975,7 +974,7 @@ app.MapGet("/weather-forecast", (
 Using the preceding approach, there are two systems in place to supply secure weather data to the user:
 
 * When the `Weather` component is rendered *on the server*, the `ServerWeatherForecaster` service's `GetWeatherForecastAsync` method is used directly to obtain the weather data. The security of the data is enforced by the component's [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). In summary, the security of the weather data is enforced by the component.
-* When the `Weather` component is rendered *on the client*, the `ClientWeatherForecaster` service is used to make a web API call to the secure `/weather-forecast` endpoint that applies the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method. If the user has the authority to access weather data, the endpoint uses the `ServerWeatherForecaster` service to call `GetWeatherForecastAsync`. The data is returned to the client. In summary, the security of the weather data is enforced by the server app's web API endpoint.
+* When the `Weather` component is rendered *on the client*, the `ClientWeatherForecaster` service is used to make a web API call to the secure `/weather-forecast` endpoint that applies the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method. If the user has the authority to access weather data, the endpoint uses the `ServerWeatherForecaster` service to call `GetWeatherForecastAsync`. The data is returned to the client. In summary, the security of the weather data is enforced by the server app's web API endpoint.
 
 The preceding approach works well when the security requirements of the web API match the security requirements of the component. For example, the same authorization policy can be applied to both the web API endpoint and the component.
 
@@ -1068,8 +1067,8 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 In the preceding example:
 
-* <xref:System.Security.Claims.ClaimsPrincipal.Claims%2A?displayProperty=nameWithType> returns the user's claims (`claims`) for display in the UI.
-* The line that obtains the user's surname (`surname`) calls <xref:System.Security.Claims.ClaimsPrincipal.FindAll%2A?displayProperty=nameWithType> with a predicate to filter the user's claims.
+* <xref:System.Security.Claims.ClaimsPrincipal.Claims?displayProperty=nameWithType> returns the user's claims (`claims`) for display in the UI.
+* The line that obtains the user's surname (`surname`) calls <xref:System.Security.Claims.ClaimsPrincipal.FindAll*?displayProperty=nameWithType> with a predicate to filter the user's claims.
 
 :::moniker-end
 
@@ -1207,12 +1206,12 @@ If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membe
 
 Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and cascading authentication state services.
 
-When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the `Router` component](#customize-unauthorized-content-with-the-router-component) section.
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState*> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the `Router` component](#customize-unauthorized-content-with-the-router-component) section.
 
 ```razor
 <Router ...>
     <Found ...>
-        <AuthorizeRouteView RouteData="routeData" 
+        <AuthorizeRouteView RouteData="routeData"
             DefaultLayout="typeof(Layout.MainLayout)" />
         ...
     </Found>
@@ -1237,7 +1236,7 @@ When you create a Blazor app from one of the Blazor project templates with authe
 <CascadingAuthenticationState>
     <Router ...>
         <Found ...>
-            <AuthorizeRouteView RouteData="routeData" 
+            <AuthorizeRouteView RouteData="routeData"
                 DefaultLayout="typeof(MainLayout)" />
             ...
         </Found>
@@ -1287,7 +1286,7 @@ Access is typically granted or denied based on whether:
 * A user has a *claim*.
 * A *policy* is satisfied.
 
-Each of these concepts is the same as in an ASP.NET Core MVC or Razor Pages app. For more information on ASP.NET Core security, see the articles under [ASP.NET Core Security and Identity](xref:security/index).
+Each of these concepts is the same as in an ASP.NET Core MVC or Razor Pages app. For more information on ASP.NET Core security, see the articles under [ASP.NET Core Security and Identity](../../security/index.md).
 
 ## `AuthorizeView` component
 
@@ -1301,7 +1300,7 @@ The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Co
 </AuthorizeView>
 ```
 
-You can also supply different content for display if the user isn't authorized with a combination of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> parameters:
+You can also supply different content for display if the user isn't authorized with a combination of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized> parameters:
 
 ```razor
 <AuthorizeView>
@@ -1323,14 +1322,14 @@ Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Razor components of Blazor Web Apps never display `<NotAuthorized>` content when authorization fails server-side during static server-side rendering (static SSR). The server-side ASP.NET Core pipeline processes authorization on the server. Use server-side techniques, such as configuring <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LoginPath%2A> to handle unauthorized requests. For more information, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
+Razor components of Blazor Web Apps never display `<NotAuthorized>` content when authorization fails server-side during static server-side rendering (static SSR). The server-side ASP.NET Core pipeline processes authorization on the server. Use server-side techniques, such as configuring <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.LoginPath> to handle unauthorized requests. For more information, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
 
 :::moniker-end
 
 > [!WARNING]
 > Client-side markup and methods associated with an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> are only protected from view and execution in the ***rendered UI*** in client-side Blazor apps. In order to protect authorized content and secure methods in client-side Blazor, the content is usually supplied by a secure, authorized web API call to a server API and never stored in the app. For more information, see <xref:blazor/call-web-api> and <xref:blazor/security/webassembly/additional-scenarios>.
 
-The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> can include arbitrary items, such as other interactive components.
+The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized> can include arbitrary items, such as other interactive components.
 
 Authorization conditions, such as roles or policies that control UI options or access, are covered in the [Authorization](#authorization) section.
 
@@ -1368,7 +1367,7 @@ To require both `Admin` and `Superuser` role claims, nest <xref:Microsoft.AspNet
 
 The preceding code establishes a `Context` for the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component to prevent an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> context collision. The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> context is accessed in the outer <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> with the standard approach for accessing the context (`@context.User`). The context is accessed in the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> with the named `innerContext` context (`@innerContext.User`).
 
-For more information, including configuration guidance, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see [Role-based authorization in ASP.NET Core](../../security/authorization/roles.md).
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy?displayProperty=nameWithType> parameter with a single policy name:
 
@@ -1393,7 +1392,7 @@ To handle the case where the user must satisfy several policies simultaneously, 
   </AuthorizeView>
   ```
 
-Claim-based authorization is a special case of policy-based authorization. For example, you can define a policy that requires users to have a certain claim. For more information, see <xref:security/authorization/policies>.
+Claim-based authorization is a special case of policy-based authorization. For example, you can define a policy that requires users to have a certain claim. For more information, see [Policy-based authorization in ASP.NET Core](../../security/authorization/policies.md).
 
 If both <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> are set, authorization succeeds only when both conditions are satisfied. That is, the user must belong to at least one of the specified roles *and* meet the requirements defined by the policy.
 
@@ -1402,13 +1401,13 @@ If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Rol
 * Authenticated (signed-in) users are authorized.
 * Unauthenticated (signed-out) users are unauthorized.
 
-Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>. By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see [Claim-based authorization in ASP.NET Core](../../security/authorization/claims.md#claim-case-sensitivity). By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
 
 ### Content displayed during asynchronous authentication
 
 Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in client-side Blazor apps that make a request to an external endpoint for authentication.
 
-While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> displays no content. To display content while authentication occurs, assign content to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing%2A> parameter:
+While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> displays no content. To display content while authentication occurs, assign content to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> parameter:
 
 ```razor
 <AuthorizeView>
@@ -1475,7 +1474,7 @@ To authorize users for resources, pass the request's route data to the <xref:Mic
 In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route:
 
 ```razor
-<AuthorizeRouteView Resource="routeData" RouteData="routeData" 
+<AuthorizeRouteView Resource="routeData" RouteData="routeData"
     DefaultLayout="typeof(MainLayout)" />
 ```
 
@@ -1483,7 +1482,7 @@ For more information on how authorization state data is passed and used in proce
 
 When the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> receives the route data for the resource, authorization policies have access to <xref:Microsoft.AspNetCore.Components.RouteData.PageType?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Components.RouteData.RouteValues?displayProperty=nameWithType> that permit custom logic to make authorization decisions.
 
-In the following example, an `EditUser` policy is created in <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> for the app's authorization service configuration (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>) with the following logic:
+In the following example, an `EditUser` policy is created in <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> for the app's authorization service configuration (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*>) with the following logic:
 
 * Determine if a route value exists with a key of `id`. If the key exists, the route value is stored in `value`.
 * In a variable named `id`, store `value` as a string or set an empty string value (`string.Empty`).
@@ -1507,7 +1506,7 @@ In the `Program` file:
           if (context.Resource is RouteData rd)
           {
               var routeValue = rd.RouteValues.TryGetValue("id", out var value);
-              var id = Convert.ToString(value, 
+              var id = Convert.ToString(value,
                   System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty;
 
               if (!string.IsNullOrEmpty(id))
@@ -1521,7 +1520,7 @@ In the `Program` file:
   );
   ```
 
-The preceding example is an oversimplified authorization policy, merely used to demonstrate the concept with a working example. For more information on creating and configuring authorization policies, see <xref:security/authorization/policies>.
+The preceding example is an oversimplified authorization policy, merely used to demonstrate the concept with a working example. For more information on creating and configuring authorization policies, see [Policy-based authorization in ASP.NET Core](../../security/authorization/policies.md).
 
 In the following `EditUser` component, the resource at `/users/{id}/edit` has a route parameter for the user's identifier (`{id}`). The component uses the preceding `EditUser` authorization policy to determine if the route value for `id` starts with `EMP`. If `id` starts with `EMP`, the policy succeeds and access to the component is authorized. If `id` starts with a value other than `EMP` or if `id` is an empty string, the policy fails, and the component doesn't load.
 
@@ -1594,7 +1593,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
 </Router>
 ```
 
-The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> can include arbitrary items, such as other interactive components.
+The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized> can include arbitrary items, such as other interactive components.
 
 > [!NOTE]
 > The preceding requires cascading authentication state services registration in the app's `Program` file:
@@ -1624,11 +1623,11 @@ The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView
 </CascadingAuthenticationState>
 ```
 
-The content of <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A>, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A>, and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> can include arbitrary items, such as other interactive components.
+The content of <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized>, and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized> can include arbitrary items, such as other interactive components.
 
 :::moniker-end
 
-If <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> content isn't specified, the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> uses the following fallback message:
+If <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized> content isn't specified, the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> uses the following fallback message:
 
 ```html
 Not authorized.
@@ -1783,7 +1782,7 @@ Instead, add cascading authentication state services to the service collection i
 builder.Services.AddCascadingAuthenticationState();
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component (.NET 7 or earlier) or services provided by <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> (.NET 8 or later) supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
+The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component (.NET 7 or earlier) or services provided by <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState*> (.NET 8 or later) supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
 
 ## Personally Identifiable Information (PII)
 
@@ -1821,8 +1820,8 @@ PII refers any information relating to an identified or identifiable natural per
   * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
   * [Microsoft identity platform ID tokens](/entra/identity-platform/id-tokens)
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
-* <xref:security/index>
-* <xref:security/authentication/windowsauth>
+* [ASP.NET Core security topics](../../security/index.md)
+* [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md)
 * <xref:blazor/components/httpcontext>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
@@ -1847,9 +1846,9 @@ PII refers any information relating to an identified or identifiable natural per
   * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
   * [Microsoft identity platform ID tokens](/entra/identity-platform/id-tokens)
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
-* <xref:security/index>
+* [ASP.NET Core security topics](../../security/index.md)
 * <xref:blazor/components/httpcontext>
-* <xref:security/authentication/windowsauth>
+* [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md)
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)

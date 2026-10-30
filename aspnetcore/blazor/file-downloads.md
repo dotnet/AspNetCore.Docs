@@ -115,7 +115,7 @@ The following component:
 
 :::moniker-end
 
-For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead%2A?displayProperty=nameWithType>, as the following example demonstrates:
+For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead*?displayProperty=nameWithType>, as the following example demonstrates:
 
 ```csharp
 private Stream GetFileStream() => File.OpenRead(@"{PATH}");
@@ -238,7 +238,7 @@ Without taking further steps to enable [Cross-Origin Resource Sharing (CORS)](ht
 
 For more information on CORS with ASP.NET Core apps and other Microsoft products and services that host files for download, see the following resources:
 
-* <xref:security/cors>
+* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md)
 * [Using Azure CDN with CORS (Azure documentation)](/azure/cdn/cdn-cors)
 * [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
 * [Core Cloud Services - Set up CORS for your website and storage assets (Learn module)](/training/modules/set-up-cors-website-storage/)

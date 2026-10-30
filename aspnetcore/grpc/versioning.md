@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 01/09/2020
-uid: grpc/versioning
 ---
 # Versioning gRPC services
 
@@ -105,4 +104,4 @@ Services and messages generated with different package names are **different .NE
 
 ## Related content
 
-* <xref:grpc/protobuf>
+* [Create Protobuf messages for .NET apps](protobuf.md)

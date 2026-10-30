@@ -72,7 +72,7 @@ The `ProfileOptionsService` is a UI-level service designed to provide just the d
 
 [!code-csharp[](~/mvc/views/dependency-injection/samples/6.0/WebViewInject/Models/Services/ProfileOptionsService.cs)]
 
-Note an unregistered type throws an exception at runtime because the service provider is internally queried via <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>.
+Note an unregistered type throws an exception at runtime because the service provider is internally queried via <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*>.
 
 ## Overriding Services
 
@@ -167,7 +167,7 @@ The `ProfileOptionsService` is a UI-level service designed to provide just the d
 [!code-csharp[](../../mvc/views/dependency-injection/samples/src/ViewInjectSample/Model/Services/ProfileOptionsService.cs?highlight=7,13,24)]
 
 > [!IMPORTANT]
-> Don't forget to register types you request through dependency injection in `Startup.ConfigureServices`. An unregistered type throws an exception at runtime because the service provider is internally queried via <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>.
+> Don't forget to register types you request through dependency injection in `Startup.ConfigureServices`. An unregistered type throws an exception at runtime because the service provider is internally queried via <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*>.
 
 ## Overriding Services
 
