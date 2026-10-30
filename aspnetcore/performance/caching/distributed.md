@@ -143,6 +143,24 @@ The table created by the `sql-cache` tool has the following schema:
 
 :::image type="content" source="~/performance/caching/distributed/_static/SqlServerCacheTable.png" alt-text="Screenshot that shows the schema of a SQL Server cache table created with the 'sql-cache create' command.":::
 
+Alternatively, you can create the table and index directly using T-SQL (for example, via SQL Server Management Studio or database migration scripts):
+
+```sql
+CREATE TABLE [dbo].[TestCache](
+    [Id] nvarchar(449) COLLATE SQL_Latin1_General_CP1_CS_AS NOT NULL,
+    [Value] varbinary(max) NOT NULL,
+    [ExpiresAtTime] datetimeoffset NOT NULL,
+    [SlidingExpirationInSeconds] bigint NULL,
+    [AbsoluteExpiration] datetimeoffset NULL,
+    PRIMARY KEY (Id)
+);
+
+CREATE NONCLUSTERED INDEX Index_ExpiresAtTime ON [dbo].[TestCache](ExpiresAtTime);
+```
+
+> [!NOTE]
+> `Id` is configured with a maximum length of 449 characters to ensure the primary key remains within SQL Server's 900-byte index limit, and uses the `SQL_Latin1_General_CP1_CS_AS` collation to maintain case-sensitive cache keys. The `Index_ExpiresAtTime` nonclustered index enables efficient deletion of expired cache entries.
+
 > [!NOTE]
 > An app should manipulate cache values by using an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>, not an instance of <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache>.
 
