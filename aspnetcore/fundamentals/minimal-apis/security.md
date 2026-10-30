@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Learn how to configure authentication and authorization in Minimal API apps, explore concepts, define policies, and run development tests.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 04/28/2026
+ms.date: 10/30/2026
 uid: fundamentals/minimal-apis/security
 
 # customer intent: As an ASP.NET developer, I want to use authentication and authorization in Minimal API apps, so I can manage user access to my apps.
@@ -100,6 +100,32 @@ In the _Program.cs_ file, two JWT bearer-based authentication strategies are reg
 The scheme name is used to uniquely identify an authentication strategy. The name is also used as the lookup key when resolving authentication options from config, as shown in the following example:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
+
+Passing a custom scheme name such as `"LocalAuthIssuer"` to <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> identifies the scheme internally within ASP.NET Core for options resolution, policy schemes, and endpoint authorization. It does **not** change the HTTP `Authorization` header format expected by the handler. Per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750), <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> defaults to expecting the `Authorization: Bearer <token>` header format regardless of the registered scheme name.
+
+If clients send tokens using a custom header prefix (for example, `Authorization: LocalAuthIssuer <token>`), configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+builder.Services.AddAuthentication()
+    .AddJwtBearer("LocalAuthIssuer", options =>
+    {
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var authHeader = context.Request.Headers.Authorization.ToString();
+                if (authHeader.StartsWith("LocalAuthIssuer ", StringComparison.OrdinalIgnoreCase))
+                {
+                    context.Token = authHeader["LocalAuthIssuer ".Length..].Trim();
+                }
+
+                return Task.CompletedTask;
+            }
+        };
+    });
+```
 
 ## Configure authorization policies in minimal apps
 
