@@ -8,11 +8,11 @@ uid: test/localhost-tld
 
 # Support for the .localhost top-level domain
 
-The `.localhost` top-level domain (TLD) is defined in [RFC2606](https://www.rfc-editor.org/rfc/rfc2606) and [RFC6761](https://www.rfc-editor.org/rfc/rfc6761) as being reserved for testing purposes and available for users to use locally as they would any other domain name. This means using a name like `myapp.localhost` locally that resolves to the IP loopback address is allowed and expected according to these RFCs. 
+The `.localhost` top-level domain (TLD) is defined in [RFC2606](https://www.rfc-editor.org/rfc/rfc2606) and [RFC6761](https://www.rfc-editor.org/rfc/rfc6761) as being reserved for testing purposes and available for users to use locally as they would any other domain name. This means using a name like `myapp.localhost` locally that resolves to the IP loopback address is allowed and expected according to these RFCs.
 
 Modern evergreen browsers already automatically resolve any `*.localhost` name to the IP loopback address (`127.0.0.1`/`::1`), effectively making them an alias for any service already being hosted at `localhost` on the local machine. Any service responding to `http://localhost:6789` will also respond to `http://anything-here.localhost:6789`, assuming no further specific hostname verification or enforcement is being performed by the service.
 
-Having different apps running locally be resolvable via different names allows for better separation of some domain-name-associated website assets (for example, cookies) and makes it easier to identify which app you're browsing via the name displayed in the browser address bar. Support for the .localhost TLD was introduced in ASP.NET Core in .NET 10. 
+Having different apps running locally be resolvable via different names allows for better separation of some domain-name-associated website assets (for example, cookies) and makes it easier to identify which app you're browsing via the name displayed in the browser address bar. Support for the .localhost TLD was introduced in ASP.NET Core in .NET 10.
 
 ## Kestrel support for .localhost
 
@@ -26,7 +26,7 @@ Some client apps other than Safari and evergreen web browsers treat `*.localhost
 
 ## HTTPS development certificate
 
-The [ASP.NET Core HTTPS development certificate](../security/enforcing-ssl.md?view=aspnetcore-10.0#trust-the-aspnet-core-https-development-certificate) (including the `dotnet dev-certs https` command) is valid for use with the `*.dev.localhost` domain name. 
+The [ASP.NET Core HTTPS development certificate](../security/enforcing-ssl.md#trust-the-aspnet-core-https-development-certificate) (including the `dotnet dev-certs https` command) is valid for use with the `*.dev.localhost` domain name.
 
 The certificate lists the `*.dev.localhost` name as a Subject Alternative Name (SAN) rather than `*.localhost` because using a wildcard certificate for a top-level domain name is invalid.
 

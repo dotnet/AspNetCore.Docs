@@ -129,13 +129,13 @@ The generated Identity database code requires [Entity Framework Core Migrations]
 1. Give the migration a **Migration name**, such as `CreateIdentitySchema`, which is a name that describes the migration.
 
    Wait for the database context to load in the **DbContext class names** field. The action can take a few seconds.
-   
+
 1. Select **Finish** to complete the update. After the operation finishes, select **Close**.
 
 1. Select **More actions** (**...**) > **Update database**.
 
    The **Update database with the latest migration** dialog opens.
-   
+
    Wait for the **DbContext class names** field to update and for prior migrations to load. The action can take a few seconds.
 
 1. Select **Finish** to complete the update. After the operation finishes, select **Close**.
@@ -337,7 +337,7 @@ To disable user registration:
 1. Update the `Areas/Identity/Pages/Account/RegisterConfirmation` page.
 
    * Remove the code and links from the _.cshtml_ file.
-   
+
    * Remove the confirmation code from the `PageModel` implementation:
 
    ```csharp
@@ -345,12 +345,12 @@ To disable user registration:
    public class RegisterConfirmationModel : PageModel
    {
         public IActionResult OnGet()
-        {  
+        {
             return Page();
         }
    }
    ```
-  
+
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -389,7 +389,7 @@ Although the scaffolder generates most of the necessary code, you need to update
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
-Services are required when using [Two Factor Authentication](identity-enable-qrcodes.md), [Account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](accconfirm.md#require-email-confirmation).
+Services are required when using [Two Factor Authentication](identity-enable-qrcodes.md), [Account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Account confirmation and password recovery](accconfirm.md).
 
 Typically, apps created with individual accounts should ***not*** create a new data context.
 
@@ -614,12 +614,12 @@ To disable user registration:
     public class RegisterConfirmationModel : PageModel
     {
         public IActionResult OnGet()
-        {  
+        {
             return Page();
         }
     }
   ```
-  
+
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -914,12 +914,12 @@ To disable user registration:
     public class RegisterConfirmationModel : PageModel
     {
         public IActionResult OnGet()
-        {  
+        {
             return Page();
         }
     }
   ```
-  
+
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -951,4 +951,4 @@ To prevent publishing static Identity assets to the web root, see [Introduction 
 ## Related content
 
 - [ASP.NET Core Identity](identity.md)
-- [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) 
+- [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services)

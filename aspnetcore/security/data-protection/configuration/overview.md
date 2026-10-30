@@ -139,7 +139,7 @@ To store keys in a database using EntityFramework, configure the system with the
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToDbContext":::
 
-The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys` 
+The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys`
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/SampleDbContext.cs" id="snippet_DataProtectionKeys":::
 
@@ -223,18 +223,18 @@ For more information on how the discriminator is used, see the following section
 > ```csharp
 > using System.Reflection;
 > using Microsoft.AspNetCore.DataProtection;
-> 
+>
 > var builder = WebApplication.CreateBuilder(args);
 >
-> var trimmedContentRootPath = 
+> var trimmedContentRootPath =
 >     builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
 >
 > builder.Services.AddDataProtection().SetApplicationName(trimmedContentRootPath);
 >
 > var app = builder.Build();
-> 
+>
 > app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
-> 
+>
 > app.Run();
 > ```
 
@@ -489,7 +489,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys` 
+The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys`
 
 ```csharp
 public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }

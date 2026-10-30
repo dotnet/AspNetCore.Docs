@@ -503,9 +503,9 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
     .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
   ```
-  
+
   The `bufferSize` option is optional with a default of 100,000 bytes.
-  
+
 * Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
@@ -571,7 +571,7 @@ The antiforgery token is only validated if:
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
 * The request is associated with a valid endpoint.
 
-For more information, see [Antiforgery with Minimal APIs](../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#afwma).
+For more information, see [Antiforgery with Minimal APIs](../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis).
 
 ### New `IResettable` interface in `ObjectPool`
 
@@ -734,7 +734,7 @@ If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled
 
 The Server Name Indication (SNI) host name is now exposed in the <!--keep--> [HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,29) property of the <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> interface.
 
-SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
+SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request.
 
 Normally the host name is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in an app can use that information for purposes such as diagnostics, rate limiting, routing, and billing.
 
@@ -797,19 +797,19 @@ The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sampl
 ```diff
 using AuthRequirementsData.Authorization;
 using Microsoft.AspNetCore.Authorization;
-  
+
 var builder = WebApplication.CreateBuilder();
-  
+
 builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 -builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
-  
+
 var app = builder.Build();
-  
+
 app.MapControllers();
-  
+
 app.Run();
 ```
 
@@ -822,7 +822,7 @@ using System.Security.Claims;
 
 namespace AuthRequirementsData.Authorization;
 
-class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger) 
+class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger)
 -    : AuthorizationHandler<MinimumAgeRequirement>
 +    : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
 {

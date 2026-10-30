@@ -38,7 +38,7 @@ Delete the `<div>` element that contains the QR code instructions and the two `<
 
 ```diff
 - <div class="alert alert-info">
--     Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable 
+-     Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable
 -     QR code generation</a>.
 - </div>
 - <div></div>
@@ -49,7 +49,7 @@ Replace the deleted elements with the following markup:
 
 ```razor
 <div>
-    <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300" stroke="none" 
+    <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300" stroke="none"
             version="1.1" viewBox="0 0 50 50">
         <rect width="300" height="300" fill="#ffffff" />
         <path d="@svgGraphicsPath" fill="#000000" />
@@ -106,5 +106,5 @@ TOTP authentication depends on accurate time keeping on the TOTP authenticator a
 
 ## Related content
 
-* [Using a different QR code library](../../security/authentication/identity-enable-qrcodes.md#using-a-different-qr-code-library)
-* [TOTP client and server time skew](../../security/authentication/identity-enable-qrcodes.md#totp-client-and-server-time-skew)
+* [Using a different QR code library](../../security/authentication/identity-enable-qrcodes.md#use-a-different-qr-code-library)
+* [TOTP client and server times](../../security/authentication/identity-enable-qrcodes.md#check-totp-client-and-server-times)

@@ -34,7 +34,7 @@ If authorization rule enforcement and the security of data and code must be guar
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which generally isn't the Blazor app client-server communication model. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks. Building Razor components that directly handle Identity tasks is possible for several scenarios but isn't recommended or supported by Microsoft.
 
-ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app).
+ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
 
 :::moniker-end
 
@@ -387,7 +387,7 @@ builder.Services.AddAuthenticationStateDeserialization();
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-For more information on scaffolding Identity into a server-side Blazor app, see [Scaffold Identity in ASP.NET Core projects](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app).
+For more information on scaffolding Identity into a server-side Blazor app, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
 
 :::moniker-end
 

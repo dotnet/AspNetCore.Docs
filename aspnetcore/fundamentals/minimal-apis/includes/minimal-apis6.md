@@ -45,7 +45,7 @@ The following command makes the app respond to port `7777`:
 dotnet run --urls="https://localhost:7777"
 ```
 
-If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#kestrel)
+If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0&preserve-view=true#kestrel)
 
 #### Read the port from environment
 
@@ -119,7 +119,7 @@ The following sections show how to specify the custom certificate using the `app
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_re)]
 
-For more information using the environment, see <xref:fundamentals/environments?view=aspnetcore-6.0>
+For more information using the environment, see <xref:fundamentals/environments?view=aspnetcore-6.0&preserve-view=true>
 
 ### Configuration
 
@@ -127,7 +127,7 @@ The following code reads from the configuration system:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_CONFIG)]
 
-For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0&preserve-view=true>
 
 ### Logging
 
@@ -135,7 +135,7 @@ The following code writes a message to the log on application startup:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_log)]
 
-For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0&preserve-view=true>
 
 ### Access the Dependency Injection (DI) container
 
@@ -143,7 +143,7 @@ The following code shows how to get services from the DI container during applic
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dependencies)]
 
-For more information, see <xref:fundamentals/dependency-injection?view=aspnetcore-6.0>.
+For more information, see <xref:fundamentals/dependency-injection?view=aspnetcore-6.0&preserve-view=true>.
 
 ## WebApplicationBuilder
 
@@ -157,7 +157,7 @@ The following code sets the content root, application name, and environment:
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
-For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/index?view=aspnetcore-6.0&preserve-view=true>
 
 ### Change the content root, app name, and environment by environment variables or command line
 
@@ -181,11 +181,11 @@ builder.Configuration.AddIniFile("appsettings.ini");
 var app = builder.Build();
 ```
 
-<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
+<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed
 [!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
 
-For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
+For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0&preserve-view=true>.
 
 ### Read configuration
 
@@ -195,7 +195,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0&preserve-view=true>
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
@@ -254,7 +254,7 @@ Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_addmid)]
 
-For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0&preserve-view=true>
 
 ### Developer exception page
 
@@ -268,13 +268,13 @@ The following table lists some of the middleware frequently used with Minimal AP
 
 | Middleware | Description | API |
 |--|--|--|
-| [Authentication](../../../security/authentication/index.md?view=aspnetcore-6.0) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
+| [Authentication](../../../security/authentication/index.md?view=aspnetcore-6.0&preserve-view=true) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
 | [Authorization](../../../security/authorization/introduction.md) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> |
-| [CORS](../../../security/cors.md?view=aspnetcore-6.0) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
-| [Exception Handler](xref:fundamentals/error-handling-api?view=aspnetcore-6.0) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
-| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
-| [HTTPS Redirection](../../../security/enforcing-ssl.md?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
-| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
+| [CORS](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
+| [Exception Handler](xref:fundamentals/error-handling-api?view=aspnetcore-6.0&preserve-view=true) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
+| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0&preserve-view=true#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
+| [HTTPS Redirection](../../../security/enforcing-ssl.md?view=aspnetcore-6.0&preserve-view=true) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
+| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0&preserve-view=true#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
 | [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging*> |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
@@ -499,7 +499,7 @@ The following types are bound without explicit attributes:
 * <xref:System.Threading.CancellationToken>: The cancellation token associated with the current HTTP request:
 
   ```csharp
-  app.MapGet("/", async (CancellationToken cancellationToken) => 
+  app.MapGet("/", async (CancellationToken cancellationToken) =>
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
@@ -595,7 +595,7 @@ The preceding code:
     "name": "Joe Smith"
   }
   ```
-  When posting 
+  When posting
   ```json
   {
     "Id": 1,
@@ -739,14 +739,14 @@ allows unauthenticated users to access endpoints:
 
 ## CORS
 
-Routes can be [CORS](../../../security/cors.md?view=aspnetcore-6.0) enabled using [CORS policies](../../../security/cors.md?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
+Routes can be [CORS](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true) enabled using [CORS policies](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
 <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> method. The following samples enable CORS:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
-For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md?view=aspnetcore-6.0)
+For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true)
 
 ## See also
 

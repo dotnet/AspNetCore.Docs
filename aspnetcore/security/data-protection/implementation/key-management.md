@@ -19,7 +19,7 @@ The data protection system automatically manages the lifetime of master keys use
 
 Created, active, and expired keys may all be used to unprotect incoming payloads. Revoked keys by default may not be used to unprotect payloads, but the application developer can [override this behavior](../consumer-apis/dangerous-unprotect.md#data-protection-consumer-apis-dangerous-unprotect) if necessary.
 
->[!WARNING]
+> [!WARNING]
 > The developer might be tempted to delete a key from the key ring (for example by deleting the corresponding file from the file system). At that point, all data protected by the key is permanently undecipherable, and there's no emergency override like there's with revoked keys. Deleting a key is truly destructive behavior.
 
 ## Default key selection
@@ -30,7 +30,7 @@ The general heuristic is that the data protection system chooses the key with th
 
 The reason the data protection system generates a new key immediately rather than falling back to a different key is that new key generation should be treated as an implicit expiration of all keys that were activated prior to the new key. The general idea is that new keys may have been configured with different algorithms or encryption-at-rest mechanisms than old keys, and the system should prefer the current configuration over falling back.
 
-There's an exception. If the application developer has [disabled automatic key generation](../configuration/overview.md#disableautomatickeygeneration), then the data protection system must choose something as the default key. In this fallback scenario, the system will choose the non-revoked key with the most recent activation date, with preference given to keys that have had time to propagate to other machines in the cluster. The fallback system may end up choosing an expired default key as a result. The fallback system will never choose a revoked key as the default key, and if the key ring is empty or every key has been revoked then the system will produce an error upon initialization.
+There's an exception. If the application developer has disabled automatic key generation[Disable automatic key generation (`DisableAutomaticKeyGeneration`)](../configuration/overview.md#disable-automatic-key-generation-disableautomatickeygeneration), then the data protection system must choose something as the default key. In this fallback scenario, the system will choose the non-revoked key with the most recent activation date, with preference given to keys that have had time to propagate to other machines in the cluster. The fallback system may end up choosing an expired default key as a result. The fallback system will never choose a revoked key as the default key, and if the key ring is empty or every key has been revoked then the system will produce an error upon initialization.
 
 <a name="data-protection-implementation-key-management-expiration"></a>
 

@@ -85,6 +85,6 @@ app.Run(context =>
 
 Terminal middleware is middleware that runs if no endpoint handles the request.
 
-For information on antiforgery middleware in Minimal APIs, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md#afwma).
+For information on antiforgery middleware in Minimal APIs, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md#antiforgery-with-minimal-apis).
 
 :::moniker-end

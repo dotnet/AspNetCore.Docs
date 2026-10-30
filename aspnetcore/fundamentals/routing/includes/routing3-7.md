@@ -59,7 +59,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
+* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*)
 * [MapGrpcService\<TService> for gRPC](../../../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
@@ -309,7 +309,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 > The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
 > Endpoint routing in ASP.NET Core:
-> 
+>
 > * Doesn't have the concept of routes.
 > * Doesn't provide ordering guarantees. All endpoints are processed at once.
 
@@ -387,7 +387,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters must be separated by a literal value. For example:
 
-   `{controller=Home}{action=Index}` 
+   `{controller=Home}{action=Index}`
 
 isn't a valid route, because there's no literal value between `{controller}` and `{action}`. Route parameters must have a name and may have additional attributes specified.
 
@@ -840,7 +840,7 @@ The following links provide information on how to configure endpoint metadata:
 * [Test authentication with the [Authorize] attribute](../../../security/authentication/identity.md#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Select a scheme with an `[Authorize]` attribute](../../../security/authorization/authorize-with-a-specific-scheme.md#select-a-scheme-with-an-authorize-attribute)
-* [Apply policies using an `[Authorize]` attribute](../../../security/authorization/policies.md#apply-policies-to-mvc-controllers)
+* [Apply policies in MVC and Razor Pages apps](../../../security/authorization/policies.md#apply-policies-in-mvc-and-razor-pages-apps)
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 
 <a name="hostmatch"></a>
@@ -904,7 +904,7 @@ The following code uses a more compact approach to the preceding timing code:
 The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
 * Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.
-* Complex segments (`{x}-{y}-{z}`): 
+* Complex segments (`{x}-{y}-{z}`):
   * Are significantly more expensive than parsing a regular URL path segment.
   * Result in many more substrings being allocated.
 * Synchronous data access: Many complex apps have database access as part of their routing. Use extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext>, which are asynchronous.
@@ -1088,7 +1088,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
+* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*)
 * [MapGrpcService\<TService> for gRPC](../../../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
@@ -1338,7 +1338,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 > The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
 > Endpoint routing in ASP.NET Core:
-> 
+>
 > * Doesn't have the concept of routes.
 > * Doesn't provide ordering guarantees. All endpoints are processed at once.
 
@@ -1416,7 +1416,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters must be separated by a literal value. For example:
 
-   `{controller=Home}{action=Index}` 
+   `{controller=Home}{action=Index}`
 
 isn't a valid route, because there's no literal value between `{controller}` and `{action}`. Route parameters must have a name and may have additional attributes specified.
 
@@ -1863,7 +1863,7 @@ The following links provide information on how to configure endpoint metadata:
 * [Test authentication with the [Authorize] attribute](../../../security/authentication/identity.md#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Select a scheme with an `[Authorize]` attribute](../../../security/authorization/authorize-with-a-specific-scheme.md#select-a-scheme-with-an-authorize-attribute)
-* [Apply policies using an `[Authorize]` attribute](../../../security/authorization/policies.md#apply-policies-to-mvc-controllers)
+* [Apply policies in MVC and Razor Pages apps](../../../security/authorization/policies.md#apply-policies-in-mvc-and-razor-pages-apps)
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 
 <a name="hostmatch"></a>
@@ -1923,7 +1923,7 @@ The following code uses a more compact approach to the preceding timing code:
 The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
 * Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.
-* Complex segments (`{x}-{y}-{z}`): 
+* Complex segments (`{x}-{y}-{z}`):
   * Are significantly more expensive than parsing a regular URL path segment.
   * Result in many more substrings being allocated.
 * Synchronous data access: Many complex apps have database access as part of their routing. Use extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext>, which are asynchronous.
@@ -2104,7 +2104,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 
 * [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 * [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
+* [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*)
 * [MapGrpcService\<TService> for gRPC](../../../grpc/aspnetcore.md)
 
 The following example shows routing with a more sophisticated route template:
@@ -2351,7 +2351,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 > The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
 > In the legacy implementation of routing, it's possible to implement routing extensibility that has a dependency on the order in which routes are processed. Endpoint routing in ASP.NET Core 3.0 or later:
-> 
+>
 > * Doesn't have a concept of routes.
 > * Doesn't provide ordering guarantees. All endpoints are processed at once.
 
@@ -2866,7 +2866,7 @@ The following links provide information on configuring endpoint metadata:
 * [Test authentication with the [Authorize] attribute](../../../security/authentication/identity.md#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Select a scheme with an `[Authorize]` attribute](../../../security/authorization/authorize-with-a-specific-scheme.md#select-a-scheme-with-an-authorize-attribute)
-* [Apply policies using an `[Authorize]` attribute](../../../security/authorization/policies.md#apply-policies-to-mvc-controllers)
+* [Apply policies in MVC and Razor Pages apps](../../../security/authorization/policies.md#apply-policies-in-mvc-and-razor-pages-apps)
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 
 <a name="hostmatch"></a>
@@ -2928,7 +2928,7 @@ The following code uses a more compact approach to the preceding timing code:
 The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
 * Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.
-* Complex segments (`{x}-{y}-{z}`): 
+* Complex segments (`{x}-{y}-{z}`):
   * Are significantly more expensive than parsing a regular URL path segment.
   * Result in many more substrings being allocated.
   * The complex segment logic was not updated in ASP.NET Core 3.0 routing performance update.
