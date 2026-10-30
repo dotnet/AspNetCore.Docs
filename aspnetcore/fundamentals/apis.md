@@ -2,7 +2,7 @@
 title: APIs overview
 description: Learn how to build fast HTTP APIs with ASP.NET Core using Minimal APIs, the recommended approach for new projects.
 ai-usage: ai-assisted
-ms.date: 05/04/2026
+ms.date: 10/30/2026
 ms.reviewer: jeliknes
 monikerRange: '>= aspnetcore-6.0'
 uid: fundamentals/apis
@@ -45,15 +45,15 @@ app.Run();
 
 Minimal APIs support the configuration and customization needed to scale to multiple APIs, handle complex routes, apply authorization rules, and control the content of API responses.
 
-### Getting started with Minimal APIs
+Getting started with Minimal APIs:
 
 * **Tutorial**: <xref:tutorials/min-web-api>
 * **Quick reference**: <xref:fundamentals/minimal-apis>
-* **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>
+* **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>.
 
 ## Controller-based APIs - Alternative approach
 
-While Minimal APIs are recommended, ASP.NET Core also supports a controller-based alternative approach where controllers are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This approach follows traditional object-oriented patterns and may be preferred for:
+While Minimal APIs are recommended, ASP.NET Core also supports a controller-based alternative approach where controllers are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This approach follows traditional object-oriented patterns and may be preferred for the following scenarios:
 
 * Large applications with legacy controller patterns or complex business logic
 * Teams familiar with the MVC pattern
@@ -73,30 +73,30 @@ Both API projects refer to the following class:
 
 :::code language="csharp" source="~/fundamentals/apis/APIWithControllers/WeatherForecast.cs":::
 
-## Choosing between approaches
+## Choose between approaches
 
-**Start with Minimal APIs for most projects**. They offer:
+**Start with Minimal APIs for most projects**. Minimal APIs offer the following features:
 
-* **Streamlined experience and simpler syntax** - Less boilerplate code and faster setup
-* **Better performance** - Reduced overhead compared to controllers
-* **Easier testing** - Simplified unit and integration testing
-* **Modern approach** - Leverages the latest .NET features and C# innovations
+* **Streamlined experience and simpler syntax**. There's less boilerplate code and faster setup.
+* **Better performance**. Minimal APIs have reduced overhead compared to controllers.
+* **Easier testing**. They simplify unit and integration testing.
+* **Modern approach**. The API can leverage the latest .NET features and C# innovations.
 
-**Consider controller-based APIs only if you specifically need**:
+**Consider controller-based APIs only if you specifically need any of the following**:
 
 * Model binding extensibility (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>)
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
 * [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
-Most of these features can be implemented in Minimal APIs with custom solutions, but controllers provide them out of the box.
+Most of the preceding features can be implemented in Minimal APIs with custom solutions, but controllers provide them natively.
 
-## See also
+## Related content
 
-* <xref:tutorials/min-web-api> - Minimal API tutorial
-* <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
-* <xref:web-api/index> - Controller-based APIs overview
-* <xref:tutorials/first-web-api> - Controller-based API tutorial
+* <xref:tutorials/min-web-api>
+* <xref:fundamentals/minimal-apis>
+* <xref:web-api/index>
+* <xref:tutorials/first-web-api>
 
 :::moniker-end
 
@@ -133,11 +133,11 @@ app.Run();
 
 Minimal APIs support the configuration and customization needed to scale to multiple APIs, handle complex routes, apply authorization rules, and control the content of API responses.
 
-### Getting started with Minimal APIs
+Getting started with Minimal APIs:
 
 * **Tutorial**: <xref:tutorials/min-web-api>
 * **Quick reference**: <xref:fundamentals/minimal-apis>
-* **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>
+* **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>.
 
 ## Controller-based APIs - Alternative approach
 
@@ -161,7 +161,7 @@ Both API projects refer to the following class:
 
 :::code language="csharp" source="~/fundamentals/apis/APIWithControllers/WeatherForecast.cs":::
 
-## Choosing between approaches
+## Choose between approaches
 
 **Start with Minimal APIs** for new projects. They offer:
 
@@ -177,14 +177,14 @@ Both API projects refer to the following class:
 * [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
-Most of these features can be implemented in Minimal APIs with custom solutions, but controllers provide them out of the box.
+Most of the preceding features can be implemented in Minimal APIs with custom solutions, but controllers provide them natively.
 
-## See also
+## Related content
 
-* <xref:tutorials/min-web-api> - Minimal API tutorial
-* <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
-* <xref:web-api/index> - Controller-based APIs overview
-* <xref:tutorials/first-web-api> - Controller-based API tutorial
+* <xref:tutorials/min-web-api>
+* <xref:fundamentals/minimal-apis>
+* <xref:web-api/index>
+* <xref:tutorials/first-web-api>
 
 :::moniker-end
 
@@ -206,7 +206,7 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-### Getting started with Minimal APIs
+Getting started with Minimal APIs:
 
 * **Tutorial**: <xref:tutorials/min-web-api>
 * **Quick reference**: <xref:fundamentals/minimal-apis>
@@ -229,7 +229,7 @@ Both API projects refer to the following class:
 
 :::code language="csharp" source="~/fundamentals/apis/APIWithControllers/WeatherForecast.cs":::
 
-## Choosing between approaches
+## Choose between approaches
 
 **Start with Minimal APIs** for new projects. Consider controller-based APIs if you need:
 
@@ -239,11 +239,11 @@ Both API projects refer to the following class:
 * [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
-## See also
+## Related content
 
-* <xref:tutorials/min-web-api> - Minimal API tutorial
-* <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
-* <xref:web-api/index> - Controller-based APIs overview
-* <xref:tutorials/first-web-api> - Controller-based API tutorial
+* <xref:tutorials/min-web-api>
+* <xref:fundamentals/minimal-apis>
+* <xref:web-api/index>
+* <xref:tutorials/first-web-api>
 
 :::moniker-end
