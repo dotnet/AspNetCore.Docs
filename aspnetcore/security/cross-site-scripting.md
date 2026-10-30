@@ -3,7 +3,6 @@ title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/13/2026
-uid: security/cross-site-scripting
 ai-usage: ai-assisted
 
 # customer intent: As an ASP.NET Core developer, I want to prevent Cross-Site Scripting in my ASP.NET Core app, so I can protect my apps against this vulnerability.

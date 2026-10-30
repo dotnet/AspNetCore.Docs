@@ -81,7 +81,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 Because the connection looks entirely new to the server, a new `ConnectionId` is provided to the `Reconnected` event handlers.
 
 > [!WARNING]
-> The `Reconnected` event handler's `connectionId` parameter is `null` if the `HubConnection` is configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+> The `Reconnected` event handler's `connectionId` parameter is `null` if the `HubConnection` is configured to [skip negotiation](configuration.md#configure-client-options).
 
 ```csharp
 connection.Reconnected += connectionId =>
@@ -327,7 +327,7 @@ Handle errors with a `try...catch` statement. Inspect the `Exception` object to 
 
 ## Refresh authentication without reconnecting
 
-When the server enables authentication refresh, the .NET client can replace the credentials on an open connection instead of letting the connection close when its access token expires. Automatic refresh is enabled by default, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> exposes a `RefreshAuthenticationAsync` method that requests an immediate refresh. To change the refresh timing or turn automatic refresh off, call `WithAuthenticationRefresh` when building the connection. For the client options, the refresh events, and the server options that enable the feature, see <xref:signalr/authn-and-authz#authentication-refresh>.
+When the server enables authentication refresh, the .NET client can replace the credentials on an open connection instead of letting the connection close when its access token expires. Automatic refresh is enabled by default, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> exposes a `RefreshAuthenticationAsync` method that requests an immediate refresh. To change the refresh timing or turn automatic refresh off, call `WithAuthenticationRefresh` when building the connection. For the client options, the refresh events, and the server options that enable the feature, see [SignalR authentication and authorization](authn-and-authz.md#authentication-refresh).
 
 :::moniker-end
 

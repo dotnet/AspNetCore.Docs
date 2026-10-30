@@ -3,7 +3,6 @@ title: Persist additional claims and tokens from external providers in ASP.NET C
 description: Learn how to establish additional claims and tokens from external providers.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/18/2021
-uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
 
@@ -13,17 +12,17 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see [Using external login providers with Identity in ASP.NET Core](index.md). The sample app uses the [Google authentication provider](google-logins.md).
 
 ## Set the client ID and client secret
 
 The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Google authentication](xref:security/authentication/google-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other authentication providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Google authentication](google-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other authentication providers](other-logins.md)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
 Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits assigning optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
@@ -108,7 +107,7 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager`1) on a user to force the generation of a new authentication cookie.
 
-In the `Development` environment working with test user accounts, delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
+In the `Development` environment working with test user accounts, delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](../scaffold-identity.md) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
 
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
@@ -181,17 +180,17 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see [Using external login providers with Identity in ASP.NET Core](index.md). The sample app uses the [Google authentication provider](google-logins.md).
 
 ## Set the client ID and client secret
 
 The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply to your scenario:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Google authentication](xref:security/authentication/google-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other authentication providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Google authentication](google-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other authentication providers](other-logins.md)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
 Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits you to assign optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
@@ -276,7 +275,7 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager`1) on a user to force the generation of a new authentication cookie.
 
-In the `Development` environment working with test user accounts, you can simply delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
+In the `Development` environment working with test user accounts, you can simply delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](../scaffold-identity.md) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
 
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
@@ -451,17 +450,17 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see [Using external login providers with Identity in ASP.NET Core](index.md). The sample app uses the [Google authentication provider](google-logins.md).
 
 ## Set the client ID and client secret
 
 The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply to your scenario:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Google authentication](xref:security/authentication/google-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other authentication providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Google authentication](google-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other authentication providers](other-logins.md)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:

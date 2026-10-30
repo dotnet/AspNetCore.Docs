@@ -26,7 +26,7 @@ Some client apps other than Safari and evergreen web browsers treat `*.localhost
 
 ## HTTPS development certificate
 
-The [ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl?view=aspnetcore-10.0#trust-the-aspnet-core-https-development-certificate) (including the `dotnet dev-certs https` command) is valid for use with the `*.dev.localhost` domain name. 
+The [ASP.NET Core HTTPS development certificate](../security/enforcing-ssl.md?view=aspnetcore-10.0#trust-the-aspnet-core-https-development-certificate) (including the `dotnet dev-certs https` command) is valid for use with the `*.dev.localhost` domain name. 
 
 The certificate lists the `*.dev.localhost` name as a Subject Alternative Name (SAN) rather than `*.localhost` because using a wildcard certificate for a top-level domain name is invalid.
 

@@ -1277,7 +1277,7 @@ items:
             uid: signalr/hubcontext
             displayName: signalr
           - name: Users and groups
-            uid: signalr/groups
+            href: signalr/groups.md
             displayName: signalr
           - name: API design considerations
             uid: signalr/api-design
@@ -1327,16 +1327,16 @@ items:
           - name: SignalR with background services
             uid: signalr/background-services
       - name: Configuration
-        uid: signalr/configuration
+        href: signalr/configuration.md
         displayName: signalr
       - name: IHttpContextAccessor and HttpContext
         uid: signalr/httpcontext
         displayName: signalr
       - name: Authentication and authorization
-        uid: signalr/authn-and-authz
+        href: signalr/authn-and-authz.md
         displayName: signalr
       - name: Security considerations
-        uid: signalr/security
+        href: signalr/security.md
         displayName: signalr
       - name: MessagePack Hub Protocol
         uid: signalr/messagepackhubprotocol
@@ -2043,63 +2043,63 @@ items:
     displayName: authentication, authorization
     items:
       - name: Overview
-        uid: security/index
+        href: security/index.md
       - name: Authentication
         items:
           - name: Overview
-            uid: security/authentication/index
+            href: security/authentication/index.md
           - name: Choose an identity solution
-            uid: security/how-to-choose-identity
+            href: security/how-to-choose-identity-solution.md
           - name: ASP.NET Core Identity
             items:
               - name: Overview
-                uid: security/authentication/identity
+                href: security/authentication/identity.md
               - name: Identity with SPA
-                uid: security/authentication/identity/spa
+                href: security/authentication/identity-api-authorization.md
               - name: Scaffold Identity
-                uid: security/authentication/scaffold-identity
+                href: security/authentication/scaffold-identity.md
               - name: Add custom user data to Identity
-                uid: security/authentication/add-user-data
+                href: security/authentication/add-user-data.md
               - name: Customize Identity
-                uid: security/authentication/customize_identity_model
+                href: security/authentication/customize-identity-model.md
               - name: Configure Identity
-                uid: security/authentication/identity-configuration
+                href: security/authentication/identity-configuration.md
               - name: Custom storage providers for Identity
-                uid: security/authentication/identity-custom-storage-providers
+                href: security/authentication/identity-custom-storage-providers.md
               - name: Account confirmation and password recovery
-                uid: security/authentication/accconfirm
+                href: security/authentication/accconfirm.md
               - name: Enable QR code generation in Identity
-                uid: security/authentication/identity-enable-qrcodes
+                href: security/authentication/identity-enable-qrcodes.md
               - name: Two-factor authentication with SMS
-                uid: security/authentication/2fa
+                href: security/authentication/2fa.md
               - name: Passkeys (WebAuthn)
                 items:
                   - name: Overview
-                    uid: security/authentication/passkeys/index
+                    href: security/authentication/passkeys/index.md
                   - name: Blazor
-                    uid: security/authentication/passkeys/blazor
+                    href: security/authentication/passkeys/blazor.md
               - name: External authentication providers
                 items:
                   - name: Overview
-                    uid: security/authentication/social/index
+                    href: security/authentication/social/index.md
                   - name: Google authentication
-                    uid: security/authentication/google-logins
+                    href: security/authentication/social/google-logins.md
                   - name: Facebook authentication
-                    uid: security/authentication/facebook-logins
+                    href: security/authentication/social/facebook-logins.md
                   - name: Microsoft authentication
-                    uid: security/authentication/microsoft-logins
+                    href: security/authentication/social/microsoft-logins.md
                   - name: Twitter authentication
-                    uid: security/authentication/twitter-logins
+                    href: security/authentication/social/twitter-logins.md
                   - name: Other providers
-                    uid: security/authentication/otherlogins
+                    href: security/authentication/social/other-logins.md
                   - name: Additional claims
-                    uid: security/authentication/social/additional-claims
+                    href: security/authentication/social/additional-claims.md
               - name: Individual user accounts
-                uid: security/authentication/individual
+                href: security/authentication/individual.md
           - name: Azure
             items:
               - name: Overview
-                uid: security/authentication/azure-active-directory/index
+                href: security/authentication/azure-active-directory/index.md
               - name: Secure ASP.NET Core apps with Microsoft identity web
                 href: https://github.com/AzureAD/microsoft-identity-web/wiki
               - name: Secure ASP.NET Core apps with Microsoft identity platform
@@ -2117,7 +2117,7 @@ items:
                   - name: Web API that calls other web APIs
                     href: /azure/active-directory/develop/scenario-web-api-call-api-overview
                   - name: Integrate Azure AD B2C into a web app
-                    uid: security/authentication/azure-ad-b2c
+                    href: security/authentication/azure-ad-b2c.md
               - name: Samples
                 items:
                   - name: Enable your Web Apps to sign-in users and call APIs with the Microsoft identity platform for developers
@@ -2127,174 +2127,174 @@ items:
                   - name: Web API with Azure AD B2C
                     href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
-            uid: security/authentication/cookie
+            href: security/authentication/cookie.md
           - name: API endpoint authentication behavior
-            uid: security/authentication/api-endpoint-auth
+            href: security/authentication/api-endpoint-auth.md
           - name: Configure OIDC web authentication
-            uid: security/authentication/configure-oidc-web-authentication
+            href: security/authentication/configure-oidc-web-authentication.md
           - name: Configure JWT bearer authentication
-            uid: security/authentication/configure-jwt-bearer-authentication
+            href: security/authentication/configure-jwt-bearer-authentication.md
           - name: Configure certificate authentication
-            uid: security/authentication/certauth
+            href: security/authentication/certauth.md
           - name: Configure Windows authentication
-            uid: security/authentication/windowsauth
+            href: security/authentication/windowsauth.md
           - name: Configure WS-Federation authentication
-            uid: security/authentication/ws-federation
+            href: security/authentication/ws-federation.md
           - name: Configure social authentication
-            uid: security/authentication/social/social-without-identity
+            href: security/authentication/social/social-without-identity.md
           - name: Policy schemes
-            uid: security/authentication/policyschemes
+            href: security/authentication/policyschemes.md
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
-            uid: security/authentication/jwt
+            href: security/authentication/jwt-authn.md
           - name: Map, customize, and transform claims
-            uid: security/authentication/claims
+            href: security/authentication/claims.md
           - name: Community OSS authentication options
-            uid: security/authentication/community
+            href: security/authentication/community.md
           - name: Identity management solutions
-            uid: security/identity-management-solutions
+            href: security/identity-management-solutions.md
           - name: Multi-factor authentication
-            uid: security/authentication/mfa
+            href: security/authentication/mfa.md
       - name: Authorization
         items:
           - name: Overview
-            uid: security/authorization/introduction
+            href: security/authorization/introduction.md
           - name: Create a web app with authorization
-            uid: security/authorization/secure-data
+            href: security/authorization/secure-data.md
           - name: Simple authorization
-            uid: security/authorization/simple
+            href: security/authorization/simple.md
           - name: Require authenticated users by default
             href: security/authorization/policies.md#require-global-user-authentication
           - name: Custom authorization with IAuthorizationRequirementData
-            uid: security/authorization/iard
+            href: security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md
           - name: Role-based authorization
-            uid: security/authorization/roles
+            href: security/authorization/roles.md
           - name: Claim-based authorization
-            uid: security/authorization/claims
+            href: security/authorization/claims.md
           - name: Policy-based authorization
-            uid: security/authorization/policies
+            href: security/authorization/policies.md
           - name: Authorization policy providers
-            uid: security/authorization/custom-authorization-policy-providers
+            href: security/authorization/custom-authorization-policy-providers.md
           - name: Customize the behavior of AuthorizationMiddleware
-            uid: security/authorization/authorizationmiddlewareresulthandler
+            href: security/authorization/customizingauthorizationmiddlewareresponse.md
           - name: Dependency injection in requirement handlers
-            uid: security/authorization/dependencyinjection
+            href: security/authorization/dependencyinjection.md
           - name: Resource-based authorization
-            uid: security/authorization/resource-based
+            href: security/authorization/resource-based.md
           - name: Authorize with a specific scheme
-            uid: security/authorization/authorize-with-a-specific-scheme
+            href: security/authorization/authorize-with-a-specific-scheme.md
       - name: Data protection
         displayName: encryption
         items:
           - name: Overview
-            uid: security/data-protection/introduction
+            href: security/data-protection/introduction.md
           - name: Data protection APIs
-            uid: security/data-protection/using-data-protection
+            href: security/data-protection/using-data-protection.md
           - name: Consumer APIs
             items:
               - name: Overview
-                uid: security/data-protection/consumer-apis/overview
+                href: security/data-protection/consumer-apis/overview.md
               - name: Purpose strings
-                uid: security/data-protection/consumer-apis/purpose-strings
+                href: security/data-protection/consumer-apis/purpose-strings.md
               - name: Purpose hierarchy and multi-tenancy
-                uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
+                href: security/data-protection/consumer-apis/purpose-strings-multitenancy.md
               - name: Hash passwords
-                uid: security/data-protection/consumer-apis/password-hashing
+                href: security/data-protection/consumer-apis/password-hashing.md
               - name: Limit the lifetime of protected payloads
-                uid: security/data-protection/consumer-apis/limited-lifetime-payloads
+                href: security/data-protection/consumer-apis/limited-lifetime-payloads.md
               - name: Unprotect payloads whose keys have been revoked
-                uid: security/data-protection/consumer-apis/dangerous-unprotect
+                href: security/data-protection/consumer-apis/dangerous-unprotect.md
           - name: Configuration
             items:
               - name: Overview
-                uid: security/data-protection/configuration/index
+                href: security/data-protection/configuration/index.md
               - name: Configure data protection
-                uid: security/data-protection/configuration/overview
+                href: security/data-protection/configuration/overview.md
               - name: Default settings
-                uid: security/data-protection/configuration/default-settings
+                href: security/data-protection/configuration/default-settings.md
               - name: Machine-wide policy
-                uid: security/data-protection/configuration/machine-wide-policy
+                href: security/data-protection/configuration/machine-wide-policy.md
               - name: Non-DI aware scenarios
-                uid: security/data-protection/configuration/non-di-scenarios
+                href: security/data-protection/configuration/non-di-scenarios.md
           - name: Extensibility APIs
             items:
               - name: Overview
-                uid: security/data-protection/extensibility/index
+                href: security/data-protection/extensibility/index.md
               - name: Core cryptography extensibility
-                uid: security/data-protection/extensibility/core-crypto
+                href: security/data-protection/extensibility/core-crypto.md
               - name: Key management extensibility
-                uid: security/data-protection/extensibility/key-management
+                href: security/data-protection/extensibility/key-management.md
               - name: Miscellaneous APIs
-                uid: security/data-protection/extensibility/misc-apis
+                href: security/data-protection/extensibility/misc-apis.md
           - name: Implementation
             items:
               - name: Overview
-                uid: security/data-protection/implementation/index
+                href: security/data-protection/implementation/index.md
               - name: Authenticated encryption details
-                uid: security/data-protection/implementation/authenticated-encryption-details
+                href: security/data-protection/implementation/authenticated-encryption-details.md
               - name: Subkey derivation and authenticated encryption
-                uid: security/data-protection/implementation/subkeyderivation
+                href: security/data-protection/implementation/subkeyderivation.md
               - name: Context headers
-                uid: security/data-protection/implementation/context-headers
+                href: security/data-protection/implementation/context-headers.md
               - name: Key management
-                uid: security/data-protection/implementation/key-management
+                href: security/data-protection/implementation/key-management.md
               - name: Key storage providers
-                uid: security/data-protection/implementation/key-storage-providers
+                href: security/data-protection/implementation/key-storage-providers.md
               - name: Key encryption at rest
-                uid: security/data-protection/implementation/key-encryption-at-rest
+                href: security/data-protection/implementation/key-encryption-at-rest.md
               - name: Key immutability and settings
-                uid: security/data-protection/implementation/key-immutability
+                href: security/data-protection/implementation/key-immutability.md
               - name: Key storage format
-                uid: security/data-protection/implementation/key-storage-format
+                href: security/data-protection/implementation/key-storage-format.md
               - name: Ephemeral data protection providers
-                uid: security/data-protection/implementation/key-storage-ephemeral
+                href: security/data-protection/implementation/key-storage-ephemeral.md
           - name: Compatibility
             items:
               - name: Overview
-                uid: security/data-protection/compatibility/index
+                href: security/data-protection/compatibility/index.md
               - name: Replace machineKey in ASP.NET
-                uid: security/data-protection/compatibility/replacing-machinekey
+                href: security/data-protection/compatibility/replacing-machinekey.md
       - name: Secrets management
         items:
           - name: Protect secrets in development
             displayName: password, connection string, API key
-            uid: security/app-secrets
+            href: security/app-secrets.md
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
-            uid: security/authentication/jwt
+            href: security/authentication/jwt-authn.md
           - name: Azure Key Vault Configuration Provider
             displayName: password, connection string, API key, secrets
-            uid: security/key-vault-configuration
+            href: security/key-vault-configuration.md
       - name: Enforce HTTPS
-        uid: security/enforcing-ssl
+        href: security/enforcing-ssl.md
       - name: Host Docker with HTTPS
-        uid: security/docker-https
+        href: security/docker-https.md
       - name: Docker Compose with HTTPS
-        uid: security/docker-compose-https
+        href: security/docker-compose-https.md
       - name: EU General Data Protection Regulation (GDPR) support
-        uid: security/gdpr
+        href: security/gdpr.md
       - name: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks
-        uid: security/anti-request-forgery
+        href: security/anti-request-forgery.md
       - name: Prevent open redirect attacks
-        uid: security/preventing-open-redirects
+        href: security/preventing-open-redirects.md
       - name: Prevent Cross-Site Scripting (XSS)
-        uid: security/cross-site-scripting
+        href: security/cross-site-scripting.md
       - name: Enable Cross-Origin Requests (CORS)
-        uid: security/cors
+        href: security/cors.md
       - name: Share cookies among apps
-        uid: security/cookie-sharing
+        href: security/cookie-sharing.md
       - name: SameSite cookies
-        uid: security/samesite
+        href: security/samesite.md
       - name: SameSite samples
         items:
           - name: Razor Pages 2.1 SameSite cookie sample
-            uid: security/samesite/rp21
+            href: security/samesite/rp21.md
           - name: Razor Pages 3.1 SameSite cookie sample
-            uid: security/samesite/rp31
+            href: security/samesite/rp31.md
           - name: MVC SameSite cookie sample
-            uid: security/samesite/mvc21
+            href: security/samesite/mvc21.md
       - name: IP safelist
-        uid: security/ip-safelist
+        href: security/ip-safelist.md
       - name: Application security - OWASP
         href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
   - name: Performance

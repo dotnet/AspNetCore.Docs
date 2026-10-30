@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to implement passkeys authentication in ASP.NET Core Blazor Web Apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 09/01/2026
-uid: security/authentication/passkeys/blazor
 zone_pivot_groups: implementation
 ---
 # Implement passkeys in ASP.NET Core Blazor Web Apps
@@ -13,9 +12,9 @@ zone_pivot_groups: implementation
                    locations for links in this article are
                    still correct for release -->
 
-This guide explains how to implement [passkey support](xref:security/authentication/passkeys/index) for a new or existing Blazor Web App with ASP.NET Core Identity.
+This guide explains how to implement [passkey support](index.md) for a new or existing Blazor Web App with ASP.NET Core Identity.
 
-For an overview of passkeys and general configuration guidance, see <xref:security/authentication/passkeys/index>.
+For an overview of passkeys and general configuration guidance, see [Enable Web Authentication API (WebAuthn) passkeys](index.md).
 
 :::zone pivot="new-development"
 
@@ -113,7 +112,7 @@ dotnet watch
 
 :::zone pivot="existing-app"
 
-The following guidance relies upon an app that was created with **Individual Accounts** for the app's **Authentication type** or [scaffolding Identity into an existing app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project).
+The following guidance relies upon an app that was created with **Individual Accounts** for the app's **Authentication type** or [scaffolding Identity into an existing app](../scaffold-identity.md#scaffold-identity-into-a-blazor-project).
 
 ## Prerequisites
 
@@ -286,7 +285,7 @@ Some password managers don't implement the [`PublicKeyCredential.toJSON` method]
 
 > :::no-loc text="Error: Could not add a passkey: Illegal invocation":::
 
-For guidance on mitigating this error, see <xref:security/authentication/passkeys/index#mitigate-publickeycredentialtojson-error-typeerror-illegal-invocation>.
+For guidance on mitigating this error, see [Enable Web Authentication API (WebAuthn) passkeys](index.md#mitigate-publickeycredentialtojson-error-typeerror-illegal-invocation).
 
 ## Related content
 

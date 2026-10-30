@@ -44,7 +44,7 @@ Kestrel has the following advantages over HTTP.sys:
 Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
 
   * Port sharing
-  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](xref:security/authentication/windowsauth#kestrel).
+  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](../../security/authentication/windowsauth.md#kestrel).
   * Fast proxying via queue transfers
   * Direct file transmission
   * Response caching

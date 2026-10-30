@@ -58,7 +58,7 @@ Limits can also be configured for an individual service using `AddServiceOptions
 
 [Client certificates](https://tools.ietf.org/html/rfc5246#section-7.4.4) are initially validated when the connection is established. By default, Kestrel doesn't perform additional validation of a connection's client certificate.
 
-We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) package. ASP.NET Core certification authentication will perform additional validation on a client certificate, including:
+We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](../security/authentication/certauth.md) package. ASP.NET Core certification authentication will perform additional validation on a client certificate, including:
 
 * Certificate has a valid extended key use (EKU)
 * Is within its validity period

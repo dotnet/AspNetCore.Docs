@@ -86,7 +86,7 @@ Default app configuration is loaded in the following order, from highest to lowe
 
 1. Command-line arguments using the [Command-line Configuration Provider](#command-line).
 1. Environment variables ***not*** prefixed by `ASPNETCORE_` or `DOTNET_` using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
-1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the [File Configuration Provider](#file-configuration-provider).
+1. [User secrets](../../security/app-secrets.md) when the app runs in the `Development` environment using the [File Configuration Provider](#file-configuration-provider).
 1. [Environmental app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](xref:fundamentals/environments), using the [JSON Configuration Provider](#json-configuration-provider). For example, `appsettings.Production.json` is used in production, and `appsettings.Development.json` is used during development.
 1. [General app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.json` using the [JSON Configuration Provider](#json-configuration-provider).
 1. Fallback [host configuration](#default-host-configuration-sources).
@@ -161,18 +161,18 @@ For more information, see [Change the content root, app name, and environment](x
 
 Configuration data guidelines:
 
-* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](xref:security/app-secrets) tool can be used to store secrets in development.
+* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](../../security/app-secrets.md) tool can be used to store secrets in development.
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
-* Production apps should use the most secure authentication flow available. For more information, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+* Production apps should use the most secure authentication flow available. For more information, see [Secure authentication flows](../../security/index.md#secure-authentication-flows).
 
 The User Secrets file configuration source of the [default configuration sources](#default-app-configuration-sources) is registered after the JSON configuration sources for app settings files. Therefore, user secrets keys take precedence over keys in `appsettings.json` and `appsettings.{ENVIRONMENT}.json`.
 
 For more information on storing passwords or other sensitive data:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>: Includes advice on using environment variables to store sensitive data. The Secret Manager tool uses the [File Configuration Provider](#file-configuration-provider) to store user secrets in a JSON file on the local system.
-* [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
+* [Safe storage of app secrets in development](../../security/app-secrets.md): Includes advice on using environment variables to store sensitive data. The Secret Manager tool uses the [File Configuration Provider](#file-configuration-provider) to store user secrets in a JSON file on the local system.
+* [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see [Azure Key Vault configuration provider](../../security/key-vault-configuration.md).
 
 ## Access configuration with Dependency Injection (DI)
 
@@ -278,7 +278,7 @@ Configuration keys:
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator doesn't work on all platforms. A double underscore (`__`) is supported by all platforms and is automatically converted into a colon (`:`) when the configuration is read by the app.
-  * In Azure Key Vault, hierarchical keys use double dashes (`--`) as a separator. The [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) automatically replaces the double dashes (`--`) with a colon (`:`) when the secrets are loaded into the app's configuration.
+  * In Azure Key Vault, hierarchical keys use double dashes (`--`) as a separator. The [Azure Key Vault Configuration Provider](../../security/key-vault-configuration.md) automatically replaces the double dashes (`--`) with a colon (`:`) when the secrets are loaded into the app's configuration.
 * The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array](#bind-an-array) section.
 
 Configuration values are strings. Null values can't be stored in configuration or bound to objects.
@@ -397,7 +397,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 
 Provider | Provides configuration from&hellip;
 --- | ---
-[Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) | Azure Key Vault
+[Azure Key Vault Configuration Provider](../../security/key-vault-configuration.md) | Azure Key Vault
 [Azure App Configuration Provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Azure App Configuration
 [Command-line Configuration Provider](#command-line) | Command-line parameters
 [Custom configuration provider](#custom-configuration-provider) | Custom source
@@ -405,7 +405,7 @@ Provider | Provides configuration from&hellip;
 [File Configuration Provider](#file-configuration-provider) | INI, JSON, and XML files
 [Key-Per-File Configuration Provider](#key-per-file-configuration-provider) | Directory files
 [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections
-[User secrets](xref:security/app-secrets) | File in the user profile directory
+[User secrets](../../security/app-secrets.md) | File in the user profile directory
 
 Configuration sources are read in the order that their configuration providers are specified. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
 
@@ -413,7 +413,7 @@ A typical sequence of configuration providers is:
 
 1. General app settings via `appsettings.json`.
 1. Environmental app settings via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's environment (examples: `Development`, `Production`).
-1. [User secrets](xref:security/app-secrets).
+1. [User secrets](../../security/app-secrets.md).
 1. Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
 1. Command-line arguments using the [Command-line Configuration Provider](#command-line).
 
@@ -569,7 +569,7 @@ For other IDEs, check the IDE's documentation and product support channels to de
 
 The [default Environment Variables Configuration Provider](#default-app-configuration-sources) (<xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider>) loads configuration from environment variables that aren't prefixed with `ASPNETCORE_` or `DOTNET_`. For more information on `ASPNETCORE_` and `DOTNET_` environment variables, see the [Default host configuration sources](#default-host-configuration-sources) section and [`DOTNET_` environment variables (.NET Core documentation)](/dotnet/core/tools/dotnet-environment-variables).
 
-Using the default Environment Variables Configuration Provider, the app loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and [user secrets](xref:security/app-secrets). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and user secrets.
+Using the default Environment Variables Configuration Provider, the app loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and [user secrets](../../security/app-secrets.md). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and user secrets.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -711,7 +711,7 @@ Environment variable key | Converted configuration key | Provider configuration 
 Using the [default configuration sources](#default-app-configuration-sources), the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
 * `appsettings.json` and `appsettings.{ENVIRONMENT}.json` files.
-* [App secrets](xref:security/app-secrets) in the `Development` environment.
+* [App secrets](../../security/app-secrets.md) in the `Development` environment.
 * Environment variables.
 
 By default, configuration values set on the command-line override configuration values set by all of the other configuration providers.

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 10/26/2026
-uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
 
@@ -12,7 +11,7 @@ uid: security/authentication/identity/spa
 
 :::moniker range=">= aspnetcore-8.0"
 
-[ASP.NET Core Identity](xref:security/authentication/identity) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. A token-based option is available for clients that can't use cookies, but in using this you are responsible for ensuring the tokens are kept secure. We recommend using cookies for browser-based applications, because, by default, the browser automatically handles them without exposing them to JavaScript.
+[ASP.NET Core Identity](identity.md) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. A token-based option is available for clients that can't use cookies, but in using this you are responsible for ensuring the tokens are kept secure. We recommend using cookies for browser-based applications, because, by default, the browser automatically handles them without exposing them to JavaScript.
 
 This article shows how to use Identity to secure a Web API backend for SPAs such as Angular, React, and Vue apps. The same backend APIs can be used to secure [Blazor WebAssembly apps](xref:blazor/security/webassembly/standalone-with-identity/index).
 
@@ -387,9 +386,9 @@ To set up Identity for email confirmation, add code in `Program.cs` to set `Requ
 
 :::code language="csharp" source="~/security/authentication/identity-api-authorization/samples/8/APIforSPA/Program.cs" id="snippetConfigureEmail":::
 
-For more information, see <xref:security/authentication/accconfirm>.
+For more information, see [Account confirmation and password recovery](accconfirm.md).
 
-Identity provides default text for the other emails that need to be sent as well, such as for 2FA and password reset. To customize these emails, provide a custom implementation of the `IEmailSender` interface. In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
+Identity provides default text for the other emails that need to be sent as well, such as for 2FA and password reset. To customize these emails, provide a custom implementation of the `IEmailSender` interface. In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see [Account confirmation and password recovery](accconfirm.md).
 
 ## Use the `POST /resendConfirmationEmail` endpoint
 
@@ -455,7 +454,7 @@ To enable 2FA for the currently authenticated user:
   }
   ```
 
-* Use the shared key to get a Time-based one-time password (TOTP). For more information, see <xref:security/authentication/identity-enable-qrcodes>.
+* Use the shared key to get a Time-based one-time password (TOTP). For more information, see [Enable QR code generation for TOTP authentication](identity-enable-qrcodes.md).
 
 * Call the `/manage/2fa` endpoint, sending the TOTP and `"enable": true` in the request body. For example:
 
@@ -583,13 +582,13 @@ Here's an example of the response body:
 
 For more information, see the following resources:
 
-* <xref:security/how-to-choose-identity>
-* <xref:security/identity-management-solutions>
-* <xref:security/authorization/simple>
-* <xref:security/authentication/add-user-data>
-* <xref:security/authorization/secure-data>
-* <xref:security/authentication/accconfirm>
-* <xref:security/authentication/identity-enable-qrcodes>
+* [Choose an identity management solution](../how-to-choose-identity-solution.md)
+* [Identity management solutions for .NET web apps](../identity-management-solutions.md)
+* [Simple authorization in ASP.NET Core](../authorization/simple.md)
+* [Add, download, and delete user data to Identity in an ASP.NET Core project](add-user-data.md)
+* [Create an ASP.NET Core app with user data protected by authorization](../authorization/secure-data.md)
+* [Account confirmation and password recovery](accconfirm.md)
+* [Enable QR code generation for TOTP authentication](identity-enable-qrcodes.md)
 * [Sample Web API backend for SPAs](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/SimpleAuthCookiesAndTokens/SimpleAuthCookiesAndTokens)
   The .http file shows token-based authentication. For example:
   * Doesn't set `useCookies`

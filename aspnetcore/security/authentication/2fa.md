@@ -5,22 +5,21 @@ description: Learn how to set up two-factor authentication (2FA) with an ASP.NET
 monikerRange: '< aspnetcore-2.0'
 ms.custom: sfi-image-nochange
 ms.date: 09/22/2018
-uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
 >[!WARNING]
-> Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 or later.
+> Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](identity-enable-qrcodes.md) for ASP.NET Core 2.0 or later.
 
-This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and ASPSMS (`https://www.aspsms.com/asp.net/identity/core/testcredits/`), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm) before starting this tutorial.
+This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and ASPSMS (`https://www.aspsms.com/asp.net/identity/core/testcredits/`), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/2fa/samples/Web2FA). [How to download](xref:fundamentals/index#how-to-download-a-sample).
 
 ## Create a new ASP.NET Core project
 
-Create a new ASP.NET Core web app named `Web2FA` with individual accounts. Follow the instructions in <xref:security/enforcing-ssl> to set up and require HTTPS.
+Create a new ASP.NET Core web app named `Web2FA` with individual accounts. Follow the instructions in [Enforce HTTPS in ASP.NET Core](../enforcing-ssl.md) to set up and require HTTPS.
 
 ### Create an SMS account
 
@@ -56,7 +55,7 @@ We'll use the [Options pattern](xref:fundamentals/configuration/options) to acce
 
 [!code-csharp[](2fa/samples/Web2FA/Services/SMSoptions.cs)]
 
-Set the `SMSAccountIdentification`, `SMSAccountPassword` and `SMSAccountFrom` with the [secret-manager tool](xref:security/app-secrets). For example:
+Set the `SMSAccountIdentification`, `SMSAccountPassword` and `SMSAccountFrom` with the [secret-manager tool](../app-secrets.md). For example:
 
 ```none
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345

@@ -54,7 +54,7 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 <a name="host-filtering"></a>
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * <xref:host-and-deploy/proxy-load-balancer>
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket isn't automatically deleted on app shutdown. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
@@ -112,7 +112,7 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 <a name="host-filtering"></a>
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * <xref:host-and-deploy/proxy-load-balancer>
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket isn't automatically deleted on app shutdown. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
@@ -160,7 +160,7 @@ For more information on building the host, see the *Set up a host* and *Default 
 <a name="host-filtering"></a>
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * <xref:host-and-deploy/proxy-load-balancer>
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
@@ -551,7 +551,7 @@ A development certificate is created:
 
 Some browsers require granting explicit permission to trust the local development certificate.
 
-Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](../../../../security/enforcing-ssl.md).
 
 Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.
 
@@ -1168,7 +1168,7 @@ If possible, it's better for clients to utilize the [Expect: 100-continue](https
 
 * When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * <xref:host-and-deploy/proxy-load-balancer>
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 

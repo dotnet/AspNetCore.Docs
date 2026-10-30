@@ -5,13 +5,12 @@ description: This tutorial demonstrates how to use WS-Federation in an ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
 ms.date: 08/22/2026
-uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
+This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](social/index.md).
 
 For ASP.NET Core apps, WS-Federation support is provided by [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). This component is ported from [Microsoft.Owin.Security.WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) and shares many of that component's mechanics. However, the components differ in a couple of important ways.
 

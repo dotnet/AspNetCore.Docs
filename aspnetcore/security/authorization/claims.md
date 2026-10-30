@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core
 
@@ -223,7 +222,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+For more information, see [Policy-based authorization in ASP.NET Core](policies.md#use-a-func-to-fulfill-a-policy).
 
 ## Evaluate multiple policies
 
@@ -333,7 +332,7 @@ The following example uses [`[Authorize]` attributes](xref:Microsoft.AspNetCore.
 </p>
 ```
 
-For more complicated policies, such as taking a date of birth claim, calculating an age from it, then checking that the age is 21 or older, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion*> or write [custom policy handlers](xref:security/authorization/policies). Custom policy handlers are useful when you need access to dependency-injected services or want a reusable, testable authorization component.
+For more complicated policies, such as taking a date of birth claim, calculating an age from it, then checking that the age is 21 or older, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion*> or write [custom policy handlers](policies.md). Custom policy handlers are useful when you need access to dependency-injected services or want a reusable, testable authorization component.
 
 ## Claim case sensitivity
 
@@ -354,4 +353,4 @@ In practice, this distinction rarely matters for role authorization because the 
 * <xref:blazor/security/webassembly/index#establish-claims-for-users>
 * <xref:razor-pages/security/authorization/claims>
 * <xref:mvc/security/authorization/claims>
-* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation)
+* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

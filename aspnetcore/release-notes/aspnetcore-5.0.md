@@ -365,7 +365,7 @@ Authorization when using endpoint routing now receives the `HttpContext` rather 
 
 ### Role-based access control with Kerberos authentication and LDAP on Linux
 
-See [Kerberos authentication and role-based access control (RBAC)](xref:security/authentication/windowsauth#rbac)
+See [Kerberos authentication and role-based access control (RBAC)](../security/authentication/windowsauth.md#rbac)
 
 ## API improvements
 

@@ -160,7 +160,7 @@ There's no limit on the number of connections per user for an app. If the app re
 For more information and configuration coding examples, see the following articles:
 
 * <xref:blazor/fundamentals/signalr>
-* <xref:signalr/configuration>
+* [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 
 ## Interactions with the browser (client)
 
@@ -405,16 +405,16 @@ For a XSS vulnerability to exist, the app must incorporate user input in the ren
 
 Consider further mitigating XSS vulnerabilities. For example, implement a restrictive [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP). For more information, see <xref:blazor/security/content-security-policy> and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
-For more information, see <xref:security/cross-site-scripting>.
+For more information, see [Prevent Cross-Site Scripting (XSS) in ASP.NET Core](../../security/cross-site-scripting.md).
 
 ### Cross-origin protection
 
-Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
+Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor apps offer [the same guarantees that any other SignalR app using the hub protocol offer](../../signalr/security.md):
 
-* Apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for Cross-Origin Resource Sharing](xref:signalr/security#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
+* Apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for Cross-Origin Resource Sharing](../../signalr/security.md#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
 * If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor SignalR hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> on the endpoint route builder.
 
-For more information, see <xref:security/anti-request-forgery>.
+For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../security/anti-request-forgery.md).
 
 ### Click-jacking
 
@@ -447,7 +447,7 @@ This advice also applies when rendering links as part of the app:
 * If possible, use relative links.
 * Validate that absolute link destinations are valid before including them in a page.
 
-For more information, see <xref:security/preventing-open-redirects>.
+For more information, see [Prevent open redirect attacks in ASP.NET Core](../../security/preventing-open-redirects.md).
 
 ## Security checklist
 

@@ -278,18 +278,18 @@ sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](../../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](../../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection to persist and encrypt the key ring, see:
 
-* <xref:security/data-protection/implementation/key-storage-providers>
-* <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Key storage providers in ASP.NET Core](../../../security/data-protection/implementation/key-storage-providers.md)
+* [Key encryption at rest in Windows and Azure using ASP.NET Core](../../../security/data-protection/implementation/key-encryption-at-rest.md)
 
 ## Long request header fields
 
@@ -366,12 +366,12 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 * Harden the security by employing some of the practices depicted in the following */etc/nginx/nginx.conf* file.
 
-* The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS redirection middleware. For more information, see <xref:security/enforcing-ssl>.
+* The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md).
 
   > [!NOTE]
   > For development environments where the server configuration handles secure redirection instead of HTTPS redirection middleware, we recommend using temporary redirects (302) rather than permanent redirects (301). Link caching can cause unstable behavior in development environments.
 
-* Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see <xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol>.
+* Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol).
 
 * If HTTPS will be disabled in the future, use one of the following approaches:
 
@@ -724,18 +724,18 @@ sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](../../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](../../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection to persist and encrypt the key ring, see:
 
-* <xref:security/data-protection/implementation/key-storage-providers>
-* <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Key storage providers in ASP.NET Core](../../../security/data-protection/implementation/key-storage-providers.md)
+* [Key encryption at rest in Windows and Azure using ASP.NET Core](../../../security/data-protection/implementation/key-encryption-at-rest.md)
 
 ## Long request header fields
 
@@ -813,12 +813,12 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 * Harden the security by employing some of the practices depicted in the following */etc/nginx/nginx.conf* file.
 
-* The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS redirection middleware. For more information, see <xref:security/enforcing-ssl>.
+* The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md).
 
   > [!NOTE]
   > For development environments where the server configuration handles secure redirection instead of HTTPS redirection middleware, we recommend using temporary redirects (302) rather than permanent redirects (301). Link caching can cause unstable behavior in development environments.
 
-* Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see <xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol>.
+* Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol).
 
 * If HTTPS will be disabled in the future, use one of the following approaches:
 

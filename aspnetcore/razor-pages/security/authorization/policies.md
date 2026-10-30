@@ -9,7 +9,7 @@ uid: razor-pages/security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core Razor Pages
 
-This article provides additional Razor Pages policy-based authorization scenarios following <xref:security/authorization/policies>, which should be read before this article when learning about policy-based authorization.
+This article provides additional Razor Pages policy-based authorization scenarios following [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md), which should be read before this article when learning about policy-based authorization.
 
 ## Apply policies to Razor Pages
 

@@ -994,7 +994,7 @@ Guidance on post-configuring named options is provided in the [Options post-conf
 
 <xref:Microsoft.Extensions.Options.OptionsBuilder`1> is demonstrated in the [Options validation](#options-validation) section.
 
-For information adding a custom repository, see <xref:security/data-protection/using-data-protection#add-opt>.
+For information adding a custom repository, see [Get started with the Data Protection APIs in ASP.NET Core](../../security/data-protection/using-data-protection.md#add-opt).
 
 ## Use DI services to configure options
 

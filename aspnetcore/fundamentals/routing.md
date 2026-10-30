@@ -855,13 +855,13 @@ In the preceding example, the `AddRelatedProduct` action extracts the `id` route
 
 The following links provide information on how to configure endpoint metadata:
 
-* [Enable Cors with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing)
+* [Enable Cors with endpoint routing](../security/cors.md#enable-cors-with-endpoint-routing)
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
-* [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
+* [Test authentication with the [Authorize] attribute](../security/authentication/identity.md#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
-* [Select a scheme with an `[Authorize]` attribute](xref:security/authorization/authorize-with-a-specific-scheme#select-a-scheme-with-an-authorize-attribute)
-* [Apply policies using an `[Authorize]` attribute](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
-* <xref:security/authorization/roles>
+* [Select a scheme with an `[Authorize]` attribute](../security/authorization/authorize-with-a-specific-scheme.md#select-a-scheme-with-an-authorize-attribute)
+* [Apply policies using an `[Authorize]` attribute](../security/authorization/policies.md#apply-policies-to-mvc-controllers)
+* [Role-based authorization in ASP.NET Core](../security/authorization/roles.md)
 
 <a name="hostmatch"></a>
 
@@ -1156,7 +1156,7 @@ As an example of this guideline, consider the authorization middleware. A config
 * Endpoints without authorization metadata that produces a policy.
 * Requests that don't match an endpoint.
 
-This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+This behavior makes the authorization middleware useful outside of routing and for traditional middleware programming. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../security/authorization/policies.md#default-and-fallback-policies).
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

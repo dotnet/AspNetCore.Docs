@@ -11,7 +11,7 @@ One way to control access in a Razor Pages app is to use authorization conventio
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/RazorPagesAuthorization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-The sample app uses [cookie authentication without ASP.NET Core Identity](xref:security/authentication/cookie). To use ASP.NET Core Identity, follow the guidance in <xref:security/authentication/identity>.
+The sample app uses [cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md). To use ASP.NET Core Identity, follow the guidance in [Introduction to Identity on ASP.NET Core](../../../security/authentication/identity.md).
 
 ## Require authorization to access a page
 
@@ -37,7 +37,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 The specified path is the View Engine path, which is the Razor Pages root relative path without an extension and containing only forward slashes.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizePage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*):
+To specify an [authorization policy](../../../security/authorization/policies.md), use an [`AuthorizePage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*):
 
 ```csharp
 options.Conventions.AuthorizePage("/Contact", "AtLeast21");
@@ -70,7 +70,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 The specified path is the View Engine path, which is the Razor Pages root relative path containing only forward slashes.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder*):
+To specify an [authorization policy](../../../security/authorization/policies.md), use an [`AuthorizeFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeFolder*):
 
 ```csharp
 options.Conventions.AuthorizeFolder("/Private", "AtLeast21");
@@ -86,7 +86,7 @@ options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 
 The page name is the path of the file without an extension relative to the pages root directory for the specified area. For example, the page name for the file `Areas/Identity/Pages/Manage/Accounts.cshtml` is `/Manage/Accounts`.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeAreaPage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
+To specify an [authorization policy](../../../security/authorization/policies.md), use an [`AuthorizeAreaPage` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
 
 ```csharp
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts", "AtLeast21");
@@ -102,7 +102,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
 
 The folder path is the path of the folder relative to the pages root directory for the specified area. For example, the folder path for the files under `Areas/Identity/Pages/Manage/` is `/Manage`.
 
-To specify an [authorization policy](xref:security/authorization/policies), use an [`AuthorizeAreaFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*):
+To specify an [authorization policy](../../../security/authorization/policies.md), use an [`AuthorizeAreaFolder` overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*):
 
 ```csharp
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");

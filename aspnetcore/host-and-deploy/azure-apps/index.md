@@ -114,7 +114,7 @@ See the common deployment configuration errors for apps hosted by Azure App Serv
 
 ## Data Protection key ring and deployment slots
 
-[ASP.NET Core Data Protection keys](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
+[ASP.NET Core Data Protection keys](../../security/data-protection/implementation/key-management.md#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
 
 When swapping between deployment slots, any system using data protection won't be able to decrypt stored data using the key ring inside the previous slot. ASP.NET cookie middleware uses data protection to protect its cookies. This leads to users being signed out of an app that uses the standard ASP.NET cookie middleware. For a slot-independent key ring solution, use an external key ring provider, such as:
 
@@ -123,7 +123,7 @@ When swapping between deployment slots, any system using data protection won't b
 * SQL store
 * Redis cache
 
-For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
+For more information, see [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md).
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
 
 ## Deploy an ASP.NET Core app that uses a .NET Core preview

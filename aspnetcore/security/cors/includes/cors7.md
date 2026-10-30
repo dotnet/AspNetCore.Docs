@@ -420,7 +420,7 @@ The `Access-Control-Max-Age` header specifies how long the response to the prefl
 This section describes what happens in a [CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS) request at the level of the HTTP messages.
 
 * CORS is **not** a security feature. CORS is a W3C standard that allows a server to relax the same-origin policy.
-  * For example, a malicious actor could use [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) against your site and execute a cross-site request to their CORS enabled site to steal information.
+  * For example, a malicious actor could use [Cross-Site Scripting (XSS)](../../cross-site-scripting.md) against your site and execute a cross-site request to their CORS enabled site to steal information.
 * An API isn't safer by allowing CORS.
   * It's up to the client (browser) to enforce CORS. The server executes the request and returns the response, it's the client that returns an error and blocks the response. For example, any of the following tools will display the server response:
     * [Fiddler](https://www.telerik.com/fiddler)

@@ -718,7 +718,7 @@ app.Run();
 
 In the preceding code:
 
-* Commented out middleware isn't added when you create a new web app with [individual users accounts](xref:security/authentication/identity).
+* Commented out middleware isn't added when you create a new web app with [individual users accounts](../../security/authentication/identity.md).
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching`. This requirement is explained in [GitHub issue dotnet/aspnetcore #23218](https://github.com/dotnet/aspnetcore/issues/23218).
@@ -873,7 +873,7 @@ app.Run();
 
 In the preceding code:
 
-* Commented out middleware isn't added when you create a new web app with [individual users accounts](xref:security/authentication/identity).
+* Commented out middleware isn't added when you create a new web app with [individual users accounts](../../security/authentication/identity.md).
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching`. This requirement is explained in [GitHub issue dotnet/aspnetcore #23218](https://github.com/dotnet/aspnetcore/issues/23218).
@@ -1010,7 +1010,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 In the preceding code:
 
-* Commented out middleware isn't added when you create a new web app with [individual users accounts](xref:security/authentication/identity).
+* Commented out middleware isn't added when you create a new web app with [individual users accounts](../../security/authentication/identity.md).
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
@@ -1120,7 +1120,7 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## `UseCors` and `UseStaticFiles` order
 
-For more information on ordering <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see <xref:security/cors#usecors-and-usestaticfiles-order>.
+For more information on ordering <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../security/cors.md#usecors-and-usestaticfiles-order).
 
 ## Forwarded headers middleware order
 
@@ -1142,11 +1142,11 @@ The latest release of ASP.NET Core includes the following middleware. The *UI st
 
 Middleware | Description | UI stack | Order
 --- | --- | --- | ---
-[Antiforgery](xref:security/anti-request-forgery) | Provides anti-request-forgery support. | All | After authentication and authorization, before endpoints.
-[Authentication](xref:security/authentication/identity) | Provides authentication support. | All | Before `HttpContext.User` is required. Terminal for OAuth callbacks.
+[Antiforgery](../../security/anti-request-forgery.md) | Provides anti-request-forgery support. | All | After authentication and authorization, before endpoints.
+[Authentication](../../security/authentication/identity.md) | Provides authentication support. | All | Before `HttpContext.User` is required. Terminal for OAuth callbacks.
 [Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Provides authorization support. | All | Immediately after the authentication middleware.
-[Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | All | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
-[CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | All | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
+[Cookie Policy](../../security/gdpr.md) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | All | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
+[CORS](../../security/cors.md) | Configures Cross-Origin Resource Sharing. | All | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
 [Developer Exception Page](xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) | Generates a page with error information that's intended for use only in the `Development` environment. | All | Before middleware that generate errors. The project templates automatically register this middleware as the first middleware in the pipeline when the environment is `Development`.
 [Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | All | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
 [Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
@@ -1155,8 +1155,8 @@ Middleware | Description | UI stack | Order
 All |
 [HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline.
 [HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. | All | Before middleware that consume the updated method.
-[HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
-[HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
+[HTTPS Redirection](../../security/enforcing-ssl.md#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
+[HTTP Strict Transport Security (HSTS)](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
 [MVC](xref:mvc/overview) | Processes requests with MVC and Razor Pages. | RP/MVC | Terminal if a request matches a route.
 [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request.
 [Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>, and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> must come before <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>.

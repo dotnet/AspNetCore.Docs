@@ -14,12 +14,12 @@ uid: blazor/security/blazor-web-app-windows-authentication
 
 -->
 
-This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app. For more information, see <xref:security/authentication/windowsauth>.
+This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app. For more information, see [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md).
 
 The app specification for the Blazor Web App:
 
 * Adopts the [Interactive Server render mode with global interactivity](xref:blazor/components/render-modes).
-* Establishes an [authorization policy](xref:security/authorization/policies) for a [Windows security identifier](/windows-server/identity/ad-ds/manage/understand-security-identifiers) to access a secure page.
+* Establishes an [authorization policy](../../security/authorization/policies.md) for a [Windows security identifier](/windows-server/identity/ad-ds/manage/understand-security-identifiers) to access a secure page.
 
 ## Sample app
 
@@ -31,7 +31,7 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 The sample app doesn't require configuration to run locally.
 
-When deployed to a host, such as IIS, the app must adopt impersonation to run under the user's account. For more information, see <xref:security/authentication/windowsauth#impersonation>.
+When deployed to a host, such as IIS, the app must adopt impersonation to run under the user's account. For more information, see [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md#impersonation).
 
 ## Sample app code
 
@@ -53,7 +53,7 @@ builder.Services.AddAuthorization(options =>
 });
 ```
 
-For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../../security/authorization/policies.md#default-and-fallback-policies).
 
 <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState*> adds cascading authentication state to the service collection. This is equivalent to placing a `CascadingAuthenticationState` component at the root of the app's component hierarchy:
 
@@ -61,7 +61,7 @@ For complete policy selection rules, see <xref:security/authorization/policies#d
 builder.Services.AddCascadingAuthenticationState();
 ```
 
-An [authorization policy](xref:security/authorization/policies) is added for a [Windows security identifier (SID)](/windows-server/identity/ad-ds/manage/understand-security-identifiers). The `S-1-5-113` well-known SID in the following example indicates that the user is a local account, which restricts network sign-in to local accounts instead of "administrator" or equivalent accounts:
+An [authorization policy](../../security/authorization/policies.md) is added for a [Windows security identifier (SID)](/windows-server/identity/ad-ds/manage/understand-security-identifiers). The `S-1-5-113` well-known SID in the following example indicates that the user is a local account, which restricts network sign-in to local accounts instead of "administrator" or equivalent accounts:
 
 ```csharp
 builder.Services.AddAuthorizationBuilder()
@@ -180,5 +180,5 @@ else
 
 ## Related content
 
-* <xref:security/authentication/windowsauth>
+* [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md)
 * [Security identifiers (Windows Server documentation)](/windows-server/identity/ad-ds/manage/understand-security-identifiers)

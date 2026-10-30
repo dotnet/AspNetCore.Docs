@@ -322,7 +322,7 @@ IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.
 * Access control for APIs
 * Federation Gateway
 
-For more information, see [the IdentityServer4 documentation](https://identityserver4.readthedocs.io/en/latest/) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).
+For more information, see [the IdentityServer4 documentation](https://identityserver4.readthedocs.io/en/latest/) or [Authentication and authorization for SPAs](../security/authentication/identity-api-authorization.md).
 
 ## Certificate and Kerberos authentication
 
@@ -354,7 +354,7 @@ Options for certificate authentication include the ability to:
 * Check for certificate revocation.
 * Check that the proffered certificate has the right usage flags in it.
 
-A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see <xref:security/authentication/certauth>.
+A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see [Configure certificate authentication in ASP.NET Core](../security/authentication/certauth.md).
 
 [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HTTP.sys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
 
@@ -380,13 +380,13 @@ Host requirements:
   * SPNs must be created for the web process.
   * [Keytab files](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) must be generated and configured on the host machine.
 
-For more information, see <xref:security/authentication/windowsauth>.
+For more information, see [Configure Windows Authentication in ASP.NET Core](../security/authentication/windowsauth.md).
 
 ## Template changes
 
 The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
 
-* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template-generated app, see <xref:security/gdpr>.
+* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template-generated app, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](../security/gdpr.md).
 * Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (dotnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
 
 The Angular template updated to use Angular 8.
