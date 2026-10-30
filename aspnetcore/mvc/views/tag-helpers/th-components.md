@@ -1,8 +1,9 @@
 ---
 title: Tag Helper Components in ASP.NET Core
+ai-usage: ai-assisted
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
-ms.date: 06/12/2019
+ms.date: 10/30/2026
 uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
@@ -146,6 +147,20 @@ The preceding `ProcessAsync` method injects the HTML provided to <xref:Microsoft
 For example, the `if` statement evaluates to true when processing the following `<address>` element:
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_AddressPrintable)]
+
+## Architecture and execution order
+
+To understand how Tag Helper Components work and interact with regular Tag Helpers, consider the underlying architecture:
+
+* <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper>: A standard <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper>, such as the built-in <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper> or <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper>, that targets an HTML element, such as the `<head>` or `<body>` tags. It derives from <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper>.
+* <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>: An injected service that manages the collection of registered <xref:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelperComponent> instances.
+* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>: Classes that implement <xref:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelperComponent> or inherit from <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. When a hosting <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper> processes an element, it iterates through all registered components in <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager> and invokes their `Init` and `ProcessAsync` methods.
+
+### Execution order
+
+* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper> versus <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>: A <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper> executes as a standard Tag Helper. Its position relative to other Tag Helpers targeting the same HTML element is determined by its <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelper.Order?displayProperty=nameWithType> property.
+* Component Order: The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order?displayProperty=nameWithType> property controls the relative execution order *among the components* managed by the hosting Tag Helper. Components with a lower `Order` value execute before components with a higher value.
+* Nested elements: Because the built-in `head` and `body` Tag Helpers enclose the document's content, Tag Helpers targeting child elements within the view, such as a custom tag helper on a `<form>` inside the `<body>`, execute during the evaluation of the body Tag Helper's child content.
 
 ## Related content
 
